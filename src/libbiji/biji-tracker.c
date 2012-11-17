@@ -48,6 +48,7 @@ bjb_perform_query_async (gchar *query,
                                          user_data);
 }
 
+// TODO : remove this one
 static TrackerSparqlCursor *
 bjb_perform_query ( gchar * query )
 {
@@ -68,6 +69,35 @@ bjb_perform_query ( gchar * query )
   return result ;
 }
 
+static void
+biji_finish_update (GObject *source_object,
+                   GAsyncResult *res,
+                   gpointer user_data)
+{
+  TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
+  GError *error = NULL;
+
+  tracker_sparql_connection_update_finish (self, res, &error);
+
+  if (error)
+  {
+    g_warning (error->message);
+    g_error_free (error);
+  }
+}
+
+static void
+biji_perform_update_async (const gchar *query)
+{
+  tracker_sparql_connection_update_async (get_connection_singleton(),
+                                          query,
+                                          0,     // priority
+                                          NULL,
+                                          biji_finish_update,
+                                          NULL); //user_data
+}
+
+// TODO : remove this one
 static void
 bjb_perform_update(gchar *query)
 {
@@ -255,15 +285,14 @@ remove_tag_from_note (gchar *tag, BijiNoteObj *note)
   g_free (query);
 }
 
-//
 void
-biji_note_delete_from_tracker(BijiNoteObj *note)
+biji_note_delete_from_tracker (BijiNoteObj *note)
 {
-  gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
-                                  biji_note_obj_get_path(note));
+  const gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
+                                        biji_note_obj_get_path(note));
 
-  bjb_perform_update(query);
-  g_free (query);
+  biji_perform_update_async (query);
+  g_free ((gchar*) query);
 }
 
 static void 
@@ -324,7 +353,8 @@ is_note_into_tracker ( BijiNoteObj *note )
   }
 }
 
-// Either create or update.
+// Either create or update
+// FIXME this is probably buggy with async updates
 void
 bijiben_push_note_to_tracker(BijiNoteObj *note)
 {

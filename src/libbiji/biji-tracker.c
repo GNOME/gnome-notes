@@ -97,25 +97,6 @@ biji_perform_update_async (const gchar *query)
                                           NULL); //user_data
 }
 
-// TODO : remove this one
-static void
-bjb_perform_update(gchar *query)
-{
-  GError *error = NULL ;
-
-  tracker_sparql_connection_update (get_connection_singleton(),
-                                    query,
-                                    G_PRIORITY_DEFAULT,
-                                    NULL,
-                                    &error);
-
-  if ( error)
-  {
-    g_log(G_LOG_DOMAIN,G_LOG_LEVEL_DEBUG,"Query error : %s",error->message);
-    g_log(G_LOG_DOMAIN,G_LOG_LEVEL_DEBUG,"query was |%s|", query);
-  }
-}
-
 static gchar *
 tracker_str ( gchar * string )
 {
@@ -248,8 +229,8 @@ push_tag_to_tracker(gchar *tag)
   WHERE { OPTIONAL {?tag a nao:Tag ; nao:prefLabel '%s'} . \
   FILTER (!bound(?tag)) }",tag,tag);
 
-  bjb_perform_update (query) ;
-  g_free (query);
+  biji_perform_update_async (query) ;
+  g_free ((gchar*) query);
 }
 
 // removes the tag EVEN if files associated.
@@ -257,32 +238,32 @@ void
 remove_tag_from_tracker(gchar *tag)
 {
   gchar *value = tracker_str (tag);
-  gchar *query = g_strdup_printf ("DELETE { ?tag a nao:Tag } \
+  const gchar *query = g_strdup_printf ("DELETE { ?tag a nao:Tag } \
   WHERE { ?tag nao:prefLabel '%s' }",value);
 
-  bjb_perform_update(query);
-  g_free (query);
+  biji_perform_update_async (query);
+  g_free ((gchar*) query);
   g_free (tag);
 }
 
 void
 push_existing_tag_to_note(gchar *tag,BijiNoteObj *note)
 {
-  gchar *query = g_strdup_printf( "INSERT { <%s> nao:hasTag ?id } \
+  const gchar *query = g_strdup_printf( "INSERT { <%s> nao:hasTag ?id } \
   WHERE {   ?id nao:prefLabel '%s' }", biji_note_obj_get_path(note),tag ) ;
     
-  bjb_perform_update(query);
-  g_free (query);
+  biji_perform_update_async (query);
+  g_free ((gchar*) query);
 }
 
 void
 remove_tag_from_note (gchar *tag, BijiNoteObj *note)
 {
-  gchar *query = g_strdup_printf( "DELETE { <%s> nao:hasTag ?id } \
+  const gchar *query = g_strdup_printf( "DELETE { <%s> nao:hasTag ?id } \
   WHERE {   ?id nao:prefLabel '%s' }", biji_note_obj_get_path(note),tag ) ;
     
-  bjb_perform_update(query); 
-  g_free (query);
+  biji_perform_update_async (query);
+  g_free ((gchar*) query);
 }
 
 void
@@ -298,7 +279,7 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 static void 
 biji_note_create_into_tracker(BijiNoteObj *note)
 {
-  gchar *query,*title,*content,*file,*create_date,*last_change_date ;
+  gchar *title,*content,*file,*create_date,*last_change_date ;
     
   title = tracker_str (biji_note_obj_get_title (note));
   file = g_strdup_printf ("file://%s", biji_note_obj_get_path(note));
@@ -307,7 +288,8 @@ biji_note_create_into_tracker(BijiNoteObj *note)
   content = tracker_str (biji_note_get_raw_text (note));
 
   /* TODO : nie:mimeType Note ; \ */
-  query = g_strdup_printf ("INSERT { <%s> a nfo:Note , nie:DataObject ; \
+  const gchar *query = g_strdup_printf (
+                            "INSERT { <%s> a nfo:Note , nie:DataObject ; \
                             nie:url '%s' ; \
                             nie:contentLastModified '%s' ; \
                             nie:contentCreated '%s' ; \
@@ -321,9 +303,9 @@ biji_note_create_into_tracker(BijiNoteObj *note)
                            title,
                            content) ;
 
-  bjb_perform_update(query);
+  biji_perform_update_async (query);
 
-  g_free (query);
+  g_free ((gchar*) query);
   g_free(title);
   g_free(file);
   g_free(content); 

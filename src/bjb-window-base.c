@@ -30,9 +30,6 @@ struct _BjbWindowBasePriv
   /* To register new windows and access the data */
   GtkApplication *app ;
   BjbController  *controller;
-    
-  /* The real data */
-  //GList *tags ;
 
   /* UI */
   ClutterActor *stage, *frame ;
@@ -138,7 +135,6 @@ bjb_window_base_init (BjbWindowBase *self)
   /*  We probably want to offer a no entry window at first (startup) */
   priv->entry = NULL ;
 
-  //priv->tags = get_all_tracker_tags();
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
   /* UI */

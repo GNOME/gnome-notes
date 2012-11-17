@@ -305,8 +305,6 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
   for (i=0 ; i<g_list_length(notes) ;i++ )
   {
     BijiNoteObj *note = g_list_nth_data(notes,i) ;
-      
-    biji_note_delete_from_tracker(note);
     biji_note_book_remove_note(bjb_window_base_get_book(view->priv->window),note);
   }
 

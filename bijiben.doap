@@ -7,11 +7,7 @@
   <name xml:lang="en">Bijiben</name>
   <shortdesc xml:lang="en">Write out notes, every detail matters</shortdesc>
   <homepage rdf:resource="https://github.com/pyluyten/bijiben/wiki" />
-
-<!-- TODO
-  <mailing-list rdf:resource="http://example.com/projectname/mail" />
   <category rdf:resource="http://api.gnome.org/doap-extensions#other" />
--->
 
   <maintainer>
     <foaf:Person>

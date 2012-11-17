@@ -91,15 +91,26 @@ append_tag (gchar *tag, BjbNoteTagDialog *self)
 
 /* Current tags selection & sorting might be improved */
 static void
+bjb_note_tag_dialog_handle_tags (GObject *source_object,
+                                 GAsyncResult *res,
+                                 gpointer user_data)
+{
+  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (user_data);
+
+  GList *tags;
+
+  tags = biji_get_all_tags_finish (source_object, res);
+  tags = g_list_sort (tags, (GCompareFunc) g_strcmp0);
+
+  g_list_foreach (tags, (GFunc) append_tag, self);
+  g_list_free_full (tags, g_free);
+}
+
+static void
 update_tags_model (BjbNoteTagDialog *self)
 {
-  GList *all_tags = NULL;
-
-  all_tags = g_list_copy (bjb_window_base_get_tags (GTK_WIDGET(self->priv->window)));
-  all_tags = g_list_sort (all_tags, (GCompareFunc) g_strcmp0);
-  g_list_foreach (all_tags, (GFunc) append_tag, self);
-
-  g_list_free (all_tags);
+  gtk_list_store_clear (self->priv->store);
+  biji_get_all_tracker_tags_async (bjb_note_tag_dialog_handle_tags, self);
 }
 
 /* TODO This two func should rather be direct call to libbiji
@@ -173,7 +184,6 @@ add_new_tag (BjbNoteTagDialog *self)
   bjb_window_base_set_tags (GTK_WIDGET (self->priv->window), get_all_tracker_tags());
 
   /* Update the view */
-  gtk_list_store_clear (self->priv->store);
   update_tags_model (self);
 }
 

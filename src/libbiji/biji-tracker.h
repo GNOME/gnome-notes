@@ -29,8 +29,12 @@ GList * tracker_tag_get_files(gchar *tag);
 
 gint tracker_tag_get_number_of_files(gchar *tag);
 
-/* Free the result */
-GList *get_all_tracker_tags();
+/* Get tags */
+GList * biji_get_all_tags_finish (GObject *source_object, GAsyncResult *res);
+void biji_get_all_tracker_tags_async (GAsyncReadyCallback f, gpointer user_data);
+
+/* don't use this , might block */
+GList *get_all_tracker_tags (void);
 
 void push_tag_to_tracker(gchar *tag);
 

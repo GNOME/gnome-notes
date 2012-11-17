@@ -36,6 +36,18 @@ get_connection_singleton(void)
   return bjb_connection ;
 }
 
+static void
+bjb_perform_query_async (gchar *query,
+                         GAsyncReadyCallback f,
+                         gpointer user_data)
+{
+  tracker_sparql_connection_query_async (get_connection_singleton (),
+                                         query,
+                                         NULL,
+                                         f,
+                                         user_data);
+}
+
 static TrackerSparqlCursor *
 bjb_perform_query ( gchar * query )
 {
@@ -151,6 +163,54 @@ tracker_tag_get_number_of_files(gchar *tag)
   return result ;
 }
 
+/* This func only provides tags.
+ * TODO : include number of notes / files */
+GList *
+biji_get_all_tags_finish (GObject *source_object,
+                          GAsyncResult *res)
+{
+  TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
+  TrackerSparqlCursor *cursor;
+  GError *error = NULL;
+  GList *result = NULL;
+
+  cursor = tracker_sparql_connection_query_finish (self,
+                                                   res,
+                                                   &error);
+
+  if (error)
+  {
+    g_warning (error->message);
+    g_error_free (error);
+  }
+
+  if (cursor)
+  {
+    gchar* tag;
+
+    while (tracker_sparql_cursor_next (cursor, NULL, NULL))
+    {
+      tag = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
+      result = g_list_prepend (result, (gpointer) tag);
+    }
+
+    g_object_unref (cursor);
+  }
+
+  return result;
+}
+ 
+void
+biji_get_all_tracker_tags_async (GAsyncReadyCallback f,
+                                 gpointer user_data)
+{
+  gchar *query = "SELECT DISTINCT ?labels WHERE \
+  { ?tags a nao:Tag ; nao:prefLabel ?labels. }";
+
+  bjb_perform_query_async (query, f, user_data);
+}
+
+/* TODO : delete this one */
 GList *
 get_all_tracker_tags()
 {

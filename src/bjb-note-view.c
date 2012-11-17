@@ -210,8 +210,6 @@ delete_item_callback (GtkWidget *item, gpointer user_data)
 {
   BjbNoteView *view = BJB_NOTE_VIEW (user_data);
 
-  biji_note_delete_from_tracker(view->priv->note);
-
   /* Delete the note from collection
    * The deleted note will emit a signal. */
   biji_note_book_remove_note(bjb_window_base_get_book(view->priv->window),

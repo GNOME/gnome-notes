@@ -144,6 +144,26 @@ on_view_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
   return TRUE;
 }
 
+/* Just makes toolbar draggable */
+gboolean on_button_press (GtkWidget* widget,
+                          GdkEventButton * event,
+                          GdkWindowEdge edge)
+{
+  if (event->type == GDK_BUTTON_PRESS)
+  {
+    if (event->button == 1) {
+      gtk_window_begin_move_drag (GTK_WINDOW (gtk_widget_get_toplevel (widget)),
+                                  event->button,
+                                  event->x_root,
+                                  event->y_root,
+                                  event->time);
+    }
+  }
+
+  return FALSE;
+}
+
+
 static gboolean
 update_selection_label (GdMainView *view, BjbMainToolbar *self)
 {
@@ -339,10 +359,12 @@ bjb_main_toolbar_init (BjbMainToolbar *self)
   self->priv = priv ;
 
   priv->type = BJB_TOOLBAR_0 ;
+
   priv->toolbar = GD_MAIN_TOOLBAR(gd_main_toolbar_new());
+  g_signal_connect (priv->toolbar, "button-press-event", G_CALLBACK (on_button_press), NULL);
   priv->actor = gtk_clutter_actor_new_with_contents(GTK_WIDGET(priv->toolbar));
 
-  clutter_actor_show(priv->actor);
+  clutter_actor_show (priv->actor);
 }
 
 static void

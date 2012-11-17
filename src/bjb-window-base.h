@@ -60,10 +60,6 @@ ClutterActor * bjb_window_base_get_stage(BjbWindowBase *bwb);
 
 BijiNoteBook * bjb_window_base_get_book(GtkWidget * win);
 
-GList * bjb_window_base_get_tags(GtkWidget * win);
-
-void bjb_window_base_set_tags(GtkWidget * win, GList * tags);
-
 void bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;
 
 void bjb_window_base_delete_entry(GtkWidget *win);

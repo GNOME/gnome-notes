@@ -179,11 +179,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
 static void
 add_new_tag (BjbNoteTagDialog *self)
 {
-  /* Push the tag to tracker */
   push_tag_to_tracker ((gchar*) gtk_entry_get_text(GTK_ENTRY(self->priv->entry)));
-  bjb_window_base_set_tags (GTK_WIDGET (self->priv->window), get_all_tracker_tags());
-
-  /* Update the view */
   update_tags_model (self);
 }
 

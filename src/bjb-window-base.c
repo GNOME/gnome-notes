@@ -32,7 +32,7 @@ struct _BjbWindowBasePriv
   BjbController  *controller;
     
   /* The real data */
-  GList *tags ;
+  //GList *tags ;
 
   /* UI */
   ClutterActor *stage, *frame ;
@@ -138,7 +138,7 @@ bjb_window_base_init (BjbWindowBase *self)
   /*  We probably want to offer a no entry window at first (startup) */
   priv->entry = NULL ;
 
-  priv->tags = get_all_tracker_tags();
+  //priv->tags = get_all_tracker_tags();
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
   /* UI */
@@ -236,30 +236,6 @@ bjb_window_base_get_book(GtkWidget * win)
        return NULL ;
    }
 }
-
-GList *
-bjb_window_base_get_tags(GtkWidget * win)
-{
-    BjbWindowBase *b = BJB_WINDOW_BASE(win);
-
-  if ( b->priv )
-    return b->priv->tags ;
-
-  else
-    return NULL ;
-}
-
-void 
-bjb_window_base_set_tags(GtkWidget * win, GList * tags)
-{
-  BjbWindowBase *b = BJB_WINDOW_BASE(win);
-  
-  if ( b->priv->tags != NULL )
-    g_list_free_full (b->priv->tags,(GDestroyNotify) g_free);
-  
-  b->priv->tags = tags ;
-}
-
 
 void
 bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry)

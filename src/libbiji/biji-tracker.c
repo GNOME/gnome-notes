@@ -210,43 +210,6 @@ biji_get_all_tracker_tags_async (GAsyncReadyCallback f,
   bjb_perform_query_async (query, f, user_data);
 }
 
-/* TODO : delete this one */
-GList *
-get_all_tracker_tags()
-{
-  GList *ret = NULL ;
-
-  //  Get all available tags
-  gchar *query = "SELECT DISTINCT ?labels WHERE \
-  { ?tags a nao:Tag ; nao:prefLabel ?labels. }";
-
-  /* This old version only gets tags which are assigned 
-  "SELECT DISTINCT ?labels WHERE {?f nie:isStoredAs ?as ; nao:hasTag ?tags. \
-  ?u a nfo:FileDataObject . ?tags a nao:Tag ; nao:prefLabel ?labels. }";     */
-	
-  TrackerSparqlCursor *cursor = bjb_perform_query( query) ;
-    
-  if (!cursor)
-  {
-    g_message ("no result..");
-    return NULL ;
-  }
-      
-  else
-  {
-    GString * tag ; 
-    while (tracker_sparql_cursor_next (cursor, NULL, NULL))
-    {
-      tag = g_string_new(tracker_sparql_cursor_get_string(cursor,0,NULL));   
-      ret = g_list_append(ret,(gpointer)g_string_free(tag,FALSE));
-    }
-        
-    g_object_unref (cursor);
-  }
-    
-  return ret;
-}
-
 void 
 push_tag_to_tracker(gchar *tag)
 { 

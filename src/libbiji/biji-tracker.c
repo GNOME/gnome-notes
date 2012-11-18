@@ -48,31 +48,10 @@ bjb_perform_query_async (gchar *query,
                                          user_data);
 }
 
-// TODO : remove this one
-static TrackerSparqlCursor *
-bjb_perform_query ( gchar * query )
-{
-  TrackerSparqlCursor * result ;
-  GError *error = NULL ;
-
-  result = tracker_sparql_connection_query (get_connection_singleton(),
-                                            query,
-                                            NULL,
-                                            &error);
-
-  if ( error)
-  {
-    g_log(G_LOG_DOMAIN,G_LOG_LEVEL_DEBUG,"Query error : %s",error->message);
-    g_log(G_LOG_DOMAIN,G_LOG_LEVEL_DEBUG,"query was |%s|", query);
-  }
-
-  return result ;
-}
-
 static void
 biji_finish_update (GObject *source_object,
-                   GAsyncResult *res,
-                   gpointer user_data)
+                    GAsyncResult *res,
+                    gpointer user_data)
 {
   TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
   GError *error = NULL;
@@ -112,67 +91,6 @@ to_8601_date( gchar * dot_iso_8601_date )
 }
 
 /////////////// Tags
-
-GList *
-tracker_tag_get_files(gchar *tag)
-{
-  GList *result = NULL ;
-    
-  gchar *query, *value ;
-  value = tracker_str (tag);
-  query = g_strdup_printf( "SELECT ?s nie:url(?s) nie:mimeType(?s) WHERE \
-          { ?s a nfo:FileDataObject;nao:hasTag [nao:prefLabel'%s'] }",
-                          value );
-  g_free (value);
-  
-  TrackerSparqlCursor *cursor = bjb_perform_query(query) ;
-  g_free (query);
-      
-  if (!cursor)
-  {
-    return result ;
-  }
-
-  GString * file ;
-  while (tracker_sparql_cursor_next (cursor, NULL, NULL))
-  {
-    file = g_string_new(tracker_sparql_cursor_get_string(cursor,0,NULL));
-    result = g_list_append(result,g_string_free(file,FALSE));
-  }
-
-  g_object_unref (cursor);
-  return result ;
-}
-
-// Count files for one given tag. 
-gint
-tracker_tag_get_number_of_files(gchar *tag)
-{      
-  gchar *query, *value ;
-
-  value = tracker_str (tag);
-  query = g_strdup_printf( "SELECT ?s nie:url(?s) nie:mimeType(?s) WHERE \
-          { ?s a nfo:FileDataObject;nao:hasTag [nao:prefLabel'%s'] }",
-                          value);
-  g_free (value);
-
-  TrackerSparqlCursor *cursor = bjb_perform_query(query);
-  g_free (query);
-  gint result = 0 ;
-	
-  if (!cursor)
-  {
-    return result ;
-  }
-                          
-  while (tracker_sparql_cursor_next (cursor, NULL, NULL))
-  {
-    result++;
-  }
-
-  g_object_unref (cursor);
-  return result ;
-}
 
 /* This func only provides tags.
  * TODO : include number of notes / files */
@@ -276,6 +194,8 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
   g_free ((gchar*) query);
 }
 
+/* There is no standard UPDATE into tracker
+ * delete the note, when we're sure it's done then insert it */
 static void 
 biji_note_create_into_tracker(BijiNoteObj *note)
 {
@@ -312,37 +232,32 @@ biji_note_create_into_tracker(BijiNoteObj *note)
   g_free(create_date);
   g_free(last_change_date);
 }
-            
-// TODO (?) add time there, eg is_note_tracked ( BijiNoteObj, GDateTime )
-gboolean
-is_note_into_tracker ( BijiNoteObj *note )
+
+static void
+update_note_into_tracker (GObject *source_object,
+                          GAsyncResult *res,
+                          gpointer user_data)
 {
-  gchar *query = g_strdup_printf ("SELECT ?modDate WHERE { <%s> a nfo:Note ; \
-                                  nie:contentLastModified ?modDate.}",
-                                  biji_note_obj_get_path(note));
+  BijiNoteObj *note = BIJI_NOTE_OBJ (user_data);
 
-  TrackerSparqlCursor *cursor = bjb_perform_query(query);
-  g_free (query);
-
-  if (!cursor)
-    return FALSE ;
-
-  else
-  {
-    gboolean result =  tracker_sparql_cursor_next (cursor, NULL, NULL) ;
-    g_object_unref (cursor);
-    return result;
-  }
+  biji_finish_update (source_object, res, NULL);
+  biji_note_create_into_tracker (note);
 }
 
-// Either create or update
-// FIXME this is probably buggy with async updates
+
 void
 bijiben_push_note_to_tracker(BijiNoteObj *note)
 {
-  if ( is_note_into_tracker(note) == TRUE )
-    biji_note_delete_from_tracker(note);
+  const gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
+                                        biji_note_obj_get_path(note));
 
-  biji_note_create_into_tracker(note);
+  tracker_sparql_connection_update_async (get_connection_singleton(),
+                                          query,
+                                          0,     // priority
+                                          NULL,
+                                          update_note_into_tracker,
+                                          note); //user_data
+
+  g_free ((gchar*) query);
 }
 

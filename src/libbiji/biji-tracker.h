@@ -24,11 +24,6 @@
 
 #include <libbiji/libbiji.h>
 
-/* Free the result */
-GList * tracker_tag_get_files(gchar *tag);
-
-gint tracker_tag_get_number_of_files(gchar *tag);
-
 /* Get tags */
 GList * biji_get_all_tags_finish (GObject *source_object, GAsyncResult *res);
 void biji_get_all_tracker_tags_async (GAsyncReadyCallback f, gpointer user_data);

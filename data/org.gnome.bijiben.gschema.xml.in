@@ -1,13 +1,13 @@
 <schemalist>
   <schema path="/org/gnome/bijiben/" id="org.gnome.bijiben">
     <key type="s" name="font">
-      <default>'Serif 11'</default>
-      <summary>Custom Font Face</summary>
+      <default>'Cantarell 12'</default>
+      <summary>Custom Font</summary>
       <description>The font name set here will be used as the font when displaying notes.</description>
     </key>
     <key type="s" name="color">
-      <default>'Red'</default>
-      <summary>The color when text is highlighted.</summary>
+      <default>'rgb(229,230,180)'</default>
+      <summary>New notes color.</summary>
       <description>The color name set here will be used as the color when creating new notes.</description>
     </key>
   </schema>

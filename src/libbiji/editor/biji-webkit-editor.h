@@ -63,6 +63,8 @@ void biji_webkit_editor_copy (BijiWebkitEditor *self);
 
 void biji_webkit_editor_paste (BijiWebkitEditor *self);
 
+void biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font);
+
 G_END_DECLS
 
 #endif /* _WEBKIT_EDITOR_H_ */

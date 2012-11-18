@@ -27,9 +27,6 @@
 
 #include <libgd/gd.h>
 
-/* Default color (X11 rgb.txt)  */ 
-#define DEFAULT_NOTE_COLOR "rgb(229,230,180)"
-
 /* Icon */
 #define ICON_WIDTH 200
 #define ICON_HEIGHT 240
@@ -120,8 +117,8 @@ biji_note_obj_init (BijiNoteObj *self)
   /* Icon is only computed when necessary */
   priv->icon = NULL;
 
-  priv->color = g_new(GdkRGBA,1) ;
-  gdk_rgba_parse ( priv->color , DEFAULT_NOTE_COLOR ) ;
+  /* Keep value unitialied, so bijiben knows to assign default color */
+  priv->color = NULL;
 
   priv->tags = NULL;
 }
@@ -475,7 +472,8 @@ void
 biji_note_obj_set_rgba(BijiNoteObj *n,GdkRGBA *rgba)
 {
   if (!n->priv->color)
-  {    
+  {
+    n->priv->color = g_new (GdkRGBA,1);
     biji_note_obj_set_rgba_internal (n, rgba);
     return;
   }

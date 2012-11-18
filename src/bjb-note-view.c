@@ -30,9 +30,6 @@
 #include "bjb-note-view.h"
 #include "bjb-window-base.h"
 
-/* Default color (X11 rgb.txt) - maybe gsettings instead */ 
-#define DEFAULT_NOTE_COLOR "LightGoldenrodYellow"
-
 enum
 {
   PROP_0,
@@ -337,9 +334,12 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
 
   GtkWidget        *color_button;
   GdkRGBA           color;
+  BjbSettings      *settings;
 
   w = gd_main_toolbar_new();
   gd = GD_MAIN_TOOLBAR(w);
+
+  settings = bjb_app_get_settings (g_application_get_default());
 
   result = gtk_clutter_actor_new_with_contents(w);
   clutter_actor_add_child(parent,result);
@@ -371,7 +371,12 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
 
   /* Note Color */
   if (!biji_note_obj_get_rgba (note, &color))
-    gdk_rgba_parse (&color, DEFAULT_NOTE_COLOR );
+  {
+    gchar *default_color;
+    g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
+    gdk_rgba_parse (&color, default_color);
+    g_free (default_color);
+  }
 
   color_button = gtk_color_button_new ();
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (color_button), &color);
@@ -449,7 +454,7 @@ bjb_note_view_constructed (GObject *obj)
   ClutterActor           *stage, *vbox;
   ClutterConstraint      *constraint;
   ClutterLayoutManager   *full, *box, *bin;
-  gchar                  *default_font, *default_color;
+  gchar                  *default_font;
 
   /* view new from note deserializes the note-content. */
   priv->view = biji_note_obj_open (priv->note);
@@ -520,18 +525,20 @@ bjb_note_view_constructed (GObject *obj)
   clutter_actor_set_x_expand(text_actor,TRUE);
   clutter_actor_set_y_expand(text_actor,TRUE);
 
-  /* Apply the selected font */ 
+  /* Apply the gsettings font */
   g_object_get (G_OBJECT(settings),"font",&default_font,NULL);
-  gtk_widget_modify_font(GTK_WIDGET(priv->view),
-                         pango_font_description_from_string(default_font));
+  biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (priv->view), default_font);
+  g_free (default_font);
 
   /* User defined color */
   GdkRGBA color ;
   if (!biji_note_obj_get_rgba(priv->note, &color))
-    gdk_rgba_parse (&color, DEFAULT_NOTE_COLOR);
-
-  g_object_get (G_OBJECT(settings),"color", &default_color,NULL);
-  
+  {
+    gchar *default_color;
+    g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
+    gdk_rgba_parse (&color, default_color);
+    g_free (default_color);
+  }  
 
   biji_note_obj_set_rgba (priv->note, &color);
 

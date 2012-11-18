@@ -166,6 +166,30 @@ set_editor_color (GtkWidget *w, GdkRGBA *col)
   gtk_widget_override_background_color (w, GTK_STATE_FLAG_NORMAL, col);
 }
 
+void
+biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font)
+{
+  BijiWebkitEditorPrivate *priv = self->priv;
+  PangoFontDescription *font_desc;
+
+  /* parse : but we only parse font properties we'll be able
+   * to transfer to webkit editor
+   * Maybe is there a better way than webkitSettings,
+   * eg applying format to the whole body */
+  font_desc = pango_font_description_from_string (font);
+  const gchar * family = pango_font_description_get_family (font_desc);
+  gint size = pango_font_description_get_size (font_desc) / 1000 ;
+
+  /* Set */
+  g_object_set (G_OBJECT(priv->settings),
+                "default-font-family", family,
+                "default-font-size", size,
+                NULL);
+
+  pango_font_description_free (font_desc);
+}
+
+
 static void
 biji_webkit_editor_init (BijiWebkitEditor *self)
 {

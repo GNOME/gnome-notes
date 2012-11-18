@@ -167,6 +167,7 @@ void
 show_bijiben_settings_window (GtkWidget *parent_window)
 {
   GtkWidget *dialog,*area,*notebook,*page, *hbox, *label, *picker;
+  GdkRGBA color;
   gint width, height;
 
   BjbSettings *settings = bjb_app_get_settings(g_application_get_default());
@@ -209,6 +210,8 @@ show_bijiben_settings_window (GtkWidget *parent_window)
   label = gtk_label_new ("Default color");
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, FALSE, 2);
   picker = gtk_color_button_new ();
+  gdk_rgba_parse (&color, settings->color );
+  gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);
   g_signal_connect (picker, "color-set",
                     G_CALLBACK(on_color_set), settings);
   gtk_box_pack_start (GTK_BOX (hbox),picker,TRUE,FALSE,2);  

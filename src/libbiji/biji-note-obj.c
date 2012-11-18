@@ -825,13 +825,10 @@ biji_note_obj_is_opened (BijiNoteObj *note)
   return BIJI_IS_WEBKIT_EDITOR (note->priv->editor);
 }
 
-/* Saving there might be no good. Untill better it ensures
- * note is saved when app quit. */
 static void
 _biji_note_obj_close (BijiNoteObj *note)
 {
   note->priv->editor = NULL;
-  on_save_timeout (note);
 }
 
 GtkWidget *

@@ -19,6 +19,8 @@
  *     Ported from gnote
  */
 
+#include <gio/gio.h>
+
 #include "biji-timeout.h"
 
 /* Signal */
@@ -33,6 +35,7 @@ static guint biji_time_signals [BIJI_TIME_SIGNALS] = { 0 };
 struct _BijiTimeoutPrivate
 {
   guint timeout_id;
+  guint quit;
 };
 
 #define BIJI_TIMEOUT_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_TIMEOUT, BijiTimeoutPrivate))
@@ -45,7 +48,8 @@ biji_timeout_init (BijiTimeout *self)
   BijiTimeoutPrivate *priv = BIJI_TIMEOUT_GET_PRIVATE(self);
   self->priv = priv;
 
-  self->priv->timeout_id = 0;
+  priv->timeout_id = 0;
+  priv->quit = 0;
 }
 
 static void
@@ -117,4 +121,8 @@ biji_timeout_reset (BijiTimeout *self, guint millis)
 
   self->priv->timeout_id = g_timeout_add (
        millis, (GSourceFunc) biji_timeout_callback, self);
+
+  /* Ensure to perform timeout if main loop ends */
+  self->priv->quit = g_signal_connect_swapped (g_application_get_default(), "shutdown",
+                                               G_CALLBACK (biji_timeout_expired), self);
 }

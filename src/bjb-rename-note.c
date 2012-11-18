@@ -18,11 +18,7 @@ note_title_dialog(GtkWindow *win, gchar *instructions, gchar *current_title)
 	                                     GTK_RESPONSE_OK,
 	                                     NULL);
     
-  area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-
-  GtkWidget *lab = gtk_label_new(instructions);
-  gtk_box_pack_start (GTK_BOX (area), lab, TRUE, TRUE,2);
-    
+  area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));    
   entry = gtk_entry_new ();
 
   if ( current_title )

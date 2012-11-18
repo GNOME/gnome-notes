@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide" style="2column task"
+      id="share">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+    <license><p>GNU Free Documentation License (GFDL), Version 1.1</p></license>
+    <desc>Spread your notes to the world</desc>
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+  </info>
+
+  <title>Share Notes</title>
+    <p>Open a note, then click on the Share icon to send it.</p>
+
+</page>

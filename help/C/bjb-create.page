@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide" style="2column task"
+      id="create">
+
+  <info>
+    <link type="guide" xref="index#create"/>
+    <license><p>GNU Free Documentation License (GFDL), Version 1.1</p></license>
+    <desc>Create new notes</desc>
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+  </info>
+
+  <title>Create Notes</title>
+    <p>You can create notes with three different methods</p>
+    <list>
+      <item><p>Click on New Notes buton to create a blank note.</p></item>
+      <item><p>Drag and drop text to the notes view to create a note containing this text.</p></item>
+    <item><p>Open a note, select some text and click on the link icon to create a note containing this text.</p></item>
+    </list>
+
+</page>

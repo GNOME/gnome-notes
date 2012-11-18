@@ -8,24 +8,29 @@
 
 void show_about_dialog(GtkApplication *app)
 {
-  GList * windows = gtk_application_get_windows(app);
+  GList * windows = gtk_application_get_windows (app);
   
-  gtk_show_about_dialog(
-  g_list_nth_data(windows,0),
-	"program-name", "Bijiben",
-	"comments", "Simple noteboook for GNOME",
-	"license", "GPLv3",
-	"version", "0.2.0",
-	"copyright", "Pierre-Yves Luyten 2012",
-	NULL,NULL,NULL);
+  gtk_show_about_dialog( g_list_nth_data (windows, 0),
+  "program-name", "Bijiben",
+  "comments", "Simple noteboook for GNOME",
+  "license", "GPLv3",
+  "version", "0.2.0",
+  "copyright", "Pierre-Yves Luyten 2012",
+  NULL,NULL,NULL);
 
 }
 
 void 
 summary()
 {
-	GError *error = NULL;
-	gtk_show_uri (NULL, "ghelp:bijiben", gtk_get_current_event_time (), &error);
+  GError *error = NULL;
+  gtk_show_uri (NULL, "ghelp:bijiben", gtk_get_current_event_time (), &error);
+
+  if (error)
+  {
+    g_warning (error->message);
+    g_error_free (error);
+  }
 }
 
 static void
@@ -34,6 +39,15 @@ new_activated (GSimpleAction *action,
                gpointer       user_data)
 {
   bjb_window_base_new();
+}
+
+static void
+preferences_activated (GSimpleAction *action,
+                       GVariant      *parameter,
+                       gpointer       user_data)
+{
+  GList * windows = gtk_application_get_windows (GTK_APPLICATION(user_data));
+  show_bijiben_settings_window (g_list_nth_data (windows, 0));
 }
 
 static void
@@ -51,6 +65,12 @@ help_activated (GSimpleAction *action,
 {
   GError *error = NULL;
   gtk_show_uri (NULL, "ghelp:bijiben", gtk_get_current_event_time (), &error);
+
+  if (error)
+  {
+    g_warning (error->message);
+    g_error_free (error);
+  }
 }
 
 static void
@@ -67,8 +87,9 @@ quit_activated (GSimpleAction *action,
 
 static GActionEntry app_entries[] = {
            { "new", new_activated, NULL, NULL, NULL },
-           { "help", help_activated, NULL, NULL, NULL },
+           { "preferences", preferences_activated, NULL, NULL, NULL },
            { "about", about_activated, NULL, NULL, NULL },
+           { "help", help_activated, NULL, NULL, NULL },
            { "quit", quit_activated, NULL, NULL, NULL },
 };
 

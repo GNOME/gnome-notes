@@ -28,19 +28,16 @@ struct _BjbSettings
   GObject parent_instance;
   BjbSettingsPrivate *priv ;
 
-  // Note edition settings
+  /* Note edition settings */
   gchar *font ;
-  gchar *highlight_color ;
-
-  // Other settings
-  gboolean case_sensitive_search ;
+  gchar *color ;
 };
 
 GType bjb_settings_get_type (void) G_GNUC_CONST;
 
 BjbSettings * initialize_settings(void);
 
-void show_bijiben_settings_window(GtkMenuItem* item,GtkWidget *parent_window);
+void show_bijiben_settings_window (GtkWidget *parent_window);
 
 G_END_DECLS
 

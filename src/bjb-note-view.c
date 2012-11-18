@@ -449,7 +449,7 @@ bjb_note_view_constructed (GObject *obj)
   ClutterActor           *stage, *vbox;
   ClutterConstraint      *constraint;
   ClutterLayoutManager   *full, *box, *bin;
-  gchar                  *font;
+  gchar                  *default_font, *default_color;
 
   /* view new from note deserializes the note-content. */
   priv->view = biji_note_obj_open (priv->note);
@@ -521,14 +521,17 @@ bjb_note_view_constructed (GObject *obj)
   clutter_actor_set_y_expand(text_actor,TRUE);
 
   /* Apply the selected font */ 
-  g_object_get (G_OBJECT(settings),"font",&font,NULL);
+  g_object_get (G_OBJECT(settings),"font",&default_font,NULL);
   gtk_widget_modify_font(GTK_WIDGET(priv->view),
-                         pango_font_description_from_string(font));
+                         pango_font_description_from_string(default_font));
 
   /* User defined color */
   GdkRGBA color ;
   if (!biji_note_obj_get_rgba(priv->note, &color))
     gdk_rgba_parse (&color, DEFAULT_NOTE_COLOR);
+
+  g_object_get (G_OBJECT(settings),"color", &default_color,NULL);
+  
 
   biji_note_obj_set_rgba (priv->note, &color);
 

@@ -103,6 +103,12 @@ BUILT_SOURCES = \
 	$(dbus_shell_search_provider_built_sources) 	\
 	$(NULL)
 
+EXTRA_DIST = \
+	bjb.gresource.xml \
+	resources/app-menu.ui \
+	resources/thumbnail-frame.png \
+	$(NULL)
+
 lib_LIBRARIES =  \
 	libbiji.a
 
@@ -136,7 +142,7 @@ libbiji_a_SOURCES =  \
 	libbiji/serializer/biji-lazy-serializer.h
 
 CLEANFILES = \
-	$(BUILT_SOURCES)			\
+	$(BUILT_SOURCES)	\
 	$(NULL)
 
 dist-hook:

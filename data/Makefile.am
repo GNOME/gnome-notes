@@ -31,6 +31,7 @@ gsettings_SCHEMAS = org.gnome.bijiben.gschema.xml
 
 EXTRA_DIST =                            \
 	$(desktop_in_files)     	\
+	$(css_files)			\
 	org.gnome.bijiben.gschema.xml.in \
 	shell-search-provider-dbus-interfaces.xml \
 	$(service_in_files)		\
@@ -39,6 +40,5 @@ EXTRA_DIST =                            \
 DISTCLEANFILES =                        \
 	$(desktop_files)                \
 	$(gsettings_SCHEMAS)		\
-	$(css_files)			\
 	$(service_DATA)
 	

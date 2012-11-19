@@ -112,10 +112,14 @@ copy_note_file (GFileInfo *info,
                 GFile *dir,
                 GFile *dest)
 {
+  Bijiben *self;
+  BijiNoteObj *note_obj;
   GFile *note, *result;
   const gchar *name;
-  gchar *path;
+  gchar *path, *default_color;
   GError *error = NULL;
+  BjbSettings *settings;
+  GdkRGBA color;
 
   name = g_file_info_get_name (info);
   if (!g_str_has_suffix (name, ".note"))
@@ -127,7 +131,6 @@ copy_note_file (GFileInfo *info,
 
   path = g_build_filename (g_file_get_path(dest), name, NULL);
   result = g_file_new_for_path (path);
-  g_free (path);
 
   g_file_copy (note, result, G_FILE_COPY_NOFOLLOW_SYMLINKS,
                NULL,NULL, NULL, &error);
@@ -138,6 +141,22 @@ copy_note_file (GFileInfo *info,
      g_error_free (error);
   }
 
+  self = BIJIBEN_APPLICATION (g_application_get_default ());
+  note_obj = biji_note_get_new_from_file (path);
+
+  /* Sanitize color
+   * This is done here in Bijiben because
+   * default color is app choice */
+  settings = bjb_app_get_settings (self);
+  g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
+  gdk_rgba_parse (&color, default_color);
+  g_free (default_color);
+  biji_note_obj_set_rgba (note_obj, &color);
+
+  /* Append the note refreshes main view */
+  note_book_append_new_note (self->priv->book, note_obj);
+
+  g_free (path);
   g_object_unref (note);
   g_object_unref (result);
 }
@@ -160,21 +179,46 @@ list_notes_to_copy (GFileEnumerator *enumerator,
 }
 
 static void
-import_notes_from_x (GFile *bijiben_dir, gchar *app)
+import_notes_from_x (GFile *bijiben_dir, gchar *path)
 {
-  gchar *from;
   GFile *to_import;
   GFileEnumerator *enumerator;
 
-  from = g_build_filename (g_get_user_data_dir (), app, NULL);
-  to_import = g_file_new_for_path (from);
-  g_free (from);
-
-  enumerator = g_file_enumerate_children (to_import,ATTRIBUTES_FOR_NOTEBOOK,
-                                                G_PRIORITY_DEFAULT, NULL,NULL);
+  to_import = g_file_new_for_path (path);
+  enumerator = g_file_enumerate_children (to_import,
+                                          ATTRIBUTES_FOR_NOTEBOOK,
+                                          G_PRIORITY_DEFAULT, NULL,NULL);
 
   list_notes_to_copy (enumerator, bijiben_dir);
   g_object_unref (enumerator);
+  g_object_unref (to_import);
+}
+
+void
+import_notes (Bijiben *self, gchar *location)
+{
+  gchar *storage_path, *path_to_import;
+  GFile *bjb_dir;
+
+  storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
+  bjb_dir = g_file_new_for_path (storage_path);
+  g_free (storage_path);
+
+  if (g_strcmp0 (location, "tomboy") ==0)
+  {
+    path_to_import = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
+    import_notes_from_x (bjb_dir, path_to_import);
+    g_free (path_to_import);
+  }
+
+  else if (g_strcmp0 (location, "gnote") ==0)
+  {
+    path_to_import = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
+    import_notes_from_x (bjb_dir, path_to_import);
+    g_free (path_to_import);
+  }
+
+  g_object_unref (bjb_dir);
 }
 
 static void
@@ -215,12 +259,9 @@ bijiben_startup (GApplication *application)
     g_error_free (error);
   }
 
-  /* First run, import tomboy gnote for testing */
   else
   {
     self->priv->first_run = TRUE;
-    import_notes_from_x (storage, "tomboy");
-    import_notes_from_x (storage, "gnote");
   }
 
   self->priv->book = biji_note_book_new (storage);

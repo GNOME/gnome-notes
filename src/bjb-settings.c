@@ -170,7 +170,8 @@ show_bijiben_settings_window (GtkWidget *parent_window)
   GdkRGBA color;
   gint width, height;
 
-  BjbSettings *settings = bjb_app_get_settings(g_application_get_default());
+  GApplication *app = g_application_get_default();
+  BjbSettings *settings = bjb_app_get_settings(app);
 
   /* create dialog */
   dialog = gtk_dialog_new_with_buttons("Notes tag",
@@ -218,9 +219,6 @@ show_bijiben_settings_window (GtkWidget *parent_window)
 
   gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,
                            gtk_label_new("Note Editor"));
-
-  /* External data Page */
-  // TODO
 
   /* pack, show, run, kill */
   gtk_box_pack_start (GTK_BOX (area), notebook, TRUE, TRUE,2);

@@ -6,6 +6,10 @@
         <attribute name="action">app.new</attribute>
         <attribute name="accel">&lt;Primary&gt;n</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">_External data</attribute>
+        <attribute name="action">app.external</attribute>
+      </item>
     </section>
     <section>
       <item>

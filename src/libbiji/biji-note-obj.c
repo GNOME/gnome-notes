@@ -344,7 +344,7 @@ biji_note_obj_trash (BijiNoteObj *note_to_kill)
   g_free (backup_path);
   result = g_file_move (to_trash,
                         backup_file,
-                        G_FILE_COPY_NONE,
+                        G_FILE_COPY_OVERWRITE,
                         NULL, // cancellable
                         NULL, // progress callback
                         NULL, // progress_callback_data,

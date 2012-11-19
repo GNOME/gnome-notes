@@ -42,6 +42,62 @@ new_activated (GSimpleAction *action,
 }
 
 static void
+import_gnote_notes (Bijiben *self)
+{
+  import_notes (self, "gnote");
+}
+
+static void
+import_tomboy_notes (Bijiben *self)
+{
+  import_notes (self, "tomboy");
+}
+
+static void
+external_activated (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+  GtkWidget *dialog, *area, *hbox, *button;
+  GList *windows;
+  Bijiben *app = BIJIBEN_APPLICATION (user_data);
+
+  windows = gtk_application_get_windows (GTK_APPLICATION(user_data));
+  
+  dialog = gtk_dialog_new_with_buttons ("External data",
+                                        g_list_nth_data (windows, 0),
+                                        GTK_DIALOG_MODAL| 
+                                        GTK_DIALOG_DESTROY_WITH_PARENT,
+                                        GTK_STOCK_OK,
+                                        GTK_RESPONSE_OK,
+                                        NULL);
+
+  /* User chooses which folder to import */
+  area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+  gtk_container_set_border_width (GTK_CONTAINER (area), 8);
+  gtk_widget_set_hexpand (area, TRUE);
+  gtk_widget_set_vexpand (area, TRUE);
+
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
+  gtk_box_pack_start (GTK_BOX (area), hbox, TRUE, FALSE, 2);
+  button = gtk_button_new_with_label ("Import Tomboy Notes");
+  g_signal_connect_swapped (button, "clicked",
+                            G_CALLBACK (import_tomboy_notes), app);
+  gtk_box_pack_start (GTK_BOX (hbox), button, TRUE, FALSE, 2);
+
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
+  gtk_box_pack_start (GTK_BOX (area), hbox, TRUE, FALSE, 2);
+  button = gtk_button_new_with_label ("Import GNote Notes");
+  g_signal_connect_swapped (button, "clicked",
+                            G_CALLBACK (import_gnote_notes), app);
+  gtk_box_pack_start (GTK_BOX (hbox), button, TRUE, FALSE, 2);
+
+  gtk_widget_show_all (dialog);
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+}
+
+static void
 preferences_activated (GSimpleAction *action,
                        GVariant      *parameter,
                        gpointer       user_data)
@@ -87,6 +143,7 @@ quit_activated (GSimpleAction *action,
 
 static GActionEntry app_entries[] = {
            { "new", new_activated, NULL, NULL, NULL },
+           { "external", external_activated, NULL, NULL, NULL },
            { "preferences", preferences_activated, NULL, NULL, NULL },
            { "about", about_activated, NULL, NULL, NULL },
            { "help", help_activated, NULL, NULL, NULL },

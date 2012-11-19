@@ -14,7 +14,7 @@ void show_about_dialog(GtkApplication *app)
   "program-name", "Bijiben",
   "comments", "Simple noteboook for GNOME",
   "license", "GPLv3",
-  "version", "0.2.0",
+  "version", "3.7.2",
   "copyright", "Pierre-Yves Luyten 2012",
   NULL,NULL,NULL);
 

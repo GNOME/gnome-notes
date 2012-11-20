@@ -58,6 +58,7 @@ struct _BijiNoteObjPrivate
    * Templates are just "system:notebook:" tags.*/
   GList                 *tags ;
   gboolean              is_template ;
+  gboolean              does_title_survive;
 
   /* Signals */
   gulong note_renamed;
@@ -108,6 +109,10 @@ biji_note_obj_init (BijiNoteObj *self)
 
   priv->book = NULL ;
   priv->is_template = FALSE ;
+
+  /* Existing note keep their title.
+   * only brand new notes might see title changed */
+  priv->does_title_survive = TRUE;
 
   /* The editor is NULL so we know it's not opened
    * neither fully deserialized */
@@ -391,6 +396,7 @@ gboolean
 biji_note_obj_set_title(BijiNoteObj *note,gchar *title)
 {
   gboolean initial = FALSE;
+  note->priv->does_title_survive = TRUE;
 
   if (!biji_note_id_get_title(note->priv->id))
     initial = TRUE;
@@ -407,6 +413,20 @@ biji_note_obj_set_title(BijiNoteObj *note,gchar *title)
   }
 
   return TRUE;
+}
+
+gboolean
+biji_note_obj_title_survives (BijiNoteObj *note)
+{
+  return note->priv->does_title_survive;
+}
+
+void
+biji_note_obj_set_title_survives (BijiNoteObj *obj, gboolean value)
+{
+  g_return_if_fail (BIJI_IS_NOTE_OBJ(obj));
+
+  obj->priv->does_title_survive = value;
 }
 
 gboolean
@@ -829,6 +849,20 @@ static void
 _biji_note_obj_close (BijiNoteObj *note)
 {
   note->priv->editor = NULL;
+
+  /* TODO : check if note is totaly blank
+   * then delete it */
+
+  /* The title might remain unsert if
+   * - new note
+   * - only one row
+   * In such case we want to change title */
+  if ( ! biji_note_obj_title_survives (note)
+      && note->priv->raw_text
+      && g_strcmp0 (note->priv->raw_text, "") != 0)
+  {
+    biji_note_obj_set_title (note, note->priv->raw_text);
+  }
 }
 
 GtkWidget *

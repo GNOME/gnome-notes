@@ -663,6 +663,7 @@ get_note_skeleton (BijiNoteBook *book)
   }
 
   biji_note_obj_set_all_dates_now (ret);
+  biji_note_obj_set_title_survives (ret, FALSE);
   return ret;
 }
 
@@ -677,7 +678,8 @@ biji_note_book_get_new_note_from_string (BijiNoteBook *book,
   BijiNoteObj *ret = get_note_skeleton (book);
 
   /* Note will copy title */
-  biji_note_obj_set_title (ret, title);
+  if (title && g_strcmp0 (title, "") != 0)
+    biji_note_obj_set_title (ret, title);
 
   biji_note_obj_save_note (ret);
   note_book_append_new_note (book,ret);

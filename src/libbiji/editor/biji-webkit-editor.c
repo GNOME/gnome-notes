@@ -253,6 +253,21 @@ on_content_changed (WebKitWebView *view)
   biji_note_obj_set_html_content (note, html);
   biji_note_obj_set_raw_text (note, text);
 
+  /* Now tries to update title if new note
+   * and several rows */
+  if (!biji_note_obj_title_survives (note))
+  {
+    gchar **rows;
+
+    rows = g_strsplit (html, "<div", 2);
+    g_warning ("title is %s", rows[0]);
+
+    if (g_strv_length (rows) > 1)
+      biji_note_obj_set_title (note, rows[0]);
+
+    g_strfreev (rows);
+  }
+
   g_free (html);
   g_free (text);
 

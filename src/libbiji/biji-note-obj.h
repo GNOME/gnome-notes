@@ -86,6 +86,10 @@ gboolean note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b);
 
 gchar * biji_note_obj_get_title (BijiNoteObj *obj);
 
+/* will enter hit make title renamed? */
+gboolean biji_note_obj_title_survives (BijiNoteObj *note);
+void biji_note_obj_set_title_survives (BijiNoteObj *obj, gboolean value);
+
 gchar* biji_note_obj_get_path (BijiNoteObj *n);
 
 gboolean biji_note_obj_set_last_change_date (BijiNoteObj* n,gchar* date);

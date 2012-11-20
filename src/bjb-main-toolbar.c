@@ -74,20 +74,12 @@ G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, G_TYPE_OBJECT);
 static void
 on_new_note_clicked (GtkWidget *but, BjbMainView *view)
 {
-  gchar *title;
   BijiNoteObj *result ;
   BijiNoteBook *book ;
 
-  title = note_title_dialog(GTK_WINDOW(bjb_main_view_get_window(view)),
-                            "New Note : Title",
-                            "New Note");
-
-  if (!title)
-    return;
-
   /* append note to collection */
   book = bjb_window_base_get_book(bjb_main_view_get_window(view));
-  result = biji_note_book_get_new_note_from_string (book, title);
+  result = biji_note_book_get_new_note_from_string (book, "");
 
   /* Go to that note */
   switch_to_note_view(view,result);

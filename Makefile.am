@@ -24,9 +24,18 @@ EXTRA_DIST = $(bijibendoc_DATA) \
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
 	intltool-update \
-	po/.intltool-merge-cache 
+	po/.intltool-merge-cache
 
+# Build ChangeLog from git history
+ChangeLog:
+	@if test -f $(top_srcdir)/.git/HEAD; then \
+		git log --stat > $@; \
+	fi
+
+dist: ChangeLog
 
 # Remove doc directory on uninstall
 uninstall-local:
 	-rm -r $(bijibendocdir)
+
+.PHONY: ChangeLog

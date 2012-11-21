@@ -1,0 +1,79 @@
+# Galician translations for PACKAGE package.
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Fran Diéguez <frandieguez@gnome.org>, 2012.
+# Fran Dieguez <frandieguez@gnome.org>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-21 22:58+0100\n"
+"PO-Revision-Date: 2012-11-21 22:57+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: gnome-l10n-gl@gnome.org\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#: ../data/bijiben.desktop.in.h:1 ../data/bijiben.desktop.in.in.h:1
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: ../data/bijiben.desktop.in.h:2 ../data/bijiben.desktop.in.in.h:2
+msgid "Post notes, tag files!"
+msgstr "Envía notas, etiqueta ficheiros!"
+
+#: ../data/bijiben.desktop.in.h:3 ../data/bijiben.desktop.in.in.h:3
+msgid "Note-taker"
+msgstr "Caderno de notas"
+
+#: ../src/bjb-editor-toolbar.c:174
+msgid "Bold"
+msgstr "Negra"
+
+#: ../src/bjb-editor-toolbar.c:185
+msgid "Italic"
+msgstr "Cursiva"
+
+#: ../src/bjb-editor-toolbar.c:196
+msgid "Strike"
+msgstr "Riscar"
+
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Link"
+msgstr "Ligazón"
+
+#: ../src/bjb-selection-toolbar.c:171
+msgid "Tag"
+msgstr "Etiqueta"
+
+#: ../src/bjb-selection-toolbar.c:195
+msgid "Delete"
+msgstr "Eliminar"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Nova xanela"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_External data"
+msgstr "_Datos externos"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Preferencias"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Bijiben"
+msgstr "_Sobre Bijiben"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Axuda"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Saír"

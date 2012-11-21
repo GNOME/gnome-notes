@@ -179,22 +179,28 @@ biji_book_get_or_create_tag_book(BijiNoteBook *book, gchar *tag)
 /* If title not unique, add sufffix "n", starting with 2, until ok */
 static void
 _biji_note_book_sanitize_title (BijiNoteBook *book, BijiNoteObj *note)
-{   
-  gchar *title = biji_note_obj_get_title (note);
-  gchar *new_title = g_strdup (title);
-  gint suffix = 2;
+{
+  gchar *title, *new_title;
 
-  while (!_biji_note_book_is_title_unique (book, new_title))
+  title = biji_note_obj_get_title (note);
+
+  if (title)
   {
-    g_free (new_title);
-    new_title = g_strdup_printf("%s (%i)", title, suffix);
-    suffix++;
+    new_title = g_strdup (title);
+    gint suffix = 2;
+
+    while (!_biji_note_book_is_title_unique (book, new_title))
+    {
+      g_free (new_title);
+      new_title = g_strdup_printf("%s (%i)", title, suffix);
+      suffix++;
+    }
+
+    if ( g_strcmp0 (new_title, title) != 0)
+      biji_note_obj_set_title (note, new_title);
+
+    g_free(new_title);
   }
-
-  if ( g_strcmp0 (new_title, title) != 0)
-    biji_note_obj_set_title (note, new_title);
-
-  g_free(new_title);
 }
 
 static gboolean

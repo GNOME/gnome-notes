@@ -60,7 +60,7 @@ biji_finish_update (GObject *source_object,
 
   if (error)
   {
-    g_warning (error->message);
+    g_warning ("%s", error->message);
     g_error_free (error);
   }
 }
@@ -109,7 +109,7 @@ biji_get_all_tags_finish (GObject *source_object,
 
   if (error)
   {
-    g_warning (error->message);
+    g_warning ("%s", error->message);
     g_error_free (error);
   }
 

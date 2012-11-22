@@ -24,7 +24,6 @@ autom4te.cache
 autogen.err
 stamp-*
 aclocal.m4
-gnome-doc-utils.make
 Makefile
 Makefile.in
 data/bijiben.desktop

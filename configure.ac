@@ -18,7 +18,7 @@ GNOME_COMMON_INIT
 GNOME_DOC_PREPARE
 
 
-GNOME_DOC_INIT([0.17.3])
+YELP_HELP_INIT
 
 
 dnl ***************************************************************************

@@ -1,11 +1,11 @@
 
-include $(top_srcdir)/gnome-doc-utils.make
-dist-hook: doc-dist-hook
+@YELP_HELP_RULES@
 
-DOC_ID = bijiben
-DOC_FIGURES = \
-	figures/bijiben-note.png \
-DOC_PAGES = \
+HELP_ID = bijiben
+
+HELP_LINGUAS =
+
+HELP_FILES = \
 	bjb-colours.page \
 	bjb-create.page \
 	bjb-delete.page \
@@ -13,5 +13,7 @@ DOC_PAGES = \
 	bjb-find.page \
 	bjb-share.page \
 	bjb-tags.page \
-	index.page \
-DOC_LINGUAS = 
+	index.page
+
+HELP_MEDIA = \
+	figures/bijiben-note.png

@@ -28,7 +28,7 @@ summary()
 
   if (error)
   {
-    g_warning (error->message);
+    g_warning ("%s", error->message);
     g_error_free (error);
   }
 }
@@ -124,7 +124,7 @@ help_activated (GSimpleAction *action,
 
   if (error)
   {
-    g_warning (error->message);
+    g_warning ("%s", error->message);
     g_error_free (error);
   }
 }

@@ -15,6 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
 #include <libgd/gd.h>
@@ -193,7 +194,7 @@ action_rename_note_callback (GtkWidget *item, gpointer user_data)
   view = BJB_NOTE_VIEW (user_data);
   priv = view->priv;
 
-  title = note_title_dialog(GTK_WINDOW(priv->window),"Rename Note",
+  title = note_title_dialog(GTK_WINDOW(priv->window), _("Rename Note"),
                             biji_note_obj_get_title(priv->note));
 
   if (!title)
@@ -248,7 +249,7 @@ bjb_note_menu_new (BjbNoteView *self)
   editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (priv->note));
 
   /* Undo Redo separator */
-  item = gtk_menu_item_new_with_label ("Undo");
+  item = gtk_menu_item_new_with_label (_("Undo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (webkit_web_view_undo), editor);
@@ -256,7 +257,7 @@ bjb_note_menu_new (BjbNoteView *self)
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
   gtk_widget_show (item);
 
-  item = gtk_menu_item_new_with_label ("Redo");
+  item = gtk_menu_item_new_with_label (_("Redo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (webkit_web_view_redo), editor);
@@ -269,13 +270,15 @@ bjb_note_menu_new (BjbNoteView *self)
   gtk_widget_show (item);
 
   /* Bullets, ordered list, separator */
-  item = gtk_menu_item_new_with_label ("Bullets");
+  /* Bullets : unordered list format */
+  item = gtk_menu_item_new_with_label (_("Bullets"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (bjb_toggle_bullets), editor); 
   gtk_widget_show(item);
 
-  item = gtk_menu_item_new_with_label ("List");
+  /* Ordered list as 1.mouse 2.cats 3.dogs */
+  item = gtk_menu_item_new_with_label (_("List"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (bjb_toggle_list), editor); 
@@ -286,13 +289,13 @@ bjb_note_menu_new (BjbNoteView *self)
   gtk_widget_show (item);
 
   /* Rename, view tags, separtor */
-  item = gtk_menu_item_new_with_label("Rename");
+  item = gtk_menu_item_new_with_label(_("Rename"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(action_rename_note_callback),self); 
   gtk_widget_show(item);
 
-  item = gtk_menu_item_new_with_label("Tags");
+  item = gtk_menu_item_new_with_label(_("Tags"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(action_view_tags_callback),self);
@@ -302,9 +305,8 @@ bjb_note_menu_new (BjbNoteView *self)
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   gtk_widget_show (item);
 
-  /* Delete Note
-   * TODO : note is currently NOT backuped!!! */
-  item = gtk_menu_item_new_with_label("Delete this note");
+  /* Delete Note */
+  item = gtk_menu_item_new_with_label(_("Delete this note"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(delete_item_callback),self);
@@ -350,7 +352,8 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
   grid = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,2);
   notes_icon = get_icon("go-previous-symbolic");
   gtk_box_pack_start(GTK_BOX(grid),notes_icon,TRUE,TRUE,TRUE);
-  notes_label = gtk_label_new("Notes");
+  /* Button to go back to main view */
+  notes_label = gtk_label_new (_("Notes"));
   gtk_box_pack_start(GTK_BOX(grid),notes_label,TRUE,TRUE,TRUE);
 
   button = gd_main_toolbar_add_button (gd, NULL, NULL, TRUE);
@@ -428,7 +431,8 @@ bjb_note_view_last_updated_actor_new (BjbNoteView *self)
   clutter_actor_set_layout_manager (result, layout);
 
   last = clutter_text_new ();
-  clutter_text_set_text (CLUTTER_TEXT (last), "Last updated ");
+  /* "Last updated" precedes the note last updated date */
+  clutter_text_set_text (CLUTTER_TEXT (last), _("Last updated "));
   clutter_text_set_font_name (CLUTTER_TEXT (last), "Arial 9px");
   clutter_text_set_color (CLUTTER_TEXT (last), &last_up_col );
   clutter_actor_add_child (result, last);

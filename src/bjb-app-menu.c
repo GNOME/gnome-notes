@@ -24,7 +24,7 @@ void
 summary()
 {
   GError *error = NULL;
-  gtk_show_uri (NULL, "ghelp:bijiben", gtk_get_current_event_time (), &error);
+  gtk_show_uri (NULL, "help:bijiben", gtk_get_current_event_time (), &error);
 
   if (error)
   {

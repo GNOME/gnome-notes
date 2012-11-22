@@ -15,6 +15,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <glib/gi18n.h>
+
 #include "bjb-main-toolbar.h"
 #include "bjb-rename-note.h"
 #include "bjb-window-base.h"
@@ -167,9 +169,9 @@ update_selection_label (GdMainView *view, BjbMainToolbar *self)
   length = g_list_length (selected);
 
   if (length == 0)
-    label = g_strdup("Click on items to select them");
+    label = g_strdup(_("Click on items to select them"));
   else
-    label = g_strdup_printf ("%d selected", length);
+    label = g_strdup_printf (_("%d selected"), length);
 
   gd_main_toolbar_set_labels (self->priv->toolbar, NULL, label);
   g_free (label);
@@ -208,10 +210,10 @@ update_label_for_standard (BjbMainToolbar *self)
   gchar *label ;
   
   if (needle && g_strcmp0 (needle, "") !=0)
-    label = g_strdup_printf ("Results for %s", needle);
+    label = g_strdup_printf (_("Results for %s"), needle);
 
   else
-    label = g_strdup ("New and recent");
+    label = g_strdup (_("New and recent"));
 
   gd_main_toolbar_set_labels (priv->toolbar, label, NULL);
   g_free (label);
@@ -230,7 +232,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
   /* New Note */
   priv->new = gd_main_toolbar_add_button(priv->toolbar,
                                          NULL,
-                                         "New",
+                                         _("New"),
                                          TRUE);
 
   g_signal_connect(priv->new,"clicked",

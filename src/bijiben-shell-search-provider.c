@@ -79,7 +79,7 @@ bjb_perform_query (BijibenShellSearchProviderApp *self, gchar * query )
                                             &error);
 
   if (error)
-    g_warning (error->message);
+    g_warning ("%s", error->message);
 
   return result ;
 }
@@ -426,7 +426,7 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
 
   if (error)
   {
-     g_warning (error->message);
+     g_warning ("%s", error->message);
      g_application_release (app);
   }
 }

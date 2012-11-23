@@ -60,7 +60,9 @@ struct _BjbNoteViewPrivate {
   BjbEditorToolbar  *edit_bar;
   ClutterActor      *edit_bar_actor;
   gboolean           edit_bar_is_sticky ;
+
   ClutterActor      *last_update;
+  ClutterColor      *last_date_bckgrd_clr;
 
   // Convenience
   GdkRGBA *color ;
@@ -87,6 +89,7 @@ bjb_note_view_finalize(GObject *object)
   clutter_actor_destroy (priv->embed);
   g_clear_object (&priv->accel);
   g_clear_object (&priv->edit_bar);
+  clutter_color_free (priv->last_date_bckgrd_clr);
   /* TODO : check if the editor has been destroyed */
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
@@ -144,6 +147,7 @@ bjb_note_view_init (BjbNoteView *self)
 
   self->priv->embed = clutter_actor_new ();
   self->priv->accel = gtk_accel_group_new ();
+  self->priv->last_date_bckgrd_clr = NULL;
 }
 
 static void
@@ -415,6 +419,26 @@ on_note_deleted(BijiNoteObj *note, BjbNoteView *view)
   return TRUE;
 }
 
+static void
+copy_note_color_to_last_updated_background (BjbNoteView *self)
+{
+  BjbNoteViewPrivate *priv = self->priv;
+  GdkRGBA note_color;
+
+  if (biji_note_obj_get_rgba (priv->note, &note_color))
+  {
+    if (priv->last_date_bckgrd_clr)
+      clutter_color_free (priv->last_date_bckgrd_clr);
+
+    priv->last_date_bckgrd_clr = clutter_color_new (255 * note_color.red,
+                                                    255 * note_color.green,
+                                                    255 * note_color.blue,
+                                                    255);
+
+    clutter_actor_set_background_color (priv->last_update, priv->last_date_bckgrd_clr);
+  }
+}
+
 /* Number of days since last updated
  * Instead we might want to play with a func to have a date
  * Also this might be integrated in text view */
@@ -424,6 +448,7 @@ bjb_note_view_last_updated_actor_new (BjbNoteView *self)
   ClutterActor *result, *last, *value;
   ClutterLayoutManager *layout;
   ClutterColor last_up_col = {122,122,122,255};
+
   gchar *last_updated_str;
 
   result = clutter_actor_new ();
@@ -433,7 +458,7 @@ bjb_note_view_last_updated_actor_new (BjbNoteView *self)
   last = clutter_text_new ();
   /* "Last updated" precedes the note last updated date */
   clutter_text_set_text (CLUTTER_TEXT (last), _("Last updated "));
-  clutter_text_set_font_name (CLUTTER_TEXT (last), "Arial 9px");
+  clutter_text_set_font_name (CLUTTER_TEXT (last), "Arial 12px");
   clutter_text_set_color (CLUTTER_TEXT (last), &last_up_col );
   clutter_actor_add_child (result, last);
 
@@ -441,7 +466,7 @@ bjb_note_view_last_updated_actor_new (BjbNoteView *self)
   last_updated_str = biji_note_obj_get_last_change_date_string (
                                                       self->priv->note);
   clutter_text_set_text (CLUTTER_TEXT (value), last_updated_str);
-  clutter_text_set_font_name (CLUTTER_TEXT (value), "Arial 9px");
+  clutter_text_set_font_name (CLUTTER_TEXT (value), "Arial 12px");
   clutter_actor_add_child (result, value);
 
   clutter_actor_show (result);
@@ -554,12 +579,16 @@ bjb_note_view_constructed (GObject *obj)
   /* Last updated row */
   priv->last_update = bjb_note_view_last_updated_actor_new (self);
   clutter_actor_add_child (priv->embed,priv->last_update);
-                           
+
   constraint = clutter_align_constraint_new (priv->embed,CLUTTER_ALIGN_X_AXIS,0.05);
   clutter_actor_add_constraint (priv->last_update, constraint);
 
   constraint = clutter_align_constraint_new (priv->embed,CLUTTER_ALIGN_Y_AXIS,0.95);
   clutter_actor_add_constraint (priv->last_update, constraint);
+
+  copy_note_color_to_last_updated_background (self);
+  g_signal_connect_swapped (priv->note, "color-changed",
+                            G_CALLBACK (copy_note_color_to_last_updated_background), self);
 
   /* Show & let's go */
   gtk_widget_show_all (priv->window);

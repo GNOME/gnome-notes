@@ -322,7 +322,10 @@ process_bijiben_start_elem (BijiLazyDeserializer *self)
     priv->html = g_string_append (priv->html, "&#xA;");
 
   if (g_strcmp0 (element_name, "br")==0)
+  {
     priv->html = g_string_append (priv->html, "<br/>");
+    priv->raw_text = g_string_append (priv->raw_text, "\n");
+  }
 
   if (g_strcmp0 (element_name, "b")==0)
     priv->html = g_string_append (priv->html, "<b>");

@@ -22,7 +22,7 @@ searchprovider_DATA = bijiben-search-provider.ini
 
 css_files = Default.css
 
-cssdir = $(DESTDIR)$(pkgdatadir)
+cssdir = $(pkgdatadir)
 css_DATA = $(css_files)
 
 gsettings_SCHEMAS = org.gnome.bijiben.gschema.xml

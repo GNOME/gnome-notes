@@ -325,46 +325,51 @@ biji_note_obj_trash (BijiNoteObj *note_to_kill)
   GFile *to_trash, *parent, *trash, *backup_file;
   gchar *note_name, *parent_path, *trash_path, *backup_path;
   GError *error = NULL;
-  gboolean result;
+  gboolean result = FALSE;
 
   biji_timeout_cancel (note_to_kill->priv->timeout);
   to_trash = biji_note_id_get_file (note_to_kill->priv->id);
-  note_name = g_file_get_basename (to_trash);
-  parent = g_file_get_parent (to_trash);
 
-  /* Create the trash directory
-   * No matter if already exists */
-  parent_path = g_file_get_path (parent);
-  trash_path = g_build_filename (parent_path, ".Trash", NULL);
-  g_free (parent_path);
-  g_object_unref (parent);
-  trash = g_file_new_for_path (trash_path);
-  g_file_make_directory (trash, NULL, NULL);
-
-  /* Move the note to trash */
-  backup_path = g_build_filename (trash_path, note_name, NULL);
-  g_free (trash_path);
-  backup_file = g_file_new_for_path (backup_path);
-  g_free (note_name);
-  g_free (backup_path);
-  result = g_file_move (to_trash,
-                        backup_file,
-                        G_FILE_COPY_OVERWRITE,
-                        NULL, // cancellable
-                        NULL, // progress callback
-                        NULL, // progress_callback_data,
-                        &error);
-
-  if (error)
+  /* Don't try to backup a file which does not exist */
+  if (to_trash)
   {
-    g_message ("%s", error->message);
-    g_error_free (error);
-    error = NULL;
-  }
+    note_name = g_file_get_basename (to_trash);
+    parent = g_file_get_parent (to_trash);
 
-  /* Say goodbye however */
-  g_object_unref (trash);
-  g_object_unref (backup_file);
+    /* Create the trash directory
+     * No matter if already exists */
+    parent_path = g_file_get_path (parent);
+    trash_path = g_build_filename (parent_path, ".Trash", NULL);
+    g_free (parent_path);
+    g_object_unref (parent);
+    trash = g_file_new_for_path (trash_path);
+    g_file_make_directory (trash, NULL, NULL);
+
+    /* Move the note to trash */
+    backup_path = g_build_filename (trash_path, note_name, NULL);
+    g_free (trash_path);
+    backup_file = g_file_new_for_path (backup_path);
+    g_free (note_name);
+    g_free (backup_path);
+    result = g_file_move (to_trash,
+                          backup_file,
+                          G_FILE_COPY_OVERWRITE,
+                          NULL, // cancellable
+                          NULL, // progress callback
+                          NULL, // progress_callback_data,
+                          &error);
+
+    if (error)
+    {
+      g_message ("%s", error->message);
+      g_error_free (error);
+      error = NULL;
+    }
+
+    /* Say goodbye however */
+    g_object_unref (trash);
+    g_object_unref (backup_file);
+  }
 
   biji_note_delete_from_tracker (note_to_kill);
   g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_DELETED], 0);
@@ -375,6 +380,8 @@ biji_note_obj_trash (BijiNoteObj *note_to_kill)
 
 gchar* biji_note_obj_get_path (BijiNoteObj* n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
+
   return biji_note_id_get_path(n->priv->id) ;
 }
 
@@ -509,6 +516,8 @@ gboolean
 biji_note_obj_get_rgba(BijiNoteObj *n,
                        GdkRGBA *rgba)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), FALSE);
+
   if (n->priv->color && rgba)
     {
       *rgba = *(n->priv->color);
@@ -542,6 +551,8 @@ void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
 GList *
 _biji_note_obj_get_tags(BijiNoteObj *n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
+
   return g_list_copy(n->priv->tags);
 }
 
@@ -772,6 +783,8 @@ biji_note_obj_remove_tag(BijiNoteObj *note,gchar *tag)
 gchar *
 biji_note_obj_get_last_change_date(BijiNoteObj *note)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+
   return biji_note_id_get_last_change_date (note->priv->id);
 }
 
@@ -823,7 +836,11 @@ biji_note_obj_set_all_dates_now (BijiNoteObj *note)
 gchar *
 biji_note_obj_get_html (BijiNoteObj *note)
 {
-  return note->priv->html;
+  if (BIJI_IS_NOTE_OBJ (note))
+    return note->priv->html;
+
+  else
+    return NULL;
 }
 
 void

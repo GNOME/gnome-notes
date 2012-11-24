@@ -138,6 +138,8 @@ biji_note_id_equal (BijiNoteID *a, BijiNoteID *b)
 gchar * 
 biji_note_id_get_path (BijiNoteID* n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+
   return g_file_get_path (n->priv->location);
 }
 
@@ -183,6 +185,8 @@ set_date_from_string (gchar *iso8601, GTimeVal *date)
 gchar *
 biji_note_id_get_last_change_date (BijiNoteID* n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+
   return g_time_val_to_iso8601 (&(n->priv->last_change_date));
 }
 
@@ -209,6 +213,8 @@ biji_note_id_set_last_change_date (BijiNoteID* n,gchar* date)
 gchar *
 biji_note_id_get_last_metadata_change_date(BijiNoteID* n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+
   return g_time_val_to_iso8601 (&n->priv->last_metadata_change_date);
 }
 
@@ -227,6 +233,8 @@ biji_note_id_set_last_metadata_change_date_now (BijiNoteID *n)
 gchar *
 biji_note_id_get_create_date(BijiNoteID* n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+
   return g_time_val_to_iso8601 (&n->priv->create_date);
 }
 

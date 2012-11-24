@@ -238,10 +238,13 @@ update_note_into_tracker (GObject *source_object,
                           GAsyncResult *res,
                           gpointer user_data)
 {
-  BijiNoteObj *note = BIJI_NOTE_OBJ (user_data);
+  if (user_data && BIJI_IS_NOTE_OBJ (user_data))
+  {
+    BijiNoteObj *note = BIJI_NOTE_OBJ (user_data);
 
-  biji_finish_update (source_object, res, NULL);
-  biji_note_create_into_tracker (note);
+    biji_finish_update (source_object, res, NULL);
+    biji_note_create_into_tracker (note);
+  }
 }
 
 

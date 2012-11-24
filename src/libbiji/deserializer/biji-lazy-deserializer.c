@@ -345,7 +345,9 @@ process_bijiben_start_elem (BijiLazyDeserializer *self)
     priv->html = g_string_append (priv->html, "<ol>");
 
   if (g_strcmp0 (element_name, "li")==0)
+  {
     priv->html = g_string_append (priv->html, "<li>");
+  }
 
   /* Links: Images */
 
@@ -436,7 +438,10 @@ process_bijiben_end_elem (BijiLazyDeserializer *self)
     priv->html = g_string_append (priv->html, "</ol>");
 
   if (g_strcmp0 (element_name, "li")==0)
+  {
     priv->html = g_string_append (priv->html, "</li>");
+    priv->raw_text = g_string_append (priv->raw_text, "\n");
+  }
 }
 
 static void

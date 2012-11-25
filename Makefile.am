@@ -2,8 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 -I libgd ${ACLOCAL_FLAGS}
 
 SUBDIRS = libgd src data po help
 
-bijibendocdir = ${prefix}/doc/bijiben
-bijibendoc_DATA = \
+bijibendoc = \
 	README\
 	COPYING\
 	AUTHORS\
@@ -17,7 +16,7 @@ INTLTOOL_FILES = intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
 
-EXTRA_DIST = $(bijibendoc_DATA) \
+EXTRA_DIST = $(bijibendoc) \
 	$(INTLTOOL_FILES) \
 	gnome-doc-utils.make
 
@@ -33,9 +32,5 @@ ChangeLog:
 	fi
 
 dist: ChangeLog
-
-# Remove doc directory on uninstall
-uninstall-local:
-	-rm -r $(bijibendocdir)
 
 .PHONY: ChangeLog

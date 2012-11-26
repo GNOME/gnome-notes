@@ -20,7 +20,7 @@ AM_CFLAGS =\
 
 INCLUDES = -DDATADIR=\""$(datadir)"\"
 
-LDADD = libbiji.a \
+LDADD = libbiji.la \
 	-lm \
 	$(top_builddir)/libgd/libgd.la \
 	$(BIJIBEN_LIBS)
@@ -109,10 +109,10 @@ EXTRA_DIST = \
 	resources/thumbnail-frame.png \
 	$(NULL)
 
-lib_LIBRARIES =  \
-	libbiji.a
+noinst_LTLIBRARIES = \
+	libbiji.la
 
-libbiji_a_SOURCES =  \
+libbiji_la_SOURCES =  \
 	libbiji/libbiji.h \
 	libbiji/biji-date-time.c \
 	libbiji/biji-date-time.h \

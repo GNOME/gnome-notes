@@ -240,7 +240,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   /* Go to selection mode */
   priv->select = gd_main_toolbar_add_button(priv->toolbar,
-                                            "emblem-default-symbolic",
+                                            "object-select-symbolic",
                                             NULL,
                                             FALSE);
 

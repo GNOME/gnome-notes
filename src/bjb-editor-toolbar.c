@@ -168,7 +168,7 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
 
   /* GtkWidget         *toolbar_bold   */
   priv->toolbar_bold = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("gtk-bold", GTK_ICON_SIZE_INVALID);
+  image = gtk_image_new_from_icon_name ("format-text-bold-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
   gtk_container_add (GTK_CONTAINER (priv->toolbar_bold), image);
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_bold), _("Bold"));
@@ -179,7 +179,7 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
 
   /* GtkWidget          *toolbar_italic; */
   priv->toolbar_italic = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("gtk-italic", GTK_ICON_SIZE_INVALID);
+  image = gtk_image_new_from_icon_name ("format-text-italic-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
   gtk_container_add (GTK_CONTAINER (priv->toolbar_italic), image);
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_italic), _("Italic"));
@@ -190,7 +190,7 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
 
   /* GtkWidget          *toolbar_strike; */
   priv->toolbar_strike = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("gtk-strikethrough", GTK_ICON_SIZE_INVALID);
+  image = gtk_image_new_from_icon_name ("format-text-strikethrough-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
   gtk_container_add (GTK_CONTAINER (priv->toolbar_strike), image);
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_strike), _("Strike"));

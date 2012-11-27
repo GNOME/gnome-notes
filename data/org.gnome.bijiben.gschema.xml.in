@@ -1,7 +1,7 @@
 <schemalist>
   <schema path="/org/gnome/bijiben/" id="org.gnome.bijiben">
     <key type="s" name="font">
-      <default>'Cantarell 12'</default>
+      <default>'Cantarell 14'</default>
       <summary>Custom Font</summary>
       <description>The font name set here will be used as the font when displaying notes.</description>
     </key>

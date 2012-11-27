@@ -64,7 +64,7 @@ external_activated (GSimpleAction *action,
 
   windows = gtk_application_get_windows (GTK_APPLICATION(user_data));
   
-  dialog = gtk_dialog_new_with_buttons ("External data",
+  dialog = gtk_dialog_new_with_buttons ("External Data",
                                         g_list_nth_data (windows, 0),
                                         GTK_DIALOG_MODAL| 
                                         GTK_DIALOG_DESTROY_WITH_PARENT,

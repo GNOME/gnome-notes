@@ -310,7 +310,7 @@ bjb_note_menu_new (BjbNoteView *self)
   gtk_widget_show (item);
 
   /* Delete Note */
-  item = gtk_menu_item_new_with_label(_("Delete this note"));
+  item = gtk_menu_item_new_with_label(_("Delete this Note"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(delete_item_callback),self);

@@ -213,7 +213,7 @@ update_label_for_standard (BjbMainToolbar *self)
     label = g_strdup_printf (_("Results for %s"), needle);
 
   else
-    label = g_strdup (_("New and recent"));
+    label = g_strdup (_("New and Recent"));
 
   gd_main_toolbar_set_labels (priv->toolbar, label, NULL);
   g_free (label);

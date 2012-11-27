@@ -90,6 +90,12 @@ to_8601_date( gchar * dot_iso_8601_date )
                            g_utf8_strncpy  (result ,dot_iso_8601_date, 19) );
 }
 
+static gchar *
+get_note_url (BijiNoteObj *note)
+{
+  return g_strdup_printf ("file://%s", biji_note_obj_get_path (note));
+}
+
 /////////////// Tags
 
 /* This func only provides tags.
@@ -165,22 +171,31 @@ remove_tag_from_tracker(gchar *tag)
 }
 
 void
-push_existing_tag_to_note(gchar *tag,BijiNoteObj *note)
+push_existing_or_new_tag_to_note (gchar *tag,BijiNoteObj *note)
 {
-  const gchar *query = g_strdup_printf( "INSERT { <%s> nao:hasTag ?id } \
-  WHERE {   ?id nao:prefLabel '%s' }", biji_note_obj_get_path(note),tag ) ;
-    
+  gchar *url = get_note_url (note);
+  const gchar *query = g_strdup_printf (
+            "INSERT {_:tag a nao:Tag ; nao:prefLabel '%s'. \
+            ?unknown nao:hasTag _:tag} WHERE {?unknown nie:url '%s'}",
+            tag, url);
+
   biji_perform_update_async (query);
+
+  g_free (url);
   g_free ((gchar*) query);
 }
 
+/* This one is to be fixed */
 void
 remove_tag_from_note (gchar *tag, BijiNoteObj *note)
 {
+  gchar *url = get_note_url (note);
   const gchar *query = g_strdup_printf( "DELETE { <%s> nao:hasTag ?id } \
-  WHERE {   ?id nao:prefLabel '%s' }", biji_note_obj_get_path(note),tag ) ;
+  WHERE {   ?id nao:prefLabel '%s' }", url, tag ) ;
     
   biji_perform_update_async (query);
+
+  g_free (url);
   g_free ((gchar*) query);
 }
 
@@ -194,10 +209,8 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
   g_free ((gchar*) query);
 }
 
-/* There is no standard UPDATE into tracker
- * delete the note, when we're sure it's done then insert it */
-static void 
-biji_note_create_into_tracker(BijiNoteObj *note)
+void
+bijiben_push_note_to_tracker (BijiNoteObj *note)
 {
   gchar *title,*content,*file,*create_date,*last_change_date ;
     
@@ -207,9 +220,11 @@ biji_note_create_into_tracker(BijiNoteObj *note)
   last_change_date = to_8601_date (biji_note_obj_get_last_change_date (note));
   content = tracker_str (biji_note_get_raw_text (note));
 
-  /* TODO : nie:mimeType Note ; \ */
+  /* TODO : nie:mimeType Note ;
+   * All these properties are unique and thus can be "updated"
+   * which is not the case of tags */
   const gchar *query = g_strdup_printf (
-                            "INSERT { <%s> a nfo:Note , nie:DataObject ; \
+                           "INSERT OR REPLACE { <%s> a nfo:Note , nie:DataObject ; \
                             nie:url '%s' ; \
                             nie:contentLastModified '%s' ; \
                             nie:contentCreated '%s' ; \
@@ -231,36 +246,5 @@ biji_note_create_into_tracker(BijiNoteObj *note)
   g_free(content); 
   g_free(create_date);
   g_free(last_change_date);
-}
-
-static void
-update_note_into_tracker (GObject *source_object,
-                          GAsyncResult *res,
-                          gpointer user_data)
-{
-  if (user_data && BIJI_IS_NOTE_OBJ (user_data))
-  {
-    BijiNoteObj *note = BIJI_NOTE_OBJ (user_data);
-
-    biji_finish_update (source_object, res, NULL);
-    biji_note_create_into_tracker (note);
-  }
-}
-
-
-void
-bijiben_push_note_to_tracker(BijiNoteObj *note)
-{
-  const gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
-                                        biji_note_obj_get_path(note));
-
-  tracker_sparql_connection_update_async (get_connection_singleton(),
-                                          query,
-                                          0,     // priority
-                                          NULL,
-                                          update_note_into_tracker,
-                                          note); //user_data
-
-  g_free ((gchar*) query);
 }
 

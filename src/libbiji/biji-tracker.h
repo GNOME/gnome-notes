@@ -32,7 +32,7 @@ void push_tag_to_tracker(gchar *tag);
 
 void remove_tag_from_tracker(gchar *tag);
 
-void push_existing_tag_to_note(gchar *tag,BijiNoteObj *note);
+void push_existing_or_new_tag_to_note (gchar *tag,BijiNoteObj *note);
 
 void remove_tag_from_note (gchar *tag, BijiNoteObj *note) ;
 

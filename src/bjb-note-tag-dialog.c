@@ -125,7 +125,7 @@ note_dialog_add_tag (BijiNoteObj *note, gchar *tag)
   if (biji_note_obj_add_tag (note, tag))
   {
     biji_note_obj_save_note (note);
-    push_existing_tag_to_note (tag, note);
+    push_existing_or_new_tag_to_note (tag, note);
   }
 }
 

@@ -190,9 +190,10 @@ void
 remove_tag_from_note (gchar *tag, BijiNoteObj *note)
 {
   gchar *url = get_note_url (note);
-  const gchar *query = g_strdup_printf( "DELETE { <%s> nao:hasTag ?id } \
-  WHERE {   ?id nao:prefLabel '%s' }", url, tag ) ;
-    
+  const gchar *query = g_strdup_printf ("DELETE { ?urn nao:hasTag ?label } \
+                    WHERE { ?urn nie:url ?f . ?label nao:prefLabel '%s' .  \
+                    FILTER (?f = '%s') }", tag, url);
+
   biji_perform_update_async (query);
 
   g_free (url);

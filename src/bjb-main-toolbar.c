@@ -235,11 +235,13 @@ populate_bar_for_standard(BjbMainToolbar *self)
   priv->search_handler = g_signal_connect_swapped (priv->controller,
          "search-changed", G_CALLBACK(update_label_for_standard), self);
 
-  /* New Note */
+  /* New Note button
+   * Request a minimal width. TODO : fix padding */
   priv->new = gd_main_toolbar_add_button(priv->toolbar,
                                          NULL,
                                          _("New"),
                                          TRUE);
+  gtk_widget_set_size_request (priv->new, 70, -1);
 
   g_signal_connect(priv->new,"clicked",
                    G_CALLBACK(on_new_note_clicked),priv->parent);

@@ -311,6 +311,32 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
   g_list_free (notes);
 }
 
+/* Go to selection mode with right-click */
+static gboolean
+on_button_press_event_cb (GtkWidget *widget,
+                          GdkEvent  *event,
+                          gpointer   user_data)
+{
+  BjbMainView *self = BJB_MAIN_VIEW (user_data);
+  BjbMainViewPriv *priv = self->priv;
+
+  switch (event->button.button)
+  {
+    /* Right click */
+    case 3:
+      if (!gd_main_view_get_selection_mode (priv->view))
+      {
+        gd_main_view_set_selection_mode (priv->view, TRUE);
+        on_selection_mode_changed (priv->main_toolbar);
+      }
+
+      return TRUE;
+
+    default:
+      return FALSE;
+  }
+}
+
 static gboolean
 on_item_activated(GdMainView        * gd, 
                   const gchar       * id,
@@ -461,6 +487,8 @@ bjb_main_view_constructed(GObject *o)
   gd_main_view_set_model(priv->view,
                          bjb_controller_get_model(priv->controller));
 
+  g_signal_connect (priv->view, "button-press-event",
+                    G_CALLBACK (on_button_press_event_cb), self);
   g_signal_connect(priv->view,"item-activated",
                    G_CALLBACK(on_item_activated),self);
 

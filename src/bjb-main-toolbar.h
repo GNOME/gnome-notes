@@ -58,6 +58,8 @@ BjbMainToolbar * bjb_main_toolbar_new (GdMainView    *view,
 
 ClutterActor *bjb_main_toolbar_get_actor (BjbMainToolbar *self);
 
+void on_selection_mode_changed (BjbMainToolbar *self);
+
 void bjb_main_toolbar_set_view (BjbMainToolbar *self, GdMainView *view);
 
 G_END_DECLS

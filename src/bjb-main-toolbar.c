@@ -89,29 +89,35 @@ on_new_note_clicked (GtkWidget *but, BjbMainView *view)
 
 static void populate_main_toolbar(BjbMainToolbar *self);
 
-static void
-on_selection_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
+void
+on_selection_mode_changed (BjbMainToolbar *self)
 {
   GtkStyleContext *context;
   GdMainView *view = self->priv->view;
   GtkWidget *widget = GTK_WIDGET(self->priv->toolbar);
   context = gtk_widget_get_style_context (widget);
 
-  if (gd_main_view_get_selection_mode (view))
-  {
-    gd_main_view_set_selection_mode (view, FALSE);
+  if (!gd_main_view_get_selection_mode (view))
     gtk_style_context_remove_class (context, "selection-mode");
-  }
 
   else
-  {
-    gd_main_view_set_selection_mode (view, TRUE);
     gtk_style_context_add_class (context, "selection-mode");
-  }
 
   gtk_widget_reset_style (widget);
   populate_main_toolbar(self);
   return ;
+}
+
+static void
+on_selection_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
+{
+  if (gd_main_view_get_selection_mode (self->priv->view))
+    gd_main_view_set_selection_mode (self->priv->view, FALSE);
+
+  else
+    gd_main_view_set_selection_mode (self->priv->view, TRUE);
+
+  on_selection_mode_changed (self);
 }
 
 static gboolean

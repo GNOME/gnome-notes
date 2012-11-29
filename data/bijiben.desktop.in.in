@@ -1,6 +1,7 @@
 
 [Desktop Entry]
 _Name=Bijiben
+_Keywords=notes;reminder;
 _Comment=Post notes, tag files!
 _GenericName=Note-taker
 Exec=bijiben %u
@@ -11,6 +12,6 @@ Terminal=false
 Type=Application
 Categories=GNOME;GTK;Utility;
 X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=gnote
+X-GNOME-Bugzilla-Product=bijiben
 X-GNOME-Bugzilla-Component=main
-X-GNOME-Bugzilla-Version=@BIJIBEN_VERSION@
+X-GNOME-Bugzilla-Version=@VERSION@

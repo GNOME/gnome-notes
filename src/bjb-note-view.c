@@ -327,6 +327,26 @@ on_note_renamed (BijiNoteObj *note, GdMainToolbar *bar)
   gd_main_toolbar_set_labels (bar, biji_note_obj_get_title (note), NULL);
 }
 
+/* Just makes toolbar draggable */
+static gboolean
+on_button_press (GtkWidget* widget,
+                 GdkEventButton * event,
+                 GdkWindowEdge edge)
+{
+  if (event->type == GDK_BUTTON_PRESS)
+  {
+    if (event->button == 1) {
+      gtk_window_begin_move_drag (GTK_WINDOW (gtk_widget_get_toplevel (widget)),
+                                  event->button,
+                                  event->x_root,
+                                  event->y_root,
+                                  event->time);
+    }
+  }
+
+  return FALSE;
+}
+
 static ClutterActor *
 bjb_note_main_toolbar_new (BjbNoteView *self,
                            ClutterActor *parent,
@@ -409,6 +429,7 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
   gtk_menu_button_set_popup (GTK_MENU_BUTTON (button),
                              bjb_note_menu_new (self));
 
+  g_signal_connect (w, "button-press-event", G_CALLBACK (on_button_press), NULL);
   return result;
 }
 

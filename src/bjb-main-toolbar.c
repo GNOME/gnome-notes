@@ -145,9 +145,10 @@ on_view_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
 }
 
 /* Just makes toolbar draggable */
-gboolean on_button_press (GtkWidget* widget,
-                          GdkEventButton * event,
-                          GdkWindowEdge edge)
+static gboolean
+on_button_press (GtkWidget* widget,
+                 GdkEventButton * event,
+                 GdkWindowEdge edge)
 {
   if (event->type == GDK_BUTTON_PRESS)
   {

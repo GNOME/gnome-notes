@@ -23,6 +23,7 @@
 #include "utils/bjb-icons-colors.h"
 
 #include "bjb-bijiben.h"
+#include "bjb-color-button.h"
 #include "bjb-editor-toolbar.h"
 #include "bjb-rename-note.h"
 #include "bjb-share.h"
@@ -405,7 +406,7 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
     g_free (default_color);
   }
 
-  color_button = gtk_color_button_new ();
+  color_button = bjb_color_button_new ();
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (color_button), &color);
 
   gd_main_toolbar_add_widget (gd, color_button, FALSE);

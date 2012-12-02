@@ -48,6 +48,8 @@ bijiben_SOURCES = \
 	bjb-app-menu.h \
 	bjb-bijiben.c \
 	bjb-bijiben.h \
+	bjb-color-button.c \
+	bjb-color-button.h \
 	bjb-controller.c \
 	bjb-controller.h \
 	bjb-debug.c \

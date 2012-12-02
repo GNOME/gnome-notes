@@ -26,6 +26,7 @@
 #include <gtk/gtk.h>
 #include <libgd/gd.h>
 
+#include "bjb-color-button.h"
 #include "bjb-main-view.h"
 #include "bjb-selection-toolbar.h"
 
@@ -172,7 +173,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_tag);
 
   /* Notes color */
-  priv->toolbar_color = gtk_color_button_new ();
+  priv->toolbar_color = bjb_color_button_new ();
   gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_color);
 
   priv->separator = gtk_separator_tool_item_new ();

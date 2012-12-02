@@ -126,6 +126,7 @@ bjb_color_button_clicked (GtkButton *b)
                         G_CALLBACK (dialog_destroy), button);
     }
 
+  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &priv->rgba);
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button->priv->dialog),
                               &button->priv->rgba);
 

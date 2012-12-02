@@ -411,13 +411,12 @@ biji_note_obj_set_title(BijiNoteObj *note,gchar *title)
   if (g_strcmp0 (title, biji_note_id_get_title (note->priv->id))==0)
     return FALSE;
 
+  /* Emit signal even if initial title, just to let know */
   biji_note_id_set_title (note->priv->id,title);
+  g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED],0);
 
   if (!initial)
-  {
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
-    g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED],0);
-  }
 
   return TRUE;
 }

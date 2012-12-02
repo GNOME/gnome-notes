@@ -27,6 +27,7 @@ aclocal.m4
 Makefile
 Makefile.in
 data/bijiben.desktop
+data/bijiben.desktop.in
 data/org.gnome.bijiben.gschema.valid
 data/org.gnome.bijiben.gschema.xml
 m4/intltool.m4

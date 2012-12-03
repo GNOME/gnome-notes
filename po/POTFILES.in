@@ -1,5 +1,4 @@
 # List of source files containing translatable strings.
-data/bijiben.desktop.in
 data/bijiben.desktop.in.in
 src/bjb-editor-toolbar.c
 src/bjb-main-toolbar.c

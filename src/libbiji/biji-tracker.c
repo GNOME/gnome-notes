@@ -55,31 +55,35 @@ biji_finish_update (GObject *source_object,
 {
   TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
   GError *error = NULL;
+  gchar *query = user_data;
 
   tracker_sparql_connection_update_finish (self, res, &error);
 
   if (error)
   {
-    g_warning ("%s", error->message);
+    g_warning ("%s : query=|||%s|||", error->message, query);
     g_error_free (error);
   }
+
+  g_free (query);
 }
 
 static void
-biji_perform_update_async (const gchar *query)
+biji_perform_update_async_and_free (gchar *query)
 {
   tracker_sparql_connection_update_async (get_connection_singleton(),
                                           query,
                                           0,     // priority
                                           NULL,
                                           biji_finish_update,
-                                          NULL); //user_data
+                                          query);
 }
 
+/* Don't worry too much. We just want plain text here */
 static gchar *
 tracker_str ( gchar * string )
 {
-  return biji_str_mass_replace (string, "\n", " ", "'", "\\", NULL);
+  return biji_str_mass_replace (string, "\n", " ", "'", " ", NULL);
 }
 
 static gchar *
@@ -153,8 +157,7 @@ push_tag_to_tracker(gchar *tag)
   WHERE { OPTIONAL {?tag a nao:Tag ; nao:prefLabel '%s'} . \
   FILTER (!bound(?tag)) }",tag,tag);
 
-  biji_perform_update_async (query) ;
-  g_free ((gchar*) query);
+  biji_perform_update_async_and_free (query) ;
 }
 
 // removes the tag EVEN if files associated.
@@ -162,11 +165,10 @@ void
 remove_tag_from_tracker(gchar *tag)
 {
   gchar *value = tracker_str (tag);
-  const gchar *query = g_strdup_printf ("DELETE { ?tag a nao:Tag } \
+  gchar *query = g_strdup_printf ("DELETE { ?tag a nao:Tag } \
   WHERE { ?tag nao:prefLabel '%s' }",value);
 
-  biji_perform_update_async (query);
-  g_free ((gchar*) query);
+  biji_perform_update_async_and_free (query);
   g_free (tag);
 }
 
@@ -174,15 +176,14 @@ void
 push_existing_or_new_tag_to_note (gchar *tag,BijiNoteObj *note)
 {
   gchar *url = get_note_url (note);
-  const gchar *query = g_strdup_printf (
+  gchar *query = g_strdup_printf (
             "INSERT {_:tag a nao:Tag ; nao:prefLabel '%s'. \
             ?unknown nao:hasTag _:tag} WHERE {?unknown nie:url '%s'}",
             tag, url);
 
-  biji_perform_update_async (query);
+  biji_perform_update_async_and_free (query);
 
   g_free (url);
-  g_free ((gchar*) query);
 }
 
 /* This one is to be fixed */
@@ -190,24 +191,22 @@ void
 remove_tag_from_note (gchar *tag, BijiNoteObj *note)
 {
   gchar *url = get_note_url (note);
-  const gchar *query = g_strdup_printf ("DELETE { ?urn nao:hasTag ?label } \
+  gchar *query = g_strdup_printf ("DELETE { ?urn nao:hasTag ?label } \
                     WHERE { ?urn nie:url ?f . ?label nao:prefLabel '%s' .  \
                     FILTER (?f = '%s') }", tag, url);
 
-  biji_perform_update_async (query);
+  biji_perform_update_async_and_free (query);
 
   g_free (url);
-  g_free ((gchar*) query);
 }
 
 void
 biji_note_delete_from_tracker (BijiNoteObj *note)
 {
-  const gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
+  gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
                                         biji_note_obj_get_path(note));
 
-  biji_perform_update_async (query);
-  g_free ((gchar*) query);
+  biji_perform_update_async_and_free (query);
 }
 
 void
@@ -224,7 +223,7 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
   /* TODO : nie:mimeType Note ;
    * All these properties are unique and thus can be "updated"
    * which is not the case of tags */
-  const gchar *query = g_strdup_printf (
+  gchar *query = g_strdup_printf (
                            "INSERT OR REPLACE { <%s> a nfo:Note , nie:DataObject ; \
                             nie:url '%s' ; \
                             nie:contentLastModified '%s' ; \
@@ -239,9 +238,8 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
                            title,
                            content) ;
 
-  biji_perform_update_async (query);
+  biji_perform_update_async_and_free (query);
 
-  g_free ((gchar*) query);
   g_free(title);
   g_free(file);
   g_free(content); 

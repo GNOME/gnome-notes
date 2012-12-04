@@ -262,8 +262,18 @@ on_content_changed (WebKitWebView *view)
     rows = g_strsplit (html, "<div", 2);
     g_warning ("title is %s", rows[0]);
 
+    /* if we have a carriage return and thus, a proper title
+     * we still need to ensure it's clean */
     if (g_strv_length (rows) > 1)
-      biji_note_obj_set_title (note, rows[0]);
+    {
+      gchar *sanitized_title;
+
+      sanitized_title = biji_str_mass_replace (rows[0],
+                                               "&nbsp;", "",
+                                               NULL);
+      biji_note_obj_set_title (note, sanitized_title);
+      g_free (sanitized_title);
+    }
 
     g_strfreev (rows);
   }

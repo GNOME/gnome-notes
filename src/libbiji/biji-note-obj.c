@@ -86,9 +86,13 @@ on_save_timeout (BijiNoteObj *self)
   if (!priv->needs_save)
     return;
 
+  g_object_ref (self);
+
   biji_lazy_serialize (self);
   bijiben_push_note_to_tracker(self);
+
   priv->needs_save = FALSE;
+  g_object_unref (self);
 }
 
 static void
@@ -656,6 +660,25 @@ biji_note_obj_save_note (BijiNoteObj *self)
 {
   self->priv->needs_save = TRUE;
   biji_timeout_reset (self->priv->timeout, 3000);
+}
+
+gchar *
+biji_note_obj_get_uuid (BijiNoteObj *note)
+{
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+  return biji_note_id_get_uuid (note->priv->id);
+}
+
+void
+biji_note_obj_set_icon (BijiNoteObj *note, GdkPixbuf *pix)
+{
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+
+  if (!note->priv->icon)
+    note->priv->icon = pix;
+
+  else
+    g_warning ("Cannot use _set_icon_ with iconified note. This has no sense.");
 }
 
 GdkPixbuf *

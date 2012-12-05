@@ -411,6 +411,40 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
                               NULL);
 }
 
+/* No matter if icon is saved or not.
+ * We just try */
+static void
+biji_note_obj_save_icon (BijiNoteObj *note)
+{
+  gchar *filename;
+  GFile *directory;
+  GError *error = NULL;
+
+  /* First ensure the dir exists */
+  filename = g_build_filename (g_get_user_cache_dir (),
+                               g_get_application_name (),
+                               NULL);
+  directory = g_file_new_for_path (filename);
+  g_file_make_directory (directory, NULL, NULL);
+
+  /* Png */
+  GdkPixbuf *icon = biji_note_obj_get_icon (note);
+  filename = g_build_filename (g_get_user_cache_dir (),
+                               g_get_application_name (),
+                               biji_note_obj_get_uuid (note),
+                               NULL);
+
+  gdk_pixbuf_save (icon, filename, "png", &error, NULL);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+  }
+
+  g_free (filename);
+}
+
 gboolean
 biji_lazy_serialize (BijiNoteObj *note)
 {
@@ -421,6 +455,8 @@ biji_lazy_serialize (BijiNoteObj *note)
                        "note", note, NULL);
   result = biji_lazy_serialize_internal (self);
   g_object_unref (self);
+
+  biji_note_obj_save_icon (note);
 
   return result;
 }

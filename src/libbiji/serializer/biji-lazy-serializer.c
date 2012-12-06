@@ -416,9 +416,10 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 static void
 biji_note_obj_save_icon (BijiNoteObj *note)
 {
-  gchar *filename;
+  gchar *uuid, *basename, *filename;
   GFile *directory;
   GError *error = NULL;
+  GdkPixbuf *icon;
 
   /* First ensure the dir exists */
   filename = g_build_filename (g_get_user_cache_dir (),
@@ -428,11 +429,15 @@ biji_note_obj_save_icon (BijiNoteObj *note)
   g_file_make_directory (directory, NULL, NULL);
 
   /* Png */
-  GdkPixbuf *icon = biji_note_obj_get_icon (note);
+  uuid = biji_note_obj_get_uuid (note);
+  basename = biji_str_mass_replace (uuid, ".note", ".png", NULL);
+  icon = biji_note_obj_get_icon (note);
   filename = g_build_filename (g_get_user_cache_dir (),
                                g_get_application_name (),
-                               biji_note_obj_get_uuid (note),
+                               basename,
                                NULL);
+  g_free (uuid);
+  g_free (basename);
 
   gdk_pixbuf_save (icon, filename, "png", &error, NULL);
 

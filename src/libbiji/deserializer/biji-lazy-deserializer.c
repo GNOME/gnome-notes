@@ -704,14 +704,20 @@ biji_lazy_deserializer_new (BijiNoteObj *note)
 static void
 biji_note_obj_load_icon (BijiNoteObj *note)
 {
-  gchar *filename;
+  gchar *uuid, *basename, *filename;
   GdkPixbuf *retval;
   GError *error = NULL;
 
+  uuid = biji_note_obj_get_uuid (note);
+  basename = biji_str_mass_replace (uuid, ".note", ".png", NULL);
+
   filename = g_build_filename (g_get_user_cache_dir (),
                                g_get_application_name (),
-                               biji_note_obj_get_uuid (note),
+                               basename,
                                NULL);
+
+  g_free (uuid);
+  g_free (basename);
 
   retval = gdk_pixbuf_new_from_file (filename, &error);
   if (error)
@@ -724,6 +730,8 @@ biji_note_obj_load_icon (BijiNoteObj *note)
   {
      biji_note_obj_set_icon (note, retval);
   }
+
+  g_free (filename);
 }
 
 gboolean

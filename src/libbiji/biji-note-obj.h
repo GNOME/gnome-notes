@@ -137,7 +137,7 @@ GdkPixbuf * biji_note_obj_get_icon (BijiNoteObj *note);
 
 void biji_note_obj_set_icon (BijiNoteObj *note, GdkPixbuf *pix);
 
-gchar *biji_note_obj_get_uuid (BijiNoteObj *note);
+gchar *biji_note_obj_get_icon_file (BijiNoteObj *note);
 
 gchar *biji_note_get_raw_text(BijiNoteObj *note);
 

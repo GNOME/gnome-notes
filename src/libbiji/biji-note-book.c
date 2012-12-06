@@ -360,8 +360,18 @@ static void
 biji_note_book_constructed (GObject *object)
 {
   BijiNoteBook *self = BIJI_NOTE_BOOK (object);
+  gchar *filename;
+  GFile *cache;
 
   G_OBJECT_CLASS (biji_note_book_parent_class)->constructed (object);
+
+  /* Ensure cache directory for icons */
+  filename = g_build_filename (g_get_user_cache_dir (),
+                               g_get_application_name (),
+                               NULL);
+  cache = g_file_new_for_path (filename);
+  g_file_make_directory (cache, NULL, NULL);
+  g_object_unref (cache);
 
   note_book_load_from_location (self);
 }

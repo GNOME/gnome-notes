@@ -326,8 +326,8 @@ note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b)
 gboolean
 biji_note_obj_trash (BijiNoteObj *note_to_kill)
 {
-  GFile *to_trash, *parent, *trash, *backup_file;
-  gchar *note_name, *parent_path, *trash_path, *backup_path;
+  GFile *to_trash, *parent, *trash, *backup_file, *icon;
+  gchar *note_name, *parent_path, *trash_path, *backup_path, *icon_path;
   GError *error = NULL;
   gboolean result = FALSE;
 
@@ -375,6 +375,14 @@ biji_note_obj_trash (BijiNoteObj *note_to_kill)
     g_object_unref (backup_file);
   }
 
+  /* Delete icon file */
+  icon_path = biji_note_obj_get_icon_file (note_to_kill);
+  icon = g_file_new_for_path (icon_path);
+  g_free (icon_path);
+  g_file_delete (icon, NULL, NULL);
+  g_object_unref (icon);
+
+  /* Tracker, NoteBook, Memory. TODO : zeitgeist */
   biji_note_delete_from_tracker (note_to_kill);
   g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_DELETED], 0);
   g_clear_object (&note_to_kill);
@@ -663,10 +671,24 @@ biji_note_obj_save_note (BijiNoteObj *self)
 }
 
 gchar *
-biji_note_obj_get_uuid (BijiNoteObj *note)
+biji_note_obj_get_icon_file (BijiNoteObj *note)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
-  return biji_note_id_get_uuid (note->priv->id);
+
+  gchar *uuid, *basename, *filename;
+
+  uuid = biji_note_id_get_uuid (note->priv->id);
+  basename = biji_str_mass_replace (uuid, ".note", ".png", NULL);
+
+  filename = g_build_filename (g_get_user_cache_dir (),
+                               g_get_application_name (),
+                               basename,
+                               NULL);
+
+  g_free (uuid);
+  g_free (basename);
+
+  return filename;
 }
 
 void

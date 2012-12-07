@@ -36,7 +36,8 @@ GType biji_note_book_get_type (void) G_GNUC_CONST;
 
 BijiNoteBook * biji_note_book_new (GFile *location);
 
-gboolean _biji_note_book_is_title_unique(BijiNoteBook *book,gchar *title);
+gchar * biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title);
+
 gboolean _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note);
 void _biji_note_book_add_note_to_tag_book(BijiNoteBook *book,BijiNoteObj *note,gchar *tag);
 

@@ -412,24 +412,35 @@ biji_note_obj_get_title(BijiNoteObj *obj)
 
 /* If already a title, then note is renamed */
 gboolean
-biji_note_obj_set_title(BijiNoteObj *note,gchar *title)
+biji_note_obj_set_title (BijiNoteObj *note, gchar *proposed_title)
 {
   gboolean initial = FALSE;
   note->priv->does_title_survive = TRUE;
+  gchar *title;
 
-  if (!biji_note_id_get_title(note->priv->id))
+  if (!biji_note_id_get_title (note->priv->id))
     initial = TRUE;
 
-  if (g_strcmp0 (title, biji_note_id_get_title (note->priv->id))==0)
+  if (g_strcmp0 (proposed_title, biji_note_id_get_title (note->priv->id))==0)
     return FALSE;
 
-  /* Emit signal even if initial title, just to let know */
-  biji_note_id_set_title (note->priv->id,title);
-  g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED],0);
-
+  /* If the note is really renamed, check the new title */
   if (!initial)
+  {
+    title = biji_note_book_get_unique_title (note->priv->book, proposed_title);
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
+  }
 
+  /* Otherwise it's up to the caller to sanitize its title */
+  else
+  {
+    title = g_strdup (proposed_title);
+  }
+
+  /* Emit signal even if initial title, just to let know */
+  biji_note_id_set_title (note->priv->id, title);
+  g_free (title);
+  g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED],0);
   return TRUE;
 }
 
@@ -918,11 +929,19 @@ _biji_note_obj_close (BijiNoteObj *note)
    * - new note
    * - only one row
    * In such case we want to change title */
-  if ( ! biji_note_obj_title_survives (note)
+ /* if ( ! biji_note_obj_title_survives (note)
       && note->priv->raw_text
-      && g_strcmp0 (note->priv->raw_text, "") != 0)
+      && g_strcmp0 (note->priv->raw_text, "") != 0) 
   {
     biji_note_obj_set_title (note, note->priv->raw_text);
+  } */
+
+  if (!biji_note_obj_title_survives (note))
+  {
+    gchar *title = biji_note_book_get_unique_title (biji_note_obj_get_note_book (note),
+                                                    note->priv->raw_text);
+    biji_note_obj_set_title (note, title);
+    g_free (title);
   }
 }
 

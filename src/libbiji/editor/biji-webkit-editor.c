@@ -18,6 +18,7 @@
 #include <libxml/xmlwriter.h>
 
 #include "../biji-string.h"
+#include "../biji-note-book.h"
 #include "biji-webkit-editor.h"
 #include "biji-editor-selection.h"
 
@@ -264,16 +265,20 @@ on_content_changed (WebKitWebView *view)
     g_warning ("title is %s", rows[0]);
 
     /* if we have a carriage return and thus, a proper title
-     * we still need to ensure it's clean */
+     * we still need to ensure it's clean and unique */
     if (g_strv_length (rows) > 1)
     {
-      gchar *sanitized_title;
+      gchar *sane_title, *unique_title;
 
-      sanitized_title = biji_str_mass_replace (rows[0],
-                                               "&nbsp;", "",
-                                               NULL);
-      biji_note_obj_set_title (note, sanitized_title);
-      g_free (sanitized_title);
+      sane_title = biji_str_mass_replace (rows[0],
+                                          "&nbsp;", "",
+                                          NULL);
+
+      unique_title = biji_note_book_get_unique_title (biji_note_obj_get_note_book (note),
+                                                      sane_title);
+      g_free (sane_title);
+      biji_note_obj_set_title (note, unique_title);
+      g_free (unique_title);
     }
 
     g_strfreev (rows);

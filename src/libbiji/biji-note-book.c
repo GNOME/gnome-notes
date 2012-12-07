@@ -176,31 +176,53 @@ biji_book_get_or_create_tag_book(BijiNoteBook *book, gchar *tag)
   return result ;
 }
 
-/* If title not unique, add sufffix "n", starting with 2, until ok */
-static void
-_biji_note_book_sanitize_title (BijiNoteBook *book, BijiNoteObj *note)
+static gboolean
+title_is_unique (BijiNoteBook *book,gchar *title)
 {
-  gchar *title, *new_title;
+  gboolean is_unique = TRUE;
+  BijiNoteObj *iter;
+  GList *notes, *l;
 
-  title = biji_note_obj_get_title (note);
+  notes = g_hash_table_get_values (book->priv->notes);
 
-  if (title)
+  for ( l=notes ; l != NULL ; l = l->next)
   {
-    new_title = g_strdup (title);
-    gint suffix = 2;
+    iter = BIJI_NOTE_OBJ (l->data);
 
-    while (!_biji_note_book_is_title_unique (book, new_title))
+    if (g_strcmp0 (biji_note_obj_get_title (iter), title) == 0)
     {
-      g_free (new_title);
-      new_title = g_strdup_printf("%s (%i)", title, suffix);
-      suffix++;
+     is_unique = FALSE;
+     break;
     }
-
-    if ( g_strcmp0 (new_title, title) != 0)
-      biji_note_obj_set_title (note, new_title);
-
-    g_free(new_title);
   }
+
+  g_list_free (notes);
+  return is_unique;
+}
+
+/* If title not unique, add sufffix "n", starting with 2, until ok */
+gchar *
+biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title)
+{
+  if (!book)
+    return g_strdup (title);
+
+  gchar *new_title;
+
+  if (!title)
+    title = "";
+
+  new_title = g_strdup (title);
+  gint suffix = 2;
+
+  while (!title_is_unique (book, new_title))
+  {
+    g_free (new_title);
+    new_title = g_strdup_printf("%s (%i)", title, suffix);
+    suffix++;
+  }
+
+  return new_title;
 }
 
 static gboolean
@@ -214,9 +236,7 @@ static void
 _biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
 {
   g_return_if_fail(BIJI_IS_NOTE_OBJ(note));
-  gint i ; 
-
-  _biji_note_book_sanitize_title(book,note);
+  gint i;
 
   /* Welcome to the book ! */
   _biji_note_obj_set_book(note,(gpointer)book);
@@ -402,26 +422,6 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
 
   g_object_class_install_properties (object_class, BIJI_BOOK_PROPERTIES, properties);
   g_type_class_add_private (klass, sizeof (BijiNoteBookPrivate));
-}
-
-gboolean
-_biji_note_book_is_title_unique(BijiNoteBook *book,gchar *title)
-{
-  gint i;
-  gboolean result = TRUE;
-  BijiNoteObj *iter;
-  GList *notes = g_hash_table_get_values (book->priv->notes);
-
-  for ( i=0 ; i < g_hash_table_size (book->priv->notes) ; i++)
-  {
-    iter = BIJI_NOTE_OBJ (g_list_nth_data (notes, i));
-
-    if (g_strcmp0 (biji_note_obj_get_title (iter), title) == 0)
-     result = FALSE;
-  }
-
-  g_list_free (notes);
-  return result;
 }
 
 void
@@ -693,14 +693,15 @@ biji_note_book_get_new_note_from_string (BijiNoteBook *book,
 {
   BijiNoteObj *ret = get_note_skeleton (book);
 
-  /* Note will copy title */
-  if (title && g_strcmp0 (title, "") != 0)
+  /* Note will copy title
+   * We do NOT sanitize here because blank title is allowed ("initial") */
+  if (title && g_strcmp0 (title, "") !=0)
     biji_note_obj_set_title (ret, title);
 
   biji_note_obj_save_note (ret);
   note_book_append_new_note (book,ret);
 
-  return ret ;
+  return ret;
 }
 
 BijiNoteObj *
@@ -708,9 +709,12 @@ biji_note_book_new_note_with_text (BijiNoteBook *book,
                                    gchar *plain_text)
 {
   BijiNoteObj *ret = get_note_skeleton (book);
+  gchar *unique_title = biji_note_book_get_unique_title (book, DEFAULT_NOTE_TITLE);
 
   /* Note will copy title, raw_text and html strings */
-  biji_note_obj_set_title (ret, DEFAULT_NOTE_TITLE);
+  biji_note_obj_set_title (ret, unique_title);
+  g_free (unique_title);
+
   biji_note_obj_set_raw_text (ret, g_strdup (plain_text));
   biji_note_obj_set_html_content (ret, plain_text);
 

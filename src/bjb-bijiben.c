@@ -116,7 +116,7 @@ copy_note_file (GFileInfo *info,
   BijiNoteObj *note_obj;
   GFile *note, *result;
   const gchar *name;
-  gchar *path, *default_color;
+  gchar *path, *default_color, *unique_title;
   GError *error = NULL;
   BjbSettings *settings;
   GdkRGBA color;
@@ -154,6 +154,9 @@ copy_note_file (GFileInfo *info,
   biji_note_obj_set_rgba (note_obj, &color);
 
   /* Append the note refreshes main view */
+  unique_title = biji_note_book_get_unique_title (self->priv->book, biji_note_obj_get_title (note_obj));
+  biji_note_obj_set_title (note_obj, unique_title);
+  g_free (unique_title);
   note_book_append_new_note (self->priv->book, note_obj);
 
   g_free (path);

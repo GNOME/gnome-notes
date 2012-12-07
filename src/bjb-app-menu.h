@@ -5,8 +5,6 @@
 
 void show_about_dialog(GtkApplication *app);
 
-void summary();
-
 void bjb_app_menu_set(GApplication *application) ;
 
 

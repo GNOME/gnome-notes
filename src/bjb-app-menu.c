@@ -20,19 +20,6 @@ void show_about_dialog(GtkApplication *app)
 
 }
 
-void 
-summary()
-{
-  GError *error = NULL;
-  gtk_show_uri (NULL, "help:bijiben", gtk_get_current_event_time (), &error);
-
-  if (error)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-  }
-}
-
 static void
 new_activated (GSimpleAction *action,
                GVariant      *parameter,
@@ -120,7 +107,7 @@ help_activated (GSimpleAction *action,
                 gpointer       user_data)
 {
   GError *error = NULL;
-  gtk_show_uri (NULL, "ghelp:bijiben", gtk_get_current_event_time (), &error);
+  gtk_show_uri (NULL, "help:bijiben", gtk_get_current_event_time (), &error);
 
   if (error)
   {

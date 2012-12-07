@@ -12,13 +12,15 @@ bijibendoc = \
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
+# Ignore gtk theme cache files on distcheck
+distuninstallcheck_listfiles = find . -type f -print | grep -v 'icon-theme.cache'
+
 INTLTOOL_FILES = intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
 
 EXTRA_DIST = $(bijibendoc) \
-	$(INTLTOOL_FILES) \
-	gnome-doc-utils.make
+	$(INTLTOOL_FILES)
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \

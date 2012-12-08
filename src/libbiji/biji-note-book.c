@@ -455,12 +455,6 @@ _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
   return FALSE;
 }
 
-GList *
-_biji_note_book_get_notes (BijiNoteBook *book)
-{
-  return g_hash_table_get_values (book->priv->notes);
-}
-
 static void
 add_note_to_list_if_tag_prefix(BijiNoteObj *note,TagBook *booklet)
 {
@@ -513,17 +507,6 @@ _biji_note_book_get_no_tag_notes(BijiNoteBook *book)
   return result;
 }
 
-/* TODO : remove this & see what needs to be updated */
-BijiNoteObj * 
-_biji_book_get_nth(BijiNoteBook *book,int i)
-{
-  GList *notes = g_hash_table_get_values (book->priv->notes);
-  BijiNoteObj *result = g_list_nth_data (notes, i);
-  g_list_free (notes);
-
-  return result;
-}
-
 /* Notes collection */
 void note_book_append_new_note(BijiNoteBook *book,BijiNoteObj *note)
 {    
@@ -539,44 +522,17 @@ biji_note_book_remove_note(BijiNoteBook *book,BijiNoteObj *note)
 
   return _note_book_remove_one_note(book,note);
 }
-
-/* TODO REMOVE THIS!!! */
-BijiNoteObj * note_book_get_nth_data(BijiNoteBook *book,int nth)
+ 
+GList *
+biji_note_book_get_notes(BijiNoteBook *book)
 {
-  if (BIJI_IS_NOTE_BOOK(book))
-  {
-    return _biji_book_get_nth(book,nth);
-  }
-  else return NULL ;
-}
-
-GList * biji_note_book_get_notes(BijiNoteBook *book)
-{
-  return _biji_note_book_get_notes(book);
+  return g_hash_table_get_values (book->priv->notes);
 }
 
 BijiNoteObj *
 note_book_get_note_at_path (BijiNoteBook *book, gchar *path)
 {
   return g_hash_table_lookup (book->priv->notes, path);
-}
-
-/* No hash table key, still TODO = better than biji_book_get_nth */
-BijiNoteObj *
-note_book_get_note(BijiNoteBook *book,gchar *title)
-{
-  gint i;
-
-  for (i=0 ; i < g_hash_table_size (book->priv->notes); i++)
-  {
-    BijiNoteObj *o = _biji_book_get_nth(book,i);
-    gchar *current = biji_note_obj_get_title (o);
-    
-    if ( g_strcmp0 (current,title) == 0 )
-     return o ;
-  }
-
-  return NULL ;
 }
 
 GList * 

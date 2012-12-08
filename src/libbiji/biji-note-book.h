@@ -50,34 +50,20 @@ BijiNoteObj * note_book_get_note_at_path(BijiNoteBook *book,gchar *path);
 
 void biji_note_book_remove_tag(BijiNoteBook *book,gchar *tag);
 
-BijiNoteObj * biji_note_book_get_tag_template(BijiNoteBook *book, gchar *tag);
-
 /* All GLIST return values should be freed, and never the content */
-GList * _biji_note_book_get_notes_with_tag(BijiNoteBook *book,gchar *tag);
-
-GList * _biji_note_book_get_no_tag_notes(BijiNoteBook *book);
-
-GList * _biji_note_book_get_notes_with_tag_prefix(BijiNoteBook *book,gchar *tag);
 
 GList * biji_note_book_get_notes (BijiNoteBook *book);
 
-GList * biji_note_book_get_notes_with_tag(BijiNoteBook *book,gchar* tag);
+GList * biji_note_book_get_notes_with_tag (BijiNoteBook *book,gchar* tag);
 
-GList * biji_note_book_get_notes_with_tag_prefix(BijiNoteBook *book,gchar* tag);
+GList * biji_note_book_get_notes_with_tag_prefix (BijiNoteBook *book,gchar* tag);
 
-GList * biji_note_book_get_no_tag_notes(BijiNoteBook *book);
+/* New Notes */
+BijiNoteObj* biji_note_get_new_from_file (const gchar* tomboy_format_note_path);
 
-/* Get a collection of notes from tomboy format files */
-BijiNoteBook *biji_book_new_from_dir(gchar *tomboy_format_folder);
-
-// Create a Note from a tomboy.note file
-BijiNoteObj* biji_note_get_new_from_file (const gchar* path);
-
-/* Get a blanck new note FIXME set dates */
 BijiNoteObj * biji_note_book_get_new_note_from_string (BijiNoteBook *book, gchar *title);
 
-BijiNoteObj * biji_note_book_new_note_with_text (BijiNoteBook *book,
-                                                 gchar *plain_text);
+BijiNoteObj * biji_note_book_new_note_with_text (BijiNoteBook *book, gchar *plain_text);
 
 G_END_DECLS
 

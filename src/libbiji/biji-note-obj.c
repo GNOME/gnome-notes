@@ -604,11 +604,10 @@ biji_note_obj_add_tag (BijiNoteObj *note, gchar *tag)
   g_return_val_if_fail (! _biji_note_obj_has_tag (note, tag), FALSE);
 
   note->priv->tags = g_list_prepend (note->priv->tags, g_strdup (tag));
-
-  if (BIJI_IS_NOTE_BOOK (note->priv->book))
-    _biji_note_book_add_note_to_tag_book (note->priv->book, note, tag);
-
+  push_existing_or_new_tag_to_note (tag, note);
   biji_note_id_set_last_metadata_change_date_now (note->priv->id);
+  biji_note_obj_save_note (note);
+
   return TRUE;
 }
 
@@ -810,29 +809,28 @@ GList *biji_note_obj_get_tags(BijiNoteObj *note)
 }
 
 gboolean
-biji_note_obj_remove_tag(BijiNoteObj *note,gchar *tag)
+biji_note_obj_remove_tag (BijiNoteObj *note,gchar *tag)
 {
-  // If the note has tag, remove it.
-  if ( _biji_note_obj_has_tag(note,tag) )
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
+  g_return_val_if_fail (_biji_note_obj_has_tag (note, tag), FALSE);
+
+  remove_tag_from_note (tag, note); // tracker.
+
+  GList *current = biji_note_obj_get_tags (note);
+  GList *l;
+
+  for (l=current; l != NULL; l=l->next)
   {
-    GList *current = _biji_note_obj_get_tags(note);
-    gint i ;
-    gchar *to_remove = NULL ;
-    
-    for ( i = 0 ; i < g_list_length(current) ; i++ )
+    if (g_strcmp0 (l->data,tag) == 0)
     {
-      if ( g_strcmp0 (g_list_nth_data(current,i),tag) == 0 )
-      {
-        to_remove = g_list_nth_data(current,i);
-      }
+      _biji_note_obj_set_tags (note, g_list_remove (current, l->data));
+      biji_note_id_set_last_metadata_change_date_now (note->priv->id);
+      biji_note_obj_save_note (note);
+      return TRUE;
     }
-    
-    _biji_note_obj_set_tags(note,g_list_remove(current,to_remove));
-    return TRUE ;
   }
 
-  // Else return false
-  return FALSE ;
+  return FALSE;
 }
 
 gchar *

@@ -149,6 +149,60 @@ biji_get_all_tracker_tags_async (GAsyncReadyCallback f,
   bjb_perform_query_async (query, f, user_data);
 }
 
+GList *
+biji_get_notes_with_strings_or_tag_finish (GObject *source_object,
+                                           GAsyncResult *res,
+                                           BijiNoteBook *book)
+{
+  TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
+  TrackerSparqlCursor *cursor;
+  GError *error = NULL;
+  GList *result = NULL;
+
+  cursor = tracker_sparql_connection_query_finish (self, res, &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+  }
+
+  if (cursor)
+  {
+    gchar * uri;
+    BijiNoteObj *note = NULL;
+
+    while (tracker_sparql_cursor_next (cursor, NULL, NULL))
+    {
+      uri = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
+      note = note_book_get_note_at_path (book, uri);
+
+      /* Sorting is done in another place */
+      if (note)
+        result = g_list_prepend (result, note);
+    }
+
+    g_object_unref (cursor);
+  }
+
+  return result;
+}
+
+/* TODO : not case sensitive */
+void
+biji_get_notes_with_string_or_tag_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data)
+{
+  gchar *query;
+
+  query = g_strdup_printf ("SELECT ?s WHERE {{ ?s nie:generator 'Bijiben'. \
+                           ?s a nfo:Note ;nao:hasTag [nao:prefLabel'%s'] } \
+                           UNION { ?s fts:match '%s'. ?s nie:generator 'Bijiben'}}",
+                           needle, needle);
+
+  bjb_perform_query_async (query, f, user_data);
+  g_free (query);
+}
+
 void 
 push_tag_to_tracker(gchar *tag)
 { 

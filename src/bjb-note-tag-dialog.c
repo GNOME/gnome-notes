@@ -113,33 +113,17 @@ update_tags_model (BjbNoteTagDialog *self)
   biji_get_all_tracker_tags_async (bjb_note_tag_dialog_handle_tags, self);
 }
 
-/* TODO This two func should rather be direct call to libbiji
- * (simply biji_note_obj_*_tag)
- * It's up to libbiji to handle tracker & save */
+/* Libbiji handles tracker & saving */
 static void
 note_dialog_add_tag (BijiNoteObj *note, gchar *tag)
 {
-  g_warning ("note %s:", biji_note_obj_get_title (note));
-  g_warning ("adding tag %s:", tag);
-
-  if (biji_note_obj_add_tag (note, tag))
-  {
-    biji_note_obj_save_note (note);
-    push_existing_or_new_tag_to_note (tag, note);
-  }
+  biji_note_obj_add_tag (note, tag);
 }
 
 static void
 note_dialog_remove_tag (BijiNoteObj *note, gchar *tag)
 {
-  g_warning ("note %s:", biji_note_obj_get_title (note));
-  g_warning ("removing tag %s:", tag);
-
-  if (biji_note_obj_remove_tag (note, tag))
-  {
-    biji_note_obj_save_note (note);
-    remove_tag_from_note (tag, note);
-  }
+  biji_note_obj_remove_tag (note, tag);
 }
 
 static void

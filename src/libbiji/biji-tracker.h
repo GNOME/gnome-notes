@@ -24,6 +24,10 @@
 
 #include <libbiji/libbiji.h>
 
+/* All notes matching (either content or tag) */
+GList * biji_get_notes_with_strings_or_tag_finish (GObject *source_object, GAsyncResult *res, BijiNoteBook *book);
+void biji_get_notes_with_string_or_tag_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data);
+
 /* Get tags */
 GList * biji_get_all_tags_finish (GObject *source_object, GAsyncResult *res);
 void biji_get_all_tracker_tags_async (GAsyncReadyCallback f, gpointer user_data);

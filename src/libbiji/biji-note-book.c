@@ -25,9 +25,7 @@
 
 struct _BijiNoteBookPrivate
 {
-  /* Notes & TagBooks */
   GHashTable *notes;
-  GList *tags;
 
   /* Signals */
   gulong note_renamed ;
@@ -67,7 +65,6 @@ biji_note_book_init (BijiNoteBook *self)
                                              g_str_equal,
                                              NULL,
                                              g_object_unref);
-  self->priv->tags = NULL;
 }
 
 static void
@@ -80,8 +77,6 @@ biji_note_book_finalize (GObject *object)
 
   g_clear_object (&book->priv->load_cancellable);
   g_clear_object (&book->priv->location);
-
-  g_list_free (book->priv->tags); // g_list_free_full ?
   g_hash_table_destroy (book->priv->notes);
 
   G_OBJECT_CLASS (biji_note_book_parent_class)->finalize (object);
@@ -124,56 +119,6 @@ biji_note_book_get_property (GObject    *object,
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
     }
-}
-
-/* tag books are a trial. not really necessary, but make life easier*/
-
-static void
-biji_note_book_add_tag_book(BijiNoteBook *book, TagBook *tag)
-{
-  book->priv->tags = g_list_append(book->priv->tags,tag);
-}
-
-static TagBook *
-biji_tag_book_new(gchar *name)
-{
-  TagBook *result =  (TagBook*) g_malloc0 ( sizeof(TagBook) ) ;
-
-  result->name = name ;
-  result->notes = NULL ;
-  result->length = 0 ;
-
-  return result ;
-}
-
-static TagBook *
-biji_note_book_get_tag_book(BijiNoteBook *book, gchar *tag)
-{
-  gint i;
-  for (i=0 ; i < g_list_length(book->priv->tags) ; i++ )
-  {
-    TagBook *iter = g_list_nth_data (book->priv->tags,i) ;
-      
-    if ( g_strcmp0 (iter->name , tag) == 0 )
-      return iter ;
-  }
-
-  return NULL ;
-}
-
-// Return the book or create and return a brand new book
-static TagBook *
-biji_book_get_or_create_tag_book(BijiNoteBook *book, gchar *tag)
-{
-  TagBook *result = biji_note_book_get_tag_book(book,tag);
-
-  if ( result == NULL )
-  {
-    result = biji_tag_book_new(tag);
-    biji_note_book_add_tag_book(book,result);
-  }
-
-  return result ;
 }
 
 static gboolean
@@ -236,31 +181,8 @@ static void
 _biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
 {
   g_return_if_fail(BIJI_IS_NOTE_OBJ(note));
-  gint i;
 
-  /* Welcome to the book ! */
   _biji_note_obj_set_book(note,(gpointer)book);
-
-  // Handle tags
-  GList *note_tags = _biji_note_obj_get_tags(note) ;
-  for ( i=0 ; i<g_list_length (note_tags) ; i++ )
-  {  
-    TagBook *tag_book;
-    tag_book = biji_book_get_or_create_tag_book(book,
-                                                g_list_nth_data (note_tags,i));
-
-    // Handle template
-    if ( note_obj_is_template(note) )
-    {
-      tag_book->template_note = note ;
-    }
-
-    else 
-    {
-      tag_book->notes = g_list_append(tag_book->notes,note) ;
-      tag_book->length ++ ;
-    }
-  }
 
   // Add it to the list and emit signal
   g_hash_table_insert (book->priv->notes,
@@ -424,16 +346,6 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
   g_type_class_add_private (klass, sizeof (BijiNoteBookPrivate));
 }
 
-void
-_biji_note_book_add_note_to_tag_book(BijiNoteBook *book,
-                                     BijiNoteObj *note,
-                                     gchar *tag)
-{
-  TagBook *tag_book;
-  tag_book = biji_book_get_or_create_tag_book(book,tag);
-  tag_book->notes = g_list_append(tag_book->notes,note);
-}
-
 gboolean 
 _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
 {
@@ -453,35 +365,6 @@ _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
   }
 
   return FALSE;
-}
-
-static void
-add_note_to_list_if_tag_prefix(BijiNoteObj *note,TagBook *booklet)
-{
-  if (  _biji_note_obj_has_tag_prefix(note,booklet->name) )
-  {
-    booklet->notes = g_list_append(booklet->notes,note);
-  }
-}
-
-static void
-add_note_to_list_if_no_tag (BijiNoteObj *note, GList **notes)
-{
-  if ( _biji_note_obj_get_tags(note) == NULL )
-  {
-    *(notes) = g_list_append(*(notes),note);
-  }
-}
-
-GList *
-_biji_note_book_get_no_tag_notes(BijiNoteBook *book)
-{
-  GList *result = NULL ;
-  GList *notes = g_hash_table_get_values (book->priv->notes);
-
-  g_list_foreach (notes, (GFunc) add_note_to_list_if_no_tag, &result);
-  g_list_free (notes);
-  return result;
 }
 
 /* Notes collection */
@@ -510,45 +393,6 @@ BijiNoteObj *
 note_book_get_note_at_path (BijiNoteBook *book, gchar *path)
 {
   return g_hash_table_lookup (book->priv->notes, path);
-}
-
-GList * 
-biji_note_book_get_notes_with_tag (BijiNoteBook *book,gchar* tag)
-{
-  g_return_val_if_fail(BIJI_IS_NOTE_BOOK(book),NULL);
-
-  TagBook *tag_book = biji_book_get_or_create_tag_book(book,tag);
-  return tag_book->notes ;
-}
-
-GList * 
-biji_note_book_get_notes_with_tag_prefix (BijiNoteBook *book,gchar* tag)
-{
-  g_return_val_if_fail(BIJI_IS_NOTE_BOOK(book),NULL);
-
-  // we do create a pseudo tag book for convenience...
-  TagBook booklet ;
-  booklet.name = tag ;
-  booklet.notes = NULL ;
-
-  GList *notes;
-  notes = g_hash_table_get_values (book->priv->notes);
-
-  g_list_foreach (notes,(GFunc)add_note_to_list_if_tag_prefix,&booklet);
-  g_list_free (notes);
-  return booklet.notes ;
-}
-
-void 
-biji_note_book_remove_tag(BijiNoteBook *book,gchar *tag)
-{
-  GList *notes = biji_note_book_get_notes_with_tag (book,tag) ;
-
-  // Remove the tag then save the note.
-  g_list_foreach(notes,(GFunc) biji_note_obj_remove_tag,tag);
-  g_list_foreach(notes,(GFunc) biji_note_obj_save_note,NULL);
-
-  g_list_free (notes);
 }
 
 BijiNoteBook *

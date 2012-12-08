@@ -250,30 +250,23 @@ sort_notes( BjbController *self)
 }
 
 static void
-add_note_if_searched ( BijiNoteObj *obj , BjbController *self )
+sort_and_update (BjbController *self)
 {
-  gboolean add_note ;
-  
-  BjbControllerPrivate *priv = self->priv ;
-  add_note = FALSE ;
+  sort_notes (self) ;
+  update_view(self);
+}
 
-  /* Title match ? */
-  if (g_strrstr(g_utf8_casefold(biji_note_obj_get_title(obj),-1),
-                            g_utf8_casefold(priv->needle,-1)))
-    add_note = TRUE ;
+static void
+update_controller_callback (GObject *source_object,
+                            GAsyncResult *res,
+                            gpointer user_data)
+{
+  GList *result;
+  BjbController *self = BJB_CONTROLLER (user_data);
 
-  /* Tag match ? */
-  if ( _biji_note_obj_has_tag_prefix(obj,priv->needle))
-    add_note = TRUE ;
-
-  /* Content match? */
-  if (g_strrstr(g_utf8_casefold(biji_note_get_raw_text(obj),-1),
-                              g_utf8_casefold(priv->needle,-1)))
-    add_note = TRUE ;
-
-
-  if ( add_note )
-    priv->notes_to_show = g_list_append ( priv->notes_to_show, obj ) ;
+  result = biji_get_notes_with_strings_or_tag_finish (source_object, res, self->priv->book);
+  self->priv->notes_to_show = result;
+  sort_and_update (self);
 }
 
 static void
@@ -290,25 +283,11 @@ bjb_controller_apply_needle ( BjbController *self )
   if ( needle == NULL || g_strcmp0 (needle,"") == 0)
   {
     self->priv->notes_to_show = biji_note_book_get_notes(self->priv->book);
-  } 
-
-  /* Test which note to show */
-  else
-  {
-    GList *all_notes ;
-
-    all_notes = biji_note_book_get_notes(self->priv->book) ;
-
-    g_list_foreach (all_notes,
-                   (GFunc) add_note_if_searched,
-                    self) ;
-
-    g_list_free(all_notes);
-
+    sort_and_update (self);
+    return;
   }
 
-  sort_notes (self) ;
-  update_view(self);
+  biji_get_notes_with_string_or_tag_async (needle, update_controller_callback, self);
 }
 
 static void

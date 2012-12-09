@@ -191,9 +191,6 @@ _biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
   book->priv->note_renamed = g_signal_connect(note,"renamed",
                                               G_CALLBACK(notify_changed),book);
   g_signal_connect (note,"changed", G_CALLBACK(notify_changed),book);
-    
-  //TODO g_signal_connect(note,"deleted"...) ;
-  g_signal_emit ( G_OBJECT (book), biji_book_signals[BOOK_AMENDED],0);
 }
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
@@ -255,6 +252,8 @@ enumerate_next_files_ready_cb (GObject *source,
 
   g_free (base_path);
   g_list_free_full (files, g_object_unref);
+
+  g_signal_emit (G_OBJECT (self), biji_book_signals[BOOK_AMENDED],0);
 }
 
 static void
@@ -371,7 +370,10 @@ _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
 void note_book_append_new_note(BijiNoteBook *book,BijiNoteObj *note)
 {    
   if (BIJI_IS_NOTE_BOOK(book) && BIJI_IS_NOTE_OBJ(note))
+  {
     _biji_note_book_add_one_note (book,note);
+    g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED],0);
+  }
 }
 
 gboolean 

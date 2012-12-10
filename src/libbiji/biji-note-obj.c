@@ -54,9 +54,9 @@ struct _BijiNoteObjPrivate
   GdkPixbuf             *icon;
   gboolean              icon_needs_update;
 
-  /* TAGS may be notebooks.
-   * Templates are just "system:notebook:" tags.*/
-  GList                 *tags ;
+  /* Tags 
+   * In Tomboy, templates are 'system:notebook:%s' tags.*/
+  GHashTable            *labels;
   gboolean              is_template ;
   gboolean              does_title_survive;
 
@@ -129,7 +129,7 @@ biji_note_obj_init (BijiNoteObj *self)
   /* Keep value unitialied, so bijiben knows to assign default color */
   priv->color = NULL;
 
-  priv->tags = NULL;
+  priv->labels = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 }
 
 static void
@@ -151,7 +151,7 @@ biji_note_obj_finalize (GObject *object)
   if (priv->raw_text);
     g_free (priv->raw_text);
 
-  g_list_free (priv->tags);
+  g_hash_table_destroy (priv->labels);
 
   g_clear_object (&priv->icon);
 
@@ -571,104 +571,89 @@ void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
 }
 
 GList *
-_biji_note_obj_get_tags(BijiNoteObj *n)
+biji_note_obj_get_labels (BijiNoteObj *n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
 
-  return g_list_copy(n->priv->tags);
+  return g_hash_table_get_values (n->priv->labels);
 }
 
 gboolean
-_biji_note_obj_has_tag(BijiNoteObj *note,gchar *tag)
+biji_note_obj_has_label (BijiNoteObj *note, gchar *label)
 {
-  gint i ;
+  if (g_hash_table_lookup (note->priv->labels, label))
+    return TRUE;
 
-  if ( note->priv-> tags == NULL )
-    return FALSE ;
-
-  for ( i=0 ; i<g_list_length (note->priv->tags) ; i++ )
-  {
-    if ( g_strcmp0 ((gchar*)g_list_nth_data(note->priv->tags,i),tag)==0)
-    {
-      return TRUE ;
-    }
-  }
-  return FALSE ;
+  return FALSE;
 }
 
 gboolean
-biji_note_obj_add_tag (BijiNoteObj *note, gchar *tag)
+biji_note_obj_add_label (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
-  g_return_val_if_fail (tag != NULL, FALSE);
-  g_return_val_if_fail (! _biji_note_obj_has_tag (note, tag), FALSE);
+  g_return_val_if_fail (label != NULL, FALSE);
+  g_return_val_if_fail (!biji_note_obj_has_label (note, label), FALSE);
 
-  note->priv->tags = g_list_prepend (note->priv->tags, g_strdup (tag));
-  push_existing_or_new_tag_to_note (tag, note);
-  biji_note_id_set_last_metadata_change_date_now (note->priv->id);
-  biji_note_obj_save_note (note);
+  g_hash_table_add (note->priv->labels, label);
+
+  if (on_user_action_cb)
+  {
+    push_existing_or_new_tag_to_note (label, note); // Tracker
+    biji_note_id_set_last_metadata_change_date_now (note->priv->id);
+    biji_note_obj_save_note (note);
+  }
 
   return TRUE;
 }
 
 gboolean
-_biji_note_obj_has_tag_prefix(BijiNoteObj *note,gchar *tag)
+biji_note_obj_remove_label (BijiNoteObj *note, gchar *label)
 {
-    gint i ;
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
 
-  if ( note->priv-> tags == NULL )
-    return FALSE ;
-
-  for ( i=0 ; i<g_list_length (note->priv->tags) ; i++ )
+  if (g_hash_table_remove (note->priv->labels, label))
   {
-    if ( g_str_has_prefix ((gchar*)g_list_nth_data(note->priv->tags,i),tag)) 
-    {
-      return TRUE ;
-    }
+    remove_tag_from_note (label, note); // tracker.
+    biji_note_id_set_last_metadata_change_date_now (note->priv->id);
+    biji_note_obj_save_note (note);
+    return TRUE;
   }
-  return FALSE ;
-}
 
-
-void
-_biji_note_obj_set_tags(BijiNoteObj *n, GList *tags)
-{
-  if ( n->priv->tags != NULL )
-  {
-    g_list_free(n->priv->tags);
-  }
-    
-  n->priv->tags = g_list_copy (tags);
+  return FALSE;
 }
 
 gboolean
-note_obj_is_template(BijiNoteObj *n)
+biji_note_obj_has_tag_prefix (BijiNoteObj *note, gchar *label)
 {
-  g_return_val_if_fail(BIJI_IS_NOTE_OBJ(n),FALSE);	
+  gboolean retval = FALSE;
+  GList *tags, *l;
+
+  tags = g_hash_table_get_keys (note->priv->labels);
+
+  for (l = tags; l != NULL; l=l->next)
+  {
+    if (g_str_has_prefix (l->data, label))
+    {
+      retval = TRUE;
+      break;
+    }
+  }
+
+  g_list_free (tags);
+  return retval;
+}
+
+gboolean
+note_obj_is_template (BijiNoteObj *n)
+{
+  g_return_val_if_fail(BIJI_IS_NOTE_OBJ(n),FALSE);
   return n->priv->is_template;
 }
 
 void
-note_obj_set_is_template(BijiNoteObj *n,gboolean is_template)
+note_obj_set_is_template (BijiNoteObj *n,gboolean is_template)
 {
   n->priv->is_template = is_template ;
-}
-
-gchar *
-_biji_note_template_get_tag(BijiNoteObj *template)
-{
-  if ( template->priv->is_template == FALSE )
-  {
-    g_message("BIJI NOTE TEMPLATE GET TAG ONLY WORKS WITH TEMPLATES");
-    return NULL ;
-  }
-
-  if ( template->priv->tags == NULL )
-  {
-    g_message("template has no tag, which should never happen");
-  }
-    
-  return g_list_nth_data (template->priv->tags,0);
 }
 
 /* TODO : see if note beeing deleted. set metadata date
@@ -795,42 +780,6 @@ gboolean
 biji_note_obj_is_template(BijiNoteObj *note)
 {
   return note_obj_is_template(note);
-}
-
-gboolean
-biji_note_obj_has_tag(BijiNoteObj *note,gchar *tag)
-{
-  return _biji_note_obj_has_tag(note,tag);
-}
-
-GList *biji_note_obj_get_tags(BijiNoteObj *note)
-{
-  return _biji_note_obj_get_tags(note);
-}
-
-gboolean
-biji_note_obj_remove_tag (BijiNoteObj *note,gchar *tag)
-{
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
-  g_return_val_if_fail (_biji_note_obj_has_tag (note, tag), FALSE);
-
-  remove_tag_from_note (tag, note); // tracker.
-
-  GList *current = biji_note_obj_get_tags (note);
-  GList *l;
-
-  for (l=current; l != NULL; l=l->next)
-  {
-    if (g_strcmp0 (l->data,tag) == 0)
-    {
-      _biji_note_obj_set_tags (note, g_list_remove (current, l->data));
-      biji_note_id_set_last_metadata_change_date_now (note->priv->id);
-      biji_note_obj_save_note (note);
-      return TRUE;
-    }
-  }
-
-  return FALSE;
 }
 
 gchar *

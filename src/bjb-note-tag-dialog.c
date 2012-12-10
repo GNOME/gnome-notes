@@ -72,12 +72,12 @@ append_tag (gchar *tag, BjbNoteTagDialog *self)
   GList *l;
 
   gtk_list_store_append (priv->store, &iter);
-  note_has_tag = biji_note_obj_has_tag (priv->notes->data, tag);
+  note_has_tag = biji_note_obj_has_label (priv->notes->data, tag);
 
   /* Check if other notes have the same */  
   for (l = priv->notes; l != NULL; l = l->next)
   {
-    if (biji_note_obj_has_tag (l->data, tag) != note_has_tag)
+    if (biji_note_obj_has_label (l->data, tag) != note_has_tag)
     {
       note_has_tag = SELECTION_INCONSISTENT;
       break;
@@ -117,13 +117,13 @@ update_tags_model (BjbNoteTagDialog *self)
 static void
 note_dialog_add_tag (BijiNoteObj *note, gchar *tag)
 {
-  biji_note_obj_add_tag (note, tag);
+  biji_note_obj_add_label (note, tag, TRUE);
 }
 
 static void
 note_dialog_remove_tag (BijiNoteObj *note, gchar *tag)
 {
-  biji_note_obj_remove_tag (note, tag);
+  biji_note_obj_remove_label (note, tag);
 }
 
 static void

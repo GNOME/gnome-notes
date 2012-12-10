@@ -62,15 +62,6 @@ struct _BijiNoteObj
 
 GType biji_note_obj_get_type (void) G_GNUC_CONST;
 
-// This structure, for convenience, associates a tag with its notes
-typedef struct
-{
-  gchar *name ;
-  BijiNoteObj *template_note ;
-  GList *notes ;
-  gint length ;
-} TagBook ;
-
 BijiNoteObj * biji_note_obj_new_from_path (const gchar *path);
 
 /////////////////////////////////////////////////// Relationships other notes
@@ -118,17 +109,21 @@ gboolean biji_note_obj_get_rgba(BijiNoteObj *n, GdkRGBA *rgba) ;
 
 void biji_note_obj_set_rgba(BijiNoteObj *n, GdkRGBA *rgba) ;
 
-//////////////////////////////////////////////////////  Tags (as in tag clouds)
-GList * _biji_note_obj_get_tags(BijiNoteObj *n) ;
-gboolean _biji_note_obj_has_tag(BijiNoteObj *note,gchar *tag);
-void _biji_note_obj_add_tag(BijiNoteObj *note, gchar *tag) ;
-gboolean _biji_note_obj_has_tag_prefix(BijiNoteObj *note,gchar *tag);
-void _biji_note_obj_set_tags(BijiNoteObj *n, GList *tags) ;
+/* Tracker Tags. Free the GList.
+ * Remove label always due to user action. Add label has to precise */
+
+GList * biji_note_obj_get_labels (BijiNoteObj *n);
+
+gboolean biji_note_obj_has_label (BijiNoteObj *note, gchar *label);
+
+gboolean biji_note_obj_add_label (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb);
+
+gboolean biji_note_obj_remove_label (BijiNoteObj *note, gchar *label);
 
 ///////////////////////////////////////////////////////////////////  templates
 gboolean note_obj_is_template(BijiNoteObj *n) ;
+
 void note_obj_set_is_template(BijiNoteObj *n,gboolean is_template);
-gchar *_biji_note_template_get_tag(BijiNoteObj *n);
 
 /////////////////////////////////////////////////////////////////// Save
 void biji_note_obj_save_note (BijiNoteObj *self);
@@ -146,14 +141,6 @@ void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text);
 gboolean biji_note_obj_set_title (BijiNoteObj* note_obj_ptr,gchar* title);
 
 gboolean biji_note_obj_is_template(BijiNoteObj *note);
-
-gboolean biji_note_obj_has_tag(BijiNoteObj *note,gchar *tag);
-
-GList *biji_note_obj_get_tags(BijiNoteObj *note);
-
-gboolean biji_note_obj_add_tag(BijiNoteObj *note, gchar *tag);
-
-gboolean biji_note_obj_remove_tag(BijiNoteObj *note,gchar *tag);
 
 gchar *biji_note_obj_get_last_change_date(BijiNoteObj *note);
 

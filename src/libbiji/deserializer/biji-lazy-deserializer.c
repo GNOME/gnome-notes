@@ -598,8 +598,7 @@ processNode (BijiLazyDeserializer *self)
     {
       norm = g_string_new (tag);
       g_string_erase (norm,0,16);
-      _biji_note_obj_set_tags (n, g_list_prepend((GList*)_biji_note_obj_get_tags(n),
-                               g_string_free (norm,FALSE)));
+      biji_note_obj_add_label (n, g_string_free (norm, FALSE), FALSE);
     }
 
     free (tag);

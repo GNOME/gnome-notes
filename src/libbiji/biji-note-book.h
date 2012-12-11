@@ -42,7 +42,9 @@ gboolean _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note);
 
 void _biji_note_book_add_note_to_tag_book(BijiNoteBook *book,BijiNoteObj *note,gchar *tag);
 
-void note_book_append_new_note(BijiNoteBook *book,BijiNoteObj *note);
+void biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean notify);
+
+gboolean biji_note_book_notify_changed (BijiNoteBook *book);
 
 gboolean biji_note_book_remove_note(BijiNoteBook *book,BijiNoteObj *note);
 

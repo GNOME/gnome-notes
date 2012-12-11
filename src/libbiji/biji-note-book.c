@@ -170,11 +170,11 @@ biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title)
   return new_title;
 }
 
-static gboolean
-notify_changed(BijiNoteObj *note, BijiNoteBook *book)
+gboolean
+biji_note_book_notify_changed (BijiNoteBook *book)
 {
   g_signal_emit ( G_OBJECT (book), biji_book_signals[BOOK_AMENDED],0);
-  return FALSE ;
+  return FALSE;
 }
 
 static void
@@ -188,9 +188,9 @@ _biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
   g_hash_table_insert (book->priv->notes,
                        biji_note_obj_get_path (note), note);
 
-  book->priv->note_renamed = g_signal_connect(note,"renamed",
-                                              G_CALLBACK(notify_changed),book);
-  g_signal_connect (note,"changed", G_CALLBACK(notify_changed),book);
+  book->priv->note_renamed = g_signal_connect_swapped (note,"renamed",
+                                            G_CALLBACK(biji_note_book_notify_changed),book);
+  g_signal_connect_swapped (note,"changed", G_CALLBACK(biji_note_book_notify_changed),book);
 }
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
@@ -253,7 +253,7 @@ enumerate_next_files_ready_cb (GObject *source,
   g_free (base_path);
   g_list_free_full (files, g_object_unref);
 
-  g_signal_emit (G_OBJECT (self), biji_book_signals[BOOK_AMENDED],0);
+  biji_note_book_notify_changed (self);
 }
 
 static void
@@ -367,13 +367,15 @@ _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
 }
 
 /* Notes collection */
-void note_book_append_new_note(BijiNoteBook *book,BijiNoteObj *note)
-{    
-  if (BIJI_IS_NOTE_BOOK(book) && BIJI_IS_NOTE_OBJ(note))
-  {
-    _biji_note_book_add_one_note (book,note);
-    g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED],0);
-  }
+void
+biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean notify)
+{
+  g_return_if_fail (BIJI_IS_NOTE_BOOK (book));
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+
+  _biji_note_book_add_one_note (book,note);
+  if (notify)
+    biji_note_book_notify_changed (book);
 }
 
 gboolean 
@@ -469,7 +471,7 @@ biji_note_book_get_new_note_from_string (BijiNoteBook *book,
     biji_note_obj_set_title (ret, title);
 
   biji_note_obj_save_note (ret);
-  note_book_append_new_note (book,ret);
+  biji_note_book_append_new_note (book, ret, TRUE);
 
   return ret;
 }
@@ -489,7 +491,7 @@ biji_note_book_new_note_with_text (BijiNoteBook *book,
   biji_note_obj_set_html_content (ret, plain_text);
 
   biji_note_obj_save_note (ret);
-  note_book_append_new_note (book,ret);
+  biji_note_book_append_new_note (book, ret, TRUE);
 
   return ret;
 }

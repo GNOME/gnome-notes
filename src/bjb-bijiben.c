@@ -51,7 +51,7 @@ bijiben_new_window_internal (GApplication *app,
   BijiNoteObj* note = NULL;
 
   if (file != NULL)
-    note = biji_note_get_new_from_file(g_file_get_path(file));
+    note = biji_note_get_new_from_file (g_file_get_path(file));
   else if (note_obj != NULL)
     note = note_obj;
 
@@ -101,127 +101,158 @@ bijiben_init (Bijiben *object)
   object->priv->settings = initialize_settings();
 }
 
-/* Currently the only purpose for this is to offer testing
- * but these func might still be improved and integrated later on
- * Not async to ensure files copied before book loads */
+/* Import. TODO : move to libbiji */
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
 
-static void
-copy_note_file (GFileInfo *info,
-                GFile *dir,
-                GFile *dest)
+static BijiNoteObj *
+abort_note (BijiNoteObj *rejected)
 {
-  Bijiben *self;
-  BijiNoteObj *note_obj;
-  GFile *note, *result;
+  g_object_unref (rejected);
+  return NULL;
+}
+
+static BijiNoteObj *
+copy_note (GFileInfo *info, GFile *container)
+{
+  BijiNoteObj *retval = NULL;
   const gchar *name;
-  gchar *path, *default_color, *unique_title;
+  gchar *path;
+
+  /* First make sure it's a note */
+  name = g_file_info_get_name (info);
+  if (!g_str_has_suffix (name, ".note"))
+    return NULL;
+
+  /* Deserialize it */
+  path = g_build_filename (g_file_get_path (container), name, NULL);
+  retval = biji_note_get_new_from_file (path);
+  g_free (path);
+
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (retval), NULL);
+
+  /* Not a Template */
+  if (biji_note_obj_is_template (retval))
+    return abort_note (retval);
+
+  /* Assign the new path */
+  path = g_build_filename (g_get_user_data_dir (), "bijiben", name, NULL);
+  g_object_set (retval, "path", path, NULL);
+  g_free (path);
+
+  return retval;
+}
+
+/* Some notes might have been added previously */
+static void
+list_notes_to_copy (GFile *src_obj_file, GAsyncResult *res, Bijiben *self)
+{
+  /* Go through */
+  GFileEnumerator *enumerator;
   GError *error = NULL;
+  GList *notes_proposal = NULL;
+  GList *notes = NULL;
+
+  /* Handle note */
+  GFileInfo *info;
+  BijiNoteObj *iter;
+  GFile *container;
+
+  /* Sanitize title & color */
+  gchar *unique_title, *default_color;
   BjbSettings *settings;
   GdkRGBA color;
 
-  name = g_file_info_get_name (info);
-  if (!g_str_has_suffix (name, ".note"))
-    return;
-
-  path = g_build_filename (g_file_get_path(dir), name, NULL);
-  note = g_file_new_for_path (path);
-  g_free (path);
-
-  path = g_build_filename (g_file_get_path(dest), name, NULL);
-  result = g_file_new_for_path (path);
-
-  g_file_copy (note, result, G_FILE_COPY_NOFOLLOW_SYMLINKS,
-               NULL,NULL, NULL, &error);
+  enumerator = g_file_enumerate_children_finish (src_obj_file, res, &error);
 
   if (error)
   {
-     g_warning ("error:%s", error->message);
-     g_error_free (error);
+    g_warning ("Enumerator failed : %s", error->message);
+    g_error_free (error);
+    return;
   }
 
-  self = BIJIBEN_APPLICATION (g_application_get_default ());
-  note_obj = biji_note_get_new_from_file (path);
+  container = g_file_enumerator_get_container (enumerator);
+  info = g_file_enumerator_next_file (enumerator, NULL,NULL);
 
-  /* Sanitize color
-   * This is done here in Bijiben because
-   * default color is app choice */
-  settings = bjb_app_get_settings (self);
-  g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
-  gdk_rgba_parse (&color, default_color);
-  g_free (default_color);
-  biji_note_obj_set_rgba (note_obj, &color);
-
-  /* Append the note refreshes main view */
-  unique_title = biji_note_book_get_unique_title (self->priv->book, biji_note_obj_get_title (note_obj));
-  biji_note_obj_set_title (note_obj, unique_title);
-  g_free (unique_title);
-  note_book_append_new_note (self->priv->book, note_obj);
-
-  g_free (path);
-  g_object_unref (note);
-  g_object_unref (result);
-}
-
-static void
-list_notes_to_copy (GFileEnumerator *enumerator,
-                    GFile *dest)
-{
-  GFile *dir = g_file_enumerator_get_container (enumerator);
-  GFileInfo *info = g_file_enumerator_next_file (enumerator, NULL,NULL);
-
+  /* Get the GList of notes and load them */
   while (info)
   {
-    copy_note_file (info, dir, dest);
+    iter = copy_note (info, container);
+    if (iter)
+      notes_proposal = g_list_prepend (notes_proposal, iter);
+
     g_object_unref (info);
     info = g_file_enumerator_next_file (enumerator, NULL,NULL);
   }
 
-  g_object_unref (dir);
+  for (notes = notes_proposal; notes != NULL; notes = notes->next)
+  {
+    BijiNoteObj *note = notes->data;
+
+    /* Don't add an already imported note */
+    if (note_book_get_note_at_path (self->priv->book, biji_note_obj_get_path (note)))
+    {
+      abort_note (note);
+    }
+
+    /* Sanitize, append & save */
+    else
+    {
+      /* Title */
+      unique_title = biji_note_book_get_unique_title (self->priv->book,
+                                                      biji_note_obj_get_title (note));
+      biji_note_obj_set_title (note, unique_title);
+      g_free (unique_title);
+
+      /* Color */
+      settings = bjb_app_get_settings (self);
+      g_object_get (G_OBJECT (settings), "color", &default_color, NULL);
+      if (gdk_rgba_parse (&color, default_color))
+        biji_note_obj_set_rgba (note, &color);
+
+      g_free (default_color);
+
+      biji_note_book_append_new_note (self->priv->book, note, FALSE);
+      biji_note_obj_save_note (note);
+    }
+  }
+
+  /* NoteBook will notify for all opened windows */
+  g_list_free (notes_proposal);
+  biji_note_book_notify_changed (self->priv->book);
 }
 
 static void
-import_notes_from_x (GFile *bijiben_dir, gchar *path)
+import_notes_from_x (gchar *x, Bijiben *self)
 {
-  GFile *to_import;
-  GFileEnumerator *enumerator;
+  GFile *to_import = g_file_new_for_path (x);
 
-  to_import = g_file_new_for_path (path);
-  enumerator = g_file_enumerate_children (to_import,
-                                          ATTRIBUTES_FOR_NOTEBOOK,
-                                          G_PRIORITY_DEFAULT, NULL,NULL);
+  g_file_enumerate_children_async (to_import, ATTRIBUTES_FOR_NOTEBOOK,
+                                   G_FILE_QUERY_INFO_NONE, G_PRIORITY_DEFAULT,
+                                   NULL, (GAsyncReadyCallback) list_notes_to_copy, self);
 
-  list_notes_to_copy (enumerator, bijiben_dir);
-  g_object_unref (enumerator);
   g_object_unref (to_import);
 }
 
 void
 import_notes (Bijiben *self, gchar *location)
 {
-  gchar *storage_path, *path_to_import;
-  GFile *bjb_dir;
-
-  storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
-  bjb_dir = g_file_new_for_path (storage_path);
-  g_free (storage_path);
+  gchar *path_to_import;
 
   if (g_strcmp0 (location, "tomboy") ==0)
   {
     path_to_import = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
-    import_notes_from_x (bjb_dir, path_to_import);
+    import_notes_from_x (path_to_import, self);
     g_free (path_to_import);
   }
 
   else if (g_strcmp0 (location, "gnote") ==0)
   {
     path_to_import = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
-    import_notes_from_x (bjb_dir, path_to_import);
+    import_notes_from_x (path_to_import, self);
     g_free (path_to_import);
   }
-
-  g_object_unref (bjb_dir);
 }
 
 static void

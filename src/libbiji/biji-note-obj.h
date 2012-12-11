@@ -64,6 +64,8 @@ GType biji_note_obj_get_type (void) G_GNUC_CONST;
 
 BijiNoteObj * biji_note_obj_new_from_path (const gchar *path);
 
+void biji_note_obj_fix_path (BijiNoteObj *note, gchar *path);
+
 /////////////////////////////////////////////////// Relationships other notes
 gpointer biji_note_obj_get_note_book(BijiNoteObj *note);
 

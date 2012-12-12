@@ -207,6 +207,15 @@ load_location_error (GFile *location,
 }
 
 static void
+release_enum_cb (GObject *source, GAsyncResult *res, gpointer user_data)
+{
+  g_file_enumerator_close_finish (G_FILE_ENUMERATOR (source),
+                                  res,
+                                  NULL);
+  g_object_unref (source);
+}
+
+static void
 enumerate_next_files_ready_cb (GObject *source,
                                GAsyncResult *res,
                                gpointer user_data)
@@ -218,6 +227,8 @@ enumerate_next_files_ready_cb (GObject *source,
   gchar *base_path;
 
   files = g_file_enumerator_next_files_finish (enumerator, res, &error);
+  g_file_enumerator_close_async (enumerator, G_PRIORITY_DEFAULT, NULL,
+                                 release_enum_cb, NULL);
 
   if (error != NULL)
     {

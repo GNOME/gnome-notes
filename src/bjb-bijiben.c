@@ -143,19 +143,20 @@ copy_note (GFileInfo *info, GFile *container)
   return retval;
 }
 
+static void
+release_enum_cb (GObject *source, GAsyncResult *res, gpointer user_data)
+{
+  g_file_enumerator_close_finish (G_FILE_ENUMERATOR (source), res, NULL);
+  g_object_unref (source);
+}
+
 /* Some notes might have been added previously */
 static void
-list_notes_to_copy (GFile *src_obj_file, GAsyncResult *res, Bijiben *self)
+go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *self)
 {
-  /* Go through */
-  GFileEnumerator *enumerator;
-  GError *error = NULL;
+  GList *notes_info;
   GList *notes_proposal = NULL;
-  GList *notes = NULL;
-
-  /* Handle note */
-  GFileInfo *info;
-  BijiNoteObj *iter;
+  GList *l;
   GFile *container;
 
   /* Sanitize title & color */
@@ -163,32 +164,23 @@ list_notes_to_copy (GFile *src_obj_file, GAsyncResult *res, Bijiben *self)
   BjbSettings *settings;
   GdkRGBA color;
 
-  enumerator = g_file_enumerate_children_finish (src_obj_file, res, &error);
-
-  if (error)
-  {
-    g_warning ("Enumerator failed : %s", error->message);
-    g_error_free (error);
-    return;
-  }
-
   container = g_file_enumerator_get_container (enumerator);
-  info = g_file_enumerator_next_file (enumerator, NULL,NULL);
+  notes_info = g_file_enumerator_next_files_finish (enumerator, res, NULL);
+  g_file_enumerator_close_async (enumerator, G_PRIORITY_DEFAULT, NULL,
+                                 release_enum_cb, self);
 
   /* Get the GList of notes and load them */
-  while (info)
+  for ( l=notes_info; l !=NULL; l = l->next)
   {
-    iter = copy_note (info, container);
+    GFileInfo *info = G_FILE_INFO (l->data);
+    BijiNoteObj *iter = copy_note (info, container);
     if (iter)
       notes_proposal = g_list_prepend (notes_proposal, iter);
-
-    g_object_unref (info);
-    info = g_file_enumerator_next_file (enumerator, NULL,NULL);
   }
 
-  for (notes = notes_proposal; notes != NULL; notes = notes->next)
+  for (l = notes_proposal; l != NULL; l = l->next)
   {
-    BijiNoteObj *note = notes->data;
+    BijiNoteObj *note = l->data;
 
     /* Don't add an already imported note */
     if (note_book_get_note_at_path (self->priv->book, biji_note_obj_get_path (note)))
@@ -219,8 +211,32 @@ list_notes_to_copy (GFile *src_obj_file, GAsyncResult *res, Bijiben *self)
   }
 
   /* NoteBook will notify for all opened windows */
+
+  g_list_free_full (notes_info, g_object_unref);
   g_list_free (notes_proposal);
   biji_note_book_notify_changed (self->priv->book);
+}
+
+static void
+list_notes_to_copy (GObject *src_obj, GAsyncResult *res, Bijiben *self)
+{
+  GFileEnumerator *enumerator;
+  GError *error = NULL;
+
+  enumerator = g_file_enumerate_children_finish (G_FILE (src_obj), res, &error);
+
+  if (error)
+  {
+    g_warning ("Enumerator failed : %s", error->message);
+    g_error_free (error);
+    g_file_enumerator_close_async (enumerator, G_PRIORITY_DEFAULT, NULL, release_enum_cb, self);
+  }
+
+  else
+  {
+    g_file_enumerator_next_files_async (enumerator, G_MAXINT, G_PRIORITY_DEFAULT, NULL,
+                                        (GAsyncReadyCallback) go_through_notes_cb, self);
+  }
 }
 
 static void

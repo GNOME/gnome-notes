@@ -1,11 +1,24 @@
+/* bjb-settings.c
+ * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
+ * 
+ * bijiben is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * bijiben is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "bjb-bijiben.h"
 #include "bjb-settings.h"
-
-#define WIDTH_SETTING_DIALOG_SIZE_DIFF 150
-#define HEIGHT_SETTING_DIALOG_SIZE_DIFF 180
 
 struct _BjbSettingsPrivate
 {
@@ -166,7 +179,7 @@ on_color_set (GtkColorButton *button,
 void
 show_bijiben_settings_window (GtkWidget *parent_window)
 {
-  GtkWidget *dialog,*area,*notebook,*page, *hbox, *label, *picker;
+  GtkWidget *dialog,*area, *vbox, *hbox, *grid, *label, *picker;
   GdkRGBA color;
   gint width, height;
 
@@ -174,55 +187,59 @@ show_bijiben_settings_window (GtkWidget *parent_window)
   BjbSettings *settings = bjb_app_get_settings(app);
 
   /* create dialog */
-  dialog = gtk_dialog_new_with_buttons("Notes tag",
-                                      GTK_WINDOW(parent_window),
-                                      GTK_DIALOG_MODAL| 
-                                      GTK_DIALOG_DESTROY_WITH_PARENT,
-                                      GTK_STOCK_OK,
-                                      GTK_RESPONSE_OK,
-                                      NULL);
+  dialog = gtk_dialog_new_with_buttons (_("Preferences"),
+                                        GTK_WINDOW(parent_window),
+                                        GTK_DIALOG_MODAL| 
+                                        GTK_DIALOG_DESTROY_WITH_PARENT,
+                                        GTK_STOCK_CLOSE,
+                                        GTK_RESPONSE_OK,
+                                        NULL);
 
   gtk_window_get_size (GTK_WINDOW (parent_window), &width, &height);
   gtk_window_set_default_size (GTK_WINDOW (dialog),
-                               width - WIDTH_SETTING_DIALOG_SIZE_DIFF,
-                               height - HEIGHT_SETTING_DIALOG_SIZE_DIFF);
+                               width /2,
+                               height /2);
 
   area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-  gtk_container_set_border_width (GTK_CONTAINER (area), 8);
+  gtk_container_set_border_width (GTK_CONTAINER (area), 0);
   gtk_widget_set_hexpand (area, TRUE);
   gtk_widget_set_vexpand (area, TRUE);
 
-  notebook = gtk_notebook_new();
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  gtk_widget_set_valign (vbox, GTK_ALIGN_CENTER);
 
-  /* Edition Page */
-  page = gtk_box_new (GTK_ORIENTATION_VERTICAL, 32);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_widget_set_halign (hbox, GTK_ALIGN_CENTER);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, FALSE, 0);
 
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
-  gtk_box_pack_start (GTK_BOX (page), hbox, TRUE, FALSE, 2);
-  label = gtk_label_new ("Default font");
-  gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, FALSE, 2);
+  grid = gtk_grid_new ();
+  gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
+  gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+  gtk_box_pack_start (GTK_BOX (hbox), grid, TRUE, FALSE, 0);
+
+  /* Note Font */
+  label = gtk_label_new (_("Note Font"));
+  gtk_widget_set_halign (label, GTK_ALIGN_END);
+  gtk_grid_attach (GTK_GRID (grid), label, 1, 1, 1, 1);
   picker = gtk_font_button_new_with_font (settings->font);
   g_signal_connect(picker,"font-set",
                    G_CALLBACK(on_font_selected),settings);
-  gtk_box_pack_start (GTK_BOX (hbox), picker, TRUE, FALSE, 2);
+  gtk_grid_attach (GTK_GRID (grid), picker, 2, 1, 1, 1);
 
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
-  gtk_box_pack_start (GTK_BOX (page), hbox, TRUE, FALSE, 2);
-  label = gtk_label_new ("Default color");
-  gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, FALSE, 2);
+  /* Default Color */
+  label = gtk_label_new (_("Default Color"));
+  gtk_widget_set_halign (label, GTK_ALIGN_END);
+  gtk_grid_attach (GTK_GRID (grid), label, 1, 2, 1, 1);
   picker = gtk_color_button_new ();
+  gtk_grid_attach (GTK_GRID (grid), picker, 2, 2, 1, 1);
   gdk_rgba_parse (&color, settings->color );
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);
   g_signal_connect (picker, "color-set",
                     G_CALLBACK(on_color_set), settings);
-  gtk_box_pack_start (GTK_BOX (hbox),picker,TRUE,FALSE,2);  
-
-  gtk_notebook_append_page(GTK_NOTEBOOK(notebook),page,
-                           gtk_label_new("Note Editor"));
 
   /* pack, show, run, kill */
-  gtk_box_pack_start (GTK_BOX (area), notebook, TRUE, TRUE,2);
-  gtk_widget_show_all(dialog);
-  gtk_dialog_run (GTK_DIALOG(dialog));
-  gtk_widget_destroy(dialog);
+  gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
+  gtk_widget_show_all (dialog);
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
 }

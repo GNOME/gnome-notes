@@ -14,6 +14,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
+#include <glib/gi18n.h>
+
 #include "bjb-app-menu.h"
 #include "bjb-bijiben.h"
 #include "bjb-main-view.h"
@@ -145,7 +147,7 @@ external_activated (GSimpleAction *action,
 
   windows = gtk_application_get_windows (GTK_APPLICATION(user_data));
 
-  dialog = gtk_dialog_new_with_buttons ("External Data",
+  dialog = gtk_dialog_new_with_buttons (_("External Notes"),
                                         g_list_nth_data (windows, 0),
                                         GTK_DIALOG_MODAL| 
                                         GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -160,7 +162,7 @@ external_activated (GSimpleAction *action,
   gtk_widget_set_hexpand (area, TRUE);
   gtk_widget_set_vexpand (area, TRUE);
 
-  label = gtk_label_new ("Click on the external data you want to import");
+  label = gtk_label_new (_("Click on the external notes to import"));
   gtk_box_pack_start (GTK_BOX (area), label, TRUE, FALSE, 2);
 
   store = gtk_list_store_new (IMPORT_DIALOG_N_COLUMNS,

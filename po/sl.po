@@ -28,7 +28,7 @@ msgstr "Bijiben"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
-msgstr "sporočilca;opomniki"
+msgstr "sporočilca;opomniki;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"

@@ -1,7 +1,9 @@
 # List of source files containing translatable strings.
 data/bijiben.desktop.in.in
+src/bjb-app-menu.c
 src/bjb-editor-toolbar.c
 src/bjb-main-toolbar.c
 src/bjb-note-view.c
 src/bjb-selection-toolbar.c
+src/bjb-settings.c
 [type: gettext/glade]src/resources/app-menu.ui

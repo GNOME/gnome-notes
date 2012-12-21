@@ -18,6 +18,7 @@
 #include <gtk/gtk.h>
 
 #include "bjb-bijiben.h"
+#include "bjb-color-button.h"
 #include "bjb-settings.h"
 
 struct _BjbSettingsPrivate
@@ -230,7 +231,7 @@ show_bijiben_settings_window (GtkWidget *parent_window)
   label = gtk_label_new (_("Default Color"));
   gtk_widget_set_halign (label, GTK_ALIGN_END);
   gtk_grid_attach (GTK_GRID (grid), label, 1, 2, 1, 1);
-  picker = gtk_color_button_new ();
+  picker = bjb_color_button_new ();
   gtk_grid_attach (GTK_GRID (grid), picker, 2, 2, 1, 1);
   gdk_rgba_parse (&color, settings->color );
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);

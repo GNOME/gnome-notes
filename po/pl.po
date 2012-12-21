@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-02 03:18+0100\n"
-"PO-Revision-Date: 2012-12-02 03:20+0100\n"
+"POT-Creation-Date: 2012-12-21 20:38+0100\n"
+"PO-Revision-Date: 2012-12-21 20:39+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -23,21 +23,29 @@ msgstr ""
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
-#: ../data/bijiben.desktop.in.h:1 ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1
 msgid "Bijiben"
 msgstr "Bijiben"
-
-#: ../data/bijiben.desktop.in.h:2 ../data/bijiben.desktop.in.in.h:3
-msgid "Post notes, tag files!"
-msgstr "Robienie notatek"
-
-#: ../data/bijiben.desktop.in.h:3 ../data/bijiben.desktop.in.in.h:4
-msgid "Note-taker"
-msgstr "Robienie notatek"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notatki;przypomnienia;przypominanie;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Robienie notatek"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Robienie notatek"
+
+#: ../src/bjb-app-menu.c:150
+msgid "External Notes"
+msgstr "Zewnętrzne notatki"
+
+#: ../src/bjb-app-menu.c:165
+msgid "Click on the external notes to import"
+msgstr "Kliknięcie zewnętrznych notatek je zaimportuje"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -133,13 +141,28 @@ msgstr "Etykieta"
 msgid "Delete"
 msgstr "Usuń"
 
+#. create dialog
+#: ../src/bjb-settings.c:190
+msgid "Preferences"
+msgstr "Preferencje"
+
+#. Note Font
+#: ../src/bjb-settings.c:221
+msgid "Note Font"
+msgstr "Czcionka notatki"
+
+#. Default Color
+#: ../src/bjb-settings.c:230
+msgid "Default Color"
+msgstr "Domyślny kolor"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_Nowe okno"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External data"
-msgstr "Z_ewnętrzne dane"
+msgid "_External Notes"
+msgstr "Z_ewnętrzne notatki"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"

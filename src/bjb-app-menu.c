@@ -14,6 +14,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
+#include "config.h"
+
 #include <glib/gi18n.h>
 
 #include "bjb-app-menu.h"
@@ -32,7 +34,7 @@ void show_about_dialog(GtkApplication *app)
   "program-name", "Bijiben",
   "comments", "Simple noteboook for GNOME",
   "license", "GPLv3",
-  "version", "3.7.3",
+  "version", VERSION,
   "copyright", "Pierre-Yves Luyten 2012",
   NULL,NULL,NULL);
 

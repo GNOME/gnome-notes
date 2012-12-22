@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-22 01:38+0100\n"
-"PO-Revision-Date: 2012-11-22 01:43+0200\n"
+"POT-Creation-Date: 2012-12-22 00:58+0100\n"
+"PO-Revision-Date: 2012-12-22 01:43+0200\n"
 "Last-Translator: Pierre-Yves Luyten <py@luyten.fr>\n"
 "Language-Team: gnome-l10n-fr@gnome.org\n"
 "Language: fr\n"
@@ -16,17 +16,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/bijiben.desktop.in.h:1 ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1
 msgid "Bijiben"
 msgstr "Bijiben"
 
-#: ../data/bijiben.desktop.in.h:2 ../data/bijiben.desktop.in.in.h:2
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "notes;pense-bêtes"
+
+#: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Poster des notes, étiqueter des fichiers!"
 
-#: ../data/bijiben.desktop.in.h:3 ../data/bijiben.desktop.in.in.h:3
+#: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Editeur de notes"
+
+#: ../src/bjb-app-menu.c:152
+#, fuzzy
+msgid "External Notes"
+msgstr "Notes Externes"
+
+#: ../src/bjb-app-menu.c:167
+msgid "Click on the external notes to import"
+msgstr "Cliquer sur les notes à importer"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -44,43 +57,106 @@ msgstr "Barré"
 msgid "Link"
 msgstr "Lien"
 
-#: ../src/bjb-main-toolbar.c:172
+#: ../src/bjb-main-toolbar.c:179
 msgid "Click on items to select them"
 msgstr "Cliquez sur des éléments pour les sélectionner"
 
-#: ../src/bjb-main-toolbar.c:174
+#: ../src/bjb-main-toolbar.c:181
 #, c-format
 msgid "%d selected"
 msgstr "%d sélectionné"
 
-#: ../src/bjb-main-toolbar.c:213
+#: ../src/bjb-main-toolbar.c:220
 #, c-format
 msgid "Results for %s"
 msgstr "Résulats pour %s"
 
-#: ../src/bjb-main-toolbar.c:216
-msgid "New and recent"
+#: ../src/bjb-main-toolbar.c:223
+msgid "New and Recent"
 msgstr "Nouveau et récent"
 
-#: ../src/bjb-main-toolbar.c:235
+#: ../src/bjb-main-toolbar.c:243
 msgid "New"
-msgstr "Nouvelle note"
+msgstr "Nouveau"
 
-#: ../src/bjb-selection-toolbar.c:171
+#: ../src/bjb-note-view.c:202
+msgid "Rename Note"
+msgstr "Renommer la Note"
+
+#. Undo Redo separator
+#: ../src/bjb-note-view.c:257
+msgid "Undo"
+msgstr "Annuler"
+
+#: ../src/bjb-note-view.c:265
+msgid "Redo"
+msgstr "Rétablir"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-note-view.c:279
+msgid "Bullets"
+msgstr "Puces"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-note-view.c:286
+msgid "List"
+msgstr "Liste"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-note-view.c:297
+msgid "Rename"
+msgstr "Renommer"
+
+#: ../src/bjb-note-view.c:303
+msgid "Tags"
+msgstr "Étiquetes"
+
+#. Delete Note
+#: ../src/bjb-note-view.c:314
+msgid "Delete this Note"
+msgstr "Supprimer cette Note"
+
+#. Button to go back to main view
+#: ../src/bjb-note-view.c:381
+msgid "Notes"
+msgstr "Notes"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:482
+msgid "Last updated "
+msgstr "Denière sauvegarde "
+
+#: ../src/bjb-selection-toolbar.c:172
 msgid "Tag"
 msgstr "Étiquette"
 
-#: ../src/bjb-selection-toolbar.c:195
+#: ../src/bjb-selection-toolbar.c:196
 msgid "Delete"
 msgstr "Supprimer"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Préférences"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Police de caractères"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Couleur par défaut"
 
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_Nouvelle fenêtre"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External data"
-msgstr "_Données Externes"
+msgid "_External Notes"
+msgstr "_Notes Externes"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
@@ -88,7 +164,7 @@ msgstr "_Préférences"
 
 #: ../src/resources/app-menu.ui.h:4
 msgid "_About Bijiben"
-msgstr "_A propos de Bijiben"
+msgstr "_À propos de Bijiben"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
@@ -96,4 +172,4 @@ msgstr "_Aide"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
-msgstr "_Quit"
+msgstr "_Quitter"

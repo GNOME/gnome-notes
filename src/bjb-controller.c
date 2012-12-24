@@ -1,5 +1,5 @@
 /*
- * bijiben
+ * bjb-controller.c
  * Copyright (C) Pierre-Yves Luyten 2012 <py@luyten.fr>
  * 
  * bijiben is free software: you can redistribute it and/or modify it

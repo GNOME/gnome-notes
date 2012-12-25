@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-03 23:25+0000\n"
-"PO-Revision-Date: 2012-12-04 12:28+0100\n"
+"POT-Creation-Date: 2012-12-21 19:38+0000\n"
+"PO-Revision-Date: 2012-12-25 11:56+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -35,6 +35,15 @@ msgstr "Publique notas y etiquete archivos"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Para tomar notas"
+
+#: ../src/bjb-app-menu.c:150
+#| msgid "_External data"
+msgid "External Notes"
+msgstr "Notas externas"
+
+#: ../src/bjb-app-menu.c:165
+msgid "Click on the external notes to import"
+msgstr "Pulse en las notas externas para importarlas"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -130,13 +139,30 @@ msgstr "Etiqueta"
 msgid "Delete"
 msgstr "Eliminar"
 
+#. create dialog
+#: ../src/bjb-settings.c:190
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "Preferencias"
+
+#. Note Font
+#: ../src/bjb-settings.c:221
+msgid "Note Font"
+msgstr "Tipografía de la nota"
+
+#. Default Color
+#: ../src/bjb-settings.c:230
+msgid "Default Color"
+msgstr "Color predeterminado"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "Ventana _nueva"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External data"
-msgstr "Datos _externos"
+#| msgid "_External data"
+msgid "_External Notes"
+msgstr "Notas externas"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"

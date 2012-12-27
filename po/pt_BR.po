@@ -1,0 +1,176 @@
+# Brazilian Portuguese translation for bijiben.
+# Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-12-25 11:12+0000\n"
+"PO-Revision-Date: 2012-12-27 04:26-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../data/bijiben.desktop.in.in.h:1
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "notas;lembrete;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Crie notas, aplique tags em arquivos!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Tomador de notas"
+
+#: ../src/bjb-app-menu.c:152
+msgid "External Notes"
+msgstr "Notas externas"
+
+#: ../src/bjb-app-menu.c:167
+msgid "Click on the external notes to import"
+msgstr "Clique nas notas externas para importar"
+
+#: ../src/bjb-editor-toolbar.c:174
+msgid "Bold"
+msgstr "Negrito"
+
+#: ../src/bjb-editor-toolbar.c:185
+msgid "Italic"
+msgstr "Itálico"
+
+#: ../src/bjb-editor-toolbar.c:196
+msgid "Strike"
+msgstr "Tachado"
+
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Link"
+msgstr "Link"
+
+#: ../src/bjb-main-toolbar.c:179
+msgid "Click on items to select them"
+msgstr "Clique em itens para selecioná-los"
+
+#: ../src/bjb-main-toolbar.c:181
+#, c-format
+msgid "%d selected"
+msgstr "%d selecionado"
+
+#: ../src/bjb-main-toolbar.c:220
+#, c-format
+msgid "Results for %s"
+msgstr "Resultados do %s"
+
+#: ../src/bjb-main-toolbar.c:223
+msgid "New and Recent"
+msgstr "Novas e recentes"
+
+#: ../src/bjb-main-toolbar.c:243
+msgid "New"
+msgstr "Nova"
+
+#: ../src/bjb-note-view.c:202
+msgid "Rename Note"
+msgstr "Renomear nota"
+
+#. Undo Redo separator
+#: ../src/bjb-note-view.c:257
+msgid "Undo"
+msgstr "Desfazer"
+
+#: ../src/bjb-note-view.c:265
+msgid "Redo"
+msgstr "Refazer"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-note-view.c:279
+msgid "Bullets"
+msgstr "Marcadores"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-note-view.c:286
+msgid "List"
+msgstr "Lista"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-note-view.c:297
+msgid "Rename"
+msgstr "Renomear"
+
+#: ../src/bjb-note-view.c:303
+msgid "Tags"
+msgstr "Tags"
+
+#. Delete Note
+#: ../src/bjb-note-view.c:314
+msgid "Delete this Note"
+msgstr "Excluir essa nota"
+
+#. Button to go back to main view
+#: ../src/bjb-note-view.c:381
+msgid "Notes"
+msgstr "Notas"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:482
+msgid "Last updated "
+msgstr "Última atualização "
+
+#: ../src/bjb-selection-toolbar.c:172
+msgid "Tag"
+msgstr "Tag"
+
+#: ../src/bjb-selection-toolbar.c:196
+msgid "Delete"
+msgstr "Excluir"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Preferências"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Fonte da nota"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Core padrão"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Nova janela"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_External Notes"
+msgstr "Notas _externas"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Preferências"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Bijiben"
+msgstr "_Sobre Bijiben"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Ajuda"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Sair"

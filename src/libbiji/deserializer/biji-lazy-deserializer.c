@@ -59,13 +59,14 @@ struct _BijiLazyDeserializerPrivate
   BijiXmlType type;
   xmlTextReaderPtr r;
 
-  /* Reader for internal content, either tomboy XML or Bijiben html */
+  /* Reader for internal content, either tomboy html or Bijiben xhtml */
   xmlTextReaderPtr inner;
   gchar *content;
 
   /* Result for both raw_text & html */
   GString *raw_text;
   GString *html;
+  gboolean seen_content;
 };
 
 static void
@@ -283,6 +284,8 @@ process_tomboy_xml_content (BijiLazyDeserializer *self)
   int ret;
   gchar *revamped_html;
 
+  g_string_append (priv->html, "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>");
+
   priv->inner = xmlReaderForMemory (priv->content,
                                     strlen(priv->content),
                                     "", "UTF-8", 0);
@@ -290,11 +293,13 @@ process_tomboy_xml_content (BijiLazyDeserializer *self)
   ret = xmlTextReaderRead (priv->inner);
 
   /* Make the GString grow as we read */
-  while (ret == 1) 
+  while (ret == 1)
   {
     process_tomboy_node (self);
     ret = xmlTextReaderRead (priv->inner);
   }
+
+  g_string_append (priv->html, "</body></html>");
 
   /* Now the inner content is known, we can
    * assign note values and let deserialization work on last elements*/
@@ -315,133 +320,35 @@ process_bijiben_start_elem (BijiLazyDeserializer *self)
 
   element_name = (const gchar *) xmlTextReaderConstName(priv->inner);
 
-  if (g_strcmp0 (element_name, "note-content")==0)
-    return;
+  /* Block level elements introduce a new line, except that blocks
+     at the very beginning of their parent don't, and <br/> at the
+     end of a block causes the next block to skip the new line.
+     list-item elements add also a bullet at the beginning.
 
-  if (g_strcmp0 (element_name, "div")==0)
-    priv->html = g_string_append (priv->html, "&#xA;");
+     These are the only block elements we produce and therefore
+     support. If you manage to introduce more (eg. by copy-pasting),
+     you accept that the result may not be faithful.
 
-  if (g_strcmp0 (element_name, "br")==0)
-  {
-    priv->html = g_string_append (priv->html, "<br/>");
-    priv->raw_text = g_string_append (priv->raw_text, "\n");
+     TODO: use webkit_web_view_get_snapshot() instead of showing
+     the raw text content in the main view.
+  */
+  if (g_strcmp0 (element_name, "br") == 0) {
+    g_string_append (priv->raw_text, "\n");
+    priv->seen_content = FALSE;
   }
 
-  if (g_strcmp0 (element_name, "b")==0)
-    priv->html = g_string_append (priv->html, "<b>");
-
-  if (g_strcmp0 (element_name, "i")==0)
-    priv->html = g_string_append (priv->html, "<i>");
-
-  if (g_strcmp0 (element_name, "strike")==0)
-    priv->html = g_string_append (priv->html, "<strike>");
-
-  /* Lists */
-
-  if (g_strcmp0 (element_name, "ul")==0)
-    priv->html = g_string_append (priv->html, "<ul>");
-
-  if (g_strcmp0 (element_name, "ol")==0)
-    priv->html = g_string_append (priv->html, "<ol>");
-
-  if (g_strcmp0 (element_name, "li")==0)
-  {
-    priv->html = g_string_append (priv->html, "<li>");
+  if (priv->seen_content &&
+      (g_strcmp0 (element_name, "div") == 0 ||
+       g_strcmp0 (element_name, "br") == 0 ||
+       g_strcmp0 (element_name, "ul") == 0 ||
+       g_strcmp0 (element_name, "ol") == 0 ||
+       g_strcmp0 (element_name, "li") == 0)) {
+    g_string_append (priv->raw_text, "\n");
+    priv->seen_content = FALSE;
   }
 
-  /* Links: Images */
-
-  if (g_strcmp0 (element_name, "img")==0)
-  {
-    priv->html = g_string_append (priv->html, "<img ");
-
-    xmlChar *attribute;
-
-    attribute = xmlTextReaderGetAttribute (priv->inner, BAD_CAST "id");
-    if (attribute)
-    {
-      priv->html = g_string_append (priv->html, "id=\"");
-      priv->html = g_string_append (priv->html, (gchar*) attribute);
-      priv->html = g_string_append (priv->html, "\"");
-      xmlFree (attribute);
-      attribute = NULL;
-    }
-
-    attribute = xmlTextReaderGetAttribute (priv->inner, BAD_CAST "width");
-    if (attribute)
-    {
-      priv->html = g_string_append (priv->html, "width=\"");
-      priv->html = g_string_append (priv->html, (gchar*) attribute);
-      priv->html = g_string_append (priv->html, "\"");
-      xmlFree (attribute);
-      attribute = NULL;
-    }
-
-    attribute = xmlTextReaderGetAttribute (priv->inner, BAD_CAST "height");
-    if (attribute)
-    {
-      priv->html = g_string_append (priv->html, "height=\"");
-      priv->html = g_string_append (priv->html, (gchar*) attribute);
-      priv->html = g_string_append (priv->html, "\"");
-      xmlFree (attribute);
-      attribute = NULL;
-    }
-
-    attribute = xmlTextReaderGetAttribute (priv->inner, BAD_CAST "src");
-    if (attribute)
-    {
-      priv->html = g_string_append (priv->html, "src=\"");
-      priv->html = g_string_append (priv->html, (gchar*) attribute);
-      priv->html = g_string_append (priv->html, "\"");
-      xmlFree (attribute);
-      attribute = NULL;
-    }
-
-    attribute = xmlTextReaderGetAttribute (priv->inner, BAD_CAST "alt");
-    if (attribute)
-    {
-      priv->html = g_string_append (priv->html, "alt=\"");
-      priv->html = g_string_append (priv->html, (gchar*) attribute);
-      priv->html = g_string_append (priv->html, "\"");
-      xmlFree (attribute);
-      attribute = NULL;
-    }
-
-    priv->html = g_string_append (priv->html, ">");
-  }
-}
-
-static void
-process_bijiben_end_elem (BijiLazyDeserializer *self)
-{
-  BijiLazyDeserializerPrivate *priv = self->priv;
-  const gchar *element_name;
-  
-  element_name = (const gchar *) xmlTextReaderConstName (priv->inner);
-
-  if (g_strcmp0 (element_name, "note-content")==0)
-    return;
-
-  if (g_strcmp0 (element_name, "b")==0)
-    priv->html = g_string_append (priv->html, "</b>");
-
-  if (g_strcmp0 (element_name, "i")==0)
-    priv->html = g_string_append (priv->html, "</i>");
-
-  if (g_strcmp0 (element_name, "strike")==0)
-    priv->html = g_string_append (priv->html, "</strike>");
-
-  if (g_strcmp0 (element_name, "ul")==0)
-    priv->html = g_string_append (priv->html, "</ul>");
-
-  if (g_strcmp0 (element_name, "ol")==0)
-    priv->html = g_string_append (priv->html, "</ol>");
-
-  if (g_strcmp0 (element_name, "li")==0)
-  {
-    priv->html = g_string_append (priv->html, "</li>");
-    priv->raw_text = g_string_append (priv->raw_text, "\n");
-  }
+  if (g_strcmp0 (element_name, "li") == 0)
+    g_string_append (priv->raw_text, "- ");
 }
 
 static void
@@ -454,74 +361,68 @@ process_bijiben_text_elem (BijiLazyDeserializer *self)
 
   if (text)
   {
-    /* Simply append the text to both raw & html */
-    priv->html = g_string_append (priv->html, text);
     priv->raw_text = g_string_append (priv->raw_text, text);
+    priv->seen_content = TRUE;
   }
 }
 
 static void
 process_bijiben_node (BijiLazyDeserializer *self)
 {
-  int            type;
+  int type;
   const xmlChar *name ;
   BijiLazyDeserializerPrivate *priv = self->priv;
 
   type  = xmlTextReaderNodeType (priv->inner);
   name  = xmlTextReaderConstName (priv->inner);
-  
+
   if (name == NULL)
     name = BAD_CAST "(NULL)";
 
   switch (type)
-  {
-    case XML_ELEMENT_NODE:
+    {
+    case XML_READER_TYPE_ELEMENT:
       process_bijiben_start_elem (self);
       break;
 
-    case XML_ELEMENT_DECL:
-      process_bijiben_end_elem (self);
-      break;
-
-    case XML_TEXT_NODE:
-    case XML_DTD_NODE:
+    case XML_READER_TYPE_TEXT:
       process_bijiben_text_elem (self);
       break;
+
+    default:
+      /* Ignore other node types (and ignore
+         gcc warnings */
+      ;
   }
 }
 
 static void
-process_bijiben_html_content (BijiLazyDeserializer *self)
+process_bijiben_html_content (BijiLazyDeserializer *self,
+                              xmlTextReaderPtr      reader)
 {
   BijiLazyDeserializerPrivate *priv = self->priv;
   int ret;
-  gchar *sane_text, *sane_html;
+  gchar *sane_html;
 
-  priv->inner = xmlReaderForMemory (priv->content,
-                                    strlen(priv->content),
+  sane_html = (gchar*) xmlTextReaderReadInnerXml (reader);
+
+  priv->inner = xmlReaderForMemory (sane_html,
+                                    strlen(sane_html),
                                     "", "UTF-8", 0);
-  
+
   ret = xmlTextReaderRead (priv->inner);
 
   /* Make the GString grow as we read */
-  while (ret == 1) 
+  while (ret == 1)
   {
     process_bijiben_node (self);
     ret = xmlTextReaderRead (priv->inner);
   }
 
-  /* Now the inner content is known, we can
-   * assign note values and let deserialization work on last elements*/
-  sane_html = biji_str_mass_replace (priv->html->str, "&#xA;" , "<br/>",
-                                                      "&amp;" , "&"      , NULL);
-  sane_text = biji_str_mass_replace (priv->raw_text->str, "&#xA;", "    ",
-                                                          "&amp;", "&"   , NULL);
-
-  biji_note_obj_set_raw_text (priv->note, sane_text);
+  biji_note_obj_set_raw_text (priv->note, priv->raw_text->str);
   biji_note_obj_set_html_content (priv->note, sane_html);
 
-  g_free (sane_text);
-  g_free (sane_html);
+  xmlFree (BAD_CAST sane_html);
 }
 
 /* Common XML format for both Bijiben / Tomboy */
@@ -545,8 +446,7 @@ processNode (BijiLazyDeserializer *self)
   {
     if (self->priv->type == BIJIBEN_1)
     {
-      self->priv->content = (gchar*) xmlTextReaderReadInnerXml (r);
-      process_bijiben_html_content (self);
+      process_bijiben_html_content (self, r);
     }
 
     else if (self->priv->type == TOMBOY_1 ||

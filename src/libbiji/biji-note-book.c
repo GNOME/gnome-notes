@@ -487,19 +487,29 @@ biji_note_book_get_new_note_from_string (BijiNoteBook *book,
   return ret;
 }
 
+static char*
+wrap_note_content (char *content)
+{
+  return g_strdup_printf("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>%s</body></html>", content);
+}
+
+
 BijiNoteObj *
 biji_note_book_new_note_with_text (BijiNoteBook *book,
                                    gchar *plain_text)
 {
   BijiNoteObj *ret = get_note_skeleton (book);
   gchar *unique_title = biji_note_book_get_unique_title (book, DEFAULT_NOTE_TITLE);
+  gchar *html;
 
   /* Note will copy title, raw_text and html strings */
   biji_note_obj_set_title (ret, unique_title);
   g_free (unique_title);
 
-  biji_note_obj_set_raw_text (ret, g_strdup (plain_text));
-  biji_note_obj_set_html_content (ret, plain_text);
+  biji_note_obj_set_raw_text (ret, plain_text);
+  html = wrap_note_content (plain_text);
+  biji_note_obj_set_html_content (ret, html);
+  g_free (html);
 
   biji_note_obj_save_note (ret);
   biji_note_book_append_new_note (book, ret, TRUE);

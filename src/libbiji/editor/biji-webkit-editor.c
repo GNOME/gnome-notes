@@ -248,8 +248,8 @@ on_content_changed (WebKitWebView *view)
 
   /* First html serializing */
   dom = webkit_web_view_get_dom_document (view);
-  elem = webkit_dom_document_get_body (dom);
-  html = webkit_dom_html_element_get_inner_html (elem);
+  elem = WEBKIT_DOM_HTML_ELEMENT (webkit_dom_document_get_document_element (dom));
+  html = webkit_dom_html_element_get_outer_html (elem);
   text = webkit_dom_html_element_get_inner_text (elem);
 
   biji_note_obj_set_html_content (note, html);
@@ -261,22 +261,19 @@ on_content_changed (WebKitWebView *view)
   {
     gchar **rows;
 
-    rows = g_strsplit (html, "<div", 2);
-    g_warning ("title is %s", rows[0]);
+    rows = g_strsplit (text, "\n", 2);
 
-    /* if we have a carriage return and thus, a proper title
-     * we still need to ensure it's clean and unique */
-    if (g_strv_length (rows) > 1)
+    /* if we have a line feed, we have a proper title */
+    /* this is equivalent to g_strv_length (rows) > 1 */
+    if (rows && rows[0] && rows[1])
     {
-      gchar *sane_title, *unique_title;
+      char *title;
+      char *unique_title;
 
-      sane_title = biji_str_mass_replace (rows[0],
-                                          "&nbsp;", "",
-                                          NULL);
-
+      title = rows[0];
       unique_title = biji_note_book_get_unique_title (biji_note_obj_get_note_book (note),
-                                                      sane_title);
-      g_free (sane_title);
+                                                      title);
+
       biji_note_obj_set_title (note, unique_title);
       g_free (unique_title);
     }
@@ -315,9 +312,9 @@ biji_webkit_editor_constructed (GObject *obj)
 
   body = biji_note_obj_get_html (priv->note);
   if (!body)
-    body = "";
+    body = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>";
 
-  webkit_web_view_load_string (view, body, NULL, NULL, NULL);
+  webkit_web_view_load_string (view, body, "application/xhtml+xml", NULL, NULL);
 
   /* Drag n drop */
   GtkTargetList *targets = webkit_web_view_get_copy_target_list (view);

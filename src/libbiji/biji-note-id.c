@@ -158,6 +158,9 @@ biji_note_id_get_file (BijiNoteID *note)
 void
 biji_note_id_set_title  (BijiNoteID *n, gchar* title)
 {
+  if (n->priv->title)
+    g_free (n->priv->title);
+
   n->priv->title = g_strdup (title);
 }
 

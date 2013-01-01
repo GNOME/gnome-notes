@@ -186,7 +186,7 @@ handle_get_subsearch_result_set (BijibenShellSearchProvider   *skeleton,
 static gchar *
 get_note_icon (gchar *note__nie_url)
 {
-  gchar *path = g_build_filename ("usr", "share", "bijiben", "icons", "hicolor", 
+  gchar *path = g_build_filename (DATADIR, "bijiben", "icons", "hicolor", 
                                   "48x48", "actions", "note.png",  NULL);
 
   GFile *gicon_file = g_file_new_for_path (path);

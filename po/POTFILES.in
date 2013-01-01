@@ -6,4 +6,5 @@ src/bjb-main-toolbar.c
 src/bjb-note-view.c
 src/bjb-selection-toolbar.c
 src/bjb-settings.c
+src/libbiji/biji-date-time.c
 [type: gettext/glade]src/resources/app-menu.ui

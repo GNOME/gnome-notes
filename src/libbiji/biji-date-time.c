@@ -14,6 +14,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
+#include <glib/gi18n.h>
+
 #include "biji-date-time.h"
 
 gchar *
@@ -27,19 +29,19 @@ biji_get_time_diff_with_time (glong sec_since_epoch)
   diff = (now.tv_sec - sec_since_epoch) / 86400 ;
 
   if (diff < 1)
-    return "Today";
+    return _("Today");
 
   if (diff < 2)
-    return "Yesterday";
+    return _("Yesterday");
 
   if (diff < 7)
-    return "This week";
+    return _("This week");
 
   if (diff < 30)
-    return "This month";
+    return _("This month");
 
   if (diff < 365)
-    return "This year";
+    return _("This year");
 
-  return "Unknown";
+  return _("Unknown");
 }

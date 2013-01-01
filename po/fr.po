@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-22 00:58+0100\n"
+"POT-Creation-Date: 2013-01-02 00:53+0100\n"
 "PO-Revision-Date: 2012-12-22 01:43+0200\n"
 "Last-Translator: Pierre-Yves Luyten <py@luyten.fr>\n"
 "Language-Team: gnome-l10n-fr@gnome.org\n"
@@ -149,6 +149,30 @@ msgstr "Police de caractères"
 #: ../src/bjb-settings.c:231
 msgid "Default Color"
 msgstr "Couleur par défaut"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Hier"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Cette semaine"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Ce mois"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Cette année"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Inconnu"
 
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"

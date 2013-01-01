@@ -206,7 +206,8 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
                       GVariantBuilder *results)
 {
   GVariantBuilder note;
-  gchar *query, *result;
+  gchar *query;
+  const gchar *result;
   TrackerSparqlCursor *cursor;
 
   /* the WHERE nie:url query has a single result : the note which we're providing metadata */

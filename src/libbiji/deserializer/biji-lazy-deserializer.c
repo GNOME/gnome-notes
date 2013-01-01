@@ -711,15 +711,10 @@ biji_note_obj_load_icon (BijiNoteObj *note)
   retval = gdk_pixbuf_new_from_file (filename, &error);
 
   if (error)
-  {
-     g_warning ("%s", error->message);
      g_error_free (error);
-  }
 
   else
-  {
      biji_note_obj_set_icon (note, retval);
-  }
 
   g_free (filename);
 }

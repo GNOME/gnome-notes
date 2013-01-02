@@ -36,6 +36,7 @@ void show_about_dialog(GtkApplication *app)
   "license", "GPLv3",
   "version", VERSION,
   "copyright", "Pierre-Yves Luyten 2012",
+  "translator-credits", _("translator-credits"),
   NULL,NULL,NULL);
 
 }

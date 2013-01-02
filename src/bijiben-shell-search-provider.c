@@ -32,6 +32,7 @@
 #include <config.h>
 
 #include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
 #include <gtk/gtk.h>
 
 #include <tracker-sparql.h>
@@ -49,11 +50,8 @@
 typedef struct {
   GApplication parent;
 
-  guint name_owner_id;
-  GDBusObjectManagerServer *object_manager;
-  BijibenShellSearchProvider *skeleton;
-
-   TrackerSparqlConnection *connection;
+  BijibenShellSearchProvider2 *skeleton;
+  TrackerSparqlConnection *connection;
 
 } BijibenShellSearchProviderApp;
 
@@ -104,7 +102,7 @@ biji_get_notes_with_strings (BijibenShellSearchProviderApp *self, gchar **needle
     match = g_string_append (match, "* ");
   }
 
-  query = g_strdup_printf ("SELECT nie:url(?f) WHERE { ?f fts:match '%s' }", match->str);
+  query = g_strdup_printf ("SELECT ?f WHERE { ?f a nfo:Note ; fts:match '%s' }", match->str);
   g_string_free (match, TRUE);
 
   /* Go to the query */
@@ -142,45 +140,49 @@ add_string (gchar *single_result, GVariantBuilder *meta_result)
 }
 
 static void
-handle_get_initial_result_set (BijibenShellSearchProvider   *skeleton,
+handle_get_initial_result_set (BijibenShellSearchProvider2  *skeleton,
                                GDBusMethodInvocation        *invocation,
                                gchar                       **terms,
                                gpointer                      user_data)
 {
   BijibenShellSearchProviderApp *self = user_data;
-
   GVariantBuilder builder;
   GList *result;
+
+  g_application_hold (user_data);
 
   g_variant_builder_init (&builder, G_VARIANT_TYPE ("as"));
   result = biji_get_notes_with_strings (self, terms);
   g_list_foreach (result, (GFunc) add_string, &builder);
-  g_list_free_full (result, (GDestroyNotify) g_free); // ?? not sure. maybe just free, not full
+  g_list_free_full (result, (GDestroyNotify) g_free);
 
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("(as)", &builder));
-  g_application_release (G_APPLICATION (self));
+
+  g_application_release (user_data);
 }
 
 /* TODO : start from previous result , simply with GList */
 static void
-handle_get_subsearch_result_set (BijibenShellSearchProvider   *skeleton,
+handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
                                  GDBusMethodInvocation        *invocation,
                                  gchar                       **previous_results,
                                  gchar                       **terms,
                                  gpointer                      user_data)
 {
   BijibenShellSearchProviderApp *self = user_data;
-
   GVariantBuilder builder;
   GList *result;
+
+  g_application_hold (user_data);
 
   g_variant_builder_init (&builder, G_VARIANT_TYPE ("as"));
   result = biji_get_notes_with_strings (self, terms);
   g_list_foreach (result, (GFunc) add_string, &builder);
-  g_list_free_full (result, (GDestroyNotify) g_free); // ?? not sure. maybe just free, not full
+  g_list_free_full (result, (GDestroyNotify) g_free);
 
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("(as)", &builder));
-  g_application_release (G_APPLICATION (self));
+
+  g_application_release (user_data);
 }
 
 static gchar *
@@ -202,54 +204,54 @@ get_note_icon (gchar *note__nie_url)
 
 static void
 add_single_note_meta (BijibenShellSearchProviderApp *self,
-                      gchar *note__nie_url,
+                      gchar *note__id,
                       GVariantBuilder *results)
 {
-  GVariantBuilder note;
   gchar *query;
   const gchar *result;
   TrackerSparqlCursor *cursor;
 
   /* the WHERE nie:url query has a single result : the note which we're providing metadata */
-  query = g_strdup_printf ("SELECT nie:url(?f) nie:title(?f) WHERE { ?f nie:url '%s'}",
-                           note__nie_url);
+  query = g_strdup_printf ("SELECT nie:url(<%s>) nie:title(<%s>) WHERE { }",
+                           note__id, note__id);
   cursor = bjb_perform_query (self, query);
   g_free (query);
 
-  g_variant_builder_init (&note, G_VARIANT_TYPE ("a{sv}"));
+  g_variant_builder_open (results, G_VARIANT_TYPE ("a{sv}"));
 
   if (tracker_sparql_cursor_next (cursor, NULL, NULL))
   {
     /* NIE:URL (id) */
     result = tracker_sparql_cursor_get_string (cursor, 0, 0);
-    g_variant_builder_add (&note, "{sv}", "id", g_variant_new_string (result));
+    g_variant_builder_add (results, "{sv}", "id", g_variant_new_string (result));
 
     /* NIE:TITLE (name) is the title pushed by libbiji */
     result = tracker_sparql_cursor_get_string (cursor, 1, 0);
-    g_variant_builder_add (&note, "{sv}", "name", g_variant_new_string (result));
+    g_variant_builder_add (results, "{sv}", "name", g_variant_new_string (result));
 
    /* ICON is currently generic icon,        *
     * TODO serialize icons in libbiji        *
     *      or deserialize note here )        */
     result = get_note_icon (NULL);
-    g_variant_builder_add (&note, "{sv}", "gicon", g_variant_new_string (result));
+    g_variant_builder_add (results, "{sv}", "gicon", g_variant_new_string (result));
 
-    g_variant_builder_add_value (results, g_variant_builder_end (&note));
+    g_variant_builder_close (results);
   }
  
   g_object_unref (cursor);
 }
 
 static void
-handle_get_result_metas (BijibenShellSearchProvider  *skeleton,
+handle_get_result_metas (BijibenShellSearchProvider2  *skeleton,
                          GDBusMethodInvocation        *invocation,
                          gchar                       **results,
                          gpointer                      user_data)
 {
   BijibenShellSearchProviderApp *self = user_data;
-
   GVariantBuilder retval;
   gint parser;
+
+  g_application_hold (user_data);
 
   g_variant_builder_init (&retval, G_VARIANT_TYPE ("aa{sv}"));
 
@@ -257,105 +259,85 @@ handle_get_result_metas (BijibenShellSearchProvider  *skeleton,
     add_single_note_meta (self, results[parser], &retval);
 
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("(aa{sv})", &retval));
-  g_application_release (G_APPLICATION (self));
-}
 
-/* taken from Epiphany's ephy-main.c */
-static Time
-slowly_and_stupidly_obtain_timestamp (Display *xdisplay)
-{
-  Window xwindow;
-  XEvent event;
-
-  {
-    XSetWindowAttributes attrs;
-    Atom atom_name;
-    Atom atom_type;
-    char* name;
-
-    attrs.override_redirect = True;
-    attrs.event_mask = PropertyChangeMask | StructureNotifyMask;
-
-    xwindow =
-      XCreateWindow (xdisplay,
-                     RootWindow (xdisplay, 0),
-                     -100, -100, 1, 1,
-                     0,
-                     CopyFromParent,
-                     CopyFromParent,
-                     CopyFromParent,
-                     CWOverrideRedirect | CWEventMask,
-                     &attrs);
-
-    atom_name = XInternAtom (xdisplay, "WM_NAME", TRUE);
-    g_assert (atom_name != None);
-    atom_type = XInternAtom (xdisplay, "STRING", TRUE);
-    g_assert (atom_type != None);
-
-    name = "Fake Window";
-    XChangeProperty (xdisplay,
-                     xwindow, atom_name,
-                     atom_type,
-                     8, PropModeReplace, (unsigned char *)name, strlen (name));
-  }
-
-  XWindowEvent (xdisplay,
-                xwindow,
-                PropertyChangeMask,
-                &event);
-
-  XDestroyWindow(xdisplay, xwindow);
-
-  return event.xproperty.time;
+  g_application_release (user_data);
 }
 
 static void
-handle_activate_result (BijibenShellSearchProvider *skeleton,
-                        GDBusMethodInvocation       *invocation,
-                        gchar                       *result,
-                        gpointer                     user_data)
+handle_activate_result (BijibenShellSearchProvider2  *skeleton,
+                        GDBusMethodInvocation        *invocation,
+                        gchar                        *result,
+                        gchar                       **terms,
+                        guint                         timestamp,
+                        gpointer                      user_data)
 {
   GError *error = NULL;
-  guint32 timestamp;
+  gboolean ok;
+  GAppInfo *app;
+  GdkAppLaunchContext *context;
+  GList *uris = NULL;
 
-  /* We need a timestamp here to get the correct WM focus.
-   * Ideally this would be given to us by the caller, but since it
-   * is not, get it ourselves.
-   */
-  timestamp = slowly_and_stupidly_obtain_timestamp (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
-  gtk_show_uri (NULL, result, timestamp, &error);
+  g_application_hold (user_data);
 
-  if (error != NULL) {
-    g_warning ("Unable to activate %s: %s", result, error->message);
-    g_error_free (error);
-  }
+  app = G_APP_INFO (g_desktop_app_info_new ("bijiben.desktop"));
+
+  context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+  gdk_app_launch_context_set_timestamp (context, timestamp);
+
+  uris = g_list_prepend (uris, result);
+  ok = g_app_info_launch_uris (app, uris,
+                               G_APP_LAUNCH_CONTEXT (context), &error);
+
+  if (!ok)
+    {
+      g_dbus_method_invocation_return_gerror (invocation, error);
+      g_error_free (error);
+    }
+  else
+    {
+      bijiben_shell_search_provider2_complete_activate_result (skeleton,
+                                                               invocation);
+    }
+
+  g_list_free (uris);
+  g_object_unref (context);
+  g_object_unref (app);
+
+  g_application_release (user_data);
 }
 
 static void
-search_provider_name_acquired_cb (GDBusConnection *connection,
-                                  const gchar     *name,
-                                  gpointer         user_data)
+search_provider_app_dbus_unregister (GApplication    *application,
+                                     GDBusConnection *connection,
+                                     const gchar     *object_path)
 {
-  g_debug ("Search provider name acquired: %s\n", name);
+  BijibenShellSearchProviderApp *self = BIJIBEN_SHELL_SEARCH_PROVIDER_APP (application);
+
+  if (g_dbus_interface_skeleton_has_connection (G_DBUS_INTERFACE_SKELETON (self->skeleton),
+                                                connection))
+    g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (self->skeleton),
+                                                        connection);
+
+  G_APPLICATION_CLASS(bijiben_shell_search_provider_app_parent_class)->dbus_unregister (application,
+                                                                                        connection,
+                                                                                        object_path);
 }
 
-static void
-search_provider_name_lost_cb (GDBusConnection *connection,
-                              const gchar     *name,
-                              gpointer         user_data)
+static gboolean
+search_provider_app_dbus_register (GApplication     *application,
+                                   GDBusConnection  *connection,
+                                   const gchar      *object_path,
+                                   GError          **error)
 {
-  g_debug ("Search provider name lost: %s\n", name);
-}
+  BijibenShellSearchProviderApp *self = BIJIBEN_SHELL_SEARCH_PROVIDER_APP (application);
 
-static void
-search_provider_bus_acquired_cb (GDBusConnection *connection,
-                                 const gchar *name,
-                                 gpointer user_data)
-{
-  BijibenShellSearchProviderApp *self = user_data;
+  if (!G_APPLICATION_CLASS(bijiben_shell_search_provider_app_parent_class)->dbus_register (application,
+                                                                                           connection,
+                                                                                           object_path,
+                                                                                           error))
+    return FALSE;
 
-  self->object_manager = g_dbus_object_manager_server_new ("/org/gnome/Bijiben/SearchProvider");
-  self->skeleton = bijiben_shell_search_provider_skeleton_new ();
+  self->skeleton = bijiben_shell_search_provider2_skeleton_new ();
 
   g_signal_connect (self->skeleton, "handle-get-initial-result-set",
                     G_CALLBACK (handle_get_initial_result_set), self);
@@ -366,10 +348,8 @@ search_provider_bus_acquired_cb (GDBusConnection *connection,
   g_signal_connect (self->skeleton, "handle-activate-result",
                     G_CALLBACK (handle_activate_result), self);
 
-  g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (self->skeleton),
-                                    connection,
-                                    "/org/gnome/Bijiben/SearchProvider", NULL);
-  g_dbus_object_manager_server_set_connection (self->object_manager, connection);
+  return g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (self->skeleton),
+                                           connection, object_path, error);
 }
 
 static void
@@ -377,18 +357,7 @@ search_provider_app_dispose (GObject *obj)
 {
   BijibenShellSearchProviderApp *self = BIJIBEN_SHELL_SEARCH_PROVIDER_APP (obj);
 
-  if (self->name_owner_id != 0) {
-    g_bus_unown_name (self->name_owner_id);
-    self->name_owner_id = 0;
-  }
-
-  if (self->skeleton != NULL) {
-    g_dbus_interface_skeleton_unexport (G_DBUS_INTERFACE_SKELETON (self->skeleton));
-    g_clear_object (&self->skeleton);
-  }
-
   g_object_unref (self->connection);
-  g_clear_object (&self->object_manager);
 
   G_OBJECT_CLASS (bijiben_shell_search_provider_app_parent_class)->dispose (obj);
 }
@@ -396,39 +365,23 @@ search_provider_app_dispose (GObject *obj)
 static void
 search_provider_app_startup (GApplication *app)
 {
-  BijibenShellSearchProviderApp *self = BIJIBEN_SHELL_SEARCH_PROVIDER_APP (app);
-
   G_APPLICATION_CLASS (bijiben_shell_search_provider_app_parent_class)->startup (app);
 
   /* hold indefinitely if we're asked to persist*/
   if (g_getenv ("BIJIBEN_SEARCH_PROVIDER_PERSIST") != NULL)
     g_application_hold (app);
-
-  self->name_owner_id = g_bus_own_name (G_BUS_TYPE_SESSION,
-                                        "org.gnome.Bijiben.SearchProvider",
-                                        G_BUS_NAME_OWNER_FLAGS_NONE,
-                                        search_provider_bus_acquired_cb,
-                                        search_provider_name_acquired_cb,
-                                        search_provider_name_lost_cb,
-                                        app, NULL);
 }
 
 static void
 bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
 {
-  GApplication *app = G_APPLICATION (self);
   GError *error = NULL;
-
-  g_application_set_inactivity_timeout (app, SEARCH_PROVIDER_INACTIVITY_TIMEOUT);
-  g_application_set_application_id (app, "org.gnome.Bijiben.SearchProvider");
-  g_application_set_flags (app, G_APPLICATION_IS_SERVICE);
 
   self->connection = tracker_sparql_connection_get (NULL, &error);
 
   if (error)
   {
-     g_warning ("%s", error->message);
-     g_application_release (app);
+     g_error ("%s", error->message);
   }
 }
 
@@ -439,6 +392,8 @@ bijiben_shell_search_provider_app_class_init (BijibenShellSearchProviderAppClass
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
   aclass->startup = search_provider_app_startup;
+  aclass->dbus_register = search_provider_app_dbus_register;
+  aclass->dbus_unregister = search_provider_app_dbus_unregister;
   oclass->dispose = search_provider_app_dispose;
 }
 
@@ -446,6 +401,9 @@ static GApplication *
 bijiben_shell_search_provider_app_new (void)
 {
   return g_object_new (bijiben_shell_search_provider_app_get_type (),
+                       "application-id", "org.gnome.Bijiben.SearchProvider",
+                       "flags", G_APPLICATION_IS_SERVICE,
+                       "inactivity-timeout", SEARCH_PROVIDER_INACTIVITY_TIMEOUT,
                        NULL);
 }
 

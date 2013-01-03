@@ -432,10 +432,9 @@ processNode (BijiLazyDeserializer *self)
   xmlTextReaderPtr r = self->priv->r;
   BijiNoteObj * n = self->priv->note;
   xmlChar   *name;
-  GdkRGBA   *color;
-  gchar     *tag;
+  GdkRGBA    color;
+  gchar     *tag, *color_str;
   GString   *norm;
-  gchar     *debug;
 
   name = xmlTextReaderName (r);
 
@@ -469,20 +468,15 @@ processNode (BijiLazyDeserializer *self)
 
   if (g_strcmp0 ((gchar*) name, "color") == 0 )  
   {
-    color = g_new (GdkRGBA,1);
-    debug = (gchar*) xmlTextReaderReadString (r);
+    color_str = (gchar*) xmlTextReaderReadString (r);
 
-    if ( gdk_rgba_parse (color,debug))
-    {
-      biji_note_obj_set_rgba (n, color);
-    }
+    if (gdk_rgba_parse (&color, color_str))
+      biji_note_obj_set_rgba (n, &color);
+
     else
-    {
-      g_warning ("color invalid:%s",debug);
-    }
+      g_warning ("color invalid:%s", color_str);
 
-    free (debug);
-
+    free (color_str);
   }
 
   if ( g_strcmp0((gchar*)name,"tag") == 0 )  

@@ -1,14 +1,14 @@
 # Serbian translation for bijiben.
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-07 01:25+0000\n"
-"PO-Revision-Date: 2012-12-07 09:47+0200\n"
+"POT-Creation-Date: 2013-01-02 01:20+0000\n"
+"PO-Revision-Date: 2013-01-04 21:56+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Bižiben"
 
@@ -34,6 +34,19 @@ msgstr "Postavite beleške, naznačite datoteke!"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Hvatač beleški"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple noteboook for GNOME"
+msgstr "Jednostavna beležnica za Gnom"
+
+#: ../src/bjb-app-menu.c:152
+#| msgid "_External data"
+msgid "External Notes"
+msgstr "Spoljne beleške"
+
+#: ../src/bjb-app-menu.c:167
+msgid "Click on the external notes to import"
+msgstr "Kliknite na spoljne beleške da ih uvezete"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -129,13 +142,54 @@ msgstr "Naznaka"
 msgid "Delete"
 msgstr "Obriši"
 
+#. create dialog
+#: ../src/bjb-settings.c:191
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "Postavke"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Slovni lik beleške"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Osnovna boja"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Danas"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Juče"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Ove nedelje"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Ovog meseca"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Ove godine"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Nepoznato"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_Novi prozor"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External data"
-msgstr "_Spoljni podaci"
+#| msgid "_External data"
+msgid "_External Notes"
+msgstr "_Spoljne beleške"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"

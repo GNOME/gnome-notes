@@ -1,14 +1,14 @@
 # Serbian translation for bijiben.
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-07 01:25+0000\n"
-"PO-Revision-Date: 2012-12-07 09:47+0200\n"
+"POT-Creation-Date: 2013-01-02 01:20+0000\n"
+"PO-Revision-Date: 2013-01-04 21:56+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Бижибен"
 
@@ -34,6 +34,19 @@ msgstr "Поставите белешке, назначите датотеке!"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Хватач белешки"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple noteboook for GNOME"
+msgstr "Једноставна бележница за Гном"
+
+#: ../src/bjb-app-menu.c:152
+#| msgid "_External data"
+msgid "External Notes"
+msgstr "Спољне белешке"
+
+#: ../src/bjb-app-menu.c:167
+msgid "Click on the external notes to import"
+msgstr "Кликните на спољне белешке да их увезете"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -129,13 +142,54 @@ msgstr "Назнака"
 msgid "Delete"
 msgstr "Обриши"
 
+#. create dialog
+#: ../src/bjb-settings.c:191
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "Поставке"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Словни лик белешке"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Основна боја"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Данас"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Јуче"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Ове недеље"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Овог месеца"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Ове године"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Непознато"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_Нови прозор"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External data"
-msgstr "_Спољни подаци"
+#| msgid "_External data"
+msgid "_External Notes"
+msgstr "_Спољне белешке"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"

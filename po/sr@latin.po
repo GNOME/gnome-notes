@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-02 01:20+0000\n"
-"PO-Revision-Date: 2013-01-04 21:56+0200\n"
+"POT-Creation-Date: 2013-01-04 20:57+0000\n"
+"PO-Revision-Date: 2013-01-05 17:32+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -39,12 +39,18 @@ msgstr "Hvatač beleški"
 msgid "Simple noteboook for GNOME"
 msgstr "Jednostavna beležnica za Gnom"
 
-#: ../src/bjb-app-menu.c:152
-#| msgid "_External data"
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr ""
+"  Miroslav Nikolić\n"
+"\n"
+"  http://prevod.org — prevod na srpski jezik"
+
+#: ../src/bjb-app-menu.c:153
 msgid "External Notes"
 msgstr "Spoljne beleške"
 
-#: ../src/bjb-app-menu.c:167
+#: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Kliknite na spoljne beleške da ih uvezete"
 
@@ -144,7 +150,6 @@ msgstr "Obriši"
 
 #. create dialog
 #: ../src/bjb-settings.c:191
-#| msgid "_Preferences"
 msgid "Preferences"
 msgstr "Postavke"
 
@@ -187,7 +192,6 @@ msgid "_New Window"
 msgstr "_Novi prozor"
 
 #: ../src/resources/app-menu.ui.h:2
-#| msgid "_External data"
 msgid "_External Notes"
 msgstr "_Spoljne beleške"
 

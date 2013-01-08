@@ -2,25 +2,25 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-21 19:38+0000\n"
-"PO-Revision-Date: 2012-12-25 11:56+0100\n"
+"POT-Creation-Date: 2013-01-02 01:20+0000\n"
+"PO-Revision-Date: 2013-01-08 16:28+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Gtranslator 2.91.5\n"
 
-#: ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -36,12 +36,15 @@ msgstr "Publique notas y etiquete archivos"
 msgid "Note-taker"
 msgstr "Para tomar notas"
 
-#: ../src/bjb-app-menu.c:150
-#| msgid "_External data"
+#: ../src/bjb-app-menu.c:35
+msgid "Simple noteboook for GNOME"
+msgstr "Cuaderno de notas sencillo para GNOME"
+
+#: ../src/bjb-app-menu.c:152
 msgid "External Notes"
 msgstr "Notas externas"
 
-#: ../src/bjb-app-menu.c:165
+#: ../src/bjb-app-menu.c:167
 msgid "Click on the external notes to import"
 msgstr "Pulse en las notas externas para importarlas"
 
@@ -140,27 +143,49 @@ msgid "Delete"
 msgstr "Eliminar"
 
 #. create dialog
-#: ../src/bjb-settings.c:190
-#| msgid "_Preferences"
+#: ../src/bjb-settings.c:191
 msgid "Preferences"
 msgstr "Preferencias"
 
 #. Note Font
-#: ../src/bjb-settings.c:221
+#: ../src/bjb-settings.c:222
 msgid "Note Font"
 msgstr "Tipografía de la nota"
 
 #. Default Color
-#: ../src/bjb-settings.c:230
+#: ../src/bjb-settings.c:231
 msgid "Default Color"
 msgstr "Color predeterminado"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Hoy"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Esta semana"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Este mes"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Este año"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Desconocida"
 
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "Ventana _nueva"
 
 #: ../src/resources/app-menu.ui.h:2
-#| msgid "_External data"
 msgid "_External Notes"
 msgstr "Notas externas"
 

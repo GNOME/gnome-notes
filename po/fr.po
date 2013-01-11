@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-02 00:53+0100\n"
-"PO-Revision-Date: 2012-12-22 01:43+0200\n"
+"POT-Creation-Date: 2013-01-04 22:58+0100\n"
+"PO-Revision-Date: 2013-01-11 01:59+0200\n"
 "Last-Translator: Pierre-Yves Luyten <py@luyten.fr>\n"
 "Language-Team: gnome-l10n-fr@gnome.org\n"
 "Language: fr\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Bijiben"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
-msgstr "notes;pense-bêtes"
+msgstr "notes;pense-bêtes;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
@@ -32,12 +32,19 @@ msgstr "Poster des notes, étiqueter des fichiers!"
 msgid "Note-taker"
 msgstr "Editeur de notes"
 
-#: ../src/bjb-app-menu.c:152
-#, fuzzy
+#: ../src/bjb-app-menu.c:35
+msgid "Simple noteboook for GNOME"
+msgstr "Cahier de notes pour GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr "Pierre-Yves Luyten"
+
+#: ../src/bjb-app-menu.c:153
 msgid "External Notes"
 msgstr "Notes Externes"
 
-#: ../src/bjb-app-menu.c:167
+#: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Cliquer sur les notes à importer"
 

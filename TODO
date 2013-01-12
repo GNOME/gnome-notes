@@ -1,18 +1,12 @@
-   UI ENHANCEMENT
- * show lines for note editor
- * color chooser dialog
-
-   IMPORTANT BUGS
- * closing a "new window" makes bijien crash
-
-   MINOR BUGS
+   BUGS
+ * fix copy and paste for notes edition
  * gnome-activity-journal cannot open notes
 
+   UI ENHANCEMENT
+ * improve last updated footer
+
    ROADMAP
- * gnome online account / snowy
+ * gnome online account
  * probably "collections" (instead current tag chooser dialog)
  * being able to integrate vjournal, plain txt, html notes, html text
 
-   INTERNAL TODO
- * delete widgets for libgd
- * probably use WebKitWebView

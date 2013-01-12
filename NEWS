@@ -1,8 +1,26 @@
+Overview of changes in 3.7.4
+============================
+
+* Bug fixed
+  690860 - Rework serialization format to be XHTML 
+
+* New translations:
+  ca
+  pt
+  zh
+
 Overview of changes in 3.7.3
 ============================
 
 * Bigger lines
 
+* New translations:
+  es
+  fr
+  gl
+  pl
+  sl
+  sr
 
 Overview of changes in 3.7.2
 ============================

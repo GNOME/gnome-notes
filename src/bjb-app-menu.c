@@ -32,7 +32,7 @@ void show_about_dialog(GtkApplication *app)
   
   gtk_show_about_dialog( g_list_nth_data (windows, 0),
   "program-name", _("Bijiben"),
-  "comments", _("Simple noteboook for GNOME"),
+  "comments", _("Simple notebook for GNOME"),
   "license", "GPLv3",
   "version", VERSION,
   "copyright", "Pierre-Yves Luyten 2012",

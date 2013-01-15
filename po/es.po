@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-02 01:20+0000\n"
-"PO-Revision-Date: 2013-01-08 16:28+0100\n"
+"POT-Creation-Date: 2013-01-08 16:26+0000\n"
+"PO-Revision-Date: 2013-01-15 11:29+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -40,11 +40,15 @@ msgstr "Para tomar notas"
 msgid "Simple noteboook for GNOME"
 msgstr "Cuaderno de notas sencillo para GNOME"
 
-#: ../src/bjb-app-menu.c:152
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013"
+
+#: ../src/bjb-app-menu.c:153
 msgid "External Notes"
 msgstr "Notas externas"
 
-#: ../src/bjb-app-menu.c:167
+#: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Pulse en las notas externas para importarlas"
 

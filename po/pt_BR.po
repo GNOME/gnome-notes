@@ -2,15 +2,15 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2012.
+# Enrico Nicoletto <liverig@gmail.com>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-25 11:12+0000\n"
-"PO-Revision-Date: 2012-12-27 04:26-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-01-15 13:33+0000\n"
+"PO-Revision-Date: 2013-01-15 11:55-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/bijiben.desktop.in.in.h:1
+#: ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -28,17 +29,27 @@ msgstr "notas;lembrete;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
-msgstr "Crie notas, aplique tags em arquivos!"
+msgstr "Crie notas, aplique etiquetas em arquivos!"
 
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Tomador de notas"
 
-#: ../src/bjb-app-menu.c:152
+#: ../src/bjb-app-menu.c:35
+msgid "Simple noteboook for GNOME"
+msgstr "Um simples catálogo de notas para o GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr ""
+"Rafael Ferreira <rafael.f.f1@gmail.com>, 2012.\n"
+"Enrico Nicoletto <liverig@gmail.com>, 2013."
+
+#: ../src/bjb-app-menu.c:153
 msgid "External Notes"
 msgstr "Notas externas"
 
-#: ../src/bjb-app-menu.c:167
+#: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Clique nas notas externas para importar"
 
@@ -56,11 +67,11 @@ msgstr "Tachado"
 
 #: ../src/bjb-editor-toolbar.c:225
 msgid "Link"
-msgstr "Link"
+msgstr "Sublinhado"
 
 #: ../src/bjb-main-toolbar.c:179
 msgid "Click on items to select them"
-msgstr "Clique em itens para selecioná-los"
+msgstr "Clique nos itens para selecioná-los"
 
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
@@ -70,7 +81,7 @@ msgstr "%d selecionado"
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
 msgid "Results for %s"
-msgstr "Resultados do %s"
+msgstr "Resultados para %s"
 
 #: ../src/bjb-main-toolbar.c:223
 msgid "New and Recent"
@@ -111,7 +122,7 @@ msgstr "Renomear"
 
 #: ../src/bjb-note-view.c:303
 msgid "Tags"
-msgstr "Tags"
+msgstr "Etiquetas"
 
 #. Delete Note
 #: ../src/bjb-note-view.c:314
@@ -130,7 +141,7 @@ msgstr "Última atualização "
 
 #: ../src/bjb-selection-toolbar.c:172
 msgid "Tag"
-msgstr "Tag"
+msgstr "Etiqueta"
 
 #: ../src/bjb-selection-toolbar.c:196
 msgid "Delete"
@@ -151,6 +162,30 @@ msgstr "Fonte da nota"
 msgid "Default Color"
 msgstr "Core padrão"
 
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Hoje"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Ontem"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Esta semana"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Este mês"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Este ano"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Desconhecido"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_Nova janela"
@@ -165,7 +200,7 @@ msgstr "_Preferências"
 
 #: ../src/resources/app-menu.ui.h:4
 msgid "_About Bijiben"
-msgstr "_Sobre Bijiben"
+msgstr "S_obre Bijiben"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
@@ -174,3 +209,4 @@ msgstr "_Ajuda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Sair"
+

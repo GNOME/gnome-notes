@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-02 02:24+0100\n"
-"PO-Revision-Date: 2013-01-02 02:25+0100\n"
+"POT-Creation-Date: 2013-01-16 20:19+0100\n"
+"PO-Revision-Date: 2013-01-16 20:20+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -40,7 +40,7 @@ msgid "Note-taker"
 msgstr "Robienie notatek"
 
 #: ../src/bjb-app-menu.c:35
-msgid "Simple noteboook for GNOME"
+msgid "Simple notebook for GNOME"
 msgstr "Prosty notatnik dla środowiska GNOME"
 
 #: ../src/bjb-app-menu.c:39

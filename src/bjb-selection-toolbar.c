@@ -90,8 +90,13 @@ static void
 bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 {
   BjbSelectionToolbarPrivate *priv = self->priv;
+  GdkRGBA color;
 
   gtk_widget_set_visible (priv->toolbar_trash, TRUE);
+
+  /* Color */
+  if (bjb_main_view_get_selected_notes_color (priv->view, &color))
+    gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
 }
 
 static void

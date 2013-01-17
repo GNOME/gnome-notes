@@ -245,6 +245,22 @@ action_tag_selected_notes (GtkWidget *w, BjbMainView *view)
   g_list_free (notes);
 }
 
+gboolean
+bjb_main_view_get_selected_notes_color (BjbMainView *view, GdkRGBA *color)
+{
+  GList *paths;
+  gchar *url;
+  BijiNoteObj *note;
+
+  /*  GtkTreePath */
+  paths = get_selected_paths(view);
+  url = get_note_url_from_tree_path (paths->data, view) ;
+  note = note_book_get_note_at_path (bjb_window_base_get_book(view->priv->window), url);
+  g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
+
+  return biji_note_obj_get_rgba (note, color);
+}
+
 void
 action_color_selected_notes (GtkWidget *w, BjbMainView *view)
 {

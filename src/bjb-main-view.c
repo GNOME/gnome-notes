@@ -314,6 +314,41 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
   g_list_free (notes);
 }
 
+/* Select all, escape */
+static gboolean
+on_key_press_event_cb (GtkWidget *widget,
+                       GdkEvent  *event,
+                       gpointer   user_data)
+{
+  BjbMainView *self = BJB_MAIN_VIEW (user_data);
+  BjbMainViewPriv *priv = self->priv;
+
+  switch (event->key.keyval)
+  {
+    case GDK_KEY_a:
+    case GDK_KEY_A:
+      if (gd_main_view_get_selection_mode (priv->view) && event->key.state & GDK_CONTROL_MASK)
+      {
+        gd_main_view_select_all (priv->view);
+        return TRUE;
+      }
+      break;
+
+    case GDK_KEY_Escape:
+      if (gd_main_view_get_selection_mode (priv->view))
+      {
+        gd_main_view_set_selection_mode (priv->view, FALSE);
+        on_selection_mode_changed (priv->main_toolbar);
+        return TRUE;
+      }
+
+    default:
+      break;
+  }
+
+  return FALSE;
+}
+
 /* Go to selection mode with right-click */
 static gboolean
 on_button_press_event_cb (GtkWidget *widget,
@@ -424,6 +459,13 @@ bjb_main_view_constructed(GObject *o)
   priv->view = gd_main_view_new (DEFAULT_VIEW);
   bjb_controller_set_main_view (priv->controller, priv->view);
 
+  g_signal_connect (priv->window, "key-press-event",
+                    G_CALLBACK (on_key_press_event_cb), self);
+  g_signal_connect (priv->view, "button-press-event",
+                    G_CALLBACK (on_button_press_event_cb), self);
+  g_signal_connect(priv->view,"item-activated",
+                   G_CALLBACK(on_item_activated),self);
+
   /* Probably move this to window_base or delete this */
   filler = clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_CENTER,
                                    CLUTTER_BIN_ALIGNMENT_CENTER);
@@ -486,14 +528,9 @@ bjb_main_view_constructed(GObject *o)
   clutter_actor_set_x_expand (view, TRUE);
   clutter_actor_set_y_expand (view, TRUE);
 
-  gd_main_view_set_selection_mode ( priv->view, FALSE);
+  gd_main_view_set_selection_mode (priv->view, FALSE);
   gd_main_view_set_model(priv->view,
                          bjb_controller_get_model(priv->controller));
-
-  g_signal_connect (priv->view, "button-press-event",
-                    G_CALLBACK (on_button_press_event_cb), self);
-  g_signal_connect(priv->view,"item-activated",
-                   G_CALLBACK(on_item_activated),self);
 
   /* Selection Panel */
   panel = bjb_selection_toolbar_new (priv->content,priv->view,self);

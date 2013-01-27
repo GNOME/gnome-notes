@@ -178,7 +178,7 @@ update_selection_label (GdMainView *view, BjbMainToolbar *self)
   if (length == 0)
     label = g_strdup(_("Click on items to select them"));
   else
-    label = g_strdup_printf (_("%d selected"), length);
+    label = g_strdup_printf (g_dngettext (GETTEXT_PACKAGE, "%d selected", "%d selected", length),length);
 
   gd_main_toolbar_set_labels (self->priv->toolbar, NULL, label);
   g_free (label);

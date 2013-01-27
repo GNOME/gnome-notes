@@ -146,21 +146,21 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
   gtk_widget_show_all (GTK_WIDGET (priv->group));
 
   /* Cut */
-  priv->toolbar_cut = gtk_button_new_with_label ("Cut");
+  priv->toolbar_cut = gtk_button_new_with_label (_("Cut"));
   gtk_container_add (GTK_CONTAINER (priv->box), priv->toolbar_cut);
   gtk_widget_override_background_color (priv->toolbar_cut,
                                         GTK_STATE_FLAG_NORMAL,
                                         &black);
 
   /* Copy */
-  priv->toolbar_copy = gtk_button_new_with_label ("Copy");
+  priv->toolbar_copy = gtk_button_new_with_label (_("Copy"));
   gtk_container_add (GTK_CONTAINER (priv->box), priv->toolbar_copy);
   gtk_widget_override_background_color (priv->toolbar_copy,
                                         GTK_STATE_FLAG_NORMAL,
                                         &black);
 
   /* 'n paste */
-  priv->toolbar_paste = gtk_button_new_with_label ("Paste");
+  priv->toolbar_paste = gtk_button_new_with_label (_("Paste"));
   gtk_container_add (GTK_CONTAINER (priv->box), priv->toolbar_paste);
   gtk_widget_override_background_color (priv->toolbar_paste,
                                         GTK_STATE_FLAG_NORMAL,

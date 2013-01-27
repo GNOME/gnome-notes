@@ -20,6 +20,8 @@
  * Just overrides the dialog to choose specific palette
  * But a dedicated dialog might be better */
 
+#include <glib/gi18n.h>
+
 #include "bjb-color-button.h"
 
 // Bijiben probably wants something like 6 light colors
@@ -141,7 +143,7 @@ bjb_color_button_init (BjbColorButton *self)
   BjbColorButtonPrivate *priv = BJB_COLOR_BUTTON_GET_PRIVATE(self);
   self->priv = priv;
 
-  priv->title = "Choose a color for note";
+  priv->title = _("Choose a color for note");
 }
 
 static void

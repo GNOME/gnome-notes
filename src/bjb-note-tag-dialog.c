@@ -15,6 +15,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <glib/gi18n.h>
+
 #include "bjb-note-tag-dialog.h"
 #include "bjb-window-base.h"
 
@@ -262,7 +264,7 @@ bjb_note_tag_dialog_constructed (GObject *obj)
   area = gtk_dialog_get_content_area (GTK_DIALOG (self));
   gtk_container_set_border_width (GTK_CONTAINER (area), 8);
 
-  label = gtk_label_new ("Enter a name to create a tag");
+  label = gtk_label_new (_("Enter a name to create a tag"));
   gtk_box_pack_start (GTK_BOX (area), label, FALSE, FALSE, 2);
 
   /* New Tag */
@@ -272,7 +274,7 @@ bjb_note_tag_dialog_constructed (GObject *obj)
   self->priv->entry = gtk_entry_new();
   gtk_box_pack_start (GTK_BOX (hbox), self->priv->entry, TRUE, TRUE, 0);
 
-  new = gtk_button_new_with_label ("New tag");
+  new = gtk_button_new_with_label (_("New tag"));
   g_signal_connect_swapped (new, "clicked", G_CALLBACK (add_new_tag), self);
 
   gtk_box_pack_start (GTK_BOX (hbox), new, FALSE, FALSE, 2);

@@ -1,7 +1,6 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-#
 # Marek Černocký <marek@manet.cz>, 2013.
 #
 msgid ""
@@ -9,10 +8,10 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-19 00:41+0000\n"
-"PO-Revision-Date: 2013-01-27 22:44+0100\n"
+"POT-Creation-Date: 2013-01-27 23:12+0000\n"
+"PO-Revision-Date: 2013-01-28 09:08+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,6 +51,25 @@ msgstr "Externí poznámky"
 msgid "Click on the external notes to import"
 msgstr "Kliknutím na externí poznámky je naimportujete"
 
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Výběr barvy pro poznámku"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Vyjmout"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Kopírovat"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Vložit"
+
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
 msgstr "Tučné"
@@ -75,7 +93,10 @@ msgstr "Klikáním na položky je označíte"
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
 msgid "%d selected"
-msgstr "%d vybráno"
+msgid_plural "%d selected"
+msgstr[0] "%d vybrána"
+msgstr[1] "%d vybrány"
+msgstr[2] "%d vybráno"
 
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
@@ -89,6 +110,14 @@ msgstr "Nové a nedávné"
 #: ../src/bjb-main-toolbar.c:243
 msgid "New"
 msgstr "Nová"
+
+#: ../src/bjb-note-tag-dialog.c:267
+msgid "Enter a name to create a tag"
+msgstr "Zadejte název štítku, který chcete vytvořit"
+
+#: ../src/bjb-note-tag-dialog.c:277
+msgid "New tag"
+msgstr "Nový štítek"
 
 #: ../src/bjb-note-view.c:202
 msgid "Rename Note"

@@ -2,27 +2,26 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, 2012.
+# Matej Urbančič <mateju@svn.gnome.org>, 2012-2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-18 01:35+0000\n"
-"PO-Revision-Date: 2012-12-18 08:15+0100\n"
+"POT-Creation-Date: 2013-01-28 10:44+0000\n"
+"PO-Revision-Date: 2013-01-28 13:38+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -37,6 +36,41 @@ msgstr "Objava sporočilc, označevanje datotek!"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Zapisovalec sporočilc"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple notebook for GNOME"
+msgstr "Enostavna sporočilca za GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr "Matej Urbančič <mateju@svn.gnome.org>"
+
+#: ../src/bjb-app-menu.c:153
+msgid "External Notes"
+msgstr "Zunanja sporočilca"
+
+#: ../src/bjb-app-menu.c:168
+msgid "Click on the external notes to import"
+msgstr "Kliknite na zunanja sporočilca za uvoz v program."
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Izbor barve za sporočilce"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Izreži"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Kopiraj"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Prilepi"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -61,7 +95,11 @@ msgstr "S klikom se predmet izbere"
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
 msgid "%d selected"
-msgstr "%d izbranih"
+msgid_plural "%d selected"
+msgstr[0] "%d izbranih"
+msgstr[1] "%d izbrana"
+msgstr[2] "%d izbrani"
+msgstr[3] "%d izbrane"
 
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
@@ -75,6 +113,14 @@ msgstr "Novo in nedavno"
 #: ../src/bjb-main-toolbar.c:243
 msgid "New"
 msgstr "Novo"
+
+#: ../src/bjb-note-tag-dialog.c:267
+msgid "Enter a name to create a tag"
+msgstr "Vnos imena nove oznake"
+
+#: ../src/bjb-note-tag-dialog.c:277
+msgid "New tag"
+msgstr "Nova oznaka"
 
 #: ../src/bjb-note-view.c:202
 msgid "Rename Note"
@@ -124,13 +170,52 @@ msgstr "Sporočilca"
 msgid "Last updated "
 msgstr "Zadnjič posodobljeno"
 
-#: ../src/bjb-selection-toolbar.c:172
+#: ../src/bjb-selection-toolbar.c:177
 msgid "Tag"
 msgstr "Oznaka"
 
-#: ../src/bjb-selection-toolbar.c:196
+#: ../src/bjb-selection-toolbar.c:201
 msgid "Delete"
 msgstr "Izbriši"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Možnosti"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Pisava sporočilca"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Privzeta barva"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Danes"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Včeraj"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Ta teden"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Ta mesec"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "To leto"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Neznano"
 
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"

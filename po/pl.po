@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-16 20:19+0100\n"
-"PO-Revision-Date: 2013-01-16 20:20+0100\n"
+"POT-Creation-Date: 2013-01-28 21:01+0100\n"
+"PO-Revision-Date: 2013-01-28 21:02+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -57,6 +57,25 @@ msgstr "Zewnętrzne notatki"
 msgid "Click on the external notes to import"
 msgstr "Kliknięcie zewnętrznych notatek je zaimportuje"
 
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Wybór koloru notatki"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Wytnij"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Skopiuj"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Wklej"
+
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
 msgstr "Pogrubienie"
@@ -80,7 +99,10 @@ msgstr "Kliknięcie na elementach zaznacza je"
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
 msgid "%d selected"
-msgstr "Zaznaczono: %d"
+msgid_plural "%d selected"
+msgstr[0] "Zaznaczono: %d"
+msgstr[1] "Zaznaczono: %d"
+msgstr[2] "Zaznaczono: %d"
 
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
@@ -94,6 +116,14 @@ msgstr "Nowe i ostatnie"
 #: ../src/bjb-main-toolbar.c:243
 msgid "New"
 msgstr "Nowa"
+
+#: ../src/bjb-note-tag-dialog.c:267
+msgid "Enter a name to create a tag"
+msgstr "Proszę wprowadzić nazwę, aby utworzyć etykietę"
+
+#: ../src/bjb-note-tag-dialog.c:277
+msgid "New tag"
+msgstr "Nowa etykieta"
 
 #: ../src/bjb-note-view.c:202
 msgid "Rename Note"
@@ -143,11 +173,11 @@ msgstr "Notatki"
 msgid "Last updated "
 msgstr "Ostatnio zaktualizowano "
 
-#: ../src/bjb-selection-toolbar.c:172
+#: ../src/bjb-selection-toolbar.c:177
 msgid "Tag"
 msgstr "Etykieta"
 
-#: ../src/bjb-selection-toolbar.c:196
+#: ../src/bjb-selection-toolbar.c:201
 msgid "Delete"
 msgstr "Usuń"
 

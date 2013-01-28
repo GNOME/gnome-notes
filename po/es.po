@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 22:44+0000\n"
-"PO-Revision-Date: 2013-01-16 12:57+0100\n"
+"POT-Creation-Date: 2013-01-27 23:12+0000\n"
+"PO-Revision-Date: 2013-01-28 11:09+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -37,7 +37,6 @@ msgid "Note-taker"
 msgstr "Para tomar notas"
 
 #: ../src/bjb-app-menu.c:35
-#| msgid "Simple noteboook for GNOME"
 msgid "Simple notebook for GNOME"
 msgstr "Cuaderno de notas sencillo para GNOME"
 
@@ -52,6 +51,25 @@ msgstr "Notas externas"
 #: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Pulse en las notas externas para importarlas"
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Elija un color para la nota"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Cortar"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Copiar"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Pegar"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -75,8 +93,11 @@ msgstr "Pulse sobre los elementos para seleccionarlos"
 
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
+#| msgid "%d selected"
 msgid "%d selected"
-msgstr "%d seleccionado"
+msgid_plural "%d selected"
+msgstr[0] "%d seleccionada"
+msgstr[1] "%d seleccionadas"
 
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
@@ -90,6 +111,14 @@ msgstr "Nuevas y recientes"
 #: ../src/bjb-main-toolbar.c:243
 msgid "New"
 msgstr "Nuevo"
+
+#: ../src/bjb-note-tag-dialog.c:267
+msgid "Enter a name to create a tag"
+msgstr "Introduzca un nombre para crear la etiqueta"
+
+#: ../src/bjb-note-tag-dialog.c:277
+msgid "New tag"
+msgstr "Etiqueta nueva"
 
 #: ../src/bjb-note-view.c:202
 msgid "Rename Note"
@@ -139,11 +168,11 @@ msgstr "Notas"
 msgid "Last updated "
 msgstr "Última actualización"
 
-#: ../src/bjb-selection-toolbar.c:172
+#: ../src/bjb-selection-toolbar.c:177
 msgid "Tag"
 msgstr "Etiqueta"
 
-#: ../src/bjb-selection-toolbar.c:196
+#: ../src/bjb-selection-toolbar.c:201
 msgid "Delete"
 msgstr "Eliminar"
 

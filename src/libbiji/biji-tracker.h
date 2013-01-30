@@ -24,15 +24,19 @@
 
 #include <libbiji/libbiji.h>
 
+/* todo : find this on glib */
+typedef void (*BijiFunc) (gpointer user_data);
+
 /* All notes matching (either content or tag) */
 GList * biji_get_notes_with_strings_or_tag_finish (GObject *source_object, GAsyncResult *res, BijiNoteBook *book);
 void biji_get_notes_with_string_or_tag_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data);
 
 /* Get tags */
 GList * biji_get_all_tags_finish (GObject *source_object, GAsyncResult *res);
+
 void biji_get_all_tracker_tags_async (GAsyncReadyCallback f, gpointer user_data);
 
-void push_tag_to_tracker(gchar *tag);
+void push_tag_to_tracker (const gchar *tag, BijiFunc afterward, gpointer user_data);
 
 void remove_tag_from_tracker(gchar *tag);
 

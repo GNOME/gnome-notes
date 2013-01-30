@@ -52,12 +52,16 @@ struct _BjbNoteTagDialogPrivate
   // parent
   GtkWindow *window;
 
-  // to create new tag
+  // widgets
   GtkWidget    * entry;
+  GtkTreeView  * view;
 
   // data
   GList *notes;
   GtkListStore *store;
+  
+  // tmp when a new tag added
+  gchar *tag_to_scroll_to;
 };
 
 #define BJB_NOTE_TAG_DIALOG_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_NOTE_TAG_DIALOG, BjbNoteTagDialogPrivate))
@@ -91,25 +95,92 @@ append_tag (gchar *tag, BjbNoteTagDialog *self)
                       COL_TAG_NAME ,          tag, -1);
 }
 
-/* Current tags selection & sorting might be improved */
+static gint
+bjb_compare_tag (gconstpointer a, gconstpointer b)
+{
+  gchar *up_a, *up_b;
+  gint retval;
+
+  up_a = g_utf8_strup (a, -1);
+  up_b = g_utf8_strup (b, -1);
+  retval = g_strcmp0 (up_a, up_b);
+
+  g_free (up_a);
+  g_free (up_b);
+  return retval;
+}
+
+/* If true, free the retval with gtk_tree_path_free */
+static gboolean
+bjb_get_path_for_str (GtkTreeModel  *model,
+                      GtkTreePath  **return_value,
+                      gint           column,
+                      gchar         *needle)
+{
+  gboolean retval= FALSE;
+  GtkTreeIter iter;
+  gboolean valid = gtk_tree_model_get_iter_first (model, &iter);
+  *return_value = NULL;
+
+  while (valid)
+  {
+    gchar *cur_str = NULL;
+    gtk_tree_model_get (model, &iter, column, &cur_str, -1);
+
+    if (cur_str)
+    {
+      if (g_strcmp0 (cur_str, needle)==0)
+        *return_value = gtk_tree_model_get_path (model, &iter);
+
+      g_free (cur_str);
+    }
+
+    if (*return_value)
+    {
+      retval = TRUE;
+      break;
+    }
+
+    valid = gtk_tree_model_iter_next (model, &iter);
+  }
+
+  return retval;
+}
+
 static void
 bjb_note_tag_dialog_handle_tags (GObject *source_object,
                                  GAsyncResult *res,
                                  gpointer user_data)
 {
   BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (user_data);
+  BjbNoteTagDialogPrivate *priv = self->priv;
 
   GList *tags;
 
   tags = biji_get_all_tags_finish (source_object, res);
-  tags = g_list_sort (tags, (GCompareFunc) g_strcmp0);
+  tags = g_list_sort (tags, bjb_compare_tag);
 
   g_list_foreach (tags, (GFunc) append_tag, self);
   g_list_free_full (tags, g_free);
+
+  /* If a new tag was added, scroll & free */
+  if (priv->tag_to_scroll_to)
+  {
+    GtkTreePath *path = NULL;
+
+    if (bjb_get_path_for_str (GTK_TREE_MODEL (priv->store), &path,
+                              COL_TAG_NAME, priv->tag_to_scroll_to))
+    {
+      gtk_tree_view_scroll_to_cell (priv->view, path, NULL, TRUE, 0.5, 0.5);
+      gtk_tree_path_free (path);
+    }
+    
+    g_clear_pointer (& (priv->tag_to_scroll_to), g_free);
+  }
 }
 
 static void
-update_tags_model (BjbNoteTagDialog *self)
+update_tags_model_async (BjbNoteTagDialog *self)
 {
   gtk_list_store_clear (self->priv->store);
   biji_get_all_tracker_tags_async (bjb_note_tag_dialog_handle_tags, self);
@@ -163,10 +234,24 @@ on_tag_toggled (GtkCellRendererToggle *cell,
 }
 
 static void
+on_new_tag_added_cb (gpointer user_data)
+{
+  BjbNoteTagDialog *self = user_data;
+  BjbNoteTagDialogPrivate *priv = self->priv;
+
+  priv->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry)));
+  g_list_foreach (priv->notes, (GFunc) note_dialog_add_tag, priv->tag_to_scroll_to);
+
+  update_tags_model_async (self);
+  gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
+}
+
+static void
 add_new_tag (BjbNoteTagDialog *self)
 {
-  push_tag_to_tracker ((gchar*) gtk_entry_get_text(GTK_ENTRY(self->priv->entry)));
-  update_tags_model (self);
+  push_tag_to_tracker (gtk_entry_get_text (GTK_ENTRY (self->priv->entry)),
+                       on_new_tag_added_cb,
+                       self );
 }
 
 static void
@@ -231,6 +316,7 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
   self->priv = priv;
   priv->notes = NULL;
   priv->window = NULL;
+  priv->tag_to_scroll_to = NULL;
 
   gtk_window_set_default_size (GTK_WINDOW (self),
                                BJB_NOTE_TAG_DIALOG_DEFAULT_WIDTH,
@@ -257,7 +343,6 @@ bjb_note_tag_dialog_constructed (GObject *obj)
   BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (obj);
   BjbNoteTagDialogPrivate *priv = self->priv;
   GtkWidget *hbox, *label, *new, *area, *sw, *close;
-  GtkTreeView *treeview;
 
   gtk_window_set_transient_for (GTK_WINDOW (self), priv->window);
 
@@ -287,16 +372,16 @@ bjb_note_tag_dialog_constructed (GObject *obj)
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_AUTOMATIC);
 
-  update_tags_model (self);
-  treeview = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->store)));
+  update_tags_model_async (self);
+  priv->view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->store)));
   g_object_unref (self->priv->store);
 
-  gtk_tree_view_set_rules_hint (treeview, TRUE);
-  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (treeview),
+  gtk_tree_view_set_rules_hint (priv->view, TRUE);
+  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (priv->view),
                                GTK_SELECTION_MULTIPLE);
   
-  add_columns (treeview, self);
-  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (treeview));
+  add_columns (priv->view, self);
+  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (priv->view));
 
   gtk_box_pack_start (GTK_BOX (area), sw, TRUE, TRUE,2);
 
@@ -312,6 +397,13 @@ bjb_note_tag_dialog_constructed (GObject *obj)
 static void
 bjb_note_tag_dialog_finalize (GObject *object)
 {
+  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (object);
+  BjbNoteTagDialogPrivate *priv = self->priv;
+
+  /* no reason, it should have been freed earlier */
+  if (priv->tag_to_scroll_to)
+    g_free (priv->tag_to_scroll_to);
+
   G_OBJECT_CLASS (bjb_note_tag_dialog_parent_class)->finalize (object);
 }
 

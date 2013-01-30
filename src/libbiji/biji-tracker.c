@@ -17,6 +17,39 @@
 
 #include "biji-tracker.h"
 
+/* To perform something after async tracker query */
+typedef struct {
+
+  /* query, could add the cancellable */
+  gchar *query;
+
+  /* after the query */
+  BijiFunc func;
+  gpointer user_data;
+
+} BijiTrackerFinisher;
+
+static BijiTrackerFinisher *
+biji_tracker_finisher_new (gchar *query, BijiFunc f, gpointer user_data)
+{
+  BijiTrackerFinisher *retval = g_new (BijiTrackerFinisher, 1);
+
+  retval->query = query;
+  retval->func = f;
+  retval->user_data = user_data;
+
+  return retval;
+}
+
+static void
+biji_tracker_finisher_free (BijiTrackerFinisher *f)
+{
+  if (f->query)
+    g_free (f->query);
+
+  g_free (f);
+}
+
 TrackerSparqlConnection *bjb_connection ;
 
 static TrackerSparqlConnection *
@@ -55,7 +88,8 @@ biji_finish_update (GObject *source_object,
 {
   TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
   GError *error = NULL;
-  gchar *query = user_data;
+  BijiTrackerFinisher *finisher = user_data;
+  gchar *query = finisher->query;
 
   tracker_sparql_connection_update_finish (self, res, &error);
 
@@ -65,18 +99,24 @@ biji_finish_update (GObject *source_object,
     g_error_free (error);
   }
 
-  g_free (query);
+  /* See if the query has something to perform afterward */
+  if (finisher->func)
+    finisher->func (finisher->user_data);
+
+  biji_tracker_finisher_free (finisher);
 }
 
 static void
-biji_perform_update_async_and_free (gchar *query)
+biji_perform_update_async_and_free (gchar *query, BijiFunc f, gpointer user_data)
 {
+  BijiTrackerFinisher *finisher = biji_tracker_finisher_new (query, f, user_data);
+
   tracker_sparql_connection_update_async (get_connection_singleton(),
                                           query,
                                           0,     // priority
                                           NULL,
                                           biji_finish_update,
-                                          query);
+                                          finisher);
 }
 
 /* Don't worry too much. We just want plain text here */
@@ -204,17 +244,18 @@ biji_get_notes_with_string_or_tag_async (gchar *needle, GAsyncReadyCallback f, g
 }
 
 void 
-push_tag_to_tracker(gchar *tag)
+push_tag_to_tracker (const gchar *tag, BijiFunc afterward, gpointer user_data)
 { 
   gchar *query = g_strdup_printf ("INSERT {_:tag a nao:Tag ; \
   nao:prefLabel '%s' . } \
   WHERE { OPTIONAL {?tag a nao:Tag ; nao:prefLabel '%s'} . \
   FILTER (!bound(?tag)) }",tag,tag);
 
-  biji_perform_update_async_and_free (query) ;
+  biji_perform_update_async_and_free (query, afterward, user_data);
 }
 
-// removes the tag EVEN if files associated.
+/* removes the tag EVEN if files associated.
+ * TODO : afterward */
 void
 remove_tag_from_tracker(gchar *tag)
 {
@@ -222,12 +263,12 @@ remove_tag_from_tracker(gchar *tag)
   gchar *query = g_strdup_printf ("DELETE { ?tag a nao:Tag } \
   WHERE { ?tag nao:prefLabel '%s' }",value);
 
-  biji_perform_update_async_and_free (query);
+  biji_perform_update_async_and_free (query, NULL, NULL);
   g_free (tag);
 }
 
 void
-push_existing_or_new_tag_to_note (gchar *tag,BijiNoteObj *note)
+push_existing_or_new_tag_to_note (gchar *tag, BijiNoteObj *note)
 {
   gchar *url = get_note_url (note);
   gchar *query = g_strdup_printf (
@@ -235,7 +276,7 @@ push_existing_or_new_tag_to_note (gchar *tag,BijiNoteObj *note)
             ?unknown nao:hasTag _:tag} WHERE {?unknown nie:url '%s'}",
             tag, url);
 
-  biji_perform_update_async_and_free (query);
+  biji_perform_update_async_and_free (query, NULL, NULL);
 
   g_free (url);
 }
@@ -249,7 +290,7 @@ remove_tag_from_note (gchar *tag, BijiNoteObj *note)
                     WHERE { ?urn nie:url ?f . ?label nao:prefLabel '%s' .  \
                     FILTER (?f = '%s') }", tag, url);
 
-  biji_perform_update_async_and_free (query);
+  biji_perform_update_async_and_free (query, NULL, NULL);
 
   g_free (url);
 }
@@ -260,7 +301,7 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
   gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
                                         biji_note_obj_get_path(note));
 
-  biji_perform_update_async_and_free (query);
+  biji_perform_update_async_and_free (query, NULL, NULL);
 }
 
 void
@@ -292,7 +333,7 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
                            title,
                            content) ;
 
-  biji_perform_update_async_and_free (query);
+  biji_perform_update_async_and_free (query, NULL, NULL);
 
   g_free(title);
   g_free(file);

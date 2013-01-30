@@ -594,11 +594,13 @@ biji_note_obj_add_label (BijiNoteObj *note, gchar *label, gboolean on_user_actio
   g_return_val_if_fail (label != NULL, FALSE);
   g_return_val_if_fail (!biji_note_obj_has_label (note, label), FALSE);
 
-  g_hash_table_add (note->priv->labels, label);
+  gchar *tag = g_strdup (label);
+
+  g_hash_table_add (note->priv->labels, tag);
 
   if (on_user_action_cb)
   {
-    push_existing_or_new_tag_to_note (label, note); // Tracker
+    push_existing_or_new_tag_to_note (tag, note); // Tracker
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
     biji_note_obj_save_note (note);
   }

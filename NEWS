@@ -1,3 +1,13 @@
+Overview of changes in 3.7.5
+============================
+
+* Bug fixed
+  692791 - Tag sorting is confusing
+  692790 - Adding new tag is confusing
+
+* New translations:
+  cs
+
 Overview of changes in 3.7.4
 ============================
 

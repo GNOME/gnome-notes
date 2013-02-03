@@ -232,21 +232,21 @@ update_view (BjbController *self)
   g_list_foreach (notes,(GFunc)bjb_controller_add_note,self);
 }
 
-static glong
-most_recent_note_first ( BijiNoteObj *a, BijiNoteObj *b)
+static gint
+most_recent_note_first (gconstpointer a, gconstpointer b)
 {
-  glong result = biji_note_obj_get_last_change_date_sec (b);
-  return result - biji_note_obj_get_last_change_date_sec (a);
+  BijiNoteObj *one = BIJI_NOTE_OBJ (a);
+  BijiNoteObj *other = BIJI_NOTE_OBJ (b);
+  
+  glong result = biji_note_obj_get_last_change_date_sec (other);
+  return result - biji_note_obj_get_last_change_date_sec (one);
 }
 
 static void
 sort_notes( BjbController *self)
 {
-  GList *notes ;
-
-  notes = self->priv->notes_to_show ;
-  notes = g_list_sort(notes,(GCompareFunc)most_recent_note_first);
-  self->priv->notes_to_show = notes ;
+  self->priv->notes_to_show = g_list_sort (self->priv->notes_to_show,
+                                           most_recent_note_first);
 }
 
 static void
@@ -264,7 +264,7 @@ update_controller_callback (GObject *source_object,
   GList *result;
   BjbController *self = BJB_CONTROLLER (user_data);
 
-  result = biji_get_notes_with_strings_or_tag_finish (source_object, res, self->priv->book);
+  result = biji_get_notes_with_strings_or_collection_finish (source_object, res, self->priv->book);
   self->priv->notes_to_show = result;
   sort_and_update (self);
 }
@@ -287,7 +287,7 @@ bjb_controller_apply_needle ( BjbController *self )
     return;
   }
 
-  biji_get_notes_with_string_or_tag_async (needle, update_controller_callback, self);
+  biji_get_notes_with_string_or_collection_async (needle, update_controller_callback, self);
 }
 
 static void

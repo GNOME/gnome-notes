@@ -571,7 +571,7 @@ void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
 }
 
 GList *
-biji_note_obj_get_labels (BijiNoteObj *n)
+biji_note_obj_get_collections (BijiNoteObj *n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
 
@@ -579,7 +579,7 @@ biji_note_obj_get_labels (BijiNoteObj *n)
 }
 
 gboolean
-biji_note_obj_has_label (BijiNoteObj *note, gchar *label)
+biji_note_obj_has_collection (BijiNoteObj *note, gchar *label)
 {
   if (g_hash_table_lookup (note->priv->labels, label))
     return TRUE;
@@ -588,11 +588,11 @@ biji_note_obj_has_label (BijiNoteObj *note, gchar *label)
 }
 
 gboolean
-biji_note_obj_add_label (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb)
+biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
   g_return_val_if_fail (label != NULL, FALSE);
-  g_return_val_if_fail (!biji_note_obj_has_label (note, label), FALSE);
+  g_return_val_if_fail (!biji_note_obj_has_collection (note, label), FALSE);
 
   gchar *tag = g_strdup (label);
 
@@ -600,7 +600,7 @@ biji_note_obj_add_label (BijiNoteObj *note, gchar *label, gboolean on_user_actio
 
   if (on_user_action_cb)
   {
-    push_existing_or_new_tag_to_note (tag, note); // Tracker
+    biji_push_existing_collection_to_note (note, tag); // Tracker
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
     biji_note_obj_save_note (note);
   }
@@ -609,13 +609,13 @@ biji_note_obj_add_label (BijiNoteObj *note, gchar *label, gboolean on_user_actio
 }
 
 gboolean
-biji_note_obj_remove_label (BijiNoteObj *note, gchar *label)
+biji_note_obj_remove_collection (BijiNoteObj *note, gchar *label, gchar *urn)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
 
   if (g_hash_table_remove (note->priv->labels, label))
   {
-    remove_tag_from_note (label, note); // tracker.
+    biji_remove_collection_from_note (note, urn); // tracker.
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
     biji_note_obj_save_note (note);
     return TRUE;

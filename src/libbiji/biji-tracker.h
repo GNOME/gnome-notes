@@ -27,22 +27,31 @@
 /* todo : find this on glib */
 typedef void (*BijiFunc) (gpointer user_data);
 
-/* All notes matching (either content or tag) */
-GList * biji_get_notes_with_strings_or_tag_finish (GObject *source_object, GAsyncResult *res, BijiNoteBook *book);
-void biji_get_notes_with_string_or_tag_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data);
+/* All notes matching (either content or collections) */
+GList * biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
+                                                          GAsyncResult *res,
+                                                          BijiNoteBook *book);
 
-/* Get tags */
-GList * biji_get_all_tags_finish (GObject *source_object, GAsyncResult *res);
+void biji_get_notes_with_string_or_collection_async (gchar *needle,
+                                                     GAsyncReadyCallback f,
+                                                     gpointer user_data);
 
-void biji_get_all_tracker_tags_async (GAsyncReadyCallback f, gpointer user_data);
+/* Collections */
 
-void push_tag_to_tracker (const gchar *tag, BijiFunc afterward, gpointer user_data);
+/* The URN is the... value. Collection _title_ is the key.*/
+GHashTable * biji_get_all_collections_finish (GObject *source_object, GAsyncResult *res);
 
-void remove_tag_from_tracker(gchar *tag);
+void biji_get_all_collections_async (GAsyncReadyCallback f, gpointer user_data);
 
-void push_existing_or_new_tag_to_note (gchar *tag,BijiNoteObj *note);
+void biji_create_new_collection (const gchar *tag, BijiFunc afterward, gpointer user_data);
 
-void remove_tag_from_note (gchar *tag, BijiNoteObj *note) ;
+void biji_remove_collection_from_tracker (gchar *urn);
+
+// when adding an existing collection, use the collection title
+void biji_push_existing_collection_to_note (BijiNoteObj *note, gchar *title);
+
+// when removing, use the urn
+void biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn);
 
 /* Insert or update */
 void bijiben_push_note_to_tracker(BijiNoteObj *note);

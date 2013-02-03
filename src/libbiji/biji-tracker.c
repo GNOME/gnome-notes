@@ -142,16 +142,19 @@ get_note_url (BijiNoteObj *note)
 
 /////////////// Tags
 
-/* This func only provides tags.
+/* This func only provides collections.
  * TODO : include number of notes / files */
-GList *
-biji_get_all_tags_finish (GObject *source_object,
-                          GAsyncResult *res)
+GHashTable *
+biji_get_all_collections_finish (GObject *source_object,
+                                 GAsyncResult *res)
 {
   TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
   TrackerSparqlCursor *cursor;
   GError *error = NULL;
-  GList *result = NULL;
+  GHashTable *result = g_hash_table_new_full (g_str_hash,
+                                              g_str_equal,
+                                              g_free,
+                                              g_free);
 
   cursor = tracker_sparql_connection_query_finish (self,
                                                    res,
@@ -165,12 +168,13 @@ biji_get_all_tags_finish (GObject *source_object,
 
   if (cursor)
   {
-    gchar* tag;
+    gchar *urn, *collection;
 
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      tag = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
-      result = g_list_prepend (result, (gpointer) tag);
+      urn = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
+      collection = g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL));
+      g_hash_table_replace (result, collection, urn);
     }
 
     g_object_unref (cursor);
@@ -180,19 +184,18 @@ biji_get_all_tags_finish (GObject *source_object,
 }
  
 void
-biji_get_all_tracker_tags_async (GAsyncReadyCallback f,
-                                 gpointer user_data)
+biji_get_all_collections_async (GAsyncReadyCallback f,
+                                gpointer user_data)
 {
-  gchar *query = "SELECT DISTINCT ?labels WHERE \
-  { ?tags a nao:Tag ; nao:prefLabel ?labels. }";
+  gchar *query = "SELECT ?c ?title WHERE { ?c a nfo:DataContainer ; nie:title ?title ; nie:generator 'Bijiben'}";
 
   bjb_perform_query_async (query, f, user_data);
 }
 
 GList *
-biji_get_notes_with_strings_or_tag_finish (GObject *source_object,
-                                           GAsyncResult *res,
-                                           BijiNoteBook *book)
+biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
+                                                  GAsyncResult *res,
+                                                  BijiNoteBook *book)
 {
   TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
   TrackerSparqlCursor *cursor;
@@ -209,17 +212,33 @@ biji_get_notes_with_strings_or_tag_finish (GObject *source_object,
 
   if (cursor)
   {
-    gchar * uri;
+    const gchar *full_path;
+    gchar *path;
     BijiNoteObj *note = NULL;
 
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      uri = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
-      note = note_book_get_note_at_path (book, uri);
+      full_path = tracker_sparql_cursor_get_string (cursor, 0, NULL);
+
+      if (g_str_has_prefix (full_path, "file://"))
+      {
+        GString *string;
+        string = g_string_new (full_path);
+        g_string_erase (string, 0, 7);
+        path = g_string_free (string, FALSE);
+      }
+      else
+      {
+        path = g_strdup (full_path);
+      }
+      
+      note = note_book_get_note_at_path (book, path);
 
       /* Sorting is done in another place */
       if (note)
         result = g_list_prepend (result, note);
+
+      g_free (path);
     }
 
     g_object_unref (cursor);
@@ -228,28 +247,26 @@ biji_get_notes_with_strings_or_tag_finish (GObject *source_object,
   return result;
 }
 
-/* TODO : not case sensitive */
+/* FIXME : the nie:isPartOf returns file://$path, while
+ *         union fts returns $path which leads to uggly code
+ * TODO : not case sensitive */
 void
-biji_get_notes_with_string_or_tag_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data)
+biji_get_notes_with_string_or_collection_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data)
 {
   gchar *query;
 
-  query = g_strdup_printf ("SELECT ?s WHERE {{ ?s nie:generator 'Bijiben'. \
-                           ?s a nfo:Note ;nao:hasTag [nao:prefLabel'%s'] } \
-                           UNION { ?s fts:match '%s'. ?s nie:generator 'Bijiben'}}",
+  query = g_strdup_printf ("SELECT ?s WHERE {{?c nie:isPartOf ?s; nie:title '%s'} \
+                           UNION {?s fts:match '%s'. ?s nie:generator 'Bijiben'}}",
                            needle, needle);
 
   bjb_perform_query_async (query, f, user_data);
-  g_free (query);
 }
 
 void 
-push_tag_to_tracker (const gchar *tag, BijiFunc afterward, gpointer user_data)
+biji_create_new_collection (const gchar *tag, BijiFunc afterward, gpointer user_data)
 { 
-  gchar *query = g_strdup_printf ("INSERT {_:tag a nao:Tag ; \
-  nao:prefLabel '%s' . } \
-  WHERE { OPTIONAL {?tag a nao:Tag ; nao:prefLabel '%s'} . \
-  FILTER (!bound(?tag)) }",tag,tag);
+  gchar *query = g_strdup_printf ("INSERT {_:result a nfo:DataContainer;a nie:DataObject;nie:title '%s' ; nie:generator 'Bijiben'}"
+                                  ,tag);
 
   biji_perform_update_async_and_free (query, afterward, user_data);
 }
@@ -257,41 +274,31 @@ push_tag_to_tracker (const gchar *tag, BijiFunc afterward, gpointer user_data)
 /* removes the tag EVEN if files associated.
  * TODO : afterward */
 void
-remove_tag_from_tracker(gchar *tag)
+biji_remove_collection_from_tracker (gchar *urn)
 {
-  gchar *value = tracker_str (tag);
-  gchar *query = g_strdup_printf ("DELETE { ?tag a nao:Tag } \
-  WHERE { ?tag nao:prefLabel '%s' }",value);
-
+  gchar *query = g_strdup_printf ("DELETE {'%s' a nfo:DataContainer}", urn);
   biji_perform_update_async_and_free (query, NULL, NULL);
-  g_free (tag);
 }
 
 void
-push_existing_or_new_tag_to_note (gchar *tag, BijiNoteObj *note)
+biji_push_existing_collection_to_note (BijiNoteObj *note, gchar *title)
 {
   gchar *url = get_note_url (note);
-  gchar *query = g_strdup_printf (
-            "INSERT {_:tag a nao:Tag ; nao:prefLabel '%s'. \
-            ?unknown nao:hasTag _:tag} WHERE {?unknown nie:url '%s'}",
-            tag, url);
+  gchar *query = g_strdup_printf ("INSERT {?urn nie:isPartOf '%s'} WHERE {?urn a nfo:DataContainer; nie:title '%s'; nie:generator 'Bijiben'}",
+                                  url, title);
 
   biji_perform_update_async_and_free (query, NULL, NULL);
-
   g_free (url);
 }
 
 /* This one is to be fixed */
 void
-remove_tag_from_note (gchar *tag, BijiNoteObj *note)
+biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn)
 {
   gchar *url = get_note_url (note);
-  gchar *query = g_strdup_printf ("DELETE { ?urn nao:hasTag ?label } \
-                    WHERE { ?urn nie:url ?f . ?label nao:prefLabel '%s' .  \
-                    FILTER (?f = '%s') }", tag, url);
+  gchar *query = g_strdup_printf ("DELETE {'%s' nie:isPartOf '%s'}", urn, url);
 
   biji_perform_update_async_and_free (query, NULL, NULL);
-
   g_free (url);
 }
 

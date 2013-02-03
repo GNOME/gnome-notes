@@ -396,6 +396,7 @@ bjb_note_tag_dialog_constructed (GObject *obj)
 
   update_collections_model_async (self);
   priv->view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->store)));
+  gtk_tree_view_set_headers_visible (priv->view, FALSE);
   g_object_unref (self->priv->store);
 
   gtk_tree_view_set_rules_hint (priv->view, TRUE);

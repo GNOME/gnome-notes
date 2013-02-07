@@ -605,6 +605,7 @@ bjb_note_view_constructed (GObject *obj)
 
   /* Show & let's go */
   gtk_widget_show_all (priv->window);
+  bjb_window_base_set_note (BJB_WINDOW_BASE (priv->window), priv->note);
   bjb_window_base_switch_to (BJB_WINDOW_BASE (priv->window), NOTE_VIEW);
 }
 

@@ -73,7 +73,7 @@ void _biji_note_obj_set_book(BijiNoteObj *note, gpointer biji_note_book);
 
 gboolean biji_note_obj_trash (BijiNoteObj *dead);
 
-gboolean note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b);
+gboolean biji_note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b);
 
 ///////////////////////////////////////////////////////////////////// Metadata 
 

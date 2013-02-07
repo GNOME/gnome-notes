@@ -310,15 +310,13 @@ biji_note_obj_get_note_book(BijiNoteObj *note)
 }
 
 gboolean 
-note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b)
-{ 
-  if ( biji_note_id_equal (a->priv->id,b->priv->id) )
-  {
-    if ( g_strcmp0 (a->priv->raw_text ,b->priv->raw_text) == 0 )
-      return TRUE ;
-  }
+biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
+{
+  if (biji_note_id_equal (a->priv->id,b->priv->id)
+      && g_strcmp0 (a->priv->raw_text ,b->priv->raw_text) == 0)
+    return TRUE;
 
-  return FALSE ;
+  return FALSE;
 }
 
 /* First cancel timeout

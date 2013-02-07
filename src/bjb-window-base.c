@@ -29,10 +29,11 @@ struct _BjbWindowBasePriv
   GtkWidget            *notebook;
   BjbWindowViewType     current_view;
   BjbMainView          *view;
-  BjbNoteView          *note_view;
-
   ClutterActor         *stage, *note_stage, *frame;
   gchar                *entry;
+
+  /* when a note is opened */
+  BijiNoteObj          *note;
 
   /* To avoid loiding several times */
   PangoFontDescription *font ;
@@ -97,7 +98,8 @@ bjb_window_base_init (BjbWindowBase *self)
                                            BJB_TYPE_WINDOW_BASE,
                                            BjbWindowBasePriv);
   priv = self->priv;
-    
+  priv->note = NULL;
+
   gtk_window_set_default_size (GTK_WINDOW (self), BJB_WIDTH, BJB_HEIGHT);
   gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), BIJIBEN_MAIN_WIN_TITLE);
@@ -227,12 +229,33 @@ bjb_window_base_get_stage (BjbWindowBase *bwb, BjbWindowViewType type)
 }
 
 void
+bjb_window_base_set_note (BjbWindowBase *self, BijiNoteObj *note)
+{
+  g_return_if_fail (BJB_IS_WINDOW_BASE (self));
+
+  self->priv->note = note;
+}
+
+BijiNoteObj *
+bjb_window_base_get_note (BjbWindowBase *self)
+{
+  g_return_val_if_fail (BJB_IS_WINDOW_BASE (self), NULL);
+
+  return self->priv->note;
+}
+
+void
 bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 {
-  if (type == MAIN_VIEW)
-    bjb_main_view_connect_signals (bwb->priv->view);
+  BjbWindowBasePriv *priv = bwb->priv;
 
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (bwb->priv->notebook), type);
+  if (type == MAIN_VIEW)
+  {
+    priv->note = NULL;
+    bjb_main_view_connect_signals (priv->view);
+  }
+
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), type);
 }
 
 BijiNoteBook *

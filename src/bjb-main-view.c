@@ -190,29 +190,32 @@ switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 }
 
 static void
-show_window_if_title_same(GtkWindow *window, BijiNoteObj *to_open)
+show_window_if_note (gpointer data, gpointer user_data)
 {
-  if ( g_strcmp0 (gtk_window_get_title (window),
-                  biji_note_obj_get_title(to_open)) == 0 )
-  {
-    gtk_window_present(window);
-  }
+  BjbWindowBase *window = data;
+  BijiNoteObj *to_open = user_data;
+  BijiNoteObj *cur = NULL;
+
+  cur = bjb_window_base_get_note (window);
+
+  if (cur && biji_note_obj_are_same (to_open, cur))
+    gtk_window_present (data);
 }
 
 static void
-switch_to_note(BjbMainView *view, BijiNoteObj *to_open)
+switch_to_note (BjbMainView *view, BijiNoteObj *to_open)
 {
-  // If the note is already opened in another window, just show it.
-  if ( biji_note_obj_is_opened(to_open) )
+  /* If the note is already opened in another window, just show it. */
+  if (biji_note_obj_is_opened (to_open))
   {
     GList *notes ;
 
     notes = gtk_application_get_windows(GTK_APPLICATION(g_application_get_default()));
-    g_list_foreach (notes,(GFunc)show_window_if_title_same,to_open);
+    g_list_foreach (notes, show_window_if_note, to_open);
     return ;
   }
 
-  // Otherwise, leave main view to show this note into current window.
+  /* Otherwise, leave main view */
   switch_to_note_view(view,to_open);
 }
 

@@ -67,6 +67,10 @@ gchar * bjb_window_base_get_entry(GtkWidget *win) ;
 
 gpointer bjb_window_base_get_main_view (BjbWindowBase *self);
 
+BijiNoteObj * bjb_window_base_get_note (BjbWindowBase *self);
+
+void bjb_window_base_set_note (BjbWindowBase *self, BijiNoteObj *note);
+
 // DEBUG 
 void biji_application_print_note_id(GtkWindow* win);
 

@@ -16,32 +16,26 @@
 
 #define BJB_DEFAULT_FONT "Serif 10"
 
-/* Window available views..
- * Not sure we'll use it... */
-enum { 
-  MAIN_VIEW,
-  TAGS_VIEW,
-  NOTE_EDITOR 
-};
-
 /* As the main window remains, it owns the data */
 struct _BjbWindowBasePriv
 {
   /* To register new windows and access the data */
-  GtkApplication *app ;
-  BjbController  *controller;
+  GtkApplication       *app ;
+  BjbController        *controller;
 
-  /* UI */
-  ClutterActor *stage, *frame ;
-  int current_view ;
-  gchar *entry ;
+  /* UI
+   * The Notebook always has a main view.
+   * When editing a note, it _also_ has a note view */
+  GtkWidget            *notebook;
+  BjbWindowViewType     current_view;
+  BjbMainView          *view;
+  BjbNoteView          *note_view;
+
+  ClutterActor         *stage, *note_stage, *frame;
+  gchar                *entry;
 
   /* To avoid loiding several times */
   PangoFontDescription *font ;
-
-  /* Tmp. Instead we want to be able to create a window base
-   * without the view */
-  BjbMainView       *view;
 };
 
 /* Gobject */
@@ -96,7 +90,7 @@ bjb_window_base_init (BjbWindowBase *self)
   gchar *full_path;
   GList *icons = NULL;
   GdkPixbuf *bjb ;
-  GError *error = NULL ;
+  GError *error = NULL;
   GtkClutterEmbed *embed;
 
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE(self,
@@ -137,12 +131,25 @@ bjb_window_base_init (BjbWindowBase *self)
 
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
-  /* UI */
+  /* UI : basic notebook */
+  priv->notebook = gtk_notebook_new ();
+  gtk_container_add (GTK_CONTAINER (self), priv->notebook);
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
+  gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
+
+  /* Page for overview */
   embed = GTK_CLUTTER_EMBED (gtk_clutter_embed_new());
   gtk_clutter_embed_set_use_layout_size (embed, TRUE);
-  
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (embed));
+  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+                            GTK_WIDGET (embed), gtk_label_new ("main-view"));
   priv->stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (embed));
+
+  /* Page for note */
+  embed = GTK_CLUTTER_EMBED (gtk_clutter_embed_new());
+  gtk_clutter_embed_set_use_layout_size (embed, TRUE);
+  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+                            GTK_WIDGET (embed), gtk_label_new ("note-view"));
+  priv->note_stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (embed));
 
   /* Signals */
   g_signal_connect(GTK_WIDGET(self),"destroy",
@@ -211,9 +218,21 @@ bjb_window_base_get_frame(BjbWindowBase *bwb)
 }
 
 ClutterActor *
-bjb_window_base_get_stage(BjbWindowBase *bwb)
+bjb_window_base_get_stage (BjbWindowBase *bwb, BjbWindowViewType type)
 {
-  return bwb->priv->stage ;
+  if (type == NOTE_VIEW)
+    return bwb->priv->note_stage;
+
+  return bwb->priv->stage;
+}
+
+void
+bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
+{
+  if (type == MAIN_VIEW)
+    bjb_main_view_connect_signals (bwb->priv->view);
+
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (bwb->priv->notebook), type);
 }
 
 BijiNoteBook *

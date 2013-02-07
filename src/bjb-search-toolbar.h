@@ -37,6 +37,10 @@ GType bjb_search_toolbar_get_type (void) G_GNUC_CONST;
 
 BjbSearchToolbar * bjb_search_toolbar_new (GtkWidget *window, ClutterActor *parent_actor, BjbController *controller);
 
+void bjb_search_toolbar_disconnect (BjbSearchToolbar *self);
+
+void bjb_search_toolbar_connect (BjbSearchToolbar *self);
+
 ClutterActor * bjb_search_toolbar_get_actor (BjbSearchToolbar *self);
 
 G_END_DECLS

@@ -71,6 +71,12 @@ struct _BjbMainViewPriv {
    * add one window specific controller */
   GdMainView       *view ; 
   BjbController    *controller ;
+
+  /* Signals */
+  gulong key;
+  gulong button;
+  gulong activated;
+  gulong data;
 };
 
 G_DEFINE_TYPE (BjbMainView, bjb_main_view, CLUTTER_TYPE_ACTOR);
@@ -98,6 +104,17 @@ bjb_main_view_finalize (GObject *object)
   clutter_actor_destroy (priv->bin);
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->finalize (object);
+}
+
+static void
+bjb_main_view_disconnect_handlers (BjbMainView *self)
+{
+  BjbMainViewPriv *priv = self->priv;
+
+  g_signal_handler_disconnect (priv->window, priv->key);
+  g_signal_handler_disconnect (priv->view, priv->button);
+  g_signal_handler_disconnect (priv->view, priv->activated);
+  g_signal_handler_disconnect (priv->view, priv->data);
 }
 
 static void
@@ -165,12 +182,11 @@ biji_main_view_constructor (GType                  gtype,
 /* Callbacks */
 
 void
-switch_to_note_view(BjbMainView *self,BijiNoteObj *note)
+switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 {
-  GtkWidget *window = self->priv->window;
-
-  g_clear_object (&self);
-  bjb_note_view_new (window,note);
+  bjb_search_toolbar_disconnect (self->priv->search_bar);
+  bjb_main_view_disconnect_handlers (self);
+  bjb_note_view_new (self->priv->window, note);
 }
 
 static void
@@ -440,6 +456,23 @@ on_drag_data_received (GtkWidget        *widget,
   gtk_drag_finish (context, FALSE, FALSE, time);
 }
 
+void
+bjb_main_view_connect_signals (BjbMainView *self)
+{
+  BjbMainViewPriv *priv = self->priv;
+
+  bjb_search_toolbar_connect (priv->search_bar);
+
+  priv->key = g_signal_connect (priv->window, "key-press-event",
+                              G_CALLBACK (on_key_press_event_cb), self);
+  priv->button = g_signal_connect (priv->view, "button-press-event",
+                           G_CALLBACK (on_button_press_event_cb), self);
+  priv->activated = g_signal_connect(priv->view,"item-activated",
+                                    G_CALLBACK(on_item_activated),self);
+  priv->data = g_signal_connect (priv->view, "drag-data-received",
+                              G_CALLBACK (on_drag_data_received), self);
+}
+
 static void
 bjb_main_view_constructed(GObject *o)
 {
@@ -454,17 +487,10 @@ bjb_main_view_constructed(GObject *o)
 
   self = BJB_MAIN_VIEW(o);
   priv = self->priv ;
-  stage = bjb_window_base_get_stage (BJB_WINDOW_BASE(priv->window));
+  stage = bjb_window_base_get_stage (BJB_WINDOW_BASE (priv->window), MAIN_VIEW);
 
   priv->view = gd_main_view_new (DEFAULT_VIEW);
   bjb_controller_set_main_view (priv->controller, priv->view);
-
-  g_signal_connect (priv->window, "key-press-event",
-                    G_CALLBACK (on_key_press_event_cb), self);
-  g_signal_connect (priv->view, "button-press-event",
-                    G_CALLBACK (on_button_press_event_cb), self);
-  g_signal_connect(priv->view,"item-activated",
-                   G_CALLBACK(on_item_activated),self);
 
   /* Probably move this to window_base or delete this */
   filler = clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_CENTER,
@@ -541,9 +567,7 @@ bjb_main_view_constructed(GObject *o)
   gtk_drag_dest_set (GTK_WIDGET (priv->view), GTK_DEST_DEFAULT_ALL,
                      target_list, 1, GDK_ACTION_COPY);
 
-  g_signal_connect (GTK_WIDGET (priv->view), "drag-data-received",
-                    G_CALLBACK (on_drag_data_received), self);
-
+  bjb_main_view_connect_signals (self);
   gtk_widget_show_all (priv->window);
 }
 

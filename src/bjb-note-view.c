@@ -57,21 +57,14 @@ struct _BjbNoteViewPrivate {
   ClutterActor      *embed;
   GtkAccelGroup     *accel;
   ClutterActor      *edit_actor;
-  GtkBox            *toolbars_box;
   BjbEditorToolbar  *edit_bar;
   ClutterActor      *edit_bar_actor;
-  gboolean           edit_bar_is_sticky ;
+  gboolean           edit_bar_is_sticky;
 
   ClutterActor      *last_update;
   ClutterColor      *last_date_bckgrd_clr;
 
-  // Convenience
-  GdkRGBA *color ;
-
-  // hack when widget is destroyed.Probably obsolete.
-  gboolean to_be_saved ;
-
-  // Signal when window is destroyed. We may need to disconect g_signal
+  /* Signals */
   gulong    destroy ;
   gulong    renamed ;
   gulong    deleted ;
@@ -91,7 +84,7 @@ bjb_note_view_finalize(GObject *object)
   g_clear_object (&priv->accel);
   g_clear_object (&priv->edit_bar);
   clutter_color_free (priv->last_date_bckgrd_clr);
-  /* TODO : check if the editor has been destroyed */
+  clutter_actor_destroy (priv->edit_bar_actor);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
 }
@@ -166,14 +159,12 @@ static void
 just_switch_to_main_view(BjbNoteView *self)
 {
   GtkWindow     *window;
-  BjbController *controller;
 
   window = GTK_WINDOW(self->priv->window);
   gtk_window_remove_accel_group (window, self->priv->accel);
-  controller = bjb_window_base_get_controller(BJB_WINDOW_BASE(window));
 
   g_clear_object (&self);
-  bjb_main_view_new ((gpointer) window,controller);
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (window), MAIN_VIEW);
 }
 
 static void
@@ -521,7 +512,7 @@ bjb_note_view_constructed (GObject *obj)
                                    priv->note);
 
   /* Start packing ui */
-  stage = bjb_window_base_get_stage (BJB_WINDOW_BASE (priv->window));
+  stage = bjb_window_base_get_stage (BJB_WINDOW_BASE (priv->window), NOTE_VIEW);
 
   full = clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_CENTER,
                                  CLUTTER_BIN_ALIGNMENT_CENTER);
@@ -614,6 +605,7 @@ bjb_note_view_constructed (GObject *obj)
 
   /* Show & let's go */
   gtk_widget_show_all (priv->window);
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (priv->window), NOTE_VIEW);
 }
 
 BjbNoteView *

@@ -8,14 +8,6 @@
 #include "bjb-settings.h"
 #include "bjb-controller.h"
 
-/* The main window has three possible states
- * Opened notes are like tabs.*/
-enum {
-  VIEW_ALL_NOTES_WINDOW,
-  VIEW_TAGS_WINDOW,
-  EDIT_NOTE_WINDOW
-};
-
 #define BJB_TYPE_WINDOW_BASE                  (bjb_window_base_get_type ())
 #define BJB_WINDOW_BASE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_WINDOW_BASE, BjbWindowBase))
 #define BJB_IS_WINDOW_BASE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_WINDOW_BASE))
@@ -40,7 +32,11 @@ struct _BjbWindowBase
   BjbWindowBasePriv *priv;
 };
 
-
+typedef enum {
+  MAIN_VIEW,
+  NOTE_VIEW,
+  NO_VIEW
+} BjbWindowViewType;
 
 GType bjb_window_base_get_type (void);
 
@@ -56,7 +52,10 @@ void bjb_window_base_set_frame(BjbWindowBase *bwb,ClutterActor *frame);
 
 ClutterActor * bjb_window_base_get_frame(BjbWindowBase *bwb);
 
-ClutterActor * bjb_window_base_get_stage(BjbWindowBase *bwb);
+/* get the notebook relevant page */
+ClutterActor * bjb_window_base_get_stage (BjbWindowBase *bwb, BjbWindowViewType type);
+
+void bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type);
 
 BijiNoteBook * bjb_window_base_get_book(GtkWidget * win);
 
@@ -67,7 +66,6 @@ void bjb_window_base_delete_entry(GtkWidget *win);
 gchar * bjb_window_base_get_entry(GtkWidget *win) ;
 
 gpointer bjb_window_base_get_main_view (BjbWindowBase *self);
-
 
 // DEBUG 
 void biji_application_print_note_id(GtkWindow* win);

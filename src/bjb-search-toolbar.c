@@ -51,9 +51,12 @@ struct _BjbSearchToolbarPrivate
   GtkTreeModel      *completion_model;
   BjbController     *controller;
 
-  /* A pressed key shows search entry */
+  /* Signals */
   gulong            key_pressed;
   gulong            key_released;
+  gulong            icon;
+  gulong            deleted;
+  gulong            inserted;
 
   /* Misc UI  */
   GtkWidget         *window;
@@ -221,25 +224,65 @@ action_entry_delete_callback(GtkEntryBuffer *buffer,guint position,
                       self->priv->controller);
 }
 
+void
+bjb_search_toolbar_disconnect (BjbSearchToolbar *self)
+{
+  BjbSearchToolbarPrivate *priv = self->priv ;
+  
+  g_signal_handler_disconnect (priv->window,priv->key_pressed);
+  g_signal_handler_disconnect (priv->window,priv->key_released);
+  g_signal_handler_disconnect (priv->search_entry, priv->icon);
+  g_signal_handler_disconnect (priv->entry_buf, priv->inserted);
+  g_signal_handler_disconnect (priv->entry_buf, priv->deleted);
+
+  priv->key_released = 0;
+  priv->key_pressed = 0;
+  priv->icon = 0;
+  priv->inserted = 0;
+  priv->deleted = 0;
+}
+
 static void
 bjb_search_toolbar_finalize (GObject *obj)
 {
   BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (obj);
-  BjbSearchToolbarPrivate *priv = self->priv ;
-  
-  g_signal_handler_disconnect (priv->window,priv->key_pressed);
-  priv->key_pressed = 0;
-
-  g_signal_handler_disconnect (priv->window,priv->key_released);
-  priv->key_released = 0;
+  bjb_search_toolbar_disconnect (self);
 
   G_OBJECT_CLASS (bjb_search_toolbar_parent_class)->finalize (obj);
+}
+
+void
+bjb_search_toolbar_connect (BjbSearchToolbar *self)
+{
+  BjbSearchToolbarPrivate *priv = self->priv ;
+
+  /* Connect to set the text */
+  if (priv->key_pressed == 0)
+    priv->key_pressed = g_signal_connect(priv->window,"key-press-event",
+                                         G_CALLBACK(on_key_pressed),self);
+
+  if (priv->key_released == 0)
+    priv->key_released = g_signal_connect(priv->window,"key-release-event",
+                                         G_CALLBACK(on_key_released),self);
+
+  /* Connect to set the notes */
+  if (priv->icon == 0)
+    priv->icon = g_signal_connect (priv->search_entry, "icon-press",
+                               G_CALLBACK (clear_search_entry_callback),
+                               self->priv->controller);
+
+  if (priv->inserted ==0)
+    priv->inserted = g_signal_connect(priv->entry_buf,"inserted-text",
+                        G_CALLBACK(action_entry_insert_callback),self);
+
+  if (priv->deleted ==0)
+    priv->deleted = g_signal_connect(priv->entry_buf,"deleted-text",
+                        G_CALLBACK(action_entry_delete_callback),self);
 }
 
 static void
 bjb_search_toolbar_constructed (GObject *obj)
 {
-  GtkEntryBuffer          *entry_buf;
   GtkEntryCompletion      *completion ;
   BjbSearchToolbar        *self = BJB_SEARCH_TOOLBAR(obj);
   BjbSearchToolbarPrivate *priv = self->priv ;
@@ -258,24 +301,7 @@ bjb_search_toolbar_constructed (GObject *obj)
   gtk_entry_completion_set_model (completion, priv->completion_model);  
   gtk_entry_completion_set_text_column (completion, 0);
 
-  /* Connect to set the text */
-  priv->key_pressed = g_signal_connect(priv->window,"key-press-event",
-                                       G_CALLBACK(on_key_pressed),self);
-
-  priv->key_released = g_signal_connect(priv->window,"key-release-event",
-                                       G_CALLBACK(on_key_released),self);
-
-  /* Connect to set the notes */
-  g_signal_connect (priv->search_entry, "icon-press",
-                    G_CALLBACK (clear_search_entry_callback),
-                    self->priv->controller);
-
-  entry_buf = gtk_entry_get_buffer(GTK_ENTRY(priv->search_entry));
-
-  g_signal_connect(entry_buf,"inserted-text",
-                   G_CALLBACK(action_entry_insert_callback),self);
-  g_signal_connect(entry_buf,"deleted-text",
-                   G_CALLBACK(action_entry_delete_callback),self);
+  priv->entry_buf = gtk_entry_get_buffer (GTK_ENTRY (priv->search_entry));
 
   /* Constraints */
   priv->width_constraint = clutter_bind_constraint_new (priv->parent_actor,

@@ -37,6 +37,8 @@ GType bjb_main_view_get_type (void) G_GNUC_CONST;
 
 BjbMainView * bjb_main_view_new(GtkWidget *win, BjbController *controller);
 
+void bjb_main_view_connect_signals (BjbMainView *self);
+
 ClutterActor * bjb_main_view_get_actor(BjbMainView *b) ;
 
 GtkWidget *bjb_main_view_get_window(BjbMainView *view);

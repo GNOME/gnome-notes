@@ -166,7 +166,9 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 {
   BijiLazySerializerPrivate *priv = self->priv;
   GList                     *tags;
-  GdkRGBA                   color;
+  GdkRGBA                    color;
+  gchar                     *path, *date, *color_str;
+  gboolean                   retval;
 
   priv->writer = xmlNewTextWriterMemory(priv->buf, 0);
 
@@ -199,14 +201,17 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   xmlTextWriterEndElement(priv->writer);
 
   // <last-change-date>
-  serialize_node (priv->writer, "last-change-date",
-                  biji_note_obj_get_last_change_date (priv->note));
+  date = biji_note_obj_get_last_change_date (priv->note);
+  serialize_node (priv->writer, "last-change-date", date);
+  g_free (date);
 
-  serialize_node (priv->writer, "last-metadata-change-date",
-                  biji_note_obj_get_last_metadata_change_date(priv->note));
+  date = biji_note_obj_get_last_metadata_change_date (priv->note);
+  serialize_node (priv->writer, "last-metadata-change-date", date);
+  g_free (date);
 
-  serialize_node (priv->writer, "create-date",
-                  biji_note_obj_get_create_date (priv->note));
+  date = biji_note_obj_get_create_date (priv->note);
+  serialize_node (priv->writer, "create-date", date);
+  g_free (date);
 
   serialize_node (priv->writer, "cursor-position", "0");
   serialize_node (priv->writer, "selection-bound-position", "0");
@@ -214,9 +219,13 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   serialize_node (priv->writer, "height", "0");
   serialize_node (priv->writer, "x", "0");
   serialize_node (priv->writer, "y", "0");
-  
+
   if (biji_note_obj_get_rgba (priv->note, &color))
-    serialize_node (priv->writer, "color", gdk_rgba_to_string (&color));
+  {
+    color_str = gdk_rgba_to_string (&color);
+    serialize_node (priv->writer, "color", color_str);
+    g_free (color_str);
+  }
 
   //<tags>
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST "\n ");
@@ -235,10 +244,10 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 
   xmlFreeTextWriter(priv->writer);
 
-  return g_file_set_contents (biji_note_obj_get_path (priv->note),
-                              (gchar*) priv->buf->content,
-                              -1,
-                              NULL);
+  path = biji_note_obj_get_path (priv->note);
+  retval = g_file_set_contents (path, (gchar*) priv->buf->content, -1, NULL);
+  g_free (path);
+  return retval;
 }
 
 /* No matter if icon is saved or not.

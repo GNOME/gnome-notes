@@ -407,14 +407,15 @@ on_item_activated(GdMainView        * gd,
   GtkTreeModel * model ;
 
   /* Get Note Path */
-  model = gd_main_view_get_model(gd);
-  gtk_tree_model_get_iter (model,&iter, (GtkTreePath*) path);
+  model = gd_main_view_get_model (gd);
+  gtk_tree_model_get_iter (model, &iter, (GtkTreePath*) path);
   gtk_tree_model_get (model, &iter,COL_URI, &note_path,-1);
 
   /* Switch to that note */
-  book = bjb_window_base_get_book(view->priv->window); 
-  to_open = note_book_get_note_at_path(book,note_path) ;
-  switch_to_note(view,to_open); 
+  book = bjb_window_base_get_book (view->priv->window); 
+  to_open = note_book_get_note_at_path (book, note_path);
+  g_free (note_path);
+  switch_to_note (view, to_open); 
 
   return FALSE ;
 }

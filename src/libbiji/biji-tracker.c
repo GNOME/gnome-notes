@@ -322,14 +322,21 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 void
 bijiben_push_note_to_tracker (BijiNoteObj *note)
 {
-  gchar *title,*content,*file,*create_date,*last_change_date, *path;
-    
+  gchar *title,*content,*file,*date, *create_date,*last_change_date, *path;
+
+  path = biji_note_obj_get_path (note);    
   title = tracker_str (biji_note_obj_get_title (note));
-  file = g_strdup_printf ("file://%s", biji_note_obj_get_path(note));
-  create_date = to_8601_date (biji_note_obj_get_last_change_date (note));
-  last_change_date = to_8601_date (biji_note_obj_get_last_change_date (note));
+  file = g_strdup_printf ("file://%s", path);
+
+  date = biji_note_obj_get_create_date (note);
+  create_date = to_8601_date (date);
+  g_free (date);
+
+  date = biji_note_obj_get_last_change_date (note);
+  last_change_date = to_8601_date (date);
+  g_free (date);
+
   content = tracker_str (biji_note_get_raw_text (note));
-  path = biji_note_obj_get_path (note);
 
   /* TODO : nie:mimeType Note ;
    * All these properties are unique and thus can be "updated"

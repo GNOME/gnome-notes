@@ -121,6 +121,7 @@ bjb_controller_finalize (GObject *object)
 
   g_object_unref (priv->completion);
   g_free (priv->needle);
+  g_list_free (priv->notes_to_show);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }

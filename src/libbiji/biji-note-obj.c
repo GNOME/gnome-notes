@@ -154,6 +154,7 @@ biji_note_obj_finalize (GObject *object)
   g_hash_table_destroy (priv->labels);
 
   g_clear_object (&priv->icon);
+  gdk_rgba_free (priv->color);
 
   G_OBJECT_CLASS (biji_note_obj_parent_class)->finalize (object);
 }

@@ -137,7 +137,12 @@ to_8601_date( gchar * dot_iso_8601_date )
 static gchar *
 get_note_url (BijiNoteObj *note)
 {
-  return g_strdup_printf ("file://%s", biji_note_obj_get_path (note));
+  gchar *path, *retval;
+
+  path = biji_note_obj_get_path (note);
+  retval = g_strdup_printf ("file://%s", path);
+  g_free (path);
+  return retval;
 }
 
 /////////////// Tags
@@ -305,8 +310,11 @@ biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn)
 void
 biji_note_delete_from_tracker (BijiNoteObj *note)
 {
-  gchar *query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
-                                        biji_note_obj_get_path(note));
+  gchar *query, *path;
+
+  path = biji_note_obj_get_path (note);
+  query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }", path);
+  g_free (path);
 
   biji_perform_update_async_and_free (query, NULL, NULL);
 }
@@ -314,13 +322,14 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 void
 bijiben_push_note_to_tracker (BijiNoteObj *note)
 {
-  gchar *title,*content,*file,*create_date,*last_change_date ;
+  gchar *title,*content,*file,*create_date,*last_change_date, *path;
     
   title = tracker_str (biji_note_obj_get_title (note));
   file = g_strdup_printf ("file://%s", biji_note_obj_get_path(note));
   create_date = to_8601_date (biji_note_obj_get_last_change_date (note));
   last_change_date = to_8601_date (biji_note_obj_get_last_change_date (note));
   content = tracker_str (biji_note_get_raw_text (note));
+  path = biji_note_obj_get_path (note);
 
   /* TODO : nie:mimeType Note ;
    * All these properties are unique and thus can be "updated"
@@ -333,7 +342,7 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
                             nie:title '%s' ; \
                             nie:plainTextContent '%s' ; \
                             nie:generator 'Bijiben' . }",
-                           biji_note_obj_get_path(note),
+                           path,
                            file,
                            last_change_date,
                            create_date,
@@ -347,5 +356,6 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
   g_free(content); 
   g_free(create_date);
   g_free(last_change_date);
+  g_free (path);
 }
 

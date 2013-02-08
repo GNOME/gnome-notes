@@ -518,11 +518,14 @@ gboolean
 biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 {
   BijiNoteObj* n = self->priv->note;
+  gchar *path;
   xmlDocPtr doc;
   xmlNodePtr cur;
   xmlChar     *version; 
 
-  doc = xmlParseFile (biji_note_obj_get_path (n));
+  path = biji_note_obj_get_path (n);
+  doc = xmlParseFile (path);
+  g_free (path);
 
   if (doc == NULL ) 
   {
@@ -578,7 +581,9 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 
   xmlFree (version);
 
-  self->priv->r = xmlNewTextReaderFilename (biji_note_obj_get_path (n));
+  path = biji_note_obj_get_path (n);
+  self->priv->r = xmlNewTextReaderFilename (path);
+  g_free (path);
   biji_parse_file (self);
   xmlFreeDoc (doc);
 

@@ -63,7 +63,7 @@ biji_note_book_init (BijiNoteBook *self)
   /* Note path is key for table. It's freed by note itself */
   self->priv->notes = g_hash_table_new_full (g_str_hash,
                                              g_str_equal,
-                                             NULL,
+                                             g_free,
                                              g_object_unref);
 }
 
@@ -360,21 +360,24 @@ gboolean
 _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
 {
   BijiNoteObj *to_delete = NULL;
+  gchar *path;
+  gboolean retval = FALSE;
 
-  to_delete = g_hash_table_lookup (book->priv->notes,
-                                  biji_note_obj_get_path(note));
+  path = biji_note_obj_get_path (note);
+  to_delete = g_hash_table_lookup (book->priv->notes, path);
 
   if (to_delete)
   {
     /* Ref note first, hash_table won't finalize it & we can delete it*/
     g_object_ref (to_delete);
-    g_hash_table_remove (book->priv->notes, biji_note_obj_get_path (note));
+    g_hash_table_remove (book->priv->notes, path);
     biji_note_obj_trash (note);
     g_signal_emit ( G_OBJECT (book), biji_book_signals[BOOK_AMENDED],0);
-    return TRUE;
+    retval = TRUE;
   }
 
-  return FALSE;
+  g_free (path);
+  return retval;
 }
 
 /* Notes collection */

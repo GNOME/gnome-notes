@@ -180,6 +180,7 @@ bjb_controller_add_note ( BijiNoteObj *note, BjbController *self )
   GtkTreeIter    iter;
   GtkListStore  *store;
   GdkPixbuf     *pix = NULL;
+  gchar *path;
 
   store = GTK_LIST_STORE(self->priv->model);
 
@@ -203,17 +204,21 @@ bjb_controller_add_note ( BijiNoteObj *note, BjbController *self )
 
     /* Appart from pixbuf, both icon & list view types
      * currently use the same model */
+    path = biji_note_obj_get_path (note);
+
     gtk_list_store_append (store,&iter);
     gtk_list_store_set (store, 
                         &iter,
-                        COL_URN,    biji_note_obj_get_path(note),
-                        COL_URI,    biji_note_obj_get_path(note),
+                        COL_URN,    path,
+                        COL_URI,    path,
                         COL_NAME,   biji_note_obj_get_title(note),
                         COL_AUTHOR,   NULL,
                         COL_IMAGE,  pix,
                         COL_MTIME,  biji_note_obj_get_last_change_date_sec(note),
                         COL_SELECTED, FALSE,
                         -1);
+
+    g_free (path);
   }
 }
 

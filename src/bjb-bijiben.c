@@ -181,9 +181,10 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
   for (l = notes_proposal; l != NULL; l = l->next)
   {
     BijiNoteObj *note = l->data;
+    gchar *path = biji_note_obj_get_path (note);
 
     /* Don't add an already imported note */
-    if (note_book_get_note_at_path (self->priv->book, biji_note_obj_get_path (note)))
+    if (note_book_get_note_at_path (self->priv->book, path))
     {
       abort_note (note);
     }
@@ -208,6 +209,8 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
       biji_note_book_append_new_note (self->priv->book, note, FALSE);
       biji_note_obj_save_note (note);
     }
+
+    g_free (path);
   }
 
   /* NoteBook will notify for all opened windows */

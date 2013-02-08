@@ -513,16 +513,12 @@ biji_note_obj_set_rgba_internal (BijiNoteObj *n, GdkRGBA *rgba)
 
 
 void
-biji_note_obj_set_rgba(BijiNoteObj *n,GdkRGBA *rgba)
+biji_note_obj_set_rgba (BijiNoteObj *n, GdkRGBA *rgba)
 {
   if (!n->priv->color)
-  {
-    n->priv->color = g_new (GdkRGBA,1);
     biji_note_obj_set_rgba_internal (n, rgba);
-    return;
-  }
 
-  if (!gdk_rgba_equal (n->priv->color,rgba))
+  else if (!gdk_rgba_equal (n->priv->color,rgba))
   {
     gdk_rgba_free (n->priv->color);
     biji_note_obj_set_rgba_internal (n, rgba);

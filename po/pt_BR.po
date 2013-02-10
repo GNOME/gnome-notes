@@ -7,9 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-15 13:33+0000\n"
-"PO-Revision-Date: 2013-01-15 11:55-0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-02-07 00:15+0000\n"
+"PO-Revision-Date: 2013-02-04 10:10-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -18,8 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../data/bijiben.desktop.in.in.h:1
-#: ../src/bjb-app-menu.c:34
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -36,8 +36,8 @@ msgid "Note-taker"
 msgstr "Tomador de notas"
 
 #: ../src/bjb-app-menu.c:35
-msgid "Simple noteboook for GNOME"
-msgstr "Um simples catálogo de notas para o GNOME"
+msgid "Simple notebook for GNOME"
+msgstr "Um catálogo simples de notas para o GNOME"
 
 #: ../src/bjb-app-menu.c:39
 msgid "translator-credits"
@@ -52,6 +52,25 @@ msgstr "Notas externas"
 #: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Clique nas notas externas para importar"
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Escolha uma cor para a nota"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Cortar"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Copiar"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Colar"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -76,7 +95,9 @@ msgstr "Clique nos itens para selecioná-los"
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
 msgid "%d selected"
-msgstr "%d selecionado"
+msgid_plural "%d selected"
+msgstr[0] "%d selecionado"
+msgstr[1] "%d selecionados"
 
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
@@ -91,59 +112,67 @@ msgstr "Novas e recentes"
 msgid "New"
 msgstr "Nova"
 
-#: ../src/bjb-note-view.c:202
+#: ../src/bjb-note-tag-dialog.c:374
+msgid "Enter a name to create a tag"
+msgstr "Insira um nome para criar uma etiqueta"
+
+#: ../src/bjb-note-tag-dialog.c:384
+msgid "New tag"
+msgstr "Nova etiqueta"
+
+#: ../src/bjb-note-view.c:193
 msgid "Rename Note"
 msgstr "Renomear nota"
 
 #. Undo Redo separator
-#: ../src/bjb-note-view.c:257
+#: ../src/bjb-note-view.c:248
 msgid "Undo"
 msgstr "Desfazer"
 
-#: ../src/bjb-note-view.c:265
+#: ../src/bjb-note-view.c:256
 msgid "Redo"
 msgstr "Refazer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-note-view.c:279
+#: ../src/bjb-note-view.c:270
 msgid "Bullets"
 msgstr "Marcadores"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-note-view.c:286
+#: ../src/bjb-note-view.c:277
 msgid "List"
 msgstr "Lista"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-note-view.c:297
+#: ../src/bjb-note-view.c:288
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../src/bjb-note-view.c:303
+#: ../src/bjb-note-view.c:294
 msgid "Tags"
 msgstr "Etiquetas"
 
 #. Delete Note
-#: ../src/bjb-note-view.c:314
+#: ../src/bjb-note-view.c:305
 msgid "Delete this Note"
 msgstr "Excluir essa nota"
 
 #. Button to go back to main view
-#: ../src/bjb-note-view.c:381
+#: ../src/bjb-note-view.c:372
 msgid "Notes"
 msgstr "Notas"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:482
+#: ../src/bjb-note-view.c:473
 msgid "Last updated "
 msgstr "Última atualização "
 
-#: ../src/bjb-selection-toolbar.c:172
+#: ../src/bjb-selection-toolbar.c:177
 msgid "Tag"
 msgstr "Etiqueta"
 
-#: ../src/bjb-selection-toolbar.c:196
+#: ../src/bjb-selection-toolbar.c:201
 msgid "Delete"
 msgstr "Excluir"
 
@@ -209,4 +238,3 @@ msgstr "_Ajuda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Sair"
-

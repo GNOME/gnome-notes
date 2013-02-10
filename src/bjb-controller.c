@@ -44,6 +44,7 @@ struct _BjbControllerPrivate
 
   /*  Private  */
   GList         *notes_to_show ;
+  gulong         book_change;
 };
 
 enum {
@@ -223,8 +224,8 @@ bjb_controller_add_note ( BijiNoteObj *note, BjbController *self )
   }
 }
 
-static void
-update_view (BjbController *self)
+void
+bjb_controller_update_view (BjbController *self)
 {
   GList *notes ;
 
@@ -259,7 +260,7 @@ static void
 sort_and_update (BjbController *self)
 {
   sort_notes (self) ;
-  update_view(self);
+  bjb_controller_update_view (self);
 }
 
 static void
@@ -340,17 +341,30 @@ on_book_changed ( BijiNoteBook *book, BjbController *self )
   bjb_controller_apply_needle (self);
 }
 
+void
+bjb_controller_connect (BjbController *self)
+{
+  BjbControllerPrivate *priv = self->priv;
+
+  /* TODO Should rather connect to notes individually
+   * and only book for new notes */
+  priv->book_change = g_signal_connect (self->priv->book, "changed",
+                                     G_CALLBACK(on_book_changed), self);
+}
+
+void
+bjb_controller_disconnect (BjbController *self)
+{
+  BjbControllerPrivate *priv = self->priv;
+
+  g_signal_handler_disconnect (priv->book, priv->book_change);
+  priv->book_change = 0;
+}
+
 static void
 bjb_controller_constructed (GObject *obj)
 {
-  BjbController *self = BJB_CONTROLLER (obj);
-
   G_OBJECT_CLASS(bjb_controller_parent_class)->constructed(obj);
-
-  /* Rather connect to notes individually
-   * and only book for new notes */
-  g_signal_connect (self->priv->book, "changed",
-                    G_CALLBACK(on_book_changed), self);
 }
 
 static void
@@ -456,7 +470,7 @@ bjb_controller_set_main_view (BjbController *self, GdMainView *current)
 {
   /* Refresh the model */
   self->priv->cur = current;
-  update_view(self);
+  bjb_controller_update_view (self);
 }
 
 

@@ -63,6 +63,7 @@ bjb_window_base_finalize (GObject *object)
   BjbWindowBasePriv *priv = self->priv;
 
   g_clear_object (&priv->controller);
+  g_clear_object (&priv->view);
   G_OBJECT_CLASS (bjb_window_base_parent_class)->finalize (object);
 }
 
@@ -77,9 +78,12 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   g_type_class_add_private (klass, sizeof (BjbWindowBasePriv));
 }
 
+/* Just disconnect to avoid crash, the finalize does the real
+ * job */
 static void
 bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
 {
+  bjb_controller_disconnect (self->priv->controller);
 }
 
 /* Gobj */
@@ -249,10 +253,14 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 {
   BjbWindowBasePriv *priv = bwb->priv;
 
+  /* Precise the window does not display any specific note
+   * Refresh the model
+   * Ensure the main view receives the proper signals */
   if (type == MAIN_VIEW)
   {
     priv->note = NULL;
     bjb_main_view_connect_signals (priv->view);
+    bjb_controller_update_view (priv->controller);
   }
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), type);

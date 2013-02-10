@@ -71,6 +71,8 @@ enum
 
 BjbController * bjb_controller_new ( BijiNoteBook *book, gchar *needle ) ;
 
+void bjb_controller_update_view (BjbController *self);
+
 void bjb_controller_set_book (BjbController * self, BijiNoteBook * book ) ;
 
 void bjb_controller_set_needle (BjbController *self, const gchar *needle ) ; 
@@ -80,6 +82,10 @@ gchar * bjb_controller_get_needle (BjbController *self ) ;
 GtkTreeModel * bjb_controller_get_model  (BjbController *self) ;
 
 GtkTreeModel * bjb_controller_get_completion(BjbController *self);
+
+void bjb_controller_connect (BjbController *self);
+
+void bjb_controller_disconnect (BjbController *self);
 
 void bjb_controller_set_main_view (BjbController *self, GdMainView *current);
 

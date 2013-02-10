@@ -184,6 +184,7 @@ biji_main_view_constructor (GType                  gtype,
 void
 switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 {
+  bjb_controller_disconnect (self->priv->controller);
   bjb_search_toolbar_disconnect (self->priv->search_bar);
   bjb_main_view_disconnect_handlers (self);
   bjb_note_view_new (self->priv->window, note);
@@ -253,6 +254,7 @@ action_tag_selected_notes (GtkWidget *w, BjbMainView *view)
     gchar *url = get_note_url_from_tree_path (l->data, view) ;
     notes = g_list_prepend (notes, note_book_get_note_at_path
                                  (bjb_window_base_get_book(view->priv->window),url));
+    g_free (url);
   }
 
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
@@ -271,6 +273,7 @@ bjb_main_view_get_selected_notes_color (BjbMainView *view, GdkRGBA *color)
   paths = get_selected_paths(view);
   url = get_note_url_from_tree_path (paths->data, view) ;
   note = note_book_get_note_at_path (bjb_window_base_get_book(view->priv->window), url);
+  g_free (url);
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
 
   return biji_note_obj_get_rgba (note, color);
@@ -293,6 +296,7 @@ action_color_selected_notes (GtkWidget *w, BjbMainView *view)
     gchar *url = get_note_url_from_tree_path (l->data, view) ;
     notes = g_list_prepend (notes, note_book_get_note_at_path
                                    (bjb_window_base_get_book(view->priv->window),url));
+    g_free (url);
   }
 
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
@@ -319,7 +323,7 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
     gchar *url = get_note_url_from_tree_path (l->data, view) ;
     notes = g_list_prepend (notes, note_book_get_note_at_path
                                (bjb_window_base_get_book(view->priv->window),url));
-    
+    g_free (url);
   }
 
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
@@ -465,6 +469,7 @@ bjb_main_view_connect_signals (BjbMainView *self)
 {
   BjbMainViewPriv *priv = self->priv;
 
+  bjb_controller_connect (priv->controller);
   bjb_search_toolbar_connect (priv->search_bar);
 
   priv->key = g_signal_connect (priv->window, "key-press-event",

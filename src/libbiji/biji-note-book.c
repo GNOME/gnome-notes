@@ -322,6 +322,7 @@ biji_note_book_constructed (GObject *object)
                                g_get_application_name (),
                                NULL);
   cache = g_file_new_for_path (filename);
+  g_free (filename);
   g_file_make_directory (cache, NULL, NULL);
   g_object_unref (cache);
 

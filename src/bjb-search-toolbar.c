@@ -245,9 +245,6 @@ bjb_search_toolbar_disconnect (BjbSearchToolbar *self)
 static void
 bjb_search_toolbar_finalize (GObject *obj)
 {
-  BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (obj);
-  bjb_search_toolbar_disconnect (self);
-
   G_OBJECT_CLASS (bjb_search_toolbar_parent_class)->finalize (obj);
 }
 

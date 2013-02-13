@@ -384,8 +384,6 @@ bjb_main_toolbar_finalize (GObject *object)
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR(object);
   BjbMainToolbarPrivate *priv = self->priv;
 
-  gtk_widget_destroy (GTK_WIDGET (self->priv->toolbar));
-
   if (priv->search_handler != 0)
   {
     g_signal_handler_disconnect (priv->controller, priv->search_handler);

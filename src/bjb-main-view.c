@@ -61,6 +61,7 @@ struct _BjbMainViewPriv {
 
   /* Selection Mode */
   ClutterActor     *actions ;
+  BjbSelectionToolbar  *select_bar;
 
   /* Search Entry  */
   ClutterActor     *search_actor;
@@ -96,12 +97,8 @@ bjb_main_view_finalize (GObject *object)
 
   /* Widgets, actors */
   g_clear_object (&priv->main_toolbar);
+  g_clear_object (&priv->select_bar);
   g_clear_object (&priv->search_bar);
-
-  gtk_widget_destroy (GTK_WIDGET (priv->view));
-  bjb_controller_set_main_view (priv->controller, NULL);
-
-  clutter_actor_destroy (priv->bin);
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->finalize (object);
 }
@@ -490,7 +487,6 @@ bjb_main_view_constructed(GObject *o)
   ClutterActor         *stage, *top, *view, *selection_bar;
   ClutterLayoutManager *filler, *packer, *switcher, *overlay;
   ClutterConstraint    *constraint ;
-  BjbSelectionToolbar  *panel ;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
@@ -568,8 +564,8 @@ bjb_main_view_constructed(GObject *o)
                          bjb_controller_get_model(priv->controller));
 
   /* Selection Panel */
-  panel = bjb_selection_toolbar_new (priv->content,priv->view,self);
-  selection_bar = bjb_selection_toolbar_get_actor (panel);
+  priv->select_bar = bjb_selection_toolbar_new (priv->content,priv->view,self);
+  selection_bar = bjb_selection_toolbar_get_actor (priv->select_bar);
   clutter_actor_add_child (priv->bin, selection_bar);
 
   /* Drag n drop */

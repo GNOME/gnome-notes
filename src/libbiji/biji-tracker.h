@@ -22,7 +22,7 @@
 #include <gtk/gtk.h>
 #include <tracker-sparql.h>
 
-#include <libbiji/libbiji.h>
+#include "libbiji.h"
 
 /* todo : find this on glib */
 typedef void (*BijiFunc) (gpointer user_data);

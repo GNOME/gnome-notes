@@ -20,7 +20,7 @@ AM_CFLAGS =\
 
 INCLUDES = -DDATADIR=\""$(datadir)"\"
 
-LDADD = libbiji.la \
+LDADD = libbiji/libbiji.la \
 	-lm \
 	$(top_builddir)/libgd/libgd.la \
 	$(BIJIBEN_LIBS)
@@ -110,38 +110,6 @@ EXTRA_DIST = \
 	resources/app-menu.ui \
 	resources/thumbnail-frame.png \
 	$(NULL)
-
-noinst_LTLIBRARIES = \
-	libbiji.la
-
-libbiji_la_SOURCES =  \
-	libbiji/libbiji.h \
-	libbiji/biji-date-time.c \
-	libbiji/biji-date-time.h \
-	libbiji/biji-note-id.c \
-	libbiji/biji-note-id.h \
-	libbiji/biji-note-obj.c \
-	libbiji/biji-note-obj.h \
-	libbiji/biji-note-book.c \
-	libbiji/biji-note-book.h \
-	libbiji/biji-string.c \
-	libbiji/biji-string.h \
-	libbiji/biji-timeout.c \
-	libbiji/biji-timeout.h \
-	libbiji/biji-tracker.c \
-	libbiji/biji-tracker.h \
-	libbiji/biji-zeitgeist.c \
-	libbiji/biji-zeitgeist.h \
-	libbiji/deserializer/biji-lazy-deserializer.c \
-	libbiji/deserializer/biji-lazy-deserializer.h \
-	libbiji/editor/biji-editor-selection.c \
-	libbiji/editor/biji-editor-selection.h \
-	libbiji/editor/biji-editor-utils.c \
-	libbiji/editor/biji-editor-utils.h \
-	libbiji/editor/biji-webkit-editor.c \
-	libbiji/editor/biji-webkit-editor.h \
-	libbiji/serializer/biji-lazy-serializer.c \
-	libbiji/serializer/biji-lazy-serializer.h
 
 CLEANFILES = \
 	$(BUILT_SOURCES)	\

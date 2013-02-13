@@ -17,6 +17,7 @@
 
 #include <libxml/xmlwriter.h>
 
+#include "config.h"
 #include "../biji-string.h"
 #include "../biji-note-book.h"
 #include "biji-webkit-editor.h"

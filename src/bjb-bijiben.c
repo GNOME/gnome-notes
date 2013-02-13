@@ -217,7 +217,7 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
 
   g_list_free_full (notes_info, g_object_unref);
   g_list_free (notes_proposal);
-  biji_note_book_notify_changed (self->priv->book);
+  biji_note_book_notify_changed (self->priv->book, BIJI_BOOK_MASS_CHANGE, NULL);
 }
 
 static void

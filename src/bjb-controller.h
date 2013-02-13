@@ -71,6 +71,8 @@ enum
 
 BjbController * bjb_controller_new ( BijiNoteBook *book, gchar *needle ) ;
 
+void bjb_controller_apply_needle (BjbController *self);
+
 void bjb_controller_update_view (BjbController *self);
 
 void bjb_controller_set_book (BjbController * self, BijiNoteBook * book ) ;

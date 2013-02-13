@@ -95,11 +95,11 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_BOOLEAN);   // state
 
   priv->model = GTK_TREE_MODEL(store) ;
-  
-  completion  = gtk_list_store_new (1, G_TYPE_STRING);
-  
-  priv->completion = GTK_TREE_MODEL(completion);
+  priv->notes_to_show = NULL;
+  priv->needle = NULL;
 
+  completion  = gtk_list_store_new (1, G_TYPE_STRING);
+  priv->completion = GTK_TREE_MODEL (completion);
 }
 
 static void
@@ -119,6 +119,7 @@ bjb_controller_finalize (GObject *object)
   BjbControllerPrivate *priv = self->priv ;
 
   free_notes_store (self);
+  g_object_unref (priv->model);
 
   g_object_unref (priv->completion);
   g_free (priv->needle);
@@ -174,17 +175,23 @@ bjb_controller_set_property (GObject  *object,
   }
 }
 
-/* Implement model */
-
 static void
-bjb_controller_add_note ( BijiNoteObj *note, BjbController *self )
+bjb_controller_add_note (BjbController *self,
+                         BijiNoteObj   *note,
+                         gboolean       prepend)
 {
   GtkTreeIter    iter;
   GtkListStore  *store;
   GdkPixbuf     *pix = NULL;
-  gchar *path;
+  gchar         *path;
 
-  store = GTK_LIST_STORE(self->priv->model);
+  store = GTK_LIST_STORE (self->priv->model);
+
+  if (prepend)
+    gtk_list_store_insert (store, &iter, 0);
+
+  else
+    gtk_list_store_append (store, &iter);
 
   /* Only append notes which are not templates. Currently useless */
   if ( biji_note_obj_is_template (note) == FALSE)
@@ -208,7 +215,6 @@ bjb_controller_add_note ( BijiNoteObj *note, BjbController *self )
      * currently use the same model */
     path = biji_note_obj_get_path (note);
 
-    gtk_list_store_append (store,&iter);
     gtk_list_store_set (store, 
                         &iter,
                         COL_URN,    path,
@@ -224,19 +230,77 @@ bjb_controller_add_note ( BijiNoteObj *note, BjbController *self )
   }
 }
 
+/* If the user searches for notes, is the note searched? */
+static void
+bjb_controller_add_note_if_needed (BjbController *self,
+                                   BijiNoteObj   *note,
+                                   gboolean       prepend)
+{
+  gboolean need_to_add_note =FALSE;
+  gchar *title, *content;
+  GList *collections, *l;
+  BjbControllerPrivate *priv = self->priv;
+
+  /* No note... */
+  if (!note || !BIJI_IS_NOTE_OBJ (note))
+    return;
+
+  /* No search - we add the note */
+  if (!priv->needle || g_strcmp0 (priv->needle, "")==0)
+  {
+    need_to_add_note = TRUE;
+  }
+
+  /* a search.. we test...*/
+  else
+  {
+
+    title = biji_note_obj_get_title (note);
+    content = biji_note_get_raw_text (note);
+
+    /* matching title or content ... */
+    if (g_strrstr (title  , priv->needle) != NULL ||
+        g_strrstr (content, priv->needle) != NULL  )
+      need_to_add_note = TRUE;
+
+    /* last chance, matching collections... */
+    else
+    {
+      collections = biji_note_obj_get_collections (note);
+    
+      for (l = collections; l != NULL; l=l->next)
+      {
+        if (g_strrstr (l->data, title))
+        {
+          need_to_add_note = TRUE;
+          break;
+        }
+      }
+
+      g_list_free (collections);
+    }
+  }
+
+  if (need_to_add_note)
+    bjb_controller_add_note (self, note, prepend);
+}
+
 void
 bjb_controller_update_view (BjbController *self)
 {
-  GList *notes ;
+  GList *notes, *l;
 
   /* Do not update if nothing to show */
   if (!self->priv->cur)
     return;
 
   notes = self->priv->notes_to_show ;
+  free_notes_store (self);
 
-  free_notes_store(self);
-  g_list_foreach (notes,(GFunc)bjb_controller_add_note,self);
+  for (l = notes; l != NULL; l = l->next)
+  {
+    bjb_controller_add_note (self, l->data, FALSE);
+  }
 }
 
 static gint
@@ -276,20 +340,20 @@ update_controller_callback (GObject *source_object,
   sort_and_update (self);
 }
 
-static void
+void
 bjb_controller_apply_needle ( BjbController *self )
 {
   gchar *needle ;
 
-  g_list_free(self->priv->notes_to_show);
-  self->priv->notes_to_show = NULL ;
+  if (self->priv->notes_to_show)
+    g_clear_pointer (&self->priv->notes_to_show, g_list_free);
   
-  needle = self->priv->needle ;
+  needle = self->priv->needle;
 
   /* Show all notes */
-  if ( needle == NULL || g_strcmp0 (needle,"") == 0)
+  if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    self->priv->notes_to_show = biji_note_book_get_notes(self->priv->book);
+    self->priv->notes_to_show = biji_note_book_get_notes (self->priv->book);
     sort_and_update (self);
     return;
   }
@@ -334,11 +398,80 @@ refresh_completion(BjbController *self)
   }
 }
 
-static void
-on_book_changed ( BijiNoteBook *book, BjbController *self )
+static gboolean
+bjb_controller_get_iter_at_note (BjbController *self, gchar *needle, GtkTreeIter **iter)
 {
+  BjbControllerPrivate *priv = self->priv;
+  gboolean retval = FALSE;
+  gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
+
+  while (still)
+  {
+    gchar *note_path;
+
+    gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &note_path,-1);
+
+    if (g_strcmp0 (note_path, needle)==0)
+      retval = TRUE;
+
+    g_free (note_path);
+
+    if (retval)
+      break;
+
+    else
+      still = gtk_tree_model_iter_next (priv->model, *iter);
+  }
+
+  return retval;
+}
+
+/* Depending on the change at data level,
+ * the view has to be totaly refreshed or just amended */
+static void
+on_book_changed (BijiNoteBook           *book,
+                 BijiNoteBookChangeFlag  flag,
+                 gchar                  *note_path,
+                 BjbController          *self)
+{
+  BjbControllerPrivate *priv = self->priv;
+  BijiNoteObj *note;
+  GtkTreeIter iter;
+  GtkTreeIter *p_iter = &iter;
+
+  switch (flag)
+  {
+    /* If this is a *new* note, per def prepend
+     * But do not add a new note to a search window */
+    case BIJI_BOOK_NOTE_ADDED:
+      note = note_book_get_note_at_path (book, note_path);
+      if (note)
+      {
+        bjb_controller_add_note_if_needed (self, note, TRUE);
+        priv->notes_to_show = g_list_prepend (priv->notes_to_show, note);
+      }
+      break;
+
+    /* If the note is *amended*, then per definition we prepend.
+     * but if we add other ordering this does not work */
+    case BIJI_BOOK_NOTE_AMENDED:
+      if (bjb_controller_get_iter_at_note (self, note_path, &p_iter))
+      {
+        gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
+        note = note_book_get_note_at_path (book, note_path);
+        if (note)
+          bjb_controller_add_note_if_needed (self, note, TRUE);
+      }
+      break;
+
+    /* Trashed? rebuilding the whole model might be more simple */
+    case BIJI_BOOK_NOTE_TRASHED:
+    default:
+      bjb_controller_apply_needle (self);
+  }
+
+  /* we refresh the whole completion model each time */
   refresh_completion(self);
-  bjb_controller_apply_needle (self);
 }
 
 void
@@ -440,8 +573,11 @@ bjb_controller_set_book (BjbController *self, BijiNoteBook  *book )
 void
 bjb_controller_set_needle (BjbController *self, const gchar *needle )
 {
-  self->priv->needle = g_strdup(needle);
-  on_needle_changed(self);
+  if (self->priv->needle)
+    g_free (self->priv->needle);
+
+  self->priv->needle = g_strdup (needle);
+  on_needle_changed (self);
 }
 
 gchar *

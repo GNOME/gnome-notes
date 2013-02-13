@@ -55,6 +55,10 @@ void action_tag_selected_notes (GtkWidget *w, BjbMainView *view);
 
 void action_delete_selected_notes(GtkWidget *w,BjbMainView *view);
 
+gboolean bjb_main_view_get_iter_at_note (BjbMainView  *view,
+                                         BijiNoteObj  *note,
+                                         GtkTreeIter  *retval);
+
 void update_notes_with_tag_search(BjbMainView *view, gchar *tag);
 
 void update_notes_with_string_search(BjbMainView *view, gchar *needle);

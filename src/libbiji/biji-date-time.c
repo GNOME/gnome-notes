@@ -16,7 +16,7 @@
 
 #include <glib/gi18n.h>
 
-#include "biji-date-time.h"
+#include "libbiji.h"
 
 gchar *
 biji_get_time_diff_with_time (glong sec_since_epoch)

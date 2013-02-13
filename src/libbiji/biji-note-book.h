@@ -9,6 +9,16 @@ G_BEGIN_DECLS
 
 #define DEFAULT_NOTE_TITLE "New Note"
 
+/* The flag tells if view should reload the whole model or not */
+typedef enum
+{
+  BIJI_BOOK_CHANGE_FLAG,
+  BIJI_BOOK_MASS_CHANGE,   // Startup, mass import.. rather rebuild the whole.
+  BIJI_BOOK_NOTE_ADDED,    // Single note added
+  BIJI_BOOK_NOTE_AMENDED,  // Single note amended (title, color,...)
+  BIJI_BOOK_NOTE_TRASHED,  // Single note trashed
+} BijiNoteBookChangeFlag;
+
 #define BIJI_TYPE_NOTE_BOOK             (biji_note_book_get_type ())
 #define BIJI_NOTE_BOOK(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_NOTE_BOOK, BijiNoteBook))
 #define BIJI_NOTE_BOOK_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_NOTE_BOOK, BijiNoteBookClass))
@@ -44,7 +54,9 @@ void _biji_note_book_add_note_to_tag_book(BijiNoteBook *book,BijiNoteObj *note,g
 
 void biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean notify);
 
-gboolean biji_note_book_notify_changed (BijiNoteBook *book);
+gboolean biji_note_book_notify_changed (BijiNoteBook           *book,
+                                        BijiNoteBookChangeFlag  flag,
+                                        gchar                  *note);
 
 gboolean biji_note_book_remove_note(BijiNoteBook *book,BijiNoteObj *note);
 

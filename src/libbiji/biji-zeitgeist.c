@@ -16,7 +16,7 @@
 
 #include "biji-zeitgeist.h"
 
-#include <libbiji/libbiji.h>
+#include <libbiji.h>
 #include "biji-zeitgeist.h"
 
 static ZeitgeistLog *global_log;

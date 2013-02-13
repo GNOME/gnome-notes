@@ -21,11 +21,13 @@
 #define _LIBBIJI_INSIDE_H
 
 #include "biji-date-time.h"
+#include "biji-marshalers.h"
 #include "biji-note-book.h"
 #include "biji-note-obj.h"
 #include "biji-string.h"
 #include "biji-tracker.h"
 #include "biji-zeitgeist.h"
+#include "deserializer/biji-lazy-deserializer.h"
 #include "editor/biji-webkit-editor.h"
 
 #undef _LIBBIJI_INSIDE_H

@@ -1,12 +1,16 @@
 noinst_LTLIBRARIES = \
 	libbiji.la
 
+libbiji_la_built_sources = \
+	biji-marshalers.c \
+	biji-marshalers.h \
+	$(NULL)
+
 libbiji_la_SOURCES =  \
+	$(libbiji_la_built_sources) \
 	libbiji.h \
 	biji-date-time.c \
 	biji-date-time.h \
-	biji-marshalers.c \
-	biji-marshalers.h \
 	biji-note-id.c \
 	biji-note-id.h \
 	biji-note-obj.c \
@@ -31,6 +35,19 @@ libbiji_la_SOURCES =  \
 	editor/biji-webkit-editor.h \
 	serializer/biji-lazy-serializer.c \
 	serializer/biji-lazy-serializer.h
+
+BUILT_SOURCES = \
+	$(libbiji_la_built_sources) \
+	$(NULL)
+
+EXTRA_DIST = \
+	biji-marshalers.list \
+	$(null)
+
+CLEANFILES = \
+	$(libbiji_la_built_sources) \
+	stamp-biji-marshalers.h \
+	$(NULL)
 
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \

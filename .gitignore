@@ -46,6 +46,8 @@ src/bijiben
 src/libbiji.a
 src/bjb-resources*
 src/bijiben-shell-search-provider-generated*
+src/libbiji/biji-marshalers.c
+src/libbiji/biji-marshalers.h
 data/org.gnome.Bijiben.SearchProvider.service
 src/bijiben-shell-search-provider
 ChangeLog

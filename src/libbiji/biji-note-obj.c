@@ -507,9 +507,7 @@ biji_note_obj_set_rgba_internal (BijiNoteObj *n, GdkRGBA *rgba)
   n->priv->color = gdk_rgba_copy(rgba);
   n->priv->icon_needs_update = TRUE;
 
-  /* Make editor & notebook know about this change */
   g_signal_emit (G_OBJECT (n), biji_obj_signals[NOTE_COLOR_CHANGED],0);
-  g_signal_emit (G_OBJECT (n), biji_obj_signals[NOTE_CHANGED],0);
 }
 
 

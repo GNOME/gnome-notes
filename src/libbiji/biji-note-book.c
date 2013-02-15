@@ -171,7 +171,7 @@ biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title)
 gboolean
 biji_note_book_notify_changed (BijiNoteBook            *book,
                                BijiNoteBookChangeFlag   flag,
-                               gchar                   *note)
+                               BijiNoteObj              *note)
 {
   g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED], 0, flag, note);
   return FALSE;
@@ -180,9 +180,13 @@ biji_note_book_notify_changed (BijiNoteBook            *book,
 void
 book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 {
-  gchar *path = biji_note_obj_get_path (note);
-  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_AMENDED, path);
-  g_free (path);
+  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_AMENDED, note);
+}
+
+static void
+book_on_note_color_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
+{
+  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_COLORED, note);
 }
 
 static void
@@ -198,6 +202,7 @@ _biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
 
   g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
   g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
+  g_signal_connect (note, "color-changed", G_CALLBACK (book_on_note_color_changed_cb), book);
 }
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
@@ -349,8 +354,8 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
   biji_book_signals[BOOK_AMENDED] =
     g_signal_new ("changed", G_OBJECT_CLASS_TYPE (klass), G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,                         /* offset & accumulator */
-                  _biji_marshal_VOID__ENUM_STRING,
-                  G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_STRING);
+                  _biji_marshal_VOID__ENUM_POINTER,
+                  G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_POINTER);
 
   properties[PROP_LOCATION] =
     g_param_spec_object("location",
@@ -363,9 +368,12 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
   g_type_class_add_private (klass, sizeof (BijiNoteBookPrivate));
 }
 
-gboolean
-_note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
+gboolean 
+biji_note_book_remove_note (BijiNoteBook *book, BijiNoteObj *note)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ  (note), FALSE);
+
   BijiNoteObj *to_delete = NULL;
   gchar *path;
   gboolean retval = FALSE;
@@ -375,11 +383,15 @@ _note_book_remove_one_note(BijiNoteBook *book,BijiNoteObj *note)
 
   if (to_delete)
   {
+    /* Signal before doing anything here. So the note is still
+     * fully available for signal receiver. */
+    biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_TRASHED, to_delete);
+
     /* Ref note first, hash_table won't finalize it & we can delete it*/
     g_object_ref (to_delete);
     g_hash_table_remove (book->priv->notes, path);
     biji_note_obj_trash (note);
-    biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_TRASHED, path);
+
     retval = TRUE;
   }
 
@@ -397,20 +409,7 @@ biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean 
   _biji_note_book_add_one_note (book,note);
 
   if (notify)
-  {
-    gchar *path = biji_note_obj_get_path (note);
-    biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_ADDED, path);
-    g_free (path);
-  }
-}
-
-gboolean 
-biji_note_book_remove_note(BijiNoteBook *book,BijiNoteObj *note)
-{
-  g_return_val_if_fail(BIJI_IS_NOTE_BOOK(book),FALSE);
-  g_return_val_if_fail(BIJI_IS_NOTE_OBJ(note),FALSE);
-
-  return _note_book_remove_one_note(book,note);
+    biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_ADDED, note);
 }
  
 GList *

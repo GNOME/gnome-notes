@@ -261,7 +261,6 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
   {
     priv->note = NULL;
     bjb_main_view_connect_signals (priv->view);
-    bjb_controller_update_view (priv->controller);
   }
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), type);

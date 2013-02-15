@@ -181,7 +181,6 @@ biji_main_view_constructor (GType                  gtype,
 void
 switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 {
-  bjb_controller_disconnect (self->priv->controller);
   bjb_search_toolbar_disconnect (self->priv->search_bar);
   bjb_main_view_disconnect_handlers (self);
   bjb_note_view_new (self->priv->window, note);

@@ -44,6 +44,7 @@ struct _BjbControllerPrivate
 
   /*  Private  */
   GList         *notes_to_show ;
+  gboolean       connected;
   gulong         book_change;
 };
 
@@ -97,6 +98,7 @@ bjb_controller_init (BjbController *self)
   priv->model = GTK_TREE_MODEL(store) ;
   priv->notes_to_show = NULL;
   priv->needle = NULL;
+  priv->connected = FALSE;
 
   completion  = gtk_list_store_new (1, G_TYPE_STRING);
   priv->completion = GTK_TREE_MODEL (completion);
@@ -185,6 +187,7 @@ bjb_controller_add_note (BjbController *self,
   GdkPixbuf     *pix = NULL;
   gchar         *path;
 
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
   store = GTK_LIST_STORE (self->priv->model);
 
   if (prepend)
@@ -399,9 +402,10 @@ refresh_completion(BjbController *self)
 }
 
 static gboolean
-bjb_controller_get_iter_at_note (BjbController *self, gchar *needle, GtkTreeIter **iter)
+bjb_controller_get_iter_at_note (BjbController *self, BijiNoteObj *note, GtkTreeIter **iter)
 {
   BjbControllerPrivate *priv = self->priv;
+  gchar *needle = biji_note_obj_get_path (note);
   gboolean retval = FALSE;
   gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
 
@@ -423,6 +427,7 @@ bjb_controller_get_iter_at_note (BjbController *self, gchar *needle, GtkTreeIter
       still = gtk_tree_model_iter_next (priv->model, *iter);
   }
 
+  g_free (needle);
   return retval;
 }
 
@@ -431,11 +436,11 @@ bjb_controller_get_iter_at_note (BjbController *self, gchar *needle, GtkTreeIter
 static void
 on_book_changed (BijiNoteBook           *book,
                  BijiNoteBookChangeFlag  flag,
-                 gchar                  *note_path,
+                 gpointer               *note_obj,
                  BjbController          *self)
 {
   BjbControllerPrivate *priv = self->priv;
-  BijiNoteObj *note;
+  BijiNoteObj *note = BIJI_NOTE_OBJ (note_obj);
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
@@ -444,33 +449,38 @@ on_book_changed (BijiNoteBook           *book,
     /* If this is a *new* note, per def prepend
      * But do not add a new note to a search window */
     case BIJI_BOOK_NOTE_ADDED:
-      note = note_book_get_note_at_path (book, note_path);
-      if (note)
-      {
         bjb_controller_add_note_if_needed (self, note, TRUE);
         priv->notes_to_show = g_list_prepend (priv->notes_to_show, note);
-      }
       break;
 
     /* If the note is *amended*, then per definition we prepend.
      * but if we add other ordering this does not work */
     case BIJI_BOOK_NOTE_AMENDED:
-      if (bjb_controller_get_iter_at_note (self, note_path, &p_iter))
+      if (bjb_controller_get_iter_at_note (self, note, &p_iter))
       {
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
-        note = note_book_get_note_at_path (book, note_path);
-        if (note)
-          bjb_controller_add_note_if_needed (self, note, TRUE);
+        bjb_controller_add_note_if_needed (self, note, TRUE);
       }
       break;
 
-    /* Trashed? rebuilding the whole model might be more simple */
+    /* If color changed we just amend the icon */
+    case BIJI_BOOK_NOTE_COLORED:
+      if (gd_main_view_get_view_type (priv->cur) == GD_MAIN_VIEW_ICON
+          && bjb_controller_get_iter_at_note (self, note, &p_iter))
+        gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
+                            COL_IMAGE, biji_note_obj_get_icon (note), -1);
+      break;
+
     case BIJI_BOOK_NOTE_TRASHED:
+      if (bjb_controller_get_iter_at_note (self, note, &p_iter))
+        gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
+      break;
+
     default:
       bjb_controller_apply_needle (self);
   }
 
-  /* we refresh the whole completion model each time */
+  /* FIXME we refresh the whole completion model each time */
   refresh_completion(self);
 }
 
@@ -478,11 +488,13 @@ void
 bjb_controller_connect (BjbController *self)
 {
   BjbControllerPrivate *priv = self->priv;
-
-  /* TODO Should rather connect to notes individually
-   * and only book for new notes */
-  priv->book_change = g_signal_connect (self->priv->book, "changed",
+  
+  if (!priv->connected)
+  {
+    priv->book_change = g_signal_connect (self->priv->book, "changed",
                                      G_CALLBACK(on_book_changed), self);
+    priv->connected = TRUE;
+  }
 }
 
 void

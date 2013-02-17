@@ -4,9 +4,12 @@
 
    UI ENHANCEMENT
  * improve last updated footer
+ * load more notes button
+ * drop clutter
 
    ROADMAP
  * gnome online account
- * probably "collections" (instead current tag chooser dialog)
+ * "collections"
  * being able to integrate vjournal, plain txt, html notes, html text
+ * export (tomboy is priority)
 

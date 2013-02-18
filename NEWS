@@ -1,4 +1,4 @@
-Overview of changes in 3.90
+Overview of changes in 3.7.90
 ============================
 
 * Properly amend the GtkList when a note changes or is deleted.

@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-04 20:57+0000\n"
-"PO-Revision-Date: 2013-01-05 17:32+0200\n"
+"POT-Creation-Date: 2013-01-27 23:12+0000\n"
+"PO-Revision-Date: 2013-02-19 20:53+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -36,7 +36,8 @@ msgid "Note-taker"
 msgstr "Хватач белешки"
 
 #: ../src/bjb-app-menu.c:35
-msgid "Simple noteboook for GNOME"
+#| msgid "Simple noteboook for GNOME"
+msgid "Simple notebook for GNOME"
 msgstr "Једноставна бележница за Гном"
 
 #: ../src/bjb-app-menu.c:39
@@ -53,6 +54,25 @@ msgstr "Спољне белешке"
 #: ../src/bjb-app-menu.c:168
 msgid "Click on the external notes to import"
 msgstr "Кликните на спољне белешке да их увезете"
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Изаберите боју за белешку"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Исеци"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Умножи"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Убаци"
 
 #: ../src/bjb-editor-toolbar.c:174
 msgid "Bold"
@@ -76,8 +96,13 @@ msgstr "Кликните на ставке да их изаберете"
 
 #: ../src/bjb-main-toolbar.c:181
 #, c-format
+#| msgid "%d selected"
 msgid "%d selected"
-msgstr "Изабраних — %d"
+msgid_plural "%d selected"
+msgstr[0] "%d је изабрана"
+msgstr[1] "%d су изабране"
+msgstr[2] "%d је изабрано"
+msgstr[3] "Изабраних — %d"
 
 #: ../src/bjb-main-toolbar.c:220
 #, c-format
@@ -91,6 +116,14 @@ msgstr "Нове и скорашње"
 #: ../src/bjb-main-toolbar.c:243
 msgid "New"
 msgstr "Нова"
+
+#: ../src/bjb-note-tag-dialog.c:267
+msgid "Enter a name to create a tag"
+msgstr "Унесите назив да направите ознаку"
+
+#: ../src/bjb-note-tag-dialog.c:277
+msgid "New tag"
+msgstr "Нова ознака"
 
 #: ../src/bjb-note-view.c:202
 msgid "Rename Note"
@@ -140,11 +173,11 @@ msgstr "Белешке"
 msgid "Last updated "
 msgstr "Последње ажурирање"
 
-#: ../src/bjb-selection-toolbar.c:172
+#: ../src/bjb-selection-toolbar.c:177
 msgid "Tag"
 msgstr "Назнака"
 
-#: ../src/bjb-selection-toolbar.c:196
+#: ../src/bjb-selection-toolbar.c:201
 msgid "Delete"
 msgstr "Обриши"
 

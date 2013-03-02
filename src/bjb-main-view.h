@@ -4,7 +4,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
-#include <clutter-gtk/clutter-gtk.h>
 
 #include "bjb-controller.h"
 
@@ -24,12 +23,12 @@ typedef struct _BjbMainViewPriv BjbMainViewPriv;
 
 struct _BjbMainViewClass
 {
-  ClutterActorClass parent_class ;
+  GtkBoxClass parent_class ;
 };
 
 struct _BjbMainView
 {
-  ClutterActor parent_instance ;
+  GtkBox parent_instance ;
   BjbMainViewPriv *priv;
 };
 
@@ -38,8 +37,6 @@ GType bjb_main_view_get_type (void) G_GNUC_CONST;
 BjbMainView * bjb_main_view_new(GtkWidget *win, BjbController *controller);
 
 void bjb_main_view_connect_signals (BjbMainView *self);
-
-ClutterActor * bjb_main_view_get_actor(BjbMainView *b) ;
 
 GtkWidget *bjb_main_view_get_window(BjbMainView *view);
 

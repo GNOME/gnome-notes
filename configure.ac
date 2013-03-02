@@ -47,6 +47,7 @@ LIBGD_INIT([
   gtk-hacks
   main-view
   main-toolbar
+  revealer
   stack
 ])
 

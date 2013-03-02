@@ -30,11 +30,12 @@ struct _BjbWindowBasePriv
   GdStack              *stack;
   BjbWindowViewType     current_view;
   BjbMainView          *view;
-  ClutterActor         *stage, *note_stage, *frame;
   gchar                *entry;
 
   /* when a note is opened */
   BijiNoteObj          *note;
+  BjbNoteView          *note_view;
+  GtkWidget            *note_overlay;
 
   /* To avoid loiding several times */
   PangoFontDescription *font ;
@@ -69,17 +70,6 @@ bjb_window_base_finalize (GObject *object)
   G_OBJECT_CLASS (bjb_window_base_parent_class)->finalize (object);
 }
 
-static void
-bjb_window_base_class_init (BjbWindowBaseClass *klass)
-{
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  gobject_class->constructor = bjb_window_base_constructor;
-  gobject_class->finalize = bjb_window_base_finalize ;
-
-  g_type_class_add_private (klass, sizeof (BjbWindowBasePriv));
-}
-
 /* Just disconnect to avoid crash, the finalize does the real
  * job */
 static void
@@ -89,20 +79,17 @@ bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
 }
 
 /* Gobj */
-static void 
-bjb_window_base_init (BjbWindowBase *self) 
+static void
+bjb_window_base_constructed (GObject *obj)
 {
+  BjbWindowBase *self = BJB_WINDOW_BASE (obj);
   BjbWindowBasePriv *priv;
   const gchar *icons_path;
   gchar *full_path;
   GList *icons = NULL;
   GdkPixbuf *bjb ;
   GError *error = NULL;
-  GtkClutterEmbed *embed;
 
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE(self,
-                                           BJB_TYPE_WINDOW_BASE,
-                                           BjbWindowBasePriv);
   priv = self->priv;
   priv->note = NULL;
 
@@ -136,28 +123,38 @@ bjb_window_base_init (BjbWindowBase *self)
 
   /*  We probably want to offer a no entry window at first (startup) */
   priv->entry = NULL ;
-
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
   /* UI : basic notebook */
   priv->stack = GD_STACK (gd_stack_new ());
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->stack));
 
-  /* Page for overview */
-  embed = GTK_CLUTTER_EMBED (gtk_clutter_embed_new());
-  gtk_clutter_embed_set_use_layout_size (embed, TRUE);
-  gd_stack_add_named (priv->stack, GTK_WIDGET (embed), "main-view");
-  priv->stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (embed));
-
-  /* Page for note */
-  embed = GTK_CLUTTER_EMBED (gtk_clutter_embed_new());
-  gtk_clutter_embed_set_use_layout_size (embed, TRUE);
-  gd_stack_add_named (priv->stack, GTK_WIDGET (embed), "note-view");
-  priv->note_stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (embed));
-
   /* Signals */
   g_signal_connect(GTK_WIDGET(self),"destroy",
                    G_CALLBACK(bjb_window_base_destroy),self);
+}
+
+static void
+bjb_window_base_init (BjbWindowBase *self)
+{
+  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                            BJB_TYPE_WINDOW_BASE,
+                                            BjbWindowBasePriv);
+
+  /* Default window has no note opened */
+  self->priv->note_view = NULL;
+}
+
+static void
+bjb_window_base_class_init (BjbWindowBaseClass *klass)
+{
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+
+  gobject_class->constructed = bjb_window_base_constructed;
+  gobject_class->constructor = bjb_window_base_constructor;
+  gobject_class->finalize = bjb_window_base_finalize ;
+
+  g_type_class_add_private (klass, sizeof (BjbWindowBasePriv));
 }
 
 GtkWindow *
@@ -170,15 +167,18 @@ bjb_window_base_new(void)
                         "application", g_application_get_default(),
                         "hide-titlebar-when-maximized", TRUE,
                         NULL);
+
+  /* Rather dirty to finish UI there. maybe bjb_w_b_set_controller */
+
   priv = retval->priv;
 
   priv->controller = bjb_controller_new 
     (bijiben_get_book (BIJIBEN_APPLICATION(g_application_get_default())),
      priv->entry );
 
-  /* UI : notes view. But some settings could allow other default. */
-  priv->view = bjb_main_view_new ( GTK_WIDGET(retval),priv->controller);
-  priv->frame = bjb_main_view_get_actor(priv->view);
+  priv->view = bjb_main_view_new (GTK_WIDGET (retval), priv->controller);
+  gd_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
+  gtk_widget_show_all (GTK_WIDGET (retval));
 
   return GTK_WINDOW (retval);
 }
@@ -197,40 +197,6 @@ window_base_get_font(GtkWidget *window)
 }
 
 void
-bjb_window_base_set_frame(BjbWindowBase *bwb,ClutterActor *frame)
-{
-  /* TODO removing frame should finalize
-   * or we can implement some interface
-   * (bool) (hide_frame) (bwb) */
-  if ( bwb->priv->frame )
-  {
-    clutter_actor_destroy(bwb->priv->frame);
-    bwb->priv->frame = NULL ;
-  }
-
-  if ( CLUTTER_IS_ACTOR( bwb->priv->frame) )
-  {
-    bwb->priv->frame = frame ;
-    clutter_actor_add_child (bwb->priv->stage, frame);
-  }
-}
-
-ClutterActor *
-bjb_window_base_get_frame(BjbWindowBase *bwb)
-{
-  return bwb->priv->frame ;
-}
-
-ClutterActor *
-bjb_window_base_get_stage (BjbWindowBase *bwb, BjbWindowViewType type)
-{
-  if (type == NOTE_VIEW)
-    return bwb->priv->note_stage;
-
-  return bwb->priv->stage;
-}
-
-void
 bjb_window_base_set_note (BjbWindowBase *self, BijiNoteObj *note)
 {
   g_return_if_fail (BJB_IS_WINDOW_BASE (self));
@@ -246,6 +212,15 @@ bjb_window_base_get_note (BjbWindowBase *self)
   return self->priv->note;
 }
 
+static void
+destroy_note_if_needed (BjbWindowBase *bwb)
+{
+  if (bwb->priv->note_view && GTK_IS_WIDGET (bwb->priv->note_view))
+  {
+    g_clear_pointer (&(bwb->priv->note_overlay), gtk_widget_destroy);
+  }
+}
+
 void
 bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 {
@@ -254,34 +229,43 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
   /* Precise the window does not display any specific note
    * Refresh the model
    * Ensure the main view receives the proper signals */
-  if (type == MAIN_VIEW)
+  if (type == BJB_MAIN_VIEW)
   {
     priv->note = NULL;
     bjb_main_view_connect_signals (priv->view);
     gd_stack_set_visible_child_name (priv->stack, "main-view");
+
+    destroy_note_if_needed (bwb);
   }
 
   else
   {
+    gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
     gd_stack_set_visible_child_name (priv->stack, "note-view");
   }
+}
+
+void
+bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
+{
+  BjbWindowBasePriv *priv = bwb->priv;
+  GtkWidget *w = GTK_WIDGET (bwb);
+
+  destroy_note_if_needed (bwb);
+
+  priv->note_overlay = gtk_overlay_new ();
+  gd_stack_add_named (priv->stack, priv->note_overlay, "note-view");
+  priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
+
+  bjb_window_base_set_note (bwb, priv->note);
+  bjb_window_base_switch_to (bwb, BJB_NOTE_VIEW);
+  gtk_widget_show_all (w);
 }
 
 BijiNoteBook *
 bjb_window_base_get_book(GtkWidget * win)
 {
-   BjbWindowBase *b = BJB_WINDOW_BASE(win);
-
-   if ( b->priv )
-   {
-     return bijiben_get_book(BIJIBEN_APPLICATION(g_application_get_default()));
-   }
-
-   else
-   {
-       g_message("Can't get notes");
-       return NULL ;
-   }
+  return bijiben_get_book (BIJIBEN_APPLICATION (g_application_get_default()));
 }
 
 void

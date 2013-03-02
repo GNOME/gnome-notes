@@ -21,7 +21,6 @@
 #ifndef BJB_SELECTION_TOOLBAR_H
 #define BJB_SELECTION_TOOLBAR_H
 
-#include <clutter/clutter.h>
 #include <libgd/gd.h>
 
 G_BEGIN_DECLS
@@ -44,20 +43,19 @@ typedef struct _BjbSelectionToolbarPrivate BjbSelectionToolbarPrivate;
 
 struct _BjbSelectionToolbar
 {
-  GObject parent_instance;
+  GtkToolbar parent_instance;
   BjbSelectionToolbarPrivate *priv;
 };
 
 struct _BjbSelectionToolbarClass
 {
-  GObjectClass parent_class;
+  GtkToolbarClass parent_class;
 };
 
 GType bjb_selection_toolbar_get_type (void) G_GNUC_CONST;
 
-BjbSelectionToolbar * bjb_selection_toolbar_new (ClutterActor *parent_actor, GdMainView   *selection, BjbMainView  *bjb_main_view);
-
-ClutterActor * bjb_selection_toolbar_get_actor (BjbSelectionToolbar *self);
+BjbSelectionToolbar * bjb_selection_toolbar_new (GdMainView   *selection,
+                                                 BjbMainView  *bjb_main_view);
 
 G_END_DECLS
 

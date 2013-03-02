@@ -36,13 +36,14 @@ enum
 {
   PROP_0,
   PROP_WINDOW,
+  PROP_PARENT,
   PROP_NOTE,
   NUM_PROPERTIES
 };
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-G_DEFINE_TYPE (BjbNoteView, bjb_note_view, CLUTTER_TYPE_ACTOR)
+G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_CLUTTER_TYPE_EMBED)
 
 #define GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_NOTE_VIEW, BjbNoteViewPrivate))
@@ -50,10 +51,12 @@ G_DEFINE_TYPE (BjbNoteView, bjb_note_view, CLUTTER_TYPE_ACTOR)
 struct _BjbNoteViewPrivate {
   /* Data */
   GtkWidget         *window ;
+  GtkWidget         *parent;
   GtkWidget         *view;
   BijiNoteObj       *note ;
 
   /* UI */
+  BijiWebkitEditor *editor;
   ClutterActor      *embed;
   GtkAccelGroup     *accel;
   ClutterActor      *edit_actor;
@@ -68,6 +71,7 @@ struct _BjbNoteViewPrivate {
   gulong    destroy ;
   gulong    renamed ;
   gulong    deleted ;
+  gulong    color;
 };
 
 static void
@@ -79,8 +83,8 @@ bjb_note_view_finalize(GObject *object)
   g_signal_handler_disconnect (priv->note, priv->renamed);
   g_signal_handler_disconnect (priv->window, priv->destroy);
   g_signal_handler_disconnect (priv->note, priv->deleted);
+  g_signal_handler_disconnect (priv->note, priv->color);
 
-  clutter_actor_destroy (priv->embed);
   g_clear_object (&priv->accel);
   g_clear_object (&priv->edit_bar);
   clutter_color_free (priv->last_date_bckgrd_clr);
@@ -101,6 +105,9 @@ bjb_note_view_get_property (GObject      *object,
   {
     case PROP_WINDOW:
       g_value_set_object (value, self->priv->window);
+      break;
+    case PROP_PARENT:
+      g_value_set_object (value, self->priv->parent);
       break;
     case PROP_NOTE:
       g_value_set_object (value, self->priv->note);
@@ -124,6 +131,9 @@ bjb_note_view_set_property ( GObject        *object,
     case PROP_WINDOW:
       self->priv->window = g_value_get_object(value);
       break;
+    case PROP_PARENT:
+      self->priv->parent = g_value_get_object (value);
+      break;
     case PROP_NOTE:
       self->priv->note = g_value_get_object(value);
       break;
@@ -139,7 +149,6 @@ bjb_note_view_init (BjbNoteView *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_NOTE_VIEW,
                                             BjbNoteViewPrivate);
 
-  self->priv->embed = clutter_actor_new ();
   self->priv->accel = gtk_accel_group_new ();
   self->priv->last_date_bckgrd_clr = NULL;
 }
@@ -163,8 +172,7 @@ just_switch_to_main_view(BjbNoteView *self)
   window = GTK_WINDOW(self->priv->window);
   gtk_window_remove_accel_group (window, self->priv->accel);
 
-  g_clear_object (&self);
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (window), MAIN_VIEW);
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (window), BJB_MAIN_VIEW);
 }
 
 static void
@@ -239,16 +247,15 @@ bjb_note_menu_new (BjbNoteView *self)
 {
   BjbNoteViewPrivate *priv = self->priv;
   GtkWidget   *result, *item;
-  BijiWebkitEditor *editor;
 
   result = gtk_menu_new();
-  editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (priv->note));
+  priv->editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (priv->note));
 
   /* Undo Redo separator */
   item = gtk_menu_item_new_with_label (_("Undo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (webkit_web_view_undo), editor);
+                            G_CALLBACK (webkit_web_view_undo), priv->editor);
   gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_u,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
   gtk_widget_show (item);
@@ -256,7 +263,7 @@ bjb_note_menu_new (BjbNoteView *self)
   item = gtk_menu_item_new_with_label (_("Redo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (webkit_web_view_redo), editor);
+                            G_CALLBACK (webkit_web_view_redo), priv->editor);
   gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_r,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
   gtk_widget_show (item);
@@ -270,14 +277,14 @@ bjb_note_menu_new (BjbNoteView *self)
   item = gtk_menu_item_new_with_label (_("Bullets"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (bjb_toggle_bullets), editor); 
+                            G_CALLBACK (bjb_toggle_bullets), priv->editor);
   gtk_widget_show(item);
 
   /* Ordered list as 1.mouse 2.cats 3.dogs */
   item = gtk_menu_item_new_with_label (_("List"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (bjb_toggle_list), editor); 
+                            G_CALLBACK (bjb_toggle_list), priv->editor);
   gtk_widget_show(item);
 
   item = gtk_separator_menu_item_new ();
@@ -493,7 +500,7 @@ bjb_note_view_constructed (GObject *obj)
   BjbNoteViewPrivate     *priv = self->priv;
   BjbSettings            *settings;
   GtkWidget              *scroll;
-  ClutterActor           *stage, *vbox;
+  ClutterActor           *vbox;
   ClutterConstraint      *constraint;
   ClutterLayoutManager   *full, *box, *bin;
   gchar                  *default_font;
@@ -512,22 +519,19 @@ bjb_note_view_constructed (GObject *obj)
                                    priv->note);
 
   /* Start packing ui */
-  stage = bjb_window_base_get_stage (BJB_WINDOW_BASE (priv->window), NOTE_VIEW);
+  gtk_container_add (GTK_CONTAINER (priv->parent), GTK_WIDGET (self));
+  gtk_widget_show_all (priv->parent);
+  priv->embed = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (self));
 
   full = clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_CENTER,
                                  CLUTTER_BIN_ALIGNMENT_CENTER);
 
   clutter_actor_set_layout_manager (priv->embed,full);
-  clutter_actor_add_child (stage,priv->embed);
-
-  constraint = clutter_bind_constraint_new (stage, CLUTTER_BIND_SIZE, 0.0);
-  clutter_actor_add_constraint (priv->embed, constraint);
 
   vbox = clutter_actor_new();
   box = clutter_box_layout_new();
   clutter_box_layout_set_orientation(CLUTTER_BOX_LAYOUT(box),
                                      CLUTTER_ORIENTATION_VERTICAL);
-
   clutter_actor_set_layout_manager (vbox,box);
   clutter_actor_add_child (priv->embed,vbox);
 
@@ -580,9 +584,8 @@ bjb_note_view_constructed (GObject *obj)
     g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
     gdk_rgba_parse (&color, default_color);
     g_free (default_color);
-  }  
-
-  biji_note_obj_set_rgba (priv->note, &color);
+    biji_note_obj_set_rgba (priv->note, &color);
+  }
 
   /* Edition Toolbar */
   priv->edit_bar = bjb_editor_toolbar_new (overlay, self, priv->note);
@@ -600,20 +603,16 @@ bjb_note_view_constructed (GObject *obj)
   clutter_actor_add_constraint (priv->last_update, constraint);
 
   copy_note_color_to_last_updated_background (self);
-  g_signal_connect_swapped (priv->note, "color-changed",
+  priv->color = g_signal_connect_swapped (priv->note, "color-changed",
                             G_CALLBACK (copy_note_color_to_last_updated_background), self);
-
-  /* Show & let's go */
-  gtk_widget_show_all (priv->window);
-  bjb_window_base_set_note (BJB_WINDOW_BASE (priv->window), priv->note);
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (priv->window), NOTE_VIEW);
 }
 
 BjbNoteView *
-bjb_note_view_new (GtkWidget *win, BijiNoteObj* note)
+bjb_note_view_new (GtkWidget *win, GtkWidget *parent, BijiNoteObj* note)
 {
   return g_object_new (BJB_TYPE_NOTE_VIEW,
                        "window",win,
+                       "parent", parent,
                        "note",note,
                        NULL);
 }
@@ -640,6 +639,16 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
                                                  
   g_object_class_install_property (object_class,PROP_WINDOW,properties[PROP_WINDOW]);
 
+  properties[PROP_PARENT] = g_param_spec_object ("parent",
+                                                 "Parent Widget",
+                                                 "Widget to pack in",
+                                                 GTK_TYPE_WIDGET,
+                                                 G_PARAM_READWRITE |
+                                                 G_PARAM_CONSTRUCT |
+                                                 G_PARAM_STATIC_STRINGS);
+
+  g_object_class_install_property (object_class,PROP_PARENT,properties[PROP_PARENT]);
+
   properties[PROP_NOTE] = g_param_spec_object ("note",
                                                "Note",
                                                "Note",
@@ -649,12 +658,6 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
                                                G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_property (object_class,PROP_NOTE,properties[PROP_NOTE]);
-}
-
-ClutterActor *
-bjb_note_view_get_actor ( BjbNoteView *v)
-{
-  return v->priv->embed ;
 }
 
 GtkWidget *

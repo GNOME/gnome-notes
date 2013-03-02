@@ -24,10 +24,10 @@
 
 #include "config.h"
 
-#include <clutter-gtk/clutter-gtk.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <libgd/gd-entry-focus-hack.h>
 
 #include "bjb-controller.h"
 #include "bjb-search-toolbar.h"
@@ -36,7 +36,6 @@ enum
 {
   PROP_0,
   PROP_WINDOW,
-  PROP_ACTOR,
   PROP_CONTROLLER,
   NUM_PROPERTIES
 };
@@ -59,40 +58,32 @@ struct _BjbSearchToolbarPrivate
   gulong            inserted;
 
   /* Misc UI  */
+  GdRevealer        *revealer;
+  GtkWidget         *widget;   // GTK_WIDGET (self)
   GtkWidget         *window;
-  GtkWidget         *widget;
-  ClutterActor      *actor;
-  ClutterActor      *parent_actor;
-  ClutterConstraint *width_constraint;
 };
 
-G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, GTK_TYPE_TOOLBAR);
 
 static void
 bjb_search_toolbar_fade_in (BjbSearchToolbar *self)
 {
-  BjbSearchToolbarPrivate *priv = self->priv;
-  guint8 opacity;
+  if (!gd_revealer_get_child_revealed (self->priv->revealer))
+  {
+    GdkDevice *device;
+    gd_revealer_set_reveal_child (self->priv->revealer, TRUE);
 
-  opacity = clutter_actor_get_opacity (priv->actor);
-  
-  if (opacity != 0)
-    return;
-
-  clutter_actor_set_opacity (priv->actor, 255);
-  clutter_actor_show (priv->actor);
-
-  gtk_widget_grab_focus (priv->search_entry);
+    device = gtk_get_current_event_device ();
+    if (device)
+      gd_entry_focus_hack (self->priv->search_entry, device);
+  }
 }
 
 static void
 bjb_search_toolbar_fade_out (BjbSearchToolbar *self)
 {
-  BjbSearchToolbarPrivate *priv = self->priv;
-
-  clutter_actor_set_opacity (priv->actor, 0);
-  clutter_actor_hide (priv->actor);
-  gtk_entry_set_text (GTK_ENTRY (priv->search_entry),"");
+  if (gd_revealer_get_child_revealed (self->priv->revealer))
+    gd_revealer_set_reveal_child (self->priv->revealer, FALSE);
 }
 
 /* If some text has been input, handle position */
@@ -102,8 +93,8 @@ on_key_released (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
   BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (user_data);
   BjbSearchToolbarPrivate *priv = self->priv;
 
-  if (clutter_actor_get_opacity (priv->actor) != 0)
-    gtk_editable_set_position (GTK_EDITABLE (priv->search_entry),-1);
+  if (gd_revealer_get_child_revealed (self->priv->revealer) == TRUE)
+    gtk_editable_set_position (GTK_EDITABLE (priv->search_entry), -1);
 
   return FALSE;
 }
@@ -114,7 +105,7 @@ on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
   BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (user_data);
 
   /* Reveal the entry is text is input. TODO add more keys not input */
-  if (clutter_actor_get_opacity (self->priv->actor) == 0)
+  if (gd_revealer_get_child_revealed (self->priv->revealer) == FALSE)
   {
     switch (event->key.keyval)
     {
@@ -154,9 +145,6 @@ bjb_search_toolbar_get_property (GObject    *object,
 
   switch (property_id)
   {
-    case PROP_ACTOR:
-      g_value_set_object (value, self->priv->parent_actor);
-      break;
     case PROP_WINDOW:
       g_value_set_object (value, self->priv->window);
       break;
@@ -181,9 +169,6 @@ bjb_search_toolbar_set_property (GObject      *object,
   {
     case PROP_WINDOW:
       self->priv->window = g_value_get_object (value);
-      break;
-    case PROP_ACTOR:
-      self->priv->parent_actor = g_value_get_object (value);
       break;
     case PROP_CONTROLLER:
       self->priv->controller = g_value_get_object (value);
@@ -300,12 +285,6 @@ bjb_search_toolbar_constructed (GObject *obj)
 
   priv->entry_buf = gtk_entry_get_buffer (GTK_ENTRY (priv->search_entry));
 
-  /* Constraints */
-  priv->width_constraint = clutter_bind_constraint_new (priv->parent_actor,
-                                                        CLUTTER_BIND_WIDTH,
-                                                        0.0); 
-  clutter_actor_add_constraint (priv->actor, priv->width_constraint);
-
   if (priv->needle && g_strcmp0 (priv->needle, "") !=0)
   { 
     gtk_entry_set_text (GTK_ENTRY (priv->search_entry), priv->needle);
@@ -320,17 +299,23 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
   BjbSearchToolbarPrivate    *priv;
   GtkStyleContext            *context;
   GtkToolItem                *separator;
+  GtkToolItem *entry_item ;
+  GtkToolbar *tlbar;
 
+  tlbar = GTK_TOOLBAR (self);
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_SEARCH_TOOLBAR, BjbSearchToolbarPrivate);
   priv = self->priv;
+  priv->widget = GTK_WIDGET (self);
+  priv->revealer = GD_REVEALER (gd_revealer_new ());
 
-  priv->widget = gtk_toolbar_new ();
-  gtk_toolbar_set_show_arrow (GTK_TOOLBAR (priv->widget), FALSE);
-  gtk_toolbar_set_icon_size (GTK_TOOLBAR (priv->widget), GTK_ICON_SIZE_LARGE_TOOLBAR);
+  gtk_container_add (GTK_CONTAINER (priv->revealer), priv->widget);
+
+  gtk_toolbar_set_show_arrow (tlbar, FALSE);
+  gtk_toolbar_set_icon_size (tlbar, GTK_ICON_SIZE_LARGE_TOOLBAR);
 
   separator = gtk_tool_item_new ();
   gtk_tool_item_set_expand (separator,TRUE);
-  gtk_toolbar_insert (GTK_TOOLBAR(priv->widget),separator,-1);
+  gtk_toolbar_insert (tlbar,separator,-1);
 
   priv->search_entry = gtk_search_entry_new ();
   gtk_entry_set_icon_from_stock (GTK_ENTRY(priv->search_entry),
@@ -338,24 +323,17 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
                                  GTK_STOCK_CLEAR);
   gtk_entry_set_text (GTK_ENTRY (priv->search_entry),"");
 
-  GtkToolItem *entry_item ;
-  entry_item = gtk_tool_item_new();
-  gtk_container_add(GTK_CONTAINER(entry_item),priv->search_entry);
-  gtk_toolbar_insert(GTK_TOOLBAR(priv->widget),entry_item,-1);
-  gtk_tool_item_set_expand(entry_item,TRUE);
+  entry_item = gtk_tool_item_new ();
+  gtk_container_add (GTK_CONTAINER (entry_item), priv->search_entry);
+  gtk_toolbar_insert (tlbar, entry_item,-1);
+  gtk_tool_item_set_expand (entry_item, TRUE);
 
   separator = gtk_tool_item_new ();
-  gtk_tool_item_set_expand (separator,TRUE);
-  gtk_toolbar_insert (GTK_TOOLBAR(priv->widget),separator,-1);
+  gtk_tool_item_set_expand (separator, TRUE);
+  gtk_toolbar_insert (tlbar, separator, -1);
 
-  context = gtk_widget_get_style_context (priv->widget);
+  context = gtk_widget_get_style_context (GTK_WIDGET (self));
   gtk_style_context_add_class (context,"primary-toolbar");
-
-  priv->actor = gtk_clutter_actor_new_with_contents (priv->widget);
-  clutter_actor_set_opacity (priv->actor, 0);
-  g_object_set (priv->actor, "show-on-set-parent", FALSE, NULL);
-
-  gtk_widget_show_all (priv->widget);
 }
 
 static void
@@ -376,14 +354,6 @@ bjb_search_toolbar_class_init (BjbSearchToolbarClass *class)
                                                  G_PARAM_CONSTRUCT |
                                                  G_PARAM_STATIC_STRINGS);
 
-  properties[PROP_ACTOR] = g_param_spec_object ("actor",
-                                                "Actor",
-                                                "ParentActor",
-                                                CLUTTER_TYPE_ACTOR,
-                                                G_PARAM_READWRITE |
-                                                G_PARAM_CONSTRUCT |
-                                                G_PARAM_STATIC_STRINGS);
-
   properties[PROP_CONTROLLER] = g_param_spec_object ("controller",
                                                      "Controller",
                                                      "Controller",
@@ -398,18 +368,16 @@ bjb_search_toolbar_class_init (BjbSearchToolbarClass *class)
 
 BjbSearchToolbar *
 bjb_search_toolbar_new (GtkWidget     *window,
-                        ClutterActor  *parent_actor,
                         BjbController *controller)
 {
   return g_object_new (BJB_TYPE_SEARCH_TOOLBAR,
                        "window",window,
-                       "actor",parent_actor,
                        "controller",controller,
                        NULL);
 }
 
-ClutterActor *
-bjb_search_toolbar_get_actor (BjbSearchToolbar *self)
+GdRevealer *
+bjb_search_toolbar_get_revealer (BjbSearchToolbar *self)
 {
-  return self->priv->actor;
+  return self->priv->revealer;
 }

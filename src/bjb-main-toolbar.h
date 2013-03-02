@@ -21,7 +21,6 @@ bijiben is free software: you can redistribute it and/or modify it
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
-#include <clutter-gtk/clutter-gtk.h>
 #include <libgd/gd.h>
 
 #include "bjb-main-view.h"
@@ -41,12 +40,12 @@ typedef struct _BjbMainToolbarPrivate BjbMainToolbarPrivate;
 
 struct _BjbMainToolbarClass
 {
-  GObjectClass parent_class;
+  GdMainToolbarClass parent_class;
 };
 
 struct _BjbMainToolbar
 {
-  GObject parent_instance;
+  GdMainToolbar parent_instance;
   BjbMainToolbarPrivate *priv; 
 };
 
@@ -55,8 +54,6 @@ GType bjb_main_toolbar_get_type (void) G_GNUC_CONST;
 BjbMainToolbar * bjb_main_toolbar_new (GdMainView    *view,
                                        BjbMainView   *parent,
                                        BjbController *controller);
-
-ClutterActor *bjb_main_toolbar_get_actor (BjbMainToolbar *self);
 
 void on_selection_mode_changed (BjbMainToolbar *self);
 

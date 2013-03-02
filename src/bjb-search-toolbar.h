@@ -2,7 +2,7 @@
 #ifndef BJB_SEARCH_TOOLBAR_H
 #define BJB_SEARCH_TOOLBAR_H
 
-#include <clutter/clutter.h>
+#include <libgd/gd-revealer.h>
 
 G_BEGIN_DECLS
 
@@ -24,24 +24,24 @@ typedef struct _BjbSearchToolbarPrivate BjbSearchToolbarPrivate;
 
 struct _BjbSearchToolbar
 {
-  GObject parent_instance;
+  GtkToolbar parent_instance;
   BjbSearchToolbarPrivate *priv;
 };
 
 struct _BjbSearchToolbarClass
 {
-  GObjectClass parent_class;
+  GtkToolbarClass parent_class;
 };
 
 GType bjb_search_toolbar_get_type (void) G_GNUC_CONST;
 
-BjbSearchToolbar * bjb_search_toolbar_new (GtkWidget *window, ClutterActor *parent_actor, BjbController *controller);
+BjbSearchToolbar * bjb_search_toolbar_new (GtkWidget *window, BjbController *controller);
+
+GdRevealer * bjb_search_toolbar_get_revealer (BjbSearchToolbar *self);
 
 void bjb_search_toolbar_disconnect (BjbSearchToolbar *self);
 
 void bjb_search_toolbar_connect (BjbSearchToolbar *self);
-
-ClutterActor * bjb_search_toolbar_get_actor (BjbSearchToolbar *self);
 
 G_END_DECLS
 

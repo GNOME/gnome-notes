@@ -33,10 +33,6 @@ typedef enum
 
 struct _BjbMainToolbarPrivate
 {
-  /* Widget and actor */
-  ClutterActor   *actor;
-  GdMainToolbar  *toolbar;
-
   /* Controllers */
   GdMainView     *view;
   BjbToolbarType  type;
@@ -69,7 +65,7 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 #define BJB_MAIN_TOOLBAR_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_MAIN_TOOLBAR, BjbMainToolbarPrivate))
 
-G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, GD_TYPE_MAIN_TOOLBAR);
 
 /* Callbacks */
 
@@ -94,7 +90,7 @@ on_selection_mode_changed (BjbMainToolbar *self)
 {
   GtkStyleContext *context;
   GdMainView *view = self->priv->view;
-  GtkWidget *widget = GTK_WIDGET(self->priv->toolbar);
+  GtkWidget *widget = GTK_WIDGET(self);
   context = gtk_widget_get_style_context (widget);
 
   if (!gd_main_view_get_selection_mode (view))
@@ -180,7 +176,7 @@ update_selection_label (GdMainView *view, BjbMainToolbar *self)
   else
     label = g_strdup_printf (g_dngettext (GETTEXT_PACKAGE, "%d selected", "%d selected", length),length);
 
-  gd_main_toolbar_set_labels (self->priv->toolbar, NULL, label);
+  gd_main_toolbar_set_labels (GD_MAIN_TOOLBAR (self), NULL, label);
   g_free (label);
 
   return TRUE;
@@ -192,7 +188,7 @@ populate_bar_for_selection(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   GtkStyleContext *context;
 
-  priv->select = gd_main_toolbar_add_button (priv->toolbar,
+  priv->select = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (self),
                                              NULL,"Done", FALSE);
   context = gtk_widget_get_style_context (priv->select);
   gtk_style_context_add_class (context, "suggested-action");
@@ -222,7 +218,7 @@ update_label_for_standard (BjbMainToolbar *self)
   else
     label = g_strdup (_("New and Recent"));
 
-  gd_main_toolbar_set_labels (priv->toolbar, label, NULL);
+  gd_main_toolbar_set_labels (GD_MAIN_TOOLBAR (self), label, NULL);
   g_free (label);
 }
 
@@ -238,7 +234,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
          "search-changed", G_CALLBACK(update_label_for_standard), self);
 
   /* New Note button */
-  priv->new = gd_main_toolbar_add_button(priv->toolbar,
+  priv->new = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
                                          NULL,
                                          _("New"),
                                          TRUE);
@@ -256,7 +252,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
                    G_CALLBACK(on_new_note_clicked),priv->parent);
 
   /* Go to selection mode */
-  priv->select = gd_main_toolbar_add_button(priv->toolbar,
+  priv->select = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
                                             "object-select-symbolic",
                                             NULL,
                                             FALSE);
@@ -271,7 +267,7 @@ populate_bar_for_icon_view(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
 
   /* Switch to list */
-  priv->list= gd_main_toolbar_add_button(priv->toolbar,
+  priv->list= gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
                                          "view-list-symbolic",
                                          NULL,
                                          FALSE);
@@ -288,7 +284,7 @@ populate_bar_for_list_view(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
 
   /* Switch to icon view */
-  priv->grid = gd_main_toolbar_add_button(priv->toolbar,
+  priv->grid = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
                                           "view-grid-symbolic",
                                           NULL,
                                           FALSE);
@@ -321,7 +317,7 @@ populate_bar_switch(BjbMainToolbar *self)
                  Please fill in a bug report");
   }
 
-  gtk_widget_show_all(GTK_WIDGET(self->priv->toolbar));
+  gtk_widget_show_all (GTK_WIDGET (self));
 }
 
 static void
@@ -343,7 +339,7 @@ populate_main_toolbar(BjbMainToolbar *self)
   if (to_be != priv->type)
   {
     priv->type = to_be;
-    gd_main_toolbar_clear (priv->toolbar);
+    gd_main_toolbar_clear (GD_MAIN_TOOLBAR (self));
 
     if (priv->search_handler != 0)
     {
@@ -364,18 +360,9 @@ bjb_main_toolbar_constructed (GObject *obj)
 static void
 bjb_main_toolbar_init (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
-  
-  priv = BJB_MAIN_TOOLBAR_GET_PRIVATE(self);
-  self->priv = priv ;
-
-  priv->type = BJB_TOOLBAR_0 ;
-
-  priv->toolbar = GD_MAIN_TOOLBAR(gd_main_toolbar_new());
-  g_signal_connect (priv->toolbar, "button-press-event", G_CALLBACK (on_button_press), NULL);
-  priv->actor = gtk_clutter_actor_new_with_contents(GTK_WIDGET(priv->toolbar));
-
-  clutter_actor_show (priv->actor);
+  self->priv = BJB_MAIN_TOOLBAR_GET_PRIVATE(self);
+  self->priv->type = BJB_TOOLBAR_0 ;
+  g_signal_connect (self, "button-press-event", G_CALLBACK (on_button_press), NULL);
 }
 
 static void
@@ -484,24 +471,21 @@ bjb_main_toolbar_new (GdMainView *view,
                       BjbMainView *parent,
                       BjbController *controller)
 {
-  /* View is the last one since it triggers the switch to populate bar.*/
-  return g_object_new (BJB_TYPE_MAIN_TOOLBAR,
-                       "controller", controller,
-                       "parent", parent,
-                       "view", view,
-                       NULL);
+  /* Since heriting GdMainToolbar, we populate bar _after_ construct */
+  BjbMainToolbar *self;
+
+  self = BJB_MAIN_TOOLBAR (g_object_new (BJB_TYPE_MAIN_TOOLBAR,
+                                         "controller", controller,
+                                         "parent", parent,
+                                         "view", view,
+                                         NULL));
+
+  populate_main_toolbar(self);
+  return self;
 }
 
 void
 bjb_main_toolbar_set_view (BjbMainToolbar *self, GdMainView *view)
 {
-  /* populate the toolbar */
   self->priv->view = view ;
-  populate_main_toolbar(self);
-}
-
-ClutterActor *
-bjb_main_toolbar_get_actor (BjbMainToolbar *self)
-{
-  return self->priv->actor;
 }

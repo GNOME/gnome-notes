@@ -2,7 +2,6 @@
 #define _BJB_WINDOW_BASE_H
 
 #include <gtk/gtk.h>
-#include <clutter-gtk/clutter-gtk.h>
 #include <libbiji/libbiji.h>
 
 #include "bjb-settings.h"
@@ -33,9 +32,9 @@ struct _BjbWindowBase
 };
 
 typedef enum {
-  MAIN_VIEW,
-  NOTE_VIEW,
-  NO_VIEW
+  BJB_MAIN_VIEW,
+  BJB_NOTE_VIEW,
+  BJB_NO_VIEW
 } BjbWindowViewType;
 
 GType bjb_window_base_get_type (void);
@@ -48,14 +47,9 @@ BjbController * bjb_window_base_get_controller ( BjbWindowBase *window ) ;
 
 PangoFontDescription *bjb_window_base_get_font(GtkWidget *window);
 
-void bjb_window_base_set_frame(BjbWindowBase *bwb,ClutterActor *frame);
-
-ClutterActor * bjb_window_base_get_frame(BjbWindowBase *bwb);
-
-/* get the notebook relevant page */
-ClutterActor * bjb_window_base_get_stage (BjbWindowBase *bwb, BjbWindowViewType type);
-
 void bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type);
+
+void bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note);
 
 BijiNoteBook * bjb_window_base_get_book(GtkWidget * win);
 
@@ -70,9 +64,6 @@ gpointer bjb_window_base_get_main_view (BjbWindowBase *self);
 BijiNoteObj * bjb_window_base_get_note (BjbWindowBase *self);
 
 void bjb_window_base_set_note (BjbWindowBase *self, BijiNoteObj *note);
-
-// DEBUG 
-void biji_application_print_note_id(GtkWindow* win);
 
 gboolean switch_window_fullscreen();
 

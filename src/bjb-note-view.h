@@ -28,19 +28,17 @@ G_BEGIN_DECLS
 typedef struct _BjbNoteViewPrivate BjbNoteViewPrivate;
 
 typedef struct {
-  ClutterActor parent;
+  GtkClutterEmbed parent;
   BjbNoteViewPrivate * priv ;
 } BjbNoteView;
 
 typedef struct {
-  ClutterActorClass parent_class;
+  GtkClutterEmbedClass parent_class;
 } BjbNoteViewClass;
 
 GType bjb_note_view_get_type (void);
 
-BjbNoteView * bjb_note_view_new (GtkWidget *win,BijiNoteObj* note);
-
-ClutterActor * bjb_note_view_get_actor (BjbNoteView *view);
+BjbNoteView * bjb_note_view_new (GtkWidget *win, GtkWidget *parent, BijiNoteObj* note);
 
 GtkWidget * bjb_note_view_get_base_window (BjbNoteView *v);
 

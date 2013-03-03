@@ -1,0 +1,236 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-03 01:26+0100\n"
+"PO-Revision-Date: 2013-03-03 01:32+0100\n"
+"Last-Translator: Luca Ferretti <lferrett@gnome.org>\n"
+"Language-Team: Italian <tp@lists.linux.it>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "note;promemoria;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Pubblica note, etichetta file"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Annotazioni"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple notebook for GNOME"
+msgstr "Semplice notebook per GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr "Luca Ferretti <lferrett@gnome.org>"
+
+#: ../src/bjb-app-menu.c:153
+msgid "External Notes"
+msgstr "Note esterne"
+
+#: ../src/bjb-app-menu.c:168
+msgid "Click on the external notes to import"
+msgstr "Fare clic sulle note esterne da importare"
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Scegliere un colore per la nota"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Taglia"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Copia"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Incolla"
+
+#: ../src/bjb-editor-toolbar.c:174
+msgid "Bold"
+msgstr "Grassetto"
+
+#: ../src/bjb-editor-toolbar.c:185
+msgid "Italic"
+msgstr "Corsivo"
+
+#: ../src/bjb-editor-toolbar.c:196
+msgid "Strike"
+msgstr "Sbarrato"
+
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Link"
+msgstr "Collegamento"
+
+#: ../src/bjb-main-toolbar.c:175
+msgid "Click on items to select them"
+msgstr "Fare clic sugli elementi per selezionarli"
+
+#: ../src/bjb-main-toolbar.c:177
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d selezionato"
+msgstr[1] "%d selezionati"
+
+#: ../src/bjb-main-toolbar.c:216
+#, c-format
+msgid "Results for %s"
+msgstr "Risultati per %s"
+
+#: ../src/bjb-main-toolbar.c:219
+msgid "New and Recent"
+msgstr "Nuove e recenti"
+
+#: ../src/bjb-main-toolbar.c:239
+msgid "New"
+msgstr "Nuova"
+
+#: ../src/bjb-note-tag-dialog.c:374
+msgid "Enter a name to create a tag"
+msgstr "Inserire un nome per creare una etichetta"
+
+#: ../src/bjb-note-tag-dialog.c:384
+msgid "New tag"
+msgstr "Nuova etichetta"
+
+#: ../src/bjb-note-view.c:201
+msgid "Rename Note"
+msgstr "Rinomina nota"
+
+#. Undo Redo separator
+#: ../src/bjb-note-view.c:255
+msgid "Undo"
+msgstr "Annulla"
+
+#: ../src/bjb-note-view.c:263
+msgid "Redo"
+msgstr "Ripeti"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-note-view.c:277
+msgid "Bullets"
+msgstr "Punti elenco"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-note-view.c:284
+msgid "List"
+msgstr "Elenco"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-note-view.c:295
+msgid "Rename"
+msgstr "Rinomina"
+
+#: ../src/bjb-note-view.c:301
+msgid "Tags"
+msgstr "Etichette"
+
+#. Delete Note
+#: ../src/bjb-note-view.c:312
+msgid "Delete this Note"
+msgstr "Elimina questa nota"
+
+#. Button to go back to main view
+#: ../src/bjb-note-view.c:379
+msgid "Notes"
+msgstr "Note"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:480
+msgid "Last updated "
+msgstr "Ultimo aggiornamento "
+
+#: ../src/bjb-selection-toolbar.c:156
+msgid "Tag"
+msgstr "Etichetta"
+
+#: ../src/bjb-selection-toolbar.c:180
+msgid "Delete"
+msgstr "Elimina"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Preferenze"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Tipo carattere della nota"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Colore predefinito"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Oggi"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Ieri"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Questa settimana"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Questo mese"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Questo anno"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Sconosciuto"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Nuova finestra"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_External Notes"
+msgstr "Note _esterne"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "Preferen_ze"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Bijiben"
+msgstr "I_nformazioni su Bijiben"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "A_iuto"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Esci"

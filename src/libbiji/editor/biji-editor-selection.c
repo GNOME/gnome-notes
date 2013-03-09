@@ -422,8 +422,6 @@ e_editor_selection_finalize (GObject *object)
 {
 	EEditorSelection *selection = E_EDITOR_SELECTION (object);
 
-	g_clear_object (&selection->priv->webview);
-
 	g_free (selection->priv->text);
 	selection->priv->text = NULL;
 }

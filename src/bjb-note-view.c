@@ -85,6 +85,7 @@ bjb_note_view_finalize(GObject *object)
   g_signal_handler_disconnect (priv->note, priv->deleted);
   g_signal_handler_disconnect (priv->note, priv->color);
 
+  g_clear_object (&priv->view);
   g_clear_object (&priv->accel);
   g_clear_object (&priv->edit_bar);
   clutter_color_free (priv->last_date_bckgrd_clr);

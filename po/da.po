@@ -1,0 +1,240 @@
+# Danish translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-12 21:16+0100\n"
+"PO-Revision-Date: 2013-03-10 23:31+0200\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "noter;huskeseddel;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Lav noter, mærk filer!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Noteprogram"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple notebook for GNOME"
+msgstr "Simpelt noteprogram for GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr ""
+"Joe Hansen, 2013.\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk"
+
+#: ../src/bjb-app-menu.c:153
+msgid "External Notes"
+msgstr "Eksterne noter"
+
+#: ../src/bjb-app-menu.c:168
+msgid "Click on the external notes to import"
+msgstr "Klik på de eksterne noter for at importere"
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Vælg en notefarve"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:149
+msgid "Cut"
+msgstr "Klip"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:156
+msgid "Copy"
+msgstr "Kopier"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:163
+msgid "Paste"
+msgstr "Indsæt"
+
+#: ../src/bjb-editor-toolbar.c:174
+msgid "Bold"
+msgstr "Fed"
+
+#: ../src/bjb-editor-toolbar.c:185
+msgid "Italic"
+msgstr "Kursiv"
+
+#: ../src/bjb-editor-toolbar.c:196
+msgid "Strike"
+msgstr "Gennemstreg"
+
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Link"
+msgstr "Henvisning"
+
+#: ../src/bjb-main-toolbar.c:175
+msgid "Click on items to select them"
+msgstr "Klik på punkter for at vælge dem"
+
+#: ../src/bjb-main-toolbar.c:177
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d valgt"
+msgstr[1] "%d valgte"
+
+#: ../src/bjb-main-toolbar.c:216
+#, c-format
+msgid "Results for %s"
+msgstr "Resultater for %s"
+
+#: ../src/bjb-main-toolbar.c:219
+msgid "New and Recent"
+msgstr "Nye og seneste"
+
+#: ../src/bjb-main-toolbar.c:239
+msgid "New"
+msgstr "Ny"
+
+#: ../src/bjb-note-tag-dialog.c:374
+msgid "Enter a name to create a tag"
+msgstr "Indtast et navn for at oprette et mærke"
+
+#: ../src/bjb-note-tag-dialog.c:384
+msgid "New tag"
+msgstr "Nyt mærke"
+
+#: ../src/bjb-note-view.c:202
+msgid "Rename Note"
+msgstr "Omdøb note"
+
+#. Undo Redo separator
+#: ../src/bjb-note-view.c:256
+msgid "Undo"
+msgstr "Fortryd"
+
+#: ../src/bjb-note-view.c:264
+msgid "Redo"
+msgstr "Gendan"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-note-view.c:278
+msgid "Bullets"
+msgstr "Punkttegn"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-note-view.c:285
+msgid "List"
+msgstr "Liste"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-note-view.c:296
+msgid "Rename"
+msgstr "Omdøb"
+
+#: ../src/bjb-note-view.c:302
+msgid "Tags"
+msgstr "Mærker"
+
+#. Delete Note
+#: ../src/bjb-note-view.c:313
+msgid "Delete this Note"
+msgstr "Slet denne note"
+
+#. Button to go back to main view
+#: ../src/bjb-note-view.c:380
+msgid "Notes"
+msgstr "Noter"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:481
+msgid "Last updated "
+msgstr "Sidst opdateret "
+
+#: ../src/bjb-selection-toolbar.c:156
+msgid "Tag"
+msgstr "Mærke"
+
+#: ../src/bjb-selection-toolbar.c:180
+msgid "Delete"
+msgstr "Slet"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Skrifttype for note"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Standardfarve"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "I dag"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "I går"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Denne uge"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Denne måned"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Dette år"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Ukendt"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Nyt vindue"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_External Notes"
+msgstr "_Eksterne noter"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Indstillinger"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Bijiben"
+msgstr "_Om Bijiben"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Hjælp"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Afslut"

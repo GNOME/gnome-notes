@@ -44,17 +44,14 @@ on_email_note_callback(GtkWidget *widget, BijiNoteObj *note)
                         text_mail,
                         NULL } ;
                         
-  g_spawn_async_with_pipes ( NULL, 
-                             execute,
-                             NULL,
-                             G_SPAWN_SEARCH_PATH,
-                             NULL,
-                             NULL,
-                             NULL,
-                             NULL,
-                             NULL,
-                             NULL,
-                             &error); 
+  g_spawn_async ( NULL, 
+                  execute,
+                  NULL,
+                  G_SPAWN_SEARCH_PATH,
+                  NULL,
+                  NULL,
+                  NULL,
+                  &error); 
   if ( error != NULL )
     g_message("error :%s",error->message);
 

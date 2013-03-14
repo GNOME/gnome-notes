@@ -75,15 +75,33 @@ struct _BjbNoteViewPrivate {
 };
 
 static void
+bjb_note_view_disconnect (BjbNoteViewPrivate *priv)
+{
+  if (priv->renamed != 0)
+    g_signal_handler_disconnect (priv->note, priv->renamed);
+
+  if (priv->destroy != 0)
+    g_signal_handler_disconnect (priv->window, priv->destroy);
+
+  if (priv->deleted != 0)
+    g_signal_handler_disconnect (priv->note, priv->deleted);
+
+  if (priv->color != 0)
+    g_signal_handler_disconnect (priv->note, priv->color);
+
+  priv->renamed =0;
+  priv->destroy = 0,
+  priv->deleted = 0;
+  priv->color =0;
+}
+
+static void
 bjb_note_view_finalize(GObject *object)
 {
   BjbNoteView *self = BJB_NOTE_VIEW (object) ;
   BjbNoteViewPrivate *priv = self->priv;
 
-  g_signal_handler_disconnect (priv->note, priv->renamed);
-  g_signal_handler_disconnect (priv->window, priv->destroy);
-  g_signal_handler_disconnect (priv->note, priv->deleted);
-  g_signal_handler_disconnect (priv->note, priv->color);
+  bjb_note_view_disconnect (priv);
 
   g_clear_object (&priv->view);
   g_clear_object (&priv->accel);
@@ -169,6 +187,9 @@ static void
 just_switch_to_main_view(BjbNoteView *self)
 {
   GtkWindow     *window;
+
+  /* Avoid stupid crash */
+  bjb_note_view_disconnect (self->priv);
 
   window = GTK_WINDOW(self->priv->window);
   gtk_window_remove_accel_group (window, self->priv->accel);

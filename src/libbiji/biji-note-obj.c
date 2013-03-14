@@ -862,22 +862,32 @@ biji_note_obj_is_opened (BijiNoteObj *note)
 static void
 _biji_note_obj_close (BijiNoteObj *note)
 {
-  note->priv->editor = NULL;
+  BijiNoteObjPrivate *priv = note->priv;
+  priv->editor = NULL;
 
   /* Delete if note is totaly blank
    * Actually we just need to remove it from book
    * since no change could trigger save */
-  if (!note->priv->raw_text)
+  if (!priv->raw_text)
   {
-    biji_note_book_remove_note (note->priv->book, note);
+    biji_note_book_remove_note (priv->book, note);
   }
 
+  /* If the note only has one row. put some title */
   else if (!biji_note_obj_title_survives (note))
   {
     gchar *title = biji_note_book_get_unique_title (biji_note_obj_get_note_book (note),
-                                                    note->priv->raw_text);
+                                                    priv->raw_text);
     biji_note_obj_set_title (note, title);
     g_free (title);
+  }
+
+  /* Else the note is not empty & has more than a row.
+   * But the first row might still be empty.*/
+  else if (!biji_note_id_get_title (priv->id) ||
+           g_strcmp0 (biji_note_id_get_title (priv->id),"")==0)
+  {
+    biji_note_obj_set_title (note, priv->raw_text);
   }
 }
 

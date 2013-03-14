@@ -864,21 +864,15 @@ _biji_note_obj_close (BijiNoteObj *note)
 {
   note->priv->editor = NULL;
 
-  /* TODO : check if note is totaly blank
-   * then delete it */
-
-  /* The title might remain unsert if
-   * - new note
-   * - only one row
-   * In such case we want to change title */
- /* if ( ! biji_note_obj_title_survives (note)
-      && note->priv->raw_text
-      && g_strcmp0 (note->priv->raw_text, "") != 0) 
+  /* Delete if note is totaly blank
+   * Actually we just need to remove it from book
+   * since no change could trigger save */
+  if (!note->priv->raw_text)
   {
-    biji_note_obj_set_title (note, note->priv->raw_text);
-  } */
+    biji_note_book_remove_note (note->priv->book, note);
+  }
 
-  if (!biji_note_obj_title_survives (note))
+  else if (!biji_note_obj_title_survives (note))
   {
     gchar *title = biji_note_book_get_unique_title (biji_note_obj_get_note_book (note),
                                                     note->priv->raw_text);

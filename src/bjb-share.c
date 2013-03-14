@@ -20,6 +20,8 @@
 static gchar *
 mail_str ( gchar * string )
 {
+  if (!string)
+    return g_strdup ("''");
   return biji_str_replace (string, "\n", " ");
 }
 

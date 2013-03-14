@@ -22,7 +22,7 @@ mail_str ( gchar * string )
 {
   if (!string)
     return g_strdup ("''");
-  return biji_str_replace (string, "\n", " ");
+  return g_strdup (g_strdelimit (string, "\n", ' '));
 }
 
 /* TODO find EOL for xdg-email */

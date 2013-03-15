@@ -49,6 +49,7 @@ LIBGD_INIT([
   main-toolbar
   revealer
   stack
+  static
 ])
 
 AC_CONFIG_FILES([

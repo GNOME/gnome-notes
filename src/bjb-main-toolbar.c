@@ -184,6 +184,7 @@ update_selection_label (GdMainView *view, BjbMainToolbar *self)
 
   selected = gd_main_view_get_selection(view);
   length = g_list_length (selected);
+  g_list_free (selected);
 
   if (length == 0)
     label = g_strdup(_("Click on items to select them"));

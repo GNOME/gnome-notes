@@ -62,6 +62,7 @@ struct _BijiNoteObjPrivate
 
   /* Signals */
   gulong note_renamed;
+  gulong save;
 };
 
 /* Properties
@@ -108,7 +109,7 @@ biji_note_obj_init (BijiNoteObj *self)
 
   priv->needs_save = FALSE;
   priv->timeout = biji_timeout_new ();
-  g_signal_connect_swapped (priv->timeout, "timeout",
+  priv->save = g_signal_connect_swapped (priv->timeout, "timeout",
                             G_CALLBACK (on_save_timeout), self);
 
   priv->book = NULL ;
@@ -138,7 +139,8 @@ biji_note_obj_finalize (GObject *object)
   BijiNoteObj        *self = BIJI_NOTE_OBJ(object);
   BijiNoteObjPrivate *priv = self->priv;
 
-  g_object_unref (priv->timeout);
+  if (priv->timeout)
+    g_object_unref (priv->timeout);
 
   if (priv->needs_save)
     on_save_timeout (self);
@@ -325,12 +327,15 @@ biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
 gboolean
 biji_note_obj_trash (BijiNoteObj *note_to_kill)
 {
+  BijiNoteObjPrivate *priv = note_to_kill->priv;
   GFile *to_trash, *parent, *trash, *backup_file, *icon;
   gchar *note_name, *parent_path, *trash_path, *backup_path, *icon_path;
   GError *error = NULL;
   gboolean result = FALSE;
 
-  biji_timeout_cancel (note_to_kill->priv->timeout);
+  priv->needs_save = FALSE;
+  biji_timeout_cancel (priv->timeout);
+
   to_trash = biji_note_id_get_file (note_to_kill->priv->id);
 
   /* Don't try to backup a file which does not exist */
@@ -651,8 +656,6 @@ note_obj_set_is_template (BijiNoteObj *n,gboolean is_template)
   n->priv->is_template = is_template ;
 }
 
-/* TODO : see if note beeing deleted. set metadata date
- * and last_change date according to a WHAT param */
 void
 biji_note_obj_save_note (BijiNoteObj *self)
 {
@@ -844,8 +847,6 @@ void
 biji_note_obj_set_html_content (BijiNoteObj *note,
                                 gchar *html)
 {
-  // TODO : queue_save with timeout struct
-
   if (html)
   {
     g_free (note->priv->html);
@@ -894,6 +895,7 @@ _biji_note_obj_close (BijiNoteObj *note)
 GtkWidget *
 biji_note_obj_open (BijiNoteObj *note)
 {
+  note->priv->editor = biji_webkit_editor_new (note);
   note->priv->editor = biji_webkit_editor_new (note);
 
   g_signal_connect_swapped (note->priv->editor, "destroy",

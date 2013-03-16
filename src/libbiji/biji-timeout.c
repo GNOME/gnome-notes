@@ -59,6 +59,9 @@ biji_timeout_finalize (GObject *object)
 
   biji_timeout_cancel (self);
 
+  if (self->priv->quit !=0)
+    g_signal_handler_disconnect (g_application_get_default(), self->priv->quit);
+
   G_OBJECT_CLASS (biji_timeout_parent_class)->finalize (object);
 }
 

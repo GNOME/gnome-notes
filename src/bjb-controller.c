@@ -1,6 +1,6 @@
 /*
  * bjb-controller.c
- * Copyright (C) Pierre-Yves Luyten 2012 <py@luyten.fr>
+ * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
  * 
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -58,10 +58,10 @@ enum {
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-/* The Controller wants to inform the toolbar when search starts.
- * But other might be interested to know. */
+/* Currently used by toolbars */
 enum {
   SEARCH_CHANGED,
+  DISPLAY_NOTES_CHANGED, // either search or book change
   BJB_CONTROLLER_SIGNALS
 };
 
@@ -231,6 +231,8 @@ bjb_controller_add_note (BjbController *self,
 
     g_free (path);
   }
+
+
 }
 
 /* If the user searches for notes, is the note searched? */
@@ -326,8 +328,10 @@ sort_notes( BjbController *self)
 static void
 sort_and_update (BjbController *self)
 {
-  sort_notes (self) ;
+  sort_notes (self);
   bjb_controller_update_view (self);
+
+  g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
 }
 
 static void
@@ -341,22 +345,23 @@ update_controller_callback (GObject *source_object,
   result = biji_get_notes_with_strings_or_collection_finish (source_object, res, self->priv->book);
   self->priv->notes_to_show = result;
   sort_and_update (self);
-}
+}          
 
 void
-bjb_controller_apply_needle ( BjbController *self )
+bjb_controller_apply_needle (BjbController *self)
 {
-  gchar *needle ;
+  BjbControllerPrivate *priv = self->priv;
+  gchar *needle;
 
-  if (self->priv->notes_to_show)
-    g_clear_pointer (&self->priv->notes_to_show, g_list_free);
+  if (priv->notes_to_show)
+    g_clear_pointer (&priv->notes_to_show, g_list_free);
   
-  needle = self->priv->needle;
+  needle = priv->needle;
 
   /* Show all notes */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    self->priv->notes_to_show = biji_note_book_get_notes (self->priv->book);
+    priv->notes_to_show = biji_note_book_get_notes (self->priv->book);
     sort_and_update (self);
     return;
   }
@@ -451,6 +456,7 @@ on_book_changed (BijiNoteBook           *book,
     case BIJI_BOOK_NOTE_ADDED:
         bjb_controller_add_note_if_needed (self, note, TRUE);
         priv->notes_to_show = g_list_prepend (priv->notes_to_show, note);
+        g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
       break;
 
     /* If the note is *amended*, then per definition we prepend.
@@ -474,6 +480,9 @@ on_book_changed (BijiNoteBook           *book,
     case BIJI_BOOK_NOTE_TRASHED:
       if (bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
+
+      priv->notes_to_show = g_list_remove (priv->notes_to_show, note);
+      g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
       break;
 
     default:
@@ -531,6 +540,16 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                   NULL, 
                                                   NULL,
                                                   g_cclosure_marshal_VOID__VOID,
+                                                  G_TYPE_NONE,
+                                                  0);
+
+  bjb_controller_signals[DISPLAY_NOTES_CHANGED] = g_signal_new ( "display-notes-changed" ,
+                                                  G_OBJECT_CLASS_TYPE (klass),
+                                                  G_SIGNAL_RUN_LAST,
+                                                  0, 
+                                                  NULL, 
+                                                  NULL,
+                                                  g_cclosure_marshal_VOID__BOOLEAN,
                                                   G_TYPE_NONE,
                                                   0);
 
@@ -621,4 +640,11 @@ bjb_controller_set_main_view (BjbController *self, GdMainView *current)
   bjb_controller_update_view (self);
 }
 
+gboolean
+bjb_controller_shows_notes (BjbController *self)
+{
+  if (self->priv->notes_to_show)
+    return TRUE;
 
+  return FALSE;
+}

@@ -1,5 +1,5 @@
 /* Bijiben
- * Copyright (C) Pierre-Yves Luyten 2012 <py@luyten.fr>
+ * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -49,6 +49,7 @@ struct _BjbMainToolbarPrivate
   gulong         finish_sig;
   gulong         update_selection;
   gulong         search_handler;
+  gulong         display_notes;
 };
 
 /* GObject properties */
@@ -160,6 +161,19 @@ on_button_press (GtkWidget* widget,
   return FALSE;
 }
 
+static void
+update_selection_buttons (BjbMainToolbarPrivate *priv)
+{
+  gboolean some_note_is_visible = bjb_controller_shows_notes (priv->controller);
+
+  if (priv->grid)
+    gtk_widget_set_sensitive (priv->grid, some_note_is_visible);
+
+  if (priv->list)
+    gtk_widget_set_sensitive (priv->list, some_note_is_visible);
+
+  gtk_widget_set_sensitive (priv->select, some_note_is_visible);
+}
 
 static gboolean
 update_selection_label (GdMainView *view, BjbMainToolbar *self)
@@ -183,7 +197,7 @@ update_selection_label (GdMainView *view, BjbMainToolbar *self)
 }
 
 static void
-populate_bar_for_selection(BjbMainToolbar *self)
+populate_bar_for_selection (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkStyleContext *context;
@@ -220,6 +234,11 @@ update_label_for_standard (BjbMainToolbar *self)
 
   gd_main_toolbar_set_labels (GD_MAIN_TOOLBAR (self), label, NULL);
   g_free (label);
+
+  self->priv->display_notes = g_signal_connect_swapped (self->priv->controller,
+                                                        "display-notes-changed",
+                                                        G_CALLBACK (update_selection_buttons),
+                                                        self->priv);
 }
 
 static void
@@ -267,6 +286,7 @@ populate_bar_for_icon_view(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
 
   /* Switch to list */
+  priv->grid = NULL;
   priv->list= gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
                                          "view-list-symbolic",
                                          NULL,
@@ -284,6 +304,7 @@ populate_bar_for_list_view(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
 
   /* Switch to icon view */
+  priv->list = NULL;
   priv->grid = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
                                           "view-grid-symbolic",
                                           NULL,
@@ -301,15 +322,17 @@ populate_bar_switch(BjbMainToolbar *self)
   switch (self->priv->type)
   {
     case BJB_TOOLBAR_SELECT:
-      populate_bar_for_selection(self);
+      populate_bar_for_selection (self);
       break;
 
     case BJB_TOOLBAR_STD_ICON:
       populate_bar_for_icon_view(self);
+      update_selection_buttons (self->priv);
       break;
 
     case BJB_TOOLBAR_STD_LIST:
       populate_bar_for_list_view(self);
+      update_selection_buttons (self->priv);
       break;
 
     default:
@@ -347,6 +370,12 @@ populate_main_toolbar(BjbMainToolbar *self)
       priv->search_handler = 0;
     }
 
+    if (priv->display_notes != 0)
+    {
+      g_signal_handler_disconnect (priv->controller, priv->display_notes);
+      priv->display_notes = 0;
+    }
+
     populate_bar_switch (self);
   }
 }
@@ -362,6 +391,8 @@ bjb_main_toolbar_init (BjbMainToolbar *self)
 {
   self->priv = BJB_MAIN_TOOLBAR_GET_PRIVATE(self);
   self->priv->type = BJB_TOOLBAR_0 ;
+  self->priv->grid = NULL;
+  self->priv->list = NULL;
   g_signal_connect (self, "button-press-event", G_CALLBACK (on_button_press), NULL);
 }
 

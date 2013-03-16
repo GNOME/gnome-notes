@@ -1,9 +1,8 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * bijiben
- * Copyright (C) Pierre-Yves Luyten 2012 <py@luyten.fr>
+ * bjb-controller.h
+ * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
  * 
-bijiben is free software: you can redistribute it and/or modify it
+ * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -90,6 +89,8 @@ void bjb_controller_connect (BjbController *self);
 void bjb_controller_disconnect (BjbController *self);
 
 void bjb_controller_set_main_view (BjbController *self, GdMainView *current);
+
+gboolean bjb_controller_shows_notes (BjbController *self);
 
 G_END_DECLS
 

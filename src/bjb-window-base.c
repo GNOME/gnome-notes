@@ -64,7 +64,6 @@ bjb_window_base_finalize (GObject *object)
   BjbWindowBase *self = BJB_WINDOW_BASE (object);
   BjbWindowBasePriv *priv = self->priv;
 
-  g_clear_object (&priv->view);
   g_clear_object (&priv->controller);
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->finalize (object);
@@ -256,6 +255,8 @@ bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
   priv->note_overlay = gtk_overlay_new ();
   gd_stack_add_named (priv->stack, priv->note_overlay, "note-view");
   priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
+  g_object_add_weak_pointer (G_OBJECT (priv->note_view),
+                             (gpointer *) &priv->note_view);
 
   bjb_window_base_set_note (bwb, priv->note);
   bjb_window_base_switch_to (bwb, BJB_NOTE_VIEW);

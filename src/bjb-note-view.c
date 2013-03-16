@@ -107,7 +107,6 @@ bjb_note_view_finalize(GObject *object)
   g_clear_object (&priv->accel);
   g_clear_object (&priv->edit_bar);
   clutter_color_free (priv->last_date_bckgrd_clr);
-  clutter_actor_destroy (priv->edit_bar_actor);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
 }

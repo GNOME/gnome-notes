@@ -84,14 +84,6 @@ bjb_main_view_init (BjbMainView *object)
 static void
 bjb_main_view_finalize (GObject *object)
 {
-  BjbMainView     *self = BJB_MAIN_VIEW(object) ;
-  BjbMainViewPriv *priv = self->priv;
-
-  /* Widgets, actors */
-  g_clear_object (&priv->main_toolbar);
-  g_clear_object (&priv->select_bar);
-  g_clear_object (&priv->search_bar);
-
   G_OBJECT_CLASS (bjb_main_view_parent_class)->finalize (object);
 }
 

@@ -1,3 +1,15 @@
+Overview of changes in 3.7.92
+=============================
+
+* Fixes on email sharing (Bastien Nocera)
+
+* Fix various regressions
+
+* Use consistently GPLv3+
+
+* New translation:
+  da
+
 Overview of changes in 3.7.91
 =============================
 

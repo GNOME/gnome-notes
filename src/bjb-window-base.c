@@ -252,6 +252,7 @@ bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
 
   destroy_note_if_needed (bwb);
 
+  priv->note = note;
   priv->note_overlay = gtk_overlay_new ();
   gd_stack_add_named (priv->stack, priv->note_overlay, "note-view");
   priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);

@@ -53,21 +53,6 @@ struct _BjbController
 
 GType bjb_controller_get_type (void) G_GNUC_CONST;
 
-
-/* Model Columns */
-/* TODO : use GD_MAIN_VIEW columns instead */
-enum
-{
-  COL_URN,
-  COL_URI,
-  COL_NAME,
-  COL_AUTHOR,
-  COL_IMAGE,
-  COL_MTIME,
-  COL_SELECTED,
-  NUMBER_COLUMNS
-};
-
 BjbController * bjb_controller_new ( BijiNoteBook *book, gchar *needle ) ;
 
 void bjb_controller_apply_needle (BjbController *self);

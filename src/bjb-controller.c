@@ -86,13 +86,13 @@ bjb_controller_init (BjbController *self)
   priv = self->priv ;
 
   /* Create the columns */
-  store = gtk_list_store_new (NUMBER_COLUMNS,
+  store = gtk_list_store_new (GD_MAIN_COLUMN_LAST,
                               G_TYPE_STRING,   // urn
                               G_TYPE_STRING,   // uri
                               G_TYPE_STRING,   // name
                               G_TYPE_STRING,   // author
                               GDK_TYPE_PIXBUF,   // icon then note
-                              G_TYPE_INT64,    // mtime
+                              G_TYPE_LONG, // mtime
                               G_TYPE_BOOLEAN);   // state
 
   priv->model = GTK_TREE_MODEL(store) ;
@@ -218,16 +218,15 @@ bjb_controller_add_note (BjbController *self,
      * currently use the same model */
     path = biji_note_obj_get_path (note);
 
-    gtk_list_store_set (store, 
-                        &iter,
-                        COL_URN,    path,
-                        COL_URI,    path,
-                        COL_NAME,   biji_note_obj_get_title(note),
-                        COL_AUTHOR,   NULL,
-                        COL_IMAGE,  pix,
-                        COL_MTIME,  biji_note_obj_get_last_change_date_sec(note),
-                        COL_SELECTED, FALSE,
-                        -1);
+    gtk_list_store_set (store, &iter,
+         GD_MAIN_COLUMN_ID, path,
+         GD_MAIN_COLUMN_URI, path,
+         GD_MAIN_COLUMN_PRIMARY_TEXT, biji_note_obj_get_title (note),
+         GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
+         GD_MAIN_COLUMN_ICON, pix,
+         GD_MAIN_COLUMN_MTIME, biji_note_obj_get_last_change_date_sec (note),
+         GD_MAIN_COLUMN_SELECTED, FALSE,
+         -1);
 
     g_free (path);
   }
@@ -474,7 +473,7 @@ on_book_changed (BijiNoteBook           *book,
       if (gd_main_view_get_view_type (priv->cur) == GD_MAIN_VIEW_ICON
           && bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
-                            COL_IMAGE, biji_note_obj_get_icon (note), -1);
+                            GD_MAIN_COLUMN_ICON, biji_note_obj_get_icon (note), -1);
       break;
 
     case BIJI_BOOK_NOTE_TRASHED:

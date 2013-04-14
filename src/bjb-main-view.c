@@ -393,7 +393,7 @@ on_item_activated(GdMainView        * gd,
   /* Get Note Path */
   model = gd_main_view_get_model (gd);
   gtk_tree_model_get_iter (model, &iter, (GtkTreePath*) path);
-  gtk_tree_model_get (model, &iter,COL_URI, &note_path,-1);
+  gtk_tree_model_get (model, &iter, GD_MAIN_COLUMN_URI, &note_path,-1);
 
   /* Switch to that note */
   book = bjb_window_base_get_book (view->priv->window); 

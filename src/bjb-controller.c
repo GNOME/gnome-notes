@@ -206,7 +206,7 @@ bjb_controller_add_note (BjbController *self,
     if (self->priv->cur)
     {
       if (gd_main_view_get_view_type (self->priv->cur) == GD_MAIN_VIEW_LIST)
-        pix = get_note_pixbuf();
+        pix = biji_note_obj_get_emblem (note);
     }
 
     /* If no gd-main-view or if not list view,

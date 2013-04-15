@@ -5,6 +5,4 @@
 
 GtkWidget * get_icon (gchar *icon);
 
-GdkPixbuf * get_note_pixbuf();
-
 #endif

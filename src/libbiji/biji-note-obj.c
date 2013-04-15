@@ -32,6 +32,10 @@
 #define ICON_HEIGHT 240
 #define ICON_FONT "Purusa 10"
 
+/* a cute baby icon without txt */
+#define EMBLEM_WIDTH ICON_WIDTH / 8
+#define EMBLEM_HEIGHT ICON_HEIGHT / 8
+
 struct _BijiNoteObjPrivate
 {
   /* Notebook might be null. */
@@ -50,9 +54,12 @@ struct _BijiNoteObjPrivate
   BijiTimeout           *timeout;
   gboolean              needs_save;
 
-  /* Icon might be null untill usefull */
+  /* Icon might be null untill usefull
+   * Emblem is smaller & just shows the color */
   GdkPixbuf             *icon;
+  GdkPixbuf             *emblem;
   gboolean              icon_needs_update;
+  gboolean              emblem_needs_update;
 
   /* Tags 
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
@@ -126,6 +133,7 @@ biji_note_obj_init (BijiNoteObj *self)
 
   /* Icon is only computed when necessary */
   priv->icon = NULL;
+  priv->emblem = NULL;
 
   /* Keep value unitialied, so bijiben knows to assign default color */
   priv->color = NULL;
@@ -156,6 +164,7 @@ biji_note_obj_finalize (GObject *object)
   g_hash_table_destroy (priv->labels);
 
   g_clear_object (&priv->icon);
+  g_clear_object (&priv->emblem);
   gdk_rgba_free (priv->color);
 
   G_OBJECT_CLASS (biji_note_obj_parent_class)->finalize (object);
@@ -511,6 +520,7 @@ biji_note_obj_set_rgba_internal (BijiNoteObj *n, GdkRGBA *rgba)
 {
   n->priv->color = gdk_rgba_copy(rgba);
   n->priv->icon_needs_update = TRUE;
+  n->priv->emblem_needs_update = TRUE;
 
   g_signal_emit (G_OBJECT (n), biji_obj_signals[NOTE_COLOR_CHANGED],0);
 }
@@ -548,12 +558,18 @@ biji_note_obj_get_rgba(BijiNoteObj *n,
 }
 
 static void
-biji_note_obj_clear_icon (BijiNoteObj *note)
+biji_note_obj_clear_icons (BijiNoteObj *note)
 {
   if (note->priv->icon)
   {
     g_clear_object (&note->priv->icon);
     note->priv->icon = NULL ;
+  }
+
+  if (note->priv->emblem)
+  {
+    g_clear_object (&note->priv->emblem);
+    note->priv->emblem = NULL ;
   }
 
   g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_CHANGED],0);
@@ -565,7 +581,7 @@ void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
     g_free (note->priv->raw_text);
 
   note->priv->raw_text = g_strdup (plain_text);
-  biji_note_obj_clear_icon (note);
+  biji_note_obj_clear_icons (note);
 }
 
 GList *
@@ -711,8 +727,8 @@ biji_note_obj_get_icon (BijiNoteObj *note)
   if (note->priv->icon && !note->priv->icon_needs_update)
     return note->priv->icon;
 
-  /* Create & Draw surface */ 
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32 , 
+  /* Create & Draw surface */
+  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
                                         ICON_WIDTH,
                                         ICON_HEIGHT) ;
   cr = cairo_create (surface);
@@ -761,6 +777,46 @@ biji_note_obj_get_icon (BijiNoteObj *note)
   note->priv->icon_needs_update = FALSE;
 
   return note->priv->icon;
+}
+
+GdkPixbuf *
+biji_note_obj_get_emblem (BijiNoteObj *note)
+{
+  GdkRGBA                note_color;
+  cairo_t               *cr;
+  cairo_surface_t       *surface = NULL;
+  GdkPixbuf             *ret = NULL;
+  GtkBorder              frame_slice = { 4, 3, 3, 6 };
+
+  if (note->priv->emblem && !note->priv->emblem_needs_update)
+    return note->priv->emblem;
+
+  /* Create & Draw surface */
+  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                        EMBLEM_WIDTH,
+                                        EMBLEM_HEIGHT) ;
+  cr = cairo_create (surface);
+
+  /* Background */
+  cairo_rectangle (cr, 0, 0, EMBLEM_WIDTH, EMBLEM_HEIGHT);
+  if (biji_note_obj_get_rgba (note, &note_color))
+    gdk_cairo_set_source_rgba (cr, &note_color);
+
+  cairo_fill (cr);
+  cairo_destroy (cr);
+
+  ret = gdk_pixbuf_get_from_surface (surface,
+                                     0, 0,
+                                     EMBLEM_WIDTH,
+                                     EMBLEM_HEIGHT);
+
+  cairo_surface_destroy (surface);
+  note->priv->emblem = gd_embed_image_in_frame (ret, "resource:///org/gnome/bijiben/thumbnail-frame.png",
+                                                &frame_slice, &frame_slice);
+  g_clear_object (&ret);
+  note->priv->emblem_needs_update = FALSE;
+
+  return note->priv->emblem;
 }
 
 /* Single Note */

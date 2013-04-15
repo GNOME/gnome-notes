@@ -28,6 +28,8 @@ struct _BjbWindowBasePriv
    * The Notebook always has a main view.
    * When editing a note, it _also_ has a note view */
   GdStack              *stack;
+  GtkWidget            *spinner; // this spinner takes the whole place
+                                 // and only shows on startup
   BjbWindowViewType     current_view;
   BjbMainView          *view;
   gchar                *entry;
@@ -127,6 +129,12 @@ bjb_window_base_constructed (GObject *obj)
   /* UI : basic notebook */
   priv->stack = GD_STACK (gd_stack_new ());
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->stack));
+
+  priv->spinner = gtk_spinner_new ();
+  gd_stack_add_named (priv->stack, priv->spinner, "spinner");
+  gd_stack_set_visible_child_name (priv->stack, "spinner");
+  gtk_widget_show (priv->spinner);
+  gtk_spinner_start (GTK_SPINNER (priv->spinner));
 
   /* Signals */
   g_signal_connect(GTK_WIDGET(self),"destroy",

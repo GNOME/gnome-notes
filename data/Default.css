@@ -3,6 +3,7 @@ body {
   margin-left:      2em;
   margin-right:     2em;
   margin-bottom:    8em;
+  word-wrap:        break-word;
 
   background-image: -webkit-linear-gradient(90deg,
                                rgba(97%,97%,100%,0) 0%,

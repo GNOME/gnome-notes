@@ -4,12 +4,12 @@
       id="tags">
 
   <info>
-    <license><p>GNU Free Documentation License (GFDL), Version 1.1</p></license>
     <desc>Put labels to notes</desc>
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
       <years>2012</years>
     </credit>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
   </info>
 
   <title>Tag Notes</title>

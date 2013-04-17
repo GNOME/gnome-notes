@@ -13,7 +13,8 @@ HELP_FILES = \
 	bjb-find.page \
 	bjb-share.page \
 	bjb-tags.page \
-	index.page
+	index.page \
+	legal.xml
 
 HELP_MEDIA = \
 	figures/bijiben-note.png

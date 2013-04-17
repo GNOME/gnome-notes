@@ -1,6 +1,6 @@
 body {
   margin-top:      -2em;
-  margin-left:      2em;
+  margin-left:      0;
   margin-right:     2em;
   margin-bottom:    8em;
   word-wrap:        break-word;
@@ -16,15 +16,15 @@ body {
 }
 
 ul {
-  margin-top :      0em;
-  margin-bottom:    0em;
+  margin-top :      0;
+  margin-bottom:    0;
   line-height:      2.0em;
-  padding:          0em;
+  padding:          0;
 }
 
 ol {
-  margin-top :      0em;
-  margin-bottom:    0em;
+  margin-top :      0;
+  margin-bottom:    0;
   line-height:      2.0em;
-  padding:          0em;
+  padding:          0;
 }

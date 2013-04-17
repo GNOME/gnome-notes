@@ -14,8 +14,10 @@
   </info>
 
   <title>Delete Notes</title>
+
+  <p>You can delete a note in two ways:</p>
+
     <list>
-      <p>Use one of the below method</p>
       <item><p>Open a note and select <gui>Delete</gui> from the menu.</p></item>
       <item><p>From the notes view, click on selection button, select the notes you want to delete then click on trash.</p></item>
     </list>

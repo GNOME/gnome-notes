@@ -2,13 +2,11 @@
 <page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" id="index" xml:lang="en_GB">
 
   <info>
-    <license>
-	<p>GNU Free Documentation License (GFDL), Version 1.1</p>
-    </license>
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
       <years>2012</years>
     </credit>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
   </info>
 
   <title>Bijiben Help</title>

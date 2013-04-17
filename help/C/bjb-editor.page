@@ -5,12 +5,12 @@
 
   <info>
     <link type="guide" xref="index#use"/>
-    <license><p>GNU Free Documentation License (GFDL), Version 1.1</p></license>
     <desc>Format the content</desc>
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
       <years>2012</years>
     </credit>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
   </info>
 
   <title>Note edition</title>

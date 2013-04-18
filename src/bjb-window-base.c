@@ -11,7 +11,7 @@
 #include "bjb-note-view.h"
 
 
-#define BJB_WIDTH 880
+#define BJB_WIDTH 780
 #define BJB_HEIGHT 600
 #define BIJIBEN_MAIN_WIN_TITLE "Bijiben"
 

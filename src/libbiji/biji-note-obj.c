@@ -32,9 +32,9 @@
 #define ICON_HEIGHT 240
 #define ICON_FONT "Purusa 10"
 
-/* a cute baby icon without txt */
-#define EMBLEM_WIDTH ICON_WIDTH / 8
-#define EMBLEM_HEIGHT ICON_HEIGHT / 8
+/* a cute baby icon without txt. squared. */
+#define EMBLEM_WIDTH ICON_WIDTH / 6
+#define EMBLEM_HEIGHT EMBLEM_WIDTH
 
 struct _BijiNoteObjPrivate
 {
@@ -785,8 +785,6 @@ biji_note_obj_get_emblem (BijiNoteObj *note)
   GdkRGBA                note_color;
   cairo_t               *cr;
   cairo_surface_t       *surface = NULL;
-  GdkPixbuf             *ret = NULL;
-  GtkBorder              frame_slice = { 4, 3, 3, 6 };
 
   if (note->priv->emblem && !note->priv->emblem_needs_update)
     return note->priv->emblem;
@@ -803,17 +801,21 @@ biji_note_obj_get_emblem (BijiNoteObj *note)
     gdk_cairo_set_source_rgba (cr, &note_color);
 
   cairo_fill (cr);
+
+  /* Border */
+  cairo_set_source_rgba (cr, 0.3, 0.3, 0.3, 1);
+  cairo_set_line_width (cr, 1);
+  cairo_rectangle (cr, 0, 0, EMBLEM_WIDTH, EMBLEM_HEIGHT);
+  cairo_stroke (cr);
+
   cairo_destroy (cr);
 
-  ret = gdk_pixbuf_get_from_surface (surface,
-                                     0, 0,
-                                     EMBLEM_WIDTH,
-                                     EMBLEM_HEIGHT);
+  note->priv->emblem = gdk_pixbuf_get_from_surface (surface,
+                                                    0, 0,
+                                                    EMBLEM_WIDTH,
+                                                    EMBLEM_HEIGHT);
 
   cairo_surface_destroy (surface);
-  note->priv->emblem = gd_embed_image_in_frame (ret, "resource:///org/gnome/bijiben/thumbnail-frame.png",
-                                                &frame_slice, &frame_slice);
-  g_clear_object (&ret);
   note->priv->emblem_needs_update = FALSE;
 
   return note->priv->emblem;

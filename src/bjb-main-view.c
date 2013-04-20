@@ -570,3 +570,19 @@ bjb_main_view_update_model (BjbMainView *self)
   bjb_controller_set_main_view (priv->controller,priv->view);
   gd_main_view_set_model(priv->view,bjb_controller_get_model(priv->controller));
 }
+
+BjbSearchToolbar *
+bjb_main_view_get_search_toolbar (BjbMainView *view)
+{
+  g_return_val_if_fail (BJB_IS_MAIN_VIEW (view), NULL);
+
+  return view->priv->search_bar;
+}
+
+gpointer
+bjb_main_view_get_main_toolbar (BjbMainView *view)
+{
+  g_return_val_if_fail (BJB_IS_MAIN_VIEW (view), NULL);
+
+  return (gpointer) view->priv->main_toolbar;
+}

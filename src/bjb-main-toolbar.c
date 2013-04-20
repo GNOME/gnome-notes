@@ -44,6 +44,7 @@ struct _BjbMainToolbarPrivate
   GtkWidget      *list;
   GtkWidget      *grid;
   GtkWidget      *select;
+  GtkWidget      *search;
 
   /* Signal Handlers */
   gulong         finish_sig;
@@ -162,6 +163,37 @@ on_button_press (GtkWidget* widget,
 }
 
 static void
+on_search_button_clicked (BjbMainToolbarPrivate *priv)
+{
+  BjbSearchToolbar *bar;
+
+  bar = bjb_main_view_get_search_toolbar (priv->parent);
+
+  if (bar == NULL)
+    return;
+
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->search)))
+    bjb_search_toolbar_fade_in (bar);
+
+  else
+    bjb_search_toolbar_fade_out (bar);
+}
+
+static void
+add_search_button (BjbMainToolbar *self)
+{
+  BjbMainToolbarPrivate *priv = self->priv;
+
+  priv->search = gd_main_toolbar_add_toggle (GD_MAIN_TOOLBAR (self),
+                                             "edit-find-symbolic",
+                                             NULL,
+                                             FALSE);
+
+  g_signal_connect_swapped (priv->search, "clicked",
+                            G_CALLBACK (on_search_button_clicked), priv);
+}
+
+static void
 update_selection_buttons (BjbMainToolbarPrivate *priv)
 {
   gboolean some_note_is_visible = bjb_controller_shows_notes (priv->controller);
@@ -203,6 +235,10 @@ populate_bar_for_selection (BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   GtkStyleContext *context;
 
+  /* Search button */
+  add_search_button (self);
+
+  /* Select */
   priv->select = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (self),
                                              NULL,"Done", FALSE);
   context = gtk_widget_get_style_context (priv->select);
@@ -226,7 +262,7 @@ update_label_for_standard (BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   gchar *needle = bjb_controller_get_needle (priv->controller);
   gchar *label ;
-  
+
   if (needle && g_strcmp0 (needle, "") !=0)
     label = g_strdup_printf (_("Results for %s"), needle);
 
@@ -327,11 +363,13 @@ populate_bar_switch(BjbMainToolbar *self)
       break;
 
     case BJB_TOOLBAR_STD_ICON:
+      add_search_button (self);
       populate_bar_for_icon_view(self);
       update_selection_buttons (self->priv);
       break;
 
     case BJB_TOOLBAR_STD_LIST:
+      add_search_button (self);
       populate_bar_for_list_view(self);
       update_selection_buttons (self->priv);
       break;
@@ -391,9 +429,13 @@ static void
 bjb_main_toolbar_init (BjbMainToolbar *self)
 {
   self->priv = BJB_MAIN_TOOLBAR_GET_PRIVATE(self);
-  self->priv->type = BJB_TOOLBAR_0 ;
-  self->priv->grid = NULL;
-  self->priv->list = NULL;
+  BjbMainToolbarPrivate *priv = self->priv;
+
+  priv->type = BJB_TOOLBAR_0 ;
+  priv->grid = NULL;
+  priv->list = NULL;
+  priv->search = NULL;
+
   g_signal_connect (self, "button-press-event", G_CALLBACK (on_button_press), NULL);
 }
 
@@ -520,4 +562,14 @@ void
 bjb_main_toolbar_set_view (BjbMainToolbar *self, GdMainView *view)
 {
   self->priv->view = view ;
+}
+
+void
+bjb_main_toolbar_set_search_toggle_state (BjbMainToolbar *self,
+                                          gboolean active)
+{
+  g_return_if_fail (BJB_IS_MAIN_TOOLBAR (self));
+
+  if (self->priv->search)
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->priv->search), active);
 }

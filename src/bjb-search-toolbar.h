@@ -53,6 +53,10 @@ GType bjb_search_toolbar_get_type (void) G_GNUC_CONST;
 
 BjbSearchToolbar * bjb_search_toolbar_new (GtkWidget *window, BjbController *controller);
 
+void bjb_search_toolbar_fade_in (BjbSearchToolbar *self);
+
+void bjb_search_toolbar_fade_out (BjbSearchToolbar *self);
+
 GdRevealer * bjb_search_toolbar_get_revealer (BjbSearchToolbar *self);
 
 void bjb_search_toolbar_disconnect (BjbSearchToolbar *self);

@@ -59,6 +59,8 @@ void on_selection_mode_changed (BjbMainToolbar *self);
 
 void bjb_main_toolbar_set_view (BjbMainToolbar *self, GdMainView *view);
 
+void bjb_main_toolbar_set_search_toggle_state (BjbMainToolbar *self, gboolean active);
+
 G_END_DECLS
 
 #endif /* _BJB_MAIN_TOOLBAR_H_ */

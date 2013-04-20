@@ -30,7 +30,10 @@
 #include <libgd/gd-entry-focus-hack.h>
 
 #include "bjb-controller.h"
+#include "bjb-main-toolbar.h"
+#include "bjb-main-view.h"
 #include "bjb-search-toolbar.h"
+#include "bjb-window-base.h"
 
 enum
 {
@@ -66,25 +69,60 @@ struct _BjbSearchToolbarPrivate
 G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, GTK_TYPE_TOOLBAR);
 
 static void
+bjb_search_toolbar_toggle_search_button (BjbSearchToolbar *self,
+                                         gboolean state)
+{
+  BjbMainView *view;
+  BjbMainToolbar *bar;
+
+  view = bjb_window_base_get_main_view (BJB_WINDOW_BASE (self->priv->window));
+  if (view)
+  {
+    bar = bjb_main_view_get_main_toolbar (view);
+    if (bar)
+      bjb_main_toolbar_set_search_toggle_state (bar, state);
+  }
+}
+
+void
 bjb_search_toolbar_fade_in (BjbSearchToolbar *self)
 {
   if (!gd_revealer_get_child_revealed (self->priv->revealer))
   {
     GdkDevice *device;
+
+
+    /* show the search */
     gd_revealer_set_reveal_child (self->priv->revealer, TRUE);
 
+    /* focus */
     device = gtk_get_current_event_device ();
     if (device)
       gd_entry_focus_hack (self->priv->search_entry, device);
+
+    /* manually toggle search button */
+    bjb_search_toolbar_toggle_search_button (self, TRUE);
   }
 }
 
-static void
+void
 bjb_search_toolbar_fade_out (BjbSearchToolbar *self)
 {
   if (gd_revealer_get_child_revealed (self->priv->revealer))
+  {
+    /* clear the search before hiding */
+    gtk_entry_set_text (GTK_ENTRY(self->priv->search_entry),"");
+    bjb_controller_set_needle (self->priv->controller,"");
+
+    /* hide */
     gd_revealer_set_reveal_child (self->priv->revealer, FALSE);
+
+    /* manually toggle search button */
+    bjb_search_toolbar_toggle_search_button (self, FALSE);
+  }
 }
+
+
 
 /* If some text has been input, handle position */
 static gboolean

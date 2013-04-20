@@ -23,6 +23,7 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-controller.h"
+#include "bjb-search-toolbar.h"
 
 G_BEGIN_DECLS
 
@@ -80,6 +81,10 @@ void update_notes_with_string_search(BjbMainView *view, gchar *needle);
 void switch_to_note_view(BjbMainView *view,BijiNoteObj *note) ;
 
 void bjb_main_view_update_model (BjbMainView *view);
+
+BjbSearchToolbar *bjb_main_view_get_search_toolbar (BjbMainView *view);
+
+gpointer bjb_main_view_get_main_toolbar (BjbMainView *view);
 
 G_END_DECLS
 

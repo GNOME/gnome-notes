@@ -56,6 +56,8 @@ bijiben_SOURCES = \
 	bjb-debug.h \
 	bjb-editor-toolbar.c \
 	bjb-editor-toolbar.h \
+	bjb-empty-results-box.c \
+	bjb-empty-results-box.h \
 	bjb-main.c \
 	bjb-main-toolbar.c \
 	bjb-main-toolbar.h \

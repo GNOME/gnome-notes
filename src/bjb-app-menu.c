@@ -49,7 +49,7 @@ new_activated (GSimpleAction *action,
   BjbWindowBase *win;
 
   win = BJB_WINDOW_BASE (bjb_window_base_new());
-  bjb_window_base_switch_to (win, BJB_MAIN_VIEW);
+  bjb_window_base_switch_to (win, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
 /* Import external data - TODO : BJB_TYPE_IMPORT_DIALOG.c */

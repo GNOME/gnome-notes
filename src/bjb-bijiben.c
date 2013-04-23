@@ -61,7 +61,7 @@ bijiben_new_window_internal (GApplication *app,
 
   else
   {
-    bjb_window_base_switch_to (BJB_WINDOW_BASE (win), BJB_MAIN_VIEW);
+    bjb_window_base_switch_to (BJB_WINDOW_BASE (win), BJB_WINDOW_BASE_MAIN_VIEW);
     gtk_widget_show_all (GTK_WIDGET (win)); // FIXME not here
   }
 }

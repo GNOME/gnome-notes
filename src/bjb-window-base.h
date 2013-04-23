@@ -32,9 +32,9 @@ struct _BjbWindowBase
 };
 
 typedef enum {
-  BJB_MAIN_VIEW,
-  BJB_NOTE_VIEW,
-  BJB_NO_VIEW
+  BJB_WINDOW_BASE_MAIN_VIEW,
+  BJB_WINDOW_BASE_NOTE_VIEW,
+  BJB_WINDOW_BASE_NO_VIEW
 } BjbWindowViewType;
 
 GType bjb_window_base_get_type (void);
@@ -51,6 +51,8 @@ void bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type);
 
 void bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note);
 
+BjbWindowViewType bjb_window_base_get_view_type (BjbWindowBase *win);
+
 BijiNoteBook * bjb_window_base_get_book(GtkWidget * win);
 
 void bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;
@@ -62,8 +64,6 @@ gchar * bjb_window_base_get_entry(GtkWidget *win) ;
 gpointer bjb_window_base_get_main_view (BjbWindowBase *self);
 
 BijiNoteObj * bjb_window_base_get_note (BjbWindowBase *self);
-
-void bjb_window_base_set_note (BjbWindowBase *self, BijiNoteObj *note);
 
 gboolean switch_window_fullscreen();
 

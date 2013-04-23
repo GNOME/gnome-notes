@@ -7,6 +7,7 @@
 
 #include "bjb-bijiben.h"
 #include "bjb-window-base.h"
+#include "bjb-main-toolbar.h"
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
 
@@ -16,6 +17,13 @@
 #define BIJIBEN_MAIN_WIN_TITLE "Bijiben"
 
 #define BJB_DEFAULT_FONT "Serif 10"
+
+enum {
+  BJB_WIN_BASE_VIEW_CHANGED,
+  BJB_WIN_BASE_SIGNALS
+};
+
+static guint bjb_win_base_signals [BJB_WIN_BASE_SIGNALS] = { 0 };
 
 /* As the main window remains, it owns the data */
 struct _BjbWindowBasePriv
@@ -27,11 +35,13 @@ struct _BjbWindowBasePriv
   /* UI
    * The Notebook always has a main view.
    * When editing a note, it _also_ has a note view */
+  GtkWidget            *vbox;
   GdStack              *stack;
   GtkWidget            *spinner; // this spinner takes the whole place
                                  // and only shows on startup
   BjbWindowViewType     current_view;
   BjbMainView          *view;
+  BjbMainToolbar       *main_toolbar;
   gchar                *entry;
 
   /* when a note is opened */
@@ -126,16 +136,6 @@ bjb_window_base_constructed (GObject *obj)
   priv->entry = NULL ;
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
-  /* UI : basic notebook */
-  priv->stack = GD_STACK (gd_stack_new ());
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->stack));
-
-  priv->spinner = gtk_spinner_new ();
-  gd_stack_add_named (priv->stack, priv->spinner, "spinner");
-  gd_stack_set_visible_child_name (priv->stack, "spinner");
-  gtk_widget_show (priv->spinner);
-  gtk_spinner_start (GTK_SPINNER (priv->spinner));
-
   /* Signals */
   g_signal_connect(GTK_WIDGET(self),"destroy",
                    G_CALLBACK(bjb_window_base_destroy),self);
@@ -144,12 +144,17 @@ bjb_window_base_constructed (GObject *obj)
 static void
 bjb_window_base_init (BjbWindowBase *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
-                                            BJB_TYPE_WINDOW_BASE,
-                                            BjbWindowBasePriv);
+  BjbWindowBasePriv *priv;
+  priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                      BJB_TYPE_WINDOW_BASE,
+                                      BjbWindowBasePriv);
+  self->priv = priv;
 
   /* Default window has no note opened */
-  self->priv->note_view = NULL;
+  priv->note_view = NULL;
+
+  priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  gtk_container_add (GTK_CONTAINER (self), priv->vbox);
 }
 
 static void
@@ -162,6 +167,16 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   gobject_class->finalize = bjb_window_base_finalize ;
 
   g_type_class_add_private (klass, sizeof (BjbWindowBasePriv));
+
+  bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED] = g_signal_new ("view-changed" ,
+                                                    G_OBJECT_CLASS_TYPE (klass),
+                                                    G_SIGNAL_RUN_LAST,
+                                                    0,
+                                                    NULL,
+                                                    NULL,
+                                                    g_cclosure_marshal_VOID__VOID,
+                                                    G_TYPE_NONE,
+                                                    0);
 }
 
 GtkWindow *
@@ -183,7 +198,21 @@ bjb_window_base_new(void)
     (bijiben_get_book (BIJIBEN_APPLICATION(g_application_get_default())),
      priv->entry );
 
+  /* Shared toolbar */
   priv->view = bjb_main_view_new (GTK_WIDGET (retval), priv->controller);
+  priv->main_toolbar = bjb_main_toolbar_new (priv->view, priv->controller);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->main_toolbar), FALSE, FALSE, 0);
+
+  /* UI : stack for different views */
+  priv->stack = GD_STACK (gd_stack_new ());
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->stack), TRUE, TRUE, 0);
+
+  priv->spinner = gtk_spinner_new ();
+  gd_stack_add_named (priv->stack, priv->spinner, "spinner");
+  gd_stack_set_visible_child_name (priv->stack, "spinner");
+  gtk_widget_show (priv->spinner);
+  gtk_spinner_start (GTK_SPINNER (priv->spinner));
+
   gd_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
   gtk_widget_show_all (GTK_WIDGET (retval));
 
@@ -201,14 +230,6 @@ window_base_get_font(GtkWidget *window)
 {
   BjbWindowBase *b = BJB_WINDOW_BASE(window);
   return b->priv->font ;
-}
-
-void
-bjb_window_base_set_note (BjbWindowBase *self, BijiNoteObj *note)
-{
-  g_return_if_fail (BJB_IS_WINDOW_BASE (self));
-
-  self->priv->note = note;
 }
 
 BijiNoteObj *
@@ -232,11 +253,12 @@ void
 bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 {
   BjbWindowBasePriv *priv = bwb->priv;
+  priv->current_view = type;
 
   /* Precise the window does not display any specific note
    * Refresh the model
    * Ensure the main view receives the proper signals */
-  if (type == BJB_MAIN_VIEW)
+  if (type == BJB_WINDOW_BASE_MAIN_VIEW)
   {
     priv->note = NULL;
     bjb_main_view_connect_signals (priv->view);
@@ -250,6 +272,8 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
     gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
     gd_stack_set_visible_child_name (priv->stack, "note-view");
   }
+
+  g_signal_emit (G_OBJECT (bwb), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
 }
 
 void
@@ -262,14 +286,21 @@ bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
 
   priv->note = note;
   priv->note_overlay = gtk_overlay_new ();
+
   gd_stack_add_named (priv->stack, priv->note_overlay, "note-view");
   priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
+
   g_object_add_weak_pointer (G_OBJECT (priv->note_view),
                              (gpointer *) &priv->note_view);
 
-  bjb_window_base_set_note (bwb, priv->note);
-  bjb_window_base_switch_to (bwb, BJB_NOTE_VIEW);
+  bjb_window_base_switch_to (bwb, BJB_WINDOW_BASE_NOTE_VIEW);
   gtk_widget_show_all (w);
+}
+
+BjbWindowViewType
+bjb_window_base_get_view_type (BjbWindowBase *win)
+{
+  return win->priv->current_view;
 }
 
 BijiNoteBook *

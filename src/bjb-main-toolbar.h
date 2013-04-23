@@ -1,6 +1,6 @@
 /*
  * bijiben
- * Copyright (C) Pierre-Yves Luyten 2012 <py@luyten.fr>
+ * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
  * 
 bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -51,13 +51,7 @@ struct _BjbMainToolbar
 
 GType bjb_main_toolbar_get_type (void) G_GNUC_CONST;
 
-BjbMainToolbar * bjb_main_toolbar_new (GdMainView    *view,
-                                       BjbMainView   *parent,
-                                       BjbController *controller);
-
-void on_selection_mode_changed (BjbMainToolbar *self);
-
-void bjb_main_toolbar_set_view (BjbMainToolbar *self, GdMainView *view);
+BjbMainToolbar *bjb_main_toolbar_new (BjbMainView *parent, BjbController *controller);
 
 void bjb_main_toolbar_set_search_toggle_state (BjbMainToolbar *self, gboolean active);
 

@@ -86,6 +86,19 @@ BjbSearchToolbar *bjb_main_view_get_search_toolbar (BjbMainView *view);
 
 gpointer bjb_main_view_get_main_toolbar (BjbMainView *view);
 
+/* bridge for notes view (GdMainView)
+ * TODO : get rid of this it's a bit idiot */
+
+gboolean bjb_main_view_get_selection_mode (BjbMainView *view);
+
+void bjb_main_view_set_selection_mode (BjbMainView *view, gboolean mode);
+
+GdMainViewType bjb_main_view_get_view_type (BjbMainView *view);
+
+void bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type);
+
+GList *bjb_main_view_get_selection (BjbMainView *view);
+
 G_END_DECLS
 
 #endif /* _MAIN_VIEW_H_ */

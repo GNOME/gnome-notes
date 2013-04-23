@@ -46,6 +46,13 @@ enum
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
+enum {
+  VIEW_SELECTION_CHANGED,
+  BJB_MAIN_VIEW_SIGNALS
+};
+
+static guint bjb_main_view_signals [BJB_MAIN_VIEW_SIGNALS] = { 0 };
+
 /************************** Gobject ***************************/
 
 struct _BjbMainViewPriv {  
@@ -70,6 +77,7 @@ struct _BjbMainViewPriv {
   gulong button;
   gulong activated;
   gulong data;
+  gulong view_selection_changed;
 };
 
 G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_BOX);
@@ -79,6 +87,12 @@ bjb_main_view_init (BjbMainView *object)
 {
   object->priv = 
   G_TYPE_INSTANCE_GET_PRIVATE(object,BJB_TYPE_MAIN_VIEW,BjbMainViewPriv);
+
+  object->priv->key = 0;
+  object->priv->button = 0;
+  object->priv->activated = 0;
+  object->priv->data = 0;
+  object->priv->view_selection_changed =0;
 }
 
 static void
@@ -96,6 +110,13 @@ bjb_main_view_disconnect_handlers (BjbMainView *self)
   g_signal_handler_disconnect (priv->view, priv->button);
   g_signal_handler_disconnect (priv->view, priv->activated);
   g_signal_handler_disconnect (priv->view, priv->data);
+  g_signal_handler_disconnect (priv->view, priv->view_selection_changed);
+
+  priv->key = 0;
+  priv->button = 0;
+  priv->activated = 0;
+  priv->data = 0;
+  priv->view_selection_changed =0;
 }
 
 static void
@@ -317,6 +338,14 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
   g_list_free (notes);
 }
 
+/* Just tell */
+static void
+on_selection_mode_changed_cb (BjbMainView *self)
+{
+  g_signal_emit (G_OBJECT (self),
+                 bjb_main_view_signals[VIEW_SELECTION_CHANGED],0);
+}
+
 /* Select all, escape */
 static gboolean
 on_key_press_event_cb (GtkWidget *widget,
@@ -341,7 +370,6 @@ on_key_press_event_cb (GtkWidget *widget,
       if (gd_main_view_get_selection_mode (priv->view))
       {
         gd_main_view_set_selection_mode (priv->view, FALSE);
-        on_selection_mode_changed (priv->main_toolbar);
         return TRUE;
       }
 
@@ -366,11 +394,7 @@ on_button_press_event_cb (GtkWidget *widget,
     /* Right click */
     case 3:
       if (!gd_main_view_get_selection_mode (priv->view))
-      {
         gd_main_view_set_selection_mode (priv->view, TRUE);
-        on_selection_mode_changed (priv->main_toolbar);
-      }
-
       return TRUE;
 
     default:
@@ -452,13 +476,27 @@ bjb_main_view_connect_signals (BjbMainView *self)
   bjb_controller_connect (priv->controller);
   bjb_search_toolbar_connect (priv->search_bar);
 
-  priv->key = g_signal_connect (priv->window, "key-press-event",
+  if (priv->view_selection_changed == 0)
+    priv->view_selection_changed = g_signal_connect_swapped
+                                  (priv->view,
+                                   "view-selection-changed",
+                                   G_CALLBACK (on_selection_mode_changed_cb),
+                                   self);
+
+  if (priv->key == 0)
+    priv->key = g_signal_connect (priv->window, "key-press-event",
                               G_CALLBACK (on_key_press_event_cb), self);
-  priv->button = g_signal_connect (priv->view, "button-press-event",
+
+  if (priv->button == 0)
+    priv->button = g_signal_connect (priv->view, "button-press-event",
                            G_CALLBACK (on_button_press_event_cb), self);
-  priv->activated = g_signal_connect(priv->view,"item-activated",
+
+  if (priv->activated == 0)
+    priv->activated = g_signal_connect(priv->view,"item-activated",
                                     G_CALLBACK(on_item_activated),self);
-  priv->data = g_signal_connect (priv->view, "drag-data-received",
+
+  if (priv->data == 0)
+    priv->data = g_signal_connect (priv->view, "drag-data-received",
                               G_CALLBACK (on_drag_data_received), self);
 }
 
@@ -483,10 +521,6 @@ bjb_main_view_constructed(GObject *o)
 
   priv->view = gd_main_view_new (DEFAULT_VIEW);
   bjb_controller_set_main_view (priv->controller, priv->view);
-
-  /* main Toolbar */
-  priv->main_toolbar = bjb_main_toolbar_new (priv->view, self, priv->controller);
-  gtk_box_pack_start (vbox, GTK_WIDGET (priv->main_toolbar), FALSE, FALSE, 0);
 
   /* Search entry toolbar */
   priv->search_bar = bjb_search_toolbar_new (priv->window, priv->controller);
@@ -544,6 +578,17 @@ bjb_main_view_class_init (BjbMainViewClass *klass)
                                                          G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
+
+  bjb_main_view_signals[VIEW_SELECTION_CHANGED] = g_signal_new ( "view-selection-changed" ,
+                                                  G_OBJECT_CLASS_TYPE (klass),
+                                                  G_SIGNAL_RUN_LAST,
+                                                  0,
+                                                  NULL,
+                                                  NULL,
+                                                  g_cclosure_marshal_VOID__VOID,
+                                                  G_TYPE_NONE,
+                                                  0);
+
 }
 
 BjbMainView *
@@ -585,4 +630,35 @@ bjb_main_view_get_main_toolbar (BjbMainView *view)
   g_return_val_if_fail (BJB_IS_MAIN_VIEW (view), NULL);
 
   return (gpointer) view->priv->main_toolbar;
+}
+
+/* interface for notes view (GdMainView) */
+gboolean
+bjb_main_view_get_selection_mode (BjbMainView *self)
+{
+  return gd_main_view_get_selection_mode (self->priv->view);
+}
+
+void
+bjb_main_view_set_selection_mode (BjbMainView *self, gboolean mode)
+{
+  gd_main_view_set_selection_mode (self->priv->view, mode);
+}
+
+GdMainViewType
+bjb_main_view_get_view_type (BjbMainView *view)
+{
+  return gd_main_view_get_view_type (view->priv->view);
+}
+
+void
+bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type)
+{
+  gd_main_view_set_view_type (view->priv->view, type);
+}
+
+GList *
+bjb_main_view_get_selection (BjbMainView *view)
+{
+  return gd_main_view_get_selection (view->priv->view);
 }

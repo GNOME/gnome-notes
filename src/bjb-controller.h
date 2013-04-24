@@ -23,7 +23,6 @@
 #include <libbiji/libbiji.h>
 #include <libgd/gd-main-view.h>
 
-
 G_BEGIN_DECLS
 
 #define BJB_TYPE_CONTROLLER             (bjb_controller_get_type ())
@@ -40,20 +39,22 @@ typedef struct _BjbControllerPrivate BjbControllerPrivate;
 
 struct _BjbControllerClass
 {
-	GObjectClass parent_class;
+  GObjectClass parent_class;
 };
 
 struct _BjbController
 {
-	GObject parent_instance;
+  GObject parent_instance;
 
-    BjbControllerPrivate *priv; 
+  BjbControllerPrivate *priv;
 };
 
 
 GType bjb_controller_get_type (void) G_GNUC_CONST;
 
-BjbController * bjb_controller_new ( BijiNoteBook *book, gchar *needle ) ;
+BjbController * bjb_controller_new (BijiNoteBook  *book,
+                                    GtkWindow     *bjb_window_base,
+                                    gchar         *needle);
 
 void bjb_controller_apply_needle (BjbController *self);
 
@@ -72,8 +73,6 @@ GtkTreeModel * bjb_controller_get_completion(BjbController *self);
 void bjb_controller_connect (BjbController *self);
 
 void bjb_controller_disconnect (BjbController *self);
-
-void bjb_controller_set_main_view (BjbController *self, GdMainView *current);
 
 gboolean bjb_controller_shows_notes (BjbController *self);
 

@@ -4,7 +4,6 @@
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
 
-#include "bjb-settings.h"
 #include "bjb-controller.h"
 
 #define BJB_TYPE_WINDOW_BASE                  (bjb_window_base_get_type ())

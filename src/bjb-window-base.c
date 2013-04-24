@@ -190,12 +190,13 @@ bjb_window_base_new(void)
                         "hide-titlebar-when-maximized", TRUE,
                         NULL);
 
-  /* Rather dirty to finish UI there. maybe bjb_w_b_set_controller */
+  /* Rather dirty to finish UI there */
 
   priv = retval->priv;
 
   priv->controller = bjb_controller_new 
     (bijiben_get_book (BIJIBEN_APPLICATION(g_application_get_default())),
+     GTK_WINDOW (retval),
      priv->entry );
 
   /* Shared toolbar */

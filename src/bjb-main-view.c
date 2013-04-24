@@ -520,7 +520,6 @@ bjb_main_view_constructed(GObject *o)
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
 
   priv->view = gd_main_view_new (DEFAULT_VIEW);
-  bjb_controller_set_main_view (priv->controller, priv->view);
 
   /* Search entry toolbar */
   priv->search_bar = bjb_search_toolbar_new (priv->window, priv->controller);
@@ -611,9 +610,9 @@ void
 bjb_main_view_update_model (BjbMainView *self)
 {
   BjbMainViewPriv *priv = self->priv;
-  
-  bjb_controller_set_main_view (priv->controller,priv->view);
-  gd_main_view_set_model(priv->view,bjb_controller_get_model(priv->controller));
+
+  bjb_controller_update_view (priv->controller);
+  gd_main_view_set_model (priv->view, bjb_controller_get_model (priv->controller));
 }
 
 BjbSearchToolbar *

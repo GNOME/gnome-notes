@@ -16,13 +16,17 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * bjb-controler is window-wide.
+ * mainly useful for BjbMainView,
+ * it controls the window behaviour.
+ */
+
 #include <libgd/gd.h>
 
 #include "bjb-controller.h"
 #include "bjb-main-view.h"
 #include "bjb-window-base.h"
-#include "utils/bjb-icons-colors.h"
-
 
 /* Gobject */
 
@@ -33,14 +37,7 @@ struct _BjbControllerPrivate
   GtkTreeModel  *model ;
   GtkTreeModel  *completion;
 
-  /* Optional
-   * Currently Controller is window-wide, in order to live while
-   * going from main view to note view.
-   * But not app-wide : each win has its controller & needle.
-   *
-   * gd-main-view is setup by main-view to allow choosing pixbuf
-   * according to grid / list view mode */
-  GdMainView    *cur;
+  BjbWindowBase *window;
 
   /*  Private  */
   GList         *notes_to_show ;
@@ -50,9 +47,10 @@ struct _BjbControllerPrivate
 
 enum {
   PROP_0,
-  PROP_BOOK ,
-  PROP_NEEDLE ,
-  PROP_MODEL ,
+  PROP_BOOK,
+  PROP_WINDOW,
+  PROP_NEEDLE,
+  PROP_MODEL,
   NUM_PROPERTIES
 };
 
@@ -143,6 +141,9 @@ bjb_controller_get_property (GObject  *object,
   case PROP_BOOK:
     g_value_set_object (value, self->priv->book);
     break;
+  case PROP_WINDOW:
+    g_value_set_object (value, self->priv->window);
+    break;
   case PROP_NEEDLE:
     g_value_set_string(value, self->priv->needle);
     break;
@@ -167,6 +168,9 @@ bjb_controller_set_property (GObject  *object,
   {
   case PROP_BOOK:
     bjb_controller_set_book(self,g_value_get_object(value));
+    break;
+  case PROP_WINDOW:
+    self->priv->window = g_value_get_object (value);
     break;
   case PROP_NEEDLE:
     bjb_controller_set_needle(self,g_value_get_string(value));
@@ -199,18 +203,15 @@ bjb_controller_add_note (BjbController *self,
   /* Only append notes which are not templates. Currently useless */
   if ( biji_note_obj_is_template (note) == FALSE)
   {
-
     /* First , if there is a gd main view , and if gd main view
-     * is a list, then load the 16x16 note pixbuf
-     * This is probably not correct but allows a nice list view */
-    if (self->priv->cur)
-    {
-      if (gd_main_view_get_view_type (self->priv->cur) == GD_MAIN_VIEW_LIST)
-        pix = biji_note_obj_get_emblem (note);
-    }
+     * is a list, then load the smaller emblem */
+    if (bjb_window_base_get_view_type (self->priv->window) == BJB_WINDOW_BASE_MAIN_VIEW
+        && bjb_window_base_get_main_view (self->priv->window)
+        && bjb_main_view_get_view_type
+                  (bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST)
+      pix = biji_note_obj_get_emblem (note);
 
-    /* If no gd-main-view or if not list view,
-     * load the icon for grid */
+    /* Else, load the icon */
     if (!pix)
       pix = biji_note_obj_get_icon (note);
 
@@ -295,7 +296,7 @@ bjb_controller_update_view (BjbController *self)
   GList *notes, *l;
 
   /* Do not update if nothing to show */
-  if (!self->priv->cur)
+  if (bjb_window_base_get_view_type (self->priv->window) != BJB_WINDOW_BASE_MAIN_VIEW)
     return;
 
   notes = self->priv->notes_to_show ;
@@ -470,7 +471,8 @@ on_book_changed (BijiNoteBook           *book,
 
     /* If color changed we just amend the icon */
     case BIJI_BOOK_NOTE_COLORED:
-      if (gd_main_view_get_view_type (priv->cur) == GD_MAIN_VIEW_ICON
+      if (bjb_main_view_get_view_type (
+             bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
           && bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
                             GD_MAIN_COLUMN_ICON, biji_note_obj_get_icon (note), -1);
@@ -503,6 +505,8 @@ bjb_controller_connect (BjbController *self)
                                      G_CALLBACK(on_book_changed), self);
     priv->connected = TRUE;
   }
+
+  bjb_controller_update_view (self);
 }
 
 void
@@ -560,6 +564,14 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                G_PARAM_CONSTRUCT |
                                                G_PARAM_STATIC_STRINGS);
 
+  properties[PROP_WINDOW] = g_param_spec_object ("window",
+                                                 "GtkWindow",
+                                                 "BjbWindowBase",
+                                                 BJB_TYPE_WINDOW_BASE,
+                                                 G_PARAM_READWRITE |
+                                                 G_PARAM_CONSTRUCT |
+                                                 G_PARAM_STATIC_STRINGS);
+
   properties[PROP_NEEDLE] = g_param_spec_string ("needle",
                                                  "Needle",
                                                  "String to search notes",
@@ -581,11 +593,13 @@ bjb_controller_class_init (BjbControllerClass *klass)
 }
 
 BjbController *
-bjb_controller_new (BijiNoteBook *book, 
-                           gchar *needle)
+bjb_controller_new (BijiNoteBook  *book,
+                    GtkWindow     *window,
+                    gchar         *needle)
 {
   return g_object_new ( BJB_TYPE_CONTROLLER,
               "book", book,
+              "window", window,
               "needle", needle,
               NULL); 
 }
@@ -629,14 +643,6 @@ GtkTreeModel *
 bjb_controller_get_completion(BjbController *self)
 {
   return self->priv->completion ;
-}
-
-void
-bjb_controller_set_main_view (BjbController *self, GdMainView *current)
-{
-  /* Refresh the model */
-  self->priv->cur = current;
-  bjb_controller_update_view (self);
 }
 
 gboolean

@@ -6,6 +6,7 @@
 #include <libgd/gd.h>
 
 #include "bjb-bijiben.h"
+#include "bjb-empty-results-box.h"
 #include "bjb-window-base.h"
 #include "bjb-main-toolbar.h"
 #include "bjb-main-view.h"
@@ -39,6 +40,8 @@ struct _BjbWindowBasePriv
   GdStack              *stack;
   GtkWidget            *spinner; // this spinner takes the whole place
                                  // and only shows on startup
+  GtkWidget            *no_note;
+
   BjbWindowViewType     current_view;
   BjbMainView          *view;
   BjbMainToolbar       *main_toolbar;
@@ -214,6 +217,9 @@ bjb_window_base_new(void)
   gtk_widget_show (priv->spinner);
   gtk_spinner_start (GTK_SPINNER (priv->spinner));
 
+  priv->no_note = bjb_empty_results_box_new ();
+  gd_stack_add_named (priv->stack, priv->no_note, "empty");
+
   gd_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
   gtk_widget_show_all (GTK_WIDGET (retval));
 
@@ -266,6 +272,22 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
     gd_stack_set_visible_child_name (priv->stack, "main-view");
 
     destroy_note_if_needed (bwb);
+  }
+
+  else if (type == BJB_WINDOW_BASE_NO_NOTE)
+  {
+    bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
+                                    BJB_EMPTY_RESULTS_NO_NOTE);
+    gtk_widget_show (priv->no_note);
+    gd_stack_set_visible_child_name (priv->stack, "empty");
+  }
+
+  else if (type == BJB_WINDOW_BASE_NO_RESULT)
+  {
+    bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
+                                    BJB_EMPTY_RESULTS_NO_RESULTS);
+    gtk_widget_show (priv->no_note);
+    gd_stack_set_visible_child_name (priv->stack, "empty");
   }
 
   else

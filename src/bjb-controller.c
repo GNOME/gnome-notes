@@ -344,6 +344,7 @@ update_controller_callback (GObject *source_object,
 
   result = biji_get_notes_with_strings_or_collection_finish (source_object, res, self->priv->book);
   self->priv->notes_to_show = result;
+
   sort_and_update (self);
 }          
 
@@ -362,10 +363,20 @@ bjb_controller_apply_needle (BjbController *self)
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
     priv->notes_to_show = biji_note_book_get_notes (self->priv->book);
-    sort_and_update (self);
+
+    /* If there are no note, report this */
+    if (!priv->notes_to_show)
+      bjb_window_base_switch_to (self->priv->window,
+                                 BJB_WINDOW_BASE_NO_NOTE);
+
+    /* Otherwise do show existing notes */
+    else
+      sort_and_update (self);
+
     return;
   }
 
+  /* There is a research, apply lookup */
   biji_get_notes_with_string_or_collection_async (needle, update_controller_callback, self);
 }
 

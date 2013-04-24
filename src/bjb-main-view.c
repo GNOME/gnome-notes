@@ -341,7 +341,8 @@ on_selection_mode_changed_cb (BjbMainView *self)
 
   /* Workaround if items are selected
    * but selection mode not really active (?) */
-  if (gd_main_view_get_selection (self->priv->view))
+  select = gd_main_view_get_selection (self->priv->view);
+  if (select)
   {
     g_list_free (select);
     gd_main_view_set_selection_mode (self->priv->view, TRUE);

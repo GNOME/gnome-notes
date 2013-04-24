@@ -74,7 +74,6 @@ struct _BjbMainViewPriv {
 
   /* Signals */
   gulong key;
-  gulong button;
   gulong activated;
   gulong data;
   gulong view_selection_changed;
@@ -89,7 +88,6 @@ bjb_main_view_init (BjbMainView *object)
   G_TYPE_INSTANCE_GET_PRIVATE(object,BJB_TYPE_MAIN_VIEW,BjbMainViewPriv);
 
   object->priv->key = 0;
-  object->priv->button = 0;
   object->priv->activated = 0;
   object->priv->data = 0;
   object->priv->view_selection_changed =0;
@@ -107,13 +105,11 @@ bjb_main_view_disconnect_handlers (BjbMainView *self)
   BjbMainViewPriv *priv = self->priv;
 
   g_signal_handler_disconnect (priv->window, priv->key);
-  g_signal_handler_disconnect (priv->view, priv->button);
   g_signal_handler_disconnect (priv->view, priv->activated);
   g_signal_handler_disconnect (priv->view, priv->data);
   g_signal_handler_disconnect (priv->view, priv->view_selection_changed);
 
   priv->key = 0;
-  priv->button = 0;
   priv->activated = 0;
   priv->data = 0;
   priv->view_selection_changed =0;
@@ -338,10 +334,20 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
   g_list_free (notes);
 }
 
-/* Just tell */
 static void
 on_selection_mode_changed_cb (BjbMainView *self)
 {
+  GList *select;
+
+  /* Workaround if items are selected
+   * but selection mode not really active (?) */
+  if (gd_main_view_get_selection (self->priv->view))
+  {
+    g_list_free (select);
+    gd_main_view_set_selection_mode (self->priv->view, TRUE);
+  }
+
+  /* Any case, tell */
   g_signal_emit (G_OBJECT (self),
                  bjb_main_view_signals[VIEW_SELECTION_CHANGED],0);
 }
@@ -378,28 +384,6 @@ on_key_press_event_cb (GtkWidget *widget,
   }
 
   return FALSE;
-}
-
-/* Go to selection mode with right-click */
-static gboolean
-on_button_press_event_cb (GtkWidget *widget,
-                          GdkEvent  *event,
-                          gpointer   user_data)
-{
-  BjbMainView *self = BJB_MAIN_VIEW (user_data);
-  BjbMainViewPriv *priv = self->priv;
-
-  switch (event->button.button)
-  {
-    /* Right click */
-    case 3:
-      if (!gd_main_view_get_selection_mode (priv->view))
-        gd_main_view_set_selection_mode (priv->view, TRUE);
-      return TRUE;
-
-    default:
-      return FALSE;
-  }
 }
 
 static gboolean
@@ -486,10 +470,6 @@ bjb_main_view_connect_signals (BjbMainView *self)
   if (priv->key == 0)
     priv->key = g_signal_connect (priv->window, "key-press-event",
                               G_CALLBACK (on_key_press_event_cb), self);
-
-  if (priv->button == 0)
-    priv->button = g_signal_connect (priv->view, "button-press-event",
-                           G_CALLBACK (on_button_press_event_cb), self);
 
   if (priv->activated == 0)
     priv->activated = g_signal_connect(priv->view,"item-activated",

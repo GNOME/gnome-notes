@@ -58,6 +58,7 @@ struct _BjbMainToolbarPrivate
   gulong            update_selection;
   gulong            search_handler;
   gulong            display_notes;
+  gulong            view_selection_changed;
 
   /* When note view */
   BijiNoteObj      *note;
@@ -262,6 +263,13 @@ populate_bar_for_selection (BjbMainToolbar *self)
   g_signal_connect (priv->select, "clicked",
                     G_CALLBACK (on_selection_mode_clicked), self);
 
+  if (priv->view_selection_changed == 0)
+  {
+    priv->view_selection_changed = g_signal_connect_swapped (
+                      self->priv->parent, "view-selection-changed",
+                      G_CALLBACK (on_view_selection_changed_cb), self);
+  }
+
   update_selection_label (self);
 }
 
@@ -285,6 +293,19 @@ update_label_for_standard (BjbMainToolbar *self)
                                                         "display-notes-changed",
                                                         G_CALLBACK (update_selection_buttons),
                                                         self->priv);
+}
+
+static void
+connect_main_view_handlers (BjbMainToolbar *self)
+{
+  BjbMainToolbarPrivate *priv = self->priv;
+
+  if (priv->view_selection_changed == 0)
+  {
+    priv->view_selection_changed = g_signal_connect_swapped (
+                      self->priv->parent, "view-selection-changed",
+                      G_CALLBACK (on_view_selection_changed_cb), self);
+  }
 }
 
 static void
@@ -324,6 +345,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   g_signal_connect (priv->select,"clicked",
                     G_CALLBACK(on_selection_mode_clicked),self);
+
+  /* Watch for main view changing */
+  connect_main_view_handlers (self);
 }
 
 static void
@@ -715,6 +739,12 @@ populate_main_toolbar(BjbMainToolbar *self)
       priv->display_notes = 0;
     }
 
+    if (priv->view_selection_changed != 0)
+    {
+      g_signal_handler_disconnect (priv->parent, priv->view_selection_changed);
+      priv->view_selection_changed = 0;
+    }
+
     populate_bar_switch (self);
   }
 }
@@ -726,9 +756,6 @@ bjb_main_toolbar_constructed (GObject *obj)
 
   g_signal_connect_swapped (self->priv->window, "view-changed",
                             G_CALLBACK (populate_main_toolbar), self);
-
-  g_signal_connect_swapped (self->priv->parent, "view-selection-changed",
-                            G_CALLBACK (on_view_selection_changed_cb), self);
 
   G_OBJECT_CLASS(bjb_main_toolbar_parent_class)->constructed(obj);
 }
@@ -746,6 +773,7 @@ bjb_main_toolbar_init (BjbMainToolbar *self)
   priv->search = NULL;
   priv->search_handler = 0;
   priv->display_notes = 0;
+  priv->view_selection_changed = 0;
 
   priv->accel = NULL;
   priv->note = NULL;
@@ -766,6 +794,8 @@ bjb_main_toolbar_finalize (GObject *object)
     g_signal_handler_disconnect (priv->controller, priv->search_handler);
     priv->search_handler = 0;
   }
+
+  disconnect_note_handlers (priv);
 
   /* chain up */
   G_OBJECT_CLASS (bjb_main_toolbar_parent_class)->finalize (object);

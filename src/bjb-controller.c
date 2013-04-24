@@ -476,6 +476,11 @@ on_book_changed (BijiNoteBook           *book,
           && bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
                             GD_MAIN_COLUMN_ICON, biji_note_obj_get_icon (note), -1);
+      else if (bjb_main_view_get_view_type (
+             bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST
+          && bjb_controller_get_iter_at_note (self, note, &p_iter))
+        gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
+                            GD_MAIN_COLUMN_ICON, biji_note_obj_get_emblem (note), -1);
       break;
 
     case BIJI_BOOK_NOTE_TRASHED:

@@ -31,9 +31,13 @@
 #include "bjb-bijiben.h"
 #include "bjb-empty-results-box.h"
 
-
 G_DEFINE_TYPE (BjbEmptyResultsBox, bjb_empty_results_box, GTK_TYPE_GRID);
 
+struct _BjbEmptyResultsBoxPrivate
+{
+  GtkLabel               *details_label;
+  BjbEmptyResultsBoxType  type;
+};
 
 static void
 bjb_empty_results_box_constructed (GObject *object)
@@ -44,10 +48,10 @@ bjb_empty_results_box_constructed (GObject *object)
   GtkWidget *image;
   GtkWidget *labels_grid;
   GtkWidget *title_label;
-  GtkWidget *details_label;
   gchar *label;
   gchar *icons_path;
   gchar *note_icon_path;
+  GError *error;
 
   G_OBJECT_CLASS (bjb_empty_results_box_parent_class)->constructed (object);
 
@@ -70,7 +74,7 @@ bjb_empty_results_box_constructed (GObject *object)
                                 "note.svg",
                                 NULL);
 
-  GError *error = NULL;
+  error = NULL;
   pixbuf = gdk_pixbuf_new_from_file (note_icon_path, &error);
 
   if (error)
@@ -98,31 +102,62 @@ bjb_empty_results_box_constructed (GObject *object)
   gtk_container_add (GTK_CONTAINER (labels_grid), title_label);
   g_free (label);
 
-  label = _("Your notes collection is empty.\nClick the New button to create your first note.");
-  details_label = gtk_label_new (label);
-  gtk_label_set_use_markup (GTK_LABEL (details_label), TRUE);
+  self->priv->type = BJB_EMPTY_RESULTS_TYPE;
+  label = "";
+  self->priv->details_label = GTK_LABEL (gtk_label_new (label));
+  gtk_label_set_use_markup (GTK_LABEL (self->priv->details_label), TRUE);
   gtk_widget_set_halign (title_label, GTK_ALIGN_START);
   // xalign: 0,
   // max_width_chars: 24,
   // wrap: true
 
-  gtk_container_add (GTK_CONTAINER (labels_grid), details_label);
+  gtk_container_add (GTK_CONTAINER (labels_grid), GTK_WIDGET (self->priv->details_label));
 
   gtk_widget_set_valign (title_label, GTK_ALIGN_CENTER);
   gtk_widget_show_all (GTK_WIDGET (self));
 }
 
+void
+bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
+                                BjbEmptyResultsBoxType type)
+{
+  g_return_if_fail (BJB_IS_EMPTY_RESULTS_BOX (self));
+
+  if (type == self->priv->type)
+    return;
+
+  if (type == BJB_EMPTY_RESULTS_NO_NOTE)
+  {
+    gtk_label_set_label (
+      self->priv->details_label,
+      _("Your notes collection is empty.\nClick the New button to create your first note."));
+  }
+
+  else
+  {
+    gtk_label_set_label (
+      self->priv->details_label,
+      _("No result found for this research."));
+  }
+
+  self->priv->type = type;
+}
 
 static void
 bjb_empty_results_box_init (BjbEmptyResultsBox *self)
 {
+  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                      BJB_TYPE_EMPTY_RESULTS_BOX,
+                                      BjbEmptyResultsBoxPrivate);
 }
 
 
 static void
-bjb_empty_results_box_class_init (BjbEmptyResultsBoxClass *class)
+bjb_empty_results_box_class_init (BjbEmptyResultsBoxClass *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (class);
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  g_type_class_add_private (klass, sizeof (BjbEmptyResultsBoxPrivate));
 
   object_class->constructed = bjb_empty_results_box_constructed;
 }

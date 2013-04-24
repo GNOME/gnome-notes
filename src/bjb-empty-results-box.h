@@ -30,6 +30,12 @@
 
 G_BEGIN_DECLS
 
+typedef enum {
+  BJB_EMPTY_RESULTS_TYPE,
+  BJB_EMPTY_RESULTS_NO_NOTE,
+  BJB_EMPTY_RESULTS_NO_RESULTS
+} BjbEmptyResultsBoxType;
+
 #define BJB_TYPE_EMPTY_RESULTS_BOX (bjb_empty_results_box_get_type ())
 
 #define BJB_EMPTY_RESULTS_BOX(obj) \
@@ -70,6 +76,9 @@ struct _BjbEmptyResultsBoxClass
 GType               bjb_empty_results_box_get_type           (void) G_GNUC_CONST;
 
 GtkWidget          *bjb_empty_results_box_new                (void);
+
+void                bjb_empty_results_box_set_type           (BjbEmptyResultsBox *self,
+                                                              BjbEmptyResultsBoxType type);
 
 G_END_DECLS
 

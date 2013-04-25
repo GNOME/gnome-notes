@@ -391,7 +391,10 @@ static void
 disconnect_note_handlers (BjbMainToolbarPrivate *priv)
 {
   if (priv->accel)
+  {
     gtk_window_remove_accel_group (priv->window, priv->accel);
+    g_clear_pointer (&priv->accel, g_object_unref);
+  }
 
   if (priv->note_renamed != 0)
   {

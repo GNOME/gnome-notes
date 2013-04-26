@@ -173,7 +173,7 @@ bjb_controller_set_property (GObject  *object,
     self->priv->window = g_value_get_object (value);
     break;
   case PROP_NEEDLE:
-    bjb_controller_set_needle(self,g_value_get_string(value));
+    self->priv->needle = g_strdup (g_value_get_string (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

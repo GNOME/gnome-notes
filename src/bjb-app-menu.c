@@ -47,8 +47,14 @@ new_activated (GSimpleAction *action,
                gpointer       user_data)
 {
   BjbWindowBase *win;
+  BjbController *control;
 
   win = BJB_WINDOW_BASE (bjb_window_base_new());
+
+  /* Tell the controller to display all notes, */
+  control = bjb_window_base_get_controller (win);
+  bjb_controller_set_needle (control, "");
+
   bjb_window_base_switch_to (win, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 

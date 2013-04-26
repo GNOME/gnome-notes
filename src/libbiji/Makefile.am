@@ -11,6 +11,8 @@ libbiji_la_SOURCES =  \
 	libbiji.h \
 	biji-date-time.c \
 	biji-date-time.h \
+	biji-item.h \
+	biji-item.c \
 	biji-note-id.c \
 	biji-note-id.h \
 	biji-note-obj.c \

@@ -21,6 +21,8 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include "biji-item.h"
+
 G_BEGIN_DECLS
 
 /* Available formating for biji_note_obj_editor_apply_format
@@ -51,12 +53,12 @@ typedef struct _BijiNoteObjPrivate BijiNoteObjPrivate;
 
 struct _BijiNoteObjClass
 {
-  GObjectClass parent_class;
+  BijiItemClass parent_class;
 };
 
 struct _BijiNoteObj
 {
-  GObject parent_instance;
+  BijiItem parent_instance;
   BijiNoteObjPrivate* priv ;
 };
 

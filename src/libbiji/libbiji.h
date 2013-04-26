@@ -22,6 +22,7 @@
 
 #include "biji-date-time.h"
 #include "biji-marshalers.h"
+#include "biji-item.h"
 #include "biji-note-book.h"
 #include "biji-note-obj.h"
 #include "biji-string.h"

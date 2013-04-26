@@ -84,7 +84,7 @@ static GParamSpec *properties[BIJI_OBJ_PROPERTIES] = { NULL, };
 
 #define BIJI_NOTE_OBJ_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_NOTE_OBJ, BijiNoteObjPrivate))
 
-G_DEFINE_TYPE (BijiNoteObj, biji_note_obj, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM);
 
 static void
 on_save_timeout (BijiNoteObj *self)

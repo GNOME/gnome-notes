@@ -233,7 +233,7 @@ add_search_button (BjbMainToolbar *self)
 static void
 update_selection_buttons (BjbMainToolbarPrivate *priv)
 {
-  gboolean some_note_is_visible = bjb_controller_shows_notes (priv->controller);
+  gboolean some_note_is_visible = bjb_controller_shows_item (priv->controller);
 
   if (priv->grid)
     gtk_widget_set_sensitive (priv->grid, some_note_is_visible);

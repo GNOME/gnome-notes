@@ -310,9 +310,29 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
 {
   BijiItem *one = BIJI_ITEM (a);
   BijiItem *other = BIJI_ITEM (b);
-  
-  glong result = biji_item_get_last_change (other);
-  return result - biji_item_get_last_change (one);
+  glong result = 0;
+
+  /* Always sort collections before notes */
+  if (BIJI_IS_COLLECTION (a))
+  {
+    if (BIJI_IS_NOTE_OBJ (b))
+      result = -1;
+  }
+
+  else if (BIJI_IS_COLLECTION (b))
+  {
+    result = 1;
+  }
+
+  /* If comparing two notes or
+   * two collections, use the most recent cookbook */
+  else
+  {
+    result =   biji_item_get_last_change (other)
+             - biji_item_get_last_change (one);
+  }
+
+  return result;
 }
 
 static void

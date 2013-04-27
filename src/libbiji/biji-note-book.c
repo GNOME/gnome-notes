@@ -19,11 +19,13 @@
 #include <uuid/uuid.h>
 
 #include "libbiji.h"
+#include "biji-collection.h"
 
 
 struct _BijiNoteBookPrivate
 {
-  GHashTable *notes;
+  /* Notes & Collections */
+  GHashTable *items;
 
   /* Signals */
   gulong note_renamed ;
@@ -59,7 +61,7 @@ biji_note_book_init (BijiNoteBook *self)
                                             BijiNoteBookPrivate);
 
   /* Note path is key for table. It's freed by note itself */
-  self->priv->notes = g_hash_table_new_full (g_str_hash,
+  self->priv->items = g_hash_table_new_full (g_str_hash,
                                              g_str_equal,
                                              g_free,
                                              g_object_unref);
@@ -75,7 +77,7 @@ biji_note_book_finalize (GObject *object)
 
   g_clear_object (&book->priv->load_cancellable);
   g_clear_object (&book->priv->location);
-  g_hash_table_destroy (book->priv->notes);
+  g_hash_table_destroy (book->priv->items);
 
   G_OBJECT_CLASS (biji_note_book_parent_class)->finalize (object);
 }
@@ -120,26 +122,31 @@ biji_note_book_get_property (GObject    *object,
 }
 
 static gboolean
-title_is_unique (BijiNoteBook *book,gchar *title)
+title_is_unique (BijiNoteBook *book, gchar *title)
 {
   gboolean is_unique = TRUE;
-  BijiNoteObj *iter;
-  GList *notes, *l;
+  BijiItem *iter;
+  GList *items, *l;
 
-  notes = g_hash_table_get_values (book->priv->notes);
+  items = g_hash_table_get_values (book->priv->items);
 
-  for ( l=notes ; l != NULL ; l = l->next)
+  for ( l=items ; l != NULL ; l = l->next)
   {
-    iter = BIJI_NOTE_OBJ (l->data);
+    iter = BIJI_ITEM (l->data);
 
-    if (g_strcmp0 (biji_item_get_title (BIJI_ITEM (iter)), title) == 0)
+    /* this func is just used for notes to ensure unique title
+     * don't know yet if useful for collections */
+    if (biji_item_get_biji_type (iter) != BIJI_ITEM_NOTE_OBJ)
+      break;
+
+    if (g_strcmp0 (biji_item_get_title (iter), title) == 0)
     {
      is_unique = FALSE;
      break;
     }
   }
 
-  g_list_free (notes);
+  g_list_free (items);
   return is_unique;
 }
 
@@ -190,16 +197,34 @@ book_on_note_color_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 }
 
 static void
-_biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
+_biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
 {
-  g_return_if_fail(BIJI_IS_NOTE_OBJ(note));
+  GList *collections, *l;
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
-  _biji_note_obj_set_book(note,(gpointer)book);
+  _biji_note_obj_set_book (note, (gpointer) book);
 
-  // Add it to the list and emit signal
-  g_hash_table_insert (book->priv->notes,
+  /* Add it to the list */
+  g_hash_table_insert (book->priv->items,
                        biji_item_get_uuid (BIJI_ITEM (note)), note);
 
+  /* Check for new collections */
+  collections = biji_note_obj_get_collections (note);
+  for (l = collections ; l != NULL; l = l->next)
+  {
+    BijiCollection *collection;
+
+    /* If the collection already existed,
+     * previous is finalized (GHashTable)
+     * We could also check before creating it */
+
+    collection = biji_collection_new ((gchar*) l->data);
+    g_hash_table_insert (book->priv->items,
+                         biji_item_get_uuid (BIJI_ITEM (collection)),
+                         collection);
+  }
+
+  /* Notify */
   g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
   g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
   g_signal_connect (note, "color-changed", G_CALLBACK (book_on_note_color_changed_cb), book);
@@ -379,7 +404,7 @@ biji_note_book_remove_note (BijiNoteBook *book, BijiNoteObj *note)
   gboolean retval = FALSE;
 
   path = biji_item_get_uuid (BIJI_ITEM (note));
-  to_delete = g_hash_table_lookup (book->priv->notes, path);
+  to_delete = g_hash_table_lookup (book->priv->items, path);
 
   if (to_delete)
   {
@@ -389,7 +414,7 @@ biji_note_book_remove_note (BijiNoteBook *book, BijiNoteObj *note)
 
     /* Ref note first, hash_table won't finalize it & we can delete it*/
     g_object_ref (to_delete);
-    g_hash_table_remove (book->priv->notes, path);
+    g_hash_table_remove (book->priv->items, path);
     biji_note_obj_trash (note);
 
     retval = TRUE;
@@ -412,17 +437,16 @@ biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean 
     biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_ADDED, note);
 }
 
-// TODO : also return collections
 GList *
 biji_note_book_get_items (BijiNoteBook *book)
 {
-  return g_hash_table_get_values (book->priv->notes);
+  return g_hash_table_get_values (book->priv->items);
 }
 
 BijiNoteObj *
 note_book_get_note_at_path (BijiNoteBook *book, gchar *path)
 {
-  return g_hash_table_lookup (book->priv->notes, path);
+  return g_hash_table_lookup (book->priv->items, path);
 }
 
 BijiNoteBook *
@@ -470,7 +494,7 @@ get_note_skeleton (BijiNoteBook *book)
     path = g_build_filename (folder, name, NULL);
     g_free (name);
 
-    if (!g_hash_table_lookup (book->priv->notes, path))
+    if (!g_hash_table_lookup (book->priv->items, path))
       ret = biji_note_obj_new_from_path (path);
 
     g_free (path);

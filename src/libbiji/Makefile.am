@@ -9,6 +9,8 @@ libbiji_la_built_sources = \
 libbiji_la_SOURCES =  \
 	$(libbiji_la_built_sources) \
 	libbiji.h \
+	biji-collection.c \
+	biji-collection.h \
 	biji-date-time.c \
 	biji-date-time.h \
 	biji-item.h \

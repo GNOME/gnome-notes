@@ -49,8 +49,6 @@ BijiNoteBook * biji_note_book_new (GFile *location);
 
 gchar * biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title);
 
-void _biji_note_book_add_note_to_tag_book(BijiNoteBook *book,BijiNoteObj *note,gchar *tag);
-
 void biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean notify);
 
 gboolean biji_note_book_notify_changed (BijiNoteBook           *book,

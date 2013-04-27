@@ -57,13 +57,6 @@ biji_item_init (BijiItem *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_ITEM, BijiItemPrivate);
 }
 
-
-GObject *
-biji_item_new (void)
-{
-  return g_object_new (BIJI_TYPE_ITEM, NULL);
-}
-
 gchar *
 biji_item_get_title         (BijiItem *item)
 {
@@ -92,4 +85,10 @@ glong
 biji_item_get_last_change    (BijiItem *item)
 {
   return BIJI_ITEM_GET_CLASS (item)->get_change_sec (item);
+}
+
+BijiItemType
+biji_item_get_biji_type      (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_type (item);
 }

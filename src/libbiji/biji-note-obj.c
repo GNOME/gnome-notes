@@ -27,15 +27,6 @@
 
 #include <libgd/gd.h>
 
-/* Icon */
-#define ICON_WIDTH 200
-#define ICON_HEIGHT 200
-#define ICON_FONT "Purusa 10"
-
-/* a cute baby icon without txt. squared. */
-#define EMBLEM_WIDTH ICON_WIDTH / 6
-#define EMBLEM_HEIGHT EMBLEM_WIDTH
-
 struct _BijiNoteObjPrivate
 {
   /* Notebook might be null. */
@@ -234,6 +225,12 @@ biji_note_obj_get_property (GObject    *object,
     }
 }
 
+static BijiItemType
+note_obj_get_type (BijiItem *item)
+{
+  return BIJI_ITEM_NOTE_OBJ;
+}
+
 static void
 biji_note_obj_class_init (BijiNoteObjClass *klass)
 {
@@ -302,6 +299,7 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   item_class->get_icon = biji_note_obj_get_icon;
   item_class->get_emblem = biji_note_obj_get_emblem;
   item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
+  item_class->get_type = note_obj_get_type;
 }
 
 BijiNoteObj *
@@ -751,12 +749,12 @@ biji_note_obj_get_icon (BijiItem *item)
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        ICON_WIDTH,
-                                        ICON_HEIGHT) ;
+                                        BIJI_ICON_WIDTH,
+                                        BIJI_ICON_HEIGHT) ;
   cr = cairo_create (surface);
 
   /* Background */
-  cairo_rectangle (cr, 0, 0, ICON_WIDTH, ICON_HEIGHT);
+  cairo_rectangle (cr, 0, 0, BIJI_ICON_WIDTH, BIJI_ICON_HEIGHT);
   if (biji_note_obj_get_rgba (note, &note_color))
     gdk_cairo_set_source_rgba (cr, &note_color);
 
@@ -774,7 +772,7 @@ biji_note_obj_get_icon (BijiItem *item)
     pango_layout_set_height (layout, 180000 ) ;
 
     pango_layout_set_text (layout, text, -1);
-    desc = pango_font_description_from_string (ICON_FONT);
+    desc = pango_font_description_from_string (BIJI_ICON_FONT);
     pango_layout_set_font_description (layout, desc);
     pango_font_description_free (desc);
 
@@ -789,8 +787,8 @@ biji_note_obj_get_icon (BijiItem *item)
 
   ret = gdk_pixbuf_get_from_surface (surface,
                                      0, 0,
-                                     ICON_WIDTH,
-                                     ICON_HEIGHT);
+                                     BIJI_ICON_WIDTH,
+                                     BIJI_ICON_HEIGHT);
   cairo_surface_destroy (surface);
 
   note->priv->icon = gd_embed_image_in_frame (ret, "resource:///org/gnome/bijiben/thumbnail-frame.png",
@@ -814,12 +812,12 @@ biji_note_obj_get_emblem (BijiItem *item)
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        EMBLEM_WIDTH,
-                                        EMBLEM_HEIGHT) ;
+                                        BIJI_EMBLEM_WIDTH,
+                                        BIJI_EMBLEM_HEIGHT) ;
   cr = cairo_create (surface);
 
   /* Background */
-  cairo_rectangle (cr, 0, 0, EMBLEM_WIDTH, EMBLEM_HEIGHT);
+  cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
   if (biji_note_obj_get_rgba (note, &note_color))
     gdk_cairo_set_source_rgba (cr, &note_color);
 
@@ -828,15 +826,15 @@ biji_note_obj_get_emblem (BijiItem *item)
   /* Border */
   cairo_set_source_rgba (cr, 0.3, 0.3, 0.3, 1);
   cairo_set_line_width (cr, 1);
-  cairo_rectangle (cr, 0, 0, EMBLEM_WIDTH, EMBLEM_HEIGHT);
+  cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
   cairo_stroke (cr);
 
   cairo_destroy (cr);
 
   note->priv->emblem = gdk_pixbuf_get_from_surface (surface,
                                                     0, 0,
-                                                    EMBLEM_WIDTH,
-                                                    EMBLEM_HEIGHT);
+                                                    BIJI_EMBLEM_WIDTH,
+                                                    BIJI_EMBLEM_HEIGHT);
 
   cairo_surface_destroy (surface);
   note->priv->emblem_needs_update = FALSE;

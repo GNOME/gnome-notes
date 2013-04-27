@@ -39,7 +39,23 @@ typedef struct BijiItemPrivate_  BijiItemPrivate;
 
 /* Libbiji base interface
  * NoteBook provides items
- * Items might be NoteObj or Collections */
+ * Items might be NoteObj or Collections
+ * Below BijiType rather g_type ? */
+
+typedef enum {
+  BIJI_ITEM_0,
+  BIJI_ITEM_NOTE_OBJ,
+  BIJI_ITEM_COLLECTION
+} BijiItemType;
+
+/* Icon */
+#define BIJI_ICON_WIDTH 200
+#define BIJI_ICON_HEIGHT 200
+#define BIJI_ICON_FONT "Purusa 10"
+
+/* a cute baby icon without txt. squared. */
+#define BIJI_EMBLEM_WIDTH BIJI_ICON_WIDTH / 6
+#define BIJI_EMBLEM_HEIGHT BIJI_EMBLEM_WIDTH
 
 struct BijiItem_
 {
@@ -57,15 +73,19 @@ struct BijiItemClass_
   GdkPixbuf *   (*get_icon)             (BijiItem *item);
   GdkPixbuf *   (*get_emblem)           (BijiItem *item);
   glong         (*get_change_sec)       (BijiItem *item);
+
+  BijiItemType  (*get_type)             (BijiItem *item);
 };
 
+/* Do not create a generic items.
+ * It's rather an iface */
 GType biji_item_get_type (void);
 
-GObject * biji_item_new (void);
-
+/* Do not free title */
 gchar *          biji_item_get_title           (BijiItem *item);
 
-/* NoteObj uuid is a location */
+/* Always g_free uuid
+ * NoteObj uuid is a location           */
 gchar *          biji_item_get_uuid            (BijiItem *item);
 
 GdkPixbuf *      biji_item_get_icon            (BijiItem *item);
@@ -73,6 +93,8 @@ GdkPixbuf *      biji_item_get_icon            (BijiItem *item);
 GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
 
 glong            biji_item_get_last_change     (BijiItem *item);
+
+BijiItemType     biji_item_get_biji_type       (BijiItem *item);
 
 G_END_DECLS
 

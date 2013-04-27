@@ -132,7 +132,7 @@ title_is_unique (BijiNoteBook *book,gchar *title)
   {
     iter = BIJI_NOTE_OBJ (l->data);
 
-    if (g_strcmp0 (biji_note_obj_get_title (iter), title) == 0)
+    if (g_strcmp0 (biji_item_get_title (BIJI_ITEM (iter)), title) == 0)
     {
      is_unique = FALSE;
      break;
@@ -198,7 +198,7 @@ _biji_note_book_add_one_note(BijiNoteBook *book,BijiNoteObj *note)
 
   // Add it to the list and emit signal
   g_hash_table_insert (book->priv->notes,
-                       biji_note_obj_get_path (note), note);
+                       biji_item_get_uuid (BIJI_ITEM (note)), note);
 
   g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
   g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
@@ -378,7 +378,7 @@ biji_note_book_remove_note (BijiNoteBook *book, BijiNoteObj *note)
   gchar *path;
   gboolean retval = FALSE;
 
-  path = biji_note_obj_get_path (note);
+  path = biji_item_get_uuid (BIJI_ITEM (note));
   to_delete = g_hash_table_lookup (book->priv->notes, path);
 
   if (to_delete)
@@ -411,9 +411,10 @@ biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean 
   if (notify)
     biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_ADDED, note);
 }
- 
+
+// TODO : also return collections
 GList *
-biji_note_book_get_notes (BijiNoteBook *book)
+biji_note_book_get_items (BijiNoteBook *book)
 {
   return g_hash_table_get_values (book->priv->notes);
 }

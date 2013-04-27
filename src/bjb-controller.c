@@ -40,7 +40,7 @@ struct _BjbControllerPrivate
   BjbWindowBase *window;
 
   /*  Private  */
-  GList         *notes_to_show ;
+  GList          *items_to_show;
   gboolean       connected;
   gulong         book_change;
 };
@@ -94,7 +94,7 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_BOOLEAN);   // state
 
   priv->model = GTK_TREE_MODEL(store) ;
-  priv->notes_to_show = NULL;
+  priv->items_to_show = NULL;
   priv->needle = NULL;
   priv->connected = FALSE;
 
@@ -123,7 +123,7 @@ bjb_controller_finalize (GObject *object)
 
   g_object_unref (priv->completion);
   g_free (priv->needle);
-  g_list_free (priv->notes_to_show);
+  g_list_free (priv->items_to_show);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
@@ -189,7 +189,9 @@ bjb_controller_add_note (BjbController *self,
   GtkTreeIter    iter;
   GtkListStore  *store;
   GdkPixbuf     *pix = NULL;
-  gchar         *path;
+  gchar         *uuid;
+
+  BijiItem *item = BIJI_ITEM (note);
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
   store = GTK_LIST_STORE (self->priv->model);
@@ -209,27 +211,27 @@ bjb_controller_add_note (BjbController *self,
         && bjb_window_base_get_main_view (self->priv->window)
         && bjb_main_view_get_view_type
                   (bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST)
-      pix = biji_note_obj_get_emblem (note);
+      pix = biji_item_get_emblem (item);
 
     /* Else, load the icon */
     if (!pix)
-      pix = biji_note_obj_get_icon (note);
+      pix = biji_item_get_icon (item);
 
     /* Appart from pixbuf, both icon & list view types
      * currently use the same model */
-    path = biji_note_obj_get_path (note);
+    uuid = biji_item_get_uuid (item);
 
     gtk_list_store_set (store, &iter,
-         GD_MAIN_COLUMN_ID, path,
-         GD_MAIN_COLUMN_URI, path,
-         GD_MAIN_COLUMN_PRIMARY_TEXT, biji_note_obj_get_title (note),
+         GD_MAIN_COLUMN_ID, uuid,
+         GD_MAIN_COLUMN_URI, uuid,
+         GD_MAIN_COLUMN_PRIMARY_TEXT, biji_item_get_title (item),
          GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
          GD_MAIN_COLUMN_ICON, pix,
-         GD_MAIN_COLUMN_MTIME, biji_note_obj_get_last_change_date_sec (note),
+         GD_MAIN_COLUMN_MTIME, biji_item_get_last_change (item),
          GD_MAIN_COLUMN_SELECTED, FALSE,
          -1);
 
-    g_free (path);
+    g_free (uuid);
   }
 
 
@@ -246,6 +248,8 @@ bjb_controller_add_note_if_needed (BjbController *self,
   GList *collections, *l;
   BjbControllerPrivate *priv = self->priv;
 
+  BijiItem *item = BIJI_ITEM (note);
+
   /* No note... */
   if (!note || !BIJI_IS_NOTE_OBJ (note))
     return;
@@ -260,7 +264,7 @@ bjb_controller_add_note_if_needed (BjbController *self,
   else
   {
 
-    title = biji_note_obj_get_title (note);
+    title = biji_item_get_title (item);
     content = biji_note_get_raw_text (note);
 
     /* matching title or content ... */
@@ -299,7 +303,7 @@ bjb_controller_update_view (BjbController *self)
   if (bjb_window_base_get_view_type (self->priv->window) != BJB_WINDOW_BASE_MAIN_VIEW)
     return;
 
-  notes = self->priv->notes_to_show ;
+  notes = self->priv->items_to_show ;
   free_notes_store (self);
 
   for (l = notes; l != NULL; l = l->next)
@@ -309,26 +313,26 @@ bjb_controller_update_view (BjbController *self)
 }
 
 static gint
-most_recent_note_first (gconstpointer a, gconstpointer b)
+most_recent_item_first (gconstpointer a, gconstpointer b)
 {
-  BijiNoteObj *one = BIJI_NOTE_OBJ (a);
-  BijiNoteObj *other = BIJI_NOTE_OBJ (b);
+  BijiItem *one = BIJI_ITEM (a);
+  BijiItem *other = BIJI_ITEM (b);
   
-  glong result = biji_note_obj_get_last_change_date_sec (other);
-  return result - biji_note_obj_get_last_change_date_sec (one);
+  glong result = biji_item_get_last_change (other);
+  return result - biji_item_get_last_change (one);
 }
 
 static void
-sort_notes( BjbController *self)
+sort_items (BjbController *self)
 {
-  self->priv->notes_to_show = g_list_sort (self->priv->notes_to_show,
-                                           most_recent_note_first);
+  self->priv->items_to_show = g_list_sort (self->priv->items_to_show,
+                                           most_recent_item_first);
 }
 
 static void
 sort_and_update (BjbController *self)
 {
-  sort_notes (self);
+  sort_items (self);
   bjb_controller_update_view (self);
 
   g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
@@ -343,7 +347,7 @@ update_controller_callback (GObject *source_object,
   BjbController *self = BJB_CONTROLLER (user_data);
 
   result = biji_get_notes_with_strings_or_collection_finish (source_object, res, self->priv->book);
-  self->priv->notes_to_show = result;
+  self->priv->items_to_show = result;
 
   sort_and_update (self);
 }          
@@ -354,18 +358,18 @@ bjb_controller_apply_needle (BjbController *self)
   BjbControllerPrivate *priv = self->priv;
   gchar *needle;
 
-  if (priv->notes_to_show)
-    g_clear_pointer (&priv->notes_to_show, g_list_free);
+  if (priv->items_to_show)
+    g_clear_pointer (&priv->items_to_show, g_list_free);
   
   needle = priv->needle;
 
   /* Show all notes */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    priv->notes_to_show = biji_note_book_get_notes (self->priv->book);
+    priv->items_to_show = biji_note_book_get_items (self->priv->book);
 
     /* If there are no note, report this */
-    if (!priv->notes_to_show)
+    if (!priv->items_to_show)
       bjb_window_base_switch_to (self->priv->window,
                                  BJB_WINDOW_BASE_NO_NOTE);
 
@@ -392,22 +396,24 @@ add_note_to_completion(BijiNoteObj *note , BjbController *self)
 {
   GtkListStore *store;
   GtkTreeIter iter;
+  BijiItem *item = BIJI_ITEM (note);
 
   store = GTK_LIST_STORE(self->priv->completion);
+
 
   // Search Tag.
   gtk_list_store_append (store, &iter);
   gtk_list_store_set (store, 
                       &iter, 
                       0, 
-                      biji_note_obj_get_title(note),
+                      biji_item_get_title (item),
                       -1);
 }
 
 static void
 refresh_completion(BjbController *self)
 {
-  GList *notes = biji_note_book_get_notes (self->priv->book);
+  GList *notes = biji_note_book_get_items (self->priv->book);
   gtk_list_store_clear(GTK_LIST_STORE(self->priv->completion));
 
   if (notes)
@@ -421,7 +427,7 @@ static gboolean
 bjb_controller_get_iter_at_note (BjbController *self, BijiNoteObj *note, GtkTreeIter **iter)
 {
   BjbControllerPrivate *priv = self->priv;
-  gchar *needle = biji_note_obj_get_path (note);
+  gchar *needle = biji_item_get_uuid (BIJI_ITEM (note));
   gboolean retval = FALSE;
   gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
 
@@ -457,6 +463,7 @@ on_book_changed (BijiNoteBook           *book,
 {
   BjbControllerPrivate *priv = self->priv;
   BijiNoteObj *note = BIJI_NOTE_OBJ (note_obj);
+  BijiItem    *item = BIJI_ITEM (note);
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
@@ -466,7 +473,7 @@ on_book_changed (BijiNoteBook           *book,
      * But do not add a new note to a search window */
     case BIJI_BOOK_NOTE_ADDED:
         bjb_controller_add_note_if_needed (self, note, TRUE);
-        priv->notes_to_show = g_list_prepend (priv->notes_to_show, note);
+        priv->items_to_show = g_list_prepend (priv->items_to_show, note);
         g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
       break;
 
@@ -486,19 +493,19 @@ on_book_changed (BijiNoteBook           *book,
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
           && bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
-                            GD_MAIN_COLUMN_ICON, biji_note_obj_get_icon (note), -1);
+                            GD_MAIN_COLUMN_ICON, biji_item_get_icon (item), -1);
       else if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST
           && bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
-                            GD_MAIN_COLUMN_ICON, biji_note_obj_get_emblem (note), -1);
+                            GD_MAIN_COLUMN_ICON, biji_item_get_emblem (item), -1);
       break;
 
     case BIJI_BOOK_NOTE_TRASHED:
       if (bjb_controller_get_iter_at_note (self, note, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
-      priv->notes_to_show = g_list_remove (priv->notes_to_show, note);
+      priv->items_to_show = g_list_remove (priv->items_to_show, note);
       g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
       break;
 
@@ -664,7 +671,7 @@ bjb_controller_get_completion(BjbController *self)
 gboolean
 bjb_controller_shows_notes (BjbController *self)
 {
-  if (self->priv->notes_to_show)
+  if (self->priv->items_to_show)
     return TRUE;
 
   return FALSE;

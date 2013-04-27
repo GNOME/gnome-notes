@@ -22,6 +22,7 @@
 #define BIJI_ITEM_H_ 1
 
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -36,23 +37,42 @@ typedef struct BijiItem_         BijiItem;
 typedef struct BijiItemClass_    BijiItemClass;
 typedef struct BijiItemPrivate_  BijiItemPrivate;
 
+/* Libbiji base interface
+ * NoteBook provides items
+ * Items might be NoteObj or Collections */
+
 struct BijiItem_
 {
   GObject parent;
-  /* add your public declarations here */
+
   BijiItemPrivate *priv;
 };
 
 struct BijiItemClass_
 {
   GObjectClass parent_class;
-};
 
+  gchar *       (*get_title)            (BijiItem *item);
+  gchar *       (*get_uuid)             (BijiItem *item);
+  GdkPixbuf *   (*get_icon)             (BijiItem *item);
+  GdkPixbuf *   (*get_emblem)           (BijiItem *item);
+  glong         (*get_change_sec)       (BijiItem *item);
+};
 
 GType biji_item_get_type (void);
 
-GObject *biji_item_new (void);
+GObject * biji_item_new (void);
 
+gchar *          biji_item_get_title           (BijiItem *item);
+
+/* NoteObj uuid is a location */
+gchar *          biji_item_get_uuid            (BijiItem *item);
+
+GdkPixbuf *      biji_item_get_icon            (BijiItem *item);
+
+GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
+
+glong            biji_item_get_last_change     (BijiItem *item);
 
 G_END_DECLS
 

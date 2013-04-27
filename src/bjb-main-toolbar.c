@@ -425,7 +425,7 @@ on_note_renamed (BijiNoteObj *note,
 {
   gd_main_toolbar_set_labels (
             GD_MAIN_TOOLBAR (self),
-            biji_note_obj_get_title (note),
+            biji_item_get_title (BIJI_ITEM (note)),
             NULL);
 }
 
@@ -487,18 +487,20 @@ delete_item_callback (GtkWidget *item, gpointer user_data)
 }
 
 static void
-action_rename_note_callback (GtkWidget *item, gpointer user_data)
+action_rename_note_callback (GtkWidget *w, gpointer user_data)
 {
   BjbMainToolbar        *bar;
   BjbMainToolbarPrivate *priv;
   gchar                 *title;
+  BijiItem *item;
 
   bar = BJB_MAIN_TOOLBAR (user_data);
   priv = bar->priv;
+  item = BIJI_ITEM (priv->note);
 
   title = note_title_dialog (priv->window,
                              _("Rename Note"),
-                             biji_note_obj_get_title (priv->note));
+                             biji_item_get_title (item));
 
   if (!title)
     return;
@@ -592,8 +594,10 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   BjbSettings           *settings;
   GtkWidget             *grid, *notes_icon, *notes_label, *button;
   GdkRGBA                color;
+  BijiItem *item;
 
   priv->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
+  item = BIJI_ITEM (priv->note);
 
   if (!priv->note) /* no reason this would happen */
     return;
@@ -620,7 +624,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                               GDK_KEY_w, GDK_CONTROL_MASK, GTK_ACCEL_MASK);
 
   /* Note Title */
-  gd_main_toolbar_set_labels (bar, biji_note_obj_get_title (priv->note), NULL);
+  gd_main_toolbar_set_labels (bar, biji_item_get_title (item), NULL);
 
   self->priv->note_renamed = g_signal_connect (priv->note,"renamed",
                                     G_CALLBACK (on_note_renamed), self);

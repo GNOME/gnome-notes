@@ -45,11 +45,7 @@ biji_item_class_init (BijiItemClass *klass)
 static void
 biji_item_finalize (GObject *object)
 {
-  BijiItem *self;
-
   g_return_if_fail (BIJI_IS_ITEM (object));
-
-  self = BIJI_ITEM (object);
 
   G_OBJECT_CLASS (biji_item_parent_class)->finalize (object);
 }
@@ -66,4 +62,34 @@ GObject *
 biji_item_new (void)
 {
   return g_object_new (BIJI_TYPE_ITEM, NULL);
+}
+
+gchar *
+biji_item_get_title         (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_title (item);
+}
+
+gchar *
+biji_item_get_uuid          (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_uuid (item);
+}
+
+GdkPixbuf *
+biji_item_get_icon          (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_icon (item);
+}
+
+GdkPixbuf *
+biji_item_get_emblem        (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_emblem (item);
+}
+
+glong
+biji_item_get_last_change    (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_change_sec (item);
 }

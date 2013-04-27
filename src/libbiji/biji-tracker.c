@@ -15,6 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "biji-item.h"
 #include "biji-tracker.h"
 
 /* To perform something after async tracker query */
@@ -139,7 +140,7 @@ get_note_url (BijiNoteObj *note)
 {
   gchar *path, *retval;
 
-  path = biji_note_obj_get_path (note);
+  path = biji_item_get_uuid (BIJI_ITEM (note));
   retval = g_strdup_printf ("file://%s", path);
   g_free (path);
   return retval;
@@ -312,7 +313,7 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 {
   gchar *query, *path;
 
-  path = biji_note_obj_get_path (note);
+  path = biji_item_get_uuid (BIJI_ITEM (note));
   query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }", path);
   g_free (path);
 
@@ -324,8 +325,8 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
 {
   gchar *title,*content,*file,*date, *create_date,*last_change_date, *path;
 
-  path = biji_note_obj_get_path (note);    
-  title = tracker_str (biji_note_obj_get_title (note));
+  path = biji_item_get_uuid (BIJI_ITEM (note));
+  title = tracker_str (biji_item_get_title (BIJI_ITEM (note)));
   file = g_strdup_printf ("file://%s", path);
 
   date = biji_note_obj_get_create_date (note);

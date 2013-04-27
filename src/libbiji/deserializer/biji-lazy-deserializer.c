@@ -523,7 +523,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
   xmlNodePtr cur;
   xmlChar     *version; 
 
-  path = biji_note_obj_get_path (n);
+  path = biji_item_get_uuid (BIJI_ITEM (n));
   doc = xmlParseFile (path);
   g_free (path);
 
@@ -581,7 +581,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 
   xmlFree (version);
 
-  path = biji_note_obj_get_path (n);
+  path = biji_item_get_uuid (BIJI_ITEM (n));
   self->priv->r = xmlNewTextReaderFilename (path);
   g_free (path);
   biji_parse_file (self);

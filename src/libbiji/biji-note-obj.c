@@ -86,6 +86,13 @@ static GParamSpec *properties[BIJI_OBJ_PROPERTIES] = { NULL, };
 
 G_DEFINE_TYPE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM);
 
+/* BijiItem iface */
+static gchar     * biji_note_obj_get_title                (BijiItem *note);
+static gchar     * biji_note_obj_get_path                 (BijiItem *note);
+static GdkPixbuf * biji_note_obj_get_icon                 (BijiItem *note);
+static GdkPixbuf * biji_note_obj_get_emblem               (BijiItem *note);
+static glong       biji_note_obj_get_last_change_date_sec (BijiItem *note);
+
 static void
 on_save_timeout (BijiNoteObj *self)
 {
@@ -230,7 +237,8 @@ biji_note_obj_get_property (GObject    *object,
 static void
 biji_note_obj_class_init (BijiNoteObjClass *klass)
 {
-  GObjectClass* object_class = G_OBJECT_CLASS (klass);
+  BijiItemClass*  item_class = BIJI_ITEM_CLASS (klass);
+  GObjectClass* object_class = G_OBJECT_CLASS  (klass);
 
   object_class->constructed = biji_note_obj_constructed;
   object_class->finalize = biji_note_obj_finalize;
@@ -287,6 +295,13 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
                                                   0);
 
   g_type_class_add_private (klass, sizeof (BijiNoteObjPrivate));
+
+  /* Interface */
+  item_class->get_title = biji_note_obj_get_title;
+  item_class->get_uuid = biji_note_obj_get_path;
+  item_class->get_icon = biji_note_obj_get_icon;
+  item_class->get_emblem = biji_note_obj_get_emblem;
+  item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
 }
 
 BijiNoteObj *
@@ -403,11 +418,14 @@ biji_note_obj_trash (BijiNoteObj *note_to_kill)
   return result;
 }
 
-gchar* biji_note_obj_get_path (BijiNoteObj* n)
+static gchar *
+biji_note_obj_get_path (BijiItem *item)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
 
-  return biji_note_id_get_path(n->priv->id) ;
+  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+
+  return biji_note_id_get_path (note->priv->id);
 }
 
 BijiNoteID* note_get_id(BijiNoteObj* n)
@@ -415,12 +433,12 @@ BijiNoteID* note_get_id(BijiNoteObj* n)
   return n->priv->id;
 }
 
-gchar *
-biji_note_obj_get_title(BijiNoteObj *obj)
+static gchar *
+biji_note_obj_get_title (BijiItem *note)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ(obj), NULL);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
 
-  return biji_note_id_get_title (obj->priv->id);
+  return biji_note_id_get_title (BIJI_NOTE_OBJ (note)->priv->id);
 }
 
 /* If already a title, then note is renamed */
@@ -478,10 +496,12 @@ biji_note_obj_set_last_change_date (BijiNoteObj* n,gchar* date)
   return biji_note_id_set_last_change_date (n->priv->id,date);
 }
 
-glong 
-biji_note_obj_get_last_change_date_sec ( BijiNoteObj *n )
+static glong
+biji_note_obj_get_last_change_date_sec (BijiItem *item)
 {
-  return biji_note_id_get_last_change_date_sec(note_get_id(n)); 
+  BijiNoteObj *n = BIJI_NOTE_OBJ (item);
+
+  return biji_note_id_get_last_change_date_sec(note_get_id(n));
 }
 
 gchar *
@@ -712,8 +732,8 @@ biji_note_obj_set_icon (BijiNoteObj *note, GdkPixbuf *pix)
     g_warning ("Cannot use _set_icon_ with iconified note. This has no sense.");
 }
 
-GdkPixbuf *
-biji_note_obj_get_icon (BijiNoteObj *note)
+static GdkPixbuf *
+biji_note_obj_get_icon (BijiItem *item)
 {
   GdkRGBA               note_color;
   gchar                 *text;
@@ -723,6 +743,8 @@ biji_note_obj_get_icon (BijiNoteObj *note)
   GdkPixbuf             *ret = NULL;
   cairo_surface_t       *surface = NULL;
   GtkBorder              frame_slice = { 4, 3, 3, 6 };
+
+  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
   if (note->priv->icon && !note->priv->icon_needs_update)
     return note->priv->icon;
@@ -779,12 +801,13 @@ biji_note_obj_get_icon (BijiNoteObj *note)
   return note->priv->icon;
 }
 
-GdkPixbuf *
-biji_note_obj_get_emblem (BijiNoteObj *note)
+static GdkPixbuf *
+biji_note_obj_get_emblem (BijiItem *item)
 {
   GdkRGBA                note_color;
   cairo_t               *cr;
   cairo_surface_t       *surface = NULL;
+  BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
 
   if (note->priv->emblem && !note->priv->emblem_needs_update)
     return note->priv->emblem;

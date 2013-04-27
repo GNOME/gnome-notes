@@ -79,19 +79,13 @@ gboolean biji_note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b);
 
 ///////////////////////////////////////////////////////////////////// Metadata 
 
-gchar * biji_note_obj_get_title (BijiNoteObj *obj);
-
 /* will enter hit make title renamed? */
 gboolean biji_note_obj_title_survives (BijiNoteObj *note);
 void biji_note_obj_set_title_survives (BijiNoteObj *obj, gboolean value);
 
-gchar* biji_note_obj_get_path (BijiNoteObj *n);
-
 gboolean biji_note_obj_set_last_change_date (BijiNoteObj* n,gchar* date);
 
 void biji_note_obj_set_last_change_date_now (BijiNoteObj* n) ;
-
-glong biji_note_obj_get_last_change_date_sec ( BijiNoteObj *n );
 
 gchar * biji_note_obj_get_last_change_date_string (BijiNoteObj *self);
 
@@ -124,17 +118,11 @@ gboolean biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean
 
 gboolean biji_note_obj_remove_collection (BijiNoteObj *note, gchar *label, gchar *urn);
 
-///////////////////////////////////////////////////////////////////  templates
 gboolean note_obj_is_template(BijiNoteObj *n) ;
 
 void note_obj_set_is_template(BijiNoteObj *n,gboolean is_template);
 
-/////////////////////////////////////////////////////////////////// Save
 void biji_note_obj_save_note (BijiNoteObj *self);
-
-GdkPixbuf * biji_note_obj_get_icon (BijiNoteObj *note);
-
-GdkPixbuf * biji_note_obj_get_emblem (BijiNoteObj *note);
 
 void biji_note_obj_set_icon (BijiNoteObj *note, GdkPixbuf *pix);
 

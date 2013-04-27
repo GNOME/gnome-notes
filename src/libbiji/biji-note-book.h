@@ -61,9 +61,9 @@ gboolean biji_note_book_remove_note (BijiNoteBook *book,BijiNoteObj *note);
 
 BijiNoteObj * note_book_get_note_at_path(BijiNoteBook *book,gchar *path);
 
-/* GList return values should be freed, and never the content */
-
-GList * biji_note_book_get_notes (BijiNoteBook *book);
+/* Get all items, either notes or collections
+ * Free the GList, not its content */
+GList * biji_note_book_get_items (BijiNoteBook *book);
 
 /* New Notes */
 BijiNoteObj* biji_note_get_new_from_file (const gchar* tomboy_format_note_path);

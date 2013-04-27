@@ -179,7 +179,7 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
   for (l = notes_proposal; l != NULL; l = l->next)
   {
     BijiNoteObj *note = l->data;
-    gchar *path = biji_note_obj_get_path (note);
+    gchar *path = biji_item_get_uuid (BIJI_ITEM (note));
 
     /* Don't add an already imported note */
     if (note_book_get_note_at_path (self->priv->book, path))
@@ -192,7 +192,7 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
     {
       /* Title */
       unique_title = biji_note_book_get_unique_title (self->priv->book,
-                                                      biji_note_obj_get_title (note));
+                                                      biji_item_get_title (BIJI_ITEM (note)));
       biji_note_obj_set_title (note, unique_title);
       g_free (unique_title);
 

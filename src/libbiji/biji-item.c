@@ -87,8 +87,14 @@ biji_item_get_last_change    (BijiItem *item)
   return BIJI_ITEM_GET_CLASS (item)->get_change_sec (item);
 }
 
-BijiItemType
-biji_item_get_biji_type      (BijiItem *item)
+gboolean
+biji_item_trash               (BijiItem *item)
 {
-  return BIJI_ITEM_GET_CLASS (item)->get_type (item);
+  return BIJI_ITEM_GET_CLASS (item)->trash (item);
+}
+
+gboolean
+biji_item_has_collection      (BijiItem *item, gchar *coll)
+{
+  return BIJI_ITEM_GET_CLASS (item)->has_collection (item, coll);
 }

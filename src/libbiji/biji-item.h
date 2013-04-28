@@ -37,17 +37,6 @@ typedef struct BijiItem_         BijiItem;
 typedef struct BijiItemClass_    BijiItemClass;
 typedef struct BijiItemPrivate_  BijiItemPrivate;
 
-/* Libbiji base interface
- * NoteBook provides items
- * Items might be NoteObj or Collections
- * Below BijiType rather g_type ? */
-
-typedef enum {
-  BIJI_ITEM_0,
-  BIJI_ITEM_NOTE_OBJ,
-  BIJI_ITEM_COLLECTION
-} BijiItemType;
-
 /* Icon */
 #define BIJI_ICON_WIDTH 200
 #define BIJI_ICON_HEIGHT 200
@@ -73,8 +62,8 @@ struct BijiItemClass_
   GdkPixbuf *   (*get_icon)             (BijiItem *item);
   GdkPixbuf *   (*get_emblem)           (BijiItem *item);
   glong         (*get_change_sec)       (BijiItem *item);
-
-  BijiItemType  (*get_type)             (BijiItem *item);
+  gboolean      (*trash)                (BijiItem *item);
+  gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
 };
 
 /* Do not create a generic items.
@@ -94,7 +83,9 @@ GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
 
 glong            biji_item_get_last_change     (BijiItem *item);
 
-BijiItemType     biji_item_get_biji_type       (BijiItem *item);
+gboolean         biji_item_trash               (BijiItem *item);
+
+gboolean         biji_item_has_collection      (BijiItem *item, gchar *collection);
 
 G_END_DECLS
 

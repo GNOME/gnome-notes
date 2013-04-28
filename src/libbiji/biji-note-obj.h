@@ -73,8 +73,6 @@ gpointer biji_note_obj_get_note_book(BijiNoteObj *note);
 
 void _biji_note_obj_set_book(BijiNoteObj *note, gpointer biji_note_book);
 
-gboolean biji_note_obj_trash (BijiNoteObj *dead);
-
 gboolean biji_note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b);
 
 ///////////////////////////////////////////////////////////////////// Metadata 
@@ -111,8 +109,6 @@ void biji_note_obj_set_rgba(BijiNoteObj *n, GdkRGBA *rgba) ;
  * Remove label always due to user action. Add label has to precise */
 
 GList * biji_note_obj_get_collections (BijiNoteObj *n);
-
-gboolean biji_note_obj_has_collection (BijiNoteObj *note, gchar *label);
 
 gboolean biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb);
 

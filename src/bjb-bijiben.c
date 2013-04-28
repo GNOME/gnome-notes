@@ -182,7 +182,7 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
     gchar *path = biji_item_get_uuid (BIJI_ITEM (note));
 
     /* Don't add an already imported note */
-    if (note_book_get_note_at_path (self->priv->book, path))
+    if (biji_note_book_get_item_at_path (self->priv->book, path))
     {
       abort_note (note);
     }

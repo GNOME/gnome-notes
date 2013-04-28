@@ -481,9 +481,9 @@ delete_item_callback (GtkWidget *item, gpointer user_data)
 
   /* Delete the note from collection
    * The deleted note will emit a signal. */
-  biji_note_book_remove_note (
+  biji_note_book_remove_item (
           bjb_window_base_get_book (GTK_WIDGET (self->priv->window)),
-          self->priv->note);
+          BIJI_ITEM (self->priv->note));
 }
 
 static void

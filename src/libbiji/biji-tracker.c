@@ -220,7 +220,7 @@ biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
   {
     const gchar *full_path;
     gchar *path;
-    BijiNoteObj *note = NULL;
+    BijiItem *item = NULL;
 
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
@@ -238,11 +238,11 @@ biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
         path = g_strdup (full_path);
       }
       
-      note = note_book_get_note_at_path (book, path);
+      item = biji_note_book_get_item_at_path (book, path);
 
       /* Sorting is done in another place */
-      if (note)
-        result = g_list_prepend (result, note);
+      if (item)
+        result = g_list_prepend (result, item);
 
       g_free (path);
     }

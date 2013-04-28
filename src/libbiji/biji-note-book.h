@@ -55,9 +55,9 @@ gboolean biji_note_book_notify_changed (BijiNoteBook           *book,
                                         BijiNoteBookChangeFlag  flag,
                                         BijiNoteObj            *note);
 
-gboolean biji_note_book_remove_note (BijiNoteBook *book,BijiNoteObj *note);
+gboolean biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item);
 
-BijiNoteObj * note_book_get_note_at_path(BijiNoteBook *book,gchar *path);
+BijiItem * biji_note_book_get_item_at_path (BijiNoteBook *book, gchar *path);
 
 /* Get all items, either notes or collections
  * Free the GList, not its content */

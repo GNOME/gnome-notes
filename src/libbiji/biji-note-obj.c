@@ -82,7 +82,9 @@ static gchar     * biji_note_obj_get_title                (BijiItem *note);
 static gchar     * biji_note_obj_get_path                 (BijiItem *note);
 static GdkPixbuf * biji_note_obj_get_icon                 (BijiItem *note);
 static GdkPixbuf * biji_note_obj_get_emblem               (BijiItem *note);
+static gboolean    biji_note_obj_trash                    (BijiItem *note);
 static glong       biji_note_obj_get_last_change_date_sec (BijiItem *note);
+static gboolean    biji_note_obj_has_collection           (BijiItem *note, gchar *label);
 
 static void
 on_save_timeout (BijiNoteObj *self)
@@ -225,12 +227,6 @@ biji_note_obj_get_property (GObject    *object,
     }
 }
 
-static BijiItemType
-note_obj_get_type (BijiItem *item)
-{
-  return BIJI_ITEM_NOTE_OBJ;
-}
-
 static void
 biji_note_obj_class_init (BijiNoteObjClass *klass)
 {
@@ -299,7 +295,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   item_class->get_icon = biji_note_obj_get_icon;
   item_class->get_emblem = biji_note_obj_get_emblem;
   item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
-  item_class->get_type = note_obj_get_type;
+  item_class->trash = biji_note_obj_trash;
+  item_class->has_collection = biji_note_obj_has_collection;
 }
 
 BijiNoteObj *
@@ -347,13 +344,17 @@ biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
 /* First cancel timeout
  * this func is most probably stupid it might exists (move file) */
 gboolean
-biji_note_obj_trash (BijiNoteObj *note_to_kill)
+biji_note_obj_trash (BijiItem *item)
 {
-  BijiNoteObjPrivate *priv = note_to_kill->priv;
+  BijiNoteObj *note_to_kill;
+  BijiNoteObjPrivate *priv;
   GFile *to_trash, *parent, *trash, *backup_file, *icon;
   gchar *note_name, *parent_path, *trash_path, *backup_path, *icon_path;
   GError *error = NULL;
   gboolean result = FALSE;
+
+  note_to_kill = BIJI_NOTE_OBJ (item);
+  priv = note_to_kill->priv;
 
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
@@ -611,8 +612,10 @@ biji_note_obj_get_collections (BijiNoteObj *n)
 }
 
 gboolean
-biji_note_obj_has_collection (BijiNoteObj *note, gchar *label)
+biji_note_obj_has_collection (BijiItem *item, gchar *label)
 {
+  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+
   if (g_hash_table_lookup (note->priv->labels, label))
     return TRUE;
 
@@ -624,7 +627,7 @@ biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
   g_return_val_if_fail (label != NULL, FALSE);
-  g_return_val_if_fail (!biji_note_obj_has_collection (note, label), FALSE);
+  g_return_val_if_fail (!biji_note_obj_has_collection (BIJI_ITEM (note), label), FALSE);
 
   gchar *tag = g_strdup (label);
 
@@ -950,7 +953,7 @@ _biji_note_obj_close (BijiNoteObj *note)
    * since no change could trigger save */
   if (!priv->raw_text)
   {
-    biji_note_book_remove_note (priv->book, note);
+    biji_note_book_remove_item (priv->book, BIJI_ITEM (note));
   }
 
   /* If the note only has one row. put some title */

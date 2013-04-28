@@ -81,7 +81,7 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   gtk_widget_set_visible (priv->toolbar_trash, TRUE);
 
   /* Color */
-  if (bjb_main_view_get_selected_notes_color (priv->view, &color))
+  if (bjb_main_view_get_selected_items_color (priv->view, &color))
     gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
 }
 
@@ -238,13 +238,13 @@ bjb_selection_toolbar_constructed(GObject *obj)
                     self);
 
   g_signal_connect(priv->toolbar_color,"color-set",
-                   G_CALLBACK(action_color_selected_notes),priv->view);
+                   G_CALLBACK(action_color_selected_items),priv->view);
 
   g_signal_connect(priv->toolbar_tag,"clicked",
-                   G_CALLBACK(action_tag_selected_notes),priv->view);
+                   G_CALLBACK(action_tag_selected_items),priv->view);
 
   g_signal_connect(priv->toolbar_trash,"clicked",
-                   G_CALLBACK(action_delete_selected_notes),priv->view);
+                   G_CALLBACK(action_delete_selected_items),priv->view);
 }
 
 static void

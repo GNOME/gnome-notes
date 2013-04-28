@@ -26,6 +26,7 @@
 #include <math.h>
 
 #include "biji-collection.h"
+#include "biji-tracker.h"
 
 struct BijiCollectionPrivate_
 {
@@ -185,10 +186,24 @@ biji_collection_get_changed_sec (BijiItem *coll)
   return 0;
 }
 
-static BijiItemType
-collection_get_type (BijiItem *item)
+static gboolean
+biji_collection_trash (BijiItem *item)
 {
-  return BIJI_ITEM_COLLECTION;
+  BijiCollection *self;
+  g_return_val_if_fail (BIJI_IS_COLLECTION (item), FALSE);
+
+  self = BIJI_COLLECTION (item);
+  biji_remove_collection_from_tracker (self->priv->name);
+  g_object_unref (self);
+
+  return TRUE;
+}
+
+static gboolean
+biji_collection_has_collection (BijiItem *item, gchar *collection)
+{
+  //todo
+  return FALSE;
 }
 
 static void
@@ -260,7 +275,8 @@ biji_collection_class_init (BijiCollectionClass *klass)
   item_class->get_icon = biji_collection_get_icon;
   item_class->get_emblem = biji_collection_get_emblem;
   item_class->get_change_sec = biji_collection_get_changed_sec;
-  item_class->get_type = collection_get_type;
+  item_class->trash = biji_collection_trash;
+  item_class->has_collection = biji_collection_has_collection;
 }
 
 

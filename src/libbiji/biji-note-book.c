@@ -134,11 +134,6 @@ title_is_unique (BijiNoteBook *book, gchar *title)
   {
     iter = BIJI_ITEM (l->data);
 
-    /* this func is just used for notes to ensure unique title
-     * don't know yet if useful for collections */
-    if (biji_item_get_biji_type (iter) != BIJI_ITEM_NOTE_OBJ)
-      break;
-
     if (g_strcmp0 (biji_item_get_title (iter), title) == 0)
     {
      is_unique = FALSE;
@@ -394,16 +389,16 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
 }
 
 gboolean 
-biji_note_book_remove_note (BijiNoteBook *book, BijiNoteObj *note)
+biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ  (note), FALSE);
+  g_return_val_if_fail (BIJI_IS_ITEM      (item), FALSE);
 
   BijiNoteObj *to_delete = NULL;
   gchar *path;
   gboolean retval = FALSE;
 
-  path = biji_item_get_uuid (BIJI_ITEM (note));
+  path = biji_item_get_uuid (item);
   to_delete = g_hash_table_lookup (book->priv->items, path);
 
   if (to_delete)
@@ -415,7 +410,7 @@ biji_note_book_remove_note (BijiNoteBook *book, BijiNoteObj *note)
     /* Ref note first, hash_table won't finalize it & we can delete it*/
     g_object_ref (to_delete);
     g_hash_table_remove (book->priv->items, path);
-    biji_note_obj_trash (note);
+    biji_item_trash (item);
 
     retval = TRUE;
   }
@@ -443,8 +438,8 @@ biji_note_book_get_items (BijiNoteBook *book)
   return g_hash_table_get_values (book->priv->items);
 }
 
-BijiNoteObj *
-note_book_get_note_at_path (BijiNoteBook *book, gchar *path)
+BijiItem *
+biji_note_book_get_item_at_path (BijiNoteBook *book, gchar *path)
 {
   return g_hash_table_lookup (book->priv->items, path);
 }

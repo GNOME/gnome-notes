@@ -201,20 +201,25 @@ show_window_if_note (gpointer data, gpointer user_data)
 }
 
 static void
-switch_to_note (BjbMainView *view, BijiNoteObj *to_open)
+switch_to_note (BjbMainView *view, BijiItem *to_open)
 {
-  /* If the note is already opened in another window, just show it. */
-  if (biji_note_obj_is_opened (to_open))
+  if (BIJI_IS_NOTE_OBJ (to_open))
   {
-    GList *notes ;
+    /* If the note is already opened in another window, just show it. */
+    if (biji_note_obj_is_opened (BIJI_NOTE_OBJ (to_open)))
+    {
+      GList *notes ;
 
-    notes = gtk_application_get_windows(GTK_APPLICATION(g_application_get_default()));
-    g_list_foreach (notes, show_window_if_note, to_open);
-    return ;
+      notes = gtk_application_get_windows(GTK_APPLICATION(g_application_get_default()));
+      g_list_foreach (notes, show_window_if_note, to_open);
+      return ;
+    }
+
+    /* Otherwise, leave main view */
+    switch_to_note_view (view, BIJI_NOTE_OBJ (to_open));
   }
 
-  /* Otherwise, leave main view */
-  switch_to_note_view(view,to_open);
+  /* TODO : coll */
 }
 
 static GList *
@@ -238,7 +243,7 @@ get_note_url_from_tree_path(GtkTreePath *path, BjbMainView *self)
 }
 
 void
-action_tag_selected_notes (GtkWidget *w, BjbMainView *view)
+action_tag_selected_items (GtkWidget *w, BjbMainView *view)
 {
   GList *notes = NULL;
   GList *paths, *l;
@@ -249,7 +254,7 @@ action_tag_selected_notes (GtkWidget *w, BjbMainView *view)
   for (l=paths ; l != NULL ; l=l->next)
   {
     gchar *url = get_note_url_from_tree_path (l->data, view) ;
-    notes = g_list_prepend (notes, note_book_get_note_at_path
+    notes = g_list_prepend (notes, biji_note_book_get_item_at_path
                                  (bjb_window_base_get_book(view->priv->window),url));
     g_free (url);
   }
@@ -260,26 +265,29 @@ action_tag_selected_notes (GtkWidget *w, BjbMainView *view)
 }
 
 gboolean
-bjb_main_view_get_selected_notes_color (BjbMainView *view, GdkRGBA *color)
+bjb_main_view_get_selected_items_color (BjbMainView *view, GdkRGBA *color)
 {
   GList *paths;
   gchar *url;
-  BijiNoteObj *note;
+  BijiItem *item;
 
   /*  GtkTreePath */
   paths = get_selected_paths(view);
   url = get_note_url_from_tree_path (paths->data, view) ;
-  note = note_book_get_note_at_path (bjb_window_base_get_book(view->priv->window), url);
+  item = biji_note_book_get_item_at_path (bjb_window_base_get_book(view->priv->window), url);
   g_free (url);
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
 
-  return biji_note_obj_get_rgba (note, color);
+  if (BIJI_IS_NOTE_OBJ (item))
+    return biji_note_obj_get_rgba (BIJI_NOTE_OBJ (item), color);
+
+  return FALSE;
 }
 
 void
-action_color_selected_notes (GtkWidget *w, BjbMainView *view)
+action_color_selected_items (GtkWidget *w, BjbMainView *view)
 {
-  GList *notes = NULL ;
+  GList *items = NULL ;
   GList *paths, *l;
 
   GdkRGBA color;
@@ -291,25 +299,26 @@ action_color_selected_notes (GtkWidget *w, BjbMainView *view)
   for (l=paths ; l != NULL ; l=l->next)
   {
     gchar *url = get_note_url_from_tree_path (l->data, view) ;
-    notes = g_list_prepend (notes, note_book_get_note_at_path
+    items = g_list_prepend (items, biji_note_book_get_item_at_path
                                    (bjb_window_base_get_book(view->priv->window),url));
     g_free (url);
   }
 
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
 
-  for (l=notes ; l != NULL ; l=l->next)
+  for (l=items ; l != NULL ; l=l->next)
   {
-    biji_note_obj_set_rgba (BIJI_NOTE_OBJ (l->data), &color);
+    if (BIJI_IS_NOTE_OBJ (l->data))
+      biji_note_obj_set_rgba (BIJI_NOTE_OBJ (l->data), &color);
   }
 
-  g_list_free (notes);
+  g_list_free (items);
 }
 
 void
-action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
+action_delete_selected_items (GtkWidget *w, BjbMainView *view)
 {
-  GList *notes = NULL;
+  GList *items = NULL;
   GList *paths, *l;
 
   /*  GtkTreePath */
@@ -318,20 +327,20 @@ action_delete_selected_notes(GtkWidget *w,BjbMainView *view)
   for (l=paths ; l != NULL ; l=l->next)
   {
     gchar *url = get_note_url_from_tree_path (l->data, view) ;
-    notes = g_list_prepend (notes, note_book_get_note_at_path
+    items = g_list_prepend (items, biji_note_book_get_item_at_path
                                (bjb_window_base_get_book(view->priv->window),url));
     g_free (url);
   }
 
   g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
 
-  for (l=notes ; l != NULL ; l=l->next)
+  for (l=items ; l != NULL ; l=l->next)
   {
-    biji_note_book_remove_note (bjb_window_base_get_book (view->priv->window),
-                                BIJI_NOTE_OBJ (l->data));
+    biji_note_book_remove_item (bjb_window_base_get_book (view->priv->window),
+                                BIJI_ITEM (l->data));
   }
 
-  g_list_free (notes);
+  g_list_free (items);
 }
 
 static void
@@ -388,13 +397,13 @@ on_key_press_event_cb (GtkWidget *widget,
 }
 
 static gboolean
-on_item_activated(GdMainView        * gd, 
-                  const gchar       * id,
-                  const GtkTreePath * path,
-                  BjbMainView       * view)
+on_item_activated (GdMainView        * gd,
+                   const gchar       * id,
+                   const GtkTreePath * path,
+                   BjbMainView       * view)
 {
   BijiNoteBook * book ;
-  BijiNoteObj  * to_open ;
+  BijiItem     * to_open ;
   GtkTreeIter    iter ;
   gchar        * note_path ;
   GtkTreeModel * model ;
@@ -406,7 +415,7 @@ on_item_activated(GdMainView        * gd,
 
   /* Switch to that note */
   book = bjb_window_base_get_book (view->priv->window); 
-  to_open = note_book_get_note_at_path (book, note_path);
+  to_open = biji_note_book_get_item_at_path (book, note_path);
   g_free (note_path);
   switch_to_note (view, to_open); 
 

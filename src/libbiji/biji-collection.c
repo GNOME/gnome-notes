@@ -206,6 +206,20 @@ biji_collection_has_collection (BijiItem *item, gchar *collection)
   return FALSE;
 }
 
+static gboolean
+biji_collection_add_collection (BijiItem *item, gchar *collection, gboolean notify)
+{
+  g_warning ("biji collection add collection is not implemented.");
+  return FALSE;
+}
+
+static gboolean
+biji_collection_remove_collection (BijiItem *item, gchar *collection, gchar *urn)
+{
+  g_warning ("biji collection remove collection is not implemented.");
+  return FALSE;
+}
+
 static void
 biji_collection_set_property (GObject      *object,
                               guint         property_id,
@@ -277,6 +291,8 @@ biji_collection_class_init (BijiCollectionClass *klass)
   item_class->get_change_sec = biji_collection_get_changed_sec;
   item_class->trash = biji_collection_trash;
   item_class->has_collection = biji_collection_has_collection;
+  item_class->add_collection = biji_collection_add_collection;
+  item_class->remove_collection = biji_collection_remove_collection;
 }
 
 

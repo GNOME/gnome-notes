@@ -199,21 +199,20 @@ update_collections_model_async (BjbNoteTagDialog *self)
 static void
 note_dialog_add_tag (gpointer iter, gpointer collection)
 {
-  BijiNoteObj *note = BIJI_NOTE_OBJ (iter);
-  gchar *title = (gchar*) collection;
-
-  biji_note_obj_add_collection (note, title, TRUE);
+  biji_item_add_collection (BIJI_ITEM (iter), (gchar*) collection, TRUE);
 }
 
 static void
 note_dialog_remove_tag (gpointer iter, gpointer user_data)
 {
-  BijiNoteObj *note = BIJI_NOTE_OBJ (iter);
-  BjbNoteTagDialog *self = user_data;
-  gchar *urn = g_hash_table_lookup (self->priv->collections,
-                                    self->priv->toggled_collection);
+  BjbNoteTagDialog *self;
+  gchar *urn;
 
-  biji_note_obj_remove_collection (note, self->priv->toggled_collection, urn);
+  self = user_data;
+  urn = g_hash_table_lookup (self->priv->collections,
+                             self->priv->toggled_collection);
+
+  biji_item_remove_collection (BIJI_ITEM (iter), self->priv->toggled_collection, urn);
 }
 
 static void

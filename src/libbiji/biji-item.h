@@ -64,28 +64,48 @@ struct BijiItemClass_
   glong         (*get_change_sec)       (BijiItem *item);
   gboolean      (*trash)                (BijiItem *item);
   gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
+  gboolean      (*add_collection)       (BijiItem *item, gchar *coll, gboolean on_user_action);
+  gboolean      (*remove_collection)    (BijiItem *item, gchar *coll, gchar *urn);
 };
 
 /* Do not create a generic items.
  * It's rather an iface */
+
 GType biji_item_get_type (void);
 
+
 /* Do not free title */
+
 gchar *          biji_item_get_title           (BijiItem *item);
+
 
 /* Always g_free uuid
  * NoteObj uuid is a location           */
+
 gchar *          biji_item_get_uuid            (BijiItem *item);
+
 
 GdkPixbuf *      biji_item_get_icon            (BijiItem *item);
 
+
 GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
+
 
 glong            biji_item_get_last_change     (BijiItem *item);
 
+
 gboolean         biji_item_trash               (BijiItem *item);
 
+
 gboolean         biji_item_has_collection      (BijiItem *item, gchar *collection);
+
+
+/* add_collection / on_user_action : thus biji_item does notify */
+
+gboolean         biji_item_add_collection      (BijiItem *item, gchar *coll, gboolean on_user_action);
+
+
+gboolean         biji_item_remove_collection   (BijiItem *item, gchar *coll, gchar *urn);
 
 G_END_DECLS
 

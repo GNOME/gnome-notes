@@ -85,6 +85,8 @@ static GdkPixbuf * biji_note_obj_get_emblem               (BijiItem *note);
 static gboolean    biji_note_obj_trash                    (BijiItem *note);
 static glong       biji_note_obj_get_last_change_date_sec (BijiItem *note);
 static gboolean    biji_note_obj_has_collection           (BijiItem *note, gchar *label);
+static gboolean    biji_note_obj_add_collection           (BijiItem *note, gchar *label, gboolean on_user_action);
+static gboolean    biji_note_obj_remove_collection        (BijiItem *note, gchar *label, gchar *urn);
 
 static void
 on_save_timeout (BijiNoteObj *self)
@@ -297,6 +299,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
   item_class->trash = biji_note_obj_trash;
   item_class->has_collection = biji_note_obj_has_collection;
+  item_class->add_collection = biji_note_obj_add_collection;
+  item_class->remove_collection = biji_note_obj_remove_collection;
 }
 
 BijiNoteObj *
@@ -623,12 +627,13 @@ biji_note_obj_has_collection (BijiItem *item, gchar *label)
 }
 
 gboolean
-biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb)
+biji_note_obj_add_collection (BijiItem *item, gchar *label, gboolean on_user_action_cb)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
   g_return_val_if_fail (label != NULL, FALSE);
-  g_return_val_if_fail (!biji_note_obj_has_collection (BIJI_ITEM (note), label), FALSE);
+  g_return_val_if_fail (!biji_note_obj_has_collection (item, label), FALSE);
 
+  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
   gchar *tag = g_strdup (label);
 
   g_hash_table_add (note->priv->labels, tag);
@@ -644,9 +649,10 @@ biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_
 }
 
 gboolean
-biji_note_obj_remove_collection (BijiNoteObj *note, gchar *label, gchar *urn)
+biji_note_obj_remove_collection (BijiItem *item, gchar *label, gchar *urn)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
+  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
   if (g_hash_table_remove (note->priv->labels, label))
   {

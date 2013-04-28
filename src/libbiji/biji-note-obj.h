@@ -110,10 +110,6 @@ void biji_note_obj_set_rgba(BijiNoteObj *n, GdkRGBA *rgba) ;
 
 GList * biji_note_obj_get_collections (BijiNoteObj *n);
 
-gboolean biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb);
-
-gboolean biji_note_obj_remove_collection (BijiNoteObj *note, gchar *label, gchar *urn);
-
 gboolean note_obj_is_template(BijiNoteObj *n) ;
 
 void note_obj_set_is_template(BijiNoteObj *n,gboolean is_template);

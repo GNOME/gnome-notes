@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "biji-lazy-serializer.h"
+#include "../biji-item.h"
 #include "../biji-note-obj.h"
 #include "../biji-string.h"
 
@@ -188,7 +189,9 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
                                  BAD_CAST "http://projects.gnome.org/bijiben");
 
   // <Title>
-  serialize_node (priv->writer, "title", biji_note_obj_get_title (priv->note));
+  serialize_node (priv->writer,
+                  "title",
+                  biji_item_get_title (BIJI_ITEM (priv->note)));
 
   // <text> 
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST "\n  ");
@@ -244,7 +247,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 
   xmlFreeTextWriter(priv->writer);
 
-  path = biji_note_obj_get_path (priv->note);
+  path = biji_item_get_uuid (BIJI_ITEM (priv->note));
   retval = g_file_set_contents (path, (gchar*) priv->buf->content, -1, NULL);
   g_free (path);
   return retval;
@@ -260,7 +263,7 @@ biji_note_obj_save_icon (BijiNoteObj *note)
 
   /* Png */
   filename = biji_note_obj_get_icon_file (note);
-  gdk_pixbuf_save (biji_note_obj_get_icon (note), filename, "png", &error, NULL);
+  gdk_pixbuf_save (biji_item_get_icon (BIJI_ITEM (note)), filename, "png", &error, NULL);
 
   if (error)
   {

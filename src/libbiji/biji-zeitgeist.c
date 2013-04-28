@@ -31,14 +31,14 @@ get_log (void)
 }
 
 void 
-insert_zeitgeist(BijiNoteObj *note, const char *action)
+insert_zeitgeist (BijiNoteObj *note, const char *action)
 {
   gchar *uri, *path;
   ZeitgeistEvent     *event;
   ZeitgeistSubject   *subject ;
   ZeitgeistLog       *log = get_log() ;
 
-  path = biji_note_obj_get_path (note);
+  path = biji_item_get_uuid (BIJI_ITEM (note));
   uri = g_strdup_printf ("file://%s", path);
   g_free (path);
 
@@ -47,7 +47,7 @@ insert_zeitgeist(BijiNoteObj *note, const char *action)
                                         ZEITGEIST_NFO_FILE_DATA_OBJECT, //mani
                                         "application/x-note",           //mime
                                         "",                             //origin
-                                        biji_note_obj_get_title (note),     //text
+                                        biji_item_get_title (BIJI_ITEM (note)),     //text
                                         "") ;                           //storage
 
   g_free (uri);

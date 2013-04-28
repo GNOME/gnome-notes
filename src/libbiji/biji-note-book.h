@@ -14,10 +14,10 @@ typedef enum
 {
   BIJI_BOOK_CHANGE_FLAG,
   BIJI_BOOK_MASS_CHANGE,   // Startup, mass import.. rather rebuild the whole.
-  BIJI_BOOK_NOTE_ADDED,    // Single note added
+  BIJI_BOOK_ITEM_ADDED,    // Single item added
+  BIJI_BOOK_ITEM_TRASHED,  // Single item trashed
   BIJI_BOOK_NOTE_AMENDED,  // Single note amended (title, content)
   BIJI_BOOK_NOTE_COLORED,  // Single note color
-  BIJI_BOOK_NOTE_TRASHED,  // Single note trashed
 } BijiNoteBookChangeFlag;
 
 #define BIJI_TYPE_NOTE_BOOK             (biji_note_book_get_type ())
@@ -49,21 +49,19 @@ BijiNoteBook * biji_note_book_new (GFile *location);
 
 gchar * biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title);
 
-void _biji_note_book_add_note_to_tag_book(BijiNoteBook *book,BijiNoteObj *note,gchar *tag);
-
 void biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean notify);
 
 gboolean biji_note_book_notify_changed (BijiNoteBook           *book,
                                         BijiNoteBookChangeFlag  flag,
-                                        BijiNoteObj            *note);
+                                        BijiItem               *item);
 
-gboolean biji_note_book_remove_note (BijiNoteBook *book,BijiNoteObj *note);
+gboolean biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item);
 
-BijiNoteObj * note_book_get_note_at_path(BijiNoteBook *book,gchar *path);
+BijiItem * biji_note_book_get_item_at_path (BijiNoteBook *book, gchar *path);
 
-/* GList return values should be freed, and never the content */
-
-GList * biji_note_book_get_notes (BijiNoteBook *book);
+/* Get all items, either notes or collections
+ * Free the GList, not its content */
+GList * biji_note_book_get_items (BijiNoteBook *book);
 
 /* New Notes */
 BijiNoteObj* biji_note_get_new_from_file (const gchar* tomboy_format_note_path);

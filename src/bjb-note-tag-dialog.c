@@ -41,7 +41,7 @@ enum
 {
   PROP_0,
   PROP_WINDOW,
-  PROP_NOTES,
+  PROP_ITEMS,
   NUM_PROPERTIES
 };
 
@@ -57,16 +57,16 @@ struct _BjbNoteTagDialogPrivate
   GtkTreeView  * view;
 
   // data
-  GList *notes;
+  GList *items;
   GtkListStore *store;
   GHashTable *collections;
-  
+
   // tmp when a new tag added
   gchar *tag_to_scroll_to;
 
   // tmp for convenience, when a tag is toggled
   gchar *toggled_collection;
-  
+
 };
 
 #define BJB_NOTE_TAG_DIALOG_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_NOTE_TAG_DIALOG, BjbNoteTagDialogPrivate))
@@ -79,24 +79,24 @@ append_tag (gchar *tag, BjbNoteTagDialog *self)
   BjbNoteTagDialogPrivate *priv = self->priv;
 
   GtkTreeIter iter;
-  gint note_has_tag;
+  gint item_has_tag;
   GList *l;
 
   gtk_list_store_append (priv->store, &iter);
-  note_has_tag = biji_note_obj_has_collection (priv->notes->data, tag);
+  item_has_tag = biji_item_has_collection (priv->items->data, tag);
 
   /* Check if other notes have the same */  
-  for (l = priv->notes; l != NULL; l = l->next)
+  for (l = priv->items; l != NULL; l = l->next)
   {
-    if (biji_note_obj_has_collection (l->data, tag) != note_has_tag)
+    if (biji_item_has_collection (l->data, tag) != item_has_tag)
     {
-      note_has_tag = SELECTION_INCONSISTENT;
+      item_has_tag = SELECTION_INCONSISTENT;
       break;
     }
   }
 
   gtk_list_store_set (priv->store,    &iter,
-                      COL_SELECTION,  note_has_tag,
+                      COL_SELECTION,  item_has_tag,
                       COL_TAG_NAME ,  tag, -1);
 }
 
@@ -199,21 +199,20 @@ update_collections_model_async (BjbNoteTagDialog *self)
 static void
 note_dialog_add_tag (gpointer iter, gpointer collection)
 {
-  BijiNoteObj *note = BIJI_NOTE_OBJ (iter);
-  gchar *title = (gchar*) collection;
-
-  biji_note_obj_add_collection (note, title, TRUE);
+  biji_item_add_collection (BIJI_ITEM (iter), (gchar*) collection, TRUE);
 }
 
 static void
 note_dialog_remove_tag (gpointer iter, gpointer user_data)
 {
-  BijiNoteObj *note = BIJI_NOTE_OBJ (iter);
-  BjbNoteTagDialog *self = user_data;
-  gchar *urn = g_hash_table_lookup (self->priv->collections,
-                                    self->priv->toggled_collection);
+  BjbNoteTagDialog *self;
+  gchar *urn;
 
-  biji_note_obj_remove_collection (note, self->priv->toggled_collection, urn);
+  self = user_data;
+  urn = g_hash_table_lookup (self->priv->collections,
+                             self->priv->toggled_collection);
+
+  biji_item_remove_collection (BIJI_ITEM (iter), self->priv->toggled_collection, urn);
 }
 
 static void
@@ -239,12 +238,12 @@ on_tag_toggled (GtkCellRendererToggle *cell,
 
   if (toggle_item == SELECTION_INCONSISTENT || toggle_item == SELECTION_FALSE)
   {
-    g_list_foreach (priv->notes, note_dialog_add_tag, tag);
+    g_list_foreach (priv->items, note_dialog_add_tag, tag);
     toggle_item = SELECTION_TRUE;
   }
   else
   {
-    g_list_foreach (priv->notes, note_dialog_remove_tag, self);
+    g_list_foreach (priv->items, note_dialog_remove_tag, self);
     toggle_item = SELECTION_FALSE;
   }
 
@@ -260,7 +259,7 @@ on_new_collection_created_cb (gpointer user_data)
   BjbNoteTagDialogPrivate *priv = self->priv;
 
   priv->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry)));
-  g_list_foreach (priv->notes, note_dialog_add_tag, priv->tag_to_scroll_to);
+  g_list_foreach (priv->items, note_dialog_add_tag, priv->tag_to_scroll_to);
 
   update_collections_model_async (self);
   gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
@@ -335,7 +334,7 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
   BjbNoteTagDialogPrivate *priv = BJB_NOTE_TAG_DIALOG_GET_PRIVATE(self);
 
   self->priv = priv;
-  priv->notes = NULL;
+  priv->items = NULL;
   priv->collections = NULL;
   priv->window = NULL;
   priv->tag_to_scroll_to = NULL;
@@ -445,8 +444,8 @@ bjb_note_tag_dialog_get_property (GObject      *object,
     case PROP_WINDOW:
       g_value_set_object (value, self->priv->window);
       break;
-    case PROP_NOTES:
-      g_value_set_pointer (value, self->priv->notes);
+    case PROP_ITEMS:
+      g_value_set_pointer (value, self->priv->items);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -467,8 +466,8 @@ bjb_note_tag_dialog_set_property (GObject        *object,
     case PROP_WINDOW:
       self->priv->window = g_value_get_object(value);
       break;
-    case PROP_NOTES:
-      self->priv->notes = g_value_get_pointer (value);
+    case PROP_ITEMS:
+      self->priv->items = g_value_get_pointer (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -496,9 +495,9 @@ bjb_note_tag_dialog_class_init (BjbNoteTagDialogClass *klass)
                                                  G_PARAM_CONSTRUCT |
                                                  G_PARAM_STATIC_STRINGS);
 
-  properties[PROP_NOTES] = g_param_spec_pointer ("notes",
-                                                 "Biji Notes",
-                                                 "The Notes to tag",
+  properties[PROP_ITEMS] = g_param_spec_pointer ("items",
+                                                 "Biji Items",
+                                                 "Notes and Collections to tag",
                                                  G_PARAM_READWRITE |
                                                  G_PARAM_CONSTRUCT_ONLY |
                                                  G_PARAM_STATIC_STRINGS);
@@ -508,11 +507,11 @@ bjb_note_tag_dialog_class_init (BjbNoteTagDialogClass *klass)
 
 void
 bjb_note_tag_dialog_new (GtkWindow *parent,
-                         GList     *biji_note_obj)
+                         GList     *biji_items)
 {
   BjbNoteTagDialog *self = g_object_new (BJB_TYPE_NOTE_TAG_DIALOG,
                                          "window", parent,
-                                         "notes", biji_note_obj,
+                                         "items", biji_items,
                                          NULL);
 
   gtk_dialog_run (GTK_DIALOG (self));

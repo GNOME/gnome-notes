@@ -74,7 +74,11 @@ void bjb_controller_connect (BjbController *self);
 
 void bjb_controller_disconnect (BjbController *self);
 
-gboolean bjb_controller_shows_notes (BjbController *self);
+gboolean bjb_controller_shows_item (BjbController *self);
+
+gchar * bjb_controller_get_collection (BjbController *self);
+
+void bjb_controller_set_collection (BjbController *self, gchar *to_open);
 
 G_END_DECLS
 

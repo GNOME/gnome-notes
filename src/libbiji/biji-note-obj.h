@@ -21,6 +21,8 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include "biji-item.h"
+
 G_BEGIN_DECLS
 
 /* Available formating for biji_note_obj_editor_apply_format
@@ -51,12 +53,12 @@ typedef struct _BijiNoteObjPrivate BijiNoteObjPrivate;
 
 struct _BijiNoteObjClass
 {
-  GObjectClass parent_class;
+  BijiItemClass parent_class;
 };
 
 struct _BijiNoteObj
 {
-  GObject parent_instance;
+  BijiItem parent_instance;
   BijiNoteObjPrivate* priv ;
 };
 
@@ -71,25 +73,17 @@ gpointer biji_note_obj_get_note_book(BijiNoteObj *note);
 
 void _biji_note_obj_set_book(BijiNoteObj *note, gpointer biji_note_book);
 
-gboolean biji_note_obj_trash (BijiNoteObj *dead);
-
 gboolean biji_note_obj_are_same(BijiNoteObj *a, BijiNoteObj* b);
 
 ///////////////////////////////////////////////////////////////////// Metadata 
-
-gchar * biji_note_obj_get_title (BijiNoteObj *obj);
 
 /* will enter hit make title renamed? */
 gboolean biji_note_obj_title_survives (BijiNoteObj *note);
 void biji_note_obj_set_title_survives (BijiNoteObj *obj, gboolean value);
 
-gchar* biji_note_obj_get_path (BijiNoteObj *n);
-
 gboolean biji_note_obj_set_last_change_date (BijiNoteObj* n,gchar* date);
 
 void biji_note_obj_set_last_change_date_now (BijiNoteObj* n) ;
-
-glong biji_note_obj_get_last_change_date_sec ( BijiNoteObj *n );
 
 gchar * biji_note_obj_get_last_change_date_string (BijiNoteObj *self);
 
@@ -116,23 +110,11 @@ void biji_note_obj_set_rgba(BijiNoteObj *n, GdkRGBA *rgba) ;
 
 GList * biji_note_obj_get_collections (BijiNoteObj *n);
 
-gboolean biji_note_obj_has_collection (BijiNoteObj *note, gchar *label);
-
-gboolean biji_note_obj_add_collection (BijiNoteObj *note, gchar *label, gboolean on_user_action_cb);
-
-gboolean biji_note_obj_remove_collection (BijiNoteObj *note, gchar *label, gchar *urn);
-
-///////////////////////////////////////////////////////////////////  templates
 gboolean note_obj_is_template(BijiNoteObj *n) ;
 
 void note_obj_set_is_template(BijiNoteObj *n,gboolean is_template);
 
-/////////////////////////////////////////////////////////////////// Save
 void biji_note_obj_save_note (BijiNoteObj *self);
-
-GdkPixbuf * biji_note_obj_get_icon (BijiNoteObj *note);
-
-GdkPixbuf * biji_note_obj_get_emblem (BijiNoteObj *note);
 
 void biji_note_obj_set_icon (BijiNoteObj *note, GdkPixbuf *pix);
 

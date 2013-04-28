@@ -20,7 +20,9 @@
 
 #define _LIBBIJI_INSIDE_H
 
+#include "biji-collection.h"
 #include "biji-date-time.h"
+#include "biji-item.h"
 #include "biji-marshalers.h"
 #include "biji-note-book.h"
 #include "biji-note-obj.h"

@@ -274,6 +274,12 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
     destroy_note_if_needed (bwb);
   }
 
+  else if (type == BJB_WINDOW_BASE_SPINNER_VIEW)
+  {
+    priv->note = NULL;
+    gd_stack_set_visible_child_name (priv->stack, "spinner");
+  }
+
   else if (type == BJB_WINDOW_BASE_NO_NOTE)
   {
     bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),

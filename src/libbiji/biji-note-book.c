@@ -205,18 +205,20 @@ _biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
 
   /* Check for new collections */
   collections = biji_note_obj_get_collections (note);
+
   for (l = collections ; l != NULL; l = l->next)
   {
     BijiCollection *collection;
 
-    /* If the collection already existed,
-     * previous is finalized (GHashTable)
-     * We could also check before creating it */
+    collection = g_hash_table_lookup (book->priv->items, l->data);
 
-    collection = biji_collection_new ((gchar*) l->data);
-    g_hash_table_insert (book->priv->items,
-                         biji_item_get_uuid (BIJI_ITEM (collection)),
-                         collection);
+    if (!collection)
+    {
+      collection = biji_collection_new ((gchar*) l->data);
+      g_hash_table_insert (book->priv->items,
+                           biji_item_get_uuid (BIJI_ITEM (collection)),
+                           collection);
+    }
   }
 
   /* Notify */

@@ -199,6 +199,74 @@ biji_get_all_collections_async (GAsyncReadyCallback f,
 }
 
 GList *
+biji_get_items_with_collection_finish (GObject *source_object,
+                                       GAsyncResult *res,
+                                       BijiNoteBook *book)
+{
+  TrackerSparqlConnection *self = TRACKER_SPARQL_CONNECTION (source_object);
+  TrackerSparqlCursor *cursor;
+  GError *error = NULL;
+  GList *result = NULL;
+
+  cursor = tracker_sparql_connection_query_finish (self, res, &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+  }
+
+  if (cursor)
+  {
+    const gchar *full_path;
+    gchar *path;
+    BijiItem *item = NULL;
+
+    while (tracker_sparql_cursor_next (cursor, NULL, NULL))
+    {
+      full_path = tracker_sparql_cursor_get_string (cursor, 0, NULL);
+
+      if (g_str_has_prefix (full_path, "file://"))
+      {
+        GString *string;
+        string = g_string_new (full_path);
+        g_string_erase (string, 0, 7);
+        path = g_string_free (string, FALSE);
+      }
+      else
+      {
+        path = g_strdup (full_path);
+      }
+
+      item = biji_note_book_get_item_at_path (book, path);
+
+      /* Sorting is done in another place */
+      if (item)
+        result = g_list_prepend (result, item);
+
+      g_free (path);
+    }
+
+    g_object_unref (cursor);
+  }
+
+  return result;
+}
+
+void
+biji_get_items_with_collection_async (gchar *collection,
+                                      GAsyncReadyCallback f,
+                                      gpointer user_data)
+{
+  gchar *query;
+
+  query = g_strdup_printf ("SELECT ?s WHERE {?c nie:isPartOf ?s; nie:title '%s'}",
+                           collection);
+
+  bjb_perform_query_async (query, f, user_data);
+}
+
+GList *
 biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
                                                   GAsyncResult *res,
                                                   BijiNoteBook *book)
@@ -237,7 +305,7 @@ biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
       {
         path = g_strdup (full_path);
       }
-      
+
       item = biji_note_book_get_item_at_path (book, path);
 
       /* Sorting is done in another place */

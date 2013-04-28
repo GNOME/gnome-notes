@@ -219,7 +219,13 @@ switch_to_note (BjbMainView *view, BijiItem *to_open)
     switch_to_note_view (view, BIJI_NOTE_OBJ (to_open));
   }
 
-  /* TODO : coll */
+  /* Collection
+   * TODO : check if already opened (same as above) */
+  else
+  {
+    bjb_controller_set_collection (view->priv->controller,
+                                   biji_item_get_title (to_open));
+  }
 }
 
 static GList *

@@ -34,6 +34,7 @@ struct _BjbControllerPrivate
 {
   BijiNoteBook  *book ;
   gchar         *needle ;
+  gchar         *collection;
   GtkTreeModel  *model ;
   GtkTreeModel  *completion;
 
@@ -96,6 +97,7 @@ bjb_controller_init (BjbController *self)
   priv->model = GTK_TREE_MODEL(store) ;
   priv->items_to_show = NULL;
   priv->needle = NULL;
+  priv->collection = NULL;
   priv->connected = FALSE;
 
   completion  = gtk_list_store_new (1, G_TYPE_STRING);
@@ -120,6 +122,9 @@ bjb_controller_finalize (GObject *object)
   g_object_unref (priv->completion);
   g_free (priv->needle);
   g_list_free (priv->items_to_show);
+
+  if (priv->collection)
+    g_free (priv->collection);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
@@ -363,7 +368,7 @@ update_controller_callback (GObject *source_object,
   self->priv->items_to_show = result;
 
   sort_and_update (self);
-}          
+}
 
 void
 bjb_controller_apply_needle (BjbController *self)
@@ -693,4 +698,59 @@ bjb_controller_shows_item (BjbController *self)
     return TRUE;
 
   return FALSE;
+}
+
+static void
+bjb_controller_show_collection (GObject *source_object,
+                                GAsyncResult *res,
+                                gpointer user_data)
+{
+  GList *result;
+  BjbController *self = BJB_CONTROLLER (user_data);
+
+  result = biji_get_items_with_collection_finish (source_object, res, self->priv->book);
+  self->priv->items_to_show = result;
+
+  sort_and_update (self);
+  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
+}
+
+gchar *
+bjb_controller_get_collection (BjbController *self)
+{
+  return self->priv->collection;
+}
+
+void
+bjb_controller_set_collection (BjbController *self,
+                               gchar         *to_open)
+{
+  /* Going back from a collection */
+  if (!to_open)
+  {
+    if (!self->priv->collection)
+      return;
+
+    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
+    g_clear_pointer (&self->priv->collection, g_free);
+    bjb_controller_apply_needle (self);
+    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
+    return;
+  }
+
+  /* Opening an __existing__ collection */
+  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
+  g_list_free (self->priv->items_to_show);
+
+  if (self->priv->needle)
+    g_free (self->priv->needle);
+
+  if (self->priv->collection)
+    g_free (self->priv->collection);
+
+  self->priv->needle = g_strdup ("");
+  self->priv->collection = g_strdup (to_open);
+  biji_get_items_with_collection_async (to_open,
+                                        bjb_controller_show_collection,
+                                        self);
 }

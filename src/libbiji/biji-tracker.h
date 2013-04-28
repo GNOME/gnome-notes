@@ -27,6 +27,14 @@
 /* todo : find this on glib */
 typedef void (*BijiFunc) (gpointer user_data);
 
+GList * biji_get_items_with_collection_finish (GObject *source_object,
+                                               GAsyncResult *res,
+                                               BijiNoteBook *book);
+
+void  biji_get_items_with_collection_async (gchar *needle,
+                                            GAsyncReadyCallback f,
+                                            gpointer user_data);
+
 /* All notes matching (either content or collections) */
 GList * biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
                                                           GAsyncResult *res,

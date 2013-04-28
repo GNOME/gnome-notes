@@ -277,10 +277,15 @@ static void
 update_label_for_standard (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
-  gchar *needle = bjb_controller_get_needle (priv->controller);
-  gchar *label ;
+  gchar *collection, *needle, *label;
 
-  if (needle && g_strcmp0 (needle, "") !=0)
+  collection = bjb_controller_get_collection (priv->controller);
+  needle = bjb_controller_get_needle (priv->controller);
+
+  if (collection)
+    label = g_strdup_printf ("%s", collection);
+
+  else if (needle && g_strcmp0 (needle, "") !=0)
     label = g_strdup_printf (_("Results for %s"), needle);
 
   else
@@ -309,33 +314,58 @@ connect_main_view_handlers (BjbMainToolbar *self)
 }
 
 static void
+on_back_button_clicked (BjbMainToolbar *self)
+{
+  bjb_controller_set_collection (self->priv->controller, NULL);
+}
+
+static void
 populate_bar_for_standard(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *bin = NULL;
+  gchar *collection;
 
   /* Label */
   update_label_for_standard (self);
   priv->search_handler = g_signal_connect_swapped (priv->controller,
          "search-changed", G_CALLBACK(update_label_for_standard), self);
 
-  /* New Note button */
-  priv->new = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
-                                         NULL,
-                                         _("New"),
-                                         TRUE);
-  gtk_widget_set_size_request (priv->new, 70, -1);
-  bin = gtk_bin_get_child (GTK_BIN (priv->new));
+  /* Go back to all notes */
+  collection = bjb_controller_get_collection (priv->controller);
 
-  if (bin)
+  if (collection)
   {
-    gint y_padding = 0;
-    gtk_misc_get_padding (GTK_MISC (bin), NULL, &y_padding);
-    gtk_misc_set_padding (GTK_MISC (bin), 12, y_padding);
+    GtkWidget *back, *button;
+
+    back = get_icon ("go-previous-symbolic");
+    button = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (self), NULL, NULL, TRUE);
+    gtk_container_add (GTK_CONTAINER (button), back);
+
+    g_signal_connect_swapped (button, "clicked",
+                              G_CALLBACK (on_back_button_clicked), self);
   }
 
-  g_signal_connect(priv->new,"clicked",
-                   G_CALLBACK(on_new_note_clicked),priv->parent);
+  /* New Note button */
+  else
+  {
+    priv->new = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
+                                           NULL,
+                                           _("New"),
+                                           TRUE);
+    gtk_widget_set_size_request (priv->new, 70, -1);
+    bin = gtk_bin_get_child (GTK_BIN (priv->new));
+
+    if (bin)
+    {
+      gint y_padding = 0;
+      gtk_misc_get_padding (GTK_MISC (bin), NULL, &y_padding);
+      gtk_misc_set_padding (GTK_MISC (bin), 12, y_padding);
+    }
+
+    g_signal_connect(priv->new,"clicked",
+                     G_CALLBACK(on_new_note_clicked),priv->parent);
+  }
 
   /* Go to selection mode */
   priv->select = gd_main_toolbar_add_button(GD_MAIN_TOOLBAR (self),
@@ -695,9 +725,9 @@ populate_bar_switch(BjbMainToolbar *self)
       populate_bar_for_note_view (self);
       break;
 
+    /* Spinner, Empty Results */
     default:
-      g_warning ("Main Toolbar implementation is erroneous.\
-                 Please fill in a bug report");
+      break;
   }
 
   gtk_widget_show_all (GTK_WIDGET (self));
@@ -715,14 +745,20 @@ populate_main_toolbar(BjbMainToolbar *self)
   if (view_type == BJB_WINDOW_BASE_NOTE_VIEW)
     to_be = BJB_TOOLBAR_NOTE_VIEW;
 
-  else if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
-    to_be = BJB_TOOLBAR_SELECT;
+  else if (view_type == BJB_WINDOW_BASE_MAIN_VIEW)
+  {
+    if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
+      to_be = BJB_TOOLBAR_SELECT;
 
-  else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
-    to_be = BJB_TOOLBAR_STD_ICON;
+    if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
+      to_be = BJB_TOOLBAR_STD_ICON;
 
-  else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
-    to_be = BJB_TOOLBAR_STD_LIST;
+    else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
+      to_be = BJB_TOOLBAR_STD_LIST;
+  }
+
+  else
+    to_be = BJB_TOOLBAR_0;
 
   /* Simply clear then populate */
   if (to_be != priv->type)

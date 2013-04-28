@@ -438,23 +438,23 @@ refresh_completion(BjbController *self)
 }
 
 static gboolean
-bjb_controller_get_iter_at_note (BjbController *self, BijiNoteObj *note, GtkTreeIter **iter)
+bjb_controller_get_iter_at_item (BjbController *self, BijiItem *item, GtkTreeIter **iter)
 {
   BjbControllerPrivate *priv = self->priv;
-  gchar *needle = biji_item_get_uuid (BIJI_ITEM (note));
+  gchar *needle = biji_item_get_uuid (item);
   gboolean retval = FALSE;
   gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
 
   while (still)
   {
-    gchar *note_path;
+    gchar *item_path;
 
-    gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &note_path,-1);
+    gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &item_path,-1);
 
-    if (g_strcmp0 (note_path, needle)==0)
+    if (g_strcmp0 (item_path, needle)==0)
       retval = TRUE;
 
-    g_free (note_path);
+    g_free (item_path);
 
     if (retval)
       break;
@@ -472,12 +472,12 @@ bjb_controller_get_iter_at_note (BjbController *self, BijiNoteObj *note, GtkTree
 static void
 on_book_changed (BijiNoteBook           *book,
                  BijiNoteBookChangeFlag  flag,
-                 gpointer               *note_obj,
+                 gpointer               *biji_item,
                  BjbController          *self)
 {
   BjbControllerPrivate *priv = self->priv;
-  BijiNoteObj *note = BIJI_NOTE_OBJ (note_obj);
-  BijiItem    *item = BIJI_ITEM (note);
+  BijiItem    *item = BIJI_ITEM (biji_item);
+  BijiNoteObj *note = NULL;
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
@@ -485,16 +485,20 @@ on_book_changed (BijiNoteBook           *book,
   {
     /* If this is a *new* note, per def prepend
      * But do not add a new note to a search window */
-    case BIJI_BOOK_NOTE_ADDED:
-        bjb_controller_add_note_if_needed (self, note, TRUE);
-        priv->items_to_show = g_list_prepend (priv->items_to_show, note);
-        g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
+    case BIJI_BOOK_ITEM_ADDED:
+        /* Todo : handle collection as well */
+        if (BIJI_IS_NOTE_OBJ (item))
+        {
+          note = BIJI_NOTE_OBJ (item);
+          bjb_controller_add_note_if_needed (self, note, TRUE);
+          priv->items_to_show = g_list_prepend (priv->items_to_show, note);
+          g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
+        }
       break;
 
-    /* If the note is *amended*, then per definition we prepend.
-     * but if we add other ordering this does not work */
+    /* FIXME - a note has to be added after the collections... */
     case BIJI_BOOK_NOTE_AMENDED:
-      if (bjb_controller_get_iter_at_note (self, note, &p_iter))
+      if (bjb_controller_get_iter_at_item (self, item, &p_iter))
       {
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
         bjb_controller_add_note_if_needed (self, note, TRUE);
@@ -505,18 +509,18 @@ on_book_changed (BijiNoteBook           *book,
     case BIJI_BOOK_NOTE_COLORED:
       if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
-          && bjb_controller_get_iter_at_note (self, note, &p_iter))
+          && bjb_controller_get_iter_at_item (self, item, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
                             GD_MAIN_COLUMN_ICON, biji_item_get_icon (item), -1);
       else if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST
-          && bjb_controller_get_iter_at_note (self, note, &p_iter))
+          && bjb_controller_get_iter_at_item (self, item, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
                             GD_MAIN_COLUMN_ICON, biji_item_get_emblem (item), -1);
       break;
 
-    case BIJI_BOOK_NOTE_TRASHED:
-      if (bjb_controller_get_iter_at_note (self, note, &p_iter))
+    case BIJI_BOOK_ITEM_TRASHED:
+      if (bjb_controller_get_iter_at_item (self, item, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
       priv->items_to_show = g_list_remove (priv->items_to_show, note);

@@ -173,22 +173,22 @@ biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title)
 gboolean
 biji_note_book_notify_changed (BijiNoteBook            *book,
                                BijiNoteBookChangeFlag   flag,
-                               BijiNoteObj              *note)
+                               BijiItem                *item)
 {
-  g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED], 0, flag, note);
+  g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED], 0, flag, item);
   return FALSE;
 }
 
 void
 book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 {
-  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_AMENDED, note);
+  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_AMENDED, BIJI_ITEM (note));
 }
 
 static void
 book_on_note_color_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 {
-  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_COLORED, note);
+  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_COLORED, BIJI_ITEM (note));
 }
 
 static void
@@ -394,7 +394,7 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
   g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
   g_return_val_if_fail (BIJI_IS_ITEM      (item), FALSE);
 
-  BijiNoteObj *to_delete = NULL;
+  BijiItem *to_delete = NULL;
   gchar *path;
   gboolean retval = FALSE;
 
@@ -405,7 +405,7 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
   {
     /* Signal before doing anything here. So the note is still
      * fully available for signal receiver. */
-    biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_TRASHED, to_delete);
+    biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_TRASHED, to_delete);
 
     /* Ref note first, hash_table won't finalize it & we can delete it*/
     g_object_ref (to_delete);
@@ -429,7 +429,7 @@ biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean 
   _biji_note_book_add_one_note (book,note);
 
   if (notify)
-    biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_ADDED, note);
+    biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ADDED, BIJI_ITEM (note));
 }
 
 GList *

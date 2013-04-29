@@ -159,7 +159,7 @@ external_activated (GSimpleAction *action,
 
   windows = gtk_application_get_windows (GTK_APPLICATION(user_data));
 
-  dialog = gtk_dialog_new_with_buttons (_("External Notes"),
+  dialog = gtk_dialog_new_with_buttons (_("Import Notes"),
                                         g_list_nth_data (windows, 0),
                                         GTK_DIALOG_MODAL| 
                                         GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -174,7 +174,7 @@ external_activated (GSimpleAction *action,
   gtk_widget_set_hexpand (area, TRUE);
   gtk_widget_set_vexpand (area, TRUE);
 
-  label = gtk_label_new (_("Click on the external notes to import"));
+  label = gtk_label_new (_("Import notes from:"));
   gtk_box_pack_start (GTK_BOX (area), label, TRUE, FALSE, 2);
 
   store = gtk_list_store_new (IMPORT_DIALOG_N_COLUMNS,

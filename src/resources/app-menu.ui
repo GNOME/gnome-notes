@@ -7,7 +7,7 @@
         <attribute name="accel">&lt;Primary&gt;n</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_External Notes</attribute>
+        <attribute name="label" translatable="yes">_Import Notes</attribute>
         <attribute name="action">app.external</attribute>
       </item>
     </section>

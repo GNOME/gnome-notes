@@ -1,3 +1,29 @@
+Overview of changes in 3.9.1
+=============================
+
+* Add basis for collections
+
+* Initial empty state (empty results box)
+
+* Initial spinner
+
+* Switch manual to CC license
+
+* Bugs fixes
+  697922 - Crash on 32-bit
+  698028 - Note icons for list view
+
+* New translations:
+  el
+  fi
+  sk
+
+Overview of changes in 3.8.0
+=============================
+
+* New translation:
+  hu
+
 Overview of changes in 3.7.92
 =============================
 

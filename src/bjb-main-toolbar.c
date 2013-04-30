@@ -579,7 +579,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_widget_show (item);
 
   /* Ordered list as 1.mouse 2.cats 3.dogs */
-  item = gtk_menu_item_new_with_label (_("List"));
+  item = gtk_menu_item_new_with_label (_("Numbered List"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (bjb_toggle_list), editor);

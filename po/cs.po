@@ -1,6 +1,7 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
+#
 # Marek Černocký <marek@manet.cz>, 2013.
 #
 msgid ""
@@ -8,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-04-24 23:22+0000\n"
-"PO-Revision-Date: 2013-04-25 21:23+0200\n"
+"POT-Creation-Date: 2013-04-29 21:37+0000\n"
+"PO-Revision-Date: 2013-04-30 14:57+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -43,13 +44,13 @@ msgstr "Jednoduchý poznámkový sešit pro GNOME"
 msgid "translator-credits"
 msgstr "Marek Černocký, <marek@manet.cz>"
 
-#: ../src/bjb-app-menu.c:156
-msgid "External Notes"
-msgstr "Externí poznámky"
+#: ../src/bjb-app-menu.c:162
+msgid "Import Notes"
+msgstr "Import poznámek"
 
-#: ../src/bjb-app-menu.c:171
-msgid "Click on the external notes to import"
-msgstr "Kliknutím na externí poznámky je naimportujete"
+#: ../src/bjb-app-menu.c:177
+msgid "Import notes from:"
+msgstr "Importovat poznámky z:"
 
 #: ../src/bjb-color-button.c:146
 msgid "Choose a color for note"
@@ -114,66 +115,66 @@ msgstr[0] "%d vybrána"
 msgstr[1] "%d vybrány"
 msgstr[2] "%d vybráno"
 
-#: ../src/bjb-main-toolbar.c:284
+#: ../src/bjb-main-toolbar.c:289
 #, c-format
 msgid "Results for %s"
 msgstr "Výsledky pro %s"
 
-#: ../src/bjb-main-toolbar.c:287
+#: ../src/bjb-main-toolbar.c:292
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: ../src/bjb-main-toolbar.c:325
+#: ../src/bjb-main-toolbar.c:354
 msgid "New"
 msgstr "Nová"
 
-#: ../src/bjb-main-toolbar.c:497
+#: ../src/bjb-main-toolbar.c:532
 msgid "Rename Note"
 msgstr "Přejmenování poznámky"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:518
+#: ../src/bjb-main-toolbar.c:553
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../src/bjb-main-toolbar.c:526
+#: ../src/bjb-main-toolbar.c:561
 msgid "Redo"
 msgstr "Znovu"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:540
+#: ../src/bjb-main-toolbar.c:575
 msgid "Bullets"
 msgstr "Odrážky"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:547
+#: ../src/bjb-main-toolbar.c:582
 msgid "List"
 msgstr "Seznam"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:558
+#: ../src/bjb-main-toolbar.c:593
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: ../src/bjb-main-toolbar.c:564
+#: ../src/bjb-main-toolbar.c:599
 msgid "Tags"
 msgstr "Štítky"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:575
+#: ../src/bjb-main-toolbar.c:610
 msgid "Delete this Note"
 msgstr "Odstranit tuto poznámku"
 
-#: ../src/bjb-main-toolbar.c:607
+#: ../src/bjb-main-toolbar.c:644
 msgid "Notes"
 msgstr "Poznámky"
 
-#: ../src/bjb-note-tag-dialog.c:374
+#: ../src/bjb-note-tag-dialog.c:373
 msgid "Enter a name to create a tag"
 msgstr "Zadejte název štítku, který chcete vytvořit"
 
-#: ../src/bjb-note-tag-dialog.c:384
+#: ../src/bjb-note-tag-dialog.c:383
 msgid "New tag"
 msgstr "Nový štítek"
 
@@ -234,8 +235,8 @@ msgid "_New Window"
 msgstr "Nové _okno"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External Notes"
-msgstr "_Externí poznámky"
+msgid "_Import Notes"
+msgstr "_Import poznámek"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"

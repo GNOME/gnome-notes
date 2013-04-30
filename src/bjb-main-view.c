@@ -65,9 +65,6 @@ struct _BjbMainViewPriv {
   /* Selection Mode */
   BjbSelectionToolbar  *select_bar;
 
-  /* Search Entry  */
-  BjbSearchToolbar *search_bar;
-
   /* View Notes , model */
   GdMainView       *view ; 
   BjbController    *controller ;
@@ -182,7 +179,6 @@ biji_main_view_constructor (GType                  gtype,
 void
 switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 {
-  bjb_search_toolbar_disconnect (self->priv->search_bar);
   bjb_main_view_disconnect_handlers (self);
   bjb_window_base_switch_to_note (BJB_WINDOW_BASE (self->priv->window), note);
 }
@@ -474,7 +470,6 @@ bjb_main_view_connect_signals (BjbMainView *self)
   BjbMainViewPriv *priv = self->priv;
 
   bjb_controller_connect (priv->controller);
-  bjb_search_toolbar_connect (priv->search_bar);
 
   if (priv->view_selection_changed == 0)
     priv->view_selection_changed = g_signal_connect_swapped
@@ -503,7 +498,6 @@ bjb_main_view_constructed(GObject *o)
   GtkBox               *vbox; //self, too
   BjbMainViewPriv      *priv;
   GtkOverlay           *overlay;
-  GdRevealer           *revealer;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
@@ -516,11 +510,6 @@ bjb_main_view_constructed(GObject *o)
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
 
   priv->view = gd_main_view_new (DEFAULT_VIEW);
-
-  /* Search entry toolbar */
-  priv->search_bar = bjb_search_toolbar_new (priv->window, priv->controller);
-  revealer = bjb_search_toolbar_get_revealer (priv->search_bar);
-  gtk_box_pack_start (vbox, GTK_WIDGET (revealer), FALSE, FALSE, 0);
 
   /* Main view */
   overlay = GTK_OVERLAY (gtk_overlay_new ());
@@ -611,23 +600,9 @@ bjb_main_view_update_model (BjbMainView *self)
   gd_main_view_set_model (priv->view, bjb_controller_get_model (priv->controller));
 }
 
-BjbSearchToolbar *
-bjb_main_view_get_search_toolbar (BjbMainView *view)
-{
-  g_return_val_if_fail (BJB_IS_MAIN_VIEW (view), NULL);
+/* interface for notes view (GdMainView)
+ * TODO - BjbMainView should rather be a GdMainView */
 
-  return view->priv->search_bar;
-}
-
-gpointer
-bjb_main_view_get_main_toolbar (BjbMainView *view)
-{
-  g_return_val_if_fail (BJB_IS_MAIN_VIEW (view), NULL);
-
-  return (gpointer) view->priv->main_toolbar;
-}
-
-/* interface for notes view (GdMainView) */
 gboolean
 bjb_main_view_get_selection_mode (BjbMainView *self)
 {

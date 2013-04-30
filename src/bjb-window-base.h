@@ -69,4 +69,9 @@ BijiNoteObj * bjb_window_base_get_note (BjbWindowBase *self);
 
 gboolean switch_window_fullscreen();
 
+gboolean bjb_window_base_set_show_search_bar (BjbWindowBase *self, gboolean show);
+
+gboolean bjb_window_base_toggle_search_button (BjbWindowBase *self,
+                                               gboolean active);
+
 #endif /* _BJB_WINDOW_BASE_H */

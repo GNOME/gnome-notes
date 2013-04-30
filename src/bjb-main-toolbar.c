@@ -202,18 +202,10 @@ on_button_press (GtkWidget* widget,
 static void
 on_search_button_clicked (BjbMainToolbarPrivate *priv)
 {
-  BjbSearchToolbar *bar;
+  gboolean show_bar;
 
-  bar = bjb_main_view_get_search_toolbar (priv->parent);
-
-  if (bar == NULL)
-    return;
-
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->search)))
-    bjb_search_toolbar_fade_in (bar);
-
-  else
-    bjb_search_toolbar_fade_out (bar);
+  show_bar = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->search));
+  bjb_window_base_set_show_search_bar (BJB_WINDOW_BASE (priv->window), show_bar);
 }
 
 static void

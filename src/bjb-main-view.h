@@ -82,10 +82,6 @@ void switch_to_note_view(BjbMainView *view,BijiNoteObj *note) ;
 
 void bjb_main_view_update_model (BjbMainView *view);
 
-BjbSearchToolbar *bjb_main_view_get_search_toolbar (BjbMainView *view);
-
-gpointer bjb_main_view_get_main_toolbar (BjbMainView *view);
-
 /* bridge for notes view (GdMainView)
  * TODO : get rid of this it's a bit idiot */
 

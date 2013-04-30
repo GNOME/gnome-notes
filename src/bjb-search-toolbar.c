@@ -72,16 +72,8 @@ static void
 bjb_search_toolbar_toggle_search_button (BjbSearchToolbar *self,
                                          gboolean state)
 {
-  BjbMainView *view;
-  BjbMainToolbar *bar;
-
-  view = bjb_window_base_get_main_view (BJB_WINDOW_BASE (self->priv->window));
-  if (view)
-  {
-    bar = bjb_main_view_get_main_toolbar (view);
-    if (bar)
-      bjb_main_toolbar_set_search_toggle_state (bar, state);
-  }
+  bjb_window_base_toggle_search_button (BJB_WINDOW_BASE (self->priv->window),
+                                        state);
 }
 
 void

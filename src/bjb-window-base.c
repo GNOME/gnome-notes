@@ -26,33 +26,32 @@ enum {
 
 static guint bjb_win_base_signals [BJB_WIN_BASE_SIGNALS] = { 0 };
 
-/* As the main window remains, it owns the data */
+
 struct _BjbWindowBasePriv
 {
-  /* To register new windows and access the data */
   GtkApplication       *app ;
   BjbController        *controller;
+  gchar                *entry; // FIXME, remove this
 
-  /* UI
-   * The Notebook always has a main view.
-   * When editing a note, it _also_ has a note view */
+
   GtkWidget            *vbox;
-  GdStack              *stack;
-  GtkWidget            *spinner; // this spinner takes the whole place
-                                 // and only shows on startup
-  GtkWidget            *no_note;
+  BjbMainToolbar       *main_toolbar;
+  BjbSearchToolbar     *search_bar;
 
+
+  GdStack              *stack;
   BjbWindowViewType     current_view;
   BjbMainView          *view;
-  BjbMainToolbar       *main_toolbar;
-  gchar                *entry;
+  BjbNoteView          *note_view;
+  GtkWidget            *spinner;
+  GtkWidget            *no_note;
+
 
   /* when a note is opened */
   BijiNoteObj          *note;
-  BjbNoteView          *note_view;
   GtkWidget            *note_overlay;
 
-  /* To avoid loiding several times */
+
   PangoFontDescription *font ;
 };
 
@@ -185,8 +184,9 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
 GtkWindow *
 bjb_window_base_new(void)
 {
-  BjbWindowBase *retval;
-  BjbWindowBasePriv *priv;
+  BjbWindowBase       *retval;
+  BjbWindowBasePriv   *priv;
+  GdRevealer          *revealer;
 
   retval = g_object_new(BJB_TYPE_WINDOW_BASE,
                         "application", g_application_get_default(),
@@ -206,6 +206,11 @@ bjb_window_base_new(void)
   priv->view = bjb_main_view_new (GTK_WIDGET (retval), priv->controller);
   priv->main_toolbar = bjb_main_toolbar_new (priv->view, priv->controller);
   gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->main_toolbar), FALSE, FALSE, 0);
+
+  /* Search entry toolbar */
+  priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (retval), priv->controller);
+  revealer = bjb_search_toolbar_get_revealer (priv->search_bar);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (revealer), FALSE, FALSE, 0);
 
   /* UI : stack for different views */
   priv->stack = GD_STACK (gd_stack_new ());
@@ -262,44 +267,54 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
   BjbWindowBasePriv *priv = bwb->priv;
   priv->current_view = type;
 
-  /* Precise the window does not display any specific note
-   * Refresh the model
-   * Ensure the main view receives the proper signals */
-  if (type == BJB_WINDOW_BASE_MAIN_VIEW)
+  switch (type)
   {
-    priv->note = NULL;
-    bjb_main_view_connect_signals (priv->view);
-    gd_stack_set_visible_child_name (priv->stack, "main-view");
 
-    destroy_note_if_needed (bwb);
-  }
+    /* Precise the window does not display any specific note
+     * Refresh the model
+     * Ensure the main view receives the proper signals */
 
-  else if (type == BJB_WINDOW_BASE_SPINNER_VIEW)
-  {
-    priv->note = NULL;
-    gd_stack_set_visible_child_name (priv->stack, "spinner");
-  }
+    case BJB_WINDOW_BASE_MAIN_VIEW:
+      priv->note = NULL;
+      bjb_search_toolbar_connect (priv->search_bar);
+      bjb_main_view_connect_signals (priv->view);
+      gd_stack_set_visible_child_name (priv->stack, "main-view");
+      destroy_note_if_needed (bwb);
+      break;
 
-  else if (type == BJB_WINDOW_BASE_NO_NOTE)
-  {
-    bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
-                                    BJB_EMPTY_RESULTS_NO_NOTE);
-    gtk_widget_show (priv->no_note);
-    gd_stack_set_visible_child_name (priv->stack, "empty");
-  }
 
-  else if (type == BJB_WINDOW_BASE_NO_RESULT)
-  {
-    bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
-                                    BJB_EMPTY_RESULTS_NO_RESULTS);
-    gtk_widget_show (priv->no_note);
-    gd_stack_set_visible_child_name (priv->stack, "empty");
-  }
+    case BJB_WINDOW_BASE_SPINNER_VIEW:
+      priv->note = NULL;
+      gd_stack_set_visible_child_name (priv->stack, "spinner");
+      break;
 
-  else
-  {
-    gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
-    gd_stack_set_visible_child_name (priv->stack, "note-view");
+
+    case BJB_WINDOW_BASE_NO_NOTE:
+      bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
+                                      BJB_EMPTY_RESULTS_NO_NOTE);
+      gtk_widget_show (priv->no_note);
+      gd_stack_set_visible_child_name (priv->stack, "empty");
+      break;
+
+
+    case BJB_WINDOW_BASE_NO_RESULT:
+      bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
+                                      BJB_EMPTY_RESULTS_NO_RESULTS);
+      gtk_widget_show (priv->no_note);
+      gd_stack_set_visible_child_name (priv->stack, "empty");
+      break;
+
+
+    case BJB_WINDOW_BASE_NOTE_VIEW:
+      bjb_search_toolbar_fade_out (priv->search_bar);
+      bjb_search_toolbar_disconnect (priv->search_bar);
+      gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
+      gd_stack_set_visible_child_name (priv->stack, "note-view");
+      break;
+
+
+    default:
+      return;
   }
 
   g_signal_emit (G_OBJECT (bwb), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
@@ -361,4 +376,27 @@ gpointer
 bjb_window_base_get_main_view (BjbWindowBase *self)
 {
   return (gpointer) self->priv->view;
+}
+
+gboolean
+bjb_window_base_set_show_search_bar (BjbWindowBase *self,
+                                     gboolean show)
+{
+  if (show)
+    bjb_search_toolbar_fade_in (self->priv->search_bar);
+
+  else
+    bjb_search_toolbar_fade_out (self->priv->search_bar);
+
+  return TRUE;
+}
+
+gboolean
+bjb_window_base_toggle_search_button (BjbWindowBase *self,
+                                      gboolean active)
+{
+  bjb_main_toolbar_set_search_toggle_state (self->priv->main_toolbar,
+                                            active);
+
+  return TRUE;
 }

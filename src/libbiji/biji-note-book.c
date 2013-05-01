@@ -502,50 +502,31 @@ get_note_skeleton (BijiNoteBook *book)
   return ret;
 }
 
-/* TODO : different New notes shall call a common
- * biji_note_obj_new with different properties : path mandatory,
- * optional title, raw_text, html, ... */
-
-BijiNoteObj*
-biji_note_book_get_new_note_from_string (BijiNoteBook *book,
-                                         gchar *title)
-{
-  BijiNoteObj *ret = get_note_skeleton (book);
-
-  /* Note will copy title
-   * We do NOT sanitize here because blank title is allowed ("initial") */
-  if (title && g_strcmp0 (title, "") !=0)
-    biji_note_obj_set_title (ret, title);
-
-  biji_note_obj_save_note (ret);
-  biji_note_book_append_new_note (book, ret, TRUE);
-
-  return ret;
-}
-
 static char*
 wrap_note_content (char *content)
 {
   return g_strdup_printf("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>%s</body></html>", content);
 }
 
-
 BijiNoteObj *
-biji_note_book_new_note_with_text (BijiNoteBook *book,
-                                   gchar *plain_text)
+biji_note_book_note_new           (BijiNoteBook *book, gchar *str)
 {
   BijiNoteObj *ret = get_note_skeleton (book);
-  gchar *unique_title = biji_note_book_get_unique_title (book, DEFAULT_NOTE_TITLE);
-  gchar *html;
 
-  /* Note will copy title, raw_text and html strings */
-  biji_note_obj_set_title (ret, unique_title);
-  g_free (unique_title);
+  if (str)
+  {
+    gchar *unique, *html;
 
-  biji_note_obj_set_raw_text (ret, plain_text);
-  html = wrap_note_content (plain_text);
-  biji_note_obj_set_html_content (ret, html);
-  g_free (html);
+    unique = biji_note_book_get_unique_title (book, str);
+    html = wrap_note_content (str);
+
+    biji_note_obj_set_title (ret, unique);
+    biji_note_obj_set_raw_text (ret, str);
+    biji_note_obj_set_html_content (ret, html);
+
+    g_free (unique);
+    g_free (html);
+  }
 
   biji_note_obj_save_note (ret);
   biji_note_book_append_new_note (book, ret, TRUE);

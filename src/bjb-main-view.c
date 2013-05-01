@@ -452,7 +452,7 @@ on_drag_data_received (GtkWidget        *widget,
 
       /* FIXME Text is guchar utf 8, conversion to perform */
       book =  bjb_window_base_get_book (self->priv->window); 
-      ret = biji_note_book_new_note_with_text (book, (gchar*) text);
+      ret = biji_note_book_note_new (book, (gchar*) text);
       switch_to_note_view (self, ret); // maybe AFTER drag finish?
 
       g_free (text);

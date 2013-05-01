@@ -422,7 +422,7 @@ link_callback (GtkWidget *button, BjbEditorToolbar *self)
   window = bjb_note_view_get_base_window (priv->view);
   book = bjb_window_base_get_book(window);
 
-  result = biji_note_book_get_new_note_from_string (book, link);
+  result = biji_note_book_note_new (book, link);
 
   /* Change result color. */
   if (biji_note_obj_get_rgba (priv->note, &color))

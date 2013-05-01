@@ -255,10 +255,10 @@ bjb_window_base_get_note (BjbWindowBase *self)
 static void
 destroy_note_if_needed (BjbWindowBase *bwb)
 {
+  bwb->priv->note = NULL;
+
   if (bwb->priv->note_view && GTK_IS_WIDGET (bwb->priv->note_view))
-  {
     g_clear_pointer (&(bwb->priv->note_overlay), gtk_widget_destroy);
-  }
 }
 
 void
@@ -266,6 +266,9 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 {
   BjbWindowBasePriv *priv = bwb->priv;
   priv->current_view = type;
+
+  if (type != BJB_WINDOW_BASE_NOTE_VIEW)
+    destroy_note_if_needed (bwb);
 
   switch (type)
   {
@@ -275,16 +278,13 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
      * Ensure the main view receives the proper signals */
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
-      priv->note = NULL;
       bjb_search_toolbar_connect (priv->search_bar);
       bjb_main_view_connect_signals (priv->view);
       gd_stack_set_visible_child_name (priv->stack, "main-view");
-      destroy_note_if_needed (bwb);
       break;
 
 
     case BJB_WINDOW_BASE_SPINNER_VIEW:
-      priv->note = NULL;
       gd_stack_set_visible_child_name (priv->stack, "spinner");
       break;
 
@@ -306,8 +306,6 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 
 
     case BJB_WINDOW_BASE_NOTE_VIEW:
-      bjb_search_toolbar_fade_out (priv->search_bar);
-      bjb_search_toolbar_disconnect (priv->search_bar);
       gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
       gd_stack_set_visible_child_name (priv->stack, "note-view");
       break;
@@ -326,6 +324,8 @@ bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
   BjbWindowBasePriv *priv = bwb->priv;
   GtkWidget *w = GTK_WIDGET (bwb);
 
+  bjb_search_toolbar_disconnect (priv->search_bar);
+  bjb_search_toolbar_fade_out (priv->search_bar);
   destroy_note_if_needed (bwb);
 
   priv->note = note;

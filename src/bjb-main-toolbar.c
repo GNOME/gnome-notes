@@ -737,7 +737,8 @@ populate_main_toolbar(BjbMainToolbar *self)
   if (view_type == BJB_WINDOW_BASE_NOTE_VIEW)
     to_be = BJB_TOOLBAR_NOTE_VIEW;
 
-  else if (view_type == BJB_WINDOW_BASE_MAIN_VIEW)
+  else if (  view_type == BJB_WINDOW_BASE_MAIN_VIEW
+           ||view_type == BJB_WINDOW_BASE_NO_RESULT)
   {
     if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
       to_be = BJB_TOOLBAR_SELECT;

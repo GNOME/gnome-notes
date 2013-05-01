@@ -367,7 +367,14 @@ update_controller_callback (GObject *source_object,
   result = biji_get_notes_with_strings_or_collection_finish (source_object, res, self->priv->book);
   self->priv->items_to_show = result;
 
+  if (!result)
+  {
+    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_RESULT);
+    return;
+  }
+
   sort_and_update (self);
+  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
 void
@@ -388,13 +395,14 @@ bjb_controller_apply_needle (BjbController *self)
 
     /* If there are no note, report this */
     if (!priv->items_to_show)
-      bjb_window_base_switch_to (self->priv->window,
-                                 BJB_WINDOW_BASE_NO_NOTE);
+    {
+      bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_NOTE);
+      return;
+    }
 
     /* Otherwise do show existing notes */
-    else
-      sort_and_update (self);
-
+    sort_and_update (self);
+    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
     return;
   }
 

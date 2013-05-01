@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for bijiben.
-# Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012.
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013.
 # Enrico Nicoletto <liverig@gmail.com>, 2013.
 #
 msgid ""
@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-04-26 22:07+0000\n"
-"PO-Revision-Date: 2013-04-27 17:05-0300\n"
-"Last-Translator: Antonio Fernandes C. Neto <fernandesn@gnome.org>\n"
+"POT-Creation-Date: 2013-05-01 06:24+0000\n"
+"PO-Revision-Date: 2013-05-01 01:20-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -43,16 +43,16 @@ msgstr "Um catálogo simples de notas para o GNOME"
 #: ../src/bjb-app-menu.c:39
 msgid "translator-credits"
 msgstr ""
-"Rafael Ferreira <rafael.f.f1@gmail.com>, 2012.\n"
+"Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013.\n"
 "Enrico Nicoletto <liverig@gmail.com>, 2013."
 
 #: ../src/bjb-app-menu.c:162
-msgid "External Notes"
-msgstr "Notas externas"
+msgid "Import Notes"
+msgstr "Importar notas"
 
 #: ../src/bjb-app-menu.c:177
-msgid "Click on the external notes to import"
-msgstr "Clique nas notas externas para importar"
+msgid "Import notes from:"
+msgstr "Importar notas de:"
 
 #: ../src/bjb-color-button.c:146
 msgid "Choose a color for note"
@@ -87,11 +87,11 @@ msgstr "Tachado"
 
 #: ../src/bjb-editor-toolbar.c:224
 msgid "Link"
-msgstr "Sublinhado"
+msgstr "Link"
 
 #: ../src/bjb-empty-results-box.c:97
 msgid "No Notes Found"
-msgstr "As notas não foram encontradas"
+msgstr "Nenhuma nota foi encontrada"
 
 #: ../src/bjb-empty-results-box.c:133
 msgid ""
@@ -105,77 +105,77 @@ msgstr ""
 msgid "No result found for this research."
 msgstr "Não foi encontrado resultado para essa busca."
 
-#: ../src/bjb-main-toolbar.c:115
+#: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
 msgstr "Clique nos itens para selecioná-los"
 
-#: ../src/bjb-main-toolbar.c:117
+#: ../src/bjb-main-toolbar.c:118
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d selecionado"
 msgstr[1] "%d selecionados"
 
-#: ../src/bjb-main-toolbar.c:284
+#: ../src/bjb-main-toolbar.c:282
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:287
+#: ../src/bjb-main-toolbar.c:285
 msgid "New and Recent"
 msgstr "Novas e recentes"
 
-#: ../src/bjb-main-toolbar.c:325
+#: ../src/bjb-main-toolbar.c:347
 msgid "New"
 msgstr "Nova"
 
-#: ../src/bjb-main-toolbar.c:500
+#: ../src/bjb-main-toolbar.c:540
 msgid "Rename Note"
 msgstr "Renomear nota"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:521
+#: ../src/bjb-main-toolbar.c:561
 msgid "Undo"
 msgstr "Desfazer"
 
-#: ../src/bjb-main-toolbar.c:529
+#: ../src/bjb-main-toolbar.c:569
 msgid "Redo"
 msgstr "Refazer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:543
+#: ../src/bjb-main-toolbar.c:583
 msgid "Bullets"
 msgstr "Marcadores"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:550
-msgid "List"
-msgstr "Lista"
+#: ../src/bjb-main-toolbar.c:590
+msgid "Numbered List"
+msgstr "Lista numerada"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:561
+#: ../src/bjb-main-toolbar.c:601
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../src/bjb-main-toolbar.c:567
+#: ../src/bjb-main-toolbar.c:607
 msgid "Tags"
 msgstr "Etiquetas"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:578
+#: ../src/bjb-main-toolbar.c:618
 msgid "Delete this Note"
 msgstr "Excluir essa nota"
 
-#: ../src/bjb-main-toolbar.c:610
+#: ../src/bjb-main-toolbar.c:652
 msgid "Notes"
 msgstr "Notas"
 
-#: ../src/bjb-note-tag-dialog.c:374
+#: ../src/bjb-note-tag-dialog.c:373
 msgid "Enter a name to create a tag"
 msgstr "Insira um nome para criar uma etiqueta"
 
-#: ../src/bjb-note-tag-dialog.c:384
+#: ../src/bjb-note-tag-dialog.c:383
 msgid "New tag"
 msgstr "Nova etiqueta"
 
@@ -236,8 +236,8 @@ msgid "_New Window"
 msgstr "_Nova janela"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External Notes"
-msgstr "Notas _externas"
+msgid "_Import Notes"
+msgstr "_Importar notas"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
@@ -254,3 +254,15 @@ msgstr "_Ajuda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Sair"
+
+#~ msgid "External Notes"
+#~ msgstr "Notas externas"
+
+#~ msgid "Click on the external notes to import"
+#~ msgstr "Clique nas notas externas para importar"
+
+#~ msgid "List"
+#~ msgstr "Lista"
+
+#~ msgid "_External Notes"
+#~ msgstr "Notas _externas"

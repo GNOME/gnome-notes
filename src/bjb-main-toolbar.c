@@ -62,6 +62,7 @@ struct _BjbMainToolbarPrivate
 
   /* When note view */
   BijiNoteObj      *note;
+  GtkWidget        *share;
   gulong            note_renamed;
   gulong            note_color_changed;
   GtkAccelGroup    *accel;
@@ -474,6 +475,21 @@ on_note_color_changed (BijiNoteObj *note, GtkColorButton *button)
 }
 
 static void
+on_note_content_changed (BjbMainToolbar *self)
+{
+  gchar *str = NULL;
+  gboolean sensitive = TRUE;
+
+  if (self->priv->note)
+    str = biji_note_get_raw_text (self->priv->note);
+
+  if (!str || g_strcmp0 (str, "") == 0 || g_strcmp0 (str, "\n") == 0)
+    sensitive = FALSE;
+
+  gtk_widget_set_sensitive (self->priv->share, sensitive);
+}
+
+static void
 bjb_toggle_bullets (BijiWebkitEditor *editor)
 {
   biji_webkit_editor_apply_format (editor, BIJI_BULLET_LIST);
@@ -676,11 +692,18 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                              G_CALLBACK (on_note_color_changed), button);
 
   /* Sharing */
-  button = gd_main_toolbar_add_button (bar, "send-to-symbolic",
-                                       NULL, FALSE);
+  priv->share = gd_main_toolbar_add_button (bar, "send-to-symbolic",
+                                           NULL, FALSE);
 
-  g_signal_connect (button, "clicked",
+  g_signal_connect (priv->share, "clicked",
                     G_CALLBACK (on_email_note_callback), priv->note);
+
+  g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
+                            "user-changed-contents",
+                            G_CALLBACK (on_note_content_changed),
+                            self);
+
+  on_note_content_changed (self);
 
   /* Menu */
   button = gd_main_toolbar_add_menu (bar,

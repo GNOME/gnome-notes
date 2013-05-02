@@ -166,7 +166,7 @@ bjb_note_tag_dialog_handle_tags (GObject *source_object,
 
   priv->collections = biji_get_all_collections_finish (source_object, res);
 
-  collections = g_hash_table_get_keys (priv->collections);
+  collections = g_hash_table_get_values (priv->collections);
   collections = g_list_sort (collections, bjb_compare_tag);
 
   g_list_foreach (collections, (GFunc) append_tag, self);

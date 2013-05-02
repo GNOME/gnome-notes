@@ -180,7 +180,7 @@ biji_get_all_collections_finish (GObject *source_object,
     {
       urn = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
       collection = g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL));
-      g_hash_table_replace (result, collection, urn);
+      g_hash_table_replace (result, urn, collection);
     }
 
     g_object_unref (cursor);

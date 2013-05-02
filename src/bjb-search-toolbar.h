@@ -63,6 +63,8 @@ void bjb_search_toolbar_disconnect (BjbSearchToolbar *self);
 
 void bjb_search_toolbar_connect (BjbSearchToolbar *self);
 
+gboolean bjb_search_toolbar_is_shown (BjbSearchToolbar *self);
+
 G_END_DECLS
 
 #endif /* BJB_SEARCH_TOOLBAR_H */

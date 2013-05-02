@@ -411,3 +411,9 @@ bjb_search_toolbar_get_revealer (BjbSearchToolbar *self)
 {
   return self->priv->revealer;
 }
+
+gboolean
+bjb_search_toolbar_is_shown (BjbSearchToolbar *self)
+{
+  return gd_revealer_get_child_revealed (self->priv->revealer);
+}

@@ -379,6 +379,17 @@ bjb_window_base_get_main_view (BjbWindowBase *self)
 }
 
 gboolean
+bjb_window_base_get_show_search_bar (BjbWindowBase *self)
+{
+  /* There is no search bar at startup,
+   * when main toolbar is first built... */
+  if (!self->priv->search_bar)
+    return FALSE;
+
+  return bjb_search_toolbar_is_shown (self->priv->search_bar);
+}
+
+gboolean
 bjb_window_base_set_show_search_bar (BjbWindowBase *self,
                                      gboolean show)
 {

@@ -213,11 +213,15 @@ static void
 add_search_button (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
+  gboolean active;
 
   priv->search = gd_main_toolbar_add_toggle (GD_MAIN_TOOLBAR (self),
                                              "edit-find-symbolic",
                                              NULL,
                                              FALSE);
+
+  active =  bjb_window_base_get_show_search_bar (BJB_WINDOW_BASE (self->priv->window));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->search), active);
 
   g_signal_connect_swapped (priv->search, "clicked",
                             G_CALLBACK (on_search_button_clicked), priv);

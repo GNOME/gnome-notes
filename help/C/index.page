@@ -1,24 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" id="index" xml:lang="en_GB">
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" id="index">
 
   <info>
+    <revision pkgversion="3.8" date="2013-04-29" status="review"/>
+
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
       <years>2012</years>
     </credit>
+
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
   </info>
 
   <title>Bijiben Help</title>
 
-    <section id="introduction">
+  <section id="introduction">
     <title>Introduction</title>
-    <media type="image" src="figures/bijiben-note.png" mime="image/png" style="right"/>
-    <p><app>Bijiben</app> is a simple note editor.</p>
-    </section>
+    <media type="image" src="figures/bijiben-note.png" mime="image/png">
+      <p>Screenshot of a note in Bijiben.</p>
+    </media>
+    <p><app>Bijiben</app> is a simple note keeping application.</p>
+  </section>
 
-   <section id="create"><title>Create Notes</title></section>
-   <section id="use"><title>Edit and Share Notes</title></section>
-   <section id="delete"><title>Delete Notes</title></section>
+  <section id="create"><title>Create notes</title></section>
+  <section id="use"><title>Edit and share notes</title></section>
+  <section id="delete"><title>Delete notes</title></section>
 
 </page>

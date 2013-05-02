@@ -76,9 +76,9 @@ void bjb_controller_disconnect (BjbController *self);
 
 gboolean bjb_controller_shows_item (BjbController *self);
 
-gchar * bjb_controller_get_collection (BjbController *self);
+BijiCollection * bjb_controller_get_collection (BjbController *self);
 
-void bjb_controller_set_collection (BjbController *self, gchar *to_open);
+void bjb_controller_set_collection (BjbController *self, BijiCollection *coll);
 
 G_END_DECLS
 

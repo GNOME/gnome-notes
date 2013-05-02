@@ -197,7 +197,7 @@ show_window_if_note (gpointer data, gpointer user_data)
 }
 
 static void
-switch_to_note (BjbMainView *view, BijiItem *to_open)
+switch_to_item (BjbMainView *view, BijiItem *to_open)
 {
   if (BIJI_IS_NOTE_OBJ (to_open))
   {
@@ -217,10 +217,10 @@ switch_to_note (BjbMainView *view, BijiItem *to_open)
 
   /* Collection
    * TODO : check if already opened (same as above) */
-  else
+  else if (BIJI_IS_COLLECTION (to_open))
   {
     bjb_controller_set_collection (view->priv->controller,
-                                   biji_item_get_title (to_open));
+                                   BIJI_COLLECTION (to_open));
   }
 }
 
@@ -407,19 +407,21 @@ on_item_activated (GdMainView        * gd,
   BijiNoteBook * book ;
   BijiItem     * to_open ;
   GtkTreeIter    iter ;
-  gchar        * note_path ;
+  gchar        * item_path ;
   GtkTreeModel * model ;
 
-  /* Get Note Path */
+  /* Get Item Path */
   model = gd_main_view_get_model (gd);
   gtk_tree_model_get_iter (model, &iter, (GtkTreePath*) path);
-  gtk_tree_model_get (model, &iter, GD_MAIN_COLUMN_URI, &note_path,-1);
+  gtk_tree_model_get (model, &iter, GD_MAIN_COLUMN_URI, &item_path,-1);
 
-  /* Switch to that note */
+  /* Switch to that item */
   book = bjb_window_base_get_book (view->priv->window); 
-  to_open = biji_note_book_get_item_at_path (book, note_path);
-  g_free (note_path);
-  switch_to_note (view, to_open); 
+  to_open = biji_note_book_get_item_at_path (book, item_path);
+  g_free (item_path);
+
+  if (to_open)
+    switch_to_item (view, to_open);
 
   return FALSE ;
 }

@@ -30,7 +30,7 @@
 
 struct BijiCollectionPrivate_
 {
-  /* String is both the collection title & uuid */
+  gchar * urn;
   gchar * name;
 };
 
@@ -41,6 +41,7 @@ G_DEFINE_TYPE (BijiCollection, biji_collection, BIJI_TYPE_ITEM)
 /* Properties */
 enum {
   PROP_0,
+  PROP_URN,
   PROP_NAME,
   BIJI_COLL_PROPERTIES
 };
@@ -66,7 +67,7 @@ biji_collection_get_uuid (BijiItem *coll)
   g_return_val_if_fail (BIJI_IS_COLLECTION (coll), NULL);
   collection = BIJI_COLLECTION (coll);
 
-  return g_strdup (collection->priv->name);
+  return g_strdup (collection->priv->urn);
 }
 
 GdkPixbuf *
@@ -231,12 +232,15 @@ biji_collection_set_property (GObject      *object,
 
   switch (property_id)
     {
-    case PROP_NAME:
-      self->priv->name = g_strdup (g_value_get_string (value));
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
+      case PROP_URN:
+        self->priv->urn = g_strdup (g_value_get_string (value));
+        break;
+      case PROP_NAME:
+        self->priv->name = g_strdup (g_value_get_string (value));
+        break;
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+        break;
     }
 }
 
@@ -250,12 +254,15 @@ biji_collection_get_property (GObject    *object,
 
   switch (property_id)
     {
-    case PROP_NAME:
-      g_value_set_string (value, self->priv->name);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
+      case PROP_URN:
+        g_value_set_string (value, self->priv->urn);
+        break;
+      case PROP_NAME:
+        g_value_set_string (value, self->priv->name);
+        break;
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+        break;
     }
 }
 
@@ -273,6 +280,13 @@ biji_collection_class_init (BijiCollectionClass *klass)
   g_object_class->get_property = biji_collection_get_property;
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiCollectionPrivate));
+
+  properties[PROP_URN] =
+    g_param_spec_string ("urn",
+                         "Collection URN",
+                         "Collection URN as in Tracker",
+                         NULL,
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   properties[PROP_NAME] =
     g_param_spec_string ("name",
@@ -304,6 +318,7 @@ biji_collection_finalize (GObject *object)
 
   self = BIJI_COLLECTION (object);
   g_free (self->priv->name);
+  g_free (self->priv->urn);
 
   G_OBJECT_CLASS (biji_collection_parent_class)->finalize (object);
 }
@@ -317,7 +332,10 @@ biji_collection_init (BijiCollection *self)
 
 
 BijiCollection *
-biji_collection_new (gchar *name)
+biji_collection_new (gchar *urn, gchar *name)
 {
-  return g_object_new (BIJI_TYPE_COLLECTION, "name", name, NULL);
+  return g_object_new (BIJI_TYPE_COLLECTION,
+                       "name", name,
+                       "urn", urn,
+                       NULL);
 }

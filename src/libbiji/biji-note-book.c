@@ -194,7 +194,6 @@ book_on_note_color_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 static void
 _biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
 {
-  GList *collections, *l;
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   _biji_note_obj_set_book (note, (gpointer) book);
@@ -202,24 +201,6 @@ _biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
   /* Add it to the list */
   g_hash_table_insert (book->priv->items,
                        biji_item_get_uuid (BIJI_ITEM (note)), note);
-
-  /* Check for new collections */
-  collections = biji_note_obj_get_collections (note);
-
-  for (l = collections ; l != NULL; l = l->next)
-  {
-    BijiCollection *collection;
-
-    collection = g_hash_table_lookup (book->priv->items, l->data);
-
-    if (!collection)
-    {
-      collection = biji_collection_new ((gchar*) l->data);
-      g_hash_table_insert (book->priv->items,
-                           biji_item_get_uuid (BIJI_ITEM (collection)),
-                           collection);
-    }
-  }
 
   /* Notify */
   g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
@@ -247,6 +228,40 @@ release_enum_cb (GObject *source, GAsyncResult *res, gpointer user_data)
                                   res,
                                   NULL);
   g_object_unref (source);
+}
+
+static void
+create_collection_if_needed (gpointer key,
+                             gpointer value,
+                             gpointer user_data)
+{
+  BijiNoteBook *book = BIJI_NOTE_BOOK (user_data);
+  BijiCollection *collection;
+
+  collection = g_hash_table_lookup (book->priv->items, key);
+
+  if (!collection)
+  {
+    collection = biji_collection_new (key, value);
+    g_hash_table_insert (book->priv->items,
+                         g_strdup (key),
+                         collection);
+  }
+}
+
+static void
+load_book_finish (GObject *source_object,
+                  GAsyncResult *res,
+                  gpointer user_data)
+{
+  BijiNoteBook *self = BIJI_NOTE_BOOK (user_data);
+  GHashTable *collections;
+
+  collections = biji_get_all_collections_finish (source_object, res);
+  g_hash_table_foreach (collections, create_collection_if_needed, user_data);
+  g_hash_table_destroy (collections);
+
+  biji_note_book_notify_changed (self, BIJI_BOOK_MASS_CHANGE, NULL);
 }
 
 static void
@@ -298,7 +313,9 @@ enumerate_next_files_ready_cb (GObject *source,
   g_free (base_path);
   g_list_free_full (files, g_object_unref);
 
-  biji_note_book_notify_changed (self, BIJI_BOOK_MASS_CHANGE, NULL);
+  /* Now we have all notes,
+   * load the collections and we're good to notify loading done */
+  biji_get_all_collections_async (load_book_finish, self);
 }
 
 static void

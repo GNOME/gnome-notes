@@ -274,13 +274,14 @@ static void
 update_label_for_standard (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
-  gchar *collection, *needle, *label;
+  BijiCollection *coll;
+  gchar *needle, *label;
 
-  collection = bjb_controller_get_collection (priv->controller);
+  coll = bjb_controller_get_collection (priv->controller);
   needle = bjb_controller_get_needle (priv->controller);
 
-  if (collection)
-    label = g_strdup_printf ("%s", collection);
+  if (coll)
+    label = g_strdup_printf ("%s", biji_item_get_title (BIJI_ITEM (coll)));
 
   else if (needle && g_strcmp0 (needle, "") !=0)
     label = g_strdup_printf (_("Results for %s"), needle);
@@ -321,7 +322,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *bin = NULL;
-  gchar *collection;
+  BijiCollection *coll;
 
   /* Label */
   update_label_for_standard (self);
@@ -329,9 +330,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
          "search-changed", G_CALLBACK(update_label_for_standard), self);
 
   /* Go back to all notes */
-  collection = bjb_controller_get_collection (priv->controller);
+  coll = bjb_controller_get_collection (priv->controller);
 
-  if (collection)
+  if (coll)
   {
     GtkWidget *back, *button;
 

@@ -32,18 +32,18 @@
 
 struct _BjbControllerPrivate
 {
-  BijiNoteBook  *book ;
-  gchar         *needle ;
-  gchar         *collection;
-  GtkTreeModel  *model ;
-  GtkTreeModel  *completion;
+  BijiNoteBook   *book ;
+  gchar          *needle ;
+  BijiCollection *collection;
+  GtkTreeModel   *model ;
+  GtkTreeModel   *completion;
 
-  BjbWindowBase *window;
+  BjbWindowBase  *window;
 
   /*  Private  */
   GList          *items_to_show;
-  gboolean       connected;
-  gulong         book_change;
+  gboolean        connected;
+  gulong          book_change;
 };
 
 enum {
@@ -723,7 +723,7 @@ bjb_controller_show_collection (GObject *source_object,
   bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
-gchar *
+BijiCollection *
 bjb_controller_get_collection (BjbController *self)
 {
   return self->priv->collection;
@@ -731,16 +731,16 @@ bjb_controller_get_collection (BjbController *self)
 
 void
 bjb_controller_set_collection (BjbController *self,
-                               gchar         *to_open)
+                               BijiCollection *coll)
 {
   /* Going back from a collection */
-  if (!to_open)
+  if (!coll)
   {
     if (!self->priv->collection)
       return;
 
     bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
-    g_clear_pointer (&self->priv->collection, g_free);
+    self->priv->collection = NULL;
     bjb_controller_apply_needle (self);
     bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
     return;
@@ -753,12 +753,9 @@ bjb_controller_set_collection (BjbController *self,
   if (self->priv->needle)
     g_free (self->priv->needle);
 
-  if (self->priv->collection)
-    g_free (self->priv->collection);
-
   self->priv->needle = g_strdup ("");
-  self->priv->collection = g_strdup (to_open);
-  biji_get_items_with_collection_async (to_open,
+  self->priv->collection = coll;
+  biji_get_items_with_collection_async (biji_item_get_title (BIJI_ITEM (coll)),
                                         bjb_controller_show_collection,
                                         self);
 }

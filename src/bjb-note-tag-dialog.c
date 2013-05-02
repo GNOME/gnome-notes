@@ -343,6 +343,7 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
   gtk_window_set_default_size (GTK_WINDOW (self),
                                BJB_NOTE_TAG_DIALOG_DEFAULT_WIDTH,
                                BJB_NOTE_TAG_DIALOG_DEFAULT_HEIGHT);
+  gtk_window_set_title (GTK_WINDOW (self), _("Collections"));
 
   g_signal_connect_swapped (self, "response",
                             G_CALLBACK (gtk_widget_destroy), self);

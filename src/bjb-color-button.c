@@ -143,7 +143,7 @@ bjb_color_button_init (BjbColorButton *self)
   BjbColorButtonPrivate *priv = BJB_COLOR_BUTTON_GET_PRIVATE(self);
   self->priv = priv;
 
-  priv->title = _("Choose a color for note");
+  priv->title = _("Note Color");
 }
 
 static void

@@ -221,7 +221,8 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
   gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
 
   gtk_container_add (GTK_CONTAINER (priv->toolbar_link), image);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_link), _("Link"));
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_link),
+                               _("Copy selection to a new note"));
   gtk_container_add (GTK_CONTAINER (priv->box), priv->toolbar_link);
   gtk_widget_override_background_color (priv->toolbar_link,
                                         GTK_STATE_FLAG_NORMAL,

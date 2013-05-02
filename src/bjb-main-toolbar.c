@@ -219,6 +219,8 @@ add_search_button (BjbMainToolbar *self)
                                              "edit-find-symbolic",
                                              NULL,
                                              FALSE);
+  gtk_widget_set_tooltip_text (priv->search,
+                               _("Search note titles, content and collections"));
 
   active =  bjb_window_base_get_show_search_bar (BJB_WINDOW_BASE (self->priv->window));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->search), active);
@@ -252,7 +254,8 @@ populate_bar_for_selection (BjbMainToolbar *self)
 
   /* Select */
   priv->select = gd_main_toolbar_add_button (GD_MAIN_TOOLBAR (self),
-                                             NULL,"Done", FALSE);
+                                             NULL, _("Done"), FALSE);
+  gtk_widget_set_tooltip_text (priv->select, _("Exit selection mode"));
   context = gtk_widget_get_style_context (priv->select);
   gtk_style_context_add_class (context, "suggested-action");
   gtk_widget_reset_style (priv->select);
@@ -370,6 +373,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
                                             "object-select-symbolic",
                                             NULL,
                                             FALSE);
+  gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
 
   g_signal_connect (priv->select,"clicked",
                     G_CALLBACK(on_selection_mode_clicked),self);
@@ -389,6 +393,8 @@ populate_bar_for_icon_view(BjbMainToolbar *self)
                                          "view-list-symbolic",
                                          NULL,
                                          FALSE);
+  gtk_widget_set_tooltip_text (priv->list,
+                               _("View notes and collections in a list"));
 
   g_signal_connect (priv->list, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
@@ -407,6 +413,8 @@ populate_bar_for_list_view(BjbMainToolbar *self)
                                           "view-grid-symbolic",
                                           NULL,
                                           FALSE);
+  gtk_widget_set_tooltip_text (priv->grid,
+                               _("View notes and collections in a grid"));
 
   g_signal_connect (priv->grid, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
@@ -684,6 +692,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   }
 
   button = bjb_color_button_new ();
+  gtk_widget_set_tooltip_text (button, _("Note color"));
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button), &color);
 
   gd_main_toolbar_add_widget (bar, button, FALSE);
@@ -699,6 +708,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   /* Sharing */
   priv->share = gd_main_toolbar_add_button (bar, "send-to-symbolic",
                                            NULL, FALSE);
+  gtk_widget_set_tooltip_text (priv->share, _("Share note"));
 
   g_signal_connect (priv->share, "clicked",
                     G_CALLBACK (on_email_note_callback), priv->note);
@@ -715,6 +725,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                                      "emblem-system-symbolic",
                                      NULL,
                                      FALSE);
+  gtk_widget_set_tooltip_text (button, _("More options…"));
 
   gtk_menu_button_set_popup (GTK_MENU_BUTTON (button),
                              bjb_note_menu_new (self));

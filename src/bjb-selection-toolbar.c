@@ -152,12 +152,15 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   image = gtk_image_new_from_icon_name ("emblem-documents-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (image), 32);
   gtk_container_add (GTK_CONTAINER (priv->toolbar_tag), image);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_tag), _("Tag"));
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_tag),
+                               _("Edit collections"));
   gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_tag);
 
   /* Notes color */
   priv->toolbar_color = bjb_color_button_new ();
   gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_color);
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_color),
+                               _("Note color"));
 
   priv->separator = gtk_separator_tool_item_new ();
   gtk_separator_tool_item_set_draw (GTK_SEPARATOR_TOOL_ITEM (priv->separator), FALSE);

@@ -46,7 +46,15 @@ enum {
   BIJI_COLL_PROPERTIES
 };
 
+// Signals to be used by biji note obj
+enum {
+  COLLECTION_DELETED,
+  BIJI_COLLECTIONS_SIGNALS
+};
+
 static GParamSpec *properties[BIJI_COLL_PROPERTIES] = { NULL, };
+
+static guint biji_collections_signals [BIJI_COLLECTIONS_SIGNALS] = { 0 };
 
 static gchar *
 biji_collection_get_title (BijiItem *coll)
@@ -194,7 +202,9 @@ biji_collection_trash (BijiItem *item)
   g_return_val_if_fail (BIJI_IS_COLLECTION (item), FALSE);
 
   self = BIJI_COLLECTION (item);
-  biji_remove_collection_from_tracker (self->priv->name);
+
+  g_signal_emit (G_OBJECT (item), biji_collections_signals[COLLECTION_DELETED], 0);
+  biji_remove_collection_from_tracker (self->priv->urn);
   g_object_unref (self);
 
   return TRUE;
@@ -296,6 +306,17 @@ biji_collection_class_init (BijiCollectionClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_COLL_PROPERTIES, properties);
+
+  biji_collections_signals[COLLECTION_DELETED] =
+    g_signal_new ("deleted" ,
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
 
   /* Interface */
   item_class->get_title = biji_collection_get_title;

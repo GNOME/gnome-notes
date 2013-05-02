@@ -179,6 +179,14 @@ biji_note_book_notify_changed (BijiNoteBook            *book,
   return FALSE;
 }
 
+/* TODO : use the same for note, put everything there
+ * rather calling a func */
+static void
+on_item_deleted_cb (BijiItem *item, BijiNoteBook *book)
+{
+  biji_note_book_remove_item (book, item);
+}
+
 void
 book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 {
@@ -246,6 +254,9 @@ create_collection_if_needed (gpointer key,
     g_hash_table_insert (book->priv->items,
                          g_strdup (key),
                          collection);
+
+    g_signal_connect (collection, "deleted",
+                      G_CALLBACK (on_item_deleted_cb), book);
   }
 }
 

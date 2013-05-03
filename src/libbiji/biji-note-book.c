@@ -449,17 +449,37 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
   return retval;
 }
 
-/* Notes collection */
-void
-biji_note_book_append_new_note (BijiNoteBook *book, BijiNoteObj *note, gboolean notify)
+gboolean
+biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
 {
-  g_return_if_fail (BIJI_IS_NOTE_BOOK (book));
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+  g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
 
-  _biji_note_book_add_one_note (book,note);
+  gchar *uid;
+  gboolean retval = TRUE;
 
-  if (notify)
-    biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ADDED, BIJI_ITEM (note));
+  uid = biji_item_get_uuid (item);
+
+  if (g_hash_table_lookup (book->priv->items, uid))
+    retval = FALSE;
+
+  else if (BIJI_IS_NOTE_OBJ (item))
+    _biji_note_book_add_one_note (book, BIJI_NOTE_OBJ (item));
+
+  else if (BIJI_IS_COLLECTION (item))
+  {
+    g_hash_table_insert (book->priv->items,
+                         biji_item_get_uuid (item),
+                         item);
+
+    g_signal_connect (item, "deleted",
+                      G_CALLBACK (on_item_deleted_cb), book);
+  }
+
+  if (retval && notify)
+    biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ADDED, item);
+
+  return retval;
 }
 
 GList *
@@ -557,7 +577,7 @@ biji_note_book_note_new           (BijiNoteBook *book, gchar *str)
   }
 
   biji_note_obj_save_note (ret);
-  biji_note_book_append_new_note (book, ret, TRUE);
+  biji_note_book_add_item (book, BIJI_ITEM (ret), TRUE);
 
   return ret;
 }

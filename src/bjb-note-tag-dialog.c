@@ -265,13 +265,17 @@ on_new_collection_created_cb (gpointer user_data)
   gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
 }
 
+/* Gives the title and book :
+ * the collection is created & book updated.
+ * afterward, our callback comes */
 static void
 add_new_tag (BjbNoteTagDialog *self)
 {
-  const gchar *collection = gtk_entry_get_text (GTK_ENTRY (self->priv->entry));
+  BijiNoteBook *book = bjb_window_base_get_book (GTK_WIDGET (self->priv->window));
+  const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->priv->entry));
 
-  if (collection && g_utf8_strlen (collection, -1) > 0)
-    biji_create_new_collection (collection, on_new_collection_created_cb, self);
+  if (title && g_utf8_strlen (title, -1) > 0)
+    biji_create_new_collection_async (book, title, on_new_collection_created_cb, self);
 }
 
 static void

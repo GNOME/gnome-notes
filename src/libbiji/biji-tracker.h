@@ -51,7 +51,7 @@ GHashTable * biji_get_all_collections_finish (GObject *source_object, GAsyncResu
 
 void biji_get_all_collections_async (GAsyncReadyCallback f, gpointer user_data);
 
-void biji_create_new_collection (const gchar *tag, BijiFunc afterward, gpointer user_data);
+void biji_create_new_collection_async (BijiNoteBook *book, const gchar *tag, BijiFunc afterward, gpointer user_data);
 
 void biji_remove_collection_from_tracker (gchar *urn);
 

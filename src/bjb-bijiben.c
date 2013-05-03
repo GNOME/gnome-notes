@@ -204,7 +204,7 @@ go_through_notes_cb (GFileEnumerator *enumerator, GAsyncResult *res, Bijiben *se
 
       g_free (default_color);
 
-      biji_note_book_append_new_note (self->priv->book, note, FALSE);
+      biji_note_book_add_item (self->priv->book, BIJI_ITEM (note), FALSE);
       biji_note_obj_save_note (note);
     }
 

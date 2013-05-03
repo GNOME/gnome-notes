@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-04-24 23:22+0000\n"
-"PO-Revision-Date: 2013-04-25 17:53+0200\n"
+"POT-Creation-Date: 2013-05-03 13:26+0000\n"
+"PO-Revision-Date: 2013-05-03 17:17+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -44,17 +44,18 @@ msgstr "Cuaderno de notas sencillo para GNOME"
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013"
 
-#: ../src/bjb-app-menu.c:156
-msgid "External Notes"
-msgstr "Notas externas"
+#: ../src/bjb-app-menu.c:162
+msgid "Import Notes"
+msgstr "Importar notas"
 
-#: ../src/bjb-app-menu.c:171
-msgid "Click on the external notes to import"
-msgstr "Pulse en las notas externas para importarlas"
+#: ../src/bjb-app-menu.c:177
+msgid "Import notes from:"
+msgstr "Importar notas desde:"
 
 #: ../src/bjb-color-button.c:146
-msgid "Choose a color for note"
-msgstr "Elija un color para la nota"
+#| msgid "Note Font"
+msgid "Note Color"
+msgstr "Color de la nota"
 
 #. Cut
 #: ../src/bjb-editor-toolbar.c:148
@@ -83,12 +84,11 @@ msgstr "Cursiva"
 msgid "Strike"
 msgstr "Tachada"
 
-#: ../src/bjb-editor-toolbar.c:224
-msgid "Link"
-msgstr "Enlace"
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Copy selection to a new note"
+msgstr "Copiar selección a una nota nueva"
 
 #: ../src/bjb-empty-results-box.c:97
-#| msgid "Note Font"
 msgid "No Notes Found"
 msgstr "No se han encontrado notas"
 
@@ -104,71 +104,112 @@ msgstr ""
 msgid "No result found for this research."
 msgstr "No se han encontrado resultados para esta búsqueda."
 
-#: ../src/bjb-main-toolbar.c:115
+#: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
 msgstr "Pulse sobre los elementos para seleccionarlos"
 
-#: ../src/bjb-main-toolbar.c:117
+#: ../src/bjb-main-toolbar.c:118
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/bjb-main-toolbar.c:284
+#: ../src/bjb-main-toolbar.c:223
+msgid "Search note titles, content and collections"
+msgstr "Buscar en títulos de notas, contenido y colecciones"
+
+#: ../src/bjb-main-toolbar.c:257
+msgid "Done"
+msgstr "Hecho"
+
+#: ../src/bjb-main-toolbar.c:258
+msgid "Exit selection mode"
+msgstr "Salir del modo de selección"
+
+#: ../src/bjb-main-toolbar.c:290
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:287
+#: ../src/bjb-main-toolbar.c:293
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/bjb-main-toolbar.c:325
+#: ../src/bjb-main-toolbar.c:355
 msgid "New"
 msgstr "Nuevo"
 
-#: ../src/bjb-main-toolbar.c:497
+#: ../src/bjb-main-toolbar.c:376
+msgid "Selection mode"
+msgstr "Modo de selección"
+
+#: ../src/bjb-main-toolbar.c:397
+msgid "View notes and collections in a list"
+msgstr "Ver notas y colecciones en una lista"
+
+#: ../src/bjb-main-toolbar.c:417
+msgid "View notes and collections in a grid"
+msgstr "Ver notas y colecciones en una rejilla"
+
+#: ../src/bjb-main-toolbar.c:553
 msgid "Rename Note"
 msgstr "Renombrar nota"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:518
+#: ../src/bjb-main-toolbar.c:574
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../src/bjb-main-toolbar.c:526
+#: ../src/bjb-main-toolbar.c:582
 msgid "Redo"
 msgstr "Rehacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:540
+#: ../src/bjb-main-toolbar.c:596
 msgid "Bullets"
 msgstr "Topos"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:547
-msgid "List"
-msgstr "Lista"
+#: ../src/bjb-main-toolbar.c:603
+msgid "Numbered List"
+msgstr "Lista numerada"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:558
+#: ../src/bjb-main-toolbar.c:614
 msgid "Rename"
 msgstr "Renombrar"
 
-#: ../src/bjb-main-toolbar.c:564
+#: ../src/bjb-main-toolbar.c:620
 msgid "Tags"
 msgstr "Etiquetas"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:575
+#: ../src/bjb-main-toolbar.c:631
 msgid "Delete this Note"
 msgstr "Eliminar esta nota"
 
-#: ../src/bjb-main-toolbar.c:607
+#: ../src/bjb-main-toolbar.c:665
 msgid "Notes"
 msgstr "Notas"
+
+#: ../src/bjb-main-toolbar.c:695 ../src/bjb-selection-toolbar.c:163
+#| msgid "Note Font"
+msgid "Note color"
+msgstr "Color de la nota"
+
+#: ../src/bjb-main-toolbar.c:711
+msgid "Share note"
+msgstr "Compartir nota"
+
+#: ../src/bjb-main-toolbar.c:728
+msgid "More options…"
+msgstr "Más opciones…"
+
+#: ../src/bjb-note-tag-dialog.c:346
+msgid "Collections"
+msgstr "Colecciones"
 
 #: ../src/bjb-note-tag-dialog.c:374
 msgid "Enter a name to create a tag"
@@ -183,11 +224,11 @@ msgstr "Etiqueta nueva"
 msgid "Last updated "
 msgstr "Última actualización"
 
-#: ../src/bjb-selection-toolbar.c:155
-msgid "Tag"
-msgstr "Etiqueta"
+#: ../src/bjb-selection-toolbar.c:156
+msgid "Edit collections"
+msgstr "Editar colecciones"
 
-#: ../src/bjb-selection-toolbar.c:179
+#: ../src/bjb-selection-toolbar.c:182
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -235,8 +276,8 @@ msgid "_New Window"
 msgstr "Ventana _nueva"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External Notes"
-msgstr "Notas externas"
+msgid "_Import Notes"
+msgstr "_Importar notas"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
@@ -253,3 +294,24 @@ msgstr "Ay_uda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Salir"
+
+#~ msgid "External Notes"
+#~ msgstr "Notas externas"
+
+#~ msgid "Click on the external notes to import"
+#~ msgstr "Pulse en las notas externas para importarlas"
+
+#~ msgid "Choose a color for note"
+#~ msgstr "Elija un color para la nota"
+
+#~ msgid "Link"
+#~ msgstr "Enlace"
+
+#~ msgid "List"
+#~ msgstr "Lista"
+
+#~ msgid "Tag"
+#~ msgstr "Etiqueta"
+
+#~ msgid "_External Notes"
+#~ msgstr "Notas externas"

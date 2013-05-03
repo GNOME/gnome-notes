@@ -70,8 +70,6 @@ GtkTreeModel * bjb_controller_get_model  (BjbController *self) ;
 
 GtkTreeModel * bjb_controller_get_completion(BjbController *self);
 
-void bjb_controller_connect (BjbController *self);
-
 void bjb_controller_disconnect (BjbController *self);
 
 gboolean bjb_controller_shows_item (BjbController *self);

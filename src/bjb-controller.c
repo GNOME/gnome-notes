@@ -533,7 +533,7 @@ on_book_changed (BijiNoteBook           *book,
   refresh_completion(self);
 }
 
-void
+static void
 bjb_controller_connect (BjbController *self)
 {
   BjbControllerPrivate *priv = self->priv;
@@ -561,6 +561,8 @@ static void
 bjb_controller_constructed (GObject *obj)
 {
   G_OBJECT_CLASS(bjb_controller_parent_class)->constructed(obj);
+
+  bjb_controller_connect (BJB_CONTROLLER (obj));
 }
 
 static void

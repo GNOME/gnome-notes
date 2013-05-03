@@ -471,8 +471,6 @@ bjb_main_view_connect_signals (BjbMainView *self)
 {
   BjbMainViewPriv *priv = self->priv;
 
-  bjb_controller_connect (priv->controller);
-
   if (priv->view_selection_changed == 0)
     priv->view_selection_changed = g_signal_connect_swapped
                                   (priv->view,

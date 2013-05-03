@@ -238,57 +238,47 @@ bjb_controller_add_item (BjbController *self,
 
 /* If the user searches for notes, is the note searched? */
 static void
-bjb_controller_add_note_if_needed (BjbController *self,
-                                   BijiNoteObj   *note,
+bjb_controller_add_item_if_needed (BjbController *self,
+                                   BijiItem      *item,
                                    gboolean       prepend)
 {
-  gboolean need_to_add_note =FALSE;
+  gboolean need_to_add_item = FALSE;
   gchar *title, *content;
-  GList *collections, *l;
   BjbControllerPrivate *priv = self->priv;
-  BijiItem *item = BIJI_ITEM (note);
 
   /* No note... */
-  if (!note || !BIJI_IS_NOTE_OBJ (note))
+  if (!item || !BIJI_IS_ITEM (item))
     return;
 
   /* No search - we add the note */
   if (!priv->needle || g_strcmp0 (priv->needle, "")==0)
   {
-    need_to_add_note = TRUE;
+    if (!priv->collection)
+      need_to_add_item = TRUE;
+
+    /* To do : we might have a collection
+     * but have to udpate the view */
   }
 
   /* a search.. we test...*/
   else
   {
-
     title = biji_item_get_title (item);
-    content = biji_note_get_raw_text (note);
 
-    /* matching title or content ... */
-    if (g_strrstr (title  , priv->needle) != NULL ||
-        g_strrstr (content, priv->needle) != NULL  )
-      need_to_add_note = TRUE;
+    /* matching title... */
+    if (g_strrstr (title, priv->needle) != NULL)
+      need_to_add_item = TRUE;
 
-    /* last chance, matching collections... */
-    else
+    /* matching content */
+    else if (BIJI_IS_NOTE_OBJ (item))
     {
-      collections = biji_note_obj_get_collections (note);
-    
-      for (l = collections; l != NULL; l=l->next)
-      {
-        if (g_strrstr (l->data, title))
-        {
-          need_to_add_note = TRUE;
-          break;
-        }
-      }
-
-      g_list_free (collections);
+      content = biji_note_get_raw_text (BIJI_NOTE_OBJ (item));
+      if (g_strrstr (content, priv->needle) != NULL)
+        need_to_add_item = TRUE;
     }
   }
 
-  if (need_to_add_note)
+  if (need_to_add_item)
     bjb_controller_add_item (self, item, prepend);
 }
 
@@ -499,14 +489,9 @@ on_book_changed (BijiNoteBook           *book,
     /* If this is a *new* note, per def prepend
      * But do not add a new note to a search window */
     case BIJI_BOOK_ITEM_ADDED:
-        /* Todo : handle collection as well */
-        if (BIJI_IS_NOTE_OBJ (item))
-        {
-          note = BIJI_NOTE_OBJ (item);
-          bjb_controller_add_note_if_needed (self, note, TRUE);
+          bjb_controller_add_item_if_needed (self, item, TRUE);
           priv->items_to_show = g_list_prepend (priv->items_to_show, note);
           g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
-        }
       break;
 
     /* FIXME - a note has to be added after the collections... */
@@ -514,7 +499,7 @@ on_book_changed (BijiNoteBook           *book,
       if (bjb_controller_get_iter_at_item (self, item, &p_iter))
       {
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
-        bjb_controller_add_note_if_needed (self, note, TRUE);
+        bjb_controller_add_item_if_needed (self, item, TRUE);
       }
       break;
 

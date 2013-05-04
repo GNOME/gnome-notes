@@ -10,7 +10,7 @@ HELP_FILES = \
 	create.page \
 	bjb-delete.page \
 	bjb-editor.page \
-	bjb-find.page \
+	search.page \
 	bjb-share.page \
 	bjb-tags.page \
 	index.page \

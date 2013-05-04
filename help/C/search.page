@@ -1,0 +1,44 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="search">
+
+  <info>
+    <link type="guide" xref="index#create"/>
+    <revision pkgversion="3.8" date="2013-05-04" status="review"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Search for an existing note.</desc>
+  </info>
+
+  <title>Find a note</title>
+
+  <p>The default <em>notes view</em> shows the recently used notes.</p>
+
+  <p>You can find notes using the following methods:</p>
+  <list>
+    <item>
+      <p>Type your search term while in the <em>notes view</em> and press
+      <key>Return</key> to search.</p>
+    </item>
+    <item>
+      <p>You can also search for notes from the <gui>Activies</gui> view.</p>
+    </item>
+  </list>
+
+  <!-- TODO talk about sorting notes by colour -->
+
+  <p>You can also sort notes into <link xref="tags">collections</link>.</p>
+
+</page>

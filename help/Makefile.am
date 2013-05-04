@@ -7,7 +7,7 @@ HELP_LINGUAS =
 
 HELP_FILES = \
 	bjb-colours.page \
-	bjb-create.page \
+	create.page \
 	bjb-delete.page \
 	bjb-editor.page \
 	bjb-find.page \

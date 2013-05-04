@@ -1,0 +1,43 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="create">
+
+  <info>
+    <link type="guide" xref="index#create"/>
+    <revision pkgversion="3.8" date="2013-04-29" status="review"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Create a new note from scratch, using some text from another application or from another note.</desc>
+  </info>
+
+  <title>Create a note</title>
+
+  <p>You can create a new note in three different ways:</p>
+  <list>
+    <item>
+      <p>Press <gui style="button">New</gui> button to create a blank note.</p>
+    </item>
+    <item>
+      <p>Drag and drop text to the <em>notes view</em> to create a note
+      containing this text.</p>
+    </item>
+    <item>
+      <p>Open a note, select some text and click on the link icon to create a
+      note containing this text.</p>
+    </item>
+  </list>
+
+</page>

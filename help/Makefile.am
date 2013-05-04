@@ -11,7 +11,7 @@ HELP_FILES = \
 	bjb-delete.page \
 	formatting.page \
 	search.page \
-	bjb-share.page \
+	share.page \
 	bjb-tags.page \
 	index.page \
 	legal.xml

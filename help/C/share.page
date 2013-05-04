@@ -1,0 +1,29 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="share">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Email a note to your contacts.</desc>
+  </info>
+
+  <title>Share a note</title>
+
+  <p>Open a note, then click on the <gui style="button">Share note</gui> button
+  to send it.</p>
+
+</page>

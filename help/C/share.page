@@ -24,6 +24,6 @@
   <title>Share a note</title>
 
   <p>Open a note, then click on the <gui style="button">Share note</gui> button
-  to send it.</p>
+  to send it by email. Your default email client will start up.</p>
 
 </page>

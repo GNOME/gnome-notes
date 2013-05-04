@@ -18,22 +18,24 @@
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Change the text style.</desc>
+    <desc>Apply different formatting options to the text.</desc>
   </info>
 
-  <title>Format the note</title>
+  <title>Change the text style</title>
 
   <p>You can format your note in <app>Bijiben</app>:</p>
 
   <list>
     <item>
-      <p>Select the text that you want to format and press on <gui>Bold</gui>,
-      <gui>Italic</gui> or <gui>Strike</gui>.
-      button.</p>
+      <p>Select the text that you want to format and press
+      <gui style="button">Bold</gui>, <gui style="button">Italic</gui> or
+      <gui style="button">Strike</gui>.</p>
     </item>
     <item>
-      <p>To create a list, select <gui>Bullets</gui> for an unordered list or
-      <gui>Numbered List</gui> for ordered list from the gear menu.</p>
+      <p>To create a list, select <guiseq><gui style="button">More
+      options…</gui><gui style="menuitem">Bullets</gui></guiseq> for an
+      unordered list or <guiseq><gui style="button">More
+      options…</gui><gui>Numbered List</gui></guiseq> for an ordered list.</p>
     </item>
   </list>
 

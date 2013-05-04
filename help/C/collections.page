@@ -25,18 +25,18 @@
   <title>Collections</title>
 
   <p>You can add notes to collections in <app>Bijiben</app> to help you
-  organize them. To view the <gui>Collections</gui> dialog:</p>
+  organize them. To view your <gui>Collections</gui>:</p>
 
   <list>
     <item>
       <p>Open a note, open
-      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Collections</gui></guiseq>.</p>
+      <guiseq><gui style="button">More
+      options…</gui><gui style="menuitem">Collections</gui></guiseq>.</p>
     </item>
     <item>
-      <p>From the main view, click on the <gui style="button">Selection
-      view</gui> button, select the notes which you want to add to the
-      collection then press the <gui style="button">collections</gui>
-      button.</p>
+      <p>In the <em>notes view</em>, go into the <em>selection mode</em>.
+      Select the notes which you want to add to the collection then press the
+      <gui style="button">Collections</gui> button.</p>
     </item>
   </list>
 

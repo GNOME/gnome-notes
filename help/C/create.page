@@ -28,15 +28,17 @@
   <p>You can create a new note in three different ways:</p>
   <list>
     <item>
-      <p>Press <gui style="button">New</gui> button to create a blank note.</p>
+      <p>Press the <gui style="button">New</gui> button to create a blank
+      note.</p>
     </item>
     <item>
       <p>Drag and drop text to the <em>notes view</em> to create a note
       containing this text.</p>
     </item>
     <item>
-      <p>Open a note, select some text and click on the link icon to create a
-      note containing this text.</p>
+      <p>Open a note, select some text and press the
+      <gui style="button">Link</gui> button to create a note containing this
+      text.</p>
     </item>
   </list>
 

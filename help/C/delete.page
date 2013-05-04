@@ -5,6 +5,8 @@
 
   <info>
     <link type="guide" xref="index#delete"/>
+    <revision pkgversion="3.8" date="2013-05-04" status="review"/>
+
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -32,8 +34,8 @@
       options…</gui><gui style="menuitem">Delete this Note</gui></guiseq>.</p>
     </item>
     <item>
-      <p>In the <em>notes view</em>, enter the <em>selection mode</em>. Select
-      the notes that you want to delete, then press the
+      <p>In the <em>notes view</em>, go into the <em>selection mode</em>.
+      Select the notes that you want to delete, then press the
       <gui style="button">Trash</gui> button.</p>
     </item>
   </list>

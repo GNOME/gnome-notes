@@ -39,7 +39,7 @@
 
   <!-- TODO talk about sorting notes by colour -->
 
-  <p>You can also sort notes into
+  <p>You can also sort notes using <link xref="colors">colors</link> and
   <link xref="collections">collections</link>.</p>
 
 </page>

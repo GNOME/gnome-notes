@@ -24,6 +24,8 @@
 
   <title>Change note color</title>
 
+  <p>You can change the color of an individual note or a number of notes:</p>
+
   <list>
     <item>
       <p>Open a note and press the <gui style="button">Note color</gui>

@@ -99,7 +99,7 @@ on_new_note_clicked (GtkWidget *but, BjbMainView *view)
   switch_to_note_view(view,result);
 }
 
-static void populate_main_toolbar(BjbMainToolbar *self);
+static void populate_main_toolbar (BjbMainToolbar *self);
 
 static gboolean
 update_selection_label (BjbMainToolbar *self)
@@ -141,6 +141,8 @@ on_view_selection_changed_cb (BjbMainToolbar *self)
   gtk_widget_reset_style (widget);
   populate_main_toolbar (self);
 
+  /* If we were already on selection mode,
+   * the bar is not totaly refreshed. just udpate label */
   if (self->priv->type == BJB_TOOLBAR_SELECT)
     update_selection_label (self);
 
@@ -151,10 +153,17 @@ static void
 on_selection_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
 {
   if (bjb_main_view_get_selection_mode (self->priv->parent))
+  {
     bjb_main_view_set_selection_mode (self->priv->parent, FALSE);
+  }
 
+  /* Force refresh. We go to selection mode but nothing yet selected
+   * Thus no signal emited */
   else
+  {
     bjb_main_view_set_selection_mode (self->priv->parent, TRUE);
+    on_view_selection_changed_cb (self);
+  }
 }
 
 static gboolean
@@ -773,24 +782,31 @@ populate_main_toolbar(BjbMainToolbar *self)
 
   view_type = bjb_window_base_get_view_type (BJB_WINDOW_BASE (priv->window));
 
-  if (view_type == BJB_WINDOW_BASE_NOTE_VIEW)
-    to_be = BJB_TOOLBAR_NOTE_VIEW;
-
-  else if (  view_type == BJB_WINDOW_BASE_MAIN_VIEW
-           ||view_type == BJB_WINDOW_BASE_NO_RESULT)
+  switch (view_type)
   {
-    if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
-      to_be = BJB_TOOLBAR_SELECT;
+    case BJB_WINDOW_BASE_NOTE_VIEW:
+      to_be = BJB_TOOLBAR_NOTE_VIEW;
+      break;
 
-    if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
-      to_be = BJB_TOOLBAR_STD_ICON;
+    case BJB_WINDOW_BASE_NO_RESULT:
+    case BJB_WINDOW_BASE_MAIN_VIEW:
 
-    else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
-      to_be = BJB_TOOLBAR_STD_LIST;
+      if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
+        to_be = BJB_TOOLBAR_SELECT;
+
+      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
+        to_be = BJB_TOOLBAR_STD_ICON;
+
+      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
+        to_be = BJB_TOOLBAR_STD_LIST;
+
+      break;
+
+    /* Not really a toolbar,
+     * still used for Spinner */
+    default:
+      to_be = BJB_TOOLBAR_0;
   }
-
-  else
-    to_be = BJB_TOOLBAR_0;
 
   /* Simply clear then populate */
   if (to_be != priv->type)

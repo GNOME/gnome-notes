@@ -51,6 +51,7 @@ LIBGD_INIT([
   revealer
   stack
   static
+  tagged-entry
 ])
 
 AC_CONFIG_FILES([

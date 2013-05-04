@@ -1,0 +1,40 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic" style="task"
+      id="formatting">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Change the text style.</desc>
+  </info>
+
+  <title>Format the note</title>
+
+  <p>You can format your note in <app>Bijiben</app>:</p>
+
+  <list>
+    <item>
+      <p>Select the text that you want to format and press on <gui>Bold</gui>,
+      <gui>Italic</gui> or <gui>Strike</gui>.
+      button.</p>
+    </item>
+    <item>
+      <p>To create a list, select <gui>Bullets</gui> for an unordered list or
+      <gui>Numbered List</gui> for ordered list from the gear menu.</p>
+    </item>
+  </list>
+
+</page>

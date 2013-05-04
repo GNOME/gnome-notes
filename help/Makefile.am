@@ -7,12 +7,12 @@ HELP_LINGUAS =
 
 HELP_FILES = \
 	bjb-colours.page \
+	collections.page \
 	create.page \
 	bjb-delete.page \
 	formatting.page \
 	search.page \
 	share.page \
-	bjb-tags.page \
 	index.page \
 	legal.xml
 

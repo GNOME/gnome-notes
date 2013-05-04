@@ -1,0 +1,45 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="collections">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+    <revision pkgversion="3.8" date="2013-05-01" status="review"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Add a note to a collection to make sorting and searching notes easier.</desc>
+  </info>
+
+  <title>Collections</title>
+
+  <p>You can add notes to collections in <app>Bijiben</app> to help you
+  organize them. To view the <gui>Collections</gui> dialog:</p>
+
+  <list>
+    <item>
+      <p>Open a note, open
+      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Collections</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>From the main view, click on the <gui style="button">Selection
+      view</gui> button, select the notes which you want to add to the
+      collection then press the <gui style="button">collections</gui>
+      button.</p>
+    </item>
+  </list>
+
+  <!-- TODO talk about the Collections dialog -->
+
+</page>

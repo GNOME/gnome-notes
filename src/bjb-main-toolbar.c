@@ -626,7 +626,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
                    G_CALLBACK(action_rename_note_callback),self);
   gtk_widget_show(item);
 
-  item = gtk_menu_item_new_with_label(_("Tags"));
+  item = gtk_menu_item_new_with_label(_("Collections"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(action_view_tags_callback),self);

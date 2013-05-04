@@ -9,7 +9,7 @@ HELP_FILES = \
 	bjb-colours.page \
 	collections.page \
 	create.page \
-	bjb-delete.page \
+	delete.page \
 	formatting.page \
 	search.page \
 	share.page \

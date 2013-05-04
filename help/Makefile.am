@@ -6,7 +6,7 @@ HELP_ID = bijiben
 HELP_LINGUAS =
 
 HELP_FILES = \
-	bjb-colours.page \
+	colors.page \
 	collections.page \
 	create.page \
 	delete.page \

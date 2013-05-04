@@ -1,0 +1,41 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="colors">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+    <revision pkgversion="3.8" date="2013-05-04" status="review"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Edit the note background color.</desc>
+  </info>
+
+  <title>Change note color</title>
+
+  <list>
+    <item>
+      <p>Open a note and press the <gui style="button">Note color</gui>
+      button.</p>
+    </item>
+    <item>
+      <p>In the <em>notes view</em>, go into the <em>selection mode</em>.
+      Select the notes which you want to change then click on the
+      <gui style="button">Note color</gui> button.</p>
+    </item>
+  </list>
+
+  <!-- TODO explain how to use the note color dialog -->
+
+</page>

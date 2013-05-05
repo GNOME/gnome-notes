@@ -49,6 +49,7 @@ struct _BijiNoteObjPrivate
    * Emblem is smaller & just shows the color */
   GdkPixbuf             *icon;
   GdkPixbuf             *emblem;
+  GdkPixbuf             *pristine;
 
   /* Tags 
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
@@ -80,6 +81,7 @@ static gchar     * biji_note_obj_get_title                (BijiItem *note);
 static gchar     * biji_note_obj_get_path                 (BijiItem *note);
 static GdkPixbuf * biji_note_obj_get_icon                 (BijiItem *note);
 static GdkPixbuf * biji_note_obj_get_emblem               (BijiItem *note);
+static GdkPixbuf * biji_note_obj_get_pristine             (BijiItem *note);
 static gboolean    biji_note_obj_trash                    (BijiItem *note);
 static glong       biji_note_obj_get_last_change_date_sec (BijiItem *note);
 static gboolean    biji_note_obj_has_collection           (BijiItem *note, gchar *label);
@@ -134,6 +136,7 @@ biji_note_obj_init (BijiNoteObj *self)
   /* Icon is only computed when necessary */
   priv->icon = NULL;
   priv->emblem = NULL;
+  priv->pristine = NULL;
 
   /* Keep value unitialied, so bijiben knows to assign default color */
   priv->color = NULL;
@@ -168,6 +171,9 @@ biji_note_obj_finalize (GObject *object)
 
   if (priv->emblem)
     g_object_unref (priv->emblem);
+
+  if (priv->pristine)
+    g_object_unref (priv->pristine);
 
   gdk_rgba_free (priv->color);
 
@@ -298,6 +304,7 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   item_class->get_uuid = biji_note_obj_get_path;
   item_class->get_icon = biji_note_obj_get_icon;
   item_class->get_emblem = biji_note_obj_get_emblem;
+  item_class->get_pristine = biji_note_obj_get_pristine;
   item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
   item_class->trash = biji_note_obj_trash;
   item_class->has_collection = biji_note_obj_has_collection;
@@ -545,6 +552,7 @@ biji_note_obj_clear_icons (BijiNoteObj *note)
 {
   g_clear_pointer (&note->priv->icon, g_object_unref);
   g_clear_pointer (&note->priv->emblem, g_object_unref);
+  g_clear_pointer (&note->priv->pristine, g_object_unref);
 }
 
 static void
@@ -796,6 +804,41 @@ biji_note_obj_get_icon (BijiItem *item)
   g_clear_object (&ret);
 
   return note->priv->icon;
+}
+
+static GdkPixbuf *
+biji_note_obj_get_pristine (BijiItem *item)
+{
+  GdkRGBA                note_color;
+  cairo_t               *cr;
+  cairo_surface_t       *surface = NULL;
+  BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
+
+  if (note->priv->pristine)
+    return note->priv->pristine;
+
+  /* Create & Draw surface */
+  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                        BIJI_EMBLEM_WIDTH,
+                                        BIJI_EMBLEM_HEIGHT) ;
+  cr = cairo_create (surface);
+
+  /* Background */
+  cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
+  if (biji_note_obj_get_rgba (note, &note_color))
+    gdk_cairo_set_source_rgba (cr, &note_color);
+
+  cairo_fill (cr);
+  cairo_destroy (cr);
+
+  note->priv->pristine = gdk_pixbuf_get_from_surface (surface,
+                                                      0, 0,
+                                                      BIJI_EMBLEM_WIDTH,
+                                                      BIJI_EMBLEM_HEIGHT);
+
+  cairo_surface_destroy (surface);
+
+  return note->priv->pristine;
 }
 
 static GdkPixbuf *

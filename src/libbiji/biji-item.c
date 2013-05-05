@@ -81,6 +81,12 @@ biji_item_get_emblem        (BijiItem *item)
   return BIJI_ITEM_GET_CLASS (item)->get_emblem (item);
 }
 
+GdkPixbuf *
+biji_item_get_pristine        (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_pristine (item);
+}
+
 glong
 biji_item_get_last_change    (BijiItem *item)
 {

@@ -189,7 +189,7 @@ get_collected_pix (BijiCollection *self)
     if (BIJI_IS_ITEM (l->data))
       result = g_list_prepend (
                         result,
-                        biji_item_get_emblem (BIJI_ITEM (l->data)));
+                        biji_item_get_pristine (BIJI_ITEM (l->data)));
   }
 
   return result;
@@ -421,6 +421,7 @@ biji_collection_class_init (BijiCollectionClass *klass)
   item_class->get_uuid = biji_collection_get_uuid;
   item_class->get_icon = biji_collection_get_icon;
   item_class->get_emblem = biji_collection_get_emblem;
+  item_class->get_pristine = biji_collection_get_emblem;
   item_class->get_change_sec = biji_collection_get_changed_sec;
   item_class->trash = biji_collection_trash;
   item_class->has_collection = biji_collection_has_collection;

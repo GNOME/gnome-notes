@@ -196,7 +196,7 @@ book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 static void
 book_on_note_color_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 {
-  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_COLORED, BIJI_ITEM (note));
+  biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ICON_CHANGED, BIJI_ITEM (note));
 }
 
 static void

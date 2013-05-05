@@ -537,7 +537,7 @@ on_book_changed (BijiNoteBook           *book,
       break;
 
     /* If color changed we just amend the icon */
-    case BIJI_BOOK_NOTE_COLORED:
+    case BIJI_BOOK_ITEM_ICON_CHANGED:
       if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
           && bjb_controller_get_iter (self, item, &p_iter))

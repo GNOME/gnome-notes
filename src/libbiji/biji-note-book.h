@@ -11,11 +11,11 @@ G_BEGIN_DECLS
 typedef enum
 {
   BIJI_BOOK_CHANGE_FLAG,
-  BIJI_BOOK_MASS_CHANGE,   // Startup, mass import.. rather rebuild the whole.
-  BIJI_BOOK_ITEM_ADDED,    // Single item added
-  BIJI_BOOK_ITEM_TRASHED,  // Single item trashed
-  BIJI_BOOK_NOTE_AMENDED,  // Single note amended (title, content)
-  BIJI_BOOK_NOTE_COLORED,  // Single note color
+  BIJI_BOOK_MASS_CHANGE,        // Startup, mass import.. rather rebuild the whole.
+  BIJI_BOOK_ITEM_ADDED,         // Single item added
+  BIJI_BOOK_ITEM_TRASHED,       // Single item trashed
+  BIJI_BOOK_ITEM_ICON_CHANGED,  // Single item icon
+  BIJI_BOOK_NOTE_AMENDED,       // Single note amended (title, content)
 } BijiNoteBookChangeFlag;
 
 #define BIJI_TYPE_NOTE_BOOK             (biji_note_book_get_type ())

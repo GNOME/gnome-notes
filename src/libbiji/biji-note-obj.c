@@ -49,8 +49,6 @@ struct _BijiNoteObjPrivate
    * Emblem is smaller & just shows the color */
   GdkPixbuf             *icon;
   GdkPixbuf             *emblem;
-  gboolean              icon_needs_update;
-  gboolean              emblem_needs_update;
 
   /* Tags 
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
@@ -165,8 +163,12 @@ biji_note_obj_finalize (GObject *object)
 
   g_hash_table_destroy (priv->labels);
 
-  g_clear_object (&priv->icon);
-  g_clear_object (&priv->emblem);
+  if (priv->icon)
+    g_object_unref (priv->icon);
+
+  if (priv->emblem)
+    g_object_unref (priv->emblem);
+
   gdk_rgba_free (priv->color);
 
   G_OBJECT_CLASS (biji_note_obj_parent_class)->finalize (object);
@@ -539,15 +541,19 @@ biji_note_obj_set_note_create_date (BijiNoteObj* n,gchar *date)
 }
 
 static void
+biji_note_obj_clear_icons (BijiNoteObj *note)
+{
+  g_clear_pointer (&note->priv->icon, g_object_unref);
+  g_clear_pointer (&note->priv->emblem, g_object_unref);
+}
+
+static void
 biji_note_obj_set_rgba_internal (BijiNoteObj *n, GdkRGBA *rgba)
 {
   n->priv->color = gdk_rgba_copy(rgba);
-  n->priv->icon_needs_update = TRUE;
-  n->priv->emblem_needs_update = TRUE;
 
   g_signal_emit (G_OBJECT (n), biji_obj_signals[NOTE_COLOR_CHANGED],0);
 }
-
 
 void
 biji_note_obj_set_rgba (BijiNoteObj *n, GdkRGBA *rgba)
@@ -558,6 +564,7 @@ biji_note_obj_set_rgba (BijiNoteObj *n, GdkRGBA *rgba)
   else if (!gdk_rgba_equal (n->priv->color,rgba))
   {
     gdk_rgba_free (n->priv->color);
+    biji_note_obj_clear_icons (n);
     biji_note_obj_set_rgba_internal (n, rgba);
 
     biji_note_id_set_last_metadata_change_date_now (n->priv->id);
@@ -580,23 +587,6 @@ biji_note_obj_get_rgba(BijiNoteObj *n,
   return FALSE;
 }
 
-static void
-biji_note_obj_clear_icons (BijiNoteObj *note)
-{
-  if (note->priv->icon)
-  {
-    g_clear_object (&note->priv->icon);
-    note->priv->icon = NULL ;
-  }
-
-  if (note->priv->emblem)
-  {
-    g_clear_object (&note->priv->emblem);
-    note->priv->emblem = NULL ;
-  }
-
-  g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_CHANGED],0);
-}
 
 void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
 {
@@ -605,6 +595,7 @@ void biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
 
   note->priv->raw_text = g_strdup (plain_text);
   biji_note_obj_clear_icons (note);
+  g_signal_emit (note, biji_obj_signals[NOTE_CHANGED],0);
 }
 
 GList *
@@ -753,7 +744,7 @@ biji_note_obj_get_icon (BijiItem *item)
 
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
-  if (note->priv->icon && !note->priv->icon_needs_update)
+  if (note->priv->icon)
     return note->priv->icon;
 
   /* Create & Draw surface */
@@ -803,7 +794,6 @@ biji_note_obj_get_icon (BijiItem *item)
   note->priv->icon = gd_embed_image_in_frame (ret, "resource:///org/gnome/bijiben/thumbnail-frame.png",
                                               &frame_slice, &frame_slice);
   g_clear_object (&ret);
-  note->priv->icon_needs_update = FALSE;
 
   return note->priv->icon;
 }
@@ -816,7 +806,7 @@ biji_note_obj_get_emblem (BijiItem *item)
   cairo_surface_t       *surface = NULL;
   BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
 
-  if (note->priv->emblem && !note->priv->emblem_needs_update)
+  if (note->priv->emblem)
     return note->priv->emblem;
 
   /* Create & Draw surface */
@@ -846,7 +836,6 @@ biji_note_obj_get_emblem (BijiItem *item)
                                                     BIJI_EMBLEM_HEIGHT);
 
   cairo_surface_destroy (surface);
-  note->priv->emblem_needs_update = FALSE;
 
   return note->priv->emblem;
 }

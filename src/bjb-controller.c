@@ -182,10 +182,57 @@ bjb_controller_set_property (GObject  *object,
   }
 }
 
+/* get iter at this item
+ * or get iter at first note if item == NULL*/
+static gboolean
+bjb_controller_get_iter (BjbController *self,
+                         BijiItem *item,
+                         GtkTreeIter **iter)
+{
+  BjbControllerPrivate *priv = self->priv;
+  gboolean retval = FALSE;
+  gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
+  gchar *needle = NULL;
+
+  if (item && BIJI_IS_ITEM (item))
+    needle = biji_item_get_uuid (item);
+
+  while (still)
+  {
+    gchar *item_path;
+    gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &item_path,-1);
+
+    /* If we look for the item, check by uid */
+    if (needle && g_strcmp0 (item_path, needle) == 0)
+      retval = TRUE;
+
+    /* Else we check for the first note */
+    else if (!needle && BIJI_IS_NOTE_OBJ (
+              biji_note_book_get_item_at_path (self->priv->book, item_path)))
+      retval = TRUE;
+
+    g_free (item_path);
+
+    if (retval)
+      break;
+
+    else
+      still = gtk_tree_model_iter_next (priv->model, *iter);
+  }
+
+  if (needle)
+    g_free (needle);
+
+  return retval;
+}
+
+/* Either append, prepend, or, if iter provider,
+ * prepend just before this iter */
 static void
 bjb_controller_add_item (BjbController *self,
                          BijiItem      *item,
-                         gboolean       prepend)
+                         gboolean       prepend,
+                         GtkTreeIter   *sibling)
 {
   GtkTreeIter    iter;
   GtkListStore  *store;
@@ -195,7 +242,10 @@ bjb_controller_add_item (BjbController *self,
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->priv->model);
 
-  if (prepend)
+  if (sibling)
+    gtk_list_store_insert_before (store, &iter, sibling);
+
+  else if (prepend)
     gtk_list_store_insert (store, &iter, 0);
 
   else
@@ -240,7 +290,8 @@ bjb_controller_add_item (BjbController *self,
 static void
 bjb_controller_add_item_if_needed (BjbController *self,
                                    BijiItem      *item,
-                                   gboolean       prepend)
+                                   gboolean       prepend,
+                                   GtkTreeIter   *sibling)
 {
   gboolean need_to_add_item = FALSE;
   gchar *title, *content;
@@ -279,7 +330,7 @@ bjb_controller_add_item_if_needed (BjbController *self,
   }
 
   if (need_to_add_item)
-    bjb_controller_add_item (self, item, prepend);
+    bjb_controller_add_item (self, item, prepend, sibling);
 }
 
 void
@@ -296,7 +347,7 @@ bjb_controller_update_view (BjbController *self)
 
   for (l = items; l != NULL; l = l->next)
   {
-    bjb_controller_add_item (self, l->data, FALSE);
+    bjb_controller_add_item (self, l->data, FALSE, NULL);
   }
 }
 
@@ -341,6 +392,7 @@ static void
 sort_and_update (BjbController *self)
 {
   sort_items (self);
+  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
   bjb_controller_update_view (self);
 
   g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
@@ -364,7 +416,6 @@ update_controller_callback (GObject *source_object,
   }
 
   sort_and_update (self);
-  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
 void
@@ -392,7 +443,6 @@ bjb_controller_apply_needle (BjbController *self)
 
     /* Otherwise do show existing notes */
     sort_and_update (self);
-    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
     return;
   }
 
@@ -440,35 +490,6 @@ refresh_completion(BjbController *self)
   }
 }
 
-static gboolean
-bjb_controller_get_iter_at_item (BjbController *self, BijiItem *item, GtkTreeIter **iter)
-{
-  BjbControllerPrivate *priv = self->priv;
-  gchar *needle = biji_item_get_uuid (item);
-  gboolean retval = FALSE;
-  gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
-
-  while (still)
-  {
-    gchar *item_path;
-
-    gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &item_path,-1);
-
-    if (g_strcmp0 (item_path, needle)==0)
-      retval = TRUE;
-
-    g_free (item_path);
-
-    if (retval)
-      break;
-
-    else
-      still = gtk_tree_model_iter_next (priv->model, *iter);
-  }
-
-  g_free (needle);
-  return retval;
-}
 
 /* Depending on the change at data level,
  * the view has to be totaly refreshed or just amended */
@@ -486,20 +507,32 @@ on_book_changed (BijiNoteBook           *book,
 
   switch (flag)
   {
-    /* If this is a *new* note, per def prepend
-     * But do not add a new note to a search window */
+    /* If this is a *new* item, per def prepend */
     case BIJI_BOOK_ITEM_ADDED:
-          bjb_controller_add_item_if_needed (self, item, TRUE);
+          if (BIJI_IS_NOTE_OBJ (item))
+            bjb_controller_get_iter (self, NULL, &p_iter);
+
+          else if (BIJI_IS_COLLECTION (item))
+            p_iter = NULL;
+
+          bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
           priv->items_to_show = g_list_prepend (priv->items_to_show, note);
           g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
       break;
 
-    /* FIXME - a note has to be added after the collections... */
+    /* Same comment, prepend but collection before note */
     case BIJI_BOOK_NOTE_AMENDED:
-      if (bjb_controller_get_iter_at_item (self, item, &p_iter))
+      if (bjb_controller_get_iter (self, item, &p_iter))
       {
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
-        bjb_controller_add_item_if_needed (self, item, TRUE);
+
+        if (BIJI_IS_NOTE_OBJ (item))
+          bjb_controller_get_iter (self, NULL, &p_iter);
+
+        else if (BIJI_IS_COLLECTION (item))
+          p_iter = NULL;
+
+        bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
       }
       break;
 
@@ -507,18 +540,18 @@ on_book_changed (BijiNoteBook           *book,
     case BIJI_BOOK_NOTE_COLORED:
       if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
-          && bjb_controller_get_iter_at_item (self, item, &p_iter))
+          && bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
                             GD_MAIN_COLUMN_ICON, biji_item_get_icon (item), -1);
       else if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST
-          && bjb_controller_get_iter_at_item (self, item, &p_iter))
+          && bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
                             GD_MAIN_COLUMN_ICON, biji_item_get_emblem (item), -1);
       break;
 
     case BIJI_BOOK_ITEM_TRASHED:
-      if (bjb_controller_get_iter_at_item (self, item, &p_iter))
+      if (bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
       priv->items_to_show = g_list_remove (priv->items_to_show, note);
@@ -707,7 +740,6 @@ bjb_controller_show_collection (GObject *source_object,
   self->priv->items_to_show = result;
 
   sort_and_update (self);
-  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
 BijiCollection *
@@ -729,7 +761,6 @@ bjb_controller_set_collection (BjbController *self,
     bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
     self->priv->collection = NULL;
     bjb_controller_apply_needle (self);
-    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
     return;
   }
 

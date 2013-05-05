@@ -147,14 +147,13 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_toolbar_insert (tlbar, priv->left_group, -1);
   gtk_widget_show_all (GTK_WIDGET (priv->left_group));
 
-  /* Notes tags */
-  priv->toolbar_tag = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("emblem-documents-symbolic", GTK_ICON_SIZE_INVALID);
+  /* Trash notes */
+  priv->toolbar_trash = gtk_button_new ();
+  image = gtk_image_new_from_icon_name ("user-trash-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (image), 32);
-  gtk_container_add (GTK_CONTAINER (priv->toolbar_tag), image);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_tag),
-                               _("Edit collections"));
-  gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_tag);
+  gtk_container_add (GTK_CONTAINER (priv->toolbar_trash), image);
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_trash), _("Delete"));
+  gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_trash);
 
   /* Notes color */
   priv->toolbar_color = bjb_color_button_new ();
@@ -174,13 +173,14 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_toolbar_insert (tlbar, priv->right_group, -1);
   gtk_widget_show_all (GTK_WIDGET (priv->right_group));
 
-  /* Trash notes */
-  priv->toolbar_trash = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("user-trash-symbolic", GTK_ICON_SIZE_INVALID);
+  /* Notes tags */
+  priv->toolbar_tag = gtk_button_new ();
+  image = gtk_image_new_from_icon_name ("list-add-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (image), 32);
-  gtk_container_add (GTK_CONTAINER (priv->toolbar_trash), image);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_trash), _("Delete"));
-  gtk_container_add (GTK_CONTAINER (priv->right_box), priv->toolbar_trash);
+  gtk_container_add (GTK_CONTAINER (priv->toolbar_tag), image);
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_tag),
+                               _("Edit collections"));
+  gtk_container_add (GTK_CONTAINER (priv->right_box), priv->toolbar_tag);
 
   gtk_widget_show_all (priv->widget);
 }

@@ -394,7 +394,7 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   {
     BijiCollection *collection;
 
-    collection = biji_collection_new (urn, finisher->str);
+    collection = biji_collection_new (G_OBJECT (finisher->book), urn, finisher->str);
     biji_note_book_add_item (finisher->book, BIJI_ITEM (collection), TRUE);
   }
 

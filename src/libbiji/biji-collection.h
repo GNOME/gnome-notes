@@ -52,7 +52,7 @@ struct BijiCollectionClass_
 
 GType biji_collection_get_type (void);
 
-BijiCollection * biji_collection_new (gchar *urn, gchar *name);
+BijiCollection * biji_collection_new (GObject *book, gchar *urn, gchar *name);
 
 G_END_DECLS
 

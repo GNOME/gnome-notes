@@ -30,8 +30,15 @@
 
 struct BijiCollectionPrivate_
 {
-  gchar * urn;
-  gchar * name;
+  BijiNoteBook    *book;
+
+  gchar           *urn;
+  gchar           *name;
+
+  GdkPixbuf       *icon;
+  GdkPixbuf       *emblem;
+
+  GList           *collected_items;
 };
 
 static void biji_collection_finalize (GObject *object);
@@ -41,20 +48,24 @@ G_DEFINE_TYPE (BijiCollection, biji_collection, BIJI_TYPE_ITEM)
 /* Properties */
 enum {
   PROP_0,
+  PROP_BOOK,
   PROP_URN,
   PROP_NAME,
   BIJI_COLL_PROPERTIES
 };
 
-// Signals to be used by biji note obj
+
+/* Signals */
 enum {
   COLLECTION_DELETED,
+  COLLECTION_ICON_UPDATED,
   BIJI_COLLECTIONS_SIGNALS
 };
 
 static GParamSpec *properties[BIJI_COLL_PROPERTIES] = { NULL, };
 
 static guint biji_collections_signals [BIJI_COLLECTIONS_SIGNALS] = { 0 };
+
 
 static gchar *
 biji_collection_get_title (BijiItem *coll)
@@ -67,6 +78,7 @@ biji_collection_get_title (BijiItem *coll)
   return collection->priv->name;
 }
 
+
 static gchar *
 biji_collection_get_uuid (BijiItem *coll)
 {
@@ -78,7 +90,8 @@ biji_collection_get_uuid (BijiItem *coll)
   return g_strdup (collection->priv->urn);
 }
 
-GdkPixbuf *
+
+static GdkPixbuf *
 biji_create_collection_icon (gint base_size, GList *pixbufs)
 {
   cairo_surface_t *surface;
@@ -166,34 +179,55 @@ biji_create_collection_icon (gint base_size, GList *pixbufs)
   return ret_val;
 }
 
-/* TODO */
 static GList *
-_get_notes_pix (BijiItem *coll)
+get_collected_pix (BijiCollection *self)
 {
-  return NULL;
-}
+  GList *result = NULL, *l;
 
+  for (l = self->priv->collected_items ; l != NULL; l = l->next)
+  {
+    if (BIJI_IS_ITEM (l->data))
+      result = g_list_prepend (
+                        result,
+                        biji_item_get_emblem (BIJI_ITEM (l->data)));
+  }
+
+  return result;
+}
 
 static GdkPixbuf *
 biji_collection_get_icon (BijiItem *coll)
 {
-  return biji_create_collection_icon (BIJI_ICON_WIDTH, _get_notes_pix (coll));
+  BijiCollection *self = BIJI_COLLECTION (coll);
+
+  if (!self->priv->icon)
+    self->priv->icon = biji_create_collection_icon (BIJI_ICON_WIDTH,
+                                                    get_collected_pix (self));
+
+  return self->priv->icon;
 }
 
 
 static GdkPixbuf *
 biji_collection_get_emblem (BijiItem *coll)
 {
-  return biji_create_collection_icon (BIJI_EMBLEM_WIDTH, _get_notes_pix (coll));
+  BijiCollection *self = BIJI_COLLECTION (coll);
+
+  if (!self->priv->emblem)
+    self->priv->emblem = biji_create_collection_icon (BIJI_EMBLEM_WIDTH,
+                                                      get_collected_pix (self));
+
+  return self->priv->emblem;
 }
 
-/* TODO
- * Maybe return most recent note value */
+
+/* TODO : use tracker to retrieve this at construct */
 static glong
 biji_collection_get_changed_sec (BijiItem *coll)
 {
   return 0;
 }
+
 
 static gboolean
 biji_collection_trash (BijiItem *item)
@@ -210,12 +244,14 @@ biji_collection_trash (BijiItem *item)
   return TRUE;
 }
 
+
 static gboolean
 biji_collection_has_collection (BijiItem *item, gchar *collection)
 {
   //todo
   return FALSE;
 }
+
 
 static gboolean
 biji_collection_add_collection (BijiItem *item, gchar *collection, gboolean notify)
@@ -224,12 +260,14 @@ biji_collection_add_collection (BijiItem *item, gchar *collection, gboolean noti
   return FALSE;
 }
 
+
 static gboolean
 biji_collection_remove_collection (BijiItem *item, gchar *collection, gchar *urn)
 {
   g_warning ("biji collection remove collection is not implemented.");
   return FALSE;
 }
+
 
 static void
 biji_collection_set_property (GObject      *object,
@@ -242,6 +280,9 @@ biji_collection_set_property (GObject      *object,
 
   switch (property_id)
     {
+      case PROP_BOOK:
+        self->priv->book = g_value_get_object (value);
+        break;
       case PROP_URN:
         self->priv->urn = g_strdup (g_value_get_string (value));
         break;
@@ -254,6 +295,7 @@ biji_collection_set_property (GObject      *object,
     }
 }
 
+
 static void
 biji_collection_get_property (GObject    *object,
                               guint       property_id,
@@ -264,6 +306,9 @@ biji_collection_get_property (GObject    *object,
 
   switch (property_id)
     {
+      case PROP_BOOK:
+        g_value_set_object (value, self->priv->book);
+        break;
       case PROP_URN:
         g_value_set_string (value, self->priv->urn);
         break;
@@ -276,6 +321,38 @@ biji_collection_get_property (GObject    *object,
     }
 }
 
+
+/* For convenience, items are retrieved async.
+ * Thus use a signal once icon & emblem updated.*/
+static void
+biji_collection_update_collected (GObject *source_object,
+                                  GAsyncResult *res,
+                                  gpointer user_data)
+{
+  BijiCollection *self = user_data;
+
+  g_clear_pointer (&self->priv->collected_items, g_list_free);
+  g_clear_pointer (&self->priv->icon, g_object_unref);
+  g_clear_pointer (&self->priv->emblem, g_object_unref);
+
+  self->priv->collected_items =
+    biji_get_items_with_collection_finish (source_object, res, self->priv->book);
+
+  g_signal_emit (self, biji_collections_signals[COLLECTION_ICON_UPDATED], 0);
+}
+
+
+static void
+biji_collection_constructed (GObject *obj)
+{
+  BijiCollection *self = BIJI_COLLECTION (obj);
+
+  biji_get_items_with_collection_async (self->priv->name,
+                                        biji_collection_update_collected,
+                                        self);
+}
+
+
 static void
 biji_collection_class_init (BijiCollectionClass *klass)
 {
@@ -285,11 +362,21 @@ biji_collection_class_init (BijiCollectionClass *klass)
   g_object_class = G_OBJECT_CLASS (klass);
   item_class = BIJI_ITEM_CLASS (klass);
 
+  g_object_class->constructed = biji_collection_constructed;
   g_object_class->finalize = biji_collection_finalize;
   g_object_class->set_property = biji_collection_set_property;
   g_object_class->get_property = biji_collection_get_property;
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiCollectionPrivate));
+
+  properties[PROP_BOOK] =
+    g_param_spec_object ("book",
+                         "Book",
+                         "The BijiNoteBook",
+                         BIJI_TYPE_NOTE_BOOK,
+                         G_PARAM_READWRITE |
+                         G_PARAM_CONSTRUCT |
+                         G_PARAM_STATIC_STRINGS);
 
   properties[PROP_URN] =
     g_param_spec_string ("urn",
@@ -306,6 +393,17 @@ biji_collection_class_init (BijiCollectionClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_COLL_PROPERTIES, properties);
+
+  biji_collections_signals[COLLECTION_ICON_UPDATED] =
+    g_signal_new ("icon-changed",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
 
   biji_collections_signals[COLLECTION_DELETED] =
     g_signal_new ("deleted" ,
@@ -349,13 +447,19 @@ static void
 biji_collection_init (BijiCollection *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_COLLECTION, BijiCollectionPrivate);
+
+  self->priv->icon = NULL;
+  self->priv->emblem = NULL;
+
+  self->priv->collected_items = NULL;
 }
 
 
 BijiCollection *
-biji_collection_new (gchar *urn, gchar *name)
+biji_collection_new (GObject *book, gchar *urn, gchar *name)
 {
   return g_object_new (BIJI_TYPE_COLLECTION,
+                       "book", book,
                        "name", name,
                        "urn", urn,
                        NULL);

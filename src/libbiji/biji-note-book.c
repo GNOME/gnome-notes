@@ -194,7 +194,7 @@ book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 }
 
 static void
-book_on_note_color_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
+book_on_item_icon_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 {
   biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ICON_CHANGED, BIJI_ITEM (note));
 }
@@ -213,7 +213,7 @@ _biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
   /* Notify */
   g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
   g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
-  g_signal_connect (note, "color-changed", G_CALLBACK (book_on_note_color_changed_cb), book);
+  g_signal_connect (note, "color-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
 }
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
@@ -250,13 +250,15 @@ create_collection_if_needed (gpointer key,
 
   if (!collection)
   {
-    collection = biji_collection_new (key, value);
+    collection = biji_collection_new (G_OBJECT (book), key, value);
     g_hash_table_insert (book->priv->items,
                          g_strdup (key),
                          collection);
 
     g_signal_connect (collection, "deleted",
                       G_CALLBACK (on_item_deleted_cb), book);
+    g_signal_connect (collection , "icon-changed",
+                      G_CALLBACK (book_on_item_icon_changed_cb), book);
   }
 }
 

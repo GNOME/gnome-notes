@@ -28,6 +28,8 @@
 #include "biji-collection.h"
 #include "biji-tracker.h"
 
+static void biji_collection_update_collected (GObject *source_object, GAsyncResult *res, gpointer user_data);
+
 struct BijiCollectionPrivate_
 {
   BijiNoteBook    *book;
@@ -199,10 +201,14 @@ static GdkPixbuf *
 biji_collection_get_icon (BijiItem *coll)
 {
   BijiCollection *self = BIJI_COLLECTION (coll);
+  GList *pix;
 
   if (!self->priv->icon)
-    self->priv->icon = biji_create_collection_icon (BIJI_ICON_WIDTH,
-                                                    get_collected_pix (self));
+  {
+    pix = get_collected_pix (self);
+    self->priv->icon = biji_create_collection_icon (BIJI_ICON_WIDTH, pix);
+    g_list_free (pix);
+  }
 
   return self->priv->icon;
 }
@@ -212,10 +218,15 @@ static GdkPixbuf *
 biji_collection_get_emblem (BijiItem *coll)
 {
   BijiCollection *self = BIJI_COLLECTION (coll);
+  GList *pix;
 
   if (!self->priv->emblem)
+  {
+    pix = get_collected_pix (self);
     self->priv->emblem = biji_create_collection_icon (BIJI_EMBLEM_WIDTH,
                                                       get_collected_pix (self));
+    g_list_free (pix);
+  }
 
   return self->priv->emblem;
 }
@@ -322,6 +333,24 @@ biji_collection_get_property (GObject    *object,
 }
 
 
+static void
+on_collected_item_change (BijiCollection *self)
+{
+  BijiCollectionPrivate *priv = self->priv;
+  GList *l;
+
+  /* Diconnected any handler */
+  for (l= priv->collected_items; l!= NULL; l=l->next)
+  {
+    g_signal_handlers_disconnect_by_func (l->data, on_collected_item_change, self);
+  }
+
+  /* Then re-process the whole stuff */
+  biji_get_items_with_collection_async (self->priv->name,
+                                        biji_collection_update_collected,
+                                        self);
+}
+
 /* For convenience, items are retrieved async.
  * Thus use a signal once icon & emblem updated.*/
 static void
@@ -330,13 +359,25 @@ biji_collection_update_collected (GObject *source_object,
                                   gpointer user_data)
 {
   BijiCollection *self = user_data;
+  BijiCollectionPrivate *priv = self->priv;
+  GList *l;
 
-  g_clear_pointer (&self->priv->collected_items, g_list_free);
-  g_clear_pointer (&self->priv->icon, g_object_unref);
-  g_clear_pointer (&self->priv->emblem, g_object_unref);
+  g_clear_pointer (&priv->collected_items, g_list_free);
+  g_clear_pointer (&priv->icon, g_object_unref);
+  g_clear_pointer (&priv->emblem, g_object_unref);
 
-  self->priv->collected_items =
-    biji_get_items_with_collection_finish (source_object, res, self->priv->book);
+  priv->collected_items =
+    biji_get_items_with_collection_finish (source_object, res, priv->book);
+
+  /* Connect */
+  for (l = priv->collected_items; l!= NULL; l=l->next)
+  {
+    g_signal_connect_swapped (l->data, "color-changed",
+                              G_CALLBACK (on_collected_item_change), self);
+
+    g_signal_connect_swapped (l->data, "deleted",
+                              G_CALLBACK (on_collected_item_change), self);
+  }
 
   g_signal_emit (self, biji_collections_signals[COLLECTION_ICON_UPDATED], 0);
 }

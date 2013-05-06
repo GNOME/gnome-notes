@@ -76,18 +76,6 @@ static GParamSpec *properties[BIJI_OBJ_PROPERTIES] = { NULL, };
 
 G_DEFINE_TYPE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM);
 
-/* BijiItem iface */
-static gchar     * biji_note_obj_get_title                (BijiItem *note);
-static gchar     * biji_note_obj_get_path                 (BijiItem *note);
-static GdkPixbuf * biji_note_obj_get_icon                 (BijiItem *note);
-static GdkPixbuf * biji_note_obj_get_emblem               (BijiItem *note);
-static GdkPixbuf * biji_note_obj_get_pristine             (BijiItem *note);
-static gboolean    biji_note_obj_trash                    (BijiItem *note);
-static glong       biji_note_obj_get_last_change_date_sec (BijiItem *note);
-static gboolean    biji_note_obj_has_collection           (BijiItem *note, gchar *label);
-static gboolean    biji_note_obj_add_collection           (BijiItem *note, gchar *label, gboolean on_user_action);
-static gboolean    biji_note_obj_remove_collection        (BijiItem *note, gchar *label, gchar *urn);
-
 static void
 on_save_timeout (BijiNoteObj *self)
 {
@@ -229,7 +217,7 @@ biji_note_obj_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_PATH:
-      g_value_set_object (value, biji_note_id_get_path (self->priv->id));
+      g_value_set_object (value, (gpointer) biji_note_id_get_path (self->priv->id));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -237,80 +225,6 @@ biji_note_obj_get_property (GObject    *object,
     }
 }
 
-static void
-biji_note_obj_class_init (BijiNoteObjClass *klass)
-{
-  BijiItemClass*  item_class = BIJI_ITEM_CLASS (klass);
-  GObjectClass* object_class = G_OBJECT_CLASS  (klass);
-
-  object_class->constructed = biji_note_obj_constructed;
-  object_class->finalize = biji_note_obj_finalize;
-  object_class->get_property = biji_note_obj_get_property;
-  object_class->set_property = biji_note_obj_set_property;
-
-  properties[PROP_PATH] =
-    g_param_spec_string("path",
-                        "The note file",
-                        "The location where the note is stored and saved",
-                        NULL,
-                        G_PARAM_READWRITE);
-
-  g_object_class_install_properties (object_class, BIJI_OBJ_PROPERTIES, properties);
-
-  biji_obj_signals[NOTE_RENAMED] = g_signal_new ( "renamed" ,
-                                                  G_OBJECT_CLASS_TYPE (klass),
-                                                  G_SIGNAL_RUN_LAST,
-                                                  0, 
-                                                  NULL, 
-                                                  NULL,
-                                                  g_cclosure_marshal_VOID__VOID,
-                                                  G_TYPE_NONE,
-                                                  0);
-
-  biji_obj_signals[NOTE_CHANGED] = g_signal_new ( "changed" ,
-                                                  G_OBJECT_CLASS_TYPE (klass),
-                                                  G_SIGNAL_RUN_LAST,
-                                                  0, 
-                                                  NULL, 
-                                                  NULL,
-                                                  g_cclosure_marshal_VOID__VOID,
-                                                  G_TYPE_NONE,
-                                                  0);
-
-  biji_obj_signals[NOTE_COLOR_CHANGED] = g_signal_new ("color-changed" ,
-                                                  G_OBJECT_CLASS_TYPE (klass),
-                                                  G_SIGNAL_RUN_LAST,
-                                                  0, 
-                                                  NULL, 
-                                                  NULL,
-                                                  g_cclosure_marshal_VOID__VOID,
-                                                  G_TYPE_NONE,
-                                                  0);
-
-  biji_obj_signals[NOTE_DELETED] = g_signal_new ( "deleted" ,
-                                                  G_OBJECT_CLASS_TYPE (klass),
-                                                  G_SIGNAL_RUN_LAST,
-                                                  0, 
-                                                  NULL, 
-                                                  NULL,
-                                                  g_cclosure_marshal_VOID__VOID,
-                                                  G_TYPE_NONE,
-                                                  0);
-
-  g_type_class_add_private (klass, sizeof (BijiNoteObjPrivate));
-
-  /* Interface */
-  item_class->get_title = biji_note_obj_get_title;
-  item_class->get_uuid = biji_note_obj_get_path;
-  item_class->get_icon = biji_note_obj_get_icon;
-  item_class->get_emblem = biji_note_obj_get_emblem;
-  item_class->get_pristine = biji_note_obj_get_pristine;
-  item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
-  item_class->trash = biji_note_obj_trash;
-  item_class->has_collection = biji_note_obj_has_collection;
-  item_class->add_collection = biji_note_obj_add_collection;
-  item_class->remove_collection = biji_note_obj_remove_collection;
-}
 
 BijiNoteObj *
 biji_note_obj_new_from_path (const gchar *path)
@@ -430,7 +344,7 @@ biji_note_obj_trash (BijiItem *item)
   return result;
 }
 
-static gchar *
+static const gchar *
 biji_note_obj_get_path (BijiItem *item)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
@@ -445,7 +359,7 @@ BijiNoteID* note_get_id(BijiNoteObj* n)
   return n->priv->id;
 }
 
-static gchar *
+static const gchar *
 biji_note_obj_get_title (BijiItem *note)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
@@ -710,7 +624,8 @@ biji_note_obj_get_icon_file (BijiNoteObj *note)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
 
-  gchar *uuid, *basename, *filename;
+  const gchar *uuid;
+  gchar *basename, *filename;
 
   uuid = biji_note_id_get_uuid (note->priv->id);
   basename = biji_str_mass_replace (uuid, ".note", ".png", NULL);
@@ -720,7 +635,6 @@ biji_note_obj_get_icon_file (BijiNoteObj *note)
                                basename,
                                NULL);
 
-  g_free (uuid);
   g_free (basename);
 
   return filename;
@@ -1076,5 +990,84 @@ void biji_note_obj_editor_paste (BijiNoteObj *note)
 {
   if (biji_note_obj_is_opened (note))
     biji_webkit_editor_paste (note->priv->editor);
+}
+
+static void
+biji_note_obj_class_init (BijiNoteObjClass *klass)
+{
+  BijiItemClass*  item_class = BIJI_ITEM_CLASS (klass);
+  GObjectClass* object_class = G_OBJECT_CLASS  (klass);
+
+  object_class->constructed = biji_note_obj_constructed;
+  object_class->finalize = biji_note_obj_finalize;
+  object_class->get_property = biji_note_obj_get_property;
+  object_class->set_property = biji_note_obj_set_property;
+
+  properties[PROP_PATH] =
+    g_param_spec_string("path",
+                        "The note file",
+                        "The location where the note is stored and saved",
+                        NULL,
+                        G_PARAM_READWRITE);
+
+  g_object_class_install_properties (object_class, BIJI_OBJ_PROPERTIES, properties);
+
+  biji_obj_signals[NOTE_RENAMED] =
+    g_signal_new ("renamed",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0, 
+                  NULL, 
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  biji_obj_signals[NOTE_CHANGED] =
+    g_signal_new ("changed",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0, 
+                  NULL, 
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  biji_obj_signals[NOTE_COLOR_CHANGED] =
+    g_signal_new ("color-changed" ,
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  biji_obj_signals[NOTE_DELETED] =
+    g_signal_new ("deleted" ,
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  g_type_class_add_private (klass, sizeof (BijiNoteObjPrivate));
+
+  /* Interface */
+  item_class->get_title = biji_note_obj_get_title;
+  item_class->get_uuid = biji_note_obj_get_path;
+  item_class->get_icon = biji_note_obj_get_icon;
+  item_class->get_emblem = biji_note_obj_get_emblem;
+  item_class->get_pristine = biji_note_obj_get_pristine;
+  item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
+  item_class->trash = biji_note_obj_trash;
+  item_class->has_collection = biji_note_obj_has_collection;
+  item_class->add_collection = biji_note_obj_add_collection;
+  item_class->remove_collection = biji_note_obj_remove_collection;
 }
 

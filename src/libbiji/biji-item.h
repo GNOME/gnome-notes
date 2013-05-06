@@ -57,8 +57,8 @@ struct BijiItemClass_
 {
   GObjectClass parent_class;
 
-  gchar *       (*get_title)            (BijiItem *item);
-  gchar *       (*get_uuid)             (BijiItem *item);
+  const gchar * (*get_title)            (BijiItem *item);
+  const gchar * (*get_uuid)             (BijiItem *item);
   GdkPixbuf *   (*get_icon)             (BijiItem *item);
   GdkPixbuf *   (*get_emblem)           (BijiItem *item);
   GdkPixbuf *   (*get_pristine)         (BijiItem *item);
@@ -69,21 +69,20 @@ struct BijiItemClass_
   gboolean      (*remove_collection)    (BijiItem *item, gchar *coll, gchar *urn);
 };
 
-/* Do not create a generic items.
- * It's rather an iface */
+/* Do not create a generic items, it's rather an iface
+ * but i just need common stuff */
+
 
 GType biji_item_get_type (void);
 
 
-/* Do not free title */
+/*  - note uuid is a location (as in GFile)
+ *  - collection uuid is urn                */
 
-gchar *          biji_item_get_title           (BijiItem *item);
+const gchar *    biji_item_get_title           (BijiItem *item);
 
 
-/* Always g_free uuid
- * NoteObj uuid is a location           */
-
-gchar *          biji_item_get_uuid            (BijiItem *item);
+const gchar *    biji_item_get_uuid            (BijiItem *item);
 
 
 GdkPixbuf *      biji_item_get_icon            (BijiItem *item);

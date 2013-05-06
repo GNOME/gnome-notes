@@ -45,7 +45,7 @@ GType biji_note_book_get_type (void) G_GNUC_CONST;
 
 BijiNoteBook * biji_note_book_new (GFile *location);
 
-gchar * biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title);
+gchar * biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title);
 
 gboolean biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify);
 
@@ -55,7 +55,7 @@ gboolean biji_note_book_notify_changed (BijiNoteBook           *book,
 
 gboolean biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item);
 
-BijiItem * biji_note_book_get_item_at_path (BijiNoteBook *book, gchar *path);
+BijiItem * biji_note_book_get_item_at_path (BijiNoteBook *book, const gchar *path);
 
 /* Get all items, either notes or collections
  * Free the GList, not its content */

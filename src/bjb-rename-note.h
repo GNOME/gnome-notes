@@ -3,6 +3,7 @@
 
 #include <gtk/gtk.h>
 
-gchar * note_title_dialog(GtkWindow *win, gchar *instructions, gchar *title);
+gchar * note_title_dialog (GtkWindow *win, gchar *instructions, const gchar *title);
+
 
 #endif

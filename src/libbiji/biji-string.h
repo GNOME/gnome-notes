@@ -25,11 +25,11 @@ G_BEGIN_DECLS
 
 /* Replaces inside string the as_is with to_be
  * Returns a newly allocated string */
-gchar * biji_str_replace (gchar *string, gchar *as_is, gchar *to_be);
+gchar * biji_str_replace (const gchar *string, gchar *as_is, gchar *to_be);
 
 /* Calls biji_str_replace as much as there are paired gchar* args
  * Returns a newly allocated string */
-gchar * biji_str_mass_replace (gchar *string, ...) G_GNUC_NULL_TERMINATED ;
+gchar * biji_str_mass_replace (const gchar *string, ...) G_GNUC_NULL_TERMINATED ;
 
 G_END_DECLS
 

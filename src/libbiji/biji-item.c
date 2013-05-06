@@ -57,13 +57,13 @@ biji_item_init (BijiItem *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_ITEM, BijiItemPrivate);
 }
 
-gchar *
+const gchar *
 biji_item_get_title         (BijiItem *item)
 {
   return BIJI_ITEM_GET_CLASS (item)->get_title (item);
 }
 
-gchar *
+const gchar *
 biji_item_get_uuid          (BijiItem *item)
 {
   return BIJI_ITEM_GET_CLASS (item)->get_uuid (item);

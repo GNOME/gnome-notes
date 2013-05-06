@@ -28,8 +28,10 @@ static GParamSpec *properties[BIJI_ID_PROPERTIES] = { NULL, };
 
 struct _BijiNoteIDPrivate
 {
-  GFile * location;
-  gchar * title ;
+  GFile       * location;
+  gchar       * title ;
+  gchar       * basename;
+  const gchar * path;
 
   GTimeVal last_change_date;
   GTimeVal last_metadata_change_date;
@@ -65,8 +67,11 @@ biji_note_id_finalize (GObject *object)
 static void
 biji_note_id_set_path (BijiNoteID *self, const gchar *path)
 {
-  g_warn_if_fail (!self->priv->location);
+  g_return_if_fail (BIJI_IS_NOTE_ID (self));
+
   self->priv->location = g_file_new_for_path (path);
+  self->priv->basename = g_file_get_basename (self->priv->location);
+  self->priv->path = g_file_get_path (self->priv->location);
 }
 
 static void
@@ -135,18 +140,20 @@ biji_note_id_equal (BijiNoteID *a, BijiNoteID *b)
   return g_file_equal (a->priv->location, b->priv->location);
 }
 
-gchar * 
+const gchar *
 biji_note_id_get_path (BijiNoteID* n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
 
-  return g_file_get_path (n->priv->location);
+  return n->priv->path;
 }
 
-gchar *
+const gchar *
 biji_note_id_get_uuid (BijiNoteID *n)
 {
-  return g_file_get_basename (n->priv->location);
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+
+  return n->priv->basename;
 }
 
 GFile *
@@ -164,7 +171,7 @@ biji_note_id_set_title  (BijiNoteID *n, gchar* title)
   n->priv->title = g_strdup (title);
 }
 
-gchar *
+const gchar *
 biji_note_id_get_title (BijiNoteID* n)
 {
   return n->priv->title ;

@@ -60,10 +60,10 @@ biji_note_book_init (BijiNoteBook *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_BOOK,
                                             BijiNoteBookPrivate);
 
-  /* Note path is key for table. It's freed by note itself */
+  /* Item path is key for table */
   self->priv->items = g_hash_table_new_full (g_str_hash,
                                              g_str_equal,
-                                             g_free,
+                                             NULL,
                                              g_object_unref);
 }
 
@@ -147,7 +147,7 @@ title_is_unique (BijiNoteBook *book, gchar *title)
 
 /* If title not unique, add sufffix "n", starting with 2, until ok */
 gchar *
-biji_note_book_get_unique_title (BijiNoteBook *book, gchar *title)
+biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title)
 {
   if (!book)
     return g_strdup (title);
@@ -208,7 +208,8 @@ _biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
 
   /* Add it to the list */
   g_hash_table_insert (book->priv->items,
-                       biji_item_get_uuid (BIJI_ITEM (note)), note);
+                       (gpointer) biji_item_get_uuid (BIJI_ITEM (note)),
+                       note);
 
   /* Notify */
   g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
@@ -427,7 +428,7 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
   g_return_val_if_fail (BIJI_IS_ITEM      (item), FALSE);
 
   BijiItem *to_delete = NULL;
-  gchar *path;
+  const gchar *path;
   gboolean retval = FALSE;
 
   path = biji_item_get_uuid (item);
@@ -447,7 +448,6 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
     retval = TRUE;
   }
 
-  g_free (path);
   return retval;
 }
 
@@ -457,7 +457,7 @@ biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
   g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
   g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
 
-  gchar *uid;
+  const gchar *uid;
   gboolean retval = TRUE;
 
   uid = biji_item_get_uuid (item);
@@ -471,7 +471,7 @@ biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
   else if (BIJI_IS_COLLECTION (item))
   {
     g_hash_table_insert (book->priv->items,
-                         biji_item_get_uuid (item),
+                         (gpointer) biji_item_get_uuid (item),
                          item);
 
     g_signal_connect (item, "deleted",
@@ -491,9 +491,9 @@ biji_note_book_get_items (BijiNoteBook *book)
 }
 
 BijiItem *
-biji_note_book_get_item_at_path (BijiNoteBook *book, gchar *path)
+biji_note_book_get_item_at_path (BijiNoteBook *book, const gchar *path)
 {
-  return g_hash_table_lookup (book->priv->items, path);
+  return g_hash_table_lookup (book->priv->items, (gconstpointer) path);
 }
 
 BijiNoteBook *

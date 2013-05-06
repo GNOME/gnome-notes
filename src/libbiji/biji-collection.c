@@ -69,7 +69,7 @@ static GParamSpec *properties[BIJI_COLL_PROPERTIES] = { NULL, };
 static guint biji_collections_signals [BIJI_COLLECTIONS_SIGNALS] = { 0 };
 
 
-static gchar *
+static const gchar *
 biji_collection_get_title (BijiItem *coll)
 {
   BijiCollection *collection;
@@ -81,7 +81,7 @@ biji_collection_get_title (BijiItem *coll)
 }
 
 
-static gchar *
+static const gchar *
 biji_collection_get_uuid (BijiItem *coll)
 {
   BijiCollection *collection;
@@ -89,7 +89,7 @@ biji_collection_get_uuid (BijiItem *coll)
   g_return_val_if_fail (BIJI_IS_COLLECTION (coll), NULL);
   collection = BIJI_COLLECTION (coll);
 
-  return g_strdup (collection->priv->urn);
+  return collection->priv->urn;
 }
 
 

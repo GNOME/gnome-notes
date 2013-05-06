@@ -18,10 +18,11 @@
 #include "bjb-share.h"
 
 static gchar *
-mail_str ( gchar * string )
+mail_str (gchar * string )
 {
   if (!string)
     return g_strdup ("''");
+
   return g_strdup (g_strdelimit (string, "\n", ' '));
 }
 
@@ -33,7 +34,7 @@ on_email_note_callback(GtkWidget *widget, BijiNoteObj *note)
   error = NULL;
   gchar *title_mail, *text_mail;
 
-  title_mail = mail_str (biji_item_get_title (BIJI_ITEM (note)));
+  title_mail = mail_str ((gchar*) biji_item_get_title (BIJI_ITEM (note)));
   text_mail = mail_str (biji_note_get_raw_text (note));
 
   gchar *execute[7] = { "xdg-email",

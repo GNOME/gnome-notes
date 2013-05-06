@@ -129,7 +129,7 @@ biji_perform_update_async_and_free (gchar *query, BijiFunc f, gpointer user_data
 
 /* Don't worry too much. We just want plain text here */
 static gchar *
-tracker_str ( gchar * string )
+tracker_str (const gchar * string )
 {
   return biji_str_mass_replace (string, "\n", " ", "'", " ", NULL);
 }
@@ -145,12 +145,7 @@ to_8601_date( gchar * dot_iso_8601_date )
 static gchar *
 get_note_url (BijiNoteObj *note)
 {
-  gchar *path, *retval;
-
-  path = biji_item_get_uuid (BIJI_ITEM (note));
-  retval = g_strdup_printf ("file://%s", path);
-  g_free (path);
-  return retval;
+  return g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
 }
 
 /////////////// Tags
@@ -261,7 +256,7 @@ biji_get_items_with_collection_finish (GObject *source_object,
 }
 
 void
-biji_get_items_with_collection_async (gchar *collection,
+biji_get_items_with_collection_async (const gchar *collection,
                                       GAsyncReadyCallback f,
                                       gpointer user_data)
 {
@@ -451,7 +446,7 @@ biji_create_new_collection_async (BijiNoteBook *book,
 /* removes the tag EVEN if files associated.
  * TODO : afterward */
 void
-biji_remove_collection_from_tracker (gchar *urn)
+biji_remove_collection_from_tracker (const gchar *urn)
 {
   gchar *query = g_strdup_printf ("DELETE {'%s' a nfo:DataContainer}", urn);
   biji_perform_update_async_and_free (query, NULL, NULL);
@@ -482,11 +477,10 @@ biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn)
 void
 biji_note_delete_from_tracker (BijiNoteObj *note)
 {
-  gchar *query, *path;
+  gchar *query;
 
-  path = biji_item_get_uuid (BIJI_ITEM (note));
-  query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }", path);
-  g_free (path);
+  query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
+                           biji_item_get_uuid (BIJI_ITEM (note)));
 
   biji_perform_update_async_and_free (query, NULL, NULL);
 }
@@ -494,11 +488,14 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 void
 bijiben_push_note_to_tracker (BijiNoteObj *note)
 {
-  gchar *title,*content,*file,*date, *create_date,*last_change_date, *path;
+  gchar *title,*content,*file,*date, *create_date,*last_change_date;
+  const gchar *path;
+
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   path = biji_item_get_uuid (BIJI_ITEM (note));
   title = tracker_str (biji_item_get_title (BIJI_ITEM (note)));
-  file = g_strdup_printf ("file://%s", path);
+  file = get_note_url (note);
 
   date = biji_note_obj_get_create_date (note);
   create_date = to_8601_date (date);
@@ -535,6 +532,5 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
   g_free(content); 
   g_free(create_date);
   g_free(last_change_date);
-  g_free (path);
 }
 

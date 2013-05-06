@@ -168,8 +168,9 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   BijiLazySerializerPrivate *priv = self->priv;
   GList                     *tags;
   GdkRGBA                    color;
-  gchar                     *path, *date, *color_str;
+  gchar                     *date, *color_str;
   gboolean                   retval;
+  const gchar               *path;
 
   priv->writer = xmlNewTextWriterMemory(priv->buf, 0);
 
@@ -191,7 +192,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   // <Title>
   serialize_node (priv->writer,
                   "title",
-                  biji_item_get_title (BIJI_ITEM (priv->note)));
+                  (gchar*) biji_item_get_title (BIJI_ITEM (priv->note)));
 
   // <text> 
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST "\n  ");
@@ -249,7 +250,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 
   path = biji_item_get_uuid (BIJI_ITEM (priv->note));
   retval = g_file_set_contents (path, (gchar*) priv->buf->content, -1, NULL);
-  g_free (path);
+
   return retval;
 }
 

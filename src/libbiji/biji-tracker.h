@@ -31,7 +31,7 @@ GList * biji_get_items_with_collection_finish (GObject *source_object,
                                                GAsyncResult *res,
                                                BijiNoteBook *book);
 
-void  biji_get_items_with_collection_async (gchar *needle,
+void  biji_get_items_with_collection_async (const gchar *needle,
                                             GAsyncReadyCallback f,
                                             gpointer user_data);
 
@@ -53,7 +53,7 @@ void biji_get_all_collections_async (GAsyncReadyCallback f, gpointer user_data);
 
 void biji_create_new_collection_async (BijiNoteBook *book, const gchar *tag, BijiFunc afterward, gpointer user_data);
 
-void biji_remove_collection_from_tracker (gchar *urn);
+void biji_remove_collection_from_tracker (const gchar *urn);
 
 // when adding an existing collection, use the collection title
 void biji_push_existing_collection_to_note (BijiNoteObj *note, gchar *title);

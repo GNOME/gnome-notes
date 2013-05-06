@@ -1,7 +1,7 @@
 #include "bjb-rename-note.h"
 
 gchar *
-note_title_dialog(GtkWindow *win, gchar *instructions, gchar *current_title)
+note_title_dialog(GtkWindow *win, gchar *instructions, const gchar *current_title)
 {
   GtkWidget *dialog;
   GtkWidget *area;

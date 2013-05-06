@@ -19,7 +19,7 @@
 #include "biji-string.h"
 
 gchar *
-biji_str_replace (gchar *string, gchar *as_is, gchar *to_be)
+biji_str_replace (const gchar *string, gchar *as_is, gchar *to_be)
 {
   gchar **array;
   gchar *result = NULL;
@@ -44,7 +44,7 @@ biji_str_replace (gchar *string, gchar *as_is, gchar *to_be)
   return result;
 }
 
-gchar * biji_str_mass_replace (gchar *string,
+gchar * biji_str_mass_replace (const gchar *string,
                                ...)
 {
   va_list args;
@@ -62,7 +62,7 @@ gchar * biji_str_mass_replace (gchar *string,
 
     if (to_be)
     {
-      tmp = biji_str_replace (result, as_is, to_be);
+      tmp = biji_str_replace ((const gchar*) result, as_is, to_be);
 
       if (tmp)
       {

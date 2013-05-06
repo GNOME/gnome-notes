@@ -191,11 +191,13 @@ bjb_controller_get_iter (BjbController *self,
 {
   BjbControllerPrivate *priv = self->priv;
   gboolean retval = FALSE;
-  gboolean still = gtk_tree_model_get_iter_first (priv->model, *iter);
-  gchar *needle = NULL;
+  gboolean still;
+  const gchar *needle = NULL;
 
   if (item && BIJI_IS_ITEM (item))
-    needle = biji_item_get_uuid (item);
+      needle = biji_item_get_uuid (item);
+
+  still = gtk_tree_model_get_iter_first (priv->model, *iter);
 
   while (still)
   {
@@ -220,9 +222,6 @@ bjb_controller_get_iter (BjbController *self,
       still = gtk_tree_model_iter_next (priv->model, *iter);
   }
 
-  if (needle)
-    g_free (needle);
-
   return retval;
 }
 
@@ -237,7 +236,7 @@ bjb_controller_add_item (BjbController *self,
   GtkTreeIter    iter;
   GtkListStore  *store;
   GdkPixbuf     *pix = NULL;
-  gchar         *uuid;
+  const gchar   *uuid;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->priv->model);
@@ -282,8 +281,6 @@ bjb_controller_add_item (BjbController *self,
        GD_MAIN_COLUMN_SELECTED, FALSE,
        -1);
 
-  g_free (uuid);
-
 }
 
 /* If the user searches for notes, is the note searched? */
@@ -294,7 +291,8 @@ bjb_controller_add_item_if_needed (BjbController *self,
                                    GtkTreeIter   *sibling)
 {
   gboolean need_to_add_item = FALSE;
-  gchar *title, *content;
+  gchar *content;
+  const gchar *title;
   BjbControllerPrivate *priv = self->priv;
 
   /* No note... */

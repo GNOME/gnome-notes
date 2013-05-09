@@ -188,10 +188,11 @@ bjb_window_base_new(void)
   BjbWindowBasePriv   *priv;
   GdRevealer          *revealer;
 
-  retval = g_object_new(BJB_TYPE_WINDOW_BASE,
-                        "application", g_application_get_default(),
-                        "hide-titlebar-when-maximized", TRUE,
-                        NULL);
+  retval = g_object_new (BJB_TYPE_WINDOW_BASE,
+                         "application", g_application_get_default(),
+                         "hide-titlebar-when-maximized", TRUE,
+                         "modal", TRUE,
+                         NULL);
 
   /* Rather dirty to finish UI there */
 

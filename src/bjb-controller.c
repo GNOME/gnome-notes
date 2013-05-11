@@ -86,13 +86,13 @@ bjb_controller_init (BjbController *self)
 
   /* Create the columns */
   store = gtk_list_store_new (GD_MAIN_COLUMN_LAST,
-                              G_TYPE_STRING,   // urn
-                              G_TYPE_STRING,   // uri
-                              G_TYPE_STRING,   // name
-                              G_TYPE_STRING,   // author
-                              GDK_TYPE_PIXBUF,   // icon then note
-                              G_TYPE_LONG, // mtime
-                              G_TYPE_BOOLEAN);   // state
+                              G_TYPE_STRING,      // urn
+                              G_TYPE_STRING,      // uri
+                              G_TYPE_STRING,      // name
+                              G_TYPE_STRING,      // author
+                              GDK_TYPE_PIXBUF,    // icon then note
+                              G_TYPE_INT64,       // mtime
+                              G_TYPE_BOOLEAN);    // state
 
   priv->model = GTK_TREE_MODEL(store) ;
   priv->items_to_show = NULL;
@@ -277,7 +277,7 @@ bjb_controller_add_item (BjbController *self,
        GD_MAIN_COLUMN_PRIMARY_TEXT, biji_item_get_title (item),
        GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
        GD_MAIN_COLUMN_ICON, pix,
-       GD_MAIN_COLUMN_MTIME, biji_item_get_last_change (item),
+       GD_MAIN_COLUMN_MTIME, biji_item_get_mtime (item),
        GD_MAIN_COLUMN_SELECTED, FALSE,
        -1);
 
@@ -372,8 +372,8 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
    * two collections, use the most recent cookbook */
   else
   {
-    result =   biji_item_get_last_change (other)
-             - biji_item_get_last_change (one);
+    result =   biji_item_get_mtime (other)
+             - biji_item_get_mtime (one);
   }
 
   return result;

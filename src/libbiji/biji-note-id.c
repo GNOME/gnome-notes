@@ -214,6 +214,13 @@ biji_note_id_get_last_change_date_sec (BijiNoteID *n)
   return n->priv->last_change_date.tv_sec ;
 }
 
+
+gint64
+biji_note_id_get_mtime (BijiNoteID *n)
+{
+  return n->priv->last_change_date.tv_sec;
+}
+
 gboolean
 biji_note_id_set_last_change_date (BijiNoteID* n,gchar* date)
 {

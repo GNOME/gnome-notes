@@ -24,6 +24,23 @@
 
 #include "libbiji.h"
 
+typedef enum
+{
+  BIJI_URN_COL,
+  BIJI_TITLE_COL,
+  BIJI_MTIME_COL,
+  BIJI_NO_COL
+} BijiTrackerColumns;
+
+
+typedef struct
+{
+  gchar    *urn;
+  gchar    *title;
+  gchar    *mtime;
+
+} BijiTrackerInfoSet;
+
 /* todo : find this on glib */
 typedef void (*BijiFunc) (gpointer user_data);
 

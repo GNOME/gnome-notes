@@ -36,6 +36,7 @@ struct BijiCollectionPrivate_
 
   gchar           *urn;
   gchar           *name;
+  gchar           *mtime;
 
   GdkPixbuf       *icon;
   GdkPixbuf       *emblem;
@@ -53,6 +54,7 @@ enum {
   PROP_BOOK,
   PROP_URN,
   PROP_NAME,
+  PROP_MTIME,
   BIJI_COLL_PROPERTIES
 };
 
@@ -232,13 +234,22 @@ biji_collection_get_emblem (BijiItem *coll)
 }
 
 
-/* TODO : use tracker to retrieve this at construct */
-static glong
-biji_collection_get_changed_sec (BijiItem *coll)
+/* Not the same as the prop, which is a string */
+static gint64
+biji_collection_get_mtime (BijiItem *coll)
 {
-  return 0;
-}
+  GTimeVal tv;
+  gint64 timestamp = 0;
+  BijiCollection *self;
 
+  g_return_val_if_fail (BIJI_IS_COLLECTION (coll), 0);
+  self = BIJI_COLLECTION (coll);
+
+  if (g_time_val_from_iso8601 (self->priv->mtime, &tv))
+    timestamp = tv.tv_sec;
+
+  return timestamp;
+}
 
 static gboolean
 biji_collection_trash (BijiItem *item)
@@ -300,6 +311,9 @@ biji_collection_set_property (GObject      *object,
       case PROP_NAME:
         self->priv->name = g_strdup (g_value_get_string (value));
         break;
+      case PROP_MTIME:
+        self->priv->mtime = g_strdup (g_value_get_string (value));
+        break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
         break;
@@ -325,6 +339,9 @@ biji_collection_get_property (GObject    *object,
         break;
       case PROP_NAME:
         g_value_set_string (value, self->priv->name);
+        break;
+      case PROP_MTIME:
+        g_value_set_string (value, self->priv->mtime);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -433,6 +450,13 @@ biji_collection_class_init (BijiCollectionClass *klass)
                          NULL,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
+  properties[PROP_MTIME] =
+    g_param_spec_string  ("mtime",
+                         "Modification time",
+                         "Last modified time",
+                         NULL,
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+
   g_object_class_install_properties (g_object_class, BIJI_COLL_PROPERTIES, properties);
 
   biji_collections_signals[COLLECTION_ICON_UPDATED] =
@@ -463,7 +487,7 @@ biji_collection_class_init (BijiCollectionClass *klass)
   item_class->get_icon = biji_collection_get_icon;
   item_class->get_emblem = biji_collection_get_emblem;
   item_class->get_pristine = biji_collection_get_emblem;
-  item_class->get_change_sec = biji_collection_get_changed_sec;
+  item_class->get_mtime = biji_collection_get_mtime;
   item_class->trash = biji_collection_trash;
   item_class->has_collection = biji_collection_has_collection;
   item_class->add_collection = biji_collection_add_collection;
@@ -490,6 +514,8 @@ biji_collection_init (BijiCollection *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_COLLECTION, BijiCollectionPrivate);
 
+  self->priv->mtime = 0;
+
   self->priv->icon = NULL;
   self->priv->emblem = NULL;
 
@@ -498,11 +524,12 @@ biji_collection_init (BijiCollection *self)
 
 
 BijiCollection *
-biji_collection_new (GObject *book, gchar *urn, gchar *name)
+biji_collection_new (GObject *book, gchar *urn, gchar *name, gchar *mtime)
 {
   return g_object_new (BIJI_TYPE_COLLECTION,
                        "book", book,
                        "name", name,
-                       "urn", urn,
+                       "urn",   urn,
+                       "mtime", mtime,
                        NULL);
 }

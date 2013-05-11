@@ -62,7 +62,7 @@ struct BijiItemClass_
   GdkPixbuf *   (*get_icon)             (BijiItem *item);
   GdkPixbuf *   (*get_emblem)           (BijiItem *item);
   GdkPixbuf *   (*get_pristine)         (BijiItem *item);
-  glong         (*get_change_sec)       (BijiItem *item);
+  gint64        (*get_mtime)            (BijiItem *item);
   gboolean      (*trash)                (BijiItem *item);
   gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
   gboolean      (*add_collection)       (BijiItem *item, gchar *coll, gboolean on_user_action);
@@ -94,7 +94,7 @@ GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
 GdkPixbuf *      biji_item_get_pristine        (BijiItem *item);
 
 
-glong            biji_item_get_last_change     (BijiItem *item);
+gint64           biji_item_get_mtime           (BijiItem *item);
 
 
 gboolean         biji_item_trash               (BijiItem *item);

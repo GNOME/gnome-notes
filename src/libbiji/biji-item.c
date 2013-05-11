@@ -87,10 +87,12 @@ biji_item_get_pristine        (BijiItem *item)
   return BIJI_ITEM_GET_CLASS (item)->get_pristine (item);
 }
 
-glong
-biji_item_get_last_change    (BijiItem *item)
+
+
+gint64
+biji_item_get_mtime           (BijiItem *item)
 {
-  return BIJI_ITEM_GET_CLASS (item)->get_change_sec (item);
+  return BIJI_ITEM_GET_CLASS (item)->get_mtime (item);
 }
 
 gboolean

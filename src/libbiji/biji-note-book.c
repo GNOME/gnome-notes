@@ -245,13 +245,15 @@ create_collection_if_needed (gpointer key,
                              gpointer user_data)
 {
   BijiNoteBook *book = BIJI_NOTE_BOOK (user_data);
+  BijiTrackerInfoSet *set = value;
   BijiCollection *collection;
 
   collection = g_hash_table_lookup (book->priv->items, key);
 
   if (!collection)
   {
-    collection = biji_collection_new (G_OBJECT (book), key, value);
+    collection = biji_collection_new (G_OBJECT (book), key, set->title, set->mtime);
+
     g_hash_table_insert (book->priv->items,
                          g_strdup (key),
                          collection);
@@ -261,6 +263,8 @@ create_collection_if_needed (gpointer key,
     g_signal_connect (collection , "icon-changed",
                       G_CALLBACK (book_on_item_icon_changed_cb), book);
   }
+
+  /* InfoSet are freed per g_hash_table_destroy thanks to below caller */
 }
 
 static void

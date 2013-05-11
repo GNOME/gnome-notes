@@ -65,6 +65,8 @@ gchar * biji_note_id_get_last_change_date (BijiNoteID* n);
 
 glong biji_note_id_get_last_change_date_sec (BijiNoteID *n);
 
+gint64 biji_note_id_get_mtime (BijiNoteID *n);
+
 gboolean biji_note_id_set_last_change_date (BijiNoteID* n,gchar* date);
 
 void biji_note_id_set_last_change_date_now (BijiNoteID *n);

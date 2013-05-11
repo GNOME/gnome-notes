@@ -422,12 +422,13 @@ biji_note_obj_set_last_change_date (BijiNoteObj* n,gchar* date)
   return biji_note_id_set_last_change_date (n->priv->id,date);
 }
 
-static glong
-biji_note_obj_get_last_change_date_sec (BijiItem *item)
-{
-  BijiNoteObj *n = BIJI_NOTE_OBJ (item);
 
-  return biji_note_id_get_last_change_date_sec(note_get_id(n));
+static gint64
+biji_note_obj_get_mtime (BijiItem *note)
+{
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), 0);
+
+  return biji_note_id_get_mtime (BIJI_NOTE_OBJ (note)->priv->id);
 }
 
 gchar *
@@ -1064,7 +1065,7 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   item_class->get_icon = biji_note_obj_get_icon;
   item_class->get_emblem = biji_note_obj_get_emblem;
   item_class->get_pristine = biji_note_obj_get_pristine;
-  item_class->get_change_sec = biji_note_obj_get_last_change_date_sec;
+  item_class->get_mtime = biji_note_obj_get_mtime;
   item_class->trash = biji_note_obj_trash;
   item_class->has_collection = biji_note_obj_has_collection;
   item_class->add_collection = biji_note_obj_add_collection;

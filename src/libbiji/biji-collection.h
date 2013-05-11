@@ -52,7 +52,10 @@ struct BijiCollectionClass_
 
 GType biji_collection_get_type (void);
 
-BijiCollection * biji_collection_new (GObject *book, gchar *urn, gchar *name);
+/* Exiting coll in tracker : provide urn & iso8601 date
+ * To create a brand new collection in tracker rather gobjectize existing one,
+ * see biji_create_new_collection_async */
+BijiCollection * biji_collection_new (GObject *book, gchar *urn, gchar *name, gchar *mtime);
 
 G_END_DECLS
 

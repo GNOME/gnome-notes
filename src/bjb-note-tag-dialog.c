@@ -26,6 +26,7 @@
 /* Model for tree view */
 enum {
   COL_SELECTION,
+  COL_URN,
   COL_TAG_NAME,
   N_COLUMNS
 };
@@ -64,7 +65,8 @@ struct _BjbNoteTagDialogPrivate
   // tmp when a new tag added
   gchar *tag_to_scroll_to;
 
-  // tmp for convenience, when a tag is toggled
+  // for convenience, when a tag is toggled
+  // stores the collection urn
   gchar *toggled_collection;
 
 };
@@ -74,7 +76,7 @@ struct _BjbNoteTagDialogPrivate
 G_DEFINE_TYPE (BjbNoteTagDialog, bjb_note_tag_dialog, GTK_TYPE_DIALOG);
 
 static void
-append_tag (gchar *tag, BjbNoteTagDialog *self)
+append_collection (BijiTrackerInfoSet *set, BjbNoteTagDialog *self)
 {
   BjbNoteTagDialogPrivate *priv = self->priv;
 
@@ -83,12 +85,12 @@ append_tag (gchar *tag, BjbNoteTagDialog *self)
   GList *l;
 
   gtk_list_store_append (priv->store, &iter);
-  item_has_tag = biji_item_has_collection (priv->items->data, tag);
+  item_has_tag = biji_item_has_collection (priv->items->data, set->title);
 
   /* Check if other notes have the same */  
   for (l = priv->items; l != NULL; l = l->next)
   {
-    if (biji_item_has_collection (l->data, tag) != item_has_tag)
+    if (biji_item_has_collection (l->data, set->title) != item_has_tag)
     {
       item_has_tag = SELECTION_INCONSISTENT;
       break;
@@ -97,17 +99,22 @@ append_tag (gchar *tag, BjbNoteTagDialog *self)
 
   gtk_list_store_set (priv->store,    &iter,
                       COL_SELECTION,  item_has_tag,
-                      COL_TAG_NAME ,  tag, -1);
+                      COL_URN,        set->urn,
+                      COL_TAG_NAME ,  set->title, -1);
 }
 
 static gint
-bjb_compare_tag (gconstpointer a, gconstpointer b)
+bjb_compare_collection (gconstpointer a, gconstpointer b)
 {
-  gchar *up_a, *up_b;
-  gint retval;
 
-  up_a = g_utf8_strup (a, -1);
-  up_b = g_utf8_strup (b, -1);
+  gchar *up_a, *up_b;
+  BijiTrackerInfoSet *set_a, *set_b;
+  gint retval;
+  set_a = (BijiTrackerInfoSet *) a;
+  set_b = (BijiTrackerInfoSet *) b;
+
+  up_a = g_utf8_strup (set_a->title, -1);
+  up_b = g_utf8_strup (set_b->title, -1);
   retval = g_strcmp0 (up_a, up_b);
 
   g_free (up_a);
@@ -159,18 +166,17 @@ bjb_note_tag_dialog_handle_tags (GObject *source_object,
 {
   BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (user_data);
   BjbNoteTagDialogPrivate *priv = self->priv;
-  GList *collections;
+  GList *tracker_info;
 
   if (priv->collections)
     g_hash_table_destroy (priv->collections);
 
   priv->collections = biji_get_all_collections_finish (source_object, res);
 
-  collections = g_hash_table_get_values (priv->collections);
-  collections = g_list_sort (collections, bjb_compare_tag);
-
-  g_list_foreach (collections, (GFunc) append_tag, self);
-  g_list_free (collections);
+  tracker_info = g_hash_table_get_values (priv->collections);
+  tracker_info = g_list_sort (tracker_info, bjb_compare_collection);
+  g_list_foreach (tracker_info, (GFunc) append_collection, self);
+  g_list_free (tracker_info);
 
   /* If a new tag was added, scroll & free */
   if (priv->tag_to_scroll_to)
@@ -202,17 +208,18 @@ note_dialog_add_tag (gpointer iter, gpointer collection)
   biji_item_add_collection (BIJI_ITEM (iter), (gchar*) collection, TRUE);
 }
 
+
 static void
 note_dialog_remove_tag (gpointer iter, gpointer user_data)
 {
   BjbNoteTagDialog *self;
-  gchar *urn;
+  BijiTrackerInfoSet *set;
 
   self = user_data;
-  urn = g_hash_table_lookup (self->priv->collections,
+  set = g_hash_table_lookup (self->priv->collections,
                              self->priv->toggled_collection);
 
-  biji_item_remove_collection (BIJI_ITEM (iter), self->priv->toggled_collection, urn);
+  biji_item_remove_collection (BIJI_ITEM (iter), set->title, set->urn);
 }
 
 static void
@@ -232,7 +239,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   column = g_object_get_data (G_OBJECT (cell), "column");
   gtk_tree_model_get_iter (model, &iter, path);
   gtk_tree_model_get (model, &iter, column, &toggle_item, -1);
-  gtk_tree_model_get (model, &iter,COL_TAG_NAME, &tag,-1);
+  gtk_tree_model_get (model, &iter, COL_URN, &tag, -1);
 
   priv->toggled_collection = tag;
 
@@ -241,6 +248,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
     g_list_foreach (priv->items, note_dialog_add_tag, tag);
     toggle_item = SELECTION_TRUE;
   }
+
   else
   {
     g_list_foreach (priv->items, note_dialog_remove_tag, self);
@@ -321,7 +329,12 @@ add_columns (GtkTreeView *view, BjbNoteTagDialog *self)
                                            NULL,
                                            NULL);
 
-  /* List column: tag */
+  /* URN */
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (view, column);
+
+
+  /* List column: collection title */
   column = gtk_tree_view_column_new ();
   gtk_tree_view_append_column (view, column);
 
@@ -353,7 +366,8 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
                             G_CALLBACK (gtk_widget_destroy), self);
 
   priv->store = gtk_list_store_new (N_COLUMNS,
-                                    G_TYPE_INT,      // tag active
+                                    G_TYPE_INT,      // collection is active
+                                    G_TYPE_STRING,   // collection urn
                                     G_TYPE_STRING);  // collection title 
 }
 

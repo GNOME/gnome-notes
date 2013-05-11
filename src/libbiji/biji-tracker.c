@@ -58,6 +58,21 @@ biji_tracker_finisher_free (BijiTrackerFinisher *f)
   g_free (f);
 }
 
+static BijiTrackerInfoSet *
+biji_tracker_info_set_new ()
+{
+  return g_slice_new (BijiTrackerInfoSet);
+}
+
+static void
+biji_tracker_info_set_free (BijiTrackerInfoSet *set)
+{
+  g_free (set->urn);
+  g_free (set->title);
+
+  g_slice_free (BijiTrackerInfoSet, (gpointer) set);
+}
+
 TrackerSparqlConnection *bjb_connection ;
 
 static TrackerSparqlConnection *
@@ -148,10 +163,8 @@ get_note_url (BijiNoteObj *note)
   return g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
 }
 
-/////////////// Tags
 
-/* This func only provides collections.
- * TODO : include number of notes / files */
+/* This func provides Collections, URN, mtime */
 GHashTable *
 biji_get_all_collections_finish (GObject *source_object,
                                  GAsyncResult *res)
@@ -161,8 +174,8 @@ biji_get_all_collections_finish (GObject *source_object,
   GError *error = NULL;
   GHashTable *result = g_hash_table_new_full (g_str_hash,
                                               g_str_equal,
-                                              g_free,
-                                              g_free);
+                                              NULL,
+                                              (GDestroyNotify) biji_tracker_info_set_free);
 
   cursor = tracker_sparql_connection_query_finish (self,
                                                    res,
@@ -176,13 +189,16 @@ biji_get_all_collections_finish (GObject *source_object,
 
   if (cursor)
   {
-    gchar *urn, *collection;
 
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      urn = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
-      collection = g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL));
-      g_hash_table_replace (result, urn, collection);
+      BijiTrackerInfoSet *set = biji_tracker_info_set_new ();
+
+      set->urn = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_URN_COL, NULL));
+      set->title = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_TITLE_COL, NULL));
+      set->mtime = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_MTIME_COL, NULL));
+
+      g_hash_table_replace (result, set->urn, set);
     }
 
     g_object_unref (cursor);
@@ -195,7 +211,13 @@ void
 biji_get_all_collections_async (GAsyncReadyCallback f,
                                 gpointer user_data)
 {
-  gchar *query = "SELECT ?c ?title WHERE { ?c a nfo:DataContainer ; nie:title ?title ; nie:generator 'Bijiben'}";
+  gchar *query = g_strconcat (
+    "SELECT ?c ?title ?mtime ",
+    "WHERE { ?c a nfo:DataContainer ;",
+    "nie:title ?title ; ",
+    "nie:contentLastModified ?mtime ;"
+    "nie:generator 'Bijiben'}",
+    NULL);
 
   bjb_perform_query_async (query, f, user_data);
 }
@@ -387,9 +409,22 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   /* Update the note book */
   if (urn)
   {
+    gint64 timestamp;
+    GTimeVal tv;
+    gchar *time;
+
+    timestamp = g_get_real_time () / G_USEC_PER_SEC;
+    tv.tv_sec = timestamp;
+    tv.tv_usec = 0;
+    time = g_time_val_to_iso8601 (&tv);
+
     BijiCollection *collection;
 
-    collection = biji_collection_new (G_OBJECT (finisher->book), urn, finisher->str);
+    collection = biji_collection_new (
+                       G_OBJECT (finisher->book),
+                       urn,
+                       finisher->str,
+                       time);
     biji_note_book_add_item (finisher->book, BIJI_ITEM (collection), TRUE);
   }
 

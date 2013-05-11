@@ -1,3 +1,11 @@
+Overview of changes in 3.8.2
+=============================
+
+* Backport fix for 32-bits crash (#697921).
+
+* New translations:
+  pa
+
 Overview of changes in 3.8.1
 =============================
 

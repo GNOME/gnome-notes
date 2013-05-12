@@ -310,33 +310,17 @@ biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
 
   if (cursor)
   {
-    const gchar *full_path;
-    gchar *path;
+    const gchar *path;
     BijiItem *item = NULL;
 
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      full_path = tracker_sparql_cursor_get_string (cursor, 0, NULL);
-
-      if (g_str_has_prefix (full_path, "file://"))
-      {
-        GString *string;
-        string = g_string_new (full_path);
-        g_string_erase (string, 0, 7);
-        path = g_string_free (string, FALSE);
-      }
-      else
-      {
-        path = g_strdup (full_path);
-      }
-
+      path = tracker_sparql_cursor_get_string (cursor, 0, NULL);
       item = biji_note_book_get_item_at_path (book, path);
 
       /* Sorting is done in another place */
       if (item)
         result = g_list_prepend (result, item);
-
-      g_free (path);
     }
 
     g_object_unref (cursor);
@@ -345,8 +329,7 @@ biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
   return result;
 }
 
-/* FIXME : the nie:isPartOf returns file://$path, while
- *         union fts returns $path which leads to uggly code */
+
 void
 biji_get_notes_with_string_or_collection_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data)
 {

@@ -346,17 +346,28 @@ biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
 }
 
 /* FIXME : the nie:isPartOf returns file://$path, while
- *         union fts returns $path which leads to uggly code
- * TODO : not case sensitive */
+ *         union fts returns $path which leads to uggly code */
 void
 biji_get_notes_with_string_or_collection_async (gchar *needle, GAsyncReadyCallback f, gpointer user_data)
 {
+  gchar *lower;
   gchar *query;
 
-  query = g_strdup_printf ("SELECT ?s WHERE {{?c nie:isPartOf ?s; nie:title '%s'} \
-                           UNION {?s fts:match '%s'. ?s nie:generator 'Bijiben'}}",
-                           needle, needle);
+  lower = g_utf8_strdown (needle, -1);
+  query = g_strconcat (
+    "SELECT ?urn WHERE {",
+    "  { ?urn a nie:DataObject ;",
+    "    nie:title ?title ; nie:plainTextContent ?content ;",
+    "    nie:generator 'Bijiben' . FILTER (",
+    "    fn:contains (fn:lower-case (?content), '", lower, "' ) || ",
+    "    fn:contains (fn:lower-case (?title)  , '", lower, "'))} ",
+    "UNION",
+    "  { ?urn a nfo:DataContainer ;",
+    "    nie:title ?title ; nie:generator 'Bijiben' . FILTER (",
+    "    fn:contains (fn:lower-case (?title), '", lower, "'))}}",
+    NULL);
 
+  g_free (lower);
   bjb_perform_query_async (query, f, user_data);
 }
 

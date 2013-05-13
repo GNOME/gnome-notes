@@ -41,8 +41,13 @@ typedef struct
 
 } BijiTrackerInfoSet;
 
-/* todo : find this on glib */
+
 typedef void (*BijiFunc) (gpointer user_data);
+
+typedef void (*BijiCallback) (BijiItem *item, gpointer user_data);
+
+
+
 
 GList * biji_get_items_with_collection_finish (GObject *source_object,
                                                GAsyncResult *res,
@@ -68,12 +73,15 @@ GHashTable * biji_get_all_collections_finish (GObject *source_object, GAsyncResu
 
 void biji_get_all_collections_async (GAsyncReadyCallback f, gpointer user_data);
 
-void biji_create_new_collection_async (BijiNoteBook *book, const gchar *tag, BijiFunc afterward, gpointer user_data);
+void biji_create_new_collection_async (BijiNoteBook *book, const gchar *tag, BijiCallback afterward, gpointer user_data);
 
 void biji_remove_collection_from_tracker (const gchar *urn);
 
 // when adding an existing collection, use the collection title
-void biji_push_existing_collection_to_note (BijiNoteObj *note, gchar *title);
+void biji_push_existing_collection_to_note (BijiNoteObj *note,
+                                            gchar       *title,
+                                            BijiFunc     callback,
+                                            gpointer     user_data);
 
 // when removing, use the urn
 void biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn);

@@ -65,7 +65,7 @@ struct BijiItemClass_
   gint64        (*get_mtime)            (BijiItem *item);
   gboolean      (*trash)                (BijiItem *item);
   gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
-  gboolean      (*add_collection)       (BijiItem *item, gchar *coll, gboolean on_user_action);
+  gboolean      (*add_collection)       (BijiItem *item, BijiItem *coll, gchar *title);
   gboolean      (*remove_collection)    (BijiItem *item, gchar *coll, gchar *urn);
 };
 
@@ -103,10 +103,16 @@ gboolean         biji_item_trash               (BijiItem *item);
 gboolean         biji_item_has_collection      (BijiItem *item, gchar *collection);
 
 
-/* add_collection / on_user_action : thus biji_item does notify */
+/* Add Collection:
+ * either provide an existing collection object
+ * or a title, in which case it's considered not on user action
+ * and no notifiy happens */
 
-gboolean         biji_item_add_collection      (BijiItem *item, gchar *coll, gboolean on_user_action);
+gboolean         biji_item_add_collection  (BijiItem *item, BijiItem *collection, gchar *title);
 
+
+/* Remove Collection:
+ * always on user action. */
 
 gboolean         biji_item_remove_collection   (BijiItem *item, gchar *coll, gchar *urn);
 

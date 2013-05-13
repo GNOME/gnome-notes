@@ -57,6 +57,10 @@ GType biji_collection_get_type (void);
  * see biji_create_new_collection_async */
 BijiCollection * biji_collection_new (GObject *book, gchar *urn, gchar *name, gchar *mtime);
 
+
+/* Watching for tracker would be best. Right now manually called. */
+void             biji_collection_refresh (BijiCollection *collection);
+
 G_END_DECLS
 
 #endif /* BIJI_COLLECTION_H_ */

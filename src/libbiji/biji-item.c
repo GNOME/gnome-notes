@@ -107,9 +107,9 @@ biji_item_has_collection      (BijiItem *item, gchar *coll)
   return BIJI_ITEM_GET_CLASS (item)->has_collection (item, coll);
 }
 
-gboolean         biji_item_add_collection      (BijiItem *item, gchar *coll, gboolean on_user_action)
+gboolean         biji_item_add_collection      (BijiItem *item, BijiItem *coll, gchar *title)
 {
-  return BIJI_ITEM_GET_CLASS (item)->add_collection (item, coll, on_user_action);
+  return BIJI_ITEM_GET_CLASS (item)->add_collection (item, coll, title);
 }
 
 gboolean         biji_item_remove_collection   (BijiItem *item, gchar *coll, gchar *urn)

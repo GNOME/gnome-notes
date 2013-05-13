@@ -29,6 +29,7 @@ typedef struct {
 
   /* after the query */
   BijiFunc func;
+  BijiCallback callback;
   gpointer user_data;
 
 } BijiTrackerFinisher;
@@ -37,6 +38,7 @@ static BijiTrackerFinisher *
 biji_tracker_finisher_new (BijiNoteBook *book,
                            gchar        *str,
                            BijiFunc      f,
+                           BijiCallback  callback,
                            gpointer      user_data)
 {
   BijiTrackerFinisher *retval = g_new (BijiTrackerFinisher, 1);
@@ -44,6 +46,7 @@ biji_tracker_finisher_new (BijiNoteBook *book,
   retval->book = book;
   retval->str = str;
   retval->func = f;
+  retval->callback = callback;
   retval->user_data = user_data;
 
   return retval;
@@ -132,7 +135,7 @@ biji_finish_update (GObject *source_object,
 static void
 biji_perform_update_async_and_free (gchar *query, BijiFunc f, gpointer user_data)
 {
-  BijiTrackerFinisher *finisher = biji_tracker_finisher_new (NULL, query, f, user_data);
+  BijiTrackerFinisher *finisher = biji_tracker_finisher_new (NULL, query, f, NULL, user_data);
 
   tracker_sparql_connection_update_async (get_connection_singleton(),
                                           query,
@@ -365,6 +368,7 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   gchar *key = NULL;
   gchar *val = NULL;
   gchar *urn = NULL;
+  BijiCollection *collection = NULL;
 
   error = NULL;
   variant = tracker_sparql_connection_update_blank_finish (connection, res, &error);
@@ -412,8 +416,6 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
     tv.tv_usec = 0;
     time = g_time_val_to_iso8601 (&tv);
 
-    BijiCollection *collection;
-
     collection = biji_collection_new (
                        G_OBJECT (finisher->book),
                        urn,
@@ -425,8 +427,8 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   /* Run the callback from the caller */
 
  out:
-  if (finisher->func != NULL)
-    (*finisher->func) (finisher->user_data);
+  if (finisher->callback != NULL)
+    (*finisher->callback) (BIJI_ITEM (collection), finisher->user_data);
 
   g_free (val);
   g_free (key);
@@ -439,7 +441,7 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
 void
 biji_create_new_collection_async (BijiNoteBook *book,
                                   const gchar  *name,
-                                  BijiFunc      afterward,
+                                  BijiCallback  afterward,
                                   gpointer      user_data)
 {
   gchar *query;
@@ -463,7 +465,7 @@ biji_create_new_collection_async (BijiNoteBook *book,
 
   /* The finisher has all the pointers we want.
    * And the callback will free it */
-  finisher = biji_tracker_finisher_new (book, g_strdup (name), afterward, user_data);
+  finisher = biji_tracker_finisher_new (book, g_strdup (name), NULL, afterward, user_data);
   tracker_sparql_connection_update_blank_async (get_connection_singleton (),
                                                 query,
                                                 G_PRIORITY_DEFAULT,
@@ -482,13 +484,16 @@ biji_remove_collection_from_tracker (const gchar *urn)
 }
 
 void
-biji_push_existing_collection_to_note (BijiNoteObj *note, gchar *title)
+biji_push_existing_collection_to_note (BijiNoteObj *note,
+                                       gchar       *title,
+                                       BijiFunc     afterward,
+                                       gpointer     user_data)
 {
   gchar *url = get_note_url (note);
   gchar *query = g_strdup_printf ("INSERT {?urn nie:isPartOf '%s'} WHERE {?urn a nfo:DataContainer; nie:title '%s'; nie:generator 'Bijiben'}",
                                   url, title);
 
-  biji_perform_update_async_and_free (query, NULL, NULL);
+  biji_perform_update_async_and_free (query, afterward, user_data);
   g_free (url);
 }
 

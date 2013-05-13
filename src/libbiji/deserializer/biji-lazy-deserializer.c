@@ -492,7 +492,7 @@ processNode (BijiLazyDeserializer *self)
     {
       norm = g_string_new (tag);
       g_string_erase (norm,0,16);
-      biji_item_add_collection (BIJI_ITEM (n), norm->str, FALSE);
+      biji_item_add_collection (BIJI_ITEM (n), NULL, norm->str);
       g_string_free (norm, TRUE);
     }
 

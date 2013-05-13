@@ -540,21 +540,29 @@ biji_note_obj_has_collection (BijiItem *item, gchar *label)
   return FALSE;
 }
 
-gboolean
-biji_note_obj_add_collection (BijiItem *item, gchar *label, gboolean on_user_action_cb)
+/*static */ gboolean
+biji_note_obj_add_collection (BijiItem *item,
+                              BijiItem *collection,
+                              gchar    *title)
 {
+  BijiNoteObj *note;
+  gchar *label = title;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
-  g_return_val_if_fail (label != NULL, FALSE);
-  g_return_val_if_fail (!biji_note_obj_has_collection (item, label), FALSE);
+  note = BIJI_NOTE_OBJ (item);
 
-  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
-  gchar *tag = g_strdup (label);
+  if (BIJI_IS_COLLECTION (collection))
+    label = (gchar*) biji_item_get_title (collection);
 
-  g_hash_table_add (note->priv->labels, tag);
+  if (biji_note_obj_has_collection (item, label))
+    return FALSE;
 
-  if (on_user_action_cb)
+  g_hash_table_add (note->priv->labels, g_strdup (label));
+
+  if (BIJI_IS_COLLECTION (collection))
   {
-    biji_push_existing_collection_to_note (note, tag); // Tracker
+    biji_push_existing_collection_to_note (
+      note, label, (BijiFunc) biji_collection_refresh, collection); // Tracker
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
     biji_note_obj_save_note (note);
   }

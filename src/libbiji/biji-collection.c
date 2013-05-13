@@ -276,7 +276,7 @@ biji_collection_has_collection (BijiItem *item, gchar *collection)
 
 
 static gboolean
-biji_collection_add_collection (BijiItem *item, gchar *collection, gboolean notify)
+biji_collection_add_collection (BijiItem *item, BijiItem *coll, gchar *title)
 {
   g_warning ("biji collection add collection is not implemented.");
   return FALSE;
@@ -399,6 +399,11 @@ biji_collection_update_collected (GObject *source_object,
   g_signal_emit (self, biji_collections_signals[COLLECTION_ICON_UPDATED], 0);
 }
 
+void
+biji_collection_refresh (BijiCollection *collection)
+{
+  on_collected_item_change (collection);
+}
 
 static void
 biji_collection_constructed (GObject *obj)

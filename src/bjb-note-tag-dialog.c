@@ -203,9 +203,10 @@ update_collections_model_async (BjbNoteTagDialog *self)
 
 /* Libbiji handles tracker & saving */
 static void
-note_dialog_add_tag (gpointer iter, gpointer collection)
+note_dialog_add_collection (gpointer iter, gpointer user_data)
 {
-  biji_item_add_collection (BIJI_ITEM (iter), (gchar*) collection, TRUE);
+  g_return_if_fail (BIJI_IS_COLLECTION (user_data));
+  biji_item_add_collection (iter, user_data, NULL);
 }
 
 
@@ -235,6 +236,8 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gint toggle_item;
   gint *column;
   gchar *tag;
+  BijiNoteBook *book;
+  BijiItem *collection;
 
   column = g_object_get_data (G_OBJECT (cell), "column");
   gtk_tree_model_get_iter (model, &iter, path);
@@ -242,17 +245,22 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gtk_tree_model_get (model, &iter, COL_URN, &tag, -1);
 
   priv->toggled_collection = tag;
+  book = bjb_window_base_get_book (GTK_WIDGET (self->priv->window));
+  collection = biji_note_book_get_item_at_path (book, tag);
 
-  if (toggle_item == SELECTION_INCONSISTENT || toggle_item == SELECTION_FALSE)
+  if (BIJI_IS_COLLECTION (collection))
   {
-    g_list_foreach (priv->items, note_dialog_add_tag, tag);
-    toggle_item = SELECTION_TRUE;
-  }
+    if (toggle_item == SELECTION_INCONSISTENT || toggle_item == SELECTION_FALSE)
+    {
+      g_list_foreach (priv->items, note_dialog_add_collection, collection);
+      toggle_item = SELECTION_TRUE;
+    }
 
-  else
-  {
-    g_list_foreach (priv->items, note_dialog_remove_tag, self);
-    toggle_item = SELECTION_FALSE;
+    else
+    {
+      g_list_foreach (priv->items, note_dialog_remove_tag, self);
+      toggle_item = SELECTION_FALSE;
+    }
   }
 
   priv->toggled_collection = NULL;
@@ -260,14 +268,18 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gtk_tree_path_free (path);
 }
 
+
+/* If the collection with same title already existed,
+ * libbiji has to avoid creating a new one
+ * and also check before tagging items */
 static void
-on_new_collection_created_cb (gpointer user_data)
+on_new_collection_created_cb (BijiItem *coll, gpointer user_data)
 {
   BjbNoteTagDialog *self = user_data;
   BjbNoteTagDialogPrivate *priv = self->priv;
 
   priv->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry)));
-  g_list_foreach (priv->items, note_dialog_add_tag, priv->tag_to_scroll_to);
+  g_list_foreach (priv->items, note_dialog_add_collection, coll);
 
   update_collections_model_async (self);
   gtk_entry_set_text (GTK_ENTRY (priv->entry), "");

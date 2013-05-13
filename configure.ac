@@ -35,11 +35,37 @@ IT_PROG_INTLTOOL([0.35.0])
 AM_PROG_LIBTOOL
 
 
-dnl tracker-sparql might be 0.12
 
-PKG_CHECK_MODULES(BIJIBEN, tracker-sparql-0.16 clutter-gtk-1.0
-[gtk+-3.0 >= 3.7.7 libxml-2.0 glib-2.0 zeitgeist-1.0
- glib-2.0 >= 2.28 gio-unix-2.0 webkitgtk-3.0 uuid])
+# EggListBox submodule
+prev_top_build_prefix=$ac_top_build_prefix
+prev_ac_configure_args=$ac_configure_args
+AX_CONFIG_DIR([egg-list-box])
+ac_top_build_prefix=$prev_top_build_prefix
+ac_configure_args=$prev_ac_configure_args
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"$ac_top_build_prefix"egg-list-box
+
+
+
+
+
+GLIB_REQUIRED_VERSION=2.28
+GTK_REQUIRED_VERSION=3.7.7
+
+
+PKG_CHECK_MODULES(BIJIBEN,
+                  [ clutter-gtk-1.0
+                    egg-list-box
+                    gio-unix-2.0
+                    glib-2.0 >= $GLIB_REQUIRED_VERSION
+                    gtk+-3.0 >= $GTK_REQUIRED_VERSION
+                    libxml-2.0
+                    tracker-sparql-0.16
+                    uuid
+                    webkitgtk-3.0
+                    zeitgeist-1.0])
+
+
 
 GLIB_GSETTINGS
 

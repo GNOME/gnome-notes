@@ -570,15 +570,19 @@ biji_note_obj_add_collection (BijiItem *item,
   return TRUE;
 }
 
+
 gboolean
-biji_note_obj_remove_collection (BijiItem *item, gchar *label, gchar *urn)
+biji_note_obj_remove_collection (BijiItem *item, BijiItem *collection)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
+  g_return_val_if_fail (BIJI_IS_COLLECTION (collection), FALSE);
+
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
-  if (g_hash_table_remove (note->priv->labels, label))
+  if (g_hash_table_remove (note->priv->labels, biji_item_get_title (collection)))
   {
-    biji_remove_collection_from_note (note, urn); // tracker.
+    biji_remove_collection_from_note (
+      note, collection, (BijiFunc) biji_collection_refresh, collection); // tracker.
     biji_note_id_set_last_metadata_change_date_now (note->priv->id);
     biji_note_obj_save_note (note);
     return TRUE;

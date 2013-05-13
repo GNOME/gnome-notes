@@ -66,7 +66,7 @@ struct BijiItemClass_
   gboolean      (*trash)                (BijiItem *item);
   gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
   gboolean      (*add_collection)       (BijiItem *item, BijiItem *coll, gchar *title);
-  gboolean      (*remove_collection)    (BijiItem *item, gchar *coll, gchar *urn);
+  gboolean      (*remove_collection)    (BijiItem *item, BijiItem *coll);
 };
 
 /* Do not create a generic items, it's rather an iface
@@ -114,7 +114,7 @@ gboolean         biji_item_add_collection  (BijiItem *item, BijiItem *collection
 /* Remove Collection:
  * always on user action. */
 
-gboolean         biji_item_remove_collection   (BijiItem *item, gchar *coll, gchar *urn);
+gboolean         biji_item_remove_collection   (BijiItem *item, BijiItem *collection);
 
 G_END_DECLS
 

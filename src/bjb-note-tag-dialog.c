@@ -211,16 +211,10 @@ note_dialog_add_collection (gpointer iter, gpointer user_data)
 
 
 static void
-note_dialog_remove_tag (gpointer iter, gpointer user_data)
+note_dialog_remove_collection (gpointer iter, gpointer user_data)
 {
-  BjbNoteTagDialog *self;
-  BijiTrackerInfoSet *set;
-
-  self = user_data;
-  set = g_hash_table_lookup (self->priv->collections,
-                             self->priv->toggled_collection);
-
-  biji_item_remove_collection (BIJI_ITEM (iter), set->title, set->urn);
+  g_return_if_fail (BIJI_IS_COLLECTION (user_data));
+  biji_item_remove_collection (iter, user_data);
 }
 
 static void
@@ -258,7 +252,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
 
     else
     {
-      g_list_foreach (priv->items, note_dialog_remove_tag, self);
+      g_list_foreach (priv->items, note_dialog_remove_collection, collection);
       toggle_item = SELECTION_FALSE;
     }
   }

@@ -499,12 +499,20 @@ biji_push_existing_collection_to_note (BijiNoteObj *note,
 
 /* This one is to be fixed */
 void
-biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn)
+biji_remove_collection_from_note (BijiNoteObj    *note,
+                                  BijiItem       *coll,
+                                  BijiFunc        afterward,
+                                  gpointer        user_data)
 {
   gchar *url = get_note_url (note);
-  gchar *query = g_strdup_printf ("DELETE {'%s' nie:isPartOf '%s'}", urn, url);
+  gchar *query = g_strconcat ("DELETE {'",
+                              biji_item_get_uuid (coll),
+                              "' nie:isPartOf '",
+                              url,
+                              "'}",
+                              NULL);
 
-  biji_perform_update_async_and_free (query, NULL, NULL);
+  biji_perform_update_async_and_free (query, afterward, user_data);
   g_free (url);
 }
 

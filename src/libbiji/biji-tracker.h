@@ -77,14 +77,17 @@ void biji_create_new_collection_async (BijiNoteBook *book, const gchar *tag, Bij
 
 void biji_remove_collection_from_tracker (const gchar *urn);
 
-// when adding an existing collection, use the collection title
+
 void biji_push_existing_collection_to_note (BijiNoteObj *note,
                                             gchar       *title,
                                             BijiFunc     callback,
                                             gpointer     user_data);
 
-// when removing, use the urn
-void biji_remove_collection_from_note (BijiNoteObj *note, gchar *urn);
+
+void biji_remove_collection_from_note      (BijiNoteObj    *note,
+                                            BijiItem       *coll,
+                                            BijiFunc        afterward,
+                                            gpointer        user_data);
 
 /* Insert or update */
 void bijiben_push_note_to_tracker(BijiNoteObj *note);

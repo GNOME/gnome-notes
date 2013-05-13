@@ -112,7 +112,7 @@ gboolean         biji_item_add_collection      (BijiItem *item, BijiItem *coll, 
   return BIJI_ITEM_GET_CLASS (item)->add_collection (item, coll, title);
 }
 
-gboolean         biji_item_remove_collection   (BijiItem *item, gchar *coll, gchar *urn)
+gboolean         biji_item_remove_collection   (BijiItem *item, BijiItem *collection)
 {
-  return BIJI_ITEM_GET_CLASS (item)->remove_collection (item, coll, urn);
+  return BIJI_ITEM_GET_CLASS (item)->remove_collection (item, collection);
 }

@@ -284,7 +284,7 @@ biji_collection_add_collection (BijiItem *item, BijiItem *coll, gchar *title)
 
 
 static gboolean
-biji_collection_remove_collection (BijiItem *item, gchar *collection, gchar *urn)
+biji_collection_remove_collection (BijiItem *item, BijiItem *collection)
 {
   g_warning ("biji collection remove collection is not implemented.");
   return FALSE;

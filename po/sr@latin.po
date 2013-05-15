@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-27 23:12+0000\n"
-"PO-Revision-Date: 2013-02-19 20:53+0200\n"
+"POT-Creation-Date: 2013-05-15 07:33+0000\n"
+"PO-Revision-Date: 2013-05-15 10:49+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -36,7 +36,6 @@ msgid "Note-taker"
 msgstr "Hvatač beleški"
 
 #: ../src/bjb-app-menu.c:35
-#| msgid "Simple noteboook for GNOME"
 msgid "Simple notebook for GNOME"
 msgstr "Jednostavna beležnica za Gnom"
 
@@ -47,56 +46,73 @@ msgstr ""
 "\n"
 "  http://prevod.org — prevod na srpski jezik"
 
-#: ../src/bjb-app-menu.c:153
-msgid "External Notes"
-msgstr "Spoljne beleške"
+#: ../src/bjb-app-menu.c:162
+msgid "Import Notes"
+msgstr "Uvezite beleške"
 
-#: ../src/bjb-app-menu.c:168
-msgid "Click on the external notes to import"
-msgstr "Kliknite na spoljne beleške da ih uvezete"
+#: ../src/bjb-app-menu.c:177
+msgid "Import notes from:"
+msgstr "Uvezi beleške iz:"
 
 #: ../src/bjb-color-button.c:146
-msgid "Choose a color for note"
-msgstr "Izaberite boju za belešku"
+#| msgid "Note Font"
+msgid "Note Color"
+msgstr "Boja beleške"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:149
+#: ../src/bjb-editor-toolbar.c:148
 msgid "Cut"
 msgstr "Iseci"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:156
+#: ../src/bjb-editor-toolbar.c:155
 msgid "Copy"
 msgstr "Umnoži"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:163
+#: ../src/bjb-editor-toolbar.c:162
 msgid "Paste"
 msgstr "Ubaci"
 
-#: ../src/bjb-editor-toolbar.c:174
+#: ../src/bjb-editor-toolbar.c:173
 msgid "Bold"
 msgstr "Podebljano"
 
-#: ../src/bjb-editor-toolbar.c:185
+#: ../src/bjb-editor-toolbar.c:184
 msgid "Italic"
 msgstr "Iskošeno"
 
-#: ../src/bjb-editor-toolbar.c:196
+#: ../src/bjb-editor-toolbar.c:195
 msgid "Strike"
 msgstr "Precrtano"
 
 #: ../src/bjb-editor-toolbar.c:225
-msgid "Link"
-msgstr "Veza"
+msgid "Copy selection to a new note"
+msgstr "Umnoži izbor u novu belešku"
 
-#: ../src/bjb-main-toolbar.c:179
+#: ../src/bjb-empty-results-box.c:97
+#| msgid "Note Font"
+msgid "No Notes Found"
+msgstr "Nisam pronašao beleške"
+
+#: ../src/bjb-empty-results-box.c:133
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Vaša zbirka beleški je prazna.\n"
+"Kliknite na dugme „Nova“ da napravite vašu prvu belešku."
+
+#: ../src/bjb-empty-results-box.c:140
+msgid "No result found for this research."
+msgstr "Nema rezultata za ovu pretragu."
+
+#: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
 msgstr "Kliknite na stavke da ih izaberete"
 
-#: ../src/bjb-main-toolbar.c:181
+#: ../src/bjb-main-toolbar.c:118
 #, c-format
-#| msgid "%d selected"
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d je izabrana"
@@ -104,82 +120,119 @@ msgstr[1] "%d su izabrane"
 msgstr[2] "%d je izabrano"
 msgstr[3] "Izabranih — %d"
 
-#: ../src/bjb-main-toolbar.c:220
+#: ../src/bjb-main-toolbar.c:232
+msgid "Search note titles, content and collections"
+msgstr "Tražite naslove, sadržaj i zbirke beleški"
+
+#: ../src/bjb-main-toolbar.c:266
+msgid "Done"
+msgstr "Gotovo"
+
+#: ../src/bjb-main-toolbar.c:267
+msgid "Exit selection mode"
+msgstr "Izađite iz režima izbora"
+
+#: ../src/bjb-main-toolbar.c:299
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za „%s“"
 
-#: ../src/bjb-main-toolbar.c:223
+#: ../src/bjb-main-toolbar.c:302
 msgid "New and Recent"
 msgstr "Nove i skorašnje"
 
-#: ../src/bjb-main-toolbar.c:243
+#: ../src/bjb-main-toolbar.c:364
 msgid "New"
 msgstr "Nova"
 
-#: ../src/bjb-note-tag-dialog.c:267
-msgid "Enter a name to create a tag"
-msgstr "Unesite naziv da napravite oznaku"
+#: ../src/bjb-main-toolbar.c:385
+msgid "Selection mode"
+msgstr "Režim izbora"
 
-#: ../src/bjb-note-tag-dialog.c:277
-msgid "New tag"
-msgstr "Nova oznaka"
+#: ../src/bjb-main-toolbar.c:406
+msgid "View notes and collections in a list"
+msgstr "Prikaži beleške i zbirke kao spisak"
 
-#: ../src/bjb-note-view.c:202
+#: ../src/bjb-main-toolbar.c:426
+msgid "View notes and collections in a grid"
+msgstr "Prikaži beleške i zbirke kao ikonice"
+
+#: ../src/bjb-main-toolbar.c:562
 msgid "Rename Note"
 msgstr "Preimenuj belešku"
 
 #. Undo Redo separator
-#: ../src/bjb-note-view.c:257
+#: ../src/bjb-main-toolbar.c:583
 msgid "Undo"
 msgstr "Opozovi"
 
-#: ../src/bjb-note-view.c:265
+#: ../src/bjb-main-toolbar.c:591
 msgid "Redo"
 msgstr "Povrati"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-note-view.c:279
+#: ../src/bjb-main-toolbar.c:605
 msgid "Bullets"
 msgstr "Tačkasti spisak"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-note-view.c:286
-msgid "List"
-msgstr "Spisak"
+#: ../src/bjb-main-toolbar.c:612
+msgid "Numbered List"
+msgstr "Brojni spisak"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-note-view.c:297
+#: ../src/bjb-main-toolbar.c:623
 msgid "Rename"
 msgstr "Preimenuj"
 
-#: ../src/bjb-note-view.c:303
-msgid "Tags"
-msgstr "Naznake"
+#: ../src/bjb-main-toolbar.c:629 ../src/bjb-note-tag-dialog.c:369
+msgid "Collections"
+msgstr "Zbirke"
 
 #. Delete Note
-#: ../src/bjb-note-view.c:314
+#: ../src/bjb-main-toolbar.c:640
 msgid "Delete this Note"
 msgstr "Obriši ovu belešku"
 
-#. Button to go back to main view
-#: ../src/bjb-note-view.c:381
+#: ../src/bjb-main-toolbar.c:674
 msgid "Notes"
 msgstr "Beleške"
 
+#: ../src/bjb-main-toolbar.c:704 ../src/bjb-selection-toolbar.c:162
+#| msgid "Note Font"
+msgid "Note color"
+msgstr "Boja beleške"
+
+#: ../src/bjb-main-toolbar.c:720
+msgid "Share note"
+msgstr "Delite belešku"
+
+#: ../src/bjb-main-toolbar.c:737
+msgid "More options…"
+msgstr "Još opcija…"
+
+#: ../src/bjb-note-tag-dialog.c:398
+#| msgid "Enter a name to create a tag"
+msgid "Enter a name to create a collection"
+msgstr "Unesite naziv da napravite zbirku"
+
+#: ../src/bjb-note-tag-dialog.c:408
+msgid "New collection"
+msgstr "Nova zbirka"
+
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:482
+#: ../src/bjb-note-view.c:231
 msgid "Last updated "
-msgstr "Poslednje ažuriranje"
+msgstr "Poslednje ažuriranje "
 
-#: ../src/bjb-selection-toolbar.c:177
-msgid "Tag"
-msgstr "Naznaka"
-
-#: ../src/bjb-selection-toolbar.c:201
+#: ../src/bjb-selection-toolbar.c:155
 msgid "Delete"
 msgstr "Obriši"
+
+#: ../src/bjb-selection-toolbar.c:182
+msgid "Edit collections"
+msgstr "Uredite zbirke"
 
 #. create dialog
 #: ../src/bjb-settings.c:191
@@ -225,8 +278,8 @@ msgid "_New Window"
 msgstr "_Novi prozor"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External Notes"
-msgstr "_Spoljne beleške"
+msgid "_Import Notes"
+msgstr "_Uvezi beleške"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"

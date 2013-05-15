@@ -1,0 +1,323 @@
+# Russian translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Stas Solovey <whats_up@tut.by>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-05-13 01:11+0000\n"
+"PO-Revision-Date: 2013-05-15 11:26+0300\n"
+"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "заметки;напоминания;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Создавайте заметки, отмечайте файлы!"
+
+# судя по результатам поиска в гугле, note taker это что-то наподобие стилуса из samsung galaxy note
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Электронная ручка"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple notebook for GNOME"
+msgstr "Простая записная книжка среды рабочего стола GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr "Stas Solovey <whats_up@tut.by>, 2013."
+
+#: ../src/bjb-app-menu.c:162
+msgid "Import Notes"
+msgstr "Импортировать заметки"
+
+#: ../src/bjb-app-menu.c:177
+msgid "Import notes from:"
+msgstr "Импортировать заметки из:"
+
+#: ../src/bjb-color-button.c:146
+#| msgid "Note Font"
+msgid "Note Color"
+msgstr "Цвет заметки"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:148
+msgid "Cut"
+msgstr "Вырезать"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:155
+msgid "Copy"
+msgstr "Копировать"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:162
+msgid "Paste"
+msgstr "Вставить"
+
+#: ../src/bjb-editor-toolbar.c:173
+msgid "Bold"
+msgstr "Полужирный"
+
+#: ../src/bjb-editor-toolbar.c:184
+msgid "Italic"
+msgstr "Курсив"
+
+#: ../src/bjb-editor-toolbar.c:195
+msgid "Strike"
+msgstr "Подчёркнутый"
+
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Copy selection to a new note"
+msgstr "Копировать выделение в новую заметку"
+
+#: ../src/bjb-empty-results-box.c:97
+#| msgid "Note Font"
+msgid "No Notes Found"
+msgstr "Заметки не найдены"
+
+#: ../src/bjb-empty-results-box.c:133
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Коллекция заметок пуста.\n"
+"Нажмите кнопку «Создать», чтобы создать заметку."
+
+#: ../src/bjb-empty-results-box.c:140
+msgid "No result found for this research."
+msgstr "По данному запросу ничего не найдено."
+
+#: ../src/bjb-main-toolbar.c:116
+msgid "Click on items to select them"
+msgstr "Нажмите на элементы, чтобы выбрать их"
+
+#: ../src/bjb-main-toolbar.c:118
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "Выделен %d объект"
+msgstr[1] "Выделено %d объекта"
+msgstr[2] "Выделено %d объектов"
+
+#: ../src/bjb-main-toolbar.c:232
+msgid "Search note titles, content and collections"
+msgstr "Поиск по заголовкам, содержимому и коллекциям"
+
+#: ../src/bjb-main-toolbar.c:266
+msgid "Done"
+msgstr "Готово"
+
+#: ../src/bjb-main-toolbar.c:267
+msgid "Exit selection mode"
+msgstr "Выйти из режима выделения"
+
+#: ../src/bjb-main-toolbar.c:299
+#, c-format
+msgid "Results for %s"
+msgstr "Результаты для %s"
+
+#: ../src/bjb-main-toolbar.c:302
+msgid "New and Recent"
+msgstr "Новые и недавние"
+
+#: ../src/bjb-main-toolbar.c:364
+msgid "New"
+msgstr "Создать"
+
+#: ../src/bjb-main-toolbar.c:385
+msgid "Selection mode"
+msgstr "Режим выделения"
+
+#: ../src/bjb-main-toolbar.c:406
+msgid "View notes and collections in a list"
+msgstr "Показывать заметки и коллекции в виде списка"
+
+#: ../src/bjb-main-toolbar.c:426
+msgid "View notes and collections in a grid"
+msgstr "Показывать заметки и коллекции в виде таблицы"
+
+#: ../src/bjb-main-toolbar.c:562
+msgid "Rename Note"
+msgstr "Переименовать заметку"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:583
+msgid "Undo"
+msgstr "Отменить"
+
+#: ../src/bjb-main-toolbar.c:591
+msgid "Redo"
+msgstr "Вернуть"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:605
+msgid "Bullets"
+msgstr "Тип сортировки"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:612
+msgid "Numbered List"
+msgstr "Нумерованный список"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-main-toolbar.c:623
+msgid "Rename"
+msgstr "Переименовать"
+
+#: ../src/bjb-main-toolbar.c:629 ../src/bjb-note-tag-dialog.c:369
+msgid "Collections"
+msgstr "Коллекции"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:640
+msgid "Delete this Note"
+msgstr "Удалить заметку"
+
+#: ../src/bjb-main-toolbar.c:674
+msgid "Notes"
+msgstr "Заметки"
+
+#: ../src/bjb-main-toolbar.c:704 ../src/bjb-selection-toolbar.c:162
+#| msgid "Note Font"
+msgid "Note color"
+msgstr "Цвет заметки"
+
+#: ../src/bjb-main-toolbar.c:720
+msgid "Share note"
+msgstr "Поделиться заметкой"
+
+#: ../src/bjb-main-toolbar.c:737
+msgid "More options…"
+msgstr "Дополнительные параметры..."
+
+#: ../src/bjb-note-tag-dialog.c:398
+#| msgid "Enter a name to create a tag"
+msgid "Enter a name to create a collection"
+msgstr "Введите имя для создания коллекции"
+
+#: ../src/bjb-note-tag-dialog.c:408
+msgid "New collection"
+msgstr "Создать коллекцию"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:231
+msgid "Last updated "
+msgstr "Последнее обновление"
+
+#: ../src/bjb-selection-toolbar.c:155
+msgid "Delete"
+msgstr "Удалить"
+
+#: ../src/bjb-selection-toolbar.c:182
+msgid "Edit collections"
+msgstr "Изменить коллекции"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Параметры"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Шрифт заметок"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Цвет по умолчанию"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Сегодня"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Вчера"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "На этой неделе"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "В этом месяце"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "В этом году"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Новое окно"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "_Импортировать заметки"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Параметры"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Bijiben"
+msgstr "_О программе"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Справка"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Выйти"
+
+#~ msgid "External Notes"
+#~ msgstr "Внешние заметки"
+
+#~ msgid "Click on the external notes to import"
+#~ msgstr "Нажмите на внешние заметки из списка, чтобы импортировать их"
+
+#~ msgid "Choose a color for note"
+#~ msgstr "Выберите цвет для заметки"
+
+#~ msgid "Link"
+#~ msgstr "Ссылка"
+
+#~ msgid "New tag"
+#~ msgstr "Новый тег"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
+#~ msgid "Tags"
+#~ msgstr "Теги"
+
+#~ msgid "Tag"
+#~ msgstr "Тег"
+
+#~ msgid "_External Notes"
+#~ msgstr "В_нешние заметки"

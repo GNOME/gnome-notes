@@ -4,6 +4,7 @@ src/bjb-app-menu.c
 src/bjb-color-button.c
 src/bjb-editor-toolbar.c
 src/bjb-empty-results-box.c
+src/bjb-import-dialog.c
 src/bjb-main-toolbar.c
 src/bjb-note-tag-dialog.c
 src/bjb-note-view.c

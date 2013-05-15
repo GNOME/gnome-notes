@@ -239,36 +239,17 @@ list_notes_to_copy (GObject *src_obj, GAsyncResult *res, Bijiben *self)
   }
 }
 
-static void
-import_notes_from_x (gchar *x, Bijiben *self)
+
+void
+bijiben_import_notes (Bijiben *self, gchar *location)
 {
-  GFile *to_import = g_file_new_for_path (x);
+  GFile *to_import = g_file_new_for_path (location);
 
   g_file_enumerate_children_async (to_import, ATTRIBUTES_FOR_NOTEBOOK,
                                    G_FILE_QUERY_INFO_NONE, G_PRIORITY_DEFAULT,
                                    NULL, (GAsyncReadyCallback) list_notes_to_copy, self);
 
   g_object_unref (to_import);
-}
-
-void
-import_notes (Bijiben *self, gchar *location)
-{
-  gchar *path_to_import;
-
-  if (g_strcmp0 (location, "tomboy") ==0)
-  {
-    path_to_import = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
-    import_notes_from_x (path_to_import, self);
-    g_free (path_to_import);
-  }
-
-  else if (g_strcmp0 (location, "gnote") ==0)
-  {
-    path_to_import = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
-    import_notes_from_x (path_to_import, self);
-    g_free (path_to_import);
-  }
 }
 
 static void

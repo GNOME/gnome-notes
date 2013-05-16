@@ -247,13 +247,11 @@ on_file_set_cb (GtkWidget *chooser,
                 BjbImportDialog *dialog)
 {
   gchar *location;
-  g_warning ("on file set");
 
   /* Remove the former */
 
   if (dialog->priv->custom->location)
   {
-    g_warning ("on file set : former was %s ", dialog->priv->custom->location);
     g_hash_table_remove (dialog->priv->locations,
                          dialog->priv->custom->location);
     g_clear_pointer (&dialog->priv->custom->location, g_free);
@@ -267,7 +265,6 @@ on_file_set_cb (GtkWidget *chooser,
 
   if (location)
   {
-    g_warning ("file set a location : %s", location);
     gtk_widget_set_sensitive (dialog->priv->cust_box, TRUE);
 
     dialog->priv->custom->selected = FALSE;

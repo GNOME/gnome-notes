@@ -160,9 +160,7 @@ bjb_get_path_for_str (GtkTreeModel  *model,
 }
 
 static void
-bjb_note_tag_dialog_handle_tags (GObject *source_object,
-                                 GAsyncResult *res,
-                                 gpointer user_data)
+bjb_note_tag_dialog_handle_tags (GHashTable *result, gpointer user_data)
 {
   BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (user_data);
   BjbNoteTagDialogPrivate *priv = self->priv;
@@ -171,7 +169,7 @@ bjb_note_tag_dialog_handle_tags (GObject *source_object,
   if (priv->collections)
     g_hash_table_destroy (priv->collections);
 
-  priv->collections = biji_get_all_collections_finish (source_object, res);
+  priv->collections = result;
 
   tracker_info = g_hash_table_get_values (priv->collections);
   tracker_info = g_list_sort (tracker_info, bjb_compare_collection);
@@ -197,8 +195,11 @@ bjb_note_tag_dialog_handle_tags (GObject *source_object,
 static void
 update_collections_model_async (BjbNoteTagDialog *self)
 {
+  BijiNoteBook *book;
+
+  book = bjb_window_base_get_book (GTK_WIDGET (self->priv->window));
   gtk_list_store_clear (self->priv->store);
-  biji_get_all_collections_async (bjb_note_tag_dialog_handle_tags, self);
+  biji_get_all_collections_async (book, bjb_note_tag_dialog_handle_tags, self);
 }
 
 /* Libbiji handles tracker & saving */

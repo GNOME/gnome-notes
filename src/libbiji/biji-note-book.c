@@ -268,14 +268,11 @@ create_collection_if_needed (gpointer key,
 }
 
 static void
-load_book_finish (GObject *source_object,
-                  GAsyncResult *res,
+load_book_finish (GHashTable *collections,
                   gpointer user_data)
 {
   BijiNoteBook *self = BIJI_NOTE_BOOK (user_data);
-  GHashTable *collections;
 
-  collections = biji_get_all_collections_finish (source_object, res);
   g_hash_table_foreach (collections, create_collection_if_needed, user_data);
   g_hash_table_destroy (collections);
 
@@ -333,7 +330,7 @@ enumerate_next_files_ready_cb (GObject *source,
 
   /* Now we have all notes,
    * load the collections and we're good to notify loading done */
-  biji_get_all_collections_async (load_book_finish, self);
+  biji_get_all_collections_async (self, load_book_finish, self);
 }
 
 static void

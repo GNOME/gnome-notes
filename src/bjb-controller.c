@@ -396,24 +396,21 @@ sort_and_update (BjbController *self)
   g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
 }
 
+
 static void
-update_controller_callback (GObject *source_object,
-                            GAsyncResult *res,
+update_controller_callback (GList *result,
                             gpointer user_data)
 {
-  GList *result;
-  BjbController *self = BJB_CONTROLLER (user_data);
+  BjbController *self;
 
-  result = biji_get_notes_with_strings_or_collection_finish (source_object, res, self->priv->book);
+  self = BJB_CONTROLLER (user_data);
   self->priv->items_to_show = result;
 
   if (!result)
-  {
     bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_RESULT);
-    return;
-  }
 
-  sort_and_update (self);
+  else
+    sort_and_update (self);
 }
 
 void
@@ -444,9 +441,8 @@ bjb_controller_apply_needle (BjbController *self)
     return;
   }
 
-  /* There is a research, apply lookup
-   * TODO : also look for collections */
-  biji_get_notes_with_string_or_collection_async (needle, update_controller_callback, self);
+  /* There is a research, apply lookup */
+  biji_get_items_matching_async (self->priv->book, needle, update_controller_callback, self);
 }
 
 static void
@@ -726,25 +722,13 @@ bjb_controller_shows_item (BjbController *self)
   return FALSE;
 }
 
-static void
-bjb_controller_show_collection (GObject *source_object,
-                                GAsyncResult *res,
-                                gpointer user_data)
-{
-  GList *result;
-  BjbController *self = BJB_CONTROLLER (user_data);
-
-  result = biji_get_items_with_collection_finish (source_object, res, self->priv->book);
-  self->priv->items_to_show = result;
-
-  sort_and_update (self);
-}
 
 BijiCollection *
 bjb_controller_get_collection (BjbController *self)
 {
   return self->priv->collection;
 }
+
 
 void
 bjb_controller_set_collection (BjbController *self,
@@ -771,7 +755,8 @@ bjb_controller_set_collection (BjbController *self,
 
   self->priv->needle = g_strdup ("");
   self->priv->collection = coll;
-  biji_get_items_with_collection_async (biji_item_get_title (BIJI_ITEM (coll)),
-                                        bjb_controller_show_collection,
+  biji_get_items_with_collection_async (self->priv->book,
+                                        biji_item_get_title (BIJI_ITEM (coll)),
+                                        update_controller_callback,
                                         self);
 }

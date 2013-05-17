@@ -28,7 +28,9 @@
 #include "biji-collection.h"
 #include "biji-tracker.h"
 
-static void biji_collection_update_collected (GObject *source_object, GAsyncResult *res, gpointer user_data);
+
+static void biji_collection_update_collected (GList *result, gpointer user_data);
+
 
 struct BijiCollectionPrivate_
 {
@@ -363,7 +365,8 @@ on_collected_item_change (BijiCollection *self)
   }
 
   /* Then re-process the whole stuff */
-  biji_get_items_with_collection_async (self->priv->name,
+  biji_get_items_with_collection_async (self->priv->book,
+                                        self->priv->name,
                                         biji_collection_update_collected,
                                         self);
 }
@@ -371,8 +374,7 @@ on_collected_item_change (BijiCollection *self)
 /* For convenience, items are retrieved async.
  * Thus use a signal once icon & emblem updated.*/
 static void
-biji_collection_update_collected (GObject *source_object,
-                                  GAsyncResult *res,
+biji_collection_update_collected (GList *result,
                                   gpointer user_data)
 {
   BijiCollection *self = user_data;
@@ -383,8 +385,7 @@ biji_collection_update_collected (GObject *source_object,
   g_clear_pointer (&priv->icon, g_object_unref);
   g_clear_pointer (&priv->emblem, g_object_unref);
 
-  priv->collected_items =
-    biji_get_items_with_collection_finish (source_object, res, priv->book);
+  priv->collected_items = result;
 
   /* Connect */
   for (l = priv->collected_items; l!= NULL; l=l->next)
@@ -410,7 +411,8 @@ biji_collection_constructed (GObject *obj)
 {
   BijiCollection *self = BIJI_COLLECTION (obj);
 
-  biji_get_items_with_collection_async (self->priv->name,
+  biji_get_items_with_collection_async (self->priv->book,
+                                        self->priv->name,
                                         biji_collection_update_collected,
                                         self);
 }

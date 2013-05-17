@@ -1,5 +1,5 @@
 /* biji-tracker.h
- * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
+ * Copyright (C) Pierre-Yves LUYTEN 2012,2013 <py@luyten.fr>
  * 
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -24,13 +24,6 @@
 
 #include "libbiji.h"
 
-typedef enum
-{
-  BIJI_URN_COL,
-  BIJI_TITLE_COL,
-  BIJI_MTIME_COL,
-  BIJI_NO_COL
-} BijiTrackerColumns;
 
 
 typedef struct
@@ -42,56 +35,75 @@ typedef struct
 } BijiTrackerInfoSet;
 
 
-typedef void (*BijiFunc) (gpointer user_data);
-
-typedef void (*BijiCallback) (BijiItem *item, gpointer user_data);
-
+/* All possible query return
+ * Free the containers for list & hash */
 
 
-
-GList * biji_get_items_with_collection_finish (GObject *source_object,
-                                               GAsyncResult *res,
-                                               BijiNoteBook *book);
-
-void  biji_get_items_with_collection_async (const gchar *needle,
-                                            GAsyncReadyCallback f,
-                                            gpointer user_data);
-
-/* All notes matching (either content or collections) */
-GList * biji_get_notes_with_strings_or_collection_finish (GObject *source_object,
-                                                          GAsyncResult *res,
-                                                          BijiNoteBook *book);
-
-void biji_get_notes_with_string_or_collection_async (gchar *needle,
-                                                     GAsyncReadyCallback f,
-                                                     gpointer user_data);
-
-/* Collections */
-
-/* The URN is the... value. Collection _title_ is the key.*/
-GHashTable * biji_get_all_collections_finish (GObject *source_object, GAsyncResult *res);
-
-void biji_get_all_collections_async (GAsyncReadyCallback f, gpointer user_data);
-
-void biji_create_new_collection_async (BijiNoteBook *book, const gchar *tag, BijiCallback afterward, gpointer user_data);
-
-void biji_remove_collection_from_tracker (const gchar *urn);
+typedef void       (*BijiBoolCallback)          (gboolean result, gpointer user_data);
 
 
-void biji_push_existing_collection_to_note (BijiNoteObj *note,
-                                            gchar       *title,
-                                            BijiFunc     callback,
-                                            gpointer     user_data);
+typedef void       (*BijiItemCallback)          (BijiItem *item, gpointer user_data);
 
 
-void biji_remove_collection_from_note      (BijiNoteObj    *note,
-                                            BijiItem       *coll,
-                                            BijiFunc        afterward,
-                                            gpointer        user_data);
+typedef void       (*BijiItemsListCallback)     (GList *items, gpointer user_data);
 
-/* Insert or update */
-void bijiben_push_note_to_tracker(BijiNoteObj *note);
 
-void biji_note_delete_from_tracker(BijiNoteObj *note);
+typedef void       (*BijiInfoSetsHCallback)     (GHashTable *info_sets, gpointer user_data);
+
+
+
+void        biji_get_items_with_collection_async       (BijiNoteBook *book,
+                                                        const gchar *needle,
+                                                        BijiItemsListCallback cb,
+                                                        gpointer user_data);
+
+
+void        biji_get_items_matching_async              (BijiNoteBook *book,
+                                                        gchar *needle,
+                                                        BijiItemsListCallback cb,
+                                                        gpointer user_data);
+
+
+
+void        biji_get_all_collections_async             (BijiNoteBook *book,
+                                                        BijiInfoSetsHCallback cb,
+                                                        gpointer user_data);
+
+
+
+void        biji_create_new_collection_async           (BijiNoteBook *book,
+                                                        const gchar *tag,
+                                                        BijiItemCallback afterward,
+                                                        gpointer user_data);
+
+
+
+void        biji_remove_collection_from_tracker        (const gchar *urn);
+
+
+
+
+void        biji_push_existing_collection_to_note      (BijiNoteObj      *note,
+                                                        gchar            *title,
+                                                        BijiBoolCallback  bool_cb,
+                                                        gpointer          user_data);
+
+
+
+void        biji_remove_collection_from_note           (BijiNoteObj      *note,
+                                                        BijiItem         *coll,
+                                                        BijiBoolCallback  bool_cb,
+                                                        gpointer          user_data);
+
+
+                       /* Either insert or update */
+
+void        bijiben_push_note_to_tracker               (BijiNoteObj *note);
+
+
+
+void        biji_note_delete_from_tracker              (BijiNoteObj *note);
+
+
 
 #endif /*_BIJI_TRACKER_H*/

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-12 00:32+0000\n"
-"PO-Revision-Date: 2013-05-13 12:25+0200\n"
+"POT-Creation-Date: 2013-05-16 00:35+0000\n"
+"PO-Revision-Date: 2013-05-17 13:32+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Gtranslator 2.91.5\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -36,21 +36,13 @@ msgstr "Publique notas y etiquete archivos"
 msgid "Note-taker"
 msgstr "Para tomar notas"
 
-#: ../src/bjb-app-menu.c:35
+#: ../src/bjb-app-menu.c:36
 msgid "Simple notebook for GNOME"
 msgstr "Cuaderno de notas sencillo para GNOME"
 
-#: ../src/bjb-app-menu.c:39
+#: ../src/bjb-app-menu.c:40
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013"
-
-#: ../src/bjb-app-menu.c:162
-msgid "Import Notes"
-msgstr "Importar notas"
-
-#: ../src/bjb-app-menu.c:177
-msgid "Import notes from:"
-msgstr "Importar notas desde:"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
@@ -102,6 +94,31 @@ msgstr ""
 #: ../src/bjb-empty-results-box.c:140
 msgid "No result found for this research."
 msgstr "No se han encontrado resultados para esta búsqueda."
+
+#: ../src/bjb-import-dialog.c:308
+msgid "Custom Location"
+msgstr "Ubicación personalizada"
+
+#: ../src/bjb-import-dialog.c:403
+msgid "Import Notes"
+msgstr "Importar notas"
+
+#: ../src/bjb-import-dialog.c:408
+#| msgid "Import Notes"
+msgid "Import"
+msgstr "Importar"
+
+#: ../src/bjb-import-dialog.c:419
+msgid "Select import location"
+msgstr "Seleccionar la ubicación de la importación"
+
+#: ../src/bjb-import-dialog.c:439
+msgid "Tomboy application"
+msgstr "Aplicación Tomboy"
+
+#: ../src/bjb-import-dialog.c:445
+msgid "Gnote application"
+msgstr "Aplicación Gnote"
 
 #: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
@@ -180,7 +197,7 @@ msgstr "Lista numerada"
 msgid "Rename"
 msgstr "Renombrar"
 
-#: ../src/bjb-main-toolbar.c:629 ../src/bjb-note-tag-dialog.c:363
+#: ../src/bjb-main-toolbar.c:629 ../src/bjb-note-tag-dialog.c:369
 msgid "Collections"
 msgstr "Colecciones"
 
@@ -205,13 +222,11 @@ msgstr "Compartir nota"
 msgid "More options…"
 msgstr "Más opciones…"
 
-#: ../src/bjb-note-tag-dialog.c:392
-#| msgid "Enter a name to create a tag"
+#: ../src/bjb-note-tag-dialog.c:398
 msgid "Enter a name to create a collection"
 msgstr "Introduzca un nombre para crear la colección"
 
-#: ../src/bjb-note-tag-dialog.c:402
-#| msgid "Edit collections"
+#: ../src/bjb-note-tag-dialog.c:408
 msgid "New collection"
 msgstr "Colección nueva"
 
@@ -290,6 +305,9 @@ msgstr "Ay_uda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Salir"
+
+#~ msgid "Import notes from:"
+#~ msgstr "Importar notas desde:"
 
 #~ msgid "Tags"
 #~ msgstr "Etiquetas"

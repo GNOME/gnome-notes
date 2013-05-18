@@ -78,6 +78,9 @@ BijiCollection * bjb_controller_get_collection (BjbController *self);
 
 void bjb_controller_set_collection (BjbController *self, BijiCollection *coll);
 
+
+void bjb_controller_show_more (BjbController *controller);
+
 G_END_DECLS
 
 #endif /* _BJB_CONTROLLER_H_ */

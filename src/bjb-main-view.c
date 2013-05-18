@@ -25,6 +25,7 @@
 #include "bjb-app-menu.h"
 #include "bjb-bijiben.h"
 #include "bjb-controller.h"
+#include "bjb-load-more-button.h"
 #include "bjb-main-toolbar.h"
 #include "bjb-main-view.h"
 #include "bjb-note-tag-dialog.h"
@@ -66,8 +67,9 @@ struct _BjbMainViewPriv {
   BjbSelectionToolbar  *select_bar;
 
   /* View Notes , model */
-  GdMainView       *view ; 
-  BjbController    *controller ;
+  GdMainView       *view ;
+  BjbController    *controller;
+  GtkWidget        *load_more;
 
   /* Signals */
   gulong key;
@@ -466,6 +468,7 @@ on_drag_data_received (GtkWidget        *widget,
   gtk_drag_finish (context, FALSE, FALSE, time);
 }
 
+
 void
 bjb_main_view_connect_signals (BjbMainView *self)
 {
@@ -519,6 +522,10 @@ bjb_main_view_constructed(GObject *o)
 
   gtk_container_add (GTK_CONTAINER (overlay), GTK_WIDGET (priv->view));
   gtk_box_pack_start (vbox, GTK_WIDGET (overlay), TRUE, TRUE, 0);
+
+  /* Load more */
+  priv->load_more = bjb_load_more_button_new (priv->controller);
+  gtk_box_pack_start (vbox, priv->load_more, FALSE, FALSE, 0);
 
   /* Selection Panel */
   priv->select_bar = bjb_selection_toolbar_new (priv->view, self);

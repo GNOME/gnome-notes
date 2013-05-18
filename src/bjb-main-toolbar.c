@@ -238,19 +238,22 @@ add_search_button (BjbMainToolbar *self)
                             G_CALLBACK (on_search_button_clicked), priv);
 }
 
-static void
-update_selection_buttons (BjbMainToolbarPrivate *priv)
-{
-  gboolean some_note_is_visible = bjb_controller_shows_item (priv->controller);
 
+static void
+update_selection_buttons (BjbController *controller,
+                          gboolean some_item_is_visible,
+                          gboolean remaining,
+                          BjbMainToolbarPrivate *priv)
+{
   if (priv->grid)
-    gtk_widget_set_sensitive (priv->grid, some_note_is_visible);
+    gtk_widget_set_sensitive (priv->grid, some_item_is_visible);
 
   if (priv->list)
-    gtk_widget_set_sensitive (priv->list, some_note_is_visible);
+    gtk_widget_set_sensitive (priv->list, some_item_is_visible);
 
-  gtk_widget_set_sensitive (priv->select, some_note_is_visible);
+  gtk_widget_set_sensitive (priv->select, some_item_is_visible);
 }
+
 
 static void
 populate_bar_for_selection (BjbMainToolbar *self)
@@ -304,10 +307,10 @@ update_label_for_standard (BjbMainToolbar *self)
   gd_main_toolbar_set_labels (GD_MAIN_TOOLBAR (self), label, NULL);
   g_free (label);
 
-  self->priv->display_notes = g_signal_connect_swapped (self->priv->controller,
-                                                        "display-notes-changed",
-                                                        G_CALLBACK (update_selection_buttons),
-                                                        self->priv);
+  self->priv->display_notes = g_signal_connect (self->priv->controller,
+                                                "display-items-changed",
+                                                G_CALLBACK (update_selection_buttons),
+                                                self->priv);
 }
 
 static void
@@ -741,9 +744,13 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 }
 
 static void
-populate_bar_switch(BjbMainToolbar *self)
+populate_bar_switch (BjbMainToolbar *self)
 {
-  switch (self->priv->type)
+  BjbMainToolbarPrivate *priv;
+
+  priv = self->priv;
+
+  switch (priv->type)
   {
     case BJB_TOOLBAR_SELECT:
       populate_bar_for_selection (self);
@@ -752,13 +759,19 @@ populate_bar_switch(BjbMainToolbar *self)
     case BJB_TOOLBAR_STD_ICON:
       add_search_button (self);
       populate_bar_for_icon_view(self);
-      update_selection_buttons (self->priv);
+      update_selection_buttons (priv->controller,
+                                bjb_controller_shows_item (priv->controller),
+                                TRUE,
+                                self->priv);
       break;
 
     case BJB_TOOLBAR_STD_LIST:
       add_search_button (self);
       populate_bar_for_list_view(self);
-      update_selection_buttons (self->priv);
+      update_selection_buttons (priv->controller,
+                                bjb_controller_shows_item (priv->controller),
+                                TRUE,
+                                self->priv);
       break;
 
     case BJB_TOOLBAR_NOTE_VIEW:

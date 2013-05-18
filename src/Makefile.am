@@ -60,6 +60,8 @@ bijiben_SOURCES = \
 	bjb-empty-results-box.h \
 	bjb-import-dialog.h \
 	bjb-import-dialog.c \
+	bjb-load-more-button.c \
+	bjb-load-more-button.h \
 	bjb-main.c \
 	bjb-main-toolbar.c \
 	bjb-main-toolbar.h \

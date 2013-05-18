@@ -28,6 +28,15 @@
 #include "bjb-main-view.h"
 #include "bjb-window-base.h"
 
+
+/*
+ * The start-up number of items to show,
+ * and its incrementation
+ */
+
+#define BJB_ITEMS_SLICE 48
+
+
 /* Gobject */
 
 struct _BjbControllerPrivate
@@ -42,9 +51,13 @@ struct _BjbControllerPrivate
 
   /*  Private  */
   GList          *items_to_show;
+  gint            n_items_to_show;
+  gboolean        remaining_items;
+
   gboolean        connected;
   gulong          book_change;
 };
+
 
 enum {
   PROP_0,
@@ -79,10 +92,8 @@ bjb_controller_init (BjbController *self)
   GtkListStore     *store ;
   GtkListStore     *completion ;
 
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, 
-                                            BJB_TYPE_CONTROLLER, 
-                                            BjbControllerPrivate);
-  priv = self->priv ;
+  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE
+    (self, BJB_TYPE_CONTROLLER, BjbControllerPrivate);
 
   /* Create the columns */
   store = gtk_list_store_new (GD_MAIN_COLUMN_LAST,
@@ -96,6 +107,7 @@ bjb_controller_init (BjbController *self)
 
   priv->model = GTK_TREE_MODEL(store) ;
   priv->items_to_show = NULL;
+  priv->n_items_to_show = BJB_ITEMS_SLICE;
   priv->needle = NULL;
   priv->collection = NULL;
   priv->connected = FALSE;
@@ -379,21 +391,36 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
   return result;
 }
 
+
+
 static void
-sort_items (BjbController *self)
+sort_items (GList **to_show)
 {
-  self->priv->items_to_show = g_list_sort (self->priv->items_to_show,
-                                           most_recent_item_first);
+  *to_show = g_list_sort (*to_show, most_recent_item_first);
+}
+
+
+static void
+notify_displayed_items_changed (BjbController *self)
+{
+  /*gboolean shown;
+
+  shown = (self->priv->items_to_show != NULL);*/
+  g_signal_emit (G_OBJECT (self),
+                 bjb_controller_signals[DISPLAY_NOTES_CHANGED],
+                 0,
+                 //shown,
+                 (self->priv->items_to_show != NULL),
+                 self->priv->remaining_items);  
 }
 
 static void
-sort_and_update (BjbController *self)
+update (BjbController *self)
 {
-  sort_items (self);
   bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
   bjb_controller_update_view (self);
 
-  g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
+  notify_displayed_items_changed (self);
 }
 
 
@@ -402,15 +429,43 @@ update_controller_callback (GList *result,
                             gpointer user_data)
 {
   BjbController *self;
+  BjbControllerPrivate *priv;
+  GList *l;
+  gint i;
 
   self = BJB_CONTROLLER (user_data);
-  self->priv->items_to_show = result;
+  priv = self->priv;
+  priv->remaining_items = FALSE;
 
   if (!result)
-    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_RESULT);
+  {
+    bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_NO_RESULT);
+    return;
+  }
 
-  else
-    sort_and_update (self);
+  sort_items (&result);
+  i = 0;
+
+  /* We are supposed to show n items. While not reach,
+   * add to the list. As soon as reached, keep in mind that */
+
+  for (l=result ; l!= NULL ; l=l->next)
+  {
+    if (i< priv->n_items_to_show)
+    {
+      priv->items_to_show = g_list_prepend (priv->items_to_show, l->data);
+      i ++;
+    }
+
+    else if (l->next != NULL)
+    {
+      priv->remaining_items = TRUE;
+      break;
+    }
+  }
+
+  priv->items_to_show = g_list_reverse (priv->items_to_show);
+  update (self);
 }
 
 void
@@ -418,26 +473,25 @@ bjb_controller_apply_needle (BjbController *self)
 {
   BjbControllerPrivate *priv = self->priv;
   gchar *needle;
+  GList *all_notes;
 
-  if (priv->items_to_show)
-    g_clear_pointer (&priv->items_to_show, g_list_free);
-  
   needle = priv->needle;
+  g_clear_pointer (&priv->items_to_show, g_list_free);
 
   /* Show all notes */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    priv->items_to_show = biji_note_book_get_items (self->priv->book);
+    all_notes = biji_note_book_get_items (self->priv->book);
 
     /* If there are no note, report this */
-    if (!priv->items_to_show)
+    if (all_notes == NULL)
     {
       bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_NOTE);
       return;
     }
 
     /* Otherwise do show existing notes */
-    sort_and_update (self);
+    update_controller_callback (all_notes, self);
     return;
   }
 
@@ -510,8 +564,9 @@ on_book_changed (BijiNoteBook           *book,
             p_iter = NULL;
 
           bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
+          priv->n_items_to_show ++;
           priv->items_to_show = g_list_prepend (priv->items_to_show, note);
-          g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
+          notify_displayed_items_changed (self);
       break;
 
     /* Same comment, prepend but collection before note */
@@ -549,7 +604,7 @@ on_book_changed (BijiNoteBook           *book,
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
       priv->items_to_show = g_list_remove (priv->items_to_show, note);
-      g_signal_emit (G_OBJECT (self), bjb_controller_signals[DISPLAY_NOTES_CHANGED],0);
+      notify_displayed_items_changed (self);
       break;
 
     default:
@@ -614,15 +669,17 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                   G_TYPE_NONE,
                                                   0);
 
-  bjb_controller_signals[DISPLAY_NOTES_CHANGED] = g_signal_new ( "display-notes-changed" ,
+  bjb_controller_signals[DISPLAY_NOTES_CHANGED] = g_signal_new ( "display-items-changed" ,
                                                   G_OBJECT_CLASS_TYPE (klass),
                                                   G_SIGNAL_RUN_LAST,
                                                   0, 
                                                   NULL, 
                                                   NULL,
-                                                  g_cclosure_marshal_VOID__BOOLEAN,
+                                                  _biji_marshal_VOID__BOOLEAN_BOOLEAN,
                                                   G_TYPE_NONE,
-                                                  0);
+                                                  2,
+                                                  G_TYPE_BOOLEAN,
+                                                  G_TYPE_BOOLEAN);
 
   properties[PROP_BOOK] = g_param_spec_object ("book",
                                                "Book",
@@ -713,15 +770,12 @@ bjb_controller_get_completion(BjbController *self)
   return self->priv->completion ;
 }
 
+
 gboolean
 bjb_controller_shows_item (BjbController *self)
 {
-  if (self->priv->items_to_show)
-    return TRUE;
-
-  return FALSE;
+  return (self->priv->items_to_show != NULL);
 }
-
 
 BijiCollection *
 bjb_controller_get_collection (BjbController *self)
@@ -748,10 +802,8 @@ bjb_controller_set_collection (BjbController *self,
 
   /* Opening an __existing__ collection */
   bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
-  g_list_free (self->priv->items_to_show);
-
-  if (self->priv->needle)
-    g_free (self->priv->needle);
+  g_clear_pointer (&self->priv->items_to_show, g_list_free);
+  g_clear_pointer (&self->priv->needle, g_free);
 
   self->priv->needle = g_strdup ("");
   self->priv->collection = coll;
@@ -759,4 +811,19 @@ bjb_controller_set_collection (BjbController *self,
                                         biji_item_get_title (BIJI_ITEM (coll)),
                                         update_controller_callback,
                                         self);
+}
+
+
+void
+bjb_controller_show_more (BjbController *self)
+{
+  self->priv->n_items_to_show += BJB_ITEMS_SLICE;
+
+  /* FIXME: this method to refresh is just non sense */
+
+  if (self->priv->collection != NULL)
+    bjb_controller_set_collection (self, self->priv->collection);
+
+  else
+    on_needle_changed (self);
 }

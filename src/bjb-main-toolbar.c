@@ -801,6 +801,7 @@ populate_main_toolbar(BjbMainToolbar *self)
       to_be = BJB_TOOLBAR_NOTE_VIEW;
       break;
 
+    case BJB_WINDOW_BASE_NO_NOTE:
     case BJB_WINDOW_BASE_NO_RESULT:
     case BJB_WINDOW_BASE_MAIN_VIEW:
 

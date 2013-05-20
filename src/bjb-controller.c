@@ -203,15 +203,18 @@ bjb_controller_get_iter (BjbController *self,
 {
   BjbControllerPrivate *priv = self->priv;
   gboolean retval = FALSE;
-  gboolean still;
+  gboolean try;
   const gchar *needle = NULL;
 
   if (item && BIJI_IS_ITEM (item))
       needle = biji_item_get_uuid (item);
 
-  still = gtk_tree_model_get_iter_first (priv->model, *iter);
+  try = gtk_tree_model_get_iter_first (priv->model, *iter);
 
-  while (still)
+  if (!try)
+    *iter = NULL;
+
+  while (try)
   {
     gchar *item_path;
     gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &item_path,-1);
@@ -231,7 +234,7 @@ bjb_controller_get_iter (BjbController *self,
       break;
 
     else
-      still = gtk_tree_model_iter_next (priv->model, *iter);
+      try = gtk_tree_model_iter_next (priv->model, *iter);
   }
 
   return retval;

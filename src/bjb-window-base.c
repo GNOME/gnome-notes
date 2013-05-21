@@ -102,6 +102,9 @@ bjb_window_base_constructed (GObject *obj)
   GList *icons = NULL;
   GdkPixbuf *bjb ;
   GError *error = NULL;
+  GdRevealer *revealer;
+
+  G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 
   priv = self->priv;
   priv->note = NULL;
@@ -138,19 +141,49 @@ bjb_window_base_constructed (GObject *obj)
   priv->entry = NULL ;
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
-  /* Signals */
-  g_signal_connect(GTK_WIDGET(self),"destroy",
-                   G_CALLBACK(bjb_window_base_destroy),self);
+  priv->controller = bjb_controller_new
+    (bijiben_get_book (BIJIBEN_APPLICATION(g_application_get_default())),
+     GTK_WINDOW (obj),
+     priv->entry );
+
+  /* Shared toolbar */
+  priv->view = bjb_main_view_new (GTK_WIDGET (obj), priv->controller);
+  priv->main_toolbar = bjb_main_toolbar_new (priv->view, priv->controller);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->main_toolbar), FALSE, FALSE, 0);
+
+  /* Search entry toolbar */
+  priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (obj), priv->controller);
+  revealer = bjb_search_toolbar_get_revealer (priv->search_bar);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (revealer), FALSE, FALSE, 0);
+
+  /* UI : stack for different views */
+  priv->stack = GD_STACK (gd_stack_new ());
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->stack), TRUE, TRUE, 0);
+
+  priv->spinner = gtk_spinner_new ();
+  gd_stack_add_named (priv->stack, priv->spinner, "spinner");
+  gd_stack_set_visible_child_name (priv->stack, "spinner");
+  gtk_widget_show (priv->spinner);
+  gtk_spinner_start (GTK_SPINNER (priv->spinner));
+
+  priv->no_note = bjb_empty_results_box_new ();
+  gd_stack_add_named (priv->stack, priv->no_note, "empty");
+
+  gd_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
+
+  g_signal_connect (
+    GTK_WIDGET (self), "destroy", G_CALLBACK (bjb_window_base_destroy), self);
+
 }
 
 static void
 bjb_window_base_init (BjbWindowBase *self)
 {
   BjbWindowBasePriv *priv;
-  priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
-                                      BJB_TYPE_WINDOW_BASE,
-                                      BjbWindowBasePriv);
-  self->priv = priv;
+
+  self->priv = priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                                   BJB_TYPE_WINDOW_BASE,
+                                                   BjbWindowBasePriv);
 
   /* Default window has no note opened */
   priv->note_view = NULL;
@@ -181,56 +214,17 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
                                                     0);
 }
 
+
 GtkWindow *
 bjb_window_base_new(void)
 {
-  BjbWindowBase       *retval;
-  BjbWindowBasePriv   *priv;
-  GdRevealer          *revealer;
-
-  retval = g_object_new (BJB_TYPE_WINDOW_BASE,
-                         "application", g_application_get_default(),
-                         "hide-titlebar-when-maximized", TRUE,
-                         "modal", TRUE,
-                         NULL);
-
-  /* Rather dirty to finish UI there */
-
-  priv = retval->priv;
-
-  priv->controller = bjb_controller_new 
-    (bijiben_get_book (BIJIBEN_APPLICATION(g_application_get_default())),
-     GTK_WINDOW (retval),
-     priv->entry );
-
-  /* Shared toolbar */
-  priv->view = bjb_main_view_new (GTK_WIDGET (retval), priv->controller);
-  priv->main_toolbar = bjb_main_toolbar_new (priv->view, priv->controller);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->main_toolbar), FALSE, FALSE, 0);
-
-  /* Search entry toolbar */
-  priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (retval), priv->controller);
-  revealer = bjb_search_toolbar_get_revealer (priv->search_bar);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (revealer), FALSE, FALSE, 0);
-
-  /* UI : stack for different views */
-  priv->stack = GD_STACK (gd_stack_new ());
-  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->stack), TRUE, TRUE, 0);
-
-  priv->spinner = gtk_spinner_new ();
-  gd_stack_add_named (priv->stack, priv->spinner, "spinner");
-  gd_stack_set_visible_child_name (priv->stack, "spinner");
-  gtk_widget_show (priv->spinner);
-  gtk_spinner_start (GTK_SPINNER (priv->spinner));
-
-  priv->no_note = bjb_empty_results_box_new ();
-  gd_stack_add_named (priv->stack, priv->no_note, "empty");
-
-  gd_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
-  gtk_widget_show_all (GTK_WIDGET (retval));
-
-  return GTK_WINDOW (retval);
+  return g_object_new (BJB_TYPE_WINDOW_BASE,
+                       "application", g_application_get_default(),
+                       "hide-titlebar-when-maximized", TRUE,
+                       "modal", TRUE,
+                       NULL);
 }
+
 
 BjbController *
 bjb_window_base_get_controller ( BjbWindowBase *window )

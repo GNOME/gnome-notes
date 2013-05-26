@@ -250,10 +250,10 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
   cursor = bjb_perform_query (self, query);
   g_free (query);
 
-  g_variant_builder_open (results, G_VARIANT_TYPE ("a{sv}"));
-
   if (tracker_sparql_cursor_next (cursor, NULL, NULL))
   {
+    g_variant_builder_open (results, G_VARIANT_TYPE ("a{sv}"));
+
     /* NIE:URL (id) */
     url = tracker_sparql_cursor_get_string (cursor, 0, 0);
     g_variant_builder_add (results, "{sv}", "id", g_variant_new_string (url));

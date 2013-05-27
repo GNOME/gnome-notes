@@ -35,6 +35,7 @@
 #include <gtk/gtk.h>
 
 #include <tracker-sparql.h>
+#include <libbiji/libbiji.h>
 
 /* Strlen for timestamp */
 #include <string.h>
@@ -185,20 +186,52 @@ handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
 }
 
 static gchar *
-get_note_icon (gchar *note__nie_url)
+get_note_icon (const gchar *note__nie_url)
 {
-  gchar *path = g_build_filename (DATADIR, "bijiben", "icons", "hicolor", 
-                                  "48x48", "actions", "note.png",  NULL);
+  gchar *path, *hash;
+  GFile *file;
+  GIcon *gicon;
 
-  GFile *gicon_file = g_file_new_for_path (path);
+
+  /*
+   *      we should have a thumbnail
+   * 
+   * URL  :  file://DATA_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.note
+   * ICON :  CACHE_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.png
+   */
+
+  path = biji_str_mass_replace (note__nie_url,
+                                "file://",
+                                "",
+                                g_get_user_data_dir (),
+                                g_get_user_cache_dir (),
+                                ".note",
+                                ".png",
+                                NULL);
+  file = g_file_new_for_path (path);
+
+  if (g_file_query_exists (file, NULL))
+    goto out;
+
+  /* Well, else, just pick up something generic */
+  if (path)
+    g_free (path);
+  if (file)
+    g_object_unref (file);
+
+  path = g_build_filename (DATADIR, "bijiben", "icons", "hicolor",
+                           "48x48", "actions", "note.png", NULL);
+  file = g_file_new_for_path (path);
+
+  out:
+
+  gicon = g_file_icon_new (file);
+  hash = g_icon_to_string (gicon);
   g_free (path);
-
-  GIcon *gicon = g_file_icon_new (gicon_file);
-  g_object_unref (gicon_file);
-
-  gchar *result = g_icon_to_string (gicon);
+  g_object_unref (file);
   g_object_unref (gicon);
-  return result;
+
+  return hash;
 }
 
 static void
@@ -207,6 +240,7 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
                       GVariantBuilder *results)
 {
   gchar *query;
+  const gchar *url;
   const gchar *result;
   TrackerSparqlCursor *cursor;
 
@@ -221,8 +255,8 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
   if (tracker_sparql_cursor_next (cursor, NULL, NULL))
   {
     /* NIE:URL (id) */
-    result = tracker_sparql_cursor_get_string (cursor, 0, 0);
-    g_variant_builder_add (results, "{sv}", "id", g_variant_new_string (result));
+    url = tracker_sparql_cursor_get_string (cursor, 0, 0);
+    g_variant_builder_add (results, "{sv}", "id", g_variant_new_string (url));
 
     /* NIE:TITLE (name) is the title pushed by libbiji */
     result = tracker_sparql_cursor_get_string (cursor, 1, 0);
@@ -231,7 +265,7 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
    /* ICON is currently generic icon,        *
     * TODO serialize icons in libbiji        *
     *      or deserialize note here )        */
-    result = get_note_icon (NULL);
+    result = get_note_icon (url);
     g_variant_builder_add (results, "{sv}", "gicon", g_variant_new_string (result));
 
     g_variant_builder_close (results);

@@ -268,6 +268,33 @@ action_tag_selected_items (GtkWidget *w, BjbMainView *view)
   g_list_free (notes);
 }
 
+
+GList *
+bjb_main_view_get_selected_items (BjbMainView *view)
+{
+  GList *l, *paths, *result = NULL;
+  gchar *url;
+  BijiItem *item;
+
+  /*  GtkTreePath */
+  paths = get_selected_paths (view);
+
+
+  for (l=paths; l!= NULL; l=l->next)
+  {
+    url = get_note_url_from_tree_path (l->data, view);
+    item = biji_note_book_get_item_at_path (
+              bjb_window_base_get_book (view->priv->window), url);
+    if (BIJI_IS_ITEM (item))
+      result = g_list_prepend (result, item);
+
+    g_free (url);
+  }
+
+  g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
+  return result;
+}
+
 gboolean
 bjb_main_view_get_selected_items_color (BjbMainView *view, GdkRGBA *color)
 {

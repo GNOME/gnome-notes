@@ -60,9 +60,11 @@ GtkWidget *bjb_main_view_get_window(BjbMainView *view);
 
 void action_new_window_callback(GtkAction *action, gpointer bjb_main_view);
 
+GList *bjb_main_view_get_selected_items (BjbMainView *view);
+
 /* Currently it simply looks for first selected note found. Maybe most common color?
  * Or use default color when several ones including at least one default color?*/
-gboolean bjb_main_view_get_selected_items_color (BjbMainView *view, GdkRGBA *color);
+gboolean bjb_main_view_get_selected_items_color (BjbMainView *view, GdkRGBA *color); // killme... killme...
 
 void action_color_selected_items (GtkWidget *w,BjbMainView *view);
 
@@ -93,7 +95,7 @@ GdMainViewType bjb_main_view_get_view_type (BjbMainView *view);
 
 void bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type);
 
-GList *bjb_main_view_get_selection (BjbMainView *view);
+GList *bjb_main_view_get_selection (BjbMainView *view); // killme... killme...
 
 G_END_DECLS
 

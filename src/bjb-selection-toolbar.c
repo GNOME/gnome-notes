@@ -75,14 +75,34 @@ bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
 static void
 bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 {
-  BjbSelectionToolbarPrivate *priv = self->priv;
+  BjbSelectionToolbarPrivate *priv;
+  GList *l, *selection;
   GdkRGBA color;
 
+  g_return_if_fail (BJB_IS_SELECTION_TOOLBAR (self));
+
+  priv = self->priv;
+  selection = bjb_main_view_get_selected_items (priv->view);
+
+  /* Trash, always,
+   * Color, awlays */
   gtk_widget_set_visible (priv->toolbar_trash, TRUE);
 
-  /* Color */
   if (bjb_main_view_get_selected_items_color (priv->view, &color))
     gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
+
+  /* Organize */
+  gtk_widget_set_opacity (priv->toolbar_tag, 1);
+  for (l=selection; l!=NULL; l=l->next)
+  {
+    if (BIJI_IS_COLLECTION (l->data))
+    {
+      gtk_widget_set_opacity (priv->toolbar_tag, 0);
+      break;
+    }
+  }
+
+  g_list_free (selection);
 }
 
 static void

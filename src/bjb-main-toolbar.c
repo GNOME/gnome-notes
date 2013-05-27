@@ -108,7 +108,7 @@ update_selection_label (BjbMainToolbar *self)
   gint length;
   gchar *label;
 
-  selected = bjb_main_view_get_selection (self->priv->parent);
+  selected = bjb_main_view_get_selected_items (self->priv->parent);
   length = g_list_length (selected);
   g_list_free (selected);
 

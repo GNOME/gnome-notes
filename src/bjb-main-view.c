@@ -246,28 +246,6 @@ get_note_url_from_tree_path(GtkTreePath *path, BjbMainView *self)
   return note_path ;
 }
 
-void
-action_tag_selected_items (GtkWidget *w, BjbMainView *view)
-{
-  GList *notes = NULL;
-  GList *paths, *l;
-
-  /*  GtkTreePath */
-  paths = get_selected_paths(view);
-
-  for (l=paths ; l != NULL ; l=l->next)
-  {
-    gchar *url = get_note_url_from_tree_path (l->data, view) ;
-    notes = g_list_prepend (notes, biji_note_book_get_item_at_path
-                                 (bjb_window_base_get_book(view->priv->window),url));
-    g_free (url);
-  }
-
-  g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
-  bjb_note_tag_dialog_new (GTK_WINDOW (view->priv->window), notes);
-  g_list_free (notes);
-}
-
 
 GList *
 bjb_main_view_get_selected_items (BjbMainView *view)
@@ -295,84 +273,6 @@ bjb_main_view_get_selected_items (BjbMainView *view)
   return result;
 }
 
-gboolean
-bjb_main_view_get_selected_items_color (BjbMainView *view, GdkRGBA *color)
-{
-  GList *paths;
-  gchar *url;
-  BijiItem *item;
-
-  /*  GtkTreePath */
-  paths = get_selected_paths(view);
-  url = get_note_url_from_tree_path (paths->data, view) ;
-  item = biji_note_book_get_item_at_path (bjb_window_base_get_book(view->priv->window), url);
-  g_free (url);
-  g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
-
-  if (BIJI_IS_NOTE_OBJ (item))
-    return biji_note_obj_get_rgba (BIJI_NOTE_OBJ (item), color);
-
-  return FALSE;
-}
-
-void
-action_color_selected_items (GtkWidget *w, BjbMainView *view)
-{
-  GList *items = NULL ;
-  GList *paths, *l;
-
-  GdkRGBA color;
-  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (w), &color);
-
-  /*  GtkTreePath */
-  paths = get_selected_paths(view);
-
-  for (l=paths ; l != NULL ; l=l->next)
-  {
-    gchar *url = get_note_url_from_tree_path (l->data, view) ;
-    items = g_list_prepend (items, biji_note_book_get_item_at_path
-                                   (bjb_window_base_get_book(view->priv->window),url));
-    g_free (url);
-  }
-
-  g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
-
-  for (l=items ; l != NULL ; l=l->next)
-  {
-    if (BIJI_IS_NOTE_OBJ (l->data))
-      biji_note_obj_set_rgba (BIJI_NOTE_OBJ (l->data), &color);
-  }
-
-  g_list_free (items);
-}
-
-void
-action_delete_selected_items (GtkWidget *w, BjbMainView *view)
-{
-  GList *items = NULL;
-  GList *paths, *l;
-
-  /*  GtkTreePath */
-  paths = get_selected_paths(view);
-
-  for (l=paths ; l != NULL ; l=l->next)
-  {
-    gchar *url = get_note_url_from_tree_path (l->data, view) ;
-    items = g_list_prepend (items, biji_note_book_get_item_at_path
-                               (bjb_window_base_get_book(view->priv->window),url));
-    g_free (url);
-  }
-
-  g_list_free_full (paths, (GDestroyNotify) gtk_tree_path_free);
-
-  for (l=items ; l != NULL ; l=l->next)
-  {
-    biji_note_book_remove_item (bjb_window_base_get_book (view->priv->window),
-                                BIJI_ITEM (l->data));
-  }
-
-  g_list_free (items);
-}
 
 static void
 on_selection_mode_changed_cb (BjbMainView *self)
@@ -661,8 +561,3 @@ bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type)
   gd_main_view_set_view_type (view->priv->view, type);
 }
 
-GList *
-bjb_main_view_get_selection (BjbMainView *view)
-{
-  return gd_main_view_get_selection (view->priv->view);
-}

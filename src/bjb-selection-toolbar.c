@@ -25,8 +25,10 @@
 #include <libgd/gd.h>
 
 #include "bjb-color-button.h"
+#include "bjb-note-tag-dialog.h"
 #include "bjb-main-view.h"
 #include "bjb-selection-toolbar.h"
+#include "bjb-window-base.h"
 
 enum
 {
@@ -59,6 +61,56 @@ struct _BjbSelectionToolbarPrivate
 
 G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_TOOLBAR);
 
+
+static void
+action_color_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+{
+  GList *l, *selection;
+  GdkRGBA color = {0,0,0,0};
+
+  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (w), &color);
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+
+  for (l=selection; l !=NULL; l=l->next)
+  {
+    if (BIJI_IS_NOTE_OBJ (l->data))
+      biji_note_obj_set_rgba (l->data, &color);
+  }
+
+  g_list_free (selection);
+}
+
+static void
+action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+{
+  GList *selection;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+  bjb_note_tag_dialog_new
+    (GTK_WINDOW (bjb_main_view_get_window (self->priv->view)), selection);
+
+  g_list_free (selection);
+}
+
+
+static void
+action_delete_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+{
+  GList *l, *selection;
+  BijiNoteBook *book;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+  book = bjb_window_base_get_book (bjb_main_view_get_window (self->priv->view));
+
+  for (l=selection; l !=NULL; l=l->next)
+  {
+    biji_note_book_remove_item (book, BIJI_ITEM (l->data));
+  }
+
+  g_list_free (selection);
+}
+
+
 static void
 bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
 {
@@ -71,6 +123,7 @@ bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
 {
   gtk_widget_set_opacity (self->priv->widget, 0);
 }
+
 
 static void
 bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
@@ -88,16 +141,27 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
    * Color, awlays */
   gtk_widget_set_visible (priv->toolbar_trash, TRUE);
 
-  if (bjb_main_view_get_selected_items_color (priv->view, &color))
-    gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
+  for (l=selection; l !=NULL; l=l->next)
+  {
+    if (BIJI_IS_NOTE_OBJ (l->data))
+    {
+      if (biji_note_obj_get_rgba (BIJI_NOTE_OBJ (l->data), &color))
+      {
+        gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
+        break;
+      }
+    }
+  }
+
 
   /* Organize */
-  gtk_widget_set_opacity (priv->toolbar_tag, 1);
+  gtk_widget_set_visible (priv->toolbar_tag, 1);
+
   for (l=selection; l!=NULL; l=l->next)
   {
     if (BIJI_IS_COLLECTION (l->data))
     {
-      gtk_widget_set_opacity (priv->toolbar_tag, 0);
+      gtk_widget_set_visible (priv->toolbar_tag, 0);
       break;
     }
   }
@@ -260,14 +324,14 @@ bjb_selection_toolbar_constructed(GObject *obj)
                     G_CALLBACK(bjb_selection_toolbar_selection_changed),
                     self);
 
-  g_signal_connect(priv->toolbar_color,"color-set",
-                   G_CALLBACK(action_color_selected_items),priv->view);
+  g_signal_connect (priv->toolbar_color,"color-set",
+                    G_CALLBACK (action_color_selected_items), self);
 
-  g_signal_connect(priv->toolbar_tag,"clicked",
-                   G_CALLBACK(action_tag_selected_items),priv->view);
+  g_signal_connect (priv->toolbar_tag,"clicked",
+                    G_CALLBACK (action_tag_selected_items), self);
 
-  g_signal_connect(priv->toolbar_trash,"clicked",
-                   G_CALLBACK(action_delete_selected_items),priv->view);
+  g_signal_connect (priv->toolbar_trash,"clicked",
+                    G_CALLBACK (action_delete_selected_items), self);
 }
 
 static void

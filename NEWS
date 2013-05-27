@@ -1,3 +1,20 @@
+Overview of changes in 3.9.2
+=============================
+
+* Start fixing import dialog, preparing for organize dialog
+
+* A first round of code cleanup
+
+* Bug 699656 - search was really awful
+
+* New translations:
+  Turkish (Muhammet Karaà)
+  Hebrew (Yaron Shahrabani)
+
+
+  Thanks Ekaterina Gerasimova (many fixes)
+
+
 Overview of changes in 3.9.1
 =============================
 

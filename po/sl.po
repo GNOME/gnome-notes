@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-04 13:20+0000\n"
-"PO-Revision-Date: 2013-05-04 21:02+0100\n"
+"POT-Creation-Date: 2013-06-03 08:59+0000\n"
+"PO-Revision-Date: 2013-06-03 21:19+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -38,21 +38,13 @@ msgstr "Objava sporočilc, označevanje datotek!"
 msgid "Note-taker"
 msgstr "Zapisovalec sporočilc"
 
-#: ../src/bjb-app-menu.c:35
+#: ../src/bjb-app-menu.c:36
 msgid "Simple notebook for GNOME"
 msgstr "Enostavna sporočilca za GNOME"
 
-#: ../src/bjb-app-menu.c:39
+#: ../src/bjb-app-menu.c:40
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
-
-#: ../src/bjb-app-menu.c:162
-msgid "Import Notes"
-msgstr "Uvozi sporočilca"
-
-#: ../src/bjb-app-menu.c:177
-msgid "Import notes from:"
-msgstr "Uvozi sporočilca iz:"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
@@ -105,6 +97,38 @@ msgstr ""
 msgid "No result found for this research."
 msgstr "Ni najdenih rezultatov za to iskanje."
 
+#: ../src/bjb-import-dialog.c:305
+msgid "Custom Location"
+msgstr "Mesto po meri"
+
+#: ../src/bjb-import-dialog.c:400
+msgid "Import Notes"
+msgstr "Uvozi sporočilca"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import"
+msgstr "Uvozi"
+
+#: ../src/bjb-import-dialog.c:416
+msgid "Select import location"
+msgstr "Izbor mesta uvoza"
+
+#: ../src/bjb-import-dialog.c:436
+msgid "Tomboy application"
+msgstr "Program Tomboy"
+
+#: ../src/bjb-import-dialog.c:442
+msgid "Gnote application"
+msgstr "Program Gnote"
+
+#: ../src/bjb-load-more-button.c:68 ../src/bjb-load-more-button.c:154
+msgid "Load More"
+msgstr "Naloži več"
+
+#: ../src/bjb-load-more-button.c:83
+msgid "Loading..."
+msgstr "Nalaganje ..."
+
 #: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
 msgstr "S klikom se predmet izbere"
@@ -122,98 +146,98 @@ msgstr[3] "%d izbrane"
 msgid "Search note titles, content and collections"
 msgstr "Iskanje naslovov in vsebine sporočilc in zbirk"
 
-#: ../src/bjb-main-toolbar.c:266
+#: ../src/bjb-main-toolbar.c:269
 msgid "Done"
 msgstr "Končano"
 
-#: ../src/bjb-main-toolbar.c:267
+#: ../src/bjb-main-toolbar.c:270
 msgid "Exit selection mode"
 msgstr "Končan izbirni način"
 
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:302
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za %s"
 
-#: ../src/bjb-main-toolbar.c:302
+#: ../src/bjb-main-toolbar.c:305
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#: ../src/bjb-main-toolbar.c:364
+#: ../src/bjb-main-toolbar.c:367
 msgid "New"
 msgstr "Novo"
 
-#: ../src/bjb-main-toolbar.c:385
+#: ../src/bjb-main-toolbar.c:388
 msgid "Selection mode"
 msgstr "Izbirni način"
 
-#: ../src/bjb-main-toolbar.c:406
+#: ../src/bjb-main-toolbar.c:409
 msgid "View notes and collections in a list"
 msgstr "Poglej sporočilca in zbirke kot seznam"
 
-#: ../src/bjb-main-toolbar.c:426
+#: ../src/bjb-main-toolbar.c:429
 msgid "View notes and collections in a grid"
 msgstr "Poglej sporočilca in zbirke na mreži"
 
-#: ../src/bjb-main-toolbar.c:562
+#: ../src/bjb-main-toolbar.c:565
 msgid "Rename Note"
 msgstr "Preimenuj sporočilce"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:583
+#: ../src/bjb-main-toolbar.c:586
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: ../src/bjb-main-toolbar.c:591
+#: ../src/bjb-main-toolbar.c:594
 msgid "Redo"
 msgstr "Ponovi"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:605
+#: ../src/bjb-main-toolbar.c:608
 msgid "Bullets"
 msgstr "Vrstične oznake"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:612
+#: ../src/bjb-main-toolbar.c:615
 msgid "Numbered List"
 msgstr "Oštevilčen seznam"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:623
+#: ../src/bjb-main-toolbar.c:626
 msgid "Rename"
 msgstr "Preimenuj"
 
-#: ../src/bjb-main-toolbar.c:629 ../src/bjb-note-tag-dialog.c:350
+#: ../src/bjb-main-toolbar.c:632 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Zbirke"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:640
+#: ../src/bjb-main-toolbar.c:643
 msgid "Delete this Note"
 msgstr "Izbriši to sporočilce"
 
-#: ../src/bjb-main-toolbar.c:674
+#: ../src/bjb-main-toolbar.c:677
 msgid "Notes"
 msgstr "Sporočilca"
 
-#: ../src/bjb-main-toolbar.c:704 ../src/bjb-selection-toolbar.c:163
+#: ../src/bjb-main-toolbar.c:707 ../src/bjb-selection-toolbar.c:246
 msgid "Note color"
 msgstr "Barva sporočilca"
 
-#: ../src/bjb-main-toolbar.c:720
+#: ../src/bjb-main-toolbar.c:723
 msgid "Share note"
 msgstr "Objavi sporočilce"
 
-#: ../src/bjb-main-toolbar.c:737
+#: ../src/bjb-main-toolbar.c:740
 msgid "More options…"
 msgstr "Več podrobnosti ..."
 
-#: ../src/bjb-note-tag-dialog.c:378
+#: ../src/bjb-note-tag-dialog.c:399
 msgid "Enter a name to create a collection"
 msgstr "Vnos imena za novo zbirko"
 
-#: ../src/bjb-note-tag-dialog.c:388
+#: ../src/bjb-note-tag-dialog.c:409
 msgid "New collection"
 msgstr "Nova zbirka"
 
@@ -222,13 +246,13 @@ msgstr "Nova zbirka"
 msgid "Last updated "
 msgstr "Zadnjič posodobljeno"
 
-#: ../src/bjb-selection-toolbar.c:156
-msgid "Edit collections"
-msgstr "Uredi zbirke"
-
-#: ../src/bjb-selection-toolbar.c:182
+#: ../src/bjb-selection-toolbar.c:239
 msgid "Delete"
 msgstr "Izbriši"
+
+#: ../src/bjb-selection-toolbar.c:266
+msgid "Edit collections"
+msgstr "Uredi zbirke"
 
 #. create dialog
 #: ../src/bjb-settings.c:191
@@ -292,6 +316,9 @@ msgstr "Pomo_č"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Končaj"
+
+#~ msgid "Import notes from:"
+#~ msgstr "Uvozi sporočilca iz:"
 
 #~ msgid "External Notes"
 #~ msgstr "Zunanja sporočilca"

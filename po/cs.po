@@ -1,6 +1,7 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
+#
 # Marek Černocký <marek@manet.cz>, 2013.
 #
 msgid ""
@@ -8,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-12 00:32+0000\n"
-"PO-Revision-Date: 2013-05-12 19:32+0200\n"
+"POT-Creation-Date: 2013-05-27 21:37+0000\n"
+"PO-Revision-Date: 2013-06-03 10:57+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -35,21 +36,13 @@ msgstr "Vylepujte si poznámky, štítkujte soubory!"
 msgid "Note-taker"
 msgstr "Poznámky"
 
-#: ../src/bjb-app-menu.c:35
+#: ../src/bjb-app-menu.c:36
 msgid "Simple notebook for GNOME"
 msgstr "Jednoduchý poznámkový sešit pro GNOME"
 
-#: ../src/bjb-app-menu.c:39
+#: ../src/bjb-app-menu.c:40
 msgid "translator-credits"
 msgstr "Marek Černocký, <marek@manet.cz>"
-
-#: ../src/bjb-app-menu.c:162
-msgid "Import Notes"
-msgstr "Import poznámek"
-
-#: ../src/bjb-app-menu.c:177
-msgid "Import notes from:"
-msgstr "Importovat poznámky z:"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
@@ -102,6 +95,38 @@ msgstr ""
 msgid "No result found for this research."
 msgstr "Nenalezen žádný výsledek pro toto hledání."
 
+#: ../src/bjb-import-dialog.c:305
+msgid "Custom Location"
+msgstr "Vlastní umístění"
+
+#: ../src/bjb-import-dialog.c:400
+msgid "Import Notes"
+msgstr "Import poznámek"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import"
+msgstr "Importovat"
+
+#: ../src/bjb-import-dialog.c:416
+msgid "Select import location"
+msgstr "Vyberte umístění importu"
+
+#: ../src/bjb-import-dialog.c:436
+msgid "Tomboy application"
+msgstr "Aplikace Tomboy"
+
+#: ../src/bjb-import-dialog.c:442
+msgid "Gnote application"
+msgstr "Aplikace Gnote"
+
+#: ../src/bjb-load-more-button.c:68 ../src/bjb-load-more-button.c:154
+msgid "Load More"
+msgstr "Načíst další"
+
+#: ../src/bjb-load-more-button.c:83
+msgid "Loading..."
+msgstr "Načítá se…"
+
 #: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
 msgstr "Klikáním na položky je označíte"
@@ -118,99 +143,98 @@ msgstr[2] "%d vybráno"
 msgid "Search note titles, content and collections"
 msgstr "Hledat v názvech a obsahu poznámek a sadách"
 
-#: ../src/bjb-main-toolbar.c:266
+#: ../src/bjb-main-toolbar.c:269
 msgid "Done"
 msgstr "Hotovo"
 
-#: ../src/bjb-main-toolbar.c:267
+#: ../src/bjb-main-toolbar.c:270
 msgid "Exit selection mode"
 msgstr "Ukončit režim výběru"
 
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:302
 #, c-format
 msgid "Results for %s"
 msgstr "Výsledky pro %s"
 
-#: ../src/bjb-main-toolbar.c:302
+#: ../src/bjb-main-toolbar.c:305
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: ../src/bjb-main-toolbar.c:364
+#: ../src/bjb-main-toolbar.c:367
 msgid "New"
 msgstr "Nová"
 
-#: ../src/bjb-main-toolbar.c:385
+#: ../src/bjb-main-toolbar.c:388
 msgid "Selection mode"
 msgstr "Režim výběru"
 
-#: ../src/bjb-main-toolbar.c:406
+#: ../src/bjb-main-toolbar.c:409
 msgid "View notes and collections in a list"
 msgstr "Zobrazit poznámky a sady v seznamu"
 
-#: ../src/bjb-main-toolbar.c:426
+#: ../src/bjb-main-toolbar.c:429
 msgid "View notes and collections in a grid"
 msgstr "Zobrazit poznámky a sady v mřížce"
 
-#: ../src/bjb-main-toolbar.c:562
+#: ../src/bjb-main-toolbar.c:565
 msgid "Rename Note"
 msgstr "Přejmenování poznámky"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:583
+#: ../src/bjb-main-toolbar.c:586
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../src/bjb-main-toolbar.c:591
+#: ../src/bjb-main-toolbar.c:594
 msgid "Redo"
 msgstr "Znovu"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:605
+#: ../src/bjb-main-toolbar.c:608
 msgid "Bullets"
 msgstr "Odrážky"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:612
+#: ../src/bjb-main-toolbar.c:615
 msgid "Numbered List"
 msgstr "Číslovaný seznam"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:623
+#: ../src/bjb-main-toolbar.c:626
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: ../src/bjb-main-toolbar.c:629 ../src/bjb-note-tag-dialog.c:363
+#: ../src/bjb-main-toolbar.c:632 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Sady"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:640
+#: ../src/bjb-main-toolbar.c:643
 msgid "Delete this Note"
 msgstr "Odstranit tuto poznámku"
 
-#: ../src/bjb-main-toolbar.c:674
+#: ../src/bjb-main-toolbar.c:677
 msgid "Notes"
 msgstr "Poznámky"
 
-#: ../src/bjb-main-toolbar.c:704 ../src/bjb-selection-toolbar.c:162
+#: ../src/bjb-main-toolbar.c:707 ../src/bjb-selection-toolbar.c:246
 msgid "Note color"
 msgstr "Barva poznámky"
 
-#: ../src/bjb-main-toolbar.c:720
+#: ../src/bjb-main-toolbar.c:723
 msgid "Share note"
 msgstr "Sdílet poznámku"
 
-#: ../src/bjb-main-toolbar.c:737
+#: ../src/bjb-main-toolbar.c:740
 msgid "More options…"
 msgstr "Další volby…"
 
-#: ../src/bjb-note-tag-dialog.c:392
-#| msgid "Enter a name to create a tag"
+#: ../src/bjb-note-tag-dialog.c:399
 msgid "Enter a name to create a collection"
 msgstr "Zadejte název sady, kterou chcete vytvořit"
 
-#: ../src/bjb-note-tag-dialog.c:402
+#: ../src/bjb-note-tag-dialog.c:409
 msgid "New collection"
 msgstr "Nová sada"
 
@@ -219,11 +243,11 @@ msgstr "Nová sada"
 msgid "Last updated "
 msgstr "Naposledy aktualizováno "
 
-#: ../src/bjb-selection-toolbar.c:155
+#: ../src/bjb-selection-toolbar.c:239
 msgid "Delete"
 msgstr "Smazat"
 
-#: ../src/bjb-selection-toolbar.c:182
+#: ../src/bjb-selection-toolbar.c:266
 msgid "Edit collections"
 msgstr "Upravit sady"
 

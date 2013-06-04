@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-18 00:32+0000\n"
-"PO-Revision-Date: 2013-03-23 16:47+0100\n"
+"POT-Creation-Date: 2013-06-03 19:25+0000\n"
+"PO-Revision-Date: 2013-06-04 10:33+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
 msgid "Bijiben"
 msgstr "Bijiben"
 
@@ -35,27 +35,19 @@ msgstr "Zapíšte si poznámky, označte súbory!"
 msgid "Note-taker"
 msgstr "Záznam poznámok"
 
-#: ../src/bjb-app-menu.c:35
+#: ../src/bjb-app-menu.c:36
 msgid "Simple notebook for GNOME"
-msgstr "Jednoduchý zápisník prostredia GNOME"
+msgstr "Jednoduchý zápisník pre prostredie GNOME"
 
-#: ../src/bjb-app-menu.c:39
+#: ../src/bjb-app-menu.c:40
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
-#: ../src/bjb-app-menu.c:153
-msgid "External Notes"
-msgstr "Externé poznámky"
-
+# DK:meni farbu danej poznamky
 # label
-#: ../src/bjb-app-menu.c:168
-msgid "Click on the external notes to import"
-msgstr "Kliknutím na externé poznámky ich naimportujete"
-
-# dialog title
 #: ../src/bjb-color-button.c:146
-msgid "Choose a color for note"
-msgstr "Výber farby poznámky"
+msgid "Note Color"
+msgstr "Farba poznámky"
 
 #. Cut
 #: ../src/bjb-editor-toolbar.c:148
@@ -84,15 +76,69 @@ msgstr "Kurzíva"
 msgid "Strike"
 msgstr "Preškrtnuté"
 
-#: ../src/bjb-editor-toolbar.c:224
-msgid "Link"
-msgstr "Odkaz"
+# tooltip
+#: ../src/bjb-editor-toolbar.c:225
+msgid "Copy selection to a new note"
+msgstr "Skopíruje výber do novej poznámky"
 
-#: ../src/bjb-main-toolbar.c:190
+# label
+#: ../src/bjb-empty-results-box.c:97
+msgid "No Notes Found"
+msgstr "Nenašli sa žiadne poznámky"
+
+#: ../src/bjb-empty-results-box.c:133
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Vaša zbierka poznámok je prázdna.\n"
+"Kliknutím na tlačidlo Nová vytvoríte vašu prvú poznámku."
+
+#: ../src/bjb-empty-results-box.c:140
+msgid "No result found for this research."
+msgstr "Nenašli sa žiadne výsledky pre toto opätovné hľadanie."
+
+#: ../src/bjb-import-dialog.c:305
+msgid "Custom Location"
+msgstr "Vlastné umiestnenie"
+
+# gtk_window_set_title
+#: ../src/bjb-import-dialog.c:400
+msgid "Import Notes"
+msgstr "Import poznámok"
+
+# dialog title
+#: ../src/bjb-import-dialog.c:405
+msgid "Import"
+msgstr "Import"
+
+# gtk_label_new
+#: ../src/bjb-import-dialog.c:416
+msgid "Select import location"
+msgstr "Vyberte umiestnenie importu"
+
+#: ../src/bjb-import-dialog.c:436
+msgid "Tomboy application"
+msgstr "Aplikácia Tomboy"
+
+#: ../src/bjb-import-dialog.c:442
+msgid "Gnote application"
+msgstr "Aplikácia Gnote"
+
+#: ../src/bjb-load-more-button.c:68 ../src/bjb-load-more-button.c:154
+msgid "Load More"
+msgstr "Načítať viac"
+
+# tri bodky
+#: ../src/bjb-load-more-button.c:83
+msgid "Loading..."
+msgstr "Načítava sa…"
+
+#: ../src/bjb-main-toolbar.c:116
 msgid "Click on items to select them"
 msgstr "Kliknutím na položky ich vyberiete"
 
-#: ../src/bjb-main-toolbar.c:192
+#: ../src/bjb-main-toolbar.c:118
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -100,43 +146,60 @@ msgstr[0] "%d vybraných"
 msgstr[1] "%d vybraná"
 msgstr[2] "%d vybrané"
 
-#: ../src/bjb-main-toolbar.c:231
+#: ../src/bjb-main-toolbar.c:232
+msgid "Search note titles, content and collections"
+msgstr "Hľadajte v názvoch poznámok, obsahu a zbierkach"
+
+#: ../src/bjb-main-toolbar.c:269
+msgid "Done"
+msgstr "Dokončiť"
+
+# tooltip
+#: ../src/bjb-main-toolbar.c:270
+msgid "Exit selection mode"
+msgstr "Ukončí režim výberu"
+
+#: ../src/bjb-main-toolbar.c:302
 #, c-format
 msgid "Results for %s"
 msgstr "Výsledky pre %s"
 
-#: ../src/bjb-main-toolbar.c:234
+#: ../src/bjb-main-toolbar.c:305
 msgid "New and Recent"
 msgstr "Nové a nedávno použité"
 
 # DK:poznámka
-#: ../src/bjb-main-toolbar.c:259
+#: ../src/bjb-main-toolbar.c:367
 msgid "New"
 msgstr "Nová"
 
-# label
-#: ../src/bjb-note-tag-dialog.c:374
-msgid "Enter a name to create a tag"
-msgstr "Zadajte názov na vytvorenie značky"
+#: ../src/bjb-main-toolbar.c:388
+msgid "Selection mode"
+msgstr "Režim výberu"
 
-# button label
-#: ../src/bjb-note-tag-dialog.c:384
-msgid "New tag"
-msgstr "Nová značka"
+# tooltip
+#: ../src/bjb-main-toolbar.c:409
+msgid "View notes and collections in a list"
+msgstr "Zobrazí poznámky a zbierky v zozname"
+
+# tooltip
+#: ../src/bjb-main-toolbar.c:429
+msgid "View notes and collections in a grid"
+msgstr "Zobrazí poznámky a zbierky v mriežke"
 
 # dialog title
-#: ../src/bjb-note-view.c:222
+#: ../src/bjb-main-toolbar.c:565
 msgid "Rename Note"
 msgstr "Premenovanie poznámky"
 
 # menu item
 #. Undo Redo separator
-#: ../src/bjb-note-view.c:277
+#: ../src/bjb-main-toolbar.c:586
 msgid "Undo"
 msgstr "Vrátiť späť"
 
 # menu item
-#: ../src/bjb-note-view.c:285
+#: ../src/bjb-main-toolbar.c:594
 msgid "Redo"
 msgstr "Opakovať vrátené"
 
@@ -144,52 +207,75 @@ msgstr "Opakovať vrátené"
 # DK: vybratim tejto volby program vytvori odrazky vo forme guliciek - preto odrazky
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-note-view.c:299
+#: ../src/bjb-main-toolbar.c:608
 msgid "Bullets"
 msgstr "Odrážky"
 
-# menu item
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-note-view.c:306
-msgid "List"
-msgstr "Zoznam"
+#: ../src/bjb-main-toolbar.c:615
+msgid "Numbered List"
+msgstr "Očíslovaný zoznam"
 
 # menu item
 #. Rename, view tags, separtor
-#: ../src/bjb-note-view.c:317
+#: ../src/bjb-main-toolbar.c:626
 msgid "Rename"
 msgstr "Premenovať"
 
-# menu item
-#: ../src/bjb-note-view.c:323
-msgid "Tags"
-msgstr "Značky"
+#: ../src/bjb-main-toolbar.c:632 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Zbierky"
 
 # menu item
 #. Delete Note
-#: ../src/bjb-note-view.c:334
+#: ../src/bjb-main-toolbar.c:643
 msgid "Delete this Note"
 msgstr "Odstrániť túto poznámku"
 
-#. Button to go back to main view
-#: ../src/bjb-note-view.c:401
+#: ../src/bjb-main-toolbar.c:677
 msgid "Notes"
 msgstr "Poznámky"
 
+# label
+#: ../src/bjb-main-toolbar.c:707 ../src/bjb-selection-toolbar.c:246
+msgid "Note color"
+msgstr "Farba poznámok"
+
+# tooltip
+#: ../src/bjb-main-toolbar.c:723
+msgid "Share note"
+msgstr "Sprístupní poznámku"
+
+#: ../src/bjb-main-toolbar.c:740
+msgid "More options…"
+msgstr "Viac volieb…"
+
+# label
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Zadajte názov na vytvorenie zbierky"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Nová zbierka"
+
+# PK: medzera by nemala byt nakonci
+# PM: nahlas bug
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:502
+#: ../src/bjb-note-view.c:231
+#, fuzzy
 msgid "Last updated "
 msgstr "Naposledy aktualizované "
 
 # tooltip
-#: ../src/bjb-selection-toolbar.c:155
-msgid "Tag"
-msgstr "Značka"
-
-# tooltip
-#: ../src/bjb-selection-toolbar.c:179
+#: ../src/bjb-selection-toolbar.c:239
 msgid "Delete"
 msgstr "Odstráni"
+
+# tooltip
+#: ../src/bjb-selection-toolbar.c:266
+msgid "Edit collections"
+msgstr "Upraví zbierky"
 
 # menu item
 #. create dialog
@@ -238,12 +324,12 @@ msgid "_New Window"
 msgstr "_Nové okno"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External Notes"
-msgstr "_Externé poznámky"
+msgid "_Import Notes"
+msgstr "_Importovať poznámky"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
-msgstr "N_astavenia"
+msgstr "Nas_tavenia"
 
 #: ../src/resources/app-menu.ui.h:4
 msgid "_About Bijiben"
@@ -255,4 +341,4 @@ msgstr "_Pomocník"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
-msgstr "_Ukončiť"
+msgstr "U_končiť"

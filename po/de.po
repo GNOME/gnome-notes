@@ -1,0 +1,238 @@
+# German translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Christian Kirbach <Christian.Kirbach@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben gnome-3-8\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-05-24 17:43+0000\n"
+"PO-Revision-Date: 2013-06-09 18:53+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "Notizen;Erinnerung;Etiketten;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Schreiben Sie Notizen, etikettieren Sie Dateien!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Notizanwendung"
+
+#: ../src/bjb-app-menu.c:35
+msgid "Simple notebook for GNOME"
+msgstr "Ein einfaches Notizbuch für GNOME"
+
+#: ../src/bjb-app-menu.c:39
+msgid "translator-credits"
+msgstr "Christian Kirbach <Christian.Kirbach@gmail.com>, 2013"
+
+#: ../src/bjb-app-menu.c:153
+msgid "External Notes"
+msgstr "Externe Notizen"
+
+#: ../src/bjb-app-menu.c:168
+msgid "Click on the external notes to import"
+msgstr "Klicken Sie auf die externen Notizen, um diese zu importieren"
+
+#: ../src/bjb-color-button.c:146
+msgid "Choose a color for note"
+msgstr "Wählen Sie eine Farbe für die Notiz"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:148
+msgid "Cut"
+msgstr "Ausschneiden"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:155
+msgid "Copy"
+msgstr "Kopieren"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:162
+msgid "Paste"
+msgstr "Einfügen"
+
+#: ../src/bjb-editor-toolbar.c:173
+msgid "Bold"
+msgstr "Fett"
+
+#: ../src/bjb-editor-toolbar.c:184
+msgid "Italic"
+msgstr "Kursiv"
+
+#: ../src/bjb-editor-toolbar.c:195
+msgid "Strike"
+msgstr "Durchstreichen"
+
+#: ../src/bjb-editor-toolbar.c:224
+msgid "Link"
+msgstr "Verknüpfung"
+
+#: ../src/bjb-main-toolbar.c:190
+msgid "Click on items to select them"
+msgstr "Klicken Sie auf Objekte, um diese auszuwählen"
+
+#: ../src/bjb-main-toolbar.c:192
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d ausgewählt"
+msgstr[1] "%d ausgewählt"
+
+#: ../src/bjb-main-toolbar.c:231
+#, c-format
+msgid "Results for %s"
+msgstr "Ergebnisse für %s"
+
+#: ../src/bjb-main-toolbar.c:234
+msgid "New and Recent"
+msgstr "Neu und kürzlich verwendet"
+
+#: ../src/bjb-main-toolbar.c:259
+msgid "New"
+msgstr "Neu"
+
+#: ../src/bjb-note-tag-dialog.c:374
+msgid "Enter a name to create a tag"
+msgstr "Geben Sie einen Namen ein, um ein Etikett anlegen"
+
+#: ../src/bjb-note-tag-dialog.c:384
+msgid "New tag"
+msgstr "Neues Etikett"
+
+#: ../src/bjb-note-view.c:222
+msgid "Rename Note"
+msgstr "Notiz umbenennen"
+
+#. Undo Redo separator
+#: ../src/bjb-note-view.c:277
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: ../src/bjb-note-view.c:285
+msgid "Redo"
+msgstr "Wiederholen"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-note-view.c:299
+msgid "Bullets"
+msgstr "Aufzählungspunkte"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-note-view.c:306
+msgid "List"
+msgstr "Liste"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-note-view.c:317
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: ../src/bjb-note-view.c:323
+msgid "Tags"
+msgstr "Etiketten"
+
+#. Delete Note
+#: ../src/bjb-note-view.c:334
+msgid "Delete this Note"
+msgstr "Diese Notiz löschen"
+
+#. Button to go back to main view
+#: ../src/bjb-note-view.c:401
+msgid "Notes"
+msgstr "Notizen"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:502
+msgid "Last updated "
+msgstr "Zuletzt aktualisiert"
+
+#: ../src/bjb-selection-toolbar.c:155
+msgid "Tag"
+msgstr "Etikett"
+
+#: ../src/bjb-selection-toolbar.c:179
+msgid "Delete"
+msgstr "Löschen"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Schriftart der Notizen"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Voreingestellte Farbe"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Heute"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Gestern"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Diese Woche"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Dieser Monat"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Dieses Jahr"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Neues Fenster"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_External Notes"
+msgstr "_Externe Notizen"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Einstellungen"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Bijiben"
+msgstr "_Info zu Bijiben"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Hilfe"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Beenden"

@@ -274,6 +274,8 @@ bjb_main_view_get_selected_items (BjbMainView *view)
 }
 
 
+
+
 static void
 on_selection_mode_changed_cb (BjbMainView *self)
 {

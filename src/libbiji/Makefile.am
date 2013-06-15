@@ -13,8 +13,12 @@ libbiji_la_SOURCES =  \
 	biji-collection.h \
 	biji-date-time.c \
 	biji-date-time.h \
-	biji-item.h \
+	biji-info-set.c \
+	biji-info-set.h \
 	biji-item.c \
+	biji-item.h \
+	biji-local-note.c \
+	biji-local-note.h \
 	biji-note-id.c \
 	biji-note-id.h \
 	biji-note-obj.c \
@@ -37,6 +41,12 @@ libbiji_la_SOURCES =  \
 	editor/biji-editor-utils.h \
 	editor/biji-webkit-editor.c \
 	editor/biji-webkit-editor.h \
+	provider/biji-own-cloud-note.c \
+	provider/biji-own-cloud-note.h \
+	provider/biji-own-cloud-provider.c \
+	provider/biji-own-cloud-provider.h \
+	provider/biji-provider.c \
+	provider/biji-provider.h \
 	serializer/biji-lazy-serializer.c \
 	serializer/biji-lazy-serializer.h
 

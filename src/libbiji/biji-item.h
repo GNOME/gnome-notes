@@ -63,7 +63,12 @@ struct BijiItemClass_
   GdkPixbuf *   (*get_emblem)           (BijiItem *item);
   GdkPixbuf *   (*get_pristine)         (BijiItem *item);
   gint64        (*get_mtime)            (BijiItem *item);
+  gboolean      (*has_color)            (BijiItem *item);
+
   gboolean      (*trash)                (BijiItem *item);
+
+
+  gboolean      (*is_collectable)       (BijiItem *item);
   gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
   gboolean      (*add_collection)       (BijiItem *item, BijiItem *coll, gchar *title);
   gboolean      (*remove_collection)    (BijiItem *item, BijiItem *coll);
@@ -85,6 +90,12 @@ const gchar *    biji_item_get_title           (BijiItem *item);
 const gchar *    biji_item_get_uuid            (BijiItem *item);
 
 
+gpointer         biji_item_get_book            (BijiItem *item);
+
+
+gboolean         biji_item_has_color           (BijiItem *item);
+
+
 GdkPixbuf *      biji_item_get_icon            (BijiItem *item);
 
 
@@ -98,6 +109,9 @@ gint64           biji_item_get_mtime           (BijiItem *item);
 
 
 gboolean         biji_item_trash               (BijiItem *item);
+
+
+gboolean         biji_item_is_collectable      (BijiItem *item);
 
 
 gboolean         biji_item_has_collection      (BijiItem *item, gchar *collection);

@@ -22,6 +22,8 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include "biji-tracker.h"
+
 G_BEGIN_DECLS
 
 #define BIJI_TYPE_NOTE_ID             (biji_note_id_get_type ())
@@ -30,6 +32,8 @@ G_BEGIN_DECLS
 #define BIJI_IS_NOTE_ID(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_NOTE_ID))
 #define BIJI_IS_NOTE_ID_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_NOTE_ID))
 #define BIJI_NOTE_ID_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_NOTE_ID, BijiNoteIDClass))
+
+
 
 typedef struct _BijiNoteIDClass BijiNoteIDClass;
 typedef struct _BijiNoteID BijiNoteID;
@@ -47,41 +51,47 @@ struct _BijiNoteID
   BijiNoteIDPrivate* priv;
 };
 
-GType biji_note_id_get_type (void) G_GNUC_CONST;
+GType             biji_note_id_get_type                           (void) G_GNUC_CONST;
 
-gboolean biji_note_id_equal (BijiNoteID *a, BijiNoteID *b);
 
-const gchar * biji_note_id_get_path (BijiNoteID *note);
+gboolean          biji_note_id_equal                              (BijiNoteID *a, BijiNoteID *b);
 
-const gchar * biji_note_id_get_uuid (BijiNoteID *note);
 
-GFile * biji_note_id_get_file (BijiNoteID *note);
+const gchar      *biji_note_id_get_path                           (BijiNoteID *note);
 
-void biji_note_id_set_title (BijiNoteID* n,gchar* title);
 
-const gchar* biji_note_id_get_title (BijiNoteID* n);
+void              biji_note_id_set_title                          (BijiNoteID* n, gchar* title);
 
-gchar * biji_note_id_get_last_change_date (BijiNoteID* n);
 
-glong biji_note_id_get_last_change_date_sec (BijiNoteID *n);
+const gchar      *biji_note_id_get_title                          (BijiNoteID* n);
 
-gint64 biji_note_id_get_mtime (BijiNoteID *n);
 
-gboolean biji_note_id_set_last_change_date (BijiNoteID* n,gchar* date);
+gboolean          biji_note_id_set_content                        (BijiNoteID *id, gchar *content);
 
-void biji_note_id_set_last_change_date_now (BijiNoteID *n);
 
-gchar * biji_note_id_get_last_metadata_change_date (BijiNoteID* n);
+const gchar      *biji_note_id_get_content                        (BijiNoteID *id);
 
-gboolean biji_note_id_set_last_metadata_change_date (BijiNoteID* n,gchar* date);
 
-void biji_note_id_set_last_metadata_change_date_now (BijiNoteID *n);
+gint64            biji_note_id_get_mtime                          (BijiNoteID *n);
 
-gchar * biji_note_id_get_create_date (BijiNoteID* n);
 
-gboolean biji_note_id_set_create_date (BijiNoteID* n,gchar* date);
+gboolean          biji_note_id_set_mtime                          (BijiNoteID* n, gint64 mtime);
 
-void biji_note_id_set_create_date_now (BijiNoteID* n);
+
+gint64            biji_note_id_get_last_metadata_change_date      (BijiNoteID* n);
+
+
+gboolean          biji_note_id_set_last_metadata_change_date      (BijiNoteID* n, gint64 mtime);
+
+
+gint64            biji_note_id_get_create_date                    (BijiNoteID* n);
+
+
+gboolean          biji_note_id_set_create_date                    (BijiNoteID* n, gint64 mtime);
+
+
+BijiNoteID        *biji_note_id_new_from_info                     (BijiInfoSet *info);
+
 
 G_END_DECLS
 

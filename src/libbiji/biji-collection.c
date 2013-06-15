@@ -18,6 +18,13 @@
  */
 
 /*
+ * in current implementation, one cannot add a collection
+ * to a collection
+ * but tracker would be fine with this
+ * given we prevent self-containment.
+ */
+
+/*
  * biji_create_collection_icon
  * is adapted from Photos (photos_utils_create_collection_icon),
  * which is ported from Documents
@@ -38,7 +45,7 @@ struct BijiCollectionPrivate_
 
   gchar           *urn;
   gchar           *name;
-  gchar           *mtime;
+  gint64           mtime;
 
   GdkPixbuf       *icon;
   GdkPixbuf       *emblem;
@@ -236,22 +243,18 @@ biji_collection_get_emblem (BijiItem *coll)
 }
 
 
-/* Not the same as the prop, which is a string */
+
 static gint64
 biji_collection_get_mtime (BijiItem *coll)
 {
-  GTimeVal tv;
-  gint64 timestamp = 0;
   BijiCollection *self;
 
   g_return_val_if_fail (BIJI_IS_COLLECTION (coll), 0);
   self = BIJI_COLLECTION (coll);
 
-  if (g_time_val_from_iso8601 (self->priv->mtime, &tv))
-    timestamp = tv.tv_sec;
-
-  return timestamp;
+  return self->priv->mtime;
 }
+
 
 static gboolean
 biji_collection_trash (BijiItem *item)
@@ -262,7 +265,7 @@ biji_collection_trash (BijiItem *item)
   self = BIJI_COLLECTION (item);
 
   g_signal_emit (G_OBJECT (item), biji_collections_signals[COLLECTION_DELETED], 0);
-  biji_remove_collection_from_tracker (self->priv->urn);
+  biji_remove_collection_from_tracker (biji_item_get_book (item), self->priv->urn);
   g_object_unref (self);
 
   return TRUE;
@@ -314,7 +317,7 @@ biji_collection_set_property (GObject      *object,
         self->priv->name = g_strdup (g_value_get_string (value));
         break;
       case PROP_MTIME:
-        self->priv->mtime = g_strdup (g_value_get_string (value));
+        self->priv->mtime = g_value_get_int64 (value);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -343,7 +346,7 @@ biji_collection_get_property (GObject    *object,
         g_value_set_string (value, self->priv->name);
         break;
       case PROP_MTIME:
-        g_value_set_string (value, self->priv->mtime);
+        g_value_set_int64 (value, self->priv->mtime);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -417,6 +420,12 @@ biji_collection_constructed (GObject *obj)
                                         self);
 }
 
+static gboolean
+say_no (BijiItem *item)
+{
+  return FALSE;
+}
+
 
 static void
 biji_collection_class_init (BijiCollectionClass *klass)
@@ -458,10 +467,10 @@ biji_collection_class_init (BijiCollectionClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   properties[PROP_MTIME] =
-    g_param_spec_string  ("mtime",
+    g_param_spec_int64  ("mtime",
                          "Modification time",
                          "Last modified time",
-                         NULL,
+                         G_MININT64, G_MAXINT64, 0,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_COLL_PROPERTIES, properties);
@@ -495,7 +504,9 @@ biji_collection_class_init (BijiCollectionClass *klass)
   item_class->get_emblem = biji_collection_get_emblem;
   item_class->get_pristine = biji_collection_get_emblem;
   item_class->get_mtime = biji_collection_get_mtime;
+  item_class->has_color = say_no;
   item_class->trash = biji_collection_trash;
+  item_class->is_collectable = say_no;
   item_class->has_collection = biji_collection_has_collection;
   item_class->add_collection = biji_collection_add_collection;
   item_class->remove_collection = biji_collection_remove_collection;
@@ -531,7 +542,7 @@ biji_collection_init (BijiCollection *self)
 
 
 BijiCollection *
-biji_collection_new (GObject *book, gchar *urn, gchar *name, gchar *mtime)
+biji_collection_new (GObject *book, gchar *urn, gchar *name, gint64 mtime)
 {
   return g_object_new (BIJI_TYPE_COLLECTION,
                        "book", book,

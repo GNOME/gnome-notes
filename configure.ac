@@ -58,6 +58,7 @@ PKG_CHECK_MODULES(BIJIBEN,
                     egg-list-box
                     gio-unix-2.0
                     glib-2.0 >= $GLIB_REQUIRED_VERSION
+                    goa-1.0
                     gtk+-3.0 >= $GTK_REQUIRED_VERSION
                     libxml-2.0
                     tracker-sparql-0.16

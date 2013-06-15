@@ -253,7 +253,7 @@ on_content_changed (WebKitWebView *view)
   html = webkit_dom_html_element_get_outer_html (elem);
   text = webkit_dom_html_element_get_inner_text (elem);
 
-  biji_note_obj_set_html_content (note, html);
+  biji_note_obj_set_html (note, html);
   biji_note_obj_set_raw_text (note, text);
 
   /* Now tries to update title if new note
@@ -272,7 +272,7 @@ on_content_changed (WebKitWebView *view)
       char *unique_title;
 
       title = rows[0];
-      unique_title = biji_note_book_get_unique_title (biji_note_obj_get_note_book (note),
+      unique_title = biji_note_book_get_unique_title (biji_item_get_book (BIJI_ITEM (note)),
                                                       title);
 
       biji_note_obj_set_title (note, unique_title);
@@ -285,7 +285,7 @@ on_content_changed (WebKitWebView *view)
   g_free (html);
   g_free (text);
 
-  biji_note_obj_set_last_change_date_now (note);
+  biji_note_obj_set_mtime (note, g_get_real_time () / G_USEC_PER_SEC);
   biji_note_obj_save_note (note);
 }
 
@@ -312,6 +312,7 @@ biji_webkit_editor_constructed (GObject *obj)
   priv = self->priv;
 
   body = biji_note_obj_get_html (priv->note);
+
   if (!body)
     body = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>";
 

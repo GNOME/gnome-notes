@@ -161,6 +161,17 @@ biji_lazy_deserializer_class_init (BijiLazyDeserializerClass *klass)
 
 typedef void BijiReaderFunc (BijiNoteObj *note, gchar *string);
 
+
+static gint64
+str_to_gint64 (xmlChar *str)
+{
+  GTimeVal time = {0,0};
+
+  g_time_val_from_iso8601 ((gchar*) str, &time);
+  return (gint64) time.tv_sec;
+}
+
+
 static void
 biji_process_string (xmlTextReaderPtr reader,
                      BijiReaderFunc process_xml,
@@ -170,6 +181,8 @@ biji_process_string (xmlTextReaderPtr reader,
   process_xml (BIJI_NOTE_OBJ (user_data), (gchar*) result);
   free (result);
 }
+
+
 
 /* Tomboy Inner XML */
 
@@ -306,7 +319,7 @@ process_tomboy_xml_content (BijiLazyDeserializer *self)
   biji_note_obj_set_raw_text (priv->note, priv->raw_text->str);
 
   revamped_html = biji_str_replace (priv->html->str, "\n", "<br/>");
-  biji_note_obj_set_html_content (priv->note, revamped_html);
+  biji_note_obj_set_html (priv->note, revamped_html);
   g_free (revamped_html);
 }
 
@@ -420,7 +433,7 @@ process_bijiben_html_content (BijiLazyDeserializer *self,
   }
 
   biji_note_obj_set_raw_text (priv->note, priv->raw_text->str);
-  biji_note_obj_set_html_content (priv->note, sane_html);
+  biji_note_obj_set_html (priv->note, sane_html);
 
   xmlFree (BAD_CAST sane_html);
 }
@@ -458,13 +471,25 @@ processNode (BijiLazyDeserializer *self)
   }
 
   if (g_strcmp0 ((gchar*) name, "last-change-date") == 0)
-    biji_process_string (r, (BijiReaderFunc*) biji_note_obj_set_last_change_date, n); 
+  {
+    xmlChar *result = xmlTextReaderReadString (r);
+    biji_note_obj_set_mtime (n, str_to_gint64 (result));
+    free (result);
+  }
 
   if (g_strcmp0 ((gchar*) name, "last-metadata-change-date") == 0)
-    biji_process_string (r, (BijiReaderFunc*) biji_note_obj_set_last_metadata_change_date, n); 
+  {
+    xmlChar *result = xmlTextReaderReadString (r);
+    biji_note_obj_set_last_metadata_change_date (n, str_to_gint64 (result));
+    free (result);
+  }
 
   if (g_strcmp0 ((gchar*) name, "create-date") == 0)
-    biji_process_string (r, (BijiReaderFunc*) biji_note_obj_set_create_date, n); 
+  {
+    xmlChar *result = xmlTextReaderReadString (r);
+    biji_note_obj_set_create_date (n, str_to_gint64 (result));
+    free (result);
+  }
 
   if (g_strcmp0 ((gchar*) name, "color") == 0 )  
   {

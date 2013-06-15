@@ -25,7 +25,10 @@ typedef enum
   BIJI_URN_COL,
   BIJI_TITLE_COL,
   BIJI_MTIME_COL,
+  BIJI_CONTENT_COL,
+  BIJI_CREATED_COL,
   BIJI_NO_COL
+
 } BijiTrackerColumns;
 
 
@@ -39,10 +42,12 @@ typedef struct {
   /* usually a query */
 
   gchar *str;
+  BijiInfoSet *info;
 
   /* after the query, _one of_ the callbacks */
 
   BijiBoolCallback        bool_cb;
+  BijiInfoCallback        info_cb;
   BijiItemCallback        item_cb;
   BijiItemsListCallback   list_cb;
   BijiInfoSetsHCallback   hash_cb;
@@ -60,7 +65,9 @@ typedef struct {
 static BijiTrackerFinisher *
 biji_tracker_finisher_new (BijiNoteBook          *book,
                            gchar                 *str,
+                           BijiInfoSet           *info,
                            BijiBoolCallback       bool_cb,
+                           BijiInfoCallback       info_cb,
                            BijiItemCallback       item_cb,
                            BijiItemsListCallback  list_cb,
                            BijiInfoSetsHCallback  hash_cb,
@@ -70,7 +77,9 @@ biji_tracker_finisher_new (BijiNoteBook          *book,
 
   retval->book = book;
   retval->str = str;
+  retval->info = info;
   retval->bool_cb = bool_cb;
+  retval->info_cb = info_cb;
   retval->item_cb = item_cb;
   retval->list_cb = list_cb;
   retval->hash_cb = hash_cb;
@@ -90,42 +99,10 @@ biji_tracker_finisher_free (BijiTrackerFinisher *f)
 }
 
 
-static BijiTrackerInfoSet *
-biji_tracker_info_set_new ()
+static TrackerSparqlConnection*
+get_connection (BijiNoteBook *book)
 {
-  return g_slice_new (BijiTrackerInfoSet);
-}
-
-
-static void
-biji_tracker_info_set_free (BijiTrackerInfoSet *set)
-{
-  g_free (set->urn);
-  g_free (set->title);
-  g_free (set->mtime);
-
-  g_slice_free (BijiTrackerInfoSet, (gpointer) set);
-}
-
-
-TrackerSparqlConnection *bjb_connection ;
-
-
-static TrackerSparqlConnection *
-get_connection_singleton(void)
-{    
-  if ( bjb_connection == NULL )
-  {
-    GError *error = NULL ;
-      
-    g_log(G_LOG_DOMAIN,G_LOG_LEVEL_DEBUG,"Getting tracker connection.");
-    bjb_connection = tracker_sparql_connection_get (NULL,&error);
-      
-    if ( error ) 
-      g_log(G_LOG_DOMAIN,G_LOG_LEVEL_DEBUG,"Connection errror. Tracker out.");
-  }
-
-  return bjb_connection ;
+  return biji_note_book_get_tracker_connection (book);
 }
 
 
@@ -141,6 +118,7 @@ biji_finish_update (GObject *source_object,
   GError *error;
   gchar *query;
 
+  g_warning ("biji finish update");
   self = TRACKER_SPARQL_CONNECTION (source_object);
   finisher = user_data;
   error = NULL;
@@ -159,17 +137,21 @@ biji_finish_update (GObject *source_object,
     finisher->bool_cb (TRUE, finisher->user_data);
 
   biji_tracker_finisher_free (finisher);
+  g_warning ("biji finish update  = done");
 }
 
 
 static void
-biji_perform_update_async_and_free (gchar *query, BijiBoolCallback f, gpointer user_data)
+biji_perform_update_async_and_free (TrackerSparqlConnection *connection,
+                                    gchar *query,
+                                    BijiBoolCallback f,
+                                    gpointer user_data)
 {
   BijiTrackerFinisher *finisher;
-  finisher = biji_tracker_finisher_new
-              (NULL, query, f, NULL, NULL, NULL, user_data);
 
-  tracker_sparql_connection_update_async (get_connection_singleton(),
+  finisher = biji_tracker_finisher_new
+              (NULL, query, NULL, f, NULL, NULL, NULL, NULL, user_data);
+  tracker_sparql_connection_update_async (connection,
                                           query,
                                           0,     // priority
                                           NULL,
@@ -182,7 +164,9 @@ biji_perform_update_async_and_free (gchar *query, BijiBoolCallback f, gpointer u
 static gchar *
 tracker_str (const gchar * string )
 {
-  return biji_str_mass_replace (string, "\n", " ", "'", " ", NULL);
+  g_return_val_if_fail (string != NULL, g_strdup (""));
+
+  return biji_str_mass_replace (string, "\n", "b&lt;br/&gt", "'", " ", NULL);
 }
 
 
@@ -218,7 +202,7 @@ biji_query_info_hash_finish (GObject      *source_object,
   finisher = (BijiTrackerFinisher*) user_data;
   error = NULL;
   result = g_hash_table_new_full (
-    g_str_hash, g_str_equal, NULL, (GDestroyNotify) biji_tracker_info_set_free);
+    g_str_hash, g_str_equal, NULL, (GDestroyNotify) biji_info_set_free);
 
   cursor = tracker_sparql_connection_query_finish (self,
                                                    res,
@@ -235,13 +219,19 @@ biji_query_info_hash_finish (GObject      *source_object,
 
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      BijiTrackerInfoSet *set = biji_tracker_info_set_new ();
+      BijiInfoSet *set = biji_info_set_new ();
+      GTimeVal time = {0,0};
 
-      set->urn = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_URN_COL, NULL));
+      set->tracker_urn = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_URN_COL, NULL));
       set->title = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_TITLE_COL, NULL));
-      set->mtime = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_MTIME_COL, NULL));
+      
+      if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, BIJI_MTIME_COL, NULL), &time))
+        set->mtime = time.tv_sec;
 
-      g_hash_table_replace (result, set->urn, set);
+      else
+        set->mtime = 0;
+
+      g_hash_table_replace (result, set->tracker_urn, set);
     }
 
     g_object_unref (cursor);
@@ -330,7 +320,7 @@ bjb_query_async (BijiNoteBook           *book,
   BijiTrackerFinisher     *finisher;
   GAsyncReadyCallback     callback = NULL;
 
-  finisher = biji_tracker_finisher_new (book, NULL, NULL, NULL, list_cb, hash_cb, user_data);
+  finisher = biji_tracker_finisher_new (book, NULL, NULL, NULL, NULL, NULL, list_cb, hash_cb, user_data);
 
   if (hash_cb != NULL)
     callback = biji_query_info_hash_finish;
@@ -340,7 +330,7 @@ bjb_query_async (BijiNoteBook           *book,
 
   if (callback)
    tracker_sparql_connection_query_async (
-      get_connection_singleton (), query, NULL, callback, finisher);
+      get_connection (book), query, NULL, callback, finisher);
 }
 
 
@@ -461,20 +451,11 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   /* Update the note book */
   if (urn)
   {
-    gint64 timestamp;
-    GTimeVal tv;
-    gchar *time;
-
-    timestamp = g_get_real_time () / G_USEC_PER_SEC;
-    tv.tv_sec = timestamp;
-    tv.tv_usec = 0;
-    time = g_time_val_to_iso8601 (&tv);
-
     collection = biji_collection_new (
                        G_OBJECT (finisher->book),
                        urn,
                        finisher->str,
-                       time);
+                       g_get_real_time () / G_USEC_PER_SEC);
     biji_note_book_add_item (finisher->book, BIJI_ITEM (collection), TRUE);
   }
 
@@ -520,8 +501,8 @@ biji_create_new_collection_async (BijiNoteBook     *book,
 
   /* The finisher has all the pointers we want.
    * And the callback will free it */
-  finisher = biji_tracker_finisher_new (book, g_strdup (name), NULL, item_cb, NULL, NULL, user_data);
-  tracker_sparql_connection_update_blank_async (get_connection_singleton (),
+  finisher = biji_tracker_finisher_new (book, g_strdup (name), NULL, NULL, NULL, item_cb, NULL, NULL, user_data);
+  tracker_sparql_connection_update_blank_async (get_connection (book),
                                                 query,
                                                 G_PRIORITY_DEFAULT,
                                                 NULL,
@@ -533,12 +514,12 @@ biji_create_new_collection_async (BijiNoteBook     *book,
 /* removes the tag EVEN if files associated. */
 
 void
-biji_remove_collection_from_tracker (const gchar *urn)
+biji_remove_collection_from_tracker (BijiNoteBook *book, const gchar *urn)
 {
   gchar *query;
 
   query = g_strdup_printf ("DELETE {'%s' a nfo:DataContainer}", urn);
-  biji_perform_update_async_and_free (query, NULL, NULL);
+  biji_perform_update_async_and_free (get_connection (book), query, NULL, NULL);
 }
 
 
@@ -554,7 +535,8 @@ biji_push_existing_collection_to_note (BijiNoteObj       *note,
   query = g_strdup_printf ("INSERT {?urn nie:isPartOf '%s'} WHERE {?urn a nfo:DataContainer; nie:title '%s'; nie:generator 'Bijiben'}",
                            url, title);
 
-  biji_perform_update_async_and_free (query, afterward, user_data);
+  biji_perform_update_async_and_free (
+      get_connection (biji_item_get_book (BIJI_ITEM (note))), query, afterward, user_data);
   g_free (url);
 }
 
@@ -575,7 +557,7 @@ biji_remove_collection_from_note (BijiNoteObj       *note,
     biji_item_get_uuid (coll), url);
 
 
-  biji_perform_update_async_and_free (query, afterward, user_data);
+  biji_perform_update_async_and_free (get_connection (biji_item_get_book (coll)), query, afterward, user_data);
   g_free (url);
 }
 
@@ -583,36 +565,46 @@ biji_remove_collection_from_note (BijiNoteObj       *note,
 void
 biji_note_delete_from_tracker (BijiNoteObj *note)
 {
+  BijiItem *item;
   gchar *query;
+  const gchar *uuid;
+  BijiNoteBook *book;
 
-  query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
-                           biji_item_get_uuid (BIJI_ITEM (note)));
-
-  biji_perform_update_async_and_free (query, NULL, NULL);
+  item = BIJI_ITEM (note);
+  book = biji_item_get_book (item);
+  uuid = biji_item_get_uuid (item);
+  query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }", uuid);
+  biji_perform_update_async_and_free (get_connection (book), query, NULL, NULL);
 }
 
 
 void
 bijiben_push_note_to_tracker (BijiNoteObj *note)
 {
-  gchar *title,*content,*file,*date, *create_date,*last_change_date;
+  gchar *title,*content,*file, *date, *create_date,*last_change_date;
   const gchar *path;
+  GTimeVal time = {0, 0};
+  BijiItem *item;
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
-  path = biji_item_get_uuid (BIJI_ITEM (note));
-  title = tracker_str (biji_item_get_title (BIJI_ITEM (note)));
+  item = BIJI_ITEM (note);
+  path = biji_item_get_uuid (item);
+  title = tracker_str (biji_item_get_title (item));
   file = get_note_url (note);
 
-  date = biji_note_obj_get_create_date (note);
+  time.tv_sec = biji_note_obj_get_create_date (note) / G_USEC_PER_SEC;
+  date = g_time_val_to_iso8601 (&time);
   create_date = to_8601_date (date);
   g_free (date);
 
-  date = biji_note_obj_get_last_change_date (note);
+
+  time.tv_sec = biji_note_obj_get_create_date (note) / G_USEC_PER_SEC;
+  date = g_time_val_to_iso8601 (&time);
   last_change_date = to_8601_date (date);
   g_free (date);
 
-  content = tracker_str (biji_note_get_raw_text (note));
+  content = tracker_str (biji_note_obj_get_raw_text (note));
 
   /* TODO : nie:mimeType Note ;
    * All these properties are unique and thus can be "updated"
@@ -632,7 +624,7 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
                            title,
                            content) ;
 
-  biji_perform_update_async_and_free (query, NULL, NULL);
+  biji_perform_update_async_and_free (get_connection (biji_item_get_book (item)), query, NULL, NULL);
 
   g_free(title);
   g_free(file);
@@ -641,3 +633,330 @@ bijiben_push_note_to_tracker (BijiNoteObj *note)
   g_free(last_change_date);
 }
 
+
+void
+biji_tracker_trash_ressource (BijiNoteBook *book,
+                              gchar *tracker_urn)
+{
+  gchar *query;
+
+  query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }", tracker_urn);
+  biji_perform_update_async_and_free (get_connection (book), query, NULL, NULL);
+}
+
+
+static void
+update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
+{
+  BijiNoteBook *book;
+  BijiInfoSet *info;
+  gchar *query, *created, *mtime, *content;
+  GTimeVal t;
+
+  book = finisher->book;
+  info = finisher->info;
+
+  t.tv_usec = 0;
+  t.tv_sec = info->mtime;
+  mtime = g_time_val_to_iso8601 (&t);
+  t.tv_sec = info->created;
+  created = g_time_val_to_iso8601 (&t);
+  content = tracker_str (info->content);
+
+  g_warning ("ENSURE RESSOURCE: *UPDATING* ressource:%s:%s", info->title, tracker_urn_uuid);
+
+  query = g_strdup_printf (
+      "INSERT OR REPLACE { <%s> a nfo:Note , nie:DataObject ; "
+      "nie:url '%s' ; "
+      "nie:contentLastModified '%s' ; "
+      "nie:contentCreated '%s' ; "
+      "nie:title '%s' ; "
+      "nie:plainTextContent '%s' ; "
+      "nie:dataSource '%s' ;"
+      "nie:generator 'Bijiben' . }",
+      tracker_urn_uuid,
+      info->url,
+      mtime,
+      created,
+      info->title,
+      content,
+      info->datasource_urn);
+
+  biji_perform_update_async_and_free (get_connection (book), query, NULL, NULL);
+
+  g_free (tracker_urn_uuid);
+  g_free (mtime);
+  g_free (created);
+  g_free (content);
+  biji_tracker_finisher_free (finisher);
+}
+
+
+static void
+push_new_note (BijiTrackerFinisher *finisher)
+{
+  BijiNoteBook *book;
+  BijiInfoSet *info;
+  gchar *query, *content, *created_time, *modified_time;
+  GTimeVal t;
+
+  book = finisher->book;
+  info = finisher->info;
+  g_warning ("ENSURE RESSOURCE: pushing *NEW* ressource...");
+
+  content = tracker_str (info->content);
+  t.tv_usec = 0;
+  t.tv_sec = info->mtime;
+  modified_time = g_time_val_to_iso8601 (&t);
+  t.tv_sec = info->created;
+  created_time = g_time_val_to_iso8601 (&t);
+
+
+  query = g_strconcat (
+    "INSERT { _:res a nfo:Note ; ",
+    "     a nie:DataObject ; ",
+    "     nie:contentLastModified '", modified_time,        "' ;",
+    "     nie:contentCreated      '", created_time,         "' ;",
+    "     nie:title               '", info->title,          "' ;",
+    "     nie:url                 '", info->url,            "' ;",
+    "     nie:plainTextContent    '", content,              "' ;",
+    "     nie:dataSource          '", info->datasource_urn, "' ;",
+    "     nie:generator                              'Bijiben' }",
+    NULL);
+
+
+  tracker_sparql_connection_update_blank_async (get_connection (book),
+                                                query,
+                                                G_PRIORITY_DEFAULT,
+                                                NULL,
+                                                NULL,  // callback,
+                                                NULL); // user_data);
+
+
+  g_free (query);
+  g_free (content);
+  g_clear_pointer (&modified_time, g_free);
+  g_clear_pointer (&created_time, g_free);
+  biji_tracker_finisher_free (finisher);
+}
+
+
+static void
+ensure_ressource_callback (GObject *source_object,
+                           GAsyncResult *res,
+                           gpointer user_data)
+{
+  TrackerSparqlConnection *connection;
+  TrackerSparqlCursor     *cursor;
+  BijiTrackerFinisher     *finisher;
+  GError                  *error;
+  gchar                   *urn_found;
+
+
+  connection = TRACKER_SPARQL_CONNECTION (source_object);
+  finisher = user_data;
+  error = NULL;
+  urn_found = NULL;
+  cursor = tracker_sparql_connection_query_finish (connection, res, &error);
+
+  if (error)
+  {
+    g_warning ("ENSURE RESSOURCE : error %s", error->message);
+    g_error_free (error);
+    biji_tracker_finisher_free (finisher);
+    return;
+  }
+
+  /* Queried ressource found into tracker */
+
+  if (cursor)
+  {
+
+    if (tracker_sparql_cursor_next (cursor, NULL, NULL))
+      urn_found = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
+
+    g_object_unref (cursor);
+  }
+
+
+  if (urn_found != NULL)
+    update_ressource (finisher, urn_found);
+
+  else
+    push_new_note (finisher);
+}
+
+
+
+void
+biji_tracker_ensure_ressource_from_info (BijiNoteBook *book, 
+                                         BijiInfoSet *info)
+{
+  gchar *query;
+  BijiTrackerFinisher *finisher;
+
+
+  query = g_strconcat (
+    "SELECT ?urn ?time WHERE { ?urn a nfo:Note ;",
+    "                          nie:title ?title ;",
+    "                          nie:contentLastModified ?time ;",
+    "                          nie:url '", info->url, "' }",
+                               NULL);
+
+
+  /* No matter user callback or not,
+   * we'll need our own to push if needed */
+
+  finisher = biji_tracker_finisher_new (
+               book,
+               NULL,
+               info,
+               NULL,
+               NULL,
+               NULL,
+               NULL,
+               NULL,
+               NULL);  // user_data);
+
+  tracker_sparql_connection_query_async (
+      get_connection (book), query, NULL, ensure_ressource_callback, finisher);
+}
+
+
+
+
+
+void
+biji_tracker_ensure_datasource (BijiNoteBook *book,
+                                gchar *datasource,
+                                gchar *identifier,
+                                BijiBoolCallback cb,
+                                gpointer user_data)
+{
+  gchar *query;
+
+
+  query = g_strdup_printf (
+    "INSERT OR REPLACE INTO <%s> {"
+    "  <%s> a nie:DataSource ; nao:identifier \"%s\" }",
+    datasource,
+    datasource,
+    identifier);
+
+  biji_perform_update_async_and_free (
+    get_connection (book), query, cb, user_data);
+}
+
+
+
+static void
+on_info_queried (GObject *source_object,
+                 GAsyncResult *res,
+                 gpointer user_data)
+{
+  TrackerSparqlConnection *connection;
+  TrackerSparqlCursor     *cursor;
+  BijiTrackerFinisher     *finisher;
+  GError                  *error;
+  BijiInfoSet             *retval;
+  GTimeVal                 t;
+
+
+  connection = TRACKER_SPARQL_CONNECTION (source_object);
+  finisher = user_data;
+  error = NULL;
+  retval = NULL;
+  cursor = tracker_sparql_connection_query_finish (connection, res, &error);
+
+  if (error)
+  {
+    g_warning ("Check for Info : error %s", error->message);
+    g_error_free (error);
+    biji_tracker_finisher_free (finisher);
+    return;
+  }
+
+  /* Queried ressource found into tracker */
+  if (cursor)
+  {
+    if (tracker_sparql_cursor_next (cursor, NULL, NULL))
+    {
+      retval = biji_info_set_new ();
+
+      retval->url = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
+      retval->title = g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL));
+
+      if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, 2, NULL), &t))
+        retval->mtime = t.tv_sec;
+
+      retval->content = biji_str_replace (
+        tracker_sparql_cursor_get_string (cursor, 3, NULL), "b&lt;br/&gt", "\n");
+
+      if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, 4, NULL), &t))
+        retval->created = t.tv_sec;
+
+
+      /* Check if the ressource is up to date */
+
+      if (finisher->info->mtime != retval->mtime)
+        g_clear_pointer (&retval, biji_info_set_free);
+    }
+
+    g_object_unref (cursor);
+  }
+
+
+  /* No matter retval or not, we are supposed to callback
+   * (REMEMBER CALLER IS RESPONSIBLE FOR FREEING INFO SET) */
+  if (finisher->info_cb != NULL)
+    finisher->info_cb (retval, finisher->user_data);
+
+
+  biji_tracker_finisher_free (finisher);
+}
+
+
+void
+biji_tracker_check_for_info                (BijiNoteBook *book,
+                                            gchar *url,
+                                            gint64 mtime,
+                                            BijiInfoCallback callback,
+                                            gpointer user_data)
+{
+  BijiInfoSet *info;
+  BijiTrackerFinisher *finisher;
+  gchar *query;
+
+  query = g_strconcat (
+    " SELECT ?urn ?title ?time ?content ?created",
+    " WHERE { ?urn a nfo:Note ;",
+    "         nie:title ?title ;",
+    "         nie:contentLastModified ?time ;",
+    "         nie:plainTextContent ?content ;",
+    "         nie:contentCreated ?created ;",
+    "         nie:url '", url, "' }",
+    NULL);
+
+  /* No matter user callback or not,
+   * we'll need our own to push if needed */
+  info = biji_info_set_new ();
+  info->url = url;
+  info->mtime = mtime;
+
+  finisher = biji_tracker_finisher_new (
+               book,
+               NULL,
+               info,
+               NULL,
+               callback,
+               NULL,
+               NULL,
+               NULL,
+               user_data);
+
+  tracker_sparql_connection_query_async (
+      get_connection (book), query, NULL, on_info_queried, finisher);
+
+
+  g_free (query);
+}

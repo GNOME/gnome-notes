@@ -23,20 +23,11 @@
 #include <tracker-sparql.h>
 
 #include "libbiji.h"
-
-
-
-typedef struct
-{
-  gchar    *urn;
-  gchar    *title;
-  gchar    *mtime;
-
-} BijiTrackerInfoSet;
+#include "biji-info-set.h"
 
 
 /* All possible query return
- * Free the containers for list & hash */
+ * Free the containers for list & hash<BijiInfoSets> */
 
 
 typedef void       (*BijiBoolCallback)          (gboolean result, gpointer user_data);
@@ -49,6 +40,11 @@ typedef void       (*BijiItemsListCallback)     (GList *items, gpointer user_dat
 
 
 typedef void       (*BijiInfoSetsHCallback)     (GHashTable *info_sets, gpointer user_data);
+
+
+/* CALLER IS RESPONSIBLE FOR FREEING INFO SET */
+
+typedef void       (*BijiInfoCallback)          (BijiInfoSet *info, gpointer user_data);
 
 
 
@@ -78,7 +74,8 @@ void        biji_create_new_collection_async           (BijiNoteBook *book,
 
 
 
-void        biji_remove_collection_from_tracker        (const gchar *urn);
+void        biji_remove_collection_from_tracker        (BijiNoteBook *book,
+                                                        const gchar *urn);
 
 
 
@@ -96,14 +93,31 @@ void        biji_remove_collection_from_note           (BijiNoteObj      *note,
                                                         gpointer          user_data);
 
 
-                       /* Either insert or update */
-
 void        bijiben_push_note_to_tracker               (BijiNoteObj *note);
-
 
 
 void        biji_note_delete_from_tracker              (BijiNoteObj *note);
 
 
+void        biji_tracker_trash_ressource               (BijiNoteBook *book,
+                                                        gchar *tracker_urn);
+
+
+void        biji_tracker_ensure_ressource_from_info    (BijiNoteBook     *book,
+                                                        BijiInfoSet *info);
+
+
+void        biji_tracker_ensure_datasource             (BijiNoteBook *book, 
+                                                        gchar *datasource_id,
+                                                        gchar *identifier,
+                                                        BijiBoolCallback cb,
+                                                        gpointer user_data);
+
+
+void        biji_tracker_check_for_info                (BijiNoteBook *book, 
+                                                        gchar *url,
+                                                        gint64 mtime,
+                                                        BijiInfoCallback callback,
+                                                        gpointer user_data);
 
 #endif /*_BIJI_TRACKER_H*/

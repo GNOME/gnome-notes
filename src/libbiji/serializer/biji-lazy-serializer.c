@@ -171,6 +171,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   gchar                     *date, *color_str;
   gboolean                   retval;
   const gchar               *path;
+  GTimeVal                   time = {0, 0};
 
   priv->writer = xmlNewTextWriterMemory(priv->buf, 0);
 
@@ -205,17 +206,31 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   xmlTextWriterEndElement(priv->writer);
 
   // <last-change-date>
-  date = biji_note_obj_get_last_change_date (priv->note);
-  serialize_node (priv->writer, "last-change-date", date);
-  g_free (date);
+  time.tv_sec = biji_item_get_mtime (BIJI_ITEM (priv->note));
+  date = g_time_val_to_iso8601 (&time);
+  if (date)
+  {
+    serialize_node (priv->writer, "last-change-date", date);
+    g_free (date);
+  }
 
-  date = biji_note_obj_get_last_metadata_change_date (priv->note);
-  serialize_node (priv->writer, "last-metadata-change-date", date);
-  g_free (date);
 
-  date = biji_note_obj_get_create_date (priv->note);
-  serialize_node (priv->writer, "create-date", date);
-  g_free (date);
+  time.tv_sec = biji_note_obj_get_last_metadata_change_date (priv->note);
+  date = g_time_val_to_iso8601 (&time);
+  if (date)
+  {
+    serialize_node (priv->writer, "last-metadata-change-date", date);
+    g_free (date);
+  }
+
+
+  time.tv_sec = biji_note_obj_get_create_date (priv->note);
+  date = g_time_val_to_iso8601 (&time);
+  if (date)
+  {
+    serialize_node (priv->writer, "create-date", date);
+    g_free (date);
+  }
 
   serialize_node (priv->writer, "cursor-position", "0");
   serialize_node (priv->writer, "selection-bound-position", "0");

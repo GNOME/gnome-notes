@@ -46,25 +46,29 @@ bijiben_new_window_internal (GApplication *app,
                              GFile *file,
                              BijiNoteObj *note_obj)
 {
-  GtkWindow *win;
-  BijiNoteObj* note;
+  BjbWindowBase *window;
+  BijiNoteObj* note = NULL;
+  Bijiben *self;
 
-  win = bjb_window_base_new ();
-  note = NULL;
+  g_return_if_fail (BIJIBEN_IS_APPLICATION (app));
+  self = BIJIBEN_APPLICATION (app);
+  window = BJB_WINDOW_BASE (bjb_window_base_new ());
+
 
   if (file != NULL)
-    note = biji_note_get_new_from_file (g_file_get_path(file));
+    note = biji_note_get_new_from_file (self->priv->book,
+                                        g_file_get_path(file));
 
   else if (note_obj != NULL)
     note = note_obj;
 
   if (note != NULL)
-      bjb_window_base_switch_to_note (BJB_WINDOW_BASE (win), note);
+      bjb_window_base_switch_to_note (window, note);
 
   else
-    bjb_window_base_switch_to (BJB_WINDOW_BASE (win), BJB_WINDOW_BASE_MAIN_VIEW);
+    bjb_window_base_switch_to (window, BJB_WINDOW_BASE_MAIN_VIEW);
 
-  gtk_widget_show_all (GTK_WIDGET (win));
+  gtk_widget_show_all (GTK_WIDGET (window));
 }
 
 void
@@ -121,6 +125,11 @@ copy_note (GFileInfo *info, GFile *container)
   BijiNoteObj *retval = NULL;
   const gchar *name;
   gchar *path;
+  Bijiben *self;
+  BijiNoteBook *book;
+
+  self = BIJIBEN_APPLICATION (g_application_get_default ());
+  book = self->priv->book;
 
   /* First make sure it's a note */
   name = g_file_info_get_name (info);
@@ -129,7 +138,7 @@ copy_note (GFileInfo *info, GFile *container)
 
   /* Deserialize it */
   path = g_build_filename (g_file_get_path (container), name, NULL);
-  retval = biji_note_get_new_from_file (path);
+  retval = biji_note_get_new_from_file (book, path);
   g_free (path);
 
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (retval), NULL);
@@ -257,15 +266,71 @@ bijiben_import_notes (Bijiben *self, gchar *location)
   g_object_unref (to_import);
 }
 
+
+/* Just filter on ownCloud accounts
+ * TODO : settings to force activate & inactivate
+ * but, up to libbiji to survey GoaObject
+ */
+static void
+on_client_got (GObject *source_object,
+               GAsyncResult *res,
+               gpointer user_data)
+{
+  Bijiben *self;
+  GoaClient *client;
+  GError *error;
+  GList *accounts, *l;
+  GoaObject *object;
+  GoaAccount *account;
+  const gchar *type;
+
+  self = BIJIBEN_APPLICATION (user_data);
+  error = NULL;
+  client =  goa_client_new_finish  (res, &error);
+
+  if (error)
+  {
+     g_warning ("%s", error->message);
+     g_error_free (error);
+     return;
+  }
+
+  accounts = goa_client_get_accounts (client);
+
+  for (l=accounts; l!=NULL; l=l->next)
+  {
+    object = GOA_OBJECT (l->data);
+    account =  goa_object_get_account (object);
+
+    if (GOA_IS_ACCOUNT (account))
+    {
+      type = goa_account_get_provider_type (account);
+
+      if (g_strcmp0 (type, "owncloud") ==0)
+        biji_note_book_add_goa_object (self->priv->book, object);
+
+      else
+        g_object_unref (object);
+    } 
+  }
+
+  g_list_free (accounts);
+}
+
 static void
 bijiben_startup (GApplication *application)
 {
-  Bijiben *self = BIJIBEN_APPLICATION (application);
-  gchar *storage_path;
-  GFile *storage;
-  GError *error = NULL;
+  Bijiben        *self;
+  gchar          *storage_path, *default_color;
+  GFile          *storage;
+  GError         *error;
+  GdkRGBA         color = {0,0,0,0};
+
 
   G_APPLICATION_CLASS (bijiben_parent_class)->startup (application);
+  self = BIJIBEN_APPLICATION (application);
+  error = NULL;
+
 
   if (gtk_clutter_init (NULL, NULL) != CLUTTER_INIT_SUCCESS)
   {
@@ -301,12 +366,20 @@ bijiben_startup (GApplication *application)
     self->priv->first_run = TRUE;
   }
 
-  self->priv->book = biji_note_book_new (storage);
+
+  g_object_get (self->priv->settings, "color", &default_color, NULL);
+  gdk_rgba_parse (&color, default_color);
+  g_warning ("bijiben wants color %s", default_color);
+  self->priv->book = biji_note_book_new (storage, &color);
+  g_free (default_color);
 
   g_free (storage_path);
   g_object_unref (storage);
 
-  // create the first window
+  /* Goa */
+  goa_client_new  (NULL, on_client_got, self); // cancellable
+
+  /* Create the first window */
   bijiben_new_window_internal (application, NULL, NULL); 
 }
 

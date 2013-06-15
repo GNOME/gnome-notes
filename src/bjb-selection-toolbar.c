@@ -137,17 +137,28 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   priv = self->priv;
   selection = bjb_main_view_get_selected_items (priv->view);
 
-  /* Trash, always,
-   * Color, awlays */
+  /* Trash, always */
   gtk_widget_set_visible (priv->toolbar_trash, TRUE);
+
+
+  /* Color */
+  gtk_widget_set_visible (priv->toolbar_color, FALSE);
+
 
   for (l=selection; l !=NULL; l=l->next)
   {
-    if (BIJI_IS_NOTE_OBJ (l->data))
+    if (!biji_item_has_color (l->data))
+    {
+      gtk_widget_set_visible (priv->toolbar_color, FALSE);
+      break;
+    }
+
+    else if (BIJI_IS_NOTE_OBJ (l->data))
     {
       if (biji_note_obj_get_rgba (BIJI_NOTE_OBJ (l->data), &color))
       {
         gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
+        gtk_widget_set_visible (priv->toolbar_color, TRUE);
         break;
       }
     }
@@ -155,13 +166,13 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 
 
   /* Organize */
-  gtk_widget_set_visible (priv->toolbar_tag, 1);
+  gtk_widget_set_visible (priv->toolbar_tag, TRUE);
 
   for (l=selection; l!=NULL; l=l->next)
   {
-    if (BIJI_IS_COLLECTION (l->data))
+    if (!biji_item_is_collectable (l->data))
     {
-      gtk_widget_set_visible (priv->toolbar_tag, 0);
+      gtk_widget_set_visible (priv->toolbar_tag, FALSE);
       break;
     }
   }

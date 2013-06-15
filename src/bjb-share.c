@@ -18,12 +18,12 @@
 #include "bjb-share.h"
 
 static gchar *
-mail_str (gchar * string )
+mail_str (const gchar * string )
 {
   if (!string)
     return g_strdup ("''");
 
-  return g_strdup (g_strdelimit (string, "\n", ' '));
+  return g_strdelimit (g_strdup (string), "\n", ' ');
 }
 
 /* TODO find EOL for xdg-email */
@@ -35,7 +35,7 @@ on_email_note_callback(GtkWidget *widget, BijiNoteObj *note)
   gchar *title_mail, *text_mail;
 
   title_mail = mail_str ((gchar*) biji_item_get_title (BIJI_ITEM (note)));
-  text_mail = mail_str (biji_note_get_raw_text (note));
+  text_mail = mail_str (biji_note_obj_get_raw_text (note));
 
   gchar *execute[7] = { "xdg-email",
                         "--utf8",

@@ -61,6 +61,7 @@ GtkWidget *bjb_main_view_get_window(BjbMainView *view);
 void action_new_window_callback(GtkAction *action, gpointer bjb_main_view);
 
 
+
 GList *bjb_main_view_get_selected_items (BjbMainView *view);
 
 
@@ -86,6 +87,7 @@ void bjb_main_view_set_selection_mode (BjbMainView *view, gboolean mode);
 GdMainViewType bjb_main_view_get_view_type (BjbMainView *view);
 
 void bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type);
+
 
 
 G_END_DECLS

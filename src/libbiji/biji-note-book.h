@@ -2,8 +2,12 @@
 #define _BIJI_NOTE_BOOK_H_
 
 #include <glib-object.h>
+#include <tracker-sparql.h>
 
 #include "biji-note-obj.h"
+
+#define GOA_API_IS_SUBJECT_TO_CHANGE
+#include <goa/goa.h>
 
 G_BEGIN_DECLS
 
@@ -43,27 +47,58 @@ struct _BijiNoteBook
 
 GType biji_note_book_get_type (void) G_GNUC_CONST; 
 
-BijiNoteBook * biji_note_book_new (GFile *location);
 
-gchar * biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title);
 
-gboolean biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify);
+BijiNoteBook    *biji_note_book_new                   (GFile *location,
+                                                       GdkRGBA *color);
 
-gboolean biji_note_book_notify_changed (BijiNoteBook           *book,
-                                        BijiNoteBookChangeFlag  flag,
-                                        BijiItem               *item);
 
-gboolean biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item);
+void             biji_note_book_add_goa_object        (BijiNoteBook *book,
+                                                       GoaObject *object);
 
-BijiItem * biji_note_book_get_item_at_path (BijiNoteBook *book, const gchar *path);
+
+TrackerSparqlConnection
+                *biji_note_book_get_tracker_connection (BijiNoteBook *book);
+
+
+void             biji_note_book_get_default_color     (BijiNoteBook *book,
+                                                       GdkRGBA *color);
+
+
+gchar           *biji_note_book_get_unique_title      (BijiNoteBook *book,
+                                                       const gchar *title);
+
+
+gboolean         biji_note_book_add_item              (BijiNoteBook *book,
+                                                       BijiItem *item,
+                                                       gboolean notify);
+
+
+gboolean         biji_note_book_notify_changed        (BijiNoteBook           *book,
+                                                       BijiNoteBookChangeFlag  flag,
+                                                       BijiItem               *item);
+
+
+gboolean         biji_note_book_remove_item           (BijiNoteBook *book,
+                                                       BijiItem *item);
+
+
+BijiItem        *biji_note_book_get_item_at_path      (BijiNoteBook *book,
+                                                       const gchar *path);
+
 
 /* Get all items, either notes or collections
  * Free the GList, not its content */
-GList * biji_note_book_get_items (BijiNoteBook *book);
+GList           *biji_note_book_get_items             (BijiNoteBook *book);
 
-BijiNoteObj* biji_note_get_new_from_file (const gchar* tomboy_format_note_path);
 
-BijiNoteObj * biji_note_book_note_new (BijiNoteBook *book, gchar *str);
+BijiNoteObj     *biji_note_get_new_from_file          (BijiNoteBook *book,
+                                                       const gchar* tomboy_format_note_path);
+
+
+/* todo: add optional parameter : LOCAL or GOA */
+BijiNoteObj     *biji_note_book_note_new              (BijiNoteBook *book,
+                                                       gchar *str);
 
 G_END_DECLS
 

@@ -53,6 +53,7 @@ struct _BjbControllerPrivate
   GList          *items_to_show;
   gint            n_items_to_show;
   gboolean        remaining_items;
+  GMutex          mutex;
 
   gboolean        connected;
   gulong          book_change;
@@ -306,7 +307,7 @@ bjb_controller_add_item_if_needed (BjbController *self,
                                    GtkTreeIter   *sibling)
 {
   gboolean need_to_add_item = FALSE;
-  gchar *content;
+  const gchar *content;
   const gchar *title;
   BjbControllerPrivate *priv = self->priv;
 
@@ -336,7 +337,7 @@ bjb_controller_add_item_if_needed (BjbController *self,
     /* matching content */
     else if (BIJI_IS_NOTE_OBJ (item))
     {
-      content = biji_note_get_raw_text (BIJI_NOTE_OBJ (item));
+      content = biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (item));
       if (g_strrstr (content, priv->needle) != NULL)
         need_to_add_item = TRUE;
     }
@@ -406,13 +407,9 @@ sort_items (GList **to_show)
 static void
 notify_displayed_items_changed (BjbController *self)
 {
-  /*gboolean shown;
-
-  shown = (self->priv->items_to_show != NULL);*/
   g_signal_emit (G_OBJECT (self),
                  bjb_controller_signals[DISPLAY_NOTES_CHANGED],
                  0,
-                 //shown,
                  (self->priv->items_to_show != NULL),
                  self->priv->remaining_items);  
 }
@@ -556,6 +553,8 @@ on_book_changed (BijiNoteBook           *book,
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
+  g_mutex_lock (&priv->mutex);
+
   switch (flag)
   {
     /* If this is a *new* item, per def prepend */
@@ -616,6 +615,7 @@ on_book_changed (BijiNoteBook           *book,
 
   /* FIXME we refresh the whole completion model each time */
   refresh_completion(self);
+  g_mutex_unlock (&priv->mutex);
 }
 
 static void

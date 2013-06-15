@@ -20,17 +20,22 @@
 
 #include "libbiji.h"
 #include "biji-collection.h"
+#include "biji-local-note.h"
+#include "provider/biji-own-cloud-provider.h"
 
 
 struct _BijiNoteBookPrivate
 {
   /* Notes & Collections */
   GHashTable *items;
+  GHashTable *providers;
 
   /* Signals */
   gulong note_renamed ;
 
   GFile *location;
+  TrackerSparqlConnection *connection;
+  GdkRGBA color;
   GCancellable *load_cancellable;
 };
 
@@ -38,6 +43,7 @@ struct _BijiNoteBookPrivate
 enum {
   PROP_0,
   PROP_LOCATION,
+  PROP_COLOR,
   BIJI_BOOK_PROPERTIES
 };
 
@@ -50,22 +56,50 @@ enum {
 static guint biji_book_signals[BIJI_BOOK_SIGNALS] = { 0 };
 static GParamSpec *properties[BIJI_BOOK_PROPERTIES] = { NULL, };
 
+
+
 #define BIJI_NOTE_BOOK_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_NOTE_BOOK, BijiNoteBookPrivate))
 
 G_DEFINE_TYPE (BijiNoteBook, biji_note_book, G_TYPE_OBJECT);
 
+
+
+
+
+
 static void
 biji_note_book_init (BijiNoteBook *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_BOOK,
-                                            BijiNoteBookPrivate);
+  BijiNoteBookPrivate *priv;
+  GError *error;
+
+
+  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_BOOK,
+                                                   BijiNoteBookPrivate);
 
   /* Item path is key for table */
-  self->priv->items = g_hash_table_new_full (g_str_hash,
-                                             g_str_equal,
-                                             NULL,
-                                             g_object_unref);
+  priv->items = g_hash_table_new_full (g_str_hash,
+                                       g_str_equal,
+                                       NULL,
+                                       g_object_unref);
+
+  error = NULL;
+  priv->connection = tracker_sparql_connection_get (NULL, &error);
+
+  if (error)
+  {
+    g_warning ("Tracker db connection failed : %s", error->message);
+    g_error_free (error);
+  }
 }
+
+
+TrackerSparqlConnection *
+biji_note_book_get_tracker_connection (BijiNoteBook *book)
+{
+  return book->priv->connection;
+}
+
 
 static void
 biji_note_book_finalize (GObject *object)
@@ -82,6 +116,9 @@ biji_note_book_finalize (GObject *object)
   G_OBJECT_CLASS (biji_note_book_parent_class)->finalize (object);
 }
 
+
+
+
 static void
 biji_note_book_set_property (GObject      *object,
                              guint         property_id,
@@ -89,13 +126,23 @@ biji_note_book_set_property (GObject      *object,
                              GParamSpec   *pspec)
 {
   BijiNoteBook *self = BIJI_NOTE_BOOK (object);
-
+  GdkRGBA *color;
 
   switch (property_id)
     {
     case PROP_LOCATION:
       self->priv->location = g_value_dup_object (value);
       break;
+
+    case PROP_COLOR:
+      color = g_value_get_pointer (value);
+      self->priv->color.red = color->red;
+      self->priv->color.blue = color->blue;
+      self->priv->color.green = color->green;
+      self->priv->color.alpha = color->alpha;
+      g_warning ("book color is not done :%s", gdk_rgba_to_string (&self->priv->color));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -175,6 +222,10 @@ biji_note_book_notify_changed (BijiNoteBook            *book,
                                BijiNoteBookChangeFlag   flag,
                                BijiItem                *item)
 {
+  g_warning ("biji_note_book_notify_changed, flag %i has_item=%i",
+             flag, (item != NULL));
+
+
   g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED], 0, flag, item);
   return FALSE;
 }
@@ -200,21 +251,25 @@ book_on_item_icon_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 }
 
 static void
-_biji_note_book_add_one_note (BijiNoteBook *book, BijiNoteObj *note)
+_biji_note_book_add_one_item (BijiNoteBook *book, BijiItem *item)
 {
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+  BijiNoteObj *note;
 
-  _biji_note_obj_set_book (note, (gpointer) book);
+  g_return_if_fail (BIJI_IS_ITEM (item));
+  note = BIJI_IS_NOTE_OBJ (item) ? BIJI_NOTE_OBJ (item) : NULL;
+
 
   /* Add it to the list */
   g_hash_table_insert (book->priv->items,
-                       (gpointer) biji_item_get_uuid (BIJI_ITEM (note)),
-                       note);
+                       (gpointer) biji_item_get_uuid (item), item);
 
   /* Notify */
-  g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
-  g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
-  g_signal_connect (note, "color-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
+  if (note)
+  {
+    g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
+    g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
+    g_signal_connect (note, "color-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
+  }
 }
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
@@ -245,7 +300,7 @@ create_collection_if_needed (gpointer key,
                              gpointer user_data)
 {
   BijiNoteBook *book = BIJI_NOTE_BOOK (user_data);
-  BijiTrackerInfoSet *set = value;
+  BijiInfoSet *set = value;
   BijiCollection *collection;
 
   collection = g_hash_table_lookup (book->priv->items, key);
@@ -306,23 +361,29 @@ enumerate_next_files_ready_cb (GObject *source,
   // now load the notes
   for (l = files; l != NULL; l = l->next)
     {
-      GFileInfo *info;
+      GFileInfo *file;
       const gchar *name;
-      gchar *path;
       BijiNoteObj *note;
+      BijiInfoSet info;
 
-      info = l->data;
-      name = g_file_info_get_name (info);
+      file = l->data;
+      name = g_file_info_get_name (file);
 
       if (!g_str_has_suffix (name, ".note"))
         continue;
 
-      path = g_build_filename (base_path, name, NULL);
-      note = biji_note_get_new_from_file (path);
+      info.url = g_build_filename (base_path, name, NULL);
+      info.title = "";
+      info.content = "";
+      info.mtime = 0;
 
-      _biji_note_book_add_one_note (self, note);
 
-      g_free (path);
+      note = biji_local_note_new_from_info (self, &info);
+      biji_lazy_deserialize (note);
+
+      _biji_note_book_add_one_item (self, BIJI_ITEM (note));
+
+      g_free (info.url);
     }
 
   g_free (base_path);
@@ -362,6 +423,10 @@ enumerate_children_ready_cb (GObject *source,
                                       self);
 }
 
+
+
+
+
 static void
 note_book_load_from_location (BijiNoteBook *self)
 {
@@ -373,6 +438,64 @@ note_book_load_from_location (BijiNoteBook *self)
                                    enumerate_children_ready_cb,
                                    self);
 }
+
+
+static void
+on_provider_loaded_cb (BijiProvider *provider,
+                       GList *items,
+                       BijiNoteBook *book)
+{
+  BijiItem *item = NULL;
+  BijiNoteBookChangeFlag flag = BIJI_BOOK_CHANGE_FLAG;
+  GList *l;
+  gint i = 0;
+
+
+  for (l=items; l!=NULL; l=l->next)
+  {
+    if (BIJI_IS_ITEM (l->data))
+    {
+      _biji_note_book_add_one_item (book, l->data);
+      i++;
+    }
+  }
+
+  if (i==1)
+    flag = BIJI_BOOK_ITEM_ADDED;
+
+  else if (i>1)
+    flag = BIJI_BOOK_MASS_CHANGE;
+
+
+  if (flag > BIJI_BOOK_CHANGE_FLAG)
+    biji_note_book_notify_changed (book, flag, item);
+}
+
+
+void
+biji_note_book_add_goa_object (BijiNoteBook *self,
+                               GoaObject *object)
+{
+  BijiProvider *provider;
+  GoaAccount *account;
+  const gchar *type;
+
+  provider = NULL;
+  account =  goa_object_get_account (object);
+
+  if (GOA_IS_ACCOUNT (account))
+  {
+    type = goa_account_get_provider_type (account);
+
+    if (g_strcmp0 (type, "owncloud") ==0)
+      provider = biji_own_cloud_provider_new (self, object);
+  }
+
+  if (provider)
+    g_signal_connect (provider, "loaded", 
+                      G_CALLBACK (on_provider_loaded_cb), self);
+}
+
 
 static void
 biji_note_book_constructed (GObject *object)
@@ -412,15 +535,36 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
                   G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_POINTER);
 
   properties[PROP_LOCATION] =
-    g_param_spec_object("location",
-                        "The book location",
-                        "The location where the notes are loaded and saved",
-                        G_TYPE_FILE,
-                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+    g_param_spec_object ("location",
+                         "The book location",
+                         "The location where the notes are loaded and saved",
+                         G_TYPE_FILE,
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+
+
+  properties[PROP_COLOR] =
+    g_param_spec_pointer ("color",
+                         "Default color",
+                         "Note book default color for notes",
+                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
+
 
   g_object_class_install_properties (object_class, BIJI_BOOK_PROPERTIES, properties);
   g_type_class_add_private (klass, sizeof (BijiNoteBookPrivate));
 }
+
+
+void
+biji_note_book_get_default_color (BijiNoteBook *book, GdkRGBA *color)
+{
+  g_return_if_fail (BIJI_IS_NOTE_BOOK (book));
+
+  color->red = book->priv->color.red;
+  color->blue = book->priv->color.blue;
+  color->green = book->priv->color.green;
+  color->alpha = book->priv->color.alpha;
+}
+
 
 gboolean 
 biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
@@ -440,11 +584,12 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
     /* Signal before doing anything here. So the note is still
      * fully available for signal receiver. */
     biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_TRASHED, to_delete);
-
-    /* Ref note first, hash_table won't finalize it & we can delete it*/
-    g_object_ref (to_delete);
-    g_hash_table_remove (book->priv->items, path);
     biji_item_trash (item);
+    g_hash_table_remove (book->priv->items, path);
+    /* Ref note first, hash_table won't finalize it & we can delete it*/
+    //g_object_ref (to_delete);
+    //g_hash_table_remove (book->priv->items, path);
+    //biji_item_trash (item);
 
     retval = TRUE;
   }
@@ -467,7 +612,7 @@ biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
     retval = FALSE;
 
   else if (BIJI_IS_NOTE_OBJ (item))
-    _biji_note_book_add_one_note (book, BIJI_NOTE_OBJ (item));
+    _biji_note_book_add_one_item (book, item);
 
   else if (BIJI_IS_COLLECTION (item))
   {
@@ -498,19 +643,26 @@ biji_note_book_get_item_at_path (BijiNoteBook *book, const gchar *path)
 }
 
 BijiNoteBook *
-biji_note_book_new (GFile *location)
+biji_note_book_new (GFile *location, GdkRGBA *color)
 {
   return g_object_new(BIJI_TYPE_NOTE_BOOK,
                       "location", location,
+                      "color", color,
                       NULL);
 }
 
 BijiNoteObj *
-biji_note_get_new_from_file (const gchar* path)
+biji_note_get_new_from_file (BijiNoteBook *book, const gchar* path)
 {
-  BijiNoteObj* ret = biji_note_obj_new_from_path (path);
+  BijiInfoSet  set;
+  BijiNoteObj *ret;
 
-  /* The deserializer will handle note type */
+  set.url = (gchar*) path;
+  set.mtime = 0;
+  set.title = NULL;
+  set.content = NULL;
+
+  ret = biji_local_note_new_from_info (book, &set);
   biji_lazy_deserialize (ret);
 
   return ret ;
@@ -533,7 +685,11 @@ get_note_skeleton (BijiNoteBook *book)
 {
   BijiNoteObj *ret = NULL;
   gchar * folder, *name, *path;
+  BijiInfoSet set;
 
+  set.title = NULL;
+  set.content = NULL;
+  set.mtime = 0;
   folder = g_file_get_path (book->priv->location);
 
   while (!ret)
@@ -541,9 +697,10 @@ get_note_skeleton (BijiNoteBook *book)
     name = biji_note_book_get_uuid ();
     path = g_build_filename (folder, name, NULL);
     g_free (name);
+    set.url = path;
 
     if (!g_hash_table_lookup (book->priv->items, path))
-      ret = biji_note_obj_new_from_path (path);
+      ret = biji_local_note_new_from_info (book, &set);
 
     g_free (path);
   }
@@ -553,11 +710,6 @@ get_note_skeleton (BijiNoteBook *book)
   return ret;
 }
 
-static char*
-wrap_note_content (char *content)
-{
-  return g_strdup_printf("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>%s</body></html>", content);
-}
 
 BijiNoteObj *
 biji_note_book_note_new           (BijiNoteBook *book, gchar *str)
@@ -569,11 +721,11 @@ biji_note_book_note_new           (BijiNoteBook *book, gchar *str)
     gchar *unique, *html;
 
     unique = biji_note_book_get_unique_title (book, str);
-    html = wrap_note_content (str);
+    html = html_from_plain_text (str);
 
     biji_note_obj_set_title (ret, unique);
     biji_note_obj_set_raw_text (ret, str);
-    biji_note_obj_set_html_content (ret, html);
+    biji_note_obj_set_html (ret, html);
 
     g_free (unique);
     g_free (html);

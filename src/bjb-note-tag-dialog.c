@@ -76,7 +76,7 @@ struct _BjbNoteTagDialogPrivate
 G_DEFINE_TYPE (BjbNoteTagDialog, bjb_note_tag_dialog, GTK_TYPE_DIALOG);
 
 static void
-append_collection (BijiTrackerInfoSet *set, BjbNoteTagDialog *self)
+append_collection (BijiInfoSet *set, BjbNoteTagDialog *self)
 {
   BjbNoteTagDialogPrivate *priv = self->priv;
 
@@ -99,7 +99,7 @@ append_collection (BijiTrackerInfoSet *set, BjbNoteTagDialog *self)
 
   gtk_list_store_set (priv->store,    &iter,
                       COL_SELECTION,  item_has_tag,
-                      COL_URN,        set->urn,
+                      COL_URN,        set->tracker_urn,
                       COL_TAG_NAME ,  set->title, -1);
 }
 
@@ -108,10 +108,10 @@ bjb_compare_collection (gconstpointer a, gconstpointer b)
 {
 
   gchar *up_a, *up_b;
-  BijiTrackerInfoSet *set_a, *set_b;
+  BijiInfoSet *set_a, *set_b;
   gint retval;
-  set_a = (BijiTrackerInfoSet *) a;
-  set_b = (BijiTrackerInfoSet *) b;
+  set_a = (BijiInfoSet *) a;
+  set_b = (BijiInfoSet *) b;
 
   up_a = g_utf8_strup (set_a->title, -1);
   up_b = g_utf8_strup (set_b->title, -1);

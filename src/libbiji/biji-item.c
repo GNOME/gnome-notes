@@ -18,10 +18,22 @@
  */
 
 #include "biji-item.h"
+#include "biji-note-book.h"
+
+/* Properties */
+enum {
+  PROP_0,
+  PROP_BOOK,
+  BIJI_ITEM_PROP
+};
+
+
+static GParamSpec *properties[BIJI_ITEM_PROP] = { NULL, };
+
 
 struct BijiItemPrivate_
 {
-  gpointer dummy;
+  BijiNoteBook *book;
 };
 
 static void biji_item_finalize (GObject *object);
@@ -30,13 +42,64 @@ G_DEFINE_TYPE (BijiItem, biji_item, G_TYPE_OBJECT)
 
 
 static void
+biji_item_set_property (GObject      *object,
+                        guint         property_id,
+                        const GValue *value,
+                        GParamSpec   *pspec)
+{
+  BijiItem *self = BIJI_ITEM (object);
+
+
+  switch (property_id)
+    {
+    case PROP_BOOK:
+      self->priv->book = g_value_dup_object (value);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+
+static void
+biji_item_get_property (GObject    *object,
+                        guint       property_id,
+                        GValue     *value,
+                        GParamSpec *pspec)
+{
+  BijiItem *self = BIJI_ITEM (object);
+
+  switch (property_id)
+    {
+    case PROP_BOOK:
+      g_value_set_object (value, self->priv->book);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+static void
 biji_item_class_init (BijiItemClass *klass)
 {
   GObjectClass *g_object_class;
 
   g_object_class = G_OBJECT_CLASS (klass);
 
+  g_object_class->get_property = biji_item_get_property;
+  g_object_class->set_property = biji_item_set_property;
   g_object_class->finalize = biji_item_finalize;
+
+  properties[PROP_BOOK] =
+    g_param_spec_object("note-book",
+                        "Note Book",
+                        "The Note Book controlling this item",
+                        BIJI_TYPE_NOTE_BOOK,
+                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+
+  g_object_class_install_properties (g_object_class, BIJI_ITEM_PROP, properties);
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiItemPrivate));
 }
@@ -55,6 +118,7 @@ static void
 biji_item_init (BijiItem *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_ITEM, BijiItemPrivate);
+  self->priv->book = NULL;
 }
 
 const gchar *
@@ -68,6 +132,14 @@ biji_item_get_uuid          (BijiItem *item)
 {
   return BIJI_ITEM_GET_CLASS (item)->get_uuid (item);
 }
+
+
+gpointer
+biji_item_get_book     (BijiItem *item)
+{
+  return item->priv->book;
+}
+
 
 GdkPixbuf *
 biji_item_get_icon          (BijiItem *item)
@@ -95,10 +167,23 @@ biji_item_get_mtime           (BijiItem *item)
   return BIJI_ITEM_GET_CLASS (item)->get_mtime (item);
 }
 
+
+gboolean
+biji_item_has_color           (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->has_color (item);
+}
+
 gboolean
 biji_item_trash               (BijiItem *item)
 {
   return BIJI_ITEM_GET_CLASS (item)->trash (item);
+}
+
+gboolean
+biji_item_is_collectable       (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->is_collectable (item);
 }
 
 gboolean

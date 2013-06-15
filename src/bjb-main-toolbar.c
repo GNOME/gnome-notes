@@ -502,11 +502,11 @@ on_note_color_changed (BijiNoteObj *note, GtkColorButton *button)
 static void
 on_note_content_changed (BjbMainToolbar *self)
 {
-  gchar *str = NULL;
+  const gchar *str = NULL;
   gboolean sensitive = TRUE;
 
   if (self->priv->note)
-    str = biji_note_get_raw_text (self->priv->note);
+    str = biji_note_obj_get_raw_text (self->priv->note);
 
   if (!str || g_strcmp0 (str, "") == 0 || g_strcmp0 (str, "\n") == 0)
     sensitive = FALSE;
@@ -603,24 +603,30 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   gtk_widget_show (item);
 
-  /* Bullets, ordered list, separator */
-  /* Bullets : unordered list format */
-  item = gtk_menu_item_new_with_label (_("Bullets"));
-  gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-  g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (bjb_toggle_bullets), editor);
-  gtk_widget_show (item);
+  if (biji_note_obj_can_format (priv->note))
+  {
 
-  /* Ordered list as 1.mouse 2.cats 3.dogs */
-  item = gtk_menu_item_new_with_label (_("Numbered List"));
-  gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-  g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (bjb_toggle_list), editor);
-  gtk_widget_show(item);
+    /* Bullets, ordered list, separator */
+    /* Bullets : unordered list format */
+    item = gtk_menu_item_new_with_label (_("Bullets"));
+    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
+    g_signal_connect_swapped (item, "activate",
+                              G_CALLBACK (bjb_toggle_bullets), editor);
+    gtk_widget_show (item);
 
-  item = gtk_separator_menu_item_new ();
-  gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-  gtk_widget_show (item);
+
+    /* Ordered list as 1.mouse 2.cats 3.dogs */
+    item = gtk_menu_item_new_with_label (_("Numbered List"));
+    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
+    g_signal_connect_swapped (item, "activate",
+                              G_CALLBACK (bjb_toggle_list), editor);
+    gtk_widget_show(item);
+
+    item = gtk_separator_menu_item_new ();
+    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
+    gtk_widget_show (item);
+
+  }
 
   /* Rename, view tags, separtor */
   item = gtk_menu_item_new_with_label(_("Rename"));
@@ -629,11 +635,15 @@ bjb_note_menu_new (BjbMainToolbar *self)
                    G_CALLBACK(action_rename_note_callback),self);
   gtk_widget_show(item);
 
-  item = gtk_menu_item_new_with_label(_("Collections"));
-  gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
-  g_signal_connect(item,"activate",
-                   G_CALLBACK(action_view_tags_callback),self);
-  gtk_widget_show(item);
+
+  if (biji_item_is_collectable (BIJI_ITEM (priv->note)))
+  {
+    item = gtk_menu_item_new_with_label(_("Collections"));
+    gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
+    g_signal_connect(item,"activate",
+                     G_CALLBACK(action_view_tags_callback),self);
+    gtk_widget_show(item);
+  }
 
   item = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
@@ -694,28 +704,31 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
 
   /* Note Color */
-  if (!biji_note_obj_get_rgba (priv->note, &color))
+  if (biji_item_has_color (BIJI_ITEM (priv->note)))
   {
-    gchar *default_color;
+    if (!biji_note_obj_get_rgba (priv->note, &color))
+    {
+      gchar *default_color;
 
-    g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
-    gdk_rgba_parse (&color, default_color);
-    g_free (default_color);
+      g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
+      gdk_rgba_parse (&color, default_color);
+      g_free (default_color);
+    }
+
+    button = bjb_color_button_new ();
+    gtk_widget_set_tooltip_text (button, _("Note color"));
+    gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button), &color);
+
+    gd_main_toolbar_add_widget (bar, button, FALSE);
+    gtk_widget_set_size_request (gtk_bin_get_child (GTK_BIN (button)),
+                                 COLOR_SIZE, COLOR_SIZE);
+    gtk_widget_show (button);
+
+    g_signal_connect (button, "color-set",
+                      G_CALLBACK (on_color_button_clicked), self);
+    priv->note_color_changed = g_signal_connect (priv->note, "color-changed",
+                               G_CALLBACK (on_note_color_changed), button);
   }
-
-  button = bjb_color_button_new ();
-  gtk_widget_set_tooltip_text (button, _("Note color"));
-  gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button), &color);
-
-  gd_main_toolbar_add_widget (bar, button, FALSE);
-  gtk_widget_set_size_request (gtk_bin_get_child (GTK_BIN (button)),
-                               COLOR_SIZE, COLOR_SIZE);
-  gtk_widget_show (button);
-
-  g_signal_connect (button, "color-set",
-                    G_CALLBACK (on_color_button_clicked), self);
-  priv->note_color_changed = g_signal_connect (priv->note, "color-changed",
-                             G_CALLBACK (on_note_color_changed), button);
 
   /* Sharing */
   priv->share = gd_main_toolbar_add_button (bar, "send-to-symbolic",

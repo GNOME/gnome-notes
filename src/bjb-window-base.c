@@ -221,7 +221,6 @@ bjb_window_base_new(void)
   return g_object_new (BJB_TYPE_WINDOW_BASE,
                        "application", g_application_get_default(),
                        "hide-titlebar-when-maximized", TRUE,
-                       "modal", TRUE,
                        NULL);
 }
 

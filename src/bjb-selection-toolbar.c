@@ -62,12 +62,26 @@ struct _BjbSelectionToolbarPrivate
 G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_TOOLBAR);
 
 
+/*
+ * Color dialog is transient and could damage the display of self
+ * We do not want a modal window since the app may have several
+ * The fix is to hide self untill dialog has run
+ *
+ */
+static void
+hide_self (GtkWidget *self)
+{
+  gtk_widget_set_visible (self, FALSE);
+}
+
+
 static void
 action_color_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
 {
   GList *l, *selection;
   GdkRGBA color = {0,0,0,0};
 
+  gtk_widget_set_visible (GTK_WIDGET (self), TRUE);
   gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (w), &color);
   selection = bjb_main_view_get_selected_items (self->priv->view);
 
@@ -77,8 +91,10 @@ action_color_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
       biji_note_obj_set_rgba (l->data, &color);
   }
 
+
   g_list_free (selection);
 }
+
 
 static void
 action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
@@ -334,6 +350,9 @@ bjb_selection_toolbar_constructed(GObject *obj)
                     "view-selection-changed", 
                     G_CALLBACK(bjb_selection_toolbar_selection_changed),
                     self);
+
+  g_signal_connect_swapped (priv->toolbar_color,"clicked",
+                    G_CALLBACK (hide_self), self);
 
   g_signal_connect (priv->toolbar_color,"color-set",
                     G_CALLBACK (action_color_selected_items), self);

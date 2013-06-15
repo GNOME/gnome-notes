@@ -57,6 +57,7 @@ new_activated (GSimpleAction *action,
   bjb_controller_set_needle (control, "");
 
   bjb_window_base_switch_to (win, BJB_WINDOW_BASE_MAIN_VIEW);
+  gtk_widget_show_all (GTK_WIDGET (win));
 }
 
 

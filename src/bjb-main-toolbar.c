@@ -438,12 +438,6 @@ populate_bar_for_list_view(BjbMainToolbar *self)
 static void
 disconnect_note_handlers (BjbMainToolbarPrivate *priv)
 {
-  if (priv->accel)
-  {
-    gtk_window_remove_accel_group (priv->window, priv->accel);
-    g_clear_pointer (&priv->accel, g_object_unref);
-  }
-
   if (priv->note_renamed != 0)
   {
     g_signal_handler_disconnect (priv->note, priv->note_renamed);
@@ -589,7 +583,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
                             G_CALLBACK (webkit_web_view_undo), editor);
   gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_u,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-  gtk_widget_show (item);
+
 
   item = gtk_menu_item_new_with_label (_("Redo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
@@ -597,22 +591,19 @@ bjb_note_menu_new (BjbMainToolbar *self)
                             G_CALLBACK (webkit_web_view_redo), editor);
   gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_r,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-  gtk_widget_show (item);
 
   item = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-  gtk_widget_show (item);
 
   if (biji_note_obj_can_format (priv->note))
   {
 
     /* Bullets, ordered list, separator */
-    /* Bullets : unordered list format */
+    /* Bullets : unordered list format  */
     item = gtk_menu_item_new_with_label (_("Bullets"));
     gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
     g_signal_connect_swapped (item, "activate",
                               G_CALLBACK (bjb_toggle_bullets), editor);
-    gtk_widget_show (item);
 
 
     /* Ordered list as 1.mouse 2.cats 3.dogs */
@@ -620,11 +611,10 @@ bjb_note_menu_new (BjbMainToolbar *self)
     gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
     g_signal_connect_swapped (item, "activate",
                               G_CALLBACK (bjb_toggle_list), editor);
-    gtk_widget_show(item);
+
 
     item = gtk_separator_menu_item_new ();
     gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-    gtk_widget_show (item);
 
   }
 
@@ -633,7 +623,6 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(action_rename_note_callback),self);
-  gtk_widget_show(item);
 
 
   if (biji_item_is_collectable (BIJI_ITEM (priv->note)))
@@ -642,20 +631,20 @@ bjb_note_menu_new (BjbMainToolbar *self)
     gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
     g_signal_connect(item,"activate",
                      G_CALLBACK(action_view_tags_callback),self);
-    gtk_widget_show(item);
+
   }
 
   item = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-  gtk_widget_show (item);
+
 
   /* Delete Note */
   item = gtk_menu_item_new_with_label(_("Delete this Note"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
                    G_CALLBACK(delete_item_callback),self);
-  gtk_widget_show(item);
 
+  gtk_widget_show_all (result);
   return result;
 }
 
@@ -676,8 +665,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
     return;
 
   settings = bjb_app_get_settings (g_application_get_default());
-  priv->accel = gtk_accel_group_new ();
-  gtk_window_add_accel_group (priv->window, priv->accel);
 
   /* Go to main view basically means closing note */
   grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
@@ -686,11 +673,10 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
   notes_label = gtk_label_new (_("Notes"));
   gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
-
-  button = gd_main_toolbar_add_button (bar, NULL, NULL, TRUE);
-
+  button = gtk_button_new ();
   gtk_container_add (GTK_CONTAINER (button), grid);
-
+  gd_main_toolbar_add_widget (bar, button, TRUE);
+ 
   g_signal_connect_swapped (button, "clicked",
                             G_CALLBACK (just_switch_to_main_view), self);
   gtk_widget_add_accelerator (button, "activate", self->priv->accel,
@@ -872,6 +858,8 @@ bjb_main_toolbar_constructed (GObject *obj)
 {
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR (obj);
 
+  self->priv->accel = gtk_accel_group_new ();
+  gtk_window_add_accel_group (self->priv->window, self->priv->accel);
   g_signal_connect_swapped (self->priv->window, "view-changed",
                             G_CALLBACK (populate_main_toolbar), self);
 
@@ -913,6 +901,7 @@ bjb_main_toolbar_finalize (GObject *object)
     priv->search_handler = 0;
   }
 
+  gtk_window_remove_accel_group (priv->window, priv->accel);
   disconnect_note_handlers (priv);
 
   /* chain up */

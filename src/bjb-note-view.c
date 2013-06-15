@@ -93,7 +93,6 @@ bjb_note_view_finalize(GObject *object)
   bjb_note_view_disconnect (priv);
 
   g_clear_object (&priv->view);
-  g_clear_object (&priv->edit_bar);
   clutter_color_free (priv->last_date_bckgrd_clr);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);

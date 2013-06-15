@@ -1,3 +1,16 @@
+Overview of changes in 3.9.3
+============================
+
+* Initial ownCloud support and revisit architecture
+
+* Bug fixes
+  701054 : Wrong g_variant_builder_open (Aurimas Černius)
+
+* New translations
+  German (Christian Kirbach)
+  Lithuanian (Aurimas Černius)
+  Norwegian bokmål (Kjartan Maraas)
+
 Overview of changes in 3.9.2
 =============================
 

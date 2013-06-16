@@ -521,27 +521,22 @@ on_owncloud_volume_mounted (GObject *source_object,
   BijiOwnCloudProvider *self;
   GError *error;
 
+  error = NULL;
   self = BIJI_OWN_CLOUD_PROVIDER (user_data);
 
   /* bug #701021 makes this fail */
+  g_volume_mount_finish (self->priv->volume, res, &error);
 
-  if (!g_volume_mount_finish (self->priv->volume, res, &error))
+  if (error != NULL)
   {
-    if (error != NULL)
-    {
-      g_warning ("%s", error->message);
-      g_error_free (error);
-    }
-    return;
+    g_warning ("%s", error->message);
+    g_error_free (error);
   }
 
   self->priv->mount = g_volume_get_mount (self->priv->volume);
 
   if (!G_IS_MOUNT (self->priv->mount))
-  {
     g_warning ("finish but not really finish...");
-    get_mount (self);
-  }
 
   else
     handle_mount (self);

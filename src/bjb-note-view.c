@@ -52,7 +52,6 @@ struct _BjbNoteViewPrivate {
   /* UI */
   BijiWebkitEditor *editor;
   ClutterActor      *embed;
-  GtkAccelGroup     *accel;
   ClutterActor      *edit_actor;
   BjbEditorToolbar  *edit_bar;
   ClutterActor      *edit_bar_actor;
@@ -154,7 +153,6 @@ bjb_note_view_init (BjbNoteView *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_NOTE_VIEW,
                                             BjbNoteViewPrivate);
 
-  self->priv->accel = gtk_accel_group_new ();
   self->priv->last_date_bckgrd_clr = NULL;
 }
 
@@ -258,9 +256,7 @@ bjb_note_view_constructed (GObject *obj)
   /* view new from note deserializes the note-content. */
   priv->view = biji_note_obj_open (priv->note);
 
-  settings = bjb_app_get_settings(g_application_get_default());
-  gtk_window_add_accel_group (GTK_WINDOW (priv->window), priv->accel);
-    
+  settings = bjb_app_get_settings(g_application_get_default());    
   priv->deleted = g_signal_connect(priv->note,"deleted",
                                    G_CALLBACK(on_note_deleted),self);
 

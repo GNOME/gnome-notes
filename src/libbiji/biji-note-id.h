@@ -22,6 +22,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include "biji-info-set.h"
 #include "biji-tracker.h"
 
 G_BEGIN_DECLS

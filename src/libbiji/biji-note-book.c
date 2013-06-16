@@ -19,8 +19,10 @@
 #include <uuid/uuid.h>
 
 #include "libbiji.h"
+#include "biji-local-note.h" // FIXME !!!! biji_provider_note_new ()
 #include "biji-collection.h"
-#include "biji-local-note.h"
+
+#include "provider/biji-local-provider.h"
 #include "provider/biji-own-cloud-provider.h"
 
 
@@ -36,8 +38,8 @@ struct _BijiNoteBookPrivate
   GFile *location;
   TrackerSparqlConnection *connection;
   GdkRGBA color;
-  GCancellable *load_cancellable;
 };
+
 
 /* Properties */
 enum {
@@ -46,6 +48,7 @@ enum {
   PROP_COLOR,
   BIJI_BOOK_PROPERTIES
 };
+
 
 /* Signals */
 enum {
@@ -106,10 +109,7 @@ biji_note_book_finalize (GObject *object)
 {
   BijiNoteBook *book = BIJI_NOTE_BOOK (object) ;
 
-  if (book->priv->load_cancellable)
-    g_cancellable_cancel (book->priv->load_cancellable);
 
-  g_clear_object (&book->priv->load_cancellable);
   g_clear_object (&book->priv->location);
   g_hash_table_destroy (book->priv->items);
 
@@ -217,18 +217,19 @@ biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title)
   return new_title;
 }
 
-gboolean
+
+void
 biji_note_book_notify_changed (BijiNoteBook            *book,
                                BijiNoteBookChangeFlag   flag,
                                BijiItem                *item)
 {
-  g_warning ("biji_note_book_notify_changed, flag %i has_item=%i",
-             flag, (item != NULL));
-
-
-  g_signal_emit (G_OBJECT (book), biji_book_signals[BOOK_AMENDED], 0, flag, item);
-  return FALSE;
+  g_signal_emit (book,
+                 biji_book_signals[BOOK_AMENDED],
+                 0,
+                 flag,
+                 item);
 }
+
 
 /* TODO : use the same for note, put everything there
  * rather calling a func */
@@ -237,6 +238,7 @@ on_item_deleted_cb (BijiItem *item, BijiNoteBook *book)
 {
   biji_note_book_remove_item (book, item);
 }
+
 
 void
 book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
@@ -253,10 +255,7 @@ book_on_item_icon_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
 static void
 _biji_note_book_add_one_item (BijiNoteBook *book, BijiItem *item)
 {
-  BijiNoteObj *note;
-
   g_return_if_fail (BIJI_IS_ITEM (item));
-  note = BIJI_IS_NOTE_OBJ (item) ? BIJI_NOTE_OBJ (item) : NULL;
 
 
   /* Add it to the list */
@@ -264,179 +263,18 @@ _biji_note_book_add_one_item (BijiNoteBook *book, BijiItem *item)
                        (gpointer) biji_item_get_uuid (item), item);
 
   /* Notify */
-  if (note)
+  if (BIJI_IS_NOTE_OBJ (item))
   {
-    g_signal_connect (note, "changed", G_CALLBACK (book_on_note_changed_cb), book);
-    g_signal_connect (note, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
-    g_signal_connect (note, "color-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
-  }
-}
-
-#define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
-
-static void
-load_location_error (GFile *location,
-                     GError *error)
-{
-  gchar *path = g_file_get_path (location);
-  g_printerr ("Unable to load location %s: %s", path, error->message);
-
-  g_free (path);
-  g_error_free (error);
-}
-
-static void
-release_enum_cb (GObject *source, GAsyncResult *res, gpointer user_data)
-{
-  g_file_enumerator_close_finish (G_FILE_ENUMERATOR (source),
-                                  res,
-                                  NULL);
-  g_object_unref (source);
-}
-
-static void
-create_collection_if_needed (gpointer key,
-                             gpointer value,
-                             gpointer user_data)
-{
-  BijiNoteBook *book = BIJI_NOTE_BOOK (user_data);
-  BijiInfoSet *set = value;
-  BijiCollection *collection;
-
-  collection = g_hash_table_lookup (book->priv->items, key);
-
-  if (!collection)
-  {
-    collection = biji_collection_new (G_OBJECT (book), key, set->title, set->mtime);
-
-    g_hash_table_insert (book->priv->items,
-                         g_strdup (key),
-                         collection);
-
-    g_signal_connect (collection, "deleted",
-                      G_CALLBACK (on_item_deleted_cb), book);
-    g_signal_connect (collection , "icon-changed",
-                      G_CALLBACK (book_on_item_icon_changed_cb), book);
+    g_signal_connect (item, "changed", G_CALLBACK (book_on_note_changed_cb), book);
+    g_signal_connect (item, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
+    g_signal_connect (item, "color-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
   }
 
-  /* InfoSet are freed per g_hash_table_destroy thanks to below caller */
-}
-
-static void
-load_book_finish (GHashTable *collections,
-                  gpointer user_data)
-{
-  BijiNoteBook *self = BIJI_NOTE_BOOK (user_data);
-
-  g_hash_table_foreach (collections, create_collection_if_needed, user_data);
-  g_hash_table_destroy (collections);
-
-  biji_note_book_notify_changed (self, BIJI_BOOK_MASS_CHANGE, NULL);
-}
-
-static void
-enumerate_next_files_ready_cb (GObject *source,
-                               GAsyncResult *res,
-                               gpointer user_data)
-{
-  GFileEnumerator *enumerator = G_FILE_ENUMERATOR (source);
-  BijiNoteBook *self;
-  GList *files, *l;
-  GError *error = NULL;
-  gchar *base_path;
-
-  files = g_file_enumerator_next_files_finish (enumerator, res, &error);
-  g_file_enumerator_close_async (enumerator, G_PRIORITY_DEFAULT, NULL,
-                                 release_enum_cb, NULL);
-
-  if (error != NULL)
-    {
-      load_location_error (g_file_enumerator_get_container (enumerator), error);
-      return;
-    }
-
-  self = user_data;
-  base_path = g_file_get_path (self->priv->location);
-
-  // now load the notes
-  for (l = files; l != NULL; l = l->next)
-    {
-      GFileInfo *file;
-      const gchar *name;
-      BijiNoteObj *note;
-      BijiInfoSet info;
-
-      file = l->data;
-      name = g_file_info_get_name (file);
-
-      if (!g_str_has_suffix (name, ".note"))
-        continue;
-
-      info.url = g_build_filename (base_path, name, NULL);
-      info.title = "";
-      info.content = "";
-      info.mtime = 0;
-
-
-      note = biji_local_note_new_from_info (self, &info);
-      biji_lazy_deserialize (note);
-
-      _biji_note_book_add_one_item (self, BIJI_ITEM (note));
-
-      g_free (info.url);
-    }
-
-  g_free (base_path);
-  g_list_free_full (files, g_object_unref);
-
-  /* Now we have all notes,
-   * load the collections and we're good to notify loading done */
-  biji_get_all_collections_async (self, load_book_finish, self);
-}
-
-static void
-enumerate_children_ready_cb (GObject *source,
-                             GAsyncResult *res,
-                             gpointer user_data)
-{
-  GFile *location = G_FILE (source);
-  GFileEnumerator *enumerator;
-  GError *error = NULL;
-  BijiNoteBook *self;
-
-  enumerator = g_file_enumerate_children_finish (location,
-                                                 res, &error);
-
-  if (error != NULL)
-    {
-      load_location_error (location, error);
-      return;
-    }
-
-  self = user_data;
-
-  // enumerate all files
-  g_file_enumerator_next_files_async (enumerator, G_MAXINT,
-                                      G_PRIORITY_DEFAULT,
-                                      self->priv->load_cancellable,
-                                      enumerate_next_files_ready_cb,
-                                      self);
-}
-
-
-
-
-
-static void
-note_book_load_from_location (BijiNoteBook *self)
-{
-  self->priv->load_cancellable = g_cancellable_new ();
-  g_file_enumerate_children_async (self->priv->location,
-                                   ATTRIBUTES_FOR_NOTEBOOK, 0,
-                                   G_PRIORITY_DEFAULT,
-                                   self->priv->load_cancellable,
-                                   enumerate_children_ready_cb,
-                                   self);
+  else if (BIJI_IS_COLLECTION (item))
+  {
+    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), book);
+    g_signal_connect (item , "icon-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
+  }
 }
 
 
@@ -472,6 +310,23 @@ on_provider_loaded_cb (BijiProvider *provider,
 }
 
 
+/* 
+ * It should be the right place
+ * to stock somehow providers list
+ * in order to handle properly book__note_new ()
+ * 
+ */
+static void
+_add_provider (BijiNoteBook *self,
+               BijiProvider *provider)
+{
+  g_return_if_fail (BIJI_IS_PROVIDER (provider));
+
+  g_signal_connect (provider, "loaded", 
+                    G_CALLBACK (on_provider_loaded_cb), self);
+}
+
+
 void
 biji_note_book_add_goa_object (BijiNoteBook *self,
                                GoaObject *object)
@@ -491,20 +346,20 @@ biji_note_book_add_goa_object (BijiNoteBook *self,
       provider = biji_own_cloud_provider_new (self, object);
   }
 
-  if (provider)
-    g_signal_connect (provider, "loaded", 
-                      G_CALLBACK (on_provider_loaded_cb), self);
+  _add_provider (self, provider);
 }
 
 
 static void
 biji_note_book_constructed (GObject *object)
 {
-  BijiNoteBook *self = BIJI_NOTE_BOOK (object);
+  BijiNoteBook *self;
+  BijiProvider *provider;
   gchar *filename;
   GFile *cache;
 
   G_OBJECT_CLASS (biji_note_book_parent_class)->constructed (object);
+  self = BIJI_NOTE_BOOK (object);
 
   /* Ensure cache directory for icons */
   filename = g_build_filename (g_get_user_cache_dir (),
@@ -515,8 +370,10 @@ biji_note_book_constructed (GObject *object)
   g_file_make_directory (cache, NULL, NULL);
   g_object_unref (cache);
 
-  note_book_load_from_location (self);
+  provider = biji_local_provider_new (self, self->priv->location);
+  _add_provider (self, provider);
 }
+
 
 static void
 biji_note_book_class_init (BijiNoteBookClass *klass)
@@ -650,6 +507,7 @@ biji_note_book_new (GFile *location, GdkRGBA *color)
                       "color", color,
                       NULL);
 }
+
 
 BijiNoteObj *
 biji_note_get_new_from_file (BijiNoteBook *book, const gchar* path)

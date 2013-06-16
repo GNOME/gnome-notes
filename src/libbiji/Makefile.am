@@ -41,6 +41,8 @@ libbiji_la_SOURCES =  \
 	editor/biji-editor-utils.h \
 	editor/biji-webkit-editor.c \
 	editor/biji-webkit-editor.h \
+	provider/biji-local-provider.c \
+	provider/biji-local-provider.h \
 	provider/biji-own-cloud-note.c \
 	provider/biji-own-cloud-note.h \
 	provider/biji-own-cloud-provider.c \

@@ -37,26 +37,16 @@ static void get_mount (BijiOwnCloudProvider *self);
 /* Properties */
 enum {
   PROP_0,
-  PROP_BOOK,
   PROP_GOA_OBJECT,
   OCLOUD_PROV_PROP
 };
 
 
-/* Signals */
-enum {
-  OCLOUD_PROV_LOADED,
-  OCLOUD_PROV_SIGNALS
-};
-
-
-static guint biji_ocloud_provider_signals[OCLOUD_PROV_SIGNALS] = { 0 };
 static GParamSpec *properties[OCLOUD_PROV_PROP] = { NULL, };
 
 
 struct BijiOwnCloudProviderPrivate_
 {
-  BijiNoteBook     *book;
   GoaObject        *object;
   GoaAccount       *account;
   gchar            *identifier;
@@ -154,11 +144,13 @@ create_note_from_item (BijiOCloudItem *item)
 {
   BijiNoteObj *note;
   GdkRGBA color;
+  BijiNoteBook *book;
 
+  book = biji_provider_get_book (BIJI_PROVIDER (item->self));
   note = biji_own_cloud_note_new_from_info (item->self,
-                                            item->self->priv->book,
+                                            book,
                                             &item->set);
-  biji_note_book_get_default_color (item->self->priv->book, &color);
+  biji_note_book_get_default_color (book, &color);
   biji_note_obj_set_rgba (note, &color);
   g_hash_table_replace (item->self->priv->notes,
                         item->set.url,
@@ -212,7 +204,8 @@ on_content (GObject *source,
   {
      item->set.content = contents;
      create_note_from_item (item);
-     biji_tracker_ensure_ressource_from_info (self->priv->book, &item->set);
+     biji_tracker_ensure_ressource_from_info (
+       biji_provider_get_book (BIJI_PROVIDER (self)), &item->set);
 
      // TODO --> ensure_ressource callback.... o_cloud_item_free (item);
   }
@@ -271,7 +264,7 @@ static void
 trash (gpointer urn_uuid, gpointer self)
 {
   biji_tracker_trash_ressource (
-      BIJI_OWN_CLOUD_PROVIDER (self)->priv->book, (gchar*) urn_uuid);
+      biji_provider_get_book (BIJI_PROVIDER (self)), (gchar*) urn_uuid);
 }
 
 
@@ -288,7 +281,7 @@ handle_next_item (BijiOwnCloudProvider *self)
   {
     g_hash_table_remove (self->priv->tracker, item->set.url);
 
-    biji_tracker_check_for_info (self->priv->book,
+    biji_tracker_check_for_info (biji_provider_get_book (BIJI_PROVIDER (self)),
                                  item->set.url,
                                  item->set.mtime,
                                  check_info_maybe_read_file,
@@ -306,12 +299,7 @@ handle_next_item (BijiOwnCloudProvider *self)
 
     /* Now simply provide data to controller */
     list = g_hash_table_get_values (self->priv->notes);
-    g_warning ("emiting");
-    g_signal_emit (G_OBJECT (self),
-                   biji_ocloud_provider_signals[OCLOUD_PROV_LOADED],
-                   0,
-                   list);
-
+    BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list);
     g_list_free (list);
   }
 }
@@ -458,12 +446,12 @@ static void
 mine_notes (gboolean result, gpointer user_data)
 {
   BijiOwnCloudProvider *self;
-  const gchar *root;
-  gchar *query;
+  BijiProvider         *provider;
+  gchar                *query;
 
 
   self = user_data;
-  root = goa_files_get_uri (goa_object_peek_files (self->priv->object));
+  provider = user_data;
 
   /*
    * We could as well use nie:url to lookup existing db
@@ -478,10 +466,11 @@ mine_notes (gboolean result, gpointer user_data)
 
   query = g_strdup_printf ("SELECT ?url ?urn WHERE {?urn a nfo:Note; "
                            " nie:dataSource '%s' ; nie:url ?url}",
-          BIJI_PROVIDER_GET_CLASS (self)->get_datasource (BIJI_PROVIDER (self)));
+          BIJI_PROVIDER_GET_CLASS (self)->get_datasource (provider));
 
   tracker_sparql_connection_query_async (
-      biji_note_book_get_tracker_connection (self->priv->book),
+      biji_note_book_get_tracker_connection (
+        biji_provider_get_book (provider)),
       query,
       NULL,
       on_notes_mined,
@@ -513,11 +502,12 @@ handle_mount (BijiOwnCloudProvider *self)
 
 
     g_object_unref (root);
-    biji_tracker_ensure_datasource (self->priv->book,
-                                    self->priv->identifier,
-                                    MINER_ID,
-                                    mine_notes,
-                                    self);
+    biji_tracker_ensure_datasource (
+      biji_provider_get_book (BIJI_PROVIDER (self)),
+      self->priv->identifier,
+      MINER_ID,
+      mine_notes,
+      self);
   }
 }
 
@@ -649,8 +639,6 @@ biji_own_cloud_provider_set_property (GObject      *object,
 
   switch (property_id)
     {
-    case PROP_BOOK:
-      self->priv->book = g_value_dup_object (value);
     case PROP_GOA_OBJECT:
       self->priv->object = g_value_dup_object (value);
       break;
@@ -706,25 +694,6 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
   provider_class->get_datasource = own_cloud_get_datasource;
 
 
-  biji_ocloud_provider_signals[OCLOUD_PROV_LOADED] =
-    g_signal_new ("loaded",
-                  G_OBJECT_CLASS_TYPE (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0, NULL, NULL,
-                  g_cclosure_marshal_VOID__POINTER,
-                  G_TYPE_NONE,
-                  1,
-                  G_TYPE_POINTER);
-
-
-  properties[PROP_BOOK] =
-    g_param_spec_object("book",
-                        "Note Book",
-                        "The Note Book",
-                        BIJI_TYPE_NOTE_BOOK,
-                        G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
-
-
   properties[PROP_GOA_OBJECT] =
     g_param_spec_object("goa",
                         "The Goa Object",
@@ -739,7 +708,11 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
 
 
 BijiProvider *
-biji_own_cloud_provider_new (BijiNoteBook *book, GoaObject *object)
+biji_own_cloud_provider_new (BijiNoteBook *book,
+                             GoaObject *object)
 {
-  return g_object_new (BIJI_TYPE_OWN_CLOUD_PROVIDER, "book", book, "goa", object, NULL);
+  return g_object_new (BIJI_TYPE_OWN_CLOUD_PROVIDER,
+                       "book", book,
+                       "goa", object,
+                       NULL);
 }

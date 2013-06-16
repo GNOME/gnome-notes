@@ -36,6 +36,7 @@ typedef struct BijiProvider_         BijiProvider;
 typedef struct BijiProviderClass_    BijiProviderClass;
 typedef struct BijiProviderPrivate_  BijiProviderPrivate;
 
+
 struct BijiProvider_
 {
   GObject parent;
@@ -47,11 +48,17 @@ struct BijiProviderClass_
 {
   GObjectClass parent_class;
 
+  void                 (*notify_loaded)         (BijiProvider *provider,
+                                                 GList *loaded_items);
+
   const gchar*         (*get_datasource)        (BijiProvider *provider);
 };
 
 
 GType                biji_provider_get_type               (void);
+
+
+BijiNoteBook        *biji_provider_get_book                (BijiProvider *provider);
 
 
 G_END_DECLS

@@ -30,15 +30,38 @@
 #include "biji-provider.h"
 
 
+/* Properties */
+enum {
+  PROP_0,
+  PROP_BOOK,
+  PROVIDER_PROP
+};
+
+
+/* Signals */
+enum {
+  PROVIDER_LOADED,
+  PROVIDER_SIGNALS
+};
+
+
+static guint biji_provider_signals[PROVIDER_SIGNALS] = { 0 };
+static GParamSpec *properties[PROVIDER_PROP] = { NULL, };
+
+
 struct BijiProviderPrivate_
 {
-  gpointer delete_me;
+  BijiNoteBook        *book;
 };
 
 G_DEFINE_TYPE (BijiProvider, biji_provider, G_TYPE_OBJECT)
 
 
-
+BijiNoteBook *
+biji_provider_get_book                (BijiProvider *provider)
+{
+  return provider->priv->book;
+}
 
 
 static void
@@ -58,6 +81,58 @@ static void
 biji_provider_init (BijiProvider *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_PROVIDER, BijiProviderPrivate);
+  self->priv->book = NULL;
+}
+
+
+static void
+biji_provider_notify_loaded (BijiProvider *self,
+                             GList *items)
+{
+  g_signal_emit (self,
+                 biji_provider_signals[PROVIDER_LOADED],
+                 0,
+                 items);
+}
+
+
+static void
+biji_provider_set_property (GObject      *object,
+                            guint         property_id,
+                            const GValue *value,
+                            GParamSpec   *pspec)
+{
+  BijiProvider *self = BIJI_PROVIDER (object);
+
+
+  switch (property_id)
+    {
+    case PROP_BOOK:
+      self->priv->book = g_value_dup_object (value);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+static void
+biji_provider_get_property (GObject    *object,
+                            guint       property_id,
+                            GValue     *value,
+                            GParamSpec *pspec)
+{
+  BijiProvider *self = BIJI_PROVIDER (object);
+
+  switch (property_id)
+    {
+    case PROP_BOOK:
+      g_value_set_object (value, self->priv->book);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
 }
 
 
@@ -65,10 +140,36 @@ static void
 biji_provider_class_init (BijiProviderClass *klass)
 {
   GObjectClass *g_object_class;
+  BijiProviderClass *provider_class;
 
   g_object_class = G_OBJECT_CLASS (klass);
+  provider_class = BIJI_PROVIDER_CLASS (klass);
 
   g_object_class->finalize = biji_provider_finalize;
+  g_object_class->get_property = biji_provider_get_property;
+  g_object_class->set_property = biji_provider_set_property;
+  provider_class->notify_loaded = biji_provider_notify_loaded;
+
+  biji_provider_signals[PROVIDER_LOADED] =
+    g_signal_new ("loaded",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL,
+                  g_cclosure_marshal_VOID__POINTER,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_POINTER);
+
+
+  properties[PROP_BOOK] =
+    g_param_spec_object("book",
+                        "Note Book",
+                        "The Note Book",
+                        BIJI_TYPE_NOTE_BOOK,
+                        G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
+
+
+  g_object_class_install_properties (g_object_class, PROVIDER_PROP, properties);
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiProviderPrivate));
 }

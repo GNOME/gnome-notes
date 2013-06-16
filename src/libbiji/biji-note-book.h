@@ -74,7 +74,7 @@ gboolean         biji_note_book_add_item              (BijiNoteBook *book,
                                                        gboolean notify);
 
 
-gboolean         biji_note_book_notify_changed        (BijiNoteBook           *book,
+void             biji_note_book_notify_changed        (BijiNoteBook           *book,
                                                        BijiNoteBookChangeFlag  flag,
                                                        BijiItem               *item);
 

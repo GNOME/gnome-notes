@@ -74,7 +74,6 @@ LIBGD_INIT([
   view-common
   gtk-hacks
   main-view
-  main-toolbar
   revealer
   stack
   static

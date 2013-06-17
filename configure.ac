@@ -73,9 +73,9 @@ GLIB_GSETTINGS
 LIBGD_INIT([
   view-common
   gtk-hacks
+  header-bar
   main-view
   revealer
-  stack
   static
   tagged-entry
 ])

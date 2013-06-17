@@ -39,7 +39,7 @@ struct _BjbWindowBasePriv
   BjbSearchToolbar     *search_bar;
 
 
-  GdStack              *stack;
+  GtkStack             *stack;
   BjbWindowViewType     current_view;
   BjbMainView          *view;
   BjbNoteView          *note_view;
@@ -157,19 +157,19 @@ bjb_window_base_constructed (GObject *obj)
   gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (revealer), FALSE, FALSE, 0);
 
   /* UI : stack for different views */
-  priv->stack = GD_STACK (gd_stack_new ());
+  priv->stack = GTK_STACK (gtk_stack_new ());
   gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->stack), TRUE, TRUE, 0);
 
   priv->spinner = gtk_spinner_new ();
-  gd_stack_add_named (priv->stack, priv->spinner, "spinner");
-  gd_stack_set_visible_child_name (priv->stack, "spinner");
+  gtk_stack_add_named (priv->stack, priv->spinner, "spinner");
+  gtk_stack_set_visible_child_name (priv->stack, "spinner");
   gtk_widget_show (priv->spinner);
   gtk_spinner_start (GTK_SPINNER (priv->spinner));
 
   priv->no_note = bjb_empty_results_box_new ();
-  gd_stack_add_named (priv->stack, priv->no_note, "empty");
+  gtk_stack_add_named (priv->stack, priv->no_note, "empty");
 
-  gd_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
+  gtk_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
 
   g_signal_connect (
     GTK_WIDGET (self), "destroy", G_CALLBACK (bjb_window_base_destroy), self);
@@ -274,12 +274,12 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
     case BJB_WINDOW_BASE_MAIN_VIEW:
       bjb_search_toolbar_connect (priv->search_bar);
       bjb_main_view_connect_signals (priv->view);
-      gd_stack_set_visible_child_name (priv->stack, "main-view");
+      gtk_stack_set_visible_child_name (priv->stack, "main-view");
       break;
 
 
     case BJB_WINDOW_BASE_SPINNER_VIEW:
-      gd_stack_set_visible_child_name (priv->stack, "spinner");
+      gtk_stack_set_visible_child_name (priv->stack, "spinner");
       break;
 
 
@@ -287,7 +287,7 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
                                       BJB_EMPTY_RESULTS_NO_NOTE);
       gtk_widget_show (priv->no_note);
-      gd_stack_set_visible_child_name (priv->stack, "empty");
+      gtk_stack_set_visible_child_name (priv->stack, "empty");
       break;
 
 
@@ -295,13 +295,13 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
                                       BJB_EMPTY_RESULTS_NO_RESULTS);
       gtk_widget_show (priv->no_note);
-      gd_stack_set_visible_child_name (priv->stack, "empty");
+      gtk_stack_set_visible_child_name (priv->stack, "empty");
       break;
 
 
     case BJB_WINDOW_BASE_NOTE_VIEW:
       gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
-      gd_stack_set_visible_child_name (priv->stack, "note-view");
+      gtk_stack_set_visible_child_name (priv->stack, "note-view");
       break;
 
 
@@ -325,7 +325,7 @@ bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
   priv->note = note;
   priv->note_overlay = gtk_overlay_new ();
 
-  gd_stack_add_named (priv->stack, priv->note_overlay, "note-view");
+  gtk_stack_add_named (priv->stack, priv->note_overlay, "note-view");
   priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
 
   g_object_add_weak_pointer (G_OBJECT (priv->note_view),

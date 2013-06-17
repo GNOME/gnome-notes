@@ -102,7 +102,7 @@ bjb_window_base_constructed (GObject *obj)
   GList *icons = NULL;
   GdkPixbuf *bjb ;
   GError *error = NULL;
-  GdRevealer *revealer;
+  GtkWidget *revealer;
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 

@@ -61,7 +61,7 @@ struct _BjbSearchToolbarPrivate
   gulong            inserted;
 
   /* Misc UI  */
-  GdRevealer        *revealer;
+  GtkRevealer       *revealer;
   GtkWidget         *widget;   // GTK_WIDGET (self)
   GtkWidget         *window;
 };
@@ -79,13 +79,13 @@ bjb_search_toolbar_toggle_search_button (BjbSearchToolbar *self,
 void
 bjb_search_toolbar_fade_in (BjbSearchToolbar *self)
 {
-  if (!gd_revealer_get_child_revealed (self->priv->revealer))
+  if (!gtk_revealer_get_child_revealed (self->priv->revealer))
   {
     GdkDevice *device;
 
 
     /* show the search */
-    gd_revealer_set_reveal_child (self->priv->revealer, TRUE);
+    gtk_revealer_set_reveal_child (self->priv->revealer, TRUE);
 
     /* focus */
     device = gtk_get_current_event_device ();
@@ -100,14 +100,14 @@ bjb_search_toolbar_fade_in (BjbSearchToolbar *self)
 void
 bjb_search_toolbar_fade_out (BjbSearchToolbar *self)
 {
-  if (gd_revealer_get_child_revealed (self->priv->revealer))
+  if (gtk_revealer_get_child_revealed (self->priv->revealer))
   {
     /* clear the search before hiding */
     gtk_entry_set_text (GTK_ENTRY (self->priv->entry), "");
     bjb_controller_set_needle (self->priv->controller, "");
 
     /* hide */
-    gd_revealer_set_reveal_child (self->priv->revealer, FALSE);
+    gtk_revealer_set_reveal_child (self->priv->revealer, FALSE);
 
     /* manually toggle search button */
     bjb_search_toolbar_toggle_search_button (self, FALSE);
@@ -123,7 +123,7 @@ on_key_released (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
   BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (user_data);
   BjbSearchToolbarPrivate *priv = self->priv;
 
-  if (gd_revealer_get_child_revealed (self->priv->revealer) == TRUE)
+  if (gtk_revealer_get_child_revealed (self->priv->revealer) == TRUE)
     gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
 
   return FALSE;
@@ -135,7 +135,7 @@ on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
   BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (user_data);
 
   /* Reveal the entry is text is input. TODO add more keys not input */
-  if (gd_revealer_get_child_revealed (self->priv->revealer) == FALSE)
+  if (gtk_revealer_get_child_revealed (self->priv->revealer) == FALSE)
   {
     switch (event->key.keyval)
     {
@@ -326,7 +326,7 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_SEARCH_TOOLBAR, BjbSearchToolbarPrivate);
   priv = self->priv;
   priv->widget = GTK_WIDGET (self);
-  priv->revealer = GD_REVEALER (gd_revealer_new ());
+  priv->revealer = GTK_REVEALER (gtk_revealer_new ());
 
   gtk_container_add (GTK_CONTAINER (priv->revealer), priv->widget);
 
@@ -390,14 +390,14 @@ bjb_search_toolbar_new (GtkWidget     *window,
                        NULL);
 }
 
-GdRevealer *
+GtkWidget *
 bjb_search_toolbar_get_revealer (BjbSearchToolbar *self)
 {
-  return self->priv->revealer;
+  return GTK_WIDGET (self->priv->revealer);
 }
 
 gboolean
 bjb_search_toolbar_is_shown (BjbSearchToolbar *self)
 {
-  return gd_revealer_get_child_revealed (self->priv->revealer);
+  return gtk_revealer_get_child_revealed (self->priv->revealer);
 }

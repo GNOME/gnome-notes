@@ -57,7 +57,7 @@ void bjb_search_toolbar_fade_in (BjbSearchToolbar *self);
 
 void bjb_search_toolbar_fade_out (BjbSearchToolbar *self);
 
-GdRevealer * bjb_search_toolbar_get_revealer (BjbSearchToolbar *self);
+GtkWidget * bjb_search_toolbar_get_revealer (BjbSearchToolbar *self);
 
 void bjb_search_toolbar_disconnect (BjbSearchToolbar *self);
 

@@ -75,7 +75,6 @@ LIBGD_INIT([
   gtk-hacks
   header-bar
   main-view
-  revealer
   static
   tagged-entry
 ])

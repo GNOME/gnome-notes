@@ -26,7 +26,6 @@
 #include <glib/gi18n.h>
 #include <glib/gprintf.h>
 
-#include <libgd/gd-revealer.h>
 
 #include "bjb-load-more-button.h"
 
@@ -67,7 +66,7 @@ on_displayed_items_changed (BjbController     *controller,
   gtk_widget_hide (priv->spinner);
   gtk_label_set_label (GTK_LABEL (priv->label), _("Load More"));
 
-  gd_revealer_set_reveal_child (GD_REVEALER (priv->revealer), remaining);
+  gtk_revealer_set_reveal_child (GTK_REVEALER (priv->revealer), remaining);
 }
 
 
@@ -155,7 +154,7 @@ bjb_load_more_button_init (BjbLoadMoreButton *self)
   gtk_widget_set_visible (priv->label, TRUE);
   gtk_container_add (GTK_CONTAINER (child), priv->label);
 
-  priv->revealer = gd_revealer_new ();
+  priv->revealer = gtk_revealer_new ();
   gtk_container_add (GTK_CONTAINER (priv->revealer), GTK_WIDGET (self));
 }
 

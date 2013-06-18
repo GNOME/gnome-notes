@@ -32,11 +32,11 @@ void show_about_dialog(GtkApplication *app)
   GList * windows = gtk_application_get_windows (app);
   
   gtk_show_about_dialog( g_list_nth_data (windows, 0),
-  "program-name", _("Bijiben"),
+  "program-name", _("Notes"),
   "comments", _("Simple notebook for GNOME"),
   "license", "GPLv3",
   "version", VERSION,
-  "copyright", "Pierre-Yves Luyten 2012",
+  "copyright", "Pierre-Yves Luyten 2013",
   "translator-credits", _("translator-credits"),
   NULL,NULL,NULL);
 

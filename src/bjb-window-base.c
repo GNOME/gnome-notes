@@ -15,7 +15,7 @@
 
 #define BJB_WIDTH 780
 #define BJB_HEIGHT 600
-#define BIJIBEN_MAIN_WIN_TITLE "Bijiben"
+#define BIJIBEN_MAIN_WIN_TITLE "Notes"
 
 #define BJB_DEFAULT_FONT "Serif 10"
 

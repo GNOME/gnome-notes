@@ -10,6 +10,7 @@ public_icons = \
 	hicolor_apps_24x24_bijiben.png \
 	hicolor_apps_32x32_bijiben.png \
 	hicolor_apps_48x48_bijiben.png \
+	hicolor_apps_256x256_bijiben.png \
 	hicolor_apps_scalable_bijiben.svg \
 	$(NULL)
 

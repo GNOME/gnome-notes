@@ -18,7 +18,7 @@
 #ifndef BJB_SEARCH_TOOLBAR_H
 #define BJB_SEARCH_TOOLBAR_H
 
-#include <libgd/gd-revealer.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

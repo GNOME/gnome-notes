@@ -13,7 +13,7 @@
   </info>
 
   <title>Tag Notes</title>
-    <p><app>Bijiben</app> uses the same labels, or tags, you can use to organize your files.</p>
+    <p><app>Notes</app> uses the same labels, or tags, you can use to organize your files.</p>
     <list>
       <item><p>Open a note, click on the menu then <gui>Tags</gui></p></item>
       <item><p>From the main view, click on the <gui>Selection</gui> button, select notes you want to tag then click on the <gui>labels</gui> button.</p></item>

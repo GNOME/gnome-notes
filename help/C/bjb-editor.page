@@ -14,7 +14,7 @@
   </info>
 
   <title>Note edition</title>
-    <p><app>Bijiben</app> allows a few formating.</p>
+    <p><app>Notes</app> allows a few formating.</p>
     <list>
        <item><p>Select some text, the click on <gui>Bold</gui> or <gui>Italic</gui> button.</p></item>
        <item><p>From the note menu, you can also use <gui>Bullets</gui> to have unordered list or <gui>List</gui> for ordered list.</p></item>

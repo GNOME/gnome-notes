@@ -9,12 +9,12 @@
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
   </info>
 
-  <title>Bijiben Help</title>
+  <title>Notes Help</title>
 
     <section id="introduction">
     <title>Introduction</title>
     <media type="image" src="figures/bijiben-note.png" mime="image/png" style="right"/>
-    <p><app>Bijiben</app> is a simple note editor.</p>
+    <p><app>Notes</app> is a simple note editor.</p>
     </section>
 
    <section id="create"><title>Create Notes</title></section>

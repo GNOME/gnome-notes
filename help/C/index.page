@@ -14,14 +14,14 @@
 
   </info>
 
-  <title>Bijiben Help</title>
+  <title>Notes Help</title>
 
   <section id="introduction">
     <title>Introduction</title>
     <media type="image" src="figures/bijiben-note.png" mime="image/png">
-      <p>Screenshot of a note in Bijiben.</p>
+      <p>Screenshot of a note in Notes.</p>
     </media>
-    <p><app>Bijiben</app> is a simple note keeping application.</p>
+    <p><app>Notes</app> is a simple note keeping application.</p>
   </section>
 
   <section id="create"><title>Create notes</title></section>

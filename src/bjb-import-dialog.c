@@ -29,7 +29,6 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
-#include <egg-list-box.h>
 
 #include "bjb-bijiben.h"
 #include "bjb-import-dialog.h"
@@ -66,7 +65,7 @@ struct BjbImportDialogPrivate_
 {
 
   GtkApplication       *bijiben;
-  EggListBox           *box;
+  GtkListBox           *box;
 
 
   /* Select spec. foder */
@@ -167,23 +166,22 @@ child_toggle_new ()
 }
 
 
-/* toggle_child
+/* row_activated
  * When an item is activated
  * Check for the location
  * Show or delete the visible toggle
  * Add or remove location from import paths */
 
 static void
-toggle_child    (EggListBox           *list_box,
-                 GtkWidget            *selected,
-                 BjbImportDialog      *self)
+toggle_widget (BjbImportDialog *self,
+               GObject         *widget)
 {
   BjbImportDialogPrivate *priv = self->priv;
   ImportDialogChild *child;
   GtkStyleContext *context;
   GList *keys;
 
-  child = g_object_get_qdata (G_OBJECT (selected), application_quark ());
+  child = g_object_get_qdata (widget, application_quark ());
 
   if (!child->selected && child->location == NULL)
     return;
@@ -227,18 +225,24 @@ toggle_child    (EggListBox           *list_box,
 
 
 static void
-separator_func (GtkWidget** separator,
-                GtkWidget* child,
-                GtkWidget* before,
-                void* user_data)
+on_row_activated_cb    (GtkListBox    *list_box,
+                        GtkListBoxRow *row,
+                        gpointer       user_data)
 {
-  if (*separator == NULL && before != NULL)
-  {
-    *separator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
+  toggle_widget (user_data, G_OBJECT (gtk_bin_get_child (GTK_BIN (row))));
+}
 
-    g_object_ref_sink (*separator);
-    gtk_widget_show (*separator);
-  }
+
+static void
+header_func (GtkListBoxRow *row,
+             GtkListBoxRow *before_row,
+             gpointer user_data)
+{
+  if (before_row != NULL && gtk_list_box_row_get_header (row) != NULL)
+    gtk_list_box_row_set_header (row, gtk_separator_new (GTK_ORIENTATION_HORIZONTAL));
+
+  else
+    gtk_list_box_row_set_header (row, NULL);
 }
 
 
@@ -271,7 +275,7 @@ on_file_set_cb (GtkWidget *chooser,
     if (GTK_IS_WIDGET (dialog->priv->custom->toggle))
       gtk_widget_destroy (dialog->priv->custom->toggle);
 
-    toggle_child (dialog->priv->box, dialog->priv->custom->overlay, dialog);
+    toggle_widget (dialog, G_OBJECT (dialog->priv->custom->overlay));
     return;
   }
 
@@ -420,13 +424,13 @@ bjb_import_dialog_constructed (GObject *obj)
 
   /* Dialog locations to import */
 
-  priv->box = egg_list_box_new ();
-  egg_list_box_set_selection_mode (priv->box, GTK_SELECTION_NONE);
-  egg_list_box_set_activate_on_single_click (priv->box, TRUE);
-  egg_list_box_set_separator_funcs (priv->box, separator_func, NULL, NULL);
+  priv->box = GTK_LIST_BOX (gtk_list_box_new ());
+  gtk_list_box_set_selection_mode (priv->box, GTK_SELECTION_NONE);
+  gtk_list_box_set_activate_on_single_click (priv->box, TRUE);
+  gtk_list_box_set_header_func (priv->box, (GtkListBoxUpdateHeaderFunc) header_func, NULL, NULL);
   gtk_box_pack_start (GTK_BOX (area), GTK_WIDGET (priv->box) , TRUE, FALSE, 6);
-  g_signal_connect (priv->box, "child-activated",
-                    G_CALLBACK (toggle_child), self);
+  g_signal_connect (priv->box, "row-activated",
+                    G_CALLBACK (on_row_activated_cb), self);
 
 
   /* Tomboy Gnote ~/.local/share are conditional

@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 -I libgd ${ACLOCAL_FLAGS}
 
-SUBDIRS = egg-list-box libgd src data po help
+SUBDIRS = libgd src data po help
 
 bijibendoc = \
 	README\

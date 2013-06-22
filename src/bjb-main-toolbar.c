@@ -243,11 +243,12 @@ static void
 add_search_button (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
+  GtkWidget *search_image;
   gboolean active;
 
-  priv->search = gd_header_toggle_button_new ();
-  gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->search),
-                                           "edit-find-symbolic");
+  priv->search = gtk_toggle_button_new ();
+  search_image = gtk_image_new_from_icon_name ("edit-find-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->search), search_image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->search);
   gtk_widget_set_tooltip_text (priv->search,
                                _("Search note titles, content and collections"));
@@ -286,8 +287,7 @@ populate_bar_for_selection (BjbMainToolbar *self)
   add_search_button (self);
 
   /* Select */
-  priv->select = gd_header_simple_button_new ();
-  gtk_button_set_label (GTK_BUTTON (priv->select), _("Done"));
+  priv->select = gtk_button_new_with_mnemonic (_("Done"));
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
 
   gtk_widget_set_tooltip_text (priv->select, _("Exit selection mode"));
@@ -363,6 +363,8 @@ populate_bar_for_standard(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *bin = NULL;
   BijiCollection *coll;
+  GtkWidget *back_image;
+  GtkWidget *select_image;
   gboolean rtl;
 
   rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
@@ -377,9 +379,10 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   if (coll)
   {
-    priv->back = gd_header_simple_button_new ();
-    gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->back),
-                                             rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
+    priv->back = gtk_button_new ();
+    back_image = gtk_image_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+                                               GTK_ICON_SIZE_MENU);
+    gtk_button_set_image (GTK_BUTTON (priv->back), back_image);
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
 
     g_signal_connect_swapped (priv->back, "clicked",
@@ -407,9 +410,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
   }
 
   /* Go to selection mode */
-  priv->select = gd_header_simple_button_new ();
-  gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->select),
-                                           "object-select-symbolic");
+  priv->select = gtk_button_new ();
+  select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
   gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
 
@@ -424,12 +427,13 @@ static void
 populate_bar_for_icon_view(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
+  GtkWidget *list_image;
 
   /* Switch to list */
   priv->grid = NULL;
-  priv->list = gd_header_simple_button_new ();
-  gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->list),
-                                           "view-list-symbolic");
+  priv->list = gtk_button_new ();
+  list_image = gtk_image_new_from_icon_name ("view-list-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->list), list_image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->list);
   gtk_widget_set_tooltip_text (priv->list,
                                _("View notes and collections in a list"));
@@ -444,12 +448,13 @@ static void
 populate_bar_for_list_view(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
+  GtkWidget *grid_image;
 
   /* Switch to icon view */
   priv->list = NULL;
-  priv->grid = gd_header_simple_button_new ();
-  gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->grid),
-                                           "view-grid-symbolic");
+  priv->grid = gtk_button_new ();
+  grid_image = gtk_image_new_from_icon_name ("view-grid-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->grid), grid_image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->grid);
   gtk_widget_set_tooltip_text (priv->grid,
                                _("View notes and collections in a grid"));
@@ -682,6 +687,8 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   GtkWidget             *grid, *notes_icon, *notes_label;
   GdkRGBA                color;
   BijiItem *item;
+  GtkWidget *share_image;
+  GtkWidget *menu_image;
   gboolean rtl;
 
   priv->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
@@ -749,8 +756,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
   /* Sharing */
 
-  priv->share = gd_header_simple_button_new ();
-  gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->share), "send-to-symbolic");
+  priv->share = gtk_button_new ();
+  share_image = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->share), share_image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->share);
   gtk_widget_set_tooltip_text (priv->share, _("Share note"));
 
@@ -766,9 +774,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
   /* Menu */
 
-  priv->menu = gd_header_menu_button_new ();
-  gd_header_button_set_symbolic_icon_name (GD_HEADER_BUTTON (priv->menu),
-                                           "emblem-system-symbolic");
+  priv->menu = gtk_menu_button_new ();
+  menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->menu), menu_image);
   gtk_header_bar_pack_end (bar, priv->menu);
   gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
 

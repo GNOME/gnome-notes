@@ -58,7 +58,6 @@ GLIB_GSETTINGS
 LIBGD_INIT([
   view-common
   gtk-hacks
-  header-bar
   main-view
   static
   tagged-entry

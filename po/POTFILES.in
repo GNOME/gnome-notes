@@ -8,5 +8,6 @@ src/bjb-note-tag-dialog.c
 src/bjb-note-view.c
 src/bjb-selection-toolbar.c
 src/bjb-settings.c
+src/bjb-window-base.c
 src/libbiji/biji-date-time.c
 [type: gettext/glade]src/resources/app-menu.ui

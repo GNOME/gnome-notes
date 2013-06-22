@@ -1,4 +1,5 @@
 
+#include <glib/gi18n.h>
 #include <glib/gprintf.h>
 #include <stdlib.h>
 
@@ -15,7 +16,7 @@
 
 #define BJB_WIDTH 780
 #define BJB_HEIGHT 600
-#define BIJIBEN_MAIN_WIN_TITLE "Notes"
+#define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
 
 #define BJB_DEFAULT_FONT "Serif 10"
 
@@ -111,7 +112,7 @@ bjb_window_base_constructed (GObject *obj)
 
   gtk_window_set_default_size (GTK_WINDOW (self), BJB_WIDTH, BJB_HEIGHT);
   gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
-  gtk_window_set_title (GTK_WINDOW (self), BIJIBEN_MAIN_WIN_TITLE);
+  gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
   /* Icon for window. TODO - Should be BjbApp */
   icons_path = bijiben_get_bijiben_dir ();

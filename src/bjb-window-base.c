@@ -150,7 +150,7 @@ bjb_window_base_constructed (GObject *obj)
   /* Shared toolbar */
   priv->view = bjb_main_view_new (GTK_WIDGET (obj), priv->controller);
   priv->main_toolbar = bjb_main_toolbar_new (priv->view, priv->controller);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->main_toolbar), FALSE, FALSE, 0);
+  gtk_window_set_titlebar (GTK_WINDOW (self), GTK_WIDGET (priv->main_toolbar));
 
   /* Search entry toolbar */
   priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (obj), priv->controller);
@@ -221,7 +221,6 @@ bjb_window_base_new(void)
 {
   return g_object_new (BJB_TYPE_WINDOW_BASE,
                        "application", g_application_get_default(),
-                       "hide-titlebar-when-maximized", TRUE,
                        NULL);
 }
 

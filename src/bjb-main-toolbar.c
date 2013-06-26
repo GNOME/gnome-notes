@@ -393,7 +393,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *bin = NULL;
   BijiCollection *coll;
-  GtkWidget *back_image;
+  GtkWidget *grid, *notes_icon, *notes_label;
   GtkWidget *select_image;
   gboolean rtl;
 
@@ -409,10 +409,14 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   if (coll)
   {
+    grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
+    notes_icon = get_icon (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
+    gtk_box_pack_start (GTK_BOX (grid), notes_icon, TRUE, TRUE, TRUE);
+
+    notes_label = gtk_label_new (_("Notes"));
+    gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
     priv->back = gtk_button_new ();
-    back_image = gtk_image_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
-                                               GTK_ICON_SIZE_MENU);
-    gtk_button_set_image (GTK_BUTTON (priv->back), back_image);
+    gtk_container_add (GTK_CONTAINER (priv->back), grid);
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
 
     g_signal_connect_swapped (priv->back, "clicked",
@@ -716,6 +720,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkHeaderBar          *bar = GTK_HEADER_BAR (self);
+  BijiCollection        *collection;
   BjbSettings           *settings;
   GtkWidget             *grid, *notes_icon, *notes_label;
   GdkRGBA                color;
@@ -734,12 +739,14 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
   settings = bjb_app_get_settings (g_application_get_default());
 
+  collection = bjb_controller_get_collection (self->priv->controller);
+
   /* Go to main view basically means closing note */
   grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
   notes_icon = get_icon (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
   gtk_box_pack_start (GTK_BOX (grid), notes_icon, TRUE, TRUE, TRUE);
 
-  notes_label = gtk_label_new (_("Notes"));
+  notes_label = gtk_label_new (collection ? biji_item_get_title (BIJI_ITEM (collection)) : _("Notes"));
   gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
   priv->back = gtk_button_new ();
   gtk_container_add (GTK_CONTAINER (priv->back), grid);

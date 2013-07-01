@@ -12,6 +12,7 @@ public_icons = \
 	hicolor_apps_48x48_bijiben.png \
 	hicolor_apps_256x256_bijiben.png \
 	hicolor_apps_scalable_bijiben.svg \
+        HighContrast_apps_scalable_bijiben.svg \
 	$(NULL)
 
 private_icons = \

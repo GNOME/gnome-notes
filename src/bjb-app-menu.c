@@ -38,6 +38,7 @@ void show_about_dialog(GtkApplication *app)
   "version", VERSION,
   "copyright", "Pierre-Yves Luyten 2013",
   "translator-credits", _("translator-credits"),
+  "website", "https://wiki.gnome.org/Bijiben",
   NULL,NULL,NULL);
 
 }

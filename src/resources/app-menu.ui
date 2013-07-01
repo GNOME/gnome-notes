@@ -19,7 +19,7 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">_About Bijiben</attribute>
+        <attribute name="label" translatable="yes">_About Notes</attribute>
         <attribute name="action">app.about</attribute>
       </item>
       <item>

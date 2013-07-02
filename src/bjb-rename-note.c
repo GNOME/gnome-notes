@@ -1,3 +1,5 @@
+#include <glib/gi18n.h>
+
 #include "bjb-rename-note.h"
 
 gchar *
@@ -12,9 +14,9 @@ note_title_dialog(GtkWindow *win, gchar *instructions, const gchar *current_titl
   dialog = gtk_dialog_new_with_buttons(instructions,
 	                                     win,
 	                                     GTK_DIALOG_MODAL| GTK_DIALOG_DESTROY_WITH_PARENT,
-										                   GTK_STOCK_CANCEL,
+										                   _("_Cancel"),
 	                                     GTK_RESPONSE_CANCEL,
-	                                     GTK_STOCK_OK,
+	                                     _("_OK"),
 	                                     GTK_RESPONSE_OK,
 	                                     NULL);
     

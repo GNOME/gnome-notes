@@ -404,7 +404,7 @@ bjb_import_dialog_constructed (GObject *obj)
   gtk_window_set_title (win, _("Import Notes"));
   gtk_window_set_modal (win, TRUE);
 
-  gtk_dialog_add_button (dialog, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_button (dialog, _("_Cancel"), GTK_RESPONSE_CANCEL);
 
   priv->go_go_go = gtk_dialog_add_button (dialog, _("Import"), GTK_RESPONSE_OK);
   gtk_widget_set_sensitive (priv->go_go_go, FALSE);

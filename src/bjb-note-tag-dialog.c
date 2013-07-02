@@ -434,7 +434,7 @@ bjb_note_tag_dialog_constructed (GObject *obj)
   gtk_box_pack_start (GTK_BOX (area), sw, TRUE, TRUE,2);
 
   /* Response */
-  close = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+  close = gtk_button_new_with_mnemonic (_("_Close"));
   gtk_box_pack_start (GTK_BOX (area), close, FALSE, FALSE,2);
   g_signal_connect_swapped (close, "clicked",
                             G_CALLBACK (on_closed_clicked), self);

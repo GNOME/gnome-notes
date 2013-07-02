@@ -192,7 +192,7 @@ show_bijiben_settings_window (GtkWidget *parent_window)
                                         GTK_WINDOW(parent_window),
                                         GTK_DIALOG_MODAL| 
                                         GTK_DIALOG_DESTROY_WITH_PARENT,
-                                        GTK_STOCK_CLOSE,
+                                        _("_Close"),
                                         GTK_RESPONSE_OK,
                                         NULL);
 

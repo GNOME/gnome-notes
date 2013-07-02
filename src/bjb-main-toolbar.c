@@ -260,6 +260,9 @@ add_search_button (BjbMainToolbar *self)
   priv->search = gtk_toggle_button_new ();
   search_image = gtk_image_new_from_icon_name ("edit-find-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->search), search_image);
+  gtk_widget_set_valign (priv->search, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->search),
+                               "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->search);
   gtk_widget_set_tooltip_text (priv->search,
                                _("Search note titles, content and collections"));
@@ -279,12 +282,16 @@ add_close_button (BjbMainToolbar *self)
 
   /* Close button */
   priv->separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+  gtk_widget_set_valign (priv->separator, GTK_ALIGN_FILL);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->separator);
 
   priv->close = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (priv->close), GTK_RELIEF_NONE);
   close_image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->close), close_image);
+  gtk_widget_set_valign (priv->close, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->close),
+                               "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->close);
   g_signal_connect (priv->close,"clicked",
                     G_CALLBACK(on_close_clicked), self);
@@ -318,6 +325,9 @@ populate_bar_for_selection (BjbMainToolbar *self)
 
   /* Select */
   priv->select = gtk_button_new_with_mnemonic (_("Done"));
+  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+                               "text-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
 
   gtk_widget_set_tooltip_text (priv->select, _("Exit selection mode"));
@@ -416,6 +426,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
     notes_label = gtk_label_new (_("Notes"));
     gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
     priv->back = gtk_button_new ();
+    gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
+    gtk_style_context_add_class (gtk_widget_get_style_context (priv->back),
+                                 "text-button");
     gtk_container_add (GTK_CONTAINER (priv->back), grid);
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
 
@@ -426,8 +439,10 @@ populate_bar_for_standard(BjbMainToolbar *self)
   /* New Note button */
   else
   {
-    priv->new = gtk_button_new ();
-    gtk_button_set_label (GTK_BUTTON (priv->new), _("New"));
+    priv->new = gtk_button_new_with_label (_("New"));
+    gtk_widget_set_valign (priv->new, GTK_ALIGN_CENTER);
+    gtk_style_context_add_class (gtk_widget_get_style_context (priv->new),
+                                 "text-button");
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->new);
     gtk_widget_set_size_request (priv->new, 70, -1);
     bin = gtk_bin_get_child (GTK_BIN (priv->new));
@@ -447,6 +462,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
   priv->select = gtk_button_new ();
   select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
+  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+                               "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
   gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
 
@@ -471,6 +489,9 @@ populate_bar_for_icon_view(BjbMainToolbar *self)
   priv->list = gtk_button_new ();
   list_image = gtk_image_new_from_icon_name ("view-list-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->list), list_image);
+  gtk_widget_set_valign (priv->list, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->list),
+                               "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->list);
   gtk_widget_set_tooltip_text (priv->list,
                                _("View notes and collections in a list"));
@@ -492,6 +513,9 @@ populate_bar_for_list_view(BjbMainToolbar *self)
   priv->grid = gtk_button_new ();
   grid_image = gtk_image_new_from_icon_name ("view-grid-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->grid), grid_image);
+  gtk_widget_set_valign (priv->grid, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->grid),
+                               "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->grid);
   gtk_widget_set_tooltip_text (priv->grid,
                                _("View notes and collections in a grid"));
@@ -749,6 +773,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   notes_label = gtk_label_new (collection ? biji_item_get_title (BIJI_ITEM (collection)) : _("Notes"));
   gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
   priv->back = gtk_button_new ();
+  gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->back),
+                               "text-button");
   gtk_container_add (GTK_CONTAINER (priv->back), grid);
   gtk_header_bar_pack_start (bar, priv->back);
  
@@ -780,6 +807,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
     priv->color = bjb_color_button_new ();
     gtk_widget_set_tooltip_text (priv->color, _("Note color"));
+    gtk_widget_set_valign (priv->color, GTK_ALIGN_CENTER);
+    gtk_style_context_add_class (gtk_widget_get_style_context (priv->color),
+                                 "button");
     gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->color), &color);
 
 
@@ -799,6 +829,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   priv->share = gtk_button_new ();
   share_image = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->share), share_image);
+  gtk_widget_set_valign (priv->share, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->share),
+                               "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->share);
   gtk_widget_set_tooltip_text (priv->share, _("Share note"));
 
@@ -817,6 +850,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   priv->menu = gtk_menu_button_new ();
   menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->menu), menu_image);
+  gtk_widget_set_valign (priv->menu, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->menu),
+                               "image-button");
   gtk_header_bar_pack_end (bar, priv->menu);
   gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
 

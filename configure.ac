@@ -49,7 +49,7 @@ PKG_CHECK_MODULES(BIJIBEN,
                     tracker-sparql-0.16
                     uuid
                     webkitgtk-3.0
-                    zeitgeist-1.0])
+                    zeitgeist-2.0])
 
 
 

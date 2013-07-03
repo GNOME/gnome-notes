@@ -382,6 +382,9 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
   GtkWidget        *color_button;
   GdkRGBA           color;
   BjbSettings      *settings;
+  gboolean          rtl;
+
+  rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
 
   w = gd_main_toolbar_new();
   gd = GD_MAIN_TOOLBAR(w);
@@ -395,7 +398,7 @@ bjb_note_main_toolbar_new (BjbNoteView *self,
 
   /* Go to main view basically means closing note */
   grid = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,2);
-  notes_icon = get_icon("go-previous-symbolic");
+  notes_icon = get_icon(rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
   gtk_box_pack_start(GTK_BOX(grid),notes_icon,TRUE,TRUE,TRUE);
   /* Button to go back to main view */
   notes_label = gtk_label_new (_("Notes"));

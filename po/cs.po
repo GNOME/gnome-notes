@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-07-01 22:25+0000\n"
-"PO-Revision-Date: 2013-06-03 10:57+0200\n"
+"POT-Creation-Date: 2013-07-02 22:29+0000\n"
+"PO-Revision-Date: 2013-07-03 17:51+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -104,6 +104,10 @@ msgstr "Vlastní umístění"
 #: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Import poznámek"
+
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Zrušit"
 
 #: ../src/bjb-import-dialog.c:409
 msgid "Import"
@@ -237,10 +241,19 @@ msgstr "Zadejte název sady, kterou chcete vytvořit"
 msgid "New collection"
 msgstr "Nová sada"
 
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+msgid "_Close"
+msgstr "_Zavřít"
+
 #. "Last updated" precedes the note last updated date
 #: ../src/bjb-note-view.c:228
 msgid "Last updated "
 msgstr "Naposledy aktualizováno "
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_Budiž"
 
 #: ../src/bjb-selection-toolbar.c:266
 msgid "Delete"

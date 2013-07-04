@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-20 10:27+0200\n"
-"PO-Revision-Date: 2013-06-20 10:31+0200\n"
+"POT-Creation-Date: 2013-07-04 11:19+0200\n"
+"PO-Revision-Date: 2013-07-04 11:20+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -18,7 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
-#: ../src/bjb-main-toolbar.c:702
+#: ../src/bjb-main-toolbar.c:426 ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "Notater"
 
@@ -93,27 +94,31 @@ msgstr ""
 msgid "No result found for this research."
 msgstr "Ingen resultater funnet for dette søket."
 
-#: ../src/bjb-import-dialog.c:305
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Egendefinert lokasjon"
 
-#: ../src/bjb-import-dialog.c:400
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importer notater"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "A_vbryt"
+
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importer"
 
-#: ../src/bjb-import-dialog.c:416
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Velg lokasjon for import"
 
-#: ../src/bjb-import-dialog.c:436
+#: ../src/bjb-import-dialog.c:440
 msgid "Tomboy application"
 msgstr "Tomboy"
 
-#: ../src/bjb-import-dialog.c:442
+#: ../src/bjb-import-dialog.c:446
 msgid "Gnote application"
 msgstr "Gnote"
 
@@ -125,101 +130,102 @@ msgstr "Last mer"
 msgid "Loading..."
 msgstr "Laster …"
 
-#: ../src/bjb-main-toolbar.c:135
+#: ../src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Klikk på oppføringer for å velge dem"
 
-#: ../src/bjb-main-toolbar.c:137
+#: ../src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valgt"
 msgstr[1] "%d valgt"
 
-#: ../src/bjb-main-toolbar.c:253
+#: ../src/bjb-main-toolbar.c:268
 msgid "Search note titles, content and collections"
 msgstr "Søk i notattitler, innhold og samlinger"
 
-#: ../src/bjb-main-toolbar.c:290
+#. Select
+#: ../src/bjb-main-toolbar.c:327
 msgid "Done"
 msgstr "Ferdig"
 
-#: ../src/bjb-main-toolbar.c:293
+#: ../src/bjb-main-toolbar.c:333
 msgid "Exit selection mode"
 msgstr "Avslutt utvalgtsmodus"
 
-#: ../src/bjb-main-toolbar.c:325
+#: ../src/bjb-main-toolbar.c:365
 #, c-format
 msgid "Results for %s"
 msgstr "Resultater for %s"
 
-#: ../src/bjb-main-toolbar.c:328
+#: ../src/bjb-main-toolbar.c:368
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
-#: ../src/bjb-main-toolbar.c:393
+#: ../src/bjb-main-toolbar.c:442
 msgid "New"
 msgstr "Ny"
 
-#: ../src/bjb-main-toolbar.c:414
+#: ../src/bjb-main-toolbar.c:469
 msgid "Selection mode"
 msgstr "Utvalgsmodus"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:497
 msgid "View notes and collections in a list"
 msgstr "Vis notater og samlinger i en liste"
 
-#: ../src/bjb-main-toolbar.c:455
+#: ../src/bjb-main-toolbar.c:521
 msgid "View notes and collections in a grid"
 msgstr "Vis notater og samlinger i et rutenett"
 
-#: ../src/bjb-main-toolbar.c:584
+#: ../src/bjb-main-toolbar.c:650
 msgid "Rename Note"
 msgstr "Endre navn på notat"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:605
+#: ../src/bjb-main-toolbar.c:671
 msgid "Undo"
 msgstr "Angre"
 
-#: ../src/bjb-main-toolbar.c:613
+#: ../src/bjb-main-toolbar.c:679
 msgid "Redo"
 msgstr "Gjenta"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:628
+#: ../src/bjb-main-toolbar.c:694
 msgid "Bullets"
 msgstr "Kulepunkter"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:635
+#: ../src/bjb-main-toolbar.c:701
 msgid "Numbered List"
 msgstr "Nummerert liste"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:713
 msgid "Rename"
 msgstr "Endre navn"
 
-#: ../src/bjb-main-toolbar.c:655 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:721 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Samlinger"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:667
+#: ../src/bjb-main-toolbar.c:733
 msgid "Delete this Note"
 msgstr "Slett dette notatet"
 
-#: ../src/bjb-main-toolbar.c:735 ../src/bjb-selection-toolbar.c:273
+#: ../src/bjb-main-toolbar.c:809 ../src/bjb-selection-toolbar.c:273
 msgid "Note color"
 msgstr "Farge på notat"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:836
 msgid "Share note"
 msgstr "Del notat"
 
-#: ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-main-toolbar.c:857
 msgid "More options…"
 msgstr "Flere alternativer …"
 
@@ -231,10 +237,19 @@ msgstr "Oppgi et navn for å lage en samling"
 msgid "New collection"
 msgstr "Ny samling"
 
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+msgid "_Close"
+msgstr "_Lukk"
+
 #. "Last updated" precedes the note last updated date
 #: ../src/bjb-note-view.c:228
 msgid "Last updated "
 msgstr "Sist oppdatert "
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
 
 #: ../src/bjb-selection-toolbar.c:266
 msgid "Delete"
@@ -296,8 +311,8 @@ msgid "_Preferences"
 msgstr "_Brukervalg"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Bijiben"
-msgstr "_Om Bijiben"
+msgid "_About Notes"
+msgstr "_Om notater"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"

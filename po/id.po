@@ -1,0 +1,324 @@
+# Indonesian translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Andika Triwidada <andika@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-07-02 22:36+0000\n"
+"PO-Revision-Date: 2013-07-04 08:31+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.5\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
+#: ../src/bjb-main-toolbar.c:426 ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Catatan"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "catatan;pengingat;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Kirim catatan, tag berkas!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Perekam catatan"
+
+#: ../src/bjb-app-menu.c:36
+msgid "Simple notebook for GNOME"
+msgstr "Buku catatan sederhana bagi GNOME"
+
+#: ../src/bjb-app-menu.c:40
+msgid "translator-credits"
+msgstr "Andika Triwidada <andika@gmail.com>, 2013"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Warna Catatan"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:363
+msgid "Cut"
+msgstr "Potong"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:370
+msgid "Copy"
+msgstr "Salin"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:377
+msgid "Paste"
+msgstr "Tempel"
+
+#: ../src/bjb-editor-toolbar.c:392
+msgid "Bold"
+msgstr "Tebal"
+
+#: ../src/bjb-editor-toolbar.c:403
+msgid "Italic"
+msgstr "Miring"
+
+#: ../src/bjb-editor-toolbar.c:414
+msgid "Strike"
+msgstr "Coret"
+
+#: ../src/bjb-editor-toolbar.c:446
+msgid "Copy selection to a new note"
+msgstr "Salin pilihan ke catatan baru"
+
+#: ../src/bjb-empty-results-box.c:97
+msgid "No Notes Found"
+msgstr "Tak Ditemukan Catatan"
+
+#: ../src/bjb-empty-results-box.c:133
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Koleksi catatan Anda kosong.\n"
+"Klik tombol Baru untuk membuat catatan pertama Anda."
+
+#: ../src/bjb-empty-results-box.c:140
+msgid "No result found for this research."
+msgstr "Tak ditemukan hasil bagi riset ini."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "Lokasi Ubahan"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "Impro Catatan"
+
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Batal"
+
+#: ../src/bjb-import-dialog.c:409
+msgid "Import"
+msgstr "Impor"
+
+#: ../src/bjb-import-dialog.c:420
+msgid "Select import location"
+msgstr "Pilih lokasi impor"
+
+#: ../src/bjb-import-dialog.c:440
+msgid "Tomboy application"
+msgstr "Aplikasi Tomboy"
+
+#: ../src/bjb-import-dialog.c:446
+msgid "Gnote application"
+msgstr "Aplikasi Gnote"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Muat Lebih Banyak"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Memuat..."
+
+#: ../src/bjb-main-toolbar.c:139
+msgid "Click on items to select them"
+msgstr "Klik pada butir untuk memilihnya"
+
+#: ../src/bjb-main-toolbar.c:141
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d dipilih"
+
+#: ../src/bjb-main-toolbar.c:268
+msgid "Search note titles, content and collections"
+msgstr "Cari judul, isi, dan koleksi catatan"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:327
+msgid "Done"
+msgstr "Selesai"
+
+#: ../src/bjb-main-toolbar.c:333
+msgid "Exit selection mode"
+msgstr "Keluar mode pemilihan"
+
+#: ../src/bjb-main-toolbar.c:365
+#, c-format
+msgid "Results for %s"
+msgstr "Hasil bagi %s"
+
+#: ../src/bjb-main-toolbar.c:368
+msgid "New and Recent"
+msgstr "Baru dan Terkini"
+
+#: ../src/bjb-main-toolbar.c:442
+msgid "New"
+msgstr "Baru"
+
+#: ../src/bjb-main-toolbar.c:469
+msgid "Selection mode"
+msgstr "Mode pemilihan"
+
+#: ../src/bjb-main-toolbar.c:497
+msgid "View notes and collections in a list"
+msgstr "Lihat catatan dan koleksi dalam suatu daftar"
+
+#: ../src/bjb-main-toolbar.c:521
+msgid "View notes and collections in a grid"
+msgstr "Lihat catatan dan koleksi dalam suatu kisi"
+
+#: ../src/bjb-main-toolbar.c:650
+msgid "Rename Note"
+msgstr "Ubah Nama Catatan"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:671
+msgid "Undo"
+msgstr "Batal"
+
+#: ../src/bjb-main-toolbar.c:679
+msgid "Redo"
+msgstr "Jadi Lagi"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:694
+msgid "Bullets"
+msgstr "Bulet"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:701
+msgid "Numbered List"
+msgstr "Daftar Bernomor"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-main-toolbar.c:713
+msgid "Rename"
+msgstr "Ubah Nama"
+
+#: ../src/bjb-main-toolbar.c:721 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Koleksi"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:733
+msgid "Delete this Note"
+msgstr "Hapus Catatan ini"
+
+#: ../src/bjb-main-toolbar.c:809 ../src/bjb-selection-toolbar.c:273
+msgid "Note color"
+msgstr "Warna catatan"
+
+#: ../src/bjb-main-toolbar.c:836
+msgid "Share note"
+msgstr "Berbagi catatan"
+
+#: ../src/bjb-main-toolbar.c:857
+msgid "More options…"
+msgstr "Lebih banyak opsi..."
+
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Masukkan suatu nama untuk membuat sebuah koleksi"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Koleksi baru"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+msgid "_Close"
+msgstr "_Tutup"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:228
+msgid "Last updated "
+msgstr "Terakhir diperbarui"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
+
+#: ../src/bjb-selection-toolbar.c:266
+msgid "Delete"
+msgstr "Hapus"
+
+#: ../src/bjb-selection-toolbar.c:293
+msgid "Edit collections"
+msgstr "Sunting koleksi"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Preferensi"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Fonta Catatan"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Warna Baku"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Hari ini"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Kemarin"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Minggu ini"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Bulan ini"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Tahun ini"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Tak diketahui"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "Je_ndela Baru"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "_Impor Catatan"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Preferensi"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Notes"
+msgstr "Tent_ang Catatan"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Bantuan"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Keluar"

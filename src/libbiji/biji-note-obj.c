@@ -886,7 +886,6 @@ GtkWidget *
 biji_note_obj_open (BijiNoteObj *note)
 {
   note->priv->editor = biji_webkit_editor_new (note);
-  note->priv->editor = biji_webkit_editor_new (note);
 
   g_signal_connect_swapped (note->priv->editor, "destroy",
                             G_CALLBACK (_biji_note_obj_close), note);

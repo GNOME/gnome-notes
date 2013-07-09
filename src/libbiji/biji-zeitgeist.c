@@ -74,7 +74,8 @@ insert_zeitgeist (BijiNoteObj *note, gchar *zg_interpretation)
                                     ZEITGEIST_ZG_USER_ACTIVITY,
                                     "application://bijiben.desktop",
                                     "",
-                                    subject);
+                                    subject,
+                                    NULL);
 
   zeitgeist_log_insert_event_no_reply (log, event, NULL);
   g_free (uri);

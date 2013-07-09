@@ -19,42 +19,63 @@
 #include <libbiji.h>
 #include "biji-zeitgeist.h"
 
-static ZeitgeistLog *global_log;
 
-static ZeitgeistLog *
-get_log (void)
+ZeitgeistLog *
+biji_zeitgeist_init (void)
 {
-  if (global_log == NULL )
-    global_log = g_object_new (ZEITGEIST_TYPE_LOG, NULL);
+  GPtrArray *ptr_arr;
+  ZeitgeistEvent *event;
+  ZeitgeistDataSource *ds;
+  ZeitgeistDataSourceRegistry *zg_dsr = NULL;
+  ZeitgeistLog *log;
 
-  return global_log ;
+  log = zeitgeist_log_new ();
+  event = zeitgeist_event_new_full (
+    NULL, NULL, "application://bijiben.desktop", NULL, NULL);
+
+  ptr_arr = g_ptr_array_new ();
+  g_ptr_array_add (ptr_arr, event);
+
+  ds = zeitgeist_data_source_new_full ("org.gnome.bijiben,dataprovider",
+                                       "Notes dataprovider",
+                                       "Logs events about accessed notes",
+                                       ptr_arr),
+
+  zg_dsr = zeitgeist_data_source_registry_new ();
+  zeitgeist_data_source_registry_register_data_source (zg_dsr, ds,
+                                                       NULL, NULL, NULL);
+  g_ptr_array_set_free_func (ptr_arr, g_object_unref);
+  g_ptr_array_unref (ptr_arr);
+
+  return log;
 }
 
+
 void 
-insert_zeitgeist (BijiNoteObj *note, const char *action)
+insert_zeitgeist (BijiNoteObj *note, gchar *zg_interpretation)
 {
   gchar *uri;
   ZeitgeistEvent     *event;
   ZeitgeistSubject   *subject ;
-  ZeitgeistLog       *log = get_log() ;
+  ZeitgeistLog       *log;
 
+  log = biji_note_book_get_zg_log (biji_item_get_book (BIJI_ITEM (note)));
   uri = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
 
-  subject = zeitgeist_subject_new_full (uri,                            //URI
-                                        ZEITGEIST_NFO_DOCUMENT,         //inter
-                                        ZEITGEIST_NFO_FILE_DATA_OBJECT, //mani
-                                        "application/x-note",           //mime
-                                        "",                             //origin
-                                        biji_item_get_title (BIJI_ITEM (note)),     //text
-                                        "") ;                           //storage
+  subject = zeitgeist_subject_new_full (uri,
+                                        ZEITGEIST_NFO_DOCUMENT,
+                                        ZEITGEIST_NFO_FILE_DATA_OBJECT,
+                                        "application/x-note",
+                                        "",
+                                        biji_item_get_title (BIJI_ITEM (note)),
+                                        "");
 
-  g_free (uri);
-
-  event = zeitgeist_event_new_full (action,
+  event = zeitgeist_event_new_full (zg_interpretation,
                                     ZEITGEIST_ZG_USER_ACTIVITY,
                                     "application://bijiben.desktop",
-                                    subject,
-                                    NULL );
+                                    "",
+                                    subject);
 
-  zeitgeist_log_insert_events_no_reply (log, event, NULL);
+  zeitgeist_log_insert_event_no_reply (log, event, NULL);
+  g_free (uri);
 }

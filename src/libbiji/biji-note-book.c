@@ -37,6 +37,7 @@ struct _BijiNoteBookPrivate
 
   GFile *location;
   TrackerSparqlConnection *connection;
+  ZeitgeistLog *log;
   GdkRGBA color;
 };
 
@@ -88,12 +89,20 @@ biji_note_book_init (BijiNoteBook *self)
 
   error = NULL;
   priv->connection = tracker_sparql_connection_get (NULL, &error);
+  priv->log = biji_zeitgeist_init ();
 
   if (error)
   {
     g_warning ("Tracker db connection failed : %s", error->message);
     g_error_free (error);
   }
+}
+
+
+ZeitgeistLog *
+biji_note_book_get_zg_log (BijiNoteBook *book)
+{
+  return book->priv->log;
 }
 
 

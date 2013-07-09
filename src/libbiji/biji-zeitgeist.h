@@ -21,6 +21,11 @@
 
 #include "biji-note-obj.h"
 
-void insert_zeitgeist(BijiNoteObj *note,const char *action) ;
+
+ZeitgeistLog           *biji_zeitgeist_init             (void);
+
+
+void                    insert_zeitgeist                (BijiNoteObj *note,
+                                                         gchar *zg_interpretation);
 
 #endif /* _BIJI_ZEITGEIST_H */

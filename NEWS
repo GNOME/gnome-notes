@@ -1,3 +1,30 @@
+Overview of changes in 3.9.4
+============================
+
+* 702298: Rename Notes
+
+* Bug Fixes
+  703404: Ship a HighContrast icon
+  703017: mainToolbar: show the collection title (Yosef Or Boczko)
+  702877: mainToolbar: Make headerbar a titlebar (Yosef Or Boczko)
+  703474: mainToolbar: fix the look (Yosef Or Boczko)
+  702504: Do not use egg list box (Yosef Or Boczko)
+  703497: Set buttons according to locale s text direction (Yosef Or Boczko)
+  703459: drop GtkStock (Yosef Or Boczko)
+  703401: Add website link to about dialog (Jeremy Bicha)
+  703401: Rename About Bijiben to About Notes (Jeremy Bicha)
+  702865: Make title bar translatable (Jiro Matsuzawa)
+  703501: bump to libzeitgeist2 (Manish Sinha)
+
+* Translations
+  Updated Brazilian Portuguese (Rafael Ferreira)
+  Update Czech (Marek Černocký)
+  Add Indonesian (Andika Triwidada)
+  Update Norwegian (Kjartan Maraas)
+  Update Spanish (Daniel Mustieles)
+
+
+
 Overview of changes in 3.9.3
 ============================
 

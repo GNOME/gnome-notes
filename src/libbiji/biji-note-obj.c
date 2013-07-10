@@ -240,6 +240,9 @@ biji_note_obj_trash (BijiItem *item)
   note_to_kill = BIJI_NOTE_OBJ (item);
   priv = note_to_kill->priv;
 
+  /* The event has to be logged before the note is actually deleted */
+  insert_zeitgeist (note_to_kill, ZEITGEIST_ZG_DELETE_EVENT);
+
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
   biji_note_delete_from_tracker (note_to_kill);
@@ -251,7 +254,6 @@ biji_note_obj_trash (BijiItem *item)
   icon = g_file_new_for_path (icon_path);
   g_file_delete (icon, NULL, NULL);
 
-  /* TODO : zeitgeist */
   g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_DELETED], 0);
   //g_clear_object (&note_to_kill);
 
@@ -854,6 +856,8 @@ _biji_note_obj_close (BijiNoteObj *note)
   book = biji_item_get_book (BIJI_ITEM (note));
   priv->editor = NULL;
 
+  insert_zeitgeist (note, ZEITGEIST_ZG_LEAVE_EVENT);
+
   /* Delete if note is totaly blank
    * Actually we just need to remove it from book
    * since no change could trigger save */
@@ -890,7 +894,7 @@ biji_note_obj_open (BijiNoteObj *note)
   g_signal_connect_swapped (note->priv->editor, "destroy",
                             G_CALLBACK (_biji_note_obj_close), note);
 
-  insert_zeitgeist (note, ZEITGEIST_ZG_ACCESS_EVENT) ;
+  insert_zeitgeist (note, ZEITGEIST_ZG_ACCESS_EVENT);
 
   return GTK_WIDGET (note->priv->editor);
 }

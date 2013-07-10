@@ -255,7 +255,6 @@ biji_note_obj_trash (BijiItem *item)
   g_file_delete (icon, NULL, NULL);
 
   g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_DELETED], 0);
-  //g_clear_object (&note_to_kill);
 
   if (icon_path != NULL)
     g_free (icon_path);

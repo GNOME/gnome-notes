@@ -452,10 +452,6 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
     biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_TRASHED, to_delete);
     biji_item_trash (item);
     g_hash_table_remove (book->priv->items, path);
-    /* Ref note first, hash_table won't finalize it & we can delete it*/
-    //g_object_ref (to_delete);
-    //g_hash_table_remove (book->priv->items, path);
-    //biji_item_trash (item);
 
     retval = TRUE;
   }

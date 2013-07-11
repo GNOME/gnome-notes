@@ -44,15 +44,26 @@ G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
 static void
 bijiben_new_window_internal (GApplication *app,
                              GFile *file,
-                             BijiNoteObj *note_obj)
+                             BijiNoteObj *note_obj,
+                             GError *error)
 {
   BjbWindowBase *window;
-  BijiNoteObj* note = NULL;
+  BijiNoteObj* note;
   Bijiben *self;
 
   g_return_if_fail (BIJIBEN_IS_APPLICATION (app));
   self = BIJIBEN_APPLICATION (app);
+  note = NULL;
   window = BJB_WINDOW_BASE (bjb_window_base_new ());
+
+
+  if (error!= NULL)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    bjb_window_base_switch_to (window, BJB_WINDOW_BASE_ERROR_TRACKER);
+    goto out;
+  }
 
 
   if (file != NULL)
@@ -68,6 +79,8 @@ bijiben_new_window_internal (GApplication *app,
   else
     bjb_window_base_switch_to (window, BJB_WINDOW_BASE_MAIN_VIEW);
 
+
+out:
   gtk_widget_show_all (GTK_WIDGET (window));
 }
 
@@ -75,7 +88,7 @@ void
 bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
-  bijiben_new_window_internal(app, NULL, note);
+  bijiben_new_window_internal(app, NULL, note, NULL);
 }
 
 static void
@@ -96,7 +109,7 @@ bijiben_open (GApplication  *application,
   gint i;
 
   for (i = 0; i < n_files; i++)
-    bijiben_new_window_internal(application, files[i],NULL);
+    bijiben_new_window_internal(application, files[i], NULL, NULL);
 }
 
 static void
@@ -370,17 +383,20 @@ bijiben_startup (GApplication *application)
   g_object_get (self->priv->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
   g_warning ("bijiben wants color %s", default_color);
-  self->priv->book = biji_note_book_new (storage, &color);
-  g_free (default_color);
-
-  g_free (storage_path);
-  g_object_unref (storage);
+  error = NULL;
+  self->priv->book = biji_note_book_new (storage, &color, &error);
+  if (error)
+    goto out;
 
   /* Goa */
   goa_client_new  (NULL, on_client_got, self); // cancellable
 
   /* Create the first window */
-  bijiben_new_window_internal (application, NULL, NULL); 
+  out:
+  bijiben_new_window_internal (application, NULL, NULL, error);
+  g_free (default_color);
+  g_free (storage_path);
+  g_object_unref (storage);
 }
 
 static void

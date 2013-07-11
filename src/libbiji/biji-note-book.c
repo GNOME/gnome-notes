@@ -21,6 +21,7 @@
 #include "libbiji.h"
 #include "biji-local-note.h" // FIXME !!!! biji_provider_note_new ()
 #include "biji-collection.h"
+#include "biji-error.h"
 
 #include "provider/biji-local-provider.h"
 #include "provider/biji-own-cloud-provider.h"
@@ -36,6 +37,7 @@ struct _BijiNoteBookPrivate
   gulong note_renamed ;
 
   GFile *location;
+  GError *error;
   TrackerSparqlConnection *connection;
   ZeitgeistLog *log;
   GdkRGBA color;
@@ -47,6 +49,7 @@ enum {
   PROP_0,
   PROP_LOCATION,
   PROP_COLOR,
+  PROP_ERROR,
   BIJI_BOOK_PROPERTIES
 };
 
@@ -75,8 +78,6 @@ static void
 biji_note_book_init (BijiNoteBook *self)
 {
   BijiNoteBookPrivate *priv;
-  GError *error;
-
 
   priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_BOOK,
                                                    BijiNoteBookPrivate);
@@ -86,16 +87,6 @@ biji_note_book_init (BijiNoteBook *self)
                                        g_str_equal,
                                        NULL,
                                        g_object_unref);
-
-  error = NULL;
-  priv->connection = tracker_sparql_connection_get (NULL, &error);
-  priv->log = biji_zeitgeist_init ();
-
-  if (error)
-  {
-    g_warning ("Tracker db connection failed : %s", error->message);
-    g_error_free (error);
-  }
 }
 
 
@@ -141,6 +132,10 @@ biji_note_book_set_property (GObject      *object,
     {
     case PROP_LOCATION:
       self->priv->location = g_value_dup_object (value);
+      break;
+
+    case PROP_ERROR:
+      self->priv->error = g_value_get_pointer (value);
       break;
 
     case PROP_COLOR:
@@ -363,12 +358,31 @@ static void
 biji_note_book_constructed (GObject *object)
 {
   BijiNoteBook *self;
+  BijiNoteBookPrivate *priv;
   BijiProvider *provider;
   gchar *filename;
   GFile *cache;
+  GError *error;
+
 
   G_OBJECT_CLASS (biji_note_book_parent_class)->constructed (object);
   self = BIJI_NOTE_BOOK (object);
+  priv = self->priv;
+  error = NULL;
+
+  /* If tracker fails for some reason,
+   * do not attempt anything */
+  priv->connection = tracker_sparql_connection_get (NULL, &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    priv->error = g_error_new (BIJI_ERROR, BIJI_ERROR_TRACKER, "Tracker is not available");
+    return;
+  }
+
+  priv->log = biji_zeitgeist_init ();
 
   /* Ensure cache directory for icons */
   filename = g_build_filename (g_get_user_cache_dir (),
@@ -414,6 +428,12 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
                          "Note book default color for notes",
                          G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
+
+  properties[PROP_ERROR] =
+    g_param_spec_pointer ("error",
+                          "Unrecoverable error",
+                          "Note book unrecoverable error",
+                          G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (object_class, BIJI_BOOK_PROPERTIES, properties);
   g_type_class_add_private (klass, sizeof (BijiNoteBookPrivate));
@@ -504,13 +524,20 @@ biji_note_book_get_item_at_path (BijiNoteBook *book, const gchar *path)
   return g_hash_table_lookup (book->priv->items, (gconstpointer) path);
 }
 
+
 BijiNoteBook *
-biji_note_book_new (GFile *location, GdkRGBA *color)
+biji_note_book_new (GFile *location, GdkRGBA *color, GError **error)
 {
-  return g_object_new(BIJI_TYPE_NOTE_BOOK,
-                      "location", location,
-                      "color", color,
-                      NULL);
+  BijiNoteBook *retval;
+
+  retval = g_object_new (BIJI_TYPE_NOTE_BOOK,
+                           "location", location,
+                           "color", color,
+                           "error", *error,
+                           NULL);
+
+  *error = retval->priv->error;
+  return retval;
 }
 
 

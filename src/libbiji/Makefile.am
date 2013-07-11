@@ -13,6 +13,8 @@ libbiji_la_SOURCES =  \
 	biji-collection.h \
 	biji-date-time.c \
 	biji-date-time.h \
+	biji-error.c \
+	biji-error.h \
 	biji-info-set.c \
 	biji-info-set.h \
 	biji-item.c \

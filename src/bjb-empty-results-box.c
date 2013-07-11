@@ -35,25 +35,29 @@ G_DEFINE_TYPE (BjbEmptyResultsBox, bjb_empty_results_box, GTK_TYPE_GRID);
 
 struct _BjbEmptyResultsBoxPrivate
 {
+  GtkWidget              *primary_label;
   GtkLabel               *details_label;
   BjbEmptyResultsBoxType  type;
 };
 
+
 static void
 bjb_empty_results_box_constructed (GObject *object)
 {
-  BjbEmptyResultsBox *self = BJB_EMPTY_RESULTS_BOX (object);
+  BjbEmptyResultsBox *self;
+  BjbEmptyResultsBoxPrivate *priv;
   GtkStyleContext *context;
-  GdkPixbuf *pixbuf; // debug only
+  GdkPixbuf *pixbuf;
   GtkWidget *image;
   GtkWidget *labels_grid;
-  GtkWidget *title_label;
   gchar *label;
   gchar *icons_path;
   gchar *note_icon_path;
   GError *error;
 
   G_OBJECT_CLASS (bjb_empty_results_box_parent_class)->constructed (object);
+  self = BJB_EMPTY_RESULTS_BOX (object);
+  priv = self->priv;
 
   gtk_widget_set_halign (GTK_WIDGET (self), GTK_ALIGN_CENTER);
   gtk_widget_set_hexpand (GTK_WIDGET (self), TRUE);
@@ -94,26 +98,28 @@ bjb_empty_results_box_constructed (GObject *object)
   gtk_grid_set_row_spacing (GTK_GRID (labels_grid), 12);
   gtk_container_add (GTK_CONTAINER (self), labels_grid);
 
+
   label = g_strconcat ("<b><span size=\"large\">", _("No Notes Found"), "</span></b>", NULL);
-  title_label = gtk_label_new (label);
-  gtk_widget_set_halign (title_label, GTK_ALIGN_START);
-  gtk_widget_set_vexpand (title_label, TRUE);
-  gtk_label_set_use_markup (GTK_LABEL (title_label), TRUE);
-  gtk_container_add (GTK_CONTAINER (labels_grid), title_label);
+  priv->primary_label = gtk_label_new (label);
+  gtk_widget_set_halign (priv->primary_label, GTK_ALIGN_START);
+  gtk_widget_set_vexpand (priv->primary_label, TRUE);
+  gtk_label_set_use_markup (GTK_LABEL (priv->primary_label), TRUE);
+  gtk_container_add (GTK_CONTAINER (labels_grid), priv->primary_label);
   g_free (label);
+
 
   self->priv->type = BJB_EMPTY_RESULTS_TYPE;
   label = "";
   self->priv->details_label = GTK_LABEL (gtk_label_new (label));
   gtk_label_set_use_markup (GTK_LABEL (self->priv->details_label), TRUE);
-  gtk_widget_set_halign (title_label, GTK_ALIGN_START);
+  gtk_widget_set_halign (priv->primary_label, GTK_ALIGN_START);
   // xalign: 0,
   // max_width_chars: 24,
   // wrap: true
 
   gtk_container_add (GTK_CONTAINER (labels_grid), GTK_WIDGET (self->priv->details_label));
 
-  gtk_widget_set_valign (title_label, GTK_ALIGN_CENTER);
+  gtk_widget_set_valign (priv->primary_label, GTK_ALIGN_CENTER);
   gtk_widget_show_all (GTK_WIDGET (self));
 }
 
@@ -121,23 +127,50 @@ void
 bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
                                 BjbEmptyResultsBoxType type)
 {
+  gchar *label;
+
   g_return_if_fail (BJB_IS_EMPTY_RESULTS_BOX (self));
 
   if (type == self->priv->type)
     return;
 
-  if (type == BJB_EMPTY_RESULTS_NO_NOTE)
+  switch (type)
   {
-    gtk_label_set_label (
-      self->priv->details_label,
-      _("Your notes collection is empty.\nClick the New button to create your first note."));
-  }
+    case BJB_EMPTY_RESULTS_NO_NOTE:
+      gtk_label_set_label (
+        self->priv->details_label,
+        _("Your notes collection is empty.\nClick the New button to create your first note."));
+      break;
 
-  else
-  {
-    gtk_label_set_label (
-      self->priv->details_label,
-      _("No result found for this research."));
+    case BJB_EMPTY_RESULTS_NO_RESULTS:
+      gtk_label_set_label (
+        self->priv->details_label,
+        _("No result found for this research."));
+      break;
+
+
+    /* 
+     * Tracker is not installed, Bijiben cannot work,
+     * do not try to workaround
+     * TODO: PK
+     */
+
+    case BJB_EMPTY_RESULTS_TRACKER:
+      label = g_strconcat ("<b><span size=\"large\">",
+                           _("Oops, "),
+                           "</span></b>",
+                           NULL);
+      gtk_label_set_label (
+        GTK_LABEL (self->priv->primary_label), label);
+      
+      gtk_label_set_label (
+        self->priv->details_label,
+        _("Please install 'Tracker' then restart the application."));
+      g_free (label);
+      break;
+
+    default:
+      break;
   }
 
   self->priv->type = type;

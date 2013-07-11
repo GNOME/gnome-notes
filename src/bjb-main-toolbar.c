@@ -900,6 +900,7 @@ populate_bar_switch (BjbMainToolbar *self)
 
     /* Spinner, Empty Results */
     default:
+      add_close_button (self);
       break;
   }
 

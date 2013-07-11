@@ -299,6 +299,14 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       break;
 
 
+    case BJB_WINDOW_BASE_ERROR_TRACKER:
+      bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
+                                      BJB_EMPTY_RESULTS_TRACKER);
+      gtk_widget_show_all (priv->no_note);
+      gtk_stack_set_visible_child_name (priv->stack, "empty");
+      break;
+
+
     case BJB_WINDOW_BASE_NOTE_VIEW:
       gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
       gtk_stack_set_visible_child_name (priv->stack, "note-view");

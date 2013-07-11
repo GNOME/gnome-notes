@@ -51,7 +51,8 @@ GType biji_note_book_get_type (void) G_GNUC_CONST;
 
 
 BijiNoteBook    *biji_note_book_new                   (GFile *location,
-                                                       GdkRGBA *color);
+                                                       GdkRGBA *color,
+                                                       GError **error);
 
 
 void             biji_note_book_add_goa_object        (BijiNoteBook *book,

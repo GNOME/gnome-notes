@@ -51,13 +51,87 @@ biji_zeitgeist_init (void)
 }
 
 
-void 
-insert_zeitgeist (BijiNoteObj *note, gchar *zg_interpretation)
+static void
+on_find_create_event (GObject *log,
+                      GAsyncResult *res,
+                      gpointer user_data)
+{
+  GError             *error;
+  ZeitgeistResultSet *events;
+
+  error = NULL;
+  events = zeitgeist_log_find_events_finish (ZEITGEIST_LOG (log), res, &error);
+
+  if (error)
+  {
+    g_warning ("Error reading results: %s", error->message);
+    g_error_free (error);
+    return;
+  }
+
+
+  if (zeitgeist_result_set_size (events) == 0)
+    insert_zeitgeist (BIJI_NOTE_OBJ (user_data), ZEITGEIST_ZG_CREATE_EVENT);
+
+  g_object_unref (events);
+}
+
+
+static void
+check_insert_create_zeitgeist (BijiNoteObj *note)
 {
   gchar *uri;
-  ZeitgeistEvent     *event;
-  ZeitgeistSubject   *subject ;
   ZeitgeistLog       *log;
+  GPtrArray          *templates;
+  ZeitgeistEvent     *event;
+  ZeitgeistSubject   *subject;
+  
+  uri = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
+  log = biji_note_book_get_zg_log (biji_item_get_book (BIJI_ITEM (note)));
+  
+  templates = g_ptr_array_new ();
+  event = zeitgeist_event_new_full (ZEITGEIST_ZG_CREATE_EVENT, 
+                                    NULL,
+                                    "application://bijiben.desktop",
+                                    NULL, NULL);
+  subject = zeitgeist_subject_new ();
+  zeitgeist_subject_set_uri (subject, uri);
+  zeitgeist_event_add_subject (event, subject);
+  g_ptr_array_add (templates, event);
+  
+  zeitgeist_log_find_events (log,
+                             zeitgeist_time_range_new_to_now (),
+                             templates,
+                             ZEITGEIST_STORAGE_STATE_ANY,
+                             10,
+                             ZEITGEIST_RESULT_TYPE_LEAST_RECENT_EVENTS,
+                             NULL,
+                             (GAsyncReadyCallback) on_find_create_event,
+                             note);
+}
+
+
+void
+insert_zeitgeist (BijiNoteObj *note,
+                  gchar *zg_interpretation)
+{
+  gchar *uri;
+  const gchar *title;
+  ZeitgeistEvent     *event;
+  ZeitgeistSubject   *subject;
+  ZeitgeistLog       *log;
+
+  /* Make sure that only notes with a title log their events.
+  If a note is closed without a title, it is deleted. This
+  section prevents the ACCESS_EVENT being called immediately
+  after the note is created and the note is empty */
+
+  title = biji_item_get_title (BIJI_ITEM (note));
+  if (title == NULL ||
+      g_utf8_strlen (title, -1) <= 0)
+    return;
+
+  /* Insert requested log */
 
   log = biji_note_book_get_zg_log (biji_item_get_book (BIJI_ITEM (note)));
   uri = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
@@ -67,7 +141,7 @@ insert_zeitgeist (BijiNoteObj *note, gchar *zg_interpretation)
                                         ZEITGEIST_NFO_FILE_DATA_OBJECT,
                                         "application/x-note",
                                         "",
-                                        biji_item_get_title (BIJI_ITEM (note)),
+                                        title,
                                         "");
 
   event = zeitgeist_event_new_full (zg_interpretation,
@@ -77,6 +151,20 @@ insert_zeitgeist (BijiNoteObj *note, gchar *zg_interpretation)
                                     subject,
                                     NULL);
 
+
+  if (g_strcmp0 (zg_interpretation, ZEITGEIST_ZG_CREATE_EVENT) ==0)
+    zeitgeist_event_set_timestamp (event,
+                                   biji_note_obj_get_create_date (note)/1000);
+
   zeitgeist_log_insert_event_no_reply (log, event, NULL);
   g_free (uri);
+
+
+  /* 
+   * Check if the note
+   * was already created into zeitgeist
+   */
+
+  if (g_strcmp0 (zg_interpretation, ZEITGEIST_ZG_MODIFY_EVENT) ==0)
+    check_insert_create_zeitgeist (note);
 }

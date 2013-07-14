@@ -90,6 +90,7 @@ on_save_timeout (BijiNoteObj *self)
 
 
   BIJI_NOTE_OBJ_GET_CLASS (self)->save_note (self);
+  insert_zeitgeist (self, ZEITGEIST_ZG_MODIFY_EVENT);
 
   priv->needs_save = FALSE;
   g_object_unref (self);

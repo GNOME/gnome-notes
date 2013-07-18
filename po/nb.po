@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 11:19+0200\n"
-"PO-Revision-Date: 2013-07-04 11:20+0200\n"
+"POT-Creation-Date: 2013-07-18 13:42+0200\n"
+"PO-Revision-Date: 2013-07-18 13:43+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -78,11 +78,11 @@ msgstr "Gjennomstrek"
 msgid "Copy selection to a new note"
 msgstr "Kopier utvalg til nytt notat"
 
-#: ../src/bjb-empty-results-box.c:97
+#: ../src/bjb-empty-results-box.c:102
 msgid "No Notes Found"
 msgstr "Ingen notater funnet"
 
-#: ../src/bjb-empty-results-box.c:133
+#: ../src/bjb-empty-results-box.c:142
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -90,9 +90,17 @@ msgstr ""
 "Notatsamlingen din er tom.\n"
 "Klikk på Ny-knappen for å lage ditt første notat."
 
-#: ../src/bjb-empty-results-box.c:140
+#: ../src/bjb-empty-results-box.c:148
 msgid "No result found for this research."
 msgstr "Ingen resultater funnet for dette søket."
+
+#: ../src/bjb-empty-results-box.c:160
+msgid "Oops, "
+msgstr "Oops, "
+
+#: ../src/bjb-empty-results-box.c:168
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Vennligst installer «Tracker» og start programmet på nytt."
 
 #: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"

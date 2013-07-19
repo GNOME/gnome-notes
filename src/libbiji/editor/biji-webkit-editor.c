@@ -233,7 +233,11 @@ biji_webkit_editor_finalize (GObject *object)
 
   /* priv->spell_check is ref by webkit. probably not to unref */
   g_object_unref (priv->sel);
-  g_signal_handler_disconnect (priv->note, priv->color_changed);
+
+
+  if (priv->note != NULL)
+    g_signal_handler_disconnect (priv->note, priv->color_changed);
+
 
   G_OBJECT_CLASS (biji_webkit_editor_parent_class)->finalize (object);
 }
@@ -310,6 +314,12 @@ biji_webkit_editor_constructed (GObject *obj)
   self = BIJI_WEBKIT_EDITOR (obj);
   view = WEBKIT_WEB_VIEW (self);
   priv = self->priv;
+
+
+  /* Do not segfault at finalize
+   * if the note died */
+  g_object_add_weak_pointer (G_OBJECT (priv->note), (gpointer*) &priv->note);
+
 
   body = biji_note_obj_get_html (priv->note);
 

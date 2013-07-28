@@ -129,7 +129,7 @@ bjb_controller_finalize (GObject *object)
   BjbController *self = BJB_CONTROLLER(object);
   BjbControllerPrivate *priv = self->priv ;
 
-  free_items_store (self);
+
   g_object_unref (priv->model);
 
   g_object_unref (priv->completion);

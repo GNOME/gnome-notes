@@ -2,6 +2,7 @@ Overview of changes in 3.9.5
 ============================
 
 * 703703: Add zeitgeist CREATE, LEAVE, MODIFY and DELETE event (Manish Sinha)
+  704521: Install x-note mimetype (Manish Sinha)
 
 * Bug Fixes
   703706: Crash when immediately closing a new note

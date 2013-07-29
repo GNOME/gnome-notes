@@ -26,6 +26,7 @@ stamp-*
 aclocal.m4
 Makefile
 Makefile.in
+data/bijiben.xml
 data/bijiben.desktop
 data/bijiben.desktop.in
 data/org.gnome.bijiben.gschema.valid

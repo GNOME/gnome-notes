@@ -1,0 +1,334 @@
+# Tajik translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Victor Ibragimov <victor.ibragimov@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-07-29 00:31+0000\n"
+"PO-Revision-Date: 2013-07-29 12:26-0000\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
+"Language-Team: Tajik <tg@li.org>\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
+#: ../src/bjb-main-toolbar.c:426 ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Тавзеҳҳо"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "тавзеҳҳо;ёддоштҳо;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Тавзеҳҳоро фиристонед, файлҳоро барчасп кунед!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Тавзеҳгиранда"
+
+#: ../src/bjb-app-menu.c:36
+msgid "Simple notebook for GNOME"
+msgstr "Дафтари тавзеҳҳои оддӣ барои GNOME"
+
+#: ../src/bjb-app-menu.c:40
+msgid "translator-credits"
+msgstr "Victor Ibragimov"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Ранги тавзеҳ"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:363
+msgid "Cut"
+msgstr "Буридан"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:370
+msgid "Copy"
+msgstr "Нусха бардоштан"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:377
+msgid "Paste"
+msgstr "Гузоштан"
+
+#: ../src/bjb-editor-toolbar.c:392
+msgid "Bold"
+msgstr "Ғафс"
+
+#: ../src/bjb-editor-toolbar.c:403
+msgid "Italic"
+msgstr "Хам"
+
+#: ../src/bjb-editor-toolbar.c:414
+msgid "Strike"
+msgstr "Кур"
+
+#: ../src/bjb-editor-toolbar.c:446
+msgid "Copy selection to a new note"
+msgstr "Нусха бардоштани интихоб ба тавзеҳи нав"
+
+#: ../src/bjb-empty-results-box.c:102
+msgid "No Notes Found"
+msgstr "Ягон тавзеҳ ёфт нашуд"
+
+#: ../src/bjb-empty-results-box.c:142
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Маҷмӯи тавзеҳҳои шумо холӣ аст.\n"
+"Барои эҷод кардани тавзеҳи аввалини худ тугмаи \"Нав\"-ро зер кунед."
+
+#: ../src/bjb-empty-results-box.c:148
+msgid "No result found for this research."
+msgstr "Барои ин пажӯҳиш ягон натиҷа ёфт нашуд."
+
+#: ../src/bjb-empty-results-box.c:160
+msgid "Oops, "
+msgstr "Эҳеее, "
+
+#: ../src/bjb-empty-results-box.c:168
+msgid "Please install 'Tracker' then restart the application."
+msgstr ""
+"Лутфан, барномаи 'Tracker'-ро насб кунед ва баъд барномаро бозоғозӣ кунед."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "Ҷойгиршавии фармоишӣ"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "Ворид кардани тавзеҳҳо"
+
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Бекор кардан"
+
+#: ../src/bjb-import-dialog.c:409
+msgid "Import"
+msgstr "Воридот"
+
+#: ../src/bjb-import-dialog.c:420
+msgid "Select import location"
+msgstr "Интихоби ҷойгиршавии воридот"
+
+#: ../src/bjb-import-dialog.c:440
+msgid "Tomboy application"
+msgstr "Барномаи Tomboy"
+
+#: ../src/bjb-import-dialog.c:446
+msgid "Gnote application"
+msgstr "Барномаи Gnote"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Бештар бор кардан"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Бор шуда истодааст..."
+
+#: ../src/bjb-main-toolbar.c:139
+msgid "Click on items to select them"
+msgstr "Барои интихоби объект онро зер кунед"
+
+#: ../src/bjb-main-toolbar.c:141
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d интихобшуда"
+msgstr[1] "%d интихобшуда"
+
+#: ../src/bjb-main-toolbar.c:268
+msgid "Search note titles, content and collections"
+msgstr "Ҷустуҷӯи сарлавҳаҳои тавзеҳ, мӯҳтаво ва маҷмӯҳо"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:327
+msgid "Done"
+msgstr "Тайёр"
+
+#: ../src/bjb-main-toolbar.c:333
+msgid "Exit selection mode"
+msgstr "Хуруҷи ҳолати интихоб"
+
+#: ../src/bjb-main-toolbar.c:365
+#, c-format
+msgid "Results for %s"
+msgstr "Натиҷаҳои %s"
+
+#: ../src/bjb-main-toolbar.c:368
+msgid "New and Recent"
+msgstr "Нав ва охирин"
+
+#: ../src/bjb-main-toolbar.c:442
+msgid "New"
+msgstr "Нав"
+
+#: ../src/bjb-main-toolbar.c:469
+msgid "Selection mode"
+msgstr "Ҳолати интихоб"
+
+#: ../src/bjb-main-toolbar.c:497
+msgid "View notes and collections in a list"
+msgstr "Намоиш додани тавзеҳҳо ва маҷмӯҳо дар рӯйхат"
+
+#: ../src/bjb-main-toolbar.c:521
+msgid "View notes and collections in a grid"
+msgstr "Намоиш додани тавзеҳҳо ва маҷмӯҳо дар тӯр"
+
+#: ../src/bjb-main-toolbar.c:650
+msgid "Rename Note"
+msgstr "Иваз кардани номи тавзеҳ"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:671
+msgid "Undo"
+msgstr "Ботил сохтан"
+
+#: ../src/bjb-main-toolbar.c:679
+msgid "Redo"
+msgstr "Дубора анҷом додан"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:694
+msgid "Bullets"
+msgstr "Нишонҳо"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:701
+msgid "Numbered List"
+msgstr "Рӯйхати рақамдор"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-main-toolbar.c:713
+msgid "Rename"
+msgstr "Иваз кардани ном"
+
+#: ../src/bjb-main-toolbar.c:721 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Маҷмӯҳо"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:733
+msgid "Delete this Note"
+msgstr "Нест кардани ин тавзеҳ"
+
+#: ../src/bjb-main-toolbar.c:809 ../src/bjb-selection-toolbar.c:273
+msgid "Note color"
+msgstr "Ранги тавзеҳ"
+
+#: ../src/bjb-main-toolbar.c:836
+msgid "Share note"
+msgstr "Мубодила кардани тавзеҳ"
+
+#: ../src/bjb-main-toolbar.c:857
+msgid "More options…"
+msgstr "Имконоти бештар..."
+
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Номеро барои эҷод кардани маҷмӯъ ворид кунед"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Маҷмӯи нав"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+msgid "_Close"
+msgstr "_Пӯшидан"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:228
+msgid "Last updated "
+msgstr "Навсозии охирин"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
+
+#: ../src/bjb-selection-toolbar.c:266
+msgid "Delete"
+msgstr "Нест кардан"
+
+#: ../src/bjb-selection-toolbar.c:293
+msgid "Edit collections"
+msgstr "Таҳрир кардани маҷмӯҳо"
+
+#. create dialog
+#: ../src/bjb-settings.c:191
+msgid "Preferences"
+msgstr "Бартариҳо"
+
+#. Note Font
+#: ../src/bjb-settings.c:222
+msgid "Note Font"
+msgstr "Шрифти тавзеҳ"
+
+#. Default Color
+#: ../src/bjb-settings.c:231
+msgid "Default Color"
+msgstr "Ранги пешфарз"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Имрӯз"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Дирӯз"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Ин ҳафта"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Ин моҳ"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Ин сол"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Номаълум"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Равзанаи нав"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "_Вори кардани тавзеҳҳо"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Хусусиятҳо"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Notes"
+msgstr "_Дар бораи Тавзеҳҳо"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Кӯмак"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Хуруҷ"

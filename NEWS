@@ -1,3 +1,18 @@
+Overview of changes in 3.9.5
+============================
+
+* 703703: Add zeitgeist CREATE, LEAVE, MODIFY and DELETE event (Manish Sinha)
+
+* Bug Fixes
+  703706: Crash when immediately closing a new note
+
+* Translations
+  Updated Czech translation (Marek Černocký)
+  Update Japanese translation (Nishio Futoshi)
+  Updated Norwegian bokmål translation (Kjartan Maraas)
+  Updated Spanish translation (Daniel Mustieles)
+  Updated Traditional Chinese translation (Chao-Hsiung Liao)
+
 Overview of changes in 3.9.4
 ============================
 

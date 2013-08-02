@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-31 01:36+0200\n"
-"PO-Revision-Date: 2013-05-31 01:40+0200\n"
+"POT-Creation-Date: 2013-08-02 11:32+0200\n"
+"PO-Revision-Date: 2013-08-02 11:32+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -18,9 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
-msgid "Bijiben"
-msgstr "Bijiben"
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:426
+#: ../src/bjb-main-toolbar.c:773 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Notas"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
@@ -47,41 +49,41 @@ msgid "Note Color"
 msgstr "Cor da nota"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:148
+#: ../src/bjb-editor-toolbar.c:363
 msgid "Cut"
 msgstr "Cortar"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:155
+#: ../src/bjb-editor-toolbar.c:370
 msgid "Copy"
 msgstr "Copiar"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:162
+#: ../src/bjb-editor-toolbar.c:377
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../src/bjb-editor-toolbar.c:173
+#: ../src/bjb-editor-toolbar.c:392
 msgid "Bold"
 msgstr "Negra"
 
-#: ../src/bjb-editor-toolbar.c:184
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Cursiva"
 
-#: ../src/bjb-editor-toolbar.c:195
+#: ../src/bjb-editor-toolbar.c:414
 msgid "Strike"
 msgstr "Riscar"
 
-#: ../src/bjb-editor-toolbar.c:225
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Copy selection to a new note"
 msgstr "Copiar selección a unha nova nota"
 
-#: ../src/bjb-empty-results-box.c:97
+#: ../src/bjb-empty-results-box.c:102
 msgid "No Notes Found"
 msgstr "Non se atoparon notas"
 
-#: ../src/bjb-empty-results-box.c:133
+#: ../src/bjb-empty-results-box.c:142
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -89,141 +91,150 @@ msgstr ""
 "A súa colección de notas está baleira.\n"
 "Prema no botón Nova para crear a súa primeira nota."
 
-#: ../src/bjb-empty-results-box.c:140
+#: ../src/bjb-empty-results-box.c:148
 msgid "No result found for this research."
 msgstr "Non se atoparon resultados para esta busca."
 
-#: ../src/bjb-import-dialog.c:305
+#: ../src/bjb-empty-results-box.c:160
+msgid "Oops, "
+msgstr "Ups,"
+
+#: ../src/bjb-empty-results-box.c:168
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Instale «Tracker» e logo reinicie o aplicativo."
+
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Localización personalizada"
 
-#: ../src/bjb-import-dialog.c:400
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importar notas"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importar"
 
-#: ../src/bjb-import-dialog.c:416
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Seleccionar a localización para importar"
 
-#: ../src/bjb-import-dialog.c:436
+#: ../src/bjb-import-dialog.c:440
 msgid "Tomboy application"
 msgstr "Aplicativo Tomboy"
 
-#: ../src/bjb-import-dialog.c:442
+#: ../src/bjb-import-dialog.c:446
 msgid "Gnote application"
 msgstr "Aplicativo Gnote"
 
-#: ../src/bjb-load-more-button.c:68 ../src/bjb-load-more-button.c:154
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
 msgid "Load More"
 msgstr "Cargar máis"
 
-#: ../src/bjb-load-more-button.c:83
+#: ../src/bjb-load-more-button.c:82
 msgid "Loading..."
 msgstr "Cargando…"
 
-#: ../src/bjb-main-toolbar.c:116
+#: ../src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Prema nos elementos para seleccionalos"
 
-#: ../src/bjb-main-toolbar.c:118
+#: ../src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/bjb-main-toolbar.c:232
+#: ../src/bjb-main-toolbar.c:268
 msgid "Search note titles, content and collections"
 msgstr "Buscar títulos de notas, contido e coleccións"
 
-#: ../src/bjb-main-toolbar.c:269
+#. Select
+#: ../src/bjb-main-toolbar.c:327
 msgid "Done"
 msgstr "Feito"
 
-#: ../src/bjb-main-toolbar.c:270
+#: ../src/bjb-main-toolbar.c:333
 msgid "Exit selection mode"
 msgstr "Saír do modo de selección"
 
-#: ../src/bjb-main-toolbar.c:302
+#: ../src/bjb-main-toolbar.c:365
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:368
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: ../src/bjb-main-toolbar.c:367
+#: ../src/bjb-main-toolbar.c:442
 msgid "New"
 msgstr "Novo"
 
-#: ../src/bjb-main-toolbar.c:388
+#: ../src/bjb-main-toolbar.c:469
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: ../src/bjb-main-toolbar.c:409
+#: ../src/bjb-main-toolbar.c:497
 msgid "View notes and collections in a list"
 msgstr "Ver as notas e coleccións nunha lista"
 
-#: ../src/bjb-main-toolbar.c:429
+#: ../src/bjb-main-toolbar.c:521
 msgid "View notes and collections in a grid"
 msgstr "Ver as notas e coleccións nunha grella"
 
-#: ../src/bjb-main-toolbar.c:565
+#: ../src/bjb-main-toolbar.c:650
 msgid "Rename Note"
 msgstr "Renomear nota"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:586
+#: ../src/bjb-main-toolbar.c:671
 msgid "Undo"
 msgstr "Desfacer"
 
-#: ../src/bjb-main-toolbar.c:594
+#: ../src/bjb-main-toolbar.c:679
 msgid "Redo"
 msgstr "Refacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:608
+#: ../src/bjb-main-toolbar.c:694
 msgid "Bullets"
 msgstr "Viñetas"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:615
+#: ../src/bjb-main-toolbar.c:701
 msgid "Numbered List"
 msgstr "Lista numerada"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:626
+#: ../src/bjb-main-toolbar.c:713
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../src/bjb-main-toolbar.c:632 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:721 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Coleccións"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:643
+#: ../src/bjb-main-toolbar.c:733
 msgid "Delete this Note"
 msgstr "Eliminar esta nota"
 
-#: ../src/bjb-main-toolbar.c:677
-msgid "Notes"
-msgstr "Notas"
-
-#: ../src/bjb-main-toolbar.c:707 ../src/bjb-selection-toolbar.c:246
+#: ../src/bjb-main-toolbar.c:809 ../src/bjb-selection-toolbar.c:273
 msgid "Note color"
 msgstr "Cor da nota"
 
-#: ../src/bjb-main-toolbar.c:723
+#: ../src/bjb-main-toolbar.c:836
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:740
+#: ../src/bjb-main-toolbar.c:857
 msgid "More options…"
 msgstr "Máis opcións…"
 
@@ -235,16 +246,25 @@ msgstr "Escriba o nome para crear unha colección"
 msgid "New collection"
 msgstr "Nova colección"
 
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+msgid "_Close"
+msgstr "_Pechar"
+
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:231
+#: ../src/bjb-note-view.c:228
 msgid "Last updated "
 msgstr "Última actualización"
 
-#: ../src/bjb-selection-toolbar.c:239
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
+
+#: ../src/bjb-selection-toolbar.c:266
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../src/bjb-selection-toolbar.c:266
+#: ../src/bjb-selection-toolbar.c:293
 msgid "Edit collections"
 msgstr "Editar coleccións"
 
@@ -300,8 +320,8 @@ msgid "_Preferences"
 msgstr "_Preferencias"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Bijiben"
-msgstr "_Sobre Bijiben"
+msgid "_About Notes"
+msgstr "_Sobre Notas"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
@@ -310,6 +330,12 @@ msgstr "_Axuda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Saír"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "_About Bijiben"
+#~ msgstr "_Sobre Bijiben"
 
 #~ msgid "Link"
 #~ msgstr "Ligazón"

@@ -10,5 +10,10 @@
       <summary>New notes color.</summary>
       <description>The color name set here will be used as the color when creating new notes.</description>
     </key>
+    <key type="s" name="default-location">
+      <default>'local'</default>
+      <summary>Primary notes provider to use for new notes.</summary>
+      <description>The primary notebook is the place where are created new notes.</description>
+    </key>
   </schema>
 </schemalist>

@@ -337,7 +337,7 @@ create_page_primary (BjbSettingsDialog *self)
 GtkWidget *
 create_page_edition (BjbSettings *settings)
 {
-  GtkWidget                  *grid, *label, *picker;
+  GtkWidget                  *grid, *label, *picker, *box;
   GdkRGBA                    color;
 
   grid = gtk_grid_new ();
@@ -363,11 +363,13 @@ create_page_edition (BjbSettings *settings)
   gtk_grid_attach (GTK_GRID (grid), label, 1, 2, 1, 1);
 
   picker = bjb_color_button_new ();
+  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_box_pack_start (GTK_BOX (box), picker, FALSE, FALSE, 0);
   gdk_rgba_parse (&color, bjb_settings_get_default_color (settings));
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);
   g_signal_connect (picker, "color-set",
                     G_CALLBACK (on_color_set), settings); 
-  gtk_grid_attach (GTK_GRID (grid), picker, 2, 2, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), box, 2, 2, 1, 1);
 
   return grid;
 }

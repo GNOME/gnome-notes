@@ -382,10 +382,14 @@ on_drag_data_received (GtkWidget        *widget,
       BijiNoteBook *book;
       BijiNoteObj *ret;
       BjbMainView *self = BJB_MAIN_VIEW (user_data);
+      BjbSettings *settings;
 
       /* FIXME Text is guchar utf 8, conversion to perform */
-      book =  bjb_window_base_get_book (self->priv->window); 
-      ret = biji_note_book_note_new (book, (gchar*) text);
+      book =  bjb_window_base_get_book (self->priv->window);
+      settings = bjb_app_get_settings (g_application_get_default ());
+      ret = biji_note_book_note_new (book,
+                                     (gchar*) text,
+                                     bjb_settings_get_default_location (settings));
       switch_to_note_view (self, ret); // maybe AFTER drag finish?
 
       g_free (text);

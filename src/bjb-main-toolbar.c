@@ -111,12 +111,16 @@ bjb_main_toolbar_clear (BjbMainToolbar *self)
 static void
 on_new_note_clicked (GtkWidget *but, BjbMainView *view)
 {
-  BijiNoteObj *result ;
-  BijiNoteBook *book ;
+  BijiNoteObj *result;
+  BijiNoteBook *book;
+  BjbSettings  *settings;
 
   /* append note to collection */
   book = bjb_window_base_get_book (bjb_main_view_get_window (view));
-  result = biji_note_book_note_new (book, NULL);
+  settings = bjb_app_get_settings (g_application_get_default ());
+  result = biji_note_book_note_new (book,
+                                    NULL,
+                                    bjb_settings_get_default_location (settings));
 
   /* Go to that note */
   switch_to_note_view(view,result);

@@ -31,7 +31,7 @@
 struct _BijibenPriv
 {
   BijiNoteBook *book;
-  BjbSettings *settings ;
+  BjbSettings *settings;
 
   /* First run is not used yet,
    * could ask tracker for notes / memo to import */
@@ -118,7 +118,7 @@ bijiben_init (Bijiben *object)
   object->priv =
     G_TYPE_INSTANCE_GET_PRIVATE(object,BIJIBEN_TYPE_APPLICATION,BijibenPriv);
 
-  object->priv->settings = initialize_settings();
+  object->priv->settings = bjb_settings_new ();
 }
 
 /* Import. TODO : move to libbiji */
@@ -319,11 +319,20 @@ on_client_got (GObject *source_object,
     {
       type = goa_account_get_provider_type (account);
 
+
+      /* We do not need to store any object here.
+       * account_get_id can be used to talk with libbji */
+
       if (g_strcmp0 (type, "owncloud") ==0)
+      {
+        g_warning ("%s", goa_account_get_id (account));
         biji_note_book_add_goa_object (self->priv->book, object);
+      }
 
       else
+      {
         g_object_unref (object);
+      }
     } 
   }
 

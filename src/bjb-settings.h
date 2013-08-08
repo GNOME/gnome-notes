@@ -20,6 +20,8 @@
 
 #include <glib-object.h>
 
+
+
 G_BEGIN_DECLS
 
 #define BJB_TYPE_SETTINGS             (bjb_settings_get_type ())
@@ -36,24 +38,32 @@ typedef struct _BjbSettingsPrivate BjbSettingsPrivate;
 
 struct _BjbSettingsClass
 {
-  GObjectClass parent_class;
+  GSettingsClass parent_class;
 };
 
 struct _BjbSettings
 {
-  GObject parent_instance;
-  BjbSettingsPrivate *priv ;
-
-  /* Note edition settings */
-  gchar *font ;
-  gchar *color ;
+  GSettings parent_instance;
+  BjbSettingsPrivate *priv;
 };
 
-GType bjb_settings_get_type (void) G_GNUC_CONST;
 
-BjbSettings * initialize_settings(void);
+GType             bjb_settings_get_type                   (void) G_GNUC_CONST;
 
-void show_bijiben_settings_window (GtkWidget *parent_window);
+
+BjbSettings      *bjb_settings_new                        (void);
+
+
+gchar            *bjb_settings_get_default_font           (BjbSettings *settings);
+
+
+gchar            *bjb_settings_get_default_color          (BjbSettings *settings);
+
+
+gchar            *bjb_settings_get_default_location       (BjbSettings *settings);
+
+
+void              show_bijiben_settings_window            (GtkWidget *parent_window);
 
 G_END_DECLS
 

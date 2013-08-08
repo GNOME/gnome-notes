@@ -79,6 +79,8 @@ bijiben_SOURCES = \
 	bjb-selection-toolbar.h \
 	bjb-settings.c \
 	bjb-settings.h \
+	bjb-settings-dialog.c \
+	bjb-settings-dialog.h \
 	bjb-share.c \
 	bjb-share.h \
 	bjb-window-base.c \

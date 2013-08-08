@@ -289,6 +289,7 @@ strike_button_callback (GtkWidget *button, BijiNoteObj *note)
 static void
 link_callback (GtkWidget *button, BjbEditorToolbar *self)
 {
+  BjbSettings             *settings;
   gchar                   *link;
   GtkWidget               *window;
   BijiNoteObj             *result;
@@ -304,7 +305,10 @@ link_callback (GtkWidget *button, BjbEditorToolbar *self)
   window = bjb_note_view_get_base_window (priv->view);
   book = bjb_window_base_get_book(window);
 
-  result = biji_note_book_note_new (book, link);
+  settings = bjb_app_get_settings (g_application_get_default ());
+  result = biji_note_book_note_new (book,
+                                    link,
+                                    bjb_settings_get_default_location (settings));
 
   /* Change result color. */
   if (biji_note_obj_get_rgba (priv->note, &color))

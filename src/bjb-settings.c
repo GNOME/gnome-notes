@@ -14,33 +14,39 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
+#include "config.h"
+
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "bjb-bijiben.h"
-#include "bjb-color-button.h"
 #include "bjb-settings.h"
+#include "bjb-settings-dialog.h"
+
 
 struct _BjbSettingsPrivate
 {
-  GSettings *settings ;
+  /* Note edition settings */
+  gchar *font;
+  gchar *color;
+
+  /* Default Provider */
+  gchar *primary;
 };
 
-// Properties binded to gsettings.
+
 enum
 {
   PROP_0,
-
-  // Note Editor.
   PROP_FONT,
   PROP_COLOR,
-
+  PROP_PRIMARY,
   N_PROPERTIES
 };
 
 #define BJB_SETTINGS_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_SETTINGS, BjbSettingsPrivate))
 
-G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_SETTINGS);
 
 static void
 bjb_settings_init (BjbSettings *object)
@@ -66,11 +72,15 @@ bjb_settings_get_property (GObject    *object,
   switch (prop_id)
   {            
     case PROP_FONT:
-      g_value_set_string (value,settings->font);
+      g_value_set_string (value, settings->priv->font);
       break;
 
     case PROP_COLOR:
-      g_value_set_string (value,settings->color);
+      g_value_set_string (value, settings->priv->color);
+      break;
+
+    case PROP_PRIMARY:
+      g_value_set_string (value, settings->priv->primary);
       break;
                                 
     default:
@@ -90,11 +100,15 @@ bjb_settings_set_property (GObject      *object,
   switch (prop_id)
   {
     case PROP_FONT:
-      settings->font = g_value_dup_string(value) ; 
+      settings->priv->font = g_value_dup_string(value) ; 
       break;
 
     case PROP_COLOR:
-      settings->color = g_value_dup_string(value);
+      settings->priv->color = g_value_dup_string(value);
+      break;
+
+    case PROP_PRIMARY:
+      settings->priv->primary = g_value_dup_string (value);
       break;
             
     default:
@@ -103,6 +117,33 @@ bjb_settings_set_property (GObject      *object,
   }
 }
 
+
+static void
+bjb_settings_constructed (GObject *object)
+{
+  BjbSettings *self;
+  GSettings   *settings;
+
+  G_OBJECT_CLASS (bjb_settings_parent_class)->constructed (object);
+
+  self = BJB_SETTINGS (object);
+  settings = G_SETTINGS (object);
+
+
+  g_settings_bind  (settings, "font",
+                    self,     "font",
+                    G_SETTINGS_BIND_DEFAULT);
+
+  g_settings_bind  (settings, "color",
+                    self,     "color",
+                    G_SETTINGS_BIND_DEFAULT);
+
+  g_settings_bind  (settings,  "default-location",
+                    self,      "default-location",
+                    G_SETTINGS_BIND_DEFAULT);
+}
+
+
 static void
 bjb_settings_class_init (BjbSettingsClass *klass)
 {
@@ -110,6 +151,7 @@ bjb_settings_class_init (BjbSettingsClass *klass)
 
   g_type_class_add_private (klass, sizeof (BjbSettingsPrivate));
 
+  object_class->constructed = bjb_settings_constructed;
   object_class->finalize = bjb_settings_finalize;
   object_class->get_property = bjb_settings_get_property;
   object_class->set_property = bjb_settings_set_property;
@@ -129,118 +171,54 @@ bjb_settings_class_init (BjbSettingsClass *klass)
                                                        NULL,
                                                        G_PARAM_READWRITE | 
                                                        G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_property (object_class,PROP_PRIMARY,
+                                   g_param_spec_string("default-location",
+                                                       "Primary Location",
+                                                       "Default Provider for New Notes",
+                                                       NULL,
+                                                       G_PARAM_READWRITE | 
+                                                       G_PARAM_STATIC_STRINGS));
 }
 
-// only init from bijiben
+
+
 
 BjbSettings *
-initialize_settings (void)
+bjb_settings_new (void)
 {
-  BjbSettings *result = g_object_new (BJB_TYPE_SETTINGS,NULL) ;
-  result->priv->settings= g_settings_new ("org.gnome.bijiben");
-
-  // Note editor settings
-  g_settings_bind  (result->priv->settings, "font",
-                    result,"font",
-                    G_SETTINGS_BIND_DEFAULT);
-
-  g_settings_bind  (result->priv->settings, "color",
-                    result,"color",
-                    G_SETTINGS_BIND_DEFAULT);
-
-  return result ;
+  return g_object_new (BJB_TYPE_SETTINGS, "schema-id", "org.gnome.bijiben", NULL);
 }
 
-static void
-on_font_selected (GtkFontButton *widget,
-                  BjbSettings *settings)
+
+
+gchar *
+bjb_settings_get_default_font           (BjbSettings *settings)
 {
-  g_settings_set_string (settings->priv->settings,
-                         "font",
-                         gtk_font_button_get_font_name (widget));
+  return settings->priv->font;
 }
 
-static void
-on_color_set (GtkColorButton *button,
-              BjbSettings *settings)
+
+gchar *
+bjb_settings_get_default_color          (BjbSettings *settings)
 {
-  GdkRGBA color;
-  gchar *color_str;
-
-  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &color);
-  color_str = gdk_rgba_to_string (&color);
-
-  g_settings_set_string (settings->priv->settings,
-                         "color",
-                         color_str);
-
-  g_free (color_str);
+  return settings->priv->color;
 }
+
+
+gchar *
+bjb_settings_get_default_location       (BjbSettings *settings)
+{
+  return settings->priv->primary;
+}
+
 
 void
 show_bijiben_settings_window (GtkWidget *parent_window)
 {
-  GtkWidget *dialog,*area, *vbox, *hbox, *grid, *label, *picker;
-  GdkRGBA color;
-  gint width, height;
+  GtkDialog *dialog;
 
-  GApplication *app = g_application_get_default();
-  BjbSettings *settings = bjb_app_get_settings(app);
-
-  /* create dialog */
-  dialog = gtk_dialog_new_with_buttons (_("Preferences"),
-                                        GTK_WINDOW(parent_window),
-                                        GTK_DIALOG_MODAL| 
-                                        GTK_DIALOG_DESTROY_WITH_PARENT,
-                                        _("_Close"),
-                                        GTK_RESPONSE_OK,
-                                        NULL);
-
-  gtk_window_get_size (GTK_WINDOW (parent_window), &width, &height);
-  gtk_window_set_default_size (GTK_WINDOW (dialog),
-                               width /2,
-                               height /2);
-
-  area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-  gtk_container_set_border_width (GTK_CONTAINER (area), 0);
-  gtk_widget_set_hexpand (area, TRUE);
-  gtk_widget_set_vexpand (area, TRUE);
-
-  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-  gtk_widget_set_valign (vbox, GTK_ALIGN_CENTER);
-
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  gtk_widget_set_halign (hbox, GTK_ALIGN_CENTER);
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, FALSE, 0);
-
-  grid = gtk_grid_new ();
-  gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
-  gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
-  gtk_box_pack_start (GTK_BOX (hbox), grid, TRUE, FALSE, 0);
-
-  /* Note Font */
-  label = gtk_label_new (_("Note Font"));
-  gtk_widget_set_halign (label, GTK_ALIGN_END);
-  gtk_grid_attach (GTK_GRID (grid), label, 1, 1, 1, 1);
-  picker = gtk_font_button_new_with_font (settings->font);
-  g_signal_connect(picker,"font-set",
-                   G_CALLBACK(on_font_selected),settings);
-  gtk_grid_attach (GTK_GRID (grid), picker, 2, 1, 1, 1);
-
-  /* Default Color */
-  label = gtk_label_new (_("Default Color"));
-  gtk_widget_set_halign (label, GTK_ALIGN_END);
-  gtk_grid_attach (GTK_GRID (grid), label, 1, 2, 1, 1);
-  picker = bjb_color_button_new ();
-  gtk_grid_attach (GTK_GRID (grid), picker, 2, 2, 1, 1);
-  gdk_rgba_parse (&color, settings->color );
-  gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);
-  g_signal_connect (picker, "color-set",
-                    G_CALLBACK(on_color_set), settings);
-
-  /* pack, show, run, kill */
-  gtk_box_pack_start (GTK_BOX (area), vbox, TRUE, TRUE, 0);
-  gtk_widget_show_all (dialog);
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
+  dialog = bjb_settings_dialog_new (parent_window);
+  /* result = */ gtk_dialog_run (dialog);
+  gtk_widget_destroy (GTK_WIDGET (dialog));
 }

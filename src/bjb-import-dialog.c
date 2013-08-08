@@ -300,9 +300,10 @@ add_custom (BjbImportDialog *self)
   priv->cust_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (GTK_BOX (box), priv->cust_box, TRUE, FALSE, 0);
 
-  w = gtk_image_new_from_icon_name ("folder-symbolic", GTK_ICON_SIZE_INVALID);
-  gtk_image_set_pixel_size (GTK_IMAGE (w), 38);
+  w = gtk_image_new_from_icon_name ("folder", GTK_ICON_SIZE_INVALID);
+  gtk_image_set_pixel_size (GTK_IMAGE (w), 48);
   gtk_widget_set_margin_left (w, 12);
+  gtk_widget_set_margin_right (w, 12);
   gtk_container_add (GTK_CONTAINER (priv->cust_box), w);
 
 

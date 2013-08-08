@@ -87,6 +87,16 @@ biji_note_book_init (BijiNoteBook *self)
                                        g_str_equal,
                                        NULL,
                                        g_object_unref);
+
+  /*
+   * Providers are the different notes storage
+   * the hash table use an id
+   * 
+   * - local files stored notes = "local"
+   * - own cloud notes = account_get_id
+   */
+
+  priv->providers = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
 
@@ -101,6 +111,26 @@ TrackerSparqlConnection *
 biji_note_book_get_tracker_connection (BijiNoteBook *book)
 {
   return book->priv->connection;
+}
+
+
+
+GList *
+biji_note_book_get_providers         (BijiNoteBook *book)
+{
+  GList *providers, *l, *retval;
+
+  retval = NULL;
+  providers = g_hash_table_get_values (book->priv->providers);
+
+  for (l = providers; l != NULL; l = l->next)
+  {
+    retval = g_list_prepend (
+               retval, (gpointer) biji_provider_get_info (BIJI_PROVIDER (l->data)));
+  }
+
+  g_list_free (providers);
+  return retval;
 }
 
 
@@ -326,6 +356,14 @@ _add_provider (BijiNoteBook *self,
 {
   g_return_if_fail (BIJI_IS_PROVIDER (provider));
 
+
+  /* we can safely cast get_id from const to gpointer
+   * since there is no key free func */
+
+  const BijiProviderInfo *info;
+
+  info = biji_provider_get_info (provider);
+  g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);
   g_signal_connect (provider, "loaded", 
                     G_CALLBACK (on_provider_loaded_cb), self);
 }
@@ -601,8 +639,11 @@ get_note_skeleton (BijiNoteBook *book)
 }
 
 
-BijiNoteObj *
-biji_note_book_note_new           (BijiNoteBook *book, gchar *str)
+/* 
+ * TODO : move this to local provider.
+ */
+static BijiNoteObj *
+biji_note_book_local_note_new           (BijiNoteBook *book, gchar *str)
 {
   BijiNoteObj *ret = get_note_skeleton (book);
 
@@ -626,3 +667,30 @@ biji_note_book_note_new           (BijiNoteBook *book, gchar *str)
 
   return ret;
 }
+
+
+/* 
+ * Use "local" for a local note new
+ * Use goa_account_get_id for goa
+ */
+BijiNoteObj *
+biji_note_book_note_new            (BijiNoteBook *book,
+                                    gchar        *str,
+                                    gchar        *provider_id)
+{
+  BijiProvider *provider;
+
+  // If we move local_note_new to create_note for local provider
+  // we won't need this stupid switch.
+
+  if (provider_id == NULL ||
+      g_strcmp0 (provider_id, "local") == 0)
+    return biji_note_book_local_note_new (book, str);
+
+
+  provider = g_hash_table_lookup (book->priv->providers,
+                                  provider_id);
+
+  return BIJI_PROVIDER_GET_CLASS (provider)->create_note (provider, str);
+}
+                                    

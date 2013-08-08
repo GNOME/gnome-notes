@@ -46,6 +46,8 @@ struct _BijiNoteBook
   BijiNoteBookPrivate *priv ;
 };
 
+
+
 GType biji_note_book_get_type (void) G_GNUC_CONST; 
 
 
@@ -57,6 +59,9 @@ BijiNoteBook    *biji_note_book_new                   (GFile *location,
 
 void             biji_note_book_add_goa_object        (BijiNoteBook *book,
                                                        GoaObject *object);
+
+/* <ProviderInfo*> */
+GList           *biji_note_book_get_providers         (BijiNoteBook *book);
 
 
 ZeitgeistLog    *biji_note_book_get_zg_log            (BijiNoteBook *book);
@@ -100,9 +105,11 @@ BijiNoteObj     *biji_note_get_new_from_file          (BijiNoteBook *book,
                                                        const gchar* tomboy_format_note_path);
 
 
-/* todo: add optional parameter : LOCAL or GOA */
+
 BijiNoteObj     *biji_note_book_note_new              (BijiNoteBook *book,
-                                                       gchar *str);
+                                                       gchar        *str,
+                                                       gchar        *provider_id);
+
 
 G_END_DECLS
 

@@ -24,6 +24,8 @@
  */
 
 
+
+
 #include "biji-own-cloud-note.h"
 #include "biji-own-cloud-provider.h"
 
@@ -47,6 +49,8 @@ static GParamSpec *properties[OCLOUD_PROV_PROP] = { NULL, };
 
 struct BijiOwnCloudProviderPrivate_
 {
+  BijiProviderInfo info;
+
   GoaObject        *object;
   GoaAccount       *account;
   gchar            *identifier;
@@ -118,6 +122,7 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_free (self->priv->identifier);
   g_object_unref (self->priv->account);
   g_object_unref (self->priv->object);
+  g_object_unref (self->priv->info.icon);
 
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->finalize (object);
 }
@@ -445,13 +450,15 @@ on_notes_mined (GObject       *source_object,
 static void
 mine_notes (gboolean result, gpointer user_data)
 {
-  BijiOwnCloudProvider *self;
-  BijiProvider         *provider;
-  gchar                *query;
+  BijiOwnCloudProvider    *self;
+  BijiProvider            *provider;
+  const BijiProviderInfo  *info;
+  gchar                   *query;
 
 
   self = user_data;
   provider = user_data;
+  info = biji_provider_get_info (provider);
 
   /*
    * We could as well use nie:url to lookup existing db
@@ -466,7 +473,7 @@ mine_notes (gboolean result, gpointer user_data)
 
   query = g_strdup_printf ("SELECT ?url ?urn WHERE {?urn a nfo:Note; "
                            " nie:dataSource '%s' ; nie:url ?url}",
-          BIJI_PROVIDER_GET_CLASS (self)->get_datasource (provider));
+                           info->datasource);
 
   tracker_sparql_connection_query_async (
       biji_note_book_get_tracker_connection (
@@ -592,22 +599,50 @@ static void
 biji_own_cloud_provider_constructed (GObject *obj)
 {
   BijiOwnCloudProvider *self;
+  BijiOwnCloudProviderPrivate *priv;
+  GError *error;
+  GIcon *icon;
 
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->constructed (obj);
 
   self = BIJI_OWN_CLOUD_PROVIDER (obj);
+  priv = self->priv;
+  
 
-  if (!GOA_IS_OBJECT (self->priv->object))
+  if (!GOA_IS_OBJECT (priv->object))
     return;
 
-  self->priv->account = goa_object_get_account (self->priv->object);
+  priv->account = goa_object_get_account (priv->object);
 
-  if (self->priv->account != NULL)
+  if (priv->account != NULL)
   {
-    self->priv->identifier = g_strdup_printf ("gn:goa-account:%s",
-                                  goa_account_get_id (self->priv->account));
+
+    priv->info.unique_id = goa_account_get_id (priv->account);
+    priv->info.datasource = g_strdup_printf ("gn:goa-account:%s",
+                                             priv->info.unique_id);
+    priv->info.name = goa_account_get_provider_name (priv->account);
+
+    error = NULL;
+    icon = g_icon_new_for_string (goa_account_get_provider_icon (priv->account),
+                                  &error);
+    if (error)
+    {
+      g_warning ("%s", error->message);
+      g_error_free (error);
+      priv->info.icon = NULL;
+    }
+
+    else
+    {
+      priv->info.icon = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_INVALID);
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
+      g_object_ref (priv->info.icon);
+    }
+
     get_mount (self);
   }
+
+
 }
 
 
@@ -663,13 +698,46 @@ biji_own_cloud_provider_get_property (GObject    *object,
 }
 
 
-static const gchar *
-own_cloud_get_datasource       (BijiProvider *provider)
+static const BijiProviderInfo *
+own_cloud_get_info       (BijiProvider *provider)
 {
   BijiOwnCloudProvider *self;
 
   self = BIJI_OWN_CLOUD_PROVIDER (provider);
-  return (const gchar *) self->priv->identifier;
+  return &(self->priv->info);
+}
+
+
+
+/* 
+ * Note is created from sratch, without any file or tracker metadata
+ * But as soon as note title changes,
+ * things will go right.
+ * Promise. */
+
+BijiNoteObj *
+own_cloud_create_note         (BijiProvider *provider,
+                               gchar        *str)
+{
+  BijiInfoSet info;
+
+  info.url = NULL;
+  info.title = NULL;
+  info.mtime = g_get_real_time ();
+  info.content = "";
+  info.created = g_get_real_time ();
+
+  return biji_own_cloud_note_new_from_info (
+       BIJI_OWN_CLOUD_PROVIDER (provider),
+       biji_provider_get_book (provider),
+       &info);
+}
+
+
+GFile *
+biji_own_cloud_provider_get_folder     (BijiOwnCloudProvider *provider)
+{
+  return provider->priv->folder;
 }
 
 
@@ -686,7 +754,9 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
   g_object_class->get_property = biji_own_cloud_provider_get_property;
   g_object_class->set_property = biji_own_cloud_provider_set_property;
   g_object_class->constructed = biji_own_cloud_provider_constructed;
-  provider_class->get_datasource = own_cloud_get_datasource;
+
+  provider_class->get_info = own_cloud_get_info;
+  provider_class->create_note = own_cloud_create_note;
 
 
   properties[PROP_GOA_OBJECT] =

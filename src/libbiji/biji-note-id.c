@@ -100,6 +100,7 @@ biji_note_id_set_property  (GObject      *object,
       break;
     case PROP_TITLE:
       biji_note_id_set_title (self, (gchar*) g_value_get_string (value));
+      g_object_notify_by_pspec (object, properties[PROP_TITLE]);
       break;
     case PROP_MTIME:
       self->priv->mtime = g_value_get_int64 (value);
@@ -211,6 +212,7 @@ biji_note_id_set_title  (BijiNoteID *n, gchar* title)
     g_free (n->priv->title);
 
   n->priv->title = g_strdup (title);
+  g_object_notify_by_pspec (G_OBJECT (n), properties[PROP_TITLE]);
 }
 
 

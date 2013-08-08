@@ -19,6 +19,7 @@
 #define BIJI_PROVIDER_H_ 1
 
 #include <glib-object.h>
+#include <glib/gi18n.h>  // translate providers type
 
 #include "../biji-note-book.h"
 
@@ -37,6 +38,20 @@ typedef struct BijiProviderClass_    BijiProviderClass;
 typedef struct BijiProviderPrivate_  BijiProviderPrivate;
 
 
+typedef struct
+{
+  const gchar     *unique_id;  // anything unique, eg, goa_account_get_id
+  const gchar     *datasource; // for tracker
+
+  gchar           *name;       // eg, goa_account_get_provider_name
+  GtkWidget       *icon;
+
+  gchar           *domain;     // todo - distinguish several accounts
+  gchar           *user;       // todo - distinguish several accounts
+
+} BijiProviderInfo;
+
+
 struct BijiProvider_
 {
   GObject parent;
@@ -48,18 +63,29 @@ struct BijiProviderClass_
 {
   GObjectClass parent_class;
 
-  void                 (*notify_loaded)         (BijiProvider *provider,
-                                                 GList *loaded_items);
 
-  const gchar*         (*get_datasource)        (BijiProvider *provider);
+  const BijiProviderInfo*    (*get_info)              (BijiProvider *provider);
+  
+
+  void                       (*notify_loaded)         (BijiProvider *provider,
+                                                       GList *loaded_items);
+
+
+  BijiNoteObj*               (*create_note)           (BijiProvider *provider,
+                                                       gchar        *content);
 };
 
 
-GType                biji_provider_get_type               (void);
 
 
-BijiNoteBook        *biji_provider_get_book                (BijiProvider *provider);
 
+GType                      biji_provider_get_type             (void);
+
+
+BijiNoteBook              *biji_provider_get_book             (BijiProvider *provider);
+
+
+const BijiProviderInfo    *biji_provider_get_info             (BijiProvider *provider);
 
 G_END_DECLS
 

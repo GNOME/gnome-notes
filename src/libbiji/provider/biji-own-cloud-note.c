@@ -68,42 +68,25 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
   BijiOwnCloudNote *ocnote;
   GFile *file;
   GFileInfo *file_info;
+  const BijiProviderInfo *prov_info;
 
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
   item = BIJI_ITEM (note);
   ocnote = BIJI_OWN_CLOUD_NOTE (note);
   file = ocnote->priv->location;
   file_info = g_file_query_info (file, "time::modified", G_FILE_QUERY_INFO_NONE, NULL, NULL);
+  prov_info = biji_provider_get_info (BIJI_PROVIDER (ocnote->priv->prov));
 
   info = biji_info_set_new ();
   info->url = (gchar*) biji_item_get_uuid (item);
   info->title = (gchar*) biji_item_get_title (item);
   info->content = (gchar*) biji_note_obj_get_raw_text (note);
-  //info->mtime = biji_item_get_mtime (item);
   info->mtime = g_file_info_get_attribute_uint64 (file_info, "time::modified");
   info->created = biji_note_obj_get_create_date (note);
-  info->datasource_urn = g_strdup (
-    BIJI_PROVIDER_GET_CLASS (ocnote->priv->prov)->get_datasource (BIJI_PROVIDER (ocnote->priv->prov)));
+  info->datasource_urn = g_strdup (prov_info->datasource);
 
   biji_tracker_ensure_ressource_from_info  (biji_item_get_book (item),
                                             info);
-}
-
-
-/* Notes creation as soon as files content retrieved */
-static void
-on_content_change                   (gpointer    user_data)
-{
-  BijiNoteObj *note;
-  gchar *html;
-
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
-  note = user_data;
-
-  html = html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (user_data));
-
-  ocloud_note_set_html (note, html);
-  g_free (html);
 }
 
 
@@ -137,7 +120,7 @@ on_content_replaced  (GObject *source_object,
 
 
 
-void
+static void
 ocloud_note_save (BijiNoteObj *note)
 {
   BijiOwnCloudNote *self;
@@ -163,6 +146,87 @@ ocloud_note_save (BijiNoteObj *note)
 
   g_string_free (str, FALSE);
 }
+
+
+/* Rename the file
+ * when note title change
+ * Also handle new notes being populated */
+
+static void
+create_new_file (BijiOwnCloudNote *self, const gchar *basename)
+{
+  GFile *folder;
+  BijiNoteObj *note;
+
+  note = BIJI_NOTE_OBJ (self);
+  folder = biji_own_cloud_provider_get_folder (self->priv->prov);
+
+  self->priv->location = g_file_get_child (folder, basename);
+  self->priv->basename = g_file_get_basename (self->priv->location);
+
+  ocloud_note_save (note);
+  ocloud_note_ensure_ressource (note);
+}
+
+
+/* with current design, title might change
+ * from user will or because note is edited */
+
+static void
+on_title_change                     (gpointer    user_data)
+{
+  BijiOwnCloudNote *self;
+  gchar *old_title;
+  const gchar *new_title;
+
+
+  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
+
+  self = BIJI_OWN_CLOUD_NOTE (user_data);
+  old_title = self->priv->basename;
+  new_title = biji_note_id_get_title (self->priv->id);
+
+  
+  if (old_title == NULL)
+  {
+    if (new_title != NULL)
+      create_new_file (self, new_title);
+  }
+
+  else if (g_strcmp0 (old_title, new_title) != 0)
+  {
+    g_file_delete_async (self->priv->location,
+                         G_PRIORITY_LOW,
+                         NULL,
+                         NULL,
+                         NULL);
+    // g_object_unref (self->priv->location);
+    // g_free (self->priv->basename);
+    create_new_file (self, new_title);
+  }
+  
+}
+
+
+/* TODO : check if the title needs change
+ * and adjust */
+
+static void
+on_content_change                   (gpointer    user_data)
+{
+  BijiNoteObj *note;
+  gchar *html;
+
+  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
+
+  note = user_data;
+  html = html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (user_data));
+  ocloud_note_set_html (note, html);
+  g_free (html);
+}
+
+
+
 
 
 
@@ -279,10 +343,24 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
   biji_note_obj_set_create_date (retval, info->created);
   g_signal_connect_swapped (id, "notify::content",
                             G_CALLBACK (on_content_change), retval);
+  g_signal_connect_swapped (id, "notify::title",
+                            G_CALLBACK (on_title_change), retval);
 
+  /* That's not a blank note. That's an existing file. */
 
-  ocloud->priv->location = g_file_new_for_commandline_arg (info->url);
-  ocloud->priv->basename = g_file_get_basename (ocloud->priv->location);
+  if (info->url != NULL)
+  {
+    ocloud->priv->location = g_file_new_for_commandline_arg (info->url);
+    ocloud->priv->basename = g_file_get_basename (ocloud->priv->location);
+  }
+
+  /* Really new note */
+
+  else
+  {
+    ocloud->priv->location = NULL;
+    ocloud->priv->basename = NULL;
+  }
 
   return retval;
 }

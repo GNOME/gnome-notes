@@ -37,7 +37,8 @@
 
 struct BijiLocalProviderPrivate_
 {
-  BijiNoteBook        *book;
+  BijiProviderInfo    info;
+
   GFile               *location;
   GHashTable          *items;
   GCancellable        *load_cancellable;
@@ -274,6 +275,7 @@ biji_local_provider_finalize (GObject *object)
     g_cancellable_cancel (self->priv->load_cancellable);
 
   g_object_unref (self->priv->load_cancellable);
+  g_object_unref (self->priv->info.icon);
 
   G_OBJECT_CLASS (biji_local_provider_parent_class)->finalize (object);
 }
@@ -285,6 +287,15 @@ biji_local_provider_init (BijiLocalProvider *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_LOCAL_PROVIDER, BijiLocalProviderPrivate);
   self->priv->load_cancellable = g_cancellable_new ();
   self->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+
+  /* Info */
+  self->priv->info.unique_id = "local";
+  self->priv->info.name = _("Local storage");
+  self->priv->info.icon =
+      gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
+  gtk_image_set_pixel_size (GTK_IMAGE (self->priv->info.icon), 48);
+  g_object_ref (self->priv->info.icon);
+
 }
 
 
@@ -327,18 +338,32 @@ biji_local_provider_get_property (GObject    *object,
     }
 }
 
+
+const BijiProviderInfo *
+local_provider_get_info (BijiProvider *provider)
+{
+  BijiLocalProvider *self;
+
+  self = BIJI_LOCAL_PROVIDER (provider);
+  return &(self->priv->info);
+}
+
+
 static void
 biji_local_provider_class_init (BijiLocalProviderClass *klass)
 {
   GObjectClass *g_object_class;
+  BijiProviderClass *provider_class;
 
   g_object_class = G_OBJECT_CLASS (klass);
+  provider_class = BIJI_PROVIDER_CLASS (klass);
 
   g_object_class->constructed = biji_local_provider_constructed;
   g_object_class->finalize = biji_local_provider_finalize;
   g_object_class->get_property = biji_local_provider_get_property;
   g_object_class->set_property = biji_local_provider_set_property;
 
+  provider_class->get_info = local_provider_get_info;
 
   properties[PROP_LOCATION] =
     g_param_spec_object ("location",

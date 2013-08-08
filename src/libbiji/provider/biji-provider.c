@@ -64,6 +64,13 @@ biji_provider_get_book                (BijiProvider *provider)
 }
 
 
+const BijiProviderInfo *
+biji_provider_get_info                (BijiProvider *provider)
+{
+  return BIJI_PROVIDER_GET_CLASS (provider)->get_info (provider);
+}
+
+
 static void
 biji_provider_finalize (GObject *object)
 {

@@ -35,7 +35,7 @@
 
 typedef struct
 {
-  /* core (ie, cache). All but content are coomon to bijiIem. */
+  /* core (ie, cache). All but content are common to bijiIem. */
   gchar    *url;
   gchar    *title;
   gint64    mtime;

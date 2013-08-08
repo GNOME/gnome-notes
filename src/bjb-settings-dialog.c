@@ -419,7 +419,8 @@ bjb_settings_dialog_constructed (GObject *object)
   hbox = gtk_grid_new ();
   gtk_widget_set_vexpand (hbox, TRUE);
   gtk_grid_attach (GTK_GRID (hbox), GTK_WIDGET (priv->switcher), 1, 1, 1, 1);
-  gtk_widget_set_valign (GTK_WIDGET (priv->switcher), GTK_ALIGN_CENTER);
+  gtk_widget_set_halign (hbox, GTK_ALIGN_CENTER);
+  gtk_widget_set_valign (hbox, GTK_ALIGN_CENTER);
   gtk_stack_switcher_set_stack (priv->switcher, priv->stack);
 
   grid = gtk_grid_new ();

@@ -42,6 +42,8 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 struct _BjbSelectionToolbarPrivate
 {
+  GtkHeaderBar       *bar;
+
   GtkWidget          *toolbar_trash;
   GtkWidget          *toolbar_color;
   GtkWidget          *toolbar_tag;
@@ -59,7 +61,7 @@ struct _BjbSelectionToolbarPrivate
   GtkWidget          *right_box;
 };
 
-G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_TOOLBAR);
+G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_REVEALER);
 
 
 /*
@@ -71,7 +73,7 @@ G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_TOOLBAR);
 static void
 hide_self (GtkWidget *self)
 {
-  gtk_widget_set_visible (self, FALSE);
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
 }
 
 
@@ -130,14 +132,14 @@ action_delete_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
 static void
 bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
 {
-  gtk_widget_set_opacity (self->priv->widget, 1);
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
 }
 
 
 static void
 bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
 {
-  gtk_widget_set_opacity (self->priv->widget, 0);
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
 }
 
 
@@ -153,19 +155,16 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   priv = self->priv;
   selection = bjb_main_view_get_selected_items (priv->view);
 
-  /* Trash, always */
-  gtk_widget_set_visible (priv->toolbar_trash, TRUE);
-
 
   /* Color */
-  gtk_widget_set_visible (priv->toolbar_color, FALSE);
+  gtk_widget_set_sensitive (priv->toolbar_color, FALSE);
 
 
   for (l=selection; l !=NULL; l=l->next)
   {
     if (!biji_item_has_color (l->data))
     {
-      gtk_widget_set_visible (priv->toolbar_color, FALSE);
+      gtk_widget_set_sensitive (priv->toolbar_color, FALSE);
       break;
     }
 
@@ -174,7 +173,7 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
       if (biji_note_obj_get_rgba (BIJI_NOTE_OBJ (l->data), &color))
       {
         gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->toolbar_color), &color);
-        gtk_widget_set_visible (priv->toolbar_color, TRUE);
+        gtk_widget_set_sensitive (priv->toolbar_color, TRUE);
         break;
       }
     }
@@ -182,13 +181,13 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 
 
   /* Organize */
-  gtk_widget_set_visible (priv->toolbar_tag, TRUE);
+  gtk_widget_set_sensitive (priv->toolbar_tag, TRUE);
 
   for (l=selection; l!=NULL; l=l->next)
   {
     if (!biji_item_is_collectable (l->data))
     {
-      gtk_widget_set_visible (priv->toolbar_tag, FALSE);
+      gtk_widget_set_sensitive (priv->toolbar_tag, FALSE);
       break;
     }
   }
@@ -226,74 +225,38 @@ static void
 bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 {
   BjbSelectionToolbarPrivate *priv;
-  GtkWidget                  *image;
-  GtkStyleContext            *context;
-  GdkRGBA                     color = {0.0, 0.0, 0.0, 0.0};
-  GtkToolbar                 *tlbar;
+  GtkWidget                  *widget;
+  
 
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_SELECTION_TOOLBAR, BjbSelectionToolbarPrivate);
   priv = self->priv;
-  priv->widget = GTK_WIDGET (self);
-  tlbar = GTK_TOOLBAR (self);
+  widget = GTK_WIDGET (self);
 
-  gtk_toolbar_set_show_arrow (tlbar, FALSE);
-  gtk_toolbar_set_icon_size (tlbar, GTK_ICON_SIZE_LARGE_TOOLBAR);
+  gtk_revealer_set_transition_type (
+      GTK_REVEALER (self), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
 
-  gtk_widget_set_halign (priv->widget, GTK_ALIGN_CENTER);
-  gtk_widget_set_valign (priv->widget, GTK_ALIGN_END);
-  gtk_widget_set_margin_bottom (priv->widget, 40);
-  gtk_widget_set_opacity (priv->widget, 0);
-  gtk_widget_set_size_request (priv->widget, 500, -1);
-
-  context = gtk_widget_get_style_context (priv->widget);
-  gtk_style_context_add_class (context, "osd");
-
-  gtk_widget_override_background_color (priv->widget,
-                                        GTK_STATE_FLAG_NORMAL,
-                                        &color);
-
-  priv->left_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  priv->left_group = gtk_tool_item_new ();
-  gtk_container_add (GTK_CONTAINER (priv->left_group), priv->left_box);
-  gtk_toolbar_insert (tlbar, priv->left_group, -1);
-  gtk_widget_show_all (GTK_WIDGET (priv->left_group));
+  priv->bar = GTK_HEADER_BAR (gtk_header_bar_new ());
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->bar));
 
   /* Trash notes */
-  priv->toolbar_trash = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("user-trash-symbolic", GTK_ICON_SIZE_INVALID);
-  gtk_image_set_pixel_size (GTK_IMAGE (image), 32);
-  gtk_container_add (GTK_CONTAINER (priv->toolbar_trash), image);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_trash), _("Delete"));
-  gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_trash);
+  priv->toolbar_trash = gtk_button_new_with_label (_("Delete"));
+  gtk_header_bar_pack_start (priv->bar, priv->toolbar_trash);
+
 
   /* Notes color */
   priv->toolbar_color = bjb_color_button_new ();
-  gtk_container_add (GTK_CONTAINER (priv->left_box), priv->toolbar_color);
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_color),
                                _("Note color"));
+  gtk_header_bar_pack_end (priv->bar, priv->toolbar_color);
 
-  priv->separator = gtk_separator_tool_item_new ();
-  gtk_separator_tool_item_set_draw (GTK_SEPARATOR_TOOL_ITEM (priv->separator), FALSE);
-  gtk_widget_set_visible (GTK_WIDGET (priv->separator), TRUE);
-  gtk_tool_item_set_expand (priv->separator, TRUE);
-  gtk_toolbar_insert (tlbar, priv->separator, -1);
-
-  priv->right_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  priv->right_group = gtk_tool_item_new ();
-  gtk_container_add (GTK_CONTAINER (priv->right_group), priv->right_box);
-  gtk_toolbar_insert (tlbar, priv->right_group, -1);
-  gtk_widget_show_all (GTK_WIDGET (priv->right_group));
 
   /* Notes tags */
-  priv->toolbar_tag = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("list-add-symbolic", GTK_ICON_SIZE_INVALID);
-  gtk_image_set_pixel_size (GTK_IMAGE (image), 32);
-  gtk_container_add (GTK_CONTAINER (priv->toolbar_tag), image);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_tag),
-                               _("Edit collections"));
-  gtk_container_add (GTK_CONTAINER (priv->right_box), priv->toolbar_tag);
+  priv->toolbar_tag = gtk_button_new_with_label (_("Add to Collection"));
+  gtk_header_bar_pack_end (priv->bar, priv->toolbar_tag);
 
-  gtk_widget_show_all (priv->widget);
+
+  gtk_widget_show_all (widget);
+  bjb_selection_toolbar_fade_out (self);
 }
 
 static void

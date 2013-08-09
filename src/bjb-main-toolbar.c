@@ -321,22 +321,21 @@ update_selection_buttons (BjbController *controller,
 static void
 populate_bar_for_selection (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
-  GtkStyleContext *context;
+  BjbMainToolbarPrivate *priv;
+
+  priv = self->priv;
 
   /* Search button */
   add_search_button (self);
 
   /* Select */
-  priv->select = gtk_button_new_with_mnemonic (_("Done"));
+  priv->select = gtk_button_new_with_mnemonic (_("Cancel"));
   gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
                                "text-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
 
   gtk_widget_set_tooltip_text (priv->select, _("Exit selection mode"));
-  context = gtk_widget_get_style_context (priv->select);
-  gtk_style_context_add_class (context, "suggested-action");
   gtk_widget_reset_style (priv->select);
 
   g_signal_connect (priv->select, "clicked",

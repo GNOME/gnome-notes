@@ -41,13 +41,13 @@ typedef struct _BjbSelectionToolbarPrivate BjbSelectionToolbarPrivate;
 
 struct _BjbSelectionToolbar
 {
-  GtkToolbar parent_instance;
+  GtkRevealer parent_instance;
   BjbSelectionToolbarPrivate *priv;
 };
 
 struct _BjbSelectionToolbarClass
 {
-  GtkToolbarClass parent_class;
+  GtkRevealerClass parent_class;
 };
 
 GType bjb_selection_toolbar_get_type (void) G_GNUC_CONST;

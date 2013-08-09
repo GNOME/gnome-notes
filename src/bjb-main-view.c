@@ -448,13 +448,9 @@ bjb_main_view_constructed(GObject *o)
   priv->view = gd_main_view_new (DEFAULT_VIEW);
 
   /* Main view */
-  overlay = GTK_OVERLAY (gtk_overlay_new ());
-
   gd_main_view_set_selection_mode (priv->view, FALSE);
   gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
-
-  gtk_container_add (GTK_CONTAINER (overlay), GTK_WIDGET (priv->view));
-  gtk_box_pack_start (vbox, GTK_WIDGET (overlay), TRUE, TRUE, 0);
+  gtk_box_pack_start (vbox, GTK_WIDGET (priv->view), TRUE, TRUE, 0);
 
   /* Load more */
   priv->load_more = bjb_load_more_button_new (priv->controller);
@@ -462,7 +458,7 @@ bjb_main_view_constructed(GObject *o)
 
   /* Selection Panel */
   priv->select_bar = bjb_selection_toolbar_new (priv->view, self);
-  gtk_overlay_add_overlay (overlay, GTK_WIDGET (priv->select_bar));
+  gtk_box_pack_start (vbox, priv->select_bar, FALSE, FALSE, 0);
 
   /* Drag n drop */
   gtk_drag_dest_set (GTK_WIDGET (priv->view), GTK_DEST_DEFAULT_ALL,

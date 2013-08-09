@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-31 17:32+0300\n"
-"PO-Revision-Date: 2013-07-31 17:34+0300\n"
+"POT-Creation-Date: 2013-08-09 12:31+0300\n"
+"PO-Revision-Date: 2013-08-09 12:32+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer\n"
 "Language: he\n"
@@ -15,15 +15,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
-"X-Poedit-Language: Hebrew\n"
-"X-Poedit-Country: ISRAEL\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:426
-#: ../src/bjb-main-toolbar.c:773 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:429
+#: ../src/bjb-main-toolbar.c:776 ../src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "פתקיות"
 
@@ -54,33 +52,33 @@ msgid "Note Color"
 msgstr "צבע הפתקית"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:363
+#: ../src/bjb-editor-toolbar.c:367
 msgid "Cut"
 msgstr "גזירה"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:370
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Copy"
 msgstr "העתקה"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:377
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Paste"
 msgstr "הדבקה"
 
-#: ../src/bjb-editor-toolbar.c:392
+#: ../src/bjb-editor-toolbar.c:396
 msgid "Bold"
 msgstr "מודגש"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:407
 msgid "Italic"
 msgstr "נטוי"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:418
 msgid "Strike"
 msgstr "קו חוצה"
 
-#: ../src/bjb-editor-toolbar.c:446
+#: ../src/bjb-editor-toolbar.c:450
 msgid "Copy selection to a new note"
 msgstr "העתקת הבחירה לפתקית חדשה"
 
@@ -108,31 +106,31 @@ msgstr "אופס,"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "נא להתקין את „Tracker“ ואז להפעיל מחדש את היישום."
 
-#: ../src/bjb-import-dialog.c:309
+#: ../src/bjb-import-dialog.c:310
 msgid "Custom Location"
 msgstr "מיקום מותאם אישית"
 
-#: ../src/bjb-import-dialog.c:404
+#: ../src/bjb-import-dialog.c:405
 msgid "Import Notes"
 msgstr "יבוא פתקיות"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "_ביטול"
 
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:410
 msgid "Import"
 msgstr "יבוא"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:421
 msgid "Select import location"
 msgstr "בחירת מיקום הייבוא"
 
-#: ../src/bjb-import-dialog.c:440
+#: ../src/bjb-import-dialog.c:441
 msgid "Tomboy application"
 msgstr "היישום Tomboy"
 
-#: ../src/bjb-import-dialog.c:446
+#: ../src/bjb-import-dialog.c:447
 msgid "Gnote application"
 msgstr "היישום Gnote"
 
@@ -144,102 +142,102 @@ msgstr "טעינת עוד"
 msgid "Loading..."
 msgstr "בטעינה…"
 
-#: ../src/bjb-main-toolbar.c:139
+#: ../src/bjb-main-toolbar.c:143
 msgid "Click on items to select them"
 msgstr "יש ללחוץ על פריטים כדי לבחור אותם"
 
-#: ../src/bjb-main-toolbar.c:141
+#: ../src/bjb-main-toolbar.c:145
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "אחת נבחרה"
 msgstr[1] "%d נבחרו"
 
-#: ../src/bjb-main-toolbar.c:268
+#: ../src/bjb-main-toolbar.c:272
 msgid "Search note titles, content and collections"
 msgstr "חיפוש בכותרות, בתוכן ובאוספים של הפתקיות"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:327
-msgid "Done"
-msgstr "בוצע"
+#: ../src/bjb-main-toolbar.c:332
+msgid "Cancel"
+msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:338
 msgid "Exit selection mode"
 msgstr "יציאה ממצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:365
+#: ../src/bjb-main-toolbar.c:368
 #, c-format
 msgid "Results for %s"
 msgstr "תוצאות עבור %s"
 
-#: ../src/bjb-main-toolbar.c:368
+#: ../src/bjb-main-toolbar.c:371
 msgid "New and Recent"
 msgstr "חדש ואחרונים"
 
-#: ../src/bjb-main-toolbar.c:442
+#: ../src/bjb-main-toolbar.c:445
 msgid "New"
 msgstr "חדש"
 
-#: ../src/bjb-main-toolbar.c:469
+#: ../src/bjb-main-toolbar.c:472
 msgid "Selection mode"
 msgstr "מצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:497
+#: ../src/bjb-main-toolbar.c:500
 msgid "View notes and collections in a list"
 msgstr "צפייה בפתקיות ובאוספים ברשימה"
 
-#: ../src/bjb-main-toolbar.c:521
+#: ../src/bjb-main-toolbar.c:524
 msgid "View notes and collections in a grid"
 msgstr "צפייה בפתקיות ובאוספים בתצוגת רשת"
 
-#: ../src/bjb-main-toolbar.c:650
+#: ../src/bjb-main-toolbar.c:653
 msgid "Rename Note"
 msgstr "שינוי שם הפתקית"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:671
+#: ../src/bjb-main-toolbar.c:674
 msgid "Undo"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:679
+#: ../src/bjb-main-toolbar.c:682
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:694
+#: ../src/bjb-main-toolbar.c:697
 msgid "Bullets"
 msgstr "תבליטים"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:701
+#: ../src/bjb-main-toolbar.c:704
 msgid "Numbered List"
 msgstr "רשימה ממוספרת"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:713
+#: ../src/bjb-main-toolbar.c:716
 msgid "Rename"
 msgstr "שינוי שם"
 
-#: ../src/bjb-main-toolbar.c:721 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:724 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "אוספים"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:733
+#: ../src/bjb-main-toolbar.c:736
 msgid "Delete this Note"
 msgstr "מחיקת פתקית זו"
 
-#: ../src/bjb-main-toolbar.c:809 ../src/bjb-selection-toolbar.c:273
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:249
 msgid "Note color"
 msgstr "צבע הפתקית"
 
-#: ../src/bjb-main-toolbar.c:836
+#: ../src/bjb-main-toolbar.c:839
 msgid "Share note"
 msgstr "שיתוף הפתקית"
 
-#: ../src/bjb-main-toolbar.c:857
+#: ../src/bjb-main-toolbar.c:860
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
@@ -252,7 +250,7 @@ msgid "New collection"
 msgstr "אוסף חדש"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
 msgid "_Close"
 msgstr "_סגירה"
 
@@ -265,28 +263,33 @@ msgstr "העדכון האחרון"
 msgid "_OK"
 msgstr "_אישור"
 
-#: ../src/bjb-selection-toolbar.c:266
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:242
 msgid "Delete"
 msgstr "מחיקה"
 
-#: ../src/bjb-selection-toolbar.c:293
-msgid "Edit collections"
-msgstr "עריכת אוספים"
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:254
+msgid "Add to Collection"
+msgstr "הוספה לאוסף"
 
-#. create dialog
-#: ../src/bjb-settings.c:191
-msgid "Preferences"
-msgstr "העדפות"
-
-#. Note Font
-#: ../src/bjb-settings.c:222
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
 msgid "Note Font"
 msgstr "גופן הפתקית"
 
-#. Default Color
-#: ../src/bjb-settings.c:231
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
 msgid "Default Color"
 msgstr "צבע הפתקית"
+
+#: ../src/bjb-settings-dialog.c:437
+msgid "Note Edition"
+msgstr "מהדורת הפתקית"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "ספר ראשי"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -312,6 +315,10 @@ msgstr "השנה"
 msgid "Unknown"
 msgstr "לא ידוע"
 
+#: ../src/libbiji/provider/biji-local-provider.c:293
+msgid "Local storage"
+msgstr "אחסון מקומי"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_חלון חדש"
@@ -335,6 +342,12 @@ msgstr "ע_זרה"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "י_ציאה"
+
+#~ msgid "Done"
+#~ msgstr "בוצע"
+
+#~ msgid "Preferences"
+#~ msgstr "העדפות"
 
 #~ msgid "Bijiben"
 #~ msgstr "פתקיות"

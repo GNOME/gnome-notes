@@ -1,3 +1,19 @@
+Overview of changes in 3.8.4
+============================
+
+* Bug Fixes
+  Set button arrow icons direction (Yosef Or Boczko)
+  Make titlebar translatable (Jiro Matsuzawa)
+  Add url to About Dialog (Jeremy Bicha)
+  Ship a HighContrast icon
+
+* Translations
+  Updated Brazilian Portuguese translation (Rafael Ferreira)
+  Updated Czech translation (Marek Černocký)
+  Updated Polish translation (Piotr Drąg)
+  Updated Slovenian translation (Matej Urbančič)
+  Updated Spanish translation (Daniel Mustieles)
+
 Overview of changes in 3.8.3
 ============================
 

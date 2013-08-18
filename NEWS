@@ -1,3 +1,29 @@
+Overview of changes in 3.9.90
+=============================
+
+* Settings: revamp the window to add primary book choice
+* Selection toolbar: update to newer design
+
+* Bug Fixes
+  * <name> must match the exact repository's name (Andrea Veri)
+  * fix the import dialog icon for folders
+
+* Translations
+  Updated Brazilian Portuguese translation (Rafael Ferreira)
+  Update Chinese simplified translation (tuhaihe)
+  Updated Czech translation (Marek Černocký)
+  Updated Galician translations (Fran Diéguez)
+  Updated German translation (Benjamin Steinwender)
+  Updated Hebrew translation (Yaron Shahrabani)
+  Updated Hungarian translation (Gabor Kelemen)
+  Updated Lithuanian translation (Aurimas Černius)
+  Updated Norwegian bokmål translation (Kjartan Maraas)
+  Updated Slovenian translation (Matej Urbančič)
+  Updated Spanish translation (Daniel Mustieles)
+  Updated Tajik translation (Victor Ibragimov)
+  Updated Traditional Chinese translation (Chao-Hsiung Liao)
+
+
 Overview of changes in 3.9.5
 ============================
 

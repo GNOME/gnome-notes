@@ -3,29 +3,37 @@
       type="guide" id="index">
 
   <info>
-    <revision pkgversion="3.8" date="2013-04-29" status="review"/>
-
+    <title type="link">Notes</title>
+    <title type="text">Notes</title>
+    <revision pkgversion="3.8" date="2013-04-29" status="outdated"/>
+    <revision pkgversion="3.10" date="2013-07-23" status="review"/>
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
+      <email its:translate="no">py@luyten.fr</email>
       <years>2012</years>
     </credit>
-
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
-
   </info>
 
-  <title>Notes Help</title>
+  <title>
+  <media type="image" mime="image/png" src="figures/HighContrast_apps_scalable_bijiben.svg"
+  its:translate="no"/>
+  Notes
+  </title>
 
-  <section id="introduction">
-    <title>Introduction</title>
-    <media type="image" src="figures/bijiben-note.png" mime="image/png">
-      <p>Screenshot of a note in Notes.</p>
-    </media>
-    <p><app>Notes</app> is a simple note keeping application.</p>
+  <section id="create" style= "2column">
+    <title>Create notes</title>
   </section>
-
-  <section id="create"><title>Create notes</title></section>
-  <section id="use"><title>Edit and share notes</title></section>
-  <section id="delete"><title>Delete notes</title></section>
+  <section id="use" style= "2column">
+    <title>Edit and share notes</title>
+  </section>
+  <section id="delete" style= "2column">
+    <title>Delete notes</title>
+  </section>
 
 </page>

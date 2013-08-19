@@ -1,0 +1,32 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic" style="task"
+      id="rename">
+
+  <info>
+    <link type="guide" xref="index#create"/>
+    <revision pkgversion="3.8" date="2013-08-11" status="review"/>
+
+    <credit type="author">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Change the name of an existing note.</desc>
+  </info>
+
+  <title>Rename a note</title>
+  <steps>
+    <item>
+      <p>To rename a note, select <guiseq><gui style="button">More
+      options…</gui><gui style="menuitem">Rename</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Type a name you wish to give to your note and press
+      <gui style="button">OK</gui>.</p>
+    </item>
+  </steps>
+</page>

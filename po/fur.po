@@ -1,0 +1,343 @@
+# Friulian translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Fabio Tomat <f.t.public@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-08-20 00:01+0000\n"
+"PO-Revision-Date: 2013-08-20 14:11+0100\n"
+"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
+"Language-Team: Friulian <fur@li.org>\n"
+"Language: fur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:429
+#: ../src/bjb-main-toolbar.c:776 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Notis"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "notis;promemorie;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Publiche notis, etichete file"
+
+#: ../data/bijiben.desktop.in.in.h:4
+#, fuzzy
+msgid "Note-taker"
+msgstr "Cjape-note"
+
+#: ../src/bjb-app-menu.c:36
+msgid "Simple notebook for GNOME"
+msgstr ""
+
+#: ../src/bjb-app-menu.c:40
+msgid "translator-credits"
+msgstr "Fabio Tomat"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr ""
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:367
+msgid "Cut"
+msgstr "Tae"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:374
+msgid "Copy"
+msgstr "Copie"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Paste"
+msgstr "Tache"
+
+#: ../src/bjb-editor-toolbar.c:396
+msgid "Bold"
+msgstr "Gruessut "
+
+#: ../src/bjb-editor-toolbar.c:407
+msgid "Italic"
+msgstr "Corsîf"
+
+#: ../src/bjb-editor-toolbar.c:418
+msgid "Strike"
+msgstr "Stricât"
+
+#: ../src/bjb-editor-toolbar.c:450
+msgid "Copy selection to a new note"
+msgstr "Copie la selezion intune gnove note"
+
+#: ../src/bjb-empty-results-box.c:102
+msgid "No Notes Found"
+msgstr "Nissune note cjatade"
+
+#: ../src/bjb-empty-results-box.c:142
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"La tô colezion di notis a je vueide.\n"
+"Sclice il boton Gnove par creâ la tô prime note."
+
+#: ../src/bjb-empty-results-box.c:148
+msgid "No result found for this research."
+msgstr "Nissun risultât cjatât par cheste ricercje."
+
+#: ../src/bjb-empty-results-box.c:160
+msgid "Oops, "
+msgstr "Orpo, "
+
+#: ../src/bjb-empty-results-box.c:168
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Par plasê instale 'Tracker' e dopo torne invie le aplicazion."
+
+#: ../src/bjb-import-dialog.c:310
+msgid "Custom Location"
+msgstr ""
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import Notes"
+msgstr "Impuarte notis"
+
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/bjb-import-dialog.c:410
+msgid "Import"
+msgstr "Impuarte"
+
+#: ../src/bjb-import-dialog.c:421
+msgid "Select import location"
+msgstr ""
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "Aplicazion Tomboy"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "Aplicazion Gnote"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Cjame ancjemò"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Cjamant..."
+
+#: ../src/bjb-main-toolbar.c:143
+msgid "Click on items to select them"
+msgstr "Sclice sui elements par selezionaju"
+
+#: ../src/bjb-main-toolbar.c:145
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d selezionât"
+msgstr[1] "%d selezionâts"
+
+#: ../src/bjb-main-toolbar.c:272
+msgid "Search note titles, content and collections"
+msgstr "Cîr titui, contignûts e colezions dais notis"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:332
+msgid "Cancel"
+msgstr ""
+
+#: ../src/bjb-main-toolbar.c:338
+msgid "Exit selection mode"
+msgstr "Jes de modalitât selezion"
+
+#: ../src/bjb-main-toolbar.c:368
+#, c-format
+msgid "Results for %s"
+msgstr "Risultâts par %s"
+
+#: ../src/bjb-main-toolbar.c:371
+msgid "New and Recent"
+msgstr "Gnovis e recentis"
+
+#: ../src/bjb-main-toolbar.c:445
+msgid "New"
+msgstr "Gnove"
+
+#: ../src/bjb-main-toolbar.c:472
+msgid "Selection mode"
+msgstr "Modalitât selezion"
+
+#: ../src/bjb-main-toolbar.c:500
+msgid "View notes and collections in a list"
+msgstr "Mostre notis e colezions intune liste"
+
+#: ../src/bjb-main-toolbar.c:524
+msgid "View notes and collections in a grid"
+msgstr "Mostre notis e colezions intune gridele"
+
+#: ../src/bjb-main-toolbar.c:653
+msgid "Rename Note"
+msgstr ""
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:674
+msgid "Undo"
+msgstr "Anule"
+
+#: ../src/bjb-main-toolbar.c:682
+msgid "Redo"
+msgstr "Torne fâ"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:697
+msgid "Bullets"
+msgstr "Liste pontade"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:704
+msgid "Numbered List"
+msgstr "Liste numerade"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-main-toolbar.c:716
+msgid "Rename"
+msgstr ""
+
+#: ../src/bjb-main-toolbar.c:724 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Colezions"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:736
+msgid "Delete this Note"
+msgstr "Elimine cheste note"
+
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:249
+msgid "Note color"
+msgstr "Colôr de note"
+
+#: ../src/bjb-main-toolbar.c:839
+msgid "Share note"
+msgstr "Condivît note"
+
+#: ../src/bjb-main-toolbar.c:860
+msgid "More options…"
+msgstr "Plui opzions..."
+
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Scrîf un non par creâ une colezion"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Gnove colezion"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+msgid "_Close"
+msgstr "_Siere"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:228
+msgid "Last updated "
+msgstr "Ultime modifiche"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
+
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:242
+msgid "Delete"
+msgstr "Elimine"
+
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:254
+msgid "Add to Collection"
+msgstr "Zonte ae colezion"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
+msgid "Note Font"
+msgstr "Tipo di caratar de note"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
+msgid "Default Color"
+msgstr "Colôr predefinît"
+
+#: ../src/bjb-settings-dialog.c:437
+msgid "Note Edition"
+msgstr "Edizion de note"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr ""
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Vuê"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Îr"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Cheste setemane"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Chest mês"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Chest an"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "No cognossût"
+
+#: ../src/libbiji/provider/biji-local-provider.c:293
+msgid "Local storage"
+msgstr ""
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "G_nûf balcon"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "_Impuartâ notis"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Preferencis"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Notes"
+msgstr ""
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Jutori"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "J_es"

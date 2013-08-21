@@ -24,14 +24,13 @@
   </info>
 
   <title>
-    Inroduction to Notes
+    Introduction to Notes
   </title>
 
   <p><app>Notes</app> is a simple application for creating, editing, and
   viewing notes. You can search for a note from the <gui>Activities</gui>
   overview too. <app>Notes</app> integrates easily with the online accounts.</p>
 
-  <media type="image" mime="image/png" src="figures/notes-scr.png"
-  width="520" height="310"/>
+  <media type="image" mime="image/png" src="figures/notes-scr.png"/>
 
 </page>

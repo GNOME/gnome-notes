@@ -414,7 +414,7 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
 
   if (error)
   {
-     g_error ("%s", error->message);
+     g_message ("%s", error->message);
   }
 }
 

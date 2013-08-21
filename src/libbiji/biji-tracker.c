@@ -118,7 +118,7 @@ biji_finish_update (GObject *source_object,
   GError *error;
   gchar *query;
 
-  g_warning ("biji finish update");
+
   self = TRACKER_SPARQL_CONNECTION (source_object);
   finisher = user_data;
   error = NULL;
@@ -137,7 +137,6 @@ biji_finish_update (GObject *source_object,
     finisher->bool_cb (TRUE, finisher->user_data);
 
   biji_tracker_finisher_free (finisher);
-  g_warning ("biji finish update  = done");
 }
 
 
@@ -663,7 +662,7 @@ update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
   created = g_time_val_to_iso8601 (&t);
   content = tracker_str (info->content);
 
-  g_warning ("ENSURE RESSOURCE: *UPDATING* ressource:%s:%s", info->title, tracker_urn_uuid);
+  g_message ("Updating ressource <%s> %s", info->title, tracker_urn_uuid);
 
   query = g_strdup_printf (
       "INSERT OR REPLACE { <%s> a nfo:Note , nie:DataObject ; "
@@ -702,7 +701,7 @@ push_new_note (BijiTrackerFinisher *finisher)
 
   book = finisher->book;
   info = finisher->info;
-  g_warning ("ENSURE RESSOURCE: pushing *NEW* ressource...");
+  g_message ("Creating ressource <%s> %s", info->title, info->url);
 
   content = tracker_str (info->content);
   t.tv_usec = 0;

@@ -174,7 +174,6 @@ biji_note_book_set_property (GObject      *object,
       self->priv->color.blue = color->blue;
       self->priv->color.green = color->green;
       self->priv->color.alpha = color->alpha;
-      g_warning ("book color is not done :%s", gdk_rgba_to_string (&self->priv->color));
       break;
 
     default:

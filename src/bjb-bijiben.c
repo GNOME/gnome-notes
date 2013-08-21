@@ -325,7 +325,7 @@ on_client_got (GObject *source_object,
 
       if (g_strcmp0 (type, "owncloud") ==0)
       {
-        g_warning ("%s", goa_account_get_id (account));
+        g_message ("Loading account %s", goa_account_get_id (account));
         biji_note_book_add_goa_object (self->priv->book, object);
       }
 
@@ -391,7 +391,7 @@ bijiben_startup (GApplication *application)
 
   g_object_get (self->priv->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
-  g_warning ("bijiben wants color %s", default_color);
+
   error = NULL;
   self->priv->book = biji_note_book_new (storage, &color, &error);
   if (error)

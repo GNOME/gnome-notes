@@ -93,7 +93,7 @@ action_color_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
       biji_note_obj_set_rgba (l->data, &color);
   }
 
-
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);
 }
 
@@ -107,6 +107,7 @@ action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
   bjb_note_tag_dialog_new
     (GTK_WINDOW (bjb_main_view_get_window (self->priv->view)), selection);
 
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);
 }
 
@@ -125,6 +126,7 @@ action_delete_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
     biji_note_book_remove_item (book, BIJI_ITEM (l->data));
   }
 
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);
 }
 

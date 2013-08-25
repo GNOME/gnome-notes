@@ -342,8 +342,6 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
 
   search_container = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, GTK_ALIGN_CENTER);
   gtk_container_add (GTK_CONTAINER (item), search_container);
-  context = gtk_widget_get_style_context (GTK_WIDGET (search_container));
-  gtk_style_context_add_class (context, "linked");
 
   priv->entry = gd_tagged_entry_new ();
   g_object_set (priv->entry, "width_request", 500, NULL);

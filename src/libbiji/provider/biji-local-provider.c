@@ -183,7 +183,8 @@ enumerate_next_files_ready_cb (GObject *source,
       info.mtime = 0;
 
 
-      note = biji_local_note_new_from_info (biji_provider_get_book (BIJI_PROVIDER (self)),
+      note = biji_local_note_new_from_info (BIJI_PROVIDER (self),
+                                            biji_provider_get_book (BIJI_PROVIDER (self)),
                                             &info);
       biji_lazy_deserialize (note);
 
@@ -284,17 +285,21 @@ biji_local_provider_finalize (GObject *object)
 static void
 biji_local_provider_init (BijiLocalProvider *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_LOCAL_PROVIDER, BijiLocalProviderPrivate);
-  self->priv->load_cancellable = g_cancellable_new ();
-  self->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+  BijiLocalProviderPrivate *priv;
+
+  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_LOCAL_PROVIDER, BijiLocalProviderPrivate);
+  priv->load_cancellable = g_cancellable_new ();
+  priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
 
   /* Info */
-  self->priv->info.unique_id = "local";
-  self->priv->info.name = _("Local storage");
-  self->priv->info.icon =
-      gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
-  gtk_image_set_pixel_size (GTK_IMAGE (self->priv->info.icon), 48);
-  g_object_ref (self->priv->info.icon);
+  priv->info.unique_id = "local";
+  priv->info.datasource = g_strdup_printf ("local:%s",
+                                           priv->info.unique_id);
+  priv->info.name = _("Local storage");
+  priv->info.icon =
+    gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
+  gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
+  g_object_ref (priv->info.icon);
 
 }
 

@@ -21,6 +21,8 @@
 
 struct BijiLocalNotePrivate_
 {
+  BijiProvider *provider;
+
   GFile *location;
   gchar *basename;
   gchar *html;
@@ -57,10 +59,32 @@ local_note_set_html (BijiNoteObj *note,
 void
 local_note_save (BijiNoteObj *note)
 {
+  const BijiProviderInfo *prov_info;
+  BijiInfoSet *info;
+  BijiItem *item;
+  BijiLocalNote *self;
+
   g_return_if_fail (BIJI_IS_LOCAL_NOTE (note));
 
+  self = BIJI_LOCAL_NOTE (note);
+  item = BIJI_ITEM (note);
+
+  /* File save */
   biji_lazy_serialize (note);
-  bijiben_push_note_to_tracker (note);
+
+  /* Tracker */
+  prov_info = biji_provider_get_info (self->priv->provider);
+  info = biji_info_set_new ();
+
+  info->url = (gchar*) biji_item_get_uuid (item);
+  info->title = (gchar*) biji_item_get_title (item);
+  info->content = (gchar*) biji_note_obj_get_raw_text (note);
+  info->mtime = biji_item_get_mtime (item);
+  info->created = biji_note_obj_get_create_date (note);
+  info->datasource_urn = g_strdup (prov_info->datasource);
+
+  biji_tracker_ensure_ressource_from_info  (biji_item_get_book (item),
+                                            info);
 }
 
 
@@ -191,7 +215,9 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
 
 
 BijiNoteObj *
-biji_local_note_new_from_info   (BijiNoteBook *book, BijiInfoSet *set)
+biji_local_note_new_from_info   (BijiProvider *provider,
+                                 BijiNoteBook *book,
+                                 BijiInfoSet *set)
 {
   BijiNoteID *id;
   BijiNoteObj *obj;
@@ -207,6 +233,7 @@ biji_local_note_new_from_info   (BijiNoteBook *book, BijiInfoSet *set)
   local = BIJI_LOCAL_NOTE (obj);
   local->priv->location = g_file_new_for_commandline_arg (set->url);
   local->priv->basename = g_file_get_basename (local->priv->location);
+  local->priv->provider = provider;
 
   return obj;
 }

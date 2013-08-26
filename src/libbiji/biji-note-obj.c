@@ -312,7 +312,8 @@ biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
   {
     title = biji_note_book_get_unique_title (
               biji_item_get_book (BIJI_ITEM (note)), proposed_title);
-    biji_note_id_set_last_metadata_change_date (note->priv->id, g_get_real_time ());
+    biji_note_id_set_last_metadata_change_date (note->priv->id,
+                                                g_get_real_time () / G_USEC_PER_SEC);
   }
 
   /* Otherwise it's up to the caller to sanitize its title */
@@ -423,7 +424,7 @@ biji_note_obj_set_rgba (BijiNoteObj *n, GdkRGBA *rgba)
     biji_note_obj_clear_icons (n);
     biji_note_obj_set_rgba_internal (n, rgba);
 
-    biji_note_id_set_last_metadata_change_date (n->priv->id, g_get_real_time ());
+    biji_note_id_set_last_metadata_change_date (n->priv->id, g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (n);
   }
 }
@@ -514,7 +515,8 @@ biji_note_obj_add_collection (BijiItem *item,
   {
     biji_push_existing_collection_to_note (
       note, label, _biji_collection_refresh, collection); // Tracker
-    biji_note_id_set_last_metadata_change_date (note->priv->id, g_get_real_time ());
+    biji_note_id_set_last_metadata_change_date (note->priv->id,
+                                                g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (note);
   }
 
@@ -534,7 +536,8 @@ biji_note_obj_remove_collection (BijiItem *item, BijiItem *collection)
   {
     biji_remove_collection_from_note (
       note, collection, _biji_collection_refresh, collection); // tracker.
-    biji_note_id_set_last_metadata_change_date (note->priv->id, g_get_real_time ());
+    biji_note_id_set_last_metadata_change_date (note->priv->id,
+                                                g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (note);
     return TRUE;
   }
@@ -771,7 +774,7 @@ biji_note_obj_set_all_dates_now             (BijiNoteObj *note)
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   id = note->priv->id;
-  time = g_get_real_time ();
+  time = g_get_real_time () / G_USEC_PER_SEC;
   biji_note_id_set_create_date (id, time);
   biji_note_id_set_last_metadata_change_date (id, time);
   biji_note_id_set_mtime (id, time);

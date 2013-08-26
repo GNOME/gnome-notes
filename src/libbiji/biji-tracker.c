@@ -169,14 +169,6 @@ tracker_str (const gchar * string )
 }
 
 
-static gchar *
-to_8601_date( gchar * dot_iso_8601_date )
-{
-  gchar *result = dot_iso_8601_date ;
-  return g_strdup_printf ( "%sZ",
-                           g_utf8_strncpy  (result ,dot_iso_8601_date, 19) );
-}
-
 
 static gchar *
 get_note_url (BijiNoteObj *note)
@@ -577,61 +569,6 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 }
 
 
-void
-bijiben_push_note_to_tracker (BijiNoteObj *note)
-{
-  gchar *title,*content,*file, *date, *create_date,*last_change_date;
-  const gchar *path;
-  GTimeVal time = {0, 0};
-  BijiItem *item;
-
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
-
-  item = BIJI_ITEM (note);
-  path = biji_item_get_uuid (item);
-  title = tracker_str (biji_item_get_title (item));
-  file = get_note_url (note);
-
-  time.tv_sec = biji_note_obj_get_create_date (note) / G_USEC_PER_SEC;
-  date = g_time_val_to_iso8601 (&time);
-  create_date = to_8601_date (date);
-  g_free (date);
-
-
-  time.tv_sec = biji_note_obj_get_create_date (note) / G_USEC_PER_SEC;
-  date = g_time_val_to_iso8601 (&time);
-  last_change_date = to_8601_date (date);
-  g_free (date);
-
-  content = tracker_str (biji_note_obj_get_raw_text (note));
-
-  /* TODO : nie:mimeType Note ;
-   * All these properties are unique and thus can be "updated"
-   * which is not the case of tags */
-  gchar *query = g_strdup_printf (
-                           "INSERT OR REPLACE { <%s> a nfo:Note , nie:DataObject ; \
-                            nie:url '%s' ; \
-                            nie:contentLastModified '%s' ; \
-                            nie:contentCreated '%s' ; \
-                            nie:title '%s' ; \
-                            nie:plainTextContent '%s' ; \
-                            nie:generator 'Bijiben' . }",
-                           path,
-                           file,
-                           last_change_date,
-                           create_date,
-                           title,
-                           content) ;
-
-  biji_perform_update_async_and_free (get_connection (biji_item_get_book (item)), query, NULL, NULL);
-
-  g_free(title);
-  g_free(file);
-  g_free(content); 
-  g_free(create_date);
-  g_free(last_change_date);
-}
-
 
 void
 biji_tracker_trash_ressource (BijiNoteBook *book,
@@ -658,8 +595,11 @@ update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
   t.tv_usec = 0;
   t.tv_sec = info->mtime;
   mtime = g_time_val_to_iso8601 (&t);
+
   t.tv_sec = info->created;
-  created = g_time_val_to_iso8601 (&t);
+  created =  g_time_val_to_iso8601 (&t);
+
+
   content = tracker_str (info->content);
 
   g_message ("Updating ressource <%s> %s", info->title, tracker_urn_uuid);
@@ -696,7 +636,7 @@ push_new_note (BijiTrackerFinisher *finisher)
 {
   BijiNoteBook *book;
   BijiInfoSet *info;
-  gchar *query, *content, *created_time, *modified_time;
+  gchar *query, *content, *created_time, *mtime;
   GTimeVal t;
 
   book = finisher->book;
@@ -706,15 +646,17 @@ push_new_note (BijiTrackerFinisher *finisher)
   content = tracker_str (info->content);
   t.tv_usec = 0;
   t.tv_sec = info->mtime;
-  modified_time = g_time_val_to_iso8601 (&t);
+  mtime = g_time_val_to_iso8601 (&t);
+
+
   t.tv_sec = info->created;
-  created_time = g_time_val_to_iso8601 (&t);
+  created_time =  g_time_val_to_iso8601 (&t);
 
 
   query = g_strconcat (
     "INSERT { _:res a nfo:Note ; ",
     "     a nie:DataObject ; ",
-    "     nie:contentLastModified '", modified_time,        "' ;",
+    "     nie:contentLastModified '", mtime,                "' ;",
     "     nie:contentCreated      '", created_time,         "' ;",
     "     nie:title               '", info->title,          "' ;",
     "     nie:url                 '", info->url,            "' ;",
@@ -723,6 +665,8 @@ push_new_note (BijiTrackerFinisher *finisher)
     "     nie:generator                              'Bijiben' }",
     NULL);
 
+
+  g_debug ("%s", query);
 
   tracker_sparql_connection_update_blank_async (get_connection (book),
                                                 query,
@@ -734,7 +678,7 @@ push_new_note (BijiTrackerFinisher *finisher)
 
   g_free (query);
   g_free (content);
-  g_clear_pointer (&modified_time, g_free);
+  g_clear_pointer (&mtime, g_free);
   g_clear_pointer (&created_time, g_free);
   biji_tracker_finisher_free (finisher);
 }

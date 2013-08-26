@@ -51,7 +51,8 @@ struct BijiLocalNoteClass_
 GType                 biji_local_note_get_type        (void);
 
 
-BijiNoteObj          *biji_local_note_new_from_info   (BijiNoteBook *book,
+BijiNoteObj          *biji_local_note_new_from_info   (BijiProvider *provider,
+                                                       BijiNoteBook *book,
                                                        BijiInfoSet *set);
 
 G_END_DECLS

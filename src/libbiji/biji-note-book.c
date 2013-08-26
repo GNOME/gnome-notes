@@ -29,9 +29,12 @@
 
 struct _BijiNoteBookPrivate
 {
-  /* Notes & Collections */
+  /* Notes & Collections.
+   * Keep a direct pointer to local provider for convenience. */
+
   GHashTable *items;
   GHashTable *providers;
+  BijiProvider *local_provider;
 
   /* Signals */
   gulong note_renamed ;
@@ -396,7 +399,6 @@ biji_note_book_constructed (GObject *object)
 {
   BijiNoteBook *self;
   BijiNoteBookPrivate *priv;
-  BijiProvider *provider;
   gchar *filename;
   GFile *cache;
   GError *error;
@@ -430,8 +432,8 @@ biji_note_book_constructed (GObject *object)
   g_file_make_directory (cache, NULL, NULL);
   g_object_unref (cache);
 
-  provider = biji_local_provider_new (self, self->priv->location);
-  _add_provider (self, provider);
+  priv->local_provider = biji_local_provider_new (self, self->priv->location);
+  _add_provider (self, priv->local_provider);
 }
 
 
@@ -589,7 +591,7 @@ biji_note_get_new_from_file (BijiNoteBook *book, const gchar* path)
   set.title = NULL;
   set.content = NULL;
 
-  ret = biji_local_note_new_from_info (book, &set);
+  ret = biji_local_note_new_from_info (book->priv->local_provider, book, &set);
   biji_lazy_deserialize (ret);
 
   return ret ;
@@ -627,7 +629,7 @@ get_note_skeleton (BijiNoteBook *book)
     set.url = path;
 
     if (!g_hash_table_lookup (book->priv->items, path))
-      ret = biji_local_note_new_from_info (book, &set);
+      ret = biji_local_note_new_from_info (book->priv->local_provider, book, &set);
 
     g_free (path);
   }

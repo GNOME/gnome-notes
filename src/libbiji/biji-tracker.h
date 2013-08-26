@@ -93,8 +93,6 @@ void        biji_remove_collection_from_note           (BijiNoteObj      *note,
                                                         gpointer          user_data);
 
 
-void        bijiben_push_note_to_tracker               (BijiNoteObj *note);
-
 
 void        biji_note_delete_from_tracker              (BijiNoteObj *note);
 

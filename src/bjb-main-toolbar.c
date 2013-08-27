@@ -404,7 +404,6 @@ static void
 populate_bar_for_standard(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
-  GtkWidget *bin = NULL;
   BijiCollection *coll;
   GtkWidget *grid, *notes_icon;
   GtkWidget *select_image;
@@ -441,18 +440,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
   {
     priv->new = gtk_button_new_with_label (_("New"));
     gtk_widget_set_valign (priv->new, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->new),
-                                 "text-button");
+
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->new);
     gtk_widget_set_size_request (priv->new, 70, -1);
-    bin = gtk_bin_get_child (GTK_BIN (priv->new));
-
-    if (bin)
-    {
-      gint y_padding = 0;
-      gtk_misc_get_padding (GTK_MISC (bin), NULL, &y_padding);
-      gtk_misc_set_padding (GTK_MISC (bin), 12, y_padding);
-    }
 
     g_signal_connect(priv->new,"clicked",
                      G_CALLBACK(on_new_note_clicked),priv->parent);

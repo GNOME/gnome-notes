@@ -406,7 +406,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *bin = NULL;
   BijiCollection *coll;
-  GtkWidget *grid, *notes_icon, *notes_label;
+  GtkWidget *grid, *notes_icon;
   GtkWidget *select_image;
   gboolean rtl;
 
@@ -420,18 +420,15 @@ populate_bar_for_standard(BjbMainToolbar *self)
   /* Go back to all notes */
   coll = bjb_controller_get_collection (priv->controller);
 
-  if (coll)
+  if (coll != NULL)
   {
     grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
     notes_icon = get_icon (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
     gtk_box_pack_start (GTK_BOX (grid), notes_icon, TRUE, TRUE, TRUE);
 
-    notes_label = gtk_label_new (_("Notes"));
-    gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
     priv->back = gtk_button_new ();
     gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->back),
-                                 "text-button");
+
     gtk_container_add (GTK_CONTAINER (priv->back), grid);
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
 
@@ -747,9 +744,8 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkHeaderBar          *bar = GTK_HEADER_BAR (self);
-  BijiCollection        *collection;
   BjbSettings           *settings;
-  GtkWidget             *grid, *notes_icon, *notes_label;
+  GtkWidget             *grid, *notes_icon;
   GdkRGBA                color;
   BijiItem *item;
   GtkWidget *share_image;
@@ -766,19 +762,14 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
   settings = bjb_app_get_settings (g_application_get_default());
 
-  collection = bjb_controller_get_collection (self->priv->controller);
-
   /* Go to main view basically means closing note */
   grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
   notes_icon = get_icon (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
   gtk_box_pack_start (GTK_BOX (grid), notes_icon, TRUE, TRUE, TRUE);
 
-  notes_label = gtk_label_new (collection ? biji_item_get_title (BIJI_ITEM (collection)) : _("Notes"));
-  gtk_box_pack_start (GTK_BOX (grid), notes_label, TRUE, TRUE, TRUE);
   priv->back = gtk_button_new ();
   gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->back),
-                               "text-button");
+
   gtk_container_add (GTK_CONTAINER (priv->back), grid);
   gtk_header_bar_pack_start (bar, priv->back);
  

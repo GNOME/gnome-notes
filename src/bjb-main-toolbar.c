@@ -145,8 +145,8 @@ update_selection_label (BjbMainToolbar *self)
     label = g_strdup_printf (g_dngettext (GETTEXT_PACKAGE, "%d selected", "%d selected", length),length);
 
 
-  gtk_header_bar_set_title (GTK_HEADER_BAR (self), NULL);
-  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), label);
+  gtk_header_bar_set_title (GTK_HEADER_BAR (self), label);
+  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
   g_free (label);
 
   return TRUE;

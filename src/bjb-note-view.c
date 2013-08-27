@@ -213,7 +213,7 @@ copy_note_color_to_last_updated_background (BjbNoteView *self)
 ClutterActor *
 bjb_note_view_last_updated_actor_new (BjbNoteView *self)
 {
-  ClutterActor *result, *last, *value;
+  ClutterActor *result, *text;
   ClutterLayoutManager *layout;
   ClutterColor last_up_col = {122,122,122,255};
 
@@ -223,19 +223,24 @@ bjb_note_view_last_updated_actor_new (BjbNoteView *self)
   layout = clutter_box_layout_new ();
   clutter_actor_set_layout_manager (result, layout);
 
-  last = clutter_text_new ();
+  text = clutter_text_new ();
   /* "Last updated" precedes the note last updated date */
-  clutter_text_set_text (CLUTTER_TEXT (last), _("Last updated "));
-  clutter_text_set_font_name (CLUTTER_TEXT (last), "Arial 12px");
-  clutter_text_set_color (CLUTTER_TEXT (last), &last_up_col );
-  clutter_actor_add_child (result, last);
 
-  value = clutter_text_new ();
+  clutter_text_set_text (CLUTTER_TEXT (text), _("Last updated"));
+  clutter_text_set_font_name (CLUTTER_TEXT (text), "Arial 12px");
+  clutter_text_set_color (CLUTTER_TEXT (text), &last_up_col );
+  clutter_actor_add_child (result, text);
+
+  text = clutter_text_new ();
+  clutter_text_set_text (CLUTTER_TEXT (text), "      ");
+  clutter_actor_add_child (result, text);
+
+  text = clutter_text_new ();
   last_updated_str = biji_note_obj_get_last_change_date_string (
                                                       self->priv->note);
-  clutter_text_set_text (CLUTTER_TEXT (value), last_updated_str);
-  clutter_text_set_font_name (CLUTTER_TEXT (value), "Arial 12px");
-  clutter_actor_add_child (result, value);
+  clutter_text_set_text (CLUTTER_TEXT (text), last_updated_str);
+  clutter_text_set_font_name (CLUTTER_TEXT (text), "Arial 12px");
+  clutter_actor_add_child (result, text);
 
   clutter_actor_show (result);
   return result ;

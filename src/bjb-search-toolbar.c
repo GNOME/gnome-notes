@@ -333,7 +333,7 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
   gtk_toolbar_set_show_arrow (tlbar, FALSE);
   gtk_toolbar_set_icon_size (tlbar, GTK_ICON_SIZE_LARGE_TOOLBAR);
   context = gtk_widget_get_style_context (GTK_WIDGET (self));
-  gtk_style_context_add_class (context,"primary-toolbar");
+  gtk_style_context_add_class (context, GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
 
   /* (SELF) TOOL_BAR <- TOOL_ITEM <- BOX <- GD_TAGGED_ENTRY */
   item = gtk_tool_item_new ();

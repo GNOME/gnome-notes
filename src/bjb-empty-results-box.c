@@ -48,11 +48,8 @@ bjb_empty_results_box_constructed (GObject *object)
   BjbEmptyResultsBoxPrivate *priv;
   GtkStyleContext *context;
   GdkPixbuf *pixbuf;
-  GtkWidget *image;
-  GtkWidget *labels_grid;
-  gchar *label;
-  gchar *icons_path;
-  gchar *note_icon_path;
+  GtkWidget *image, *labels_grid;
+  gchar *label, *icons_path, *note_icon_path, *markup;
   GError *error;
 
   G_OBJECT_CLASS (bjb_empty_results_box_parent_class)->constructed (object);
@@ -63,8 +60,10 @@ bjb_empty_results_box_constructed (GObject *object)
   gtk_widget_set_hexpand (GTK_WIDGET (self), TRUE);
   gtk_widget_set_valign (GTK_WIDGET (self), GTK_ALIGN_CENTER);
   gtk_widget_set_vexpand (GTK_WIDGET (self), TRUE);
+
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_HORIZONTAL);
   gtk_grid_set_column_spacing (GTK_GRID (self), 12);
+
   context = gtk_widget_get_style_context (GTK_WIDGET (self));
   gtk_style_context_add_class (context, "dim-label");
 
@@ -98,14 +97,17 @@ bjb_empty_results_box_constructed (GObject *object)
   gtk_grid_set_row_spacing (GTK_GRID (labels_grid), 12);
   gtk_container_add (GTK_CONTAINER (self), labels_grid);
 
+  label = _("No Notes Found");
+  markup = g_markup_printf_escaped ("<big><b>%s</b></big>", label);
 
-  label = g_strconcat ("<b><span size=\"large\">", _("No Notes Found"), "</span></b>", NULL);
-  priv->primary_label = gtk_label_new (label);
+  priv->primary_label = gtk_label_new (NULL);
+  gtk_label_set_markup (GTK_LABEL (priv->primary_label), markup);
+  g_free (markup);
+
   gtk_widget_set_halign (priv->primary_label, GTK_ALIGN_START);
   gtk_widget_set_vexpand (priv->primary_label, TRUE);
   gtk_label_set_use_markup (GTK_LABEL (priv->primary_label), TRUE);
   gtk_container_add (GTK_CONTAINER (labels_grid), priv->primary_label);
-  g_free (label);
 
 
   self->priv->type = BJB_EMPTY_RESULTS_TYPE;
@@ -156,17 +158,13 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
      */
 
     case BJB_EMPTY_RESULTS_TRACKER:
-      label = g_strconcat ("<b><span size=\"large\">",
-                           _("Oops, "),
-                           "</span></b>",
-                           NULL);
+      label = _("Oops");
       gtk_label_set_label (
         GTK_LABEL (self->priv->primary_label), label);
-      
+
       gtk_label_set_label (
         self->priv->details_label,
         _("Please install 'Tracker' then restart the application."));
-      g_free (label);
       break;
 
     default:

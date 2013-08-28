@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-27 03:31+0200\n"
-"PO-Revision-Date: 2013-08-27 03:31+0200\n"
+"POT-Creation-Date: 2013-08-28 12:42+0200\n"
+"PO-Revision-Date: 2013-08-28 12:42+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -19,8 +19,7 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-main-toolbar.c:429
-#: ../src/bjb-main-toolbar.c:776 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "Notas"
 
@@ -79,11 +78,11 @@ msgstr "Riscar"
 msgid "Copy selection to a new note"
 msgstr "Copiar selección a unha nova nota"
 
-#: ../src/bjb-empty-results-box.c:102
+#: ../src/bjb-empty-results-box.c:100
 msgid "No Notes Found"
 msgstr "Non se atoparon notas"
 
-#: ../src/bjb-empty-results-box.c:142
+#: ../src/bjb-empty-results-box.c:144
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -91,15 +90,15 @@ msgstr ""
 "A súa colección de notas está baleira.\n"
 "Prema no botón Nova para crear a súa primeira nota."
 
-#: ../src/bjb-empty-results-box.c:148
+#: ../src/bjb-empty-results-box.c:150
 msgid "No result found for this research."
 msgstr "Non se atoparon resultados para esta busca."
 
-#: ../src/bjb-empty-results-box.c:160
-msgid "Oops, "
-msgstr "Ups,"
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:168
+#: ../src/bjb-empty-results-box.c:167
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instale «Tracker» e logo reinicie o aplicativo."
 
@@ -172,69 +171,69 @@ msgstr "Resultados para %s"
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: ../src/bjb-main-toolbar.c:445
+#: ../src/bjb-main-toolbar.c:441
 msgid "New"
 msgstr "Novo"
 
-#: ../src/bjb-main-toolbar.c:472
+#: ../src/bjb-main-toolbar.c:459
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: ../src/bjb-main-toolbar.c:500
+#: ../src/bjb-main-toolbar.c:487
 msgid "View notes and collections in a list"
 msgstr "Ver as notas e coleccións nunha lista"
 
-#: ../src/bjb-main-toolbar.c:524
+#: ../src/bjb-main-toolbar.c:511
 msgid "View notes and collections in a grid"
 msgstr "Ver as notas e coleccións nunha grella"
 
-#: ../src/bjb-main-toolbar.c:653
+#: ../src/bjb-main-toolbar.c:640
 msgid "Rename Note"
 msgstr "Renomear nota"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:674
+#: ../src/bjb-main-toolbar.c:661
 msgid "Undo"
 msgstr "Desfacer"
 
-#: ../src/bjb-main-toolbar.c:682
+#: ../src/bjb-main-toolbar.c:669
 msgid "Redo"
 msgstr "Refacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:697
+#: ../src/bjb-main-toolbar.c:684
 msgid "Bullets"
 msgstr "Viñetas"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:704
+#: ../src/bjb-main-toolbar.c:691
 msgid "Numbered List"
 msgstr "Lista numerada"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:703
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../src/bjb-main-toolbar.c:724 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:711 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Coleccións"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:736
+#: ../src/bjb-main-toolbar.c:723
 msgid "Delete this Note"
 msgstr "Eliminar esta nota"
 
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:251
+#: ../src/bjb-main-toolbar.c:793 ../src/bjb-selection-toolbar.c:251
 msgid "Note color"
 msgstr "Cor da nota"
 
-#: ../src/bjb-main-toolbar.c:839
+#: ../src/bjb-main-toolbar.c:820
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:860
+#: ../src/bjb-main-toolbar.c:841
 msgid "More options…"
 msgstr "Máis opcións…"
 
@@ -252,8 +251,8 @@ msgid "_Close"
 msgstr "_Pechar"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:228
-msgid "Last updated "
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
 msgstr "Última actualización"
 
 #: ../src/bjb-rename-note.c:19

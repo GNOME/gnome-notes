@@ -405,7 +405,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   BijiCollection *coll;
-  GtkWidget *grid, *notes_icon;
+  GtkWidget *notes_icon;
   GtkWidget *select_image;
   gboolean rtl;
 
@@ -421,14 +421,9 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   if (coll != NULL)
   {
-    grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
-    notes_icon = get_icon (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
-    gtk_box_pack_start (GTK_BOX (grid), notes_icon, TRUE, TRUE, TRUE);
-
-    priv->back = gtk_button_new ();
+    priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+                                                GTK_ICON_SIZE_MENU);
     gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-
-    gtk_container_add (GTK_CONTAINER (priv->back), grid);
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
 
     g_signal_connect_swapped (priv->back, "clicked",
@@ -753,14 +748,9 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   settings = bjb_app_get_settings (g_application_get_default());
 
   /* Go to main view basically means closing note */
-  grid = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
-  notes_icon = get_icon (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic");
-  gtk_box_pack_start (GTK_BOX (grid), notes_icon, TRUE, TRUE, TRUE);
-
-  priv->back = gtk_button_new ();
+  priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+                                              GTK_ICON_SIZE_MENU);
   gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-
-  gtk_container_add (GTK_CONTAINER (priv->back), grid);
   gtk_header_bar_pack_start (bar, priv->back);
  
   g_signal_connect_swapped (priv->back, "clicked",

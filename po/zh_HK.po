@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-16 12:37+0800\n"
-"PO-Revision-Date: 2013-08-16 12:37+0800\n"
+"POT-Creation-Date: 2013-08-29 21:40+0800\n"
+"PO-Revision-Date: 2013-08-29 21:40+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: zh_TW\n"
@@ -16,11 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:429
-#: ../src/bjb-main-toolbar.c:776 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "筆記"
 
@@ -36,11 +35,11 @@ msgstr "隨手貼筆記，為檔案上標籤！"
 msgid "Note-taker"
 msgstr "做筆記"
 
-#: ../src/bjb-app-menu.c:36
+#: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "GNOME 的簡易筆記本"
 
-#: ../src/bjb-app-menu.c:40
+#: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr "Chao-Hsiung Liao"
 
@@ -79,11 +78,11 @@ msgstr "删除線"
 msgid "Copy selection to a new note"
 msgstr "將選擇區域複製到新的筆記"
 
-#: ../src/bjb-empty-results-box.c:102
+#: ../src/bjb-empty-results-box.c:100
 msgid "No Notes Found"
 msgstr "找不到筆記"
 
-#: ../src/bjb-empty-results-box.c:142
+#: ../src/bjb-empty-results-box.c:144
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -91,15 +90,15 @@ msgstr ""
 "你的筆記收藏集是空的。\n"
 "點選新增按鈕以建立你的第一個筆記。"
 
-#: ../src/bjb-empty-results-box.c:148
+#: ../src/bjb-empty-results-box.c:150
 msgid "No result found for this research."
 msgstr "找不到這個研究的結果。"
 
-#: ../src/bjb-empty-results-box.c:160
-msgid "Oops, "
-msgstr "噢！"
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "噢"
 
-#: ../src/bjb-empty-results-box.c:168
+#: ../src/bjb-empty-results-box.c:167
 msgid "Please install 'Tracker' then restart the application."
 msgstr "請安裝「Tracker」然後重新啟動應用程式。"
 
@@ -171,69 +170,69 @@ msgstr "「%s」的結果"
 msgid "New and Recent"
 msgstr "新增與最近使用"
 
-#: ../src/bjb-main-toolbar.c:445
+#: ../src/bjb-main-toolbar.c:441
 msgid "New"
 msgstr "新增"
 
-#: ../src/bjb-main-toolbar.c:472
+#: ../src/bjb-main-toolbar.c:459
 msgid "Selection mode"
 msgstr "選擇區域模式"
 
-#: ../src/bjb-main-toolbar.c:500
+#: ../src/bjb-main-toolbar.c:487
 msgid "View notes and collections in a list"
 msgstr "在清單中檢視筆記與收藏集"
 
-#: ../src/bjb-main-toolbar.c:524
+#: ../src/bjb-main-toolbar.c:511
 msgid "View notes and collections in a grid"
 msgstr "在圖示中檢視筆記與收藏集"
 
-#: ../src/bjb-main-toolbar.c:653
+#: ../src/bjb-main-toolbar.c:640
 msgid "Rename Note"
 msgstr "重新命名筆記"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:674
+#: ../src/bjb-main-toolbar.c:661
 msgid "Undo"
 msgstr "復原"
 
-#: ../src/bjb-main-toolbar.c:682
+#: ../src/bjb-main-toolbar.c:669
 msgid "Redo"
 msgstr "取消復原"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:697
+#: ../src/bjb-main-toolbar.c:684
 msgid "Bullets"
 msgstr "項目符號"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:704
+#: ../src/bjb-main-toolbar.c:691
 msgid "Numbered List"
 msgstr "有序清單"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:703
 msgid "Rename"
 msgstr "重新命名"
 
-#: ../src/bjb-main-toolbar.c:724 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:711 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "收藏集"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:736
+#: ../src/bjb-main-toolbar.c:723
 msgid "Delete this Note"
 msgstr "刪除這個筆記"
 
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:249
+#: ../src/bjb-main-toolbar.c:793 ../src/bjb-selection-toolbar.c:251
 msgid "Note color"
 msgstr "筆記顏色"
 
-#: ../src/bjb-main-toolbar.c:839
+#: ../src/bjb-main-toolbar.c:820
 msgid "Share note"
 msgstr "分享筆記"
 
-#: ../src/bjb-main-toolbar.c:860
+#: ../src/bjb-main-toolbar.c:841
 msgid "More options…"
 msgstr "更多選項…"
 
@@ -251,21 +250,21 @@ msgid "_Close"
 msgstr "關閉(_C)"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:228
-msgid "Last updated "
-msgstr "上次更新於："
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "上次更新於"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "確定(_O)"
 
 #. Trash notes
-#: ../src/bjb-selection-toolbar.c:242
+#: ../src/bjb-selection-toolbar.c:244
 msgid "Delete"
 msgstr "刪除"
 
 #. Notes tags
-#: ../src/bjb-selection-toolbar.c:254
+#: ../src/bjb-selection-toolbar.c:256
 msgid "Add to Collection"
 msgstr "加入至收藏集"
 
@@ -311,7 +310,7 @@ msgstr "今年"
 msgid "Unknown"
 msgstr "不明"
 
-#: ../src/libbiji/provider/biji-local-provider.c:293
+#: ../src/libbiji/provider/biji-local-provider.c:298
 msgid "Local storage"
 msgstr "本地儲存空間"
 

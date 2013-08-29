@@ -372,7 +372,6 @@ populate_bar_for_standard(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   BijiCollection *coll;
-  GtkWidget *notes_icon;
   GtkWidget *select_image;
   gboolean rtl;
 
@@ -697,7 +696,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv = self->priv;
   GtkHeaderBar          *bar = GTK_HEADER_BAR (self);
   BjbSettings           *settings;
-  GtkWidget             *grid, *notes_icon;
   GdkRGBA                color;
   BijiItem *item;
   GtkWidget *share_image;

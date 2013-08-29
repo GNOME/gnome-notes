@@ -84,9 +84,7 @@ bijiben_SOURCES = \
 	bjb-share.c \
 	bjb-share.h \
 	bjb-window-base.c \
-	bjb-window-base.h \
-	utils/bjb-icons-colors.c \
-	utils/bjb-icons-colors.h
+	bjb-window-base.h
 
 dbus_shell_search_provider_built_sources =		\
 	bijiben-shell-search-provider-generated.c	\

@@ -25,7 +25,6 @@
 #include "bjb-rename-note.h"
 #include "bjb-share.h"
 #include "bjb-window-base.h"
-#include "utils/bjb-icons-colors.h"
 
 /* All needed toolbars */
 typedef enum

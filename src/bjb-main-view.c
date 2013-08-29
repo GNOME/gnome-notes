@@ -20,8 +20,6 @@
 #include <libbiji/libbiji.h>
 #include <libgd/gd-main-view.h>
 
-#include "utils/bjb-icons-colors.h"
-
 #include "bjb-app-menu.h"
 #include "bjb-bijiben.h"
 #include "bjb-controller.h"

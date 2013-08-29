@@ -431,7 +431,6 @@ bjb_main_view_constructed(GObject *o)
   BjbMainView          *self;
   GtkBox               *vbox; //self, too
   BjbMainViewPriv      *priv;
-  GtkOverlay           *overlay;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
@@ -456,7 +455,7 @@ bjb_main_view_constructed(GObject *o)
 
   /* Selection Panel */
   priv->select_bar = bjb_selection_toolbar_new (priv->view, self);
-  gtk_box_pack_start (vbox, priv->select_bar, FALSE, FALSE, 0);
+  gtk_box_pack_start (vbox, GTK_WIDGET (priv->select_bar), FALSE, FALSE, 0);
 
   /* Drag n drop */
   gtk_drag_dest_set (GTK_WIDGET (priv->view), GTK_DEST_DEFAULT_ALL,

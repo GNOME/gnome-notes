@@ -56,8 +56,6 @@ struct _BjbMainToolbarPrivate
   GtkWidget        *grid;
   GtkWidget        *select;
   GtkWidget        *search;
-  GtkWidget        *separator;
-  GtkWidget        *close;
   gulong            finish_sig;
   gulong            update_selection;
   gulong            search_handler;
@@ -102,8 +100,6 @@ bjb_main_toolbar_clear (BjbMainToolbar *self)
   g_clear_pointer (&self->priv->search   ,gtk_widget_destroy);
   g_clear_pointer (&self->priv->select   ,gtk_widget_destroy);
   g_clear_pointer (&self->priv->share    ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->separator,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->close    ,gtk_widget_destroy);
 }
 
 /* Callbacks */
@@ -248,13 +244,6 @@ on_search_button_clicked (BjbMainToolbarPrivate *priv)
 }
 
 static void
-on_close_clicked (GtkButton *button,
-                  gpointer   user_data)
-{
-  gtk_widget_destroy (GTK_WIDGET (BJB_MAIN_TOOLBAR (user_data)->priv->window));
-}
-
-static void
 add_search_button (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
@@ -279,30 +268,6 @@ add_search_button (BjbMainToolbar *self)
 }
 
 static void
-add_close_button (BjbMainToolbar *self)
-{
-  BjbMainToolbarPrivate *priv = self->priv;
-  GtkWidget *close_image;
-
-  /* Close button */
-  priv->separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
-  gtk_widget_set_valign (priv->separator, GTK_ALIGN_FILL);
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->separator);
-
-  priv->close = gtk_button_new ();
-  gtk_button_set_relief (GTK_BUTTON (priv->close), GTK_RELIEF_NONE);
-  close_image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->close), close_image);
-  gtk_widget_set_valign (priv->close, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->close),
-                               "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->close);
-  g_signal_connect (priv->close,"clicked",
-                    G_CALLBACK(on_close_clicked), self);
-}
-
-
-static void
 update_selection_buttons (BjbController *controller,
                           gboolean some_item_is_visible,
                           gboolean remaining,
@@ -324,6 +289,9 @@ populate_bar_for_selection (BjbMainToolbar *self)
   BjbMainToolbarPrivate *priv;
 
   priv = self->priv;
+
+  /* Hide close button */
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), FALSE);
 
   /* Search button */
   add_search_button (self);
@@ -456,8 +424,8 @@ populate_bar_for_standard(BjbMainToolbar *self)
   g_signal_connect (priv->select,"clicked",
                     G_CALLBACK(on_selection_mode_clicked),self);
 
-  /* Close button */
-  add_close_button (self);
+  /* Show close button */
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
 
   /* Watch for main view changing */
   connect_main_view_handlers (self);
@@ -830,8 +798,8 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   gtk_header_bar_pack_end (bar, priv->menu);
   gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
 
-  /* Close button */
-  add_close_button (self);
+  /* Show close button */
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
 
   gtk_menu_button_set_popup (GTK_MENU_BUTTON (priv->menu),
                              bjb_note_menu_new (self));
@@ -874,7 +842,7 @@ populate_bar_switch (BjbMainToolbar *self)
 
     /* Spinner, Empty Results */
     default:
-      add_close_button (self);
+      gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
       break;
   }
 

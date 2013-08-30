@@ -1,4 +1,5 @@
 # List of source files containing translatable strings.
+data/bijiben.appdata.xml.in
 data/bijiben.desktop.in.in
 data/bijiben.xml.in
 src/bjb-app-menu.c

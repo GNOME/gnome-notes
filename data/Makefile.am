@@ -4,6 +4,10 @@ SUBDIRS = icons
 xml_in_files = bijiben.xml.in
 xml_files = $(xml_in_files:.xml.in=.xml)
 
+app_data_in_files = bijiben.appdata.xml.in
+app_data_files = $(app_data_in_files:.xml.in=.xml)
+
+
 @INTLTOOL_XML_RULE@
 
 @INTLTOOL_DESKTOP_RULE@
@@ -13,6 +17,10 @@ desktop_files    = $(desktop_in_files:.desktop.in=.desktop)
 
 desktopdir   = $(datadir)/applications
 desktop_DATA = $(desktop_files)
+
+appdatadir = $(datadir)/appdata
+appdata_DATA = $(app_data_files)
+
 
 servicedir = $(datadir)/dbus-1/services
 service_DATA = $(service_in_files:.service.in=.service)
@@ -44,13 +52,15 @@ EXTRA_DIST =                            \
 	shell-search-provider-dbus-interfaces.xml \
 	$(service_in_files)		\
 	$(searchprovider_DATA) \
-	$(xml_in_files)
+	$(xml_in_files) \
+	$(app_data_in_files)
 
 DISTCLEANFILES =                        \
 	$(desktop_files)                \
 	$(gsettings_SCHEMAS)		\
 	$(service_DATA)   \
-	$(xml_files)
+	$(xml_files) \
+	$(app_data_files)
 
 install-data-hook:
 if ENABLE_UPDATE_MIMEDB

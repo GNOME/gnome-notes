@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+ <id type="desktop">bijiben.desktop</id>
+ <licence>CC0</licence>
+ <name>Notes</name>
+ <summary>Quickly jot notes</summary>
+ <description>
+  <_p>
+   Notes is an editor allowing to make simple lists for later use.
+  </_p>
+  <_p>It allows to use ownCloud as a storage location and online editor.</_p>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="627" height="396">http://py.luyten.fr/Publique/bijiben-notes-scr.png</screenshot>
+ </screenshots>
+ <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>
+ <updatecontact>py_at_luyten.fr</updatecontact>
+</application>

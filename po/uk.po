@@ -1,0 +1,386 @@
+# Ukrainian translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Mykola Tkach <Stuartlittle1970@gmail.com>, 2013.
+# Daniel Korostil <ted.korostiled@gmail.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-31 14:52+0300\n"
+"PO-Revision-Date: 2013-08-31 15:04+0300\n"
+"Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
+"Language-Team: linux.org.ua\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr "Примітки — редактор, який дозволяє робити прості списки на майбутнє."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "Можна використовувати ownCloud як місце зберігання та редагування."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Примітки"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "примітки;нагадування;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Створюйте примітки, залишай мітки на файлах!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Електронна ручка"
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Проста записна книжка середовища GNOME"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr ""
+"Микола Ткач <Stuartlittle1970@gmail.com>, 2013.\n"
+"Daniel Korostil <ted.korostiled@gmail.com>"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Колір примітки"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:367
+msgid "Cut"
+msgstr "Вирізати"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:374
+msgid "Copy"
+msgstr "Копіювати"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Paste"
+msgstr "Вставити"
+
+#: ../src/bjb-editor-toolbar.c:396
+msgid "Bold"
+msgstr "Напівжирний"
+
+#: ../src/bjb-editor-toolbar.c:407
+msgid "Italic"
+msgstr "Курсив"
+
+#: ../src/bjb-editor-toolbar.c:418
+msgid "Strike"
+msgstr "Підкреслений"
+
+#: ../src/bjb-editor-toolbar.c:450
+msgid "Copy selection to a new note"
+msgstr "Скопіювати вибране в нову примітку"
+
+#: ../src/bjb-empty-results-box.c:100
+msgid "No Notes Found"
+msgstr "Не знайдено жодної примітки"
+
+#: ../src/bjb-empty-results-box.c:144
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Ваша збірка приміток порожня.\n"
+"Натисніть «Створити», щоб одержати першу вашу примітку."
+
+#: ../src/bjb-empty-results-box.c:150
+msgid "No result found for this research."
+msgstr "Жодного результату не знайдено для цього дослідження."
+
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "Отакої"
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Установіть «Tracker» і перезапустіть програму."
+
+#: ../src/bjb-import-dialog.c:310
+msgid "Custom Location"
+msgstr "Інша адреса"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import Notes"
+msgstr "Імпортувати примітки"
+
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Скасувати"
+
+#: ../src/bjb-import-dialog.c:410
+msgid "Import"
+msgstr "Імпортувати"
+
+#: ../src/bjb-import-dialog.c:421
+msgid "Select import location"
+msgstr "Вибрати адресу імпортування"
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "Tomboy"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "Gnote"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Завантажити ще"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Завантаження…"
+
+#: ../src/bjb-main-toolbar.c:138
+msgid "Click on items to select them"
+msgstr "Щоб вибрати елементи, натисніть на них"
+
+#: ../src/bjb-main-toolbar.c:140
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d вибрано"
+msgstr[1] "%d вибрано"
+msgstr[2] "%d вибрано"
+
+#: ../src/bjb-main-toolbar.c:260
+msgid "Search note titles, content and collections"
+msgstr "Пошук заголовків, вмісту й збірок приміток"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:299
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: ../src/bjb-main-toolbar.c:305
+msgid "Exit selection mode"
+msgstr "Вийти з режиму вибирання"
+
+#: ../src/bjb-main-toolbar.c:335
+#, c-format
+msgid "Results for %s"
+msgstr "Результати для %s"
+
+#: ../src/bjb-main-toolbar.c:338
+msgid "New and Recent"
+msgstr "Нові та нещодавні"
+
+#: ../src/bjb-main-toolbar.c:402
+msgid "New"
+msgstr "Створити"
+
+#: ../src/bjb-main-toolbar.c:420
+msgid "Selection mode"
+msgstr "Режим вибирання"
+
+#: ../src/bjb-main-toolbar.c:448
+msgid "View notes and collections in a list"
+msgstr "Переглядати примітки і збірки у списку"
+
+#: ../src/bjb-main-toolbar.c:472
+msgid "View notes and collections in a grid"
+msgstr "Переглядати примітки і збірки у ґратках"
+
+#: ../src/bjb-main-toolbar.c:601
+msgid "Rename Note"
+msgstr "Перейменувати примітку"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:622
+msgid "Undo"
+msgstr "Повернути"
+
+#: ../src/bjb-main-toolbar.c:630
+msgid "Redo"
+msgstr "Повторити"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:645
+msgid "Bullets"
+msgstr "Тип сортування"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:652
+msgid "Numbered List"
+msgstr "Пронумерований список"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-main-toolbar.c:664
+msgid "Rename"
+msgstr "Перейменувати"
+
+#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Збірки"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:684
+msgid "Delete this Note"
+msgstr "Вилучити цю примітку"
+
+#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
+msgid "Note color"
+msgstr "Колір примітки"
+
+#: ../src/bjb-main-toolbar.c:775
+msgid "Share note"
+msgstr "Оприлюднити примітку"
+
+#: ../src/bjb-main-toolbar.c:796
+msgid "More options…"
+msgstr "Більше параметрів…"
+
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Уведіть назву, щоб створити збірку"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Створити збірку"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+msgid "_Close"
+msgstr "_Закрити"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "Востаннє оновлено"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_Гаразд"
+
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:244
+msgid "Delete"
+msgstr "Вилучити"
+
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:256
+msgid "Add to Collection"
+msgstr "Додати до збірки"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
+msgid "Note Font"
+msgstr "Шрифт приміток"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
+msgid "Default Color"
+msgstr "Типовий колір"
+
+#: ../src/bjb-settings-dialog.c:437
+msgid "Note Edition"
+msgstr "Редакція приміток"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "Первинна книга"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Сьогодні"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Учора"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "На цьому тижні"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "У цьому місяці"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "У цьому році"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Невідомо"
+
+#: ../src/libbiji/provider/biji-local-provider.c:298
+msgid "Local storage"
+msgstr "Локальне сховище"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "С_творити вікно"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "_Імпортувати примітки"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Параметри"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Notes"
+msgstr "П_ро програму"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Довідка"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "Ви_йти"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "External Notes"
+#~ msgstr "Зовнішні примітки"
+
+#~ msgid "Click on the external notes to import"
+#~ msgstr "Натисніть на зовнішні примітки зі списку, щоб їх імпортувати"
+
+#~ msgid "Choose a color for note"
+#~ msgstr "Виберіть колір примітки"
+
+#~ msgid "Link"
+#~ msgstr "Посилання"
+
+#~ msgid "New tag"
+#~ msgstr "Створити мітку"
+
+#~ msgid "List"
+#~ msgstr "Список"
+
+#~ msgid "Tags"
+#~ msgstr "Мітки"
+
+#~ msgid "Tag"
+#~ msgstr "Мітка"
+
+#~ msgid "Preferences"
+#~ msgstr "Параметри"
+
+#~ msgid "_External Notes"
+#~ msgstr "_Зовнішні примітки"

@@ -242,6 +242,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 
   /* Trash notes */
   priv->toolbar_trash = gtk_button_new_with_label (_("Delete"));
+  gtk_widget_set_valign (priv->toolbar_trash, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_trash);
 
 
@@ -249,11 +250,13 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   priv->toolbar_color = bjb_color_button_new ();
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_color),
                                _("Note color"));
+  gtk_widget_set_valign (priv->toolbar_color, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_end (priv->bar, priv->toolbar_color);
 
 
   /* Notes tags */
   priv->toolbar_tag = gtk_button_new_with_label (_("Add to Collection"));
+  gtk_widget_set_valign (priv->toolbar_tag, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_end (priv->bar, priv->toolbar_tag);
 
 

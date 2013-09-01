@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-27 23:39+0000\n"
-"PO-Revision-Date: 2013-08-28 23:29+0300\n"
+"POT-Creation-Date: 2013-08-30 20:51+0000\n"
+"PO-Revision-Date: 2013-09-01 21:31+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -19,6 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 2.91.6\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Rašteliai yra redaktorius, leidžiantis sukurti paprastus sąrašus vėlesniam "
+"panaudojimui."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Jis leidžia naudoti ownCloud kaip saugyklos vietą ir internetinį redaktorių."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
 #: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
@@ -99,7 +110,6 @@ msgid "No result found for this research."
 msgstr "Šiai paieškai rezultatų nerasta."
 
 #: ../src/bjb-empty-results-box.c:161
-#| msgid "Oops, "
 msgid "Oops"
 msgstr "Oi"
 
@@ -143,11 +153,11 @@ msgstr "Įkelti daugiau"
 msgid "Loading..."
 msgstr "Įkeliama..."
 
-#: ../src/bjb-main-toolbar.c:143
+#: ../src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "Spauskite ant elementų jiems pažymėti"
 
-#: ../src/bjb-main-toolbar.c:145
+#: ../src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -155,91 +165,91 @@ msgstr[0] "%d pažymėtas"
 msgstr[1] "%d pažymėti"
 msgstr[2] "%d pažymėta"
 
-#: ../src/bjb-main-toolbar.c:272
+#: ../src/bjb-main-toolbar.c:260
 msgid "Search note titles, content and collections"
 msgstr "Ieškoti raštelių pavadinimų, turinio ir rinkinių"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:332
+#: ../src/bjb-main-toolbar.c:299
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:305
 msgid "Exit selection mode"
 msgstr "Palikti žymėjimo veikseną"
 
-#: ../src/bjb-main-toolbar.c:368
+#: ../src/bjb-main-toolbar.c:335
 #, c-format
 msgid "Results for %s"
 msgstr "%s rezultatai"
 
-#: ../src/bjb-main-toolbar.c:371
+#: ../src/bjb-main-toolbar.c:338
 msgid "New and Recent"
 msgstr "Nauji ir neseniai naudoti"
 
-#: ../src/bjb-main-toolbar.c:441
+#: ../src/bjb-main-toolbar.c:402
 msgid "New"
 msgstr "Naujas"
 
-#: ../src/bjb-main-toolbar.c:459
+#: ../src/bjb-main-toolbar.c:420
 msgid "Selection mode"
 msgstr "Žymėjimo veiksena"
 
-#: ../src/bjb-main-toolbar.c:487
+#: ../src/bjb-main-toolbar.c:448
 msgid "View notes and collections in a list"
 msgstr "Rodyti raštelius ir rinkinius sąraše"
 
-#: ../src/bjb-main-toolbar.c:511
+#: ../src/bjb-main-toolbar.c:472
 msgid "View notes and collections in a grid"
 msgstr "Rodyti raštelius ir rinkinius tinklelyje"
 
-#: ../src/bjb-main-toolbar.c:640
+#: ../src/bjb-main-toolbar.c:601
 msgid "Rename Note"
 msgstr "Pervadinti raštelį"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:661
+#: ../src/bjb-main-toolbar.c:622
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: ../src/bjb-main-toolbar.c:669
+#: ../src/bjb-main-toolbar.c:630
 msgid "Redo"
 msgstr "Pakartoti"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:684
+#: ../src/bjb-main-toolbar.c:645
 msgid "Bullets"
 msgstr "Punktai"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:691
+#: ../src/bjb-main-toolbar.c:652
 msgid "Numbered List"
 msgstr "Numeruotas sąrašas"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:703
+#: ../src/bjb-main-toolbar.c:664
 msgid "Rename"
 msgstr "Pervadinti"
 
-#: ../src/bjb-main-toolbar.c:711 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Rinkiniai"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:723
+#: ../src/bjb-main-toolbar.c:684
 msgid "Delete this Note"
 msgstr "Ištrinti šį raštelį"
 
-#: ../src/bjb-main-toolbar.c:793 ../src/bjb-selection-toolbar.c:251
+#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
 msgid "Note color"
 msgstr "Raštelio spalva"
 
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:775
 msgid "Share note"
 msgstr "Dalintis rašteliu"
 
-#: ../src/bjb-main-toolbar.c:841
+#: ../src/bjb-main-toolbar.c:796
 msgid "More options…"
 msgstr "Daugiau…"
 
@@ -258,7 +268,6 @@ msgstr "_Užverti"
 
 #. "Last updated" precedes the note last updated date
 #: ../src/bjb-note-view.c:229
-#| msgid "Last updated "
 msgid "Last updated"
 msgstr "Paskutinis atnaujinimas"
 

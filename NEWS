@@ -1,3 +1,33 @@
+Overview of changes in 3.9.91
+=============================
+
+* Ship appData
+* Use native close button (Yosef Or Boczko)
+* Update the documentation (Shobha Tyagi)
+* Update About Dialog (Arnel A. Borja)
+
+* Bug Fixes
+  * fix selection toolbar buttons valign (Yosef Or Boczko)
+  * Fix the back button (Yosef Or Boczko)
+  * shell-provider: do not abort when tracker connection fails
+  * Delete bjb-icons-colors (Yosef Or Boczko)
+
+* Translations
+  Updated Brazilian Portuguese translation (Enrico Nicoletto, Rafael Ferreira)
+  Updated Czech translation (Marek Černocký)
+  Added Friulian translation (Fabio Tomat)
+  Updated Galician translations (Fran Diéguez)
+  Updated Hungarian translation (Balázs Úr)
+  Updated Italian translation (Claudio Arseni)
+  Updated Lithuanian translation (Aurimas Černius)
+  Updated Polish translation (Piotr Drąg)
+  Updated slovak translation (Dušan Kazik)
+  Updated Slovenian translation (Matej Urbančič)
+  Updated Spanish translation (Daniel Mustieles)
+  Updated Traditional Chinese translation (Chao-Hsiung Liao)
+  Added uk translation (Daniel Korostil)
+
+
 Overview of changes in 3.9.90
 =============================
 

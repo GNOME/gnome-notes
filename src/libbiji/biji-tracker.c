@@ -165,7 +165,7 @@ tracker_str (const gchar * string )
 {
   g_return_val_if_fail (string != NULL, g_strdup (""));
 
-  return biji_str_mass_replace (string, "\n", "b&lt;br/&gt", "'", " ", NULL);
+  return biji_str_mass_replace (string, "\n", " ", "'", " ", NULL);
 }
 
 

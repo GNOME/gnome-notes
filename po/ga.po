@@ -1,0 +1,354 @@
+# Irish translations for bijiben package.
+# Copyright (C) 2013 Free Software Foundation, Inc.
+# This file is distributed under the same license as the bijiben package.
+# Seán de Búrca <leftmostcat@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben.master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-03 19:19-0600\n"
+"PO-Revision-Date: 2013-09-03 19:34-0600\n"
+"Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : "
+"4;\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Is eagarthóir é Nótaí chun liostaí simplí a dhéanamh le haghaidh úsáide níos "
+"déanaí."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Is féidir é ownCloud a úsáid mar shuíomh stórais agus eagarthóir ar líne."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Nótaí"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "nótaí;meabhrúchán"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Postáil nótaí, clibeáil comhaid!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Scríobhaí Nótaí"
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Leabhar nótaí simplí do GNOME"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr "Seán de Búrca <leftmostcat@gmail.com>"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Dath Nóta"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:367
+msgid "Cut"
+msgstr "Gearr"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:374
+msgid "Copy"
+msgstr "Cóipeáil"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Paste"
+msgstr "Greamaigh"
+
+#: ../src/bjb-editor-toolbar.c:396
+msgid "Bold"
+msgstr "Trom"
+
+#: ../src/bjb-editor-toolbar.c:407
+msgid "Italic"
+msgstr "Iodálach"
+
+#: ../src/bjb-editor-toolbar.c:418
+msgid "Strike"
+msgstr "Líne Tríd"
+
+#: ../src/bjb-editor-toolbar.c:450
+msgid "Copy selection to a new note"
+msgstr "Cóipeáil roghnúchán go nóta nua"
+
+#: ../src/bjb-empty-results-box.c:100
+msgid "No Notes Found"
+msgstr "Nóta gan Aimsiú"
+
+#: ../src/bjb-empty-results-box.c:144
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Tá do bhailiúchán nótaí folamh.\n"
+"Cliceáil an cnaipe Nua chun do chéad nóta a chruthú."
+
+#: ../src/bjb-empty-results-box.c:150
+msgid "No result found for this research."
+msgstr "Toradh gan aimsiú don chuardach seo."
+
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "Úps"
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Suiteáil 'Tracker' agus atosaigh an feidhmchlár, le do thoil."
+
+#: ../src/bjb-import-dialog.c:310
+msgid "Custom Location"
+msgstr "Suíomh Saincheaptha"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import Notes"
+msgstr "Iompórtáil Comhaid"
+
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Cealaigh"
+
+#: ../src/bjb-import-dialog.c:410
+msgid "Import"
+msgstr "Iompórtáil"
+
+#: ../src/bjb-import-dialog.c:421
+msgid "Select import location"
+msgstr "Roghnaigh suíomh iompórtála"
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "Feidhmchlár Tomboy"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "Feidhmchlár Gnote"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Luchtaigh Tuilleadh"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Á luchtú..."
+
+#: ../src/bjb-main-toolbar.c:138
+msgid "Click on items to select them"
+msgstr "Cliceáil ar mhíreanna chun iad a roghnú"
+
+#: ../src/bjb-main-toolbar.c:140
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d roghnaithe"
+msgstr[1] "%d roghnaithe"
+msgstr[2] "%d roghnaithe"
+msgstr[3] "%d roghnaithe"
+msgstr[4] "%d roghnaithe"
+
+#: ../src/bjb-main-toolbar.c:260
+msgid "Search note titles, content and collections"
+msgstr "Cuardaigh teidil, ábhar agus bailiúcháin nótaí"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:299
+msgid "Cancel"
+msgstr "Cealaigh"
+
+#: ../src/bjb-main-toolbar.c:305
+msgid "Exit selection mode"
+msgstr "Scoir mód roghnaithe"
+
+#: ../src/bjb-main-toolbar.c:335
+#, c-format
+msgid "Results for %s"
+msgstr "Torthaí do %s"
+
+#: ../src/bjb-main-toolbar.c:338
+msgid "New and Recent"
+msgstr "Nua agus le Déanaí"
+
+#: ../src/bjb-main-toolbar.c:402
+msgid "New"
+msgstr "Nua"
+
+#: ../src/bjb-main-toolbar.c:420
+msgid "Selection mode"
+msgstr "Mód roghnaithe"
+
+#: ../src/bjb-main-toolbar.c:448
+msgid "View notes and collections in a list"
+msgstr "Amharc ar nótaí agus bhailiúcháin i liosta"
+
+#: ../src/bjb-main-toolbar.c:472
+msgid "View notes and collections in a grid"
+msgstr "Amharc ar nótaí agus bhailiúcháin i ngreille"
+
+#: ../src/bjb-main-toolbar.c:601
+msgid "Rename Note"
+msgstr "Athainmnigh Nóta"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:622
+msgid "Undo"
+msgstr "Cealaigh"
+
+#: ../src/bjb-main-toolbar.c:630
+msgid "Redo"
+msgstr "Athfheidhmigh"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:645
+msgid "Bullets"
+msgstr "Urchair"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:652
+msgid "Numbered List"
+msgstr "Liosta Uimhrithe"
+
+#. Rename, view tags, separtor
+#: ../src/bjb-main-toolbar.c:664
+msgid "Rename"
+msgstr "Athainmnigh"
+
+#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Bailiúcháin"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:684
+msgid "Delete this Note"
+msgstr "Scrios an Nóta seo"
+
+#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:252
+msgid "Note color"
+msgstr "Dath nóta"
+
+#: ../src/bjb-main-toolbar.c:775
+msgid "Share note"
+msgstr "Comhroinn nóta"
+
+#: ../src/bjb-main-toolbar.c:796
+msgid "More options…"
+msgstr "Tuilleadh roghanna…"
+
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Iontráil ainm chun bailiúchán a chruthú"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Bailiúchán nua"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+msgid "_Close"
+msgstr "_Dún"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "Nuashonraithe"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "Tá g_o Maith"
+
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:244
+msgid "Delete"
+msgstr "Scrios"
+
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:258
+msgid "Add to Collection"
+msgstr "Cuir le Bailiúchán"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
+msgid "Note Font"
+msgstr "Cló Nóta"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
+msgid "Default Color"
+msgstr "Dath Réamhshocraithe"
+
+#: ../src/bjb-settings-dialog.c:437
+msgid "Note Edition"
+msgstr "Leagan Nóta"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "Príomhleabhar"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Inniu"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Inné"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "An tseachtain seo"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "An mhí seo"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "An bhliain seo"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Anaithnid"
+
+#: ../src/libbiji/provider/biji-local-provider.c:298
+msgid "Local storage"
+msgstr "Stóras logánta"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "Fuinneog _Nua"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "_Iompórtáil Nótaí"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "Sain_roghanna"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Notes"
+msgstr "_Maidir le Nótaí"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "Cab_hair"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Scoir"

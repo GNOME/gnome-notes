@@ -297,7 +297,6 @@ populate_bar_for_selection (BjbMainToolbar *self)
 
   /* Select */
   priv->select = gtk_button_new_with_mnemonic (_("Cancel"));
-  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
                                "text-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);

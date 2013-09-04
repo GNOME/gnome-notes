@@ -567,7 +567,7 @@ on_book_changed (BijiNoteBook           *book,
 
           bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
           priv->n_items_to_show ++;
-          priv->items_to_show = g_list_prepend (priv->items_to_show, note);
+          priv->items_to_show = g_list_prepend (priv->items_to_show, item);
           notify_displayed_items_changed (self);
       break;
 

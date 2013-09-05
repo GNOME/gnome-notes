@@ -347,23 +347,6 @@ bjb_controller_add_item_if_needed (BjbController *self,
     bjb_controller_add_item (self, item, prepend, sibling);
 }
 
-void
-bjb_controller_update_view (BjbController *self)
-{
-  GList *items, *l;
-
-  /* Do not update if nothing to show */
-  if (bjb_window_base_get_view_type (self->priv->window) != BJB_WINDOW_BASE_MAIN_VIEW)
-    return;
-
-  items = self->priv->items_to_show ;
-  free_items_store (self);
-
-  for (l = items; l != NULL; l = l->next)
-  {
-    bjb_controller_add_item (self, l->data, FALSE, NULL);
-  }
-}
 
 static gint
 most_recent_item_first (gconstpointer a, gconstpointer b)
@@ -401,6 +384,27 @@ static void
 sort_items (GList **to_show)
 {
   *to_show = g_list_sort (*to_show, most_recent_item_first);
+}
+
+
+void
+bjb_controller_update_view (BjbController *self)
+{
+  GList *items, *l;
+
+  /* Do not update if nothing to show */
+  if (bjb_window_base_get_view_type (self->priv->window) != BJB_WINDOW_BASE_MAIN_VIEW)
+    return;
+
+  items = self->priv->items_to_show ;
+  free_items_store (self);
+
+  sort_items (&items);
+
+  for (l = items; l != NULL; l = l->next)
+  {
+    bjb_controller_add_item (self, l->data, FALSE, NULL);
+  }
 }
 
 

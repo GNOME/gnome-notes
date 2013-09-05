@@ -421,9 +421,14 @@ notify_displayed_items_changed (BjbController *self)
 static void
 update (BjbController *self)
 {
-  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
-  bjb_controller_update_view (self);
+  /* If the user already edits a note, he does not want the view
+   * to go back */
+  if (bjb_window_base_get_view_type (self->priv->window) !=
+      BJB_WINDOW_BASE_NOTE_VIEW)
+    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_MAIN_VIEW);
 
+
+  bjb_controller_update_view (self);
   notify_displayed_items_changed (self);
 }
 

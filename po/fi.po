@@ -1,27 +1,40 @@
 # Finnish translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013.
 #
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-25 22:52+0000\n"
-"PO-Revision-Date: 2013-03-26 18:34+0000\n"
+"POT-Creation-Date: 2013-08-30 20:51+0000\n"
+"PO-Revision-Date: 2013-09-07 18:32+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
-msgid "Bijiben"
-msgstr "Bijiben"
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Muistilappujen avulla on mahdollista tehdä muistiinpanoja myöhempää käyttöä "
+"varten."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Se mahdollistaa ownCloudin käytön tallennussijaintina ja verkossa toimivana "
+"editorina."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Muistilaput"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
@@ -35,159 +48,264 @@ msgstr "Tee muistilappuja, lisää tunnisteita tiedostoille!"
 msgid "Note-taker"
 msgstr "Muistio"
 
-#: ../src/bjb-app-menu.c:35
+#: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "Yksinkertainen muistio Gnomelle"
 
-#: ../src/bjb-app-menu.c:39
+#: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: ../src/bjb-app-menu.c:153
-msgid "External Notes"
-msgstr "Ulkoiset muistilaput"
-
-#: ../src/bjb-app-menu.c:168
-msgid "Click on the external notes to import"
-msgstr "Napsauta ulkoisia muistilappuja tuodaksesi ne"
-
 #: ../src/bjb-color-button.c:146
-msgid "Choose a color for note"
-msgstr "Valitse muistilapun väri"
+#| msgid "Note Font"
+msgid "Note Color"
+msgstr "Muistilapun väri"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:148
+#: ../src/bjb-editor-toolbar.c:367
 msgid "Cut"
 msgstr "Leikkaa"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:155
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Copy"
 msgstr "Kopioi"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:162
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Paste"
 msgstr "Liitä"
 
-#: ../src/bjb-editor-toolbar.c:173
+#: ../src/bjb-editor-toolbar.c:396
 msgid "Bold"
 msgstr "Lihavoi"
 
-#: ../src/bjb-editor-toolbar.c:184
+#: ../src/bjb-editor-toolbar.c:407
 msgid "Italic"
 msgstr "Kursivoi"
 
-#: ../src/bjb-editor-toolbar.c:195
+#: ../src/bjb-editor-toolbar.c:418
 msgid "Strike"
 msgstr "Viivoita yli"
 
-#: ../src/bjb-editor-toolbar.c:224
-msgid "Link"
-msgstr "Linkitä"
+#: ../src/bjb-editor-toolbar.c:450
+msgid "Copy selection to a new note"
+msgstr "Kopioi valinta uuteen muistilappuun"
 
-#: ../src/bjb-main-toolbar.c:190
+#: ../src/bjb-empty-results-box.c:100
+#| msgid "Note Font"
+msgid "No Notes Found"
+msgstr "Muistilappuja ei löytynyt"
+
+#: ../src/bjb-empty-results-box.c:144
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Muistilappujen kokoelma on tyhjä.\n"
+"Luo ensimmäinen muistilappu napsauttamalla Uusi."
+
+#: ../src/bjb-empty-results-box.c:150
+msgid "No result found for this research."
+msgstr ""
+
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "Hups"
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Asenna 'Tracker' ja käynnistä sovellus sitten uudelleen."
+
+#: ../src/bjb-import-dialog.c:310
+msgid "Custom Location"
+msgstr "Omavalintainen sijainti"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import Notes"
+msgstr "Tuo muistilappuja"
+
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Peru"
+
+#: ../src/bjb-import-dialog.c:410
+msgid "Import"
+msgstr "Tuo"
+
+#: ../src/bjb-import-dialog.c:421
+msgid "Select import location"
+msgstr "Valitse tuonnin sijainti"
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "Tomboy-sovellus"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "Gnote-sovellus"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Lataa lisää"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Ladataan..."
+
+#: ../src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "Napsauta kohteita valitaksesi ne"
 
-#: ../src/bjb-main-toolbar.c:192
+#: ../src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valittu"
 msgstr[1] "%d valittu"
 
-#: ../src/bjb-main-toolbar.c:231
+#: ../src/bjb-main-toolbar.c:260
+msgid "Search note titles, content and collections"
+msgstr "Etsi muistilappujen otsikoista, sisällöstä ja kokoelmista"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:299
+msgid "Cancel"
+msgstr "Peru"
+
+#: ../src/bjb-main-toolbar.c:305
+msgid "Exit selection mode"
+msgstr "Poistu valintatilasta"
+
+#: ../src/bjb-main-toolbar.c:335
 #, c-format
 msgid "Results for %s"
 msgstr "Tulokset haulle %s"
 
-#: ../src/bjb-main-toolbar.c:234
+#: ../src/bjb-main-toolbar.c:338
 msgid "New and Recent"
 msgstr "Uudet ja viimeisimmät"
 
-#: ../src/bjb-main-toolbar.c:259
+#: ../src/bjb-main-toolbar.c:402
 msgid "New"
 msgstr "Uusi"
 
-#: ../src/bjb-note-tag-dialog.c:374
-msgid "Enter a name to create a tag"
-msgstr "Kirjoita nimi luodaksesi tunnisteen"
+#: ../src/bjb-main-toolbar.c:420
+msgid "Selection mode"
+msgstr "Valintatila"
 
-#: ../src/bjb-note-tag-dialog.c:384
-msgid "New tag"
-msgstr "Uusi tunniste"
+#: ../src/bjb-main-toolbar.c:448
+msgid "View notes and collections in a list"
+msgstr "Näytä muistilaput ja kokoelmat luettelona"
 
-#: ../src/bjb-note-view.c:222
+#: ../src/bjb-main-toolbar.c:472
+msgid "View notes and collections in a grid"
+msgstr "Näytä muistilaput ja kokoelmat ruudukkona"
+
+#: ../src/bjb-main-toolbar.c:601
 msgid "Rename Note"
 msgstr "Nimeä muistilappu uudelleen"
 
 #. Undo Redo separator
-#: ../src/bjb-note-view.c:277
+#: ../src/bjb-main-toolbar.c:622
 msgid "Undo"
 msgstr "Kumoa"
 
-#: ../src/bjb-note-view.c:285
+#: ../src/bjb-main-toolbar.c:630
 msgid "Redo"
 msgstr "Tee uudelleen"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-note-view.c:299
+#: ../src/bjb-main-toolbar.c:645
 msgid "Bullets"
 msgstr "Järjestämätön luettelo"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-note-view.c:306
-msgid "List"
-msgstr "Järjestetty luettelo"
+#: ../src/bjb-main-toolbar.c:652
+msgid "Numbered List"
+msgstr "Numeroitu luettelo"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-note-view.c:317
+#: ../src/bjb-main-toolbar.c:664
 msgid "Rename"
 msgstr "Nimeä uudelleen"
 
-#: ../src/bjb-note-view.c:323
-msgid "Tags"
-msgstr "Tunnisteet"
+#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Kokoelmat"
 
 #. Delete Note
-#: ../src/bjb-note-view.c:334
+#: ../src/bjb-main-toolbar.c:684
 msgid "Delete this Note"
 msgstr "Poista tämä muistilappu"
 
-#. Button to go back to main view
-#: ../src/bjb-note-view.c:401
-msgid "Notes"
-msgstr "Muistilaput"
+#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
+#| msgid "Note Font"
+msgid "Note color"
+msgstr "Muistilapun väri"
+
+#: ../src/bjb-main-toolbar.c:775
+msgid "Share note"
+msgstr "Jaa muistilappu"
+
+#: ../src/bjb-main-toolbar.c:796
+msgid "More options…"
+msgstr "Lisää valintoja…"
+
+#: ../src/bjb-note-tag-dialog.c:399
+#| msgid "Enter a name to create a tag"
+msgid "Enter a name to create a collection"
+msgstr "Kirjoita nimi luodaksesi kokoelman"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Uusi kokoelma"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+msgid "_Close"
+msgstr "_Sulje"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:502
-msgid "Last updated "
-msgstr "Viimeksi päivitetty "
+#: ../src/bjb-note-view.c:229
+#| msgid "Last updated "
+msgid "Last updated"
+msgstr "Viimeksi päivitetty"
 
-#: ../src/bjb-selection-toolbar.c:155
-msgid "Tag"
-msgstr "Tunniste"
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
 
-#: ../src/bjb-selection-toolbar.c:179
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:244
 msgid "Delete"
 msgstr "Poista"
 
-#. create dialog
-#: ../src/bjb-settings.c:191
-msgid "Preferences"
-msgstr "Asetukset"
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:256
+msgid "Add to Collection"
+msgstr "Lisää kokoelmaan"
 
-#. Note Font
-#: ../src/bjb-settings.c:222
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
 msgid "Note Font"
 msgstr "Muistilapun kirjasin"
 
-#. Default Color
-#: ../src/bjb-settings.c:231
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
 msgid "Default Color"
 msgstr "Oletusväri"
+
+#: ../src/bjb-settings-dialog.c:437
+#, fuzzy
+#| msgid "Note Font"
+msgid "Note Edition"
+msgstr "Muistilapun kirjasin"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "Ensisijainen kirja"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -213,21 +331,26 @@ msgstr "Tänä vuonna"
 msgid "Unknown"
 msgstr "Tuntematon"
 
+#: ../src/libbiji/provider/biji-local-provider.c:298
+msgid "Local storage"
+msgstr "Paikallinen talennustila"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "_Uusi ikkuna"
 
 #: ../src/resources/app-menu.ui.h:2
-msgid "_External Notes"
-msgstr "_Ulkoiset muistilaput"
+msgid "_Import Notes"
+msgstr "_Tuo muistilaput"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
 msgstr "_Asetukset"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Bijiben"
-msgstr "_Tietoja - Bijiben"
+#| msgid "_About Bijiben"
+msgid "_About Notes"
+msgstr "_Tietoja - Muistilaput"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
@@ -237,3 +360,35 @@ msgstr "_Ohje"
 msgid "_Quit"
 msgstr "_Lopeta"
 
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "External Notes"
+#~ msgstr "Ulkoiset muistilaput"
+
+#~ msgid "Click on the external notes to import"
+#~ msgstr "Napsauta ulkoisia muistilappuja tuodaksesi ne"
+
+#~ msgid "Choose a color for note"
+#~ msgstr "Valitse muistilapun väri"
+
+#~ msgid "Link"
+#~ msgstr "Linkitä"
+
+#~ msgid "New tag"
+#~ msgstr "Uusi tunniste"
+
+#~ msgid "List"
+#~ msgstr "Järjestetty luettelo"
+
+#~ msgid "Tags"
+#~ msgstr "Tunnisteet"
+
+#~ msgid "Tag"
+#~ msgstr "Tunniste"
+
+#~ msgid "Preferences"
+#~ msgstr "Asetukset"
+
+#~ msgid "_External Notes"
+#~ msgstr "_Ulkoiset muistilaput"

@@ -382,6 +382,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
   BijiCollection *coll;
   GtkWidget *select_image;
   gboolean rtl;
+  GtkSizeGroup *size;
 
   rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
 
@@ -429,6 +430,12 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   g_signal_connect (priv->select,"clicked",
                     G_CALLBACK(on_selection_mode_clicked),self);
+
+  /* Align buttons */
+  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->new);
+  g_object_unref (size);
 
   /* Show close button */
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);

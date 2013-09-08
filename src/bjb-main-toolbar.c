@@ -286,20 +286,29 @@ static void
 populate_bar_for_selection (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv;
+  GtkSizeGroup *size;
 
   priv = self->priv;
 
   /* Hide close button */
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), FALSE);
 
+  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
+
   /* Search button */
   add_search_button (self);
 
   /* Select */
   priv->select = gtk_button_new_with_mnemonic (_("Cancel"));
+  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
                                "text-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
+
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->search);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
+
+  g_object_unref (size);
 
   gtk_widget_set_tooltip_text (priv->select, _("Exit selection mode"));
   gtk_widget_reset_style (priv->select);

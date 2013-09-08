@@ -375,14 +375,15 @@ biji_get_items_matching_async (BijiNoteBook          *book,
 
   lower = g_utf8_strdown (needle, -1);
   query = g_strconcat (
-    "SELECT ?urn WHERE {",
+    "SELECT ?url WHERE {",
     "  { ?urn a nie:DataObject ;",
+    "    nie:url ?url ;",
     "    nie:title ?title ; nie:plainTextContent ?content ;",
     "    nie:generator 'Bijiben' . FILTER (",
     "    fn:contains (fn:lower-case (?content), '", lower, "' ) || ",
     "    fn:contains (fn:lower-case (?title)  , '", lower, "'))} ",
     "UNION",
-    "  { ?urn a nfo:DataContainer ;",
+    "  { ?url a nfo:DataContainer ;",
     "    nie:title ?title ; nie:generator 'Bijiben' . FILTER (",
     "    fn:contains (fn:lower-case (?title), '", lower, "'))}}",
     NULL);

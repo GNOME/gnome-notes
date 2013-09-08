@@ -86,14 +86,16 @@ GList *
 biji_get_notes_with_strings (BijibenShellSearchProviderApp *self, gchar **needles)
 {
   gint parser;
-  GString *match = g_string_new ("");
-  gchar *query;
+  GString *match;
+  gchar *query, *needle;
   TrackerSparqlCursor *cursor;
   const gchar *uuid;
   GList *result = NULL;
 
   if (!needles)
     return result;
+
+  match = g_string_new ("");
 
   /* AND is implicit into tracker */
   for (parser=0; needles[parser] != NULL; parser++)
@@ -102,7 +104,18 @@ biji_get_notes_with_strings (BijibenShellSearchProviderApp *self, gchar **needle
     match = g_string_append (match, "* ");
   }
 
-  query = g_strdup_printf ("SELECT ?f WHERE { ?f a nfo:Note ; fts:match '%s' }", match->str);
+  needle = g_utf8_strdown (match->str, -1);
+
+  query = g_strconcat (
+       "SELECT ?urn WHERE {           ",
+       "?urn a nfo:Note;              ",
+       "nie:title ?title ;            ",
+       "nie:plainTextContent ?content ",
+       ". FILTER (fn:contains (fn:lower-case (?content),",
+       "'", needle, "' ) ||            ",
+       "fn:contains (fn:lower-case (?title), '", needle ,"'  ))}",
+       NULL);
+
   g_string_free (match, TRUE);
 
   /* Go to the query */
@@ -122,10 +135,9 @@ tracker_sparql_cursor_next_async    (TrackerSparqlCursor *self,
   {
     uuid = tracker_sparql_cursor_get_string (cursor, 0, 0);
 
-    /* currently no mimetype pushed to tracker by libbiji "push note" method
-     * it shall be added instead testing suffix here */
-    if (uuid && g_str_has_suffix (uuid, ".note"))
+    if (uuid)
       result = g_list_append (result, g_strdup(uuid));
+
   }
 
   g_free (query);
@@ -194,15 +206,13 @@ get_note_icon (const gchar *note__nie_url)
 
 
   /*
-   *      we should have a thumbnail
+   *      FIXME - below is ok for local notes only
    * 
-   * URL  :  file://DATA_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.note
+   * URL  :  DATA_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.note
    * ICON :  CACHE_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.png
    */
 
   path = biji_str_mass_replace (note__nie_url,
-                                "file://",
-                                "",
                                 g_get_user_data_dir (),
                                 g_get_user_cache_dir (),
                                 ".note",
@@ -244,9 +254,10 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
   const gchar *result;
   TrackerSparqlCursor *cursor;
 
-  /* the WHERE nie:url query has a single result : the note which we're providing metadata */
   query = g_strdup_printf ("SELECT nie:url(<%s>) nie:title(<%s>) WHERE { }",
                            note__id, note__id);
+
+
   cursor = bjb_perform_query (self, query);
   g_free (query);
 
@@ -261,6 +272,8 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
     /* NIE:TITLE (name) is the title pushed by libbiji */
     result = tracker_sparql_cursor_get_string (cursor, 1, 0);
     g_variant_builder_add (results, "{sv}", "name", g_variant_new_string (result));
+
+
 
    /* ICON is currently generic icon,        *
     * TODO serialize icons in libbiji        *

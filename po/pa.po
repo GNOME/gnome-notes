@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-04-30 21:59+0000\n"
-"PO-Revision-Date: 2013-05-01 20:28+0530\n"
+"POT-Creation-Date: 2013-09-04 01:37+0000\n"
+"PO-Revision-Date: 2013-09-09 22:20-0500\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "Language: pa\n"
@@ -18,9 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:34
-msgid "Bijiben"
-msgstr "ਬੀਜੀਬੇਨ"
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"ਨੋਟਿਸ ਸੰਪਾਦਕ ਹੈ, ਜੋ ਤੁਹਾਨੂੰ ਬਾਅਦ ਵਿੱਚ ਵਰਤਣ ਲਈ ਸਧਾਰਨ ਸੂਚੀ ਤਿਆਰ ਕਰਨ ਲਈ ਸਹਾਇਕ ਹੈ।"
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "ਇਹ ownCloud ਨੂੰ ਸਟੋਰੇਜ਼ ਟਿਕਾਣੇ ਤੇ ਆਨਲਾਈਨ ਐਡੀਟਰ ਵਜੋਂ ਵਰਤਣ ਲਈ ਸਹਾਇਕ ਹੈ।"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "ਨੋਟ"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
@@ -34,65 +44,57 @@ msgstr "ਨੋਟਿਸ, ਟੈਗ ਫਾਇਲਾਂ ਪੋਸਟ ਕਰੋ!"
 msgid "Note-taker"
 msgstr "ਨੋਟ-ਕਰਤਾ"
 
-#: ../src/bjb-app-menu.c:35
+#: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "ਗਨੋਮ ਲਈ ਸਧਾਰਨ ਨੋਟਬੁੱਕ"
 
-#: ../src/bjb-app-menu.c:39
+#: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
 "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ\n"
 "ਪੰਜਾਬੀ ਓਪਨਸੋਰਸ ਟੀਮ (POST)"
 
-#: ../src/bjb-app-menu.c:162
-msgid "Import Notes"
-msgstr "ਨੋਟਿਸ ਇੰਪੋਰਟ ਕਰੋ"
-
-#: ../src/bjb-app-menu.c:177
-msgid "Import notes from:"
-msgstr "ਨੋਟਿਸ ਇੰਪੋਰਟ ਕਰੋ:"
-
 #: ../src/bjb-color-button.c:146
-msgid "Choose a color for note"
-msgstr "ਨੋਟ ਲਈ ਰੰਗ ਚੁਣੋ"
+#| msgid "Note Font"
+msgid "Note Color"
+msgstr "ਨੋਟ ਰੰਗ"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:148
+#: ../src/bjb-editor-toolbar.c:367
 msgid "Cut"
 msgstr "ਕੱਟੋ"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:155
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Copy"
 msgstr "ਕਾਪੀ ਕਰੋ"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:162
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Paste"
 msgstr "ਚੇਪੋ"
 
-#: ../src/bjb-editor-toolbar.c:173
+#: ../src/bjb-editor-toolbar.c:396
 msgid "Bold"
 msgstr "ਗੂੜ੍ਹੇ"
 
-#: ../src/bjb-editor-toolbar.c:184
+#: ../src/bjb-editor-toolbar.c:407
 msgid "Italic"
 msgstr "ਤਿਰਛੇ"
 
-#: ../src/bjb-editor-toolbar.c:195
+#: ../src/bjb-editor-toolbar.c:418
 msgid "Strike"
 msgstr "ਵਿੰਨ੍ਹੋ"
 
-#: ../src/bjb-editor-toolbar.c:224
-msgid "Link"
-msgstr "ਲਿੰਕ"
+#: ../src/bjb-editor-toolbar.c:450
+msgid "Copy selection to a new note"
+msgstr "ਚੋਣ ਨੂੰ ਨਵੇਂ ਨੋਟ ਲਈ ਕਾਪੀ ਕਰੋ"
 
-#: ../src/bjb-empty-results-box.c:97
-#| msgid "Note Font"
+#: ../src/bjb-empty-results-box.c:100
 msgid "No Notes Found"
 msgstr "ਕੋਈ ਨੋਟਿਸ ਨਹੀਂ ਲੱਭਿਆ"
 
-#: ../src/bjb-empty-results-box.c:133
+#: ../src/bjb-empty-results-box.c:144
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -100,111 +102,207 @@ msgstr ""
 "ਤੁਹਾਡਾ ਨੋਟਿਸ ਭੰਡਾਰ ਖਾਲੀ ਹੈ।\n"
 "ਆਪਣਾ ਪਹਿਲਾਂ ਨੋਟ ਬਣਾਉਣ ਲਈ ਨਵਾਂ ਬਟਨ ਉੱਤੇ ਕਲਿੱਕ ਕਰੋ।"
 
-#: ../src/bjb-empty-results-box.c:140
+#: ../src/bjb-empty-results-box.c:150
 msgid "No result found for this research."
 msgstr "ਇਹ ਖੋਜ ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ।"
 
-#: ../src/bjb-main-toolbar.c:115
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "ਓਹ ਹੋ!"
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Please install 'Tracker' then restart the application."
+msgstr "'Tracker' ਨੂੰ ਇੰਸਟਾਲ ਕਰਕੇ ਐਪਲੀਕੇਸ਼ਨ ਮੁੜ-ਚਾਲੂ ਕਰੋ।"
+
+#: ../src/bjb-import-dialog.c:310
+msgid "Custom Location"
+msgstr "ਪਸੰਦੀਦਾ ਟਿਕਾਣਾ"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import Notes"
+msgstr "ਨੋਟਿਸ ਇੰਪੋਰਟ ਕਰੋ"
+
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "ਰੱਦ ਕਰੋ(_C)"
+
+#: ../src/bjb-import-dialog.c:410
+#| msgid "Import Notes"
+msgid "Import"
+msgstr "ਇੰਪੋਰਟ"
+
+#: ../src/bjb-import-dialog.c:421
+msgid "Select import location"
+msgstr "ਇੰਪਰੋਟ ਟਿਕਾਣਾ ਚੁਣੋ"
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "ਟੋਮਬਏ ਐਪਲੀਕੇਸ਼ਨ"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "ਜੀਨੋਟ ਐਪਲੀਕੇਸ਼ਨ"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "ਹੋਰ ਲੋਡ ਕਰੋ"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "...ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "ਆਈਟਮਾਂ ਨੂੰ ਚੁਣਨ ਲਈ ਉਹਨਾਂ ਉੱਤੇ ਕਲਿੱਕ ਕਰੋ"
 
-#: ../src/bjb-main-toolbar.c:117
+#: ../src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d ਚੁਣਿਆ"
 msgstr[1] "%d ਚੁਣੇ"
 
-#: ../src/bjb-main-toolbar.c:289
+#: ../src/bjb-main-toolbar.c:260
+msgid "Search note titles, content and collections"
+msgstr "ਖੋਜ ਨੋਟਿਸ ਟਾਈਟਲ, ਸਮੱਗਰੀ ਤੇ ਭੰਡਾਰ"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:299
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: ../src/bjb-main-toolbar.c:305
+msgid "Exit selection mode"
+msgstr "ਚੋਣ ਢੰਗ ਬੰਦ ਕਰੋ"
+
+#: ../src/bjb-main-toolbar.c:335
 #, c-format
 msgid "Results for %s"
 msgstr "%s ਲਈ ਨਤੀਜੇ"
 
-#: ../src/bjb-main-toolbar.c:292
+#: ../src/bjb-main-toolbar.c:338
 msgid "New and Recent"
 msgstr "ਨਵੇਂ ਅਤੇ ਤਾਜ਼ਾ"
 
-#: ../src/bjb-main-toolbar.c:354
+#: ../src/bjb-main-toolbar.c:402
 msgid "New"
 msgstr "ਨਵਾਂ"
 
-#: ../src/bjb-main-toolbar.c:532
+#: ../src/bjb-main-toolbar.c:420
+msgid "Selection mode"
+msgstr "ਚੋਣ ਢੰਗ"
+
+#: ../src/bjb-main-toolbar.c:448
+msgid "View notes and collections in a list"
+msgstr "ਨੋਟਿਸ ਤੇ ਭੰਡਾਰਾਂ ਨੂੰ ਸੂਚੀ ਦੇ ਰੂਪ ਵਿੱਚ ਵੇਖੋ"
+
+#: ../src/bjb-main-toolbar.c:472
+msgid "View notes and collections in a grid"
+msgstr "ਨੋਟਿਸ ਤੇ ਭੰਡਾਰਾਂ ਨੂੰ ਗਰਿੱਡ ਦੇ ਰੂਪ ਵਿੱਚ ਵੇਖੋ"
+
+#: ../src/bjb-main-toolbar.c:601
 msgid "Rename Note"
 msgstr "ਨੋਟ ਦਾ ਨਾਂ ਬਦਲੋ"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:553
+#: ../src/bjb-main-toolbar.c:622
 msgid "Undo"
 msgstr "ਵਾਪਸ"
 
-#: ../src/bjb-main-toolbar.c:561
+#: ../src/bjb-main-toolbar.c:630
 msgid "Redo"
 msgstr "ਪਰਤਾਓ"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:575
+#: ../src/bjb-main-toolbar.c:645
 msgid "Bullets"
 msgstr "ਬਿੰਦੀਆਂ"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:582
+#: ../src/bjb-main-toolbar.c:652
 msgid "Numbered List"
 msgstr "ਅੰਕਾਂ ਵਾਲੀ ਸੂਚੀ"
 
 #. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:593
+#: ../src/bjb-main-toolbar.c:664
 msgid "Rename"
 msgstr "ਅਸਲੀ ਨਾਂ"
 
-#: ../src/bjb-main-toolbar.c:599
-msgid "Tags"
-msgstr "ਟੈਗ"
+#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "ਭੰਡਾਰ"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:610
+#: ../src/bjb-main-toolbar.c:684
 msgid "Delete this Note"
 msgstr "ਇਸ ਨੋਟ ਹਟਾਓ"
 
-#: ../src/bjb-main-toolbar.c:644
-msgid "Notes"
-msgstr "ਨੋਟ"
+#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:252
+#| msgid "Note Font"
+msgid "Note color"
+msgstr "ਨੋਟ ਰੰਗ"
 
-#: ../src/bjb-note-tag-dialog.c:373
-msgid "Enter a name to create a tag"
-msgstr "ਟੈਗ ਬਣਾਉਣ ਲਈ ਨਾਂ ਦਿਉ"
+#: ../src/bjb-main-toolbar.c:775
+msgid "Share note"
+msgstr "ਨੋਟ ਸਾਂਝਾ ਕਰੋ"
 
-#: ../src/bjb-note-tag-dialog.c:383
-msgid "New tag"
-msgstr "ਨਵਾਂ ਟੈਗ"
+#: ../src/bjb-main-toolbar.c:796
+msgid "More options…"
+msgstr "...ਹੋਰ ਚੋਣਾਂ"
+
+#: ../src/bjb-note-tag-dialog.c:399
+#| msgid "Enter a name to create a tag"
+msgid "Enter a name to create a collection"
+msgstr "ਭੰਡਾਰ ਬਣਾਉਣ ਲਈ ਨਾਂ ਦਿਉ"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "ਨਵਾਂ ਭੰਡਾਰ"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+msgid "_Close"
+msgstr "ਬੰਦ ਕਰੋ(_C)"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:231
-msgid "Last updated "
-msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਸੀ "
+#: ../src/bjb-note-view.c:229
+#| msgid "Last updated "
+msgid "Last updated"
+msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਸੀ"
 
-#: ../src/bjb-selection-toolbar.c:155
-msgid "Tag"
-msgstr "ਟੈਗ"
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "ਠੀਕ ਹੈ(_O)"
 
-#: ../src/bjb-selection-toolbar.c:179
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:244
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
-#. create dialog
-#: ../src/bjb-settings.c:191
-msgid "Preferences"
-msgstr "ਮੇਰੀ ਪਸੰਦ"
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:258
+msgid "Add to Collection"
+msgstr "ਭੰਡਾਰ ਵਿੱਚ ਸ਼ਾਮਲ"
 
-#. Note Font
-#: ../src/bjb-settings.c:222
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
 msgid "Note Font"
 msgstr "ਨੋਟ ਫੋਂਟ"
 
-#. Default Color
-#: ../src/bjb-settings.c:231
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
 msgid "Default Color"
 msgstr "ਮੂਲ ਫੋਂਟ"
+
+#: ../src/bjb-settings-dialog.c:437
+#| msgid "Note Font"
+msgid "Note Edition"
+msgstr "ਨੋਟ ਐਡੀਸ਼ਨ"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "ਪ੍ਰਾਇਮਰੀ ਬੁੱਕ"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -230,6 +328,10 @@ msgstr "ਇਹ ਸਾਲ"
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
+#: ../src/libbiji/provider/biji-local-provider.c:298
+msgid "Local storage"
+msgstr "ਲੋਕਲ ਸਟੋਰੇਜ਼"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "ਨਵੀਂ ਵਿੰਡੋ(_N)"
@@ -243,8 +345,9 @@ msgid "_Preferences"
 msgstr "ਮੇਰੀ ਪਸੰਦ(_P)"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Bijiben"
-msgstr "ਬੀਜੀਬੇਨ ਬਾਰੇ(_A)"
+#| msgid "_Import Notes"
+msgid "_About Notes"
+msgstr "ਨੋਟਿਸ ਬਾਰੇ(_A)"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
@@ -253,6 +356,33 @@ msgstr "ਮੱਦਦ(_H)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "ਬੰਦ ਕਰੋ(_Q)"
+
+#~ msgid "Bijiben"
+#~ msgstr "ਬੀਜੀਬੇਨ"
+
+#~ msgid "Import notes from:"
+#~ msgstr "ਨੋਟਿਸ ਇੰਪੋਰਟ ਕਰੋ:"
+
+#~ msgid "Choose a color for note"
+#~ msgstr "ਨੋਟ ਲਈ ਰੰਗ ਚੁਣੋ"
+
+#~ msgid "Link"
+#~ msgstr "ਲਿੰਕ"
+
+#~ msgid "Tags"
+#~ msgstr "ਟੈਗ"
+
+#~ msgid "New tag"
+#~ msgstr "ਨਵਾਂ ਟੈਗ"
+
+#~ msgid "Tag"
+#~ msgstr "ਟੈਗ"
+
+#~ msgid "Preferences"
+#~ msgstr "ਮੇਰੀ ਪਸੰਦ"
+
+#~ msgid "_About Bijiben"
+#~ msgstr "ਬੀਜੀਬੇਨ ਬਾਰੇ(_A)"
 
 #~ msgid "External Notes"
 #~ msgstr "ਬਾਹਰੀ ਨੋਟਿਸ"

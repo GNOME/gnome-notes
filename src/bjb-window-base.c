@@ -22,6 +22,7 @@
 
 enum {
   BJB_WIN_BASE_VIEW_CHANGED,
+  BJB_WIN_BASE_ACTIVATED,
   BJB_WIN_BASE_SIGNALS
 };
 
@@ -213,6 +214,17 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
                                                     g_cclosure_marshal_VOID__VOID,
                                                     G_TYPE_NONE,
                                                     0);
+
+  bjb_win_base_signals[BJB_WIN_BASE_ACTIVATED] =    g_signal_new ("activated" ,
+                                                    G_OBJECT_CLASS_TYPE (klass),
+                                                    G_SIGNAL_RUN_LAST,
+                                                    0,
+                                                    NULL,
+                                                    NULL,
+                                                    g_cclosure_marshal_VOID__BOOLEAN,
+                                                    G_TYPE_NONE,
+                                                    1,
+                                                    G_TYPE_BOOLEAN);
 }
 
 
@@ -412,4 +424,22 @@ bjb_window_base_toggle_search_button (BjbWindowBase *self,
                                             active);
 
   return TRUE;
+}
+
+
+void
+bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
+{
+  gboolean available;
+
+  g_warning ("set active");
+  available = (self->priv->current_view != BJB_WINDOW_BASE_NOTE_VIEW);
+
+  if (active == TRUE)
+  {
+    g_signal_emit (self,
+                   bjb_win_base_signals[BJB_WIN_BASE_ACTIVATED],
+                   0,
+                   available);
+  }
 }

@@ -620,6 +620,8 @@ on_book_changed (BijiNoteBook           *book,
 
     default:
       bjb_controller_apply_needle (self);
+      if (flag == BIJI_BOOK_MASS_CHANGE)
+        bjb_window_base_set_active (self->priv->window, TRUE);
   }
 
   /* FIXME we refresh the whole completion model each time */

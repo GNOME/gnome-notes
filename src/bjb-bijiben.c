@@ -33,28 +33,77 @@ struct _BijibenPriv
   BijiNoteBook *book;
   BjbSettings *settings;
 
-  /* First run is not used yet,
-   * could ask tracker for notes / memo to import */
+
+
+  /* Controls. 1st run is not used yet. to_open is for startup */
+
   gboolean     first_run;
-  gchar        dest;
+  gboolean     is_loaded;
+  GQueue       *to_open;
 };
 
 G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
 
 static void
-bijiben_new_window_internal (GApplication *app,
+bijiben_new_window_internal (Bijiben *app,
+                             GFile *file,
+                             BijiNoteObj *note_obj,
+                             GError *error);
+
+static void
+on_window_activated_cb   (BjbWindowBase *window,
+                          gboolean win_is_available,
+                          Bijiben *self)
+{
+  BijibenPriv *priv;
+  gchar *path;
+  BijiItem *item;
+
+  item = NULL;
+  priv = self->priv;
+  priv->is_loaded = TRUE;
+
+  while ((path = g_queue_pop_head (priv->to_open)))
+  {
+
+    item = biji_note_book_get_item_at_path (priv->book, path);
+
+    if (item != NULL)
+    {
+
+      // fixme - bjb_window_base_switch_to_item...
+      if (win_is_available)
+         bjb_window_base_switch_to_note (window, item);
+      
+      else
+         bijiben_new_window_internal (self, NULL, item, NULL);
+    }
+
+    // TODO : the file is not a note. We should try to serialize it.
+    else {}
+
+    g_free (path);
+  }
+}
+
+
+static void
+bijiben_new_window_internal (Bijiben *self,
                              GFile *file,
                              BijiNoteObj *note_obj,
                              GError *error)
 {
   BjbWindowBase *window;
   BijiNoteObj* note;
-  Bijiben *self;
+  gchar *path;
 
-  g_return_if_fail (BIJIBEN_IS_APPLICATION (app));
-  self = BIJIBEN_APPLICATION (app);
+
   note = NULL;
+  path = NULL;
+
   window = BJB_WINDOW_BASE (bjb_window_base_new ());
+  g_signal_connect (window, "activated",
+                    G_CALLBACK (on_window_activated_cb), self);
 
 
   if (error!= NULL)
@@ -67,20 +116,26 @@ bijiben_new_window_internal (GApplication *app,
 
 
   if (file != NULL)
-    note = biji_note_get_new_from_file (self->priv->book,
-                                        g_file_get_path(file));
+  {
+    path = g_file_get_path (file);
+    note = biji_note_book_get_item_at_path (self->priv->book, path);
+  }
 
   else if (note_obj != NULL)
+  {
     note = note_obj;
+  }
+
+
+  bjb_window_base_switch_to (window, BJB_WINDOW_BASE_MAIN_VIEW);
 
   if (note != NULL)
       bjb_window_base_switch_to_note (window, note);
 
-  else
-    bjb_window_base_switch_to (window, BJB_WINDOW_BASE_MAIN_VIEW);
-
-
 out:
+  if (path != NULL)
+    g_free (path);
+
   gtk_widget_show_all (GTK_WIDGET (window));
 }
 
@@ -88,7 +143,7 @@ void
 bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
-  bijiben_new_window_internal(app, NULL, note, NULL);
+  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), NULL, note, NULL);
 }
 
 static void
@@ -100,25 +155,43 @@ bijiben_activate (GApplication *app)
   gtk_window_present (g_list_nth_data (windows, 0));
 }
 
+
+/* If the app is already loaded, just open the file.
+ * Else, keep it under the hood */
+
 static void
 bijiben_open (GApplication  *application,
               GFile        **files,
               gint           n_files,
               const gchar   *hint)
 {
+  Bijiben *self;
   gint i;
 
+  self = BIJIBEN_APPLICATION (application);
+
   for (i = 0; i < n_files; i++)
-    bijiben_new_window_internal(application, files[i], NULL, NULL);
+  {
+    if (self->priv->is_loaded == TRUE)
+      bijiben_new_window_internal (BIJIBEN_APPLICATION (application), files[i], NULL, NULL);
+    
+    else
+      g_queue_push_head (self->priv->to_open, g_file_get_path (files[i]));
+  }
 }
 
 static void
-bijiben_init (Bijiben *object)
+bijiben_init (Bijiben *self)
 {
-  object->priv =
-    G_TYPE_INSTANCE_GET_PRIVATE(object,BIJIBEN_TYPE_APPLICATION,BijibenPriv);
+  BijibenPriv *priv;
 
-  object->priv->settings = bjb_settings_new ();
+
+  priv = self->priv =
+    G_TYPE_INSTANCE_GET_PRIVATE (self, BIJIBEN_TYPE_APPLICATION, BijibenPriv);
+
+  priv->settings = bjb_settings_new ();
+  priv->to_open = g_queue_new ();
+  priv->is_loaded = FALSE;
 }
 
 /* Import. TODO : move to libbiji */
@@ -402,7 +475,7 @@ bijiben_startup (GApplication *application)
 
   /* Create the first window */
   out:
-  bijiben_new_window_internal (application, NULL, NULL, error);
+  bijiben_new_window_internal (BIJIBEN_APPLICATION (application), NULL, NULL, error);
   g_free (default_color);
   g_free (storage_path);
   g_object_unref (storage);
@@ -415,6 +488,7 @@ bijiben_finalize (GObject *object)
 
   g_clear_object (&self->priv->book);
   g_clear_object (&self->priv->settings);
+  g_queue_free (self->priv->to_open);
 
   G_OBJECT_CLASS (bijiben_parent_class)->finalize (object);
 }

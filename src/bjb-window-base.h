@@ -77,4 +77,7 @@ gboolean bjb_window_base_set_show_search_bar (BjbWindowBase *self, gboolean show
 gboolean bjb_window_base_toggle_search_button (BjbWindowBase *self,
                                                gboolean active);
 
+
+void bjb_window_base_set_active (BjbWindowBase *self, gboolean active);
+
 #endif /* _BJB_WINDOW_BASE_H */

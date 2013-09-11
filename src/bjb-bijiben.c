@@ -130,7 +130,10 @@ bijiben_new_window_internal (Bijiben *self,
   bjb_window_base_switch_to (window, BJB_WINDOW_BASE_MAIN_VIEW);
 
   if (note != NULL)
-      bjb_window_base_switch_to_note (window, note);
+  {
+    bjb_controller_apply_needle (bjb_window_base_get_controller (window));
+    bjb_window_base_switch_to_note (window, note);
+  }
 
 out:
   if (path != NULL)

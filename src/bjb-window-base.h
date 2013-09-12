@@ -57,11 +57,11 @@ BjbWindowViewType bjb_window_base_get_view_type (BjbWindowBase *win);
 
 BijiNoteBook * bjb_window_base_get_book(GtkWidget * win);
 
+
 void bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;
 
-void bjb_window_base_delete_entry(GtkWidget *win);
-
 gchar * bjb_window_base_get_entry(GtkWidget *win) ;
+
 
 gpointer bjb_window_base_get_main_view (BjbWindowBase *self);
 

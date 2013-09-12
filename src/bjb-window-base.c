@@ -370,14 +370,14 @@ bjb_window_base_get_book(GtkWidget * win)
 void
 bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry)
 {
-  BjbWindowBase *bmw = BJB_WINDOW_BASE(win);
-  bmw->priv->entry = search_entry ; 
+  BjbWindowBase *bmw;
+
+  g_return_if_fail (BJB_IS_WINDOW_BASE (win));
+
+  bmw = BJB_WINDOW_BASE (win);
+  bmw->priv->entry = search_entry;
 }
 
-void bjb_window_base_delete_entry(GtkWidget *win)
-{
-  BJB_WINDOW_BASE(win)->priv->entry = NULL ;
-}
 
 gchar *
 bjb_window_base_get_entry(GtkWidget *win)

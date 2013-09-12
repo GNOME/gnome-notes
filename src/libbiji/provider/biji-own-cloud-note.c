@@ -186,7 +186,7 @@ on_title_change                     (gpointer    user_data)
   old_title = self->priv->basename;
   new_title = biji_note_id_get_title (self->priv->id);
 
-  
+
   if (old_title == NULL)
   {
     if (new_title != NULL)
@@ -220,6 +220,7 @@ on_content_change                   (gpointer    user_data)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
 
   note = user_data;
+  biji_note_obj_set_title_survives (note, FALSE);
   html = html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (user_data));
   ocloud_note_set_html (note, html);
   g_free (html);

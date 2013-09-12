@@ -432,7 +432,6 @@ bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
 {
   gboolean available;
 
-  g_warning ("set active");
   available = (self->priv->current_view != BJB_WINDOW_BASE_NOTE_VIEW);
 
   if (active == TRUE)

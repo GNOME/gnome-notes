@@ -48,7 +48,6 @@ GtkWindow * bjb_window_base_new(void);
 
 BjbController * bjb_window_base_get_controller ( BjbWindowBase *window ) ;
 
-PangoFontDescription *bjb_window_base_get_font(GtkWidget *window);
 
 void bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type);
 

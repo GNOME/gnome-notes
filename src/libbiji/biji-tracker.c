@@ -374,18 +374,29 @@ biji_get_items_matching_async (BijiNoteBook          *book,
 
 
   lower = g_utf8_strdown (needle, -1);
+
+  /* We want to retrieve the key that noteBook uses.
+   * for notes: that is url. A file path is unique.
+   * for collections: we have no url, directly use urn:uuid */
+
   query = g_strconcat (
-    "SELECT ?url WHERE {",
-    "  { ?urn a nie:DataObject ;",
-    "    nie:url ?url ;",
-    "    nie:title ?title ; nie:plainTextContent ?content ;",
-    "    nie:generator 'Bijiben' . FILTER (",
+    "SELECT tracker:coalesce (?url, ?urn) WHERE ",
+    "{",
+    "  {  ?urn a nfo:Note",
+    "    .?urn nie:title ?title",
+    "    .?urn nie:plainTextContent ?content",
+    "    .?urn nie:url ?url",
+    "    .?urn nie:generator 'Bijiben'",
+    "    .FILTER (",
     "    fn:contains (fn:lower-case (?content), '", lower, "' ) || ",
     "    fn:contains (fn:lower-case (?title)  , '", lower, "'))} ",
     "UNION",
-    "  { ?url a nfo:DataContainer ;",
-    "    nie:title ?title ; nie:generator 'Bijiben' . FILTER (",
-    "    fn:contains (fn:lower-case (?title), '", lower, "'))}}",
+    "  {  ?urn a nfo:DataContainer",
+    "    .?urn nie:title ?title",
+    "    .?urn nie:generator 'Bijiben'",
+    "    .FILTER (",
+    "    fn:contains (fn:lower-case (?title), '", lower, "'))}",
+    "}",
     NULL);
 
   g_free (lower);

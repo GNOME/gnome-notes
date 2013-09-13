@@ -271,7 +271,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 
 /* No matter if icon is saved or not.
  * We just try */
-static void
+void
 biji_note_obj_save_icon (BijiNoteObj *note)
 {
   gchar *filename;

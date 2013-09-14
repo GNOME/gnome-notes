@@ -215,6 +215,9 @@ title_is_unique (BijiNoteBook *book, gchar *title)
 
   for ( l=items ; l != NULL ; l = l->next)
   {
+    if (BIJI_IS_ITEM (l->data) == FALSE)
+      break;
+
     iter = BIJI_ITEM (l->data);
 
     if (g_strcmp0 (biji_item_get_title (iter), title) == 0)
@@ -529,7 +532,8 @@ biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
 
   uid = biji_item_get_uuid (item);
 
-  if (g_hash_table_lookup (book->priv->items, uid))
+  if (uid != NULL &&
+      g_hash_table_lookup (book->priv->items, uid))
     retval = FALSE;
 
   else if (BIJI_IS_NOTE_OBJ (item))
@@ -679,6 +683,7 @@ biji_note_book_note_new            (BijiNoteBook *book,
                                     gchar        *provider_id)
 {
   BijiProvider *provider;
+  BijiNoteObj *retval;
 
   // If we move local_note_new to create_note for local provider
   // we won't need this stupid switch.
@@ -691,6 +696,12 @@ biji_note_book_note_new            (BijiNoteBook *book,
   provider = g_hash_table_lookup (book->priv->providers,
                                   provider_id);
 
-  return BIJI_PROVIDER_GET_CLASS (provider)->create_note (provider, str);
+
+  retval = BIJI_PROVIDER_GET_CLASS (provider)->create_note (provider, str);
+  // do not save. up to the provider implementation to save it or not
+  // at creation.
+  biji_note_book_add_item (book, BIJI_ITEM (retval), TRUE);
+
+  return retval;
 }
                                     

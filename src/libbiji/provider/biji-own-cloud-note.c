@@ -15,6 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <uuid/uuid.h>
 
 #include "biji-info-set.h"
 #include "biji-item.h"
@@ -336,6 +337,22 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
   g_free (info->title);
   info->title = sane_title;
 
+
+  /* Hmm, even if the note starts blank we want some path...*/
+
+  if (info->url == NULL)
+  {
+    uuid_t unique;
+    char out[40];
+
+    uuid_generate (unique);
+    uuid_unparse_lower (unique, out);
+    
+    info->url = g_strdup_printf ("%s/%s.txt",
+                  biji_own_cloud_provider_get_readable_path (prov),
+                  out);
+  }
+
   /* Now actually create the stuff */
 
   id = biji_note_id_new_from_info (info);
@@ -354,21 +371,9 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
   g_signal_connect_swapped (id, "notify::title",
                             G_CALLBACK (on_title_change), retval);
 
-  /* That's not a blank note. That's an existing file. */
 
-  if (info->url != NULL)
-  {
-    ocloud->priv->location = g_file_new_for_commandline_arg (info->url);
-    ocloud->priv->basename = g_file_get_basename (ocloud->priv->location);
-  }
-
-  /* Really new note */
-
-  else
-  {
-    ocloud->priv->location = NULL;
-    ocloud->priv->basename = NULL;
-  }
+  ocloud->priv->location = g_file_new_for_commandline_arg (info->url);
+  ocloud->priv->basename = g_file_get_basename (ocloud->priv->location);
 
   return retval;
 }

@@ -46,6 +46,13 @@ enum {
 
 static GParamSpec *properties[OCLOUD_PROV_PROP] = { NULL, };
 
+/*
+ * goa : object, account, providerInfo
+ * gio : volume, mount, path, folder. folder get_path would return something we don't want.
+ * data : notes
+ * startup: tracker, queue
+ * todo: monitor, cancel monitor
+ */
 
 struct BijiOwnCloudProviderPrivate_
 {
@@ -53,7 +60,6 @@ struct BijiOwnCloudProviderPrivate_
 
   GoaObject        *object;
   GoaAccount       *account;
-  gchar            *identifier;
 
   GHashTable       *notes;
   GHashTable       *tracker;
@@ -61,6 +67,7 @@ struct BijiOwnCloudProviderPrivate_
 
   GVolume          *volume;
   GMount           *mount;
+  gchar            *path;
   GFile            *folder;
 
   GFileMonitor     *monitor;
@@ -119,7 +126,9 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_PROVIDER (object));
   self = BIJI_OWN_CLOUD_PROVIDER (object);
 
-  g_free (self->priv->identifier);
+  if (self->priv->path != NULL)
+    g_free (self->priv->path);
+
   g_object_unref (self->priv->account);
   g_object_unref (self->priv->object);
   g_object_unref (self->priv->info.icon);
@@ -152,6 +161,7 @@ create_note_from_item (BijiOCloudItem *item)
   BijiNoteBook *book;
 
   book = biji_provider_get_book (BIJI_PROVIDER (item->self));
+
   note = biji_own_cloud_note_new_from_info (item->self,
                                             book,
                                             &item->set);
@@ -354,7 +364,7 @@ enumerate_next_files_ready_cb (GObject *source,
     g_file_info_get_modification_time (info, &time);
     item->set.mtime = time.tv_sec;
     item->set.created = g_file_info_get_attribute_uint64 (info, "time:created");
-    item->set.datasource_urn = g_strdup (self->priv->identifier);
+    item->set.datasource_urn = g_strdup (self->priv->info.datasource);
     item->file = g_file_new_for_uri (item->set.url);
     g_queue_push_head (self->priv->queue, item);
   }
@@ -511,7 +521,7 @@ handle_mount (BijiOwnCloudProvider *self)
     g_object_unref (root);
     biji_tracker_ensure_datasource (
       biji_provider_get_book (BIJI_PROVIDER (self)),
-      self->priv->identifier,
+      self->priv->info.datasource,
       MINER_ID,
       mine_notes,
       self);
@@ -567,6 +577,7 @@ get_mount (BijiOwnCloudProvider *self)
   if (GOA_IS_FILES (files))
   {
     uri = goa_files_get_uri  (files);
+    self->priv->path = g_strdup_printf ("%sNotes", uri);
     self->priv->volume = g_volume_monitor_get_volume_for_uuid (monitor, uri);
     self->priv->mount = g_volume_get_mount (self->priv->volume);
 
@@ -655,6 +666,7 @@ biji_own_cloud_provider_init (BijiOwnCloudProvider *self)
   self->priv->notes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
   self->priv->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
   self->priv->queue = g_queue_new ();
+  self->priv->path = NULL;
 }
 
 
@@ -780,4 +792,11 @@ biji_own_cloud_provider_new (BijiNoteBook *book,
                        "book", book,
                        "goa", object,
                        NULL);
+}
+
+
+gchar *
+biji_own_cloud_provider_get_readable_path (BijiOwnCloudProvider *p)
+{
+  return p->priv->path;
 }

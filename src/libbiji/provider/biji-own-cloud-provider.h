@@ -59,6 +59,9 @@ BijiProvider     *biji_own_cloud_provider_new           (BijiNoteBook *book,
 GFile            *biji_own_cloud_provider_get_folder    (BijiOwnCloudProvider *provider);
 
 
+gchar            *biji_own_cloud_provider_get_readable_path (BijiOwnCloudProvider *p);
+
+
 G_END_DECLS
 
 #endif /* BIJI_OWN_CLOUD_PROVIDER_H_ */

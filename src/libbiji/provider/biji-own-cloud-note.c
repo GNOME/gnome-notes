@@ -20,6 +20,7 @@
 #include "biji-item.h"
 #include "biji-own-cloud-note.h"
 #include "biji-own-cloud-provider.h"
+#include "../serializer/biji-lazy-serializer.h"
 
 
 
@@ -68,14 +69,16 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
   BijiOwnCloudNote *ocnote;
   GFile *file;
   GFileInfo *file_info;
-  const BijiProviderInfo *prov_info;
+  const BijiProviderInfo *provider;
 
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
+  g_return_if_fail (G_IS_FILE (BIJI_OWN_CLOUD_NOTE (note)->priv->location));
+
   item = BIJI_ITEM (note);
   ocnote = BIJI_OWN_CLOUD_NOTE (note);
   file = ocnote->priv->location;
   file_info = g_file_query_info (file, "time::modified", G_FILE_QUERY_INFO_NONE, NULL, NULL);
-  prov_info = biji_provider_get_info (BIJI_PROVIDER (ocnote->priv->prov));
+  provider = biji_provider_get_info (BIJI_PROVIDER (ocnote->priv->prov));
 
   info = biji_info_set_new ();
   info->url = (gchar*) biji_item_get_uuid (item);
@@ -83,7 +86,7 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
   info->content = (gchar*) biji_note_obj_get_raw_text (note);
   info->mtime = g_file_info_get_attribute_uint64 (file_info, "time::modified");
   info->created = biji_note_obj_get_create_date (note);
-  info->datasource_urn = g_strdup (prov_info->datasource);
+  info->datasource_urn = g_strdup (provider->datasource);
 
   biji_tracker_ensure_ressource_from_info  (biji_item_get_book (item),
                                             info);
@@ -114,6 +117,7 @@ on_content_replaced  (GObject *source_object,
 
   else
   {
+    biji_note_obj_save_icon (user_data);
     ocloud_note_ensure_ressource (user_data);
   }
 }
@@ -150,66 +154,61 @@ ocloud_note_save (BijiNoteObj *note)
 
 /* Rename the file
  * when note title change
- * Also handle new notes being populated */
+ * Also handle new notes being populated
+ * the noteID still keep some path, which we will remove */
 
 static void
 create_new_file (BijiOwnCloudNote *self, const gchar *basename)
 {
   GFile *folder;
   BijiNoteObj *note;
+  gchar *key;
 
   note = BIJI_NOTE_OBJ (self);
   folder = biji_own_cloud_provider_get_folder (self->priv->prov);
 
+  /* TODO just free old location before, but check for no mistake */
+
   self->priv->location = g_file_get_child (folder, basename);
-  self->priv->basename = g_file_get_basename (self->priv->location);
+  key = g_strdup_printf (
+               "%s/%s",
+               biji_own_cloud_provider_get_readable_path (self->priv->prov),
+               basename);
+  g_object_set (self->priv->id, "path", key, NULL);
 
   ocloud_note_save (note);
   ocloud_note_ensure_ressource (note);
+
+  g_free (key);
 }
 
 
 /* with current design, title might change
  * from user will or because note is edited */
 
+
 static void
-on_title_change                     (gpointer    user_data)
+on_title_change                     (BijiOwnCloudNote *self)
 {
-  BijiOwnCloudNote *self;
-  gchar *old_title;
   const gchar *new_title;
 
+  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (self));
 
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
-
-  self = BIJI_OWN_CLOUD_NOTE (user_data);
-  old_title = self->priv->basename;
+  g_free (self->priv->basename);
   new_title = biji_note_id_get_title (self->priv->id);
+  self->priv->basename = g_strdup_printf ("%s.txt", new_title);
 
 
-  if (old_title == NULL)
-  {
-    if (new_title != NULL)
-      create_new_file (self, new_title);
-  }
+  g_file_delete_async (self->priv->location,
+                       G_PRIORITY_LOW,
+                       NULL,
+                       NULL,
+                       NULL);
 
-  else if (g_strcmp0 (old_title, new_title) != 0)
-  {
-    g_file_delete_async (self->priv->location,
-                         G_PRIORITY_LOW,
-                         NULL,
-                         NULL,
-                         NULL);
-    // g_object_unref (self->priv->location);
-    // g_free (self->priv->basename);
-    create_new_file (self, new_title);
-  }
-  
+  create_new_file (self, self->priv->basename);
 }
 
 
-/* TODO : check if the title needs change
- * and adjust */
 
 static void
 on_content_change                   (gpointer    user_data)
@@ -220,7 +219,6 @@ on_content_change                   (gpointer    user_data)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
 
   note = user_data;
-  biji_note_obj_set_title_survives (note, FALSE);
   html = html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (user_data));
   ocloud_note_set_html (note, html);
   g_free (html);
@@ -328,8 +326,17 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
                                                                  BijiInfoSet *info)
 {
   BijiNoteID *id;
+  gchar *sane_title;
   BijiNoteObj *retval;
   BijiOwnCloudNote *ocloud;
+
+  /* First, sanitize the title, assuming no other thread
+   * mess up with the InfoSet */
+  sane_title = biji_str_replace (info->title, ".txt", "");
+  g_free (info->title);
+  info->title = sane_title;
+
+  /* Now actually create the stuff */
 
   id = biji_note_id_new_from_info (info);
 

@@ -577,7 +577,7 @@ biji_note_obj_get_icon_file (BijiNoteObj *note)
   gchar *basename, *filename;
 
   uuid = BIJI_NOTE_OBJ_GET_CLASS (note)->get_basename (note);
-  basename = biji_str_mass_replace (uuid, ".note", ".png", NULL);
+  basename = biji_str_mass_replace (uuid, ".note", ".png", ".txt", ".png", NULL);
 
   filename = g_build_filename (g_get_user_cache_dir (),
                                g_get_application_name (),

@@ -600,28 +600,6 @@ delete_item_callback (GtkWidget *item, gpointer user_data)
           BIJI_ITEM (self->priv->note));
 }
 
-static void
-action_rename_note_callback (GtkWidget *w, gpointer user_data)
-{
-  BjbMainToolbar        *bar;
-  BjbMainToolbarPrivate *priv;
-  gchar                 *title;
-  BijiItem *item;
-
-  bar = BJB_MAIN_TOOLBAR (user_data);
-  priv = bar->priv;
-  item = BIJI_ITEM (priv->note);
-
-  title = note_title_dialog (priv->window,
-                             _("Rename Note"),
-                             biji_item_get_title (item));
-
-  if (!title)
-    return;
-
-  biji_note_obj_set_title (priv->note, title);
-  biji_note_obj_save_note (priv->note); //FIXME libbiji needs to to this auto
-}
 
 GtkWidget *
 bjb_note_menu_new (BjbMainToolbar *self)
@@ -675,12 +653,6 @@ bjb_note_menu_new (BjbMainToolbar *self)
 
   }
 
-  /* Rename, view tags, separtor */
-  item = gtk_menu_item_new_with_label(_("Rename"));
-  gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
-  g_signal_connect(item,"activate",
-                   G_CALLBACK(action_rename_note_callback),self);
-
 
   if (biji_item_is_collectable (BIJI_ITEM (priv->note)))
   {
@@ -690,10 +662,6 @@ bjb_note_menu_new (BjbMainToolbar *self)
                      G_CALLBACK(action_view_tags_callback),self);
 
   }
-
-  item = gtk_separator_menu_item_new ();
-  gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-
 
   /* Delete Note */
   item = gtk_menu_item_new_with_label(_("Delete this Note"));

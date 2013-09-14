@@ -50,8 +50,7 @@ struct _BijiNoteObjPrivate
   /* Tags 
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
   GHashTable            *labels;
-  gboolean              is_template ;
-  gboolean              does_title_survive;
+  gboolean              is_template;
 
   /* Signals */
   gulong note_renamed;
@@ -113,10 +112,6 @@ biji_note_obj_init (BijiNoteObj *self)
 
 
   priv->is_template = FALSE ;
-
-  /* Existing note keep their title.
-   * only brand new notes might see title changed */
-  priv->does_title_survive = TRUE;
 
   /* The editor is NULL so we know it's not opened
    * neither fully deserialized */
@@ -297,52 +292,39 @@ biji_note_obj_get_title (BijiItem *note)
 gboolean
 biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
 {
-  gboolean initial = FALSE;
-  note->priv->does_title_survive = TRUE;
-  gchar *title;
+  gchar *old_title, *title;
+  gboolean retval;
 
-  if (!biji_note_id_get_title (note->priv->id))
-    initial = TRUE;
+  title = NULL;
+  old_title = g_strdup (biji_note_id_get_title (note->priv->id));
 
-  if (g_strcmp0 (proposed_title, biji_note_id_get_title (note->priv->id))==0)
-    return FALSE;
 
-  /* If the note is really renamed, check the new title */
-  if (!initial)
+  if (g_strcmp0 (proposed_title, old_title) == 0)
   {
-    title = biji_note_book_get_unique_title (
+    retval = FALSE;
+    goto out;
+  }
+
+
+  title = biji_note_book_get_unique_title (
               biji_item_get_book (BIJI_ITEM (note)), proposed_title);
-    biji_note_id_set_last_metadata_change_date (note->priv->id,
-                                                g_get_real_time () / G_USEC_PER_SEC);
-  }
+  biji_note_id_set_last_metadata_change_date (note->priv->id,
+                                              g_get_real_time () / G_USEC_PER_SEC);
 
-  /* Otherwise it's up to the caller to sanitize its title */
-  else
-  {
-    title = g_strdup (proposed_title);
-  }
 
   /* Emit signal even if initial title, just to let know */
   biji_note_id_set_title (note->priv->id, title);
-  g_free (title);
-  g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED],0);
-  return TRUE;
-}
+  g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED], 0);
+  retval = TRUE;
 
+out:
+  if (old_title != NULL)
+    g_free (old_title);
+  
+  if (title != NULL)
+    g_free (title);
 
-gboolean
-biji_note_obj_title_survives (BijiNoteObj *note)
-{
-  return note->priv->does_title_survive;
-}
-
-
-void
-biji_note_obj_set_title_survives (BijiNoteObj *obj, gboolean value)
-{
-  g_return_if_fail (BIJI_IS_NOTE_OBJ(obj));
-
-  obj->priv->does_title_survive = value;
+  return retval;
 }
 
 
@@ -865,28 +847,7 @@ _biji_note_obj_close (BijiNoteObj *note)
    * Actually we just need to remove it from book
    * since no change could trigger save */
   if (biji_note_id_get_content (priv->id) == NULL)
-  {
     biji_note_book_remove_item (book, item);
-  }
-
-  /* If the note only has one row. put some title */
-  else if (!biji_note_obj_title_survives (note))
-  {
-    gchar *title;
-    
-    title = biji_note_book_get_unique_title (book,
-                                             biji_note_id_get_content (priv->id));
-    biji_note_obj_set_title (note, title);
-    g_free (title);
-  }
-
-  /* Else the note is not empty & has more than a row.
-   * But the first row might still be empty.*/
-  else if (!biji_note_id_get_title (priv->id) ||
-           g_strcmp0 (biji_note_id_get_title (priv->id),"")==0)
-  {
-    biji_note_obj_set_title (note, biji_note_id_get_content (priv->id));
-  }
 }
 
 GtkWidget *

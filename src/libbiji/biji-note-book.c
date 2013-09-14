@@ -635,7 +635,6 @@ get_note_skeleton (BijiNoteBook *book)
   }
 
   biji_note_obj_set_all_dates_now (ret);
-  biji_note_obj_set_title_survives (ret, FALSE);
   return ret;
 }
 

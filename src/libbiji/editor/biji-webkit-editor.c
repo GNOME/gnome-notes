@@ -250,6 +250,7 @@ on_content_changed (WebKitWebView *view)
   WebKitDOMDocument    *dom;
   WebKitDOMHTMLElement *elem;
   gchar                *html, *text;
+  gchar                **rows;
 
   /* First html serializing */
   dom = webkit_web_view_get_dom_document (view);
@@ -260,32 +261,31 @@ on_content_changed (WebKitWebView *view)
   biji_note_obj_set_html (note, html);
   biji_note_obj_set_raw_text (note, text);
 
-  /* Now tries to update title if new note
-   * and several rows */
-  if (!biji_note_obj_title_survives (note))
+  /* Now tries to update title */
+
+  rows = g_strsplit (text, "\n", 2);
+
+  /* if we have a line feed, we have a proper title */
+  /* this is equivalent to g_strv_length (rows) > 1 */
+
+  if (rows && rows[0] && rows[1])
   {
-    gchar **rows;
+    gchar *title;
+    gchar *unique_title;
+  
+    title = rows[0];
 
-    rows = g_strsplit (text, "\n", 2);
-
-    /* if we have a line feed, we have a proper title */
-    /* this is equivalent to g_strv_length (rows) > 1 */
-    if (rows && rows[0] && rows[1])
+    if (g_strcmp0 (title, biji_item_get_title (BIJI_ITEM (note))) != 0)
     {
-      char *title;
-      char *unique_title;
-
-      title = rows[0];
       unique_title = biji_note_book_get_unique_title (biji_item_get_book (BIJI_ITEM (note)),
                                                       title);
 
       biji_note_obj_set_title (note, unique_title);
       g_free (unique_title);
     }
-
-    g_strfreev (rows);
   }
 
+  g_strfreev (rows);
   g_free (html);
   g_free (text);
 

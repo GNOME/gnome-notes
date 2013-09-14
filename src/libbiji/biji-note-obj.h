@@ -79,14 +79,6 @@ gboolean         biji_note_obj_are_same                      (BijiNoteObj *a,
                                                               BijiNoteObj* b);
 
 
-/* will enter hit make title renamed? */
-gboolean         biji_note_obj_title_survives                (BijiNoteObj *note);
-
-
-void             biji_note_obj_set_title_survives            (BijiNoteObj *obj,
-                                                              gboolean value);
-
-
 gboolean         biji_note_obj_set_mtime                     (BijiNoteObj* n,
                                                               gint64 time);
 

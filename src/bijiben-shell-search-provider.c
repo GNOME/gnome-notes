@@ -200,7 +200,8 @@ handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
 static gchar *
 get_note_icon (const gchar *note__nie_url)
 {
-  gchar *path, *hash;
+  gchar **split;
+  gchar *path, *basename, *hash;
   GFile *file;
   GIcon *gicon;
 
@@ -209,15 +210,27 @@ get_note_icon (const gchar *note__nie_url)
    *      FIXME - below is ok for local notes only
    * 
    * URL  :  DATA_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.note
+   * URL  :  davs://..../Notes/Trial.txt
+   *
    * ICON :  CACHE_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.png
+   * ICON :  CACHE_DIR/bijiben/Trial.png
    */
 
-  path = biji_str_mass_replace (note__nie_url,
-                                g_get_user_data_dir (),
-                                g_get_user_cache_dir (),
-                                ".note",
-                                ".png",
-                                NULL);
+
+  basename = biji_str_mass_replace (split [g_strv_length (split)-1],
+                                    ".note",
+                                    ".png",
+                                    ".txt",
+                                    ".png",
+                                    NULL);
+
+  path = g_build_filename (g_get_user_cache_dir (),
+                           "bijiben",
+                           basename,
+                           NULL);
+
+
+
   file = g_file_new_for_path (path);
 
   if (g_file_query_exists (file, NULL))
@@ -234,7 +247,7 @@ get_note_icon (const gchar *note__nie_url)
   file = g_file_new_for_path (path);
 
   out:
-
+  g_strfreev (split);
   gicon = g_file_icon_new (file);
   hash = g_icon_to_string (gicon);
   g_free (path);

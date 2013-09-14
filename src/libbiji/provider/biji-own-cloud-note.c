@@ -21,6 +21,7 @@
 #include "biji-item.h"
 #include "biji-own-cloud-note.h"
 #include "biji-own-cloud-provider.h"
+#include "../biji-timeout.h"
 #include "../serializer/biji-lazy-serializer.h"
 
 
@@ -29,6 +30,8 @@ struct BijiOwnCloudNotePrivate_
 {
   BijiOwnCloudProvider *prov;
   BijiNoteID *id;
+
+  BijiTimeout           *timeout;
 
   gchar *html;
   GFile *location;
@@ -125,6 +128,8 @@ on_content_replaced  (GObject *source_object,
 
 
 
+
+
 static void
 ocloud_note_save (BijiNoteObj *note)
 {
@@ -134,6 +139,7 @@ ocloud_note_save (BijiNoteObj *note)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
   self = BIJI_OWN_CLOUD_NOTE (note);
   str = g_string_new (biji_note_obj_get_raw_text (note));
+
 
   /* backup would fail for some reason. 
    * gfilemove for workaround? */
@@ -151,6 +157,12 @@ ocloud_note_save (BijiNoteObj *note)
 
   g_string_free (str, FALSE);
 }
+
+
+
+
+
+
 
 
 /* Rename the file
@@ -184,8 +196,12 @@ create_new_file (BijiOwnCloudNote *self, const gchar *basename)
 }
 
 
-/* with current design, title might change
- * from user will or because note is edited */
+/* When the title is stable, handle io */
+static void
+on_timeout (BijiOwnCloudNote *self)
+{
+  create_new_file (self, self->priv->basename);
+}
 
 
 static void
@@ -206,7 +222,7 @@ on_title_change                     (BijiOwnCloudNote *self)
                        NULL,
                        NULL);
 
-  create_new_file (self, self->priv->basename);
+  biji_timeout_reset (self->priv->timeout, 3000);
 }
 
 
@@ -240,6 +256,7 @@ biji_own_cloud_note_finalize (GObject *object)
   self = BIJI_OWN_CLOUD_NOTE (object);
   g_free (self->priv->html);
   g_object_unref (self->priv->cancellable);
+  g_object_unref (self->priv->timeout);
   G_OBJECT_CLASS (biji_own_cloud_note_parent_class)->finalize (object);
 }
 
@@ -261,6 +278,10 @@ biji_own_cloud_note_init (BijiOwnCloudNote *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_OWN_CLOUD_NOTE, BijiOwnCloudNotePrivate);
   self->priv->cancellable = g_cancellable_new ();
   self->priv->id = NULL;
+
+  self->priv->timeout = biji_timeout_new ();
+  g_signal_connect_swapped (self->priv->timeout, "timeout",
+                            G_CALLBACK (on_timeout), self);
 }
 
 

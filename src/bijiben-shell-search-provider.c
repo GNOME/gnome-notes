@@ -215,7 +215,7 @@ get_note_icon (const gchar *note__nie_url)
    * ICON :  CACHE_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.png
    * ICON :  CACHE_DIR/bijiben/Trial.png
    */
-
+  split = g_strsplit (note__nie_url, "/", 20);
 
   basename = biji_str_mass_replace (split [g_strv_length (split)-1],
                                     ".note",
@@ -246,7 +246,7 @@ get_note_icon (const gchar *note__nie_url)
                            "48x48", "actions", "note.png", NULL);
   file = g_file_new_for_path (path);
 
-  out:
+out:
   g_strfreev (split);
   gicon = g_file_icon_new (file);
   hash = g_icon_to_string (gicon);

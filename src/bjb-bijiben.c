@@ -58,10 +58,12 @@ on_window_activated_cb   (BjbWindowBase *window,
   BijibenPriv *priv;
   gchar *path;
   BijiItem *item;
+  GList *notfound, *l;
 
   item = NULL;
   priv = self->priv;
   priv->is_loaded = TRUE;
+  notfound = NULL;
 
   while ((path = g_queue_pop_head (priv->to_open)))
   {
@@ -77,13 +79,28 @@ on_window_activated_cb   (BjbWindowBase *window,
       
       else
          bijiben_new_window_internal (self, NULL, item, NULL);
+
+
+      g_free (path);
     }
 
-    // TODO : the file is not a note. We should try to serialize it.
-    else {}
 
-    g_free (path);
+    else
+    {
+      notfound = g_list_prepend (notfound, path);
+    }
+
+
   }
+
+  /* We just wait for next provider to be loaded.
+   * TODO should also check if all providers are loaded
+   * in order to trigger file reading. */
+  for (l = notfound; l != NULL; l=l->next)
+  {
+    g_queue_push_head (priv->to_open, l->data);
+  }
+
 }
 
 
@@ -117,7 +134,7 @@ bijiben_new_window_internal (Bijiben *self,
 
   if (file != NULL)
   {
-    path = g_file_get_path (file);
+    path = g_file_get_parse_name (file);
     note = biji_note_book_get_item_at_path (self->priv->book, path);
   }
 
@@ -173,13 +190,14 @@ bijiben_open (GApplication  *application,
 
   self = BIJIBEN_APPLICATION (application);
 
+
   for (i = 0; i < n_files; i++)
   {
     if (self->priv->is_loaded == TRUE)
       bijiben_new_window_internal (BIJIBEN_APPLICATION (application), files[i], NULL, NULL);
     
     else
-      g_queue_push_head (self->priv->to_open, g_file_get_path (files[i]));
+      g_queue_push_head (self->priv->to_open, g_file_get_parse_name (files[i]));
   }
 }
 

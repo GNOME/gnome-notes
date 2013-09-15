@@ -33,7 +33,7 @@ struct BijiOwnCloudNotePrivate_
 
   BijiTimeout           *timeout;
 
-  gchar *html;
+
   GFile *location;
   gchar *basename;
   GCancellable *cancellable; //TODO cancel write to file
@@ -44,20 +44,50 @@ struct BijiOwnCloudNotePrivate_
 G_DEFINE_TYPE (BijiOwnCloudNote, biji_own_cloud_note, BIJI_TYPE_NOTE_OBJ)
 
 
+/* Better not to keep any cache here
+ * We just want cache for overview,
+ * not for actual content
+ *
+ * TODO: this means opening a note has to a be async
+ * which should have been obvious from start */
+
 static gchar *
 ocloud_note_get_html (BijiNoteObj *note)
 {
+  BijiOwnCloudNote *self;
+  gchar *content, *html;
+  GError *err;
+
   g_return_val_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note), NULL);
 
-  return BIJI_OWN_CLOUD_NOTE (note)->priv->html;
+  err = NULL;
+  self = BIJI_OWN_CLOUD_NOTE (note);
+
+  if (g_file_load_contents (self->priv->location, NULL, &content, 0, NULL, &err))
+  {
+    html = html_from_plain_text (content);
+    g_free (content);
+    return html;
+  }
+
+
+  if (err != NULL)
+  {
+    g_warning ("%s", err->message);
+    g_error_free (err);
+  }
+
+
+  return NULL;
 }
 
 
+/* We don't put any html to note. We do not need this */
 static void
 ocloud_note_set_html (BijiNoteObj *note,
                       gchar *html)
 {
-  BIJI_OWN_CLOUD_NOTE (note)->priv->html = g_strdup (html);
+  
 }
 
 
@@ -227,24 +257,6 @@ on_title_change                     (BijiOwnCloudNote *self)
 
 
 
-static void
-on_content_change                   (gpointer    user_data)
-{
-  BijiNoteObj *note;
-  gchar *html;
-
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (user_data));
-
-  note = user_data;
-  html = html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (user_data));
-  ocloud_note_set_html (note, html);
-  g_free (html);
-}
-
-
-
-
-
 
 static void
 biji_own_cloud_note_finalize (GObject *object)
@@ -254,7 +266,7 @@ biji_own_cloud_note_finalize (GObject *object)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (object));
 
   self = BIJI_OWN_CLOUD_NOTE (object);
-  g_free (self->priv->html);
+
   g_object_unref (self->priv->cancellable);
   g_object_unref (self->priv->timeout);
   G_OBJECT_CLASS (biji_own_cloud_note_parent_class)->finalize (object);
@@ -267,8 +279,6 @@ biji_own_cloud_note_constructed (GObject *object)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (object));
 
   G_OBJECT_CLASS (biji_own_cloud_note_parent_class)->constructed (object);
-  
-  on_content_change ((gpointer) object);
 }
 
 
@@ -387,8 +397,6 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
   ocloud->priv->id = id;
   ocloud->priv->prov = prov;
   biji_note_obj_set_create_date (retval, info->created);
-  g_signal_connect_swapped (id, "notify::content",
-                            G_CALLBACK (on_content_change), retval);
   g_signal_connect_swapped (id, "notify::title",
                             G_CALLBACK (on_title_change), retval);
 

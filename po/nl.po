@@ -1,0 +1,349 @@
+# Dutch translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Erwin Poeze <donnut@outlook.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-14 23:38+0000\n"
+"PO-Revision-Date: 2013-09-12 08:15+0100\n"
+"Last-Translator: Erwin Poeze <donnut@outlook.com>\n"
+"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Notities is een editor waarmee eenvoudige lijstjes gemaakt kunnen worden."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Het maakt het mogelijk Owncloud als een opslaglocatie en online-editor te "
+"gebruiken."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+msgid "Notes"
+msgstr "Notities"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "notes;reminder;notities;herinnering"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Publiceer notities, markeer bestanden!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Notitieopnemer"
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Eenvoudig notitieboek voor Gnome"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr "Erwin Poeze <donnut@outlook.com>"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Achtergrondkleur notities"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:367
+msgid "Cut"
+msgstr "Knippen"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:374
+msgid "Copy"
+msgstr "Kopiëren"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Paste"
+msgstr "Plakken"
+
+#: ../src/bjb-editor-toolbar.c:396
+msgid "Bold"
+msgstr "Vet"
+
+#: ../src/bjb-editor-toolbar.c:407
+msgid "Italic"
+msgstr "Cursief"
+
+#: ../src/bjb-editor-toolbar.c:418
+msgid "Strike"
+msgstr "Doorhalen"
+
+#: ../src/bjb-editor-toolbar.c:450
+msgid "Copy selection to a new note"
+msgstr "Selectie kopiëren naar een nieuwe notitie"
+
+#: ../src/bjb-empty-results-box.c:100
+msgid "No Notes Found"
+msgstr "Geen notities gevonden"
+
+#: ../src/bjb-empty-results-box.c:144
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Uw verzameling notities is leeg.\n"
+"Klik op de knop Nieuw om de eerste notitie aan te maken."
+
+#: ../src/bjb-empty-results-box.c:150
+msgid "No result found for this research."
+msgstr "De zoekopdracht leverde geen resultaten."
+
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "Oeps"
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Installeer de toepassing 'Tracker' en herstart Notities."
+
+#: ../src/bjb-import-dialog.c:310
+msgid "Custom Location"
+msgstr "Eigen locatie"
+
+#: ../src/bjb-import-dialog.c:405
+msgid "Import Notes"
+msgstr "Notities importeren"
+
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Annuleren"
+
+#: ../src/bjb-import-dialog.c:410
+msgid "Import"
+msgstr "Importeren"
+
+#: ../src/bjb-import-dialog.c:421
+msgid "Select import location"
+msgstr "Selecteer de importeerlocatie"
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "Tomboytoepassing"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "Gnotetoepassing"
+
+#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+msgid "Load More"
+msgstr "Meer laden"
+
+#: ../src/bjb-load-more-button.c:82
+msgid "Loading..."
+msgstr "Bezig met laden…"
+
+#: ../src/bjb-main-toolbar.c:138
+msgid "Click on items to select them"
+msgstr "Klik op notities om ze te selecteren"
+
+#: ../src/bjb-main-toolbar.c:140
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d geselecteerd"
+msgstr[1] "%d geselecteerd"
+
+#: ../src/bjb-main-toolbar.c:260
+msgid "Search note titles, content and collections"
+msgstr "Notitietitels, -inhoud en verzamelingen doorzoeken"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:302
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: ../src/bjb-main-toolbar.c:313
+msgid "Exit selection mode"
+msgstr "Selectiemodus verlaten"
+
+#: ../src/bjb-main-toolbar.c:343
+#, c-format
+msgid "Results for %s"
+msgstr "Resultaten voor %s"
+
+#: ../src/bjb-main-toolbar.c:346
+msgid "New and Recent"
+msgstr "Nieuw en recent"
+
+#: ../src/bjb-main-toolbar.c:411
+msgid "New"
+msgstr "Nieuw"
+
+#: ../src/bjb-main-toolbar.c:429
+msgid "Selection mode"
+msgstr "Selectiemodus"
+
+#: ../src/bjb-main-toolbar.c:463
+msgid "View notes and collections in a list"
+msgstr "Notities en verzamelingen als lijst bekijken"
+
+#: ../src/bjb-main-toolbar.c:487
+msgid "View notes and collections in a grid"
+msgstr "Notities en verzamelingen als matrix bekijken"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:615
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: ../src/bjb-main-toolbar.c:623
+msgid "Redo"
+msgstr "Opnieuw"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:638
+msgid "Bullets"
+msgstr "Aandachtspunten"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:645
+msgid "Numbered List"
+msgstr "Genummerde lijst"
+
+#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
+msgid "Collections"
+msgstr "Verzamelingen"
+
+#. Delete Note
+#: ../src/bjb-main-toolbar.c:667
+msgid "Delete this Note"
+msgstr "Deze notitie verwijderen"
+
+#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
+msgid "Note color"
+msgstr "Notitiekleur"
+
+#: ../src/bjb-main-toolbar.c:758
+msgid "Share note"
+msgstr "Notitie delen"
+
+#: ../src/bjb-main-toolbar.c:779
+msgid "More options…"
+msgstr "Meer opties…"
+
+#: ../src/bjb-note-tag-dialog.c:399
+msgid "Enter a name to create a collection"
+msgstr "Type een naam om een verzameling aan te maken"
+
+#: ../src/bjb-note-tag-dialog.c:409
+msgid "New collection"
+msgstr "Nieuwe verzameling"
+
+#. Response
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+msgid "_Close"
+msgstr "_Sluiten"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "Laatst bijgewerkt"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_OK"
+
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:244
+msgid "Delete"
+msgstr "Verwijderen"
+
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:258
+msgid "Add to Collection"
+msgstr "Aan verzameling toevoegen"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
+msgid "Note Font"
+msgstr "Notitielettertype"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
+msgid "Default Color"
+msgstr "Standaardkleur"
+
+#: ../src/bjb-settings-dialog.c:437
+msgid "Note Edition"
+msgstr "Notitieversie"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "Hoofdverzameling"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Vandaag"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Gisteren"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Deze week"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Deze maand"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Dit jaar"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: ../src/libbiji/provider/biji-local-provider.c:298
+msgid "Local storage"
+msgstr "Lokale opslag"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_New Window"
+msgstr "_Nieuw venster"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_Import Notes"
+msgstr "Notities _importeren"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Voorkeuren"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_About Notes"
+msgstr "_Over Notities"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_Help"
+msgstr "_Hulp"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Afsluiten"
+
+#~ msgid "Rename Note"
+#~ msgstr "Notitie hernoemen"
+
+#~ msgid "Rename"
+#~ msgstr "Hernoemen"

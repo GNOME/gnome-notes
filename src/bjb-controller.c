@@ -104,7 +104,8 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_STRING,      // author
                               GDK_TYPE_PIXBUF,    // icon then note
                               G_TYPE_INT64,       // mtime
-                              G_TYPE_BOOLEAN);    // state
+                              G_TYPE_BOOLEAN,     // state
+                              G_TYPE_UINT);       // pulse
 
   priv->model = GTK_TREE_MODEL(store) ;
   priv->items_to_show = NULL;
@@ -294,7 +295,6 @@ bjb_controller_add_item (BjbController *self,
        GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
        GD_MAIN_COLUMN_ICON, pix,
        GD_MAIN_COLUMN_MTIME, biji_item_get_mtime (item),
-       GD_MAIN_COLUMN_SELECTED, FALSE,
        -1);
 
 }

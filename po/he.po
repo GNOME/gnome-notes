@@ -2,26 +2,35 @@
 # Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-09 12:31+0300\n"
-"PO-Revision-Date: 2013-08-09 12:32+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Gezer\n"
+"POT-Creation-Date: 2013-09-16 23:11+0300\n"
+"PO-Revision-Date: 2013-09-16 23:14+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"Language-Team: עברית <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Project-Style: gnome\n"
 
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr "פתקיות הוא עורך המאפשר ליצור רשימות פשוטות לשימוש מאוחר יותר."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "הוא מאפשר להשתמש ב־ownCloud כמקום אחסון ועורך מקוון."
+
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:429
-#: ../src/bjb-main-toolbar.c:776 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "פתקיות"
 
@@ -37,15 +46,15 @@ msgstr "לפרסם פתקיות, לתייג קבצים!"
 msgid "Note-taker"
 msgstr "רישום פתקיות"
 
-#: ../src/bjb-app-menu.c:36
+#: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "מחברת פשוטה לסביבת GNOME"
 
-#: ../src/bjb-app-menu.c:40
+#: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
-"Yosef Or Boczko <yosefor3@walla.com>"
+"יוסף אור בוצ׳קו <yoseforb@gmail.com>"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
@@ -82,11 +91,11 @@ msgstr "קו חוצה"
 msgid "Copy selection to a new note"
 msgstr "העתקת הבחירה לפתקית חדשה"
 
-#: ../src/bjb-empty-results-box.c:102
+#: ../src/bjb-empty-results-box.c:100
 msgid "No Notes Found"
 msgstr "לא נמצאו פתקיות"
 
-#: ../src/bjb-empty-results-box.c:142
+#: ../src/bjb-empty-results-box.c:144
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -94,15 +103,15 @@ msgstr ""
 "אוסף הפתקיות שלך ריק.\n"
 "יש ללחוץ על הלחצן חדש כדי ליצור את הפתקית הראשונה שלך."
 
-#: ../src/bjb-empty-results-box.c:148
+#: ../src/bjb-empty-results-box.c:150
 msgid "No result found for this research."
 msgstr "לא נמצאו תוצאות למחקר זה."
 
-#: ../src/bjb-empty-results-box.c:160
-msgid "Oops, "
-msgstr "אופס,"
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "אופס"
 
-#: ../src/bjb-empty-results-box.c:168
+#: ../src/bjb-empty-results-box.c:167
 msgid "Please install 'Tracker' then restart the application."
 msgstr "נא להתקין את „Tracker“ ואז להפעיל מחדש את היישום."
 
@@ -142,102 +151,93 @@ msgstr "טעינת עוד"
 msgid "Loading..."
 msgstr "בטעינה…"
 
-#: ../src/bjb-main-toolbar.c:143
+#: ../src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "יש ללחוץ על פריטים כדי לבחור אותם"
 
-#: ../src/bjb-main-toolbar.c:145
+#: ../src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "אחת נבחרה"
 msgstr[1] "%d נבחרו"
 
-#: ../src/bjb-main-toolbar.c:272
+#: ../src/bjb-main-toolbar.c:260
 msgid "Search note titles, content and collections"
 msgstr "חיפוש בכותרות, בתוכן ובאוספים של הפתקיות"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:332
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:313
 msgid "Exit selection mode"
 msgstr "יציאה ממצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:368
+#: ../src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "תוצאות עבור %s"
 
-#: ../src/bjb-main-toolbar.c:371
+#: ../src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "חדש ואחרונים"
 
-#: ../src/bjb-main-toolbar.c:445
+#: ../src/bjb-main-toolbar.c:411
 msgid "New"
 msgstr "חדש"
 
-#: ../src/bjb-main-toolbar.c:472
+#: ../src/bjb-main-toolbar.c:429
 msgid "Selection mode"
 msgstr "מצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:500
+#: ../src/bjb-main-toolbar.c:463
 msgid "View notes and collections in a list"
 msgstr "צפייה בפתקיות ובאוספים ברשימה"
 
-#: ../src/bjb-main-toolbar.c:524
+#: ../src/bjb-main-toolbar.c:487
 msgid "View notes and collections in a grid"
 msgstr "צפייה בפתקיות ובאוספים בתצוגת רשת"
 
-#: ../src/bjb-main-toolbar.c:653
-msgid "Rename Note"
-msgstr "שינוי שם הפתקית"
-
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:674
+#: ../src/bjb-main-toolbar.c:615
 msgid "Undo"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:682
+#: ../src/bjb-main-toolbar.c:623
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:697
+#: ../src/bjb-main-toolbar.c:638
 msgid "Bullets"
 msgstr "תבליטים"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:704
+#: ../src/bjb-main-toolbar.c:645
 msgid "Numbered List"
 msgstr "רשימה ממוספרת"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:716
-msgid "Rename"
-msgstr "שינוי שם"
-
-#: ../src/bjb-main-toolbar.c:724 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "אוספים"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:736
+#: ../src/bjb-main-toolbar.c:667
 msgid "Delete this Note"
 msgstr "מחיקת פתקית זו"
 
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:249
+#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
 msgid "Note color"
 msgstr "צבע הפתקית"
 
-#: ../src/bjb-main-toolbar.c:839
+#: ../src/bjb-main-toolbar.c:758
 msgid "Share note"
 msgstr "שיתוף הפתקית"
 
-#: ../src/bjb-main-toolbar.c:860
+#: ../src/bjb-main-toolbar.c:779
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
@@ -255,21 +255,21 @@ msgid "_Close"
 msgstr "_סגירה"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:228
-msgid "Last updated "
-msgstr "העדכון האחרון"
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "עדכון אחרון"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_אישור"
 
 #. Trash notes
-#: ../src/bjb-selection-toolbar.c:242
+#: ../src/bjb-selection-toolbar.c:244
 msgid "Delete"
 msgstr "מחיקה"
 
 #. Notes tags
-#: ../src/bjb-selection-toolbar.c:254
+#: ../src/bjb-selection-toolbar.c:258
 msgid "Add to Collection"
 msgstr "הוספה לאוסף"
 
@@ -315,7 +315,7 @@ msgstr "השנה"
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../src/libbiji/provider/biji-local-provider.c:293
+#: ../src/libbiji/provider/biji-local-provider.c:298
 msgid "Local storage"
 msgstr "אחסון מקומי"
 
@@ -342,6 +342,12 @@ msgstr "ע_זרה"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "י_ציאה"
+
+#~ msgid "Rename Note"
+#~ msgstr "שינוי שם הפתקית"
+
+#~ msgid "Rename"
+#~ msgstr "שינוי שם"
 
 #~ msgid "Done"
 #~ msgstr "בוצע"

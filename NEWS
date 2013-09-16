@@ -1,3 +1,31 @@
+Overview of changes in 3.9.92
+=============================
+
+* Fixes some issues with own cloud notes.
+
+* Bug Fixes
+  Rename notes as first row is edited (#688902)
+  Do not hide new notes when switching view (#702983)
+
+* Translations:
+  Czech (Marek Černocký)
+  Dutch (Erwin Poeze)
+  Finnish (Jiri Grönroos)
+  Hebrew (Yosef Or Boczko)
+  Hungarian (Balázs Úr)
+  Indonesian (Andika Triwidada)
+  Irish (Seán de Búrca)
+  Italian (Claudio Arseni)
+  Korean (Changwoo Ryu)
+  Latvian (Rūdolfs Mazurs)
+  Norwegian bokmål (Kjartan Maraas)
+  Punjabi (Aman)
+  Russian (Dmitriy S. Seregin)
+  Serbian (Мирослав Николић)
+  Slovak (Dušan Kazik)
+  Traditional Chinese (Chao-Hsiung Liao)
+
+
 Overview of changes in 3.9.91
 =============================
 

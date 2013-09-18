@@ -132,7 +132,15 @@ on_key_released (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
 static gboolean
 on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
 {
-  BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (user_data);
+  BjbSearchToolbar *self;
+  GdkModifierType modifiers;
+
+  self = BJB_SEARCH_TOOLBAR (user_data);
+  modifiers = gtk_accelerator_get_default_mod_mask ();
+
+
+  if ((event->key.state & modifiers) == GDK_CONTROL_MASK)
+    return FALSE;
 
   /* Reveal the entry is text is input. TODO add more keys not input */
   if (gtk_revealer_get_child_revealed (self->priv->revealer) == FALSE)

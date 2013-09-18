@@ -19,14 +19,7 @@
   </info>
 
   <title>Rename a note</title>
-  <steps>
-    <item>
-      <p>To rename a note, select <guiseq><gui style="button">More
-      options…</gui><gui style="menuitem">Rename</gui></guiseq>.</p>
-    </item>
-    <item>
-      <p>Type a name you wish to give to your note and press
-      <gui style="button">OK</gui>.</p>
-    </item>
-  </steps>
+
+  <p>To rename a note, change the first row in the text area.</p>
+
 </page>

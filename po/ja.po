@@ -2,14 +2,15 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-07-09 22:44+0000\n"
-"PO-Revision-Date: 2013-07-10 21:48+0900\n"
-"Last-Translator: Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
+"POT-Creation-Date: 2013-09-17 16:17+0000\n"
+"PO-Revision-Date: 2013-09-18 22:06+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +18,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/bijiben.desktop.in.in.h:1 ../src/bjb-app-menu.c:35
-#: ../src/bjb-main-toolbar.c:426 ../src/bjb-main-toolbar.c:773
-#: ../src/bjb-window-base.c:19
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr "さっとメモを取ってあとで使用できるメモツールです。"
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "ownCloud をストレージの場所およびオンラインエディターとして利用できます。"
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "メモ"
 
@@ -27,64 +35,64 @@ msgstr "メモ"
 msgid "notes;reminder;"
 msgstr "notes;reminder;メモ;ノート;覚え書き;覚書;備忘録;リマインダー;"
 
-# メニューのコメント文なのに、良い訳が浮かばない
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
-msgstr ""
+msgstr "メモを取って整理しよう!"
 
-# メニューの一般名が浮かばない
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
-msgstr ""
+msgstr "メモツール"
 
-#: ../src/bjb-app-menu.c:36
+#: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "GNOME 向けのシンプルメモ"
 
-#: ../src/bjb-app-menu.c:40
+#: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
-msgstr "Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013."
+msgstr ""
+"Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.\n"
+"Jiro Matsuzawa <jmatsuzawa@gnome.org>"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "メモの色"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:363
+#: ../src/bjb-editor-toolbar.c:367
 msgid "Cut"
 msgstr "切り取り"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:370
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Copy"
 msgstr "コピー"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:377
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Paste"
 msgstr "貼り付け"
 
-#: ../src/bjb-editor-toolbar.c:392
+#: ../src/bjb-editor-toolbar.c:396
 msgid "Bold"
 msgstr "太字"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:407
 msgid "Italic"
 msgstr "斜体"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:418
 msgid "Strike"
 msgstr "取り消し線"
 
-#: ../src/bjb-editor-toolbar.c:446
+#: ../src/bjb-editor-toolbar.c:450
 msgid "Copy selection to a new note"
 msgstr "選択範囲を新規メモにコピー"
 
-#: ../src/bjb-empty-results-box.c:97
+#: ../src/bjb-empty-results-box.c:100
 msgid "No Notes Found"
 msgstr "メモが見つかりません"
 
-#: ../src/bjb-empty-results-box.c:133
+#: ../src/bjb-empty-results-box.c:144
 msgid ""
 "Your notes collection is empty.\n"
 "Click the New button to create your first note."
@@ -92,35 +100,43 @@ msgstr ""
 "メモがありません。\n"
 "新規ボタンを押してメモを作成してください。"
 
-#: ../src/bjb-empty-results-box.c:140
+#: ../src/bjb-empty-results-box.c:150
 msgid "No result found for this research."
 msgstr "検索に合致するものが見つかりませんでした。"
 
-#: ../src/bjb-import-dialog.c:309
+#: ../src/bjb-empty-results-box.c:161
+msgid "Oops"
+msgstr "おっと"
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Please install 'Tracker' then restart the application."
+msgstr "'Tracker' をインストールして、このアプリケーションを再起動してください。"
+
+#: ../src/bjb-import-dialog.c:310
 msgid "Custom Location"
 msgstr "場所を指定する"
 
-#: ../src/bjb-import-dialog.c:404
+#: ../src/bjb-import-dialog.c:405
 msgid "Import Notes"
 msgstr "メモのインポート"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:410
 msgid "Import"
 msgstr "インポート"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:421
 msgid "Select import location"
 msgstr "インポートする場所を選択してください。"
 
-#: ../src/bjb-import-dialog.c:440
+#: ../src/bjb-import-dialog.c:441
 msgid "Tomboy application"
 msgstr "Tomboy アプリケーション"
 
-#: ../src/bjb-import-dialog.c:446
+#: ../src/bjb-import-dialog.c:447
 msgid "Gnote application"
 msgstr "Gnote アプリケーション"
 
@@ -132,101 +148,92 @@ msgstr "さらに読み込む"
 msgid "Loading..."
 msgstr "読み込み中..."
 
-#: ../src/bjb-main-toolbar.c:139
+#: ../src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "選択するアイテムをクリックします"
 
-#: ../src/bjb-main-toolbar.c:141
+#: ../src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d 件選択"
 
-#: ../src/bjb-main-toolbar.c:268
+#: ../src/bjb-main-toolbar.c:260
 msgid "Search note titles, content and collections"
 msgstr "メモのタイトルや内容、コレクションを検索します"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:327
-msgid "Done"
-msgstr "完了"
+#: ../src/bjb-main-toolbar.c:302
+msgid "Cancel"
+msgstr "キャンセル"
 
-#: ../src/bjb-main-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:313
 msgid "Exit selection mode"
 msgstr "選択モードを終了します"
 
-#: ../src/bjb-main-toolbar.c:365
+#: ../src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "%s の検索結果"
 
-#: ../src/bjb-main-toolbar.c:368
+#: ../src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "新規または最近使用したメモ"
 
-#: ../src/bjb-main-toolbar.c:442
+#: ../src/bjb-main-toolbar.c:411
 msgid "New"
 msgstr "新規"
 
-#: ../src/bjb-main-toolbar.c:469
+#: ../src/bjb-main-toolbar.c:429
 msgid "Selection mode"
 msgstr "選択モード"
 
-#: ../src/bjb-main-toolbar.c:497
+#: ../src/bjb-main-toolbar.c:463
 msgid "View notes and collections in a list"
 msgstr "メモとコレクションをリスト表示します"
 
-#: ../src/bjb-main-toolbar.c:521
+#: ../src/bjb-main-toolbar.c:487
 msgid "View notes and collections in a grid"
 msgstr "メモとコレクションをグリッド表示します"
 
-#: ../src/bjb-main-toolbar.c:650
-msgid "Rename Note"
-msgstr "メモの名前を変更"
-
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:671
+#: ../src/bjb-main-toolbar.c:615
 msgid "Undo"
 msgstr "元に戻す"
 
-#: ../src/bjb-main-toolbar.c:679
+#: ../src/bjb-main-toolbar.c:623
 msgid "Redo"
 msgstr "やり直す"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:694
+#: ../src/bjb-main-toolbar.c:638
 msgid "Bullets"
 msgstr "箇条書き"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:701
+#: ../src/bjb-main-toolbar.c:645
 msgid "Numbered List"
 msgstr "番号付き箇条書き"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:713
-msgid "Rename"
-msgstr "名前を変更"
-
-#: ../src/bjb-main-toolbar.c:721 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "コレクション"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:733
+#: ../src/bjb-main-toolbar.c:667
 msgid "Delete this Note"
 msgstr "このメモを削除"
 
-#: ../src/bjb-main-toolbar.c:809 ../src/bjb-selection-toolbar.c:273
+#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
 msgid "Note color"
 msgstr "メモの色"
 
-#: ../src/bjb-main-toolbar.c:836
+#: ../src/bjb-main-toolbar.c:758
 msgid "Share note"
 msgstr "メモを共有"
 
-#: ../src/bjb-main-toolbar.c:857
+#: ../src/bjb-main-toolbar.c:779
 msgid "More options…"
 msgstr "追加オプション…"
 
@@ -239,41 +246,46 @@ msgid "New collection"
 msgstr "新規コレクション"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings.c:195
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
 msgid "_Close"
 msgstr "閉じる(_C)"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:228
-msgid "Last updated "
-msgstr "最終更新"
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "最終更新日"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "OK(_O)"
 
-#: ../src/bjb-selection-toolbar.c:266
+#. Trash notes
+#: ../src/bjb-selection-toolbar.c:244
 msgid "Delete"
 msgstr "削除"
 
-#: ../src/bjb-selection-toolbar.c:293
-msgid "Edit collections"
-msgstr "コレクションの編集"
+#. Notes tags
+#: ../src/bjb-selection-toolbar.c:258
+msgid "Add to Collection"
+msgstr "コレクションに追加"
 
-#. create dialog
-#: ../src/bjb-settings.c:191
-msgid "Preferences"
-msgstr "設定"
-
-#. Note Font
-#: ../src/bjb-settings.c:222
+#. Default font
+#: ../src/bjb-settings-dialog.c:350
 msgid "Note Font"
 msgstr "メモのフォント"
 
-#. Default Color
-#: ../src/bjb-settings.c:231
+#. Default color
+#: ../src/bjb-settings-dialog.c:361
 msgid "Default Color"
 msgstr "デフォルトの色"
+
+#: ../src/bjb-settings-dialog.c:437
+msgid "Note Edition"
+msgstr "メモの設定"
+
+#: ../src/bjb-settings-dialog.c:440
+msgid "Primary Book"
+msgstr "プライマリーブック"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -299,6 +311,10 @@ msgstr "今年"
 msgid "Unknown"
 msgstr "不明"
 
+#: ../src/libbiji/provider/biji-local-provider.c:298
+msgid "Local storage"
+msgstr "ローカルストレージ"
+
 #: ../src/resources/app-menu.ui.h:1
 msgid "_New Window"
 msgstr "新しいウィンドウ(_N)"
@@ -322,3 +338,15 @@ msgstr "ヘルプ(_H)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "終了(_Q)"
+
+#~ msgid "Done"
+#~ msgstr "完了"
+
+#~ msgid "Rename Note"
+#~ msgstr "メモの名前を変更"
+
+#~ msgid "Rename"
+#~ msgstr "名前を変更"
+
+#~ msgid "Preferences"
+#~ msgstr "設定"

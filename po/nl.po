@@ -37,7 +37,7 @@ msgstr "Notities"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
-msgstr "notes;reminder;notities;herinnering"
+msgstr "notes;reminder;notities;herinnering;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"

@@ -42,6 +42,8 @@ AC_ARG_ENABLE(update-mimedb,
 AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, (test x$enable_update_mimedb = xyes) && (test x$UPDATE_MIME_DATABASE != xno))
 
 
+AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
+
 
 AM_PROG_LIBTOOL
 

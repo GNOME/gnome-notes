@@ -7,6 +7,10 @@ xml_files = $(xml_in_files:.xml.in=.xml)
 app_data_in_files = bijiben.appdata.xml.in
 app_data_files = $(app_data_in_files:.xml.in=.xml)
 
+check-local: bijiben.desktop
+	$(DESKTOP_FILE_VALIDATE) bijiben.desktop
+
+
 
 @INTLTOOL_XML_RULE@
 

@@ -1,0 +1,276 @@
+# Estonian translation for bijiben.
+# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Mattias Põldaru <mahfiaz@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-12 00:01+0000\n"
+"PO-Revision-Date: 2013-09-20 21:18+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
+"Language-Team: Estonian <gnome-et-list@gnome.org>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Notes on lihtne redaktor, mis võimaldab teha hilisema kasutuse jaoks "
+"lihtsaid nimekirju."
+
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Sellega saa salvestada märkmeid ownCloudi ning selle abil neid ka veebis "
+"muuta."
+
+msgid "Notes"
+msgstr "Märkmed"
+
+msgid "notes;reminder;"
+msgstr "märkmed;märkused;märkmik;meeldetuletused;"
+
+msgid "Post notes, tag files!"
+msgstr "Postita märkmeid, sildista faile!"
+
+msgid "Note-taker"
+msgstr "Märkmete tegija"
+
+msgid "Simple notebook for GNOME"
+msgstr "GNOME lihtne märkmik"
+
+msgid "translator-credits"
+msgstr "Mattias Põldaru, 2013."
+
+msgid "Note Color"
+msgstr "Märkme värvus"
+
+#. Cut
+msgid "Cut"
+msgstr "Lõika"
+
+#. Copy
+msgid "Copy"
+msgstr "Kopeeri"
+
+#. 'n paste
+msgid "Paste"
+msgstr "Aseta"
+
+msgid "Bold"
+msgstr "Rasvane"
+
+msgid "Italic"
+msgstr "Kaldkiri"
+
+msgid "Strike"
+msgstr "Läbikriipsutus"
+
+msgid "Copy selection to a new note"
+msgstr "Kopeeri valik uude märkmesse"
+
+msgid "No Notes Found"
+msgstr "Ühtegi märget ei leitud"
+
+msgid ""
+"Your notes collection is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"Sinu märkmete kollektsioon on tühi.\n"
+"Esimese märkme lisamiseks klõpsa nupul \"Uus\"."
+
+msgid "No result found for this research."
+msgstr "See otsing ei andnud ühtegi vastet."
+
+msgid "Oops"
+msgstr "Ups"
+
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Palun paigalda 'Tracker' ja käivita rakendus uuesti."
+
+msgid "Custom Location"
+msgstr "Kohandatud asukoht"
+
+msgid "Import Notes"
+msgstr "Märkmete importimine"
+
+msgid "_Cancel"
+msgstr "_Loobu"
+
+msgid "Import"
+msgstr "Impordi"
+
+msgid "Select import location"
+msgstr "Importimise asukoha valimine"
+
+msgid "Tomboy application"
+msgstr "Tomboy rakendus"
+
+msgid "Gnote application"
+msgstr "Gnote rakendus"
+
+msgid "Load More"
+msgstr "Laadi veel"
+
+msgid "Loading..."
+msgstr "Laadimine..."
+
+msgid "Click on items to select them"
+msgstr "Märkme valimiseks klõpsa sellel"
+
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d valitud"
+msgstr[1] "%d valitud"
+
+msgid "Search note titles, content and collections"
+msgstr "Märkmete pealkirjade, sisu ja kogude otsimine"
+
+#. Select
+msgid "Cancel"
+msgstr "Loobu"
+
+msgid "Exit selection mode"
+msgstr "Valimise režiimist väljumine"
+
+#, c-format
+msgid "Results for %s"
+msgstr "Otsingu tulemused: %s"
+
+msgid "New and Recent"
+msgstr "Uued ja hiljutised"
+
+msgid "New"
+msgstr "Uued"
+
+msgid "Selection mode"
+msgstr "Valimise režiim"
+
+msgid "View notes and collections in a list"
+msgstr "Märkmete ja kogude kuvamine loendis"
+
+msgid "View notes and collections in a grid"
+msgstr "Märkmete ja kogude kuvamine ruudustikus"
+
+msgid "Rename Note"
+msgstr "Märkme ümbernimetamine"
+
+#. Undo Redo separator
+msgid "Undo"
+msgstr "Võta tagasi"
+
+msgid "Redo"
+msgstr "Tee uuesti"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+msgid "Bullets"
+msgstr "Täpploend"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+msgid "Numbered List"
+msgstr "Nummerdatud loend"
+
+#. Rename, view tags, separtor
+msgid "Rename"
+msgstr "Muuda nime"
+
+msgid "Collections"
+msgstr "Kogud"
+
+#. Delete Note
+msgid "Delete this Note"
+msgstr "Kustuta see märge"
+
+msgid "Note color"
+msgstr "Märkme värvus"
+
+msgid "Share note"
+msgstr "Märkme jagamine"
+
+msgid "More options…"
+msgstr "Veel valikuid…"
+
+msgid "Enter a name to create a collection"
+msgstr "Kogu loomiseks sisesta nimi"
+
+msgid "New collection"
+msgstr "Uus kogu"
+
+#. Response
+msgid "_Close"
+msgstr "_Sulge"
+
+#. "Last updated" precedes the note last updated date
+msgid "Last updated"
+msgstr "Viimati uuendatud"
+
+msgid "_OK"
+msgstr "_Olgu"
+
+#. Trash notes
+msgid "Delete"
+msgstr "Kustuta"
+
+#. Notes tags
+msgid "Add to Collection"
+msgstr "Lisa kogusse"
+
+#. Default font
+msgid "Note Font"
+msgstr "Märkme font"
+
+#. Default color
+msgid "Default Color"
+msgstr "Vaikimisi värvus"
+
+msgid "Note Edition"
+msgstr "Märkme muutmine"
+
+msgid "Primary Book"
+msgstr "Peamine märkmik"
+
+msgid "Today"
+msgstr "Täna"
+
+msgid "Yesterday"
+msgstr "Eile"
+
+msgid "This week"
+msgstr "Sel nädalal"
+
+msgid "This month"
+msgstr "Sel kuul"
+
+msgid "This year"
+msgstr "Sel aastal"
+
+msgid "Unknown"
+msgstr "Teadmata"
+
+msgid "Local storage"
+msgstr "Salvestatakse arvutisse"
+
+msgid "_New Window"
+msgstr "_Uus aken"
+
+msgid "_Import Notes"
+msgstr "_Impordi märkmed"
+
+msgid "_Preferences"
+msgstr "_Eelistused"
+
+msgid "_About Notes"
+msgstr "_Programmist"
+
+msgid "_Help"
+msgstr "A_bi"
+
+msgid "_Quit"
+msgstr "_Lõpeta"

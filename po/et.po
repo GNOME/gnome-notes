@@ -2,6 +2,7 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Mattias Põldaru <mahfiaz@gmail.com>, 2013.
+# Priit Laes <plaes@plaes.org>, 2013
 #
 msgid ""
 msgstr ""
@@ -9,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2013-09-12 00:01+0000\n"
-"PO-Revision-Date: 2013-09-20 21:18+0300\n"
-"Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
+"PO-Revision-Date: 2013-09-23 10:18+0300\n"
+"Last-Translator: Priit Laes <plaes@plaes.org>\n"
 "Language-Team: Estonian <gnome-et-list@gnome.org>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +21,11 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr ""
-"Notes on lihtne redaktor, mis võimaldab teha hilisema kasutuse jaoks "
-"lihtsaid nimekirju."
+msgstr "Märkmed (Notes) on lihtne nimekirjade tegemise rakendus."
 
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
-"Sellega saa salvestada märkmeid ownCloudi ning selle abil neid ka veebis "
-"muuta."
+"See võimaldab kasutada ownCloud'i andmete salvestamiseks ja veebis muutmiseks."
 
 msgid "Notes"
 msgstr "Märkmed"
@@ -45,7 +43,7 @@ msgid "Simple notebook for GNOME"
 msgstr "GNOME lihtne märkmik"
 
 msgid "translator-credits"
-msgstr "Mattias Põldaru, 2013."
+msgstr "Mattias Põldaru, 2013.\nPriit Laes, 2013"
 
 msgid "Note Color"
 msgstr "Märkme värvus"

@@ -45,3 +45,14 @@ biji_get_time_diff_with_time (glong sec_since_epoch)
 
   return _("Unknown");
 }
+
+
+
+gint64
+iso8601_to_gint64 (gchar *iso8601)
+{
+  GTimeVal time = {0,0};
+
+  g_time_val_from_iso8601 (iso8601, &time);
+  return (gint64) time.tv_sec;
+}

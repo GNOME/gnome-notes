@@ -304,6 +304,41 @@ biji_local_provider_init (BijiLocalProvider *self)
 }
 
 
+static BijiNoteObj *
+local_prov_create_note_full (BijiProvider *provider,
+                             gchar        *suggested_path,
+                             BijiInfoSet  *info,
+                             gchar        *html,
+                             GdkRGBA      *color)
+{
+  BijiLocalProvider *self;
+  BijiNoteObj *retval;
+  gchar *folder;
+
+  g_return_val_if_fail (BIJI_IS_LOCAL_PROVIDER (provider), NULL);
+
+  self = BIJI_LOCAL_PROVIDER (provider);
+  retval = NULL;
+
+  /* PATH */
+  folder = g_file_get_path (self->priv->location);
+  info->url = g_build_filename (folder, suggested_path, NULL);
+  g_free (folder);
+
+  /* RAW NOTE */
+  retval = biji_local_note_new_from_info (provider,
+                                          biji_provider_get_book (provider),
+                                          info);
+
+  /* EXTRAS */
+  biji_note_obj_set_html (retval, html);
+  biji_note_obj_set_rgba (retval, color);
+
+
+  return retval;
+}
+
+
 static void
 biji_local_provider_set_property (GObject      *object,
                                   guint         property_id,
@@ -369,6 +404,8 @@ biji_local_provider_class_init (BijiLocalProviderClass *klass)
   g_object_class->set_property = biji_local_provider_set_property;
 
   provider_class->get_info = local_provider_get_info;
+  // provider_class->create_new_note = local_prov_create_new_note;
+  provider_class->create_note_full = local_prov_create_note_full;
 
   properties[PROP_LOCATION] =
     g_param_spec_object ("location",

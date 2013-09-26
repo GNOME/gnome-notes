@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "biji-lazy-deserializer.h"
+#include "../biji-date-time.h"
 #include "../biji-note-obj.h"
 #include "../biji-string.h"
 
@@ -160,16 +161,6 @@ biji_lazy_deserializer_class_init (BijiLazyDeserializerClass *klass)
 /* Utils */
 
 typedef void BijiReaderFunc (BijiNoteObj *note, gchar *string);
-
-
-static gint64
-str_to_gint64 (xmlChar *str)
-{
-  GTimeVal time = {0,0};
-
-  g_time_val_from_iso8601 ((gchar*) str, &time);
-  return (gint64) time.tv_sec;
-}
 
 
 static void
@@ -472,22 +463,22 @@ processNode (BijiLazyDeserializer *self)
 
   if (g_strcmp0 ((gchar*) name, "last-change-date") == 0)
   {
-    xmlChar *result = xmlTextReaderReadString (r);
-    biji_note_obj_set_mtime (n, str_to_gint64 (result));
+    gchar *result = (gchar*) xmlTextReaderReadString (r);
+    biji_note_obj_set_mtime (n, iso8601_to_gint64 (result));
     free (result);
   }
 
   if (g_strcmp0 ((gchar*) name, "last-metadata-change-date") == 0)
   {
-    xmlChar *result = xmlTextReaderReadString (r);
-    biji_note_obj_set_last_metadata_change_date (n, str_to_gint64 (result));
+    gchar *result = (gchar*) xmlTextReaderReadString (r);
+    biji_note_obj_set_last_metadata_change_date (n, iso8601_to_gint64 (result));
     free (result);
   }
 
   if (g_strcmp0 ((gchar*) name, "create-date") == 0)
   {
-    xmlChar *result = xmlTextReaderReadString (r);
-    biji_note_obj_set_create_date (n, str_to_gint64 (result));
+    gchar *result = (gchar*) xmlTextReaderReadString (r);
+    biji_note_obj_set_create_date (n, iso8601_to_gint64 (result));
     free (result);
   }
 

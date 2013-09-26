@@ -262,6 +262,7 @@ biji_note_book_notify_changed (BijiNoteBook            *book,
                                BijiNoteBookChangeFlag   flag,
                                BijiItem                *item)
 {
+  g_debug ("book: notify changed, %i", flag);
   g_signal_emit (book,
                  biji_book_signals[BOOK_AMENDED],
                  0,
@@ -337,15 +338,15 @@ on_provider_loaded_cb (BijiProvider *provider,
     }
   }
 
-  if (i==1)
-    flag = BIJI_BOOK_ITEM_ADDED;
 
-  else if (i>1)
-    flag = BIJI_BOOK_MASS_CHANGE;
+  g_debug ("on provider loaded: %i", i);
 
 
-  if (flag > BIJI_BOOK_CHANGE_FLAG)
-    biji_note_book_notify_changed (book, flag, item);
+  /* More cautious to ask to fully rebuild the model
+   * because this might be the first provider.
+   * See #708458
+   * There are more performant fixes but not worth it */
+  biji_note_book_notify_changed (book, BIJI_BOOK_MASS_CHANGE, item);
 }
 
 

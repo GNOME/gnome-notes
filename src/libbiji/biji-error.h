@@ -30,7 +30,8 @@ G_BEGIN_DECLS
 typedef enum
 {
   BIJI_ERROR_TRACKER,           /* org.gnome.Biji.Error.Tracker */
-} BijiError;
+  BIJI_ERROR_SOURCE
+} BijiErrorType;
 
 
 
@@ -41,6 +42,10 @@ typedef enum
 
 
 GQuark               biji_error_quark                       (void);
+
+
+GError              *biji_error_new                        (BijiErrorType type,
+                                                            gchar *message);
 
 
 G_END_DECLS

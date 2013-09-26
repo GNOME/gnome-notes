@@ -768,7 +768,7 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
   g_object_class->constructed = biji_own_cloud_provider_constructed;
 
   provider_class->get_info = own_cloud_get_info;
-  provider_class->create_note = own_cloud_create_note;
+  provider_class->create_new_note = own_cloud_create_note;
 
 
   properties[PROP_GOA_OBJECT] =

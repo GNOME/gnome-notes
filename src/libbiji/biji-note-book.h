@@ -5,6 +5,7 @@
 #include <tracker-sparql.h>
 #include <zeitgeist.h>
 
+#include "biji-info-set.h"
 #include "biji-note-obj.h"
 
 #define GOA_API_IS_SUBJECT_TO_CHANGE
@@ -57,6 +58,11 @@ BijiNoteBook    *biji_note_book_new                   (GFile *location,
                                                        GError **error);
 
 
+void             biji_note_book_import_uri            (BijiNoteBook *book,
+                                                       gchar *target_provider_id,
+                                                       gchar *uri);
+
+
 void             biji_note_book_add_goa_object        (BijiNoteBook *book,
                                                        GoaObject *object);
 
@@ -101,6 +107,8 @@ BijiItem        *biji_note_book_get_item_at_path      (BijiNoteBook *book,
 GList           *biji_note_book_get_items             (BijiNoteBook *book);
 
 
+
+// deprecated - instead we'll use new import / providers facilities
 BijiNoteObj     *biji_note_get_new_from_file          (BijiNoteBook *book,
                                                        const gchar* tomboy_format_note_path);
 
@@ -109,6 +117,14 @@ BijiNoteObj     *biji_note_get_new_from_file          (BijiNoteBook *book,
 BijiNoteObj     *biji_note_book_note_new              (BijiNoteBook *book,
                                                        gchar        *str,
                                                        gchar        *provider_id);
+
+
+BijiNoteObj     *biji_note_book_note_new_full         (BijiNoteBook *book,
+                                                       gchar        *provider_id,
+                                                       gchar        *suggested_path,
+                                                       BijiInfoSet  *info,
+                                                       gchar        *html,
+                                                       GdkRGBA      *color);
 
 
 G_END_DECLS

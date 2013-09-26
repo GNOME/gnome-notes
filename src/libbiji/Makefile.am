@@ -37,12 +37,16 @@ libbiji_la_SOURCES =  \
 	biji-zeitgeist.h \
 	deserializer/biji-lazy-deserializer.c \
 	deserializer/biji-lazy-deserializer.h \
+	deserializer/biji-tomboy-reader.c \
+	deserializer/biji-tomboy-reader.h \
 	editor/biji-editor-selection.c \
 	editor/biji-editor-selection.h \
 	editor/biji-editor-utils.c \
 	editor/biji-editor-utils.h \
 	editor/biji-webkit-editor.c \
 	editor/biji-webkit-editor.h \
+	provider/biji-import-provider.c \
+	provider/biji-import-provider.h \
 	provider/biji-local-provider.c \
 	provider/biji-local-provider.h \
 	provider/biji-own-cloud-note.c \

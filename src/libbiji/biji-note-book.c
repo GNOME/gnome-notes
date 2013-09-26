@@ -23,6 +23,7 @@
 #include "biji-collection.h"
 #include "biji-error.h"
 
+#include "provider/biji-import-provider.h"
 #include "provider/biji-local-provider.h"
 #include "provider/biji-own-cloud-provider.h"
 
@@ -674,6 +675,23 @@ biji_note_book_local_note_new           (BijiNoteBook *book, gchar *str)
 }
 
 
+/* Create the importer == switch depending on the uri.
+ * That's all, the importer is responsible
+ * for emiting the signal transfering the notes
+ * And no need to _add_provider, it's a tmp provider. */
+void
+biji_note_book_import_uri (BijiNoteBook *book,
+                           gchar *target_provider_id,
+                           gchar *uri)
+{
+  BijiProvider *ret;
+
+  ret = biji_import_provider_new (book, target_provider_id, uri);
+  g_signal_connect (ret, "loaded", 
+                    G_CALLBACK (on_provider_loaded_cb), book);
+  
+}
+
 /* 
  * Use "local" for a local note new
  * Use goa_account_get_id for goa
@@ -698,7 +716,7 @@ biji_note_book_note_new            (BijiNoteBook *book,
                                   provider_id);
 
 
-  retval = BIJI_PROVIDER_GET_CLASS (provider)->create_note (provider, str);
+  retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
   // do not save. up to the provider implementation to save it or not
   // at creation.
   biji_note_book_add_item (book, BIJI_ITEM (retval), TRUE);
@@ -706,3 +724,28 @@ biji_note_book_note_new            (BijiNoteBook *book,
   return retval;
 }
                                     
+
+
+
+BijiNoteObj *
+biji_note_book_note_new_full (BijiNoteBook *book,
+                              gchar        *provider_id,
+                              gchar        *suggested_path,
+                              BijiInfoSet  *info,
+                              gchar        *html,
+                              GdkRGBA      *color)
+{
+  BijiProvider *provider;
+  BijiNoteObj *retval;
+
+  provider = g_hash_table_lookup (book->priv->providers,
+                                  provider_id);
+
+  retval = BIJI_PROVIDER_GET_CLASS (provider)->create_note_full (provider,
+                                                                 suggested_path,
+                                                                 info,
+                                                                 html,
+                                                                 color);
+
+  return retval;
+}

@@ -215,6 +215,7 @@ biji_webkit_editor_init (BijiWebkitEditor *self)
                                "Default.css",NULL);
 
   g_object_set (G_OBJECT(priv->settings),
+                "enable-plugins", FALSE,
                 "enable-file-access-from-file-uris", TRUE,
                 "user-stylesheet-uri", css_path,
                 "enable-spell-checking", TRUE,

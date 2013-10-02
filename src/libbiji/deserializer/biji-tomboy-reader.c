@@ -159,16 +159,24 @@ process_tomboy_end_elem (BijiTomboyReader *self)
 static void
 process_tomboy_text_elem (BijiTomboyReader *self)
 {
-  const gchar *text;
+  gchar *text, *html_txt;
   BijiTomboyReaderPrivate *priv = self->priv;
 
-  text = (const gchar *) xmlTextReaderConstValue (priv->inner);
+  text = (gchar*) xmlTextReaderConstValue (priv->inner);
 
   /* Simply append the text to both raw & html
    * FIXME : escape things for html */
 
   priv->raw_text = g_string_append (priv->raw_text, text);
-  priv->html = g_string_append (priv->html, text);
+
+  html_txt  =  biji_str_mass_replace (text,
+                                    "&",  "&amp;",
+                                    "<" , "&lt;" ,
+                                    ">",  "&gt;",
+                                    NULL);
+
+  priv->html = g_string_append (priv->html, html_txt);
+  g_free (html_txt);
 }
 
 
@@ -514,7 +522,9 @@ biji_tomboy_reader_read (gchar *source,
   self = biji_tomboy_reader_new (source);
   priv = self->priv;
 
-  html_revamped = biji_str_replace (priv->html->str, "\n", "<br/>");
+  html_revamped = biji_str_mass_replace (priv->html->str,
+                                         "\n", "<br/>",
+                                         NULL);
 
   *error = priv->error;
   *set = priv->set;

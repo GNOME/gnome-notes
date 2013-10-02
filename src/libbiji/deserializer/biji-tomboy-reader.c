@@ -215,8 +215,6 @@ process_tomboy_xml_content (BijiTomboyReader *self, gchar *text)
   gint ret;
 
   priv = self->priv;
-  g_string_append (priv->html, "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>");
-
   priv->inner = xmlReaderForMemory (text,
                                     strlen (text),
                                     "", "UTF-8", 0);
@@ -461,7 +459,7 @@ biji_tomboy_reader_init (BijiTomboyReader *self)
              (self, BIJI_TYPE_TOMBOY_READER, BijiTomboyReaderPrivate);
 
   priv->raw_text = g_string_new ("");
-  priv->html = g_string_new ("");
+  priv->html = g_string_new ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>");
 
   priv->set = biji_info_set_new ();
 }

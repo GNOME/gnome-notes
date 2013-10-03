@@ -746,6 +746,39 @@ own_cloud_create_note         (BijiProvider *provider,
 }
 
 
+
+/* This is a dummy func. we can create a note with extra args
+ * but can't use path, nor color, nor html. */
+
+BijiNoteObj *
+own_cloud_create_full (BijiProvider *provider,
+                       gchar        *suggested_path,
+                       BijiInfoSet  *info,
+                       gchar        *html,
+                       GdkRGBA      *color)
+{
+  BijiOwnCloudProvider *self;
+  BijiNoteObj *retval;
+  GdkRGBA override_color;
+  BijiNoteBook *book;
+
+  self = BIJI_OWN_CLOUD_PROVIDER (provider);
+  book = biji_provider_get_book (provider);
+
+  retval = biji_own_cloud_note_new_from_info (self, book, info);
+  biji_note_obj_set_html (retval, html);
+
+  /* We do not use suggested color.
+   * Rather use ook default */
+
+  biji_note_book_get_default_color (book, &override_color);
+  biji_note_obj_set_rgba (retval, &override_color);
+  
+  return retval;
+}
+
+
+
 GFile *
 biji_own_cloud_provider_get_folder     (BijiOwnCloudProvider *provider)
 {
@@ -769,6 +802,7 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
 
   provider_class->get_info = own_cloud_get_info;
   provider_class->create_new_note = own_cloud_create_note;
+  provider_class->create_note_full = own_cloud_create_full;
 
 
   properties[PROP_GOA_OBJECT] =

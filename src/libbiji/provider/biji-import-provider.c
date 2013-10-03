@@ -65,15 +65,17 @@ G_DEFINE_TYPE (BijiImportProvider, biji_import_provider, BIJI_TYPE_PROVIDER)
 
 
 static BijiNoteObj *
-instanciate_note (BijiNoteBook *book, GFileInfo *info, GFile *container)
+instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
 {
   BijiNoteObj *retval = NULL;
   const gchar *name;
   gchar *path;
   GdkRGBA *color;
+  BijiNoteBook *book;
 
 
   retval = NULL;
+  book = biji_provider_get_book (BIJI_PROVIDER (self));
 
   /* First make sure it's a note */
   name = g_file_info_get_name (info);
@@ -114,7 +116,7 @@ instanciate_note (BijiNoteBook *book, GFileInfo *info, GFile *container)
   color = g_new0 (GdkRGBA, 1);
   biji_note_book_get_default_color (book, color);
   retval = biji_note_book_note_new_full (book,
-                                         "local",
+                                         self->priv->target,
                                          g_strdup (g_file_info_get_name (info)),
                                          set,
                                          html,
@@ -165,7 +167,7 @@ go_through_notes_cb (GObject *object, GAsyncResult *res, gpointer data)
 
     info = G_FILE_INFO (l->data);
     iter = instanciate_note (
-                  biji_provider_get_book (BIJI_PROVIDER (self)),
+                  self,
                   info,
                   container);
 

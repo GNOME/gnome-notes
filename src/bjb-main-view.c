@@ -344,6 +344,8 @@ on_item_activated (GdMainView        * gd,
   gtk_tree_model_get_iter (model, &iter, (GtkTreePath*) path);
   gtk_tree_model_get (model, &iter, GD_MAIN_COLUMN_URI, &item_path,-1);
 
+  g_return_if_fail (item_path != NULL); // #709197
+
   /* Switch to that item */
   book = bjb_window_base_get_book (view->priv->window); 
   to_open = biji_note_book_get_item_at_path (book, item_path);

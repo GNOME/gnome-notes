@@ -5,6 +5,10 @@
       <summary>Custom Font</summary>
       <description>The font name set here will be used as the font when displaying notes.</description>
     </key>
+    <key type="b" name="use-system-font">
+      <default>true</default>
+      <summary>Whether to use the system monospace font</summary>
+    </key>
     <key type="s" name="color">
       <default>'rgb(239,242,209)'</default>
       <summary>New notes color.</summary>

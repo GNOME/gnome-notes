@@ -256,12 +256,19 @@ bjb_note_view_constructed (GObject *obj)
   ClutterActor           *text_actor, *overlay;
   ClutterConstraint      *constraint;
   ClutterLayoutManager   *full, *bin;
+  gboolean                use_system_font;
   gchar                  *default_font;
+  GdkRGBA                 color;
+
+
+  default_font = NULL;
+  settings = bjb_app_get_settings(g_application_get_default());
+
 
   /* view new from note deserializes the note-content. */
   priv->view = biji_note_obj_open (priv->note);
 
-  settings = bjb_app_get_settings(g_application_get_default());    
+
   priv->deleted = g_signal_connect(priv->note,"deleted",
                                    G_CALLBACK(on_note_deleted),self);
 
@@ -312,12 +319,22 @@ bjb_note_view_constructed (GObject *obj)
   clutter_actor_set_y_expand(text_actor,TRUE);
 
   /* Apply the gsettings font */
-  g_object_get (G_OBJECT(settings),"font",&default_font,NULL);
-  biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (priv->view), default_font);
-  g_free (default_font);
+
+  if (bjb_settings_use_system_font (settings))
+     default_font = bjb_settings_get_system_font (settings);
+
+  else
+     default_font = g_strdup (bjb_settings_get_default_font (settings));
+
+  if (default_font != NULL)
+  {
+    biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (priv->view), default_font);
+    g_free (default_font);
+  }
+
 
   /* User defined color */
-  GdkRGBA color ;
+
   if (!biji_note_obj_get_rgba(priv->note, &color))
   {
     gchar *default_color;

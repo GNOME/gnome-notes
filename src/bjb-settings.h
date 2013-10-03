@@ -54,6 +54,13 @@ GType             bjb_settings_get_type                   (void) G_GNUC_CONST;
 BjbSettings      *bjb_settings_new                        (void);
 
 
+gboolean          bjb_settings_use_system_font            (BjbSettings *settings);
+
+
+void              bjb_settings_set_use_system_font        (BjbSettings *settings,
+                                                           gboolean value);
+
+
 gchar            *bjb_settings_get_default_font           (BjbSettings *settings);
 
 
@@ -61,6 +68,9 @@ gchar            *bjb_settings_get_default_color          (BjbSettings *settings
 
 
 gchar            *bjb_settings_get_default_location       (BjbSettings *settings);
+
+
+gchar            *bjb_settings_get_system_font            (BjbSettings *settings);
 
 
 void              show_bijiben_settings_window            (GtkWidget *parent_window);

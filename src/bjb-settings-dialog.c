@@ -49,6 +49,12 @@ struct BjbSettingsDialogPrivate_
 
   GtkListBox       *box;
   GList            *children;
+
+
+  /* Note Edition page */
+
+  GtkLabel        *font_lbl;
+  GtkWidget       *font_bt;
 };
 
 
@@ -56,7 +62,36 @@ struct BjbSettingsDialogPrivate_
 
 G_DEFINE_TYPE (BjbSettingsDialog, bjb_settings_dialog, GTK_TYPE_DIALOG)
 
+
+static void
+update_buttons (BjbSettingsDialog *self)
+{
+  BjbSettingsDialogPrivate *priv;
+  gboolean use_system_font;
+
+  priv = self->priv;
+  use_system_font = bjb_settings_use_system_font (priv->settings);
+
+  gtk_widget_set_sensitive (priv->font_lbl, !use_system_font);
+  gtk_widget_set_sensitive (priv->font_bt, !use_system_font);
+}
+
+
 /* Callbacks */
+
+static void
+on_system_font_toggled (GtkSwitch         *button,
+                        GParamSpec        *pspec,
+                        BjbSettingsDialog *self)
+{
+  BjbSettings *settings;
+
+
+  settings = self->priv->settings;
+  bjb_settings_set_use_system_font (settings, gtk_switch_get_active (button));
+  update_buttons (self);
+}
+
 
 static void
 on_font_selected (GtkFontButton     *widget,
@@ -335,10 +370,15 @@ create_page_primary (BjbSettingsDialog *self)
 
 
 GtkWidget *
-create_page_edition (BjbSettings *settings)
+create_page_edition (BjbSettingsDialog *self)
 {
+  BjbSettingsDialogPrivate   *priv;
+  BjbSettings                *settings;
   GtkWidget                  *grid, *label, *picker, *box;
   GdkRGBA                    color;
+
+  priv = self->priv;
+  settings = priv->settings;
 
   grid = gtk_grid_new ();
   gtk_grid_set_column_spacing (GTK_GRID (grid), 36);
@@ -346,21 +386,37 @@ create_page_edition (BjbSettings *settings)
   gtk_widget_set_halign (grid, GTK_ALIGN_CENTER);
 
 
-  /* Default font */
-  label = gtk_label_new (_("Note Font"));
+
+  /* Use System Font */
+  label = gtk_label_new (_("Use System Font"));
   gtk_widget_set_halign (label, GTK_ALIGN_END);
   gtk_grid_attach (GTK_GRID (grid), label, 1, 1, 1, 1);
-  picker = gtk_font_button_new_with_font (bjb_settings_get_default_font (settings));
+  picker = gtk_switch_new ();
+  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_box_pack_start (GTK_BOX (box), picker, FALSE, FALSE, 0);
+  gtk_switch_set_active (GTK_SWITCH (picker),
+                         bjb_settings_use_system_font (settings));
+  g_signal_connect (picker, "notify::active",
+                    G_CALLBACK (on_system_font_toggled), self);
+  gtk_grid_attach (GTK_GRID (grid), box, 2, 1, 1, 1);
+
+
+  /* Default font */
+  label = priv->font_lbl = gtk_label_new (_("Note Font"));
+  gtk_widget_set_halign (label, GTK_ALIGN_END);
+  gtk_grid_attach (GTK_GRID (grid), label, 1, 2, 1, 1);
+
+  picker = priv->font_bt = gtk_font_button_new_with_font (bjb_settings_get_default_font (settings));
   g_signal_connect (picker, "font-set",
                     G_CALLBACK (on_font_selected), settings);
-  gtk_grid_attach (GTK_GRID (grid), picker, 2, 1, 1, 1);
-
+  gtk_grid_attach (GTK_GRID (grid), picker, 2, 2, 1, 1);
+  update_buttons (self);
 
 
   /* Default color */
   label = gtk_label_new (_("Default Color"));
   gtk_widget_set_halign (label, GTK_ALIGN_END);
-  gtk_grid_attach (GTK_GRID (grid), label, 1, 2, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), label, 1, 3, 1, 1);
 
   picker = bjb_color_button_new ();
   box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
@@ -369,7 +425,7 @@ create_page_edition (BjbSettings *settings)
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);
   g_signal_connect (picker, "color-set",
                     G_CALLBACK (on_color_set), settings); 
-  gtk_grid_attach (GTK_GRID (grid), box, 2, 2, 1, 1);
+  gtk_grid_attach (GTK_GRID (grid), box, 2, 3, 1, 1);
 
   return grid;
 }
@@ -432,7 +488,7 @@ bjb_settings_dialog_constructed (GObject *object)
 
 
   /* Dialog Pages */
-  page = create_page_edition (priv->settings);
+  page = create_page_edition (self);
   gtk_widget_set_vexpand (page, TRUE);
   gtk_stack_add_titled (priv->stack, page, "edition", _("Note Edition"));
 

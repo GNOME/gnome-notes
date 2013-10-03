@@ -27,22 +27,31 @@
 struct _BjbSettingsPrivate
 {
   /* Note edition settings */
+  gboolean use_system_font;
   gchar *font;
   gchar *color;
 
   /* Default Provider */
   gchar *primary;
+
+  /* org.gnome.desktop */
+  GSettings *system;
 };
 
 
 enum
 {
   PROP_0,
+  PROP_USE_SYSTEM_FONT,
   PROP_FONT,
   PROP_COLOR,
   PROP_PRIMARY,
   N_PROPERTIES
 };
+
+
+static GParamSpec *properties[N_PROPERTIES] = { NULL, };
+
 
 #define BJB_SETTINGS_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_SETTINGS, BjbSettingsPrivate))
 
@@ -58,6 +67,11 @@ bjb_settings_init (BjbSettings *object)
 static void
 bjb_settings_finalize (GObject *object)
 {
+  BjbSettings *self;
+
+  self = BJB_SETTINGS (object);
+  g_object_unref (self->priv->system);
+
   G_OBJECT_CLASS (bjb_settings_parent_class)->finalize (object);
 }
 
@@ -70,7 +84,11 @@ bjb_settings_get_property (GObject    *object,
   BjbSettings *settings = BJB_SETTINGS (object);
 
   switch (prop_id)
-  {            
+  {
+    case PROP_USE_SYSTEM_FONT:
+      g_value_set_boolean (value, settings->priv->use_system_font);
+      break;
+
     case PROP_FONT:
       g_value_set_string (value, settings->priv->font);
       break;
@@ -99,6 +117,10 @@ bjb_settings_set_property (GObject      *object,
 
   switch (prop_id)
   {
+    case PROP_USE_SYSTEM_FONT:
+      settings->priv->use_system_font = g_value_get_boolean (value) ; 
+      break;
+
     case PROP_FONT:
       settings->priv->font = g_value_dup_string(value) ; 
       break;
@@ -128,7 +150,12 @@ bjb_settings_constructed (GObject *object)
 
   self = BJB_SETTINGS (object);
   settings = G_SETTINGS (object);
+  self->priv->system = g_settings_new ("org.gnome.desktop.interface");
 
+
+  g_settings_bind  (settings, "use-system-font",
+                    self,     "use-system-font",
+                    G_SETTINGS_BIND_DEFAULT);
 
   g_settings_bind  (settings, "font",
                     self,     "font",
@@ -155,30 +182,44 @@ bjb_settings_class_init (BjbSettingsClass *klass)
   object_class->finalize = bjb_settings_finalize;
   object_class->get_property = bjb_settings_get_property;
   object_class->set_property = bjb_settings_set_property;
-    
-  g_object_class_install_property (object_class,PROP_FONT,
-                                   g_param_spec_string("font",
-                                                       "Notes Font",
-                                                       "Font for Notes",
-                                                       NULL,
-                                                       G_PARAM_READWRITE | 
-                                                       G_PARAM_STATIC_STRINGS));
 
-  g_object_class_install_property (object_class,PROP_COLOR,
-                                   g_param_spec_string("color",
-                                                       "New Notes Color",
-                                                       "Default Color for New Notes",
-                                                       NULL,
-                                                       G_PARAM_READWRITE | 
-                                                       G_PARAM_STATIC_STRINGS));
+  properties[PROP_USE_SYSTEM_FONT] = g_param_spec_boolean (
+                                   "use-system-font",
+                                   "Use system font",
+                                   "Default System Font for Notes",
+                                   TRUE,
+                                   G_PARAM_READWRITE | 
+                                   G_PARAM_STATIC_STRINGS);
 
-  g_object_class_install_property (object_class,PROP_PRIMARY,
-                                   g_param_spec_string("default-location",
-                                                       "Primary Location",
-                                                       "Default Provider for New Notes",
-                                                       NULL,
-                                                       G_PARAM_READWRITE | 
-                                                       G_PARAM_STATIC_STRINGS));
+
+  properties[PROP_FONT] = g_param_spec_string (
+                                   "font",
+                                   "Notes Font",
+                                   "Font for Notes",
+                                   NULL,
+                                   G_PARAM_READWRITE | 
+                                   G_PARAM_STATIC_STRINGS);
+
+
+  properties[PROP_COLOR] = g_param_spec_string (
+                                   "color",
+                                   "New Notes Color",
+                                   "Default Color for New Notes",
+                                   NULL,
+                                   G_PARAM_READWRITE | 
+                                   G_PARAM_STATIC_STRINGS);
+
+
+  properties[PROP_PRIMARY] = g_param_spec_string (
+                                   "default-location",
+                                   "Primary Location",
+                                   "Default Provider for New Notes",
+                                   NULL,
+                                   G_PARAM_READWRITE | 
+                                   G_PARAM_STATIC_STRINGS);
+
+
+  g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 
@@ -190,6 +231,19 @@ bjb_settings_new (void)
   return g_object_new (BJB_TYPE_SETTINGS, "schema-id", "org.gnome.bijiben", NULL);
 }
 
+
+gboolean
+bjb_settings_use_system_font            (BjbSettings *settings)
+{
+  return settings->priv->use_system_font;
+}
+
+
+void
+bjb_settings_set_use_system_font        (BjbSettings *settings, gboolean value)
+{
+  settings->priv->use_system_font = value;  
+}
 
 
 gchar *
@@ -210,6 +264,14 @@ gchar *
 bjb_settings_get_default_location       (BjbSettings *settings)
 {
   return settings->priv->primary;
+}
+
+
+gchar *
+bjb_settings_get_system_font            (BjbSettings *settings)
+{
+  return g_settings_get_string (settings->priv->system,
+                                "font-name");
 }
 
 

@@ -21,7 +21,11 @@
 #include "biji-note-obj.h"
 #include "biji-timeout.h"
 #include "biji-tracker.h"
+
+#ifdef BUILD_ZEITGEIST
 #include "biji-zeitgeist.h"
+#endif /* BUILD_ZEITGEIST */
+
 #include "editor/biji-webkit-editor.h"
 
 
@@ -89,7 +93,10 @@ on_save_timeout (BijiNoteObj *self)
 
 
   BIJI_NOTE_OBJ_GET_CLASS (self)->save_note (self);
+
+#ifdef BUILD_ZEITGEIST
   insert_zeitgeist (self, ZEITGEIST_ZG_MODIFY_EVENT);
+#endif /* BUILD_ZEITGEIST */
 
   priv->needs_save = FALSE;
   g_object_unref (self);
@@ -237,7 +244,9 @@ biji_note_obj_trash (BijiItem *item)
   priv = note_to_kill->priv;
 
   /* The event has to be logged before the note is actually deleted */
+#ifdef BUILD_ZEITGEIST
   insert_zeitgeist (note_to_kill, ZEITGEIST_ZG_DELETE_EVENT);
+#endif /* BUILD_ZEITGEIST */
 
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
@@ -841,7 +850,9 @@ _biji_note_obj_close (BijiNoteObj *note)
   book = biji_item_get_book (BIJI_ITEM (note));
   priv->editor = NULL;
 
+#ifdef BUILD_ZEITGEIST
   insert_zeitgeist (note, ZEITGEIST_ZG_LEAVE_EVENT);
+#endif /* BUILD_ZEITGEIST */
 
   /* Delete if note is totaly blank
    * Actually we just need to remove it from book
@@ -858,7 +869,9 @@ biji_note_obj_open (BijiNoteObj *note)
   g_signal_connect_swapped (note->priv->editor, "destroy",
                             G_CALLBACK (_biji_note_obj_close), note);
 
+#ifdef BUILD_ZEITGEIST
   insert_zeitgeist (note, ZEITGEIST_ZG_ACCESS_EVENT);
+#endif /* BUILD_ZEITGEIST */
 
   return GTK_WIDGET (note->priv->editor);
 }

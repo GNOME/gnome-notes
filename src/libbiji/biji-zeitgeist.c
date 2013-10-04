@@ -14,7 +14,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#include "biji-zeitgeist.h"
+
+#ifdef BUILD_ZEITGEIST
 
 #include <libbiji.h>
 #include "biji-zeitgeist.h"
@@ -28,6 +29,7 @@ biji_zeitgeist_init (void)
   ZeitgeistDataSource *ds;
   ZeitgeistDataSourceRegistry *zg_dsr = NULL;
   ZeitgeistLog *log;
+
 
   log = zeitgeist_log_new ();
   event = zeitgeist_event_new_full (
@@ -168,3 +170,5 @@ insert_zeitgeist (BijiNoteObj *note,
   if (g_strcmp0 (zg_interpretation, ZEITGEIST_ZG_MODIFY_EVENT) ==0)
     check_insert_create_zeitgeist (note);
 }
+
+#endif /* BUILD_ZEITGEIST */

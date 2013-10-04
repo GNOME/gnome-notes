@@ -3,7 +3,10 @@
 
 #include <glib-object.h>
 #include <tracker-sparql.h>
+
+#if BUILD_ZEIGEIST
 #include <zeitgeist.h>
+#endif /* BUILD_ZEIGEIST */
 
 #include "biji-info-set.h"
 #include "biji-note-obj.h"
@@ -70,7 +73,9 @@ void             biji_note_book_add_goa_object        (BijiNoteBook *book,
 GList           *biji_note_book_get_providers         (BijiNoteBook *book);
 
 
+#if have_zeitgeist
 ZeitgeistLog    *biji_note_book_get_zg_log            (BijiNoteBook *book);
+#endif /* have_zeitgeist */
 
 TrackerSparqlConnection
                 *biji_note_book_get_tracker_connection (BijiNoteBook *book);

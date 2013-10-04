@@ -1,6 +1,28 @@
 noinst_LTLIBRARIES = \
 	libbiji.la
 
+libbiji_la_LIBADD = $(NULL)
+
+
+AM_CPPFLAGS = \
+	-DDATADIR=\""$(datadir)"\" \
+	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
+	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
+	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
+	-I$(top_srcdir)/libgd \
+	-I$(top_srcdir)/src/ \
+	-I$(top_srcdir)/src/libiji \
+	$(BIJIBEN_CFLAGS)
+
+AM_CFLAGS =\
+	 -Wall\
+	 -g
+
+
+if BUILD_ZEITGEIST
+AM_CPPFLAGS += -DBUILD_ZEITGEIST
+endif
+
 libbiji_la_built_sources = \
 	biji-marshalers.c \
 	biji-marshalers.h \
@@ -58,33 +80,31 @@ libbiji_la_SOURCES =  \
 	serializer/biji-lazy-serializer.c \
 	serializer/biji-lazy-serializer.h
 
+
+
+
 BUILT_SOURCES = \
 	$(libbiji_la_built_sources) \
 	$(NULL)
 
 EXTRA_DIST = \
 	biji-marshalers.list \
-	$(null)
+	$(NULL)
 
 CLEANFILES = \
 	$(libbiji_la_built_sources) \
 	stamp-biji-marshalers.h \
 	$(NULL)
 
-AM_CPPFLAGS = \
-	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	-I$(top_srcdir)/libgd \
-	-I$(top_srcdir)/src/ \
-	-I$(top_srcdir)/src/libiji \
-	$(BIJIBEN_CFLAGS)
 
-AM_CFLAGS =\
-	 -Wall\
-	 -g
 
-INCLUDES = -DDATADIR=\""$(datadir)"\"
+if BUILD_ZEITGEIST
+  libbiji_la_LIBADD += \
+  $(ZEITGEIST_LIBS) \
+  $(NULL)
+endif
+
+
 
 biji-marshalers.h: stamp-biji-marshalers.h
 	@true

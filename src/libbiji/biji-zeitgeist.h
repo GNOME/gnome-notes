@@ -14,10 +14,15 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
+
+
+
 #ifndef _BIJI_ZEITGEIST_H
 #define _BIJI_ZEITGEIST_H
 
-#include <zeitgeist.h>
+#ifdef BUILD_ZEITGEIST
+
+#include <zeitgeist-2.0/zeitgeist.h>
 
 #include "biji-note-obj.h"
 
@@ -28,4 +33,8 @@ ZeitgeistLog           *biji_zeitgeist_init             (void);
 void                    insert_zeitgeist                (BijiNoteObj *note,
                                                          gchar *zg_interpretation);
 
+#endif /* BUILD_ZEITGEIST */
+
 #endif /* _BIJI_ZEITGEIST_H */
+
+

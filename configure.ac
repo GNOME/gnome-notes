@@ -29,6 +29,12 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 AM_GLIB_GNU_GETTEXT
 IT_PROG_INTLTOOL([0.35.0])
 
+
+
+
+
+
+
 #
 # Check if we should update the mime database
 #
@@ -61,9 +67,11 @@ PKG_CHECK_MODULES(BIJIBEN,
                     libxml-2.0
                     tracker-sparql-0.16
                     uuid
-                    webkitgtk-3.0
-                    zeitgeist-2.0])
+                    webkitgtk-3.0])
 
+PKG_CHECK_MODULES(ZEITGEIST, zeitgeist-2.0, [have_zeitgeist=yes], [have_zeitgeist=no])
+
+AM_CONDITIONAL(BUILD_ZEITGEIST, test x$have_zeitgeist = xyes)
 
 
 GLIB_GSETTINGS
@@ -90,7 +98,8 @@ src/Makefile
 
 AC_OUTPUT
 
-echo "	Version:	$VERSION
+echo "	Version:	        $VERSION
+        Enable Zeitgeist  $have_zeitgeist
 
 	Run make to compile."
 

@@ -8,6 +8,7 @@ libexec_PROGRAMS=				\
 	$(NULL)
 
 AM_CPPFLAGS = \
+	-DDATADIR=\""$(datadir)"\" \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
@@ -18,7 +19,10 @@ AM_CFLAGS =\
 	 -Wall\
 	 -g
 
-INCLUDES = -DDATADIR=\""$(datadir)"\"
+
+
+
+
 
 LDADD = libbiji/libbiji.la \
 	-lm \

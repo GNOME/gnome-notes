@@ -29,7 +29,11 @@
 #include "biji-note-obj.h"
 #include "biji-string.h"
 #include "biji-tracker.h"
+
+#ifdef BUILD_ZEITGEIST
 #include "biji-zeitgeist.h"
+#endif /* BUILD_ZEITGEIST */
+
 #include "deserializer/biji-lazy-deserializer.h"
 #include "editor/biji-webkit-editor.h"
 #include "provider/biji-provider.h"

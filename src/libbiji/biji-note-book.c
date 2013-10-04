@@ -43,7 +43,12 @@ struct _BijiNoteBookPrivate
   GFile *location;
   GError *error;
   TrackerSparqlConnection *connection;
+
+
+#ifdef BUILD_ZEITGEIST
   ZeitgeistLog *log;
+#endif /* BUILD_ZEITGEIST */
+
   GdkRGBA color;
 };
 
@@ -104,11 +109,13 @@ biji_note_book_init (BijiNoteBook *self)
 }
 
 
+#ifdef BUILD_ZEITGEIST
 ZeitgeistLog *
 biji_note_book_get_zg_log (BijiNoteBook *book)
 {
   return book->priv->log;
 }
+#endif /* BUILD_ZEITGEIST */
 
 
 TrackerSparqlConnection *
@@ -426,7 +433,10 @@ biji_note_book_constructed (GObject *object)
     return;
   }
 
+
+#ifdef BUILD_ZEITGEIST
   priv->log = biji_zeitgeist_init ();
+#endif /* BUILD_ZEITGEIST */
 
   /* Ensure cache directory for icons */
   filename = g_build_filename (g_get_user_cache_dir (),

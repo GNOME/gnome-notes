@@ -51,7 +51,6 @@ struct _BjbSearchToolbarPrivate
   GdTaggedEntry     *entry;
   gchar             *needle;
   GtkEntryBuffer    *entry_buf;
-  GtkTreeModel      *completion_model;
   BjbController     *controller;
 
   /* Signals */
@@ -293,7 +292,6 @@ bjb_search_toolbar_connect (BjbSearchToolbar *self)
 static void
 bjb_search_toolbar_constructed (GObject *obj)
 {
-  GtkEntryCompletion      *completion ;
   BjbSearchToolbar        *self = BJB_SEARCH_TOOLBAR(obj);
   BjbSearchToolbarPrivate *priv = self->priv ;
 
@@ -301,16 +299,6 @@ bjb_search_toolbar_constructed (GObject *obj)
 
   /* Get the needle from controller */
   priv->needle = bjb_controller_get_needle (priv->controller);
-
-  /* Comletion model for buffer */
-  completion = gtk_entry_completion_new ();
-  gtk_entry_set_completion (GTK_ENTRY (priv->entry), completion);
-  g_object_unref (completion);
-  priv->completion_model = bjb_controller_get_completion (priv->controller);
-
-  gtk_entry_completion_set_model (completion, priv->completion_model);  
-  gtk_entry_completion_set_text_column (completion, 0);
-
   priv->entry_buf = gtk_entry_get_buffer (GTK_ENTRY (priv->entry));
 
   if (priv->needle && g_strcmp0 (priv->needle, "") != 0)

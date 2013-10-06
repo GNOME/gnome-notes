@@ -45,7 +45,6 @@ struct _BjbControllerPrivate
   gchar          *needle ;
   BijiCollection *collection;
   GtkTreeModel   *model ;
-  GtkTreeModel   *completion;
 
   BjbWindowBase  *window;
 
@@ -114,8 +113,6 @@ bjb_controller_init (BjbController *self)
   priv->collection = NULL;
   priv->connected = FALSE;
 
-  completion  = gtk_list_store_new (1, G_TYPE_STRING);
-  priv->completion = GTK_TREE_MODEL (completion);
 }
 
 static void
@@ -133,7 +130,6 @@ bjb_controller_finalize (GObject *object)
 
   g_object_unref (priv->model);
 
-  g_object_unref (priv->completion);
   g_free (priv->needle);
   g_list_free (priv->items_to_show);
 
@@ -515,38 +511,6 @@ on_needle_changed (BjbController *self)
   g_signal_emit (self, bjb_controller_signals[SEARCH_CHANGED], 0);
 }
 
-static void
-add_item_to_completion (BijiItem *item, BjbController *self)
-{
-  GtkListStore *store;
-  GtkTreeIter iter;
-
-  store = GTK_LIST_STORE (self->priv->completion);
-
-  // Search Tag.
-  gtk_list_store_append (store, &iter);
-  gtk_list_store_set (store, 
-                      &iter, 
-                      0, 
-                      biji_item_get_title (item),
-                      -1);
-}
-
-static void
-refresh_completion(BjbController *self)
-{
-  GList *items;
-
-  gtk_list_store_clear (GTK_LIST_STORE (self->priv->completion));
-  items = biji_note_book_get_items (self->priv->book);
-
-  if (items)
-  {
-    g_list_foreach (items, (GFunc) add_item_to_completion, self);
-    g_list_free (items);
-  }
-}
-
 
 /* Depending on the change at data level,
  * the view has to be totaly refreshed or just amended */
@@ -624,8 +588,6 @@ on_book_changed (BijiNoteBook           *book,
         bjb_window_base_set_active (self->priv->window, TRUE);
   }
 
-  /* FIXME we refresh the whole completion model each time */
-  refresh_completion(self);
   g_mutex_unlock (&priv->mutex);
 }
 
@@ -747,10 +709,6 @@ void
 bjb_controller_set_book (BjbController *self, BijiNoteBook  *book )
 {
   self->priv->book = book ;
-  
-  /* Only update completion.
-   * Notes model is updated when needle changes */
-  refresh_completion(self);
 }
 
 void
@@ -776,12 +734,6 @@ GtkTreeModel *
 bjb_controller_get_model  (BjbController *self)
 {
   return self->priv->model ;
-}
-
-GtkTreeModel *
-bjb_controller_get_completion(BjbController *self)
-{
-  return self->priv->completion ;
 }
 
 

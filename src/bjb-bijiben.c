@@ -35,7 +35,7 @@ struct _BijibenPriv
 
 
 
-  /* Controls. 1st run is not used yet. to_open is for startup */
+  /* Controls. to_open is for startup */
 
   gboolean     first_run;
   gboolean     is_loaded;
@@ -293,6 +293,7 @@ bijiben_startup (GApplication *application)
   gchar          *storage_path, *default_color;
   GFile          *storage;
   GError         *error;
+  gchar          *path; 
   GdkRGBA         color = {0,0,0,0};
 
 
@@ -346,6 +347,19 @@ bijiben_startup (GApplication *application)
 
   /* Goa */
   goa_client_new  (NULL, on_client_got, self); // cancellable
+
+
+  /* Automatic imports on startup */
+  if (self->priv->first_run == TRUE)
+  {
+    path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
+    bijiben_import_notes (self, path);
+    g_free (path);
+
+    path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
+    bijiben_import_notes (self, path);
+    g_free (path);
+  }
 
   /* Create the first window */
   out:

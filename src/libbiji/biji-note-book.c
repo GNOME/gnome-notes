@@ -332,7 +332,6 @@ on_provider_loaded_cb (BijiProvider *provider,
                        BijiNoteBook *book)
 {
   BijiItem *item = NULL;
-  BijiNoteBookChangeFlag flag = BIJI_BOOK_CHANGE_FLAG;
   GList *l;
   gint i = 0;
 

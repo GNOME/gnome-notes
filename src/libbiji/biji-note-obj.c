@@ -340,7 +340,7 @@ out:
 gboolean
 biji_note_obj_set_mtime (BijiNoteObj* n, gint64 mtime)
 {
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (n));
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), FALSE);
 
   return biji_note_id_set_mtime (n->priv->id, mtime);
 }
@@ -365,7 +365,7 @@ biji_note_obj_get_last_change_date_string (BijiNoteObj *self)
 gint64
 biji_note_obj_get_last_metadata_change_date (BijiNoteObj *note)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), 0);
 
   return biji_note_id_get_last_metadata_change_date (note->priv->id);
 }
@@ -782,7 +782,7 @@ biji_note_obj_is_template(BijiNoteObj *note)
 gint64
 biji_note_obj_get_create_date (BijiNoteObj *note)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), 0);
 
   return biji_note_id_get_create_date (note->priv->id);
 }

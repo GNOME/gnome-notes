@@ -48,5 +48,5 @@ GError *
 biji_error_new (BijiErrorType type,
                 gchar *message)
 {
-  return g_error_new (BIJI_ERROR, type, message);
+  return g_error_new_literal (BIJI_ERROR, type, message);
 }

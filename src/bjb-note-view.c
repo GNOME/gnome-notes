@@ -256,7 +256,6 @@ bjb_note_view_constructed (GObject *obj)
   ClutterActor           *text_actor, *overlay;
   ClutterConstraint      *constraint;
   ClutterLayoutManager   *full, *bin;
-  gboolean                use_system_font;
   gchar                  *default_font;
   GdkRGBA                 color;
 

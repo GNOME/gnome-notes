@@ -277,7 +277,7 @@ biji_note_id_set_mtime (BijiNoteID *n, gint64 time)
 gint64
 biji_note_id_get_last_metadata_change_date (BijiNoteID* n)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), 0);
 
   return n->priv->last_metadata_change_date;
 }
@@ -299,7 +299,7 @@ biji_note_id_set_last_metadata_change_date (BijiNoteID* n, gint64 time)
 gint64
 biji_note_id_get_create_date (BijiNoteID* n)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), 0);
 
   return n->priv->create_date;
 }

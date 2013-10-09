@@ -53,7 +53,7 @@ struct BjbSettingsDialogPrivate_
 
   /* Note Edition page */
 
-  GtkLabel        *font_lbl;
+  GtkWidget       *font_lbl;
   GtkWidget       *font_bt;
 };
 

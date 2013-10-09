@@ -90,7 +90,6 @@ bjb_controller_init (BjbController *self)
 {
   BjbControllerPrivate *priv  ;
   GtkListStore     *store ;
-  GtkListStore     *completion ;
 
   priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE
     (self, BJB_TYPE_CONTROLLER, BjbControllerPrivate);

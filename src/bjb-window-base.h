@@ -51,7 +51,7 @@ BjbController * bjb_window_base_get_controller ( BjbWindowBase *window ) ;
 
 void bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type);
 
-void bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note);
+void bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item);
 
 BjbWindowViewType bjb_window_base_get_view_type (BjbWindowBase *win);
 

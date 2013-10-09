@@ -180,7 +180,7 @@ void
 switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 {
   bjb_main_view_disconnect_handlers (self);
-  bjb_window_base_switch_to_note (BJB_WINDOW_BASE (self->priv->window), note);
+  bjb_window_base_switch_to_item (BJB_WINDOW_BASE (self->priv->window), BIJI_ITEM (note));
 }
 
 static void

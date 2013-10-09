@@ -47,7 +47,7 @@ G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
 static void
 bijiben_new_window_internal (Bijiben *app,
                              GFile *file,
-                             BijiNoteObj *note_obj,
+                             BijiItem *item,
                              GError *error);
 
 static void
@@ -73,9 +73,8 @@ on_window_activated_cb   (BjbWindowBase *window,
     if (item != NULL)
     {
 
-      // fixme - bjb_window_base_switch_to_item...
       if (win_is_available)
-         bjb_window_base_switch_to_note (window, item);
+         bjb_window_base_switch_to_item (window, item);
       
       else
          bijiben_new_window_internal (self, NULL, item, NULL);
@@ -107,7 +106,7 @@ on_window_activated_cb   (BjbWindowBase *window,
 static void
 bijiben_new_window_internal (Bijiben *self,
                              GFile *file,
-                             BijiNoteObj *note_obj,
+                             BijiItem *item,
                              GError *error)
 {
   BjbWindowBase *window;
@@ -135,12 +134,12 @@ bijiben_new_window_internal (Bijiben *self,
   if (file != NULL)
   {
     path = g_file_get_parse_name (file);
-    note = biji_note_book_get_item_at_path (self->priv->book, path);
+    note = BIJI_NOTE_OBJ (biji_note_book_get_item_at_path (self->priv->book, path));
   }
 
-  else if (note_obj != NULL)
+  else if (item != NULL && BIJI_IS_NOTE_OBJ (item))
   {
-    note = note_obj;
+    note = BIJI_NOTE_OBJ (item);
   }
 
 
@@ -149,7 +148,7 @@ bijiben_new_window_internal (Bijiben *self,
   if (note != NULL)
   {
     bjb_controller_apply_needle (bjb_window_base_get_controller (window));
-    bjb_window_base_switch_to_note (window, note);
+    bjb_window_base_switch_to_item (window, BIJI_ITEM (note));
   }
 
 out:
@@ -163,7 +162,7 @@ void
 bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
-  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), NULL, note, NULL);
+  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), NULL, BIJI_ITEM (note), NULL);
 }
 
 static void

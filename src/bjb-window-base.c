@@ -333,7 +333,7 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 }
 
 void
-bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
+bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item)
 {
   BjbWindowBasePriv *priv = bwb->priv;
   GtkWidget *w = GTK_WIDGET (bwb);
@@ -342,17 +342,23 @@ bjb_window_base_switch_to_note (BjbWindowBase *bwb, BijiNoteObj *note)
   bjb_search_toolbar_fade_out (priv->search_bar);
   destroy_note_if_needed (bwb);
 
-  priv->note = note;
-  priv->note_overlay = gtk_overlay_new ();
+  if (BIJI_IS_NOTE_OBJ (item))
+  {
 
-  gtk_stack_add_named (priv->stack, priv->note_overlay, "note-view");
-  priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
+    BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
-  g_object_add_weak_pointer (G_OBJECT (priv->note_view),
-                             (gpointer *) &priv->note_view);
+    priv->note = note;
+    priv->note_overlay = gtk_overlay_new ();
 
-  bjb_window_base_switch_to (bwb, BJB_WINDOW_BASE_NOTE_VIEW);
-  gtk_widget_show_all (w);
+    gtk_stack_add_named (priv->stack, priv->note_overlay, "note-view");
+    priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
+
+    g_object_add_weak_pointer (G_OBJECT (priv->note_view),
+                               (gpointer *) &priv->note_view);
+
+    bjb_window_base_switch_to (bwb, BJB_WINDOW_BASE_NOTE_VIEW);
+    gtk_widget_show_all (w);
+  }
 }
 
 BjbWindowViewType

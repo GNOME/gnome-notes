@@ -133,6 +133,8 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_object_unref (self->priv->object);
   g_object_unref (self->priv->info.icon);
 
+  g_clear_pointer (&self->priv->info.name, g_free);
+
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->finalize (object);
 }
 
@@ -631,7 +633,7 @@ biji_own_cloud_provider_constructed (GObject *obj)
     priv->info.unique_id = goa_account_get_id (priv->account);
     priv->info.datasource = g_strdup_printf ("gn:goa-account:%s",
                                              priv->info.unique_id);
-    priv->info.name = goa_account_get_provider_name (priv->account);
+    priv->info.name = g_strdup (goa_account_get_provider_name (priv->account));
 
     error = NULL;
     icon = g_icon_new_for_string (goa_account_get_provider_icon (priv->account),

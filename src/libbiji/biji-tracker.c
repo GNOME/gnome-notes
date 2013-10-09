@@ -783,8 +783,8 @@ biji_tracker_ensure_ressource_from_info (BijiNoteBook *book,
 
 void
 biji_tracker_ensure_datasource (BijiNoteBook *book,
-                                gchar *datasource,
-                                gchar *identifier,
+                                const gchar *datasource,
+                                const gchar *identifier,
                                 BijiBoolCallback cb,
                                 gpointer user_data)
 {

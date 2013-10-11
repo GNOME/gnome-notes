@@ -4,6 +4,8 @@
 *.la
 *.tar.bz2
 *.tar.gz
+*.swp
+*.swo
 .deps
 .libs
 config.sub

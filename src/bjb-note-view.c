@@ -336,11 +336,8 @@ bjb_note_view_constructed (GObject *obj)
 
   if (!biji_note_obj_get_rgba(priv->note, &color))
   {
-    gchar *default_color;
-    g_object_get (G_OBJECT(settings),"color", &default_color, NULL);
-    gdk_rgba_parse (&color, default_color);
-    g_free (default_color);
-    biji_note_obj_set_rgba (priv->note, &color);
+    if (gdk_rgba_parse (&color, bjb_settings_get_default_color (settings)))
+      biji_note_obj_set_rgba (priv->note, &color);
   }
 
   /* Edition Toolbar */

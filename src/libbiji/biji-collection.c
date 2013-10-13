@@ -41,7 +41,6 @@ static void biji_collection_update_collected (GList *result, gpointer user_data)
 
 struct BijiCollectionPrivate_
 {
-  BijiNoteBook    *book;
 
   gchar           *urn;
   gchar           *name;
@@ -60,7 +59,6 @@ G_DEFINE_TYPE (BijiCollection, biji_collection, BIJI_TYPE_ITEM)
 /* Properties */
 enum {
   PROP_0,
-  PROP_BOOK,
   PROP_URN,
   PROP_NAME,
   PROP_MTIME,
@@ -307,9 +305,6 @@ biji_collection_set_property (GObject      *object,
 
   switch (property_id)
     {
-      case PROP_BOOK:
-        self->priv->book = g_value_get_object (value);
-        break;
       case PROP_URN:
         self->priv->urn = g_strdup (g_value_get_string (value));
         break;
@@ -336,9 +331,6 @@ biji_collection_get_property (GObject    *object,
 
   switch (property_id)
     {
-      case PROP_BOOK:
-        g_value_set_object (value, self->priv->book);
-        break;
       case PROP_URN:
         g_value_set_string (value, self->priv->urn);
         break;
@@ -359,7 +351,10 @@ static void
 on_collected_item_change (BijiCollection *self)
 {
   BijiCollectionPrivate *priv = self->priv;
+  BijiNoteBook *book;
   GList *l;
+
+  book = biji_item_get_book (BIJI_ITEM (self));
 
   /* Diconnected any handler */
   for (l= priv->collected_items; l!= NULL; l=l->next)
@@ -368,7 +363,7 @@ on_collected_item_change (BijiCollection *self)
   }
 
   /* Then re-process the whole stuff */
-  biji_get_items_with_collection_async (self->priv->book,
+  biji_get_items_with_collection_async (book,
                                         self->priv->name,
                                         biji_collection_update_collected,
                                         self);
@@ -413,8 +408,12 @@ static void
 biji_collection_constructed (GObject *obj)
 {
   BijiCollection *self = BIJI_COLLECTION (obj);
+  BijiNoteBook *book;
 
-  biji_get_items_with_collection_async (self->priv->book,
+
+  book = biji_item_get_book (BIJI_ITEM (obj));
+
+  biji_get_items_with_collection_async (book,
                                         self->priv->name,
                                         biji_collection_update_collected,
                                         self);
@@ -443,14 +442,6 @@ biji_collection_class_init (BijiCollectionClass *klass)
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiCollectionPrivate));
 
-  properties[PROP_BOOK] =
-    g_param_spec_object ("book",
-                         "Book",
-                         "The BijiNoteBook",
-                         BIJI_TYPE_NOTE_BOOK,
-                         G_PARAM_READWRITE |
-                         G_PARAM_CONSTRUCT |
-                         G_PARAM_STATIC_STRINGS);
 
   properties[PROP_URN] =
     g_param_spec_string ("urn",
@@ -545,9 +536,9 @@ BijiCollection *
 biji_collection_new (GObject *book, gchar *urn, gchar *name, gint64 mtime)
 {
   return g_object_new (BIJI_TYPE_COLLECTION,
-                       "book", book,
-                       "name", name,
-                       "urn",   urn,
-                       "mtime", mtime,
+                       "note-book", book,
+                       "name",      name,
+                       "urn",       urn,
+                       "mtime",     mtime,
                        NULL);
 }

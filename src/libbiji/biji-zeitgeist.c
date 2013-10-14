@@ -66,7 +66,7 @@ on_find_create_event (GObject *log,
 
   if (error)
   {
-    g_warning ("Error reading results: %s", error->message);
+    g_message ("Error reading results: %s", error->message);
     g_error_free (error);
     return;
   }

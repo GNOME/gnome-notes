@@ -384,7 +384,7 @@ bjb_import_dialog_constructed (GObject *obj)
 {
   G_OBJECT_CLASS(bjb_import_dialog_parent_class)->constructed(obj);
 
-  GtkWidget *area, *label_box, *label;
+  GtkWidget *area, *label_box, *label, *frame;
   gchar *path;
   GList *windows;
   ImportDialogChild *child;
@@ -424,14 +424,15 @@ bjb_import_dialog_constructed (GObject *obj)
 
   /* Dialog locations to import */
 
+  frame = gtk_frame_new (NULL);
   priv->box = GTK_LIST_BOX (gtk_list_box_new ());
   gtk_list_box_set_selection_mode (priv->box, GTK_SELECTION_NONE);
   gtk_list_box_set_activate_on_single_click (priv->box, TRUE);
   gtk_list_box_set_header_func (priv->box, (GtkListBoxUpdateHeaderFunc) header_func, NULL, NULL);
-  gtk_box_pack_start (GTK_BOX (area), GTK_WIDGET (priv->box) , TRUE, FALSE, 6);
-  g_signal_connect (priv->box, "row-activated",
-                    G_CALLBACK (on_row_activated_cb), self);
+  g_signal_connect (priv->box, "row-activated", G_CALLBACK (on_row_activated_cb), self);
+  gtk_box_pack_start (GTK_BOX (area), GTK_WIDGET (frame) , TRUE, FALSE, 6);
 
+  gtk_container_add (GTK_CONTAINER (frame), GTK_WIDGET (priv->box));
 
   /* Tomboy Gnote ~/.local/share are conditional
    * these are only packed if app is installed     */

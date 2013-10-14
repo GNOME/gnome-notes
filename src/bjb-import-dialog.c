@@ -22,7 +22,6 @@
  * - maybe align diffrently
  * - we check if apps are installed. rather check for notes...
  * - we might also trigger spinner view when import runs
- * - code : move import-notes to libbiji completely
  */
 
 

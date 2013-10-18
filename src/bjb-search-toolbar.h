@@ -40,30 +40,35 @@ typedef struct _BjbSearchToolbarPrivate BjbSearchToolbarPrivate;
 
 struct _BjbSearchToolbar
 {
-  GtkToolbar parent_instance;
+  GtkSearchBar parent_instance;
   BjbSearchToolbarPrivate *priv;
 };
 
 struct _BjbSearchToolbarClass
 {
-  GtkToolbarClass parent_class;
+  GtkSearchBarClass parent_class;
 };
 
-GType bjb_search_toolbar_get_type (void) G_GNUC_CONST;
 
-BjbSearchToolbar * bjb_search_toolbar_new (GtkWidget *window, BjbController *controller);
+GType              bjb_search_toolbar_get_type              (void) G_GNUC_CONST;
 
-void bjb_search_toolbar_fade_in (BjbSearchToolbar *self);
 
-void bjb_search_toolbar_fade_out (BjbSearchToolbar *self);
+BjbSearchToolbar  *bjb_search_toolbar_new                   (GtkWidget *window,
+                                                             BjbController *controller);
 
-GtkWidget * bjb_search_toolbar_get_revealer (BjbSearchToolbar *self);
 
-void bjb_search_toolbar_disconnect (BjbSearchToolbar *self);
+void               bjb_search_toolbar_fade_in               (BjbSearchToolbar *self);
 
-void bjb_search_toolbar_connect (BjbSearchToolbar *self);
 
-gboolean bjb_search_toolbar_is_shown (BjbSearchToolbar *self);
+void               bjb_search_toolbar_fade_out              (BjbSearchToolbar *self);
+
+
+void               bjb_search_toolbar_disconnect            (BjbSearchToolbar *self);
+
+
+void               bjb_search_toolbar_connect               (BjbSearchToolbar *self);
+
+
 
 G_END_DECLS
 

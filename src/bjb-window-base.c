@@ -104,7 +104,6 @@ bjb_window_base_constructed (GObject *obj)
   GList *icons = NULL;
   GdkPixbuf *bjb ;
   GError *error = NULL;
-  GtkWidget *revealer;
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 
@@ -155,8 +154,7 @@ bjb_window_base_constructed (GObject *obj)
 
   /* Search entry toolbar */
   priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (obj), priv->controller);
-  revealer = bjb_search_toolbar_get_revealer (priv->search_bar);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (revealer), FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->search_bar), FALSE, FALSE, 0);
 
   /* UI : stack for different views */
   priv->stack = GTK_STACK (gtk_stack_new ());
@@ -401,12 +399,14 @@ bjb_window_base_get_main_view (BjbWindowBase *self)
 gboolean
 bjb_window_base_get_show_search_bar (BjbWindowBase *self)
 {
+
   /* There is no search bar at startup,
    * when main toolbar is first built... */
   if (!self->priv->search_bar)
     return FALSE;
 
-  return bjb_search_toolbar_is_shown (self->priv->search_bar);
+  return gtk_search_bar_get_search_mode (
+            GTK_SEARCH_BAR (self->priv->search_bar));
 }
 
 gboolean

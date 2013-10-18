@@ -55,17 +55,15 @@ struct _BjbSearchToolbarPrivate
 
   /* Signals */
   gulong            key_pressed;
-  gulong            key_released;
   gulong            deleted;
   gulong            inserted;
 
-  /* Misc UI  */
-  GtkRevealer       *revealer;
-  GtkWidget         *widget;   // GTK_WIDGET (self)
+
   GtkWidget         *window;
 };
 
-G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, GTK_TYPE_TOOLBAR);
+G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, GTK_TYPE_SEARCH_BAR);
+
 
 static void
 bjb_search_toolbar_toggle_search_button (BjbSearchToolbar *self,
@@ -75,58 +73,36 @@ bjb_search_toolbar_toggle_search_button (BjbSearchToolbar *self,
                                         state);
 }
 
+
+
 void
 bjb_search_toolbar_fade_in (BjbSearchToolbar *self)
 {
-  if (!gtk_revealer_get_child_revealed (self->priv->revealer))
-  {
-    GdkDevice *device;
+  if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (self)) == TRUE)
+    return;
 
-
-    /* show the search */
-    gtk_revealer_set_reveal_child (self->priv->revealer, TRUE);
-
-    /* focus */
-    device = gtk_get_current_event_device ();
-    if (device)
-      gd_entry_focus_hack (GTK_WIDGET (self->priv->entry), device);
-
-    /* manually toggle search button */
-    bjb_search_toolbar_toggle_search_button (self, TRUE);
-  }
+  gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (self), TRUE);
+  bjb_search_toolbar_toggle_search_button (self, TRUE);
 }
+
+
 
 void
 bjb_search_toolbar_fade_out (BjbSearchToolbar *self)
 {
-  if (gtk_revealer_get_child_revealed (self->priv->revealer))
-  {
-    /* clear the search before hiding */
-    gtk_entry_set_text (GTK_ENTRY (self->priv->entry), "");
-    bjb_controller_set_needle (self->priv->controller, "");
+  if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (self)) == FALSE)
+    return;
 
-    /* hide */
-    gtk_revealer_set_reveal_child (self->priv->revealer, FALSE);
+  /* clear the search before hiding */
+  gtk_entry_set_text (GTK_ENTRY (self->priv->entry), "");
+  bjb_controller_set_needle (self->priv->controller, "");
 
-    /* manually toggle search button */
-    bjb_search_toolbar_toggle_search_button (self, FALSE);
-  }
+
+  gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (self), FALSE);
+  bjb_search_toolbar_toggle_search_button (self, FALSE);
 }
 
 
-
-/* If some text has been input, handle position */
-static gboolean
-on_key_released (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
-{
-  BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (user_data);
-  BjbSearchToolbarPrivate *priv = self->priv;
-
-  if (gtk_revealer_get_child_revealed (self->priv->revealer) == TRUE)
-    gtk_editable_set_position (GTK_EDITABLE (priv->entry), -1);
-
-  return FALSE;
-}
 
 static gboolean
 on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
@@ -142,7 +118,7 @@ on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
     return FALSE;
 
   /* Reveal the entry is text is input. TODO add more keys not input */
-  if (gtk_revealer_get_child_revealed (self->priv->revealer) == FALSE)
+  if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (self)) == FALSE)
   {
     switch (event->key.keyval)
     {
@@ -172,6 +148,7 @@ on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
   return FALSE;
 }
 
+
 static void
 bjb_search_toolbar_get_property (GObject    *object,
                                  guint       property_id,
@@ -193,6 +170,7 @@ bjb_search_toolbar_get_property (GObject    *object,
       break;
   }
 }
+
 
 static void
 bjb_search_toolbar_set_property (GObject      *object,
@@ -217,11 +195,15 @@ bjb_search_toolbar_set_property (GObject      *object,
 }
 
 
+
+
 static void
 action_search_entry (GtkEntry *entry, BjbController *controller)
 {
   bjb_controller_set_needle (controller, gtk_entry_get_text (entry));
 }
+
+
 
 static void
 action_entry_insert_callback (GtkEntryBuffer *buffer,
@@ -234,6 +216,9 @@ action_entry_insert_callback (GtkEntryBuffer *buffer,
                        self->priv->controller);
 }
 
+
+
+
 static void
 action_entry_delete_callback (GtkEntryBuffer *buffer,
                               guint position,
@@ -244,21 +229,24 @@ action_entry_delete_callback (GtkEntryBuffer *buffer,
                        self->priv->controller);
 }
 
+
 void
 bjb_search_toolbar_disconnect (BjbSearchToolbar *self)
 {
   BjbSearchToolbarPrivate *priv = self->priv ;
-  
+
+
   g_signal_handler_disconnect (priv->window,priv->key_pressed);
-  g_signal_handler_disconnect (priv->window,priv->key_released);
   g_signal_handler_disconnect (priv->entry_buf, priv->inserted);
   g_signal_handler_disconnect (priv->entry_buf, priv->deleted);
 
-  priv->key_released = 0;
+
   priv->key_pressed = 0;
   priv->inserted = 0;
   priv->deleted = 0;
+
 }
+
 
 static void
 bjb_search_toolbar_finalize (GObject *obj)
@@ -276,9 +264,6 @@ bjb_search_toolbar_connect (BjbSearchToolbar *self)
     priv->key_pressed = g_signal_connect(priv->window,"key-press-event",
                                          G_CALLBACK(on_key_pressed),self);
 
-  if (priv->key_released == 0)
-    priv->key_released = g_signal_connect(priv->window,"key-release-event",
-                                         G_CALLBACK(on_key_released),self);
 
   if (priv->inserted ==0)
     priv->inserted = g_signal_connect (priv->entry_buf, "inserted-text",
@@ -309,40 +294,20 @@ bjb_search_toolbar_constructed (GObject *obj)
   }
 }
 
+
 static void
 bjb_search_toolbar_init (BjbSearchToolbar *self)
 {
   BjbSearchToolbarPrivate    *priv;
-  GtkStyleContext            *context;
-  GtkToolbar                 *tlbar;
-  GtkWidget                  *search_container;
-  GtkToolItem                *item ;
 
-  tlbar = GTK_TOOLBAR (self);
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_SEARCH_TOOLBAR, BjbSearchToolbarPrivate);
   priv = self->priv;
-  priv->widget = GTK_WIDGET (self);
-  priv->revealer = GTK_REVEALER (gtk_revealer_new ());
-
-  gtk_container_add (GTK_CONTAINER (priv->revealer), priv->widget);
-
-  gtk_toolbar_set_show_arrow (tlbar, FALSE);
-  gtk_toolbar_set_icon_size (tlbar, GTK_ICON_SIZE_LARGE_TOOLBAR);
-  context = gtk_widget_get_style_context (GTK_WIDGET (self));
-  gtk_style_context_add_class (context, GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
-
-  /* (SELF) TOOL_BAR <- TOOL_ITEM <- BOX <- GD_TAGGED_ENTRY */
-  item = gtk_tool_item_new ();
-  gtk_tool_item_set_expand (item, TRUE);
-  gtk_toolbar_insert (tlbar, item,-1);
-
-  search_container = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, GTK_ALIGN_CENTER);
-  gtk_container_add (GTK_CONTAINER (item), search_container);
 
   priv->entry = gd_tagged_entry_new ();
   g_object_set (priv->entry, "width_request", 500, NULL);
-  gtk_box_pack_start (GTK_BOX (search_container), GTK_WIDGET (priv->entry), TRUE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->entry));
 }
+
 
 static void
 bjb_search_toolbar_class_init (BjbSearchToolbarClass *class)
@@ -374,24 +339,14 @@ bjb_search_toolbar_class_init (BjbSearchToolbarClass *class)
   g_type_class_add_private (class, sizeof (BjbSearchToolbarPrivate));
 }
 
+
 BjbSearchToolbar *
 bjb_search_toolbar_new (GtkWidget     *window,
                         BjbController *controller)
 {
   return g_object_new (BJB_TYPE_SEARCH_TOOLBAR,
-                       "window",window,
-                       "controller",controller,
+                       "window",      window,
+                       "controller",  controller,
                        NULL);
 }
 
-GtkWidget *
-bjb_search_toolbar_get_revealer (BjbSearchToolbar *self)
-{
-  return GTK_WIDGET (self->priv->revealer);
-}
-
-gboolean
-bjb_search_toolbar_is_shown (BjbSearchToolbar *self)
-{
-  return gtk_revealer_get_child_revealed (self->priv->revealer);
-}

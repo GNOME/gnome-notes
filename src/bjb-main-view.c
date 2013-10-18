@@ -427,6 +427,125 @@ bjb_main_view_connect_signals (BjbMainView *self)
                               G_CALLBACK (on_drag_data_received), self);
 }
 
+void
+__destroy_n_notify__ (gpointer data)
+{
+}
+
+
+/*
+static void
+render_type     (GtkTreeViewColumn *tree_column,
+                 GtkCellRenderer *cell,
+                 GtkTreeModel *tree_model,
+                 GtkTreeIter *iter,
+                 gpointer data)
+{
+
+
+  g_object_set (cell, "text", "Local", NULL);
+}
+
+
+
+
+static void
+render_where    (GtkTreeViewColumn *tree_column,
+                 GtkCellRenderer *cell,
+                 GtkTreeModel *tree_model,
+                 GtkTreeIter *iter,
+                 gpointer data)
+{
+
+
+  g_object_set (cell, "text", "?", NULL);
+}
+*/
+
+
+static void
+render_date     (GtkTreeViewColumn *tree_column,
+                 GtkCellRenderer *cell,
+                 GtkTreeModel *tree_model,
+                 GtkTreeIter *iter,
+                 gpointer data)
+{
+  BijiItem *item;
+  gchar *uuid, *diff;
+  BjbMainView *self;
+
+  self = data;
+  uuid = NULL;
+  gtk_tree_model_get (tree_model,
+                      iter,
+                      GD_MAIN_COLUMN_ID,
+                      &uuid,
+                      -1);
+
+
+  if (uuid != NULL)
+  {
+    item = biji_note_book_get_item_at_path (
+             bjb_window_base_get_book (self->priv->window), uuid);
+
+    if (item != NULL)
+    {
+      diff = biji_get_time_diff_with_time (biji_item_get_mtime (item));
+      g_object_set (cell, "text", diff, NULL);
+    }
+  }
+
+  g_free (uuid);
+}
+
+
+static void
+add_list_renderers (BjbMainView *self)
+{
+  GtkWidget *generic;
+  GtkCellRenderer *cell;
+
+  generic =  gd_main_view_get_generic_view (self->priv->view);
+
+  /* Type Renderer
+  cell = gd_styled_text_renderer_new ();
+  gd_styled_text_renderer_add_class (GD_STYLED_TEXT_RENDERER (cell), "dim-label");
+  gtk_cell_renderer_set_padding (cell, 16, 0);
+
+  gd_main_list_view_add_renderer (GD_MAIN_LIST_VIEW (generic),
+                                  cell,
+                                  render_type,
+                                  self,
+                                  __destroy_n_notify__);
+  */
+
+
+  /* Where Renderer
+  cell = gd_styled_text_renderer_new ();
+  gd_styled_text_renderer_add_class (GD_STYLED_TEXT_RENDERER (cell), "dim-label");
+  gtk_cell_renderer_set_padding (cell, 16, 0);
+
+  gd_main_list_view_add_renderer (GD_MAIN_LIST_VIEW (generic),
+                                  cell,
+                                  render_where,
+                                  self,
+                                  __destroy_n_notify__);
+  */
+
+
+  /* Date renderer */
+  cell = gtk_cell_renderer_text_new ();
+  gtk_cell_renderer_set_padding (cell, 32, 0);
+
+  gd_main_list_view_add_renderer (GD_MAIN_LIST_VIEW (generic),
+                                  cell,
+                                  render_date,
+                                  self,
+                                  __destroy_n_notify__);
+
+}
+
+
 static void
 bjb_main_view_constructed(GObject *o)
 {
@@ -450,6 +569,8 @@ bjb_main_view_constructed(GObject *o)
   gd_main_view_set_selection_mode (priv->view, FALSE);
   gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
   gtk_box_pack_start (vbox, GTK_WIDGET (priv->view), TRUE, TRUE, 0);
+
+
 
   /* Load more */
   priv->load_more = bjb_load_more_button_new (priv->controller);
@@ -557,8 +678,11 @@ bjb_main_view_get_view_type (BjbMainView *view)
 }
 
 void
-bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type)
+bjb_main_view_set_view_type (BjbMainView *self, GdMainViewType type)
 {
-  gd_main_view_set_view_type (view->priv->view, type);
+  gd_main_view_set_view_type (self->priv->view, type);
+
+  if (type == GD_MAIN_VIEW_LIST)
+    add_list_renderers (self);
 }
 

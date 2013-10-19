@@ -254,6 +254,16 @@ biji_collection_get_mtime (BijiItem *coll)
 }
 
 
+/* As of today, collections are only local
+ * We'll need to override this */
+
+static const gchar *
+biji_collection_get_place (BijiItem *coll)
+{
+  return "Local";
+}
+
+
 static gboolean
 biji_collection_trash (BijiItem *item)
 {
@@ -495,6 +505,7 @@ biji_collection_class_init (BijiCollectionClass *klass)
   item_class->get_emblem = biji_collection_get_emblem;
   item_class->get_pristine = biji_collection_get_emblem;
   item_class->get_mtime = biji_collection_get_mtime;
+  item_class->get_place = biji_collection_get_place;
   item_class->has_color = say_no;
   item_class->trash = biji_collection_trash;
   item_class->is_collectable = say_no;

@@ -33,6 +33,22 @@ G_DEFINE_TYPE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
 
 /* Iface */
 
+
+const gchar *
+local_note_get_place (BijiItem *local)
+{
+  BijiLocalNote *self;
+  const BijiProviderInfo *info;
+
+  g_return_if_fail (BIJI_IS_LOCAL_NOTE (local));
+
+  self = BIJI_LOCAL_NOTE (local);
+  info = biji_provider_get_info (self->priv->provider);
+
+  return info->name;
+}
+
+
 gchar *
 local_note_get_html (BijiNoteObj *note)
 {
@@ -202,6 +218,7 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
 
   item_class->is_collectable = item_yes;
   item_class->has_color = item_yes;
+  item_class->get_place = local_note_get_place;
 
   note_class->get_basename = local_note_get_basename;
   note_class->get_html = local_note_get_html;

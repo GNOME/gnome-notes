@@ -62,11 +62,14 @@ struct BijiItemClass_
   GdkPixbuf *   (*get_icon)             (BijiItem *item);
   GdkPixbuf *   (*get_emblem)           (BijiItem *item);
   GdkPixbuf *   (*get_pristine)         (BijiItem *item);
+
+  /* Just return some provider information */
+  const gchar * (*get_place)            (BijiItem *item);
+
   gint64        (*get_mtime)            (BijiItem *item);
   gboolean      (*has_color)            (BijiItem *item);
 
   gboolean      (*trash)                (BijiItem *item);
-
 
   gboolean      (*is_collectable)       (BijiItem *item);
   gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
@@ -103,6 +106,9 @@ GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
 
 
 GdkPixbuf *      biji_item_get_pristine        (BijiItem *item);
+
+
+const gchar *    biji_item_get_place           (BijiItem *item);
 
 
 gint64           biji_item_get_mtime           (BijiItem *item);

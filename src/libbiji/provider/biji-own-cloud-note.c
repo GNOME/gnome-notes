@@ -44,6 +44,22 @@ struct BijiOwnCloudNotePrivate_
 G_DEFINE_TYPE (BijiOwnCloudNote, biji_own_cloud_note, BIJI_TYPE_NOTE_OBJ)
 
 
+
+const gchar *
+ocloud_note_get_place (BijiItem *local)
+{
+  BijiOwnCloudNote *self;
+  const BijiProviderInfo *info;
+
+  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (local));
+
+  self = BIJI_OWN_CLOUD_NOTE (local);
+  info = biji_provider_get_info (BIJI_PROVIDER (self->priv->prov));
+
+  return info->name;
+}
+
+
 /* Better not to keep any cache here
  * We just want cache for overview,
  * not for actual content
@@ -341,6 +357,7 @@ biji_own_cloud_note_class_init (BijiOwnCloudNoteClass *klass)
 
   item_class->is_collectable = item_no;
   item_class->has_color = item_no;
+  item_class->get_place = ocloud_note_get_place;
 
   note_class->get_basename = ocloud_note_get_basename;
   note_class->get_html = ocloud_note_get_html;

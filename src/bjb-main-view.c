@@ -433,48 +433,17 @@ __destroy_n_notify__ (gpointer data)
 }
 
 
-/*
-static void
-render_type     (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer *cell,
-                 GtkTreeModel *tree_model,
-                 GtkTreeIter *iter,
-                 gpointer data)
+
+BijiItem *
+_get_item_for_tree_path (GtkTreeModel *tree_model,
+                         GtkTreeIter *iter,
+                         BjbMainView *self)
 {
+  BijiItem *retval;
+  gchar *uuid;
 
 
-  g_object_set (cell, "text", "Local", NULL);
-}
-
-
-
-
-static void
-render_where    (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer *cell,
-                 GtkTreeModel *tree_model,
-                 GtkTreeIter *iter,
-                 gpointer data)
-{
-
-
-  g_object_set (cell, "text", "?", NULL);
-}
-*/
-
-
-static void
-render_date     (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer *cell,
-                 GtkTreeModel *tree_model,
-                 GtkTreeIter *iter,
-                 gpointer data)
-{
-  BijiItem *item;
-  gchar *uuid, *diff;
-  BjbMainView *self;
-
-  self = data;
+  retval = NULL;
   uuid = NULL;
   gtk_tree_model_get (tree_model,
                       iter,
@@ -485,17 +454,88 @@ render_date     (GtkTreeViewColumn *tree_column,
 
   if (uuid != NULL)
   {
-    item = biji_note_book_get_item_at_path (
-             bjb_window_base_get_book (self->priv->window), uuid);
-
-    if (item != NULL)
-    {
-      diff = biji_get_time_diff_with_time (biji_item_get_mtime (item));
-      g_object_set (cell, "text", diff, NULL);
-    }
+    retval = biji_note_book_get_item_at_path (
+               bjb_window_base_get_book (self->priv->window), uuid);
+    g_free (uuid);
   }
 
-  g_free (uuid);
+  return retval;
+}
+
+
+
+static void
+render_type     (GtkTreeViewColumn *tree_column,
+                 GtkCellRenderer *cell,
+                 GtkTreeModel *tree_model,
+                 GtkTreeIter *iter,
+                 gpointer data)
+{
+  BijiItem *item;
+  const gchar *str;
+  BjbMainView *self;
+
+  self = data;
+  str = NULL;
+  item = _get_item_for_tree_path (tree_model, iter, self);
+
+  if (item != NULL)
+  {
+    if BIJI_IS_COLLECTION (item)
+      str= _("Collection");
+
+    else if BIJI_IS_NOTE_OBJ (item)
+      str = _("Note");
+  }
+
+  if (str != NULL)
+    g_object_set (cell, "text", str, NULL);
+}
+
+
+
+static void
+render_where    (GtkTreeViewColumn *tree_column,
+                 GtkCellRenderer *cell,
+                 GtkTreeModel *tree_model,
+                 GtkTreeIter *iter,
+                 gpointer data)
+{
+  BijiItem *item;
+  const gchar *str;
+  BjbMainView *self;
+
+  self = data;
+  item = _get_item_for_tree_path (tree_model, iter, self);
+
+  if (item != NULL)
+  {
+    str = biji_item_get_place (item);
+    g_object_set (cell, "text", str, NULL);
+  }
+}
+
+
+
+static void
+render_date     (GtkTreeViewColumn *tree_column,
+                 GtkCellRenderer *cell,
+                 GtkTreeModel *tree_model,
+                 GtkTreeIter *iter,
+                 gpointer data)
+{
+  BijiItem *item;
+  gchar *str;
+  BjbMainView *self;
+
+  self = data;
+  item = _get_item_for_tree_path (tree_model, iter, self);
+
+  if (item != NULL)
+  {
+    str = biji_get_time_diff_with_time (biji_item_get_mtime (item));
+    g_object_set (cell, "text", str, NULL);
+  }
 }
 
 
@@ -507,7 +547,7 @@ add_list_renderers (BjbMainView *self)
 
   generic =  gd_main_view_get_generic_view (self->priv->view);
 
-  /* Type Renderer
+  /* Type Renderer */
   cell = gd_styled_text_renderer_new ();
   gd_styled_text_renderer_add_class (GD_STYLED_TEXT_RENDERER (cell), "dim-label");
   gtk_cell_renderer_set_padding (cell, 16, 0);
@@ -517,10 +557,9 @@ add_list_renderers (BjbMainView *self)
                                   render_type,
                                   self,
                                   __destroy_n_notify__);
-  */
 
 
-  /* Where Renderer
+  /* Where Renderer */
   cell = gd_styled_text_renderer_new ();
   gd_styled_text_renderer_add_class (GD_STYLED_TEXT_RENDERER (cell), "dim-label");
   gtk_cell_renderer_set_padding (cell, 16, 0);
@@ -530,7 +569,6 @@ add_list_renderers (BjbMainView *self)
                                   render_where,
                                   self,
                                   __destroy_n_notify__);
-  */
 
 
   /* Date renderer */

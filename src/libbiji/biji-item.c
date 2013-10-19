@@ -160,6 +160,12 @@ biji_item_get_pristine        (BijiItem *item)
 }
 
 
+const gchar *
+biji_item_get_place           (BijiItem *item)
+{
+  return BIJI_ITEM_GET_CLASS (item)->get_place (item);
+}
+
 
 gint64
 biji_item_get_mtime           (BijiItem *item)

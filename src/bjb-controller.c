@@ -253,6 +253,12 @@ bjb_controller_add_item (BjbController *self,
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->priv->model);
 
+  /* Only append notes which are not templates. Currently useless */
+  if (BIJI_IS_NOTE_OBJ (item)
+      && biji_note_obj_is_template (BIJI_NOTE_OBJ (item)))
+    return;
+
+
   if (sibling)
     gtk_list_store_insert_before (store, &iter, sibling);
 
@@ -262,10 +268,6 @@ bjb_controller_add_item (BjbController *self,
   else
     gtk_list_store_append (store, &iter);
 
-  /* Only append notes which are not templates. Currently useless */
-  if (BIJI_IS_NOTE_OBJ (item)
-      && biji_note_obj_is_template (BIJI_NOTE_OBJ (item)))
-    return;
 
   /* First , if there is a gd main view , and if gd main view
    * is a list, then load the smaller emblem */

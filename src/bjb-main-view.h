@@ -77,9 +77,6 @@ void switch_to_note_view(BjbMainView *view,BijiNoteObj *note) ;
 
 void bjb_main_view_update_model (BjbMainView *view);
 
-/* bridge for notes view (GdMainView)
- * TODO : get rid of this it's a bit idiot */
-
 gboolean bjb_main_view_get_selection_mode (BjbMainView *view);
 
 void bjb_main_view_set_selection_mode (BjbMainView *view, gboolean mode);

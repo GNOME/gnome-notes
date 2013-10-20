@@ -601,6 +601,8 @@ bjb_main_view_constructed(GObject *o)
 
   /* Main view */
   gd_main_view_set_selection_mode (priv->view, FALSE);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->view),
+                                       GTK_SHADOW_NONE);
   gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->view));
 

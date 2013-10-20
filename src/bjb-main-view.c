@@ -76,7 +76,8 @@ struct _BjbMainViewPriv {
   gulong view_selection_changed;
 };
 
-G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_BOX);
+
+G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_GRID);
 
 static void
 bjb_main_view_init (BjbMainView *object)
@@ -588,35 +589,29 @@ static void
 bjb_main_view_constructed(GObject *o)
 {
   BjbMainView          *self;
-  GtkBox               *vbox; //self, too
   BjbMainViewPriv      *priv;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
   self = BJB_MAIN_VIEW(o);
-  priv = self->priv ;
-  vbox = GTK_BOX (self);
+  priv = self->priv;
 
-  gtk_box_set_homogeneous (vbox, FALSE);
-  gtk_box_set_spacing (vbox, 0);
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
-
   priv->view = gd_main_view_new (DEFAULT_VIEW);
 
   /* Main view */
   gd_main_view_set_selection_mode (priv->view, FALSE);
   gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
-  gtk_box_pack_start (vbox, GTK_WIDGET (priv->view), TRUE, TRUE, 0);
-
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->view));
 
 
   /* Load more */
   priv->load_more = bjb_load_more_button_new (priv->controller);
-  gtk_box_pack_start (vbox, priv->load_more, FALSE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (self), priv->load_more);
 
   /* Selection Panel */
   priv->select_bar = bjb_selection_toolbar_new (priv->view, self);
-  gtk_box_pack_start (vbox, GTK_WIDGET (priv->select_bar), FALSE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->select_bar));
 
   /* Drag n drop */
   gtk_drag_dest_set (GTK_WIDGET (priv->view), GTK_DEST_DEFAULT_ALL,

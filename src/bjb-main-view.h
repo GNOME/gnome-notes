@@ -41,12 +41,12 @@ typedef struct _BjbMainViewPriv BjbMainViewPriv;
 
 struct _BjbMainViewClass
 {
-  GtkBoxClass parent_class ;
+  GtkGridClass parent_class;
 };
 
 struct _BjbMainView
 {
-  GtkBox parent_instance ;
+  GtkGrid parent_instance;
   BjbMainViewPriv *priv;
 };
 

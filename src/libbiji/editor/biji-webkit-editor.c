@@ -218,6 +218,7 @@ biji_webkit_editor_init (BijiWebkitEditor *self)
                 "enable-file-access-from-file-uris", TRUE,
                 "user-stylesheet-uri", css_path,
                 "enable-spell-checking", TRUE,
+                "tab-key-cycles-through-elements", FALSE,
                 NULL);
 
   g_free (css_path);

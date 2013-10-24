@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-30 20:51+0000\n"
-"PO-Revision-Date: 2013-08-30 23:00+0100\n"
+"POT-Creation-Date: 2013-10-23 21:54+0000\n"
+"PO-Revision-Date: 2013-10-24 20:42+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -118,23 +118,23 @@ msgstr "Ops, napaka"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Namestiti je treba program 'tracker' in program bijiben znova zagnati."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Mesto po meri"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Uvozi sporočilca"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "_Prekliči"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Uvozi"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Izbor mesta uvoza"
 
@@ -172,88 +172,87 @@ msgid "Search note titles, content and collections"
 msgstr "Iskanje naslovov in vsebine sporočilc in zbirk"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:313
 msgid "Exit selection mode"
 msgstr "Končan izbirni način"
 
-#: ../src/bjb-main-toolbar.c:335
+#: ../src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za %s"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#: ../src/bjb-main-toolbar.c:402
+#: ../src/bjb-main-toolbar.c:411
 msgid "New"
 msgstr "Novo"
 
-#: ../src/bjb-main-toolbar.c:420
+#: ../src/bjb-main-toolbar.c:429
 msgid "Selection mode"
 msgstr "Izbirni način"
 
-#: ../src/bjb-main-toolbar.c:448
+#: ../src/bjb-main-toolbar.c:463
 msgid "View notes and collections in a list"
 msgstr "Poglej sporočilca in zbirke kot seznam"
 
-#: ../src/bjb-main-toolbar.c:472
+#: ../src/bjb-main-toolbar.c:487
 msgid "View notes and collections in a grid"
 msgstr "Poglej sporočilca in zbirke na mreži"
 
-#: ../src/bjb-main-toolbar.c:601
-msgid "Rename Note"
-msgstr "Preimenuj sporočilce"
-
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:622
+#: ../src/bjb-main-toolbar.c:615
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: ../src/bjb-main-toolbar.c:630
+#: ../src/bjb-main-toolbar.c:623
 msgid "Redo"
 msgstr "Ponovi"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:638
 msgid "Bullets"
 msgstr "Vrstične oznake"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:652
+#: ../src/bjb-main-toolbar.c:645
 msgid "Numbered List"
 msgstr "Oštevilčen seznam"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:664
-msgid "Rename"
-msgstr "Preimenuj"
-
-#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Zbirke"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:684
+#: ../src/bjb-main-toolbar.c:667
 msgid "Delete this Note"
 msgstr "Izbriši to sporočilce"
 
-#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
+#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
 msgid "Note color"
 msgstr "Barva sporočilca"
 
-#: ../src/bjb-main-toolbar.c:775
+#: ../src/bjb-main-toolbar.c:758
 msgid "Share note"
 msgstr "Objavi sporočilce"
 
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:779
 msgid "More options…"
 msgstr "Več podrobnosti ..."
+
+#: ../src/bjb-main-view.c:486
+msgid "Collection"
+msgstr "Zbirka"
+
+#: ../src/bjb-main-view.c:489
+msgid "Note"
+msgstr "Sporočilce"
 
 #: ../src/bjb-note-tag-dialog.c:399
 msgid "Enter a name to create a collection"
@@ -264,7 +263,7 @@ msgid "New collection"
 msgstr "Nova zbirka"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Zapri"
 
@@ -283,25 +282,30 @@ msgid "Delete"
 msgstr "Izbriši"
 
 #. Notes tags
-#: ../src/bjb-selection-toolbar.c:256
+#: ../src/bjb-selection-toolbar.c:258
 msgid "Add to Collection"
 msgstr "Dodaj v zbirko"
 
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Uporabi sistemsko pisavo"
+
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Pisava sporočilca"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Privzeta barva"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "Izdaja opombe"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Osnovni imenik stikov"
 
@@ -356,6 +360,12 @@ msgstr "Pomo_č"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Končaj"
+
+#~ msgid "Rename Note"
+#~ msgstr "Preimenuj sporočilce"
+
+#~ msgid "Rename"
+#~ msgstr "Preimenuj"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

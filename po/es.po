@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-30 20:51+0000\n"
-"PO-Revision-Date: 2013-09-02 14:18+0200\n"
+"POT-Creation-Date: 2013-10-23 21:54+0000\n"
+"PO-Revision-Date: 2013-10-25 10:23+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -106,7 +106,6 @@ msgid "No result found for this research."
 msgstr "No se han encontrado resultados para esta búsqueda."
 
 #: ../src/bjb-empty-results-box.c:161
-#| msgid "Oops, "
 msgid "Oops"
 msgstr "Vaya"
 
@@ -114,23 +113,23 @@ msgstr "Vaya"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instale «Tracker» y reinicie la aplicación."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Ubicación personalizada"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importar notas"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importar"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Seleccionar la ubicación de la importación"
 
@@ -166,88 +165,89 @@ msgid "Search note titles, content and collections"
 msgstr "Buscar en títulos de notas, contenido y colecciones"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:313
 msgid "Exit selection mode"
 msgstr "Salir del modo de selección"
 
-#: ../src/bjb-main-toolbar.c:335
+#: ../src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/bjb-main-toolbar.c:402
+#: ../src/bjb-main-toolbar.c:411
 msgid "New"
 msgstr "Nuevo"
 
-#: ../src/bjb-main-toolbar.c:420
+#: ../src/bjb-main-toolbar.c:429
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: ../src/bjb-main-toolbar.c:448
+#: ../src/bjb-main-toolbar.c:463
 msgid "View notes and collections in a list"
 msgstr "Ver notas y colecciones en una lista"
 
-#: ../src/bjb-main-toolbar.c:472
+#: ../src/bjb-main-toolbar.c:487
 msgid "View notes and collections in a grid"
 msgstr "Ver notas y colecciones en una rejilla"
 
-#: ../src/bjb-main-toolbar.c:601
-msgid "Rename Note"
-msgstr "Renombrar nota"
-
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:622
+#: ../src/bjb-main-toolbar.c:615
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../src/bjb-main-toolbar.c:630
+#: ../src/bjb-main-toolbar.c:623
 msgid "Redo"
 msgstr "Rehacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:638
 msgid "Bullets"
 msgstr "Topos"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:652
+#: ../src/bjb-main-toolbar.c:645
 msgid "Numbered List"
 msgstr "Lista numerada"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:664
-msgid "Rename"
-msgstr "Renombrar"
-
-#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Colecciones"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:684
+#: ../src/bjb-main-toolbar.c:667
 msgid "Delete this Note"
 msgstr "Eliminar esta nota"
 
-#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
+#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
 msgid "Note color"
 msgstr "Color de la nota"
 
-#: ../src/bjb-main-toolbar.c:775
+#: ../src/bjb-main-toolbar.c:758
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:779
 msgid "More options…"
 msgstr "Más opciones…"
+
+#: ../src/bjb-main-view.c:486
+#| msgid "Collections"
+msgid "Collection"
+msgstr "Colección"
+
+#: ../src/bjb-main-view.c:489
+#| msgid "Notes"
+msgid "Note"
+msgstr "Nota"
 
 #: ../src/bjb-note-tag-dialog.c:399
 msgid "Enter a name to create a collection"
@@ -258,13 +258,12 @@ msgid "New collection"
 msgstr "Colección nueva"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Cerrar"
 
 #. "Last updated" precedes the note last updated date
 #: ../src/bjb-note-view.c:229
-#| msgid "Last updated "
 msgid "Last updated"
 msgstr "Última actualización"
 
@@ -278,25 +277,30 @@ msgid "Delete"
 msgstr "Eliminar"
 
 #. Notes tags
-#: ../src/bjb-selection-toolbar.c:256
+#: ../src/bjb-selection-toolbar.c:258
 msgid "Add to Collection"
 msgstr "Añadir a la colección"
 
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Usar la tipografía del sistema"
+
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Tipografía de la nota"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Color predeterminado"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "Edición de la nota"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Libro principal"
 
@@ -351,6 +355,12 @@ msgstr "Ay_uda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Salir"
+
+#~ msgid "Rename Note"
+#~ msgstr "Renombrar nota"
+
+#~ msgid "Rename"
+#~ msgstr "Renombrar"
 
 #~ msgid "Done"
 #~ msgstr "Hecho"

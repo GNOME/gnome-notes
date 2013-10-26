@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 23:11+0300\n"
-"PO-Revision-Date: 2013-09-16 23:14+0300\n"
+"POT-Creation-Date: 2013-10-26 20:05+0300\n"
+"PO-Revision-Date: 2013-10-26 20:05+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -115,23 +115,23 @@ msgstr "אופס"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "נא להתקין את „Tracker“ ואז להפעיל מחדש את היישום."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "מיקום מותאם אישית"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "יבוא פתקיות"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "_ביטול"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "יבוא"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "בחירת מיקום הייבוא"
 
@@ -241,6 +241,14 @@ msgstr "שיתוף הפתקית"
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
+#: ../src/bjb-main-view.c:486
+msgid "Collection"
+msgstr "אוסף"
+
+#: ../src/bjb-main-view.c:489
+msgid "Note"
+msgstr "פתקית"
+
 #: ../src/bjb-note-tag-dialog.c:399
 msgid "Enter a name to create a collection"
 msgstr "נא להזין שם כדי ליצור אוסף"
@@ -250,7 +258,7 @@ msgid "New collection"
 msgstr "אוסף חדש"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_סגירה"
 
@@ -273,21 +281,26 @@ msgstr "מחיקה"
 msgid "Add to Collection"
 msgstr "הוספה לאוסף"
 
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "שימוש בגופן מערכת"
+
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "גופן הפתקית"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "צבע הפתקית"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "מהדורת הפתקית"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "ספר ראשי"
 

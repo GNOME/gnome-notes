@@ -1,3 +1,39 @@
+Overview of changes in 3.11.1
+=============================
+
+* List view : add three columns 
+  Remove search completion
+  Make Zeitgeist optional
+  Use system font setting
+  Revamp Tomboy/Gnote import a bit
+  Validate .desktop on make check
+  Rework opening notes at startup
+
+* Bug Fixes
+  Editor: handle tab key (710591)
+  MainView: fix header bar double stroke (706909)
+  Import dialog : add border (709348)
+  Fix compilation warnings (Yosef Or Boczko)
+
+* Translations:
+  Asamese (Nilamdyuti Goswami)
+  Basque ( Inaki Larranaga Murgoitio)
+  Catalan (Carles Ferrando)
+  Estonian (Priit Laes)
+  French (Alexandre Franke)
+  German (Christian Kirbach)
+  Hebrew (Yosef Or Boczko)
+  Japanese (Jiro Matsuzawa)
+  Malayalam (Anish A)
+  Portuguese (António Lima)
+  Simplified Chinese (甘露)
+  Slovenian (Matej Urbančič)
+  Spanish (Daniel Mustieles)
+  Tajik (Victor Ibragimov)
+  Turkish (Muhammet Kara)
+
+
+
 Overview of changes in 3.9.92
 =============================
 

@@ -520,11 +520,16 @@ just_switch_to_main_view (BjbMainToolbar *self)
 }
 
 static void
-on_note_renamed (BijiNoteObj *note,
+on_note_renamed (BijiItem *note,
                  BjbMainToolbar *self)
 {
-  gtk_header_bar_set_title (GTK_HEADER_BAR (self),
-                            biji_item_get_title (BIJI_ITEM (note)));
+  const gchar *str;
+
+  str = biji_item_get_title (note);
+  if (str == NULL)
+    str = _("Untitled");
+
+  gtk_header_bar_set_title (GTK_HEADER_BAR (self), str);
   gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
 }
 
@@ -707,10 +712,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                               GDK_KEY_w, GDK_CONTROL_MASK, GTK_ACCEL_MASK);
 
   /* Note Title */
-
-  gtk_header_bar_set_title (bar, biji_item_get_title (item));
-  gtk_header_bar_set_subtitle (bar, NULL);
-
+  on_note_renamed (item, self);
   self->priv->note_renamed = g_signal_connect (priv->note,"renamed",
                                     G_CALLBACK (on_note_renamed), self);
 

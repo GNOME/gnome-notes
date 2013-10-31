@@ -21,7 +21,7 @@
 #include "bjb-bijiben.h"
 #include "bjb-color-button.h"
 #include "bjb-main-toolbar.h"
-#include "bjb-note-tag-dialog.h"
+#include "bjb-organize-dialog.h"
 #include "bjb-rename-note.h"
 #include "bjb-share.h"
 #include "bjb-window-base.h"
@@ -589,7 +589,7 @@ action_view_tags_callback (GtkWidget *item, gpointer user_data)
   GList *list = NULL;
 
   list = g_list_append (list, self->priv->note);
-  bjb_note_tag_dialog_new (self->priv->window, list);
+  bjb_organize_dialog_new (self->priv->window, list);
   g_list_free (list);
 }
 

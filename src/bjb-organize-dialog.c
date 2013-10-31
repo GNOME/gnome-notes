@@ -17,11 +17,11 @@
 
 #include <glib/gi18n.h>
 
-#include "bjb-note-tag-dialog.h"
+#include "bjb-organize-dialog.h"
 #include "bjb-window-base.h"
 
-#define BJB_NOTE_TAG_DIALOG_DEFAULT_WIDTH  460
-#define BJB_NOTE_TAG_DIALOG_DEFAULT_HEIGHT 380
+#define BJB_ORGANIZE_DIALOG_DEFAULT_WIDTH  460
+#define BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT 380
 
 /* Model for tree view */
 enum {
@@ -48,7 +48,7 @@ enum
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-struct _BjbNoteTagDialogPrivate
+struct _BjbOrganizeDialogPrivate
 {
   // parent
   GtkWindow *window;
@@ -71,14 +71,14 @@ struct _BjbNoteTagDialogPrivate
 
 };
 
-#define BJB_NOTE_TAG_DIALOG_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_NOTE_TAG_DIALOG, BjbNoteTagDialogPrivate))
+#define BJB_ORGANIZE_DIALOG_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_ORGANIZE_DIALOG, BjbOrganizeDialogPrivate))
 
-G_DEFINE_TYPE (BjbNoteTagDialog, bjb_note_tag_dialog, GTK_TYPE_DIALOG);
+G_DEFINE_TYPE (BjbOrganizeDialog, bjb_organize_dialog, GTK_TYPE_DIALOG);
 
 static void
-append_notebook (BijiInfoSet *set, BjbNoteTagDialog *self)
+append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
 {
-  BjbNoteTagDialogPrivate *priv = self->priv;
+  BjbOrganizeDialogPrivate *priv = self->priv;
 
   GtkTreeIter iter;
   gint item_has_tag;
@@ -160,10 +160,10 @@ bjb_get_path_for_str (GtkTreeModel  *model,
 }
 
 static void
-bjb_note_tag_dialog_handle_tags (GHashTable *result, gpointer user_data)
+bjb_organize_dialog_handle_tags (GHashTable *result, gpointer user_data)
 {
-  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (user_data);
-  BjbNoteTagDialogPrivate *priv = self->priv;
+  BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (user_data);
+  BjbOrganizeDialogPrivate *priv = self->priv;
   GList *tracker_info;
 
   if (priv->notebooks)
@@ -193,13 +193,13 @@ bjb_note_tag_dialog_handle_tags (GHashTable *result, gpointer user_data)
 }
 
 static void
-update_notebooks_model_async (BjbNoteTagDialog *self)
+update_notebooks_model_async (BjbOrganizeDialog *self)
 {
   BijiManager *manager;
 
   manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
   gtk_list_store_clear (self->priv->store);
-  biji_get_all_notebooks_async (manager, bjb_note_tag_dialog_handle_tags, self);
+  biji_get_all_notebooks_async (manager, bjb_organize_dialog_handle_tags, self);
 }
 
 /* Libbiji handles tracker & saving */
@@ -221,9 +221,9 @@ note_dialog_remove_notebook (gpointer iter, gpointer user_data)
 static void
 on_tag_toggled (GtkCellRendererToggle *cell,
                 gchar *path_str,
-                BjbNoteTagDialog *self)
+                BjbOrganizeDialog *self)
 {
-  BjbNoteTagDialogPrivate *priv = self->priv;
+  BjbOrganizeDialogPrivate *priv = self->priv;
 
   GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
   GtkTreeModel *model = GTK_TREE_MODEL (priv->store);
@@ -270,8 +270,8 @@ on_tag_toggled (GtkCellRendererToggle *cell,
 static void
 on_new_notebook_created_cb (BijiItem *coll, gpointer user_data)
 {
-  BjbNoteTagDialog *self = user_data;
-  BjbNoteTagDialogPrivate *priv = self->priv;
+  BjbOrganizeDialog *self = user_data;
+  BjbOrganizeDialogPrivate *priv = self->priv;
 
   priv->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry)));
   g_list_foreach (priv->items, note_dialog_add_notebook, coll);
@@ -284,7 +284,7 @@ on_new_notebook_created_cb (BijiItem *coll, gpointer user_data)
  * the notebook is created & manager updated.
  * afterward, our callback comes */
 static void
-add_new_tag (BjbNoteTagDialog *self)
+add_new_tag (BjbOrganizeDialog *self)
 {
   BijiManager *manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
   const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->priv->entry));
@@ -294,7 +294,7 @@ add_new_tag (BjbNoteTagDialog *self)
 }
 
 static void
-bjb_note_tag_toggle_cell_data_func (GtkTreeViewColumn *column,
+bjb_organize_toggle_cell_data_func (GtkTreeViewColumn *column,
                                     GtkCellRenderer   *cell_renderer,
                                     GtkTreeModel      *tree_model,
                                     GtkTreeIter       *iter,
@@ -313,7 +313,7 @@ bjb_note_tag_toggle_cell_data_func (GtkTreeViewColumn *column,
 }
 
 static void
-add_columns (GtkTreeView *view, BjbNoteTagDialog *self)
+add_columns (GtkTreeView *view, BjbOrganizeDialog *self)
 {
   GtkTreeViewColumn *column;
   GtkCellRenderer *cell_renderer;
@@ -332,7 +332,7 @@ add_columns (GtkTreeView *view, BjbNoteTagDialog *self)
   gtk_tree_view_column_pack_start (column, cell_renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column,
                                            cell_renderer,
-                                           bjb_note_tag_toggle_cell_data_func,
+                                           bjb_organize_toggle_cell_data_func,
                                            NULL,
                                            NULL);
 
@@ -353,9 +353,9 @@ add_columns (GtkTreeView *view, BjbNoteTagDialog *self)
 }
 
 static void
-bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
+bjb_organize_dialog_init (BjbOrganizeDialog *self)
 {
-  BjbNoteTagDialogPrivate *priv = BJB_NOTE_TAG_DIALOG_GET_PRIVATE(self);
+  BjbOrganizeDialogPrivate *priv = BJB_ORGANIZE_DIALOG_GET_PRIVATE(self);
 
   self->priv = priv;
   priv->items = NULL;
@@ -365,8 +365,8 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
   priv->toggled_notebook = NULL;
 
   gtk_window_set_default_size (GTK_WINDOW (self),
-                               BJB_NOTE_TAG_DIALOG_DEFAULT_WIDTH,
-                               BJB_NOTE_TAG_DIALOG_DEFAULT_HEIGHT);
+                               BJB_ORGANIZE_DIALOG_DEFAULT_WIDTH,
+                               BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT);
   gtk_window_set_title (GTK_WINDOW (self), _("Collections"));
 
   g_signal_connect_swapped (self, "response",
@@ -379,16 +379,16 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
 }
 
 static void
-on_closed_clicked (BjbNoteTagDialog *self)
+on_closed_clicked (BjbOrganizeDialog *self)
 {
   gtk_dialog_response (GTK_DIALOG (self), 0);
 }
 
 static void
-bjb_note_tag_dialog_constructed (GObject *obj)
+bjb_organize_dialog_constructed (GObject *obj)
 {
-  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (obj);
-  BjbNoteTagDialogPrivate *priv = self->priv;
+  BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (obj);
+  BjbOrganizeDialogPrivate *priv = self->priv;
   GtkWidget *hbox, *label, *new, *area, *sw, *close;
 
   gtk_window_set_transient_for (GTK_WINDOW (self), priv->window);
@@ -443,10 +443,10 @@ bjb_note_tag_dialog_constructed (GObject *obj)
 }
 
 static void
-bjb_note_tag_dialog_finalize (GObject *object)
+bjb_organize_dialog_finalize (GObject *object)
 {
-  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (object);
-  BjbNoteTagDialogPrivate *priv = self->priv;
+  BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (object);
+  BjbOrganizeDialogPrivate *priv = self->priv;
 
   g_hash_table_destroy (priv->notebooks);
 
@@ -454,16 +454,16 @@ bjb_note_tag_dialog_finalize (GObject *object)
   if (priv->tag_to_scroll_to)
     g_free (priv->tag_to_scroll_to);
 
-  G_OBJECT_CLASS (bjb_note_tag_dialog_parent_class)->finalize (object);
+  G_OBJECT_CLASS (bjb_organize_dialog_parent_class)->finalize (object);
 }
 
 static void
-bjb_note_tag_dialog_get_property (GObject      *object,
+bjb_organize_dialog_get_property (GObject      *object,
                                   guint        prop_id,
                                   GValue       *value,
                                   GParamSpec   *pspec)
 {
-  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (object);
+  BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (object);
 
   switch (prop_id)
   {
@@ -480,12 +480,12 @@ bjb_note_tag_dialog_get_property (GObject      *object,
 }
 
 static void
-bjb_note_tag_dialog_set_property (GObject        *object,
+bjb_organize_dialog_set_property (GObject        *object,
                                   guint          prop_id,
                                   const GValue   *value,
                                   GParamSpec     *pspec)
 {
-  BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (object);
+  BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (object);
 
   switch (prop_id)
   {
@@ -502,16 +502,16 @@ bjb_note_tag_dialog_set_property (GObject        *object,
 }
 
 static void
-bjb_note_tag_dialog_class_init (BjbNoteTagDialogClass *klass)
+bjb_organize_dialog_class_init (BjbOrganizeDialogClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
 
-  g_type_class_add_private (klass, sizeof (BjbNoteTagDialogPrivate));
+  g_type_class_add_private (klass, sizeof (BjbOrganizeDialogPrivate));
 
-  object_class->constructed = bjb_note_tag_dialog_constructed;
-  object_class->finalize = bjb_note_tag_dialog_finalize;
-  object_class->get_property = bjb_note_tag_dialog_get_property;
-  object_class->set_property = bjb_note_tag_dialog_set_property;
+  object_class->constructed = bjb_organize_dialog_constructed;
+  object_class->finalize = bjb_organize_dialog_finalize;
+  object_class->get_property = bjb_organize_dialog_get_property;
+  object_class->set_property = bjb_organize_dialog_set_property;
 
   properties[PROP_WINDOW] = g_param_spec_object ("window",
                                                  "Window",
@@ -532,10 +532,10 @@ bjb_note_tag_dialog_class_init (BjbNoteTagDialogClass *klass)
 }
 
 void
-bjb_note_tag_dialog_new (GtkWindow *parent,
+bjb_organize_dialog_new (GtkWindow *parent,
                          GList     *biji_items)
 {
-  BjbNoteTagDialog *self = g_object_new (BJB_TYPE_NOTE_TAG_DIALOG,
+  BjbOrganizeDialog *self = g_object_new (BJB_TYPE_ORGANIZE_DIALOG,
                                          "window", parent,
                                          "items", biji_items,
                                          NULL);

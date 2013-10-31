@@ -25,8 +25,8 @@
 #include <libgd/gd.h>
 
 #include "bjb-color-button.h"
-#include "bjb-note-tag-dialog.h"
 #include "bjb-main-view.h"
+#include "bjb-organize-dialog.h"
 #include "bjb-selection-toolbar.h"
 #include "bjb-window-base.h"
 
@@ -104,7 +104,7 @@ action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
   GList *selection;
 
   selection = bjb_main_view_get_selected_items (self->priv->view);
-  bjb_note_tag_dialog_new
+  bjb_organize_dialog_new
     (GTK_WINDOW (bjb_main_view_get_window (self->priv->view)), selection);
 
   bjb_main_view_set_selection_mode (self->priv->view, FALSE);

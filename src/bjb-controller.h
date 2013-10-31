@@ -72,9 +72,9 @@ void bjb_controller_disconnect (BjbController *self);
 
 gboolean bjb_controller_shows_item (BjbController *self);
 
-BijiCollection * bjb_controller_get_collection (BjbController *self);
+BijiNotebook * bjb_controller_get_notebook (BjbController *self);
 
-void bjb_controller_set_collection (BjbController *self, BijiCollection *coll);
+void bjb_controller_set_notebook (BjbController *self, BijiNotebook *coll);
 
 
 void bjb_controller_show_more (BjbController *controller);

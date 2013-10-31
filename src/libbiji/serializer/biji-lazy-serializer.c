@@ -249,7 +249,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   //<tags>
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST "\n ");
   xmlTextWriterStartElement (priv->writer, BAD_CAST "tags");
-  tags = biji_note_obj_get_collections (priv->note);
+  tags = biji_note_obj_get_notebooks (priv->note);
   g_list_foreach (tags, (GFunc) serialize_tags, priv->writer);
   xmlTextWriterEndElement (priv->writer);
   g_list_free (tags);

@@ -31,7 +31,7 @@
 
 
 /*
- * Items are both notes and collections
+ * Items are both notes and notebooks
  *
  */
 
@@ -88,28 +88,28 @@ release_enum_cb (GObject *source, GAsyncResult *res, gpointer user_data)
 
 
 static void
-create_collection_if_needed (gpointer key,
+create_notebook_if_needed (gpointer key,
                              gpointer value,
                              gpointer user_data)
 {
   BijiLocalProvider *self;
   BijiInfoSet *set;
-  BijiCollection *collection;
+  BijiNotebook *notebook;
   BijiManager *manager;
 
 
   self = user_data;
   set = value;
-  collection = g_hash_table_lookup (self->priv->items, key);
+  notebook = g_hash_table_lookup (self->priv->items, key);
   manager = biji_provider_get_manager (BIJI_PROVIDER (self));
 
-  if (!collection)
+  if (!notebook)
   {
-    collection = biji_collection_new (G_OBJECT (manager), key, set->title, set->mtime);
+    notebook = biji_notebook_new (G_OBJECT (manager), key, set->title, set->mtime);
 
     g_hash_table_insert (self->priv->items,
                          g_strdup (key),
-                         collection);
+                         notebook);
   }
 
   /* InfoSet are freed per g_hash_table_destroy thanks to below caller */
@@ -117,7 +117,7 @@ create_collection_if_needed (gpointer key,
 
 
 static void
-local_provider_finish (GHashTable *collections,
+local_provider_finish (GHashTable *notebooks,
                        gpointer user_data)
 {
   BijiLocalProvider *self;
@@ -125,8 +125,8 @@ local_provider_finish (GHashTable *collections,
 
 
   self = user_data;
-  g_hash_table_foreach (collections, create_collection_if_needed, user_data);
-  g_hash_table_destroy (collections);
+  g_hash_table_foreach (notebooks, create_notebook_if_needed, user_data);
+  g_hash_table_destroy (notebooks);
 
 
   /* Now simply provide data to controller */
@@ -198,8 +198,8 @@ enumerate_next_files_ready_cb (GObject *source,
   g_list_free_full (files, g_object_unref);
 
   /* Now we have all notes,
-   * load the collections and we're good to notify loading done */
-  biji_get_all_collections_async (biji_provider_get_manager (BIJI_PROVIDER (self)),
+   * load the notebooks and we're good to notify loading done */
+  biji_get_all_notebooks_async (biji_provider_get_manager (BIJI_PROVIDER (self)),
                                   local_provider_finish,
                                   self);
 }

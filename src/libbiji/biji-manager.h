@@ -107,7 +107,7 @@ BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
                                                        const gchar *path);
 
 
-/* Get all items, either notes or collections
+/* Get all items, either notes or notebooks
  * Free the GList, not its content */
 GList           *biji_manager_get_items             (BijiManager *manager);
 

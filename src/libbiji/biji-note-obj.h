@@ -117,7 +117,7 @@ gboolean         biji_note_obj_get_rgba                      (BijiNoteObj *n,
 void             biji_note_obj_set_rgba                      (BijiNoteObj *n, GdkRGBA *rgba) ;
 
 
-GList           *biji_note_obj_get_collections               (BijiNoteObj *n);
+GList           *biji_note_obj_get_notebooks               (BijiNoteObj *n);
 
 
 gboolean         note_obj_is_template                        (BijiNoteObj *n) ;

@@ -1,5 +1,5 @@
 /*
- * biji-collection.c
+ * biji-notebook.c
  *
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
  *
@@ -18,28 +18,28 @@
  */
 
 /*
- * in current implementation, one cannot add a collection
- * to a collection
+ * in current implementation, one cannot add a notebook
+ * to a notebook
  * but tracker would be fine with this
  * given we prevent self-containment.
  */
 
 /*
- * biji_create_collection_icon
- * is adapted from Photos (photos_utils_create_collection_icon),
+ * biji_create_notebook_icon
+ * is adapted from Photos (photos_utils_create_notebook_icon),
  * which is ported from Documents
  */
 
 #include <math.h>
 
-#include "biji-collection.h"
+#include "biji-notebook.h"
 #include "biji-tracker.h"
 
 
-static void biji_collection_update_collected (GList *result, gpointer user_data);
+static void biji_notebook_update_collected (GList *result, gpointer user_data);
 
 
-struct BijiCollectionPrivate_
+struct BijiNotebookPrivate_
 {
 
   gchar           *urn;
@@ -52,9 +52,9 @@ struct BijiCollectionPrivate_
   GList           *collected_items;
 };
 
-static void biji_collection_finalize (GObject *object);
+static void biji_notebook_finalize (GObject *object);
 
-G_DEFINE_TYPE (BijiCollection, biji_collection, BIJI_TYPE_ITEM)
+G_DEFINE_TYPE (BijiNotebook, biji_notebook, BIJI_TYPE_ITEM)
 
 /* Properties */
 enum {
@@ -62,48 +62,48 @@ enum {
   PROP_URN,
   PROP_NAME,
   PROP_MTIME,
-  BIJI_COLL_PROPERTIES
+  BIJI_NOTEBOOK_PROPERTIES
 };
 
 
 /* Signals */
 enum {
-  COLLECTION_DELETED,
-  COLLECTION_ICON_UPDATED,
-  BIJI_COLLECTIONS_SIGNALS
+  NOTEBOOK_DELETED,
+  NOTEBOOK_ICON_UPDATED,
+  BIJI_NOTEBOOKS_SIGNALS
 };
 
-static GParamSpec *properties[BIJI_COLL_PROPERTIES] = { NULL, };
+static GParamSpec *properties[BIJI_NOTEBOOK_PROPERTIES] = { NULL, };
 
-static guint biji_collections_signals [BIJI_COLLECTIONS_SIGNALS] = { 0 };
+static guint biji_notebooks_signals [BIJI_NOTEBOOKS_SIGNALS] = { 0 };
 
 
 static const gchar *
-biji_collection_get_title (BijiItem *coll)
+biji_notebook_get_title (BijiItem *coll)
 {
-  BijiCollection *collection;
+  BijiNotebook *notebook;
 
-  g_return_val_if_fail (BIJI_IS_COLLECTION (coll), NULL);
-  collection = BIJI_COLLECTION (coll);
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), NULL);
+  notebook = BIJI_NOTEBOOK (coll);
 
-  return collection->priv->name;
+  return notebook->priv->name;
 }
 
 
 static const gchar *
-biji_collection_get_uuid (BijiItem *coll)
+biji_notebook_get_uuid (BijiItem *coll)
 {
-  BijiCollection *collection;
+  BijiNotebook *notebook;
 
-  g_return_val_if_fail (BIJI_IS_COLLECTION (coll), NULL);
-  collection = BIJI_COLLECTION (coll);
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), NULL);
+  notebook = BIJI_NOTEBOOK (coll);
 
-  return collection->priv->urn;
+  return notebook->priv->urn;
 }
 
 
 static GdkPixbuf *
-biji_create_collection_icon (gint base_size, GList *pixbufs)
+biji_create_notebook_icon (gint base_size, GList *pixbufs)
 {
   cairo_surface_t *surface;
   cairo_t *cr;
@@ -191,7 +191,7 @@ biji_create_collection_icon (gint base_size, GList *pixbufs)
 }
 
 static GList *
-get_collected_pix (BijiCollection *self)
+get_collected_pix (BijiNotebook *self)
 {
   GList *result = NULL, *l;
 
@@ -207,15 +207,15 @@ get_collected_pix (BijiCollection *self)
 }
 
 static GdkPixbuf *
-biji_collection_get_icon (BijiItem *coll)
+biji_notebook_get_icon (BijiItem *coll)
 {
-  BijiCollection *self = BIJI_COLLECTION (coll);
+  BijiNotebook *self = BIJI_NOTEBOOK (coll);
   GList *pix;
 
   if (!self->priv->icon)
   {
     pix = get_collected_pix (self);
-    self->priv->icon = biji_create_collection_icon (BIJI_ICON_WIDTH, pix);
+    self->priv->icon = biji_create_notebook_icon (BIJI_ICON_WIDTH, pix);
     g_list_free (pix);
   }
 
@@ -224,15 +224,15 @@ biji_collection_get_icon (BijiItem *coll)
 
 
 static GdkPixbuf *
-biji_collection_get_emblem (BijiItem *coll)
+biji_notebook_get_emblem (BijiItem *coll)
 {
-  BijiCollection *self = BIJI_COLLECTION (coll);
+  BijiNotebook *self = BIJI_NOTEBOOK (coll);
   GList *pix;
 
   if (!self->priv->emblem)
   {
     pix = get_collected_pix (self);
-    self->priv->emblem = biji_create_collection_icon (BIJI_EMBLEM_WIDTH,
+    self->priv->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH,
                                                       get_collected_pix (self));
     g_list_free (pix);
   }
@@ -243,37 +243,37 @@ biji_collection_get_emblem (BijiItem *coll)
 
 
 static gint64
-biji_collection_get_mtime (BijiItem *coll)
+biji_notebook_get_mtime (BijiItem *coll)
 {
-  BijiCollection *self;
+  BijiNotebook *self;
 
-  g_return_val_if_fail (BIJI_IS_COLLECTION (coll), 0);
-  self = BIJI_COLLECTION (coll);
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), 0);
+  self = BIJI_NOTEBOOK (coll);
 
   return self->priv->mtime;
 }
 
 
-/* As of today, collections are only local
+/* As of today, notebooks are only local
  * We'll need to override this */
 
 static const gchar *
-biji_collection_get_place (BijiItem *coll)
+biji_notebook_get_place (BijiItem *coll)
 {
   return "Local";
 }
 
 
 static gboolean
-biji_collection_trash (BijiItem *item)
+biji_notebook_trash (BijiItem *item)
 {
-  BijiCollection *self;
-  g_return_val_if_fail (BIJI_IS_COLLECTION (item), FALSE);
+  BijiNotebook *self;
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
 
-  self = BIJI_COLLECTION (item);
+  self = BIJI_NOTEBOOK (item);
 
-  g_signal_emit (G_OBJECT (item), biji_collections_signals[COLLECTION_DELETED], 0);
-  biji_remove_collection_from_tracker (biji_item_get_manager (item), self->priv->urn);
+  g_signal_emit (G_OBJECT (item), biji_notebooks_signals[NOTEBOOK_DELETED], 0);
+  biji_remove_notebook_from_tracker (biji_item_get_manager (item), self->priv->urn);
   g_object_unref (self);
 
   return TRUE;
@@ -281,7 +281,7 @@ biji_collection_trash (BijiItem *item)
 
 
 static gboolean
-biji_collection_has_collection (BijiItem *item, gchar *collection)
+biji_notebook_has_notebook (BijiItem *item, gchar *notebook)
 {
   //todo
   return FALSE;
@@ -289,28 +289,28 @@ biji_collection_has_collection (BijiItem *item, gchar *collection)
 
 
 static gboolean
-biji_collection_add_collection (BijiItem *item, BijiItem *coll, gchar *title)
+biji_notebook_add_notebook (BijiItem *item, BijiItem *coll, gchar *title)
 {
-  g_warning ("biji collection add collection is not implemented.");
+  g_warning ("biji notebook add notebook is not implemented.");
   return FALSE;
 }
 
 
 static gboolean
-biji_collection_remove_collection (BijiItem *item, BijiItem *collection)
+biji_notebook_remove_notebook (BijiItem *item, BijiItem *notebook)
 {
-  g_warning ("biji collection remove collection is not implemented.");
+  g_warning ("biji notebook remove notebook is not implemented.");
   return FALSE;
 }
 
 
 static void
-biji_collection_set_property (GObject      *object,
+biji_notebook_set_property (GObject      *object,
                               guint         property_id,
                               const GValue *value,
                               GParamSpec   *pspec)
 {
-  BijiCollection *self = BIJI_COLLECTION (object);
+  BijiNotebook *self = BIJI_NOTEBOOK (object);
 
 
   switch (property_id)
@@ -332,12 +332,12 @@ biji_collection_set_property (GObject      *object,
 
 
 static void
-biji_collection_get_property (GObject    *object,
+biji_notebook_get_property (GObject    *object,
                               guint       property_id,
                               GValue     *value,
                               GParamSpec *pspec)
 {
-  BijiCollection *self = BIJI_COLLECTION (object);
+  BijiNotebook *self = BIJI_NOTEBOOK (object);
 
   switch (property_id)
     {
@@ -358,9 +358,9 @@ biji_collection_get_property (GObject    *object,
 
 
 static void
-on_collected_item_change (BijiCollection *self)
+on_collected_item_change (BijiNotebook *self)
 {
-  BijiCollectionPrivate *priv = self->priv;
+  BijiNotebookPrivate *priv = self->priv;
   BijiManager *manager;
   GList *l;
 
@@ -373,20 +373,20 @@ on_collected_item_change (BijiCollection *self)
   }
 
   /* Then re-process the whole stuff */
-  biji_get_items_with_collection_async (manager,
+  biji_get_items_with_notebook_async (manager,
                                         self->priv->name,
-                                        biji_collection_update_collected,
+                                        biji_notebook_update_collected,
                                         self);
 }
 
 /* For convenience, items are retrieved async.
  * Thus use a signal once icon & emblem updated.*/
 static void
-biji_collection_update_collected (GList *result,
+biji_notebook_update_collected (GList *result,
                                   gpointer user_data)
 {
-  BijiCollection *self = user_data;
-  BijiCollectionPrivate *priv = self->priv;
+  BijiNotebook *self = user_data;
+  BijiNotebookPrivate *priv = self->priv;
   GList *l;
 
   g_clear_pointer (&priv->collected_items, g_list_free);
@@ -405,27 +405,27 @@ biji_collection_update_collected (GList *result,
                               G_CALLBACK (on_collected_item_change), self);
   }
 
-  g_signal_emit (self, biji_collections_signals[COLLECTION_ICON_UPDATED], 0);
+  g_signal_emit (self, biji_notebooks_signals[NOTEBOOK_ICON_UPDATED], 0);
 }
 
 void
-biji_collection_refresh (BijiCollection *collection)
+biji_notebook_refresh (BijiNotebook *notebook)
 {
-  on_collected_item_change (collection);
+  on_collected_item_change (notebook);
 }
 
 static void
-biji_collection_constructed (GObject *obj)
+biji_notebook_constructed (GObject *obj)
 {
-  BijiCollection *self = BIJI_COLLECTION (obj);
+  BijiNotebook *self = BIJI_NOTEBOOK (obj);
   BijiManager *manager;
 
 
   manager = biji_item_get_manager (BIJI_ITEM (obj));
 
-  biji_get_items_with_collection_async (manager,
+  biji_get_items_with_notebook_async (manager,
                                         self->priv->name,
-                                        biji_collection_update_collected,
+                                        biji_notebook_update_collected,
                                         self);
 }
 
@@ -437,7 +437,7 @@ say_no (BijiItem *item)
 
 
 static void
-biji_collection_class_init (BijiCollectionClass *klass)
+biji_notebook_class_init (BijiNotebookClass *klass)
 {
   GObjectClass *g_object_class;
   BijiItemClass*  item_class;
@@ -445,12 +445,12 @@ biji_collection_class_init (BijiCollectionClass *klass)
   g_object_class = G_OBJECT_CLASS (klass);
   item_class = BIJI_ITEM_CLASS (klass);
 
-  g_object_class->constructed = biji_collection_constructed;
-  g_object_class->finalize = biji_collection_finalize;
-  g_object_class->set_property = biji_collection_set_property;
-  g_object_class->get_property = biji_collection_get_property;
+  g_object_class->constructed = biji_notebook_constructed;
+  g_object_class->finalize = biji_notebook_finalize;
+  g_object_class->set_property = biji_notebook_set_property;
+  g_object_class->get_property = biji_notebook_get_property;
 
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiCollectionPrivate));
+  g_type_class_add_private ((gpointer)klass, sizeof (BijiNotebookPrivate));
 
 
   properties[PROP_URN] =
@@ -474,9 +474,9 @@ biji_collection_class_init (BijiCollectionClass *klass)
                          G_MININT64, G_MAXINT64, 0,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
-  g_object_class_install_properties (g_object_class, BIJI_COLL_PROPERTIES, properties);
+  g_object_class_install_properties (g_object_class, BIJI_NOTEBOOK_PROPERTIES, properties);
 
-  biji_collections_signals[COLLECTION_ICON_UPDATED] =
+  biji_notebooks_signals[NOTEBOOK_ICON_UPDATED] =
     g_signal_new ("icon-changed",
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
@@ -487,7 +487,7 @@ biji_collection_class_init (BijiCollectionClass *klass)
                   G_TYPE_NONE,
                   0);
 
-  biji_collections_signals[COLLECTION_DELETED] =
+  biji_notebooks_signals[NOTEBOOK_DELETED] =
     g_signal_new ("deleted" ,
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
@@ -499,40 +499,40 @@ biji_collection_class_init (BijiCollectionClass *klass)
                   0);
 
   /* Interface */
-  item_class->get_title = biji_collection_get_title;
-  item_class->get_uuid = biji_collection_get_uuid;
-  item_class->get_icon = biji_collection_get_icon;
-  item_class->get_emblem = biji_collection_get_emblem;
-  item_class->get_pristine = biji_collection_get_emblem;
-  item_class->get_mtime = biji_collection_get_mtime;
-  item_class->get_place = biji_collection_get_place;
+  item_class->get_title = biji_notebook_get_title;
+  item_class->get_uuid = biji_notebook_get_uuid;
+  item_class->get_icon = biji_notebook_get_icon;
+  item_class->get_emblem = biji_notebook_get_emblem;
+  item_class->get_pristine = biji_notebook_get_emblem;
+  item_class->get_mtime = biji_notebook_get_mtime;
+  item_class->get_place = biji_notebook_get_place;
   item_class->has_color = say_no;
-  item_class->trash = biji_collection_trash;
+  item_class->trash = biji_notebook_trash;
   item_class->is_collectable = say_no;
-  item_class->has_collection = biji_collection_has_collection;
-  item_class->add_collection = biji_collection_add_collection;
-  item_class->remove_collection = biji_collection_remove_collection;
+  item_class->has_notebook = biji_notebook_has_notebook;
+  item_class->add_notebook = biji_notebook_add_notebook;
+  item_class->remove_notebook = biji_notebook_remove_notebook;
 }
 
 
 static void
-biji_collection_finalize (GObject *object)
+biji_notebook_finalize (GObject *object)
 {
-  BijiCollection *self;
-  g_return_if_fail (BIJI_IS_COLLECTION (object));
+  BijiNotebook *self;
+  g_return_if_fail (BIJI_IS_NOTEBOOK (object));
 
-  self = BIJI_COLLECTION (object);
+  self = BIJI_NOTEBOOK (object);
   g_free (self->priv->name);
   g_free (self->priv->urn);
 
-  G_OBJECT_CLASS (biji_collection_parent_class)->finalize (object);
+  G_OBJECT_CLASS (biji_notebook_parent_class)->finalize (object);
 }
 
 
 static void
-biji_collection_init (BijiCollection *self)
+biji_notebook_init (BijiNotebook *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_COLLECTION, BijiCollectionPrivate);
+  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTEBOOK, BijiNotebookPrivate);
 
   self->priv->mtime = 0;
 
@@ -543,10 +543,10 @@ biji_collection_init (BijiCollection *self)
 }
 
 
-BijiCollection *
-biji_collection_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime)
+BijiNotebook *
+biji_notebook_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime)
 {
-  return g_object_new (BIJI_TYPE_COLLECTION,
+  return g_object_new (BIJI_TYPE_NOTEBOOK,
                        "manager", manager,
                        "name",      name,
                        "urn",       urn,

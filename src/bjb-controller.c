@@ -43,7 +43,7 @@ struct _BjbControllerPrivate
 {
   BijiManager   *manager ;
   gchar          *needle ;
-  BijiCollection *collection;
+  BijiNotebook *notebook;
   GtkTreeModel   *model ;
 
   BjbWindowBase  *window;
@@ -109,7 +109,7 @@ bjb_controller_init (BjbController *self)
   priv->items_to_show = NULL;
   priv->n_items_to_show = BJB_ITEMS_SLICE;
   priv->needle = NULL;
-  priv->collection = NULL;
+  priv->notebook = NULL;
   priv->connected = FALSE;
 
 }
@@ -132,8 +132,8 @@ bjb_controller_finalize (GObject *object)
   g_free (priv->needle);
   g_list_free (priv->items_to_show);
 
-  if (priv->collection)
-    g_free (priv->collection);
+  if (priv->notebook)
+    g_free (priv->notebook);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
@@ -315,10 +315,10 @@ bjb_controller_add_item_if_needed (BjbController *self,
   /* No search - we add the note */
   if (!priv->needle || g_strcmp0 (priv->needle, "")==0)
   {
-    if (!priv->collection)
+    if (!priv->notebook)
       need_to_add_item = TRUE;
 
-    /* To do : we might have a collection
+    /* To do : we might have a notebook
      * but have to udpate the view */
   }
 
@@ -352,20 +352,20 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
   BijiItem *other = BIJI_ITEM (b);
   glong result = 0;
 
-  /* Always sort collections before notes */
-  if (BIJI_IS_COLLECTION (a))
+  /* Always sort notebooks before notes */
+  if (BIJI_IS_NOTEBOOK (a))
   {
     if (BIJI_IS_NOTE_OBJ (b))
       result = -1;
   }
 
-  else if (BIJI_IS_COLLECTION (b))
+  else if (BIJI_IS_NOTEBOOK (b))
   {
     result = 1;
   }
 
   /* If comparing two notes or
-   * two collections, use the most recent cookbook */
+   * two notebooks, use the most recent cookbook */
   else
   {
     result =   biji_item_get_mtime (other)
@@ -536,7 +536,7 @@ on_manager_changed (BijiManager           *manager,
           if (BIJI_IS_NOTE_OBJ (item))
             bjb_controller_get_iter (self, NULL, &p_iter);
 
-          else if (BIJI_IS_COLLECTION (item))
+          else if (BIJI_IS_NOTEBOOK (item))
             p_iter = NULL;
 
           bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
@@ -545,7 +545,7 @@ on_manager_changed (BijiManager           *manager,
           notify_displayed_items_changed (self);
       break;
 
-    /* Same comment, prepend but collection before note */
+    /* Same comment, prepend but notebook before note */
     case BIJI_MANAGER_NOTE_AMENDED:
       if (bjb_controller_get_iter (self, item, &p_iter))
       {
@@ -554,7 +554,7 @@ on_manager_changed (BijiManager           *manager,
         if (BIJI_IS_NOTE_OBJ (item))
           bjb_controller_get_iter (self, NULL, &p_iter);
 
-        else if (BIJI_IS_COLLECTION (item))
+        else if (BIJI_IS_NOTEBOOK (item))
           p_iter = NULL;
 
         bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
@@ -744,37 +744,37 @@ bjb_controller_shows_item (BjbController *self)
   return (self->priv->items_to_show != NULL);
 }
 
-BijiCollection *
-bjb_controller_get_collection (BjbController *self)
+BijiNotebook *
+bjb_controller_get_notebook (BjbController *self)
 {
-  return self->priv->collection;
+  return self->priv->notebook;
 }
 
 
 void
-bjb_controller_set_collection (BjbController *self,
-                               BijiCollection *coll)
+bjb_controller_set_notebook (BjbController *self,
+                               BijiNotebook *coll)
 {
-  /* Going back from a collection */
+  /* Going back from a notebook */
   if (!coll)
   {
-    if (!self->priv->collection)
+    if (!self->priv->notebook)
       return;
 
     bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
-    self->priv->collection = NULL;
+    self->priv->notebook = NULL;
     bjb_controller_apply_needle (self);
     return;
   }
 
-  /* Opening an __existing__ collection */
+  /* Opening an __existing__ notebook */
   bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
   g_clear_pointer (&self->priv->items_to_show, g_list_free);
   g_clear_pointer (&self->priv->needle, g_free);
 
   self->priv->needle = g_strdup ("");
-  self->priv->collection = coll;
-  biji_get_items_with_collection_async (self->priv->manager,
+  self->priv->notebook = coll;
+  biji_get_items_with_notebook_async (self->priv->manager,
                                         biji_item_get_title (BIJI_ITEM (coll)),
                                         update_controller_callback,
                                         self);
@@ -788,8 +788,8 @@ bjb_controller_show_more (BjbController *self)
 
   /* FIXME: this method to refresh is just non sense */
 
-  if (self->priv->collection != NULL)
-    bjb_controller_set_collection (self, self->priv->collection);
+  if (self->priv->notebook != NULL)
+    bjb_controller_set_notebook (self, self->priv->notebook);
 
   else
     on_needle_changed (self);

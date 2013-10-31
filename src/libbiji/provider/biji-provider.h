@@ -112,7 +112,7 @@ struct BijiProviderClass_
                                                        GdkRGBA      *color);
 
 
-   /* TODO : (*create_collection). Add a flag into provider info? */
+   /* TODO : (*create_notebook). Add a flag into provider info? */
 };
 
 

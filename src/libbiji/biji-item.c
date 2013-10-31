@@ -193,17 +193,17 @@ biji_item_is_collectable       (BijiItem *item)
 }
 
 gboolean
-biji_item_has_collection      (BijiItem *item, gchar *coll)
+biji_item_has_notebook      (BijiItem *item, gchar *coll)
 {
-  return BIJI_ITEM_GET_CLASS (item)->has_collection (item, coll);
+  return BIJI_ITEM_GET_CLASS (item)->has_notebook (item, coll);
 }
 
-gboolean         biji_item_add_collection      (BijiItem *item, BijiItem *coll, gchar *title)
+gboolean         biji_item_add_notebook      (BijiItem *item, BijiItem *coll, gchar *title)
 {
-  return BIJI_ITEM_GET_CLASS (item)->add_collection (item, coll, title);
+  return BIJI_ITEM_GET_CLASS (item)->add_notebook (item, coll, title);
 }
 
-gboolean         biji_item_remove_collection   (BijiItem *item, BijiItem *collection)
+gboolean         biji_item_remove_notebook   (BijiItem *item, BijiItem *collection)
 {
-  return BIJI_ITEM_GET_CLASS (item)->remove_collection (item, collection);
+  return BIJI_ITEM_GET_CLASS (item)->remove_notebook (item, collection);
 }

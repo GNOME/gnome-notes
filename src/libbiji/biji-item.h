@@ -72,9 +72,9 @@ struct BijiItemClass_
   gboolean      (*trash)                (BijiItem *item);
 
   gboolean      (*is_collectable)       (BijiItem *item);
-  gboolean      (*has_collection)       (BijiItem *item, gchar *coll);
-  gboolean      (*add_collection)       (BijiItem *item, BijiItem *coll, gchar *title);
-  gboolean      (*remove_collection)    (BijiItem *item, BijiItem *coll);
+  gboolean      (*has_notebook)       (BijiItem *item, gchar *coll);
+  gboolean      (*add_notebook)       (BijiItem *item, BijiItem *coll, gchar *title);
+  gboolean      (*remove_notebook)    (BijiItem *item, BijiItem *coll);
 };
 
 /* Do not create a generic items, it's rather an iface
@@ -85,7 +85,7 @@ GType biji_item_get_type (void);
 
 
 /*  - note uuid is a location (as in GFile)
- *  - collection uuid is urn                */
+ *  - notebook uuid is urn                */
 
 const gchar *    biji_item_get_title           (BijiItem *item);
 
@@ -120,21 +120,21 @@ gboolean         biji_item_trash               (BijiItem *item);
 gboolean         biji_item_is_collectable      (BijiItem *item);
 
 
-gboolean         biji_item_has_collection      (BijiItem *item, gchar *collection);
+gboolean         biji_item_has_notebook      (BijiItem *item, gchar *collection);
 
 
 /* Add Collection:
- * either provide an existing collection object
+ * either provide an existing notebook object
  * or a title, in which case it's considered not on user action
  * and no notifiy happens */
 
-gboolean         biji_item_add_collection  (BijiItem *item, BijiItem *collection, gchar *title);
+gboolean         biji_item_add_notebook  (BijiItem *item, BijiItem *collection, gchar *title);
 
 
 /* Remove Collection:
  * always on user action. */
 
-gboolean         biji_item_remove_collection   (BijiItem *item, BijiItem *collection);
+gboolean         biji_item_remove_notebook   (BijiItem *item, BijiItem *collection);
 
 G_END_DECLS
 

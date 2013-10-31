@@ -20,7 +20,7 @@
 
 
 /*
- * TODO : re-implement collections
+ * TODO : re-implement notebooks
  * TODO : re-implement old imports preserving
  */
 
@@ -90,14 +90,14 @@ instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
   GError *error = NULL;
   BijiInfoSet *set;
   gchar *html = NULL;
-  GList *collections = NULL;
+  GList *notebooks = NULL;
   
 
   biji_tomboy_reader_read   (path,
                              &error,
                              &set,
                              &html,
-                             &collections);
+                             &notebooks);
 
   if (error != NULL)
   {

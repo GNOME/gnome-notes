@@ -141,7 +141,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
     case BJB_EMPTY_RESULTS_NO_NOTE:
       gtk_label_set_label (
         self->priv->details_label,
-        _("Your notes collection is empty.\nClick the New button to create your first note."));
+        _("Your notes notebook is empty.\nClick the New button to create your first note."));
       break;
 
     case BJB_EMPTY_RESULTS_NO_RESULTS:

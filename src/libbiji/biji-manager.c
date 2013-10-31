@@ -20,7 +20,7 @@
 
 #include "libbiji.h"
 #include "biji-local-note.h" // FIXME !!!! biji_provider_note_new ()
-#include "biji-collection.h"
+#include "biji-notebook.h"
 #include "biji-error.h"
 
 #include "provider/biji-import-provider.h"
@@ -318,7 +318,7 @@ _biji_manager_add_one_item (BijiManager *manager, BijiItem *item)
     g_signal_connect (item, "color-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
   }
 
-  else if (BIJI_IS_COLLECTION (item))
+  else if (BIJI_IS_NOTEBOOK (item))
   {
     g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), manager);
     g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
@@ -550,7 +550,7 @@ biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
   else if (BIJI_IS_NOTE_OBJ (item))
     _biji_manager_add_one_item (manager, item);
 
-  else if (BIJI_IS_COLLECTION (item))
+  else if (BIJI_IS_NOTEBOOK (item))
   {
     g_hash_table_insert (manager->priv->items,
                          (gpointer) biji_item_get_uuid (item),

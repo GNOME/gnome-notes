@@ -326,7 +326,7 @@ bjb_query_async (BijiManager           *manager,
 
 
 void
-biji_get_all_collections_async (BijiManager *manager,
+biji_get_all_notebooks_async (BijiManager *manager,
                                 BijiInfoSetsHCallback cb,
                                 gpointer user_data)
 {
@@ -347,15 +347,15 @@ biji_get_all_collections_async (BijiManager *manager,
 /* FIXME: returns file://$PATH while we want $PATH
  *        workaround in biji_query_items_list_finish */
 void
-biji_get_items_with_collection_async (BijiManager          *manager,
-                                      const gchar           *collection,
+biji_get_items_with_notebook_async (BijiManager          *manager,
+                                      const gchar           *notebook,
                                       BijiItemsListCallback  list_cb,
                                       gpointer               user_data)
 {
   gchar *query;
 
   query = g_strdup_printf ("SELECT ?s WHERE {?c nie:isPartOf ?s; nie:title '%s'}",
-                           collection);
+                           notebook);
 
   bjb_query_async (manager, query, NULL, list_cb, user_data);
 }
@@ -377,7 +377,7 @@ biji_get_items_matching_async (BijiManager          *manager,
 
   /* We want to retrieve the key that noteBook uses.
    * for notes: that is url. A file path is unique.
-   * for collections: we have no url, directly use urn:uuid */
+   * for notebooks: we have no url, directly use urn:uuid */
 
   query = g_strconcat (
     "SELECT tracker:coalesce (?url, ?urn) WHERE ",
@@ -405,7 +405,7 @@ biji_get_items_matching_async (BijiManager          *manager,
 
 
 static void
-on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpointer user_data)
+on_new_notebook_query_executed (GObject *source_object, GAsyncResult *res, gpointer user_data)
 {
   BijiTrackerFinisher *finisher = user_data;
   TrackerSparqlConnection *connection = TRACKER_SPARQL_CONNECTION (source_object);
@@ -415,13 +415,13 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   gchar *key = NULL;
   gchar *val = NULL;
   gchar *urn = NULL;
-  BijiCollection *collection = NULL;
+  BijiNotebook *notebook = NULL;
 
   error = NULL;
   variant = tracker_sparql_connection_update_blank_finish (connection, res, &error);
   if (error != NULL)
     {
-      g_warning ("Unable to create collection: %s", error->message);
+      g_warning ("Unable to create notebook: %s", error->message);
       g_error_free (error);
       goto out;
     }
@@ -454,19 +454,19 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
   /* Update the note manager */
   if (urn)
   {
-    collection = biji_collection_new (
+    notebook = biji_notebook_new (
                        G_OBJECT (finisher->manager),
                        urn,
                        finisher->str,
                        g_get_real_time () / G_USEC_PER_SEC);
-    biji_manager_add_item (finisher->manager, BIJI_ITEM (collection), TRUE);
+    biji_manager_add_item (finisher->manager, BIJI_ITEM (notebook), TRUE);
   }
 
   /* Run the callback from the caller */
 
  out:
   if (finisher->item_cb != NULL)
-    (*finisher->item_cb) (BIJI_ITEM (collection), finisher->user_data);
+    (*finisher->item_cb) (BIJI_ITEM (notebook), finisher->user_data);
 
   g_free (val);
   g_free (key);
@@ -474,11 +474,11 @@ on_new_collection_query_executed (GObject *source_object, GAsyncResult *res, gpo
 }
 
 
-/* This func creates the collection,
+/* This func creates the notebook,
  * gives the urn to the notemanager,
  * then run the 'afterward' callback */
 void
-biji_create_new_collection_async (BijiManager     *manager,
+biji_create_new_notebook_async (BijiManager     *manager,
                                   const gchar      *name,
                                   BijiItemCallback  item_cb,
                                   gpointer          user_data)
@@ -509,7 +509,7 @@ biji_create_new_collection_async (BijiManager     *manager,
                                                 query,
                                                 G_PRIORITY_DEFAULT,
                                                 NULL,
-                                                on_new_collection_query_executed,
+                                                on_new_notebook_query_executed,
                                                 finisher);
 }
 
@@ -517,7 +517,7 @@ biji_create_new_collection_async (BijiManager     *manager,
 /* removes the tag EVEN if files associated. */
 
 void
-biji_remove_collection_from_tracker (BijiManager *manager, const gchar *urn)
+biji_remove_notebook_from_tracker (BijiManager *manager, const gchar *urn)
 {
   gchar *query;
 
@@ -527,7 +527,7 @@ biji_remove_collection_from_tracker (BijiManager *manager, const gchar *urn)
 
 
 void
-biji_push_existing_collection_to_note (BijiNoteObj       *note,
+biji_push_existing_notebook_to_note (BijiNoteObj       *note,
                                        gchar             *title,
                                        BijiBoolCallback   afterward,
                                        gpointer           user_data)
@@ -546,7 +546,7 @@ biji_push_existing_collection_to_note (BijiNoteObj       *note,
 
 
 void
-biji_remove_collection_from_note (BijiNoteObj       *note,
+biji_remove_notebook_from_note (BijiNoteObj       *note,
                                   BijiItem          *coll,
                                   BijiBoolCallback   afterward,
                                   gpointer           user_data)

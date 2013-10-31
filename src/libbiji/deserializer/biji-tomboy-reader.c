@@ -79,7 +79,7 @@ struct BijiTomboyReaderPrivate_
   GError *error;
   BijiInfoSet *set;
   gint64  metadata_mtime;
-  GQueue *collections;
+  GQueue *notebooks;
 
 };
 
@@ -311,8 +311,8 @@ processNode (BijiTomboyReader *self)
     {
       norm = g_string_new (tag);
       g_string_erase (norm,0,16);
-      //biji_item_add_collection (BIJI_ITEM (n), NULL, norm->str);
-      //g_queue_push_head (priv->collections, norm->str);
+      //biji_item_add_notebook (BIJI_ITEM (n), NULL, norm->str);
+      //g_queue_push_head (priv->notebooks, norm->str);
       g_string_free (norm, TRUE);
     }
 
@@ -513,7 +513,7 @@ biji_tomboy_reader_read (gchar *source,
                          GError **error,
                          BijiInfoSet **set,
                          gchar       **html,
-                         GList **collections)
+                         GList **notebooks)
 {
   BijiTomboyReader *self;
   BijiTomboyReaderPrivate *priv;

@@ -110,7 +110,7 @@ on_new_note_clicked (GtkWidget *but, BjbMainView *view)
   BijiManager *manager;
   BjbSettings  *settings;
 
-  /* append note to collection */
+  /* append note to notebook */
   manager = bjb_window_base_get_manager (bjb_main_view_get_window (view));
   settings = bjb_app_get_settings (g_application_get_default ());
   result = biji_manager_note_new (manager,
@@ -257,7 +257,7 @@ add_search_button (BjbMainToolbar *self)
                                "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->search);
   gtk_widget_set_tooltip_text (priv->search,
-                               _("Search note titles, content and collections"));
+                               _("Search note titles, content and notebooks"));
 
   active =  bjb_window_base_get_show_search_bar (BJB_WINDOW_BASE (self->priv->window));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->search), active);
@@ -330,10 +330,10 @@ static void
 update_label_for_standard (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
-  BijiCollection *coll;
+  BijiNotebook *coll;
   gchar *needle, *label;
 
-  coll = bjb_controller_get_collection (priv->controller);
+  coll = bjb_controller_get_notebook (priv->controller);
   needle = bjb_controller_get_needle (priv->controller);
 
   if (coll)
@@ -372,14 +372,14 @@ connect_main_view_handlers (BjbMainToolbar *self)
 static void
 on_back_button_clicked (BjbMainToolbar *self)
 {
-  bjb_controller_set_collection (self->priv->controller, NULL);
+  bjb_controller_set_notebook (self->priv->controller, NULL);
 }
 
 static void
 populate_bar_for_standard(BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
-  BijiCollection *coll;
+  BijiNotebook *coll;
   GtkWidget *select_image;
   gboolean rtl;
   GtkSizeGroup *size;
@@ -392,7 +392,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
          "search-changed", G_CALLBACK(update_label_for_standard), self);
 
   /* Go back to all notes */
-  coll = bjb_controller_get_collection (priv->controller);
+  coll = bjb_controller_get_notebook (priv->controller);
 
   if (coll != NULL)
   {
@@ -460,7 +460,7 @@ populate_bar_for_icon_view(BjbMainToolbar *self)
                                "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->list);
   gtk_widget_set_tooltip_text (priv->list,
-                               _("View notes and collections in a list"));
+                               _("View notes and notebooks in a list"));
 
   g_signal_connect (priv->list, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
@@ -484,7 +484,7 @@ populate_bar_for_list_view(BjbMainToolbar *self)
                                "image-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->grid);
   gtk_widget_set_tooltip_text (priv->grid,
-                               _("View notes and collections in a grid"));
+                               _("View notes and notebooks in a grid"));
 
   g_signal_connect (priv->grid, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
@@ -598,7 +598,7 @@ delete_item_callback (GtkWidget *item, gpointer user_data)
 {
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR (user_data);
 
-  /* Delete the note from collection
+  /* Delete the note from notebook
    * The deleted note will emit a signal. */
   biji_manager_remove_item (
           bjb_window_base_get_manager (GTK_WIDGET (self->priv->window)),

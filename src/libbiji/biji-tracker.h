@@ -48,7 +48,7 @@ typedef void       (*BijiInfoCallback)          (BijiInfoSet *info, gpointer use
 
 
 
-void        biji_get_items_with_collection_async       (BijiManager *manager,
+void        biji_get_items_with_notebook_async       (BijiManager *manager,
                                                         const gchar *needle,
                                                         BijiItemsListCallback cb,
                                                         gpointer user_data);
@@ -61,33 +61,33 @@ void        biji_get_items_matching_async              (BijiManager *manager,
 
 
 
-void        biji_get_all_collections_async             (BijiManager *manager,
+void        biji_get_all_notebooks_async             (BijiManager *manager,
                                                         BijiInfoSetsHCallback cb,
                                                         gpointer user_data);
 
 
 
-void        biji_create_new_collection_async           (BijiManager *manager,
+void        biji_create_new_notebook_async           (BijiManager *manager,
                                                         const gchar *tag,
                                                         BijiItemCallback afterward,
                                                         gpointer user_data);
 
 
 
-void        biji_remove_collection_from_tracker        (BijiManager *manager,
+void        biji_remove_notebook_from_tracker        (BijiManager *manager,
                                                         const gchar *urn);
 
 
 
 
-void        biji_push_existing_collection_to_note      (BijiNoteObj      *note,
+void        biji_push_existing_notebook_to_note      (BijiNoteObj      *note,
                                                         gchar            *title,
                                                         BijiBoolCallback  bool_cb,
                                                         gpointer          user_data);
 
 
 
-void        biji_remove_collection_from_note           (BijiNoteObj      *note,
+void        biji_remove_notebook_from_note           (BijiNoteObj      *note,
                                                         BijiItem         *coll,
                                                         BijiBoolCallback  bool_cb,
                                                         gpointer          user_data);

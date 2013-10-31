@@ -31,8 +31,6 @@ libbiji_la_built_sources = \
 libbiji_la_SOURCES =  \
 	$(libbiji_la_built_sources) \
 	libbiji.h \
-	biji-collection.c \
-	biji-collection.h \
 	biji-date-time.c \
 	biji-date-time.h \
 	biji-error.c \
@@ -45,6 +43,8 @@ libbiji_la_SOURCES =  \
 	biji-local-note.h \
 	biji-manager.c \
 	biji-manager.h \
+	biji-notebook.c \
+	biji-notebook.h \
 	biji-note-id.c \
 	biji-note-id.h \
 	biji-note-obj.c \

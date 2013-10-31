@@ -218,10 +218,10 @@ switch_to_item (BjbMainView *view, BijiItem *to_open)
 
   /* Collection
    * TODO : check if already opened (same as above) */
-  else if (BIJI_IS_COLLECTION (to_open))
+  else if (BIJI_IS_NOTEBOOK (to_open))
   {
-    bjb_controller_set_collection (view->priv->controller,
-                                   BIJI_COLLECTION (to_open));
+    bjb_controller_set_notebook (view->priv->controller,
+                                   BIJI_NOTEBOOK (to_open));
   }
 }
 
@@ -482,7 +482,7 @@ render_type     (GtkTreeViewColumn *tree_column,
 
   if (item != NULL)
   {
-    if BIJI_IS_COLLECTION (item)
+    if BIJI_IS_NOTEBOOK (item)
       str= _("Collection");
 
     else if BIJI_IS_NOTE_OBJ (item)

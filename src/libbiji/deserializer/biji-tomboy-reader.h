@@ -56,7 +56,7 @@ gboolean             biji_tomboy_reader_read              (gchar *source,
                                                            GError **result,
                                                            BijiInfoSet **set,
                                                            gchar       **html,
-                                                           GList **collections);
+                                                           GList **notebooks);
 
 
 G_END_DECLS

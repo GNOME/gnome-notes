@@ -60,14 +60,14 @@ struct _BjbNoteTagDialogPrivate
   // data
   GList *items;
   GtkListStore *store;
-  GHashTable *collections;
+  GHashTable *notebooks;
 
   // tmp when a new tag added
   gchar *tag_to_scroll_to;
 
   // for convenience, when a tag is toggled
-  // stores the collection urn
-  gchar *toggled_collection;
+  // stores the notebook urn
+  gchar *toggled_notebook;
 
 };
 
@@ -76,7 +76,7 @@ struct _BjbNoteTagDialogPrivate
 G_DEFINE_TYPE (BjbNoteTagDialog, bjb_note_tag_dialog, GTK_TYPE_DIALOG);
 
 static void
-append_collection (BijiInfoSet *set, BjbNoteTagDialog *self)
+append_notebook (BijiInfoSet *set, BjbNoteTagDialog *self)
 {
   BjbNoteTagDialogPrivate *priv = self->priv;
 
@@ -85,12 +85,12 @@ append_collection (BijiInfoSet *set, BjbNoteTagDialog *self)
   GList *l;
 
   gtk_list_store_append (priv->store, &iter);
-  item_has_tag = biji_item_has_collection (priv->items->data, set->title);
+  item_has_tag = biji_item_has_notebook (priv->items->data, set->title);
 
   /* Check if other notes have the same */  
   for (l = priv->items; l != NULL; l = l->next)
   {
-    if (biji_item_has_collection (l->data, set->title) != item_has_tag)
+    if (biji_item_has_notebook (l->data, set->title) != item_has_tag)
     {
       item_has_tag = SELECTION_INCONSISTENT;
       break;
@@ -104,7 +104,7 @@ append_collection (BijiInfoSet *set, BjbNoteTagDialog *self)
 }
 
 static gint
-bjb_compare_collection (gconstpointer a, gconstpointer b)
+bjb_compare_notebook (gconstpointer a, gconstpointer b)
 {
 
   gchar *up_a, *up_b;
@@ -166,14 +166,14 @@ bjb_note_tag_dialog_handle_tags (GHashTable *result, gpointer user_data)
   BjbNoteTagDialogPrivate *priv = self->priv;
   GList *tracker_info;
 
-  if (priv->collections)
-    g_hash_table_destroy (priv->collections);
+  if (priv->notebooks)
+    g_hash_table_destroy (priv->notebooks);
 
-  priv->collections = result;
+  priv->notebooks = result;
 
-  tracker_info = g_hash_table_get_values (priv->collections);
-  tracker_info = g_list_sort (tracker_info, bjb_compare_collection);
-  g_list_foreach (tracker_info, (GFunc) append_collection, self);
+  tracker_info = g_hash_table_get_values (priv->notebooks);
+  tracker_info = g_list_sort (tracker_info, bjb_compare_notebook);
+  g_list_foreach (tracker_info, (GFunc) append_notebook, self);
   g_list_free (tracker_info);
 
   /* If a new tag was added, scroll & free */
@@ -193,29 +193,29 @@ bjb_note_tag_dialog_handle_tags (GHashTable *result, gpointer user_data)
 }
 
 static void
-update_collections_model_async (BjbNoteTagDialog *self)
+update_notebooks_model_async (BjbNoteTagDialog *self)
 {
   BijiManager *manager;
 
   manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
   gtk_list_store_clear (self->priv->store);
-  biji_get_all_collections_async (manager, bjb_note_tag_dialog_handle_tags, self);
+  biji_get_all_notebooks_async (manager, bjb_note_tag_dialog_handle_tags, self);
 }
 
 /* Libbiji handles tracker & saving */
 static void
-note_dialog_add_collection (gpointer iter, gpointer user_data)
+note_dialog_add_notebook (gpointer iter, gpointer user_data)
 {
-  g_return_if_fail (BIJI_IS_COLLECTION (user_data));
-  biji_item_add_collection (iter, user_data, NULL);
+  g_return_if_fail (BIJI_IS_NOTEBOOK (user_data));
+  biji_item_add_notebook (iter, user_data, NULL);
 }
 
 
 static void
-note_dialog_remove_collection (gpointer iter, gpointer user_data)
+note_dialog_remove_notebook (gpointer iter, gpointer user_data)
 {
-  g_return_if_fail (BIJI_IS_COLLECTION (user_data));
-  biji_item_remove_collection (iter, user_data);
+  g_return_if_fail (BIJI_IS_NOTEBOOK (user_data));
+  biji_item_remove_notebook (iter, user_data);
 }
 
 static void
@@ -232,56 +232,56 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gint *column;
   gchar *tag;
   BijiManager *manager;
-  BijiItem *collection;
+  BijiItem *notebook;
 
   column = g_object_get_data (G_OBJECT (cell), "column");
   gtk_tree_model_get_iter (model, &iter, path);
   gtk_tree_model_get (model, &iter, column, &toggle_item, -1);
   gtk_tree_model_get (model, &iter, COL_URN, &tag, -1);
 
-  priv->toggled_collection = tag;
+  priv->toggled_notebook = tag;
   manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
-  collection = biji_manager_get_item_at_path (manager, tag);
+  notebook = biji_manager_get_item_at_path (manager, tag);
 
-  if (BIJI_IS_COLLECTION (collection))
+  if (BIJI_IS_NOTEBOOK (notebook))
   {
     if (toggle_item == SELECTION_INCONSISTENT || toggle_item == SELECTION_FALSE)
     {
-      g_list_foreach (priv->items, note_dialog_add_collection, collection);
+      g_list_foreach (priv->items, note_dialog_add_notebook, notebook);
       toggle_item = SELECTION_TRUE;
     }
 
     else
     {
-      g_list_foreach (priv->items, note_dialog_remove_collection, collection);
+      g_list_foreach (priv->items, note_dialog_remove_notebook, notebook);
       toggle_item = SELECTION_FALSE;
     }
   }
 
-  priv->toggled_collection = NULL;
+  priv->toggled_notebook = NULL;
   gtk_list_store_set (priv->store, &iter, column, toggle_item, -1);
   gtk_tree_path_free (path);
 }
 
 
-/* If the collection with same title already existed,
+/* If the notebook with same title already existed,
  * libbiji has to avoid creating a new one
  * and also check before tagging items */
 static void
-on_new_collection_created_cb (BijiItem *coll, gpointer user_data)
+on_new_notebook_created_cb (BijiItem *coll, gpointer user_data)
 {
   BjbNoteTagDialog *self = user_data;
   BjbNoteTagDialogPrivate *priv = self->priv;
 
   priv->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry)));
-  g_list_foreach (priv->items, note_dialog_add_collection, coll);
+  g_list_foreach (priv->items, note_dialog_add_notebook, coll);
 
-  update_collections_model_async (self);
+  update_notebooks_model_async (self);
   gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
 }
 
 /* Gives the title and manager :
- * the collection is created & manager updated.
+ * the notebook is created & manager updated.
  * afterward, our callback comes */
 static void
 add_new_tag (BjbNoteTagDialog *self)
@@ -290,7 +290,7 @@ add_new_tag (BjbNoteTagDialog *self)
   const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->priv->entry));
 
   if (title && g_utf8_strlen (title, -1) > 0)
-    biji_create_new_collection_async (manager, title, on_new_collection_created_cb, self);
+    biji_create_new_notebook_async (manager, title, on_new_notebook_created_cb, self);
 }
 
 static void
@@ -341,7 +341,7 @@ add_columns (GtkTreeView *view, BjbNoteTagDialog *self)
   gtk_tree_view_append_column (view, column);
 
 
-  /* List column: collection title */
+  /* List column: notebook title */
   column = gtk_tree_view_column_new ();
   gtk_tree_view_append_column (view, column);
 
@@ -359,10 +359,10 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
 
   self->priv = priv;
   priv->items = NULL;
-  priv->collections = NULL;
+  priv->notebooks = NULL;
   priv->window = NULL;
   priv->tag_to_scroll_to = NULL;
-  priv->toggled_collection = NULL;
+  priv->toggled_notebook = NULL;
 
   gtk_window_set_default_size (GTK_WINDOW (self),
                                BJB_NOTE_TAG_DIALOG_DEFAULT_WIDTH,
@@ -373,9 +373,9 @@ bjb_note_tag_dialog_init (BjbNoteTagDialog *self)
                             G_CALLBACK (gtk_widget_destroy), self);
 
   priv->store = gtk_list_store_new (N_COLUMNS,
-                                    G_TYPE_INT,      // collection is active
-                                    G_TYPE_STRING,   // collection urn
-                                    G_TYPE_STRING);  // collection title 
+                                    G_TYPE_INT,      // notebook is active
+                                    G_TYPE_STRING,   // notebook urn
+                                    G_TYPE_STRING);  // notebook title 
 }
 
 static void
@@ -396,7 +396,7 @@ bjb_note_tag_dialog_constructed (GObject *obj)
   area = gtk_dialog_get_content_area (GTK_DIALOG (self));
   gtk_container_set_border_width (GTK_CONTAINER (area), 8);
 
-  label = gtk_label_new (_("Enter a name to create a collection"));
+  label = gtk_label_new (_("Enter a name to create a notebook"));
   gtk_box_pack_start (GTK_BOX (area), label, FALSE, FALSE, 2);
 
   /* New Tag */
@@ -406,12 +406,12 @@ bjb_note_tag_dialog_constructed (GObject *obj)
   self->priv->entry = gtk_entry_new();
   gtk_box_pack_start (GTK_BOX (hbox), self->priv->entry, TRUE, TRUE, 0);
 
-  new = gtk_button_new_with_label (_("New collection"));
+  new = gtk_button_new_with_label (_("New notebook"));
   g_signal_connect_swapped (new, "clicked", G_CALLBACK (add_new_tag), self);
 
   gtk_box_pack_start (GTK_BOX (hbox), new, FALSE, FALSE, 2);
 
-  /* List of collections */
+  /* List of notebooks */
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
                                        GTK_SHADOW_ETCHED_IN);
@@ -419,7 +419,7 @@ bjb_note_tag_dialog_constructed (GObject *obj)
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_AUTOMATIC);
 
-  update_collections_model_async (self);
+  update_notebooks_model_async (self);
   priv->view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->store)));
   gtk_tree_view_set_headers_visible (priv->view, FALSE);
   g_object_unref (self->priv->store);
@@ -448,7 +448,7 @@ bjb_note_tag_dialog_finalize (GObject *object)
   BjbNoteTagDialog *self = BJB_NOTE_TAG_DIALOG (object);
   BjbNoteTagDialogPrivate *priv = self->priv;
 
-  g_hash_table_destroy (priv->collections);
+  g_hash_table_destroy (priv->notebooks);
 
   /* no reason, it should have been freed earlier */
   if (priv->tag_to_scroll_to)

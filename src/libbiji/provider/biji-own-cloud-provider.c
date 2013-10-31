@@ -17,7 +17,7 @@
 
 
 /*
- * ownCloud does not have collections
+ * ownCloud does not have notebooks
  * neither colors
  * nor formating (but markdown could be used or even translated upstream
  * on web app

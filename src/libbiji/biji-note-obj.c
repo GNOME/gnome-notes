@@ -453,7 +453,7 @@ biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
 }
 
 GList *
-biji_note_obj_get_collections (BijiNoteObj *n)
+biji_note_obj_get_notebooks (BijiNoteObj *n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
 
@@ -461,7 +461,7 @@ biji_note_obj_get_collections (BijiNoteObj *n)
 }
 
 gboolean
-biji_note_obj_has_collection (BijiItem *item, gchar *label)
+biji_note_obj_has_notebook (BijiItem *item, gchar *label)
 {
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
@@ -473,19 +473,19 @@ biji_note_obj_has_collection (BijiItem *item, gchar *label)
 
 
 static void
-_biji_collection_refresh (gboolean query_result,
+_biji_notebook_refresh (gboolean query_result,
                           gpointer coll)
 {
-  g_return_if_fail (BIJI_IS_COLLECTION (coll));
+  g_return_if_fail (BIJI_IS_NOTEBOOK (coll));
 
   if (query_result)
-    biji_collection_refresh (BIJI_COLLECTION (coll));
+    biji_notebook_refresh (BIJI_NOTEBOOK (coll));
 }
 
 
 /*static */ gboolean
-biji_note_obj_add_collection (BijiItem *item,
-                              BijiItem *collection,
+biji_note_obj_add_notebook (BijiItem *item,
+                              BijiItem *notebook,
                               gchar    *title)
 {
   BijiNoteObj *note;
@@ -494,18 +494,18 @@ biji_note_obj_add_collection (BijiItem *item,
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
   note = BIJI_NOTE_OBJ (item);
 
-  if (BIJI_IS_COLLECTION (collection))
-    label = (gchar*) biji_item_get_title (collection);
+  if (BIJI_IS_NOTEBOOK (notebook))
+    label = (gchar*) biji_item_get_title (notebook);
 
-  if (biji_note_obj_has_collection (item, label))
+  if (biji_note_obj_has_notebook (item, label))
     return FALSE;
 
   g_hash_table_add (note->priv->labels, g_strdup (label));
 
-  if (BIJI_IS_COLLECTION (collection))
+  if (BIJI_IS_NOTEBOOK (notebook))
   {
-    biji_push_existing_collection_to_note (
-      note, label, _biji_collection_refresh, collection); // Tracker
+    biji_push_existing_notebook_to_note (
+      note, label, _biji_notebook_refresh, notebook); // Tracker
     biji_note_id_set_last_metadata_change_date (note->priv->id,
                                                 g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (note);
@@ -516,17 +516,17 @@ biji_note_obj_add_collection (BijiItem *item,
 
 
 gboolean
-biji_note_obj_remove_collection (BijiItem *item, BijiItem *collection)
+biji_note_obj_remove_notebook (BijiItem *item, BijiItem *notebook)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
-  g_return_val_if_fail (BIJI_IS_COLLECTION (collection), FALSE);
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (notebook), FALSE);
 
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
-  if (g_hash_table_remove (note->priv->labels, biji_item_get_title (collection)))
+  if (g_hash_table_remove (note->priv->labels, biji_item_get_title (notebook)))
   {
-    biji_remove_collection_from_note (
-      note, collection, _biji_collection_refresh, collection); // tracker.
+    biji_remove_notebook_from_note (
+      note, notebook, _biji_notebook_refresh, notebook); // tracker.
     biji_note_id_set_last_metadata_change_date (note->priv->id,
                                                 g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (note);
@@ -1011,8 +1011,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   item_class->get_pristine = biji_note_obj_get_pristine;
   item_class->get_mtime = biji_note_obj_get_mtime;
   item_class->trash = biji_note_obj_trash;
-  item_class->has_collection = biji_note_obj_has_collection;
-  item_class->add_collection = biji_note_obj_add_collection;
-  item_class->remove_collection = biji_note_obj_remove_collection;
+  item_class->has_notebook = biji_note_obj_has_notebook;
+  item_class->add_notebook = biji_note_obj_add_notebook;
+  item_class->remove_notebook = biji_note_obj_remove_notebook;
 }
 

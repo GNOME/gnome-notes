@@ -22,7 +22,7 @@
 #include <glib/gi18n.h>  // translate providers type
 
 #include "../biji-info-set.h"
-#include "../biji-note-book.h"
+#include "../biji-manager.h"
 
 G_BEGIN_DECLS
 
@@ -73,7 +73,7 @@ struct BijiProviderClass_
   const BijiProviderInfo*    (*get_info)              (BijiProvider *provider);
   
 
-  /* When a provider is loaded, notify the book to transmit the items */
+  /* When a provider is loaded, notify the manager to transmit the items */
 
   void                       (*notify_loaded)         (BijiProvider *provider,
                                                        GList *loaded_items);
@@ -122,7 +122,7 @@ struct BijiProviderClass_
 GType                      biji_provider_get_type             (void);
 
 
-BijiNoteBook              *biji_provider_get_book             (BijiProvider *provider);
+BijiManager              *biji_provider_get_manager             (BijiProvider *provider);
 
 
 const BijiProviderInfo    *biji_provider_get_info             (BijiProvider *provider);

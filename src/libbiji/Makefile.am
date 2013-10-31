@@ -43,12 +43,12 @@ libbiji_la_SOURCES =  \
 	biji-item.h \
 	biji-local-note.c \
 	biji-local-note.h \
+	biji-manager.c \
+	biji-manager.h \
 	biji-note-id.c \
 	biji-note-id.h \
 	biji-note-obj.c \
 	biji-note-obj.h \
-	biji-note-book.c \
-	biji-note-book.h \
 	biji-string.c \
 	biji-string.h \
 	biji-timeout.c \

@@ -138,13 +138,13 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (provider->datasource);
 
-  biji_tracker_ensure_ressource_from_info  (biji_item_get_book (item),
+  biji_tracker_ensure_ressource_from_info  (biji_item_get_manager (item),
                                             info);
 }
 
 
 /* TODO: propagate error if any
- * through generic provider -> book */
+ * through generic provider -> manager */
 void
 on_content_replaced  (GObject *source_object,
                       GAsyncResult *res,
@@ -371,7 +371,7 @@ biji_own_cloud_note_class_init (BijiOwnCloudNoteClass *klass)
 
 
 BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudProvider *prov,
-                                                                 BijiNoteBook *book,
+                                                                 BijiManager *manager,
                                                                  BijiInfoSet *info)
 {
   BijiNoteID *id;
@@ -406,7 +406,7 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
   id = biji_note_id_new_from_info (info);
 
   retval = g_object_new (BIJI_TYPE_OWN_CLOUD_NOTE,
-                         "note-book", book,
+                         "manager", manager,
                          "id", id,
                          NULL);
 

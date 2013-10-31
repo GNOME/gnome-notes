@@ -18,6 +18,7 @@
 #ifdef BUILD_ZEITGEIST
 
 #include <libbiji.h>
+#include "biji-manager.h"
 #include "biji-zeitgeist.h"
 
 
@@ -89,7 +90,7 @@ check_insert_create_zeitgeist (BijiNoteObj *note)
   ZeitgeistSubject   *subject;
   
   uri = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
-  log = biji_note_book_get_zg_log (biji_item_get_book (BIJI_ITEM (note)));
+  log = biji_manager_get_zg_log (biji_item_get_manager (BIJI_ITEM (note)));
   
   templates = g_ptr_array_new ();
   event = zeitgeist_event_new_full (ZEITGEIST_ZG_CREATE_EVENT, 
@@ -135,7 +136,7 @@ insert_zeitgeist (BijiNoteObj *note,
 
   /* Insert requested log */
 
-  log = biji_note_book_get_zg_log (biji_item_get_book (BIJI_ITEM (note)));
+  log = biji_manager_get_zg_log (biji_item_get_manager (BIJI_ITEM (note)));
   uri = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
 
   subject = zeitgeist_subject_new_full (uri,

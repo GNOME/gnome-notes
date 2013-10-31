@@ -55,7 +55,7 @@ void bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item);
 
 BjbWindowViewType bjb_window_base_get_view_type (BjbWindowBase *win);
 
-BijiNoteBook * bjb_window_base_get_book(GtkWidget * win);
+BijiManager * bjb_window_base_get_manager(GtkWidget * win);
 
 
 void bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;

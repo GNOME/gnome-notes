@@ -46,7 +46,7 @@ struct BijiImportProviderPrivate_
   BijiProviderInfo info;
   gchar            *uri;
   gchar            *target; // the provider to import to
-  GHashTable       *items; // same as book, notes key=path, coll key = name.
+  GHashTable       *items; // same as manager, notes key=path, coll key = name.
 };
 
 
@@ -71,11 +71,11 @@ instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
   const gchar *name;
   gchar *path;
   GdkRGBA *color;
-  BijiNoteBook *book;
+  BijiManager *manager;
 
 
   retval = NULL;
-  book = biji_provider_get_book (BIJI_PROVIDER (self));
+  manager = biji_provider_get_manager (BIJI_PROVIDER (self));
 
   /* First make sure it's a note */
   name = g_file_info_get_name (info);
@@ -114,8 +114,8 @@ instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
 
   /* Create the note w/ default color */
   color = g_new0 (GdkRGBA, 1);
-  biji_note_book_get_default_color (book, color);
-  retval = biji_note_book_note_new_full (book,
+  biji_manager_get_default_color (manager, color);
+  retval = biji_manager_note_new_full (manager,
                                          self->priv->target,
                                          g_strdup (g_file_info_get_name (info)),
                                          set,
@@ -358,10 +358,10 @@ biji_import_provider_init (BijiImportProvider *self)
 
 
 BijiProvider *
-biji_import_provider_new (BijiNoteBook *b, gchar *target_provider, gchar *uri)
+biji_import_provider_new (BijiManager *b, gchar *target_provider, gchar *uri)
 {
   return g_object_new (BIJI_TYPE_IMPORT_PROVIDER,
-                       "book", b,
+                       "manager", b,
                        "target", target_provider,
                        "uri", uri,
                        NULL);

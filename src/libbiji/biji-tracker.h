@@ -48,33 +48,33 @@ typedef void       (*BijiInfoCallback)          (BijiInfoSet *info, gpointer use
 
 
 
-void        biji_get_items_with_collection_async       (BijiNoteBook *book,
+void        biji_get_items_with_collection_async       (BijiManager *manager,
                                                         const gchar *needle,
                                                         BijiItemsListCallback cb,
                                                         gpointer user_data);
 
 
-void        biji_get_items_matching_async              (BijiNoteBook *book,
+void        biji_get_items_matching_async              (BijiManager *manager,
                                                         gchar *needle,
                                                         BijiItemsListCallback cb,
                                                         gpointer user_data);
 
 
 
-void        biji_get_all_collections_async             (BijiNoteBook *book,
+void        biji_get_all_collections_async             (BijiManager *manager,
                                                         BijiInfoSetsHCallback cb,
                                                         gpointer user_data);
 
 
 
-void        biji_create_new_collection_async           (BijiNoteBook *book,
+void        biji_create_new_collection_async           (BijiManager *manager,
                                                         const gchar *tag,
                                                         BijiItemCallback afterward,
                                                         gpointer user_data);
 
 
 
-void        biji_remove_collection_from_tracker        (BijiNoteBook *book,
+void        biji_remove_collection_from_tracker        (BijiManager *manager,
                                                         const gchar *urn);
 
 
@@ -97,22 +97,22 @@ void        biji_remove_collection_from_note           (BijiNoteObj      *note,
 void        biji_note_delete_from_tracker              (BijiNoteObj *note);
 
 
-void        biji_tracker_trash_ressource               (BijiNoteBook *book,
+void        biji_tracker_trash_ressource               (BijiManager *manager,
                                                         gchar *tracker_urn);
 
 
-void        biji_tracker_ensure_ressource_from_info    (BijiNoteBook     *book,
+void        biji_tracker_ensure_ressource_from_info    (BijiManager     *manager,
                                                         BijiInfoSet *info);
 
 
-void        biji_tracker_ensure_datasource             (BijiNoteBook *book, 
+void        biji_tracker_ensure_datasource             (BijiManager *manager, 
                                                         const gchar *datasource_id,
                                                         const gchar *identifier,
                                                         BijiBoolCallback cb,
                                                         gpointer user_data);
 
 
-void        biji_tracker_check_for_info                (BijiNoteBook *book, 
+void        biji_tracker_check_for_info                (BijiManager *manager, 
                                                         gchar *url,
                                                         gint64 mtime,
                                                         BijiInfoCallback callback,

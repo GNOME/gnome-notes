@@ -18,7 +18,7 @@
  */
 
 #include "biji-item.h"
-#include "biji-note-book.h"
+#include "biji-manager.h"
 
 /* Properties */
 enum {
@@ -33,7 +33,7 @@ static GParamSpec *properties[BIJI_ITEM_PROP] = { NULL, };
 
 struct BijiItemPrivate_
 {
-  BijiNoteBook *book;
+  BijiManager *manager;
 };
 
 static void biji_item_finalize (GObject *object);
@@ -53,7 +53,7 @@ biji_item_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_BOOK:
-      self->priv->book = g_value_dup_object (value);
+      self->priv->manager = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -73,7 +73,7 @@ biji_item_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_BOOK:
-      g_value_set_object (value, self->priv->book);
+      g_value_set_object (value, self->priv->manager);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -93,10 +93,10 @@ biji_item_class_init (BijiItemClass *klass)
   g_object_class->finalize = biji_item_finalize;
 
   properties[PROP_BOOK] =
-    g_param_spec_object("note-book",
-                        "Note Book",
-                        "The Note Book controlling this item",
-                        BIJI_TYPE_NOTE_BOOK,
+    g_param_spec_object("manager",
+                        "Note Manager",
+                        "The Note Manager controlling this item",
+                        BIJI_TYPE_MANAGER,
                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_ITEM_PROP, properties);
@@ -118,7 +118,7 @@ static void
 biji_item_init (BijiItem *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_ITEM, BijiItemPrivate);
-  self->priv->book = NULL;
+  self->priv->manager = NULL;
 }
 
 const gchar *
@@ -135,9 +135,9 @@ biji_item_get_uuid          (BijiItem *item)
 
 
 gpointer
-biji_item_get_book     (BijiItem *item)
+biji_item_get_manager     (BijiItem *item)
 {
-  return item->priv->book;
+  return item->priv->manager;
 }
 
 

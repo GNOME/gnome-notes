@@ -1,4 +1,4 @@
-/* bjb-note-book.c
+/* bjb-note-manager.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
  * 
  * bijiben is free software: you can redistribute it and/or modify it
@@ -28,7 +28,7 @@
 #include "provider/biji-own-cloud-provider.h"
 
 
-struct _BijiNoteBookPrivate
+struct _BijiManagerPrivate
 {
   /* Notes & Collections.
    * Keep a direct pointer to local provider for convenience. */
@@ -59,24 +59,24 @@ enum {
   PROP_LOCATION,
   PROP_COLOR,
   PROP_ERROR,
-  BIJI_BOOK_PROPERTIES
+  BIJI_MANAGER_PROPERTIES
 };
 
 
 /* Signals */
 enum {
   BOOK_AMENDED,
-  BIJI_BOOK_SIGNALS
+  BIJI_MANAGER_SIGNALS
 };
 
-static guint biji_book_signals[BIJI_BOOK_SIGNALS] = { 0 };
-static GParamSpec *properties[BIJI_BOOK_PROPERTIES] = { NULL, };
+static guint biji_manager_signals[BIJI_MANAGER_SIGNALS] = { 0 };
+static GParamSpec *properties[BIJI_MANAGER_PROPERTIES] = { NULL, };
 
 
 
-#define BIJI_NOTE_BOOK_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_NOTE_BOOK, BijiNoteBookPrivate))
+#define BIJI_MANAGER_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_MANAGER, BijiManagerPrivate))
 
-G_DEFINE_TYPE (BijiNoteBook, biji_note_book, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BijiManager, biji_manager, G_TYPE_OBJECT);
 
 
 
@@ -84,12 +84,12 @@ G_DEFINE_TYPE (BijiNoteBook, biji_note_book, G_TYPE_OBJECT);
 
 
 static void
-biji_note_book_init (BijiNoteBook *self)
+biji_manager_init (BijiManager *self)
 {
-  BijiNoteBookPrivate *priv;
+  BijiManagerPrivate *priv;
 
-  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_BOOK,
-                                                   BijiNoteBookPrivate);
+  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_MANAGER,
+                                                   BijiManagerPrivate);
 
   /* Item path is key for table */
   priv->items = g_hash_table_new_full (g_str_hash,
@@ -111,28 +111,28 @@ biji_note_book_init (BijiNoteBook *self)
 
 #ifdef BUILD_ZEITGEIST
 ZeitgeistLog *
-biji_note_book_get_zg_log (BijiNoteBook *book)
+biji_manager_get_zg_log (BijiManager *manager)
 {
-  return book->priv->log;
+  return manager->priv->log;
 }
 #endif /* BUILD_ZEITGEIST */
 
 
 TrackerSparqlConnection *
-biji_note_book_get_tracker_connection (BijiNoteBook *book)
+biji_manager_get_tracker_connection (BijiManager *manager)
 {
-  return book->priv->connection;
+  return manager->priv->connection;
 }
 
 
 
 GList *
-biji_note_book_get_providers         (BijiNoteBook *book)
+biji_manager_get_providers         (BijiManager *manager)
 {
   GList *providers, *l, *retval;
 
   retval = NULL;
-  providers = g_hash_table_get_values (book->priv->providers);
+  providers = g_hash_table_get_values (manager->priv->providers);
 
   for (l = providers; l != NULL; l = l->next)
   {
@@ -146,27 +146,27 @@ biji_note_book_get_providers         (BijiNoteBook *book)
 
 
 static void
-biji_note_book_finalize (GObject *object)
+biji_manager_finalize (GObject *object)
 {
-  BijiNoteBook *book = BIJI_NOTE_BOOK (object) ;
+  BijiManager *manager = BIJI_MANAGER (object) ;
 
 
-  g_clear_object (&book->priv->location);
-  g_hash_table_destroy (book->priv->items);
+  g_clear_object (&manager->priv->location);
+  g_hash_table_destroy (manager->priv->items);
 
-  G_OBJECT_CLASS (biji_note_book_parent_class)->finalize (object);
+  G_OBJECT_CLASS (biji_manager_parent_class)->finalize (object);
 }
 
 
 
 
 static void
-biji_note_book_set_property (GObject      *object,
+biji_manager_set_property (GObject      *object,
                              guint         property_id,
                              const GValue *value,
                              GParamSpec   *pspec)
 {
-  BijiNoteBook *self = BIJI_NOTE_BOOK (object);
+  BijiManager *self = BIJI_MANAGER (object);
   GdkRGBA *color;
 
   switch (property_id)
@@ -194,12 +194,12 @@ biji_note_book_set_property (GObject      *object,
 }
 
 static void
-biji_note_book_get_property (GObject    *object,
+biji_manager_get_property (GObject    *object,
                              guint       property_id,
                              GValue     *value,
                              GParamSpec *pspec)
 {
-  BijiNoteBook *self = BIJI_NOTE_BOOK (object);
+  BijiManager *self = BIJI_MANAGER (object);
 
   switch (property_id)
     {
@@ -213,13 +213,13 @@ biji_note_book_get_property (GObject    *object,
 }
 
 static gboolean
-title_is_unique (BijiNoteBook *book, gchar *title)
+title_is_unique (BijiManager *manager, gchar *title)
 {
   gboolean is_unique = TRUE;
   BijiItem *iter;
   GList *items, *l;
 
-  items = g_hash_table_get_values (book->priv->items);
+  items = g_hash_table_get_values (manager->priv->items);
 
   for ( l=items ; l != NULL ; l = l->next)
   {
@@ -241,9 +241,9 @@ title_is_unique (BijiNoteBook *book, gchar *title)
 
 /* If title not unique, add sufffix "n", starting with 2, until ok */
 gchar *
-biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title)
+biji_manager_get_unique_title (BijiManager *manager, const gchar *title)
 {
-  if (!book)
+  if (!manager)
     return g_strdup (title);
 
   gchar *new_title;
@@ -254,7 +254,7 @@ biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title)
   new_title = g_strdup (title);
   gint suffix = 2;
 
-  while (!title_is_unique (book, new_title))
+  while (!title_is_unique (manager, new_title))
   {
     g_free (new_title);
     new_title = g_strdup_printf("%s (%i)", title, suffix);
@@ -266,13 +266,13 @@ biji_note_book_get_unique_title (BijiNoteBook *book, const gchar *title)
 
 
 void
-biji_note_book_notify_changed (BijiNoteBook            *book,
-                               BijiNoteBookChangeFlag   flag,
+biji_manager_notify_changed (BijiManager            *manager,
+                               BijiManagerChangeFlag   flag,
                                BijiItem                *item)
 {
-  g_debug ("book: notify changed, %i", flag);
-  g_signal_emit (book,
-                 biji_book_signals[BOOK_AMENDED],
+  g_debug ("manager: notify changed, %i", flag);
+  g_signal_emit (manager,
+                 biji_manager_signals[BOOK_AMENDED],
                  0,
                  flag,
                  item);
@@ -282,46 +282,46 @@ biji_note_book_notify_changed (BijiNoteBook            *book,
 /* TODO : use the same for note, put everything there
  * rather calling a func */
 static void
-on_item_deleted_cb (BijiItem *item, BijiNoteBook *book)
+on_item_deleted_cb (BijiItem *item, BijiManager *manager)
 {
-  biji_note_book_remove_item (book, item);
+  biji_manager_remove_item (manager, item);
 }
 
 
 void
-book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
+manager_on_note_changed_cb (BijiNoteObj *note, BijiManager *manager)
 {
-  biji_note_book_notify_changed (book, BIJI_BOOK_NOTE_AMENDED, BIJI_ITEM (note));
+  biji_manager_notify_changed (manager, BIJI_MANAGER_NOTE_AMENDED, BIJI_ITEM (note));
 }
 
 static void
-book_on_item_icon_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
+manager_on_item_icon_changed_cb (BijiNoteObj *note, BijiManager *manager)
 {
-  biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ICON_CHANGED, BIJI_ITEM (note));
+  biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ICON_CHANGED, BIJI_ITEM (note));
 }
 
 static void
-_biji_note_book_add_one_item (BijiNoteBook *book, BijiItem *item)
+_biji_manager_add_one_item (BijiManager *manager, BijiItem *item)
 {
   g_return_if_fail (BIJI_IS_ITEM (item));
 
 
   /* Add it to the list */
-  g_hash_table_insert (book->priv->items,
+  g_hash_table_insert (manager->priv->items,
                        (gpointer) biji_item_get_uuid (item), item);
 
   /* Notify */
   if (BIJI_IS_NOTE_OBJ (item))
   {
-    g_signal_connect (item, "changed", G_CALLBACK (book_on_note_changed_cb), book);
-    g_signal_connect (item, "renamed", G_CALLBACK (book_on_note_changed_cb), book);
-    g_signal_connect (item, "color-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
+    g_signal_connect (item, "changed", G_CALLBACK (manager_on_note_changed_cb), manager);
+    g_signal_connect (item, "renamed", G_CALLBACK (manager_on_note_changed_cb), manager);
+    g_signal_connect (item, "color-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
   }
 
   else if (BIJI_IS_COLLECTION (item))
   {
-    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), book);
-    g_signal_connect (item , "icon-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
+    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), manager);
+    g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
   }
 }
 
@@ -329,7 +329,7 @@ _biji_note_book_add_one_item (BijiNoteBook *book, BijiItem *item)
 static void
 on_provider_loaded_cb (BijiProvider *provider,
                        GList *items,
-                       BijiNoteBook *book)
+                       BijiManager *manager)
 {
   BijiItem *item = NULL;
   GList *l;
@@ -340,7 +340,7 @@ on_provider_loaded_cb (BijiProvider *provider,
   {
     if (BIJI_IS_ITEM (l->data))
     {
-      _biji_note_book_add_one_item (book, l->data);
+      _biji_manager_add_one_item (manager, l->data);
       i++;
     }
   }
@@ -353,18 +353,18 @@ on_provider_loaded_cb (BijiProvider *provider,
    * because this might be the first provider.
    * See #708458
    * There are more performant fixes but not worth it */
-  biji_note_book_notify_changed (book, BIJI_BOOK_MASS_CHANGE, item);
+  biji_manager_notify_changed (manager, BIJI_MANAGER_MASS_CHANGE, item);
 }
 
 
 /* 
  * It should be the right place
  * to stock somehow providers list
- * in order to handle properly book__note_new ()
+ * in order to handle properly manager__note_new ()
  * 
  */
 static void
-_add_provider (BijiNoteBook *self,
+_add_provider (BijiManager *self,
                BijiProvider *provider)
 {
   g_return_if_fail (BIJI_IS_PROVIDER (provider));
@@ -383,7 +383,7 @@ _add_provider (BijiNoteBook *self,
 
 
 void
-biji_note_book_add_goa_object (BijiNoteBook *self,
+biji_manager_add_goa_object (BijiManager *self,
                                GoaObject *object)
 {
   BijiProvider *provider;
@@ -406,17 +406,17 @@ biji_note_book_add_goa_object (BijiNoteBook *self,
 
 
 static void
-biji_note_book_constructed (GObject *object)
+biji_manager_constructed (GObject *object)
 {
-  BijiNoteBook *self;
-  BijiNoteBookPrivate *priv;
+  BijiManager *self;
+  BijiManagerPrivate *priv;
   gchar *filename;
   GFile *cache;
   GError *error;
 
 
-  G_OBJECT_CLASS (biji_note_book_parent_class)->constructed (object);
-  self = BIJI_NOTE_BOOK (object);
+  G_OBJECT_CLASS (biji_manager_parent_class)->constructed (object);
+  self = BIJI_MANAGER (object);
   priv = self->priv;
   error = NULL;
 
@@ -452,16 +452,16 @@ biji_note_book_constructed (GObject *object)
 
 
 static void
-biji_note_book_class_init (BijiNoteBookClass *klass)
+biji_manager_class_init (BijiManagerClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize = biji_note_book_finalize;
-  object_class->constructed = biji_note_book_constructed;
-  object_class->set_property = biji_note_book_set_property;
-  object_class->get_property = biji_note_book_get_property;
+  object_class->finalize = biji_manager_finalize;
+  object_class->constructed = biji_manager_constructed;
+  object_class->set_property = biji_manager_set_property;
+  object_class->get_property = biji_manager_get_property;
 
-  biji_book_signals[BOOK_AMENDED] =
+  biji_manager_signals[BOOK_AMENDED] =
     g_signal_new ("changed", G_OBJECT_CLASS_TYPE (klass), G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,                         /* offset & accumulator */
                   _biji_marshal_VOID__ENUM_POINTER,
@@ -469,7 +469,7 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
 
   properties[PROP_LOCATION] =
     g_param_spec_object ("location",
-                         "The book location",
+                         "The manager location",
                          "The location where the notes are loaded and saved",
                          G_TYPE_FILE,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
@@ -478,37 +478,37 @@ biji_note_book_class_init (BijiNoteBookClass *klass)
   properties[PROP_COLOR] =
     g_param_spec_pointer ("color",
                          "Default color",
-                         "Note book default color for notes",
+                         "Note manager default color for notes",
                          G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
 
   properties[PROP_ERROR] =
     g_param_spec_pointer ("error",
                           "Unrecoverable error",
-                          "Note book unrecoverable error",
+                          "Note manager unrecoverable error",
                           G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
-  g_object_class_install_properties (object_class, BIJI_BOOK_PROPERTIES, properties);
-  g_type_class_add_private (klass, sizeof (BijiNoteBookPrivate));
+  g_object_class_install_properties (object_class, BIJI_MANAGER_PROPERTIES, properties);
+  g_type_class_add_private (klass, sizeof (BijiManagerPrivate));
 }
 
 
 void
-biji_note_book_get_default_color (BijiNoteBook *book, GdkRGBA *color)
+biji_manager_get_default_color (BijiManager *manager, GdkRGBA *color)
 {
-  g_return_if_fail (BIJI_IS_NOTE_BOOK (book));
+  g_return_if_fail (BIJI_IS_MANAGER (manager));
 
-  color->red = book->priv->color.red;
-  color->blue = book->priv->color.blue;
-  color->green = book->priv->color.green;
-  color->alpha = book->priv->color.alpha;
+  color->red = manager->priv->color.red;
+  color->blue = manager->priv->color.blue;
+  color->green = manager->priv->color.green;
+  color->alpha = manager->priv->color.alpha;
 }
 
 
 gboolean 
-biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
+biji_manager_remove_item (BijiManager *manager, BijiItem *item)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
+  g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
   g_return_val_if_fail (BIJI_IS_ITEM      (item), FALSE);
 
   BijiItem *to_delete = NULL;
@@ -516,15 +516,15 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
   gboolean retval = FALSE;
 
   path = biji_item_get_uuid (item);
-  to_delete = g_hash_table_lookup (book->priv->items, path);
+  to_delete = g_hash_table_lookup (manager->priv->items, path);
 
   if (to_delete)
   {
     /* Signal before doing anything here. So the note is still
      * fully available for signal receiver. */
-    biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_TRASHED, to_delete);
+    biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_TRASHED, to_delete);
     biji_item_trash (item);
-    g_hash_table_remove (book->priv->items, path);
+    g_hash_table_remove (manager->priv->items, path);
 
     retval = TRUE;
   }
@@ -533,9 +533,9 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
 }
 
 gboolean
-biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
+biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
+  g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
   g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
 
   const gchar *uid;
@@ -544,47 +544,47 @@ biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
   uid = biji_item_get_uuid (item);
 
   if (uid != NULL &&
-      g_hash_table_lookup (book->priv->items, uid))
+      g_hash_table_lookup (manager->priv->items, uid))
     retval = FALSE;
 
   else if (BIJI_IS_NOTE_OBJ (item))
-    _biji_note_book_add_one_item (book, item);
+    _biji_manager_add_one_item (manager, item);
 
   else if (BIJI_IS_COLLECTION (item))
   {
-    g_hash_table_insert (book->priv->items,
+    g_hash_table_insert (manager->priv->items,
                          (gpointer) biji_item_get_uuid (item),
                          item);
 
     g_signal_connect (item, "deleted",
-                      G_CALLBACK (on_item_deleted_cb), book);
+                      G_CALLBACK (on_item_deleted_cb), manager);
   }
 
   if (retval && notify)
-    biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_ADDED, item);
+    biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ADDED, item);
 
   return retval;
 }
 
 GList *
-biji_note_book_get_items (BijiNoteBook *book)
+biji_manager_get_items (BijiManager *manager)
 {
-  return g_hash_table_get_values (book->priv->items);
+  return g_hash_table_get_values (manager->priv->items);
 }
 
 BijiItem *
-biji_note_book_get_item_at_path (BijiNoteBook *book, const gchar *path)
+biji_manager_get_item_at_path (BijiManager *manager, const gchar *path)
 {
-  return g_hash_table_lookup (book->priv->items, (gconstpointer) path);
+  return g_hash_table_lookup (manager->priv->items, (gconstpointer) path);
 }
 
 
-BijiNoteBook *
-biji_note_book_new (GFile *location, GdkRGBA *color, GError **error)
+BijiManager *
+biji_manager_new (GFile *location, GdkRGBA *color, GError **error)
 {
-  BijiNoteBook *retval;
+  BijiManager *retval;
 
-  retval = g_object_new (BIJI_TYPE_NOTE_BOOK,
+  retval = g_object_new (BIJI_TYPE_MANAGER,
                            "location", location,
                            "color", color,
                            "error", *error,
@@ -596,7 +596,7 @@ biji_note_book_new (GFile *location, GdkRGBA *color, GError **error)
 
 
 BijiNoteObj *
-biji_note_get_new_from_file (BijiNoteBook *book, const gchar* path)
+biji_note_get_new_from_file (BijiManager *manager, const gchar* path)
 {
   BijiInfoSet  set;
   BijiNoteObj *ret;
@@ -606,14 +606,14 @@ biji_note_get_new_from_file (BijiNoteBook *book, const gchar* path)
   set.title = NULL;
   set.content = NULL;
 
-  ret = biji_local_note_new_from_info (book->priv->local_provider, book, &set);
+  ret = biji_local_note_new_from_info (manager->priv->local_provider, manager, &set);
   biji_lazy_deserialize (ret);
 
   return ret ;
 }
 
 gchar *
-biji_note_book_get_uuid (void)
+biji_manager_get_uuid (void)
 {
   uuid_t unique;
   char out[40];
@@ -625,7 +625,7 @@ biji_note_book_get_uuid (void)
 
 /* Common UUID skeleton for new notes. */
 static BijiNoteObj *
-get_note_skeleton (BijiNoteBook *book)
+get_note_skeleton (BijiManager *manager)
 {
   BijiNoteObj *ret = NULL;
   gchar * folder, *name, *path;
@@ -634,17 +634,17 @@ get_note_skeleton (BijiNoteBook *book)
   set.title = NULL;
   set.content = NULL;
   set.mtime = 0;
-  folder = g_file_get_path (book->priv->location);
+  folder = g_file_get_path (manager->priv->location);
 
   while (!ret)
   {
-    name = biji_note_book_get_uuid ();
+    name = biji_manager_get_uuid ();
     path = g_build_filename (folder, name, NULL);
     g_free (name);
     set.url = path;
 
-    if (!g_hash_table_lookup (book->priv->items, path))
-      ret = biji_local_note_new_from_info (book->priv->local_provider, book, &set);
+    if (!g_hash_table_lookup (manager->priv->items, path))
+      ret = biji_local_note_new_from_info (manager->priv->local_provider, manager, &set);
 
     g_free (path);
   }
@@ -658,15 +658,15 @@ get_note_skeleton (BijiNoteBook *book)
  * TODO : move this to local provider.
  */
 static BijiNoteObj *
-biji_note_book_local_note_new           (BijiNoteBook *book, gchar *str)
+biji_manager_local_note_new           (BijiManager *manager, gchar *str)
 {
-  BijiNoteObj *ret = get_note_skeleton (book);
+  BijiNoteObj *ret = get_note_skeleton (manager);
 
   if (str)
   {
     gchar *unique, *html;
 
-    unique = biji_note_book_get_unique_title (book, str);
+    unique = biji_manager_get_unique_title (manager, str);
     html = html_from_plain_text (str);
 
     biji_note_obj_set_title (ret, unique);
@@ -678,7 +678,7 @@ biji_note_book_local_note_new           (BijiNoteBook *book, gchar *str)
   }
 
   biji_note_obj_save_note (ret);
-  biji_note_book_add_item (book, BIJI_ITEM (ret), TRUE);
+  biji_manager_add_item (manager, BIJI_ITEM (ret), TRUE);
 
   return ret;
 }
@@ -689,15 +689,15 @@ biji_note_book_local_note_new           (BijiNoteBook *book, gchar *str)
  * for emiting the signal transfering the notes
  * And no need to _add_provider, it's a tmp provider. */
 void
-biji_note_book_import_uri (BijiNoteBook *book,
+biji_manager_import_uri (BijiManager *manager,
                            gchar *target_provider_id,
                            gchar *uri)
 {
   BijiProvider *ret;
 
-  ret = biji_import_provider_new (book, target_provider_id, uri);
+  ret = biji_import_provider_new (manager, target_provider_id, uri);
   g_signal_connect (ret, "loaded", 
-                    G_CALLBACK (on_provider_loaded_cb), book);
+                    G_CALLBACK (on_provider_loaded_cb), manager);
   
 }
 
@@ -706,7 +706,7 @@ biji_note_book_import_uri (BijiNoteBook *book,
  * Use goa_account_get_id for goa
  */
 BijiNoteObj *
-biji_note_book_note_new            (BijiNoteBook *book,
+biji_manager_note_new            (BijiManager *manager,
                                     gchar        *str,
                                     gchar        *provider_id)
 {
@@ -718,17 +718,17 @@ biji_note_book_note_new            (BijiNoteBook *book,
 
   if (provider_id == NULL ||
       g_strcmp0 (provider_id, "local") == 0)
-    return biji_note_book_local_note_new (book, str);
+    return biji_manager_local_note_new (manager, str);
 
 
-  provider = g_hash_table_lookup (book->priv->providers,
+  provider = g_hash_table_lookup (manager->priv->providers,
                                   provider_id);
 
 
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
   // do not save. up to the provider implementation to save it or not
   // at creation.
-  biji_note_book_add_item (book, BIJI_ITEM (retval), TRUE);
+  biji_manager_add_item (manager, BIJI_ITEM (retval), TRUE);
 
   return retval;
 }
@@ -737,7 +737,7 @@ biji_note_book_note_new            (BijiNoteBook *book,
 
 
 BijiNoteObj *
-biji_note_book_note_new_full (BijiNoteBook *book,
+biji_manager_note_new_full (BijiManager *manager,
                               gchar        *provider_id,
                               gchar        *suggested_path,
                               BijiInfoSet  *info,
@@ -747,7 +747,7 @@ biji_note_book_note_new_full (BijiNoteBook *book,
   BijiProvider *provider;
   BijiNoteObj *retval;
 
-  provider = g_hash_table_lookup (book->priv->providers,
+  provider = g_hash_table_lookup (manager->priv->providers,
                                   provider_id);
 
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_note_full (provider,

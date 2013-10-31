@@ -17,7 +17,7 @@
 
 #include "biji-date-time.h"
 #include "biji-note-id.h"
-#include "biji-note-book.h"
+#include "biji-manager.h"
 #include "biji-note-obj.h"
 #include "biji-timeout.h"
 #include "biji-tracker.h"
@@ -177,7 +177,7 @@ enum {
 static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
 
 /* we do NOT deserialize here. it might be a brand new note
- * it's up the book to ask .note to be read*/
+ * it's up the manager to ask .note to be read*/
 static void
 biji_note_obj_constructed (GObject *obj)
 {
@@ -315,8 +315,8 @@ biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
   }
 
 
-  title = biji_note_book_get_unique_title (
-              biji_item_get_book (BIJI_ITEM (note)), proposed_title);
+  title = biji_manager_get_unique_title (
+              biji_item_get_manager (BIJI_ITEM (note)), proposed_title);
   biji_note_id_set_last_metadata_change_date (note->priv->id,
                                               g_get_real_time () / G_USEC_PER_SEC);
 
@@ -843,11 +843,11 @@ _biji_note_obj_close (BijiNoteObj *note)
 {
   BijiNoteObjPrivate *priv;
   BijiItem *item;
-  BijiNoteBook *book;
+  BijiManager *manager;
 
   priv = note->priv;
   item = BIJI_ITEM (note);
-  book = biji_item_get_book (BIJI_ITEM (note));
+  manager = biji_item_get_manager (BIJI_ITEM (note));
   priv->editor = NULL;
 
 #ifdef BUILD_ZEITGEIST
@@ -855,10 +855,10 @@ _biji_note_obj_close (BijiNoteObj *note)
 #endif /* BUILD_ZEITGEIST */
 
   /* Delete if note is totaly blank
-   * Actually we just need to remove it from book
+   * Actually we just need to remove it from manager
    * since no change could trigger save */
   if (biji_note_id_get_content (priv->id) == NULL)
-    biji_note_book_remove_item (book, item);
+    biji_manager_remove_item (manager, item);
 }
 
 GtkWidget *

@@ -19,7 +19,7 @@
 
 #include "config.h"
 #include "../biji-string.h"
-#include "../biji-note-book.h"
+#include "../biji-manager.h"
 #include "biji-webkit-editor.h"
 #include "biji-editor-selection.h"
 
@@ -279,7 +279,7 @@ on_content_changed (WebKitWebView *view)
 
     if (g_strcmp0 (title, biji_item_get_title (BIJI_ITEM (note))) != 0)
     {
-      unique_title = biji_note_book_get_unique_title (biji_item_get_book (BIJI_ITEM (note)),
+      unique_title = biji_manager_get_unique_title (biji_item_get_manager (BIJI_ITEM (note)),
                                                       title);
 
       biji_note_obj_set_title (note, unique_title);

@@ -52,7 +52,7 @@ GType                 biji_local_note_get_type        (void);
 
 
 BijiNoteObj          *biji_local_note_new_from_info   (BijiProvider *provider,
-                                                       BijiNoteBook *book,
+                                                       BijiManager *manager,
                                                        BijiInfoSet *set);
 
 G_END_DECLS

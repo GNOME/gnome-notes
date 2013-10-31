@@ -195,11 +195,11 @@ bjb_note_tag_dialog_handle_tags (GHashTable *result, gpointer user_data)
 static void
 update_collections_model_async (BjbNoteTagDialog *self)
 {
-  BijiNoteBook *book;
+  BijiManager *manager;
 
-  book = bjb_window_base_get_book (GTK_WIDGET (self->priv->window));
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
   gtk_list_store_clear (self->priv->store);
-  biji_get_all_collections_async (book, bjb_note_tag_dialog_handle_tags, self);
+  biji_get_all_collections_async (manager, bjb_note_tag_dialog_handle_tags, self);
 }
 
 /* Libbiji handles tracker & saving */
@@ -231,7 +231,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gint toggle_item;
   gint *column;
   gchar *tag;
-  BijiNoteBook *book;
+  BijiManager *manager;
   BijiItem *collection;
 
   column = g_object_get_data (G_OBJECT (cell), "column");
@@ -240,8 +240,8 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gtk_tree_model_get (model, &iter, COL_URN, &tag, -1);
 
   priv->toggled_collection = tag;
-  book = bjb_window_base_get_book (GTK_WIDGET (self->priv->window));
-  collection = biji_note_book_get_item_at_path (book, tag);
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
+  collection = biji_manager_get_item_at_path (manager, tag);
 
   if (BIJI_IS_COLLECTION (collection))
   {
@@ -280,17 +280,17 @@ on_new_collection_created_cb (BijiItem *coll, gpointer user_data)
   gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
 }
 
-/* Gives the title and book :
- * the collection is created & book updated.
+/* Gives the title and manager :
+ * the collection is created & manager updated.
  * afterward, our callback comes */
 static void
 add_new_tag (BjbNoteTagDialog *self)
 {
-  BijiNoteBook *book = bjb_window_base_get_book (GTK_WIDGET (self->priv->window));
+  BijiManager *manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
   const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->priv->entry));
 
   if (title && g_utf8_strlen (title, -1) > 0)
-    biji_create_new_collection_async (book, title, on_new_collection_created_cb, self);
+    biji_create_new_collection_async (manager, title, on_new_collection_created_cb, self);
 }
 
 static void

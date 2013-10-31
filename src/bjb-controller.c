@@ -41,7 +41,7 @@
 
 struct _BjbControllerPrivate
 {
-  BijiNoteBook   *book ;
+  BijiManager   *manager ;
   gchar          *needle ;
   BijiCollection *collection;
   GtkTreeModel   *model ;
@@ -55,7 +55,7 @@ struct _BjbControllerPrivate
   GMutex          mutex;
 
   gboolean        connected;
-  gulong          book_change;
+  gulong          manager_change;
 };
 
 
@@ -73,7 +73,7 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 /* Currently used by toolbars */
 enum {
   SEARCH_CHANGED,
-  DISPLAY_NOTES_CHANGED, // either search or book change
+  DISPLAY_NOTES_CHANGED, // either search or manager change
   BJB_CONTROLLER_SIGNALS
 };
 
@@ -149,7 +149,7 @@ bjb_controller_get_property (GObject  *object,
   switch (property_id)
   {
   case PROP_BOOK:
-    g_value_set_object (value, self->priv->book);
+    g_value_set_object (value, self->priv->manager);
     break;
   case PROP_WINDOW:
     g_value_set_object (value, self->priv->window);
@@ -177,7 +177,7 @@ bjb_controller_set_property (GObject  *object,
   switch (property_id)
   {
   case PROP_BOOK:
-    bjb_controller_set_book(self,g_value_get_object(value));
+    bjb_controller_set_manager(self,g_value_get_object(value));
     break;
   case PROP_WINDOW:
     self->priv->window = g_value_get_object (value);
@@ -222,7 +222,7 @@ bjb_controller_get_iter (BjbController *self,
 
     /* Else we check for the first note */
     else if (!needle && BIJI_IS_NOTE_OBJ (
-              biji_note_book_get_item_at_path (self->priv->book, item_path)))
+              biji_manager_get_item_at_path (self->priv->manager, item_path)))
       retval = TRUE;
 
     g_free (item_path);
@@ -487,7 +487,7 @@ bjb_controller_apply_needle (BjbController *self)
   /* Show all notes */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    all_notes = biji_note_book_get_items (self->priv->book);
+    all_notes = biji_manager_get_items (self->priv->manager);
 
     /* If there are no note, report this */
     if (all_notes == NULL)
@@ -502,7 +502,7 @@ bjb_controller_apply_needle (BjbController *self)
   }
 
   /* There is a research, apply lookup */
-  biji_get_items_matching_async (self->priv->book, needle, update_controller_callback, self);
+  biji_get_items_matching_async (self->priv->manager, needle, update_controller_callback, self);
 }
 
 static void
@@ -516,8 +516,8 @@ on_needle_changed (BjbController *self)
 /* Depending on the change at data level,
  * the view has to be totaly refreshed or just amended */
 static void
-on_book_changed (BijiNoteBook           *book,
-                 BijiNoteBookChangeFlag  flag,
+on_manager_changed (BijiManager           *manager,
+                 BijiManagerChangeFlag  flag,
                  gpointer               *biji_item,
                  BjbController          *self)
 {
@@ -532,7 +532,7 @@ on_book_changed (BijiNoteBook           *book,
   switch (flag)
   {
     /* If this is a *new* item, per def prepend */
-    case BIJI_BOOK_ITEM_ADDED:
+    case BIJI_MANAGER_ITEM_ADDED:
           if (BIJI_IS_NOTE_OBJ (item))
             bjb_controller_get_iter (self, NULL, &p_iter);
 
@@ -546,7 +546,7 @@ on_book_changed (BijiNoteBook           *book,
       break;
 
     /* Same comment, prepend but collection before note */
-    case BIJI_BOOK_NOTE_AMENDED:
+    case BIJI_MANAGER_NOTE_AMENDED:
       if (bjb_controller_get_iter (self, item, &p_iter))
       {
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
@@ -562,7 +562,7 @@ on_book_changed (BijiNoteBook           *book,
       break;
 
     /* If color changed we just amend the icon */
-    case BIJI_BOOK_ITEM_ICON_CHANGED:
+    case BIJI_MANAGER_ITEM_ICON_CHANGED:
       if (bjb_main_view_get_view_type (
              bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
           && bjb_controller_get_iter (self, item, &p_iter))
@@ -575,7 +575,7 @@ on_book_changed (BijiNoteBook           *book,
                             GD_MAIN_COLUMN_ICON, biji_item_get_emblem (item), -1);
       break;
 
-    case BIJI_BOOK_ITEM_TRASHED:
+    case BIJI_MANAGER_ITEM_TRASHED:
       if (bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
@@ -585,7 +585,7 @@ on_book_changed (BijiNoteBook           *book,
 
     default:
       bjb_controller_apply_needle (self);
-      if (flag == BIJI_BOOK_MASS_CHANGE)
+      if (flag == BIJI_MANAGER_MASS_CHANGE)
         bjb_window_base_set_active (self->priv->window, TRUE);
   }
 
@@ -599,8 +599,8 @@ bjb_controller_connect (BjbController *self)
   
   if (!priv->connected)
   {
-    priv->book_change = g_signal_connect (self->priv->book, "changed",
-                                     G_CALLBACK(on_book_changed), self);
+    priv->manager_change = g_signal_connect (self->priv->manager, "changed",
+                                     G_CALLBACK(on_manager_changed), self);
     priv->connected = TRUE;
   }
 
@@ -612,8 +612,8 @@ bjb_controller_disconnect (BjbController *self)
 {
   BjbControllerPrivate *priv = self->priv;
 
-  g_signal_handler_disconnect (priv->book, priv->book_change);
-  priv->book_change = 0;
+  g_signal_handler_disconnect (priv->manager, priv->manager_change);
+  priv->manager_change = 0;
 }
 
 static void
@@ -658,10 +658,10 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                   G_TYPE_BOOLEAN,
                                                   G_TYPE_BOOLEAN);
 
-  properties[PROP_BOOK] = g_param_spec_object ("book",
+  properties[PROP_BOOK] = g_param_spec_object ("manager",
                                                "Book",
-                                               "The BijiNoteBook",
-                                               BIJI_TYPE_NOTE_BOOK,
+                                               "The BijiManager",
+                                               BIJI_TYPE_MANAGER,
                                                G_PARAM_READWRITE |
                                                G_PARAM_CONSTRUCT |
                                                G_PARAM_STATIC_STRINGS);
@@ -695,21 +695,21 @@ bjb_controller_class_init (BjbControllerClass *klass)
 }
 
 BjbController *
-bjb_controller_new (BijiNoteBook  *book,
+bjb_controller_new (BijiManager  *manager,
                     GtkWindow     *window,
                     gchar         *needle)
 {
   return g_object_new ( BJB_TYPE_CONTROLLER,
-              "book", book,
+              "manager", manager,
               "window", window,
               "needle", needle,
               NULL); 
 }
 
 void
-bjb_controller_set_book (BjbController *self, BijiNoteBook  *book )
+bjb_controller_set_manager (BjbController *self, BijiManager  *manager )
 {
-  self->priv->book = book ;
+  self->priv->manager = manager ;
 }
 
 void
@@ -774,7 +774,7 @@ bjb_controller_set_collection (BjbController *self,
 
   self->priv->needle = g_strdup ("");
   self->priv->collection = coll;
-  biji_get_items_with_collection_async (self->priv->book,
+  biji_get_items_with_collection_async (self->priv->manager,
                                         biji_item_get_title (BIJI_ITEM (coll)),
                                         update_controller_callback,
                                         self);

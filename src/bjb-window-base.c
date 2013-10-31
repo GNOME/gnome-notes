@@ -143,7 +143,7 @@ bjb_window_base_constructed (GObject *obj)
   priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
   priv->controller = bjb_controller_new
-    (bijiben_get_book (BIJIBEN_APPLICATION(g_application_get_default())),
+    (bijiben_get_manager (BIJIBEN_APPLICATION(g_application_get_default())),
      GTK_WINDOW (obj),
      priv->entry );
 
@@ -365,10 +365,10 @@ bjb_window_base_get_view_type (BjbWindowBase *win)
   return win->priv->current_view;
 }
 
-BijiNoteBook *
-bjb_window_base_get_book(GtkWidget * win)
+BijiManager *
+bjb_window_base_get_manager(GtkWidget * win)
 {
-  return bijiben_get_book (BIJIBEN_APPLICATION (g_application_get_default()));
+  return bijiben_get_manager (BIJIBEN_APPLICATION (g_application_get_default()));
 }
 
 void

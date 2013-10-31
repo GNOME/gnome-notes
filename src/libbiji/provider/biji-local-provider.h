@@ -22,7 +22,7 @@
 #define BIJI_LOCAL_PROVIDER_H_ 1
 
 
-#include "../biji-note-book.h"
+#include "../biji-manager.h"
 #include "biji-provider.h"
 
 
@@ -57,7 +57,7 @@ struct BijiLocalProviderClass_
 GType                biji_local_provider_get_type                    (void);
 
 
-BijiProvider        *biji_local_provider_new                         (BijiNoteBook *book,
+BijiProvider        *biji_local_provider_new                         (BijiManager *manager,
                                                                       GFile *location);
 
 

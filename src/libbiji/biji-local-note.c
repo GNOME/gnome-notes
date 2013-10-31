@@ -99,7 +99,7 @@ local_note_save (BijiNoteObj *note)
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  biji_tracker_ensure_ressource_from_info  (biji_item_get_book (item),
+  biji_tracker_ensure_ressource_from_info  (biji_item_get_manager (item),
                                             info);
 }
 
@@ -233,7 +233,7 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
 
 BijiNoteObj *
 biji_local_note_new_from_info   (BijiProvider *provider,
-                                 BijiNoteBook *book,
+                                 BijiManager *manager,
                                  BijiInfoSet *set)
 {
   BijiNoteID *id;
@@ -243,7 +243,7 @@ biji_local_note_new_from_info   (BijiProvider *provider,
   id = biji_note_id_new_from_info (set);
 
   obj = g_object_new (BIJI_TYPE_LOCAL_NOTE,
-                       "note-book", book,
+                       "manager", manager,
                        "id",        id,
                        NULL);
 

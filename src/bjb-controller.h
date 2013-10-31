@@ -52,7 +52,7 @@ struct _BjbController
 
 GType bjb_controller_get_type (void) G_GNUC_CONST;
 
-BjbController * bjb_controller_new (BijiNoteBook  *book,
+BjbController * bjb_controller_new (BijiManager  *manager,
                                     GtkWindow     *bjb_window_base,
                                     gchar         *needle);
 
@@ -60,7 +60,7 @@ void bjb_controller_apply_needle (BjbController *self);
 
 void bjb_controller_update_view (BjbController *self);
 
-void bjb_controller_set_book (BjbController * self, BijiNoteBook * book ) ;
+void bjb_controller_set_manager (BjbController * self, BijiManager * manager ) ;
 
 void bjb_controller_set_needle (BjbController *self, const gchar *needle ) ; 
 

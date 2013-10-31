@@ -20,7 +20,7 @@
  * TODO: the generic provider should at least
  * be the one emiting the signals
  * 
- * So 1. for each provider, the book connects to the same
+ * So 1. for each provider, the manager connects to the same
  * & provider does not reinvent anything
  * 2. it might be a right place for running the approriate
  * threads - or even processes.
@@ -51,16 +51,16 @@ static GParamSpec *properties[PROVIDER_PROP] = { NULL, };
 
 struct BijiProviderPrivate_
 {
-  BijiNoteBook        *book;
+  BijiManager        *manager;
 };
 
 G_DEFINE_TYPE (BijiProvider, biji_provider, G_TYPE_OBJECT)
 
 
-BijiNoteBook *
-biji_provider_get_book                (BijiProvider *provider)
+BijiManager *
+biji_provider_get_manager                (BijiProvider *provider)
 {
-  return provider->priv->book;
+  return provider->priv->manager;
 }
 
 
@@ -88,7 +88,7 @@ static void
 biji_provider_init (BijiProvider *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_PROVIDER, BijiProviderPrivate);
-  self->priv->book = NULL;
+  self->priv->manager = NULL;
 }
 
 
@@ -115,7 +115,7 @@ biji_provider_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_BOOK:
-      self->priv->book = g_value_dup_object (value);
+      self->priv->manager = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -134,7 +134,7 @@ biji_provider_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_BOOK:
-      g_value_set_object (value, self->priv->book);
+      g_value_set_object (value, self->priv->manager);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -169,10 +169,10 @@ biji_provider_class_init (BijiProviderClass *klass)
 
 
   properties[PROP_BOOK] =
-    g_param_spec_object("book",
+    g_param_spec_object("manager",
                         "Note Book",
                         "The Note Book",
-                        BIJI_TYPE_NOTE_BOOK,
+                        BIJI_TYPE_MANAGER,
                         G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
 

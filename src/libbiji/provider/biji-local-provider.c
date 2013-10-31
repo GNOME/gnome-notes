@@ -95,17 +95,17 @@ create_collection_if_needed (gpointer key,
   BijiLocalProvider *self;
   BijiInfoSet *set;
   BijiCollection *collection;
-  BijiNoteBook *book;
+  BijiManager *manager;
 
 
   self = user_data;
   set = value;
   collection = g_hash_table_lookup (self->priv->items, key);
-  book = biji_provider_get_book (BIJI_PROVIDER (self));
+  manager = biji_provider_get_manager (BIJI_PROVIDER (self));
 
   if (!collection)
   {
-    collection = biji_collection_new (G_OBJECT (book), key, set->title, set->mtime);
+    collection = biji_collection_new (G_OBJECT (manager), key, set->title, set->mtime);
 
     g_hash_table_insert (self->priv->items,
                          g_strdup (key),
@@ -184,7 +184,7 @@ enumerate_next_files_ready_cb (GObject *source,
 
 
       note = biji_local_note_new_from_info (BIJI_PROVIDER (self),
-                                            biji_provider_get_book (BIJI_PROVIDER (self)),
+                                            biji_provider_get_manager (BIJI_PROVIDER (self)),
                                             &info);
       biji_lazy_deserialize (note);
 
@@ -199,7 +199,7 @@ enumerate_next_files_ready_cb (GObject *source,
 
   /* Now we have all notes,
    * load the collections and we're good to notify loading done */
-  biji_get_all_collections_async (biji_provider_get_book (BIJI_PROVIDER (self)),
+  biji_get_all_collections_async (biji_provider_get_manager (BIJI_PROVIDER (self)),
                                   local_provider_finish,
                                   self);
 }
@@ -327,7 +327,7 @@ local_prov_create_note_full (BijiProvider *provider,
 
   /* RAW NOTE */
   retval = biji_local_note_new_from_info (provider,
-                                          biji_provider_get_book (provider),
+                                          biji_provider_get_manager (provider),
                                           info);
 
   /* EXTRAS */
@@ -409,7 +409,7 @@ biji_local_provider_class_init (BijiLocalProviderClass *klass)
 
   properties[PROP_LOCATION] =
     g_param_spec_object ("location",
-                         "The book location",
+                         "The manager location",
                          "The location where the notes are loaded and saved",
                          G_TYPE_FILE,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
@@ -421,11 +421,11 @@ biji_local_provider_class_init (BijiLocalProviderClass *klass)
 
 
 BijiProvider *
-biji_local_provider_new (BijiNoteBook *book,
+biji_local_provider_new (BijiManager *manager,
                          GFile *location)
 {
   return g_object_new (BIJI_TYPE_LOCAL_PROVIDER,
-                       "book", book,
+                       "manager", manager,
                        "location", location,
                        NULL);
 }

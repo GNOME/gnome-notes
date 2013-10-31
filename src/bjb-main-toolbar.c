@@ -107,13 +107,13 @@ static void
 on_new_note_clicked (GtkWidget *but, BjbMainView *view)
 {
   BijiNoteObj *result;
-  BijiNoteBook *book;
+  BijiManager *manager;
   BjbSettings  *settings;
 
   /* append note to collection */
-  book = bjb_window_base_get_book (bjb_main_view_get_window (view));
+  manager = bjb_window_base_get_manager (bjb_main_view_get_window (view));
   settings = bjb_app_get_settings (g_application_get_default ());
-  result = biji_note_book_note_new (book,
+  result = biji_manager_note_new (manager,
                                     NULL,
                                     bjb_settings_get_default_location (settings));
 
@@ -600,8 +600,8 @@ delete_item_callback (GtkWidget *item, gpointer user_data)
 
   /* Delete the note from collection
    * The deleted note will emit a signal. */
-  biji_note_book_remove_item (
-          bjb_window_base_get_book (GTK_WIDGET (self->priv->window)),
+  biji_manager_remove_item (
+          bjb_window_base_get_manager (GTK_WIDGET (self->priv->window)),
           BIJI_ITEM (self->priv->note));
 }
 

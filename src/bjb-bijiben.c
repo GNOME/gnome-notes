@@ -30,7 +30,7 @@
 
 struct _BijibenPriv
 {
-  BijiNoteBook *book;
+  BijiManager *manager;
   BjbSettings *settings;
 
 
@@ -68,7 +68,7 @@ on_window_activated_cb   (BjbWindowBase *window,
   while ((path = g_queue_pop_head (priv->to_open)))
   {
 
-    item = biji_note_book_get_item_at_path (priv->book, path);
+    item = biji_manager_get_item_at_path (priv->manager, path);
 
     if (item != NULL)
     {
@@ -134,7 +134,7 @@ bijiben_new_window_internal (Bijiben *self,
   if (file != NULL)
   {
     path = g_file_get_parse_name (file);
-    note = BIJI_NOTE_OBJ (biji_note_book_get_item_at_path (self->priv->book, path));
+    note = BIJI_NOTE_OBJ (biji_manager_get_item_at_path (self->priv->manager, path));
   }
 
   else if (item != NULL && BIJI_IS_NOTE_OBJ (item))
@@ -220,7 +220,7 @@ bijiben_import_notes (Bijiben *self, gchar *location)
 {
   g_debug ("IMPORT to %s", bjb_settings_get_default_location (self->priv->settings));
 
-  biji_note_book_import_uri (self->priv->book,
+  biji_manager_import_uri (self->priv->manager,
                              bjb_settings_get_default_location (self->priv->settings),
                              location);
 }
@@ -272,7 +272,7 @@ on_client_got (GObject *source_object,
       if (g_strcmp0 (type, "owncloud") ==0)
       {
         g_message ("Loading account %s", goa_account_get_id (account));
-        biji_note_book_add_goa_object (self->priv->book, object);
+        biji_manager_add_goa_object (self->priv->manager, object);
       }
 
       else
@@ -340,7 +340,7 @@ bijiben_startup (GApplication *application)
   gdk_rgba_parse (&color, default_color);
 
   error = NULL;
-  self->priv->book = biji_note_book_new (storage, &color, &error);
+  self->priv->manager = biji_manager_new (storage, &color, &error);
   if (error)
     goto out;
 
@@ -373,7 +373,7 @@ bijiben_finalize (GObject *object)
 {
   Bijiben *self = BIJIBEN_APPLICATION (object);
 
-  g_clear_object (&self->priv->book);
+  g_clear_object (&self->priv->manager);
   g_clear_object (&self->priv->settings);
   g_queue_free (self->priv->to_open);
 
@@ -404,10 +404,10 @@ bijiben_new (void)
                        NULL);
 }
 
-BijiNoteBook *
-bijiben_get_book(Bijiben *self)
+BijiManager *
+bijiben_get_manager(Bijiben *self)
 {
-  return self->priv->book ;
+  return self->priv->manager ;
 }
 
 const gchar *

@@ -40,7 +40,7 @@ struct BjbSettingsDialogPrivate_
 {
   GtkWidget        *parent;
   BjbSettings      *settings;
-  BijiNoteBook     *book;
+  BijiManager     *manager;
 
   GtkStack         *stack;
   GtkStackSwitcher *switcher;
@@ -352,7 +352,7 @@ create_page_primary (BjbSettingsDialog *self)
 
   /* Add providers */
 
-  providers_info = biji_note_book_get_providers (priv->book);
+  providers_info = biji_manager_get_providers (priv->manager);
   g_list_foreach (providers_info, add_child, self);
   g_list_free (providers_info);
 
@@ -454,7 +454,7 @@ bjb_settings_dialog_constructed (GObject *object)
 
 
   app = g_application_get_default ();
-  priv->book = bijiben_get_book (BIJIBEN_APPLICATION (app));
+  priv->manager = bijiben_get_manager (BIJIBEN_APPLICATION (app));
   priv->settings = bjb_app_get_settings (app);
 
 

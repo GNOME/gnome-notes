@@ -56,7 +56,7 @@ Bijiben *bijiben_new (void);
 // Accessors
 
 const gchar *bijiben_get_bijiben_dir (void);
-BijiNoteBook * bijiben_get_book(Bijiben *self);
+BijiManager * bijiben_get_manager(Bijiben *self);
 BjbSettings * bjb_app_get_settings(gpointer application);
 
 // Windows

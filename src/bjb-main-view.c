@@ -260,8 +260,8 @@ bjb_main_view_get_selected_items (BjbMainView *view)
   for (l=paths; l!= NULL; l=l->next)
   {
     url = get_note_url_from_tree_path (l->data, view);
-    item = biji_note_book_get_item_at_path (
-              bjb_window_base_get_book (view->priv->window), url);
+    item = biji_manager_get_item_at_path (
+              bjb_window_base_get_manager (view->priv->window), url);
     if (BIJI_IS_ITEM (item))
       result = g_list_prepend (result, item);
 
@@ -334,7 +334,7 @@ on_item_activated (GdMainView        * gd,
                    const GtkTreePath * path,
                    BjbMainView       * view)
 {
-  BijiNoteBook * book ;
+  BijiManager * manager ;
   BijiItem     * to_open ;
   GtkTreeIter    iter ;
   gchar        * item_path ;
@@ -348,8 +348,8 @@ on_item_activated (GdMainView        * gd,
   g_return_val_if_fail (item_path != NULL, FALSE); // #709197
 
   /* Switch to that item */
-  book = bjb_window_base_get_book (view->priv->window); 
-  to_open = biji_note_book_get_item_at_path (book, item_path);
+  manager = bjb_window_base_get_manager (view->priv->window); 
+  to_open = biji_manager_get_item_at_path (manager, item_path);
   g_free (item_path);
 
   if (to_open)
@@ -380,15 +380,15 @@ on_drag_data_received (GtkWidget        *widget,
 
     if (text)
     {
-      BijiNoteBook *book;
+      BijiManager *manager;
       BijiNoteObj *ret;
       BjbMainView *self = BJB_MAIN_VIEW (user_data);
       BjbSettings *settings;
 
       /* FIXME Text is guchar utf 8, conversion to perform */
-      book =  bjb_window_base_get_book (self->priv->window);
+      manager =  bjb_window_base_get_manager (self->priv->window);
       settings = bjb_app_get_settings (g_application_get_default ());
-      ret = biji_note_book_note_new (book,
+      ret = biji_manager_note_new (manager,
                                      (gchar*) text,
                                      bjb_settings_get_default_location (settings));
       switch_to_note_view (self, ret); // maybe AFTER drag finish?
@@ -455,8 +455,8 @@ _get_item_for_tree_path (GtkTreeModel *tree_model,
 
   if (uuid != NULL)
   {
-    retval = biji_note_book_get_item_at_path (
-               bjb_window_base_get_book (self->priv->window), uuid);
+    retval = biji_manager_get_item_at_path (
+               bjb_window_base_get_manager (self->priv->window), uuid);
     g_free (uuid);
   }
 

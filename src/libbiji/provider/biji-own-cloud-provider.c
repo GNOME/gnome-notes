@@ -160,14 +160,14 @@ create_note_from_item (BijiOCloudItem *item)
 {
   BijiNoteObj *note;
   GdkRGBA color;
-  BijiNoteBook *book;
+  BijiManager *manager;
 
-  book = biji_provider_get_book (BIJI_PROVIDER (item->self));
+  manager = biji_provider_get_manager (BIJI_PROVIDER (item->self));
 
   note = biji_own_cloud_note_new_from_info (item->self,
-                                            book,
+                                            manager,
                                             &item->set);
-  biji_note_book_get_default_color (book, &color);
+  biji_manager_get_default_color (manager, &color);
   biji_note_obj_set_rgba (note, &color);
   g_hash_table_replace (item->self->priv->notes,
                         item->set.url,
@@ -222,7 +222,7 @@ on_content (GObject *source,
      item->set.content = contents;
      create_note_from_item (item);
      biji_tracker_ensure_ressource_from_info (
-       biji_provider_get_book (BIJI_PROVIDER (self)), &item->set);
+       biji_provider_get_manager (BIJI_PROVIDER (self)), &item->set);
 
      // TODO --> ensure_ressource callback.... o_cloud_item_free (item);
   }
@@ -281,7 +281,7 @@ static void
 trash (gpointer urn_uuid, gpointer self)
 {
   biji_tracker_trash_ressource (
-      biji_provider_get_book (BIJI_PROVIDER (self)), (gchar*) urn_uuid);
+      biji_provider_get_manager (BIJI_PROVIDER (self)), (gchar*) urn_uuid);
 }
 
 
@@ -298,7 +298,7 @@ handle_next_item (BijiOwnCloudProvider *self)
   {
     g_hash_table_remove (self->priv->tracker, item->set.url);
 
-    biji_tracker_check_for_info (biji_provider_get_book (BIJI_PROVIDER (self)),
+    biji_tracker_check_for_info (biji_provider_get_manager (BIJI_PROVIDER (self)),
                                  item->set.url,
                                  item->set.mtime,
                                  check_info_maybe_read_file,
@@ -488,8 +488,8 @@ mine_notes (gboolean result, gpointer user_data)
                            info->datasource);
 
   tracker_sparql_connection_query_async (
-      biji_note_book_get_tracker_connection (
-        biji_provider_get_book (provider)),
+      biji_manager_get_tracker_connection (
+        biji_provider_get_manager (provider)),
       query,
       NULL,
       on_notes_mined,
@@ -522,7 +522,7 @@ handle_mount (BijiOwnCloudProvider *self)
 
     g_object_unref (root);
     biji_tracker_ensure_datasource (
-      biji_provider_get_book (BIJI_PROVIDER (self)),
+      biji_provider_get_manager (BIJI_PROVIDER (self)),
       self->priv->info.datasource,
       MINER_ID,
       mine_notes,
@@ -743,7 +743,7 @@ own_cloud_create_note         (BijiProvider *provider,
 
   return biji_own_cloud_note_new_from_info (
        BIJI_OWN_CLOUD_PROVIDER (provider),
-       biji_provider_get_book (provider),
+       biji_provider_get_manager (provider),
        &info);
 }
 
@@ -762,18 +762,18 @@ own_cloud_create_full (BijiProvider *provider,
   BijiOwnCloudProvider *self;
   BijiNoteObj *retval;
   GdkRGBA override_color;
-  BijiNoteBook *book;
+  BijiManager *manager;
 
   self = BIJI_OWN_CLOUD_PROVIDER (provider);
-  book = biji_provider_get_book (provider);
+  manager = biji_provider_get_manager (provider);
 
-  retval = biji_own_cloud_note_new_from_info (self, book, info);
+  retval = biji_own_cloud_note_new_from_info (self, manager, info);
   biji_note_obj_set_html (retval, html);
 
   /* We do not use suggested color.
    * Rather use ook default */
 
-  biji_note_book_get_default_color (book, &override_color);
+  biji_manager_get_default_color (manager, &override_color);
   biji_note_obj_set_rgba (retval, &override_color);
   
   return retval;
@@ -821,11 +821,11 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
 
 
 BijiProvider *
-biji_own_cloud_provider_new (BijiNoteBook *book,
+biji_own_cloud_provider_new (BijiManager *manager,
                              GoaObject *object)
 {
   return g_object_new (BIJI_TYPE_OWN_CLOUD_PROVIDER,
-                       "book", book,
+                       "manager", manager,
                        "goa", object,
                        NULL);
 }

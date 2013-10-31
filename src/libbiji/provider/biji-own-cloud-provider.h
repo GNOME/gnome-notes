@@ -52,7 +52,7 @@ GType             biji_own_cloud_provider_get_type      (void);
 
 
 
-BijiProvider     *biji_own_cloud_provider_new           (BijiNoteBook *book,
+BijiProvider     *biji_own_cloud_provider_new           (BijiManager *manager,
                                                          GoaObject *object);
 
 

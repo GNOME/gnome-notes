@@ -273,7 +273,7 @@ biji_collection_trash (BijiItem *item)
   self = BIJI_COLLECTION (item);
 
   g_signal_emit (G_OBJECT (item), biji_collections_signals[COLLECTION_DELETED], 0);
-  biji_remove_collection_from_tracker (biji_item_get_book (item), self->priv->urn);
+  biji_remove_collection_from_tracker (biji_item_get_manager (item), self->priv->urn);
   g_object_unref (self);
 
   return TRUE;
@@ -361,10 +361,10 @@ static void
 on_collected_item_change (BijiCollection *self)
 {
   BijiCollectionPrivate *priv = self->priv;
-  BijiNoteBook *book;
+  BijiManager *manager;
   GList *l;
 
-  book = biji_item_get_book (BIJI_ITEM (self));
+  manager = biji_item_get_manager (BIJI_ITEM (self));
 
   /* Diconnected any handler */
   for (l= priv->collected_items; l!= NULL; l=l->next)
@@ -373,7 +373,7 @@ on_collected_item_change (BijiCollection *self)
   }
 
   /* Then re-process the whole stuff */
-  biji_get_items_with_collection_async (book,
+  biji_get_items_with_collection_async (manager,
                                         self->priv->name,
                                         biji_collection_update_collected,
                                         self);
@@ -418,12 +418,12 @@ static void
 biji_collection_constructed (GObject *obj)
 {
   BijiCollection *self = BIJI_COLLECTION (obj);
-  BijiNoteBook *book;
+  BijiManager *manager;
 
 
-  book = biji_item_get_book (BIJI_ITEM (obj));
+  manager = biji_item_get_manager (BIJI_ITEM (obj));
 
-  biji_get_items_with_collection_async (book,
+  biji_get_items_with_collection_async (manager,
                                         self->priv->name,
                                         biji_collection_update_collected,
                                         self);
@@ -544,10 +544,10 @@ biji_collection_init (BijiCollection *self)
 
 
 BijiCollection *
-biji_collection_new (GObject *book, gchar *urn, gchar *name, gint64 mtime)
+biji_collection_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime)
 {
   return g_object_new (BIJI_TYPE_COLLECTION,
-                       "note-book", book,
+                       "manager", manager,
                        "name",      name,
                        "urn",       urn,
                        "mtime",     mtime,

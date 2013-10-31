@@ -26,14 +26,14 @@
  * it kills its own ref.
  */
 
-/* As of today this is the direct class to be used by notebook.
- * Later on book might use different importProviders sub-classes */
+/* As of today this is the direct class to be used by notemanager.
+ * Later on manager might use different importProviders sub-classes */
 
 #ifndef BIJI_IMPORT_PROVIDER_H_
 #define BIJI_IMPORT_PROVIDER_H_ 1
 
 
-#include "../biji-note-book.h"
+#include "../biji-manager.h"
 #include "biji-provider.h"
 
 G_BEGIN_DECLS
@@ -65,7 +65,7 @@ struct BijiImportProviderClass_
 GType                   biji_import_provider_get_type             (void);
 
 
-BijiProvider           *biji_import_provider_new                  (BijiNoteBook *book,
+BijiProvider           *biji_import_provider_new                  (BijiManager *manager,
                                                                    gchar *target_provider,
                                                                    gchar *uri);
 

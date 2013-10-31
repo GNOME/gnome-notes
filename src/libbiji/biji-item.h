@@ -93,7 +93,7 @@ const gchar *    biji_item_get_title           (BijiItem *item);
 const gchar *    biji_item_get_uuid            (BijiItem *item);
 
 
-gpointer         biji_item_get_book            (BijiItem *item);
+gpointer         biji_item_get_manager            (BijiItem *item);
 
 
 gboolean         biji_item_has_color           (BijiItem *item);

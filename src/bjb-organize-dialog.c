@@ -367,7 +367,7 @@ bjb_organize_dialog_init (BjbOrganizeDialog *self)
   gtk_window_set_default_size (GTK_WINDOW (self),
                                BJB_ORGANIZE_DIALOG_DEFAULT_WIDTH,
                                BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT);
-  gtk_window_set_title (GTK_WINDOW (self), _("Collections"));
+  gtk_window_set_title (GTK_WINDOW (self), _("Notebooks"));
 
   g_signal_connect_swapped (self, "response",
                             G_CALLBACK (gtk_widget_destroy), self);
@@ -523,7 +523,7 @@ bjb_organize_dialog_class_init (BjbOrganizeDialogClass *klass)
 
   properties[PROP_ITEMS] = g_param_spec_pointer ("items",
                                                  "Biji Items",
-                                                 "Notes and Collections to tag",
+                                                 "Notes and Notebooks to tag",
                                                  G_PARAM_READWRITE |
                                                  G_PARAM_CONSTRUCT_ONLY |
                                                  G_PARAM_STATIC_STRINGS);

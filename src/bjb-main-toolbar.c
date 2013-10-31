@@ -661,7 +661,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
 
   if (biji_item_is_collectable (BIJI_ITEM (priv->note)))
   {
-    item = gtk_menu_item_new_with_label(_("Collections"));
+    item = gtk_menu_item_new_with_label(_("Notebooks"));
     gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
     g_signal_connect(item,"activate",
                      G_CALLBACK(action_view_tags_callback),self);

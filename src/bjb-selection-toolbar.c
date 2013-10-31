@@ -255,7 +255,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 
 
   /* Notes tags */
-  priv->toolbar_tag = gtk_button_new_with_label (_("Add to Collection"));
+  priv->toolbar_tag = gtk_button_new_with_label (_("Notebooks"));
   gtk_widget_set_valign (priv->toolbar_tag, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_end (priv->bar, priv->toolbar_tag);
 

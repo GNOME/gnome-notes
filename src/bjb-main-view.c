@@ -216,7 +216,7 @@ switch_to_item (BjbMainView *view, BijiItem *to_open)
     switch_to_note_view (view, BIJI_NOTE_OBJ (to_open));
   }
 
-  /* Collection
+  /* Notebook
    * TODO : check if already opened (same as above) */
   else if (BIJI_IS_NOTEBOOK (to_open))
   {
@@ -483,7 +483,7 @@ render_type     (GtkTreeViewColumn *tree_column,
   if (item != NULL)
   {
     if BIJI_IS_NOTEBOOK (item)
-      str= _("Collection");
+      str= _("Notebook");
 
     else if BIJI_IS_NOTE_OBJ (item)
       str = _("Note");

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-23 21:54+0000\n"
-"PO-Revision-Date: 2013-10-24 20:42+0100\n"
+"POT-Creation-Date: 2013-10-31 17:21+0000\n"
+"PO-Revision-Date: 2013-10-31 20:55+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -205,44 +205,48 @@ msgstr "Poglej sporočilca in zbirke kot seznam"
 msgid "View notes and collections in a grid"
 msgstr "Poglej sporočilca in zbirke na mreži"
 
+#: ../src/bjb-main-toolbar.c:530
+msgid "Untitled"
+msgstr "Neimenovano"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:615
+#: ../src/bjb-main-toolbar.c:620
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: ../src/bjb-main-toolbar.c:623
+#: ../src/bjb-main-toolbar.c:628
 msgid "Redo"
 msgstr "Ponovi"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:638
+#: ../src/bjb-main-toolbar.c:643
 msgid "Bullets"
 msgstr "Vrstične oznake"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:650
 msgid "Numbered List"
 msgstr "Oštevilčen seznam"
 
-#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
+#: ../src/bjb-main-toolbar.c:664 ../src/bjb-note-tag-dialog.c:370
 msgid "Collections"
 msgstr "Zbirke"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:667
+#: ../src/bjb-main-toolbar.c:672
 msgid "Delete this Note"
 msgstr "Izbriši to sporočilce"
 
-#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
+#: ../src/bjb-main-toolbar.c:733 ../src/bjb-selection-toolbar.c:252
 msgid "Note color"
 msgstr "Barva sporočilca"
 
-#: ../src/bjb-main-toolbar.c:758
+#: ../src/bjb-main-toolbar.c:760
 msgid "Share note"
 msgstr "Objavi sporočilce"
 
-#: ../src/bjb-main-toolbar.c:779
+#: ../src/bjb-main-toolbar.c:781
 msgid "More options…"
 msgstr "Več podrobnosti ..."
 

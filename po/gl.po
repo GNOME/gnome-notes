@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-31 21:09+0200\n"
-"PO-Revision-Date: 2013-08-31 21:10+0200\n"
+"POT-Creation-Date: 2013-11-01 16:13+0100\n"
+"PO-Revision-Date: 2013-11-01 16:14+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -93,10 +93,10 @@ msgstr "Non se atoparon notas"
 
 #: ../src/bjb-empty-results-box.c:144
 msgid ""
-"Your notes collection is empty.\n"
+"Your notes notebook is empty.\n"
 "Click the New button to create your first note."
 msgstr ""
-"A súa colección de notas está baleira.\n"
+"O seu caderno de notas está baleiro.\n"
 "Prema no botón Nova para crear a súa primeira nota."
 
 #: ../src/bjb-empty-results-box.c:150
@@ -111,23 +111,23 @@ msgstr "Ups"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instale «Tracker» e logo reinicie o aplicativo."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Localización personalizada"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importar notas"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importar"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Seleccionar a localización para importar"
 
@@ -159,103 +159,108 @@ msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
 #: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "Buscar títulos de notas, contido e coleccións"
+msgid "Search note titles, content and notebooks"
+msgstr "Buscar títulos de notas, contido e cadernos"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:313
 msgid "Exit selection mode"
 msgstr "Saír do modo de selección"
 
-#: ../src/bjb-main-toolbar.c:335
+#: ../src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: ../src/bjb-main-toolbar.c:402
+#: ../src/bjb-main-toolbar.c:411
 msgid "New"
 msgstr "Novo"
 
-#: ../src/bjb-main-toolbar.c:420
+#: ../src/bjb-main-toolbar.c:429
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: ../src/bjb-main-toolbar.c:448
-msgid "View notes and collections in a list"
-msgstr "Ver as notas e coleccións nunha lista"
+#: ../src/bjb-main-toolbar.c:463
+msgid "View notes and notebooks in a list"
+msgstr "Ver as notas e cadernos nunha lista"
 
-#: ../src/bjb-main-toolbar.c:472
-msgid "View notes and collections in a grid"
-msgstr "Ver as notas e coleccións nunha grella"
+#: ../src/bjb-main-toolbar.c:487
+msgid "View notes and notebooks in a grid"
+msgstr "Ver as notas e cadernos nunha grella"
 
-#: ../src/bjb-main-toolbar.c:601
-msgid "Rename Note"
-msgstr "Renomear nota"
+#: ../src/bjb-main-toolbar.c:530
+msgid "Untitled"
+msgstr "Sen título"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:622
+#: ../src/bjb-main-toolbar.c:620
 msgid "Undo"
 msgstr "Desfacer"
 
-#: ../src/bjb-main-toolbar.c:630
+#: ../src/bjb-main-toolbar.c:628
 msgid "Redo"
 msgstr "Refacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:643
 msgid "Bullets"
 msgstr "Viñetas"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:652
+#: ../src/bjb-main-toolbar.c:650
 msgid "Numbered List"
 msgstr "Lista numerada"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:664
-msgid "Rename"
-msgstr "Renomear"
-
-#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "Coleccións"
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:664 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:258
+msgid "Notebooks"
+msgstr "Cadernos"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:684
+#: ../src/bjb-main-toolbar.c:672
 msgid "Delete this Note"
 msgstr "Eliminar esta nota"
 
-#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
+#: ../src/bjb-main-toolbar.c:733 ../src/bjb-selection-toolbar.c:252
 msgid "Note color"
 msgstr "Cor da nota"
 
-#: ../src/bjb-main-toolbar.c:775
+#: ../src/bjb-main-toolbar.c:760
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:781
 msgid "More options…"
 msgstr "Máis opcións…"
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "Escriba o nome para crear unha colección"
+#: ../src/bjb-main-view.c:486
+msgid "Notebook"
+msgstr "Caderno"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "Nova colección"
+#: ../src/bjb-main-view.c:489
+msgid "Note"
+msgstr "Nota"
+
+#: ../src/bjb-organize-dialog.c:399
+msgid "Enter a name to create a notebook"
+msgstr "Escriba un nome para crear un caderno"
+
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "Novo caderno"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Pechar"
 
@@ -273,26 +278,26 @@ msgstr "_OK"
 msgid "Delete"
 msgstr "Eliminar"
 
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:256
-msgid "Add to Collection"
-msgstr "Engadir á colección"
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Usar o tipo de letra do sistema"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Tipo de letra da nota"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Cor predeterminado"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "Edición de nota"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Caderno primario"
 
@@ -347,6 +352,21 @@ msgstr "_Axuda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Saír"
+
+#~ msgid "Rename Note"
+#~ msgstr "Renomear nota"
+
+#~ msgid "Rename"
+#~ msgstr "Renomear"
+
+#~ msgid "Collections"
+#~ msgstr "Coleccións"
+
+#~ msgid "New collection"
+#~ msgstr "Nova colección"
+
+#~ msgid "Add to Collection"
+#~ msgstr "Engadir á colección"
 
 #~ msgid "Done"
 #~ msgstr "Feito"

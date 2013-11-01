@@ -10,7 +10,7 @@ src/bjb-import-dialog.c
 src/bjb-load-more-button.c
 src/bjb-main-toolbar.c
 src/bjb-main-view.c
-src/bjb-note-tag-dialog.c
+src/bjb-organize-dialog.c
 src/bjb-note-view.c
 src/bjb-rename-note.c
 src/bjb-selection-toolbar.c

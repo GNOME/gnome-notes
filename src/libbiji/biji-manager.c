@@ -279,14 +279,6 @@ biji_manager_notify_changed (BijiManager            *manager,
 }
 
 
-/* TODO : use the same for note, put everything there
- * rather calling a func */
-static void
-on_item_deleted_cb (BijiItem *item, BijiManager *manager)
-{
-  biji_manager_remove_item (manager, item);
-}
-
 
 void
 manager_on_note_changed_cb (BijiNoteObj *note, BijiManager *manager)
@@ -300,30 +292,50 @@ manager_on_item_icon_changed_cb (BijiNoteObj *note, BijiManager *manager)
   biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ICON_CHANGED, BIJI_ITEM (note));
 }
 
-static void
-_biji_manager_add_one_item (BijiManager *manager, BijiItem *item)
+
+gboolean
+biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
 {
-  g_return_if_fail (BIJI_IS_ITEM (item));
+  const gchar *uid;
+  gboolean retval;
+
+  g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
+  retval = TRUE;
+  uid = biji_item_get_uuid (item);
+
+  if (uid != NULL &&
+      g_hash_table_lookup (manager->priv->items, uid))
+    retval = FALSE;
 
 
-  /* Add it to the list */
-  g_hash_table_insert (manager->priv->items,
-                       (gpointer) biji_item_get_uuid (item), item);
-
-  /* Notify */
-  if (BIJI_IS_NOTE_OBJ (item))
+  else
   {
-    g_signal_connect (item, "changed", G_CALLBACK (manager_on_note_changed_cb), manager);
-    g_signal_connect (item, "renamed", G_CALLBACK (manager_on_note_changed_cb), manager);
-    g_signal_connect (item, "color-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
+    g_hash_table_insert (manager->priv->items,
+                         (gpointer) biji_item_get_uuid (item), item);
+
+
+    if (BIJI_IS_NOTE_OBJ (item))
+    {
+      g_signal_connect (item, "changed", G_CALLBACK (manager_on_note_changed_cb), manager);
+      g_signal_connect (item, "renamed", G_CALLBACK (manager_on_note_changed_cb), manager);
+      g_signal_connect (item, "color-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
+    }
+
+    else if (BIJI_IS_NOTEBOOK (item))
+    {
+      g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
+    }
   }
 
-  else if (BIJI_IS_NOTEBOOK (item))
-  {
-    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), manager);
-    g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
-  }
+  if (retval && notify)
+    biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ADDED, item);
+
+  return retval;
 }
+
+
 
 
 static void
@@ -340,7 +352,7 @@ on_provider_loaded_cb (BijiProvider *provider,
   {
     if (BIJI_IS_ITEM (l->data))
     {
-      _biji_manager_add_one_item (manager, l->data);
+      biji_manager_add_item (manager, l->data, FALSE);
       i++;
     }
   }
@@ -532,39 +544,6 @@ biji_manager_remove_item (BijiManager *manager, BijiItem *item)
   return retval;
 }
 
-gboolean
-biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
-{
-  g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
-  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
-
-  const gchar *uid;
-  gboolean retval = TRUE;
-
-  uid = biji_item_get_uuid (item);
-
-  if (uid != NULL &&
-      g_hash_table_lookup (manager->priv->items, uid))
-    retval = FALSE;
-
-  else if (BIJI_IS_NOTE_OBJ (item))
-    _biji_manager_add_one_item (manager, item);
-
-  else if (BIJI_IS_NOTEBOOK (item))
-  {
-    g_hash_table_insert (manager->priv->items,
-                         (gpointer) biji_item_get_uuid (item),
-                         item);
-
-    g_signal_connect (item, "deleted",
-                      G_CALLBACK (on_item_deleted_cb), manager);
-  }
-
-  if (retval && notify)
-    biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ADDED, item);
-
-  return retval;
-}
 
 GList *
 biji_manager_get_items (BijiManager *manager)

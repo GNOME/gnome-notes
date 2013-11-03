@@ -274,7 +274,6 @@ biji_notebook_trash (BijiItem *item)
 
   g_signal_emit (G_OBJECT (item), biji_notebooks_signals[NOTEBOOK_DELETED], 0);
   biji_remove_notebook_from_tracker (biji_item_get_manager (item), self->priv->urn);
-  g_object_unref (self);
 
   return TRUE;
 }

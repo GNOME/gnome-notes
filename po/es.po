@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-30 21:27+0000\n"
-"PO-Revision-Date: 2013-10-31 16:05+0100\n"
+"POT-Creation-Date: 2013-11-01 00:11+0000\n"
+"PO-Revision-Date: 2013-11-04 17:54+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -94,11 +94,14 @@ msgid "No Notes Found"
 msgstr "No se han encontrado notas"
 
 #: ../src/bjb-empty-results-box.c:144
+#| msgid ""
+#| "Your notes collection is empty.\n"
+#| "Click the New button to create your first note."
 msgid ""
-"Your notes collection is empty.\n"
+"Your notes notebook is empty.\n"
 "Click the New button to create your first note."
 msgstr ""
-"Su colección de notas está vacía.\n"
+"Su cuaderno de notas está vacía.\n"
 "Pulse el botón Nueva para crear su primera nota."
 
 #: ../src/bjb-empty-results-box.c:150
@@ -161,8 +164,9 @@ msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
 #: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "Buscar en títulos de notas, contenido y colecciones"
+#| msgid "Search note titles, content and collections"
+msgid "Search note titles, content and notebooks"
+msgstr "Buscar en títulos de notas, contenido y cuadernos de notas"
 
 #. Select
 #: ../src/bjb-main-toolbar.c:302
@@ -191,12 +195,14 @@ msgid "Selection mode"
 msgstr "Modo de selección"
 
 #: ../src/bjb-main-toolbar.c:463
-msgid "View notes and collections in a list"
-msgstr "Ver notas y colecciones en una lista"
+#| msgid "View notes and collections in a list"
+msgid "View notes and notebooks in a list"
+msgstr "Ver notas y cuadernos de notas en una lista"
 
 #: ../src/bjb-main-toolbar.c:487
-msgid "View notes and collections in a grid"
-msgstr "Ver notas y colecciones en una rejilla"
+#| msgid "View notes and collections in a grid"
+msgid "View notes and notebooks in a grid"
+msgstr "Ver notas y cuadernos de notas en una rejilla"
 
 #: ../src/bjb-main-toolbar.c:530
 msgid "Untitled"
@@ -222,9 +228,12 @@ msgstr "Topos"
 msgid "Numbered List"
 msgstr "Lista numerada"
 
-#: ../src/bjb-main-toolbar.c:664 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "Colecciones"
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:664 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:258
+#| msgid "Notes"
+msgid "Notebooks"
+msgstr "Cuadernos de notas"
 
 #. Delete Note
 #: ../src/bjb-main-toolbar.c:672
@@ -244,23 +253,25 @@ msgid "More options…"
 msgstr "Más opciones…"
 
 #: ../src/bjb-main-view.c:486
-msgid "Collection"
-msgstr "Colección"
+#| msgid "Note Color"
+msgid "Notebook"
+msgstr "Cuaderno de notas"
 
 #: ../src/bjb-main-view.c:489
 msgid "Note"
 msgstr "Nota"
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "Introduzca un nombre para crear la colección"
+#: ../src/bjb-organize-dialog.c:399
+#| msgid "Enter a name to create a collection"
+msgid "Enter a name to create a notebook"
+msgstr "Introduzca un nombre para crear la cuaderno de notas"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "Colección nueva"
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "Cuaderno de notas nuevo"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Cerrar"
 
@@ -277,11 +288,6 @@ msgstr "_Aceptar"
 #: ../src/bjb-selection-toolbar.c:244
 msgid "Delete"
 msgstr "Eliminar"
-
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:258
-msgid "Add to Collection"
-msgstr "Añadir a la colección"
 
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:391
@@ -357,6 +363,18 @@ msgstr "Ay_uda"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Salir"
+
+#~ msgid "Collections"
+#~ msgstr "Colecciones"
+
+#~ msgid "Collection"
+#~ msgstr "Colección"
+
+#~ msgid "New collection"
+#~ msgstr "Colección nueva"
+
+#~ msgid "Add to Collection"
+#~ msgstr "Añadir a la colección"
 
 #~ msgid "Rename Note"
 #~ msgstr "Renombrar nota"

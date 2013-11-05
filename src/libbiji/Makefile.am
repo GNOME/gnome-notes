@@ -12,7 +12,8 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/libgd \
 	-I$(top_srcdir)/src/ \
 	-I$(top_srcdir)/src/libiji \
-	$(BIJIBEN_CFLAGS)
+	$(BIJIBEN_CFLAGS) \
+	$(ZEITGEIST_CFLAGS)
 
 AM_CFLAGS =\
 	 -Wall\

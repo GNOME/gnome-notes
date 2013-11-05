@@ -4,7 +4,7 @@
 #include <glib-object.h>
 #include <tracker-sparql.h>
 
-#if BUILD_ZEIGEIST
+#if BUILD_ZEITGEIST
 #include <zeitgeist.h>
 #endif /* BUILD_ZEIGEIST */
 
@@ -73,9 +73,9 @@ void             biji_manager_add_goa_object        (BijiManager *manager,
 GList           *biji_manager_get_providers         (BijiManager *manager);
 
 
-#if have_zeitgeist
+#if BUILD_ZEITGEIST
 ZeitgeistLog    *biji_manager_get_zg_log            (BijiManager *manager);
-#endif /* have_zeitgeist */
+#endif /* BUILD_ZEITGEIST */
 
 TrackerSparqlConnection
                 *biji_manager_get_tracker_connection (BijiManager *manager);

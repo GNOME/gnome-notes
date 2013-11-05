@@ -130,6 +130,8 @@ biji_item_get_title         (BijiItem *item)
 const gchar *
 biji_item_get_uuid          (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
+
   return BIJI_ITEM_GET_CLASS (item)->get_uuid (item);
 }
 
@@ -137,6 +139,8 @@ biji_item_get_uuid          (BijiItem *item)
 gpointer
 biji_item_get_manager     (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
+
   return item->priv->manager;
 }
 
@@ -144,18 +148,24 @@ biji_item_get_manager     (BijiItem *item)
 GdkPixbuf *
 biji_item_get_icon          (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
+
   return BIJI_ITEM_GET_CLASS (item)->get_icon (item);
 }
 
 GdkPixbuf *
 biji_item_get_emblem        (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
+
   return BIJI_ITEM_GET_CLASS (item)->get_emblem (item);
 }
 
 GdkPixbuf *
 biji_item_get_pristine        (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
+
   return BIJI_ITEM_GET_CLASS (item)->get_pristine (item);
 }
 
@@ -163,6 +173,8 @@ biji_item_get_pristine        (BijiItem *item)
 const gchar *
 biji_item_get_place           (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
+
   return BIJI_ITEM_GET_CLASS (item)->get_place (item);
 }
 
@@ -170,6 +182,8 @@ biji_item_get_place           (BijiItem *item)
 gint64
 biji_item_get_mtime           (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), 0);
+
   return BIJI_ITEM_GET_CLASS (item)->get_mtime (item);
 }
 
@@ -177,33 +191,46 @@ biji_item_get_mtime           (BijiItem *item)
 gboolean
 biji_item_has_color           (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
   return BIJI_ITEM_GET_CLASS (item)->has_color (item);
 }
 
 gboolean
 biji_item_trash               (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
   return BIJI_ITEM_GET_CLASS (item)->trash (item);
 }
 
 gboolean
 biji_item_is_collectable       (BijiItem *item)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
   return BIJI_ITEM_GET_CLASS (item)->is_collectable (item);
 }
 
 gboolean
 biji_item_has_notebook      (BijiItem *item, gchar *coll)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
   return BIJI_ITEM_GET_CLASS (item)->has_notebook (item, coll);
 }
 
 gboolean         biji_item_add_notebook      (BijiItem *item, BijiItem *coll, gchar *title)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+  g_return_val_if_fail (BIJI_IS_ITEM (coll), FALSE);
+
   return BIJI_ITEM_GET_CLASS (item)->add_notebook (item, coll, title);
 }
 
 gboolean         biji_item_remove_notebook   (BijiItem *item, BijiItem *collection)
 {
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
   return BIJI_ITEM_GET_CLASS (item)->remove_notebook (item, collection);
 }

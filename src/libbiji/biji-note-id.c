@@ -62,6 +62,10 @@ biji_note_id_init (BijiNoteID *self)
 
   self->priv->title = NULL;
   self->priv->content = NULL;
+  self->priv->create_date = 0;
+  self->priv->basename = 0;
+  self->priv->last_metadata_change_date = 0;
+
 }
 
 static void

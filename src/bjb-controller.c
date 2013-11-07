@@ -523,7 +523,6 @@ on_manager_changed (BijiManager           *manager,
 {
   BjbControllerPrivate *priv = self->priv;
   BijiItem    *item = BIJI_ITEM (biji_item);
-  BijiNoteObj *note = NULL;
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
@@ -579,7 +578,7 @@ on_manager_changed (BijiManager           *manager,
       if (bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
-      priv->items_to_show = g_list_remove (priv->items_to_show, note);
+      priv->items_to_show = g_list_remove (priv->items_to_show, item);
       notify_displayed_items_changed (self);
       break;
 

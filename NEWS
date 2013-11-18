@@ -1,3 +1,23 @@
+Overview of changes in 3.11.2
+=============================
+
+* Use "Notebook" labels instead of "Collections"
+  Update documentation (Shobha Tyagi)
+  Fix Zeitgeist build (Dominique Leuenberger)
+
+
+* Bug Fixes
+  http://bugzilla.redhat.com/show_bug.cgi?id=1026979
+
+* Translations
+  Galician (Fran Diéguez)
+  Greek (Dimitris Spingos)
+  Hebrew (Yosef Or Boczko)
+  Slovenian (Matej Urbančič)
+  Spanish (Daniel Mustieles)
+
+
+
 Overview of changes in 3.11.1
 =============================
 

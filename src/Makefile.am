@@ -74,7 +74,7 @@ bijiben_SOURCES = \
 	bjb-note-view.c \
 	bjb-note-view.h \
 	bjb-organize-dialog.c \
-	bjb-orgnaize-dialog.h \
+	bjb-organize-dialog.h \
 	bjb-rename-note.c \
 	bjb-rename-note.h \
 	bjb-search-toolbar.c \

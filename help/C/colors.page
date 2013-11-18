@@ -16,7 +16,12 @@
       <email its:translate="no">kittykat3756@gmail.com</email>
       <years>2013</years>
     </credit>
-
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
     <desc>Edit the note background color.</desc>
@@ -24,20 +29,37 @@
 
   <title>Change note color</title>
 
-  <p>You can change the color of an individual note or a number of notes:</p>
+  <p>To change the color of an individual note:</p> 
 
-  <list>
+  <steps>
     <item>
-      <p>Open a note and press the <gui style="button">Note color</gui>
-      button.</p>
+      <p>Open a note.</p>
     </item>
     <item>
-      <p>In the <em>notes view</em>, go into the <em>selection mode</em>.
-      Select the notes which you want to change then click on the
-      <gui style="button">Note color</gui> button.</p>
+      <p>Press the <gui style="button">Note color</gui> button.</p>
     </item>
-  </list>
+    <item>
+      <p>Select a new color and press <gui style="button">Select</gui> button.</p>
+    </item>
+  </steps>
+  
+  <p>To change the color of multiple notes, in the <em>New and Recent:</em></p>
 
+  <steps>
+    <item>
+      <p>Press the <gui style="button">selection mode</gui> button.</p>
+    </item>
+    <item>
+      <p>Select the notes which you want to change.</p>
+    </item>
+    <item>
+      <p>Press <gui style="button">Note color</gui> button.</p>
+    </item>
+    <item>
+      <p>Select a new color and press <gui style="button">Select</gui> button.</p>
+    </item>
+  </steps>
+ 
   <!-- TODO explain how to use the note color dialog -->
 
 </page>

@@ -17,6 +17,11 @@
       <email its:translate="no">kittykat3756@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -25,19 +30,27 @@
 
   <title>Delete a note</title>
 
-  <p>You can delete a note in two ways:</p>
+  <p>To delete a note:</p>
 
-  <list>
+  <steps>
     <item>
-      <p>Open a note and select
-      <guiseq><gui style="button">More
+      <p>Open a note.</p>
+    </item>
+    <item>
+      <p>Select <guiseq><gui style="button">More
       options…</gui><gui style="menuitem">Delete this Note</gui></guiseq>.</p>
     </item>
+  </steps>
+  <p>To delete multiple notes, in the <em>New and Recent</em>:</p>
+  <steps>
     <item>
-      <p>In the <em>notes view</em>, go into the <em>selection mode</em>.
-      Select the notes that you want to delete, then press the
-      <gui style="button">Trash</gui> button.</p>
+      <p>Press the <gui style="button">selection mode</gui> button.</p>
     </item>
-  </list>
-
+    <item>
+      <p>Select the notes that you want to delete.</p>
+    </item>
+    <item>
+      <p>Press the <gui style="button">Delete</gui> button.</p>
+    </item>
+  </steps>  
 </page>

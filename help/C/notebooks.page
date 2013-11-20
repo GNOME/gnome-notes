@@ -1,0 +1,63 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="notebooks">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+    <revision pkgversion="3.8" date="2013-05-01" status="review"/>
+
+    <credit type="author">
+      <name>Pierre-Yves Luyten</name>
+      <years>2012</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Add a note to a notebook to make sorting and searching notes easier.</desc>
+  </info>
+
+  <title>Notebooks</title>
+
+  <p>To view your <gui>Notebooks</gui>:</p>
+
+  <steps>
+    <item>
+      <p>Open a note.</p>
+    </item>
+    <item>
+      <p>Open <guiseq><gui style="button">More
+      options…</gui><gui style="menuitem">Notebooks</gui></guiseq>.</p>
+    </item>
+  </steps>
+  <p>To add notes to <gui>Notebooks</gui>:</p>
+  <steps>
+    <item>
+      <p>In the <em>New and Recent</em>, press the
+      <gui style="button">selection mode</gui> button.</p>
+    </item>
+    <item>
+      <p>Select the notes which you want to add to a notebook.</p>
+    </item>
+    <item>
+      <p>Press the <gui style="button">Notebooks</gui> button.</p>
+    </item>
+    <item>
+      <p>Type a name for the notebook and press
+      <gui style="button">New Notebook</gui> button.</p>
+    </item>
+  </steps>
+
+  <!-- TODO talk about the Notebooks dialog -->
+
+</page>

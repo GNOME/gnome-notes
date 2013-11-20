@@ -7,7 +7,7 @@ HELP_LINGUAS =
 
 HELP_FILES = \
 	colors.page \
-	collections.page \
+	notebooks.page \	
 	create.page \
 	delete.page \
 	introduction.page \

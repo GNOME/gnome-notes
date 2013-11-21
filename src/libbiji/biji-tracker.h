@@ -55,6 +55,7 @@ void        biji_get_items_with_notebook_async       (BijiManager *manager,
 
 
 void        biji_get_items_matching_async              (BijiManager *manager,
+                                                        BijiItemsGroup group,
                                                         gchar *needle,
                                                         BijiItemsListCallback cb,
                                                         gpointer user_data);

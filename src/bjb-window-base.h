@@ -31,6 +31,7 @@ struct _BjbWindowBase
 };
 
 typedef enum {
+  BJB_WINDOW_BASE_ARCHIVE_VIEW,
   BJB_WINDOW_BASE_MAIN_VIEW,
   BJB_WINDOW_BASE_SPINNER_VIEW,
   BJB_WINDOW_BASE_NOTE_VIEW,
@@ -44,7 +45,7 @@ GType bjb_window_base_get_type (void);
 
 GtkWindow * bjb_window_base_new(void);
 
-// Accessor 
+// Accessor
 
 BjbController * bjb_window_base_get_controller ( BjbWindowBase *window ) ;
 

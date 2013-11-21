@@ -62,6 +62,7 @@ struct BijiOwnCloudProviderPrivate_
   GoaAccount       *account;
 
   GHashTable       *notes;
+  GHashTable       *archives;
   GHashTable       *tracker;
   GQueue           *queue;
 
@@ -316,7 +317,7 @@ handle_next_item (BijiOwnCloudProvider *self)
 
     /* Now simply provide data to controller */
     list = g_hash_table_get_values (self->priv->notes);
-    BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list);
+    BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list, BIJI_LIVING_ITEMS);
     g_list_free (list);
   }
 }
@@ -620,7 +621,7 @@ biji_own_cloud_provider_constructed (GObject *obj)
 
   self = BIJI_OWN_CLOUD_PROVIDER (obj);
   priv = self->priv;
-  
+
 
   if (!GOA_IS_OBJECT (priv->object))
     return;
@@ -658,6 +659,13 @@ biji_own_cloud_provider_constructed (GObject *obj)
 
 }
 
+
+/* ownCloud has no archive at the moment */
+static void
+ocloud_prov_load_archives (BijiProvider *provider)
+{
+  return;
+}
 
 
 static void
@@ -775,7 +783,7 @@ own_cloud_create_full (BijiProvider *provider,
 
   biji_manager_get_default_color (manager, &override_color);
   biji_note_obj_set_rgba (retval, &override_color);
-  
+
   return retval;
 }
 
@@ -805,7 +813,7 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
   provider_class->get_info = own_cloud_get_info;
   provider_class->create_new_note = own_cloud_create_note;
   provider_class->create_note_full = own_cloud_create_full;
-
+  provider_class->load_archives = ocloud_prov_load_archives;
 
   properties[PROP_GOA_OBJECT] =
     g_param_spec_object("goa",

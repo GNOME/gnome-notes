@@ -77,6 +77,12 @@ BijiNotebook * bjb_controller_get_notebook (BjbController *self);
 void bjb_controller_set_notebook (BjbController *self, BijiNotebook *coll);
 
 
+BijiItemsGroup bjb_controller_get_group (BjbController *controller);
+
+
+void bjb_controller_set_group (BjbController   *self,
+                               BijiItemsGroup   group);
+
 void bjb_controller_show_more (BjbController *controller);
 
 G_END_DECLS

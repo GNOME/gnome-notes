@@ -40,7 +40,7 @@ void show_about_dialog(GtkApplication *app)
     "William Jon McCann <jmccann@redhat.com>",
     NULL
   };
-  
+
   gtk_show_about_dialog( g_list_nth_data (windows, 0),
   "program-name", _("Notes"),
   "comments", _("Simple notebook for GNOME"),
@@ -104,6 +104,20 @@ external_activated (GSimpleAction *action,
 
 
 static void
+trash_activated (GSimpleAction *action,
+                 GVariant      *param,
+                 gpointer       user_data)
+{
+  GList *l;
+
+  l = gtk_application_get_windows (GTK_APPLICATION (user_data));
+  bjb_controller_set_group (
+    bjb_window_base_get_controller (BJB_WINDOW_BASE (l->data)),
+    BIJI_ARCHIVED_ITEMS);
+}
+
+
+static void
 preferences_activated (GSimpleAction *action,
                        GVariant      *parameter,
                        gpointer       user_data)
@@ -150,6 +164,7 @@ quit_activated (GSimpleAction *action,
 static GActionEntry app_entries[] = {
            { "new", new_activated, NULL, NULL, NULL },
            { "external", external_activated, NULL, NULL, NULL },
+           { "trash", trash_activated, NULL, NULL, NULL },
            { "preferences", preferences_activated, NULL, NULL, NULL },
            { "about", about_activated, NULL, NULL, NULL },
            { "help", help_activated, NULL, NULL, NULL },
@@ -165,7 +180,7 @@ void bjb_app_menu_set(GApplication *application)
                                    app_entries,
                                    G_N_ELEMENTS (app_entries),
                                    application);
-    
+
   builder = gtk_builder_new ();
   gtk_builder_add_from_resource (builder, "/org/gnome/bijiben/app-menu.ui", NULL);
 

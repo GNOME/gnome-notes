@@ -71,12 +71,23 @@ struct BijiProviderClass_
  * ie. persistent data source */
 
   const BijiProviderInfo*    (*get_info)              (BijiProvider *provider);
-  
+
 
   /* When a provider is loaded, notify the manager to transmit the items */
 
   void                       (*notify_loaded)         (BijiProvider *provider,
-                                                       GList *loaded_items);
+                                                       GList *loaded_items,
+                                                       BijiItemsGroup group);
+
+
+  /* When created, the provider is supposed to load the items.
+   * Loading archives might or might not happen at creation time.
+   * This function ensures the provider loads its archived items.
+   * The provider will notify when done */
+
+  void                       (*load_archives)        (BijiProvider *provider);
+
+
 
 
   /* Create a single note and let the provider handle things.
@@ -117,9 +128,32 @@ struct BijiProviderClass_
 
 
 
+/* BijiProviderHelper is for convenience for callbacks
+   atm it is used by local provider
+ */
+
+
+typedef struct
+{
+  BijiProvider *provider;
+  BijiItemsGroup group;
+} BijiProviderHelper;
 
 
 GType                      biji_provider_get_type             (void);
+
+
+
+BijiProviderHelper*        biji_provider_helper_new           (BijiProvider *provider,
+                                                               BijiItemsGroup group);
+
+
+void                       biji_provider_helper_free          (BijiProviderHelper *helper);
+
+
+
+void                       biji_provider_load_archives        (BijiProvider *provider);
+
 
 
 BijiManager              *biji_provider_get_manager             (BijiProvider *provider);

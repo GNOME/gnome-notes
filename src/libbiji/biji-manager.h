@@ -27,6 +27,14 @@ typedef enum
   BIJI_MANAGER_NOTE_AMENDED,       // Single note amended (title, content)
 } BijiManagerChangeFlag;
 
+
+typedef enum
+{
+  BIJI_LIVING_ITEMS,
+  BIJI_ARCHIVED_ITEMS
+} BijiItemsGroup;
+
+
 #define BIJI_TYPE_MANAGER             (biji_manager_get_type ())
 #define BIJI_MANAGER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_MANAGER, BijiManager))
 #define BIJI_MANAGER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_MANAGER, BijiManagerClass))
@@ -89,14 +97,16 @@ gchar           *biji_manager_get_unique_title      (BijiManager *manager,
                                                        const gchar *title);
 
 
-gboolean         biji_manager_add_item              (BijiManager *manager,
+gboolean         biji_manager_add_item                (BijiManager *manager,
                                                        BijiItem *item,
+                                                       BijiItemsGroup group,
                                                        gboolean notify);
 
 
 void             biji_manager_notify_changed        (BijiManager           *manager,
-                                                       BijiManagerChangeFlag  flag,
-                                                       BijiItem               *item);
+                                                     BijiItemsGroup         group,
+                                                     BijiManagerChangeFlag  flag,
+                                                     BijiItem              *item);
 
 
 gboolean         biji_manager_remove_item           (BijiManager *manager,
@@ -109,7 +119,14 @@ BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
 
 /* Get all items, either notes or notebooks
  * Free the GList, not its content */
-GList           *biji_manager_get_items             (BijiManager *manager);
+
+
+GList           *biji_manager_get_items             (BijiManager         *manager,
+                                                     BijiItemsGroup       group);
+
+
+
+void             biji_manager_load_archives          (BijiManager        *manager);
 
 
 

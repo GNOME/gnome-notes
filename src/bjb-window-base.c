@@ -126,13 +126,13 @@ bjb_window_base_constructed (GObject *obj)
 
   bjb = gdk_pixbuf_new_from_file (full_path, &error);
   g_free (full_path);
-    
+
   if ( error )
   {
     g_message("%s", error->message);
     g_error_free(error);
   }
-    
+
   icons = g_list_prepend(icons,bjb);
   gtk_window_set_default_icon_list(icons);
   g_list_foreach (icons, (GFunc) g_object_unref, NULL);
@@ -256,6 +256,9 @@ bjb_window_base_get_note (BjbWindowBase *self)
   return self->priv->note;
 }
 
+
+
+
 static void
 destroy_note_if_needed (BjbWindowBase *bwb)
 {
@@ -279,7 +282,10 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 
     /* Precise the window does not display any specific note
      * Refresh the model
-     * Ensure the main view receives the proper signals */
+     * Ensure the main view receives the proper signals
+     *
+     * main view & archive view are the same widget
+     */
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
       bjb_search_toolbar_connect (priv->search_bar);
@@ -287,6 +293,11 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       gtk_stack_set_visible_child_name (priv->stack, "main-view");
       break;
 
+   case BJB_WINDOW_BASE_ARCHIVE_VIEW:
+      bjb_search_toolbar_connect (priv->search_bar);
+      bjb_main_view_connect_signals (priv->view);
+      gtk_stack_set_visible_child_name (priv->stack, "main-view");
+      break;
 
     case BJB_WINDOW_BASE_SPINNER_VIEW:
       gtk_stack_set_visible_child_name (priv->stack, "spinner");

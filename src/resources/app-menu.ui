@@ -10,6 +10,10 @@
         <attribute name="label" translatable="yes">_Import Notes</attribute>
         <attribute name="action">app.external</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">_View Trash</attribute>
+        <attribute name="action">app.trash</attribute>
+      </item>
     </section>
     <section>
       <item>

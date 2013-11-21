@@ -364,7 +364,8 @@ biji_get_items_with_notebook_async (BijiManager          *manager,
 
 
 void
-biji_get_items_matching_async (BijiManager          *manager,
+biji_get_items_matching_async (BijiManager           *manager,
+                               BijiItemsGroup         group,
                                gchar                 *needle,
                                BijiItemsListCallback  list_cb,
                                gpointer               user_data)
@@ -459,7 +460,7 @@ on_new_notebook_query_executed (GObject *source_object, GAsyncResult *res, gpoin
                        urn,
                        finisher->str,
                        g_get_real_time () / G_USEC_PER_SEC);
-    biji_manager_add_item (finisher->manager, BIJI_ITEM (notebook), TRUE);
+    biji_manager_add_item (finisher->manager, BIJI_ITEM (notebook), TRUE, BIJI_LIVING_ITEMS);
   }
 
   /* Run the callback from the caller */

@@ -33,6 +33,9 @@ typedef enum
   BJB_TOOLBAR_STD_LIST,
   BJB_TOOLBAR_STD_ICON,
   BJB_TOOLBAR_SELECT,
+  BJB_TOOLBAR_TRASH_LIST,
+  BJB_TOOLBAR_TRASH_ICON,
+  BJB_TOOLBAR_TRASH_SELECT,
   BJB_TOOLBAR_NOTE_VIEW,
   BJB_TOOLBAR_NUM
 } BjbToolbarType;
@@ -372,7 +375,18 @@ connect_main_view_handlers (BjbMainToolbar *self)
 static void
 on_back_button_clicked (BjbMainToolbar *self)
 {
-  bjb_controller_set_notebook (self->priv->controller, NULL);
+  BijiItemsGroup group;
+
+  group = bjb_controller_get_group (self->priv->controller);
+
+  /* Back to main view from trash bin */
+  if (group == BIJI_ARCHIVED_ITEMS)
+    bjb_controller_set_group (self->priv->controller, BIJI_LIVING_ITEMS);
+
+
+  /* Back to main view */
+  else
+    bjb_controller_set_notebook (self->priv->controller, NULL);
 }
 
 static void
@@ -444,13 +458,66 @@ populate_bar_for_standard(BjbMainToolbar *self)
   connect_main_view_handlers (self);
 }
 
+
+
 static void
-populate_bar_for_icon_view(BjbMainToolbar *self)
+populate_bar_for_trash (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
+  BjbMainToolbarPrivate *priv;
+  gboolean rtl;
+  GtkWidget *select_image;
+  GtkSizeGroup *size;
+
+  priv = self->priv;
+
+  rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
+  gtk_header_bar_set_title (GTK_HEADER_BAR (self), _("Trash"));
+  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
+
+
+  priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+                                              GTK_ICON_SIZE_MENU);
+  gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
+  gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
+
+  g_signal_connect_swapped (priv->back, "clicked",
+                            G_CALLBACK (on_back_button_clicked), self);
+
+  /* Go to selection mode */
+  priv->select = gtk_button_new ();
+  select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
+  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+                               "image-button");
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
+  gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
+
+  g_signal_connect (priv->select,"clicked",
+                    G_CALLBACK(on_selection_mode_clicked),self);
+
+  /* Align buttons */
+  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
+  g_object_unref (size);
+
+  /* Show close button */
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
+
+  /* Watch for main view changing */
+  connect_main_view_handlers (self);
+}
+
+
+
+static void
+add_list_button (BjbMainToolbar *self)
+{
+  BjbMainToolbarPrivate *priv;
   GtkWidget *list_image;
 
-  /* Switch to list */
+  priv = self->priv;
   priv->grid = NULL;
   priv->list = gtk_button_new ();
   list_image = gtk_image_new_from_icon_name ("view-list-symbolic", GTK_ICON_SIZE_MENU);
@@ -461,20 +528,20 @@ populate_bar_for_icon_view(BjbMainToolbar *self)
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->list);
   gtk_widget_set_tooltip_text (priv->list,
                                _("View notes and notebooks in a list"));
-
   g_signal_connect (priv->list, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
-
-  populate_bar_for_standard(self);
 }
 
+
+
 static void
-populate_bar_for_list_view(BjbMainToolbar *self)
+add_grid_button (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
+  BjbMainToolbarPrivate *priv;
   GtkWidget *grid_image;
 
-  /* Switch to icon view */
+
+  priv = self->priv;
   priv->list = NULL;
   priv->grid = gtk_button_new ();
   grid_image = gtk_image_new_from_icon_name ("view-grid-symbolic", GTK_ICON_SIZE_MENU);
@@ -488,8 +555,37 @@ populate_bar_for_list_view(BjbMainToolbar *self)
 
   g_signal_connect (priv->grid, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
+}
 
+
+static void
+populate_bar_for_icon_view(BjbMainToolbar *self)
+{
+  add_list_button (self);
   populate_bar_for_standard(self);
+}
+
+static void
+populate_bar_for_list_view(BjbMainToolbar *self)
+{
+  add_grid_button (self);
+  populate_bar_for_standard(self);
+}
+
+
+static void
+populate_bar_for_trash_icon_view (BjbMainToolbar *self)
+{
+  add_list_button (self);
+  populate_bar_for_trash (self);
+}
+
+
+static void
+populate_bar_for_trash_list_view (BjbMainToolbar *self)
+{
+  add_grid_button (self);
+  populate_bar_for_trash (self);
 }
 
 
@@ -594,7 +690,7 @@ action_view_tags_callback (GtkWidget *item, gpointer user_data)
 }
 
 static void
-delete_item_callback (GtkWidget *item, gpointer user_data)
+trash_item_callback (GtkWidget *item, gpointer user_data)
 {
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR (user_data);
 
@@ -669,10 +765,10 @@ bjb_note_menu_new (BjbMainToolbar *self)
   }
 
   /* Delete Note */
-  item = gtk_menu_item_new_with_label(_("Delete this Note"));
+  item = gtk_menu_item_new_with_label(_("Move to Trash"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
   g_signal_connect(item,"activate",
-                   G_CALLBACK(delete_item_callback),self);
+                   G_CALLBACK(trash_item_callback),self);
 
   gtk_widget_show_all (result);
   return result;
@@ -705,7 +801,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                                               GTK_ICON_SIZE_MENU);
   gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_start (bar, priv->back);
- 
+
   g_signal_connect_swapped (priv->back, "clicked",
                             G_CALLBACK (just_switch_to_main_view), self);
   gtk_widget_add_accelerator (priv->back, "activate", self->priv->accel,
@@ -797,6 +893,7 @@ populate_bar_switch (BjbMainToolbar *self)
   switch (priv->type)
   {
     case BJB_TOOLBAR_SELECT:
+    case BJB_TOOLBAR_TRASH_SELECT:
       populate_bar_for_selection (self);
       break;
 
@@ -816,6 +913,17 @@ populate_bar_switch (BjbMainToolbar *self)
                                 bjb_controller_shows_item (priv->controller),
                                 TRUE,
                                 self->priv);
+      break;
+
+
+    case BJB_TOOLBAR_TRASH_ICON:
+      //add_search_button (self); TODO (handle callback)
+      populate_bar_for_trash_icon_view (self);
+      break;
+
+    case BJB_TOOLBAR_TRASH_LIST:
+      //add_search_button (self); TODO (handle callback)
+      populate_bar_for_trash_list_view (self);
       break;
 
     case BJB_TOOLBAR_NOTE_VIEW:
@@ -861,6 +969,23 @@ populate_main_toolbar(BjbMainToolbar *self)
 
       break;
 
+
+    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
+
+      if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
+        to_be = BJB_TOOLBAR_TRASH_SELECT;
+
+      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
+        to_be = BJB_TOOLBAR_TRASH_ICON;
+
+      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
+        to_be = BJB_TOOLBAR_TRASH_LIST;
+
+
+      break;
+
+
+
     /* Not really a toolbar,
      * still used for Spinner */
     default:
@@ -876,7 +1001,7 @@ populate_main_toolbar(BjbMainToolbar *self)
 
     priv->type = to_be;
     bjb_main_toolbar_clear (self);
-    
+
 
     if (priv->search_handler != 0)
     {

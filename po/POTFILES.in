@@ -16,6 +16,7 @@ src/bjb-rename-note.c
 src/bjb-selection-toolbar.c
 src/bjb-settings.c
 src/bjb-settings-dialog.c
+src/bjb-trash-bar.c
 src/bjb-window-base.c
 src/libbiji/biji-date-time.c
 src/libbiji/provider/biji-local-provider.c

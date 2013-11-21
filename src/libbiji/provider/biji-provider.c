@@ -27,6 +27,8 @@
  * 
  */
 
+#include "../biji-marshalers.h"
+
 #include "biji-provider.h"
 
 
@@ -57,6 +59,31 @@ struct BijiProviderPrivate_
 G_DEFINE_TYPE (BijiProvider, biji_provider, G_TYPE_OBJECT)
 
 
+
+
+BijiProviderHelper *
+biji_provider_helper_new           (BijiProvider *provider,
+                                    BijiItemsGroup group)
+{
+  BijiProviderHelper *retval;
+
+  retval = g_slice_new (BijiProviderHelper);
+  retval->provider = provider;
+  retval->group = group;
+
+  return retval;
+}
+
+
+void
+biji_provider_helper_free          (BijiProviderHelper *helper)
+{
+  g_slice_free (BijiProviderHelper, helper);
+}
+
+
+
+
 BijiManager *
 biji_provider_get_manager                (BijiProvider *provider)
 {
@@ -68,6 +95,14 @@ const BijiProviderInfo *
 biji_provider_get_info                (BijiProvider *provider)
 {
   return BIJI_PROVIDER_GET_CLASS (provider)->get_info (provider);
+}
+
+
+
+void
+biji_provider_load_archives        (BijiProvider *provider)
+{
+  return BIJI_PROVIDER_GET_CLASS (provider)->load_archives (provider);
 }
 
 
@@ -94,12 +129,14 @@ biji_provider_init (BijiProvider *self)
 
 static void
 biji_provider_notify_loaded (BijiProvider *self,
-                             GList *items)
+                             GList *items,
+                             BijiItemsGroup group)
 {
   g_signal_emit (self,
                  biji_provider_signals[PROVIDER_LOADED],
                  0,
-                 items);
+                 items,
+                 group);
 }
 
 
@@ -162,10 +199,11 @@ biji_provider_class_init (BijiProviderClass *klass)
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,
-                  g_cclosure_marshal_VOID__POINTER,
+                  _biji_marshal_VOID__POINTER_ENUM,
                   G_TYPE_NONE,
-                  1,
-                  G_TYPE_POINTER);
+                  2,
+                  G_TYPE_POINTER,
+                  G_TYPE_INT);
 
 
   properties[PROP_BOOK] =

@@ -91,7 +91,6 @@ instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
   BijiInfoSet *set;
   gchar *html = NULL;
   GList *notebooks = NULL;
-  
 
   biji_tomboy_reader_read   (path,
                              &error,
@@ -181,7 +180,8 @@ go_through_notes_cb (GObject *object, GAsyncResult *res, gpointer data)
 
   g_list_free_full (notes_info, g_object_unref);
   BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self),
-                                                 g_hash_table_get_values (self->priv->items));
+                                                 g_hash_table_get_values (self->priv->items),
+                                                 BIJI_LIVING_ITEMS);
 
 
 

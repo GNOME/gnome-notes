@@ -34,6 +34,7 @@ struct _BijiManagerPrivate
    * Keep a direct pointer to local provider for convenience. */
 
   GHashTable *items;
+  GHashTable *archives;
   GHashTable *providers;
   BijiProvider *local_provider;
 
@@ -97,6 +98,10 @@ biji_manager_init (BijiManager *self)
                                        NULL,
                                        g_object_unref);
 
+  priv->archives = g_hash_table_new_full (g_str_hash,
+                                          g_str_equal,
+                                          NULL,
+                                          g_object_unref);
   /*
    * Providers are the different notes storage
    * the hash table use an id
@@ -153,6 +158,8 @@ biji_manager_finalize (GObject *object)
 
   g_clear_object (&manager->priv->location);
   g_hash_table_destroy (manager->priv->items);
+  g_hash_table_destroy (manager->priv->archives);
+
 
   G_OBJECT_CLASS (biji_manager_parent_class)->finalize (object);
 }
@@ -267,13 +274,15 @@ biji_manager_get_unique_title (BijiManager *manager, const gchar *title)
 
 void
 biji_manager_notify_changed (BijiManager            *manager,
-                               BijiManagerChangeFlag   flag,
-                               BijiItem                *item)
+                             BijiItemsGroup          group,
+                             BijiManagerChangeFlag   flag,
+                             BijiItem               *item)
 {
   g_debug ("manager: notify changed, %i", flag);
   g_signal_emit (manager,
                  biji_manager_signals[BOOK_AMENDED],
                  0,
+                 group,
                  flag,
                  item);
 }
@@ -283,18 +292,27 @@ biji_manager_notify_changed (BijiManager            *manager,
 void
 manager_on_note_changed_cb (BijiNoteObj *note, BijiManager *manager)
 {
-  biji_manager_notify_changed (manager, BIJI_MANAGER_NOTE_AMENDED, BIJI_ITEM (note));
+  biji_manager_notify_changed (manager,
+                               BIJI_LIVING_ITEMS,
+                               BIJI_MANAGER_NOTE_AMENDED,
+                               BIJI_ITEM (note));
 }
 
 static void
 manager_on_item_icon_changed_cb (BijiNoteObj *note, BijiManager *manager)
 {
-  biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ICON_CHANGED, BIJI_ITEM (note));
+  biji_manager_notify_changed (manager,
+                               BIJI_LIVING_ITEMS,
+                               BIJI_MANAGER_ITEM_ICON_CHANGED,
+                               BIJI_ITEM (note));
 }
 
 
 gboolean
-biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
+biji_manager_add_item (BijiManager *manager,
+                       BijiItem *item,
+                       BijiItemsGroup group,
+                       gboolean notify)
 {
   const gchar *uid;
   gboolean retval;
@@ -305,17 +323,34 @@ biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
   retval = TRUE;
   uid = biji_item_get_uuid (item);
 
-  if (uid != NULL &&
-      g_hash_table_lookup (manager->priv->items, uid))
+  /* Check if item is not already there */
+  if (uid != NULL)
+  {
+    if (group == BIJI_LIVING_ITEMS &&
+        g_hash_table_lookup (manager->priv->items, uid))
+      retval = FALSE;
+
+    if (group == BIJI_ARCHIVED_ITEMS &&
+        g_hash_table_lookup (manager->priv->archives, uid))
+      retval = FALSE;
+  }
+
+
+  /* Fail because UUID is null */
+  else
     retval = FALSE;
 
-
-  else
+  if (retval == TRUE)
   {
-    g_hash_table_insert (manager->priv->items,
-                         (gpointer) biji_item_get_uuid (item), item);
+    /* Add the item*/
+    if (group == BIJI_LIVING_ITEMS)
+      g_hash_table_insert (manager->priv->items,
+                           (gpointer) biji_item_get_uuid (item), item);
+    else if (group == BIJI_ARCHIVED_ITEMS)
+      g_hash_table_insert (manager->priv->archives,
+                           (gpointer) biji_item_get_uuid (item), item);
 
-
+    /* Connect */
     if (BIJI_IS_NOTE_OBJ (item))
     {
       g_signal_connect (item, "changed", G_CALLBACK (manager_on_note_changed_cb), manager);
@@ -330,7 +365,7 @@ biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
   }
 
   if (retval && notify)
-    biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_ADDED, item);
+    biji_manager_notify_changed (manager, group, BIJI_MANAGER_ITEM_ADDED, item);
 
   return retval;
 }
@@ -341,31 +376,40 @@ biji_manager_add_item (BijiManager *manager, BijiItem *item, gboolean notify)
 static void
 on_provider_loaded_cb (BijiProvider *provider,
                        GList *items,
+                       BijiItemsGroup  group,
                        BijiManager *manager)
 {
-  BijiItem *item = NULL;
   GList *l;
-  gint i = 0;
 
 
-  for (l=items; l!=NULL; l=l->next)
+  switch (group)
   {
-    if (BIJI_IS_ITEM (l->data))
-    {
-      biji_manager_add_item (manager, l->data, FALSE);
-      i++;
-    }
+    case BIJI_LIVING_ITEMS:
+      for (l=items; l!=NULL; l=l->next)
+      {
+        if (BIJI_IS_ITEM (l->data))
+          biji_manager_add_item (manager, l->data, BIJI_LIVING_ITEMS, FALSE);
+      }
+      break;
+
+    case BIJI_ARCHIVED_ITEMS:
+      for (l=items; l!= NULL; l=l->next)
+      {
+        if (BIJI_IS_ITEM (l->data))
+          biji_manager_add_item (manager, l->data, BIJI_ARCHIVED_ITEMS, FALSE);
+      }
+      break;
+
+   default:
+     break;
   }
-
-
-  g_debug ("on provider loaded: %i", i);
 
 
   /* More cautious to ask to fully rebuild the model
    * because this might be the first provider.
    * See #708458
    * There are more performant fixes but not worth it */
-  biji_manager_notify_changed (manager, BIJI_MANAGER_MASS_CHANGE, item);
+  biji_manager_notify_changed (manager, group, BIJI_MANAGER_MASS_CHANGE, NULL);
 }
 
 
@@ -476,8 +520,8 @@ biji_manager_class_init (BijiManagerClass *klass)
   biji_manager_signals[BOOK_AMENDED] =
     g_signal_new ("changed", G_OBJECT_CLASS_TYPE (klass), G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,                         /* offset & accumulator */
-                  _biji_marshal_VOID__ENUM_POINTER,
-                  G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_POINTER);
+                  _biji_marshal_VOID__ENUM_ENUM_POINTER,
+                  G_TYPE_NONE, 3, G_TYPE_INT, G_TYPE_INT, G_TYPE_POINTER);
 
   properties[PROP_LOCATION] =
     g_param_spec_object ("location",
@@ -517,7 +561,7 @@ biji_manager_get_default_color (BijiManager *manager, GdkRGBA *color)
 }
 
 
-gboolean 
+gboolean
 biji_manager_remove_item (BijiManager *manager, BijiItem *item)
 {
   g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
@@ -534,7 +578,7 @@ biji_manager_remove_item (BijiManager *manager, BijiItem *item)
   {
     /* Signal before doing anything here. So the note is still
      * fully available for signal receiver. */
-    biji_manager_notify_changed (manager, BIJI_MANAGER_ITEM_TRASHED, to_delete);
+    biji_manager_notify_changed (manager, BIJI_LIVING_ITEMS, BIJI_MANAGER_ITEM_TRASHED, to_delete);
     biji_item_trash (item);
     g_hash_table_remove (manager->priv->items, path);
 
@@ -545,11 +589,45 @@ biji_manager_remove_item (BijiManager *manager, BijiItem *item)
 }
 
 
+
 GList *
-biji_manager_get_items (BijiManager *manager)
+biji_manager_get_items             (BijiManager         *manager,
+                                    BijiItemsGroup       group)
 {
-  return g_hash_table_get_values (manager->priv->items);
+  GList *list;
+
+
+  switch (group)
+  {
+    case BIJI_LIVING_ITEMS:
+      list = g_hash_table_get_values (manager->priv->items);
+      break;
+
+    case BIJI_ARCHIVED_ITEMS:
+      list = g_hash_table_get_values (manager->priv->archives);
+      break;
+
+    default:
+      list = NULL;
+      g_warning ("invalid BijiItemsGroup:%i", group);
+  }
+
+  return list;
 }
+
+
+void
+biji_manager_load_archives          (BijiManager        *manager)
+{
+  GList *l, *ll;
+
+  l = g_hash_table_get_values (manager->priv->providers);
+  for (ll=l; ll!= NULL; ll=ll->next)
+    biji_provider_load_archives (BIJI_PROVIDER (ll->data));
+  g_list_free (l);
+}
+
+
 
 BijiItem *
 biji_manager_get_item_at_path (BijiManager *manager, const gchar *path)
@@ -657,7 +735,7 @@ biji_manager_local_note_new           (BijiManager *manager, gchar *str)
   }
 
   biji_note_obj_save_note (ret);
-  biji_manager_add_item (manager, BIJI_ITEM (ret), TRUE);
+  biji_manager_add_item (manager, BIJI_ITEM (ret), TRUE, BIJI_LIVING_ITEMS);
 
   return ret;
 }
@@ -677,7 +755,7 @@ biji_manager_import_uri (BijiManager *manager,
   ret = biji_import_provider_new (manager, target_provider_id, uri);
   g_signal_connect (ret, "loaded", 
                     G_CALLBACK (on_provider_loaded_cb), manager);
-  
+
 }
 
 /* 
@@ -707,11 +785,11 @@ biji_manager_note_new            (BijiManager *manager,
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
   // do not save. up to the provider implementation to save it or not
   // at creation.
-  biji_manager_add_item (manager, BIJI_ITEM (retval), TRUE);
+  biji_manager_add_item (manager, BIJI_ITEM (retval), TRUE, BIJI_LIVING_ITEMS);
 
   return retval;
 }
-                                    
+
 
 
 

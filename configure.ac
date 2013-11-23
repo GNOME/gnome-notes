@@ -65,7 +65,7 @@ PKG_CHECK_MODULES(BIJIBEN,
                     goa-1.0
                     gtk+-3.0 >= $GTK_REQUIRED_VERSION
                     libxml-2.0
-                    tracker-sparql-0.16
+                    tracker-sparql-0.18
                     uuid
                     webkitgtk-3.0])
 

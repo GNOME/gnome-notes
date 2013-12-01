@@ -168,7 +168,7 @@ biji_note_obj_finalize (GObject *object)
 // Signals to be used by biji note obj
 enum {
   NOTE_RENAMED,
-  NOTE_DELETED,
+  NOTE_TRASHED,
   NOTE_CHANGED,
   NOTE_COLOR_CHANGED,
   BIJI_OBJ_SIGNALS
@@ -259,7 +259,7 @@ biji_note_obj_trash (BijiItem *item)
   icon = g_file_new_for_path (icon_path);
   g_file_delete (icon, NULL, NULL);
 
-  g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_DELETED], 0);
+  g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_TRASHED], 0);
 
   if (icon_path != NULL)
     g_free (icon_path);
@@ -989,8 +989,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
                   G_TYPE_NONE,
                   0);
 
-  biji_obj_signals[NOTE_DELETED] =
-    g_signal_new ("deleted" ,
+  biji_obj_signals[NOTE_TRASHED] =
+    g_signal_new ("trashed" ,
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
                   0,

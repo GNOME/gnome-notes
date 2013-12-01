@@ -400,7 +400,7 @@ biji_notebook_update_collected (GList *result,
     g_signal_connect_swapped (l->data, "color-changed",
                               G_CALLBACK (on_collected_item_change), self);
 
-    g_signal_connect_swapped (l->data, "deleted",
+    g_signal_connect_swapped (l->data, "trashed",
                               G_CALLBACK (on_collected_item_change), self);
   }
 

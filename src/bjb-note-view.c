@@ -62,7 +62,7 @@ struct _BjbNoteViewPrivate {
 
   /* Signals */
   gulong    destroy ;
-  gulong    deleted ;
+  gulong    trashed ;
   gulong    color;
 };
 
@@ -72,14 +72,14 @@ bjb_note_view_disconnect (BjbNoteViewPrivate *priv)
   if (priv->destroy != 0)
     g_signal_handler_disconnect (priv->window, priv->destroy);
 
-  if (priv->deleted != 0)
-    g_signal_handler_disconnect (priv->note, priv->deleted);
+  if (priv->trashed != 0)
+    g_signal_handler_disconnect (priv->note, priv->trashed);
 
   if (priv->color != 0)
     g_signal_handler_disconnect (priv->note, priv->color);
 
   priv->destroy = 0,
-  priv->deleted = 0;
+  priv->trashed = 0;
   priv->color =0;
 }
 
@@ -181,7 +181,7 @@ just_switch_to_main_view(BjbNoteView *self)
 }
 
 static gboolean
-on_note_deleted(BijiNoteObj *note, BjbNoteView *view)
+on_note_trashed (BijiNoteObj *note, BjbNoteView *view)
 {
   just_switch_to_main_view (view);
   return TRUE;
@@ -268,8 +268,8 @@ bjb_note_view_constructed (GObject *obj)
   priv->view = biji_note_obj_open (priv->note);
 
 
-  priv->deleted = g_signal_connect(priv->note,"deleted",
-                                   G_CALLBACK(on_note_deleted),self);
+  priv->trashed = g_signal_connect(priv->note,"deleted",
+                                   G_CALLBACK(on_note_trashed),self);
 
   priv->destroy = g_signal_connect(priv->window,"destroy",
                                    G_CALLBACK(on_window_closed),

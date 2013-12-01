@@ -1,16 +1,16 @@
 /* biji-note-obj.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -51,7 +51,7 @@ struct _BijiNoteObjPrivate
   GdkPixbuf             *emblem;
   GdkPixbuf             *pristine;
 
-  /* Tags 
+  /* Tags
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
   GHashTable            *labels;
   gboolean              is_template;
@@ -106,7 +106,7 @@ static void
 biji_note_obj_init (BijiNoteObj *self)
 {
   BijiNoteObjPrivate *priv ;
-    
+
   priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_OBJ, BijiNoteObjPrivate);
 
   self->priv = priv ;
@@ -137,7 +137,7 @@ biji_note_obj_init (BijiNoteObj *self)
 
 static void
 biji_note_obj_finalize (GObject *object)
-{    
+{
   BijiNoteObj        *self = BIJI_NOTE_OBJ(object);
   BijiNoteObjPrivate *priv = self->priv;
 
@@ -223,7 +223,7 @@ biji_note_obj_get_property (GObject    *object,
 }
 
 
-gboolean 
+gboolean
 biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
 {
   return biji_note_id_equal (a->priv->id, b->priv->id);
@@ -329,7 +329,7 @@ biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
 out:
   if (old_title != NULL)
     g_free (old_title);
-  
+
   if (title != NULL)
     g_free (title);
 
@@ -960,8 +960,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
     g_signal_new ("renamed",
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
-                  0, 
-                  NULL, 
+                  0,
+                  NULL,
                   NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
@@ -971,8 +971,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
     g_signal_new ("changed",
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
-                  0, 
-                  NULL, 
+                  0,
+                  NULL,
                   NULL,
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,

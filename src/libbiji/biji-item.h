@@ -70,6 +70,8 @@ struct BijiItemClass_
   gboolean      (*has_color)            (BijiItem *item);
 
   gboolean      (*trash)                (BijiItem *item);
+  gboolean      (*restore)              (BijiItem *item);
+  gboolean      (*delete)               (BijiItem *item);
 
   gboolean      (*is_collectable)       (BijiItem *item);
   gboolean      (*has_notebook)       (BijiItem *item, gchar *coll);
@@ -115,6 +117,12 @@ gint64           biji_item_get_mtime           (BijiItem *item);
 
 
 gboolean         biji_item_trash               (BijiItem *item);
+
+
+gboolean         biji_item_restore             (BijiItem *item);
+
+
+gboolean         biji_item_delete              (BijiItem *item);
 
 
 gboolean         biji_item_is_collectable      (BijiItem *item);

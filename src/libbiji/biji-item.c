@@ -204,6 +204,27 @@ biji_item_trash               (BijiItem *item)
   return BIJI_ITEM_GET_CLASS (item)->trash (item);
 }
 
+
+gboolean
+biji_item_restore             (BijiItem *item)
+{
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
+  return BIJI_ITEM_GET_CLASS (item)->restore (item);
+}
+
+
+
+gboolean
+biji_item_delete               (BijiItem *item)
+{
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+
+  return BIJI_ITEM_GET_CLASS (item)->delete (item);
+}
+
+
+
 gboolean
 biji_item_is_collectable       (BijiItem *item)
 {

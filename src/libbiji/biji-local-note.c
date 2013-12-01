@@ -196,6 +196,34 @@ local_note_archive (BijiNoteObj *note)
 }
 
 
+static gboolean
+local_note_restore (BijiItem *item)
+{
+  BijiLocalNote *self;
+
+  g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
+  self = BIJI_LOCAL_NOTE (item);
+
+  g_warning ("local note restore");
+
+  return FALSE;
+}
+
+
+static gboolean
+local_note_delete (BijiItem *item)
+{
+  BijiLocalNote *self;
+
+  g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
+  self = BIJI_LOCAL_NOTE (item);
+
+  g_warning ("local note delete");
+
+  return FALSE;
+}
+
+
 static gchar*
 local_note_get_basename (BijiNoteObj *note)
 {
@@ -219,6 +247,8 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
   item_class->is_collectable = item_yes;
   item_class->has_color = item_yes;
   item_class->get_place = local_note_get_place;
+  item_class->restore = local_note_restore;
+  item_class->delete = local_note_delete;
 
   note_class->get_basename = local_note_get_basename;
   note_class->get_html = local_note_get_html;

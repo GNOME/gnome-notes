@@ -32,6 +32,7 @@ enum
 {
   PROP_0,
   PROP_BJB_SELECTION,
+  PROP_BJB_MAIN_VIEW,
   PROP_BJB_CONTROLLER,
   NUM_PROPERTIES
 };
@@ -45,11 +46,15 @@ struct BjbTrashBarPrivate_
 {
   GtkWidget     *bar;
   BjbController *controller;
+  BjbMainView   *view;
   GdMainView    *selection;
 
+  GtkWidget     *normal_box;
+  GtkWidget     *empty_bin;
+
+  GtkWidget     *selection_box;
   GtkWidget     *restore;
   GtkWidget     *delete;
-  GtkWidget     *empty_bin;
 };
 
 
@@ -58,25 +63,59 @@ struct BjbTrashBarPrivate_
 G_DEFINE_TYPE (BjbTrashBar, bjb_trash_bar, GTK_TYPE_BOX)
 
 
+
+static void
+on_empty_clicked_callback        (BjbTrashBar *self)
+{
+  GList *selection;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+  g_list_free (selection);
+}
+
+
+static void
+on_restore_clicked_callback      (BjbTrashBar *self)
+{
+  GList *selection;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+  g_list_free (selection);
+}
+
+
+static void
+on_delete_clicked_callback        (BjbTrashBar *self)
+{
+  GList *selection;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+  g_list_free (selection);
+}
+
+
 void
 bjb_trash_bar_set_visibility      (BjbTrashBar *self)
 {
-/*
   BjbTrashBarPrivate *priv;
   GList *items;
 
   priv = self->priv;
+
+
+  gtk_widget_hide (priv->normal_box);
+  gtk_widget_hide (priv->selection_box);
   items = gd_main_view_get_selection (priv->selection);
 
   if (items != NULL)
-    gtk_widget_hide (priv->empty_bin);
+    gtk_widget_show (priv->selection_box);
 
   else
-    gtk_widget_show (priv->empty_bin);
+    gtk_widget_show (priv->normal_box);
 
   g_list_free (items);
-*/
 }
+
 
 void
 bjb_trash_bar_fade_in             (BjbTrashBar *self)
@@ -134,6 +173,10 @@ bjb_trash_bar_set_property (GObject  *object,
       self->priv->controller = g_value_get_object (value);
       break;
 
+    case PROP_BJB_MAIN_VIEW:
+      self->priv->view = g_value_get_object (value);
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -146,14 +189,71 @@ bjb_trash_bar_constructed (GObject *obj)
 {
   BjbTrashBar *self;
   BjbTrashBarPrivate *priv;
+  GtkWidget *super_box, *separator;
 
   G_OBJECT_CLASS (bjb_trash_bar_parent_class)->constructed (obj);
 
   self = BJB_TRASH_BAR (obj);
   priv = self->priv;
 
-  priv->empty_bin = gtk_label_new (_("Empty"));
-  //gtk_container_add (GTK_CONTAINER (self), priv->empty_bin);
+  super_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  gtk_container_add (GTK_CONTAINER (self), super_box);
+
+  /* No selection : just offer to empty bin */
+  priv->normal_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
+  gtk_widget_set_hexpand (priv->normal_box, TRUE);
+  priv->empty_bin = gtk_button_new_with_label(_("Empty"));
+  gtk_widget_set_halign (priv->empty_bin, GTK_ALIGN_CENTER);
+  gtk_box_pack_start (GTK_BOX (priv->normal_box),
+                      priv->empty_bin,
+                      TRUE,
+                      FALSE,
+                      0);
+  gtk_container_add (GTK_CONTAINER (super_box), priv->normal_box);
+  g_signal_connect_swapped (priv->empty_bin,
+                            "clicked",
+                            G_CALLBACK (on_empty_clicked_callback),
+                            self);
+
+
+  /* Selection : delete or restore selected items */
+  priv->selection_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
+  gtk_widget_set_hexpand (priv->selection_box, TRUE);
+  priv->restore = gtk_button_new_with_label (_("Restore"));
+  gtk_widget_set_halign (priv->restore, GTK_ALIGN_START);
+  gtk_box_pack_start (GTK_BOX (priv->selection_box),
+                      priv->restore,
+                      FALSE,
+                      FALSE,
+                      4);
+  g_signal_connect_swapped (priv->restore,
+                            "clicked",
+                            G_CALLBACK (on_restore_clicked_callback),
+                            self);
+
+  separator = gtk_frame_new (NULL);
+  gtk_frame_set_shadow_type (GTK_FRAME (separator), GTK_SHADOW_NONE);
+  gtk_widget_set_hexpand (priv->selection_box, TRUE);
+  gtk_box_pack_start (GTK_BOX (priv->selection_box),
+                      separator,
+                      TRUE,
+                      FALSE,
+                      4);
+
+  priv->delete = gtk_button_new_with_label (_("Permanently Delete"));
+  gtk_widget_set_halign (priv->delete, GTK_ALIGN_END);
+  gtk_box_pack_start (GTK_BOX (priv->selection_box),
+                      priv->delete,
+                      FALSE,
+                      FALSE,
+                      4);
+  gtk_container_add (GTK_CONTAINER (super_box), priv->selection_box);
+  g_signal_connect_swapped (priv->delete,
+                            "clicked",
+                            G_CALLBACK (on_delete_clicked_callback),
+                            self);
+
+
   gtk_widget_show_all (GTK_WIDGET (self));
 }
 
@@ -186,6 +286,16 @@ bjb_trash_bar_class_init (BjbTrashBarClass *klass)
                                                          G_PARAM_CONSTRUCT |
                                                          G_PARAM_STATIC_STRINGS);
 
+
+  properties[PROP_BJB_MAIN_VIEW] = g_param_spec_object ("view",
+                                                        "view",
+                                                        "View",
+                                                        BJB_TYPE_MAIN_VIEW,
+                                                        G_PARAM_READWRITE  |
+                                                        G_PARAM_CONSTRUCT |
+                                                        G_PARAM_STATIC_STRINGS);
+
+
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 
   g_type_class_add_private ((gpointer)klass, sizeof (BjbTrashBarPrivate));
@@ -202,12 +312,14 @@ bjb_trash_bar_init (BjbTrashBar *self)
 
 BjbTrashBar *
 bjb_trash_bar_new (BjbController *controller,
+                   BjbMainView   *parent,
                    GdMainView *view)
 {
   return g_object_new (BJB_TYPE_TRASH_BAR,
                        "orientation", GTK_ORIENTATION_HORIZONTAL,
                        "spacing", 2,
                        "controller", controller,
+                       "view", parent,
                        "selection", view,
                         NULL);
 }

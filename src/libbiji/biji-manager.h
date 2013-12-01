@@ -130,6 +130,9 @@ void             biji_manager_load_archives          (BijiManager        *manage
 
 
 
+void             biji_manager_empty_bin              (BijiManager        *manager);
+
+
 // deprecated - instead we'll use new import / providers facilities
 BijiNoteObj     *biji_note_get_new_from_file          (BijiManager *manager,
                                                        const gchar* tomboy_format_note_path);

@@ -395,6 +395,7 @@ bjb_selection_toolbar_constructed(GObject *obj)
           bjb_window_base_get_controller (
                 BJB_WINDOW_BASE (
                   bjb_main_view_get_window (self->priv->view))),
+          self->priv->view,
           self->priv->selection);
 
 

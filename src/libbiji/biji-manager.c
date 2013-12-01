@@ -629,6 +629,12 @@ biji_manager_load_archives          (BijiManager        *manager)
 
 
 
+void
+biji_manager_empty_bin              (BijiManager        *manager)
+{
+}
+
+
 BijiItem *
 biji_manager_get_item_at_path (BijiManager *manager, const gchar *path)
 {

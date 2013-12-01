@@ -56,6 +56,7 @@ GType                 bjb_trash_bar_get_type            (void);
 
 
 BjbTrashBar *         bjb_trash_bar_new                 (BjbController *controller,
+                                                         BjbMainView   *view,
                                                          GdMainView    *selection);
 
 

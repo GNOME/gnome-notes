@@ -628,17 +628,36 @@ biji_manager_load_archives          (BijiManager        *manager)
 }
 
 
+static void
+_delete_item (gpointer key,
+              gpointer value,
+              gpointer user_data)
+{
+  BijiItem *i;
 
-void
+  i = BIJI_ITEM (value);
+  biji_item_delete (value);
+}
+
+
+
 biji_manager_empty_bin              (BijiManager        *manager)
 {
+  g_hash_table_foreach (manager->priv->archives, _delete_item, NULL);
 }
 
 
 BijiItem *
 biji_manager_get_item_at_path (BijiManager *manager, const gchar *path)
 {
-  return g_hash_table_lookup (manager->priv->items, (gconstpointer) path);
+  BijiItem *retval;
+
+  retval = g_hash_table_lookup (manager->priv->items, (gconstpointer) path);
+
+  if (retval == NULL)
+    retval = g_hash_table_lookup (manager->priv->archives, (gconstpointer) path);
+
+  return retval;
 }
 
 

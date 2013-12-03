@@ -26,6 +26,8 @@ struct BijiLocalNotePrivate_
   GFile *location;
   gchar *basename;
   gchar *html;
+
+  gboolean trashed;
 };
 
 
@@ -127,6 +129,7 @@ biji_local_note_init (BijiLocalNote *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_LOCAL_NOTE, BijiLocalNotePrivate);
   self->priv->html = NULL;
+  self->priv->trashed = FALSE;
 }
 
 
@@ -153,7 +156,6 @@ local_note_archive (BijiNoteObj *note)
   GError *error = NULL;
   gboolean result = FALSE;
 
-  g_warning ("local note archive");
   self = BIJI_LOCAL_NOTE (note);
 
   /* Create the trash directory
@@ -210,6 +212,26 @@ local_note_restore (BijiItem *item)
 }
 
 
+static void
+delete_file (GObject *note,
+             GAsyncResult *res,
+             gpointer user_data)
+{
+  BijiLocalNote *self;
+  GError *error;
+
+  self = BIJI_LOCAL_NOTE (user_data);
+  error = NULL;
+  g_file_delete_finish (self->priv->location, res, &error);
+
+  if (error != NULL)
+  {
+    g_warning ("local note delete failed, %s", error->message);
+    g_error_free (error);
+  }
+}
+
+
 static gboolean
 local_note_delete (BijiItem *item)
 {
@@ -218,7 +240,17 @@ local_note_delete (BijiItem *item)
   g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
   self = BIJI_LOCAL_NOTE (item);
 
-  g_warning ("local note delete");
+  g_debug ("local note delete : %s", g_file_get_path (self->priv->location));
+
+  if (self->priv->trashed == TRUE)
+  {
+    g_file_delete_async (self->priv->location,
+                         G_PRIORITY_LOW,
+                         NULL,                  /* Cancellable */
+                         delete_file,
+                         self);
+    return TRUE;
+  }
 
   return FALSE;
 }
@@ -281,6 +313,9 @@ biji_local_note_new_from_info   (BijiProvider *provider,
   local->priv->location = g_file_new_for_commandline_arg (set->url);
   local->priv->basename = g_file_get_basename (local->priv->location);
   local->priv->provider = provider;
+
+  if (strstr (set->url, "Trash") != NULL)
+    local->priv->trashed = TRUE;
 
   return obj;
 }

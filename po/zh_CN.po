@@ -2,14 +2,15 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # tuhaihe <1132321739qq@gmail.com>, 2013.
+# Trash 我手贱翻译成了废纸篓，以与系统的回收站区别 - Wylmer Wang
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-07 15:58+0000\n"
-"PO-Revision-Date: 2013-10-09 00:02+0800\n"
+"POT-Creation-Date: 2013-11-30 14:21+0000\n"
+"PO-Revision-Date: 2013-11-30 22:56+0800\n"
 "Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -21,11 +22,11 @@ msgstr ""
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr "“便笺”是一款可制作简单列表，用于备忘的编辑器。"
+msgstr "便笺是一款编辑器，可制作简单的清单，用于备忘。"
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr "允许使用 ownCloud 作为存储位置和在线编辑器。"
+msgstr "它支持使用 ownCloud 作为存储位置和在线编辑器。"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
 #: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
@@ -93,10 +94,10 @@ msgstr "未发现便笺"
 
 #: ../src/bjb-empty-results-box.c:144
 msgid ""
-"Your notes collection is empty.\n"
+"Your notes notebook is empty.\n"
 "Click the New button to create your first note."
 msgstr ""
-"您的便笺合集为空。\n"
+"您的便笺本为空。\n"
 "点击新建按钮来创建您的第一个便笺吧。"
 
 #: ../src/bjb-empty-results-box.c:150
@@ -111,23 +112,23 @@ msgstr "哎呀"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "请先安装“Tracker”然后重新打开本应用程序。"
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "自定义位置"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "导入便笺"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "导入"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "选择导入位置"
 
@@ -147,106 +148,125 @@ msgstr "加载更多"
 msgid "Loading..."
 msgstr "正在加载..."
 
-#: ../src/bjb-main-toolbar.c:138
+#: ../src/bjb-main-toolbar.c:141
 msgid "Click on items to select them"
 msgstr "点击条目以选中它们"
 
-#: ../src/bjb-main-toolbar.c:140
+#: ../src/bjb-main-toolbar.c:143
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "已选中 %d 条"
 
-#: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "搜索便笺标题、内容和合集"
+#: ../src/bjb-main-toolbar.c:263
+msgid "Search note titles, content and notebooks"
+msgstr "搜索便笺标题、内容和便笺本"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:302
+#: ../src/bjb-main-toolbar.c:305
 msgid "Cancel"
 msgstr "取消"
 
-#: ../src/bjb-main-toolbar.c:313
+#: ../src/bjb-main-toolbar.c:316
 msgid "Exit selection mode"
 msgstr "退出选择模式"
 
-#: ../src/bjb-main-toolbar.c:343
+#: ../src/bjb-main-toolbar.c:346
 #, c-format
 msgid "Results for %s"
 msgstr "%s 的结果"
 
-#: ../src/bjb-main-toolbar.c:346
+#: ../src/bjb-main-toolbar.c:349
 msgid "New and Recent"
 msgstr "新建和最近打开的便笺"
 
-#: ../src/bjb-main-toolbar.c:411
+#: ../src/bjb-main-toolbar.c:425
 msgid "New"
 msgstr "新建"
 
-#: ../src/bjb-main-toolbar.c:429
+#: ../src/bjb-main-toolbar.c:443 ../src/bjb-main-toolbar.c:494
 msgid "Selection mode"
 msgstr "选择模式"
 
-#: ../src/bjb-main-toolbar.c:463
-msgid "View notes and collections in a list"
-msgstr "以列表形式查看便笺和合集"
+#: ../src/bjb-main-toolbar.c:474
+msgid "Trash"
+msgstr "废纸篓"
 
-#: ../src/bjb-main-toolbar.c:487
-msgid "View notes and collections in a grid"
-msgstr "以网格形式查看便笺和合集"
+#: ../src/bjb-main-toolbar.c:530
+msgid "View notes and notebooks in a list"
+msgstr "以列表形式查看便笺和便笺本"
+
+#: ../src/bjb-main-toolbar.c:554
+msgid "View notes and notebooks in a grid"
+msgstr "以网格形式查看便笺和便笺本"
+
+#: ../src/bjb-main-toolbar.c:626
+msgid "Untitled"
+msgstr "未命名"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:615
+#: ../src/bjb-main-toolbar.c:716
 msgid "Undo"
 msgstr "撤消"
 
-#: ../src/bjb-main-toolbar.c:623
+#: ../src/bjb-main-toolbar.c:724
 msgid "Redo"
 msgstr "重做"
 
 # 点句，与“项目符号列表”表达的意思都是一个，但后者更加常用。
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:638
+#: ../src/bjb-main-toolbar.c:739
 msgid "Bullets"
 msgstr "项目符号列表"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:746
 msgid "Numbered List"
 msgstr "编号列表"
 
-#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "合集"
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:298
+msgid "Notebooks"
+msgstr "便笺本"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:667
-msgid "Delete this Note"
-msgstr "删除该便笺"
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:324
+msgid "Move to Trash"
+msgstr "移入废纸篓"
 
-#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
+#: ../src/bjb-main-toolbar.c:829 ../src/bjb-selection-toolbar.c:307
 msgid "Note color"
 msgstr "便笺颜色"
 
-#: ../src/bjb-main-toolbar.c:758
+#: ../src/bjb-main-toolbar.c:856 ../src/bjb-selection-toolbar.c:319
 msgid "Share note"
 msgstr "分享便笺"
 
-#: ../src/bjb-main-toolbar.c:779
+#: ../src/bjb-main-toolbar.c:877
 msgid "More options…"
 msgstr "更多选项..."
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "输入名称以创建合集"
+#: ../src/bjb-main-view.c:486
+msgid "Notebook"
+msgstr "便笺本"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "新合集"
+#: ../src/bjb-main-view.c:489
+msgid "Note"
+msgstr "便笺"
+
+#: ../src/bjb-organize-dialog.c:399
+msgid "Enter a name to create a notebook"
+msgstr "输入名称以创建便笺本"
+
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "新建便笺本"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "关闭(_C)"
 
@@ -259,16 +279,6 @@ msgstr "最近更新时间："
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "确认(_O)"
-
-#. Trash notes
-#: ../src/bjb-selection-toolbar.c:244
-msgid "Delete"
-msgstr "删除"
-
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:258
-msgid "Add to Collection"
-msgstr "添加到合集"
 
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:391
@@ -292,6 +302,10 @@ msgstr "便笺版本"
 #: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "主便笺本"
+
+#: ../src/bjb-trash-bar.c:155
+msgid "Empty"
+msgstr "空"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -317,7 +331,7 @@ msgstr "今年"
 msgid "Unknown"
 msgstr "未知"
 
-#: ../src/libbiji/provider/biji-local-provider.c:298
+#: ../src/libbiji/provider/biji-local-provider.c:355
 msgid "Local storage"
 msgstr "本地存储"
 
@@ -330,20 +344,39 @@ msgid "_Import Notes"
 msgstr "导入便笺(_I)"
 
 #: ../src/resources/app-menu.ui.h:3
+msgid "_View Trash"
+msgstr "查看废纸篓(_V)"
+
+#: ../src/resources/app-menu.ui.h:4
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: ../src/resources/app-menu.ui.h:4
+#: ../src/resources/app-menu.ui.h:5
 msgid "_About Notes"
 msgstr "关于便笺(_A)"
 
-#: ../src/resources/app-menu.ui.h:5
+#: ../src/resources/app-menu.ui.h:6
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/resources/app-menu.ui.h:6
+#: ../src/resources/app-menu.ui.h:7
 msgid "_Quit"
 msgstr "退出(_Q)"
+
+#~ msgid "Collections"
+#~ msgstr "合集"
+
+#~ msgid "Delete this Note"
+#~ msgstr "删除该便笺"
+
+#~ msgid "New collection"
+#~ msgstr "新合集"
+
+#~ msgid "Delete"
+#~ msgstr "删除"
+
+#~ msgid "Add to Collection"
+#~ msgstr "添加到合集"
 
 #~ msgid "Rename Note"
 #~ msgstr "重命名便笺"

@@ -31,6 +31,17 @@ enum {
 static GParamSpec *properties[BIJI_ITEM_PROP] = { NULL, };
 
 
+/* Signals */
+enum {
+  ITEM_TRASHED,
+  ITEM_DELETED,
+  ITEM_RESTORED,
+  BIJI_ITEM_SIGNALS
+};
+
+static guint biji_item_signals [BIJI_ITEM_SIGNALS] = { 0 };
+
+
 struct BijiItemPrivate_
 {
   BijiManager *manager;
@@ -100,6 +111,40 @@ biji_item_class_init (BijiItemClass *klass)
                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_ITEM_PROP, properties);
+
+
+  biji_item_signals[ITEM_DELETED] =
+    g_signal_new ("deleted",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  biji_item_signals[ITEM_TRASHED] =
+    g_signal_new ("trashed",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  biji_item_signals[ITEM_RESTORED] =
+    g_signal_new ("restored",
+                  G_OBJECT_CLASS_TYPE (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiItemPrivate));
 }
@@ -199,18 +244,30 @@ biji_item_has_color           (BijiItem *item)
 gboolean
 biji_item_trash               (BijiItem *item)
 {
+  gboolean retval;
+
+
   g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
 
-  return BIJI_ITEM_GET_CLASS (item)->trash (item);
+  retval = BIJI_ITEM_GET_CLASS (item)->trash (item);
+  if (retval == TRUE)
+    g_signal_emit_by_name (item, "trashed", NULL);
+
+  return retval;
 }
 
 
 gboolean
 biji_item_restore             (BijiItem *item)
 {
+  gboolean retval;
   g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
 
-  return BIJI_ITEM_GET_CLASS (item)->restore (item);
+  retval = BIJI_ITEM_GET_CLASS (item)->restore (item);
+  if (retval == TRUE)
+    g_signal_emit_by_name (item, "restored", NULL);
+
+  return retval;
 }
 
 
@@ -218,9 +275,15 @@ biji_item_restore             (BijiItem *item)
 gboolean
 biji_item_delete               (BijiItem *item)
 {
+  gboolean retval;
+
   g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
 
-  return BIJI_ITEM_GET_CLASS (item)->delete (item);
+  retval = BIJI_ITEM_GET_CLASS (item)->delete (item);
+  if (retval == TRUE)
+    g_signal_emit_by_name (item, "deleted", NULL);
+
+  return retval;
 }
 
 

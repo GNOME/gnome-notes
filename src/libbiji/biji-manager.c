@@ -288,6 +288,15 @@ biji_manager_notify_changed (BijiManager            *manager,
 }
 
 
+static void
+on_item_deleted_cb (BijiItem *item, BijiManager *manager)
+{
+  biji_manager_notify_changed (manager,
+                               BIJI_ARCHIVED_ITEMS,
+                               BIJI_MANAGER_ITEM_DELETED,
+                               item);
+}
+
 
 void
 manager_on_note_changed_cb (BijiNoteObj *note, BijiManager *manager)
@@ -351,6 +360,8 @@ biji_manager_add_item (BijiManager *manager,
                            (gpointer) biji_item_get_uuid (item), item);
 
     /* Connect */
+    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), manager);
+
     if (BIJI_IS_NOTE_OBJ (item))
     {
       g_signal_connect (item, "changed", G_CALLBACK (manager_on_note_changed_cb), manager);
@@ -640,7 +651,7 @@ _delete_item (gpointer key,
 }
 
 
-
+void
 biji_manager_empty_bin              (BijiManager        *manager)
 {
   g_hash_table_foreach (manager->priv->archives, _delete_item, NULL);

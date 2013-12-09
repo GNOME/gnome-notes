@@ -67,10 +67,10 @@ G_DEFINE_TYPE (BjbTrashBar, bjb_trash_bar, GTK_TYPE_BOX)
 static void
 on_empty_clicked_callback        (BjbTrashBar *self)
 {
-  GList *selection;
 
-  selection = bjb_main_view_get_selected_items (self->priv->view);
-  g_list_free (selection);
+  biji_manager_empty_bin (
+    bjb_window_base_get_manager (
+      gtk_widget_get_toplevel (GTK_WIDGET (self))));
 }
 
 
@@ -87,9 +87,12 @@ on_restore_clicked_callback      (BjbTrashBar *self)
 static void
 on_delete_clicked_callback        (BjbTrashBar *self)
 {
-  GList *selection;
+  GList *selection, *l;
 
   selection = bjb_main_view_get_selected_items (self->priv->view);
+  for (l=selection; l!=NULL; l=l->next)
+    biji_item_delete (BIJI_ITEM (l->data));
+
   g_list_free (selection);
 }
 

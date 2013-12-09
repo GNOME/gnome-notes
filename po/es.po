@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-21 21:42+0000\n"
-"PO-Revision-Date: 2013-11-22 17:18+0100\n"
+"POT-Creation-Date: 2013-12-09 00:09+0000\n"
+"PO-Revision-Date: 2013-12-09 10:31+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -303,9 +303,17 @@ msgstr "Edición de la nota"
 msgid "Primary Book"
 msgstr "Libro principal"
 
-#: ../src/bjb-trash-bar.c:155
+#: ../src/bjb-trash-bar.c:208
 msgid "Empty"
 msgstr "Vaciar"
+
+#: ../src/bjb-trash-bar.c:225
+msgid "Restore"
+msgstr "Restaurar"
+
+#: ../src/bjb-trash-bar.c:246
+msgid "Permanently Delete"
+msgstr "Eliminar permanentemente"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"

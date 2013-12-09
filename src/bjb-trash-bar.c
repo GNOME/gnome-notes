@@ -77,9 +77,12 @@ on_empty_clicked_callback        (BjbTrashBar *self)
 static void
 on_restore_clicked_callback      (BjbTrashBar *self)
 {
-  GList *selection;
+  GList *selection, *l;
 
   selection = bjb_main_view_get_selected_items (self->priv->view);
+  for (l=selection; l!=NULL; l=l->next)
+    biji_item_restore (BIJI_ITEM (l->data));
+
   g_list_free (selection);
 }
 

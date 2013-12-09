@@ -191,7 +191,7 @@ local_note_archive (BijiNoteObj *note)
   g_object_unref (parent);
   g_free (trash_path);
   g_object_unref (trash);
-  g_free (backup_path);  
+  g_free (backup_path);
   g_object_unref (archive);
 
   return result;
@@ -202,13 +202,45 @@ static gboolean
 local_note_restore (BijiItem *item)
 {
   BijiLocalNote *self;
+  gchar *root_path, *path;
+  GFile *trash, *root, *target;
+  gboolean retval;
+  GError *error;
+
 
   g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
   self = BIJI_LOCAL_NOTE (item);
+  error = NULL;
 
-  g_warning ("local note restore");
+  trash = g_file_get_parent (self->priv->location);
+  root = g_file_get_parent (trash);
 
-  return FALSE;
+  root_path = g_file_get_path (root);
+  path = g_build_filename (root_path, self->priv->basename, NULL);
+  target = g_file_new_for_path (path);
+
+  retval = g_file_move (self->priv->location,
+                        target,
+                        G_FILE_COPY_NONE,
+                        NULL, // cancellable
+                        NULL, // progress callback
+                        NULL, // progress_callback_data,
+                        &error);
+
+  if (error != NULL)
+  {
+    g_warning ("Could not restore file : %s", error->message);
+    g_error_free (error);
+  }
+
+  g_object_unref (self->priv->location);
+  g_object_unref (trash);
+  g_object_unref (root);
+  g_free (path);
+  g_free (root_path);
+
+  self->priv->location = target;
+  return retval;
 }
 
 

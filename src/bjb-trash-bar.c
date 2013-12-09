@@ -196,6 +196,7 @@ bjb_trash_bar_constructed (GObject *obj)
   BjbTrashBar *self;
   BjbTrashBarPrivate *priv;
   GtkWidget *super_box, *separator;
+  GtkStyleContext *context;
 
   G_OBJECT_CLASS (bjb_trash_bar_parent_class)->constructed (obj);
 
@@ -210,6 +211,8 @@ bjb_trash_bar_constructed (GObject *obj)
   gtk_widget_set_hexpand (priv->normal_box, TRUE);
   priv->empty_bin = gtk_button_new_with_label(_("Empty"));
   gtk_widget_set_halign (priv->empty_bin, GTK_ALIGN_CENTER);
+  context = gtk_widget_get_style_context (priv->empty_bin);
+  gtk_style_context_add_class (context, "destructive-action");
   gtk_box_pack_start (GTK_BOX (priv->normal_box),
                       priv->empty_bin,
                       TRUE,
@@ -248,6 +251,8 @@ bjb_trash_bar_constructed (GObject *obj)
 
   priv->delete = gtk_button_new_with_label (_("Permanently Delete"));
   gtk_widget_set_halign (priv->delete, GTK_ALIGN_END);
+  context = gtk_widget_get_style_context (priv->delete);
+  gtk_style_context_add_class (context, "destructive-action");
   gtk_box_pack_start (GTK_BOX (priv->selection_box),
                       priv->delete,
                       FALSE,

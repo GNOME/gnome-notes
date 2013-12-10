@@ -251,6 +251,7 @@ static gboolean
 on_cut_clicked (GtkWidget *button, BjbEditorToolbar *self)
 {
   biji_note_obj_editor_cut (self->priv->note);
+  bjb_editor_toolbar_fade_out (self);
   return TRUE ;
 }
 
@@ -258,6 +259,7 @@ static gboolean
 on_copy_clicked (GtkWidget *button, BjbEditorToolbar *self)
 {
   biji_note_obj_editor_copy (self->priv->note);
+  bjb_editor_toolbar_fade_out (self);
   return TRUE ;
 }
 
@@ -265,25 +267,29 @@ static gboolean
 on_paste_clicked (GtkWidget *button, BjbEditorToolbar *self)
 {
   biji_note_obj_editor_paste (self->priv->note);
+  bjb_editor_toolbar_fade_out (self);
   return TRUE ;
 }
 
 static void
-bold_button_callback (GtkWidget *button, BijiNoteObj *note)
+bold_button_callback (GtkWidget *button, BjbEditorToolbar *self)
 {
-  biji_note_obj_editor_apply_format (note, BIJI_BOLD);
+  biji_note_obj_editor_apply_format (self->priv->note, BIJI_BOLD);
+  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-italic_button_callback (GtkWidget *button, BijiNoteObj *note)
+italic_button_callback (GtkWidget *button, BjbEditorToolbar *self)
 {
-  biji_note_obj_editor_apply_format (note, BIJI_ITALIC);
+  biji_note_obj_editor_apply_format (self->priv->note, BIJI_ITALIC);
+  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-strike_button_callback (GtkWidget *button, BijiNoteObj *note)
+strike_button_callback (GtkWidget *button, BjbEditorToolbar *self)
 {
-  biji_note_obj_editor_apply_format (note, BIJI_STRIKE);
+  biji_note_obj_editor_apply_format (self->priv->note, BIJI_STRIKE);
+  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
@@ -315,6 +321,7 @@ link_callback (GtkWidget *button, BjbEditorToolbar *self)
     biji_note_obj_set_rgba (result, &color);
 
   bijiben_new_window_for_note(g_application_get_default(), result);
+  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
@@ -481,19 +488,19 @@ bjb_editor_toolbar_constructed (GObject *obj)
                     G_CALLBACK(on_paste_clicked), self);
 
   g_signal_connect (priv->toolbar_bold,"clicked",
-                    G_CALLBACK(bold_button_callback), priv->note);
+                    G_CALLBACK(bold_button_callback), self);
   gtk_widget_add_accelerator (priv->toolbar_bold,
                               "activate", priv->accel, GDK_KEY_b,
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
   g_signal_connect (priv->toolbar_italic,"clicked",
-                    G_CALLBACK(italic_button_callback), priv->note);
+                    G_CALLBACK(italic_button_callback), self);
   gtk_widget_add_accelerator (priv->toolbar_italic,
                               "activate", priv->accel, GDK_KEY_i,
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
   g_signal_connect (priv->toolbar_strike,"clicked",
-                    G_CALLBACK(strike_button_callback), priv->note);
+                    G_CALLBACK(strike_button_callback), self);
   gtk_widget_add_accelerator (priv->toolbar_strike,
                               "activate", priv->accel, GDK_KEY_s,
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);

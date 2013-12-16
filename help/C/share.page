@@ -15,6 +15,11 @@
       <email its:translate="no">kittykat3756@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -23,7 +28,17 @@
 
   <title>Share a note</title>
 
-  <p>Open a note, then click on the <gui style="button">Share note</gui> button
-  to send it by email. Your default email client will start up.</p>
+  <steps>
+    <item>
+      <p>Open a note.</p>
+    </item>
+    <item>
+      <p>Click on the <gui style="button">Share note</gui> button.
+      Your default email client will start up.</p>
+    </item>
+    <item>
+      <p>Send the note by an email.</p>
+    </item>
+  </steps>
 
 </page>

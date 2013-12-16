@@ -38,19 +38,19 @@
     </item>
     <item>
       <p>Select <guiseq><gui style="button">More
-      options…</gui><gui style="menuitem">Delete this Note</gui></guiseq>.</p>
+      options…</gui><gui style="menuitem">Move to Trash</gui></guiseq>.</p>
     </item>
   </steps>
-  <p>To delete multiple notes, in the <em>New and Recent</em>:</p>
+  <p>To delete multiple notes and notebooks, in the <em>New and Recent</em>:</p>
   <steps>
     <item>
       <p>Press the <gui style="button">selection mode</gui> button.</p>
     </item>
     <item>
-      <p>Select the notes that you want to delete.</p>
+      <p>Select the notes and the notebooks that you want to delete.</p>
     </item>
     <item>
-      <p>Press the <gui style="button">Delete</gui> button.</p>
+      <p>Press the <gui style="button">Move to Trash</gui> button.</p>
     </item>
-  </steps>  
+  </steps>
 </page>

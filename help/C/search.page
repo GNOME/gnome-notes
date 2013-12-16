@@ -16,30 +16,129 @@
       <email its:translate="no">kittykat3756@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2013</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Search for an existing note.</desc>
+    <desc>Search for an existing note, note content and notebooks.</desc>
   </info>
 
   <title>Find a note</title>
 
-  <p>The default <em>notes view</em> shows the recently used notes.</p>
+  <p>The default <em>New and Recent</em> shows the recently used notes.</p>
 
-  <p>You can find notes using the following methods:</p>
-  <list>
+  <p>You can find notes while in the <em>New and Recent</em> using the following method:</p>
+  <steps>
     <item>
-      <p>Type your search term while in the <em>notes view</em> and press
-      <key>Return</key> to search.</p>
+      <p>Press the <gui>Search</gui> button.</p>
     </item>
     <item>
-      <p>You can also search for notes from the <gui>Activities</gui> view.</p>
+      <p>Type your search term and you can view all the search results instantly.</p>
     </item>
-  </list>
+  </steps>
+
+    <note><p>You can also search for notes from the <gui>Activities</gui> view.</p></note>
 
   <!-- TODO talk about sorting notes by colour -->
 
-  <p>You can also sort notes using <link xref="colors">colors</link> and
-  <link xref="collections">collections</link>.</p>
-
 </page>
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135pp menu: standardize Help/About/Quit
+
+Use Help/About/Quit instead of About Notes/Help/Quit
+
+https://wiki.gnome.org/Design/HIG/ApplicationMenus
+
+https://bugzilla.gnome.org/show_bug.cgi?id=720135/page>

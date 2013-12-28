@@ -2,6 +2,8 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # tuhaihe <1132321739qq@gmail.com>, 2013.
+# Tong Hui <tonghuix@gmail.com>, 2013.
+#
 # Trash 我手贱翻译成了废纸篓，以与系统的回收站区别 - Wylmer Wang
 #
 msgid ""
@@ -9,9 +11,9 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-30 14:21+0000\n"
-"PO-Revision-Date: 2013-11-30 22:56+0800\n"
-"Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
+"POT-Creation-Date: 2013-12-22 11:22+0000\n"
+"PO-Revision-Date: 2013-12-28 17:35+0800\n"
+"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -58,33 +60,33 @@ msgid "Note Color"
 msgstr "便笺颜色"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:367
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Cut"
 msgstr "剪切"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Copy"
 msgstr "复制"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Paste"
 msgstr "粘贴"
 
-#: ../src/bjb-editor-toolbar.c:396
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Bold"
 msgstr "粗体"
 
-#: ../src/bjb-editor-toolbar.c:407
+#: ../src/bjb-editor-toolbar.c:414
 msgid "Italic"
 msgstr "斜体"
 
-#: ../src/bjb-editor-toolbar.c:418
+#: ../src/bjb-editor-toolbar.c:425
 msgid "Strike"
 msgstr "删除线"
 
-#: ../src/bjb-editor-toolbar.c:450
+#: ../src/bjb-editor-toolbar.c:457
 msgid "Copy selection to a new note"
 msgstr "将选中区域复制到新便笺"
 
@@ -303,9 +305,17 @@ msgstr "便笺版本"
 msgid "Primary Book"
 msgstr "主便笺本"
 
-#: ../src/bjb-trash-bar.c:155
+#: ../src/bjb-trash-bar.c:212
 msgid "Empty"
 msgstr "空"
+
+#: ../src/bjb-trash-bar.c:231
+msgid "Restore"
+msgstr "还原"
+
+#: ../src/bjb-trash-bar.c:252
+msgid "Permanently Delete"
+msgstr "永久删除"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -352,12 +362,12 @@ msgid "_Preferences"
 msgstr "首选项(_P)"
 
 #: ../src/resources/app-menu.ui.h:5
-msgid "_About Notes"
-msgstr "关于便笺(_A)"
-
-#: ../src/resources/app-menu.ui.h:6
 msgid "_Help"
 msgstr "帮助(_H)"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_About"
+msgstr "关于(_A)"
 
 #: ../src/resources/app-menu.ui.h:7
 msgid "_Quit"

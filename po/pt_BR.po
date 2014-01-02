@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-10 23:38+0000\n"
-"PO-Revision-Date: 2013-12-13 09:27-0300\n"
-"Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
+"POT-Creation-Date: 2013-12-18 22:33+0000\n"
+"PO-Revision-Date: 2013-12-19 01:50-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -368,12 +368,12 @@ msgid "_Preferences"
 msgstr "_Preferências"
 
 #: ../src/resources/app-menu.ui.h:5
-msgid "_About Notes"
-msgstr "S_obre notas"
-
-#: ../src/resources/app-menu.ui.h:6
 msgid "_Help"
 msgstr "_Ajuda"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_About"
+msgstr "S_obre"
 
 #: ../src/resources/app-menu.ui.h:7
 msgid "_Quit"

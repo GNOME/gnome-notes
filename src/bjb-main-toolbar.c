@@ -298,15 +298,15 @@ populate_bar_for_selection (BjbMainToolbar *self)
 
   size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
-  /* Search button */
-  add_search_button (self);
-
   /* Select */
   priv->select = gtk_button_new_with_mnemonic (_("Cancel"));
   gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
                                "text-button");
   gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
+
+  /* Search button */
+  add_search_button (self);
 
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->search);
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
@@ -561,31 +561,31 @@ add_grid_button (BjbMainToolbar *self)
 static void
 populate_bar_for_icon_view(BjbMainToolbar *self)
 {
-  add_list_button (self);
   populate_bar_for_standard(self);
+  add_list_button (self);
 }
 
 static void
 populate_bar_for_list_view(BjbMainToolbar *self)
 {
-  add_grid_button (self);
   populate_bar_for_standard(self);
+  add_grid_button (self);
 }
 
 
 static void
 populate_bar_for_trash_icon_view (BjbMainToolbar *self)
 {
-  add_list_button (self);
   populate_bar_for_trash (self);
+  add_list_button (self);
 }
 
 
 static void
 populate_bar_for_trash_list_view (BjbMainToolbar *self)
 {
-  add_grid_button (self);
   populate_bar_for_trash (self);
+  add_grid_button (self);
 }
 
 
@@ -812,6 +812,43 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   self->priv->note_renamed = g_signal_connect (priv->note,"renamed",
                                     G_CALLBACK (on_note_renamed), self);
 
+  /* Menu */
+
+  priv->menu = gtk_menu_button_new ();
+  menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->menu), menu_image);
+  gtk_widget_set_valign (priv->menu, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->menu),
+                               "image-button");
+  gtk_header_bar_pack_end (bar, priv->menu);
+  gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
+
+  /* Show close button */
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
+
+  gtk_menu_button_set_popup (GTK_MENU_BUTTON (priv->menu),
+                             bjb_note_menu_new (self));
+
+  /* Sharing */
+
+  priv->share = gtk_button_new ();
+  share_image = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->share), share_image);
+  gtk_widget_set_valign (priv->share, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->share),
+                               "image-button");
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->share);
+  gtk_widget_set_tooltip_text (priv->share, _("Share note"));
+
+  g_signal_connect (priv->share, "clicked",
+                    G_CALLBACK (on_email_note_callback), priv->note);
+
+  g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
+                            "user-changed-contents",
+                            G_CALLBACK (on_note_content_changed),
+                            self);
+
+  on_note_content_changed (self);
 
   /* Note Color */
   if (biji_item_has_color (BIJI_ITEM (priv->note)))
@@ -843,44 +880,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
     priv->note_color_changed = g_signal_connect (priv->note, "color-changed",
                                G_CALLBACK (on_note_color_changed), priv->color);
   }
-
-  /* Sharing */
-
-  priv->share = gtk_button_new ();
-  share_image = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->share), share_image);
-  gtk_widget_set_valign (priv->share, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->share),
-                               "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->share);
-  gtk_widget_set_tooltip_text (priv->share, _("Share note"));
-
-  g_signal_connect (priv->share, "clicked",
-                    G_CALLBACK (on_email_note_callback), priv->note);
-
-  g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
-                            "user-changed-contents",
-                            G_CALLBACK (on_note_content_changed),
-                            self);
-
-  on_note_content_changed (self);
-
-  /* Menu */
-
-  priv->menu = gtk_menu_button_new ();
-  menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->menu), menu_image);
-  gtk_widget_set_valign (priv->menu, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->menu),
-                               "image-button");
-  gtk_header_bar_pack_end (bar, priv->menu);
-  gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
-
-  /* Show close button */
-  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
-
-  gtk_menu_button_set_popup (GTK_MENU_BUTTON (priv->menu),
-                             bjb_note_menu_new (self));
 }
 
 static void
@@ -898,21 +897,21 @@ populate_bar_switch (BjbMainToolbar *self)
       break;
 
     case BJB_TOOLBAR_STD_ICON:
-      add_search_button (self);
       populate_bar_for_icon_view(self);
       update_selection_buttons (priv->controller,
                                 bjb_controller_shows_item (priv->controller),
                                 TRUE,
                                 self->priv);
+      add_search_button (self);
       break;
 
     case BJB_TOOLBAR_STD_LIST:
-      add_search_button (self);
       populate_bar_for_list_view(self);
       update_selection_buttons (priv->controller,
                                 bjb_controller_shows_item (priv->controller),
                                 TRUE,
                                 self->priv);
+      add_search_button (self);
       break;
 
 

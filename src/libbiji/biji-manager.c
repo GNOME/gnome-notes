@@ -647,7 +647,7 @@ _delete_item (gpointer key,
   BijiItem *i;
 
   i = BIJI_ITEM (value);
-  biji_item_delete (value);
+  biji_item_delete (i);
 }
 
 

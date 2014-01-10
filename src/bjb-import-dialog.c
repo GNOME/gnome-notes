@@ -301,13 +301,13 @@ add_custom (BjbImportDialog *self)
 
   w = gtk_image_new_from_icon_name ("folder", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (w), 48);
-  gtk_widget_set_margin_left (w, 12);
-  gtk_widget_set_margin_right (w, 12);
+  gtk_widget_set_margin_start (w, 12);
+  gtk_widget_set_margin_end (w, 12);
   gtk_container_add (GTK_CONTAINER (priv->cust_box), w);
 
 
   w = gtk_label_new (_("Custom Location"));
-  gtk_widget_set_margin_right (w, 180);
+  gtk_widget_set_margin_start (w, 180);
   gtk_container_add (GTK_CONTAINER (priv->cust_box), w);
   gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
   gtk_box_pack_start (GTK_BOX (priv->cust_box), w, TRUE, FALSE, 0);
@@ -364,12 +364,12 @@ add_application (gchar *app,
   }
 
   w = gtk_image_new_from_pixbuf (pix);
-  gtk_widget_set_margin_left (w, 12);
+  gtk_widget_set_margin_start (w, 12);
   gtk_container_add (GTK_CONTAINER (box), w);
 
 
   w = gtk_label_new (visible_label);
-  gtk_widget_set_margin_right (w, 180);
+  gtk_widget_set_margin_end (w, 180);
   gtk_container_add (GTK_CONTAINER (box), w);
   gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
   gtk_box_pack_end (GTK_BOX (box), w, FALSE, FALSE, 0);
@@ -411,7 +411,7 @@ bjb_import_dialog_constructed (GObject *obj)
 
   /* Dialog Label */
   area = gtk_dialog_get_content_area (dialog);
-  gtk_widget_set_margin_left (area, 12);
+  gtk_widget_set_margin_start (area, 12);
   gtk_container_set_border_width (GTK_CONTAINER (area), 2);
   gtk_widget_set_hexpand (area, TRUE);
   gtk_widget_set_vexpand (area, TRUE);

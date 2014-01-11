@@ -1,15 +1,15 @@
 # Lithuanian translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Aurimas Černius <aurisc4@gmail.com>, 2013.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-30 20:51+0000\n"
-"PO-Revision-Date: 2013-09-01 21:31+0300\n"
+"POT-Creation-Date: 2013-12-18 14:24+0000\n"
+"PO-Revision-Date: 2014-01-12 00:20+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -63,33 +63,33 @@ msgid "Note Color"
 msgstr "Raštelio spalva"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:367
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Cut"
 msgstr "Iškirpti"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Copy"
 msgstr "Kopijuoti"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Paste"
 msgstr "Įdėti"
 
-#: ../src/bjb-editor-toolbar.c:396
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Bold"
 msgstr "Pusjuodis"
 
-#: ../src/bjb-editor-toolbar.c:407
+#: ../src/bjb-editor-toolbar.c:414
 msgid "Italic"
 msgstr "Kursyvas"
 
-#: ../src/bjb-editor-toolbar.c:418
+#: ../src/bjb-editor-toolbar.c:425
 msgid "Strike"
 msgstr "Perbrauktas"
 
-#: ../src/bjb-editor-toolbar.c:450
+#: ../src/bjb-editor-toolbar.c:457
 msgid "Copy selection to a new note"
 msgstr "Kopijuoti žymėjimą į naują raštelį"
 
@@ -98,11 +98,14 @@ msgid "No Notes Found"
 msgstr "Nerasta raštelių"
 
 #: ../src/bjb-empty-results-box.c:144
+#| msgid ""
+#| "Your notes collection is empty.\n"
+#| "Click the New button to create your first note."
 msgid ""
-"Your notes collection is empty.\n"
+"Your notes notebook is empty.\n"
 "Click the New button to create your first note."
 msgstr ""
-"Neturite raštelių.\n"
+"Neturite raštelių užrašinėje.\n"
 "Spauskite mygtuką „Naujas“ pirmajam rašteliui sukurti."
 
 #: ../src/bjb-empty-results-box.c:150
@@ -117,23 +120,23 @@ msgstr "Oi"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Įdiekite „Tracker“ ir iš naujo paleiskite programą."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Pasirinktinė vieta"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importuoti raštelius"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importuoti"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Pasirinkite importavimo vietą"
 
@@ -153,11 +156,11 @@ msgstr "Įkelti daugiau"
 msgid "Loading..."
 msgstr "Įkeliama..."
 
-#: ../src/bjb-main-toolbar.c:138
+#: ../src/bjb-main-toolbar.c:141
 msgid "Click on items to select them"
 msgstr "Spauskite ant elementų jiems pažymėti"
 
-#: ../src/bjb-main-toolbar.c:140
+#: ../src/bjb-main-toolbar.c:143
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -165,104 +168,121 @@ msgstr[0] "%d pažymėtas"
 msgstr[1] "%d pažymėti"
 msgstr[2] "%d pažymėta"
 
-#: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "Ieškoti raštelių pavadinimų, turinio ir rinkinių"
+#: ../src/bjb-main-toolbar.c:263
+#| msgid "Search note titles, content and collections"
+msgid "Search note titles, content and notebooks"
+msgstr "Ieškoti raštelių pavadinimų, turinio ir užrašinių"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:305
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:316
 msgid "Exit selection mode"
 msgstr "Palikti žymėjimo veikseną"
 
-#: ../src/bjb-main-toolbar.c:335
+#: ../src/bjb-main-toolbar.c:346
 #, c-format
 msgid "Results for %s"
 msgstr "%s rezultatai"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:349
 msgid "New and Recent"
 msgstr "Nauji ir neseniai naudoti"
 
-#: ../src/bjb-main-toolbar.c:402
+#: ../src/bjb-main-toolbar.c:425
 msgid "New"
 msgstr "Naujas"
 
-#: ../src/bjb-main-toolbar.c:420
+#: ../src/bjb-main-toolbar.c:443 ../src/bjb-main-toolbar.c:494
 msgid "Selection mode"
 msgstr "Žymėjimo veiksena"
 
-#: ../src/bjb-main-toolbar.c:448
-msgid "View notes and collections in a list"
-msgstr "Rodyti raštelius ir rinkinius sąraše"
+#: ../src/bjb-main-toolbar.c:474
+msgid "Trash"
+msgstr "Šiukšlinė"
 
-#: ../src/bjb-main-toolbar.c:472
-msgid "View notes and collections in a grid"
-msgstr "Rodyti raštelius ir rinkinius tinklelyje"
+#: ../src/bjb-main-toolbar.c:530
+#| msgid "View notes and collections in a list"
+msgid "View notes and notebooks in a list"
+msgstr "Rodyti raštelius ir užrašines sąraše"
 
-#: ../src/bjb-main-toolbar.c:601
-msgid "Rename Note"
-msgstr "Pervadinti raštelį"
+#: ../src/bjb-main-toolbar.c:554
+#| msgid "View notes and collections in a grid"
+msgid "View notes and notebooks in a grid"
+msgstr "Rodyti raštelius ir užrašines tinklelyje"
+
+#: ../src/bjb-main-toolbar.c:626
+msgid "Untitled"
+msgstr "Nepavadinta"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:622
+#: ../src/bjb-main-toolbar.c:716
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: ../src/bjb-main-toolbar.c:630
+#: ../src/bjb-main-toolbar.c:724
 msgid "Redo"
 msgstr "Pakartoti"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:739
 msgid "Bullets"
 msgstr "Punktai"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:652
+#: ../src/bjb-main-toolbar.c:746
 msgid "Numbered List"
 msgstr "Numeruotas sąrašas"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:664
-msgid "Rename"
-msgstr "Pervadinti"
-
-#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "Rinkiniai"
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:298
+#| msgid "Notes"
+msgid "Notebooks"
+msgstr "Užrašinės"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:684
-msgid "Delete this Note"
-msgstr "Ištrinti šį raštelį"
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:324
+msgid "Move to Trash"
+msgstr "Perkelti į šiukšlinę"
 
-#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:251
+#: ../src/bjb-main-toolbar.c:829 ../src/bjb-selection-toolbar.c:307
 msgid "Note color"
 msgstr "Raštelio spalva"
 
-#: ../src/bjb-main-toolbar.c:775
+#: ../src/bjb-main-toolbar.c:856 ../src/bjb-selection-toolbar.c:319
 msgid "Share note"
 msgstr "Dalintis rašteliu"
 
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:877
 msgid "More options…"
 msgstr "Daugiau…"
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "Įveskite rinkinio pavadinimą"
+#: ../src/bjb-main-view.c:486
+#| msgid "Note Color"
+msgid "Notebook"
+msgstr "Užrašinė"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "Naujas rinkinys"
+#: ../src/bjb-main-view.c:489
+#| msgid "Notes"
+msgid "Note"
+msgstr "Raštelis"
+
+#: ../src/bjb-organize-dialog.c:399
+#| msgid "Enter a name to create a collection"
+msgid "Enter a name to create a notebook"
+msgstr "Įveskite kuriamos užrašinės pavadinimą"
+
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "Nauja užrašinė"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Užverti"
 
@@ -275,33 +295,40 @@ msgstr "Paskutinis atnaujinimas"
 msgid "_OK"
 msgstr "_Gerai"
 
-#. Trash notes
-#: ../src/bjb-selection-toolbar.c:244
-msgid "Delete"
-msgstr "Ištrinti"
-
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:256
-msgid "Add to Collection"
-msgstr "Pridėti prie rinkinio"
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Naudoti sistemos šriftą"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Raštelio šriftas"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Numatytoji spalva"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "Raštelio redakcija"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Pirminė knyga"
+
+#: ../src/bjb-trash-bar.c:212
+msgid "Empty"
+msgstr "Tuščia"
+
+#: ../src/bjb-trash-bar.c:231
+msgid "Restore"
+msgstr "Atstatyti"
+
+#: ../src/bjb-trash-bar.c:252
+msgid "Permanently Delete"
+msgstr "Visiškai ištrinti"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -327,7 +354,7 @@ msgstr "Šiemet"
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: ../src/libbiji/provider/biji-local-provider.c:298
+#: ../src/libbiji/provider/biji-local-provider.c:355
 msgid "Local storage"
 msgstr "Vietinė saugykla"
 
@@ -340,17 +367,23 @@ msgid "_Import Notes"
 msgstr "_Importuoti raštelius"
 
 #: ../src/resources/app-menu.ui.h:3
-msgid "_Preferences"
-msgstr "_Nustatymai"
+msgid "_View Trash"
+msgstr "_Rodyti šiukšlinę"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Notes"
-msgstr "_Apie raštelius"
+msgid "_Preferences"
+msgstr "_Nustatymai"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
 msgstr "_Žinynas"
 
 #: ../src/resources/app-menu.ui.h:6
+#| msgid "_About Notes"
+msgid "_About"
+msgstr "_Apie"
+
+#: ../src/resources/app-menu.ui.h:7
 msgid "_Quit"
 msgstr "Iš_eiti"
+

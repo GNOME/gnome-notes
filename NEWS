@@ -1,3 +1,26 @@
+Overview of changes in 3.11.4
+=============================
+
+* Fixes
+   keyboard navigation with ctrl tab
+   mainToolbar: Fix item positions (Yosef Or Boczko)
+   Fix default window width (Michael Catanzaro)
+
+* Update documentation (Shobha Tyagi)
+
+
+* Translations
+  Brazilian Portuguese (Rafael Ferreira)
+  Chinese simplified (Tong Hui)
+  Galician (Fran Diéguez)
+  German (Benjamin Steinwender)
+  Greek (Dimitris Spingos)
+  Hebrew (Yosef Or Boczko)
+  Indonesian (Andika Triwidada)
+  Lithuanian (Aurimas Černius)
+  Spanish (Daniel Mustieles)
+  Tajik  (Victor Ibragimov)
+
 Overview of changes in 3.11.3
 =============================
 

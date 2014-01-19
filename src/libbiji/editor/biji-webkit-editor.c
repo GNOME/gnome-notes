@@ -305,6 +305,16 @@ on_note_color_changed (BijiNoteObj *note, BijiWebkitEditor *self)
 }
 
 
+static void
+open_url ( const char *uri)
+{
+  gtk_show_uri (gdk_screen_get_default (),
+                uri,
+                gtk_get_current_event_time (),
+                NULL);
+}
+
+
 gboolean
 on_navigation_request                  (WebKitWebView             *web_view,
                                         WebKitWebFrame            *frame,
@@ -314,7 +324,7 @@ on_navigation_request                  (WebKitWebView             *web_view,
                                         gpointer                   user_data)
 {
   webkit_web_policy_decision_ignore (policy_decision);
-  /* const gchar *       webkit_network_request_get_uri      (WebKitNetworkRequest *request);*/
+  open_url (webkit_network_request_get_uri (request));
   return TRUE;
 }
 

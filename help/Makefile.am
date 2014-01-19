@@ -16,6 +16,7 @@ HELP_FILES = \
 	rename.page \
 	share.page \
 	index.page \
+	listing.page \
 	legal.xml
 
 HELP_MEDIA = \

@@ -304,6 +304,20 @@ on_note_color_changed (BijiNoteObj *note, BijiWebkitEditor *self)
     set_editor_color (GTK_WIDGET (self), &color);
 }
 
+
+gboolean
+on_navigation_request                  (WebKitWebView             *web_view,
+                                        WebKitWebFrame            *frame,
+                                        WebKitNetworkRequest      *request,
+                                        WebKitWebNavigationAction *navigation_action,
+                                        WebKitWebPolicyDecision   *policy_decision,
+                                        gpointer                   user_data)
+{
+  webkit_web_policy_decision_ignore (policy_decision);
+  /* const gchar *       webkit_network_request_get_uri      (WebKitNetworkRequest *request);*/
+  return TRUE;
+}
+
 static void
 biji_webkit_editor_constructed (GObject *obj)
 {
@@ -329,6 +343,12 @@ biji_webkit_editor_constructed (GObject *obj)
     body = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>";
 
   webkit_web_view_load_string (view, body, "application/xhtml+xml", NULL, NULL);
+
+
+  /* Do not be a browser */
+  g_signal_connect (view, "navigation-policy-decision-requested",
+                    G_CALLBACK (on_navigation_request), NULL);
+
 
   /* Drag n drop */
   GtkTargetList *targets = webkit_web_view_get_copy_target_list (view);

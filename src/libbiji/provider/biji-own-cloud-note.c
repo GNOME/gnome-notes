@@ -51,7 +51,7 @@ ocloud_note_get_place (BijiItem *local)
   BijiOwnCloudNote *self;
   const BijiProviderInfo *info;
 
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (local));
+  g_return_val_if_fail (BIJI_IS_OWN_CLOUD_NOTE (local), NULL);
 
   self = BIJI_OWN_CLOUD_NOTE (local);
   info = biji_provider_get_info (BIJI_PROVIDER (self->priv->prov));

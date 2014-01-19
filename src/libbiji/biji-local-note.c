@@ -42,7 +42,7 @@ local_note_get_place (BijiItem *local)
   BijiLocalNote *self;
   const BijiProviderInfo *info;
 
-  g_return_if_fail (BIJI_IS_LOCAL_NOTE (local));
+  g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (local), NULL);
 
   self = BIJI_LOCAL_NOTE (local);
   info = biji_provider_get_info (self->priv->provider);

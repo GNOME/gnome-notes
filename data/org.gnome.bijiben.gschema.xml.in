@@ -19,5 +19,20 @@
       <summary>Primary notes provider to use for new notes.</summary>
       <description>The primary notebook is the place where are created new notes.</description>
     </key>
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <_summary>Window maximized</_summary>
+      <_description>Window maximized state</_description>
+    </key>
+    <key name="window-size" type="ai">
+       <default>[810, 600]</default>
+       <_summary>Window size</_summary>
+       <_description>Window size (width and height).</_description>
+    </key>
+    <key name="window-position" type="ai">
+      <default>[]</default>
+      <_summary>Window position</_summary>
+      <_description>Window position (x and y).</_description>
+    </key>
   </schema>
 </schemalist>

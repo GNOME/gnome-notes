@@ -2,6 +2,7 @@
 data/bijiben.appdata.xml.in
 data/bijiben.desktop.in.in
 data/bijiben.xml.in
+data/org.gnome.bijiben.gschema.xml.in
 src/bjb-app-menu.c
 src/bjb-color-button.c
 src/bjb-editor-toolbar.c

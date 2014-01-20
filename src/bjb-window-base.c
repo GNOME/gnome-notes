@@ -14,8 +14,6 @@
 #include "bjb-note-view.h"
 
 
-#define BJB_WIDTH 810
-#define BJB_HEIGHT 600
 #define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
 
 #define BJB_DEFAULT_FONT "Serif 10"
@@ -31,7 +29,7 @@ static guint bjb_win_base_signals [BJB_WIN_BASE_SIGNALS] = { 0 };
 
 struct _BjbWindowBasePriv
 {
-  GtkApplication       *app ;
+  BjbSettings          *settings;
   BjbController        *controller;
   gchar                *entry; // FIXME, remove this
 
@@ -93,6 +91,66 @@ bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
   bjb_controller_disconnect (self->priv->controller);
 }
 
+
+static gboolean
+bjb_application_window_state_changed (GtkWidget *widget,
+                                      GdkEvent  *event,
+                                      gpointer   user_data)
+{
+  GSettings *settings;
+  GdkWindowState state;
+  gboolean maximized;
+
+  settings = user_data;
+  state = gdk_window_get_state (gtk_widget_get_window (widget));
+  maximized = state & GDK_WINDOW_STATE_MAXIMIZED;
+
+  g_settings_set_boolean (settings, "window-maximized", maximized);
+
+  return FALSE;
+}
+
+
+static gboolean
+bjb_application_window_configured (GtkWidget *widget,
+                                   GdkEvent  *event,
+                                   gpointer   user_data)
+{
+  BjbWindowBase *win;
+  GSettings *settings;
+  GVariant *variant;
+  GdkWindowState state;
+  gint32 size[2];
+  gint32 position[2];
+
+  win = BJB_WINDOW_BASE (user_data);
+  settings = G_SETTINGS (win->priv->settings);
+  state = gdk_window_get_state (gtk_widget_get_window (widget));
+  if (state & GDK_WINDOW_STATE_MAXIMIZED)
+    return FALSE;
+
+  gtk_window_get_size (GTK_WINDOW (win),
+                       (gint *) &size[0],
+                       (gint *) &size[1]);
+  variant = g_variant_new_fixed_array (G_VARIANT_TYPE_INT32,
+                                       size, 2,
+                                       sizeof (size[0]));
+  g_settings_set_value (settings, "window-size", variant);
+
+  gtk_window_get_position (GTK_WINDOW (win),
+                           (gint *) &position[0],
+                           (gint *) &position[1]);
+  variant = g_variant_new_fixed_array (G_VARIANT_TYPE_INT32,
+                                       position, 2,
+                                       sizeof (position[0]));
+  g_settings_set_value (settings, "window-position", variant);
+
+  return FALSE;
+}
+
+
+
+
 /* Gobj */
 static void
 bjb_window_base_constructed (GObject *obj)
@@ -104,15 +162,39 @@ bjb_window_base_constructed (GObject *obj)
   GList *icons = NULL;
   GdkPixbuf *bjb ;
   GError *error = NULL;
+  gboolean maximized;
+  const gint32 *position;
+  const gint32 *size;
+  gsize n_elements;
+  GVariant *variant;
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 
   priv = self->priv;
   priv->note = NULL;
+  priv->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
-  gtk_window_set_default_size (GTK_WINDOW (self), BJB_WIDTH, BJB_HEIGHT);
   gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
+
+  variant = g_settings_get_value (G_SETTINGS (priv->settings), "window-size");
+  size = g_variant_get_fixed_array (variant, &n_elements, sizeof (gint32));
+  if (n_elements == 2)
+    gtk_window_set_default_size (GTK_WINDOW (self), size[0], size[1]);
+
+  g_variant_unref (variant);
+
+  variant = g_settings_get_value (G_SETTINGS (priv->settings), "window-position");
+  position = g_variant_get_fixed_array (variant, &n_elements, sizeof (gint32));
+  if (n_elements == 2)
+    gtk_window_move (GTK_WINDOW (self), position[0], position[1]);
+
+  g_variant_unref (variant);
+
+  maximized = g_settings_get_boolean (G_SETTINGS (priv->settings), "window-maximized");
+  if (maximized)
+    gtk_window_maximize (GTK_WINDOW (self));
+
 
   /* Icon for window. TODO - Should be BjbApp */
   icons_path = bijiben_get_bijiben_dir ();
@@ -171,8 +253,20 @@ bjb_window_base_constructed (GObject *obj)
 
   gtk_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
 
-  g_signal_connect (
-    GTK_WIDGET (self), "destroy", G_CALLBACK (bjb_window_base_destroy), self);
+  g_signal_connect (GTK_WIDGET (self),
+                    "destroy",
+                    G_CALLBACK (bjb_window_base_destroy),
+                    self);
+
+  g_signal_connect (self,
+                    "window-state-event",
+                    G_CALLBACK (bjb_application_window_state_changed),
+                    priv->settings);
+
+  g_signal_connect (self,
+                    "configure-event",
+                    G_CALLBACK (bjb_application_window_configured),
+                    self);
 
 }
 

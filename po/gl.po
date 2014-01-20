@@ -2,13 +2,13 @@
 # Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Fran Diéguez <frandieguez@gnome.org>, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013.
+# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-18 23:33+0100\n"
-"PO-Revision-Date: 2013-12-18 23:33+0200\n"
+"POT-Creation-Date: 2014-01-20 23:18+0100\n"
+"PO-Revision-Date: 2014-01-20 23:18+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -28,7 +28,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Permítelle usar ownCloud como lugar de almacenamento e editor en liña."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notas"
 
@@ -43,6 +43,30 @@ msgstr "Envía notas, etiqueta ficheiros!"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Caderno de notas"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Window maximized"
+msgstr "Xanela maximizada"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "Window maximized state"
+msgstr "Estado da xanela maximizada"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Window size"
+msgstr "Tamaño da xanela"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "Window size (width and height)."
+msgstr "Tamaño da xanela (ancho e alto)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid "Window position"
+msgstr "Posición da xanela"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Window position (x and y)."
+msgstr "Posición da xanela (x e y)."
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -163,7 +187,7 @@ msgid "Search note titles, content and notebooks"
 msgstr "Buscar títulos de notas, contido e cadernos"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -236,17 +260,17 @@ msgstr "Cadernos"
 msgid "Move to Trash"
 msgstr "Mover ao lixo"
 
-#: ../src/bjb-main-toolbar.c:829 ../src/bjb-selection-toolbar.c:307
-msgid "Note color"
-msgstr "Cor da nota"
+#: ../src/bjb-main-toolbar.c:824
+msgid "More options…"
+msgstr "Máis opcións…"
 
-#: ../src/bjb-main-toolbar.c:856 ../src/bjb-selection-toolbar.c:319
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:319
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:877
-msgid "More options…"
-msgstr "Máis opcións…"
+#: ../src/bjb-main-toolbar.c:866 ../src/bjb-selection-toolbar.c:307
+msgid "Note color"
+msgstr "Cor da nota"
 
 #: ../src/bjb-main-view.c:486
 msgid "Notebook"

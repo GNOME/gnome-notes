@@ -2,15 +2,15 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-18 14:24+0000\n"
-"PO-Revision-Date: 2013-12-18 16:30+0100\n"
+"POT-Creation-Date: 2014-01-20 23:54+0000\n"
+"PO-Revision-Date: 2014-01-21 10:45+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -30,7 +30,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Permite usar ownCloud como almacenamiento y editor en línea."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notas"
 
@@ -45,6 +45,66 @@ msgstr "Publique notas y etiquete archivos"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Para tomar notas"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#| msgid "Custom Location"
+msgid "Custom Font"
+msgstr "Tipografía personalizada"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"El nombre de la tipografía aquí establecido se usará como tipografía al "
+"mostrar las notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Indica si se debe usar la tipografía monoespaciada del sistema"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#| msgid "Note color"
+msgid "New notes color."
+msgstr "Nuevo color de las notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"El nombre del color aquí establecido se usará como el color al crear las "
+"notas nuevas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Proveedor de notas primario que usar para las notas nuevas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr ""
+"El cuaderno de notas primario es el lugar donde se crean las notas nuevas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Ventana maximizada"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Estado maximizado de la ventana."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Tamaño de la ventana"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "Tamaño de la ventana (anchura y altura)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Posición de la ventana"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "Posición de la ventana (X e Y)."
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -165,7 +225,7 @@ msgid "Search note titles, content and notebooks"
 msgstr "Buscar en títulos de notas, contenido y cuadernos de notas"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -238,17 +298,17 @@ msgstr "Cuadernos de notas"
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../src/bjb-main-toolbar.c:829 ../src/bjb-selection-toolbar.c:307
-msgid "Note color"
-msgstr "Color de la nota"
+#: ../src/bjb-main-toolbar.c:824
+msgid "More options…"
+msgstr "Más opciones…"
 
-#: ../src/bjb-main-toolbar.c:856 ../src/bjb-selection-toolbar.c:319
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:319
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:877
-msgid "More options…"
-msgstr "Más opciones…"
+#: ../src/bjb-main-toolbar.c:866 ../src/bjb-selection-toolbar.c:307
+msgid "Note color"
+msgstr "Color de la nota"
 
 #: ../src/bjb-main-view.c:486
 msgid "Notebook"
@@ -364,7 +424,6 @@ msgid "_Help"
 msgstr "Ay_uda"
 
 #: ../src/resources/app-menu.ui.h:6
-#| msgid "_About Notes"
 msgid "_About"
 msgstr "_Acerca de"
 

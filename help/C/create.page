@@ -16,7 +16,11 @@
       <email its:translate="no">kittykat3756@gmail.com</email>
       <years>2013</years>
     </credit>
-
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -32,7 +36,7 @@
       note.</p>
     </item>
     <item>
-      <p>Drag and drop text to the <em>notes view</em> to create a note
+      <p>Drag and drop text to the <em>New and Recent</em> to create a note
       containing this text.</p>
     </item>
     <item>

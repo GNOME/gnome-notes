@@ -1,14 +1,14 @@
 # Norwegian bokmål translation of bijiben.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2013.
+# Kjartan Maraas <kmaraas@gnome.org>, 2013-2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben 3.9.x\n"
+"Project-Id-Version: bijiben 3.11.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-08 19:22+0200\n"
-"PO-Revision-Date: 2013-09-08 19:22+0200\n"
+"POT-Creation-Date: 2014-01-21 21:01+0100\n"
+"PO-Revision-Date: 2014-01-21 21:04+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -23,10 +23,11 @@ msgstr "Notater lar deg redigere enkle lister for senere bruk."
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr "Det lar deg bruke ownCloud som lagringslokasjon og redigering på nettet."
+msgstr ""
+"Det lar deg bruke ownCloud som lagringslokasjon og redigering på nettet."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notater"
 
@@ -42,6 +43,59 @@ msgstr "Legg ut notater, merk filer!"
 msgid "Note-taker"
 msgstr "Notater"
 
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "Egendefinert skrift"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "Ny farge for notater."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Vindu maksimert"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Vindustørrelse"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Vindusposisjon"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr ""
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "Enkel notisblokk for GNOME"
@@ -55,33 +109,33 @@ msgid "Note Color"
 msgstr "Farge på notat"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:367
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Cut"
 msgstr "Klipp ut"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Copy"
 msgstr "Kopier"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Paste"
 msgstr "Lim inn"
 
-#: ../src/bjb-editor-toolbar.c:396
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Bold"
 msgstr "Uthevet"
 
-#: ../src/bjb-editor-toolbar.c:407
+#: ../src/bjb-editor-toolbar.c:414
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../src/bjb-editor-toolbar.c:418
+#: ../src/bjb-editor-toolbar.c:425
 msgid "Strike"
 msgstr "Gjennomstrek"
 
-#: ../src/bjb-editor-toolbar.c:450
+#: ../src/bjb-editor-toolbar.c:457
 msgid "Copy selection to a new note"
 msgstr "Kopier utvalg til nytt notat"
 
@@ -91,10 +145,10 @@ msgstr "Ingen notater funnet"
 
 #: ../src/bjb-empty-results-box.c:144
 msgid ""
-"Your notes collection is empty.\n"
+"Your notes notebook is empty.\n"
 "Click the New button to create your first note."
 msgstr ""
-"Notatsamlingen din er tom.\n"
+"Notatblokken din er tom.\n"
 "Klikk på Ny-knappen for å lage ditt første notat."
 
 #: ../src/bjb-empty-results-box.c:150
@@ -109,23 +163,23 @@ msgstr "Oops"
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Vennligst installer «Tracker» og start programmet på nytt."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Egendefinert lokasjon"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importer notater"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importer"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Velg lokasjon for import"
 
@@ -145,115 +199,125 @@ msgstr "Last mer"
 msgid "Loading..."
 msgstr "Laster …"
 
-#: ../src/bjb-main-toolbar.c:138
+#: ../src/bjb-main-toolbar.c:141
 msgid "Click on items to select them"
 msgstr "Klikk på oppføringer for å velge dem"
 
-#: ../src/bjb-main-toolbar.c:140
+#: ../src/bjb-main-toolbar.c:143
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valgt"
 msgstr[1] "%d valgt"
 
-#: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "Søk i notattitler, innhold og samlinger"
+#: ../src/bjb-main-toolbar.c:263
+msgid "Search note titles, content and notebooks"
+msgstr "Søk i notattitler, innhold og notatblokker"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../src/bjb-main-toolbar.c:304
+#: ../src/bjb-main-toolbar.c:316
 msgid "Exit selection mode"
 msgstr "Avslutt utvalgtsmodus"
 
-#: ../src/bjb-main-toolbar.c:334
+#: ../src/bjb-main-toolbar.c:346
 #, c-format
 msgid "Results for %s"
 msgstr "Resultater for %s"
 
-#: ../src/bjb-main-toolbar.c:337
+#: ../src/bjb-main-toolbar.c:349
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
-#: ../src/bjb-main-toolbar.c:401
+#: ../src/bjb-main-toolbar.c:425
 msgid "New"
 msgstr "Ny"
 
-#: ../src/bjb-main-toolbar.c:419
+#: ../src/bjb-main-toolbar.c:443 ../src/bjb-main-toolbar.c:494
 msgid "Selection mode"
 msgstr "Utvalgsmodus"
 
-#: ../src/bjb-main-toolbar.c:447
-msgid "View notes and collections in a list"
-msgstr "Vis notater og samlinger i en liste"
+#: ../src/bjb-main-toolbar.c:474
+msgid "Trash"
+msgstr "Papirkurv"
 
-#: ../src/bjb-main-toolbar.c:471
-msgid "View notes and collections in a grid"
-msgstr "Vis notater og samlinger i et rutenett"
+#: ../src/bjb-main-toolbar.c:530
+msgid "View notes and notebooks in a list"
+msgstr "Vis notater og notatblokker i en liste"
 
-#: ../src/bjb-main-toolbar.c:600
-msgid "Rename Note"
-msgstr "Endre navn på notat"
+#: ../src/bjb-main-toolbar.c:554
+msgid "View notes and notebooks in a grid"
+msgstr "Vis notater og notatblokker i et rutenett"
+
+#: ../src/bjb-main-toolbar.c:626
+msgid "Untitled"
+msgstr "Uten navn"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:621
+#: ../src/bjb-main-toolbar.c:716
 msgid "Undo"
 msgstr "Angre"
 
-#: ../src/bjb-main-toolbar.c:629
+#: ../src/bjb-main-toolbar.c:724
 msgid "Redo"
 msgstr "Gjenta"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:644
+#: ../src/bjb-main-toolbar.c:739
 msgid "Bullets"
 msgstr "Kulepunkter"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:651
+#: ../src/bjb-main-toolbar.c:746
 msgid "Numbered List"
 msgstr "Nummerert liste"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:663
-msgid "Rename"
-msgstr "Endre navn"
-
-#: ../src/bjb-main-toolbar.c:671 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "Samlinger"
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:298
+msgid "Notebooks"
+msgstr "Notatblokker"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:683
-msgid "Delete this Note"
-msgstr "Slett dette notatet"
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:324
+msgid "Move to Trash"
+msgstr "Flytt til papirkurv"
 
-#: ../src/bjb-main-toolbar.c:747 ../src/bjb-selection-toolbar.c:252
-msgid "Note color"
-msgstr "Farge på notat"
-
-#: ../src/bjb-main-toolbar.c:774
-msgid "Share note"
-msgstr "Del notat"
-
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:824
 msgid "More options…"
 msgstr "Flere alternativer …"
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "Oppgi et navn for å lage en samling"
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:319
+msgid "Share note"
+msgstr "Del notat"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "Ny samling"
+#: ../src/bjb-main-toolbar.c:866 ../src/bjb-selection-toolbar.c:307
+msgid "Note color"
+msgstr "Farge på notat"
+
+#: ../src/bjb-main-view.c:486
+msgid "Notebook"
+msgstr "Notatblokk"
+
+#: ../src/bjb-main-view.c:489
+msgid "Note"
+msgstr "Notat"
+
+#: ../src/bjb-organize-dialog.c:399
+msgid "Enter a name to create a notebook"
+msgstr "Oppgi et navn for å lage en notatblokk"
+
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "Ny notatblokk"
 
 #. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Lukk"
 
@@ -266,33 +330,40 @@ msgstr "Sist oppdatert"
 msgid "_OK"
 msgstr "_OK"
 
-#. Trash notes
-#: ../src/bjb-selection-toolbar.c:244
-msgid "Delete"
-msgstr "Slett"
-
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:258
-msgid "Add to Collection"
-msgstr "Legg til i samling"
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Bruk systemets skrift"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Skrift for notat"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Forvalgt farge"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "Versjon av notat"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Hovedbok"
+
+#: ../src/bjb-trash-bar.c:212
+msgid "Empty"
+msgstr "Tom"
+
+#: ../src/bjb-trash-bar.c:231
+msgid "Restore"
+msgstr "Gjenopprett"
+
+#: ../src/bjb-trash-bar.c:252
+msgid "Permanently Delete"
+msgstr "Slett permanent"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -318,7 +389,7 @@ msgstr "Dette året"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: ../src/libbiji/provider/biji-local-provider.c:298
+#: ../src/libbiji/provider/biji-local-provider.c:355
 msgid "Local storage"
 msgstr "Lokal lagring"
 
@@ -331,17 +402,21 @@ msgid "_Import Notes"
 msgstr "_Importer notater"
 
 #: ../src/resources/app-menu.ui.h:3
-msgid "_Preferences"
-msgstr "_Brukervalg"
+msgid "_View Trash"
+msgstr "_Vis papirkurv"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Notes"
-msgstr "_Om notater"
+msgid "_Preferences"
+msgstr "_Brukervalg"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
 msgstr "_Hjelp"
 
 #: ../src/resources/app-menu.ui.h:6
+msgid "_About"
+msgstr "_Om"
+
+#: ../src/resources/app-menu.ui.h:7
 msgid "_Quit"
 msgstr "A_vslutt"

@@ -2,14 +2,14 @@
 # Copyright (C) 2013 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013.
-# Yosef Or Boczko <yoseforb@gmail.com>, 2013.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-22 13:15+0200\n"
-"PO-Revision-Date: 2013-12-22 13:19+0200\n"
+"POT-Creation-Date: 2014-01-21 02:23+0200\n"
+"PO-Revision-Date: 2014-01-21 02:24+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -30,7 +30,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "הוא מאפשר להשתמש ב־ownCloud כמקום אחסון ועורך מקוון."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "פתקיות"
 
@@ -45,6 +45,60 @@ msgstr "לפרסם פתקיות, לתייג קבצים!"
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "רישום פתקיות"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "Custom Font"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "The font name set here will be used as the font when displaying notes."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Whether to use the system monospace font"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "New notes color."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"The color name set here will be used as the color when creating new notes."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Primary notes provider to use for new notes."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr "The primary notebook is the place where are created new notes."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Window maximized"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Window maximized state."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Window size"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "Window size (width and height)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Window position"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "Window position (x and y)."
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -167,7 +221,7 @@ msgid "Search note titles, content and notebooks"
 msgstr "חיפוש בכותרות, בתוכן ובאוספים"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:302
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -240,17 +294,17 @@ msgstr "אוספים"
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
-#: ../src/bjb-main-toolbar.c:829 ../src/bjb-selection-toolbar.c:307
-msgid "Note color"
-msgstr "צבע הפתקית"
+#: ../src/bjb-main-toolbar.c:824
+msgid "More options…"
+msgstr "אפשרויות נוספות…"
 
-#: ../src/bjb-main-toolbar.c:856 ../src/bjb-selection-toolbar.c:319
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:319
 msgid "Share note"
 msgstr "שיתוף הפתקית"
 
-#: ../src/bjb-main-toolbar.c:877
-msgid "More options…"
-msgstr "אפשרויות נוספות…"
+#: ../src/bjb-main-toolbar.c:866 ../src/bjb-selection-toolbar.c:307
+msgid "Note color"
+msgstr "צבע הפתקית"
 
 #: ../src/bjb-main-view.c:486
 msgid "Notebook"

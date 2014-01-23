@@ -346,7 +346,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_share);
 
   /* Detach */
-  priv->toolbar_detach = gtk_button_new_with_label ("Open in another window");
+  priv->toolbar_detach = gtk_button_new_with_label (_("Open in another window"));
   /*                                 not ready to be translated ^       */
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_detach);
 

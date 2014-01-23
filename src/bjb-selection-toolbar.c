@@ -62,6 +62,7 @@ struct _BjbSelectionToolbarPrivate
   GtkWidget          *toolbar_color;
   GtkWidget          *toolbar_tag;
   GtkWidget          *toolbar_share;
+  GtkWidget          *toolbar_detach;
   GtkToolItem        *left_group;
   GtkToolItem        *right_group;
   GtkToolItem        *separator;
@@ -281,7 +282,8 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 {
   BjbSelectionToolbarPrivate *priv;
   GtkWidget                  *widget, *share;
-  GtkSizeGroup *size;
+  GtkStyleContext            *context;
+  GtkSizeGroup               *size;
 
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_SELECTION_TOOLBAR, BjbSelectionToolbarPrivate);
   priv = self->priv;
@@ -322,6 +324,8 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 
   /* Trash notes */
   priv->toolbar_trash = gtk_button_new_with_label (_("Move to Trash"));
+  context = gtk_widget_get_style_context (priv->toolbar_trash);
+  gtk_style_context_add_class (context, "destructive-action");
   gtk_widget_set_valign (priv->toolbar_trash, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_end (priv->bar, priv->toolbar_trash);
 

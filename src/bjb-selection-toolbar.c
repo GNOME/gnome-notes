@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 #include <libgd/gd.h>
 
+#include "bjb-bijiben.h"
 #include "bjb-color-button.h"
 #include "bjb-main-view.h"
 #include "bjb-organize-dialog.h"
@@ -141,6 +142,24 @@ action_delete_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
 
 
 static void
+action_pop_up_note_callback (GtkWidget *w, BjbSelectionToolbar *self)
+{
+  GList *l, *selection;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+
+  for (l=selection; l !=NULL; l=l->next)
+  {
+    bijiben_new_window_for_note (g_application_get_default (),
+                                 BIJI_NOTE_OBJ (l->data));
+  }
+
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
+  g_list_free (selection);
+}
+
+
+static void
 action_share_item_callback (GtkWidget *w, BjbSelectionToolbar *self)
 {
   GList *l, *selection;
@@ -176,7 +195,7 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   BjbSelectionToolbarPrivate *priv;
   GList *l, *selection;
   GdkRGBA color;
-  gboolean can_tag, can_color, can_share;
+  gboolean can_tag, can_color, can_share, are_notes;
 
   g_return_if_fail (BJB_IS_SELECTION_TOOLBAR (self));
 
@@ -188,6 +207,7 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   can_color = TRUE;
   can_tag = TRUE;
   can_share = TRUE;
+  are_notes = TRUE;
 
 
   /* Adapt */
@@ -198,6 +218,9 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
       if (!biji_item_is_collectable (l->data))
         can_tag = FALSE;
     }
+
+   if (are_notes == FALSE || (BIJI_IS_NOTE_OBJ (l->data)) == FALSE)
+     are_notes = FALSE;
 
 
     if (can_color == TRUE) /* color is default. check */
@@ -222,6 +245,7 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   gtk_widget_set_sensitive (priv->toolbar_color, can_color);
   gtk_widget_set_sensitive (priv->toolbar_tag, can_tag);
   gtk_widget_set_sensitive (priv->toolbar_share, can_share);
+  gtk_widget_set_sensitive (priv->toolbar_detach, are_notes);
 
   g_list_free (selection);
 }
@@ -320,6 +344,11 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
                                "image-button");
   gtk_widget_set_tooltip_text (priv->toolbar_share, _("Share note"));
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_share);
+
+  /* Detach */
+  priv->toolbar_detach = gtk_button_new_with_label ("Open in another window");
+  /*                                 not ready to be translated ^       */
+  gtk_header_bar_pack_start (priv->bar, priv->toolbar_detach);
 
 
   /* Trash notes */
@@ -420,6 +449,9 @@ bjb_selection_toolbar_constructed(GObject *obj)
 
   g_signal_connect (priv->toolbar_share, "clicked",
                     G_CALLBACK (action_share_item_callback), self);
+
+  g_signal_connect (priv->toolbar_detach, "clicked",
+                    G_CALLBACK (action_pop_up_note_callback), self);
 
   g_signal_connect (priv->toolbar_trash,"clicked",
                     G_CALLBACK (action_delete_selected_items), self);

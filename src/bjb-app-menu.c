@@ -55,24 +55,6 @@ void show_about_dialog(GtkApplication *app)
 
 }
 
-static void
-new_activated (GSimpleAction *action,
-               GVariant      *parameter,
-               gpointer       user_data)
-{
-  BjbWindowBase *win;
-  BjbController *control;
-
-  win = BJB_WINDOW_BASE (bjb_window_base_new());
-
-  /* Tell the controller to display all notes, */
-  control = bjb_window_base_get_controller (win);
-  bjb_controller_set_needle (control, "");
-
-  bjb_window_base_switch_to (win, BJB_WINDOW_BASE_MAIN_VIEW);
-  gtk_widget_show_all (GTK_WIDGET (win));
-}
-
 
 static void
 external_activated (GSimpleAction *action,
@@ -126,6 +108,7 @@ preferences_activated (GSimpleAction *action,
   show_bijiben_settings_window (g_list_nth_data (windows, 0));
 }
 
+
 static void
 about_activated (GSimpleAction *action,
                  GVariant      *parameter,
@@ -133,6 +116,7 @@ about_activated (GSimpleAction *action,
 {
   show_about_dialog(GTK_APPLICATION(user_data));
 }
+
 
 static void
 help_activated (GSimpleAction *action,
@@ -162,7 +146,6 @@ quit_activated (GSimpleAction *action,
 /* Menu */
 
 static GActionEntry app_entries[] = {
-           { "new", new_activated, NULL, NULL, NULL },
            { "external", external_activated, NULL, NULL, NULL },
            { "trash", trash_activated, NULL, NULL, NULL },
            { "preferences", preferences_activated, NULL, NULL, NULL },

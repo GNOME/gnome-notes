@@ -113,23 +113,8 @@ bijiben_new_window_internal (Bijiben *self,
   BijiNoteObj* note;
   gchar *path;
 
-
   note = NULL;
   path = NULL;
-
-  window = BJB_WINDOW_BASE (bjb_window_base_new ());
-  g_signal_connect (window, "activated",
-                    G_CALLBACK (on_window_activated_cb), self);
-
-
-  if (error!= NULL)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-    bjb_window_base_switch_to (window, BJB_WINDOW_BASE_ERROR_TRACKER);
-    goto out;
-  }
-
 
   if (file != NULL)
   {
@@ -143,15 +128,19 @@ bijiben_new_window_internal (Bijiben *self,
   }
 
 
-  bjb_window_base_switch_to (window, BJB_WINDOW_BASE_MAIN_VIEW);
+  window = BJB_WINDOW_BASE (bjb_window_base_new (note));
+  g_signal_connect (window, "activated",
+                    G_CALLBACK (on_window_activated_cb), self);
 
-  if (note != NULL)
+
+  if (error!= NULL)
   {
-    bjb_controller_apply_needle (bjb_window_base_get_controller (window));
-    bjb_window_base_switch_to_item (window, BIJI_ITEM (note));
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    bjb_window_base_switch_to (window, BJB_WINDOW_BASE_ERROR_TRACKER);
   }
 
-out:
+
   if (path != NULL)
     g_free (path);
 

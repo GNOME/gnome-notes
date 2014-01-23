@@ -41,43 +41,59 @@ typedef enum {
   BJB_WINDOW_BASE_NO_VIEW
 } BjbWindowViewType;
 
-GType bjb_window_base_get_type (void);
-
-GtkWindow * bjb_window_base_new(void);
-
-// Accessor
-
-BjbController * bjb_window_base_get_controller ( BjbWindowBase *window ) ;
 
 
-void bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type);
-
-void bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item);
-
-BjbWindowViewType bjb_window_base_get_view_type (BjbWindowBase *win);
-
-BijiManager * bjb_window_base_get_manager(GtkWidget * win);
+GType                  bjb_window_base_get_type           (void);
 
 
-void bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;
-
-gchar * bjb_window_base_get_entry(GtkWidget *win) ;
+GtkWindow             *bjb_window_base_new                (BijiNoteObj *note);
 
 
-gpointer bjb_window_base_get_main_view (BjbWindowBase *self);
+BjbController         *bjb_window_base_get_controller     (BjbWindowBase *window ) ;
 
-BijiNoteObj * bjb_window_base_get_note (BjbWindowBase *self);
 
-gboolean switch_window_fullscreen();
+void                   bjb_window_base_switch_to          (BjbWindowBase *bwb, BjbWindowViewType type);
 
-gboolean bjb_window_base_get_show_search_bar (BjbWindowBase *self);
 
-gboolean bjb_window_base_set_show_search_bar (BjbWindowBase *self, gboolean show);
+void                   bjb_window_base_switch_to_item     (BjbWindowBase *bwb, BijiItem *item);
 
-gboolean bjb_window_base_toggle_search_button (BjbWindowBase *self,
+
+BjbWindowViewType      bjb_window_base_get_view_type      (BjbWindowBase *win);
+
+
+BijiManager           *bjb_window_base_get_manager        (GtkWidget * win);
+
+
+void                   bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;
+
+
+gchar                 *bjb_window_base_get_entry(GtkWidget *win) ;
+
+
+gpointer               bjb_window_base_get_main_view (BjbWindowBase *self);
+
+
+BijiNoteObj           *bjb_window_base_get_note (BjbWindowBase *self);
+
+
+gboolean               switch_window_fullscreen();
+
+
+gboolean               bjb_window_base_get_show_search_bar (BjbWindowBase *self);
+
+
+gboolean               bjb_window_base_set_show_search_bar (BjbWindowBase *self, gboolean show);
+
+
+gboolean               bjb_window_base_toggle_search_button (BjbWindowBase *self,
                                                gboolean active);
 
 
-void bjb_window_base_set_active (BjbWindowBase *self, gboolean active);
+void                   bjb_window_base_set_active (BjbWindowBase *self, gboolean active);
+
+
+
+gboolean               bjb_window_base_is_detached (BjbWindowBase *self);
+
 
 #endif /* _BJB_WINDOW_BASE_H */

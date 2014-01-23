@@ -18,6 +18,16 @@
 
 #define BJB_DEFAULT_FONT "Serif 10"
 
+
+enum {
+  PROP_0,
+  PROP_NOTE,
+  NUM_PROPERTIES
+};
+
+static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
+
+
 enum {
   BJB_WIN_BASE_VIEW_CHANGED,
   BJB_WIN_BASE_ACTIVATED,
@@ -49,6 +59,7 @@ struct _BjbWindowBasePriv
 
   /* when a note is opened */
   BijiNoteObj          *note;
+  gboolean              detached; // detached note
   GtkWidget            *note_overlay;
 
 
@@ -82,6 +93,55 @@ bjb_window_base_finalize (GObject *object)
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->finalize (object);
 }
+
+
+
+
+static void
+bjb_window_base_get_property (GObject  *object,
+                              guint     property_id,
+                              GValue   *value,
+                              GParamSpec *pspec)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (object);
+
+  switch (property_id)
+  {
+  case PROP_NOTE:
+    g_value_set_object (value, self->priv->note);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
+  }
+}
+
+
+static void
+bjb_window_base_set_property (GObject  *object,
+                              guint     property_id,
+                              const GValue *value,
+                              GParamSpec *pspec)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (object);
+
+  switch (property_id)
+  {
+  case PROP_NOTE:
+    self->priv->note = g_value_get_object (value);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+    break;
+  }
+}
+
+
+
+
+
+
+
 
 /* Just disconnect to avoid crash, the finalize does the real
  * job */
@@ -171,8 +231,10 @@ bjb_window_base_constructed (GObject *obj)
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 
   priv = self->priv;
-  priv->note = NULL;
   priv->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
+
+
+
 
   gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
@@ -268,6 +330,18 @@ bjb_window_base_constructed (GObject *obj)
                     G_CALLBACK (bjb_application_window_configured),
                     self);
 
+  /* If a note is requested at creation, show it
+   * This is a specific type of window not associated with any view */
+  if (priv->note == NULL)
+  {
+    bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+  }
+
+  else
+  {
+    priv->detached = TRUE;
+    bjb_window_base_switch_to_item (self, BIJI_ITEM (priv->note));
+  }
 }
 
 static void
@@ -281,6 +355,8 @@ bjb_window_base_init (BjbWindowBase *self)
 
   /* Default window has no note opened */
   priv->note_view = NULL;
+  priv->note = NULL;
+  priv->detached = FALSE;
 
   priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_add (GTK_CONTAINER (self), priv->vbox);
@@ -291,9 +367,12 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+
   gobject_class->constructed = bjb_window_base_constructed;
   gobject_class->constructor = bjb_window_base_constructor;
   gobject_class->finalize = bjb_window_base_finalize ;
+  gobject_class->get_property = bjb_window_base_get_property;
+  gobject_class->set_property = bjb_window_base_set_property;
 
   g_type_class_add_private (klass, sizeof (BjbWindowBasePriv));
 
@@ -317,14 +396,26 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
                                                     G_TYPE_NONE,
                                                     1,
                                                     G_TYPE_BOOLEAN);
+
+  properties[PROP_NOTE] = g_param_spec_object ("note",
+                                               "NoteObj",
+                                               "Currently opened note",
+                                               BIJI_TYPE_NOTE_OBJ,
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_CONSTRUCT |
+                                               G_PARAM_STATIC_STRINGS);
+
+  g_object_class_install_properties (gobject_class, NUM_PROPERTIES, properties);
+
 }
 
 
 GtkWindow *
-bjb_window_base_new(void)
+bjb_window_base_new                    (BijiNoteObj *note)
 {
   return g_object_new (BJB_TYPE_WINDOW_BASE,
                        "application", g_application_get_default(),
+                       "note", note,
                        NULL);
 }
 
@@ -552,4 +643,11 @@ bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
                    0,
                    available);
   }
+}
+
+
+gboolean
+bjb_window_base_is_detached (BjbWindowBase *self)
+{
+  return self->priv->detached;
 }

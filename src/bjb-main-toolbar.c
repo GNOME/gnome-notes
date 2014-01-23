@@ -784,12 +784,13 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   BijiItem *item;
   GtkWidget *share_image;
   GtkWidget *menu_image;
-  gboolean rtl;
+  gboolean rtl, detached;
 
   priv->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
   item = BIJI_ITEM (priv->note);
 
   rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
+  detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
 
   if (!priv->note) /* no reason this would happen */
     return;
@@ -797,15 +798,18 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   settings = bjb_app_get_settings (g_application_get_default());
 
   /* Go to main view basically means closing note */
-  priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
-                                              GTK_ICON_SIZE_MENU);
-  gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-  gtk_header_bar_pack_start (bar, priv->back);
+  if (!detached)
+  {
+    priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+                                                GTK_ICON_SIZE_MENU);
+    gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
+    gtk_header_bar_pack_start (bar, priv->back);
 
-  g_signal_connect_swapped (priv->back, "clicked",
-                            G_CALLBACK (just_switch_to_main_view), self);
-  gtk_widget_add_accelerator (priv->back, "activate", self->priv->accel,
-                              GDK_KEY_w, GDK_CONTROL_MASK, GTK_ACCEL_MASK);
+    g_signal_connect_swapped (priv->back, "clicked",
+                              G_CALLBACK (just_switch_to_main_view), self);
+    gtk_widget_add_accelerator (priv->back, "activate", self->priv->accel,
+                                GDK_KEY_w, GDK_CONTROL_MASK, GTK_ACCEL_MASK);
+  }
 
   /* Note Title */
   on_note_renamed (item, self);

@@ -17,6 +17,7 @@ HELP_FILES = \
 	share.page \
 	index.page \
 	listing.page \
+	undo-redo.page \
 	legal.xml
 
 HELP_MEDIA = \

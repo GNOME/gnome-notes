@@ -1,0 +1,38 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic" style="task"
+      id="undo-redo">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+
+    <credit type="author">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2014</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Control your changes.</desc>
+  </info>
+
+  <title>Undo and redo</title>
+  <list>
+    <item>
+      <p>Select <guiseq><gui style="button">More
+      options…</gui><gui style="menuitem">Undo</gui></guiseq> to undo your
+      changes.</p>
+    </item>
+    <item>
+      <p>Select <guiseq><gui style="button">More
+      options…</gui><gui style="menuitem">Redo</gui></guiseq> to redo your
+      changes.</p>
+    </item>
+  </list>
+  <note>
+    <p>You can also press <keyseq><key>Ctrl</key><key>Z</key></keyseq>
+    to undo and <keyseq><key>Ctrl</key><key>R</key></keyseq> to redo.</p>
+  </note>
+
+</page>

@@ -702,15 +702,42 @@ trash_item_callback (GtkWidget *item, gpointer user_data)
 }
 
 
+static void
+on_detached_clicked_cb (BjbMainToolbar *self)
+{
+  BijiNoteObj *note;
+
+  note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->priv->window),
+                             BJB_WINDOW_BASE_MAIN_VIEW);
+  bijiben_new_window_for_note (g_application_get_default (), note);
+}
+
+
 GtkWidget *
 bjb_note_menu_new (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget             *result, *item;
   BijiWebkitEditor      *editor;
+  gboolean               detached;
 
   result = gtk_menu_new();
   editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (priv->note));
+
+  /* Detach and separator */
+  detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
+  if (detached == FALSE)
+  {
+    item = gtk_menu_item_new_with_label (_("Open in another window"));
+    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
+    g_signal_connect_swapped (item, "activate",
+                              G_CALLBACK (on_detached_clicked_cb), self);
+
+
+    item = gtk_separator_menu_item_new ();
+    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
+  }
 
   /* Undo Redo separator */
   item = gtk_menu_item_new_with_label (_("Undo"));

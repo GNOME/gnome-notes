@@ -193,7 +193,7 @@ biji_note_id_class_init (BijiNoteIDClass *klass)
 gboolean
 biji_note_id_equal (BijiNoteID *a, BijiNoteID *b)
 {
-  if (g_strcmp0 (a->priv->path, b->priv->path) &&
+  if (g_strcmp0 (a->priv->path, b->priv->path) == 0 &&
       g_strcmp0 (a->priv->content ,b->priv->content) ==0)
     return TRUE;
 

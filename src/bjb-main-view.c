@@ -189,7 +189,7 @@ show_window_if_note (gpointer data, gpointer user_data)
 {
   BjbWindowBase *window = data;
   BijiNoteObj *to_open = user_data;
-  BijiNoteObj *cur = NULL;
+  BijiNoteObj *cur;
 
   cur = bjb_window_base_get_note (window);
 

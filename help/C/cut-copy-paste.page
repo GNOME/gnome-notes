@@ -1,0 +1,31 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic" style="task"
+      id="cut-copy-paste">
+
+  <info>
+    <link type="guide" xref="index#use"/>
+
+    <credit type="author">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2014</years>
+    </credit>
+ 
+   <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Cut, copy and paste is simple to use.</desc>
+  </info>
+
+  <title>Cut, copy and paste</title>
+
+  <steps>
+    <item>
+      <p>Select the text.</p>
+    </item>
+    <item><p>Press <gui style="button">Cut</gui>,
+    <gui style="button">Copy</gui> or <gui style="button">Paste</gui>.</p>
+    </item>
+  </steps>
+
+</page>

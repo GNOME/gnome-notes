@@ -18,6 +18,7 @@ HELP_FILES = \
 	index.page \
 	listing.page \
 	undo-redo.page \
+	cut-copy-paste.page \
 	legal.xml
 
 HELP_MEDIA = \

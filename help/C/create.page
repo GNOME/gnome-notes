@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#create"/>
-    <revision pkgversion="3.8" date="2013-04-29" status="review"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -21,10 +21,16 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2014</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Create a new note from scratch, using some text from another application or from another note.</desc>
+    <desc>Create a new note from scratch, using some text from another
+    application or from another note.</desc>
   </info>
 
   <title>Create a note</title>
@@ -32,17 +38,17 @@
   <p>You can create a new note in three different ways:</p>
   <list>
     <item>
-      <p>Press the <gui style="button">New</gui> button to create a blank
+      <p>Click the <gui style="button">New</gui> button to create a blank
       note.</p>
     </item>
     <item>
-      <p>Drag and drop text to the <em>New and Recent</em> to create a note
-      containing this text.</p>
+      <p>Drag and drop text to the <gui>New and Recent</gui> view to create a
+      note containing this text.</p>
     </item>
     <item>
-      <p>Open a note, select some text and press the
-      <gui style="button">Link</gui> button to create a note containing this
-      text.</p>
+      <p>Open a note, select some text and click the
+      <gui style="button">Copy selection to a new note</gui> button to create a
+      note containing this text.</p>
     </item>
   </list>
 

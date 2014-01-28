@@ -5,6 +5,7 @@
 
   <info>
     <link type="guide" xref="index#use"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -20,6 +21,11 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2014</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -28,13 +34,13 @@
 
   <title>Change the text style</title>
 
-  <p>You can format your note as follows:</p>
   <steps>
+    <title>To change the formatting options of text in your note:</title>
     <item>
       <p>Select the text that you want to format.</p>
     </item>
     <item>
-      <p>Press <gui style="button">Bold</gui>, <gui style="button">Italic</gui>
+      <p>Click <gui style="button">Bold</gui>, <gui style="button">Italic</gui>
       or <gui style="button">Strike</gui>.</p>
     </item>
   </steps>

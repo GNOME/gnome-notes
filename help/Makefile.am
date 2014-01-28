@@ -17,7 +17,6 @@ HELP_FILES = \
 	share.page \
 	index.page \
 	listing.page \
-	undo-redo.page \
 	cut-copy-paste.page \
 	legal.xml
 

@@ -5,6 +5,7 @@
 
   <info>
     <link type="guide" xref="index#use"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -20,6 +21,11 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -29,13 +35,14 @@
   <title>Create a list</title>
 
   <list>
+    <title>While the note is open:</title>
     <item>
-      <p>To create an unordered list select
+      <p>To create an unordered list, click
       <guiseq><gui style="button">More options…</gui>
       <gui style="menuitem">Bullets</gui></guiseq>.</p>
     </item>
     <item>
-      <p>To create an ordered list select
+      <p>To create an ordered list, click
       <guiseq><gui style="button">More options…</gui>
       <gui>Numbered List</gui></guiseq>.</p>
     </item>

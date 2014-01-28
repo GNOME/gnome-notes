@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#create"/>
-    <revision pkgversion="3.8" date="2013-05-04" status="review"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -21,6 +21,11 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -29,19 +34,19 @@
 
   <title>Find a note</title>
 
-  <p>The default <em>New and Recent</em> shows the recently used notes.</p>
+  <p>The default <em>New and Recent</em> view shows recently used notes.</p>
 
-  <p>You can find notes while in the <em>New and Recent</em> using the following method:</p>
   <steps>
+  <title>To find notes while in <em>New and Recent</em>:</title>
     <item>
-      <p>Press the <gui>Search</gui> button.</p>
+      <p>Click the <gui>Search</gui> button.</p>
     </item>
     <item>
-      <p>Type your search term and you can view all the search results instantly.</p>
+      <p>Type your search term. Search results will appear instantly.</p>
     </item>
   </steps>
 
-  <note><p>You can also search for notes from the <gui>Activities</gui> view.</p></note>
+  <note><p>You can also search for notes from the <gui>Activities</gui> overview.</p></note>
 
   <!-- TODO talk about sorting notes by colour -->
 

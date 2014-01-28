@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#use"/>
-    <revision pkgversion="3.8" date="2013-05-01" status="review"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -21,6 +21,11 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -29,42 +34,42 @@
 
   <title>Notebooks</title>
 
-  <p>To create a notebook with a single note:</p>
-
   <steps>
+    <title>To create a notebook with a single note:</title>
     <item>
-      <p>Open a note.</p>
+      <p>Click on the note to open it.</p>
     </item>
     <item>
-      <p>Click <guiseq><gui style="button">More
-      options…</gui><gui style="menuitem">Notebooks</gui></guiseq>.</p>
+      <p>Click
+      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Notebooks</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Type a suitable name for the notebook and press
+      <p>Type a suitable name for the notebook and click the
       <gui style="button">New notebook</gui> button.</p>
     </item>
     <item>
-      <p>Press the <gui style="button">Close</gui> button.</p>
+      <p>Click the <gui style="button">Close</gui> button.</p>
     </item>
   </steps>
-  <p>To create a notebook having multiple notes:</p>
+
   <steps>
+    <title>To create a notebook with multiple notes:</title>
     <item>
-      <p>In the <em>New and Recent</em>, press the
+      <p>In the <gui>New and Recent</gui> view, click the
       <gui style="button">Selection mode</gui> button.</p>
     </item>
     <item>
       <p>Select all the notes which you want to add to the notebook.</p>
     </item>
     <item>
-      <p>Press the <gui style="button">Notebooks</gui> button.</p>
+      <p>Click the <gui style="button">Notebooks</gui> button.</p>
     </item>
     <item>
-      <p>Type a suitable name for the notebook and press
+      <p>Type a suitable name for the notebook and click
       <gui style="button">New notebook</gui> button.</p>
     </item>
     <item>
-      <p>Press the <gui style="button">Close</gui> button.</p>
+      <p>Click the <gui style="button">Close</gui> button.</p>
     </item>
   </steps>
 

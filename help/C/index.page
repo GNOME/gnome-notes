@@ -7,6 +7,8 @@
     <title type="text">Notes</title>
     <revision pkgversion="3.8" date="2013-04-29" status="outdated"/>
     <revision pkgversion="3.10" date="2013-07-23" status="review"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
       <email its:translate="no">py@luyten.fr</email>

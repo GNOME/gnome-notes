@@ -5,12 +5,17 @@
 
   <info>
     <link type="guide" xref="index#create"/>
-    <revision pkgversion="3.8" date="2013-08-11" status="review"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Shobha Tyagi</name>
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
+    </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
     </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
@@ -20,6 +25,13 @@
 
   <title>Rename a note</title>
 
-  <p>To rename a note, change the first row in the text area.</p>
-
+  <steps>
+    <title>To rename a note:</title>
+    <item>
+      <p>Click on the note to open it.</p>
+    </item>
+    <item>
+      <p>Change the text in the first line of the note.</p>
+    </item>
+  </steps>
 </page>

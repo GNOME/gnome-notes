@@ -5,6 +5,7 @@
 
   <info>
     <link type="guide" xref="index#use"/>
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -20,6 +21,11 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -29,15 +35,16 @@
   <title>Share a note</title>
 
   <steps>
+    <title>To share a note:</title>
     <item>
-      <p>Open a note.</p>
+      <p>Click on the note to open it.</p>
     </item>
     <item>
-      <p>Click on the <gui style="button">Share note</gui> button.
+      <p>Click the <gui style="button">Share note</gui> button.
       Your default email client will start up.</p>
     </item>
     <item>
-      <p>Send the note by an email.</p>
+      <p>Send the note by email.</p>
     </item>
   </steps>
 

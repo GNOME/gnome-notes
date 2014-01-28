@@ -5,8 +5,7 @@
 
   <info>
     <link type="guide" xref="index#delete"/>
-    <revision pkgversion="3.8" date="2013-05-04" status="review"/>
-
+    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -22,35 +21,41 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
     </credit>
+    <credit type="editor">
+      <name>Michael Hill</name>
+      <email its:translate="no">mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Delete unwanted and old notes.</desc>
+    <desc>Delete old and unwanted notes.</desc>
   </info>
 
   <title>Delete a note</title>
 
-  <p>To delete a note:</p>
-
   <steps>
+    <title>To delete a note:</title>
     <item>
-      <p>Open a note.</p>
+      <p>Click on the note to open it.</p>
     </item>
     <item>
-      <p>Select <guiseq><gui style="button">More
-      options…</gui><gui style="menuitem">Move to Trash</gui></guiseq>.</p>
+      <p>Select
+      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Move to Trash</gui></guiseq>.</p>
     </item>
   </steps>
-  <p>To delete multiple notes and notebooks, in the <em>New and Recent</em>:</p>
+
   <steps>
+    <title>To delete multiple notes and notebooks:</title>
     <item>
-      <p>Press the <gui style="button">selection mode</gui> button.</p>
+      <p>In the <gui>New and Recent</gui> view, click the
+      <gui style="button">Selection mode</gui> button.</p>
     </item>
     <item>
-      <p>Select the notes and the notebooks that you want to delete.</p>
+      <p>Select the notes and the notebooks you want to delete.</p>
     </item>
     <item>
-      <p>Press the <gui style="button">Move to Trash</gui> button.</p>
+      <p>Click the <gui style="button">Move to Trash</gui> button.</p>
     </item>
   </steps>
 </page>

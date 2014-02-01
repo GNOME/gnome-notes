@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-11 22:20+0000\n"
-"PO-Revision-Date: 2014-01-11 09:23+0300\n"
+"POT-Creation-Date: 2014-01-28 18:58+0000\n"
+"PO-Revision-Date: 2014-01-30 21:03+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
-"Language-Team: www.gnome.gr\n"
+"Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Virtaal 0.7.0\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
@@ -32,7 +32,7 @@ msgstr ""
 "Επιτρέπει τη χρήση Σύννεφου ως θέσης αποθήκευσης και δικτυακού επεξεργαστή."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -47,6 +47,64 @@ msgstr "Ταχυδρομήστε σημειώσεις, δώστε ετικέτε
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Λήψη σημειώσεων"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "Προσαρμοσμένη γραμματοσειρά"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"Το όνομα της γραμματοσειράς που ορίστηκε εδώ θα χρησιμοποιηθεί ως η "
+"γραμματοσειρά όταν εμφανιστούν οι σημειώσεις."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Αν θα χρησιμοποιείται η γραμματοσειρά monospace του συστήματος"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "Χρώμα νέων σημειώσεων."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"Το όνομα του χρώματος που ορίστηκε εδώ θα χρησιμοποιηθεί ως χρώμα όταν "
+"δημιουργηθούν νέες σημειώσεις."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Ο πάροχος κύριων σημειώσεων που θα χρησιμοποιηθεί για νέες σημειώσεις."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr ""
+"Το κύριο σημειωματάριο είναι η θέση όπου δημιουργούνται νέες σημειώσεις."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Μεγιστοποιημένο παράθυρο"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Κατάσταση μεγιστοποιημένου παραθύρου."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Μέγεθος παραθύρου"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "Μέγεθος παραθύρου (πλάτος και ύψος)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Θέση παραθύρου"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "Θέση παραθύρου (x και y)."
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -211,47 +269,52 @@ msgstr "Προβολή σημειώσεων και σημειωματαρίων 
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
+#. Detach
+#: ../src/bjb-main-toolbar.c:732 ../src/bjb-selection-toolbar.c:349
+msgid "Open in another window"
+msgstr "Άνοιγμα άλλου παράθυρου"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:743
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: ../src/bjb-main-toolbar.c:724
+#: ../src/bjb-main-toolbar.c:751
 msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:739
+#: ../src/bjb-main-toolbar.c:766
 msgid "Bullets"
 msgstr "Κουκκίδες"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:746
+#: ../src/bjb-main-toolbar.c:773
 msgid "Numbered List"
 msgstr "Αριθμημένη λίστα"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:298
+#: ../src/bjb-main-toolbar.c:787 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:324
 msgid "Notebooks"
 msgstr "Σημειωματάρια"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:324
+#: ../src/bjb-main-toolbar.c:795 ../src/bjb-selection-toolbar.c:354
 msgid "Move to Trash"
 msgstr "Μετακίνηση στα απορρίμματα"
 
-#: ../src/bjb-main-toolbar.c:824
+#: ../src/bjb-main-toolbar.c:855
 msgid "More options…"
 msgstr "Περισσότερες επιλογές…"
 
-#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:319
+#: ../src/bjb-main-toolbar.c:872 ../src/bjb-selection-toolbar.c:345
 msgid "Share note"
 msgstr "Κοινόχρηστη σημείωση"
 
-#: ../src/bjb-main-toolbar.c:866 ../src/bjb-selection-toolbar.c:307
+#: ../src/bjb-main-toolbar.c:897 ../src/bjb-selection-toolbar.c:333
 msgid "Note color"
 msgstr "Χρώμα σημείωσης"
 
@@ -349,32 +412,31 @@ msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
 
 #: ../src/resources/app-menu.ui.h:1
-msgid "_New Window"
-msgstr "_Νέο παράθυρο"
-
-#: ../src/resources/app-menu.ui.h:2
 msgid "_Import Notes"
 msgstr "Ε_ισαγωγή σημειώσεων"
 
-#: ../src/resources/app-menu.ui.h:3
+#: ../src/resources/app-menu.ui.h:2
 msgid "_View Trash"
 msgstr "_Προβολή απορριμμάτων"
 
-#: ../src/resources/app-menu.ui.h:4
+#: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
 msgstr "_Προτιμήσεις"
 
-#: ../src/resources/app-menu.ui.h:5
+#: ../src/resources/app-menu.ui.h:4
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/resources/app-menu.ui.h:6
+#: ../src/resources/app-menu.ui.h:5
 msgid "_About"
 msgstr "_Περί"
 
-#: ../src/resources/app-menu.ui.h:7
+#: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "Έ_ξοδος"
+
+#~ msgid "_New Window"
+#~ msgstr "_Νέο παράθυρο"
 
 #~ msgid "Delete this Note"
 #~ msgstr "Διαγραφή αυτής της σημείωσης"

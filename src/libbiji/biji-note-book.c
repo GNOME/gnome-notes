@@ -272,14 +272,6 @@ biji_note_book_notify_changed (BijiNoteBook            *book,
 }
 
 
-/* TODO : use the same for note, put everything there
- * rather calling a func */
-static void
-on_item_deleted_cb (BijiItem *item, BijiNoteBook *book)
-{
-  biji_note_book_remove_item (book, item);
-}
-
 
 void
 book_on_note_changed_cb (BijiNoteObj *note, BijiNoteBook *book)
@@ -313,7 +305,6 @@ _biji_note_book_add_one_item (BijiNoteBook *book, BijiItem *item)
 
   else if (BIJI_IS_COLLECTION (item))
   {
-    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), book);
     g_signal_connect (item , "icon-changed", G_CALLBACK (book_on_item_icon_changed_cb), book);
   }
 }
@@ -496,32 +487,37 @@ biji_note_book_get_default_color (BijiNoteBook *book, GdkRGBA *color)
 }
 
 
-gboolean 
+gboolean
 biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
 {
+  BijiItem *to_delete;
+  const gchar *path;
+  gboolean retval;
+
   g_return_val_if_fail (BIJI_IS_NOTE_BOOK (book), FALSE);
   g_return_val_if_fail (BIJI_IS_ITEM      (item), FALSE);
 
-  BijiItem *to_delete = NULL;
-  const gchar *path;
-  gboolean retval = FALSE;
-
+  retval = FALSE;
   path = biji_item_get_uuid (item);
   to_delete = g_hash_table_lookup (book->priv->items, path);
 
   if (to_delete)
   {
-    /* Signal before doing anything here. So the note is still
+    retval = TRUE;
+
+    /* Signal before doing anything here. Thus item is still
      * fully available for signal receiver. */
     biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_TRASHED, to_delete);
-    biji_item_trash (item);
-    g_hash_table_remove (book->priv->items, path);
 
-    retval = TRUE;
+    g_object_ref (item);
+    g_hash_table_remove (book->priv->items, path)
+    biji_item_trash (item);
   }
+
 
   return retval;
 }
+
 
 gboolean
 biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
@@ -546,9 +542,6 @@ biji_note_book_add_item (BijiNoteBook *book, BijiItem *item, gboolean notify)
     g_hash_table_insert (book->priv->items,
                          (gpointer) biji_item_get_uuid (item),
                          item);
-
-    g_signal_connect (item, "deleted",
-                      G_CALLBACK (on_item_deleted_cb), book);
   }
 
   if (retval && notify)

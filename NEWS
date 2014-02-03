@@ -1,3 +1,35 @@
+Overview of changes in 3.11.5
+=============================
+
+* Unique window. But notes can be detached.
+  Memorize window's size and position.
+
+* Bugs
+  Main toolbar : fix positions (Yosef Or Boczo)
+  Fix default width (Michael Catanzaro)
+  Do not toggle search on arrows, tab, return.
+  Do not follow url. Use external application.
+
+
+* Update documentation (Michael Hill, Shobha Tyagi)
+
+* Translations
+  Brazilian Portuguese (Rafael Ferreira)
+  Chinese simplified (Tong Hui)
+  Czech (Marek Černocký)
+  Dutch (Reinout van Schouwen)
+  Galician (Fran Diéguez)
+  Greek (Dimitris Spingos)
+  Hebrew  (Yosef Or Boczko)
+  Indonesian ( Andika Triwidada)
+  Lithuanian (Aurimas Černius)
+  Norwegian bokmål (Kjartan Maraas)
+  Tajik (Victor Ibragimov)
+  Traditional Chinese (Cheng-Chia Tseng)
+  Spanish ( Daniel Mustieles)
+
+
+
 Overview of changes in 3.11.4
 =============================
 

@@ -211,6 +211,7 @@ bjb_trash_bar_constructed (GObject *obj)
   gtk_widget_set_hexpand (priv->normal_box, TRUE);
   priv->empty_bin = gtk_button_new_with_label(_("Empty"));
   gtk_widget_set_halign (priv->empty_bin, GTK_ALIGN_CENTER);
+  gtk_widget_set_size_request (priv->empty_bin, 90, -1);
   context = gtk_widget_get_style_context (priv->empty_bin);
   gtk_style_context_add_class (context, "destructive-action");
   gtk_box_pack_start (GTK_BOX (priv->normal_box),

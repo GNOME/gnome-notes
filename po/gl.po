@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-20 23:18+0100\n"
-"PO-Revision-Date: 2014-01-20 23:18+0200\n"
+"POT-Creation-Date: 2014-02-07 01:28+0100\n"
+"PO-Revision-Date: 2014-02-07 01:29+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -45,26 +45,55 @@ msgid "Note-taker"
 msgstr "Caderno de notas"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "Tipo de letra personalizada"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "O nome do tipo de letra usado como tipo de letra ao mostrar as notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Indica se se usa o tipo de letra monoespaciada do sistema"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "Cor das novas notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr "O nome da cor usada como cor ao crear novas notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Fornecedor de notas primario a usar para as novas notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr "O caderno primario é o lugar onde se crean as novas notas."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
 msgid "Window maximized"
 msgstr "Xanela maximizada"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
-msgid "Window maximized state"
-msgstr "Estado da xanela maximizada"
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Estado da xanela maximizada."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
 msgid "Window size"
 msgstr "Tamaño da xanela"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
 msgid "Window size (width and height)."
 msgstr "Tamaño da xanela (ancho e alto)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
 msgid "Window position"
 msgstr "Posición da xanela"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
 msgid "Window position (x and y)."
 msgstr "Posición da xanela (x e y)."
 
@@ -228,47 +257,52 @@ msgstr "Ver as notas e cadernos nunha grella"
 msgid "Untitled"
 msgstr "Sen título"
 
+#. Detach
+#: ../src/bjb-main-toolbar.c:732 ../src/bjb-selection-toolbar.c:349
+msgid "Open in another window"
+msgstr "Abrir noutra xanela"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:743
 msgid "Undo"
 msgstr "Desfacer"
 
-#: ../src/bjb-main-toolbar.c:724
+#: ../src/bjb-main-toolbar.c:751
 msgid "Redo"
 msgstr "Refacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:739
+#: ../src/bjb-main-toolbar.c:766
 msgid "Bullets"
 msgstr "Viñetas"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:746
+#: ../src/bjb-main-toolbar.c:773
 msgid "Numbered List"
 msgstr "Lista numerada"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:298
+#: ../src/bjb-main-toolbar.c:787 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:324
 msgid "Notebooks"
 msgstr "Cadernos"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:324
+#: ../src/bjb-main-toolbar.c:795 ../src/bjb-selection-toolbar.c:354
 msgid "Move to Trash"
 msgstr "Mover ao lixo"
 
-#: ../src/bjb-main-toolbar.c:824
+#: ../src/bjb-main-toolbar.c:855
 msgid "More options…"
 msgstr "Máis opcións…"
 
-#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:319
+#: ../src/bjb-main-toolbar.c:872 ../src/bjb-selection-toolbar.c:345
 msgid "Share note"
 msgstr "Compartir nota"
 
-#: ../src/bjb-main-toolbar.c:866 ../src/bjb-selection-toolbar.c:307
+#: ../src/bjb-main-toolbar.c:897 ../src/bjb-selection-toolbar.c:333
 msgid "Note color"
 msgstr "Cor da nota"
 
@@ -329,11 +363,11 @@ msgstr "Caderno primario"
 msgid "Empty"
 msgstr "Baleiro"
 
-#: ../src/bjb-trash-bar.c:231
+#: ../src/bjb-trash-bar.c:232
 msgid "Restore"
 msgstr "Restaurar"
 
-#: ../src/bjb-trash-bar.c:252
+#: ../src/bjb-trash-bar.c:253
 msgid "Permanently Delete"
 msgstr "Eliminar de forma permanente"
 
@@ -366,32 +400,31 @@ msgid "Local storage"
 msgstr "Almacenamento local"
 
 #: ../src/resources/app-menu.ui.h:1
-msgid "_New Window"
-msgstr "_Nova xanela"
-
-#: ../src/resources/app-menu.ui.h:2
 msgid "_Import Notes"
 msgstr "_Importar notas"
 
-#: ../src/resources/app-menu.ui.h:3
+#: ../src/resources/app-menu.ui.h:2
 msgid "_View Trash"
 msgstr "_Ver o lixo"
 
-#: ../src/resources/app-menu.ui.h:4
+#: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
 msgstr "_Preferencias"
 
-#: ../src/resources/app-menu.ui.h:5
+#: ../src/resources/app-menu.ui.h:4
 msgid "_Help"
 msgstr "_Axuda"
 
-#: ../src/resources/app-menu.ui.h:6
+#: ../src/resources/app-menu.ui.h:5
 msgid "_About"
 msgstr "_Sobre"
 
-#: ../src/resources/app-menu.ui.h:7
+#: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Saír"
+
+#~ msgid "_New Window"
+#~ msgstr "_Nova xanela"
 
 #~ msgid "Delete this Note"
 #~ msgstr "Eliminar esta nota"

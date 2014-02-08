@@ -729,7 +729,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
   if (detached == FALSE)
   {
-    item = gtk_menu_item_new_with_label (_("Open in another window"));
+    item = gtk_menu_item_new_with_label (_("Open in New Window"));
     gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
     g_signal_connect_swapped (item, "activate",
                               G_CALLBACK (on_detached_clicked_cb), self);

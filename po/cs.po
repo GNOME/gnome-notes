@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-24 00:01+0000\n"
-"PO-Revision-Date: 2014-01-26 15:28+0100\n"
+"POT-Creation-Date: 2014-02-08 10:09+0000\n"
+"PO-Revision-Date: 2014-02-08 11:24+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -264,47 +264,51 @@ msgstr "Zobrazit poznámky a sešity v mřížce"
 msgid "Untitled"
 msgstr "Bez názvu"
 
+#: ../src/bjb-main-toolbar.c:732
+msgid "Open in New Window"
+msgstr "Otevřít v novém okně"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:743
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../src/bjb-main-toolbar.c:724
+#: ../src/bjb-main-toolbar.c:751
 msgid "Redo"
 msgstr "Znovu"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:739
+#: ../src/bjb-main-toolbar.c:766
 msgid "Bullets"
 msgstr "Odrážky"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:746
+#: ../src/bjb-main-toolbar.c:773
 msgid "Numbered List"
 msgstr "Číslovaný seznam"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:787 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:324
 msgid "Notebooks"
 msgstr "Sešity"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:355
+#: ../src/bjb-main-toolbar.c:795 ../src/bjb-selection-toolbar.c:351
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: ../src/bjb-main-toolbar.c:828
+#: ../src/bjb-main-toolbar.c:855
 msgid "More options…"
 msgstr "Další volby…"
 
-#: ../src/bjb-main-toolbar.c:845 ../src/bjb-selection-toolbar.c:345
+#: ../src/bjb-main-toolbar.c:872 ../src/bjb-selection-toolbar.c:342
 msgid "Share note"
 msgstr "Sdílet poznámku"
 
-#: ../src/bjb-main-toolbar.c:870 ../src/bjb-selection-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:897 ../src/bjb-selection-toolbar.c:332
 msgid "Note color"
 msgstr "Barva poznámky"
 
@@ -339,7 +343,7 @@ msgid "_OK"
 msgstr "_Budiž"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:349
+#: ../src/bjb-selection-toolbar.c:346
 msgid "Open in another window"
 msgstr "Otevřít v jiném okně"
 
@@ -370,11 +374,11 @@ msgstr "Hlavní sešit"
 msgid "Empty"
 msgstr "Vyprázdnit"
 
-#: ../src/bjb-trash-bar.c:231
+#: ../src/bjb-trash-bar.c:232
 msgid "Restore"
 msgstr "Obnovit"
 
-#: ../src/bjb-trash-bar.c:252
+#: ../src/bjb-trash-bar.c:253
 msgid "Permanently Delete"
 msgstr "Smazat trvale"
 

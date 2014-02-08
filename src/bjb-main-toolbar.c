@@ -58,6 +58,7 @@ struct _BjbMainToolbarPrivate
   GtkWidget        *grid;
   GtkWidget        *select;
   GtkWidget        *search;
+  GtkWidget        *empty_bin;
   gulong            finish_sig;
   gulong            update_selection;
   gulong            search_handler;
@@ -93,15 +94,16 @@ G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, GTK_TYPE_HEADER_BAR);
 static void
 bjb_main_toolbar_clear (BjbMainToolbar *self)
 {
-  g_clear_pointer (&self->priv->back     ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->color    ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->grid     ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->list     ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->menu     ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->new      ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->search   ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->select   ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->share    ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->back      ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->color     ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->grid      ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->list      ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->menu      ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->new       ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->search    ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->select    ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->share     ,gtk_widget_destroy);
+  g_clear_pointer (&self->priv->empty_bin ,gtk_widget_destroy);
 }
 
 /* Callbacks */
@@ -389,6 +391,15 @@ on_back_button_clicked (BjbMainToolbar *self)
     bjb_controller_set_notebook (self->priv->controller, NULL);
 }
 
+
+
+static void
+on_empty_clicked_callback        (BjbMainToolbar *self)
+{
+  biji_manager_empty_bin (bjb_window_base_get_manager (GTK_WIDGET (self->priv->window)));
+}
+
+
 static void
 populate_bar_for_standard(BjbMainToolbar *self)
 {
@@ -459,58 +470,6 @@ populate_bar_for_standard(BjbMainToolbar *self)
 }
 
 
-
-static void
-populate_bar_for_trash (BjbMainToolbar *self)
-{
-  BjbMainToolbarPrivate *priv;
-  gboolean rtl;
-  GtkWidget *select_image;
-  GtkSizeGroup *size;
-
-  priv = self->priv;
-
-  rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
-  gtk_header_bar_set_title (GTK_HEADER_BAR (self), _("Trash"));
-  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
-
-
-  priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
-                                              GTK_ICON_SIZE_MENU);
-  gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-  gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
-
-  g_signal_connect_swapped (priv->back, "clicked",
-                            G_CALLBACK (on_back_button_clicked), self);
-
-  /* Go to selection mode */
-  priv->select = gtk_button_new ();
-  select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
-  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
-                               "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
-  gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
-
-  g_signal_connect (priv->select,"clicked",
-                    G_CALLBACK(on_selection_mode_clicked),self);
-
-  /* Align buttons */
-  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
-  g_object_unref (size);
-
-  /* Show close button */
-  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
-
-  /* Watch for main view changing */
-  connect_main_view_handlers (self);
-}
-
-
-
 static void
 add_list_button (BjbMainToolbar *self)
 {
@@ -559,6 +518,85 @@ add_grid_button (BjbMainToolbar *self)
 
 
 static void
+populate_bar_for_trash (BjbMainToolbar *self)
+{
+  BjbMainToolbarPrivate *priv;
+  gboolean rtl;
+  GtkWidget *select_image;
+  GtkSizeGroup *size;
+  GtkStyleContext *context;
+
+  priv = self->priv;
+
+  rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
+  gtk_header_bar_set_title (GTK_HEADER_BAR (self), _("Trash"));
+  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
+
+
+  priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+                                              GTK_ICON_SIZE_MENU);
+  gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
+  gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
+
+  g_signal_connect_swapped (priv->back, "clicked",
+                            G_CALLBACK (on_back_button_clicked), self);
+
+  /* Go to selection mode */
+  priv->select = gtk_button_new ();
+  select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
+  gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
+  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+                               "image-button");
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
+  gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
+
+  g_signal_connect (priv->select,"clicked",
+                    G_CALLBACK(on_selection_mode_clicked),self);
+
+
+
+  /* Add Search ? */
+
+  /* Grid / List */
+  if (priv->type == BJB_TOOLBAR_TRASH_ICON)
+    add_list_button (self);
+
+  if (priv->type == BJB_TOOLBAR_TRASH_LIST)
+    add_grid_button (self);
+
+  /* Add Empty-Bin */
+  priv->empty_bin = gtk_button_new_with_label(_("Empty"));
+  context = gtk_widget_get_style_context (priv->empty_bin);
+  gtk_style_context_add_class (context, "destructive-action");
+  gtk_widget_set_valign (priv->empty_bin, GTK_ALIGN_CENTER);
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->empty_bin);
+  g_signal_connect_swapped (priv->empty_bin,
+                            "clicked",
+                            G_CALLBACK (on_empty_clicked_callback),
+                            self);
+
+
+
+  /* Align buttons */
+  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->empty_bin);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
+  g_object_unref (size);
+
+  /* Show close button */
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
+
+  /* Watch for main view changing */
+  connect_main_view_handlers (self);
+}
+
+
+
+
+
+static void
 populate_bar_for_icon_view(BjbMainToolbar *self)
 {
   populate_bar_for_standard(self);
@@ -569,22 +607,6 @@ static void
 populate_bar_for_list_view(BjbMainToolbar *self)
 {
   populate_bar_for_standard(self);
-  add_grid_button (self);
-}
-
-
-static void
-populate_bar_for_trash_icon_view (BjbMainToolbar *self)
-{
-  populate_bar_for_trash (self);
-  add_list_button (self);
-}
-
-
-static void
-populate_bar_for_trash_list_view (BjbMainToolbar *self)
-{
-  populate_bar_for_trash (self);
   add_grid_button (self);
 }
 
@@ -947,14 +969,10 @@ populate_bar_switch (BjbMainToolbar *self)
 
 
     case BJB_TOOLBAR_TRASH_ICON:
-      //add_search_button (self); TODO (handle callback)
-      populate_bar_for_trash_icon_view (self);
+    case BJB_TOOLBAR_TRASH_LIST:
+      populate_bar_for_trash (self);
       break;
 
-    case BJB_TOOLBAR_TRASH_LIST:
-      //add_search_button (self); TODO (handle callback)
-      populate_bar_for_trash_list_view (self);
-      break;
 
     case BJB_TOOLBAR_NOTE_VIEW:
       populate_bar_for_note_view (self);
@@ -1022,6 +1040,7 @@ populate_main_toolbar(BjbMainToolbar *self)
       to_be = BJB_TOOLBAR_0;
   }
 
+
   /* Simply clear then populate */
   if (to_be != priv->type)
   {
@@ -1080,16 +1099,17 @@ bjb_main_toolbar_init (BjbMainToolbar *self)
   priv->grid = NULL;
   priv->list = NULL;
   priv->search = NULL;
-  priv->search_handler = 0;
-  priv->display_notes = 0;
-  priv->view_selection_changed = 0;
-
+  priv->empty_bin = NULL;
   priv->accel = NULL;
   priv->note = NULL;
   priv->back = NULL;
   priv->color = NULL;
   priv->menu = NULL;
   priv->share = NULL;
+
+  priv->search_handler = 0;
+  priv->display_notes = 0;
+  priv->view_selection_changed = 0;
   priv->note_renamed = 0;
   priv->note_color_changed = 0;
 

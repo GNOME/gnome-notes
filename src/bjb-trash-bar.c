@@ -50,7 +50,6 @@ struct BjbTrashBarPrivate_
   GdMainView    *selection;
 
   GtkWidget     *normal_box;
-  GtkWidget     *empty_bin;
 
   GtkWidget     *selection_box;
   GtkWidget     *restore;
@@ -64,14 +63,6 @@ G_DEFINE_TYPE (BjbTrashBar, bjb_trash_bar, GTK_TYPE_BOX)
 
 
 
-static void
-on_empty_clicked_callback        (BjbTrashBar *self)
-{
-
-  biji_manager_empty_bin (
-    bjb_window_base_get_manager (
-      gtk_widget_get_toplevel (GTK_WIDGET (self))));
-}
 
 
 static void
@@ -109,30 +100,16 @@ bjb_trash_bar_set_visibility      (BjbTrashBar *self)
   priv = self->priv;
 
 
-  gtk_widget_hide (priv->normal_box);
   gtk_widget_hide (priv->selection_box);
   items = gd_main_view_get_selection (priv->selection);
 
   if (items != NULL)
     gtk_widget_show (priv->selection_box);
 
-  else
-    gtk_widget_show (priv->normal_box);
-
   g_list_free (items);
 }
 
 
-void
-bjb_trash_bar_fade_in             (BjbTrashBar *self)
-{
-}
-
-
-void
-bjb_trash_bar_fade_out            (BjbTrashBar *self)
-{
-}
 
 static void
 bjb_trash_bar_dispose (GObject *obj)
@@ -205,26 +182,6 @@ bjb_trash_bar_constructed (GObject *obj)
 
   super_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_add (GTK_CONTAINER (self), super_box);
-
-  /* No selection : just offer to empty bin */
-  priv->normal_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
-  gtk_widget_set_hexpand (priv->normal_box, TRUE);
-  priv->empty_bin = gtk_button_new_with_label(_("Empty"));
-  gtk_widget_set_halign (priv->empty_bin, GTK_ALIGN_CENTER);
-  gtk_widget_set_size_request (priv->empty_bin, 90, -1);
-  context = gtk_widget_get_style_context (priv->empty_bin);
-  gtk_style_context_add_class (context, "destructive-action");
-  gtk_box_pack_start (GTK_BOX (priv->normal_box),
-                      priv->empty_bin,
-                      TRUE,
-                      FALSE,
-                      0);
-  gtk_container_add (GTK_CONTAINER (super_box), priv->normal_box);
-  g_signal_connect_swapped (priv->empty_bin,
-                            "clicked",
-                            G_CALLBACK (on_empty_clicked_callback),
-                            self);
-
 
   /* Selection : delete or restore selected items */
   priv->selection_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);

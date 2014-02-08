@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-24 00:01+0000\n"
-"PO-Revision-Date: 2014-01-24 10:00+0500\n"
+"POT-Creation-Date: 2014-02-08 10:09+0000\n"
+"PO-Revision-Date: 2014-02-08 16:22+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik <tg@li.org>\n"
 "Language: tg\n"
@@ -265,47 +265,52 @@ msgstr "Намоиши ёддоштҳо ва дафтарҳо дар тӯр"
 msgid "Untitled"
 msgstr "Беном"
 
+#: ../src/bjb-main-toolbar.c:732
+#| msgid "Open in another window"
+msgid "Open in New Window"
+msgstr "Кушодан дар равзанаи нав"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:743
 msgid "Undo"
 msgstr "Ботил сохтан"
 
-#: ../src/bjb-main-toolbar.c:724
+#: ../src/bjb-main-toolbar.c:751
 msgid "Redo"
 msgstr "Дубора анҷом додан"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:739
+#: ../src/bjb-main-toolbar.c:766
 msgid "Bullets"
 msgstr "Нишонҳо"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:746
+#: ../src/bjb-main-toolbar.c:773
 msgid "Numbered List"
 msgstr "Рӯйхати рақамдор"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:787 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:324
 msgid "Notebooks"
 msgstr "Дафтарҳо"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:355
+#: ../src/bjb-main-toolbar.c:795 ../src/bjb-selection-toolbar.c:351
 msgid "Move to Trash"
 msgstr "Интиқол ба сабад"
 
-#: ../src/bjb-main-toolbar.c:828
+#: ../src/bjb-main-toolbar.c:855
 msgid "More options…"
 msgstr "Имконоти бештар..."
 
-#: ../src/bjb-main-toolbar.c:845 ../src/bjb-selection-toolbar.c:345
+#: ../src/bjb-main-toolbar.c:872 ../src/bjb-selection-toolbar.c:342
 msgid "Share note"
 msgstr "Мубодила кардани ёддошт"
 
-#: ../src/bjb-main-toolbar.c:870 ../src/bjb-selection-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:897 ../src/bjb-selection-toolbar.c:332
 msgid "Note color"
 msgstr "Ранги ёддошт"
 
@@ -340,7 +345,7 @@ msgid "_OK"
 msgstr "_OK"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:349
+#: ../src/bjb-selection-toolbar.c:346
 msgid "Open in another window"
 msgstr "Кушодан дар равзанаи дигар"
 
@@ -371,11 +376,11 @@ msgstr "Китоби асосӣ"
 msgid "Empty"
 msgstr "Холӣ кардан"
 
-#: ../src/bjb-trash-bar.c:231
+#: ../src/bjb-trash-bar.c:232
 msgid "Restore"
 msgstr "Барқарор кардан"
 
-#: ../src/bjb-trash-bar.c:252
+#: ../src/bjb-trash-bar.c:253
 msgid "Permanently Delete"
 msgstr "Бебозгашт нест кардан"
 

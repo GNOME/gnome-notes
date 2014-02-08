@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-24 01:58+0200\n"
-"PO-Revision-Date: 2014-01-24 02:00+0200\n"
+"POT-Creation-Date: 2014-02-08 20:27+0200\n"
+"PO-Revision-Date: 2014-02-08 20:27+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -262,47 +262,51 @@ msgstr "צפייה בפתקיות ובאוספים בתצוגת רשת"
 msgid "Untitled"
 msgstr "ללא כותרת"
 
+#: ../src/bjb-main-toolbar.c:732
+msgid "Open in New Window"
+msgstr "פתיחה בחלון חדש"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:743
 msgid "Undo"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:724
+#: ../src/bjb-main-toolbar.c:751
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:739
+#: ../src/bjb-main-toolbar.c:766
 msgid "Bullets"
 msgstr "תבליטים"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:746
+#: ../src/bjb-main-toolbar.c:773
 msgid "Numbered List"
 msgstr "רשימה ממוספרת"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:787 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:324
 msgid "Notebooks"
 msgstr "אוספים"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:355
+#: ../src/bjb-main-toolbar.c:795 ../src/bjb-selection-toolbar.c:351
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
-#: ../src/bjb-main-toolbar.c:828
+#: ../src/bjb-main-toolbar.c:855
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
-#: ../src/bjb-main-toolbar.c:845 ../src/bjb-selection-toolbar.c:345
+#: ../src/bjb-main-toolbar.c:872 ../src/bjb-selection-toolbar.c:342
 msgid "Share note"
 msgstr "שיתוף הפתקית"
 
-#: ../src/bjb-main-toolbar.c:870 ../src/bjb-selection-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:897 ../src/bjb-selection-toolbar.c:332
 msgid "Note color"
 msgstr "צבע הפתקית"
 
@@ -337,7 +341,7 @@ msgid "_OK"
 msgstr "_אישור"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:349
+#: ../src/bjb-selection-toolbar.c:346
 msgid "Open in another window"
 msgstr "פתיחה בחלון נוסף"
 
@@ -368,11 +372,11 @@ msgstr "ספר ראשי"
 msgid "Empty"
 msgstr "ריק"
 
-#: ../src/bjb-trash-bar.c:231
+#: ../src/bjb-trash-bar.c:232
 msgid "Restore"
 msgstr "שחזור"
 
-#: ../src/bjb-trash-bar.c:252
+#: ../src/bjb-trash-bar.c:253
 msgid "Permanently Delete"
 msgstr "למחוק לצמיתות"
 

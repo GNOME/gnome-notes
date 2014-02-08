@@ -322,7 +322,6 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 
   /* Notes tags */
   priv->toolbar_tag = gtk_button_new_with_label (_("Notebooks"));
-  gtk_widget_set_valign (priv->toolbar_tag, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_tag);
 
 
@@ -331,7 +330,6 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   priv->toolbar_color = bjb_color_button_new ();
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_color),
                                _("Note color"));
-  gtk_widget_set_valign (priv->toolbar_color, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_color);
 
 
@@ -339,7 +337,6 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   priv->toolbar_share = gtk_button_new ();
   share = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->toolbar_share), share);
-  gtk_widget_set_valign (share, GTK_ALIGN_CENTER);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->toolbar_share),
                                "image-button");
   gtk_widget_set_tooltip_text (priv->toolbar_share, _("Share note"));
@@ -354,7 +351,6 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   priv->toolbar_trash = gtk_button_new_with_label (_("Move to Trash"));
   context = gtk_widget_get_style_context (priv->toolbar_trash);
   gtk_style_context_add_class (context, "destructive-action");
-  gtk_widget_set_valign (priv->toolbar_trash, GTK_ALIGN_CENTER);
   gtk_header_bar_pack_end (priv->bar, priv->toolbar_trash);
 
 
@@ -364,6 +360,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_tag);
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_color);
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_share);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_detach);
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_trash);
   g_object_unref (size);
 

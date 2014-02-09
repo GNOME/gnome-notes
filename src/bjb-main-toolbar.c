@@ -102,7 +102,6 @@ bjb_main_toolbar_clear (BjbMainToolbar *self)
   g_clear_pointer (&self->priv->new       ,gtk_widget_destroy);
   g_clear_pointer (&self->priv->search    ,gtk_widget_destroy);
   g_clear_pointer (&self->priv->select    ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->share     ,gtk_widget_destroy);
   g_clear_pointer (&self->priv->empty_bin ,gtk_widget_destroy);
 }
 
@@ -673,6 +672,8 @@ on_note_color_changed (BijiNoteObj *note, GtkColorButton *button)
     gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button), &color);
 }
 
+
+
 static void
 on_note_content_changed (BjbMainToolbar *self)
 {
@@ -804,6 +805,8 @@ bjb_note_menu_new (BjbMainToolbar *self)
   }
 
 
+  /* Notebooks */
+
   if (biji_item_is_collectable (BIJI_ITEM (priv->note)))
   {
     item = gtk_menu_item_new_with_label(_("Notebooks"));
@@ -812,6 +815,19 @@ bjb_note_menu_new (BjbMainToolbar *self)
                      G_CALLBACK(action_view_tags_callback),self);
 
   }
+
+  /*Share */
+  priv->share = gtk_menu_item_new_with_label (_("Email this Note"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (result), priv->share);
+  g_signal_connect (priv->share, "activate",
+                    G_CALLBACK (on_email_note_callback), priv->note);
+
+  g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
+                            "user-changed-contents",
+                            G_CALLBACK (on_note_content_changed),
+                            self);
+
+  on_note_content_changed (self);
 
   /* Delete Note */
   item = gtk_menu_item_new_with_label(_("Move to Trash"));
@@ -831,7 +847,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   BjbSettings           *settings;
   GdkRGBA                color;
   BijiItem *item;
-  GtkWidget *share_image;
   GtkWidget *menu_image;
   gboolean rtl, detached;
 
@@ -882,26 +897,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   gtk_menu_button_set_popup (GTK_MENU_BUTTON (priv->menu),
                              bjb_note_menu_new (self));
 
-  /* Sharing */
-
-  priv->share = gtk_button_new ();
-  share_image = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->share), share_image);
-  gtk_widget_set_valign (priv->share, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->share),
-                               "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->share);
-  gtk_widget_set_tooltip_text (priv->share, _("Share note"));
-
-  g_signal_connect (priv->share, "clicked",
-                    G_CALLBACK (on_email_note_callback), priv->note);
-
-  g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
-                            "user-changed-contents",
-                            G_CALLBACK (on_note_content_changed),
-                            self);
-
-  on_note_content_changed (self);
 
   /* Note Color */
   if (biji_item_has_color (BIJI_ITEM (priv->note)))

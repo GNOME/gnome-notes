@@ -399,7 +399,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 
   /* Share */
   priv->toolbar_share = gtk_button_new ();
-  share = gtk_image_new_from_icon_name ("send-to-symbolic", GTK_ICON_SIZE_MENU);
+  share = gtk_image_new_from_icon_name ("mail-unread-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->toolbar_share), share);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->toolbar_share),
                                "image-button");

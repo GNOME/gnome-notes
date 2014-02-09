@@ -30,7 +30,6 @@
 #include "bjb-organize-dialog.h"
 #include "bjb-selection-toolbar.h"
 #include "bjb-share.h"
-#include "bjb-trash-bar.h"
 #include "bjb-window-base.h"
 
 enum
@@ -44,17 +43,11 @@ enum
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 
-/* Selection toolbar
- * it uses two widgets
- * header bar for classic view -> only show when selection
- * toolbar for archive view -> always show bar for trash bin
- */
 
 struct _BjbSelectionToolbarPrivate
 {
   GtkHeaderBar       *bar;
   BjbMainView        *view ;
-  BjbTrashBar        *trash_bar;
   GtkWidget          *widget ;
   GdMainView         *selection ;
 
@@ -64,11 +57,10 @@ struct _BjbSelectionToolbarPrivate
   GtkWidget          *toolbar_tag;
   GtkWidget          *toolbar_share;
   GtkWidget          *toolbar_detach;
-  GtkToolItem        *left_group;
-  GtkToolItem        *right_group;
-  GtkToolItem        *separator;
-  GtkWidget          *left_box;
-  GtkWidget          *right_box;
+
+  /* Header bar, archive view */
+  GtkWidget          *toolbar_restore;
+  GtkWidget          *toolbar_delete;
 };
 
 G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_REVEALER);
@@ -123,7 +115,7 @@ action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
 
 
 static void
-action_delete_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+action_trash_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
 {
   GList *l, *selection;
   BijiManager *manager;
@@ -176,21 +168,39 @@ action_share_item_callback (GtkWidget *w, BjbSelectionToolbar *self)
 
 
 static void
-bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
+on_restore_clicked_callback      (BjbSelectionToolbar *self)
 {
-  gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
+  GList *selection, *l;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+
+  for (l=selection; l!=NULL; l=l->next)
+    biji_item_restore (BIJI_ITEM (l->data));
+
+  g_list_free (selection);
 }
 
 
+
 static void
-bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
+on_delete_clicked_callback        (BjbSelectionToolbar *self)
 {
-  gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
+  GList *selection, *l;
+
+  selection = bjb_main_view_get_selected_items (self->priv->view);
+  for (l=selection; l!=NULL; l=l->next)
+    biji_item_delete (BIJI_ITEM (l->data));
+
+  g_list_free (selection);
 }
 
 
+
+
+
+
 static void
-bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
+set_sensitivity (BjbSelectionToolbar *self)
 {
   BjbSelectionToolbarPrivate *priv;
   GList *l, *selection;
@@ -201,7 +211,6 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 
   priv = self->priv;
   selection = bjb_main_view_get_selected_items (priv->view);
-
 
   /* Default */
   can_color = TRUE;
@@ -250,38 +259,89 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
   g_list_free (selection);
 }
 
-static void
-bjb_selection_toolbar_selection_changed (GdMainView *view, gpointer user_data)
-{
 
-  BjbSelectionToolbar *self;
+
+static void
+set_trash_bar_sensitivity (BjbSelectionToolbar *self)
+{
   BjbSelectionToolbarPrivate *priv;
-  GList *selection;
+
+  priv = self->priv;
+
+  gtk_widget_set_sensitive (priv->toolbar_restore, TRUE);
+  gtk_widget_set_sensitive (priv->toolbar_delete, TRUE);
+}
+
+
+static void
+bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
+{
+  BjbSelectionToolbarPrivate *priv;
   BijiItemsGroup group;
 
-  self = BJB_SELECTION_TOOLBAR (user_data);
+  g_return_if_fail (BJB_IS_SELECTION_TOOLBAR (self));
+
   priv = self->priv;
   group = bjb_controller_get_group (
             bjb_window_base_get_controller (
               BJB_WINDOW_BASE (
                 bjb_main_view_get_window (self->priv->view))));
 
-
-  /* always show bar for archive view */
-  if (group  == BIJI_ARCHIVED_ITEMS)
+  if (group == BIJI_LIVING_ITEMS)
   {
-    priv->bar = g_object_ref (priv->bar);
-    bjb_selection_toolbar_fade_in (self);
-    gtk_container_remove (GTK_CONTAINER (self), GTK_WIDGET (priv->bar));
-    gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->trash_bar));
-    bjb_trash_bar_set_visibility (priv->trash_bar);
-    return;
+    gtk_widget_hide (priv->toolbar_restore);
+    gtk_widget_hide (priv->toolbar_delete);
+
+    gtk_widget_show (priv->toolbar_trash);
+    gtk_widget_show (priv->toolbar_color);
+    gtk_widget_show (priv->toolbar_tag);
+    gtk_widget_show (priv->toolbar_share);
+    gtk_widget_show (priv->toolbar_detach);
+
+    set_sensitivity (self);
   }
 
+  else if (group == BIJI_ARCHIVED_ITEMS)
+  {
+    gtk_widget_hide (priv->toolbar_trash);
+    gtk_widget_hide (priv->toolbar_color);
+    gtk_widget_hide (priv->toolbar_tag);
+    gtk_widget_hide (priv->toolbar_share);
+    gtk_widget_hide (priv->toolbar_detach);
 
-  priv->trash_bar = g_object_ref (priv->trash_bar);
-  gtk_container_remove (GTK_CONTAINER (self), GTK_WIDGET (priv->trash_bar));
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->bar));
+    gtk_widget_show (priv->toolbar_restore);
+    gtk_widget_show (priv->toolbar_delete);
+
+    set_trash_bar_sensitivity (self);
+  }
+}
+
+
+
+
+
+static void
+bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
+{
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
+  //bjb_selection_toolbar_set_item_visibility
+}
+
+
+static void
+bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
+{
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
+}
+
+
+static void
+bjb_selection_toolbar_selection_changed (GdMainView *view, gpointer user_data)
+{
+  BjbSelectionToolbar *self;
+  GList *selection;
+
+  self = BJB_SELECTION_TOOLBAR (user_data);
   selection = gd_main_view_get_selection(view);
 
   if (g_list_length (selection) > 0)
@@ -292,6 +352,8 @@ bjb_selection_toolbar_selection_changed (GdMainView *view, gpointer user_data)
 
   else
     bjb_selection_toolbar_fade_out (self);
+
+  g_list_free (selection);
 }
 
 static void
@@ -324,7 +386,9 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   priv->toolbar_tag = gtk_button_new_with_label (_("Notebooks"));
   gtk_header_bar_pack_start (priv->bar, priv->toolbar_tag);
 
-
+  /* Restore */
+  priv->toolbar_restore = gtk_button_new_with_label (_("Restore"));
+  gtk_header_bar_pack_start (priv->bar, priv->toolbar_restore);
 
   /* Notes color */
   priv->toolbar_color = bjb_color_button_new ();
@@ -354,6 +418,12 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_header_bar_pack_end (priv->bar, priv->toolbar_trash);
 
 
+  /* Permanently delete */
+  priv->toolbar_delete = gtk_button_new_with_label (_("Permanently Delete"));
+  context = gtk_widget_get_style_context (priv->toolbar_delete);
+  gtk_style_context_add_class (context, "destructive-action");
+  gtk_header_bar_pack_end (priv->bar, priv->toolbar_delete);
+
 
   /* Align buttons */
   size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
@@ -362,6 +432,8 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_share);
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_detach);
   gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_trash);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_restore);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->toolbar_delete);
   g_object_unref (size);
 
 
@@ -420,20 +492,12 @@ bjb_selection_toolbar_constructed(GObject *obj)
   G_OBJECT_CLASS (bjb_selection_toolbar_parent_class)->constructed (obj);
 
 
-  priv->trash_bar = bjb_trash_bar_new (
-          bjb_window_base_get_controller (
-                BJB_WINDOW_BASE (
-                  bjb_main_view_get_window (self->priv->view))),
-          self->priv->view,
-          self->priv->selection);
-
-
-
   g_signal_connect (self->priv->selection,
                     "view-selection-changed", 
                     G_CALLBACK(bjb_selection_toolbar_selection_changed),
                     self);
 
+  /* BIJI LIVING ITEMS */
   g_signal_connect (priv->toolbar_tag,"clicked",
                     G_CALLBACK (action_tag_selected_items), self);
 
@@ -450,7 +514,15 @@ bjb_selection_toolbar_constructed(GObject *obj)
                     G_CALLBACK (action_pop_up_note_callback), self);
 
   g_signal_connect (priv->toolbar_trash,"clicked",
-                    G_CALLBACK (action_delete_selected_items), self);
+                    G_CALLBACK (action_trash_selected_items), self);
+
+
+  /* BIJI ARCHIVED ITEMS */
+  g_signal_connect_swapped (priv->toolbar_restore, "clicked",
+                    G_CALLBACK (on_restore_clicked_callback), self);
+
+  g_signal_connect_swapped (priv->toolbar_delete, "clicked",
+                    G_CALLBACK (on_delete_clicked_callback), self);
 }
 
 static void

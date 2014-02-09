@@ -87,8 +87,6 @@ bijiben_SOURCES = \
 	bjb-settings-dialog.h \
 	bjb-share.c \
 	bjb-share.h \
-	bjb-trash-bar.c \
-	bjb-trash-bar.h \
 	bjb-window-base.c \
 	bjb-window-base.h
 

@@ -110,11 +110,16 @@ bijiben_new_window_internal (Bijiben *self,
                              GError *error)
 {
   BjbWindowBase *window;
-  BijiNoteObj* note;
-  gchar *path;
+  BijiNoteObj   *note;
+  gchar         *path;
+  GList         *windows;
+  gboolean       not_first_window;
 
   note = NULL;
   path = NULL;
+
+  windows = gtk_application_get_windows (GTK_APPLICATION (self));
+  not_first_window = (gboolean) g_list_length (windows);
 
   if (file != NULL)
   {
@@ -145,6 +150,9 @@ bijiben_new_window_internal (Bijiben *self,
     g_free (path);
 
   gtk_widget_show_all (GTK_WIDGET (window));
+
+  if (not_first_window)
+    gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 }
 
 void

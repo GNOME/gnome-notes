@@ -75,7 +75,7 @@ on_window_activated_cb   (BjbWindowBase *window,
 
       if (win_is_available)
          bjb_window_base_switch_to_item (window, item);
-      
+
       else
          bijiben_new_window_internal (self, NULL, item, NULL);
 

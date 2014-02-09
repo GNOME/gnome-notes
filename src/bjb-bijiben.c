@@ -183,7 +183,7 @@ bijiben_open (GApplication  *application,
   {
     if (self->priv->is_loaded == TRUE)
       bijiben_new_window_internal (BIJIBEN_APPLICATION (application), files[i], NULL, NULL);
-    
+
     else
       g_queue_push_head (self->priv->to_open, g_file_get_parse_name (files[i]));
   }

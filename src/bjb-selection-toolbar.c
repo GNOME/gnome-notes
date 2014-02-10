@@ -46,7 +46,7 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 struct _BjbSelectionToolbarPrivate
 {
-  GtkHeaderBar       *bar;
+  GtkActionBar       *bar;
   BjbMainView        *view ;
   GtkWidget          *widget ;
   GdMainView         *selection ;
@@ -378,23 +378,23 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_revealer_set_transition_type (
       GTK_REVEALER (self), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
 
-  priv->bar = GTK_HEADER_BAR (gtk_header_bar_new ());
+  priv->bar = GTK_ACTION_BAR (gtk_action_bar_new ());
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->bar));
 
 
   /* Notes tags */
   priv->toolbar_tag = gtk_button_new_with_label (_("Notebooks"));
-  gtk_header_bar_pack_start (priv->bar, priv->toolbar_tag);
+  gtk_action_bar_pack_start (priv->bar, priv->toolbar_tag);
 
   /* Restore */
   priv->toolbar_restore = gtk_button_new_with_label (_("Restore"));
-  gtk_header_bar_pack_start (priv->bar, priv->toolbar_restore);
+  gtk_action_bar_pack_start (priv->bar, priv->toolbar_restore);
 
   /* Notes color */
   priv->toolbar_color = bjb_color_button_new ();
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_color),
                                _("Note color"));
-  gtk_header_bar_pack_start (priv->bar, priv->toolbar_color);
+  gtk_action_bar_pack_start (priv->bar, priv->toolbar_color);
 
 
   /* Share */
@@ -404,25 +404,25 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->toolbar_share),
                                "image-button");
   gtk_widget_set_tooltip_text (priv->toolbar_share, _("Share note"));
-  gtk_header_bar_pack_start (priv->bar, priv->toolbar_share);
+  gtk_action_bar_pack_start (priv->bar, priv->toolbar_share);
 
   /* Detach */
   priv->toolbar_detach = gtk_button_new_with_label (_("Open in another window"));
-  gtk_header_bar_pack_start (priv->bar, priv->toolbar_detach);
+  gtk_action_bar_pack_start (priv->bar, priv->toolbar_detach);
 
 
   /* Trash notes */
   priv->toolbar_trash = gtk_button_new_with_label (_("Move to Trash"));
   context = gtk_widget_get_style_context (priv->toolbar_trash);
   gtk_style_context_add_class (context, "destructive-action");
-  gtk_header_bar_pack_end (priv->bar, priv->toolbar_trash);
+  gtk_action_bar_pack_end (priv->bar, priv->toolbar_trash);
 
 
   /* Permanently delete */
   priv->toolbar_delete = gtk_button_new_with_label (_("Permanently Delete"));
   context = gtk_widget_get_style_context (priv->toolbar_delete);
   gtk_style_context_add_class (context, "destructive-action");
-  gtk_header_bar_pack_end (priv->bar, priv->toolbar_delete);
+  gtk_action_bar_pack_end (priv->bar, priv->toolbar_delete);
 
 
   /* Align buttons */

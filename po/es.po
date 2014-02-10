@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-24 00:01+0000\n"
-"PO-Revision-Date: 2014-01-27 13:11+0100\n"
+"POT-Creation-Date: 2014-02-10 03:53+0000\n"
+"PO-Revision-Date: 2014-02-10 11:01+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -207,104 +207,116 @@ msgstr "Cargar más"
 msgid "Loading..."
 msgstr "Cargando…"
 
-#: ../src/bjb-main-toolbar.c:141
+#: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
 msgstr "Pulse sobre los elementos para seleccionarlos"
 
-#: ../src/bjb-main-toolbar.c:143
+#: ../src/bjb-main-toolbar.c:144
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/bjb-main-toolbar.c:263
+#: ../src/bjb-main-toolbar.c:264
 msgid "Search note titles, content and notebooks"
 msgstr "Buscar en títulos de notas, contenido y cuadernos de notas"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:302
+#: ../src/bjb-main-toolbar.c:303
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/bjb-main-toolbar.c:316
+#: ../src/bjb-main-toolbar.c:317
 msgid "Exit selection mode"
 msgstr "Salir del modo de selección"
 
-#: ../src/bjb-main-toolbar.c:346
+#: ../src/bjb-main-toolbar.c:347
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:349
+#: ../src/bjb-main-toolbar.c:350
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/bjb-main-toolbar.c:425
+#: ../src/bjb-main-toolbar.c:435
 msgid "New"
 msgstr "Nuevo"
 
-#: ../src/bjb-main-toolbar.c:443 ../src/bjb-main-toolbar.c:494
+#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: ../src/bjb-main-toolbar.c:474
-msgid "Trash"
-msgstr "Papelera"
-
-#: ../src/bjb-main-toolbar.c:530
+#: ../src/bjb-main-toolbar.c:488
 msgid "View notes and notebooks in a list"
 msgstr "Ver notas y cuadernos de notas en una lista"
 
-#: ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:512
 msgid "View notes and notebooks in a grid"
 msgstr "Ver notas y cuadernos de notas en una rejilla"
 
-#: ../src/bjb-main-toolbar.c:626
+#: ../src/bjb-main-toolbar.c:531
+msgid "Trash"
+msgstr "Papelera"
+
+#. Add Empty-Bin
+#: ../src/bjb-main-toolbar.c:568
+msgid "Empty"
+msgstr "Vaciar"
+
+#: ../src/bjb-main-toolbar.c:647
 msgid "Untitled"
 msgstr "Sin título"
 
+#: ../src/bjb-main-toolbar.c:755
+#| msgid "Open in another window"
+msgid "Open in New Window"
+msgstr "Abrir en una ventana nueva"
+
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:716
+#: ../src/bjb-main-toolbar.c:766
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../src/bjb-main-toolbar.c:724
+#: ../src/bjb-main-toolbar.c:774
 msgid "Redo"
 msgstr "Rehacer"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:739
+#: ../src/bjb-main-toolbar.c:789
 msgid "Bullets"
 msgstr "Topos"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:746
+#: ../src/bjb-main-toolbar.c:796
 msgid "Numbered List"
 msgstr "Lista numerada"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:760 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:324
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "Cuadernos de notas"
 
+#. Share
+#: ../src/bjb-main-toolbar.c:820
+#| msgid "Delete this Note"
+msgid "Email this Note"
+msgstr "Enviar esta nota por correo-e"
+
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:768 ../src/bjb-selection-toolbar.c:355
+#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../src/bjb-main-toolbar.c:828
+#: ../src/bjb-main-toolbar.c:892
 msgid "More options…"
 msgstr "Más opciones…"
 
-#: ../src/bjb-main-toolbar.c:845 ../src/bjb-selection-toolbar.c:345
-msgid "Share note"
-msgstr "Compartir nota"
-
-#: ../src/bjb-main-toolbar.c:870 ../src/bjb-selection-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "Color de la nota"
 
@@ -338,10 +350,24 @@ msgstr "Última actualización"
 msgid "_OK"
 msgstr "_Aceptar"
 
+#. Restore
+#: ../src/bjb-selection-toolbar.c:390
+msgid "Restore"
+msgstr "Restaurar"
+
+#: ../src/bjb-selection-toolbar.c:406
+msgid "Share note"
+msgstr "Compartir nota"
+
 #. Detach
-#: ../src/bjb-selection-toolbar.c:349
+#: ../src/bjb-selection-toolbar.c:410
 msgid "Open in another window"
 msgstr "Abrir en otra ventana"
+
+#. Permanently delete
+#: ../src/bjb-selection-toolbar.c:422
+msgid "Permanently Delete"
+msgstr "Eliminar permanentemente"
 
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:391
@@ -365,18 +391,6 @@ msgstr "Edición de la nota"
 #: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Libro principal"
-
-#: ../src/bjb-trash-bar.c:212
-msgid "Empty"
-msgstr "Vaciar"
-
-#: ../src/bjb-trash-bar.c:231
-msgid "Restore"
-msgstr "Restaurar"
-
-#: ../src/bjb-trash-bar.c:252
-msgid "Permanently Delete"
-msgstr "Eliminar permanentemente"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -432,9 +446,6 @@ msgstr "_Salir"
 
 #~ msgid "_New Window"
 #~ msgstr "Ventana _nueva"
-
-#~ msgid "Delete this Note"
-#~ msgstr "Eliminar esta nota"
 
 #~ msgid "Delete"
 #~ msgstr "Eliminar"

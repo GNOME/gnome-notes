@@ -300,10 +300,10 @@ bjb_note_view_constructed (GObject *obj)
 
   gtk_widget_set_hexpand (scroll, TRUE);
   gtk_widget_set_vexpand (scroll, TRUE);
-  
+
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll),
                                        GTK_SHADOW_IN);
-                                       
+
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
                                   GTK_POLICY_NEVER,
                                   GTK_POLICY_AUTOMATIC);
@@ -374,7 +374,7 @@ static void
 bjb_note_view_class_init (BjbNoteViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-    
+
   object_class->finalize = bjb_note_view_finalize;
   object_class->constructed = bjb_note_view_constructed;
   object_class->get_property = bjb_note_view_get_property;
@@ -389,7 +389,7 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
                                                  G_PARAM_READWRITE |
                                                  G_PARAM_CONSTRUCT |
                                                  G_PARAM_STATIC_STRINGS);
-                                                 
+
   g_object_class_install_property (object_class,PROP_WINDOW,properties[PROP_WINDOW]);
 
   properties[PROP_PARENT] = g_param_spec_object ("parent",
@@ -417,4 +417,13 @@ GtkWidget *
 bjb_note_view_get_base_window (BjbNoteView *v)
 {
   return v->priv->window;
+}
+
+
+
+void
+bjb_note_view_grab_focus     (BjbNoteView *view)
+{
+  gtk_widget_set_can_focus (view->priv->view, TRUE);
+  gtk_widget_grab_focus (view->priv->view);
 }

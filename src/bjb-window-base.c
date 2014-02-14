@@ -552,6 +552,7 @@ bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item)
 
     bjb_window_base_switch_to (bwb, BJB_WINDOW_BASE_NOTE_VIEW);
     gtk_widget_show_all (w);
+    bjb_note_view_grab_focus (priv->note_view);
   }
 }
 

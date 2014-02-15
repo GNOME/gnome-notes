@@ -16,6 +16,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
+
 #include <glib/gi18n.h>
 #include <stdlib.h>
 
@@ -365,6 +367,67 @@ bijiben_startup (GApplication *application)
   g_object_unref (storage);
 }
 
+static gboolean
+bijiben_application_local_command_line (GApplication *application,
+                                        gchar ***arguments,
+                                        gint *exit_status)
+{
+  gboolean version = FALSE;
+
+  const GOptionEntry options[] = {
+    { "version", 0, 0, G_OPTION_ARG_NONE, &version,
+      N_("Show the application's version"), NULL},
+    { NULL }
+  };
+  GOptionContext *context;
+  GError *error = NULL;
+  gint argc = 0;
+  gchar **argv = NULL;
+  *exit_status = EXIT_SUCCESS;
+
+  context = g_option_context_new (_("[FILE...]"));
+  g_option_context_set_summary (context,
+                                _("Take notes and export them everywhere."));
+  g_option_context_add_main_entries (context, options, NULL);
+  g_option_context_add_group (context, gtk_get_option_group (FALSE));
+
+  argv = *arguments;
+  argc = g_strv_length (argv);
+
+  if (!g_option_context_parse (context, &argc, &argv, &error)) {
+    /* Translators: this is a fatal error quit message printed on the
+     * command line */
+    g_printerr ("%s: %s\n", _("Could not parse arguments"), error->message);
+    g_error_free (error);
+
+    *exit_status = EXIT_FAILURE;
+    goto out;
+  }
+
+  if (version) {
+    g_print ("%s %s\n", _("GNOME Notes"), VERSION);
+    goto out;
+  }
+
+  g_application_register (application, NULL, &error);
+
+  if (error != NULL) {
+    /* Translators: this is a fatal error quit message printed on the
+     * command line */
+    g_printerr ("%s: %s\n",
+                _("Could not register the application"),
+                error->message);
+    g_error_free (error);
+
+    *exit_status = EXIT_FAILURE;
+    goto out;
+  }
+
+ out:
+  g_option_context_free (context);
+  return TRUE;
+}
+
 static void
 bijiben_finalize (GObject *object)
 {
@@ -386,6 +449,7 @@ bijiben_class_init (BijibenClass *klass)
   aclass->activate = bijiben_activate;
   aclass->open = bijiben_open;
   aclass->startup = bijiben_startup;
+  aclass->local_command_line = bijiben_application_local_command_line;
 
   oclass->finalize = bijiben_finalize;
 

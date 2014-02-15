@@ -36,6 +36,7 @@ G_DEFINE_TYPE (BjbEmptyResultsBox, bjb_empty_results_box, GTK_TYPE_GRID);
 struct _BjbEmptyResultsBoxPrivate
 {
   GtkWidget              *primary_label;
+  GtkWidget              *image;
   GtkLabel               *details_label;
   BjbEmptyResultsBoxType  type;
 };
@@ -48,7 +49,7 @@ bjb_empty_results_box_constructed (GObject *object)
   BjbEmptyResultsBoxPrivate *priv;
   GtkStyleContext *context;
   GdkPixbuf *pixbuf;
-  GtkWidget *image, *labels_grid;
+  GtkWidget *labels_grid;
   gchar *label, *icons_path, *note_icon_path, *markup;
   GError *error;
 
@@ -86,11 +87,11 @@ bjb_empty_results_box_constructed (GObject *object)
     g_error_free (error);
   }
 
-  image  = gtk_image_new_from_pixbuf (pixbuf);
+  priv->image  = gtk_image_new_from_pixbuf (pixbuf);
   g_free (note_icon_path);
 
-  gtk_image_set_pixel_size (GTK_IMAGE (image), 64);
-  gtk_container_add (GTK_CONTAINER (self), image);
+  gtk_image_set_pixel_size (GTK_IMAGE (priv->image), 64);
+  gtk_container_add (GTK_CONTAINER (self), priv->image);
 
   labels_grid = gtk_grid_new ();
   gtk_orientable_set_orientation (GTK_ORIENTABLE (labels_grid), GTK_ORIENTATION_VERTICAL);
@@ -144,6 +145,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
         _("Your notes notebook is empty.\nClick the New button to create your first note."));
 
       gtk_widget_show (GTK_WIDGET (self->priv->details_label));
+      gtk_widget_show (self->priv->image);
       break;
 
     case BJB_EMPTY_RESULTS_NO_RESULTS:
@@ -151,6 +153,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
         self->priv->details_label, NULL);
 
       gtk_widget_hide (GTK_WIDGET (self->priv->details_label));
+      gtk_widget_hide (self->priv->image);
       break;
 
 
@@ -170,6 +173,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
         _("Please install 'Tracker' then restart the application."));
 
       gtk_widget_show (GTK_WIDGET (self->priv->details_label));
+      gtk_widget_show (self->priv->image);
       break;
 
     default:

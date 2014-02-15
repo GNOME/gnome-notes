@@ -142,12 +142,15 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
       gtk_label_set_label (
         self->priv->details_label,
         _("Your notes notebook is empty.\nClick the New button to create your first note."));
+
+      gtk_widget_show (GTK_WIDGET (self->priv->details_label));
       break;
 
     case BJB_EMPTY_RESULTS_NO_RESULTS:
       gtk_label_set_label (
-        self->priv->details_label,
-        _("No result found for this research."));
+        self->priv->details_label, NULL);
+
+      gtk_widget_hide (GTK_WIDGET (self->priv->details_label));
       break;
 
 
@@ -165,6 +168,8 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
       gtk_label_set_label (
         self->priv->details_label,
         _("Please install 'Tracker' then restart the application."));
+
+      gtk_widget_show (GTK_WIDGET (self->priv->details_label));
       break;
 
     default:

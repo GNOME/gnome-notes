@@ -34,6 +34,7 @@ struct _BjbLoadMoreButtonPrivate
   GtkWidget *revealer;
   GtkWidget *label;
   GtkWidget *spinner;
+  gboolean   block;
 
   BjbController *controller;
 };
@@ -55,18 +56,33 @@ G_DEFINE_TYPE (BjbLoadMoreButton, bjb_load_more_button, GTK_TYPE_BUTTON);
 
 static void
 on_displayed_items_changed (BjbController     *controller,
-                            gboolean          some_is_shown,
-                            gboolean          remaining,
+                            gboolean           some_is_shown,
+                            gboolean           remaining,
                             BjbLoadMoreButton *self)
 {
   BjbLoadMoreButtonPrivate *priv;
 
   priv = self->priv;
-  gtk_spinner_stop (GTK_SPINNER (priv->spinner));
-  gtk_widget_hide (priv->spinner);
-  gtk_label_set_label (GTK_LABEL (priv->label), _("Load More"));
 
-  gtk_revealer_set_reveal_child (GTK_REVEALER (priv->revealer), remaining);
+  gtk_spinner_stop (GTK_SPINNER (priv->spinner));
+
+  if (some_is_shown)
+  {
+    gtk_widget_hide (priv->spinner);
+    gtk_label_set_label (GTK_LABEL (priv->label), _("Load More"));
+
+    if (remaining && (priv->block == FALSE))
+      gtk_revealer_set_reveal_child (GTK_REVEALER (priv->revealer), TRUE);
+
+    else
+      gtk_revealer_set_reveal_child (GTK_REVEALER (priv->revealer), FALSE);
+  }
+
+  else
+  {
+    gtk_revealer_set_reveal_child (GTK_REVEALER (priv->revealer), FALSE);
+  }
+
 }
 
 
@@ -100,6 +116,7 @@ bjb_load_more_button_constructed (GObject *object)
                     G_CALLBACK (on_displayed_items_changed), self);
 
   G_OBJECT_CLASS (bjb_load_more_button_parent_class)->constructed (object);
+  gtk_widget_show_all (GTK_WIDGET (self));
 }
 
 
@@ -134,6 +151,7 @@ bjb_load_more_button_init (BjbLoadMoreButton *self)
 
   priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_LOAD_MORE_BUTTON, BjbLoadMoreButtonPrivate);
 
+  priv->block = FALSE;
   context = gtk_widget_get_style_context (GTK_WIDGET (self));
   gtk_style_context_add_class (context, "documents-load-more");
 
@@ -229,7 +247,31 @@ GtkWidget *
 bjb_load_more_button_new (BjbController *controller)
 {
   BjbLoadMoreButton *button;
-  
+
   button = g_object_new (BJB_TYPE_LOAD_MORE_BUTTON, "controller", controller, NULL);
-  return button->priv->revealer;
+  return GTK_WIDGET (button);
+}
+
+
+void
+bjb_load_more_button_set_block (BjbLoadMoreButton *self, gboolean block)
+{
+  BjbController *controller;
+
+  if (self->priv->block == block)
+    return;
+
+  self->priv->block = block;
+  controller = self->priv->controller;
+  on_displayed_items_changed (controller,
+                              bjb_controller_shows_item (controller),
+                              bjb_controller_get_remaining_items (controller),
+                              self);
+}
+
+
+GtkWidget *
+bjb_load_more_button_get_revealer (BjbLoadMoreButton *self)
+{
+  return self->priv->revealer;
 }

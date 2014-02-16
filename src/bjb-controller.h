@@ -85,6 +85,11 @@ void bjb_controller_set_group (BjbController   *self,
 
 void bjb_controller_show_more (BjbController *controller);
 
+
+gboolean bjb_controller_get_remaining_items (BjbController *self);
+
+
 G_END_DECLS
+
 
 #endif /* _BJB_CONTROLLER_H_ */

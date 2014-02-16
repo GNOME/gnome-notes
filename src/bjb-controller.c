@@ -876,3 +876,11 @@ bjb_controller_show_more (BjbController *self)
   else
     on_needle_changed (self);
 }
+
+
+
+gboolean
+bjb_controller_get_remaining_items (BjbController *self)
+{
+  return self->priv->remaining_items;
+}

@@ -54,7 +54,7 @@ static guint bjb_main_view_signals [BJB_MAIN_VIEW_SIGNALS] = { 0 };
 
 /************************** Gobject ***************************/
 
-struct _BjbMainViewPriv {  
+struct _BjbMainViewPriv {
   GtkWidget        *window;
   GtkWidget        *label;
 
@@ -65,7 +65,7 @@ struct _BjbMainViewPriv {
   BjbSelectionToolbar  *select_bar;
 
   /* View Notes , model */
-  GdMainView       *view ;
+  GdMainView       *view;
   BjbController    *controller;
   GtkWidget        *load_more;
 
@@ -585,11 +585,53 @@ add_list_renderers (BjbMainView *self)
 }
 
 
+
+static void
+bjb_main_view_view_changed (BjbMainView *self)
+{
+  BjbMainViewPriv *priv;
+  GtkAdjustment *vadjustment;
+  GtkWidget *vscrollbar;
+  gboolean end;
+  gdouble page_size;
+  gdouble upper;
+  gdouble value;
+  gint reveal_area_height;
+
+  priv = self->priv;
+  reveal_area_height = 32;
+  end = FALSE;
+  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
+
+  if (vscrollbar == NULL || !gtk_widget_get_visible (GTK_WIDGET (vscrollbar)))
+  {
+    bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (priv->load_more), TRUE);
+    return;
+  }
+
+  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
+  page_size = gtk_adjustment_get_page_size (vadjustment);
+  upper = gtk_adjustment_get_upper (vadjustment);
+  value = gtk_adjustment_get_value (vadjustment);
+
+  /* Special case these values which happen at construction */
+  if ((gint) value == 0 && (gint) upper == 1 && (gint) page_size == 1)
+    end = FALSE;
+  else
+    end = !(value < (upper - page_size - reveal_area_height));
+
+  bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (priv->load_more), !end);
+}
+
+
 static void
 bjb_main_view_constructed(GObject *o)
 {
   BjbMainView          *self;
   BjbMainViewPriv      *priv;
+  GtkAdjustment        *vadjustment;
+  GtkWidget            *vscrollbar;
+  GtkWidget            *button;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
@@ -606,10 +648,33 @@ bjb_main_view_constructed(GObject *o)
   gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->view));
 
+  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
+
+  g_signal_connect_object (vadjustment,
+                           "changed",
+                           G_CALLBACK (bjb_main_view_view_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (vadjustment,
+                           "value-changed",
+                           G_CALLBACK (bjb_main_view_view_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
+  g_signal_connect_object (vscrollbar,
+                           "notify::visible",
+                           G_CALLBACK (bjb_main_view_view_changed),
+                           self,
+                           G_CONNECT_SWAPPED);
+
 
   /* Load more */
   priv->load_more = bjb_load_more_button_new (priv->controller);
-  gtk_container_add (GTK_CONTAINER (self), priv->load_more);
+  button = bjb_load_more_button_get_revealer (BJB_LOAD_MORE_BUTTON (priv->load_more));
+  gtk_container_add (GTK_CONTAINER (self), button);
+  bjb_main_view_view_changed (self);
+
 
   /* Selection Panel */
   priv->select_bar = bjb_selection_toolbar_new (priv->view, self);
@@ -633,9 +698,9 @@ bjb_main_view_class_init (BjbMainViewClass *klass)
   object_class->set_property = bjb_main_view_set_property;
   object_class->constructor = biji_main_view_constructor;
   object_class->constructed = bjb_main_view_constructed;
-    
+
   g_type_class_add_private (klass, sizeof (BjbMainViewPriv));
-  
+
   properties[PROP_WINDOW] = g_param_spec_object ("window",
                                                  "Window",
                                                  "Parent Window",

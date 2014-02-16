@@ -73,6 +73,12 @@ GType                  bjb_load_more_button_get_type               (void) G_GNUC
 
 GtkWidget             *bjb_load_more_button_new                    (BjbController *controller);
 
+
+GtkWidget             *bjb_load_more_button_get_revealer           (BjbLoadMoreButton* button);
+
+
+void                   bjb_load_more_button_set_block              (BjbLoadMoreButton *button, gboolean block);
+
 G_END_DECLS
 
 #endif /* BJB_LOAD_MORE_BUTTON_H */

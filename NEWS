@@ -1,3 +1,18 @@
+Overview of changes in 3.11.90
+==============================
+
+* Div
+  Add commandline (Arnaud Bonatti)
+  Fix build for tracker 1.0 (Alex Muñoz)
+  Do not show 'load more' at startup
+  Simpler feedback when search has no result
+  Improve trash bin
+
+
+* Translations:
+  Spanish, Assamese, Ukrainian, Brazilian Portuguese,
+  Tajik, Galician, Hebrew, Czech
+
 Overview of changes in 3.11.5
 =============================
 

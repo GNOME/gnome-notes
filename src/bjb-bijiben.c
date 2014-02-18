@@ -278,7 +278,7 @@ on_client_got (GObject *source_object,
       {
         g_object_unref (object);
       }
-    } 
+    }
   }
 
   g_list_free (accounts);
@@ -373,19 +373,25 @@ bijiben_application_local_command_line (GApplication *application,
                                         gint *exit_status)
 {
   gboolean version = FALSE;
-
-  const GOptionEntry options[] = {
-    { "version", 0, 0, G_OPTION_ARG_NONE, &version,
-      N_("Show the application's version"), NULL},
-    { NULL }
-  };
+  gchar **remaining = NULL;
   GOptionContext *context;
   GError *error = NULL;
   gint argc = 0;
   gchar **argv = NULL;
   *exit_status = EXIT_SUCCESS;
+  GFile **files;
+  gint idx, len;
 
-  context = g_option_context_new (_("[FILE...]"));
+  const GOptionEntry options[] = {
+    { "version", 0, 0, G_OPTION_ARG_NONE, &version,
+      N_("Show the application's version"), NULL},
+    { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY, &remaining,
+      NULL,  N_("[FILE...]") },
+    { NULL }
+  };
+
+
+  context = g_option_context_new (NULL);
   g_option_context_set_summary (context,
                                 _("Take notes and export them everywhere."));
   g_option_context_add_main_entries (context, options, NULL);
@@ -395,8 +401,8 @@ bijiben_application_local_command_line (GApplication *application,
   argc = g_strv_length (argv);
 
   if (!g_option_context_parse (context, &argc, &argv, &error)) {
-    /* Translators: this is a fatal error quit message printed on the
-     * command line */
+    /* Translators: this is a fatal error quit message
+     * printed on the command line */
     g_printerr ("%s: %s\n", _("Could not parse arguments"), error->message);
     g_error_free (error);
 
@@ -412,8 +418,8 @@ bijiben_application_local_command_line (GApplication *application,
   g_application_register (application, NULL, &error);
 
   if (error != NULL) {
-    /* Translators: this is a fatal error quit message printed on the
-     * command line */
+    /* Translators: this is a fatal error quit message
+     * printed on the command line */
     g_printerr ("%s: %s\n",
                 _("Could not register the application"),
                 error->message);
@@ -422,6 +428,50 @@ bijiben_application_local_command_line (GApplication *application,
     *exit_status = EXIT_FAILURE;
     goto out;
   }
+
+  len = 0;
+  files = NULL;
+
+  /* Convert args to GFiles */
+  if (remaining != NULL)
+  {
+    GFile *file;
+    GPtrArray *file_array;
+
+    file_array = g_ptr_array_new ();
+
+    for (idx = 0; remaining[idx] != NULL; idx++)
+    {
+      file = g_file_new_for_commandline_arg (remaining[idx]);
+      if (file != NULL)
+        g_ptr_array_add (file_array, file);
+    }
+
+    len = file_array->len;
+    files = (GFile **) g_ptr_array_free (file_array, FALSE);
+    g_strfreev (remaining);
+  }
+
+  if (files == NULL)
+  {
+    files = g_malloc0 (sizeof (GFile *));
+    len = 0;
+
+    files[0] = NULL;
+  }
+
+  if (len == 0)
+    goto out;
+
+  /* Invoke "Open" to create new windows */
+  g_application_open (application, files, len, "");
+
+  for (idx = 0; idx < len; idx++)
+  {
+    g_object_unref (files[idx]);
+  }
+
+  g_free (files);
 
  out:
   g_option_context_free (context);

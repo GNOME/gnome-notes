@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-10 03:53+0000\n"
-"PO-Revision-Date: 2014-02-10 12:12+0500\n"
+"POT-Creation-Date: 2014-02-19 03:54+0000\n"
+"PO-Revision-Date: 2014-02-20 14:27+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik <tg@li.org>\n"
 "Language: tg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -42,7 +42,7 @@ msgstr "ёддоштҳо;ёдрас;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
-msgstr "Қайдҳоро фиристонед, файлҳоро барчасп кунед!"
+msgstr "Ёддоштҳоро фиристонед, файлҳоро барчасп кунед!"
 
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
@@ -112,6 +112,35 @@ msgstr "Дафтари ёддоштҳои оддӣ барои GNOME"
 msgid "translator-credits"
 msgstr "Victor Ibragimov"
 
+#: ../src/bjb-bijiben.c:387
+#| msgid "Gnote application"
+msgid "Show the application's version"
+msgstr "Намоиш додани версияи барнома"
+
+#: ../src/bjb-bijiben.c:389
+msgid "[FILE...]"
+msgstr "[ФАЙЛ...]"
+
+#: ../src/bjb-bijiben.c:396
+msgid "Take notes and export them everywhere."
+msgstr "Ёддоштҳоро қайд кунед ва онҳоро ба ҷои дилхоҳ гузаред."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:406
+msgid "Could not parse arguments"
+msgstr "Аргументҳо таҷзия намешванд"
+
+#: ../src/bjb-bijiben.c:414
+#| msgid "Notes"
+msgid "GNOME Notes"
+msgstr "Ёддоштҳои GNOME"
+
+#: ../src/bjb-bijiben.c:424
+#| msgid "Gnote application"
+msgid "Could not register the application"
+msgstr "Барномаи қайд карда нашуд"
+
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "Ранги ёддошт"
@@ -147,11 +176,11 @@ msgstr "Кур"
 msgid "Copy selection to a new note"
 msgstr "Нусха бардоштани интихоб ба ёддошти нав"
 
-#: ../src/bjb-empty-results-box.c:100
+#: ../src/bjb-empty-results-box.c:101
 msgid "No Notes Found"
 msgstr "Ягон ёддошт ёфт нашуд"
 
-#: ../src/bjb-empty-results-box.c:144
+#: ../src/bjb-empty-results-box.c:145
 msgid ""
 "Your notes notebook is empty.\n"
 "Click the New button to create your first note."
@@ -159,15 +188,11 @@ msgstr ""
 "Дафтари ёддоштҳои шумо холӣ аст.\n"
 "Барои вориди ёддошти аввалин, тугмаи \"Нав\"-ро зер кунед."
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "Барои ин пажӯҳиш ягон натиҷа ёфт нашуд."
-
-#: ../src/bjb-empty-results-box.c:161
+#: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
 msgstr "Эҳеее"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr ""
 "Лутфан, барномаи 'Tracker'-ро насб кунед ва баъд барномаро бозоғозӣ кунед."
@@ -200,11 +225,11 @@ msgstr "Барномаи Tomboy"
 msgid "Gnote application"
 msgstr "Барномаи Gnote"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Бештар бор кардан"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "Бор шуда истодааст..."
 
@@ -302,7 +327,6 @@ msgstr "Дафтарҳо"
 
 #. Share
 #: ../src/bjb-main-toolbar.c:820
-#| msgid "Delete this Note"
 msgid "Email this Note"
 msgstr "Фиристодани ин паём бо почтаи электронӣ"
 
@@ -326,7 +350,12 @@ msgstr "Дафтар"
 
 #: ../src/bjb-main-view.c:489
 msgid "Note"
-msgstr "Қайд"
+msgstr "Ёддошт"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "Навсозии охирин"
 
 #: ../src/bjb-organize-dialog.c:399
 msgid "Enter a name to create a notebook"
@@ -340,11 +369,6 @@ msgstr "Дафтари нав"
 #: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Пӯшидан"
-
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "Навсозии охирин"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
@@ -443,6 +467,9 @@ msgstr "_Дар бораи барнома"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Хуруҷ"
+
+#~ msgid "No result found for this research."
+#~ msgstr "Барои ин пажӯҳиш ягон натиҷа ёфт нашуд."
 
 #~ msgid "_New Window"
 #~ msgstr "_Равзанаи нав"

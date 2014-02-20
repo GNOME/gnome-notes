@@ -771,7 +771,7 @@ biji_manager_local_note_new           (BijiManager *manager, gchar *str)
   }
 
   biji_note_obj_save_note (ret);
-  biji_manager_add_item (manager, BIJI_ITEM (ret), TRUE, BIJI_LIVING_ITEMS);
+  biji_manager_add_item (manager, BIJI_ITEM (ret), BIJI_LIVING_ITEMS, TRUE);
 
   return ret;
 }
@@ -821,7 +821,7 @@ biji_manager_note_new            (BijiManager *manager,
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
   // do not save. up to the provider implementation to save it or not
   // at creation.
-  biji_manager_add_item (manager, BIJI_ITEM (retval), TRUE, BIJI_LIVING_ITEMS);
+  biji_manager_add_item (manager, BIJI_ITEM (retval), BIJI_LIVING_ITEMS, TRUE);
 
   return retval;
 }

@@ -242,7 +242,7 @@ msgstr[2] "%d vybráno"
 
 #: ../src/bjb-main-toolbar.c:264
 msgid "Search note titles, content and notebooks"
-msgstr "Hledat v názvech a obsahu poznámek a sešitech"
+msgstr "Hledat v názvech a obsahu poznámek a v sešitech"
 
 #. Select
 #: ../src/bjb-main-toolbar.c:303
@@ -272,7 +272,7 @@ msgstr "Režim výběru"
 
 #: ../src/bjb-main-toolbar.c:488
 msgid "View notes and notebooks in a list"
-msgstr "Zobrazit poznámky a sešity v seznamu"
+msgstr "Zobrazit poznámky a sešity jako seznam"
 
 #: ../src/bjb-main-toolbar.c:512
 msgid "View notes and notebooks in a grid"

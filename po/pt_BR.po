@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-10 03:53+0000\n"
-"PO-Revision-Date: 2014-02-10 12:06-0300\n"
+"POT-Creation-Date: 2014-02-21 03:53+0000\n"
+"PO-Revision-Date: 2014-02-21 10:07-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -113,9 +113,38 @@ msgstr "Um catálogo simples de notas para o GNOME"
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
-"Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013.\n"
+"Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013, 2014.\n"
 "Enrico Nicoletto <liverig@gmail.com>, 2013, 2014.\n"
 "Fábio Nogueira<deb-user-ba@ubuntu.com>, 2013."
+
+#: ../src/bjb-bijiben.c:387
+#| msgid "Gnote application"
+msgid "Show the application's version"
+msgstr "Mostra a versão do aplicativo"
+
+#: ../src/bjb-bijiben.c:389
+msgid "[FILE...]"
+msgstr "[ARQUIVO...]"
+
+#: ../src/bjb-bijiben.c:396
+msgid "Take notes and export them everywhere."
+msgstr "Tome notas e exporte-as para qualquer lugar."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:406
+msgid "Could not parse arguments"
+msgstr "Não foi possível interpretar os argumentos"
+
+#: ../src/bjb-bijiben.c:414
+#| msgid "Notes"
+msgid "GNOME Notes"
+msgstr "Notas do GNOME"
+
+#: ../src/bjb-bijiben.c:424
+#| msgid "Gnote application"
+msgid "Could not register the application"
+msgstr "Não foi possível registrar o aplicativo"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
@@ -152,11 +181,11 @@ msgstr "Tachado"
 msgid "Copy selection to a new note"
 msgstr "Copia a seleção para uma nova nota"
 
-#: ../src/bjb-empty-results-box.c:100
+#: ../src/bjb-empty-results-box.c:101
 msgid "No Notes Found"
 msgstr "Nenhuma nota foi encontrada"
 
-#: ../src/bjb-empty-results-box.c:144
+#: ../src/bjb-empty-results-box.c:145
 msgid ""
 "Your notes notebook is empty.\n"
 "Click the New button to create your first note."
@@ -164,15 +193,11 @@ msgstr ""
 "Seu catálogo de notas está vazio.\n"
 "Clique no botão Nova para criar sua primeira nota."
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "Não foi encontrado resultado para essa busca."
-
-#: ../src/bjb-empty-results-box.c:161
+#: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
 msgstr "Ops"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Por favor, instale \"Tracker\" e então, reinicie o aplicativo."
 
@@ -204,11 +229,11 @@ msgstr "Aplicativo Tomboy"
 msgid "Gnote application"
 msgstr "Aplicativo Gnote"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Carregar mais"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "Carregando..."
 
@@ -306,7 +331,6 @@ msgstr "Catálogos de notas"
 
 #. Share
 #: ../src/bjb-main-toolbar.c:820
-#| msgid "Delete this Note"
 msgid "Email this Note"
 msgstr "Enviar essa nota por e-mail"
 
@@ -332,6 +356,11 @@ msgstr "Catálogo de notas"
 msgid "Note"
 msgstr "Nota"
 
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:229
+msgid "Last updated"
+msgstr "Última atualização"
+
 #: ../src/bjb-organize-dialog.c:399
 msgid "Enter a name to create a notebook"
 msgstr "Digite um nome para criar um catálogo de notas"
@@ -344,11 +373,6 @@ msgstr "Novo catálogo de notas"
 #: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Fechar"
-
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "Última atualização"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
@@ -447,6 +471,9 @@ msgstr "S_obre"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Sair"
+
+#~ msgid "No result found for this research."
+#~ msgstr "Não foi encontrado resultado para essa busca."
 
 #~ msgid "_New Window"
 #~ msgstr "_Nova janela"

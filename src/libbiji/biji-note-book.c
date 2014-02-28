@@ -510,7 +510,7 @@ biji_note_book_remove_item (BijiNoteBook *book, BijiItem *item)
     biji_note_book_notify_changed (book, BIJI_BOOK_ITEM_TRASHED, to_delete);
 
     g_object_ref (item);
-    g_hash_table_remove (book->priv->items, path)
+    g_hash_table_remove (book->priv->items, path);
     biji_item_trash (item);
   }
 

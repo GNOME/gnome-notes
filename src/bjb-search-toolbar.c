@@ -145,7 +145,15 @@ on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
       case GDK_KEY_Shift_R :
       case GDK_KEY_Alt_L :
       case GDK_KEY_Alt_R :
-        return TRUE ;
+      case GDK_KEY_Tab :
+      case GDK_KEY_space :
+      case GDK_KEY_BackSpace:
+      case GDK_KEY_Left:
+      case GDK_KEY_Right:
+      case GDK_KEY_Up:
+      case GDK_KEY_Down :
+      case GDK_KEY_Return :
+        return FALSE;
 
       default:
         if (event->key.keyval != GDK_KEY_Escape)

@@ -68,7 +68,6 @@ enum {
 
 /* Signals */
 enum {
-  NOTEBOOK_DELETED,
   NOTEBOOK_ICON_UPDATED,
   BIJI_NOTEBOOKS_SIGNALS
 };
@@ -271,8 +270,6 @@ biji_notebook_trash (BijiItem *item)
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
 
   self = BIJI_NOTEBOOK (item);
-
-  g_signal_emit (G_OBJECT (item), biji_notebooks_signals[NOTEBOOK_DELETED], 0);
   biji_remove_notebook_from_tracker (biji_item_get_manager (item), self->priv->urn);
 
   return TRUE;
@@ -477,17 +474,6 @@ biji_notebook_class_init (BijiNotebookClass *klass)
 
   biji_notebooks_signals[NOTEBOOK_ICON_UPDATED] =
     g_signal_new ("icon-changed",
-                  G_OBJECT_CLASS_TYPE (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL,
-                  NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
-
-  biji_notebooks_signals[NOTEBOOK_DELETED] =
-    g_signal_new ("deleted" ,
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
                   0,

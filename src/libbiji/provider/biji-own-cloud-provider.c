@@ -78,7 +78,7 @@ struct BijiOwnCloudProviderPrivate_
 
 G_DEFINE_TYPE (BijiOwnCloudProvider, biji_own_cloud_provider, BIJI_TYPE_PROVIDER)
 
-typedef struct 
+typedef struct
 {
   GFile *file;
   BijiOwnCloudProvider *self;
@@ -202,7 +202,7 @@ on_content (GObject *source,
                                     NULL,
                                     &error);
 
-  if (!ok) 
+  if (!ok)
   {
     if (error)
     {
@@ -213,7 +213,7 @@ on_content (GObject *source,
     o_cloud_item_free (item);
   }
 
-  /* 
+  /*
    * File has been read, both create the note
    * then update db
    */
@@ -233,14 +233,14 @@ on_content (GObject *source,
 
 
 
-/* 
+/*
  * If the tracker db is up  to date it provides the Info.
- * Otherwise the file is more recent than tracker : 
+ * Otherwise the file is more recent than tracker :
  * do it the hard way
- * 
+ *
  * but ownCloud mtime are not reliable so this does not work well.
  * editing file changes mtime. Not editing from Notes...
- * 
+ *
  */
 
 static void
@@ -360,7 +360,7 @@ enumerate_next_files_ready_cb (GObject *source,
     info = l->data;
     item = o_cloud_item_new (self);
     item->set.title = g_strdup (g_file_info_get_name (info));
-    item->set.url = g_strconcat 
+    item->set.url = g_strconcat
       (g_file_get_parse_name (self->priv->folder),
        "/", item->set.title, NULL);
 
@@ -446,7 +446,7 @@ on_notes_mined (GObject       *source_object,
       g_hash_table_insert (self->priv->tracker,
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL)),
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL)));
-      
+
     }
   }
 
@@ -731,7 +731,7 @@ own_cloud_get_info       (BijiProvider *provider)
 
 
 
-/* 
+/*
  * Note is created from sratch, without any file or tracker metadata
  * But as soon as note title changes,
  * things will go right.

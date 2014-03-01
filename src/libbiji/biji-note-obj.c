@@ -70,6 +70,18 @@ enum {
 
 static GParamSpec *properties[BIJI_OBJ_PROPERTIES] = { NULL, };
 
+
+/* Signals. Do not interfere with biji-item parent class. */
+enum {
+  NOTE_RENAMED,
+  NOTE_CHANGED,
+  NOTE_COLOR_CHANGED,
+  BIJI_OBJ_SIGNALS
+};
+
+static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
+
+
 #define BIJI_NOTE_OBJ_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_NOTE_OBJ, BijiNoteObjPrivate))
 
 G_DEFINE_TYPE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM);
@@ -165,16 +177,6 @@ biji_note_obj_finalize (GObject *object)
   G_OBJECT_CLASS (biji_note_obj_parent_class)->finalize (object);
 }
 
-// Signals to be used by biji note obj
-enum {
-  NOTE_RENAMED,
-  NOTE_TRASHED,
-  NOTE_CHANGED,
-  NOTE_COLOR_CHANGED,
-  BIJI_OBJ_SIGNALS
-};
-
-static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
 
 /* we do NOT deserialize here. it might be a brand new note
  * it's up the manager to ask .note to be read*/
@@ -259,7 +261,6 @@ biji_note_obj_trash (BijiItem *item)
   icon = g_file_new_for_path (icon_path);
   g_file_delete (icon, NULL, NULL);
 
-  g_signal_emit (G_OBJECT (note_to_kill), biji_obj_signals[NOTE_TRASHED], 0);
 
   if (icon_path != NULL)
     g_free (icon_path);
@@ -999,16 +1000,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
                   G_TYPE_NONE,
                   0);
 
-  biji_obj_signals[NOTE_TRASHED] =
-    g_signal_new ("trashed" ,
-                  G_OBJECT_CLASS_TYPE (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL,
-                  NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
 
   g_type_class_add_private (klass, sizeof (BijiNoteObjPrivate));
 

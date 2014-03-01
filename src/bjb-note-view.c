@@ -59,29 +59,25 @@ struct _BjbNoteViewPrivate {
 
   ClutterActor      *last_update;
   ClutterColor      *last_date_bckgrd_clr;
-
-  /* Signals */
-  gulong    destroy ;
-  gulong    trashed ;
-  gulong    color;
 };
 
+
+static void on_window_closed(GtkWidget *window,gpointer note);
+static gboolean on_note_trashed (BijiNoteObj *note, BjbNoteView *view);
+static void copy_note_color_to_last_updated_background (BjbNoteView *self);
+
+
 static void
-bjb_note_view_disconnect (BjbNoteViewPrivate *priv)
+bjb_note_view_disconnect (BjbNoteView *self)
 {
-  if (priv->destroy != 0)
-    g_signal_handler_disconnect (priv->window, priv->destroy);
+  BjbNoteViewPrivate *priv;
 
-  if (priv->trashed != 0)
-    g_signal_handler_disconnect (priv->note, priv->trashed);
-
-  if (priv->color != 0)
-    g_signal_handler_disconnect (priv->note, priv->color);
-
-  priv->destroy = 0,
-  priv->trashed = 0;
-  priv->color =0;
+  priv = self->priv;
+  g_signal_handlers_disconnect_by_func (priv->window, on_window_closed, priv->note);
+  g_signal_handlers_disconnect_by_func (priv->note, on_note_trashed, self);
+  g_signal_handlers_disconnect_by_func (priv->note, copy_note_color_to_last_updated_background, self);
 }
+
 
 static void
 bjb_note_view_finalize(GObject *object)
@@ -89,7 +85,7 @@ bjb_note_view_finalize(GObject *object)
   BjbNoteView *self = BJB_NOTE_VIEW (object) ;
   BjbNoteViewPrivate *priv = self->priv;
 
-  bjb_note_view_disconnect (priv);
+  bjb_note_view_disconnect (self);
 
   g_clear_object (&priv->view);
   clutter_color_free (priv->last_date_bckgrd_clr);
@@ -173,7 +169,7 @@ just_switch_to_main_view(BjbNoteView *self)
   GtkWindow     *window;
 
   /* Avoid stupid crash */
-  bjb_note_view_disconnect (self->priv);
+  bjb_note_view_disconnect (self);
 
   window = GTK_WINDOW(self->priv->window);
   bjb_window_base_switch_to (BJB_WINDOW_BASE (window),
@@ -268,12 +264,13 @@ bjb_note_view_constructed (GObject *obj)
   priv->view = biji_note_obj_open (priv->note);
 
 
-  priv->trashed = g_signal_connect(priv->note,"deleted",
-                                   G_CALLBACK(on_note_trashed),self);
+  g_signal_connect(priv->note,"deleted",
+                   G_CALLBACK(on_note_trashed),self);
+  g_signal_connect(priv->note,"trashed",
+                   G_CALLBACK(on_note_trashed),self);
 
-  priv->destroy = g_signal_connect(priv->window,"destroy",
-                                   G_CALLBACK(on_window_closed),
-                                   priv->note);
+  g_signal_connect(priv->window,"destroy",
+                   G_CALLBACK(on_window_closed), priv->note);
 
   /* Start packing ui */
   gtk_container_add (GTK_CONTAINER (priv->parent), GTK_WIDGET (self));
@@ -356,7 +353,7 @@ bjb_note_view_constructed (GObject *obj)
   clutter_actor_add_constraint (priv->last_update, constraint);
 
   copy_note_color_to_last_updated_background (self);
-  priv->color = g_signal_connect_swapped (priv->note, "color-changed",
+  g_signal_connect_swapped (priv->note, "color-changed",
                             G_CALLBACK (copy_note_color_to_last_updated_background), self);
 }
 

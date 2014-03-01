@@ -844,6 +844,7 @@ _biji_note_obj_close (BijiNoteObj *note)
   BijiNoteObjPrivate *priv;
   BijiItem *item;
   BijiManager *manager;
+  const gchar *title;
 
   priv = note->priv;
   item = BIJI_ITEM (note);
@@ -859,6 +860,15 @@ _biji_note_obj_close (BijiNoteObj *note)
    * since no change could trigger save */
   if (biji_note_id_get_content (priv->id) == NULL)
     biji_manager_remove_item (manager, item);
+
+  /* If the note has no title */
+  title = biji_item_get_title (item);
+  if (title == NULL)
+    {
+      title = biji_note_obj_get_raw_text (note);
+      biji_note_obj_set_title (note, title);
+    }
+
 }
 
 GtkWidget *

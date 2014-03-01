@@ -317,12 +317,12 @@ add_child (gpointer provider_info, gpointer user_data)
                            child, provider_child_free);
 
   w = child->icon;
-  gtk_widget_set_margin_left (w, 12);
+  gtk_widget_set_margin_start (w, 12);
   gtk_container_add (GTK_CONTAINER (box), w);
 
 
   w = gtk_label_new (child->name);
-  gtk_widget_set_margin_right (w, 180);
+  gtk_widget_set_margin_end (w, 180);
   gtk_container_add (GTK_CONTAINER (box), w);
   gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
   gtk_box_pack_end (GTK_BOX (box), w, FALSE, FALSE, 0);

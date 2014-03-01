@@ -148,6 +148,7 @@ bjb_window_base_set_property (GObject  *object,
 static void
 bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
 {
+  bjb_main_view_disconnect_scrolled_window (self->priv->view);
   bjb_controller_disconnect (self->priv->controller);
 }
 

@@ -79,6 +79,10 @@ struct _BjbMainViewPriv {
 
 G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_GRID);
 
+
+static void bjb_main_view_view_changed (BjbMainView *self);
+
+
 static void
 bjb_main_view_init (BjbMainView *object)
 {
@@ -91,11 +95,27 @@ bjb_main_view_init (BjbMainView *object)
   object->priv->view_selection_changed =0;
 }
 
-static void
-bjb_main_view_finalize (GObject *object)
+
+
+void
+bjb_main_view_disconnect_scrolled_window (BjbMainView *self)
 {
-  G_OBJECT_CLASS (bjb_main_view_parent_class)->finalize (object);
+  GtkAdjustment *vadjustment;
+  GtkWidget *vscrollbar;
+  BjbMainViewPriv *priv = self->priv;
+
+  if (priv->view == NULL ||
+      !GTK_IS_SCROLLED_WINDOW (priv->view))
+    return;
+
+  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
+  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
+
+  g_signal_handlers_disconnect_by_func (vadjustment, bjb_main_view_view_changed, self);
+  g_signal_handlers_disconnect_by_func (vscrollbar, bjb_main_view_view_changed, self);
 }
+
+
 
 static void
 bjb_main_view_disconnect_handlers (BjbMainView *self)
@@ -111,6 +131,16 @@ bjb_main_view_disconnect_handlers (BjbMainView *self)
   priv->activated = 0;
   priv->data = 0;
   priv->view_selection_changed =0;
+}
+
+
+
+static void
+bjb_main_view_finalize (GObject *object)
+{
+  bjb_main_view_disconnect_handlers (BJB_MAIN_VIEW (object));
+  bjb_main_view_disconnect_scrolled_window (BJB_MAIN_VIEW (object));
+  G_OBJECT_CLASS (bjb_main_view_parent_class)->finalize (object);
 }
 
 static void
@@ -601,6 +631,9 @@ bjb_main_view_view_changed (BjbMainView *self)
   priv = self->priv;
   reveal_area_height = 32;
   end = FALSE;
+  if (priv->view == NULL)
+    return;
+
   vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
 
   if (vscrollbar == NULL || !gtk_widget_get_visible (GTK_WIDGET (vscrollbar)))
@@ -640,6 +673,7 @@ bjb_main_view_constructed(GObject *o)
 
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
   priv->view = gd_main_view_new (DEFAULT_VIEW);
+  g_object_add_weak_pointer (G_OBJECT (priv->view), (gpointer*) &(priv->view));
 
   /* Main view */
   gd_main_view_set_selection_mode (priv->view, FALSE);
@@ -667,7 +701,6 @@ bjb_main_view_constructed(GObject *o)
                            G_CALLBACK (bjb_main_view_view_changed),
                            self,
                            G_CONNECT_SWAPPED);
-
 
   /* Load more */
   priv->load_more = bjb_load_more_button_new (priv->controller);

@@ -68,6 +68,8 @@ static GParamSpec *properties[BIJI_LOCAL_PROP] = { NULL, };
 #define ATTRIBUTES_FOR_LOCATION "standard::content-type,standard::name"
 
 
+static void local_prov_load_archives (BijiProvider *prov);
+
 static void
 load_location_error (GFile *location,
                      GError *error)
@@ -152,6 +154,10 @@ local_provider_finish (GHashTable *notebooks,
 
   BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list, helper->group);
   g_list_free (list);
+
+  /* Now if we just loaded items, load the trash */
+  if (helper->group == BIJI_LIVING_ITEMS)
+    local_prov_load_archives (BIJI_PROVIDER (self));
 }
 
 

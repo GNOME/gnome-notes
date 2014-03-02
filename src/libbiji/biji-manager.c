@@ -96,7 +96,7 @@ biji_manager_init (BijiManager *self)
   priv->items = g_hash_table_new_full (g_str_hash,
                                        g_str_equal,
                                        NULL,
-                                       g_object_unref);
+                                       NULL);
 
   priv->archives = g_hash_table_new_full (g_str_hash,
                                           g_str_equal,
@@ -298,6 +298,12 @@ on_item_deleted_cb (BijiItem *item, BijiManager *manager)
 }
 
 
+static void
+on_item_restored_cb (BijiItem *item, BijiManager *manager)
+{
+}
+
+
 void
 manager_on_note_changed_cb (BijiNoteObj *note, BijiManager *manager)
 {
@@ -360,7 +366,10 @@ biji_manager_add_item (BijiManager *manager,
                            (gpointer) biji_item_get_uuid (item), item);
 
     /* Connect */
-    g_signal_connect (item, "deleted", G_CALLBACK (on_item_deleted_cb), manager);
+    g_signal_connect (item, "deleted",
+                      G_CALLBACK (on_item_deleted_cb), manager);
+    g_signal_connect (item, "restored",
+                      G_CALLBACK (on_item_restored_cb), manager);
 
     if (BIJI_IS_NOTE_OBJ (item))
     {
@@ -591,6 +600,8 @@ biji_manager_remove_item (BijiManager *manager, BijiItem *item)
      * fully available for signal receiver. */
     biji_manager_notify_changed (manager, BIJI_LIVING_ITEMS, BIJI_MANAGER_ITEM_TRASHED, to_delete);
     biji_item_trash (item);
+    g_hash_table_insert (manager->priv->archives,
+                         (gpointer) biji_item_get_uuid (item), item);
     g_hash_table_remove (manager->priv->items, path);
 
     retval = TRUE;

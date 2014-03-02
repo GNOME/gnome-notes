@@ -857,8 +857,10 @@ bjb_controller_set_group (BjbController   *self,
   }
 
 
-  /* Archives : ping the manager */
-  biji_manager_load_archives (self->priv->manager);
+  else /* Archives */
+  {
+    bjb_controller_apply_needle (self);
+  }
 }
 
 

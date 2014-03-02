@@ -253,6 +253,8 @@ bjb_controller_add_item (BjbController *self,
   GtkListStore  *store;
   GdkPixbuf     *pix = NULL;
   const gchar   *uuid;
+  BjbWindowBase  *win;
+  BjbWindowViewType type;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->priv->model);
@@ -275,10 +277,13 @@ bjb_controller_add_item (BjbController *self,
 
   /* First , if there is a gd main view , and if gd main view
    * is a list, then load the smaller emblem */
-  if (bjb_window_base_get_view_type (self->priv->window) == BJB_WINDOW_BASE_MAIN_VIEW
-      && bjb_window_base_get_main_view (self->priv->window)
+  win = self->priv->window;
+  type = bjb_window_base_get_view_type (win);
+  if ((type == BJB_WINDOW_BASE_MAIN_VIEW ||
+       type == BJB_WINDOW_BASE_ARCHIVE_VIEW)
+      && bjb_window_base_get_main_view (win)
       && bjb_main_view_get_view_type
-                (bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST)
+                (bjb_window_base_get_main_view (win)) == GD_MAIN_VIEW_LIST)
     pix = biji_item_get_emblem (item);
 
   /* Else, load the icon */

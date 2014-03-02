@@ -184,6 +184,13 @@ local_note_archive (BijiNoteObj *note)
     g_message ("%s", error->message);
     g_error_free (error);
     error = NULL;
+    g_object_unref (archive);
+  }
+
+  else
+  {
+    g_object_unref (self->priv->location);
+    self->priv->location = archive;
   }
 
 
@@ -192,7 +199,6 @@ local_note_archive (BijiNoteObj *note)
   g_free (trash_path);
   g_object_unref (trash);
   g_free (backup_path);
-  g_object_unref (archive);
 
   return result;
 }

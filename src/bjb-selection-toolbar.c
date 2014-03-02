@@ -163,6 +163,7 @@ action_share_item_callback (GtkWidget *w, BjbSelectionToolbar *self)
      on_email_note_callback (w, l->data);
   }
 
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);
 }
 
@@ -177,6 +178,7 @@ on_restore_clicked_callback      (BjbSelectionToolbar *self)
   for (l=selection; l!=NULL; l=l->next)
     biji_item_restore (BIJI_ITEM (l->data));
 
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);
 }
 
@@ -191,11 +193,9 @@ on_delete_clicked_callback        (BjbSelectionToolbar *self)
   for (l=selection; l!=NULL; l=l->next)
     biji_item_delete (BIJI_ITEM (l->data));
 
+  bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);
 }
-
-
-
 
 
 

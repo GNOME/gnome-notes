@@ -298,9 +298,16 @@ on_item_deleted_cb (BijiItem *item, BijiManager *manager)
 }
 
 
+/* well, works currently : we assume Archives change.
+ * but we might double-ping as well
+ */
 static void
 on_item_restored_cb (BijiItem *item, BijiManager *manager)
 {
+  biji_manager_notify_changed (manager,
+                               BIJI_ARCHIVED_ITEMS,
+                               BIJI_MANAGER_ITEM_DELETED,
+                               item);
 }
 
 

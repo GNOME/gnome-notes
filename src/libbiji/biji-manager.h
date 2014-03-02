@@ -23,6 +23,7 @@ typedef enum
   BIJI_MANAGER_MASS_CHANGE,        // Startup, mass import.. rather rebuild the whole.
   BIJI_MANAGER_ITEM_ADDED,         // Single item added
   BIJI_MANAGER_ITEM_TRASHED,       // Single item trashed
+  BIJI_MANAGER_ITEM_RESTORED,       // Single item restored
   BIJI_MANAGER_ITEM_DELETED,       // Single item deleted
   BIJI_MANAGER_ITEM_ICON_CHANGED,  // Single item icon
   BIJI_MANAGER_NOTE_AMENDED,       // Single note amended (title, content)

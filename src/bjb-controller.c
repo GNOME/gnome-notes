@@ -617,15 +617,14 @@ on_manager_changed (BijiManager            *manager,
       break;
 
     case BIJI_MANAGER_ITEM_DELETED:
-      g_warning ("on item deleted");
     case BIJI_MANAGER_ITEM_TRASHED:
+    case BIJI_MANAGER_ITEM_RESTORED:
       if (bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
       priv->items_to_show = g_list_remove (priv->items_to_show, item);
       notify_displayed_items_changed (self);
       break;
-
 
     default:
       bjb_controller_apply_needle (self);

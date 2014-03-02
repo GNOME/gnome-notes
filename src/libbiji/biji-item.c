@@ -142,9 +142,10 @@ biji_item_class_init (BijiItemClass *klass)
                   0,
                   NULL,
                   NULL,
-                  g_cclosure_marshal_VOID__VOID,
+                  g_cclosure_marshal_VOID__STRING,
                   G_TYPE_NONE,
-                  0);
+                  1,
+                  G_TYPE_STRING);
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiItemPrivate));
 }
@@ -261,11 +262,18 @@ gboolean
 biji_item_restore             (BijiItem *item)
 {
   gboolean retval;
-  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+  gchar   *old_uuid;
 
-  retval = BIJI_ITEM_GET_CLASS (item)->restore (item);
+  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
+  old_uuid = NULL;
+
+  retval = BIJI_ITEM_GET_CLASS (item)->restore (item, &old_uuid);
   if (retval == TRUE)
-    g_signal_emit_by_name (item, "restored", NULL);
+  {
+    g_signal_emit_by_name (item, "restored", old_uuid, NULL);
+    if (old_uuid != NULL)
+      g_free (old_uuid);
+  }
 
   return retval;
 }

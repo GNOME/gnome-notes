@@ -70,7 +70,7 @@ struct BijiItemClass_
   gboolean      (*has_color)            (BijiItem *item);
 
   gboolean      (*trash)                (BijiItem *item);
-  gboolean      (*restore)              (BijiItem *item);
+  gboolean      (*restore)              (BijiItem *item, gchar **old_uuid);
   gboolean      (*delete)               (BijiItem *item);
 
   gboolean      (*is_collectable)       (BijiItem *item);

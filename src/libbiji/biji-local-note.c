@@ -205,7 +205,7 @@ local_note_archive (BijiNoteObj *note)
 
 
 static gboolean
-local_note_restore (BijiItem *item)
+local_note_restore (BijiItem *item, gchar **old_uuid)
 {
   BijiLocalNote *self;
   gchar *root_path, *path;
@@ -239,6 +239,7 @@ local_note_restore (BijiItem *item)
     g_error_free (error);
   }
 
+  *old_uuid = g_file_get_path (self->priv->location);
   g_object_unref (self->priv->location);
   g_object_unref (trash);
   g_object_unref (root);

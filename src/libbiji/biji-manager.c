@@ -101,11 +101,11 @@ biji_manager_init (BijiManager *self)
   priv->archives = g_hash_table_new_full (g_str_hash,
                                           g_str_equal,
                                           NULL,
-                                          g_object_unref);
+                                          NULL);
   /*
    * Providers are the different notes storage
    * the hash table use an id
-   * 
+   *
    * - local files stored notes = "local"
    * - own cloud notes = account_get_id
    */
@@ -298,12 +298,22 @@ on_item_deleted_cb (BijiItem *item, BijiManager *manager)
 }
 
 
-/* well, works currently : we assume Archives change.
+/*
+ * old uuid : we need this because local provider uses
+ * file name as uuid. Now this proves this is not right.
+ *
+ * notify... BIJI_ARCHIVED_ITEM
+ * well, works currently : we assume Archives change.
  * but we might double-ping as well
+ * or improve the whole logic
  */
 static void
-on_item_restored_cb (BijiItem *item, BijiManager *manager)
+on_item_restored_cb (BijiItem *item, gchar *old_uuid, BijiManager *manager)
 {
+  g_hash_table_insert (manager->priv->items,
+                       (gpointer) biji_item_get_uuid (item), item);
+  g_hash_table_remove (manager->priv->archives, old_uuid);
+
   biji_manager_notify_changed (manager,
                                BIJI_ARCHIVED_ITEMS,
                                BIJI_MANAGER_ITEM_DELETED,

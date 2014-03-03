@@ -476,12 +476,14 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
     case BJB_WINDOW_BASE_MAIN_VIEW:
       bjb_search_toolbar_connect (priv->search_bar);
       bjb_main_view_connect_signals (priv->view);
+      gtk_widget_show (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "main-view");
       break;
 
    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
       bjb_search_toolbar_connect (priv->search_bar);
       bjb_main_view_connect_signals (priv->view);
+      gtk_widget_show (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "main-view");
       break;
 
@@ -494,6 +496,7 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
                                       BJB_EMPTY_RESULTS_NO_NOTE);
       gtk_widget_show (priv->no_note);
+      gtk_widget_hide (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "empty");
       break;
 
@@ -502,6 +505,7 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
                                       BJB_EMPTY_RESULTS_NO_RESULTS);
       gtk_widget_show (priv->no_note);
+      gtk_widget_hide (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "empty");
       break;
 
@@ -510,12 +514,14 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (priv->no_note),
                                       BJB_EMPTY_RESULTS_TRACKER);
       gtk_widget_show_all (priv->no_note);
+      gtk_widget_hide (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "empty");
       break;
 
 
     case BJB_WINDOW_BASE_NOTE_VIEW:
       gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
+      gtk_widget_hide (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "note-view");
       break;
 

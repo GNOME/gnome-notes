@@ -1,3 +1,23 @@
+Overview of changes in 3.11.91
+==============================
+
+* Div
+  Fix going back and forth to trash bin
+  Assign a title even with a single row
+
+* Translations
+  Chinese
+  Czech
+  Galician
+  Hebrew
+  Hungarian
+  Indonesian
+  Lithuanian
+  Norwegian bokmål
+  Tajik
+
+
+
 Overview of changes in 3.11.90
 ==============================
 

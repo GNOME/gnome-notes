@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-10 01:48+0100\n"
-"PO-Revision-Date: 2014-02-10 01:48+0200\n"
+"POT-Creation-Date: 2014-03-03 17:45+0100\n"
+"PO-Revision-Date: 2014-03-03 17:47+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -105,6 +105,32 @@ msgstr "Caderno de notas sinxelo para GNOME"
 msgid "translator-credits"
 msgstr "Fran Dieguez <frandieguez@gnome.org>, 2013."
 
+#: ../src/bjb-bijiben.c:387
+msgid "Show the application's version"
+msgstr "Mostrar a versión do aplicativo"
+
+#: ../src/bjb-bijiben.c:389
+msgid "[FILE...]"
+msgstr "[FICHEIRO...]"
+
+#: ../src/bjb-bijiben.c:396
+msgid "Take notes and export them everywhere."
+msgstr "Tome notas e expórteas en calquera lugar."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:406
+msgid "Could not parse arguments"
+msgstr "Non foi posíbel analizar os argumentos"
+
+#: ../src/bjb-bijiben.c:414
+msgid "GNOME Notes"
+msgstr "Notas de GNOME"
+
+#: ../src/bjb-bijiben.c:424
+msgid "Could not register the application"
+msgstr "Non é posíbel rexistrar o aplicativo"
+
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "Cor da nota"
@@ -140,11 +166,11 @@ msgstr "Riscar"
 msgid "Copy selection to a new note"
 msgstr "Copiar selección a unha nova nota"
 
-#: ../src/bjb-empty-results-box.c:100
+#: ../src/bjb-empty-results-box.c:101
 msgid "No Notes Found"
 msgstr "Non se atoparon notas"
 
-#: ../src/bjb-empty-results-box.c:144
+#: ../src/bjb-empty-results-box.c:145
 msgid ""
 "Your notes notebook is empty.\n"
 "Click the New button to create your first note."
@@ -152,15 +178,11 @@ msgstr ""
 "O seu caderno de notas está baleiro.\n"
 "Prema no botón Nova para crear a súa primeira nota."
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "Non se atoparon resultados para esta busca."
-
-#: ../src/bjb-empty-results-box.c:161
+#: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instale «Tracker» e logo reinicie o aplicativo."
 
@@ -192,11 +214,11 @@ msgstr "Aplicativo Tomboy"
 msgid "Gnote application"
 msgstr "Aplicativo Gnote"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Cargar máis"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "Cargando…"
 
@@ -311,13 +333,18 @@ msgstr "Máis opcións…"
 msgid "Note color"
 msgstr "Cor da nota"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "Caderno"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "Nota"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:225
+msgid "Last updated"
+msgstr "Última actualización"
 
 #: ../src/bjb-organize-dialog.c:399
 msgid "Enter a name to create a notebook"
@@ -331,11 +358,6 @@ msgstr "Novo caderno"
 #: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
 msgid "_Close"
 msgstr "_Pechar"
-
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "Última actualización"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
@@ -407,7 +429,7 @@ msgstr "Este ano"
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:361
 msgid "Local storage"
 msgstr "Almacenamento local"
 
@@ -434,6 +456,9 @@ msgstr "_Sobre"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Saír"
+
+#~ msgid "No result found for this research."
+#~ msgstr "Non se atoparon resultados para esta busca."
 
 #~ msgid "_New Window"
 #~ msgstr "_Nova xanela"

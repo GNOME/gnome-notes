@@ -254,7 +254,6 @@ bjb_controller_add_item (BjbController *self,
   GdkPixbuf     *pix = NULL;
   const gchar   *uuid;
   BjbWindowBase  *win;
-  BjbWindowViewType type;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->priv->model);
@@ -278,10 +277,7 @@ bjb_controller_add_item (BjbController *self,
   /* First , if there is a gd main view , and if gd main view
    * is a list, then load the smaller emblem */
   win = self->priv->window;
-  type = bjb_window_base_get_view_type (win);
-  if ((type == BJB_WINDOW_BASE_MAIN_VIEW ||
-       type == BJB_WINDOW_BASE_ARCHIVE_VIEW)
-      && bjb_window_base_get_main_view (win)
+  if (bjb_window_base_get_main_view (win)
       && bjb_main_view_get_view_type
                 (bjb_window_base_get_main_view (win)) == GD_MAIN_VIEW_LIST)
     pix = biji_item_get_emblem (item);
@@ -593,6 +589,7 @@ on_manager_changed (BijiManager            *manager,
 
     /* Same comment, prepend but notebook before note */
     case BIJI_MANAGER_NOTE_AMENDED:
+    case BIJI_MANAGER_ITEM_ICON_CHANGED:
       if (bjb_controller_get_iter (self, item, &p_iter))
       {
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
@@ -605,20 +602,6 @@ on_manager_changed (BijiManager            *manager,
 
         bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
       }
-      break;
-
-    /* If color changed we just amend the icon */
-    case BIJI_MANAGER_ITEM_ICON_CHANGED:
-      if (bjb_main_view_get_view_type (
-             bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_ICON
-          && bjb_controller_get_iter (self, item, &p_iter))
-        gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
-                            GD_MAIN_COLUMN_ICON, biji_item_get_icon (item), -1);
-      else if (bjb_main_view_get_view_type (
-             bjb_window_base_get_main_view (self->priv->window)) == GD_MAIN_VIEW_LIST
-          && bjb_controller_get_iter (self, item, &p_iter))
-        gtk_list_store_set (GTK_LIST_STORE (priv->model), p_iter,
-                            GD_MAIN_COLUMN_ICON, biji_item_get_emblem (item), -1);
       break;
 
     case BIJI_MANAGER_ITEM_DELETED:

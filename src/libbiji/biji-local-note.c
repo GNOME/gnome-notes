@@ -189,6 +189,7 @@ local_note_archive (BijiNoteObj *note)
 
   else
   {
+    self->priv->trashed = TRUE;
     g_object_unref (self->priv->location);
     self->priv->location = archive;
   }
@@ -246,6 +247,7 @@ local_note_restore (BijiItem *item, gchar **old_uuid)
   g_free (path);
   g_free (root_path);
 
+  self->priv->trashed = FALSE;
   self->priv->location = target;
   return retval;
 }

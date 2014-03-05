@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.11.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-19 20:29+0100\n"
-"PO-Revision-Date: 2014-02-19 20:31+0100\n"
+"POT-Creation-Date: 2014-03-05 07:07+0100\n"
+"PO-Revision-Date: 2014-03-05 07:08+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -49,11 +49,11 @@ msgstr "Egendefinert skrift"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:2
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr ""
+msgstr "Skriftnavnet som settes her vil bli brukt som skrift når notater vises."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:3
 msgid "Whether to use the system monospace font"
-msgstr ""
+msgstr "Hvorvidt systemets enhetlige skrift skal brukes"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:4
 msgid "New notes color."
@@ -78,7 +78,7 @@ msgstr "Vindu maksimert"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:9
 msgid "Window maximized state."
-msgstr ""
+msgstr "Maksimert tilstand for vindu."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:10
 msgid "Window size"
@@ -332,16 +332,16 @@ msgstr "Flere alternativer …"
 msgid "Note color"
 msgstr "Farge på notat"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "Notatblokk"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "Notat"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
+#: ../src/bjb-note-view.c:225
 msgid "Last updated"
 msgstr "Sist oppdatert"
 
@@ -428,7 +428,7 @@ msgstr "Dette året"
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:361
 msgid "Local storage"
 msgstr "Lokal lagring"
 

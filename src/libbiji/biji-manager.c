@@ -291,6 +291,23 @@ biji_manager_notify_changed (BijiManager            *manager,
 static void
 on_item_deleted_cb (BijiItem *item, BijiManager *manager)
 {
+  BijiItem        *to_delete;
+  const gchar     *path;
+  gboolean         retval;
+
+
+  to_delete = NULL;
+  retval = FALSE;
+  path = biji_item_get_uuid (item);
+  to_delete = g_hash_table_lookup (manager->priv->archives, path);
+
+  if (to_delete != NULL)
+    retval = TRUE;
+
+  if (!retval)
+    return;
+
+  g_hash_table_remove (manager->priv->archives, path);
   biji_manager_notify_changed (manager,
                                BIJI_ARCHIVED_ITEMS,
                                BIJI_MANAGER_ITEM_DELETED,
@@ -668,21 +685,23 @@ biji_manager_load_archives          (BijiManager        *manager)
 
 
 static void
-_delete_item (gpointer key,
-              gpointer value,
+_delete_item (gpointer data,
               gpointer user_data)
 {
-  BijiItem *i;
-
-  i = BIJI_ITEM (value);
-  biji_item_delete (i);
+  biji_item_delete (BIJI_ITEM (data));
 }
 
 
+/* Do not g_list_free_full here.
+ * We only unref items where deletion works */
 void
-biji_manager_empty_bin              (BijiManager        *manager)
+biji_manager_empty_bin              (BijiManager        *self)
 {
-  g_hash_table_foreach (manager->priv->archives, _delete_item, NULL);
+  GList *items;
+
+  items = g_hash_table_get_values (self->priv->archives);
+  g_list_foreach (items, _delete_item, NULL);
+  g_list_free (items);
 }
 
 

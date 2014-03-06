@@ -282,6 +282,9 @@ update_selection_buttons (BjbController *controller,
   if (priv->list)
     gtk_widget_set_sensitive (priv->list, some_item_is_visible);
 
+  if (priv->empty_bin)
+    gtk_widget_set_sensitive (priv->empty_bin, some_item_is_visible);
+
   gtk_widget_set_sensitive (priv->select, some_item_is_visible);
 }
 
@@ -588,6 +591,9 @@ populate_bar_for_trash (BjbMainToolbar *self)
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
 
   /* Watch for main view changing */
+  update_selection_buttons (
+    priv->controller, bjb_controller_shows_item (priv->controller),
+    FALSE,priv);
   connect_main_view_handlers (self);
 }
 

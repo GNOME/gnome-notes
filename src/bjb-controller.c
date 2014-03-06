@@ -468,17 +468,6 @@ update_controller_callback (GList *result,
     return;
   }
 
-  switch (self->priv->group)
-  {
-    case BIJI_ARCHIVED_ITEMS:
-      bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_ARCHIVE_VIEW);
-      break;
-
-    default:
-      break;
-  }
-
-
   sort_items (&result);
   i = 0;
 
@@ -502,6 +491,17 @@ update_controller_callback (GList *result,
 
   priv->items_to_show = g_list_reverse (priv->items_to_show);
   update (self);
+
+  switch (self->priv->group)
+  {
+    case BIJI_ARCHIVED_ITEMS:
+      bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+      break;
+
+    default:
+      break;
+  }
+
 }
 
 

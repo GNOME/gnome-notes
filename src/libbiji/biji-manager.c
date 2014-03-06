@@ -319,6 +319,9 @@ on_item_deleted_cb (BijiItem *item, BijiManager *manager)
  * old uuid : we need this because local provider uses
  * file name as uuid. Now this proves this is not right.
  *
+ * save : in order to restore the note inside tracker
+ *
+ *
  * notify... BIJI_ARCHIVED_ITEM
  * well, works currently : we assume Archives change.
  * but we might double-ping as well
@@ -327,6 +330,9 @@ on_item_deleted_cb (BijiItem *item, BijiManager *manager)
 static void
 on_item_restored_cb (BijiItem *item, gchar *old_uuid, BijiManager *manager)
 {
+  if (BIJI_IS_NOTE_OBJ (item))
+    biji_note_obj_save_note (BIJI_NOTE_OBJ (item));
+
   g_hash_table_insert (manager->priv->items,
                        (gpointer) biji_item_get_uuid (item), item);
   g_hash_table_remove (manager->priv->archives, old_uuid);

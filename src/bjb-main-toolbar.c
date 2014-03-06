@@ -198,7 +198,7 @@ static gboolean
 on_view_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
 {
   GdMainViewType current = bjb_main_view_get_view_type (self->priv->parent);
-    
+
   switch ( current )
   {
     case GD_MAIN_VIEW_ICON :

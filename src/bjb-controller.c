@@ -462,7 +462,7 @@ update_controller_callback (GList *result,
 
 
 
-  if (!result)
+  if (!result && priv->group == BIJI_LIVING_ITEMS)
   {
     bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_NO_RESULT);
     return;
@@ -518,12 +518,13 @@ bjb_controller_apply_needle (BjbController *self)
   needle = priv->needle;
   g_clear_pointer (&priv->items_to_show, g_list_free);
 
-  /* Show all notes */
+  /* Show all items
+   * If no items, tell it - unless trash is visited */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
     result = biji_manager_get_items (self->priv->manager, self->priv->group);
 
-    if (result == NULL)
+    if (result == NULL && priv->group == BIJI_LIVING_ITEMS)
       bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_NOTE);
 
     else

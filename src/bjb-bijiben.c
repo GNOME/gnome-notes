@@ -75,12 +75,21 @@ on_window_activated_cb   (BjbWindowBase *window,
     if (item != NULL)
     {
 
-      if (win_is_available)
-         bjb_window_base_switch_to_item (window, item);
+      /* If that's a note, detach it */
+      if (BIJI_IS_NOTE_OBJ (item))
+      {
+	bijiben_new_window_for_note (self, BIJI_NOTE_OBJ (item));
+      }
 
+      /* Else, check */
       else
-         bijiben_new_window_internal (self, NULL, item, NULL);
+      {
+        if (win_is_available)
+           bjb_window_base_switch_to_item (window, item);
 
+        else
+           bijiben_new_window_internal (self, NULL, item, NULL);
+      }
 
       g_free (path);
     }

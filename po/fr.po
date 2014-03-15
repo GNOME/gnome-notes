@@ -7,9 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-15 03:52+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-15 21:11+0100\n"
 "PO-Revision-Date: 2014-03-15 13:13+0100\n"
 "Last-Translator: Bruno Cauet <brunocauet@gmail.com>\n"
 "Language-Team: gnome-l10n-fr@gnome.org\n"
@@ -107,7 +106,8 @@ msgstr "Carnet de notes pour GNOME"
 
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
-msgstr "Pierre-Yves Luyten\n"
+msgstr ""
+"Pierre-Yves Luyten\n"
 "Bruno Cauet"
 
 #: ../src/bjb-bijiben.c:396
@@ -281,60 +281,62 @@ msgid "Trash"
 msgstr "Corbeille"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:571
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
-msgstr "Vide"
+msgstr "Vider"
 
-#: ../src/bjb-main-toolbar.c:653
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: ../src/bjb-main-toolbar.c:761
+#: ../src/bjb-main-toolbar.c:763
 msgid "Open in New Window"
 msgstr "Ouvrir dans une nouvelle fenêtre"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "Annuler"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "Rétablir"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "Puces"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "Liste numérotée"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "Carnets"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:828
 msgid "Email this Note"
 msgstr "Envoyer cette note par courriel"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Déplacer dans la corbeille"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Plus d'options…"
 
-#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "Couleur de la note"
 

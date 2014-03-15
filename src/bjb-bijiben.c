@@ -78,7 +78,7 @@ on_window_activated_cb   (BjbWindowBase *window,
       /* If that's a note, detach it */
       if (BIJI_IS_NOTE_OBJ (item))
       {
-	bijiben_new_window_for_note (self, BIJI_NOTE_OBJ (item));
+	bijiben_new_window_for_note (G_APPLICATION (self), BIJI_NOTE_OBJ (item));
       }
 
       /* Else, check */

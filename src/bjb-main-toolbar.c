@@ -567,7 +567,9 @@ populate_bar_for_trash (BjbMainToolbar *self)
   if (priv->type == BJB_TOOLBAR_TRASH_LIST)
     add_grid_button (self);
 
-  /* Add Empty-Bin */
+  /* Add Empty-Bin
+   * translators : Empty is the verb.
+   * This action permanently deletes notes */
   priv->empty_bin = gtk_button_new_with_label(_("Empty"));
   context = gtk_widget_get_style_context (priv->empty_bin);
   gtk_style_context_add_class (context, "destructive-action");

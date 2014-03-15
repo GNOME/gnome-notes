@@ -4,16 +4,16 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2013.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2014.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014.
 # Aviary.pl <gnomepl@aviary.pl>, 2012-2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 15:42+0100\n"
-"PO-Revision-Date: 2014-03-04 01:58+0200\n"
-"Last-Translator: Paweł Żołnowski <pawel@zolnowski.name>\n"
+"POT-Creation-Date: 2014-03-15 21:28+0100\n"
+"PO-Revision-Date: 2014-03-15 21:29+0100\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -111,33 +111,33 @@ msgstr "Prosty notatnik dla środowiska GNOME"
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2013\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2014\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014\n"
 "Aviary.pl <gnomepl@aviary.pl>, 2012-2014"
 
-#: ../src/bjb-bijiben.c:387
+#: ../src/bjb-bijiben.c:396
 msgid "Show the application's version"
 msgstr "Wyświetla wersję programu"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:398
 msgid "[FILE...]"
 msgstr "[PLIK...]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:405
 msgid "Take notes and export them everywhere."
 msgstr "Umożliwia robienie i eksportowanie notatek."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:415
 msgid "Could not parse arguments"
 msgstr "Nie można przetworzyć parametrów"
 
-#: ../src/bjb-bijiben.c:414
+#: ../src/bjb-bijiben.c:423
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
-#: ../src/bjb-bijiben.c:424
+#: ../src/bjb-bijiben.c:433
 msgid "Could not register the application"
 msgstr "Nie można zarejestrować programu"
 
@@ -251,98 +251,100 @@ msgid "Search note titles, content and notebooks"
 msgstr "Przeszukiwanie tytułów i treści notatek oraz notatników"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Wyjście z trybu zaznaczania"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Wyniki dla %s"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Nowe i ostatnie"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "Nowa"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "Tryb zaznaczania"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "Wyświetla notatki i notatniki jako listę"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "Wyświetla notatki i notatniki w siatce"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "Kosz"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
-msgstr "Pusty"
+msgstr "Opróżnij"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Bez tytułu"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:763
 msgid "Open in New Window"
 msgstr "Otwórz w nowym oknie"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "Cofnij"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "Ponów"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "Wypunktowanie"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "Lista numerowana"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "Notatniki"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:828
 msgid "Email this Note"
 msgstr "Wyślij tę notatkę"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Przenieś do kosza"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Więcej opcji…"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "Kolor notatki"
 

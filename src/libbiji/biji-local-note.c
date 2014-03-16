@@ -285,6 +285,7 @@ local_note_delete (BijiItem *item)
 
   if (self->priv->trashed == TRUE)
   {
+    biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
     g_file_delete_async (self->priv->location,
                          G_PRIORITY_LOW,
                          NULL,                  /* Cancellable */

@@ -328,10 +328,11 @@ note_no         (BijiNoteObj *item)
 static gboolean
 ocloud_note_delete (BijiNoteObj *note)
 {
-  BijiOwnCloudNote *ocl;
+  BijiOwnCloudNote *self;
 
-  ocl = BIJI_OWN_CLOUD_NOTE (note);
-  return g_file_delete (ocl->priv->location, NULL, NULL);
+  self = BIJI_OWN_CLOUD_NOTE (note);
+  biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
+  return g_file_delete (self->priv->location, NULL, NULL);
 }
 
 static gchar *

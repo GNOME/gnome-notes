@@ -231,6 +231,7 @@ biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
   return biji_note_id_equal (a->priv->id, b->priv->id);
 }
 
+
 /* First cancel timeout
  * this func is most probably stupid it might exists (move file) */
 gboolean
@@ -252,7 +253,6 @@ biji_note_obj_trash (BijiItem *item)
 
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
-  biji_note_delete_from_tracker (note_to_kill);
 
   result = BIJI_NOTE_OBJ_GET_CLASS (note_to_kill)->archive (note_to_kill);
 

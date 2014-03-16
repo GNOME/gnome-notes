@@ -15,6 +15,12 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+/*
+ * Trash bin is not implemented.
+ * Markdown is not implemented.
+ */
+
 #include <uuid/uuid.h>
 
 #include "biji-info-set.h"
@@ -103,7 +109,7 @@ static void
 ocloud_note_set_html (BijiNoteObj *note,
                       gchar *html)
 {
-  
+
 }
 
 
@@ -187,7 +193,7 @@ ocloud_note_save (BijiNoteObj *note)
   str = g_string_new (biji_note_obj_get_raw_text (note));
 
 
-  /* backup would fail for some reason. 
+  /* backup would fail for some reason.
    * gfilemove for workaround? */
   g_file_replace_contents_async  (
       self->priv->location,
@@ -366,6 +372,7 @@ biji_own_cloud_note_class_init (BijiOwnCloudNoteClass *klass)
   note_class->save_note = ocloud_note_save;
   note_class->can_format = note_no;
   note_class->archive = ocloud_note_delete;
+  note_class->is_trashed = note_no;
 
   g_type_class_add_private ((gpointer)klass, sizeof (BijiOwnCloudNotePrivate));
 }

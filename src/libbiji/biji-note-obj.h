@@ -61,6 +61,7 @@ struct _BijiNoteObjClass
   void          (*set_html)          (BijiNoteObj *note, gchar *html);
   void          (*save_note)         (BijiNoteObj *note);
   gboolean      (*archive)           (BijiNoteObj *note);
+  gboolean      (*is_trashed)        (BijiNoteObj *note);
   gboolean      (*can_format)        (BijiNoteObj *note);
 };
 
@@ -120,6 +121,9 @@ void             note_obj_set_is_template                    (BijiNoteObj *n,
                                                               gboolean is_template);
 
 
+gboolean         biji_note_obj_is_trashed                    (BijiNoteObj *self);
+
+
 void             biji_note_obj_save_note                     (BijiNoteObj *self);
 
 
@@ -142,6 +146,9 @@ gboolean         biji_note_obj_set_title                     (BijiNoteObj* note_
 
 
 gboolean         biji_note_obj_is_template                   (BijiNoteObj *note);
+
+
+gboolean         biji_note_obj_is_trashed                    (BijiNoteObj *note);
 
 
 GtkWidget       *biji_note_obj_open                          (BijiNoteObj *note);

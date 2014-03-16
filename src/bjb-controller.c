@@ -447,6 +447,40 @@ update (BjbController *self)
 }
 
 
+
+static void
+_add_if_group_match (BjbController  *self,
+                    GList         **to_show,
+                    gpointer       *item,
+                    gint           *count)
+{
+  gboolean trashed, match;
+  BijiNoteObj *note;
+
+  if (BIJI_IS_NOTE_OBJ (*item))
+  {
+    match = FALSE;
+    note = BIJI_NOTE_OBJ (*item);
+    trashed = biji_note_obj_is_trashed (note);
+
+    if ((trashed==FALSE && self->priv->group == BIJI_LIVING_ITEMS) ||
+        (trashed==TRUE  && self->priv->group == BIJI_ARCHIVED_ITEMS))
+      match = TRUE;
+  }
+
+  else
+  {
+    match = TRUE;
+  }
+
+  if (match)
+  {
+    *to_show = g_list_prepend (*to_show, *item);
+    *count = *count + 1;
+  }
+}
+
+
 static void
 update_controller_callback (GList *result,
                             gpointer user_data)
@@ -478,8 +512,10 @@ update_controller_callback (GList *result,
   {
     if (i< priv->n_items_to_show)
     {
-      priv->items_to_show = g_list_prepend (priv->items_to_show, l->data);
-      i ++;
+      _add_if_group_match (self,
+                           &priv->items_to_show,
+                           &l->data,
+			   &i);
     }
 
     else if (l->next != NULL)
@@ -503,8 +539,6 @@ update_controller_callback (GList *result,
   }
 
 }
-
-
 
 
 

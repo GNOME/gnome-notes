@@ -274,7 +274,7 @@ biji_note_obj_trash (BijiItem *item)
 
 
 gboolean
-note_obj_is_trashed                    (BijiNoteObj *self)
+biji_note_obj_is_trashed                    (BijiNoteObj *self)
 {
   return BIJI_NOTE_OBJ_GET_CLASS (self)->is_trashed (self);
 }

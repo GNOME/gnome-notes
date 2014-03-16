@@ -103,13 +103,6 @@ gboolean         biji_note_obj_set_create_date               (BijiNoteObj* n ,
 void             biji_note_obj_set_all_dates_now             (BijiNoteObj *note);
 
 
-int              get_note_status                             (BijiNoteObj* n);
-
-
-void             set_note_status                             (BijiNoteObj* n,
-                                                              int status) ;
-
-
 gboolean         biji_note_obj_get_rgba                      (BijiNoteObj *n,
                                                               GdkRGBA *rgba) ;
 

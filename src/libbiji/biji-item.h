@@ -74,9 +74,9 @@ struct BijiItemClass_
   gboolean      (*delete)               (BijiItem *item);
 
   gboolean      (*is_collectable)       (BijiItem *item);
-  gboolean      (*has_notebook)       (BijiItem *item, gchar *coll);
-  gboolean      (*add_notebook)       (BijiItem *item, BijiItem *coll, gchar *title);
-  gboolean      (*remove_notebook)    (BijiItem *item, BijiItem *coll);
+  gboolean      (*has_notebook)         (BijiItem *item, gchar *coll);
+  gboolean      (*add_notebook)         (BijiItem *item, BijiItem *coll, gchar *title);
+  gboolean      (*remove_notebook)      (BijiItem *item, BijiItem *coll);
 };
 
 /* Do not create a generic items, it's rather an iface
@@ -95,7 +95,7 @@ const gchar *    biji_item_get_title           (BijiItem *item);
 const gchar *    biji_item_get_uuid            (BijiItem *item);
 
 
-gpointer         biji_item_get_manager            (BijiItem *item);
+gpointer         biji_item_get_manager         (BijiItem *item);
 
 
 gboolean         biji_item_has_color           (BijiItem *item);
@@ -128,7 +128,8 @@ gboolean         biji_item_delete              (BijiItem *item);
 gboolean         biji_item_is_collectable      (BijiItem *item);
 
 
-gboolean         biji_item_has_notebook      (BijiItem *item, gchar *collection);
+gboolean         biji_item_has_notebook        (BijiItem *item,
+                                                gchar *collection);
 
 
 /* Add Collection:

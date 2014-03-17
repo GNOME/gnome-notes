@@ -277,6 +277,15 @@ biji_notebook_trash (BijiItem *item)
 
 
 static gboolean
+biji_notebook_restore (BijiItem  *item,
+                       gchar    **old_uuid)
+{
+  g_warning ("Notebooks restore is not yet implemented");
+  return FALSE;
+}
+
+
+static gboolean
 biji_notebook_has_notebook (BijiItem *item, gchar *notebook)
 {
   //todo
@@ -493,6 +502,7 @@ biji_notebook_class_init (BijiNotebookClass *klass)
   item_class->get_place = biji_notebook_get_place;
   item_class->has_color = say_no;
   item_class->trash = biji_notebook_trash;
+  item_class->restore = biji_notebook_restore;
   item_class->is_collectable = say_no;
   item_class->has_notebook = biji_notebook_has_notebook;
   item_class->add_notebook = biji_notebook_add_notebook;

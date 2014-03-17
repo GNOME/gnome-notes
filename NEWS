@@ -1,3 +1,28 @@
+Overview of changes in 3.11.92
+==============================
+
+* Detach opened notes at startup
+
+* Bugs
+  Fix new notebooks not appearing
+  Fix notes search inside trash bin
+  Do not mix grid and list (again...)
+
+* Translations
+  Finnish
+  French
+  Latvian
+  Norwegian bokmål
+  Polish
+  Portuguese
+  Punjabi
+  Russian
+  Serbian
+  Spanish
+  Traditional Chinese
+  Ukrainian
+
+
 Overview of changes in 3.11.91
 ==============================
 

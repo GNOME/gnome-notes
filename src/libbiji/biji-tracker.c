@@ -460,7 +460,7 @@ on_new_notebook_query_executed (GObject *source_object, GAsyncResult *res, gpoin
                        urn,
                        finisher->str,
                        g_get_real_time () / G_USEC_PER_SEC);
-    biji_manager_add_item (finisher->manager, BIJI_ITEM (notebook), TRUE, BIJI_LIVING_ITEMS);
+    biji_manager_add_item (finisher->manager, BIJI_ITEM (notebook), BIJI_LIVING_ITEMS, TRUE);
   }
 
   /* Run the callback from the caller */
@@ -480,9 +480,9 @@ on_new_notebook_query_executed (GObject *source_object, GAsyncResult *res, gpoin
  * then run the 'afterward' callback */
 void
 biji_create_new_notebook_async (BijiManager     *manager,
-                                  const gchar      *name,
-                                  BijiItemCallback  item_cb,
-                                  gpointer          user_data)
+                                const gchar      *name,
+                                BijiItemCallback  item_cb,
+                                gpointer          user_data)
 {
   gchar *query;
   GTimeVal tv;

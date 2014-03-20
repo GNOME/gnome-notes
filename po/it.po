@@ -1,17 +1,18 @@
 # Italian trasnlation of Bijiben.
 # Copyright (C) 2013 The Free Software Foundation, Inc.
 # This file is distributed under the same license as the Bijiben package.
-# Claudio Arseni <claudio.arseni@ubuntu.com>, 2013.
+# Claudio Arseni <claudio.arseni@ubuntu.com>, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-03 18:12+0200\n"
-"PO-Revision-Date: 2013-08-31 09:43+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-03-19 03:53+0000\n"
+"PO-Revision-Date: 2014-03-20 10:17+0100\n"
 "Last-Translator: Claudio Arseni <claudio.arseni@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,7 +28,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Consente di usare ownCloud per l'archiviazione e la modifica online."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Note"
 
@@ -43,9 +44,68 @@ msgstr "Pubblica note, etichetta file"
 msgid "Note-taker"
 msgstr "Annotazioni"
 
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#| msgid "Custom Location"
+msgid "Custom Font"
+msgstr "Carattere personalizzato"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"Il tipo di carattere impostato qui verrà usato come predefinito per la "
+"visualizzazione delle note."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Indica se usare il tipo di carattere a spaziatura fissa di sistema"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#| msgid "Note color"
+msgid "New notes color."
+msgstr "Colore delle nuove note."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"Il colore impostato qui verrà usato come predefinito quando verranno create "
+"nuove note."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Archivio principale da usare per le nuove note."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr "Il taccuino principale è il posto dove vengono create le nuove note."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Finestra massimizzata"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Stato della finestra massimizzata."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Dimensione finestra"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "Dimensione della finestra (larghezza e altezza)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Posizione della finestra"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "Posizione della finestra (x e y)."
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
-msgstr "Semplice blocco note per GNOME"
+msgstr "Semplice taccuino per GNOME"
 
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
@@ -53,82 +113,110 @@ msgstr ""
 "Claudio Arseni <claudio.arseni@ubuntu.com>\n"
 "Luca Ferretti <lferrett@gnome.org>"
 
+#: ../src/bjb-bijiben.c:396
+#| msgid "Gnote application"
+msgid "Show the application's version"
+msgstr "Mostra la versione dell'applicazione"
+
+#: ../src/bjb-bijiben.c:398
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:405
+msgid "Take notes and export them everywhere."
+msgstr "Prendi appunti ed esportali ovunque."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:415
+msgid "Could not parse arguments"
+msgstr "Impossibile analizzare gli argomenti"
+
+#: ../src/bjb-bijiben.c:423
+#| msgid "Notes"
+msgid "GNOME Notes"
+msgstr "Note GNOME"
+
+#: ../src/bjb-bijiben.c:433
+#| msgid "Gnote application"
+msgid "Could not register the application"
+msgstr "Impossibile registrare l'applicazione"
+
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "Colore della nota"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:367
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Cut"
 msgstr "Taglia"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Copy"
 msgstr "Copia"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Paste"
 msgstr "Incolla"
 
-#: ../src/bjb-editor-toolbar.c:396
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Bold"
 msgstr "Grassetto"
 
-#: ../src/bjb-editor-toolbar.c:407
+#: ../src/bjb-editor-toolbar.c:414
 msgid "Italic"
 msgstr "Corsivo"
 
-#: ../src/bjb-editor-toolbar.c:418
+#: ../src/bjb-editor-toolbar.c:425
 msgid "Strike"
 msgstr "Sbarrato"
 
-#: ../src/bjb-editor-toolbar.c:450
+#: ../src/bjb-editor-toolbar.c:457
 msgid "Copy selection to a new note"
 msgstr "Copia la selezione in una nuova nota"
 
-#: ../src/bjb-empty-results-box.c:100
+#: ../src/bjb-empty-results-box.c:101
 msgid "No Notes Found"
 msgstr "Nessuna nota trovata"
 
-#: ../src/bjb-empty-results-box.c:144
+#: ../src/bjb-empty-results-box.c:145
+#| msgid ""
+#| "Your notes collection is empty.\n"
+#| "Click the New button to create your first note."
 msgid ""
-"Your notes collection is empty.\n"
+"Your notes notebook is empty.\n"
 "Click the New button to create your first note."
 msgstr ""
-"L'elenco delle note è vuoto.\n"
+"Il taccuino è vuoto.\n"
 "Fare clic su «Nuova» per creare la prima nota."
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "Nessun risultato per questa ricerca."
-
-#: ../src/bjb-empty-results-box.c:161
+#: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
 msgstr "Oops"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Installare «Tracker» e riavviare l'applicazione."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
 msgstr "Posizione personalizzata"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Importa note"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
 msgid "_Cancel"
 msgstr "A_nnulla"
 
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:409
 msgid "Import"
 msgstr "Importa"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:420
 msgid "Select import location"
 msgstr "Selezionare la posizione da cui importare"
 
@@ -140,160 +228,205 @@ msgstr "Applicazione Tomboy"
 msgid "Gnote application"
 msgstr "Applicazione Gnote"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Carica altre"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "Caricamento..."
 
-#: ../src/bjb-main-toolbar.c:138
+#: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
 msgstr "Fare clic sugli elementi per selezionarli"
 
-#: ../src/bjb-main-toolbar.c:140
+#: ../src/bjb-main-toolbar.c:144
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d selezionato"
 msgstr[1] "%d selezionati"
 
-#: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "Cerca nei titoli, nei contenuti e nelle raccolte delle note"
+#: ../src/bjb-main-toolbar.c:264
+#| msgid "Search note titles, content and collections"
+msgid "Search note titles, content and notebooks"
+msgstr "Cerca nei titoli, nei contenuti e nei taccuini"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:299
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Annulla"
 
-#: ../src/bjb-main-toolbar.c:305
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Esce dalla modalità selezione"
 
-#: ../src/bjb-main-toolbar.c:335
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Risultati per %s"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Nuove e recenti"
 
-#: ../src/bjb-main-toolbar.c:402
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "Nuova"
 
-#: ../src/bjb-main-toolbar.c:420
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "Modalità selezione"
 
-#: ../src/bjb-main-toolbar.c:448
-msgid "View notes and collections in a list"
-msgstr "Visualizza note e raccolte in un elenco"
+#: ../src/bjb-main-toolbar.c:491
+#| msgid "View notes and collections in a list"
+msgid "View notes and notebooks in a list"
+msgstr "Visualizza note e taccuini in un elenco"
 
-#: ../src/bjb-main-toolbar.c:472
-msgid "View notes and collections in a grid"
-msgstr "Visualizza note e raccolte in una griglia"
+#: ../src/bjb-main-toolbar.c:515
+#| msgid "View notes and collections in a grid"
+msgid "View notes and notebooks in a grid"
+msgstr "Visualizza note e taccuini in una griglia"
 
-#: ../src/bjb-main-toolbar.c:601
-msgid "Rename Note"
-msgstr "Rinomina nota"
+#: ../src/bjb-main-toolbar.c:534
+msgid "Trash"
+msgstr "Cestino"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
+msgid "Empty"
+msgstr "Svuota"
+
+#: ../src/bjb-main-toolbar.c:655
+msgid "Untitled"
+msgstr "Senza titolo"
+
+#: ../src/bjb-main-toolbar.c:763
+#| msgid "_New Window"
+msgid "Open in New Window"
+msgstr "Apri in una nuova finestra"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:622
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "Annulla"
 
-#: ../src/bjb-main-toolbar.c:630
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "Ripeti"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:645
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "Punti elenco"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:652
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "Elenco numerato"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:664
-msgid "Rename"
-msgstr "Rinomina"
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:386
+#| msgid "Notes"
+msgid "Notebooks"
+msgstr "Taccuini"
 
-#: ../src/bjb-main-toolbar.c:672 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "Raccolte"
+#. Share
+#: ../src/bjb-main-toolbar.c:828
+#| msgid "Delete this Note"
+msgid "Email this Note"
+msgstr "Invia questa nota tramite email"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:684
-msgid "Delete this Note"
-msgstr "Elimina questa nota"
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "Sposta nel cestino"
 
-#: ../src/bjb-main-toolbar.c:748 ../src/bjb-selection-toolbar.c:252
-msgid "Note color"
-msgstr "Colore della nota"
-
-#: ../src/bjb-main-toolbar.c:775
-msgid "Share note"
-msgstr "Condividi nota"
-
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Altre opzioni…"
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "Inserire un nome per creare una raccolta"
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
+msgid "Note color"
+msgstr "Colore della nota"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "Nuova raccolta"
+#: ../src/bjb-main-view.c:516
+#| msgid "Note Color"
+msgid "Notebook"
+msgstr "Taccuino"
 
-#. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
-msgid "_Close"
-msgstr "_Chiudi"
+#: ../src/bjb-main-view.c:519
+#| msgid "Notes"
+msgid "Note"
+msgstr "Nota"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
+#: ../src/bjb-note-view.c:225
 msgid "Last updated"
 msgstr "Ultimo aggiornamento"
+
+#: ../src/bjb-organize-dialog.c:399
+#| msgid "Enter a name to create a collection"
+msgid "Enter a name to create a notebook"
+msgstr "Inserire un nome per creare un taccuino"
+
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "Nuovo taccuino"
+
+#. Response
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
+msgid "_Close"
+msgstr "_Chiudi"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_OK"
 
-#. Trash notes
-#: ../src/bjb-selection-toolbar.c:244
-msgid "Delete"
-msgstr "Elimina"
+#. Restore
+#: ../src/bjb-selection-toolbar.c:390
+msgid "Restore"
+msgstr "Ripristina"
 
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:258
-msgid "Add to Collection"
-msgstr "Aggiungi alla raccolta"
+#: ../src/bjb-selection-toolbar.c:406
+msgid "Share note"
+msgstr "Condividi nota"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:410
+msgid "Open in another window"
+msgstr "Apri in un'altra finestra"
+
+#. Permanently delete
+#: ../src/bjb-selection-toolbar.c:422
+msgid "Permanently Delete"
+msgstr "Elimina definitivamente"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Usa carattere di sistema"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Tipo carattere della nota"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Colore predefinito"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:493
 msgid "Note Edition"
 msgstr "Preferenze nota"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Blocco principale"
 
@@ -321,30 +454,52 @@ msgstr "Questo anno"
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: ../src/libbiji/provider/biji-local-provider.c:298
+#: ../src/libbiji/provider/biji-local-provider.c:361
 msgid "Local storage"
 msgstr "Archivio locale"
 
 #: ../src/resources/app-menu.ui.h:1
-msgid "_New Window"
-msgstr "_Nuova finestra"
-
-#: ../src/resources/app-menu.ui.h:2
 msgid "_Import Notes"
 msgstr "_Importa note"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "_Visualizza cestino"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
 msgstr "Preferen_ze"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Notes"
-msgstr "I_nformazioni su Note"
-
-#: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
 msgstr "A_iuto"
+
+#: ../src/resources/app-menu.ui.h:5
+#| msgid "_About Notes"
+msgid "_About"
+msgstr "I_nformazioni"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Esci"
+
+#~ msgid "No result found for this research."
+#~ msgstr "Nessun risultato per questa ricerca."
+
+#~ msgid "Rename Note"
+#~ msgstr "Rinomina nota"
+
+#~ msgid "Rename"
+#~ msgstr "Rinomina"
+
+#~ msgid "Collections"
+#~ msgstr "Raccolte"
+
+#~ msgid "New collection"
+#~ msgstr "Nuova raccolta"
+
+#~ msgid "Delete"
+#~ msgstr "Elimina"
+
+#~ msgid "Add to Collection"
+#~ msgstr "Aggiungi alla raccolta"

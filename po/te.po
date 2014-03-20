@@ -1,0 +1,460 @@
+# Telugu translation for bijiben.
+# Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Praveen Illa <mail2ipn@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-03-20 03:52+0000\n"
+"PO-Revision-Date: 2014-03-20 12:45+0530\n"
+"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
+"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
+"Language: te\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr "చీటీలు అనేది తదుపరి పనుల కోసం సరళ జాబితాలను చేయుటకు అనుమతించే ఒక కూర్పరి."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "ఇది మిమ్మల్ని ownCloud ను నిల్వ స్థానముగా మరియు జాల కూర్పరిగా వాడుటకు అనుమతిస్తుంది."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "చీటీలు"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "చీటీలు;జ్ఞాపిక;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "చీటీలను టపాకట్టి, దస్త్రాలకు ముడివేయండి!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "చీటీ-గ్రాహకం"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "అనురూపిత ఖతి"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "చీటీలు చూపిస్తున్నప్పుడు ఖతి పేరు సమితి ఇక్కడ ఖతిగా ఉపయోగించబడుతుంది."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "వ్యవస్థ మోనోస్పేస్ ఖతిని వాడాలా వద్దా"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "కొత్త చీటిల రంగు."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr "కొత్త చీటీలు సృష్టిస్తున్నప్పుడు రంగు పేరు సమితి ఇక్కడ రంగుగా ఉపయోగించబడుతుంది."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "కొత్త చీటీల కోసం వినియోగించడానికి ప్రాథమిక చీటీల సమకూర్పరి"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where are created new notes."
+msgstr "ప్రాథమిక చీటిపుస్తకం అనేది కొత్త చీటీలను సృష్టించిన ప్రదేశము."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "కిటికీ గరిష్టీకరించబడింది"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "కిటికీ గరిష్టీకరణ స్థితి."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "కిటికీ పరిమాణం"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "కిటికీ స్థానం (వెడల్పు మరియు ఎత్తు)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "కిటికీ స్థానం"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "కిటికీ స్థానం (x మరియు y)."
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "గ్నోమ్ కోసమై ఒక తేలికైన చీటీపుస్తకం"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr "Praveen Illa <mail2ipn@gmail.com>, 2014"
+
+#: ../src/bjb-bijiben.c:396
+msgid "Show the application's version"
+msgstr "అనువర్తనపు రూపాంతరాన్ని చూపించు"
+
+#: ../src/bjb-bijiben.c:398
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:405
+msgid "Take notes and export them everywhere."
+msgstr "గమనికలను తీసుకుని, వాటిని ప్రతీచోటికీ ఎగుమతించండి."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:415
+msgid "Could not parse arguments"
+msgstr "పరామితులను ముదింపు చేయలేకపోతూంది"
+
+#: ../src/bjb-bijiben.c:423
+msgid "GNOME Notes"
+msgstr "గ్నోమ్ చీటీలు"
+
+#: ../src/bjb-bijiben.c:433
+msgid "Could not register the application"
+msgstr "అనువర్తనాన్ని నమోదు చేయలేకపోతూంది"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "చీటి రంగు"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:374
+msgid "Cut"
+msgstr "కత్తిరించు"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Copy"
+msgstr "నకలించు"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:388
+msgid "Paste"
+msgstr "అతికించు"
+
+#: ../src/bjb-editor-toolbar.c:403
+msgid "Bold"
+msgstr "బొద్దు"
+
+#: ../src/bjb-editor-toolbar.c:414
+msgid "Italic"
+msgstr "వాలు"
+
+#: ../src/bjb-editor-toolbar.c:425
+msgid "Strike"
+msgstr "కొట్టివేత"
+
+#: ../src/bjb-editor-toolbar.c:457
+msgid "Copy selection to a new note"
+msgstr "ఎంపికను కొత్త చీటికి నకలుచేయి"
+
+#: ../src/bjb-empty-results-box.c:101
+msgid "No Notes Found"
+msgstr "ఏ చీటీ కనపడలేదు"
+
+#: ../src/bjb-empty-results-box.c:145
+msgid ""
+"Your notes notebook is empty.\n"
+"Click the New button to create your first note."
+msgstr ""
+"మీ చీటీ పుస్తకం ఖాళీగా ఉంది.\n"
+"మీ మొదటి చీటిని సృష్టించుటకు కొత్తది బొత్తాంపై నొక్కండి."
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Oops"
+msgstr "అయ్యో"
+
+#: ../src/bjb-empty-results-box.c:173
+msgid "Please install 'Tracker' then restart the application."
+msgstr "దయచేసి 'ట్రాకర్' స్థాపించి తరువాత అనువర్తనాన్ని పునఃప్రారంభించండి."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "అనురూపిత స్థానం"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "చీటిలను దిగుమతించు"
+
+#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "రద్దుచేయి (_C)"
+
+#: ../src/bjb-import-dialog.c:409
+msgid "Import"
+msgstr "దిగుమతించు"
+
+#: ../src/bjb-import-dialog.c:420
+msgid "Select import location"
+msgstr "దిగుమతి స్థానాన్ని ఎంచుకోండి"
+
+#: ../src/bjb-import-dialog.c:441
+msgid "Tomboy application"
+msgstr "టోంబాయ్ అనువర్తనం"
+
+#: ../src/bjb-import-dialog.c:447
+msgid "Gnote application"
+msgstr "జీనోట్ అనువర్తనం"
+
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+msgid "Load More"
+msgstr "మరిన్ని నింపు"
+
+#: ../src/bjb-load-more-button.c:98
+msgid "Loading..."
+msgstr "నింపుతూంది..."
+
+#: ../src/bjb-main-toolbar.c:142
+msgid "Click on items to select them"
+msgstr "అంశాలను ఎంపిక చేయుటకు వాటిపై నొక్కండి"
+
+#: ../src/bjb-main-toolbar.c:144
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d ఎంచుకోబడింది"
+msgstr[1] "%d ఎంచుకోబడ్డాయి"
+
+#: ../src/bjb-main-toolbar.c:264
+msgid "Search note titles, content and notebooks"
+msgstr "చీటి శీర్షికలను, విషయాన్ని మరియు చీటిపుస్తకాలను వెతకండి"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:306
+msgid "Cancel"
+msgstr "రద్దుచేయి"
+
+#: ../src/bjb-main-toolbar.c:320
+msgid "Exit selection mode"
+msgstr "ఎంపిక విధానం నుండి నిష్క్రమించు"
+
+#: ../src/bjb-main-toolbar.c:350
+#, c-format
+msgid "Results for %s"
+msgstr "%s కొరకు ఫలితాలు"
+
+#: ../src/bjb-main-toolbar.c:353
+msgid "New and Recent"
+msgstr "కొత్తవి మరియు ఇటీవలివి"
+
+#: ../src/bjb-main-toolbar.c:438
+msgid "New"
+msgstr "కొత్తది"
+
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+msgid "Selection mode"
+msgstr "ఎంపిక విధానం"
+
+#: ../src/bjb-main-toolbar.c:491
+msgid "View notes and notebooks in a list"
+msgstr "చీటీలను మరియు చీటిపుస్తకాలను జాబితాగా చూడండి"
+
+#: ../src/bjb-main-toolbar.c:515
+msgid "View notes and notebooks in a grid"
+msgstr "చీటీలను మరియు చీటిపుస్తకాలను గడులగా చూడండి"
+
+#: ../src/bjb-main-toolbar.c:534
+msgid "Trash"
+msgstr "చెత్త"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
+msgid "Empty"
+msgstr "ఖాళీ"
+
+#: ../src/bjb-main-toolbar.c:655
+msgid "Untitled"
+msgstr "పేరులేదు"
+
+#: ../src/bjb-main-toolbar.c:763
+msgid "Open in New Window"
+msgstr "కొత్త కిటికీలో తెరువు"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:774
+msgid "Undo"
+msgstr "రద్దుచేయి"
+
+#: ../src/bjb-main-toolbar.c:782
+msgid "Redo"
+msgstr "మళ్ళీచేయి"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:797
+msgid "Bullets"
+msgstr "గుళ్ళు"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:804
+msgid "Numbered List"
+msgstr "సంఖ్యా జాబితా"
+
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Notebooks"
+msgstr "చీటిపుస్తకాలు"
+
+#. Share
+#: ../src/bjb-main-toolbar.c:828
+msgid "Email this Note"
+msgstr "ఈ చీటీని ఈమెయిలు చేయి"
+
+#. Delete Note
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "చెత్తకు తరలించు"
+
+#: ../src/bjb-main-toolbar.c:900
+msgid "More options…"
+msgstr "మరిన్ని ఐచ్ఛికాలు..."
+
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
+msgid "Note color"
+msgstr "చీటి రంగు"
+
+#: ../src/bjb-main-view.c:516
+msgid "Notebook"
+msgstr "చీటిపుస్తకం"
+
+#: ../src/bjb-main-view.c:519
+msgid "Note"
+msgstr "చీటి"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:225
+msgid "Last updated"
+msgstr "చివరి నవీకరణ"
+
+#: ../src/bjb-organize-dialog.c:399
+msgid "Enter a name to create a notebook"
+msgstr "చీటిపుస్తకాన్ని సృష్టించుటకు ఒక పేరును ఇవ్వండి"
+
+#: ../src/bjb-organize-dialog.c:409
+msgid "New notebook"
+msgstr "కొత్త చీటిపుస్తకం"
+
+#. Response
+#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
+msgid "_Close"
+msgstr "మూసివేయి (_C)"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "సరే (_O)"
+
+#. Restore
+#: ../src/bjb-selection-toolbar.c:390
+msgid "Restore"
+msgstr "పునరుద్ధరించు"
+
+#: ../src/bjb-selection-toolbar.c:406
+msgid "Share note"
+msgstr "చీటీను పంచుకోండి"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:410
+msgid "Open in another window"
+msgstr "వేరే కిటికీలో తెరువు"
+
+#. Permanently delete
+#: ../src/bjb-selection-toolbar.c:422
+msgid "Permanently Delete"
+msgstr "శాశ్వతంగా తొలగించు"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "వ్యవస్థ ఖతిని వాడు"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:405
+msgid "Note Font"
+msgstr "చీటి ఖతి"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:417
+msgid "Default Color"
+msgstr "అప్రమేయ రంగు"
+
+#: ../src/bjb-settings-dialog.c:493
+msgid "Note Edition"
+msgstr "చీటి ప్రతి"
+
+#: ../src/bjb-settings-dialog.c:496
+msgid "Primary Book"
+msgstr "ప్రాథమిక పుస్తకం"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "నేడు"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "నిన్న"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "ఈ వారం"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "ఈ నెల"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "ఈ ఏడాది"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "తెలియదు"
+
+#: ../src/libbiji/provider/biji-local-provider.c:361
+msgid "Local storage"
+msgstr "స్థానిక నిల్వ"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_Import Notes"
+msgstr "చీటిలను దిగుమతించు (_I)"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "చెత్తను చూడండి (_V)"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "అభిరుచులు (_P)"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_Help"
+msgstr "సహాయం (_H)"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "గురించి (_A)"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "నిష్క్రమించు (_Q)"

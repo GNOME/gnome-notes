@@ -3,7 +3,7 @@
 
 HELP_ID = bijiben
 
-HELP_LINGUAS = es hu
+HELP_LINGUAS = es fr hu
 
 HELP_FILES = \
 	colors.page \

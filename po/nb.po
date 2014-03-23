@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.11.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 07:07+0100\n"
-"PO-Revision-Date: 2014-03-05 07:08+0100\n"
+"POT-Creation-Date: 2014-03-23 18:32+0100\n"
+"PO-Revision-Date: 2014-03-23 18:32+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -49,7 +49,8 @@ msgstr "Egendefinert skrift"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:2
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr "Skriftnavnet som settes her vil bli brukt som skrift når notater vises."
+msgstr ""
+"Skriftnavnet som settes her vil bli brukt som skrift når notater vises."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:3
 msgid "Whether to use the system monospace font"
@@ -62,7 +63,7 @@ msgstr "Ny farge for notater."
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
-msgstr ""
+msgstr "Fargenavnet som settes her vil bli brukt når du lager nye notater."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:6
 msgid "Primary notes provider to use for new notes."
@@ -104,29 +105,29 @@ msgstr "Enkel notisblokk for GNOME"
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/bjb-bijiben.c:387
+#: ../src/bjb-bijiben.c:396
 msgid "Show the application's version"
 msgstr "Vis versjon for programmet"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:398
 msgid "[FILE...]"
 msgstr "[FIL …]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:405
 msgid "Take notes and export them everywhere."
 msgstr "Ta notater og eksporter dem hvor som helst."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:415
 msgid "Could not parse arguments"
 msgstr "Kunne ikke tolke argumenter"
 
-#: ../src/bjb-bijiben.c:414
+#: ../src/bjb-bijiben.c:423
 msgid "GNOME Notes"
 msgstr "GNOME notater"
 
-#: ../src/bjb-bijiben.c:424
+#: ../src/bjb-bijiben.c:433
 msgid "Could not register the application"
 msgstr "Kunne ikke registrere programmet"
 
@@ -237,98 +238,100 @@ msgid "Search note titles, content and notebooks"
 msgstr "Søk i notattitler, innhold og notatblokker"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Avslutt utvalgtsmodus"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Resultater for %s"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "Ny"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "Utvalgsmodus"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "Vis notater og notatblokker i en liste"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "Vis notater og notatblokker i et rutenett"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "Papirkurv"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "Tom"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Uten navn"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:763
 msgid "Open in New Window"
 msgstr "Åpne i nytt vindu"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "Angre"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "Gjenta"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "Kulepunkter"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "Nummerert liste"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "Notatblokker"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:828
 msgid "Email this Note"
 msgstr "Send dette notatet som e-post"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Flytt til papirkurv"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Flere alternativer …"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "Farge på notat"
 

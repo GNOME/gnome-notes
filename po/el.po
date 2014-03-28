@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-28 18:58+0000\n"
-"PO-Revision-Date: 2014-01-30 21:03+0300\n"
+"POT-Creation-Date: 2014-03-28 03:56+0000\n"
+"PO-Revision-Date: 2014-03-28 08:51+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
 "Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
@@ -23,13 +23,14 @@ msgstr ""
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
-"Σημειώσεις σε έναν επεξεργαστή που επιτρέπει να κάνει απλούς καταλόγους για "
-"μεταγενέστερη χρήση."
+"Οι Σημειώσεις είναι ένα πρόγραμμα επεξεργασίας που σας επιτρέπει να "
+"δημιουργείτε απλούς καταλόγους για μεταγενέστερη χρήση."
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
-"Επιτρέπει τη χρήση Σύννεφου ως θέσης αποθήκευσης και δικτυακού επεξεργαστή."
+"Επιτρέπει να χρησιμοποιείτε το ownCloud σαν μια τοποθεσία αποθήκευσης και "
+"σαν δικτυακό πρόγραμμα επεξεργασίας."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
 #: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
@@ -42,11 +43,11 @@ msgstr "σημειώσεις;υπενθύμιση;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
-msgstr "Ταχυδρομήστε σημειώσεις, δώστε ετικέτες σε αρχεία!"
+msgstr "Στείλτε σημειώσεις, δώστε ετικέτες σε αρχεία!"
 
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
-msgstr "Λήψη σημειώσεων"
+msgstr "Πρόγραμμα Λήψης σημειώσεων"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:1
 msgid "Custom Font"
@@ -55,7 +56,7 @@ msgstr "Προσαρμοσμένη γραμματοσειρά"
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
-"Το όνομα της γραμματοσειράς που ορίστηκε εδώ θα χρησιμοποιηθεί ως η "
+"Το όνομα της γραμματοσειράς που ορίστηκε εδώ θα χρησιμοποιηθεί ως "
 "γραμματοσειρά όταν εμφανιστούν οι σημειώσεις."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:3
@@ -75,7 +76,8 @@ msgstr ""
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:6
 msgid "Primary notes provider to use for new notes."
-msgstr "Ο πάροχος κύριων σημειώσεων που θα χρησιμοποιηθεί για νέες σημειώσεις."
+msgstr ""
+"Ο πάροχος των κύριων σημειώσεων που θα χρησιμοποιηθούν για νέες σημειώσεις."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
 msgid "The primary notebook is the place where are created new notes."
@@ -114,7 +116,34 @@ msgstr "Απλό σημειωματάριο για το GNOME"
 msgid "translator-credits"
 msgstr ""
 " Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
+"Μαρία Θουκυδίδου <marablack3@gmail.com>\n"
 "Για περισσότερα δείτε: http://gnome.gr"
+
+#: ../src/bjb-bijiben.c:396
+msgid "Show the application's version"
+msgstr "Εμφάνιση έκδοσης της εφαρμογής"
+
+#: ../src/bjb-bijiben.c:398
+msgid "[FILE...]"
+msgstr "[ΑΡΧΕΙΟ...]"
+
+#: ../src/bjb-bijiben.c:405
+msgid "Take notes and export them everywhere."
+msgstr "Πάρτε σημειώσεις και κάντετες εξαγωγή παντού."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:415
+msgid "Could not parse arguments"
+msgstr "Δεν ήταν δυνατή η ανάλυση των ορισμάτων"
+
+#: ../src/bjb-bijiben.c:423
+msgid "GNOME Notes"
+msgstr "Σημειώσεις GNOME"
+
+#: ../src/bjb-bijiben.c:433
+msgid "Could not register the application"
+msgstr "Αδύνατη η καταγραφή της εφαμρογής"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
@@ -151,11 +180,11 @@ msgstr "Επιγράμμιση"
 msgid "Copy selection to a new note"
 msgstr "Αντιγραφή επιλογής σε νέα σημείωση"
 
-#: ../src/bjb-empty-results-box.c:100
+#: ../src/bjb-empty-results-box.c:101
 msgid "No Notes Found"
 msgstr "Δεν βρέθηκαν σημειώσεις"
 
-#: ../src/bjb-empty-results-box.c:144
+#: ../src/bjb-empty-results-box.c:145
 msgid ""
 "Your notes notebook is empty.\n"
 "Click the New button to create your first note."
@@ -163,18 +192,14 @@ msgstr ""
 "Το σημειωματάριο σας είναι κενό.\n"
 "Πατήστε στο νέο κουμπί για τη δημιουργία της πρώτης σας σημείωσης."
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "Χωρίς αποτέλεσμα αυτή η αναζήτηση."
-
-#: ../src/bjb-empty-results-box.c:161
-msgid "Oops"
-msgstr "Όπα!"
-
 #: ../src/bjb-empty-results-box.c:167
+msgid "Oops"
+msgstr "Ώπα!"
+
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr ""
-"Παρακαλούμε, εγκαταστήστε το 'Tracker', έπειτα επανεκκινήστε την εφαρμογή."
+"Παρακαλούμε, εγκαταστήστε το 'Tracker' και μετά επανεκκινήστε την εφαρμογή."
 
 #: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
@@ -204,127 +229,139 @@ msgstr "Εφαρμογή Tomboy"
 msgid "Gnote application"
 msgstr "Εφαρμογή Gnote"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Φόρτωση περισσοτέρων"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "Φορτώνει..."
 
-#: ../src/bjb-main-toolbar.c:141
+#: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
 msgstr "Πατήστε στα στοιχεία για να τα επιλέξετε"
 
-#: ../src/bjb-main-toolbar.c:143
+#: ../src/bjb-main-toolbar.c:144
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d επιλεγμένο"
 msgstr[1] "%d επιλεγμένα"
 
-#: ../src/bjb-main-toolbar.c:263
+#: ../src/bjb-main-toolbar.c:264
 msgid "Search note titles, content and notebooks"
 msgstr "Αναζήτηση τίτλων σημείωσης, περιεχομένου και σημειωματαρίων"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:302
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: ../src/bjb-main-toolbar.c:316
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
-msgstr "Έξοδος από την κατάσταση επιλογής"
+msgstr "Έξοδος από την λειτουργία επιλογής"
 
-#: ../src/bjb-main-toolbar.c:346
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Αποτελέσματα για %s"
 
-#: ../src/bjb-main-toolbar.c:349
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: ../src/bjb-main-toolbar.c:425
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "Νέα"
 
-#: ../src/bjb-main-toolbar.c:443 ../src/bjb-main-toolbar.c:494
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "Λειτουργία επιλογής"
 
-#: ../src/bjb-main-toolbar.c:474
-msgid "Trash"
-msgstr "Απορρίμματα"
-
-#: ../src/bjb-main-toolbar.c:530
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "Προβολή σημειώσεων και σημειωματαρίων σε έναν κατάλογο"
 
-#: ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "Προβολή σημειώσεων και σημειωματαρίων σε πλέγμα"
 
-#: ../src/bjb-main-toolbar.c:626
+#: ../src/bjb-main-toolbar.c:534
+msgid "Trash"
+msgstr "Απορρίμματα"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
+msgid "Empty"
+msgstr "Κενό"
+
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
-#. Detach
-#: ../src/bjb-main-toolbar.c:732 ../src/bjb-selection-toolbar.c:349
-msgid "Open in another window"
-msgstr "Άνοιγμα άλλου παράθυρου"
+#: ../src/bjb-main-toolbar.c:763
+msgid "Open in New Window"
+msgstr "Άνοιγμα σε ένα νέο παράθυρο"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:743
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: ../src/bjb-main-toolbar.c:751
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "Κουκκίδες"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "Αριθμημένη λίστα"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:787 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:324
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "Σημειωματάρια"
 
+#. Share
+#: ../src/bjb-main-toolbar.c:828
+msgid "Email this Note"
+msgstr "Στείλτε αυτή τη σημείωση ηλεκτονικά"
+
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:795 ../src/bjb-selection-toolbar.c:354
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Μετακίνηση στα απορρίμματα"
 
-#: ../src/bjb-main-toolbar.c:855
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Περισσότερες επιλογές…"
 
-#: ../src/bjb-main-toolbar.c:872 ../src/bjb-selection-toolbar.c:345
-msgid "Share note"
-msgstr "Κοινόχρηστη σημείωση"
-
-#: ../src/bjb-main-toolbar.c:897 ../src/bjb-selection-toolbar.c:333
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "Χρώμα σημείωσης"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "Σημειωματάριο"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "Σημείωση"
+
+#. "Last updated" precedes the note last updated date
+#: ../src/bjb-note-view.c:225
+msgid "Last updated"
+msgstr "Τελευταία ενημέρωση"
 
 #: ../src/bjb-organize-dialog.c:399
 msgid "Enter a name to create a notebook"
@@ -339,14 +376,28 @@ msgstr "Νέο σημειωματάριο"
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "Τελευταία ενημέρωση"
-
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "Ε_ντάξει"
+
+#. Restore
+#: ../src/bjb-selection-toolbar.c:390
+msgid "Restore"
+msgstr "Επαναφορά"
+
+#: ../src/bjb-selection-toolbar.c:406
+msgid "Share note"
+msgstr "Κοινόχρηστη σημείωση"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:410
+msgid "Open in another window"
+msgstr "Άνοιγμα σε ένα νέο παράθυρο"
+
+#. Permanently delete
+#: ../src/bjb-selection-toolbar.c:422
+msgid "Permanently Delete"
+msgstr "Μόνιμη διαγραφή"
 
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:391
@@ -370,18 +421,6 @@ msgstr "Σημείωση έκδοσης"
 #: ../src/bjb-settings-dialog.c:496
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
-
-#: ../src/bjb-trash-bar.c:212
-msgid "Empty"
-msgstr "Κενό"
-
-#: ../src/bjb-trash-bar.c:231
-msgid "Restore"
-msgstr "Επαναφορά"
-
-#: ../src/bjb-trash-bar.c:252
-msgid "Permanently Delete"
-msgstr "Μόνιμη διαγραφή"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -407,7 +446,7 @@ msgstr "Φέτος"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:361
 msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
 
@@ -435,11 +474,11 @@ msgstr "_Περί"
 msgid "_Quit"
 msgstr "Έ_ξοδος"
 
+#~ msgid "No result found for this research."
+#~ msgstr "Χωρίς αποτέλεσμα αυτή η αναζήτηση."
+
 #~ msgid "_New Window"
 #~ msgstr "_Νέο παράθυρο"
-
-#~ msgid "Delete this Note"
-#~ msgstr "Διαγραφή αυτής της σημείωσης"
 
 #~ msgid "Delete"
 #~ msgstr "Διαγραφή"

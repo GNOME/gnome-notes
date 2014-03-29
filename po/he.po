@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-02 01:22+0200\n"
-"PO-Revision-Date: 2014-03-02 01:24+0200\n"
+"POT-Creation-Date: 2014-03-29 20:19+0300\n"
+"PO-Revision-Date: 2014-03-29 20:20+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gnome.org>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -110,29 +110,29 @@ msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gnome.org>"
 
-#: ../src/bjb-bijiben.c:387
+#: ../src/bjb-bijiben.c:396
 msgid "Show the application's version"
 msgstr "Show the application's version"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:398
 msgid "[FILE...]"
 msgstr "[FILE...]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:405
 msgid "Take notes and export them everywhere."
 msgstr "Take notes and export them everywhere."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:415
 msgid "Could not parse arguments"
 msgstr "Could not parse arguments"
 
-#: ../src/bjb-bijiben.c:414
+#: ../src/bjb-bijiben.c:423
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: ../src/bjb-bijiben.c:424
+#: ../src/bjb-bijiben.c:433
 msgid "Could not register the application"
 msgstr "Could not register the application"
 
@@ -141,33 +141,33 @@ msgid "Note Color"
 msgstr "צבע הפתקית"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:347
 msgid "Cut"
 msgstr "גזירה"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:354
 msgid "Copy"
 msgstr "העתקה"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Paste"
-msgstr "הדבקה"
+#: ../src/bjb-editor-toolbar.c:360
+msgid "_Paste"
+msgstr "ה_דבקה"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:375
 msgid "Bold"
 msgstr "מודגש"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:385
 msgid "Italic"
 msgstr "נטוי"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:395
 msgid "Strike"
 msgstr "קו חוצה"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:423
 msgid "Copy selection to a new note"
 msgstr "העתקת הבחירה לפתקית חדשה"
 
@@ -243,98 +243,100 @@ msgid "Search note titles, content and notebooks"
 msgstr "חיפוש בכותרות, בתוכן ובאוספים"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "יציאה ממצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "תוצאות עבור %s"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "חדש ואחרונים"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "חדש"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "מצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "צפייה בפתקיות ובאוספים ברשימה"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "צפייה בפתקיות ובאוספים בתצוגת רשת"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "אשפה"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "ריקון"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "ללא כותרת"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:763
 msgid "Open in New Window"
 msgstr "פתיחה בחלון חדש"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "תבליטים"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "רשימה ממוספרת"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "אוספים"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:828
 msgid "Email this Note"
 msgstr "שליחת הפתקית בדוא״ל"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "צבע הפתקית"
 
@@ -434,7 +436,7 @@ msgstr "השנה"
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:361
 msgid "Local storage"
 msgstr "אחסון מקומי"
 

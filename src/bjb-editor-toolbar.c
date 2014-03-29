@@ -357,7 +357,7 @@ bjb_editor_toolbar_constructed (GObject *obj)
   gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_copy), -1);
 
   /* 'n paste */
-  priv->toolbar_paste = GTK_WIDGET (gtk_tool_button_new (NULL, _("_Paste")));
+  priv->toolbar_paste = GTK_WIDGET (gtk_tool_button_new (NULL, _("Paste")));
   gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_paste), TRUE);
   gtk_widget_show (priv->toolbar_paste);
   gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_paste), -1);

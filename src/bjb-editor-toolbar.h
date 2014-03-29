@@ -1,6 +1,6 @@
 /* bjb-editor-toolbar.h
  * Copyright © 2012, 2013 Red Hat, Inc.
- * Copyright © 2013 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright © 2013, 2014 Pierre-Yves LUYTEN <py@luyten.fr>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -18,8 +18,6 @@
 
 #ifndef BJB_EDITOR_TOOLBAR_H
 #define BJB_EDITOR_TOOLBAR_H
-
-#include <clutter/clutter.h>
 
 #include "bjb-note-view.h"
 
@@ -54,9 +52,9 @@ struct _BjbEditorToolbarClass
 
 GType bjb_editor_toolbar_get_type (void) G_GNUC_CONST;
 
-BjbEditorToolbar * bjb_editor_toolbar_new (ClutterActor *parent_actor,BjbNoteView *bjb_note_view,BijiNoteObj *biji_note_obj);
+BjbEditorToolbar            *bjb_editor_toolbar_new      (BjbNoteView *bjb_note_view,
+                                                          BijiNoteObj *biji_note_obj);
 
-ClutterActor * bjb_editor_toolbar_get_actor (BjbEditorToolbar *self);
 
 G_END_DECLS
 

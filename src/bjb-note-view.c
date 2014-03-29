@@ -52,11 +52,11 @@ struct _BjbNoteViewPrivate {
   /* UI */
   BijiWebkitEditor *editor;
   ClutterActor      *embed;
-  ClutterActor      *edit_actor;
   BjbEditorToolbar  *edit_bar;
-  ClutterActor      *edit_bar_actor;
   gboolean           edit_bar_is_sticky;
 
+  // these two are the remaining Clutter to get rid of
+  // kill this
   ClutterActor      *last_update;
   ClutterColor      *last_date_bckgrd_clr;
 };
@@ -337,10 +337,8 @@ bjb_note_view_constructed (GObject *obj)
       biji_note_obj_set_rgba (priv->note, &color);
   }
 
-  /* Edition Toolbar */
-  priv->edit_bar = bjb_editor_toolbar_new (overlay, self, priv->note);
-  priv->edit_bar_actor = bjb_editor_toolbar_get_actor (priv->edit_bar);
-  clutter_actor_add_child (priv->embed, priv->edit_bar_actor);
+  /* Edition Toolbar for text selection */
+  priv->edit_bar = bjb_editor_toolbar_new (self, priv->note);
 
   /* Last updated row */
   priv->last_update = bjb_note_view_last_updated_actor_new (self);

@@ -4,9 +4,11 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name xml:lang="en">bijiben</name>
+  <name xml:lang="en">Bijiben</name>
   <shortdesc xml:lang="en">Write out notes, every detail matters</shortdesc>
-  <homepage rdf:resource="https://github.com/pyluyten/bijiben/wiki" />
+  <homepage rdf:resource="https://wiki.gnome.org/Apps/Bijiben" />
+  <download-page rdf:resource="http://download.gnome.org/sources/bijiben/" />
+  <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=bijiben" />
 
   <maintainer>
     <foaf:Person>

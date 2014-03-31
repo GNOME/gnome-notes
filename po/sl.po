@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2014-03-31 14:56+0000\n"
-"PO-Revision-Date: 2014-03-31 21:43+0100\n"
+"PO-Revision-Date: 2014-03-31 21:52+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -359,14 +359,12 @@ msgid "Last updated"
 msgstr "Zadnjič posodobljeno"
 
 #: ../src/bjb-organize-dialog.c:399
-#, fuzzy
 msgid "Enter a name to create a notebook"
-msgstr "Vnos imena novega priljubljenega  predmeta"
+msgstr "Vnos imena nove beležnice"
 
 #: ../src/bjb-organize-dialog.c:409
-#, fuzzy
 msgid "New notebook"
-msgstr "_Nova beležnica ..."
+msgstr "Nova beležnica"
 
 #. Response
 #: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
@@ -379,7 +377,6 @@ msgstr "_V redu"
 
 #. Restore
 #: ../src/bjb-selection-toolbar.c:390
-#, fuzzy
 msgid "Restore"
 msgstr "Obnovi"
 
@@ -389,15 +386,13 @@ msgstr "Objavi sporočilce"
 
 #. Detach
 #: ../src/bjb-selection-toolbar.c:410
-#, fuzzy
 msgid "Open in another window"
-msgstr "Odpri v novih _oknih"
+msgstr "Odpri v novem oknu"
 
 #. Permanently delete
 #: ../src/bjb-selection-toolbar.c:422
-#, fuzzy
 msgid "Permanently Delete"
-msgstr "_Trajno izbriši"
+msgstr "Trajno izbriši"
 
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:391
@@ -455,9 +450,8 @@ msgid "_Import Notes"
 msgstr "_Uvozi sporočilca"
 
 #: ../src/resources/app-menu.ui.h:2
-#, fuzzy
 msgid "_View Trash"
-msgstr "_Izprazni smeti"
+msgstr "_Poglej smeti"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
@@ -468,7 +462,6 @@ msgid "_Help"
 msgstr "Pomo_č"
 
 #: ../src/resources/app-menu.ui.h:5
-#, fuzzy
 msgid "_About"
 msgstr "_O programu"
 

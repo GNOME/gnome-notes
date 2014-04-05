@@ -60,7 +60,6 @@ struct _BjbWindowBasePriv
   /* when a note is opened */
   BijiNoteObj          *note;
   gboolean              detached; // detached note
-  GtkWidget            *note_overlay;
 
 
   PangoFontDescription *font ;
@@ -444,24 +443,24 @@ bjb_window_base_get_note (BjbWindowBase *self)
 
 
 
-
 static void
-destroy_note_if_needed (BjbWindowBase *bwb)
+destroy_note_if_needed (BjbWindowBase *self)
 {
-  bwb->priv->note = NULL;
+  self->priv->note = NULL;
 
-  if (bwb->priv->note_view && GTK_IS_WIDGET (bwb->priv->note_view))
-    g_clear_pointer (&(bwb->priv->note_overlay), gtk_widget_destroy);
+  if (self->priv->note_view && GTK_IS_WIDGET (self->priv->note_view))
+    g_clear_pointer (&(self->priv->note_view), gtk_widget_destroy);
 }
 
+
 void
-bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
+bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 {
-  BjbWindowBasePriv *priv = bwb->priv;
+  BjbWindowBasePriv *priv = self->priv;
   priv->current_view = type;
 
   if (type != BJB_WINDOW_BASE_NOTE_VIEW)
-    destroy_note_if_needed (bwb);
+    destroy_note_if_needed (self);
 
   switch (type)
   {
@@ -520,7 +519,7 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
 
 
     case BJB_WINDOW_BASE_NOTE_VIEW:
-      gtk_widget_show_all (GTK_WIDGET (priv->note_overlay));
+      gtk_widget_show_all (GTK_WIDGET (priv->note_view));
       gtk_widget_hide (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "note-view");
       break;
@@ -530,8 +529,9 @@ bjb_window_base_switch_to (BjbWindowBase *bwb, BjbWindowViewType type)
       return;
   }
 
-  g_signal_emit (G_OBJECT (bwb), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
+  g_signal_emit (G_OBJECT (self), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
 }
+
 
 void
 bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item)
@@ -549,10 +549,9 @@ bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item)
     BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
     priv->note = note;
-    priv->note_overlay = gtk_overlay_new ();
 
-    gtk_stack_add_named (priv->stack, priv->note_overlay, "note-view");
-    priv->note_view = bjb_note_view_new (w, priv->note_overlay, note);
+    priv->note_view = bjb_note_view_new (w, note);
+    gtk_stack_add_named (priv->stack, GTK_WIDGET (priv->note_view), "note-view");
 
     g_object_add_weak_pointer (G_OBJECT (priv->note_view),
                                (gpointer *) &priv->note_view);

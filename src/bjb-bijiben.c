@@ -300,7 +300,7 @@ bijiben_startup (GApplication *application)
   gchar          *storage_path, *default_color;
   GFile          *storage;
   GError         *error;
-  gchar          *path; 
+  gchar          *path;
   GdkRGBA         color = {0,0,0,0};
 
 
@@ -309,11 +309,7 @@ bijiben_startup (GApplication *application)
   error = NULL;
 
 
-  if (gtk_clutter_init (NULL, NULL) != CLUTTER_INIT_SUCCESS)
-  {
-    g_warning ("Unable to initialize Clutter");
-    return;
-  }
+  gtk_init (NULL, NULL);
 
 
   bjb_app_menu_set(application);
@@ -321,7 +317,7 @@ bijiben_startup (GApplication *application)
   storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
   storage = g_file_new_for_path (storage_path);
 
-  // Create the bijiben dir to ensure. 
+  // Create the bijiben dir to ensure.
   self->priv->first_run = TRUE;
   g_file_make_directory (storage, NULL, &error);
 

@@ -19,7 +19,7 @@
 #define _NOTE_VIEW_H
 
 #include <glib-object.h>
-#include <clutter-gtk/clutter-gtk.h>
+#include <gtk/gtk.h>
 
 #include <libbiji/libbiji.h>
 
@@ -45,21 +45,27 @@ G_BEGIN_DECLS
 typedef struct _BjbNoteViewPrivate BjbNoteViewPrivate;
 
 typedef struct {
-  GtkClutterEmbed parent;
+  GtkOverlay parent;
   BjbNoteViewPrivate * priv ;
 } BjbNoteView;
 
 typedef struct {
-  GtkClutterEmbedClass parent_class;
+  GtkOverlayClass parent_class;
 } BjbNoteViewClass;
 
-GType bjb_note_view_get_type (void);
 
-BjbNoteView * bjb_note_view_new (GtkWidget *win, GtkWidget *parent, BijiNoteObj* note);
 
-GtkWidget * bjb_note_view_get_base_window (BjbNoteView *v);
+GType               bjb_note_view_get_type           (void);
 
-void         bjb_note_view_grab_focus     (BjbNoteView *view);
+
+BjbNoteView        *bjb_note_view_new                (GtkWidget *win,
+						      BijiNoteObj* note);
+
+
+GtkWidget          *bjb_note_view_get_base_window    (BjbNoteView *v);
+
+
+void                bjb_note_view_grab_focus         (BjbNoteView *view);
 
 G_END_DECLS
 

@@ -62,8 +62,7 @@ PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-spar
 ])
 
 PKG_CHECK_MODULES(BIJIBEN,
-                  [ clutter-gtk-1.0
-                    gio-unix-2.0
+                  [ gio-unix-2.0
                     glib-2.0 >= $GLIB_REQUIRED_VERSION
                     goa-1.0
                     gtk+-3.0 >= $GTK_REQUIRED_VERSION

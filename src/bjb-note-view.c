@@ -229,9 +229,6 @@ bjb_note_view_constructed (GObject *obj)
   gtk_widget_set_hexpand (scroll, TRUE);
   gtk_widget_set_vexpand (scroll, TRUE);
 
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scroll),
-                                       GTK_SHADOW_IN);
-
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
                                   GTK_POLICY_NEVER,
                                   GTK_POLICY_AUTOMATIC);

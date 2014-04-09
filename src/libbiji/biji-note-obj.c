@@ -241,10 +241,13 @@ biji_note_obj_trash (BijiItem *item)
   BijiNoteObjPrivate *priv;
   GFile *icon;
   gchar *icon_path;
-  gboolean result = FALSE;
+  gboolean result;
 
   note_to_kill = BIJI_NOTE_OBJ (item);
   priv = note_to_kill->priv;
+  icon = NULL;
+  icon_path = NULL;
+  result = FALSE;
 
   /* The event has to be logged before the note is actually deleted */
 #ifdef BUILD_ZEITGEIST
@@ -253,17 +256,18 @@ biji_note_obj_trash (BijiItem *item)
 
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
-
   result = BIJI_NOTE_OBJ_GET_CLASS (note_to_kill)->archive (note_to_kill);
 
-  /* Delete icon file */
-  icon_path = biji_note_obj_get_icon_file (note_to_kill);
-  icon = g_file_new_for_path (icon_path);
-  g_file_delete (icon, NULL, NULL);
+  if (result == TRUE)
+  {
+    /* Delete icon file */
+    icon_path = biji_note_obj_get_icon_file (note_to_kill);
+    icon = g_file_new_for_path (icon_path);
+    g_file_delete (icon, NULL, NULL);
+  }
 
 
-  if (icon_path != NULL)
-    g_free (icon_path);
+  g_free (icon_path);
 
   if (icon != NULL)
     g_object_unref (icon);
@@ -848,36 +852,37 @@ biji_note_obj_is_opened (BijiNoteObj *note)
 }
 
 static void
-_biji_note_obj_close (BijiNoteObj *note)
+on_biji_note_obj_closed_cb (BijiNoteObj *note)
 {
   BijiNoteObjPrivate *priv;
   BijiItem *item;
-  BijiManager *manager;
   const gchar *title;
 
   priv = note->priv;
   item = BIJI_ITEM (note);
-  manager = biji_item_get_manager (BIJI_ITEM (note));
   priv->editor = NULL;
+  title = biji_item_get_title (item);
 
 #ifdef BUILD_ZEITGEIST
   insert_zeitgeist (note, ZEITGEIST_ZG_LEAVE_EVENT);
 #endif /* BUILD_ZEITGEIST */
 
-  /* Delete if note is totaly blank
-   * Actually we just need to remove it from manager
-   * since no change could trigger save */
+  /*
+   * Delete (not _trash_ if note is totaly blank
+   * A Cancellable would be better than needs->save
+   */
   if (biji_note_id_get_content (priv->id) == NULL)
-    biji_manager_remove_item (manager, item);
+  {
+    priv->needs_save = FALSE;
+    biji_item_delete (item);
+  }
 
   /* If the note has no title */
-  title = biji_item_get_title (item);
-  if (title == NULL)
-    {
-      title = biji_note_obj_get_raw_text (note);
-      biji_note_obj_set_title (note, title);
-    }
-
+  else if (title == NULL)
+  {
+    title = biji_note_obj_get_raw_text (note);
+    biji_note_obj_set_title (note, title);
+  }
 }
 
 GtkWidget *
@@ -886,7 +891,7 @@ biji_note_obj_open (BijiNoteObj *note)
   note->priv->editor = biji_webkit_editor_new (note);
 
   g_signal_connect_swapped (note->priv->editor, "destroy",
-                            G_CALLBACK (_biji_note_obj_close), note);
+                            G_CALLBACK (on_biji_note_obj_closed_cb), note);
 
 #ifdef BUILD_ZEITGEIST
   insert_zeitgeist (note, ZEITGEIST_ZG_ACCESS_EVENT);

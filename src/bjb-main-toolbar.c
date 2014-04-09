@@ -727,9 +727,7 @@ trash_item_callback (GtkWidget *item, gpointer user_data)
 
   /* Delete the note from notebook
    * The deleted note will emit a signal. */
-  biji_manager_remove_item (
-          bjb_window_base_get_manager (GTK_WIDGET (self->priv->window)),
-          BIJI_ITEM (self->priv->note));
+  biji_item_trash (BIJI_ITEM (self->priv->note));
 }
 
 

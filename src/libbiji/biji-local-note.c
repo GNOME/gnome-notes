@@ -280,6 +280,8 @@ delete_file (GObject *note,
 }
 
 
+/* Do not check if note is already trashed
+ * eg, note is empty */
 static gboolean
 local_note_delete (BijiItem *item)
 {
@@ -290,18 +292,14 @@ local_note_delete (BijiItem *item)
 
   g_debug ("local note delete : %s", g_file_get_path (self->priv->location));
 
-  if (self->priv->trashed == TRUE)
-  {
-    biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
-    g_file_delete_async (self->priv->location,
-                         G_PRIORITY_LOW,
-                         NULL,                  /* Cancellable */
-                         delete_file,
-                         self);
-    return TRUE;
-  }
+  biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
+  g_file_delete_async (self->priv->location,
+                       G_PRIORITY_LOW,
+                       NULL,                  /* Cancellable */
+                       delete_file,
+                       self);
 
-  return FALSE;
+  return TRUE;
 }
 
 

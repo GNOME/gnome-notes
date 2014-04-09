@@ -289,29 +289,55 @@ biji_manager_notify_changed (BijiManager            *manager,
 
 
 static void
-on_item_deleted_cb (BijiItem *item, BijiManager *manager)
+on_item_deleted_cb (BijiItem *item, BijiManager *self)
 {
   BijiItem        *to_delete;
   const gchar     *path;
-  gboolean         retval;
+  GHashTable      *store;
+  BijiItemsGroup   group;
 
 
   to_delete = NULL;
-  retval = FALSE;
   path = biji_item_get_uuid (item);
-  to_delete = g_hash_table_lookup (manager->priv->archives, path);
+  store = NULL;
 
-  if (to_delete != NULL)
-    retval = TRUE;
+  if ((to_delete = g_hash_table_lookup (self->priv->archives, path)))
+  {
+    store = self->priv->archives;
+    group = BIJI_ARCHIVED_ITEMS;
+  }
+  else if ((to_delete = g_hash_table_lookup (self->priv->items, path)))
+  {
+    store = self->priv->items;
+    group = BIJI_LIVING_ITEMS;
+  }
 
-  if (!retval)
+  if (store == NULL)
     return;
 
-  g_hash_table_remove (manager->priv->archives, path);
-  biji_manager_notify_changed (manager,
-                               BIJI_ARCHIVED_ITEMS,
-                               BIJI_MANAGER_ITEM_DELETED,
-                               item);
+
+  g_hash_table_remove (store, path);
+  biji_manager_notify_changed (self, group,
+                               BIJI_MANAGER_ITEM_DELETED, item);
+}
+
+
+/* Signal if item is known */
+static void
+on_item_trashed_cb (BijiItem *item, BijiManager *self)
+{
+  const gchar *path;
+
+  path = biji_item_get_uuid (item);
+  item = g_hash_table_lookup (self->priv->items, path);
+
+  if (item == NULL)
+    return;
+
+  biji_manager_notify_changed (self, BIJI_LIVING_ITEMS, BIJI_MANAGER_ITEM_TRASHED, item);
+  g_hash_table_insert (self->priv->archives,
+                       (gpointer) biji_item_get_uuid (item), item);
+  g_hash_table_remove (self->priv->items, path);
 }
 
 
@@ -408,6 +434,8 @@ biji_manager_add_item (BijiManager *manager,
     /* Connect */
     g_signal_connect (item, "deleted",
                       G_CALLBACK (on_item_deleted_cb), manager);
+    g_signal_connect (item, "trashed",
+                      G_CALLBACK (on_item_trashed_cb), manager);
     g_signal_connect (item, "restored",
                       G_CALLBACK (on_item_restored_cb), manager);
 
@@ -618,36 +646,6 @@ biji_manager_get_default_color (BijiManager *manager, GdkRGBA *color)
   color->blue = manager->priv->color.blue;
   color->green = manager->priv->color.green;
   color->alpha = manager->priv->color.alpha;
-}
-
-
-gboolean
-biji_manager_remove_item (BijiManager *manager, BijiItem *item)
-{
-  g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
-  g_return_val_if_fail (BIJI_IS_ITEM      (item), FALSE);
-
-  BijiItem *to_delete = NULL;
-  const gchar *path;
-  gboolean retval = FALSE;
-
-  path = biji_item_get_uuid (item);
-  to_delete = g_hash_table_lookup (manager->priv->items, path);
-
-  if (to_delete)
-  {
-    /* Signal before doing anything here. So the note is still
-     * fully available for signal receiver. */
-    biji_manager_notify_changed (manager, BIJI_LIVING_ITEMS, BIJI_MANAGER_ITEM_TRASHED, to_delete);
-    biji_item_trash (item);
-    g_hash_table_insert (manager->priv->archives,
-                         (gpointer) biji_item_get_uuid (item), item);
-    g_hash_table_remove (manager->priv->items, path);
-
-    retval = TRUE;
-  }
-
-  return retval;
 }
 
 

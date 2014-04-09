@@ -118,15 +118,10 @@ static void
 action_trash_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
 {
   GList *l, *selection;
-  BijiManager *manager;
 
   selection = bjb_main_view_get_selected_items (self->priv->view);
-  manager = bjb_window_base_get_manager (bjb_main_view_get_window (self->priv->view));
-
   for (l=selection; l !=NULL; l=l->next)
-  {
-    biji_manager_remove_item (manager, BIJI_ITEM (l->data));
-  }
+    biji_item_trash (BIJI_ITEM (l->data));
 
   bjb_main_view_set_selection_mode (self->priv->view, FALSE);
   g_list_free (selection);

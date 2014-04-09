@@ -1,0 +1,29 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+GET_PRIVATE	bjb-note-view.c	42;"	d	file:
+G_DEFINE_TYPE	bjb-note-view.c	/^G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)$/;"	f
+NUM_PROPERTIES	bjb-note-view.c	/^  NUM_PROPERTIES$/;"	e	enum:__anon1	file:
+PROP_0	bjb-note-view.c	/^  PROP_0,$/;"	e	enum:__anon1	file:
+PROP_NOTE	bjb-note-view.c	/^  PROP_NOTE,$/;"	e	enum:__anon1	file:
+PROP_PARENT	bjb-note-view.c	/^  PROP_PARENT,$/;"	e	enum:__anon1	file:
+PROP_WINDOW	bjb-note-view.c	/^  PROP_WINDOW,$/;"	e	enum:__anon1	file:
+bjb_note_view_class_init	bjb-note-view.c	/^bjb_note_view_class_init (BjbNoteViewClass *klass)$/;"	f	file:
+bjb_note_view_constructed	bjb-note-view.c	/^bjb_note_view_constructed (GObject *obj)$/;"	f	file:
+bjb_note_view_disconnect	bjb-note-view.c	/^bjb_note_view_disconnect (BjbNoteView *self)$/;"	f	file:
+bjb_note_view_finalize	bjb-note-view.c	/^bjb_note_view_finalize(GObject *object)$/;"	f	file:
+bjb_note_view_get_base_window	bjb-note-view.c	/^bjb_note_view_get_base_window (BjbNoteView *v)$/;"	f
+bjb_note_view_get_property	bjb-note-view.c	/^bjb_note_view_get_property (GObject      *object,$/;"	f	file:
+bjb_note_view_grab_focus	bjb-note-view.c	/^bjb_note_view_grab_focus     (BjbNoteView *view)$/;"	f
+bjb_note_view_init	bjb-note-view.c	/^bjb_note_view_init (BjbNoteView *self)$/;"	f	file:
+bjb_note_view_last_updated_actor_new	bjb-note-view.c	/^bjb_note_view_last_updated_actor_new (BjbNoteView *self)$/;"	f
+bjb_note_view_new	bjb-note-view.c	/^bjb_note_view_new (GtkWidget *win, GtkWidget *parent, BijiNoteObj* note)$/;"	f
+bjb_note_view_set_property	bjb-note-view.c	/^bjb_note_view_set_property ( GObject        *object,$/;"	f	file:
+copy_note_color_to_last_updated_background	bjb-note-view.c	/^copy_note_color_to_last_updated_background (BjbNoteView *self)$/;"	f	file:
+just_switch_to_main_view	bjb-note-view.c	/^just_switch_to_main_view(BjbNoteView *self)$/;"	f	file:
+on_note_trashed	bjb-note-view.c	/^on_note_trashed (BijiNoteObj *note, BjbNoteView *view)$/;"	f	file:
+on_window_closed	bjb-note-view.c	/^on_window_closed(GtkWidget *window,gpointer note)$/;"	f	file:
+properties	bjb-note-view.c	/^static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };$/;"	v	file:

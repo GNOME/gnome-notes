@@ -66,21 +66,21 @@ GType biji_manager_get_type (void) G_GNUC_CONST;
 
 
 
-BijiManager    *biji_manager_new                   (GFile *location,
-                                                       GdkRGBA *color,
-                                                       GError **error);
+BijiManager     *biji_manager_new                   (GFile *location,
+                                                    GdkRGBA *color,
+                                                    GError **error);
 
 
 void             biji_manager_import_uri            (BijiManager *manager,
-                                                       gchar *target_provider_id,
-                                                       gchar *uri);
+                                                     gchar *target_provider_id,
+                                                     gchar *uri);
 
 
 void             biji_manager_add_goa_object        (BijiManager *manager,
-                                                       GoaObject *object);
+                                                     GoaObject *object);
 
-/* <ProviderInfo*> */
-GList           *biji_manager_get_providers         (BijiManager *manager);
+
+GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
 
 
 #if BUILD_ZEITGEIST
@@ -91,12 +91,13 @@ TrackerSparqlConnection
                 *biji_manager_get_tracker_connection (BijiManager *manager);
 
 
+
 void             biji_manager_get_default_color     (BijiManager *manager,
-                                                       GdkRGBA *color);
+                                                     GdkRGBA *color);
 
 
 gchar           *biji_manager_get_unique_title      (BijiManager *manager,
-                                                       const gchar *title);
+                                                     const gchar *title);
 
 
 gboolean         biji_manager_add_item                (BijiManager *manager,
@@ -111,12 +112,8 @@ void             biji_manager_notify_changed        (BijiManager           *mana
                                                      BijiItem              *item);
 
 
-gboolean         biji_manager_remove_item           (BijiManager *manager,
-                                                       BijiItem *item);
-
-
 BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
-                                                       const gchar *path);
+                                                     const gchar *path);
 
 
 /* Get all items, either notes or notebooks
@@ -142,16 +139,16 @@ BijiNoteObj     *biji_note_get_new_from_file          (BijiManager *manager,
 
 
 BijiNoteObj     *biji_manager_note_new              (BijiManager *manager,
-                                                       gchar        *str,
-                                                       gchar        *provider_id);
+                                                     gchar        *str,
+                                                     gchar        *provider_id);
 
 
 BijiNoteObj     *biji_manager_note_new_full         (BijiManager *manager,
-                                                       gchar        *provider_id,
-                                                       gchar        *suggested_path,
-                                                       BijiInfoSet  *info,
-                                                       gchar        *html,
-                                                       GdkRGBA      *color);
+                                                     gchar        *provider_id,
+                                                     gchar        *suggested_path,
+                                                     BijiInfoSet  *info,
+                                                     gchar        *html,
+                                                     GdkRGBA      *color);
 
 
 G_END_DECLS

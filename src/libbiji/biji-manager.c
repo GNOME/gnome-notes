@@ -739,22 +739,6 @@ biji_manager_new (GFile *location, GdkRGBA *color, GError **error)
 }
 
 
-BijiNoteObj *
-biji_note_get_new_from_file (BijiManager *manager, const gchar* path)
-{
-  BijiInfoSet  set;
-  BijiNoteObj *ret;
-
-  set.url = (gchar*) path;
-  set.mtime = 0;
-  set.title = NULL;
-  set.content = NULL;
-
-  ret = biji_local_note_new_from_info (manager->priv->local_provider, manager, &set);
-  biji_lazy_deserialize (ret);
-
-  return ret ;
-}
 
 gchar *
 biji_manager_get_uuid (void)

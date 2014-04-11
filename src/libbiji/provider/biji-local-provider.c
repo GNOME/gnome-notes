@@ -25,6 +25,8 @@
  */
 
 
+#include <uuid/uuid.h>
+
 #include "biji-local-note.h"
 #include "biji-local-provider.h"
 
@@ -372,6 +374,82 @@ biji_local_provider_init (BijiLocalProvider *self)
 }
 
 
+
+/* UUID skeleton for new notes */
+static gchar *
+_get_uuid (void)
+{
+  uuid_t unique;
+  char out[40];
+
+  uuid_generate (unique);
+  uuid_unparse_lower (unique, out);
+  return g_strdup_printf ("%s.note", out);
+}
+
+
+
+static BijiNoteObj *
+_get_note_skeleton (BijiLocalProvider *self)
+{
+  BijiNoteObj *ret = NULL;
+  BijiManager *manager;
+  gchar * folder, *name, *path;
+  BijiInfoSet set;
+
+  manager = biji_provider_get_manager (BIJI_PROVIDER (self));
+  set.title = NULL;
+  set.content = NULL;
+  set.mtime = 0;
+  folder = g_file_get_path (self->priv->location);
+
+  while (!ret)
+  {
+    name = _get_uuid ();
+    path = g_build_filename (folder, name, NULL);
+    g_free (name);
+    set.url = path;
+
+    if (!biji_manager_get_item_at_path (manager, path))
+      ret = biji_local_note_new_from_info (BIJI_PROVIDER (self), manager, &set);
+
+    g_free (path);
+  }
+
+  biji_note_obj_set_all_dates_now (ret);
+  return ret;
+}
+
+
+
+static BijiNoteObj *
+local_prov_create_new_note (BijiProvider *self,
+                            gchar        *str)
+{
+  BijiNoteObj *ret = _get_note_skeleton (BIJI_LOCAL_PROVIDER (self));
+  BijiManager *manager;
+
+  manager = biji_provider_get_manager (self);
+
+  if (str)
+  {
+    gchar *unique, *html;
+
+    unique = biji_manager_get_unique_title (manager, str);
+    html = html_from_plain_text (str);
+
+    biji_note_obj_set_title (ret, unique);
+    biji_note_obj_set_raw_text (ret, str);
+    biji_note_obj_set_html (ret, html);
+
+    g_free (unique);
+    g_free (html);
+  }
+
+  biji_note_obj_save_note (ret);
+  return ret;
+}
+
 static BijiNoteObj *
 local_prov_create_note_full (BijiProvider *provider,
                              gchar        *suggested_path,
@@ -484,7 +562,7 @@ biji_local_provider_class_init (BijiLocalProviderClass *klass)
   g_object_class->set_property = biji_local_provider_set_property;
 
   provider_class->get_info = local_provider_get_info;
-  // provider_class->create_new_note = local_prov_create_new_note;
+  provider_class->create_new_note = local_prov_create_new_note;
   provider_class->create_note_full = local_prov_create_note_full;
   provider_class->load_archives = local_prov_load_archives;
 

@@ -16,7 +16,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <uuid/uuid.h>
+
 
 #include "libbiji.h"
 #include "biji-local-note.h" // FIXME !!!! biji_provider_note_new ()
@@ -31,7 +31,11 @@
 struct _BijiManagerPrivate
 {
   /* Notes & Collections.
-   * Keep a direct pointer to local provider for convenience. */
+   * Keep a direct pointer to local provider for convenience
+   *
+   * TODO: would be nice to have GHashTable onto providers
+   * rather than one big central db here
+   */
 
   GHashTable *items;
   GHashTable *archives;
@@ -245,6 +249,7 @@ title_is_unique (BijiManager *manager, gchar *title)
   g_list_free (items);
   return is_unique;
 }
+
 
 /* If title not unique, add sufffix "n", starting with 2, until ok */
 gchar *
@@ -740,76 +745,7 @@ biji_manager_new (GFile *location, GdkRGBA *color, GError **error)
 
 
 
-gchar *
-biji_manager_get_uuid (void)
-{
-  uuid_t unique;
-  char out[40];
 
-  uuid_generate (unique);
-  uuid_unparse_lower (unique, out);
-  return g_strdup_printf ("%s.note", out);
-}
-
-/* Common UUID skeleton for new notes. */
-static BijiNoteObj *
-get_note_skeleton (BijiManager *manager)
-{
-  BijiNoteObj *ret = NULL;
-  gchar * folder, *name, *path;
-  BijiInfoSet set;
-
-  set.title = NULL;
-  set.content = NULL;
-  set.mtime = 0;
-  folder = g_file_get_path (manager->priv->location);
-
-  while (!ret)
-  {
-    name = biji_manager_get_uuid ();
-    path = g_build_filename (folder, name, NULL);
-    g_free (name);
-    set.url = path;
-
-    if (!g_hash_table_lookup (manager->priv->items, path))
-      ret = biji_local_note_new_from_info (manager->priv->local_provider, manager, &set);
-
-    g_free (path);
-  }
-
-  biji_note_obj_set_all_dates_now (ret);
-  return ret;
-}
-
-
-/* 
- * TODO : move this to local provider.
- */
-static BijiNoteObj *
-biji_manager_local_note_new           (BijiManager *manager, gchar *str)
-{
-  BijiNoteObj *ret = get_note_skeleton (manager);
-
-  if (str)
-  {
-    gchar *unique, *html;
-
-    unique = biji_manager_get_unique_title (manager, str);
-    html = html_from_plain_text (str);
-
-    biji_note_obj_set_title (ret, unique);
-    biji_note_obj_set_raw_text (ret, str);
-    biji_note_obj_set_html (ret, html);
-
-    g_free (unique);
-    g_free (html);
-  }
-
-  biji_note_obj_save_note (ret);
-  biji_manager_add_item (manager, BIJI_ITEM (ret), BIJI_LIVING_ITEMS, TRUE);
-
-  return ret;
-}
 
 
 /* Create the importer == switch depending on the uri.
@@ -834,29 +770,24 @@ biji_manager_import_uri (BijiManager *manager,
  * Use goa_account_get_id for goa
  */
 BijiNoteObj *
-biji_manager_note_new            (BijiManager *manager,
-                                    gchar        *str,
-                                    gchar        *provider_id)
+biji_manager_note_new            (BijiManager  *self,
+                                  gchar        *str,
+                                  gchar        *provider_id)
 {
-  BijiProvider *provider;
+  BijiProvider *provider = NULL;
   BijiNoteObj *retval;
 
-  // If we move local_note_new to create_note for local provider
-  // we won't need this stupid switch.
 
-  if (provider_id == NULL ||
-      g_strcmp0 (provider_id, "local") == 0)
-    return biji_manager_local_note_new (manager, str);
+  if (provider_id != NULL)
+    provider = g_hash_table_lookup (self->priv->providers,
+                                    provider_id);
 
-
-  provider = g_hash_table_lookup (manager->priv->providers,
-                                  provider_id);
+  if (provider == NULL)
+    provider = self->priv->local_provider;
 
 
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
-  // do not save. up to the provider implementation to save it or not
-  // at creation.
-  biji_manager_add_item (manager, BIJI_ITEM (retval), BIJI_LIVING_ITEMS, TRUE);
+  biji_manager_add_item (self, BIJI_ITEM (retval), BIJI_LIVING_ITEMS, TRUE);
 
   return retval;
 }

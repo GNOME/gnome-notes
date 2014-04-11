@@ -681,7 +681,7 @@ biji_manager_get_items             (BijiManager         *manager,
 }
 
 
-void
+static void
 biji_manager_load_archives          (BijiManager        *manager)
 {
   GList *l, *ll;

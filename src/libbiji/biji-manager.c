@@ -681,18 +681,6 @@ biji_manager_get_items             (BijiManager         *manager,
 
 
 static void
-biji_manager_load_archives          (BijiManager        *manager)
-{
-  GList *l, *ll;
-
-  l = g_hash_table_get_values (manager->priv->providers);
-  for (ll=l; ll!= NULL; ll=ll->next)
-    biji_provider_load_archives (BIJI_PROVIDER (ll->data));
-  g_list_free (l);
-}
-
-
-static void
 _delete_item (gpointer data,
               gpointer user_data)
 {

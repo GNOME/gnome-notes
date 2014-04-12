@@ -19,7 +19,6 @@
 
 
 #include "libbiji.h"
-#include "biji-local-note.h" // FIXME !!!! biji_provider_note_new ()
 #include "biji-notebook.h"
 #include "biji-error.h"
 

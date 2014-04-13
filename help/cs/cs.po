@@ -1,0 +1,532 @@
+# Czech translation for bijiben.
+# Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Marek Černocký <marek@manet.cz>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben\n"
+"POT-Creation-Date: 2014-04-13 14:56+0000\n"
+"PO-Revision-Date: 2014-04-13 20:37+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Gtranslator 2.91.6\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Marek Černocký <marek@manet.cz>"
+
+#. (itstool) path: credit/name
+#: C/colors.page:11 C/notebooks.page:11 C/create.page:11 C/delete.page:11
+#: C/introduction.page:16 C/formatting.page:11 C/search.page:11
+#: C/share.page:11 C/index.page:13 C/listing.page:11
+msgid "Pierre-Yves Luyten"
+msgstr "Pierre-Yves Luyten"
+
+#. (itstool) path: credit/years
+#: C/colors.page:12 C/notebooks.page:12 C/create.page:12 C/delete.page:12
+#: C/introduction.page:18 C/formatting.page:12 C/search.page:12
+#: C/share.page:12 C/index.page:15 C/listing.page:12
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: credit/name
+#: C/colors.page:15 C/notebooks.page:15 C/create.page:15 C/delete.page:15
+#: C/formatting.page:15 C/search.page:15 C/share.page:15 C/listing.page:15
+msgid "Ekaterina Gerasimova"
+msgstr "Ekaterina Gerasimova"
+
+#. (itstool) path: credit/years
+#: C/colors.page:17 C/colors.page:22 C/notebooks.page:17 C/create.page:17
+#: C/delete.page:17 C/delete.page:22 C/introduction.page:13
+#: C/formatting.page:17 C/search.page:17 C/search.page:22 C/rename.page:13
+#: C/share.page:17 C/share.page:22 C/index.page:20 C/listing.page:17
+#: C/listing.page:22
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: credit/name
+#: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
+#: C/introduction.page:11 C/formatting.page:20 C/search.page:20
+#: C/rename.page:11 C/share.page:20 C/index.page:18 C/listing.page:20
+#: C/cut-copy-paste.page:11
+msgid "Shobha Tyagi"
+msgstr "Shobha Tyagi"
+
+#. (itstool) path: credit/name
+#: C/colors.page:25 C/notebooks.page:25 C/create.page:25 C/delete.page:25
+#: C/introduction.page:21 C/formatting.page:25 C/search.page:25
+#: C/rename.page:16 C/share.page:25 C/listing.page:25 C/cut-copy-paste.page:16
+msgid "Michael Hill"
+msgstr "Michael Hill"
+
+#. (itstool) path: credit/years
+#: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
+#: C/create.page:27 C/delete.page:27 C/introduction.page:23
+#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/rename.page:18
+#: C/share.page:27 C/listing.page:27 C/cut-copy-paste.page:13
+#: C/cut-copy-paste.page:18
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/colors.page:32
+msgid "Edit the note background color."
+msgstr "Jak upravit barvu pozadí poznámky."
+
+#. (itstool) path: page/title
+#: C/colors.page:35
+msgid "Change note color"
+msgstr "Změna barvy poznámky"
+
+#. (itstool) path: steps/title
+#: C/colors.page:38
+msgid "To change the color of an individual note:"
+msgstr "Abyste změnili barvu jedné poznámky:"
+
+#. (itstool) path: item/p
+#: C/colors.page:40 C/notebooks.page:40 C/delete.page:40 C/rename.page:31
+#: C/share.page:40
+msgid "Click on the note to open it."
+msgstr "Kliknutím poznámku otevřete."
+
+#. (itstool) path: item/p
+#: C/colors.page:43 C/colors.page:61
+msgid "Click the <gui style=\"button\">Note color</gui> button."
+msgstr "Klikněte na tlačítko <gui style=\"button\">Barva poznámky</gui>."
+
+#. (itstool) path: item/p
+#: C/colors.page:46 C/colors.page:64
+msgid ""
+"Select a new color and click the <gui style=\"button\">Select</gui> button."
+msgstr ""
+"Vyberte novou barvu a klikněte na tlačítko <gui style=\"button\">Vybrat</"
+"gui>."
+
+#. (itstool) path: steps/title
+#: C/colors.page:52
+msgid "To change the color of multiple notes:"
+msgstr "Abyste změnili barvu více poznámek:"
+
+#. (itstool) path: item/p
+#: C/colors.page:54 C/notebooks.page:58 C/delete.page:51
+msgid ""
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button."
+msgstr ""
+"V zobrazení <gui>Nové a nedávné</gui> klikněte na tlačítko <gui style="
+"\"button\">Režim výběru</gui>."
+
+#. (itstool) path: item/p
+#: C/colors.page:58
+msgid "Select the notes you want to change."
+msgstr "Vyberte poznámky, které chcete změnit."
+
+#. (itstool) path: info/desc
+#: C/notebooks.page:32
+msgid "Add a note to a notebook to make sorting and searching notes easier."
+msgstr ""
+"Jak poznámky přidat do sešitu, aby byly roztříděné a snadněji se hledaly."
+
+#. (itstool) path: page/title
+#: C/notebooks.page:35
+msgid "Notebooks"
+msgstr "Sešity"
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:38
+msgid "To create a notebook with a single note:"
+msgstr "Pro vytvoření sešitu s jednou poznámkou:"
+
+#. (itstool) path: item/p
+#: C/notebooks.page:43
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Notebooks</gui></guiseq>."
+msgstr ""
+"Klikněte na <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
+"\"menuitem\">Sešity</gui></guiseq>."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:47
+msgid ""
+"Type a suitable name for the notebook and click the <gui style=\"button"
+"\">New notebook</gui> button."
+msgstr ""
+"Pro sešit zadejte vhodný název a klikněte na tlačítko <gui style=\"button"
+"\">Nový sešit</gui>."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:51 C/notebooks.page:72
+msgid "Click the <gui style=\"button\">Close</gui> button."
+msgstr "Klikněte na tlačítko <gui style=\"button\">Zavřít</gui>."
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:56
+msgid "To create a notebook with multiple notes:"
+msgstr "Pro vytvoření sešitu s více poznámkami:"
+
+#. (itstool) path: item/p
+#: C/notebooks.page:62
+msgid "Select all the notes which you want to add to the notebook."
+msgstr "Vyberte všechny poznámky, které chcete do sešitu přidat."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:65
+msgid "Click the <gui style=\"button\">Notebooks</gui> button."
+msgstr "Klikněte na tlačítko <gui style=\"button\">Sešity</gui>."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:68
+msgid ""
+"Type a suitable name for the notebook and click <gui style=\"button\">New "
+"notebook</gui> button."
+msgstr ""
+"Pro sešit zadejte vhodný název a klikněte na tlačítko <gui style=\"button"
+"\">Nový sešit</gui>."
+
+#. (itstool) path: info/desc
+#: C/create.page:32
+msgid ""
+"Create a new note from scratch, using some text from another application or "
+"from another note."
+msgstr ""
+"Jak vytvořit novou poznámku od nuly nebo s použitím textu z jiné aplikace "
+"nebo jiné poznámky."
+
+#. (itstool) path: page/title
+#: C/create.page:36
+msgid "Create a note"
+msgstr "Vytvoření poznámky"
+
+#. (itstool) path: page/p
+#: C/create.page:38
+msgid "You can create a new note in three different ways:"
+msgstr "Novou poznámku můžete vytvořit třemi způsoby:"
+
+#. (itstool) path: item/p
+#: C/create.page:41
+msgid ""
+"Click the <gui style=\"button\">New</gui> button to create a blank note."
+msgstr ""
+"Kliknutím na tlačítko <gui style=\"button\">Nová</gui> vytvoříte prázdnou "
+"poznámku."
+
+#. (itstool) path: item/p
+#: C/create.page:45
+msgid ""
+"Drag and drop text to the <gui>New and Recent</gui> view to create a note "
+"containing this text."
+msgstr ""
+"Přetažením a upuštěním textu na zobrazení <gui>Nové a nedávné</gui> se "
+"vytvoří poznámka obsahující dotyčný text."
+
+#. (itstool) path: item/p
+#: C/create.page:49
+msgid ""
+"Open a note, select some text and click the <gui style=\"button\">Copy "
+"selection to a new note</gui> button to create a note containing this text."
+msgstr ""
+"Otevřete poznámku, vyberte text a kliknutím na tlačítko <gui style=\"button"
+"\">Kopírovat výběr do nové poznámky</gui> vytvoříte poznámku obsahující "
+"tento text."
+
+#. (itstool) path: info/desc
+#: C/delete.page:32
+msgid "Delete old and unwanted notes."
+msgstr "Jak smazat staré a nepotřebné poznámky."
+
+#. (itstool) path: page/title
+#: C/delete.page:35
+msgid "Delete a note"
+msgstr "Smazání poznámky"
+
+#. (itstool) path: steps/title
+#: C/delete.page:38
+msgid "To delete a note:"
+msgstr "Abyste smazali poznámku:"
+
+#. (itstool) path: item/p
+#: C/delete.page:43
+msgid ""
+"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Move to Trash</gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
+"\"menuitem\">Přesunout do koše</gui></guiseq>."
+
+#. (itstool) path: steps/title
+#: C/delete.page:49
+msgid "To delete multiple notes and notebooks:"
+msgstr "Abyste smazali více poznámek a sešitů:"
+
+#. (itstool) path: item/p
+#: C/delete.page:55
+msgid "Select the notes and the notebooks you want to delete."
+msgstr "Vyberte poznámky a sešity, které chcete smazat."
+
+#. (itstool) path: item/p
+#: C/delete.page:58
+msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
+msgstr "Klikněte na tlačítko <gui style=\"button\">Přesunout do koše</gui>."
+
+#. (itstool) path: media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/introduction.page:38
+msgctxt "_"
+msgid ""
+"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+msgstr ""
+"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+
+#. (itstool) path: info/desc
+#: C/introduction.page:28
+msgid "A simple application for creating, editing and viewing notes."
+msgstr "Jednoduchá aplikace pro vytváření, úpravy a prohlížení poznámek."
+
+#. (itstool) path: page/title
+#: C/introduction.page:31
+msgid "Introduction to Notes"
+msgstr "Úvod do aplikace Poznámky"
+
+#. (itstool) path: page/p
+#: C/introduction.page:33
+msgid ""
+"<app>Notes</app> is a simple application for creating, editing, and viewing "
+"notes. You can also search for a note from the <gui>Activities</gui> "
+"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+msgstr ""
+"<app>Poznámky</app> jsou jednoduchá aplikace pro vytváření, úpravy a "
+"prohlížení poznámek. Poznámky můžete také vyhledávat v přehledu "
+"<gui>Činností</gui>. <app>Poznámky</app> umí jednoduše spolupracovat s "
+"<app>Účty on-line</app>."
+
+#. (itstool) path: info/desc
+#: C/formatting.page:32
+msgid "Apply different formatting options to the text."
+msgstr "Jak použít jiné formátování textu."
+
+#. (itstool) path: page/title
+#: C/formatting.page:35
+msgid "Change the text style"
+msgstr "Změna stylu textu"
+
+#. (itstool) path: steps/title
+#: C/formatting.page:38
+msgid "To change the formatting options of text in your note:"
+msgstr "Když chcete změnit formátování textu ve své poznámce:"
+
+#. (itstool) path: item/p
+#: C/formatting.page:40
+msgid "Select the text that you want to format."
+msgstr "Vyberte text, u kterého chcete formát změnit."
+
+#. (itstool) path: item/p
+#: C/formatting.page:43
+msgid ""
+"Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
+"or <gui style=\"button\">Strike</gui>."
+msgstr ""
+"Klikněte na <gui style=\"button\">Tučné</gui> a/nebo <gui style=\"button"
+"\">Kurzíva</gui> a/nebo <gui style=\"button\">Přeškrtnuté</gui>."
+
+#. (itstool) path: info/desc
+#: C/search.page:32
+msgid "Search for an existing note, note content and notebooks."
+msgstr "Jak najít existující poznámku, obsah poznámky a sešit."
+
+#. (itstool) path: page/title
+#: C/search.page:35
+msgid "Find a note"
+msgstr "Vyhledání poznámky"
+
+#. (itstool) path: page/p
+#: C/search.page:37
+msgid "The default <em>New and Recent</em> view shows recently used notes."
+msgstr "Zobrazení <em>Nové a nedávné</em> zobrazuje nedávno použité poznámky."
+
+#. (itstool) path: steps/title
+#: C/search.page:40
+msgid "To find notes while in <em>New and Recent</em>:"
+msgstr ""
+"Když máte zobrazeny <em>Nové a nedávné</em> a chcete vyhledat poznámku:"
+
+#. (itstool) path: item/p
+#: C/search.page:42
+msgid "Click the <gui>Search</gui> button."
+msgstr "Klikněte na tlačítko <gui>Hledat</gui>."
+
+#. (itstool) path: item/p
+#: C/search.page:45
+msgid "Type your search term. Search results will appear instantly."
+msgstr ""
+"Pište výraz, který chcete najít. Výsledky se budou zobrazovat průběžně."
+
+#. (itstool) path: note/p
+#: C/search.page:49
+msgid "You can also search for notes from the <gui>Activities</gui> overview."
+msgstr "Poznámku můžete hledat také v přehledu <gui>Činností</gui>."
+
+#. (itstool) path: info/desc
+#: C/rename.page:23
+msgid "Change the name of an existing note."
+msgstr "Jak změnit název stávající poznámky."
+
+#. (itstool) path: page/title
+#: C/rename.page:26
+msgid "Rename a note"
+msgstr "Přejmenování poznámky"
+
+#. (itstool) path: steps/title
+#: C/rename.page:29
+msgid "To rename a note:"
+msgstr "Když chcete poznámku přejmenovat:"
+
+#. (itstool) path: item/p
+#: C/rename.page:34
+msgid "Change the text in the first line of the note."
+msgstr "Změňte text na prvním řádku poznámky."
+
+#. (itstool) path: info/desc
+#: C/share.page:32
+msgid "Email a note to your contacts."
+msgstr "Jak poslat poznámku e-mailem svým kontatkům."
+
+#. (itstool) path: page/title
+#: C/share.page:35
+msgid "Share a note"
+msgstr "Sdílení poznámky"
+
+#. (itstool) path: steps/title
+#: C/share.page:38
+msgid "To share a note:"
+msgstr "Když chcete poznámku sdílet:"
+
+#. (itstool) path: item/p
+#: C/share.page:43
+msgid ""
+"Click the <gui style=\"button\">Share note</gui> button. Your default email "
+"client will start up."
+msgstr ""
+"Klikněte na tlačítko <gui style=\"button\">Sdílet poznámku</gui>. Spustí se "
+"váš výchozí poštovní klient."
+
+#. (itstool) path: item/p
+#: C/share.page:47
+msgid "Send the note by email."
+msgstr "Odešlete poznámku e-mailem."
+
+#. (itstool) path: info/title
+#: C/index.page:6
+msgctxt "link"
+msgid "Notes"
+msgstr "Poznámky"
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "text"
+msgid "Notes"
+msgstr "Poznámky"
+
+#. (itstool) path: page/title
+#: C/index.page:25
+msgid "<_:media-1/> Notes"
+msgstr "<_:media-1/> Poznámky"
+
+#. (itstool) path: section/title
+#: C/index.page:32
+msgid "Create notes"
+msgstr "Vytváření poznámek"
+
+#. (itstool) path: section/title
+#: C/index.page:35
+msgid "Edit and share notes"
+msgstr "Úpravy a sdílení poznámek"
+
+#. (itstool) path: section/title
+#: C/index.page:38
+msgid "Delete notes"
+msgstr "Mazání poznámek"
+
+#. (itstool) path: info/desc
+#: C/listing.page:32
+msgid "format a note with ordered and unordered lists."
+msgstr "Jak formátovat poznámku jak číslovaný nebo odrážkový seznam."
+
+#. (itstool) path: page/title
+#: C/listing.page:35
+msgid "Create a list"
+msgstr "Vytvoření seznamu"
+
+#. (itstool) path: list/title
+#: C/listing.page:38
+msgid "While the note is open:"
+msgstr "Když je poznámka otevřená:"
+
+#. (itstool) path: item/p
+#: C/listing.page:40
+msgid ""
+"To create an unordered list, click <guiseq><gui style=\"button\">More "
+"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+msgstr ""
+"Klikněte na <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
+"\"menuitem\">Odrážky</gui></guiseq>, aby se vytvořil nečíslovaný seznam s "
+"odrážkami."
+
+#. (itstool) path: item/p
+#: C/listing.page:45
+msgid ""
+"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
+"</gui> <gui>Numbered List</gui></guiseq>."
+msgstr ""
+"Klikněte na <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
+"\"menuitem\">Číslovaný seznam</gui></guiseq>, aby se vytvořil číslovaný "
+"seznam."
+
+#. (itstool) path: info/desc
+#: C/cut-copy-paste.page:23
+msgid "Cut, copy and paste is simple to use."
+msgstr "Jak jednoduše použít vyjmutí, kopírování a vložení."
+
+#. (itstool) path: page/title
+#: C/cut-copy-paste.page:26
+msgid "Cut, copy and paste"
+msgstr "Vyjmutí, kopírování a vložení"
+
+#. (itstool) path: steps/title
+#: C/cut-copy-paste.page:29
+msgid "To cut, copy or paste in a note:"
+msgstr "Když chcete v poznámce vyjmout, kopírovat nebo vložit:"
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:31
+msgid "Select the text."
+msgstr "Vyberte text."
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:33
+msgid ""
+"Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> or "
+"<gui style=\"button\">Paste</gui>."
+msgstr ""
+"Klikněte na <gui style=\"button\">Vyjmout</gui>, <gui style=\"button"
+"\">Kopírovat</gui> nebo <gui style=\"button\">Vložit</gui>."
+
+#. (itstool) path: p/link
+#: C/legal.xml:5
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+
+#. (itstool) path: license/p
+#: C/legal.xml:4
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Tato práce je licencována pod <_:link-1/>"

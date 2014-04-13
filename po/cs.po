@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-21 15:53+0000\n"
-"PO-Revision-Date: 2014-02-21 20:56+0100\n"
+"POT-Creation-Date: 2014-04-13 14:56+0000\n"
+"PO-Revision-Date: 2014-04-13 19:24+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -111,29 +111,29 @@ msgstr "Jednoduchý poznámkový sešit pro GNOME"
 msgid "translator-credits"
 msgstr "Marek Černocký, <marek@manet.cz>"
 
-#: ../src/bjb-bijiben.c:387
+#: ../src/bjb-bijiben.c:392
 msgid "Show the application's version"
 msgstr "Zobrazit verzi aplikace"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:394
 msgid "[FILE...]"
 msgstr "[SOUBOR…]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:401
 msgid "Take notes and export them everywhere."
 msgstr "Pořídit poznámku a exportovat ji na všechna místa."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:411
 msgid "Could not parse arguments"
 msgstr "Nelze zpracovat argumenty"
 
-#: ../src/bjb-bijiben.c:414
+#: ../src/bjb-bijiben.c:419
 msgid "GNOME Notes"
 msgstr "Poznámky GNOME"
 
-#: ../src/bjb-bijiben.c:424
+#: ../src/bjb-bijiben.c:429
 msgid "Could not register the application"
 msgstr "Nelze zaregistrovat aplikaci"
 
@@ -142,33 +142,33 @@ msgid "Note Color"
 msgstr "Barva poznámky"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:347
 msgid "Cut"
 msgstr "Vyjmout"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:354
 msgid "Copy"
 msgstr "Kopírovat"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:360
 msgid "Paste"
 msgstr "Vložit"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:375
 msgid "Bold"
 msgstr "Tučné"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:385
 msgid "Italic"
 msgstr "Kurzíva"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:395
 msgid "Strike"
 msgstr "Přeškrtnuté"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:423
 msgid "Copy selection to a new note"
 msgstr "Kopírovat výběr do nové poznámky"
 
@@ -245,113 +245,120 @@ msgid "Search note titles, content and notebooks"
 msgstr "Hledat v názvech a obsahu poznámek a v sešitech"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Ukončit režim výběru"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Výsledky pro %s"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "Nová"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "Režim výběru"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "Zobrazit poznámky a sešity jako seznam"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "Zobrazit poznámky a sešity v mřížce"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "Koš"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "Vyprázdnit"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Bez názvu"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:761
 msgid "Open in New Window"
 msgstr "Otevřít v novém okně"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:772
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:780
 msgid "Redo"
 msgstr "Znovu"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:795
 msgid "Bullets"
 msgstr "Odrážky"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:802
 msgid "Numbered List"
 msgstr "Číslovaný seznam"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Sešity"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:826
 msgid "Email this Note"
 msgstr "Poslat tuto poznámku e-mailem"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:898
 msgid "More options…"
 msgstr "Další volby…"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:391
 msgid "Note color"
 msgstr "Barva poznámky"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "Sešit"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "Poznámka"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "Naposledy aktualizováno"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:186
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Naposledy aktualizováno<b> %s"
 
 #: ../src/bjb-organize-dialog.c:399
 msgid "Enter a name to create a notebook"
@@ -371,21 +378,21 @@ msgid "_OK"
 msgstr "_Budiž"
 
 #. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#: ../src/bjb-selection-toolbar.c:385
 msgid "Restore"
 msgstr "Obnovit"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:401
 msgid "Share note"
 msgstr "Sdílet poznámku"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:405
 msgid "Open in another window"
 msgstr "Otevřít v jiném okně"
 
 #. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#: ../src/bjb-selection-toolbar.c:417
 msgid "Permanently Delete"
 msgstr "Smazat trvale"
 
@@ -436,7 +443,7 @@ msgstr "tento rok"
 msgid "Unknown"
 msgstr "neznámo kdy"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Místní úložiště"
 

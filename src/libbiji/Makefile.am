@@ -40,8 +40,6 @@ libbiji_la_SOURCES =  \
 	biji-info-set.h \
 	biji-item.c \
 	biji-item.h \
-	biji-local-note.c \
-	biji-local-note.h \
 	biji-manager.c \
 	biji-manager.h \
 	biji-notebook.c \
@@ -70,6 +68,8 @@ libbiji_la_SOURCES =  \
 	editor/biji-webkit-editor.h \
 	provider/biji-import-provider.c \
 	provider/biji-import-provider.h \
+	provider/biji-local-note.c \
+	provider/biji-local-note.h \
 	provider/biji-local-provider.c \
 	provider/biji-local-provider.h \
 	provider/biji-own-cloud-note.c \

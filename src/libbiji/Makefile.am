@@ -131,3 +131,5 @@ biji-marshalers.c: biji-marshalers.list biji-marshalers.h Makefile
 		&& cp xgen-tmc biji-marshalers.c \
 		&& rm -f xgen-tmc \
 	)
+
+-include $(top_srcdir)/git.mk

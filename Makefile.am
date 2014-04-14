@@ -27,6 +27,23 @@ DISTCLEANFILES = intltool-extract \
 	intltool-update \
 	po/.intltool-merge-cache
 
+
+MAINTAINERCLEANFILES = \
+	$(srcdir)/ChangeLog \
+	$(srcdir)/INSTALL \
+	$(srcdir)/aclocal.m4 \
+	$(srcdir)/compile \
+	$(srcdir)/config.guess \
+	$(srcdir)/config.h.in \
+	$(srcdir)/config.sub \
+	$(srcdir)/depcomp \
+	$(srcdir)/docs/ \
+	$(srcdir)/git.mk \
+	$(srcdir)/install-sh \
+	$(srcdir)/ltmain.sh \
+	$(srcdir)/m4/ \
+	$(srcdir)/missing
+
 # Build ChangeLog from git history
 ChangeLog:
 	@if test -f $(top_srcdir)/.git/HEAD; then \
@@ -36,3 +53,5 @@ ChangeLog:
 dist: ChangeLog
 
 .PHONY: ChangeLog
+
+-include $(top_srcdir)/git.mk

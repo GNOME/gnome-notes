@@ -23,3 +23,5 @@ HELP_FILES = \
 HELP_MEDIA = \
 	figures/HighContrast_apps_scalable_bijiben.svg \
 	figures/notes-scr.png
+
+-include $(top_srcdir)/git.mk

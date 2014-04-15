@@ -3,7 +3,7 @@
 
 HELP_ID = bijiben
 
-HELP_LINGUAS = cs el es fr hu
+HELP_LINGUAS = cs el es fr hu pt_BR
 
 HELP_FILES = \
 	colors.page \
@@ -23,3 +23,5 @@ HELP_FILES = \
 HELP_MEDIA = \
 	figures/HighContrast_apps_scalable_bijiben.svg \
 	figures/notes-scr.png
+
+-include $(top_srcdir)/git.mk

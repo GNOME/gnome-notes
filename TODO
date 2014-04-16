@@ -1,13 +1,1 @@
-   BUGS
- * fix copy and paste for notes edition
- * gnome-activity-journal cannot open notes
-
-   UI ENHANCEMENT
- * improve last updated footer
- * drop clutter
-
-   ROADMAP
- * imap notes
- * being able to integrate vjournal, plain txt, html notes, html text
- * export (tomboy is priority)
-
+This is maintained online on https://wiki.gnome.org/Apps/Bijiben/Hacking

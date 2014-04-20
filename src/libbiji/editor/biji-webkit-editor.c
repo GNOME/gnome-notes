@@ -350,7 +350,15 @@ biji_webkit_editor_constructed (GObject *obj)
   body = biji_note_obj_get_html (priv->note);
 
   if (!body)
-    body = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body></body></html>";
+    body = "<html xmlns='http://www.w3.org/1999/xhtml'>"
+           "<body contenteditable='true' id='editable'>"
+           "<script type='text/javascript'>"
+           "    window.onload = function() {"
+           "        document.getElementById('editable').focus();"
+           "    };"
+           "</script>"
+           "</body>"
+           "</html>";
 
   webkit_web_view_load_string (view, body, "application/xhtml+xml", NULL, NULL);
 

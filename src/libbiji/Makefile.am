@@ -72,6 +72,10 @@ libbiji_la_SOURCES =  \
 	provider/biji-local-note.h \
 	provider/biji-local-provider.c \
 	provider/biji-local-provider.h \
+	provider/biji-memo-note.c \
+	provider/biji-memo-note.h \
+	provider/biji-memo-provider.c \
+	provider/biji-memo-provider.h \
 	provider/biji-own-cloud-note.c \
 	provider/biji-own-cloud-note.h \
 	provider/biji-own-cloud-provider.c \

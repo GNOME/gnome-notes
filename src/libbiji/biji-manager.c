@@ -24,6 +24,7 @@
 
 #include "provider/biji-import-provider.h"
 #include "provider/biji-local-provider.h"
+#include "provider/biji-memo-provider.h"
 #include "provider/biji-own-cloud-provider.h"
 
 
@@ -525,8 +526,21 @@ _add_provider (BijiManager *self,
 
   info = biji_provider_get_info (provider);
   g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);
-  g_signal_connect (provider, "loaded", 
+  g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);
+}
+
+
+
+
+void
+biji_manager_add_e_source_extension_memo (BijiManager *self,
+                                          ESource *source)
+{
+  BijiProvider *provider = NULL;
+
+  provider = biji_memo_provider_new (self, source);
+  _add_provider (self, provider);
 }
 
 

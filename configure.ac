@@ -58,15 +58,19 @@ AM_PROG_LIBTOOL
 GLIB_REQUIRED_VERSION=2.28
 GTK_REQUIRED_VERSION=3.11.4
 
+
 PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-sparql-1.0"],
    [PKG_CHECK_MODULES([TRACKER], [tracker-sparql-0.18], [sparql_version="tracker-sparql-0.18"])
 ])
 
 PKG_CHECK_MODULES(BIJIBEN,
-                  [ gio-unix-2.0
+                  [ evolution-calendar-3.0
+		    evolution-data-server-1.2
+                    gio-unix-2.0
                     glib-2.0 >= $GLIB_REQUIRED_VERSION
                     goa-1.0
                     gtk+-3.0 >= $GTK_REQUIRED_VERSION
+		    libecal-1.2
                     libxml-2.0
                     $sparql_version
                     uuid

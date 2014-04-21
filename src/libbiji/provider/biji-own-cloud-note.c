@@ -403,7 +403,7 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
 
     uuid_generate (unique);
     uuid_unparse_lower (unique, out);
-    
+
     info->url = g_strdup_printf ("%s/%s.txt",
                   biji_own_cloud_provider_get_readable_path (prov),
                   out);

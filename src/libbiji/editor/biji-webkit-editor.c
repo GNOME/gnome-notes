@@ -274,7 +274,7 @@ on_content_changed (WebKitWebView *view)
   {
     gchar *title;
     gchar *unique_title;
-  
+
     title = rows[0];
 
     if (g_strcmp0 (title, biji_item_get_title (BIJI_ITEM (note))) != 0)

@@ -11,8 +11,13 @@
 #include "biji-info-set.h"
 #include "biji-note-obj.h"
 
+
+#include <libedataserver/libedataserver.h> /* ESourceRegistry */
+
 #define GOA_API_IS_SUBJECT_TO_CHANGE
 #include <goa/goa.h>
+
+
 
 G_BEGIN_DECLS
 
@@ -62,7 +67,7 @@ struct _BijiManager
 
 
 
-GType biji_manager_get_type (void) G_GNUC_CONST; 
+GType biji_manager_get_type (void) G_GNUC_CONST;
 
 
 
@@ -74,6 +79,12 @@ BijiManager     *biji_manager_new                   (GFile *location,
 void             biji_manager_import_uri            (BijiManager *manager,
                                                      gchar *target_provider_id,
                                                      gchar *uri);
+
+
+
+void             biji_manager_add_e_source_extension_memo
+                                                    (BijiManager *self,
+                                                     ESource *source);
 
 
 void             biji_manager_add_goa_object        (BijiManager *manager,

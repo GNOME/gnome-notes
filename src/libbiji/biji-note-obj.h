@@ -57,13 +57,46 @@ struct _BijiNoteObjClass
   BijiItemClass parent_class;
 
   gchar*        (*get_basename)      (BijiNoteObj *note);
+
+  /*
+   * Mandatory. Provide the latest note html.
+   * Use html_from_plain_text if needed. */
   gchar*        (*get_html)          (BijiNoteObj *note);
+
+  /*
+   * Mandatory. When editor amends html, assign it */
   void          (*set_html)          (BijiNoteObj *note, gchar *html);
+
+  /*
+   * Mandatory. Store the note. This might be async. */
   void          (*save_note)         (BijiNoteObj *note);
+
+  /*
+   * Mandatory
+   * Move the note to trash bin. What to do depends on the provider
+   * Return FALSE is this fails.
+   * If the provider does not support trash,
+   * you should delete the note */
   gboolean      (*archive)           (BijiNoteObj *note);
+
+  /*
+   * Mandatory
+   * Return TRUE if the note is marked as trashed in any way
+   * (depending on the provider)
+   *
+   * Return FALSE if the note is note trashed.
+   *
+   * If the provider does not suport this, return FALSE */
   gboolean      (*is_trashed)        (BijiNoteObj *note);
+
+  /*
+   * Mandatory
+   * Return TRUE if the note can store rich text:
+   * - bold, italic, srike
+   */
   gboolean      (*can_format)        (BijiNoteObj *note);
 };
+
 
 struct _BijiNoteObj
 {

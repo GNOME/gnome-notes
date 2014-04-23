@@ -1,23 +1,24 @@
 # Indonesian translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Andika Triwidada <andika@gmail.com>, 2013, 2014.
 #
+# Andika Triwidada <andika@gmail.com>, 2013, 2014.
+# Dirgita <dirgitadevina@yahoo.co.id>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-21 03:53+0000\n"
-"PO-Revision-Date: 2014-02-21 14:19+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: Indonesian <gnome@i15n.org>\n"
+"POT-Creation-Date: 2014-04-05 21:07+0000\n"
+"PO-Revision-Date: 2014-04-08 11:56+0700\n"
+"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -28,7 +29,7 @@ msgstr ""
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
-"Itu mengijinkan penggunaan ownCloud sebagai lokasi penyimpanan dan "
+"Itu mengizinkan penggunaan ownCloud sebagai lokasi penyimpanan dan "
 "penyunting daring."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
@@ -113,29 +114,29 @@ msgstr "Buku catatan sederhana bagi GNOME"
 msgid "translator-credits"
 msgstr "Andika Triwidada <andika@gmail.com>, 2013, 2014"
 
-#: ../src/bjb-bijiben.c:387
+#: ../src/bjb-bijiben.c:396
 msgid "Show the application's version"
 msgstr "Tampilkan versi aplikasi"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:398
 msgid "[FILE...]"
 msgstr "[BERKAS...]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:405
 msgid "Take notes and export them everywhere."
 msgstr "Merekam catatan dan mengekspor mereka kemana-mana."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:415
 msgid "Could not parse arguments"
 msgstr "Tak bisa mengurai argumen"
 
-#: ../src/bjb-bijiben.c:414
+#: ../src/bjb-bijiben.c:423
 msgid "GNOME Notes"
 msgstr "GNOME Catatan"
 
-#: ../src/bjb-bijiben.c:424
+#: ../src/bjb-bijiben.c:433
 msgid "Could not register the application"
 msgstr "Tak bisa mendaftarkan aplikasi"
 
@@ -245,111 +246,113 @@ msgid "Search note titles, content and notebooks"
 msgstr "Cari judul catatan, isi, dan buku catatan"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Keluar mode pemilihan"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Hasil bagi %s"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Baru dan Terkini"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "Baru"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "Mode pemilihan"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "Lihat catatan dan buku catatan dalam suatu daftar"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "Lihat catatan dan buku catatan dalam suatu kisi"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "Tong Sampah"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "Kosong"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Tanpa Judul"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:763
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:774
 msgid "Undo"
 msgstr "Batal"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:782
 msgid "Redo"
 msgstr "Jadi Lagi"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:797
 msgid "Bullets"
 msgstr "Bulet"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:804
 msgid "Numbered List"
 msgstr "Daftar Bernomor"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:386
 msgid "Notebooks"
 msgstr "Buku Catatan"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:828
 msgid "Email this Note"
 msgstr "Surelkan Catatan ini"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Pindahkan ke Tong Sampah"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Lebih banyak opsi..."
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
 msgid "Note color"
 msgstr "Warna catatan"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "Buku Catatan"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "Catatan"
 
 #. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
+#: ../src/bjb-note-view.c:225
 msgid "Last updated"
 msgstr "Terakhir diperbarui"
 
@@ -436,7 +439,7 @@ msgstr "Tahun ini"
 msgid "Unknown"
 msgstr "Tak diketahui"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:361
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
 
@@ -463,3 +466,4 @@ msgstr "Tent_ang"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Keluar"
+

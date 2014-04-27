@@ -310,12 +310,42 @@ memo_set_html (BijiNoteObj *note, gchar *html)
 
 
 
+
+static void
+on_memo_deleted (GObject *ecal,
+                 GAsyncResult *res,
+                 gpointer user_data)
+{
+  GError *error = NULL;
+
+  e_cal_client_remove_object_finish (E_CAL_CLIENT (ecal),
+                                     res, &error);
+
+  if (error)
+  {
+    g_warning ("Could not delete memo:%s", error->message);
+  }
+}
+
+
 static gboolean
 memo_delete (BijiNoteObj *note)
 {
-  g_warning ("delete is not implemented yet");
+  BijiMemoNote *self;
+  const gchar *uid;
 
-  return FALSE;
+  self = BIJI_MEMO_NOTE (note);
+  e_cal_component_get_uid (self->priv->ecal, &uid);
+  e_cal_client_remove_object (self->priv->client,
+                              uid,
+                              NULL,               /* rid : all occurences */
+                              E_CAL_OBJ_MOD_ALL,  /*       all occurences */
+                              NULL,               /* Cancellable */
+                              on_memo_deleted,
+                              self);
+
+
+  return TRUE;
 }
 
 
@@ -325,6 +355,20 @@ memo_get_html (BijiNoteObj *note)
   // we cast but the func should expect a const gchar, really
   return html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (note));
 }
+
+
+
+static gchar *
+memo_get_basename (BijiNoteObj *note)
+{
+  const gchar *out;
+
+  e_cal_component_get_uid (
+    BIJI_MEMO_NOTE (note)->priv->ecal, &out);
+
+  return g_strdup (out);
+}
+
 
 
 
@@ -377,7 +421,7 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   item_class->has_color = item_no;
   item_class->get_place = memo_get_place;
 
-  note_class->get_basename = NULL;
+  note_class->get_basename = memo_get_basename;
   note_class->get_html = memo_get_html;
   note_class->set_html = memo_set_html;
   note_class->save_note = memo_note_save;
@@ -419,10 +463,10 @@ biji_memo_note_new_from_info          (BijiMemoProvider *provider,
   id = biji_note_id_new_from_info (info);
 
   ret = g_object_new (BIJI_TYPE_MEMO_NOTE,
-                       "manager", manager,
-                       "id", id,
-	               "ecal", component,
-                       NULL);
+                      "manager", manager,
+                      "id", id,
+	              "ecal", component,
+                      NULL);
 
   ret->priv->id = id;
   ret->priv->provider = BIJI_PROVIDER (provider);

@@ -60,7 +60,8 @@ struct _BijiNoteObjClass
 
   /*
    * Mandatory. Provide the latest note html.
-   * Use html_from_plain_text if needed. */
+   * Use html_from_plain_text if needed.
+   * This sring must be allocated. use g_strdup if needed. */
   gchar*        (*get_html)          (BijiNoteObj *note);
 
   /*

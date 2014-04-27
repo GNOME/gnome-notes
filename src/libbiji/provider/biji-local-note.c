@@ -55,7 +55,7 @@ gchar *
 local_note_get_html (BijiNoteObj *note)
 {
   if (BIJI_IS_LOCAL_NOTE (note))
-    return BIJI_LOCAL_NOTE (note)->priv->html;
+    return g_strdup (BIJI_LOCAL_NOTE (note)->priv->html);
 
   else
     return NULL;

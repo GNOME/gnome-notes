@@ -21,7 +21,7 @@
 
 
 #include <libedataserver/libedataserver.h> /* ESourceRegistry */
-//#include <libecal/libecal.h>               /* ECalClient      */
+#include <libecal/libecal.h>               /* ECalClient      */
 
 #include "../biji-manager.h"
 #include "biji-provider.h"
@@ -64,6 +64,15 @@ GType           biji_memo_provider_get_type     (void) G_GNUC_CONST;
 
 BijiProvider   *biji_memo_provider_new          (BijiManager *manager,
                                                  ESource     *source);
+
+
+
+gboolean        icaltime_from_time_val          (glong          t,
+                                                 icaltimetype *out);
+
+
+gboolean        time_val_from_icaltime          (icaltimetype *itt,
+                                                 glong *result);
 
 
 G_END_DECLS

@@ -115,6 +115,8 @@ fill_in_components (ECalComponent *comp,
 {
   ECalComponentText  text;
   GSList             l;
+  glong              mtime;
+  icaltimetype       t;
 
 
   /* ----------------- FIELDS FROM "memo_page_fill_components"------------------ */
@@ -160,9 +162,13 @@ fill_in_components (ECalComponent *comp,
   /* -------------- OHER FILEDS (from specification) -------
    *    FIXME: some of theme belong somewhere above....
    *
-   * Unique: created / description / dtstamp / last-mod / recurid / status / url /
+   * Unique: created / description / dtstamp / recurid / status / url /
    * Several: attach / attendee / comment / contact / related / rstatus / x-prop
   */
+
+  mtime = biji_item_get_mtime (BIJI_ITEM (self));
+  if (icaltime_from_time_val (mtime, &t))
+    e_cal_component_set_last_modified (clone, &t);
 }
 
 

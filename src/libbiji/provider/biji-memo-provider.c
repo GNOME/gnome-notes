@@ -69,6 +69,50 @@ static GParamSpec *properties[BIJI_MEMO_PROP] = { NULL, };
 /* Memos */
 
 
+gboolean
+time_val_from_icaltime (icaltimetype *itt, glong *result)
+{
+  GTimeVal t;
+  gchar *iso;
+
+  t.tv_sec = 0;
+  t.tv_usec = 0;
+
+  iso = isodate_from_time_t (icaltime_as_timet (*itt));
+
+  if (g_time_val_from_iso8601 (iso, &t))
+  {
+    *result = t.tv_sec;
+    g_free (iso);
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+
+
+gboolean
+icaltime_from_time_val (glong t, icaltimetype *out)
+{
+  GTimeVal tv;
+  GDate    *date;
+
+  tv.tv_sec = t;
+  tv.tv_usec = 0;
+
+  date = g_date_new ();
+  g_date_set_time_val (date, &tv);
+  *out = icaltime_from_day_of_year (
+    g_date_get_day_of_year (date),
+    g_date_get_year (date));
+
+  g_date_free (date);
+  return TRUE;
+}
+
+
+
 typedef struct
 {
   ECalComponent     *ecal;
@@ -208,31 +252,6 @@ on_object_list_got (GObject      *obj,
     return;
   }
 
-/*
- * ECALCOMPONENT
- * uid, categories, created (or dtstart), last modified,
- * summary,
- *
- * but the tricky part is description,
- * since ical says as-many-descriptions-as-you-want
- * while we need a single content.
- * Let's start with something simple: take the last
- * description we find.
- *
- * e_cal_component_free_******
- *
- */
-
-
-/*
-
-void                e_cal_client_get_timezone           (ECalClient *client,
-                                                         const gchar *tzid,
-                                                         GCancellable *cancellable,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);
-*/
-
   for (l=self->priv->memos; l!=NULL; l=l->next)
   {
     ECalComponent      *co; /* Memo */
@@ -240,57 +259,44 @@ void                e_cal_client_get_timezone           (ECalClient *client,
     const gchar        *uid;
     BijiMemoItem       *item;
     icaltimetype       *t;
-    gchar              *iso;
-    //GTimeVal            time = {0;0};
-    //gint64              sec;
+    glong               time, dtstart;
+    ECalComponentDateTime tz;
+
 
     item = memo_item_new (self);
     item->set.datasource_urn = g_strdup (self->priv->info.datasource);
     co = item->ecal = e_cal_component_new_from_icalcomponent (l->data);
 
-#ifdef FALSE
-//iso8601 => g_time_val.tv_sec
-struct icaltimetype
-{
-int year;	/**< Actual year, e.g. 2001. */
-int month;	/**< 1 (Jan) to 12 (Dec). */
-int day;
-int hour;
-int minute;
-int second;
-int is_utc; /**< 1-> time is in UTC timezone */
-int is_date; /**< 1 -> interpret this as date. */
-int is_daylight; /**< 1 -> time is in daylight savings time. */
-const icaltimezone *zone;	/**< timezone */
-};
-#endif
-
+    /* Summary, url */
     e_cal_component_get_summary (co, &text);
     item->set.title = g_strdup (text.value);
     e_cal_component_get_uid (co, &uid);
     item->set.url = g_strdup (uid);
 
-    /* Set url contains timezone. Not the-right-thing-to-do however */
 
-    // time: we expect something like time.tv_sec (sec since)
+    /* Last modified, created */
+    e_cal_component_get_dtstart (co, &tz);
+    if (time_val_from_icaltime (tz.value, &time))
+      dtstart = time;
+    else
+      dtstart = 0;
+    // e_cal_component_free_datetime()
+
     e_cal_component_get_last_modified (co, &t); // or dtstart
-//gchar *             isodate_from_time_t                 (time_t t);
-
-    iso = g_strdup_printf  ("%i-%i-%iT%i:%i:%i",
-                            t->year,
-                            t->month,
-			    t->day,
-			    t->hour,
-			    t->minute,
-			    t->second);
-    g_warning ("iso=%s", iso);
-
-    item->set.mtime = 0;
+    if (time_val_from_icaltime (t, &time))
+      item->set.mtime = time;
+    else
+      item->set.mtime = dtstart;
     e_cal_component_free_icaltimetype (t);
+
     e_cal_component_get_created (co, &t); // or dtstart
-    item->set.created = 0;
+    if (time_val_from_icaltime (t, &time))
+      item->set.created = time;
+    else
+      item->set.created = dtstart;
     e_cal_component_free_icaltimetype (t);
 
+    /* Description */
     e_cal_component_get_description_list (co, &desc);
     for (ll=desc; ll!=NULL; ll=ll->next)
     {
@@ -298,7 +304,6 @@ const icaltimezone *zone;	/**< timezone */
 
       if (txt->value != NULL)
       {
-        //g_warning ("txt value got: memo %s has\n %s\n====", item->set.title, txt->value);
         item->set.content = g_strdup (txt->value);
 	break;
       }

@@ -26,6 +26,7 @@
 
 
 #include <libecal/libecal.h>        /* ECalClient      */
+#include <libgd/gd.h>               /* Embed in frame  */
 
 #include "biji-memo-provider.h"
 #include "biji-memo-note.h"
@@ -38,6 +39,7 @@ struct _BijiMemoProviderPrivate
   BijiProviderInfo     info;
   ESource             *source;
   ECalClient          *client;
+  GtkWidget           *icon;
 
   /* Startup */
   GSList              *memos;
@@ -370,6 +372,62 @@ on_notes_mined (GObject       *source_object,
 }
 
 
+
+/* From gnome-calendar */
+GdkPixbuf*
+get_pixbuf_from_color    (GdkColor              *color, gint size)
+{
+  cairo_surface_t *surface;
+  cairo_t *cr;
+  gint width, height;
+  GdkPixbuf *pix;
+
+
+  width = height = size;
+  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
+  cr = cairo_create (surface);
+
+  cairo_set_source_rgb (cr,
+                        color->red / 65535.0,
+                        color->green / 65535.0,
+                        color->blue / 65535.0);
+  cairo_rectangle (cr, 0, 0, width, height);
+  cairo_fill (cr);
+  cairo_destroy (cr);
+  pix = gdk_pixbuf_get_from_surface (surface,
+                                     0, 0,
+                                     width, height);
+  cairo_surface_destroy (surface);
+  return pix;
+}
+
+
+static gboolean
+_get_icon (BijiMemoProvider *self,
+           GtkWidget        **result)
+{
+  ESourceExtension *ext;
+  GdkColor          color;
+  GdkPixbuf        *pix, *embed;
+  GtkBorder         frame_slice = { 4, 3, 3, 6 };
+
+  ext = e_source_get_extension (self->priv->source, E_SOURCE_EXTENSION_MEMO_LIST);
+  if (!gdk_color_parse (e_source_selectable_get_color (E_SOURCE_SELECTABLE (ext)), &color))
+    return FALSE;
+
+  pix = get_pixbuf_from_color (&color, 48);
+  embed = gd_embed_image_in_frame (pix, "resource:///org/gnome/bijiben/thumbnail-frame.png",
+                                    &frame_slice, &frame_slice);
+  *result = gtk_image_new_from_pixbuf (embed);
+
+  g_clear_object (&pix);
+  g_clear_object (&embed);
+
+  return TRUE;
+}
+
+
+
 /*
  * Once the client is connected,
  * mine notes for this.
@@ -393,8 +451,6 @@ on_client_connected (GObject      *obj,
   }
 
   self->priv->client = E_CAL_CLIENT (obj);
-
-  g_warning ("datasource=%s", self->priv->info.datasource);
   query = g_strdup_printf ("SELECT ?url ?urn WHERE {?urn a nfo:Note; "
                            " nie:dataSource '%s' ; nie:url ?url}",
                            self->priv->info.datasource);
@@ -414,21 +470,6 @@ on_client_connected (GObject      *obj,
 /* GObject */
 
 
-/*
- * TODO : implement the icon. At least some color
-
-hint : Default value: "#becedd" > this is hex, AFAIM we want GdkRGBA
-const gchar *       e_source_selectable_get_color       (ESourceSelectable *extension);
-
-  GObject
-   +----ESourceExtension
-         +----ESourceBackend
-               +----ESourceSelectable
-                     +----ESourceCalendar
-                     +----ESourceMemoList
-                     +----ESourceTaskList
-
-*/
 
 static void
 biji_memo_provider_constructed (GObject *obj)
@@ -446,8 +487,9 @@ biji_memo_provider_constructed (GObject *obj)
   priv->info.datasource = g_strdup_printf ("memo:%s",
                                            priv->info.unique_id);
   priv->info.name = g_strdup (e_source_get_display_name (priv->source));
-  priv->info.icon =
-    gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
+  if (!_get_icon (self, &priv->info.icon))
+     priv->info.icon = gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
+
   gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
   g_object_ref (priv->info.icon);
 

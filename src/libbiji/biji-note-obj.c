@@ -817,6 +817,9 @@ html_from_plain_text                        (gchar *content)
 {
   gchar *escaped, *retval;
 
+  if (content == NULL)
+    content = "";
+
   escaped = biji_str_mass_replace (content,
                                 "&", "&amp;",
                                 "<", "&lt;",

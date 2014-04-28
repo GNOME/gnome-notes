@@ -502,20 +502,140 @@ biji_memo_provider_constructed (GObject *obj)
 
 
 
-/*
+static void
+on_object_created (GObject      *client,
+                   GAsyncResult *res,
+		   gpointer      user_data)
+{
+  GError *error = NULL;
+  gchar  *out_uid;
+
+  e_cal_client_create_object_finish (E_CAL_CLIENT (client),
+                                     res,
+                                     &out_uid,
+				     &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    return;
+  }
+
+  g_free (out_uid);
+}
 
 
-void                e_cal_client_create_object          (ECalClient *client,
-                                                         icalcomponent *icalcomp,
-                                                         GCancellable *cancellable,
-                                                         GAsyncReadyCallback callback,
-                                                         gpointer user_data);
-gboolean            e_cal_client_create_object_finish   (ECalClient *client,
-                                                         GAsyncResult *result,
-                                                         gchar **out_uid,
-                                                         GError **error);
 
-*/
+BijiNoteObj *
+memo_create_note (BijiProvider *provider,
+                  gchar        *str)
+{
+  BijiMemoProvider *self = BIJI_MEMO_PROVIDER (provider);
+  BijiInfoSet    info;
+  BijiNoteObj   *note;
+  icalcomponent *icalcomp;
+  ECalComponent *comp;
+  gchar         *title, *html;
+  time_t         dttime;
+  ECalComponentDateTime dt;
+  icaltimezone  *zone;
+  struct icaltimetype itt;
+
+
+  title = NULL;
+
+  if (str)
+  {
+    title = biji_manager_get_unique_title (
+      biji_provider_get_manager (provider), str);
+  }
+
+  if (!title)
+    title = g_strdup ("1");
+
+
+  info.url = NULL;
+  info.title = title;
+  info.mtime = g_get_real_time ();
+  info.content = title;
+  info.created = g_get_real_time ();
+
+  e_cal_client_get_default_object_sync (
+    self->priv->client, &icalcomp, NULL, NULL);
+
+  if (icalcomp == NULL)
+    icalcomp = icalcomponent_new (ICAL_VJOURNAL_COMPONENT);
+
+  comp = e_cal_component_new ();
+  if (!e_cal_component_set_icalcomponent (comp, icalcomp))
+  {
+    icalcomponent_free (icalcomp);
+    e_cal_component_set_new_vtype (comp, E_CAL_COMPONENT_JOURNAL);
+  }
+
+
+  /* Dates and commit sequence */
+  dttime = time (NULL);
+  zone = e_cal_client_get_default_timezone (self->priv->client);
+
+  if (dttime)
+  {
+    itt = icaltime_from_timet_with_zone (
+      dttime, FALSE, zone);
+    dt.value = &itt;
+    dt.tzid = icaltimezone_get_tzid (zone);
+
+    e_cal_component_set_dtstart (comp, &dt);
+    e_cal_component_set_dtend (comp, &dt);
+    e_cal_component_set_last_modified (comp, &itt);
+    e_cal_component_set_created (comp, &itt);
+  }
+
+  if (dttime)
+    e_cal_component_commit_sequence (comp);
+
+
+  /* make sure the component has an UID */
+  if (!icalcomponent_get_uid (icalcomp))
+  {
+    gchar *uid;
+
+    uid = e_cal_component_gen_uid ();
+    icalcomponent_set_uid (icalcomp, uid);
+
+    g_free (uid);
+  }
+
+
+  /* Create the note, push the new vjournal */
+  note = biji_memo_note_new_from_info (
+    self,
+    biji_provider_get_manager (provider),
+    &info,
+    comp,
+    str,
+    self->priv->client);
+
+
+  biji_note_obj_set_title (note, title);
+  biji_note_obj_set_raw_text (note, title);
+  html = html_from_plain_text (title);
+  biji_note_obj_set_html (note, html);
+  g_free (html);
+
+
+  e_cal_client_create_object (self->priv->client,
+                              icalcomp,
+                              NULL, /* GCancellable */
+                              on_object_created,
+                              self);
+
+  g_free (title);
+
+  return note;
+}
+
 
 
 
@@ -604,7 +724,7 @@ biji_memo_provider_class_init (BijiMemoProviderClass *klass)
   object_class->set_property = biji_memo_provider_set_property;
 
   provider_class->get_info = memo_provider_get_info;
-  provider_class->create_new_note = NULL;
+  provider_class->create_new_note = memo_create_note;
   provider_class->create_note_full = NULL;
 
   properties[PROP_SOURCE] =

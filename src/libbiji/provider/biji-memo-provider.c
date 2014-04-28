@@ -326,12 +326,7 @@ on_object_list_got (GObject      *obj,
 static gchar *
 i_want_all_memos (void)
 {
-  g_warning ("FIXME: memo provider query is wrong");
-/*
-  return "occur-in-time-range? "
-         "(make-time \"19000101T204153Z\") "
-         "(make-time \"22220202T204153Z\")";*/
-  return "occur-in-time-range? (make-time \"20110421T204153Z\") (make-time \"20140423T232416Z\")";
+  return "occur-in-time-range? (make-time \"19820421T204153Z\") (make-time \"20820423T232416Z\")";
 }
 
 

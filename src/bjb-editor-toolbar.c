@@ -22,7 +22,7 @@
  * X offset might be replaced by something like -(toolbar size/2)
  * Y offset might not be replaced                    */
 #define EDITOR_TOOLBAR_X_OFFSET -120;
-#define EDITOR_TOOLBAR_Y_OFFSET   30;
+#define EDITOR_TOOLBAR_Y_OFFSET   -15;
 
 #include "config.h"
 
@@ -147,14 +147,13 @@ editor_toolbar_align (BjbEditorToolbar *self, GdkEvent  *event)
 {
   gint                     x_alignment, y_alignment;
   BjbEditorToolbarPrivate *priv = self->priv;
-  cairo_rectangle_int_t rect;
+  cairo_rectangle_int_t    rect;
 
   x_alignment = event->button.x;// + EDITOR_TOOLBAR_X_OFFSET;
-  y_alignment = event->button.y;// + EDITOR_TOOLBAR_Y_OFFSET;
+  y_alignment = event->button.y + EDITOR_TOOLBAR_Y_OFFSET;
 
   if ( x_alignment < 0)
     x_alignment = 0;
-
 
   rect.x = x_alignment;
   rect.y = y_alignment;

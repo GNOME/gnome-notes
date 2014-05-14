@@ -528,7 +528,11 @@ handle_mount (BijiOwnCloudProvider *self)
       MINER_ID,
       mine_notes,
       self);
+
+    return;
   }
+
+  biji_provider_abort (BIJI_PROVIDER (self));
 }
 
 
@@ -551,12 +555,18 @@ on_owncloud_volume_mounted (GObject *source_object,
   {
     g_warning ("%s", error->message);
     g_error_free (error);
+    biji_provider_abort (BIJI_PROVIDER (self));
+    return;
   }
 
   self->priv->mount = g_volume_get_mount (self->priv->volume);
 
   if (!G_IS_MOUNT (self->priv->mount))
-    g_warning ("finish but not really finish...");
+  {
+    g_warning ("OwnCloud Provider : !G_IS_MOUNT");
+    biji_provider_abort (BIJI_PROVIDER (self));
+    return;
+  }
 
   else
     handle_mount (self);
@@ -573,7 +583,10 @@ get_mount (BijiOwnCloudProvider *self)
   monitor = g_volume_monitor_get ();
 
   if (!GOA_IS_OBJECT (self->priv->object))
+  {
+    biji_provider_abort (BIJI_PROVIDER (self));
     return;
+  }
 
   files = goa_object_peek_files (self->priv->object);
 
@@ -605,6 +618,11 @@ get_mount (BijiOwnCloudProvider *self)
     }
   }
 
+  else /* GOA_IS_FILES */
+  {
+    biji_provider_abort (BIJI_PROVIDER (self));
+  }
+
   g_object_unref (monitor);
 }
 
@@ -624,7 +642,10 @@ biji_own_cloud_provider_constructed (GObject *obj)
 
 
   if (!GOA_IS_OBJECT (priv->object))
-    return;
+  {
+   biji_provider_abort (BIJI_PROVIDER (self));
+   return;
+  }
 
   priv->account = goa_object_get_account (priv->object);
 
@@ -654,8 +675,10 @@ biji_own_cloud_provider_constructed (GObject *obj)
     }
 
     get_mount (self);
+    return;
   }
 
+  biji_provider_abort (BIJI_PROVIDER (self));
 
 }
 

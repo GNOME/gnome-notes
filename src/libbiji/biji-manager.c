@@ -506,6 +506,20 @@ on_provider_loaded_cb (BijiProvider *provider,
 }
 
 
+static void
+on_provider_abort_cb (BijiProvider *provider,
+                      BijiManager  *self)
+{
+  const BijiProviderInfo *info;
+
+  info = biji_provider_get_info (provider);
+  g_hash_table_remove (self->priv->providers, (gpointer) info->unique_id);
+
+  g_object_unref (G_OBJECT (provider));
+}
+
+
+
 /* 
  * It should be the right place
  * to stock somehow providers list
@@ -525,9 +539,13 @@ _add_provider (BijiManager *self,
   const BijiProviderInfo *info;
 
   info = biji_provider_get_info (provider);
+  g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);  info = biji_provider_get_info (provider);
   g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);
+
   g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);
+  g_signal_connect (provider, "abort",
+                    G_CALLBACK (on_provider_abort_cb), self);
 }
 
 

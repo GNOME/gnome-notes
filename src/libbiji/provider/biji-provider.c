@@ -43,6 +43,7 @@ enum {
 /* Signals */
 enum {
   PROVIDER_LOADED,
+  PROVIDER_ABORT,
   PROVIDER_SIGNALS
 };
 
@@ -140,6 +141,13 @@ biji_provider_notify_loaded (BijiProvider *self,
 }
 
 
+void
+biji_provider_abort (BijiProvider *self)
+{
+  g_signal_emit (self, biji_provider_signals[PROVIDER_ABORT], 0);
+}
+
+
 static void
 biji_provider_set_property (GObject      *object,
                             guint         property_id,
@@ -204,6 +212,15 @@ biji_provider_class_init (BijiProviderClass *klass)
                   2,
                   G_TYPE_POINTER,
                   G_TYPE_INT);
+
+  biji_provider_signals[PROVIDER_ABORT] =
+    g_signal_new ("abort",
+		  G_OBJECT_CLASS_TYPE (klass),
+		  G_SIGNAL_RUN_LAST,
+		  0, NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+		  0);
 
 
   properties[PROP_BOOK] =

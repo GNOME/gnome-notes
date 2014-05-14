@@ -161,6 +161,9 @@ BijiManager              *biji_provider_get_manager             (BijiProvider *p
 
 const BijiProviderInfo    *biji_provider_get_info             (BijiProvider *provider);
 
+
+void                       biji_provider_abort                (BijiProvider *provider);
+
 G_END_DECLS
 
 #endif /* BIJI_PROVIDER_H_ */

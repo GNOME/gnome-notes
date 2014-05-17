@@ -43,7 +43,7 @@ struct _BjbOrganizeDialog
 {
   GtkDialog parent_instance;
 
-  BjbOrganizeDialogPrivate *priv; 
+  BjbOrganizeDialogPrivate *priv;
 };
 
 GType bjb_organize_dialog_get_type (void) G_GNUC_CONST;

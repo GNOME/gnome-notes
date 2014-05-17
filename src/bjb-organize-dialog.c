@@ -87,7 +87,7 @@ append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
   gtk_list_store_append (priv->store, &iter);
   item_has_tag = biji_item_has_notebook (priv->items->data, set->title);
 
-  /* Check if other notes have the same */  
+  /* Check if other notes have the same */
   for (l = priv->items; l != NULL; l = l->next)
   {
     if (biji_item_has_notebook (l->data, set->title) != item_has_tag)
@@ -187,7 +187,7 @@ bjb_organize_dialog_handle_tags (GHashTable *result, gpointer user_data)
       gtk_tree_view_scroll_to_cell (priv->view, path, NULL, TRUE, 0.5, 0.5);
       gtk_tree_path_free (path);
     }
-    
+
     g_clear_pointer (& (priv->tag_to_scroll_to), g_free);
   }
 }
@@ -369,27 +369,26 @@ bjb_organize_dialog_init (BjbOrganizeDialog *self)
                                BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT);
   gtk_window_set_title (GTK_WINDOW (self), _("Notebooks"));
 
+  gtk_dialog_add_buttons (GTK_DIALOG (self),
+                          _("Close"), GTK_RESPONSE_CANCEL,
+			  NULL);
+
   g_signal_connect_swapped (self, "response",
                             G_CALLBACK (gtk_widget_destroy), self);
 
   priv->store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_INT,      // notebook is active
                                     G_TYPE_STRING,   // notebook urn
-                                    G_TYPE_STRING);  // notebook title 
+                                    G_TYPE_STRING);  // notebook title
 }
 
-static void
-on_closed_clicked (BjbOrganizeDialog *self)
-{
-  gtk_dialog_response (GTK_DIALOG (self), 0);
-}
 
 static void
 bjb_organize_dialog_constructed (GObject *obj)
 {
   BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (obj);
   BjbOrganizeDialogPrivate *priv = self->priv;
-  GtkWidget *hbox, *label, *new, *area, *sw, *close;
+  GtkWidget *hbox, *label, *new, *area, *sw;
 
   gtk_window_set_transient_for (GTK_WINDOW (self), priv->window);
 
@@ -427,18 +426,11 @@ bjb_organize_dialog_constructed (GObject *obj)
   gtk_tree_view_set_rules_hint (priv->view, TRUE);
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (priv->view),
                                GTK_SELECTION_MULTIPLE);
-  
+
   add_columns (priv->view, self);
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (priv->view));
 
   gtk_box_pack_start (GTK_BOX (area), sw, TRUE, TRUE,2);
-
-  /* Response */
-  close = gtk_button_new_with_mnemonic (_("_Close"));
-  gtk_box_pack_start (GTK_BOX (area), close, FALSE, FALSE,2);
-  g_signal_connect_swapped (close, "clicked",
-                            G_CALLBACK (on_closed_clicked), self);
-
   gtk_widget_show_all (area);
 }
 
@@ -536,9 +528,10 @@ bjb_organize_dialog_new (GtkWindow *parent,
                          GList     *biji_items)
 {
   BjbOrganizeDialog *self = g_object_new (BJB_TYPE_ORGANIZE_DIALOG,
-                                         "window", parent,
-                                         "items", biji_items,
-                                         NULL);
+					  "use-header-bar", TRUE,
+                                          "window", parent,
+                                          "items", biji_items,
+                                          NULL);
 
   gtk_dialog_run (GTK_DIALOG (self));
 }

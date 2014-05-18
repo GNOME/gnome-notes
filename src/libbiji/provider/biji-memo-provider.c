@@ -596,15 +596,14 @@ memo_create_note (BijiProvider *provider,
     e_cal_component_commit_sequence (comp);
 
 
-  /* make sure the component has an UID */
-  if (!icalcomponent_get_uid (icalcomp))
+  /* make sure the component has an UID and info get it */
+  if (! (info.url = icalcomponent_get_uid (icalcomp)))
   {
     gchar *uid;
 
     uid = e_cal_component_gen_uid ();
     icalcomponent_set_uid (icalcomp, uid);
-
-    g_free (uid);
+    info.url = uid;
   }
 
 

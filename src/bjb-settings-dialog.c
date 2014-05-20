@@ -460,8 +460,9 @@ bjb_settings_dialog_constructed (GObject *object)
 
   gtk_window_set_default_size (window, 500, 300);
   gtk_window_set_modal (window, TRUE);
-  gtk_dialog_add_button (dialog, _("_Close"), GTK_RESPONSE_CLOSE);
-
+  gtk_window_set_title (window, _("Settings"));
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR
+    (gtk_dialog_get_header_bar (dialog)), TRUE);
 
   /* Dialog Area */
   area = gtk_dialog_get_content_area (dialog);
@@ -496,7 +497,7 @@ bjb_settings_dialog_constructed (GObject *object)
   gtk_stack_add_titled (priv->stack, page, "provider", _("Primary Book"));
 
   gtk_widget_show_all (area);
-} 
+}
 
 
 
@@ -524,11 +525,11 @@ bjb_settings_dialog_get_property (GObject    *object,
   BjbSettingsDialog *self = BJB_SETTINGS_DIALOG (object);
 
   switch (prop_id)
-  {            
+  {
     case PROP_PARENT:
       g_value_set_object (value, self->priv->parent);
       break;
-                                
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -548,7 +549,7 @@ bjb_settings_dialog_set_property (GObject      *object,
     case PROP_PARENT:
       self->priv->parent = g_value_get_object (value);
       break;
-            
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -582,7 +583,7 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
                                                         "Parent Window",
                                                         "Parent Window Transient For",
                                                         GTK_TYPE_WINDOW,
-                                                        G_PARAM_READWRITE | 
+                                                        G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
 }
 
@@ -590,5 +591,8 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
 GtkDialog *
 bjb_settings_dialog_new (GtkWidget *parent_window)
 {
-  return g_object_new (BJB_TYPE_SETTINGS_DIALOG, "parent", parent_window, NULL);
+  return g_object_new (BJB_TYPE_SETTINGS_DIALOG,
+                       "parent", parent_window,
+                       "use-header-bar", TRUE,
+                       NULL);
 }

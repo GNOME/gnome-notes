@@ -404,7 +404,9 @@ bjb_import_dialog_constructed (GObject *obj)
   gtk_window_set_title (win, _("Import Notes"));
   gtk_window_set_modal (win, TRUE);
 
-  gtk_dialog_add_button (dialog, _("_Cancel"), GTK_RESPONSE_CANCEL);
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR
+    (gtk_dialog_get_header_bar (GTK_DIALOG (self))), TRUE);
+
 
   priv->go_go_go = gtk_dialog_add_button (dialog, _("Import"), GTK_RESPONSE_OK);
   gtk_widget_set_sensitive (priv->go_go_go, FALSE);
@@ -546,8 +548,8 @@ GtkDialog *
 bjb_import_dialog_new (GtkApplication *bijiben)
 {
   return g_object_new (BJB_TYPE_IMPORT_DIALOG,
-                       "application",
-                       bijiben,
+                       "application", bijiben,
+		       "use-header-bar", TRUE,
                        NULL);
 }
 

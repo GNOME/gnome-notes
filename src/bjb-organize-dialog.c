@@ -369,9 +369,7 @@ bjb_organize_dialog_init (BjbOrganizeDialog *self)
                                BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT);
   gtk_window_set_title (GTK_WINDOW (self), _("Notebooks"));
 
-  gtk_dialog_add_buttons (GTK_DIALOG (self),
-                          _("Close"), GTK_RESPONSE_CANCEL,
-			  NULL);
+  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (gtk_dialog_get_header_bar (GTK_DIALOG (self))), TRUE);
 
   g_signal_connect_swapped (self, "response",
                             G_CALLBACK (gtk_widget_destroy), self);

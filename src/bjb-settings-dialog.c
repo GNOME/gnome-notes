@@ -424,7 +424,7 @@ create_page_edition (BjbSettingsDialog *self)
   gdk_rgba_parse (&color, bjb_settings_get_default_color (settings));
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (picker), &color);
   g_signal_connect (picker, "color-set",
-                    G_CALLBACK (on_color_set), settings); 
+                    G_CALLBACK (on_color_set), settings);
   gtk_grid_attach (GTK_GRID (grid), box, 2, 3, 1, 1);
 
   return grid;

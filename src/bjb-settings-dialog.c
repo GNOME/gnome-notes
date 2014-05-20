@@ -100,7 +100,7 @@ on_font_selected (GtkFontButton     *widget,
   g_settings_set_string (G_SETTINGS (settings),
                          "font",
                          gtk_font_button_get_font_name (widget));
-  
+
 }
 
 

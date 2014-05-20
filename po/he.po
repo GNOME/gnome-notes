@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-18 02:50+0300\n"
-"PO-Revision-Date: 2014-05-18 02:50+0300\n"
+"POT-Creation-Date: 2014-05-20 23:50+0300\n"
+"PO-Revision-Date: 2014-05-20 23:50+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -199,23 +199,19 @@ msgstr "מיקום מותאם אישית"
 msgid "Import Notes"
 msgstr "יבוא פתקיות"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_ביטול"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "יבוא"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "בחירת מיקום הייבוא"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "היישום Tomboy"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "היישום Gnote"
 
@@ -358,17 +354,17 @@ msgstr "פתקית"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>עדכון אחרון</b> %s"
 
-#: ../src/bjb-organize-dialog.c:373
-msgid "Close"
-msgstr "סגירה"
-
-#: ../src/bjb-organize-dialog.c:398
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "נא להזין שם כדי ליצור אוסף"
 
-#: ../src/bjb-organize-dialog.c:408
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "אוסף חדש"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_ביטול"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
@@ -409,14 +405,14 @@ msgid "Default Color"
 msgstr "צבע הפתקית"
 
 #: ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "_סגירה"
+msgid "Settings"
+msgstr "הגדרות"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "מהדורת הפתקית"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "ספר ראשי"
 
@@ -471,6 +467,12 @@ msgstr "על _אודות"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "י_ציאה"
+
+#~ msgid "Close"
+#~ msgstr "סגירה"
+
+#~ msgid "_Close"
+#~ msgstr "_סגירה"
 
 #~ msgid "No result found for this research."
 #~ msgstr "לא נמצאו תוצאות למחקר זה."

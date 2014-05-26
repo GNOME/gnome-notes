@@ -197,7 +197,7 @@ static void
 biji_webkit_editor_init (BijiWebkitEditor *self)
 {
   WebKitWebView *view = WEBKIT_WEB_VIEW (self);
-  BijiWebkitEditorPrivate *priv;  
+  BijiWebkitEditorPrivate *priv;
   gchar *css_path;
 
   priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
@@ -341,6 +341,7 @@ biji_webkit_editor_constructed (GObject *obj)
   view = WEBKIT_WEB_VIEW (self);
   priv = self->priv;
 
+  G_OBJECT_CLASS (biji_webkit_editor_parent_class)->constructed (obj);
 
   /* Do not segfault at finalize
    * if the note died */

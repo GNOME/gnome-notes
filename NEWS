@@ -1,3 +1,30 @@
+Overview of changes in 3.13.2
+==============================
+
+* UI
+  Use <Preferences> as dialog title (Yosef Or Boczko)
+  Dialogs: use header bar and close button
+  Editor toolbar: add some y offset (makes #728859 lighter)
+
+* Backends
+  icalcomp: get uid at creation (fix display of new memos)
+
+  ownCloud: abort when a failure happens
+    (Creating new notes will use local storage in this case.)
+
+* Misc
+  Build: remove GNOME_COMMON_INIT (Philip Withnall)
+  Editor: fix constructed
+
+* Translations
+  Indonesian
+  Brazilian Portuguese
+  Hebrew
+  Spanish
+  Czech
+  Catalan (Valencian)
+
+
 Overview of changes in 3.13.1
 ==============================
 

@@ -11,15 +11,15 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2014-04-13 18:42+0000\n"
-"PO-Revision-Date: 2014-04-14 11:44+0100\n"
-"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
+"PO-Revision-Date: 2014-06-01 21:19+0100\n"
+"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -289,7 +289,7 @@ msgstr "Papierkorb"
 #. * This action permanently deletes notes
 #: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
-msgstr "Leer"
+msgstr "Leeren"
 
 #: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
@@ -363,7 +363,7 @@ msgstr "Geben Sie einen Namen ein, um eine Notizsammlung anzulegen"
 
 #: ../src/bjb-organize-dialog.c:409
 msgid "New notebook"
-msgstr "Neues Notizbuch"
+msgstr "Neue Notizsammlung"
 
 #. Response
 #: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463

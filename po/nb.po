@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben 3.11.x\n"
+"Project-Id-Version: bijiben 3.12.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 18:32+0100\n"
-"PO-Revision-Date: 2014-03-23 18:32+0100\n"
+"POT-Creation-Date: 2014-06-03 19:29+0200\n"
+"PO-Revision-Date: 2014-06-03 19:30+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -67,11 +67,11 @@ msgstr "Fargenavnet som settes her vil bli brukt når du lager nye notater."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:6
 msgid "Primary notes provider to use for new notes."
-msgstr ""
+msgstr "Primær notattilbyder som skal brukes for nye notater."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
 msgid "The primary notebook is the place where are created new notes."
-msgstr ""
+msgstr "Primær notisblokk er stedet hvor nye notater lages."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
 msgid "Window maximized"

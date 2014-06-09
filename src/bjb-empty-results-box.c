@@ -95,10 +95,10 @@ bjb_empty_results_box_constructed (GObject *object)
 
   labels_grid = gtk_grid_new ();
   gtk_orientable_set_orientation (GTK_ORIENTABLE (labels_grid), GTK_ORIENTATION_VERTICAL);
-  gtk_grid_set_row_spacing (GTK_GRID (labels_grid), 12);
+  gtk_grid_set_row_spacing (GTK_GRID (labels_grid), 0);
   gtk_container_add (GTK_CONTAINER (self), labels_grid);
 
-  label = _("No Notes Found");
+  label = _("No notes");
   markup = g_markup_printf_escaped ("<big><b>%s</b></big>", label);
 
   priv->primary_label = gtk_label_new (NULL);
@@ -142,7 +142,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
     case BJB_EMPTY_RESULTS_NO_NOTE:
       gtk_label_set_label (
         self->priv->details_label,
-        _("Your notes notebook is empty.\nClick the New button to create your first note."));
+        _("Press the new button to create a note."));
 
       gtk_widget_show (GTK_WIDGET (self->priv->details_label));
       gtk_widget_show (self->priv->image);
@@ -157,7 +157,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
       break;
 
 
-    /* 
+    /*
      * Tracker is not installed, Bijiben cannot work,
      * do not try to workaround
      * TODO: PK

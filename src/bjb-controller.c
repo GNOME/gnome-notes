@@ -646,7 +646,12 @@ on_manager_changed (BijiManager            *manager,
         gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
 
       priv->items_to_show = g_list_remove (priv->items_to_show, item);
-      notify_displayed_items_changed (self);
+      if (priv->items_to_show == NULL)
+        bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_NOTE);
+
+      else
+        notify_displayed_items_changed (self);
+
       break;
 
     default:

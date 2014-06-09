@@ -96,6 +96,7 @@ bjb_empty_results_box_constructed (GObject *object)
   labels_grid = gtk_grid_new ();
   gtk_orientable_set_orientation (GTK_ORIENTABLE (labels_grid), GTK_ORIENTATION_VERTICAL);
   gtk_grid_set_row_spacing (GTK_GRID (labels_grid), 0);
+  gtk_widget_set_valign (labels_grid, GTK_ALIGN_START);
   gtk_container_add (GTK_CONTAINER (self), labels_grid);
 
   label = _("No notes");

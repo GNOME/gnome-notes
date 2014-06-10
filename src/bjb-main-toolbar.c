@@ -773,7 +773,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (webkit_web_view_undo), editor);
-  gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_u,
+  gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_z,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
 
@@ -781,8 +781,8 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (webkit_web_view_redo), editor);
-  gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_r,
-                             GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+  gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_z,
+                             GDK_CONTROL_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
 
   item = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);

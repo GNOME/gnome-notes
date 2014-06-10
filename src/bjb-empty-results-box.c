@@ -79,7 +79,7 @@ bjb_empty_results_box_constructed (GObject *object)
                                 NULL);
 
   error = NULL;
-  pixbuf = gdk_pixbuf_new_from_file (note_icon_path, &error);
+  pixbuf = gdk_pixbuf_new_from_file_at_size (note_icon_path, 64, 64, &error);
 
   if (error)
   {
@@ -90,7 +90,6 @@ bjb_empty_results_box_constructed (GObject *object)
   priv->image  = gtk_image_new_from_pixbuf (pixbuf);
   g_free (note_icon_path);
 
-  gtk_image_set_pixel_size (GTK_IMAGE (priv->image), 64);
   gtk_container_add (GTK_CONTAINER (self), priv->image);
 
   labels_grid = gtk_grid_new ();

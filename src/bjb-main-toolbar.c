@@ -41,7 +41,7 @@ typedef enum
 } BjbToolbarType;
 
 /* Color Button */
-#define COLOR_SIZE 24
+#define COLOR_SIZE 20
 
 struct _BjbMainToolbarPrivate
 {
@@ -852,13 +852,14 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   GtkHeaderBar          *bar = GTK_HEADER_BAR (self);
   BjbSettings           *settings;
   GdkRGBA                color;
+  GtkSizeGroup          *size;
   BijiItem *item;
   GtkWidget *menu_image;
   gboolean rtl, detached;
 
   priv->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
   item = BIJI_ITEM (priv->note);
-
+  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
   rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
   detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
 
@@ -872,8 +873,8 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   {
     priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
                                                 GTK_ICON_SIZE_MENU);
-    gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
     gtk_header_bar_pack_start (bar, priv->back);
+    gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
 
     g_signal_connect_swapped (priv->back, "clicked",
                               G_CALLBACK (just_switch_to_main_view), self);
@@ -891,11 +892,11 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   priv->menu = gtk_menu_button_new ();
   menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (priv->menu), menu_image);
-  gtk_widget_set_valign (priv->menu, GTK_ALIGN_CENTER);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->menu),
                                "image-button");
   gtk_header_bar_pack_end (bar, priv->menu);
   gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
 
   /* Show close button */
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
@@ -918,7 +919,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
     priv->color = bjb_color_button_new ();
     gtk_widget_set_tooltip_text (priv->color, _("Note color"));
-    gtk_widget_set_valign (priv->color, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (priv->color),
                                  "button");
     gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->color), &color);
@@ -928,12 +928,16 @@ populate_bar_for_note_view (BjbMainToolbar *self)
     gtk_widget_set_size_request (gtk_bin_get_child (GTK_BIN (priv->color)),
                                  COLOR_SIZE, COLOR_SIZE);
     gtk_widget_show (priv->color);
+    gtk_size_group_add_widget (size, priv->color);
+
 
     g_signal_connect (priv->color, "color-set",
                       G_CALLBACK (on_color_button_clicked), self);
     priv->note_color_changed = g_signal_connect (priv->note, "color-changed",
                                G_CALLBACK (on_note_color_changed), priv->color);
   }
+
+  g_object_unref (size);
 }
 
 static void

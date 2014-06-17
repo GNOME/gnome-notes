@@ -1,0 +1,39 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="new-window">
+
+  <info>
+    <link type="guide" xref="index#create"/>
+    <revision pkgversion="3.12" date="2014-05-23" status="review"/>
+
+    <credit type="author">
+      <name>Lisa Hui</name>
+      <email its:translate="no">Lisa.hj630@gmail.com</email>
+      <years>2014</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Open a note in a new window.</desc>
+  </info>
+
+  <title>Open a note in another window</title>
+
+  <p>To open a note in a new window:</p>
+
+  <list>
+    <item>
+      <p>Open a note then click
+      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Open
+      in New Window</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>In the <gui>New and Recent</gui> view, click the
+      <gui style="button">Selection mode</gui> button, select all the notes
+      which you want to open in new window, then click the
+      <gui style="button">Open in another window</gui> button.</p>
+    </item>
+  </list>
+
+</page>

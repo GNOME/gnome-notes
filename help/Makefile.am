@@ -12,6 +12,7 @@ HELP_FILES = \
 	index.page \
 	introduction.page \
 	listing.page \
+	new-window.page \
 	notebooks.page \
 	rename.page \
 	search.page \

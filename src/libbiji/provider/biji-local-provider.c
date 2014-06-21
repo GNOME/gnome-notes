@@ -444,9 +444,11 @@ local_prov_create_new_note (BijiProvider *self,
 
     g_free (unique);
     g_free (html);
+
+    /* Only save note if content */
+    biji_note_obj_save_note (ret);
   }
 
-  biji_note_obj_save_note (ret);
   return ret;
 }
 

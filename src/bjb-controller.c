@@ -579,6 +579,15 @@ on_needle_changed (BjbController *self)
 }
 
 
+/* Return FALSE to end timeout, see below on_manager_changed */
+static gboolean
+bjb_controller_set_window_active (BjbController *self)
+{
+  bjb_window_base_set_active (self->priv->window, TRUE);
+  return FALSE;
+}
+
+
 /* Depending on the change at data level,
  * the view has to be totaly refreshed or just amended */
 static void
@@ -592,7 +601,6 @@ on_manager_changed (BijiManager            *manager,
   BijiItem    *item = BIJI_ITEM (biji_item);
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
-
 
 
 
@@ -654,10 +662,15 @@ on_manager_changed (BijiManager            *manager,
 
       break;
 
+    /* Apply the needle to display the relevant items.
+     * The window will ping to tell it's now active
+     * Use another thread for this, because controller is now up to date,
+     * and we need to unlock mutex,
+     * since activating window can call this function! */
     default:
       bjb_controller_apply_needle (self);
       if (flag == BIJI_MANAGER_MASS_CHANGE)
-        bjb_window_base_set_active (self->priv->window, TRUE);
+        g_timeout_add (1, (GSourceFunc) bjb_controller_set_window_active, self);
   }
 
   g_mutex_unlock (&priv->mutex);

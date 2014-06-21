@@ -38,14 +38,14 @@ struct _BijibenPriv
   BijiManager *manager;
   BjbSettings *settings;
 
-
-
   /* Controls. to_open is for startup */
 
   gboolean     first_run;
   gboolean     is_loaded;
-  GQueue       *to_open;
+  gboolean     new_note;
+  GQueue       *files_to_open; // paths
 };
+
 
 G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
 
@@ -54,6 +54,7 @@ bijiben_new_window_internal (Bijiben *app,
                              GFile *file,
                              BijiItem *item,
                              GError *error);
+
 
 static void
 on_window_activated_cb   (BjbWindowBase *window,
@@ -70,14 +71,12 @@ on_window_activated_cb   (BjbWindowBase *window,
   priv->is_loaded = TRUE;
   notfound = NULL;
 
-  while ((path = g_queue_pop_head (priv->to_open)))
+  while ((path = g_queue_pop_head (priv->files_to_open)))
   {
-
     item = biji_manager_get_item_at_path (priv->manager, path);
 
     if (item != NULL)
     {
-
       /* If that's a note, detach it */
       if (BIJI_IS_NOTE_OBJ (item))
       {
@@ -93,17 +92,13 @@ on_window_activated_cb   (BjbWindowBase *window,
         else
            bijiben_new_window_internal (self, NULL, item, NULL);
       }
-
       g_free (path);
     }
-
 
     else
     {
       notfound = g_list_prepend (notfound, path);
     }
-
-
   }
 
   /* We just wait for next provider to be loaded.
@@ -111,17 +106,32 @@ on_window_activated_cb   (BjbWindowBase *window,
    * in order to trigger file reading. */
   for (l = notfound; l != NULL; l=l->next)
   {
-    g_queue_push_head (priv->to_open, l->data);
+    g_queue_push_head (priv->files_to_open, l->data);
   }
 
+
+  /* All requested notes are loaded, but we have a new one to create...
+   * This implementation is not really safe,
+   * we might have loaded SOME provider(s)
+   * but not the default one - more work is needed here */
+  if (notfound == NULL &&
+      priv->new_note == TRUE)
+  {
+    priv->new_note = FALSE;
+    item = BIJI_ITEM (biji_manager_note_new (
+                        priv->manager,
+                        NULL,
+                        bjb_settings_get_default_location (self->priv->settings)));
+    bijiben_new_window_internal (self, NULL, item, NULL);
+  }
 }
 
 
 static void
-bijiben_new_window_internal (Bijiben *self,
-                             GFile *file,
-                             BijiItem *item,
-                             GError *error)
+bijiben_new_window_internal (Bijiben     *self,
+                             GFile       *file,
+                             BijiItem    *item,
+                             GError      *error)
 {
   BjbWindowBase *window;
   BijiNoteObj   *note;
@@ -200,14 +210,13 @@ bijiben_open (GApplication  *application,
 
   self = BIJIBEN_APPLICATION (application);
 
-
   for (i = 0; i < n_files; i++)
   {
     if (self->priv->is_loaded == TRUE)
-      bijiben_new_window_internal (BIJIBEN_APPLICATION (application), files[i], NULL, NULL);
+      bijiben_new_window_internal (self, files[i], NULL, NULL);
 
     else
-      g_queue_push_head (self->priv->to_open, g_file_get_parse_name (files[i]));
+      g_queue_push_head (self->priv->files_to_open, g_file_get_parse_name (files[i]));
   }
 }
 
@@ -221,7 +230,8 @@ bijiben_init (Bijiben *self)
     G_TYPE_INSTANCE_GET_PRIVATE (self, BIJIBEN_TYPE_APPLICATION, BijibenPriv);
 
   priv->settings = bjb_settings_new ();
-  priv->to_open = g_queue_new ();
+  priv->files_to_open = g_queue_new ();
+  priv->new_note = FALSE;
   priv->is_loaded = FALSE;
 }
 
@@ -438,6 +448,8 @@ bijiben_application_local_command_line (GApplication *application,
   const GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &version,
       N_("Show the application's version"), NULL},
+    { "new-note", 0, 0, G_OPTION_ARG_NONE, &BIJIBEN_APPLICATION(application)->priv->new_note,
+      N_("Create a new note"), NULL},
     { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY, &remaining,
       NULL,  N_("[FILE...]") },
     { NULL }
@@ -453,7 +465,8 @@ bijiben_application_local_command_line (GApplication *application,
   argv = *arguments;
   argc = g_strv_length (argv);
 
-  if (!g_option_context_parse (context, &argc, &argv, &error)) {
+  if (!g_option_context_parse (context, &argc, &argv, &error))
+  {
     /* Translators: this is a fatal error quit message
      * printed on the command line */
     g_printerr ("%s: %s\n", _("Could not parse arguments"), error->message);
@@ -463,14 +476,16 @@ bijiben_application_local_command_line (GApplication *application,
     goto out;
   }
 
-  if (version) {
+  if (version)
+  {
     g_print ("%s %s\n", _("GNOME Notes"), VERSION);
     goto out;
   }
 
   g_application_register (application, NULL, &error);
 
-  if (error != NULL) {
+  if (error != NULL)
+  {
     /* Translators: this is a fatal error quit message
      * printed on the command line */
     g_printerr ("%s: %s\n",
@@ -479,6 +494,12 @@ bijiben_application_local_command_line (GApplication *application,
     g_error_free (error);
 
     *exit_status = EXIT_FAILURE;
+    goto out;
+  }
+
+  if (BIJIBEN_APPLICATION (application)->priv->new_note)
+  {
+    g_application_open (application, NULL, 0, "");
     goto out;
   }
 
@@ -538,7 +559,7 @@ bijiben_finalize (GObject *object)
 
   g_clear_object (&self->priv->manager);
   g_clear_object (&self->priv->settings);
-  g_queue_free (self->priv->to_open);
+  g_queue_free (self->priv->files_to_open);
 
   G_OBJECT_CLASS (bijiben_parent_class)->finalize (object);
 }

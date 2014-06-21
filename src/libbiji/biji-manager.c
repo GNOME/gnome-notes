@@ -784,7 +784,7 @@ biji_manager_import_uri (BijiManager *manager,
 
 }
 
-/* 
+/*
  * Use "local" for a local note new
  * Use goa_account_get_id for goa
  */
@@ -804,9 +804,10 @@ biji_manager_note_new            (BijiManager  *self,
   if (provider == NULL)
     provider = self->priv->local_provider;
 
-
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
-  biji_manager_add_item (self, BIJI_ITEM (retval), BIJI_LIVING_ITEMS, TRUE);
+
+  if (retval)
+    biji_manager_add_item (self, BIJI_ITEM (retval), BIJI_LIVING_ITEMS, TRUE);
 
   return retval;
 }

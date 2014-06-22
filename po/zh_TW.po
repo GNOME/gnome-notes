@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-24 15:53+0000\n"
-"PO-Revision-Date: 2014-03-04 15:30+0800\n"
-"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
+"POT-Creation-Date: 2014-06-22 02:51+0000\n"
+"PO-Revision-Date: 2014-06-22 13:47+0800\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -105,32 +105,34 @@ msgstr "GNOME 的簡易筆記本"
 msgid "translator-credits"
 msgstr "Chao-Hsiung Liao"
 
-#: ../src/bjb-bijiben.c:387
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:450
 msgid "Show the application's version"
 msgstr "顯示應用程式的版本"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:452
+#| msgid "Copy selection to a new note"
+msgid "Create a new note"
+msgstr "建立新筆記"
+
+#: ../src/bjb-bijiben.c:454
 msgid "[FILE...]"
 msgstr "[檔案…]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:461
 msgid "Take notes and export them everywhere."
 msgstr "隨時隨地做筆記並把它們匯出。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:472
 msgid "Could not parse arguments"
 msgstr "無法分析引數"
 
-#: ../src/bjb-bijiben.c:414
-#| msgid "Notes"
+#: ../src/bjb-bijiben.c:481
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: ../src/bjb-bijiben.c:424
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:492
 msgid "Could not register the application"
 msgstr "無法註冊應用程式"
 
@@ -139,50 +141,45 @@ msgid "Note Color"
 msgstr "筆記顏色"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:346
 msgid "Cut"
 msgstr "剪下"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:353
 msgid "Copy"
 msgstr "複製"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:359
 msgid "Paste"
 msgstr "貼上"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Bold"
 msgstr "粗體"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:384
 msgid "Italic"
 msgstr "斜體"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Strike"
 msgstr "删除線"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:422
 msgid "Copy selection to a new note"
 msgstr "將選擇區域複製到新的筆記"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "找不到筆記"
+#| msgid "Notes"
+msgid "No notes"
+msgstr "沒有筆記"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid ""
-#| "Your notes collection is empty.\n"
-#| "Click the New button to create your first note."
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"您的筆記本是空的。\n"
-"點選新增按鈕以建立您的第一個筆記。"
+#| msgid "Enter a name to create a notebook"
+msgid "Press the new button to create a note."
+msgstr "按下新增按鈕建立新筆記。"
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -200,23 +197,19 @@ msgstr "自訂位置"
 msgid "Import Notes"
 msgstr "匯入筆記"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "取消(_C)"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "匯入"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "選擇匯入位置"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Tomboy 應用程式"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Gnote 應用程式"
 
@@ -243,151 +236,154 @@ msgid "Search note titles, content and notebooks"
 msgstr "搜尋筆記標題、內容與筆記本"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "取消"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "離開選擇區域模式"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "「%s」的結果"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "新增與最近使用"
 
-#: ../src/bjb-main-toolbar.c:435
+#: ../src/bjb-main-toolbar.c:438
 msgid "New"
 msgstr "新增"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "選擇區域模式"
 
-#: ../src/bjb-main-toolbar.c:488
-#| msgid "View notes and collections in a list"
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "檢視清單中的筆記和筆記本"
 
-#: ../src/bjb-main-toolbar.c:512
-#| msgid "View notes and collections in a grid"
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "以圖示來顯示筆記和筆記本"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "回收筒"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "空的"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "無標題"
 
-#: ../src/bjb-main-toolbar.c:755
-#| msgid "_New Window"
+#: ../src/bjb-main-toolbar.c:761
 msgid "Open in New Window"
 msgstr "在新的視窗開啟"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:772
 msgid "Undo"
 msgstr "復原"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:780
 msgid "Redo"
 msgstr "取消復原"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:795
 msgid "Bullets"
 msgstr "項目符號"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:802
 msgid "Numbered List"
 msgstr "有序清單"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "筆記本"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
-#| msgid "Delete this Note"
+#: ../src/bjb-main-toolbar.c:826
 msgid "Email this Note"
 msgstr "寄出這份筆記"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
 msgid "Move to Trash"
 msgstr "移至回收筒"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:898
 msgid "More options…"
 msgstr "更多選項…"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:391
 msgid "Note color"
 msgstr "筆記顏色"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "筆記本"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "筆記"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "上次更新於"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:186
+#, c-format
+#| msgid "Last updated"
+msgid "<b>Last updated</b> %s"
+msgstr "<b>上次更新時間</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "輸入要建立的筆記本名稱"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "新增筆記本"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "關閉(_C)"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "取消(_C)"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "確定(_O)"
 
 #. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#: ../src/bjb-selection-toolbar.c:385
 msgid "Restore"
 msgstr "還原"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:401
 msgid "Share note"
 msgstr "分享筆記"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:405
 msgid "Open in another window"
 msgstr "在另一個視窗開啟"
 
 #. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#: ../src/bjb-selection-toolbar.c:417
 msgid "Permanently Delete"
 msgstr "永遠刪除"
 
@@ -406,11 +402,15 @@ msgstr "筆記字型"
 msgid "Default Color"
 msgstr "預設顏色"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "偏好設定"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "筆記版本"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "主要書籍"
 
@@ -438,7 +438,7 @@ msgstr "今年"
 msgid "Unknown"
 msgstr "不明"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "本地儲存空間"
 
@@ -466,59 +466,5 @@ msgstr "關於(_A)"
 msgid "_Quit"
 msgstr "離開(_Q)"
 
-#~ msgid "No result found for this research."
-#~ msgstr "找不到這個研究的結果。"
-
-#~ msgid "Rename Note"
-#~ msgstr "重新命名筆記"
-
-#~ msgid "Rename"
-#~ msgstr "重新命名"
-
-#~ msgid "Collections"
-#~ msgstr "收藏集"
-
-#~ msgid "New collection"
-#~ msgstr "新增收藏集"
-
-#~ msgid "Delete"
-#~ msgstr "刪除"
-
-#~ msgid "Add to Collection"
-#~ msgstr "加入至收藏集"
-
-#~ msgid "Done"
-#~ msgstr "完成"
-
-#~ msgid "Preferences"
-#~ msgstr "偏好設定"
-
-#~ msgid "Bijiben"
-#~ msgstr "Bijiben"
-
-#~ msgid "External Notes"
-#~ msgstr "外部筆記"
-
-#~ msgid "Click on the external notes to import"
-#~ msgstr "點選外部筆記以匯入"
-
-#~ msgid "Choose a color for note"
-#~ msgstr "選擇筆記的顏色"
-
-#~ msgid "Link"
-#~ msgstr "連結"
-
-#~ msgid "New tag"
-#~ msgstr "新標籤"
-
-#~ msgid "List"
-#~ msgstr "清單"
-
-#~ msgid "Tags"
-#~ msgstr "標籤"
-
-#~ msgid "Tag"
-#~ msgstr "標籤"
-
-#~ msgid "_External Notes"
-#~ msgstr "外部筆記(_E)"
+#~ msgid "No Notes Found"
+#~ msgstr "找不到筆記"

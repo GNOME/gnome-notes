@@ -1,3 +1,23 @@
+Overview of changes in 3.13.3
+==============================
+
+* UI
+  Indent List (#728868)
+  Update link & note icons (#731441)
+  Change empty view wording (#731199)
+
+* Misc
+  Fix Undo/Redo shortcuts (#731089)
+  --new-note commandline arg
+  Force empty view when deleting last (#731398)
+
+* Translations
+  Chinese (Taiwan)
+  German
+  Hungarian
+  Norwegian bokmål
+  Spanish
+
 Overview of changes in 3.13.2
 ==============================
 

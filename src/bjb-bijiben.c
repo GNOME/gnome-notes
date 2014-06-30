@@ -173,7 +173,7 @@ bijiben_new_window_internal (Bijiben     *self,
   if (path != NULL)
     g_free (path);
 
-  gtk_widget_show_all (GTK_WIDGET (window));
+  gtk_widget_show (GTK_WIDGET (window));
 
   if (not_first_window)
     gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
@@ -482,6 +482,8 @@ bijiben_application_local_command_line (GApplication *application,
     goto out;
   }
 
+
+  /* bijiben_startup */
   g_application_register (application, NULL, &error);
 
   if (error != NULL)

@@ -380,8 +380,9 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   /* Notes tags */
   priv->toolbar_tag = gtk_button_new_with_label (_("Notebooks"));
   gtk_action_bar_pack_start (priv->bar, priv->toolbar_tag);
+  gtk_widget_show (priv->toolbar_tag);
 
-  /* Restore */
+  /* Restore (do not show) */
   priv->toolbar_restore = gtk_button_new_with_label (_("Restore"));
   gtk_action_bar_pack_start (priv->bar, priv->toolbar_restore);
 
@@ -390,6 +391,7 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_color),
                                _("Note color"));
   gtk_action_bar_pack_start (priv->bar, priv->toolbar_color);
+  gtk_widget_show (priv->toolbar_color);
 
 
   /* Share */
@@ -400,10 +402,13 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
                                "image-button");
   gtk_widget_set_tooltip_text (priv->toolbar_share, _("Share note"));
   gtk_action_bar_pack_start (priv->bar, priv->toolbar_share);
+  gtk_widget_show (priv->toolbar_color);
+
 
   /* Detach */
   priv->toolbar_detach = gtk_button_new_with_label (_("Open in another window"));
   gtk_action_bar_pack_start (priv->bar, priv->toolbar_detach);
+  gtk_widget_show (priv->toolbar_detach);
 
 
   /* Trash notes */
@@ -411,9 +416,10 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   context = gtk_widget_get_style_context (priv->toolbar_trash);
   gtk_style_context_add_class (context, "destructive-action");
   gtk_action_bar_pack_end (priv->bar, priv->toolbar_trash);
+  gtk_widget_show (priv->toolbar_trash);
 
 
-  /* Permanently delete */
+  /* Permanently delete (do not show )*/
   priv->toolbar_delete = gtk_button_new_with_label (_("Permanently Delete"));
   context = gtk_widget_get_style_context (priv->toolbar_delete);
   gtk_style_context_add_class (context, "destructive-action");
@@ -432,8 +438,8 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
   g_object_unref (size);
 
 
-
-  gtk_widget_show_all (widget);
+  gtk_widget_show (GTK_WIDGET (priv->bar));
+  gtk_widget_show (widget);
   bjb_selection_toolbar_fade_out (self);
 }
 

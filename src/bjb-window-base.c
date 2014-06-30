@@ -314,6 +314,7 @@ bjb_window_base_constructed (GObject *obj)
   gtk_stack_add_named (priv->stack, priv->no_note, "empty");
 
   gtk_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
+  gtk_widget_show (GTK_WIDGET (priv->stack));
 
   g_signal_connect (GTK_WIDGET (self),
                     "destroy",
@@ -342,7 +343,19 @@ bjb_window_base_constructed (GObject *obj)
     priv->detached = TRUE;
     bjb_window_base_switch_to_item (self, BIJI_ITEM (priv->note));
   }
+
+
+  /* For some reason, do not gtk_widget_show _self_
+   * or gtk_application_get_menu_bar will run,
+   * fire a warning, while app menu will not show up
+   * you have been warned!
+   *
+   * This is probably due to the fact that,
+   * at startup, we still are
+   * inside... drums... gapplication startup () */
+  gtk_widget_show (priv->vbox);
 }
+
 
 static void
 bjb_window_base_init (BjbWindowBase *self)
@@ -557,7 +570,7 @@ bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item)
                                (gpointer *) &priv->note_view);
 
     bjb_window_base_switch_to (bwb, BJB_WINDOW_BASE_NOTE_VIEW);
-    gtk_widget_show_all (w);
+    gtk_widget_show (w);
     bjb_note_view_grab_focus (priv->note_view);
   }
 }

@@ -315,6 +315,7 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
   priv->entry = gd_tagged_entry_new ();
   g_object_set (priv->entry, "width_request", 500, NULL);
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->entry));
+  gtk_widget_show (GTK_WIDGET (priv->entry));
 }
 
 

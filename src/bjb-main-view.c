@@ -681,6 +681,7 @@ bjb_main_view_constructed(GObject *o)
                                        GTK_SHADOW_NONE);
   gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->view));
+  gtk_widget_show (GTK_WIDGET (priv->view));
 
   vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
 
@@ -718,7 +719,7 @@ bjb_main_view_constructed(GObject *o)
                      target_list, 1, GDK_ACTION_COPY);
 
   bjb_main_view_connect_signals (self);
-  gtk_widget_show_all (GTK_WIDGET (self));
+  gtk_widget_show (GTK_WIDGET (self));
 }
 
 static void

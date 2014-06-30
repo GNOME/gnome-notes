@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-11 03:53+0000\n"
-"PO-Revision-Date: 2014-03-11 15:44+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"POT-Creation-Date: 2014-06-30 14:51+0000\n"
+"PO-Revision-Date: 2014-06-30 23:12+0400\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -50,7 +50,6 @@ msgid "Note-taker"
 msgstr "Электронная ручка"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:1
-#| msgid "Custom Location"
 msgid "Custom Font"
 msgstr "Другой шрифт"
 
@@ -63,7 +62,6 @@ msgid "Whether to use the system monospace font"
 msgstr "Использовать ли системный моноширный шрифт"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:4
-#| msgid "Note color"
 msgid "New notes color."
 msgstr "Цвет новых заметок."
 
@@ -114,32 +112,34 @@ msgstr ""
 "Стас Соловей <whats_up@tut.by>, 2013.\n"
 "Юрий Мясоедов <ymyasoedov@yandex.ru>, 2014."
 
-#: ../src/bjb-bijiben.c:387
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:450
 msgid "Show the application's version"
 msgstr "Показать номер версии приложения"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:452
+#| msgid "Copy selection to a new note"
+msgid "Create a new note"
+msgstr "Создать новую заметку"
+
+#: ../src/bjb-bijiben.c:454
 msgid "[FILE...]"
 msgstr "[ФАЙЛ…]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:461
 msgid "Take notes and export them everywhere."
 msgstr "Взять заметки и экспортировать их куда-либо."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:472
 msgid "Could not parse arguments"
 msgstr "Не удалось разобрать аргументы"
 
-#: ../src/bjb-bijiben.c:414
-#| msgid "Notes"
+#: ../src/bjb-bijiben.c:481
 msgid "GNOME Notes"
 msgstr "Заметки GNOME"
 
-#: ../src/bjb-bijiben.c:424
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:492
 msgid "Could not register the application"
 msgstr "Не удалось зарегистрировать приложение"
 
@@ -148,50 +148,45 @@ msgid "Note Color"
 msgstr "Цвет заметки"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:346
 msgid "Cut"
 msgstr "Вырезать"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:353
 msgid "Copy"
 msgstr "Копировать"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:359
 msgid "Paste"
 msgstr "Вставить"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Bold"
 msgstr "Полужирный"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:384
 msgid "Italic"
 msgstr "Курсив"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Strike"
 msgstr "Подчёркнутый"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:422
 msgid "Copy selection to a new note"
 msgstr "Копировать выделение в новую заметку"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "Заметки не найдены"
+#| msgid "Notes"
+msgid "No notes"
+msgstr "Нет заметок"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid ""
-#| "Your notes collection is empty.\n"
-#| "Click the New button to create your first note."
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"Записная книжка пуста.\n"
-"Нажмите кнопку «Создать», чтобы создать заметку."
+#| msgid "Enter a name to create a notebook"
+msgid "Press the new button to create a note."
+msgstr "Нажмите кнопку, чтобы создать заметку."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -209,23 +204,19 @@ msgstr "Другое место"
 msgid "Import Notes"
 msgstr "Импортировать заметки"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Отмена"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "Импортировать"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "Выберите место для импорта"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Приложение Tomboy"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Приложение Gnote"
 
@@ -250,7 +241,6 @@ msgstr[1] "Выделено %d объекта"
 msgstr[2] "Выделено %d объектов"
 
 #: ../src/bjb-main-toolbar.c:264
-#| msgid "Search note titles, content and collections"
 msgid "Search note titles, content and notebooks"
 msgstr "Поиск по заголовкам, содержимому и записным книжкам"
 
@@ -281,12 +271,10 @@ msgid "Selection mode"
 msgstr "Режим выделения"
 
 #: ../src/bjb-main-toolbar.c:491
-#| msgid "View notes and collections in a list"
 msgid "View notes and notebooks in a list"
 msgstr "Показывать заметки и записные книжки в виде списка"
 
 #: ../src/bjb-main-toolbar.c:515
-#| msgid "View notes and collections in a grid"
 msgid "View notes and notebooks in a grid"
 msgstr "Показывать заметки и записные книжки в виде таблицы"
 
@@ -295,16 +283,17 @@ msgid "Trash"
 msgstr "Корзина"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:571
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "Очистить"
 
-#: ../src/bjb-main-toolbar.c:653
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "Безымянная"
 
 #: ../src/bjb-main-toolbar.c:761
-#| msgid "_New Window"
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
@@ -330,80 +319,80 @@ msgstr "Нумерованный список"
 
 #. Notes tags
 #: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
-#| msgid "Notes"
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Записные книжки"
 
 #. Share
 #: ../src/bjb-main-toolbar.c:826
-#| msgid "Delete this Note"
 msgid "Email this Note"
 msgstr "Отправить заметку по эл. почте"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
 msgid "Move to Trash"
 msgstr "Удалить в корзину"
 
 #: ../src/bjb-main-toolbar.c:898
 msgid "More options…"
-msgstr "Дополнительные параметры..."
+msgstr "Дополнительные параметры…"
 
-#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:391
 msgid "Note color"
 msgstr "Цвет заметки"
 
 #: ../src/bjb-main-view.c:516
-#| msgid "Note Color"
 msgid "Notebook"
 msgstr "Записная книжка"
 
 #: ../src/bjb-main-view.c:519
-#| msgid "Notes"
 msgid "Note"
 msgstr "Заметка"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:225
-msgid "Last updated"
-msgstr "Последнее обновление"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:186
+#, c-format
+#| msgid "Last updated"
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Обновлено</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
-#| msgid "Enter a name to create a collection"
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "Введите имя для создания записной книжки"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "Создать записную книжку"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "_Закрыть"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Отмена"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "О_К"
 
 #. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#: ../src/bjb-selection-toolbar.c:385
 msgid "Restore"
 msgstr "Восстановить"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:401
 msgid "Share note"
 msgstr "Поделиться заметкой"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:405
 msgid "Open in another window"
 msgstr "Открыть в другом окне"
 
 #. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#: ../src/bjb-selection-toolbar.c:417
 msgid "Permanently Delete"
 msgstr "Удалить навсегда"
 
@@ -422,11 +411,16 @@ msgstr "Шрифт заметок"
 msgid "Default Color"
 msgstr "Цвет по умолчанию"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:463
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "Параметры"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "Изменение заметки"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "Первичная книга"
 
@@ -454,7 +448,7 @@ msgstr "В этом году"
 msgid "Unknown"
 msgstr "Неизвестный"
 
-#: ../src/libbiji/provider/biji-local-provider.c:361
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Локальное хранилище"
 
@@ -475,13 +469,28 @@ msgid "_Help"
 msgstr "_Справка"
 
 #: ../src/resources/app-menu.ui.h:5
-#| msgid "_About Notes"
 msgid "_About"
 msgstr "_О программе"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Закончить"
+
+#~ msgid "No Notes Found"
+#~ msgstr "Заметки не найдены"
+
+#~| msgid ""
+#~| "Your notes collection is empty.\n"
+#~| "Click the New button to create your first note."
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "Записная книжка пуста.\n"
+#~ "Нажмите кнопку «Создать», чтобы создать заметку."
+
+#~ msgid "_Close"
+#~ msgstr "_Закрыть"
 
 #~ msgid "No result found for this research."
 #~ msgstr "По данному запросу ничего не найдено."

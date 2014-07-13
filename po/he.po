@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 23:50+0300\n"
-"PO-Revision-Date: 2014-05-20 23:50+0300\n"
+"POT-Creation-Date: 2014-07-13 15:41+0300\n"
+"PO-Revision-Date: 2014-07-13 15:42+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -110,29 +110,33 @@ msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gnome.org>"
 
-#: ../src/bjb-bijiben.c:440
+#: ../src/bjb-bijiben.c:450
 msgid "Show the application's version"
 msgstr "Show the application's version"
 
-#: ../src/bjb-bijiben.c:442
+#: ../src/bjb-bijiben.c:452
+msgid "Create a new note"
+msgstr "יצירת פתקית חדשה"
+
+#: ../src/bjb-bijiben.c:454
 msgid "[FILE...]"
 msgstr "[FILE...]"
 
-#: ../src/bjb-bijiben.c:449
+#: ../src/bjb-bijiben.c:461
 msgid "Take notes and export them everywhere."
 msgstr "Take notes and export them everywhere."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:459
+#: ../src/bjb-bijiben.c:472
 msgid "Could not parse arguments"
 msgstr "Could not parse arguments"
 
-#: ../src/bjb-bijiben.c:467
+#: ../src/bjb-bijiben.c:481
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: ../src/bjb-bijiben.c:477
+#: ../src/bjb-bijiben.c:494
 msgid "Could not register the application"
 msgstr "Could not register the application"
 
@@ -172,16 +176,12 @@ msgid "Copy selection to a new note"
 msgstr "העתקת הבחירה לפתקית חדשה"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "לא נמצאו פתקיות"
+msgid "No notes"
+msgstr "אין פתקיות"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"אוסף הפתקיות שלך ריק.\n"
-"יש ללחוץ על הכפתור חדש כדי ליצור את הפתקית הראשונה שלך."
+msgid "Press the new button to create a note."
+msgstr "יש ללחוץ על הכפתור חדש ליצירת פתקית."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -324,7 +324,7 @@ msgstr "שליחת הפתקית בדוא״ל"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
@@ -332,7 +332,7 @@ msgstr "העברה לאשפה"
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
-#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:391
+#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "צבע הפתקית"
 
@@ -370,22 +370,22 @@ msgstr "_ביטול"
 msgid "_OK"
 msgstr "_אישור"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:385
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "שחזור"
 
-#: ../src/bjb-selection-toolbar.c:401
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "שיתוף הפתקית"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:405
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "פתיחה בחלון נוסף"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:417
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "למחוק לצמיתות"
 
@@ -405,8 +405,8 @@ msgid "Default Color"
 msgstr "צבע הפתקית"
 
 #: ../src/bjb-settings-dialog.c:463
-msgid "Settings"
-msgstr "הגדרות"
+msgid "Preferences"
+msgstr "העדפות"
 
 #: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
@@ -468,6 +468,19 @@ msgstr "על _אודות"
 msgid "_Quit"
 msgstr "י_ציאה"
 
+#~ msgid "No Notes Found"
+#~ msgstr "לא נמצאו פתקיות"
+
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "אוסף הפתקיות שלך ריק.\n"
+#~ "יש ללחוץ על הכפתור חדש כדי ליצור את הפתקית הראשונה שלך."
+
+#~ msgid "Settings"
+#~ msgstr "הגדרות"
+
 #~ msgid "Close"
 #~ msgstr "סגירה"
 
@@ -503,9 +516,6 @@ msgstr "י_ציאה"
 
 #~ msgid "Done"
 #~ msgstr "בוצע"
-
-#~ msgid "Preferences"
-#~ msgstr "העדפות"
 
 #~ msgid "Bijiben"
 #~ msgstr "פתקיות"

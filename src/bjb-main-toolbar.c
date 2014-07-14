@@ -854,7 +854,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   GdkRGBA                color;
   GtkSizeGroup          *size;
   BijiItem *item;
-  GtkWidget *menu_image;
   gboolean rtl, detached;
 
   priv->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
@@ -890,8 +889,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   /* Menu */
 
   priv->menu = gtk_menu_button_new ();
-  menu_image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->menu), menu_image);
+  gtk_menu_button_set_direction (GTK_MENU_BUTTON (priv->menu), GTK_ARROW_NONE);
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->menu),
                                "image-button");
   gtk_header_bar_pack_end (bar, priv->menu);

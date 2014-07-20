@@ -302,6 +302,9 @@ on_note_color_changed (BijiNoteObj *note, BijiWebkitEditor *self)
 
   if (biji_note_obj_get_rgba(note,&color))
     set_editor_color (GTK_WIDGET (self), &color);
+
+  /*Need to change text color as well*/
+  biji_webkit_editor_change_css_file(self);
 }
 
 
@@ -380,6 +383,9 @@ biji_webkit_editor_constructed (GObject *obj)
                                      "user-changed-contents",
                                      G_CALLBACK (on_content_changed),
                                      NULL);
+
+  /*Add font color*/
+  biji_webkit_editor_change_css_file(self);
 }
 
 static void
@@ -457,4 +463,31 @@ biji_webkit_editor_new (BijiNoteObj *note)
   return g_object_new (BIJI_TYPE_WEBKIT_EDITOR,
                        "note", note,
                        NULL);
+}
+
+void
+biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
+{
+  BijiWebkitEditorPrivate *priv;
+  gchar *css_path;
+  GdkRGBA color;
+
+  priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
+
+  biji_note_obj_get_rgba(priv->note,&color);
+
+  if(color.red < 0.5)
+    css_path = g_build_filename ("file://",
+				 DATADIR, "bijiben",
+				 "Default-white.css",NULL);
+  else
+    css_path = g_build_filename ("file://",
+				 DATADIR, "bijiben",
+				 "Default-black.css",NULL);
+
+  g_object_set (G_OBJECT(priv->settings),
+    "user-stylesheet-uri", css_path, NULL);
+
+  g_free (css_path);
+  return;
 }

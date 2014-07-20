@@ -40,7 +40,8 @@ org.gnome.Bijiben.SearchProvider.service: org.gnome.Bijiben.SearchProvider.servi
 searchproviderdir = $(datadir)/gnome-shell/search-providers
 searchprovider_DATA = bijiben-search-provider.ini
 
-css_files = Default.css
+css_files = Default-black.css \
+	    Default-white.css
 
 cssdir = $(pkgdatadir)
 css_DATA = $(css_files)

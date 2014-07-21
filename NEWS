@@ -1,3 +1,20 @@
+Overview of changes in 3.13.4
+==============================
+
+* Misc
+  Mtbar131: Adapt text color (#726067)
+  MClasen: Use the new gear menu (#726067)
+  Fix Size Request (#721195)
+
+* Translations
+  Brazilian
+  Galician
+  Greek
+  Hebrew
+  Indonesian
+  Spanish
+  Russian
+
 Overview of changes in 3.13.3
 ==============================
 

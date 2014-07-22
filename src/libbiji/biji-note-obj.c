@@ -668,7 +668,11 @@ biji_note_obj_get_icon (BijiItem *item)
     pango_layout_set_font_description (layout, desc);
     pango_font_description_free (desc);
 
-    cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+    if(note_color.red < 0.5)
+      cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
+    else
+      cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+
     pango_cairo_update_layout (cr, layout);
     pango_cairo_show_layout (cr, layout);
 

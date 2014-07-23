@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 19:31+0200\n"
-"PO-Revision-Date: 2014-06-03 19:31+0200\n"
+"POT-Creation-Date: 2014-07-23 11:01+0200\n"
+"PO-Revision-Date: 2014-07-23 11:03+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -105,29 +105,33 @@ msgstr "Enkel notisblokk for GNOME"
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/bjb-bijiben.c:440
+#: ../src/bjb-bijiben.c:450
 msgid "Show the application's version"
 msgstr "Vis versjon for programmet"
 
-#: ../src/bjb-bijiben.c:442
+#: ../src/bjb-bijiben.c:452
+msgid "Create a new note"
+msgstr "Lag et nytt notat"
+
+#: ../src/bjb-bijiben.c:454
 msgid "[FILE...]"
 msgstr "[FIL …]"
 
-#: ../src/bjb-bijiben.c:449
+#: ../src/bjb-bijiben.c:461
 msgid "Take notes and export them everywhere."
 msgstr "Ta notater og eksporter dem hvor som helst."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:459
+#: ../src/bjb-bijiben.c:472
 msgid "Could not parse arguments"
 msgstr "Kunne ikke tolke argumenter"
 
-#: ../src/bjb-bijiben.c:467
+#: ../src/bjb-bijiben.c:481
 msgid "GNOME Notes"
 msgstr "GNOME notater"
 
-#: ../src/bjb-bijiben.c:477
+#: ../src/bjb-bijiben.c:494
 msgid "Could not register the application"
 msgstr "Kunne ikke registrere programmet"
 
@@ -167,16 +171,12 @@ msgid "Copy selection to a new note"
 msgstr "Kopier utvalg til nytt notat"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "Ingen notater funnet"
+msgid "No notes"
+msgstr "Ingen notater"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"Notatblokken din er tom.\n"
-"Klikk på Ny-knappen for å lage ditt første notat."
+msgid "Press the new button to create a note."
+msgstr "Trykk på kappen «Ny» å lage et notat."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -319,15 +319,15 @@ msgstr "Send dette notatet som e-post"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Flytt til papirkurv"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:896
 msgid "More options…"
 msgstr "Flere alternativer …"
 
-#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:391
+#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Farge på notat"
 
@@ -365,22 +365,22 @@ msgstr "A_vbryt"
 msgid "_OK"
 msgstr "_OK"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:385
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "Gjenopprett"
 
-#: ../src/bjb-selection-toolbar.c:401
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "Del notat"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:405
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "Åpne i et annet vindu"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:417
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "Slett permanent"
 

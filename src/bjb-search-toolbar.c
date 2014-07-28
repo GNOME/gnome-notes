@@ -114,7 +114,8 @@ on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
   modifiers = gtk_accelerator_get_default_mod_mask ();
 
 
-  if ((event->key.state & modifiers) == GDK_CONTROL_MASK)
+  if ((event->key.state & modifiers) == GDK_CONTROL_MASK ||
+      (event->key.state & modifiers) == GDK_MOD1_MASK)
     return FALSE;
 
   /* Reveal the entry is text is input */

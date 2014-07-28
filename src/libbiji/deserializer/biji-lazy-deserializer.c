@@ -316,6 +316,16 @@ process_tomboy_xml_content (BijiLazyDeserializer *self)
 
 /* Bijiben Inner HTML */
 
+
+/*
+ * as of today js is injected in the middle of the body,
+ * and interpreted as text.
+ * we need to prevent js to be included in note's
+ * raw content. This way works
+ */
+static gboolean is_node_script = FALSE;
+
+
 static void
 process_bijiben_start_elem (BijiLazyDeserializer *self)
 {
@@ -323,6 +333,10 @@ process_bijiben_start_elem (BijiLazyDeserializer *self)
   const gchar *element_name;
 
   element_name = (const gchar *) xmlTextReaderConstName(priv->inner);
+
+  if (g_strcmp0 (element_name, "script") == 0)
+    is_node_script = TRUE;
+
 
   /* Block level elements introduce a new line, except that blocks
      at the very beginning of their parent don't, and <br/> at the
@@ -360,6 +374,13 @@ process_bijiben_text_elem (BijiLazyDeserializer *self)
 {
   gchar *text;
   BijiLazyDeserializerPrivate *priv = self->priv;
+
+  /* in case this is js, skip this node */
+  if (is_node_script == TRUE)
+  {
+    is_node_script = FALSE;
+    return;
+  }
 
   text = (gchar *) xmlTextReaderConstValue (priv->inner);
 

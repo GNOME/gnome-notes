@@ -435,7 +435,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
   /* New Note button */
   else
   {
-    priv->new = gtk_button_new_with_label (_("New"));
+    priv->new = gtk_button_new_with_mnemonic (_("_New"));
     gtk_widget_set_valign (priv->new, GTK_ALIGN_CENTER);
 
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->new);

@@ -6,6 +6,7 @@
 #include <libbiji/libbiji.h>
 #include <libgd/gd.h>
 
+#include "bjb-app-menu.h"
 #include "bjb-bijiben.h"
 #include "bjb-empty-results-box.h"
 #include "bjb-window-base.h"
@@ -137,6 +138,21 @@ bjb_window_base_set_property (GObject  *object,
 
 
 
+static gboolean
+on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
+{
+  switch (event->key.keyval)
+  {
+    case GDK_KEY_F1:
+      help_activated (NULL, NULL, NULL);
+      return TRUE;
+
+    default:
+      return FALSE;
+  }
+
+  return FALSE;
+}
 
 
 
@@ -316,6 +332,9 @@ bjb_window_base_constructed (GObject *obj)
   gtk_stack_add_named (priv->stack, GTK_WIDGET (priv->view), "main-view");
   gtk_widget_show (GTK_WIDGET (priv->stack));
 
+
+  /* Connection to window signals */
+
   g_signal_connect (GTK_WIDGET (self),
                     "destroy",
                     G_CALLBACK (bjb_window_base_destroy),
@@ -330,6 +349,13 @@ bjb_window_base_constructed (GObject *obj)
                     "configure-event",
                     G_CALLBACK (bjb_application_window_configured),
                     self);
+
+  /* Keys */
+
+  g_signal_connect (GTK_WIDGET (self),
+                    "key-press-event",
+                    G_CALLBACK(on_key_pressed_cb),
+		    self);
 
   /* If a note is requested at creation, show it
    * This is a specific type of window not associated with any view */

@@ -118,7 +118,7 @@ about_activated (GSimpleAction *action,
 }
 
 
-static void
+void
 help_activated (GSimpleAction *action,
                 GVariant      *parameter,
                 gpointer       user_data)

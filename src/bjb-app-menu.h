@@ -20,10 +20,14 @@
 
 #include <gtk/gtk.h>
 
-void show_about_dialog(GtkApplication *app);
-
-void bjb_app_menu_set(GApplication *application) ;
+void          show_about_dialog            (GtkApplication *app);
 
 
+void          bjb_app_menu_set             (GApplication *application) ;
+
+
+void          help_activated               (GSimpleAction *action,
+                                            GVariant      *parameter,
+                                            gpointer       user_data);
 
 #endif /*_APP_MENU_H*/

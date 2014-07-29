@@ -141,6 +141,30 @@ bjb_window_base_set_property (GObject  *object,
 static gboolean
 on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
 {
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BjbWindowBasePriv *priv = self->priv;
+  GdkModifierType modifiers;
+
+  modifiers = gtk_accelerator_get_default_mod_mask ();
+
+  /* First check for Alt <- to go back */
+  if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
+      event->key.keyval == GDK_KEY_Left &&
+      priv->current_view == BJB_WINDOW_BASE_NOTE_VIEW)
+  {
+    BijiItemsGroup items;
+
+    items = bjb_controller_get_group (priv->controller);
+    if (items == BIJI_LIVING_ITEMS)
+      bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+
+    else if (items == BIJI_ARCHIVED_ITEMS)
+      bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+
+    return TRUE;
+  }
+
+
   switch (event->key.keyval)
   {
     /* Help on F1 */

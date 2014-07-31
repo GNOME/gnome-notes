@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-02 20:12+0000\n"
-"PO-Revision-Date: 2014-07-04 17:26+0200\n"
+"POT-Creation-Date: 2014-07-31 02:51+0000\n"
+"PO-Revision-Date: 2014-08-01 01:19+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
@@ -33,7 +33,7 @@ msgstr ""
 "και σαν διαδικτυακό πρόγραμμα επεξεργασίας."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -119,7 +119,9 @@ msgstr ""
 " Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
 " Μαρία Θουκυδίδου <marablack3@gmail.com>\n"
 " Μαρία Μαυρίδου <mavridou@gmail.com>\n"
-"Για περισσότερα δείτε http://www.gnome.gr"
+"\n"
+"Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
+"http://gnome.gr/"
 
 #: ../src/bjb-bijiben.c:450
 msgid "Show the application's version"
@@ -145,7 +147,7 @@ msgstr "Δεν ήταν δυνατή η ανάλυση των ορισμάτων
 
 #: ../src/bjb-bijiben.c:481
 msgid "GNOME Notes"
-msgstr "Σημειώσεις GNOME"
+msgstr "Σημειώσεις"
 
 #: ../src/bjb-bijiben.c:494
 msgid "Could not register the application"
@@ -269,8 +271,8 @@ msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "Νέα"
+msgid "_New"
+msgstr "_Νέα"
 
 #: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
@@ -340,11 +342,11 @@ msgstr "Στείλτε αυτή τη σημείωση ηλεκτρονικά"
 msgid "Move to Trash"
 msgstr "Μετακίνηση στα απορρίμματα"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:896
 msgid "More options…"
 msgstr "Περισσότερες επιλογές…"
 
-#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Χρώμα σημείωσης"
 
@@ -479,6 +481,9 @@ msgstr "_Περί"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "Έ_ξοδος"
+
+#~ msgid "New"
+#~ msgstr "Νέα"
 
 #~ msgid "No Notes Found"
 #~ msgstr "Δεν βρέθηκαν σημειώσεις"

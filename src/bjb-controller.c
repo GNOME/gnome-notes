@@ -1,17 +1,17 @@
 /*
  * bjb-controller.c
  * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -421,7 +421,7 @@ notify_displayed_items_changed (BjbController *self)
                  bjb_controller_signals[DISPLAY_NOTES_CHANGED],
                  0,
                  (self->priv->items_to_show != NULL),
-                 self->priv->remaining_items);  
+                 self->priv->remaining_items);
 }
 
 static void
@@ -723,8 +723,8 @@ bjb_controller_class_init (BjbControllerClass *klass)
   bjb_controller_signals[SEARCH_CHANGED] = g_signal_new ( "search-changed" ,
                                                   G_OBJECT_CLASS_TYPE (klass),
                                                   G_SIGNAL_RUN_LAST,
-                                                  0, 
-                                                  NULL, 
+                                                  0,
+                                                  NULL,
                                                   NULL,
                                                   g_cclosure_marshal_VOID__VOID,
                                                   G_TYPE_NONE,
@@ -733,8 +733,8 @@ bjb_controller_class_init (BjbControllerClass *klass)
   bjb_controller_signals[DISPLAY_NOTES_CHANGED] = g_signal_new ( "display-items-changed" ,
                                                   G_OBJECT_CLASS_TYPE (klass),
                                                   G_SIGNAL_RUN_LAST,
-                                                  0, 
-                                                  NULL, 
+                                                  0,
+                                                  NULL,
                                                   NULL,
                                                   _biji_marshal_VOID__BOOLEAN_BOOLEAN,
                                                   G_TYPE_NONE,

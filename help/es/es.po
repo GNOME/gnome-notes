@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2014-05-20 14:51+0000\n"
-"PO-Revision-Date: 2014-05-20 19:43+0200\n"
+"POT-Creation-Date: 2014-08-07 02:51+0000\n"
+"PO-Revision-Date: 2014-08-07 12:19+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -53,9 +53,9 @@ msgstr "2013"
 
 #. (itstool) path: credit/name
 #: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
-#: C/introduction.page:11 C/formatting.page:20 C/search.page:20
-#: C/rename.page:11 C/share.page:20 C/index.page:18 C/listing.page:20
-#: C/cut-copy-paste.page:11
+#: C/introduction.page:11 C/introduction.page:26 C/formatting.page:20
+#: C/search.page:20 C/rename.page:11 C/share.page:20 C/index.page:18
+#: C/listing.page:20 C/cut-copy-paste.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
@@ -69,9 +69,9 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
 #: C/create.page:27 C/delete.page:27 C/introduction.page:23
-#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/rename.page:18
-#: C/share.page:22 C/share.page:27 C/listing.page:27 C/cut-copy-paste.page:13
-#: C/cut-copy-paste.page:18
+#: C/introduction.page:28 C/formatting.page:22 C/formatting.page:27
+#: C/search.page:27 C/rename.page:18 C/share.page:22 C/share.page:27
+#: C/listing.page:27 C/cut-copy-paste.page:13 C/cut-copy-paste.page:18
 msgid "2014"
 msgstr "2014"
 
@@ -281,25 +281,29 @@ msgstr "Pulse el botón <gui style=\"button\">Mover a la papelera</gui>."
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:38
+#: C/introduction.page:43
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='figures/notes-scr.png' "
+#| "md5='ab9553778241bb262b0e2c2b4b7d014b'"
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 msgstr ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 
 #. (itstool) path: info/desc
-#: C/introduction.page:28
+#: C/introduction.page:33
 msgid "A simple application for creating, editing and viewing notes."
 msgstr "Una sencilla aplicación para crear, editar y ver notas."
 
 #. (itstool) path: page/title
-#: C/introduction.page:31
+#: C/introduction.page:36
 msgid "Introduction to Notes"
 msgstr "Introducción a Notas"
 
 #. (itstool) path: page/p
-#: C/introduction.page:33
+#: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
 "notes. You can also search for a note from the <gui>Activities</gui> "
@@ -414,9 +418,6 @@ msgstr "Para compartir una nota:"
 
 #. (itstool) path: item/p
 #: C/share.page:43
-#| msgid ""
-#| "Click <guiseq><gui style=\"button\">More options…</gui><gui style="
-#| "\"menuitem\">Notebooks</gui></guiseq>."
 msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Email this Note</gui></guiseq>."

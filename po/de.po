@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-10\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-04-20 14:51+0000\n"
+"POT-Creation-Date: 2014-08-08 02:52+0000\n"
 "PO-Revision-Date: 2014-06-01 21:51+0100\n"
 "Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Es erlaubt die Nutzung von ownCloud als Speicheranbieter und Online-Editor."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notizen"
 
@@ -49,7 +49,6 @@ msgid "Note-taker"
 msgstr "Notizanwendung"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:1
-#| msgid "Custom Location"
 msgid "Custom Font"
 msgstr "Benutzerdefinierte Schriftart"
 
@@ -63,7 +62,6 @@ msgstr ""
 "Festlegen, ob die dicktengleiche Schrift des Systems verwendet werden soll"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:4
-#| msgid "Note color"
 msgid "New notes color."
 msgstr "Neue Farbe der Notizen."
 
@@ -115,32 +113,35 @@ msgstr ""
 "Christian Kirbach <Christian.Kirbach@gmail.com>, 2013\n"
 "Benjamin Steinwender <b@stbe.at>, 2013-2014"
 
-#: ../src/bjb-bijiben.c:392
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:450
 msgid "Show the application's version"
 msgstr "Die Version der Anwendung zeigen"
 
-#: ../src/bjb-bijiben.c:394
+#: ../src/bjb-bijiben.c:452
+#, fuzzy
+#| msgid "Copy selection to a new note"
+msgid "Create a new note"
+msgstr "Auswahl in eine neue Notiz kopieren"
+
+#: ../src/bjb-bijiben.c:454
 msgid "[FILE...]"
 msgstr "[DATEI…]"
 
-#: ../src/bjb-bijiben.c:401
+#: ../src/bjb-bijiben.c:461
 msgid "Take notes and export them everywhere."
 msgstr "Speichern Sie Notizen und exportieren Sie sie überall."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:411
+#: ../src/bjb-bijiben.c:472
 msgid "Could not parse arguments"
 msgstr "Argumente konnten nicht analysiert werden"
 
-#: ../src/bjb-bijiben.c:419
-#| msgid "Notes"
+#: ../src/bjb-bijiben.c:481
 msgid "GNOME Notes"
 msgstr "GNOME-Notizen"
 
-#: ../src/bjb-bijiben.c:429
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:494
 msgid "Could not register the application"
 msgstr "Anwendung konnte nicht registriert werden"
 
@@ -149,47 +150,47 @@ msgid "Note Color"
 msgstr "Farbe der Notizen"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:347
+#: ../src/bjb-editor-toolbar.c:346
 msgid "Cut"
 msgstr "Ausschneiden"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:354
+#: ../src/bjb-editor-toolbar.c:353
 msgid "Copy"
 msgstr "Kopieren"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:360
+#: ../src/bjb-editor-toolbar.c:359
 msgid "Paste"
 msgstr "Einfügen"
 
-#: ../src/bjb-editor-toolbar.c:375
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Bold"
 msgstr "Fett"
 
-#: ../src/bjb-editor-toolbar.c:385
+#: ../src/bjb-editor-toolbar.c:384
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../src/bjb-editor-toolbar.c:395
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Strike"
 msgstr "Durchstreichen"
 
-#: ../src/bjb-editor-toolbar.c:423
+#: ../src/bjb-editor-toolbar.c:422
 msgid "Copy selection to a new note"
 msgstr "Auswahl in eine neue Notiz kopieren"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "Keine Notizen gefunden"
+#, fuzzy
+#| msgid "Notes"
+msgid "No notes"
+msgstr "Notizen"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"Ihre Notizsammlung ist leer.\n"
-"Klicken Sie auf »Neu«, um Ihre erste Notiz zu erstellen."
+#, fuzzy
+#| msgid "Enter a name to create a notebook"
+msgid "Press the new button to create a note."
+msgstr "Geben Sie einen Namen ein, um eine Notizsammlung anzulegen"
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -207,23 +208,19 @@ msgstr "Benutzerdefinierter Ort"
 msgid "Import Notes"
 msgstr "Notizen importieren"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "A_bbrechen"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "Importieren"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "Wählen Sie den Ort für den Import"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Tomboy-Anwendung"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Gnote-Anwendung"
 
@@ -269,8 +266,8 @@ msgid "New and Recent"
 msgstr "Neu und kürzlich verwendet"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "Neu"
+msgid "_New"
+msgstr "_Neu"
 
 #: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
@@ -300,7 +297,6 @@ msgid "Untitled"
 msgstr "Unbenannt"
 
 #: ../src/bjb-main-toolbar.c:761
-#| msgid "_New Window"
 msgid "Open in New Window"
 msgstr "In neuem Fenster öffnen"
 
@@ -332,21 +328,20 @@ msgstr "Notizsammlungen"
 
 #. Share
 #: ../src/bjb-main-toolbar.c:826
-#| msgid "Delete this Note"
 msgid "Email this Note"
 msgstr "Diese Notiz per E-Mail versenden"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:896
 msgid "More options…"
 msgstr "Mehr Optionen …"
 
-#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:391
+#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Farbe der Notizen"
 
@@ -365,43 +360,41 @@ msgstr "Notiz"
 #.
 #: ../src/bjb-note-view.c:186
 #, c-format
-#| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Zuletzt aktualisiert</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "Geben Sie einen Namen ein, um eine Notizsammlung anzulegen"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "Neue Notizsammlung"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "S_chließen"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "A_bbrechen"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_OK"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:385
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: ../src/bjb-selection-toolbar.c:401
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "Notiz teilen"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:405
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "In einem anderen Fenster öffnen"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:417
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "Dauerhaft löschen"
 
@@ -420,11 +413,15 @@ msgstr "Schriftart der Notizen"
 msgid "Default Color"
 msgstr "Voreingestellte Farbe"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "Notizen"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "Hauptbuch"
 
@@ -473,13 +470,28 @@ msgid "_Help"
 msgstr "_Hilfe"
 
 #: ../src/resources/app-menu.ui.h:5
-#| msgid "_About Notes"
 msgid "_About"
 msgstr "_Info"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Beenden"
+
+#~ msgid "No Notes Found"
+#~ msgstr "Keine Notizen gefunden"
+
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "Ihre Notizsammlung ist leer.\n"
+#~ "Klicken Sie auf »Neu«, um Ihre erste Notiz zu erstellen."
+
+#~ msgid "New"
+#~ msgstr "Neu"
+
+#~ msgid "_Close"
+#~ msgstr "S_chließen"
 
 #~ msgid "No result found for this research."
 #~ msgstr "Kein Ergebnis für diese Suche gefunden."
@@ -504,9 +516,6 @@ msgstr "_Beenden"
 
 #~ msgid "Rename"
 #~ msgstr "Umbenennen"
-
-#~ msgid "Preferences"
-#~ msgstr "Einstellungen"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

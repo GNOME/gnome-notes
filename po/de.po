@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-10\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-08 02:52+0000\n"
-"PO-Revision-Date: 2014-06-01 21:51+0100\n"
+"POT-Creation-Date: 2014-08-13 18:43+0000\n"
+"PO-Revision-Date: 2014-08-13 20:44+0100\n"
 "Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.7\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -118,10 +118,9 @@ msgid "Show the application's version"
 msgstr "Die Version der Anwendung zeigen"
 
 #: ../src/bjb-bijiben.c:452
-#, fuzzy
 #| msgid "Copy selection to a new note"
 msgid "Create a new note"
-msgstr "Auswahl in eine neue Notiz kopieren"
+msgstr "Eine neue Notiz erstellen"
 
 #: ../src/bjb-bijiben.c:454
 msgid "[FILE...]"
@@ -181,16 +180,14 @@ msgid "Copy selection to a new note"
 msgstr "Auswahl in eine neue Notiz kopieren"
 
 #: ../src/bjb-empty-results-box.c:101
-#, fuzzy
 #| msgid "Notes"
 msgid "No notes"
-msgstr "Notizen"
+msgstr "Keine Notizen"
 
 #: ../src/bjb-empty-results-box.c:145
-#, fuzzy
 #| msgid "Enter a name to create a notebook"
 msgid "Press the new button to create a note."
-msgstr "Geben Sie einen Namen ein, um eine Notizsammlung anzulegen"
+msgstr "Klicken Sie den Knopf »Neu«, um eine neue Notiz zu erstellen."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"

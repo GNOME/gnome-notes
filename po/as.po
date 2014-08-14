@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-10\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-12 03:53+0000\n"
-"PO-Revision-Date: 2014-02-12 14:51+0630\n"
+"POT-Creation-Date: 2014-08-14 14:52+0000\n"
+"PO-Revision-Date: 2014-08-14 20:31+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as\n"
@@ -32,7 +32,7 @@ msgstr ""
 "ই ownCloud ক সংৰক্ষণ অৱস্থান আৰু অনলাইন সম্পাদক ব্যৱহাৰ কৰাৰ অনুমতি দিয়ে।"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "টোকাসমূহ"
 
@@ -49,7 +49,6 @@ msgid "Note-taker"
 msgstr "টোকা-গ্ৰাহক"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:1
-#| msgid "Custom Location"
 msgid "Custom Font"
 msgstr "স্বনিৰ্বাচিত ফন্ট"
 
@@ -63,7 +62,6 @@ msgid "Whether to use the system monospace font"
 msgstr "চিস্টেমৰ মনোস্পেইচ ফন্ট ব্যৱহাৰ কৰা হব নে"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:4
-#| msgid "Note color"
 msgid "New notes color."
 msgstr "নতুন টোকাৰ ৰঙ।"
 
@@ -112,65 +110,90 @@ msgstr "GNOME ৰ বাবে এটা সাধাৰণ টোকাবহ�
 msgid "translator-credits"
 msgstr "নীলমদ্যুতি গোস্বামী (ngoswami@redhat.com)"
 
+#: ../src/bjb-bijiben.c:450
+#| msgid "Gnote application"
+msgid "Show the application's version"
+msgstr "এপ্লিকেচনৰ সংস্কৰণ দেখুৱাওক"
+
+#: ../src/bjb-bijiben.c:452
+#| msgid "Copy selection to a new note"
+msgid "Create a new note"
+msgstr "এটা নতুন টোকা সৃষ্টি কৰক"
+
+#: ../src/bjb-bijiben.c:454
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:461
+msgid "Take notes and export them everywhere."
+msgstr "টোকাসমূহ লওক আৰু সিহতক সকলো ঠাইত এক্সপৰ্ট কৰক।"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:472
+msgid "Could not parse arguments"
+msgstr "তৰ্কসমূহ বিশ্লেষণ কৰিব পৰা নগল"
+
+#: ../src/bjb-bijiben.c:481
+#| msgid "Notes"
+msgid "GNOME Notes"
+msgstr "GNOME টোকাসমূহ"
+
+#: ../src/bjb-bijiben.c:494
+#| msgid "Gnote application"
+msgid "Could not register the application"
+msgstr "এপ্লিকেচন ৰেজিস্টাৰ কৰিব পৰা নগল"
+
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "টোকাৰ ৰঙ"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:346
 msgid "Cut"
 msgstr "কাট কৰক"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:353
 msgid "Copy"
 msgstr "কপি কৰক"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:359
 msgid "Paste"
 msgstr "পেইস্ট কৰক"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:374
 msgid "Bold"
 msgstr "ডাঠ"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:384
 msgid "Italic"
 msgstr "ইটালিক"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Strike"
 msgstr "স্ট্ৰাইক"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:422
 msgid "Copy selection to a new note"
 msgstr "নিৰ্বাচনক এটা নতুন টোকালৈ কপি কৰক"
 
-#: ../src/bjb-empty-results-box.c:100
-msgid "No Notes Found"
-msgstr "কোনো টোকা পোৱা নগল"
+#: ../src/bjb-empty-results-box.c:101
+#| msgid "Notes"
+msgid "No notes"
+msgstr "কোনো টোকা নাই"
 
-#: ../src/bjb-empty-results-box.c:144
-#| msgid ""
-#| "Your notes collection is empty.\n"
-#| "Click the New button to create your first note."
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"আপোনাৰ টোকাসমূহৰ টোকাবহী ৰিক্ত।\n"
-"আপোনাৰ প্ৰথম টোকা সৃষ্টি কৰিবলৈ নতুন বুটাম ক্লিক কৰক।"
+#: ../src/bjb-empty-results-box.c:145
+#| msgid "Enter a name to create a notebook"
+msgid "Press the new button to create a note."
+msgstr "এটা টোকা সৃষ্টি কৰিবলৈ নতুন বুটাম টিপক।"
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "এই গৱেষণাৰ বাবে কোনো ফলাফল পোৱা নগল।"
-
-#: ../src/bjb-empty-results-box.c:161
+#: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
 msgstr "ইচ্চ"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr "অনুগ্ৰহ কৰি 'Tracker' ইনস্টল কৰক আৰু এপ্লিকেচন পুনাৰম্ভ কৰক।"
 
@@ -182,31 +205,27 @@ msgstr "স্বনিৰ্বাচিত অৱস্থান"
 msgid "Import Notes"
 msgstr "টোকাসমূহ ইমপোৰ্ট কৰক"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "বাতিল কৰক (_C)"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "ইমপোৰ্ট কৰক"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "ইমপোৰ্ট অৱস্থান বাছক"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Tomboy এপ্লিকেচন"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Gnote এপ্লিকেচন"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "অধিক ল'ড কৰক"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "ল'ড কৰা হৈছে..."
 
@@ -222,160 +241,158 @@ msgstr[0] "%d নিৰ্বাচিত"
 msgstr[1] "%d নিৰ্বাচিত"
 
 #: ../src/bjb-main-toolbar.c:264
-#| msgid "Search note titles, content and collections"
 msgid "Search note titles, content and notebooks"
 msgstr "টোকাৰ শীৰ্ষকসমূহ, সমল আৰু টোকাবহীসমূহক সন্ধান কৰক"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "বাতিল কৰক"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "নিৰ্বাচন অৱস্থাৰ পৰা প্ৰস্থান কৰক"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "%s ৰ বাবে ফলাফলসমূহ"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "নতুন আৰু শেহতীয়া"
 
-#: ../src/bjb-main-toolbar.c:435
-msgid "New"
-msgstr "নতুন"
+#: ../src/bjb-main-toolbar.c:438
+msgid "_New"
+msgstr "নতুন (_N)"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
 msgstr "নিৰ্বাচন অৱস্থা"
 
-#: ../src/bjb-main-toolbar.c:488
-#| msgid "View notes and collections in a list"
+#: ../src/bjb-main-toolbar.c:491
 msgid "View notes and notebooks in a list"
 msgstr "এটা তালিকাত টোকাসমূহ আৰু টোকাবহীসমূহ দৰ্শন কৰক"
 
-#: ../src/bjb-main-toolbar.c:512
-#| msgid "View notes and collections in a grid"
+#: ../src/bjb-main-toolbar.c:515
 msgid "View notes and notebooks in a grid"
 msgstr "টোকাসমূহ আৰু টোকাবহীসমূহ এটা গ্ৰিডত দৰ্শন কৰক"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:534
 msgid "Trash"
 msgstr "আবৰ্জনা"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:573
 msgid "Empty"
 msgstr "ৰিক্ত"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:655
 msgid "Untitled"
 msgstr "শীৰ্ষকবিহিন"
 
-#: ../src/bjb-main-toolbar.c:755
-#| msgid "_New Window"
+#: ../src/bjb-main-toolbar.c:761
 msgid "Open in New Window"
 msgstr "নতুন উইন্ডোত খোলক"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:772
 msgid "Undo"
 msgstr "বাতিল কৰক"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:780
 msgid "Redo"
 msgstr "আকৌ কৰক"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:795
 msgid "Bullets"
 msgstr "বুলেটসমূহ"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:802
 msgid "Numbered List"
 msgstr "সাংখ্যিক তালিকা"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
-#| msgid "Notes"
+#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "টোকাবহীসমূহ"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
-#| msgid "Delete this Note"
+#: ../src/bjb-main-toolbar.c:826
 msgid "Email this Note"
 msgstr "এই টোকাক ইমেইল কৰক"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "আবৰ্জনালৈ স্থানান্তৰ কৰক"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:896
 msgid "More options…"
 msgstr "অধিক বিকল্প…"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "টোকাৰ ৰঙ"
 
-#: ../src/bjb-main-view.c:486
-#| msgid "Note Color"
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "টোকাবহী"
 
-#: ../src/bjb-main-view.c:489
-#| msgid "Notes"
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "টোকা"
 
-#: ../src/bjb-organize-dialog.c:399
-#| msgid "Enter a name to create a collection"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:186
+#, c-format
+#| msgid "Last updated"
+msgid "<b>Last updated</b> %s"
+msgstr "<b>সৰ্বশেষ আপডেইট কৰা হৈছিল</b> %s"
+
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "এটা টোকাবহী সৃষ্টি কৰিবলৈ এটা নাম সুমুৱাওক"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "নতুন টোকাবহী"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "বন্ধ কৰক (_C)"
-
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "সৰ্বশেষ আপডেইট কৰা হৈছিল"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "বাতিল কৰক (_C)"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "ঠিক আছে (_O)"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "পুনৰুদ্ধাৰ কৰক"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "টোকা অংশীদাৰী কৰক"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "অন্য উইন্ডোত খোলক"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "স্থায়ীভাৱে মচি পেলাওক"
 
@@ -394,11 +411,16 @@ msgstr "টোকাৰ ফন্ট"
 msgid "Default Color"
 msgstr "অবিকল্পিত ৰঙ"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:463
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "পছন্দসমূহ"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "টোকাৰ সংস্কৰণ"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "প্ৰাথমিক কিতাপ"
 
@@ -426,7 +448,7 @@ msgstr "এই বছৰ"
 msgid "Unknown"
 msgstr "অজ্ঞাত"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "স্থানীয় সংৰক্ষণ"
 
@@ -447,13 +469,34 @@ msgid "_Help"
 msgstr "সহায় (_H)"
 
 #: ../src/resources/app-menu.ui.h:5
-#| msgid "_About Notes"
 msgid "_About"
 msgstr "বিষয়ে (_A)"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "প্ৰস্থান কৰক (_Q)"
+
+#~ msgid "No Notes Found"
+#~ msgstr "কোনো টোকা পোৱা নগল"
+
+#~| msgid ""
+#~| "Your notes collection is empty.\n"
+#~| "Click the New button to create your first note."
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "আপোনাৰ টোকাসমূহৰ টোকাবহী ৰিক্ত।\n"
+#~ "আপোনাৰ প্ৰথম টোকা সৃষ্টি কৰিবলৈ নতুন বুটাম ক্লিক কৰক।"
+
+#~ msgid "No result found for this research."
+#~ msgstr "এই গৱেষণাৰ বাবে কোনো ফলাফল পোৱা নগল।"
+
+#~ msgid "New"
+#~ msgstr "নতুন"
+
+#~ msgid "_Close"
+#~ msgstr "বন্ধ কৰক (_C)"
 
 #~ msgid "Collections"
 #~ msgstr "সংগ্ৰহসমূহ"

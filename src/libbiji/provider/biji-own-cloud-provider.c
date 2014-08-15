@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /* biji-own-cloud-provider.c
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
  * 
@@ -66,10 +67,10 @@ struct BijiOwnCloudProviderPrivate_
   GHashTable       *tracker;
   GQueue           *queue;
 
-  GVolume          *volume;
-  GMount           *mount;
+  GVolume          *volume; // only online
+  GMount           *mount;  // only online
   gchar            *path;
-  GFile            *folder;
+  GFile            *folder; // either offline / online
 
   GFileMonitor     *monitor;
   GCancellable     *cancel_monitor;
@@ -133,6 +134,7 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_object_unref (self->priv->account);
   g_object_unref (self->priv->object);
   g_object_unref (self->priv->info.icon);
+  g_object_unref (self->priv->folder);
 
   g_clear_pointer (&self->priv->info.name, g_free);
 
@@ -162,12 +164,14 @@ create_note_from_item (BijiOCloudItem *item)
   BijiNoteObj *note;
   GdkRGBA color;
   BijiManager *manager;
+  gboolean online = (item->self->priv->mount != NULL);
 
   manager = biji_provider_get_manager (BIJI_PROVIDER (item->self));
 
   note = biji_own_cloud_note_new_from_info (item->self,
                                             manager,
-                                            &item->set);
+                                            &item->set,
+                                            online);
   biji_manager_get_default_color (manager, &color);
   biji_note_obj_set_rgba (note, &color);
   g_hash_table_replace (item->self->priv->notes,
@@ -360,7 +364,7 @@ enumerate_next_files_ready_cb (GObject *source,
     info = l->data;
     item = o_cloud_item_new (self);
     item->set.title = g_strdup (g_file_info_get_name (info));
-    item->set.url = g_strconcat
+    item->set.url = g_build_filename
       (g_file_get_parse_name (self->priv->folder),
        "/", item->set.title, NULL);
 
@@ -368,7 +372,12 @@ enumerate_next_files_ready_cb (GObject *source,
     item->set.mtime = time.tv_sec;
     item->set.created = g_file_info_get_attribute_uint64 (info, "time:created");
     item->set.datasource_urn = g_strdup (self->priv->info.datasource);
-    item->file = g_file_new_for_uri (item->set.url);
+
+    if (self->priv->mount == NULL) /* offline (synced mode) */
+      item->file = g_file_new_for_path (item->set.url);
+    else                          /* online (webdav) */
+      item->file = g_file_new_for_uri (item->set.url);
+
     g_queue_push_head (self->priv->queue, item);
   }
 
@@ -627,6 +636,90 @@ get_mount (BijiOwnCloudProvider *self)
 }
 
 
+/*
+ * Try to read, from ownCloud client config,
+ * where are notes (synced notes).
+ *
+ * If this fails, fallback to direct online work.
+ */
+
+static void
+on_owncloudclient_read (GObject *source_object,
+                        GAsyncResult *res,
+                        gpointer user_data)
+{
+  BijiOwnCloudProvider *self = user_data;
+  GFileInputStream *stream;
+	GDataInputStream *reader;
+  GError           *error = NULL;
+  gchar            *buffer = NULL;
+  gsize             length = 0;
+  GString          *string;
+
+
+  stream = g_file_read_finish (G_FILE (source_object),
+                               res,
+                               &error);
+
+  /*
+   * Any error will fallback to online.
+   * Whenever file does not exist, do not warn */
+  if (error)
+  {
+    if (error->domain == G_IO_ERROR_NOT_FOUND)
+      g_message ("No ownCloud client configuration found.\nWork online.");
+
+		else
+      g_warning ("%s", error->message);
+
+		g_error_free (error);
+    get_mount (self);
+	}
+
+  /* Checkout `localPath' where notes are. */
+  reader = g_data_input_stream_new (G_INPUT_STREAM (stream));
+	while (!g_str_has_prefix (buffer, "localPath"))
+  {
+    g_free (buffer); /* NULL on 1st, this is fine. */
+    buffer = g_data_input_stream_read_line (reader,
+                                            &length,
+                                            NULL,
+                                            &error);
+
+    if (error) /* very unlikely! */
+      g_warning ("%s", error->message);
+
+    if (!buffer) /* error. Or, localPath not found, end of file. */
+    {
+      get_mount (self);
+      break;
+		}
+  }
+
+  string = g_string_new (buffer);
+  g_string_erase (string, 0, 10); // localPath=
+  g_warning ("now, %s", string->str);
+
+  /* ok we have the path. Now create the notes */
+  self->priv->path = g_build_filename (string->str, "Notes", NULL);
+  self->priv->folder = g_file_new_for_path (self->priv->path);
+  g_file_enumerate_children_async (self->priv->folder,
+                                   "standard::name,time::modified,time::created", 0,
+                                   G_PRIORITY_DEFAULT,
+                                   NULL,
+                                   enumerate_children_ready_cb,
+                                   self);
+
+
+  g_free (buffer);
+  g_string_free (string, TRUE);
+  g_object_unref (stream);
+  g_object_unref (reader);
+}
+
+
+/* Retrieve basic information,
+ * then check for an ownCloud Client. */
 static void
 biji_own_cloud_provider_constructed (GObject *obj)
 {
@@ -634,6 +727,8 @@ biji_own_cloud_provider_constructed (GObject *obj)
   BijiOwnCloudProviderPrivate *priv;
   GError *error;
   GIcon *icon;
+  gchar *owncloudclient;
+  GFile *client;
 
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->constructed (obj);
 
@@ -674,7 +769,19 @@ biji_own_cloud_provider_constructed (GObject *obj)
       g_object_ref (priv->info.icon);
     }
 
-    get_mount (self);
+    owncloudclient = g_build_filename (
+        g_get_home_dir (),
+        ".local/share/data/ownCloud/folders/ownCloud",
+        NULL);
+    client = g_file_new_for_path (owncloudclient);
+    g_free (owncloudclient);
+
+    g_file_read_async (client,
+                       G_PRIORITY_DEFAULT_IDLE,
+                       NULL,
+		                   on_owncloudclient_read,
+                       self);
+
     return;
   }
 
@@ -696,10 +803,12 @@ biji_own_cloud_provider_init (BijiOwnCloudProvider *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_OWN_CLOUD_PROVIDER, BijiOwnCloudProviderPrivate);
 
+
   self->priv->notes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
   self->priv->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
   self->priv->queue = g_queue_new ();
   self->priv->path = NULL;
+  self->priv->folder = NULL;
 }
 
 
@@ -765,7 +874,9 @@ own_cloud_create_note         (BijiProvider *provider,
                                gchar        *str)
 {
   BijiInfoSet info;
+  BijiOwnCloudProvider *self;
 
+  self = BIJI_OWN_CLOUD_PROVIDER (provider);
   info.url = NULL;
   info.title = NULL;
   info.mtime = g_get_real_time ();
@@ -773,9 +884,10 @@ own_cloud_create_note         (BijiProvider *provider,
   info.created = g_get_real_time ();
 
   return biji_own_cloud_note_new_from_info (
-       BIJI_OWN_CLOUD_PROVIDER (provider),
+		   self,
        biji_provider_get_manager (provider),
-       &info);
+       &info,
+       (self->priv->mount != NULL));
 }
 
 
@@ -798,7 +910,7 @@ own_cloud_create_full (BijiProvider *provider,
   self = BIJI_OWN_CLOUD_PROVIDER (provider);
   manager = biji_provider_get_manager (provider);
 
-  retval = biji_own_cloud_note_new_from_info (self, manager, info);
+  retval = biji_own_cloud_note_new_from_info (self, manager, info, (self->priv->mount != NULL));
   biji_note_obj_set_html (retval, html);
 
   /* We do not use suggested color.

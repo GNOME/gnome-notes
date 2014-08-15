@@ -240,7 +240,7 @@ biji_import_provider_constructed (GObject *object)
   priv->info.user = NULL;
 
   
-  to_import = g_file_new_for_path (self->priv->uri);
+  to_import = g_file_new_for_uri (self->priv->uri);
 
   g_file_enumerate_children_async (to_import, ATTRIBUTES_FOR_NOTEBOOK,
                                    G_FILE_QUERY_INFO_NONE, G_PRIORITY_DEFAULT,

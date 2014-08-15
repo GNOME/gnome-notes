@@ -1,5 +1,5 @@
 /*
- * bijiben.c
+ * bjb-bijiben.c
  * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
  * 
  * bijiben is free software: you can redistribute it and/or modify it
@@ -357,7 +357,7 @@ bijiben_startup (GApplication *application)
   gchar          *storage_path, *default_color;
   GFile          *storage;
   GError         *error;
-  gchar          *path;
+  gchar          *path, *uri;
   GdkRGBA         color = {0,0,0,0};
 
 
@@ -414,12 +414,16 @@ bijiben_startup (GApplication *application)
   if (self->priv->first_run == TRUE)
   {
     path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
-    bijiben_import_notes (self, path);
+    uri = g_filename_to_uri (path, NULL, NULL);
+    bijiben_import_notes (self, uri);
     g_free (path);
+    g_free (uri);
 
     path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
-    bijiben_import_notes (self, path);
+    uri = g_filename_to_uri (path, NULL, NULL);
+    bijiben_import_notes (self, uri);
     g_free (path);
+    g_free (uri);
   }
 
   /* Create the first window */

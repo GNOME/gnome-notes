@@ -264,7 +264,7 @@ on_file_set_cb (GtkWidget *chooser,
   /* Handle the new : force toggle */
 
   location = dialog->priv->custom->location =
-    gtk_file_chooser_get_uri (GTK_FILE_CHOOSER (chooser));
+    gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
 
   if (location)
   {

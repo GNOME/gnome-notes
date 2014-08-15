@@ -74,7 +74,9 @@ external_activated (GSimpleAction *action,
     locations = bjb_import_dialog_get_paths (BJB_IMPORT_DIALOG (dialog));
     for (l=locations; l!= NULL; l=l->next)
     {
-      bijiben_import_notes (user_data, l->data);
+      gchar *uri = g_filename_to_uri (l->data, NULL, NULL);
+      bijiben_import_notes (user_data, uri);
+      g_free (uri);
     }
 
     g_list_free (locations);

@@ -18,6 +18,7 @@ HELP_FILES = \
 	index.page \
 	listing.page \
 	cut-copy-paste.page \
+	view-trash.page \
 	legal.xml
 
 HELP_MEDIA = \

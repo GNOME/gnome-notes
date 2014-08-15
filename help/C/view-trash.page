@@ -1,0 +1,58 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="view-trash">
+
+  <info>
+    <link type="guide" xref="index#delete"/>
+    <revision pkgversion="3.12" date="2014-08-15" status="review"/>
+
+    <credit type="author">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2014</years>
+    </credit>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+    <desc>View Trash to delete or restore notes.</desc>
+  </info>
+  <p>You can view, restore or delete notes in the <gui>Trash</gui>.</p>
+  <title>Access trashed notes</title>
+  <steps>
+    <title>To restore trashed notes:</title>
+    <item>
+      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui> button.</p>
+    </item>
+    <item>
+      <p>Select all the notes that you want to restore.</p>
+    </item>
+    <item>
+      <p>Click on <gui style="button">Restore</gui> button.</p>
+    </item>
+  </steps>
+  <steps>
+    <title>To permanently delete all the notes in Trash:</title>
+    <item>
+      <p>Click on the <gui>Notes</gui> icon near <gui>Activities</gui>.</p>
+    </item>
+    <item>
+      <p>Select <gui>View Trash</gui>.</p>
+    </item>
+    <item>
+      <p>Click on <gui style="button">Empty</gui>
+      button in the toolbar.</p>
+    </item>
+  </steps>
+  <steps>
+    <title>To delete selected notes from Trash:</title>
+    <item>
+      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui> button.</p>
+    </item>
+    <item>
+      <p>Select all the notes that you want to delete permanently.</p>
+    </item>
+    <item>
+      <p>Click on <gui style="button">Permanently Delete</gui> button.</p>
+    </item>
+  </steps>
+
+</page>

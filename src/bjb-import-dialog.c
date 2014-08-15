@@ -307,7 +307,7 @@ add_custom (BjbImportDialog *self)
 
 
   w = gtk_label_new (_("Custom Location"));
-  gtk_widget_set_margin_start (w, 180);
+  gtk_widget_set_margin_end (w, 180);
   gtk_container_add (GTK_CONTAINER (priv->cust_box), w);
   gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
   gtk_box_pack_start (GTK_BOX (priv->cust_box), w, TRUE, FALSE, 0);

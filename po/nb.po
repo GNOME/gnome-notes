@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-23 11:01+0200\n"
-"PO-Revision-Date: 2014-07-23 11:03+0200\n"
+"POT-Creation-Date: 2014-08-16 11:52+0200\n"
+"PO-Revision-Date: 2014-08-16 11:52+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -27,7 +27,7 @@ msgstr ""
 "Det lar deg bruke ownCloud som lagringslokasjon og redigering på nettet."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notater"
 
@@ -105,33 +105,33 @@ msgstr "Enkel notisblokk for GNOME"
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Vis versjon for programmet"
 
-#: ../src/bjb-bijiben.c:452
+#: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
 msgstr "Lag et nytt notat"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[FIL …]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Ta notater og eksporter dem hvor som helst."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Kunne ikke tolke argumenter"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "GNOME notater"
 
-#: ../src/bjb-bijiben.c:494
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Kunne ikke registrere programmet"
 
@@ -252,8 +252,8 @@ msgid "New and Recent"
 msgstr "Nye og nylige"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "Ny"
+msgid "_New"
+msgstr "_Ny"
 
 #: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"

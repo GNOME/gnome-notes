@@ -148,6 +148,9 @@ editor_toolbar_align (BjbEditorToolbar *self, GdkEvent  *event)
   gint                     x_alignment, y_alignment;
   BjbEditorToolbarPrivate *priv = self->priv;
   cairo_rectangle_int_t    rect;
+  GtkWidget *top;
+  GdkDisplay *display;
+  GdkCursor* cursor;
 
   x_alignment = event->button.x;// + EDITOR_TOOLBAR_X_OFFSET;
   y_alignment = event->button.y + EDITOR_TOOLBAR_Y_OFFSET;
@@ -161,6 +164,17 @@ editor_toolbar_align (BjbEditorToolbar *self, GdkEvent  *event)
   rect.height = 1;
 
   gtk_popover_set_pointing_to (GTK_POPOVER (priv->widget), &rect);
+
+  /* Hide the cursor from the main view */
+  top = gtk_widget_get_toplevel (priv->widget);
+
+  if (gtk_widget_is_toplevel (top))
+  {
+    display = gdk_screen_get_display (gtk_window_get_screen (GTK_WINDOW (top)));
+    cursor = gdk_cursor_new_for_display (display, GDK_BLANK_CURSOR);
+    gdk_window_set_cursor (gtk_widget_get_window (biji_note_obj_get_editor (priv->note)),
+                           cursor);
+  }
 }
 
 static void

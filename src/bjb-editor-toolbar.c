@@ -152,18 +152,21 @@ editor_toolbar_align (BjbEditorToolbar *self, GdkEvent  *event)
   GdkDisplay *display;
   GdkCursor* cursor;
 
-  x_alignment = event->button.x;// + EDITOR_TOOLBAR_X_OFFSET;
-  y_alignment = event->button.y + EDITOR_TOOLBAR_Y_OFFSET;
+  if (event)
+  {
+    x_alignment = event->button.x;// + EDITOR_TOOLBAR_X_OFFSET;
+    y_alignment = event->button.y + EDITOR_TOOLBAR_Y_OFFSET;
 
-  if ( x_alignment < 0)
-    x_alignment = 0;
+    if ( x_alignment < 0)
+      x_alignment = 0;
 
-  rect.x = x_alignment;
-  rect.y = y_alignment;
-  rect.width = 1;
-  rect.height = 1;
+    rect.x = x_alignment;
+    rect.y = y_alignment;
+    rect.width = 1;
+    rect.height = 1;
 
-  gtk_popover_set_pointing_to (GTK_POPOVER (priv->widget), &rect);
+    gtk_popover_set_pointing_to (GTK_POPOVER (priv->widget), &rect);
+  }
 
   /* Hide the cursor from the main view */
   top = gtk_widget_get_toplevel (priv->widget);
@@ -208,6 +211,7 @@ on_button_released (GtkWidget *widget,
   }
 }
 
+
 static gboolean
 on_key_released                     (GtkWidget *widget,
                                      GdkEvent  *event,
@@ -215,8 +219,9 @@ on_key_released                     (GtkWidget *widget,
 {
   BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (user_data);
 
+  /* Do not provide event. Event is null in order not to align */
   if (biji_note_obj_editor_has_selection (self->priv->note))
-    show_edit_bar (self, event);
+    show_edit_bar (self, NULL);
 
   else
     bjb_editor_toolbar_fade_out (self);

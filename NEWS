@@ -1,3 +1,26 @@
+Overview of changes in 3.13.90
+==============================
+
+* Misc
+  OwnCloud : offlinemode
+  mtbar131 : Adapt thumbnails to color (#726067)
+  Shoba Tyagi: Trash page documentation
+
+* Bug fixes
+  Chunyang Xu: Use g_filename (#734817)
+  Chunyang Xu : Fix position of label
+  Lasse Schuirmann: add mnemonic (#733855)
+  Do not js inside results
+  Do not trigger search toolbar on modifiers
+
+* Translations
+  Catalan
+  Finnish
+  Greek
+  Hebrew
+  Lithuanian
+  Norwegian bokmål
+
 Overview of changes in 3.13.4
 ==============================
 

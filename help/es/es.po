@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2014-08-07 02:51+0000\n"
-"PO-Revision-Date: 2014-08-07 12:19+0200\n"
+"POT-Creation-Date: 2014-08-19 02:52+0000\n"
+"PO-Revision-Date: 2014-08-19 12:58+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -55,7 +55,7 @@ msgstr "2013"
 #: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
 #: C/introduction.page:11 C/introduction.page:26 C/formatting.page:20
 #: C/search.page:20 C/rename.page:11 C/share.page:20 C/index.page:18
-#: C/listing.page:20 C/cut-copy-paste.page:11
+#: C/listing.page:20 C/cut-copy-paste.page:11 C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
@@ -72,6 +72,7 @@ msgstr "Michael Hill"
 #: C/introduction.page:28 C/formatting.page:22 C/formatting.page:27
 #: C/search.page:27 C/rename.page:18 C/share.page:22 C/share.page:27
 #: C/listing.page:27 C/cut-copy-paste.page:13 C/cut-copy-paste.page:18
+#: C/view-trash.page:13
 msgid "2014"
 msgstr "2014"
 
@@ -282,10 +283,6 @@ msgstr "Pulse el botón <gui style=\"button\">Mover a la papelera</gui>."
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:43
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-scr.png' "
-#| "md5='ab9553778241bb262b0e2c2b4b7d014b'"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
@@ -523,6 +520,90 @@ msgid ""
 msgstr ""
 "Pulse <gui style=\"button\">Cortar</gui>, <gui style=\"button\">Copiar</gui> "
 "o <gui style=\"button\">Pegar</gui>."
+
+#. (itstool) path: info/desc
+#: C/view-trash.page:16
+msgid "View Trash to delete or restore notes."
+msgstr "Ver la papelera para eliminar o restaurar notas."
+
+#. (itstool) path: page/p
+#: C/view-trash.page:18
+msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
+msgstr "Puede ver, restaurar o eliminar notas en la <gui>Papelera</gui>."
+
+#. (itstool) path: page/title
+#: C/view-trash.page:19
+msgid "Access trashed notes"
+msgstr "Acceder a las notas eliminadas"
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:21
+#| msgid "To share a note:"
+msgid "To restore trashed notes:"
+msgstr "Para restaurar las notas eliminadas:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:23 C/view-trash.page:48
+#| msgid ""
+#| "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+#| "\">Selection mode</gui> button."
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr ""
+"En la vista de la <gui>Papelera</gui> pulse el botón <gui>Modo de selección</"
+"gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:26
+#| msgid "Select the text that you want to format."
+msgid "Select all the notes that you want to restore."
+msgstr "Seleccione todas las notas que quiere restaurar."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:29
+#| msgid "Click the <gui style=\"button\">Close</gui> button."
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr "Pulse el botón <gui style=\"button\">Restaurar</gui>."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:33
+msgid "To permanently delete all the notes in Trash:"
+msgstr "Para eliminar permanentemente todas las notas de la papelera:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:35
+msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgstr "Pulse en el icono de <gui>Notas</gui> junto a <gui>Actividades</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:38
+msgid "Select <gui>View Trash</gui>."
+msgstr "Seleccione <gui>Ver papelera</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:41
+#| msgid "Click the <gui style=\"button\">Close</gui> button."
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr ""
+"Pulse el botón <gui style=\"button\">Vaciar</gui> en la barra de "
+"herramientas."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:46
+#| msgid "To delete multiple notes and notebooks:"
+msgid "To delete selected notes from Trash:"
+msgstr "Para eliminar notas de la papelera:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:51
+#| msgid "Select the text that you want to format."
+msgid "Select all the notes that you want to delete permanently."
+msgstr "Seleccione todas las notas que quiere eliminar permanentemente."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:54
+#| msgid "Click the <gui style=\"button\">Close</gui> button."
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr "Pulse el botón <gui style=\"button\">Eliminar permanentemente</gui>."
 
 #. (itstool) path: p/link
 #: C/legal.xml:5

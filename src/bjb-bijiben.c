@@ -237,13 +237,13 @@ bijiben_init (Bijiben *self)
 
 
 void
-bijiben_import_notes (Bijiben *self, gchar *location)
+bijiben_import_notes (Bijiben *self, gchar *uri)
 {
   g_debug ("IMPORT to %s", bjb_settings_get_default_location (self->priv->settings));
 
   biji_manager_import_uri (self->priv->manager,
-                             bjb_settings_get_default_location (self->priv->settings),
-                             location);
+                           bjb_settings_get_default_location (self->priv->settings),
+                           uri);
 }
 
 

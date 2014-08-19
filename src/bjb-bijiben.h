@@ -62,7 +62,7 @@ BjbSettings * bjb_app_get_settings(gpointer application);
 // Windows
 void bijiben_new_window_for_note (GApplication *app, BijiNoteObj *note);
 
-void bijiben_import_notes (Bijiben *self, gchar *path);
+void bijiben_import_notes (Bijiben *self, gchar *uri);
 
 G_END_DECLS
 

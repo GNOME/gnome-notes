@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-06-22 02:51+0000\n"
-"PO-Revision-Date: 2014-06-22 13:47+0800\n"
+"POT-Creation-Date: 2014-08-22 14:51+0000\n"
+"PO-Revision-Date: 2014-08-22 23:42+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
@@ -21,14 +21,14 @@ msgstr ""
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr "Notes 是一個編輯器，能製作簡易清單以便日後使用。"
+msgstr "《筆記》是個製作簡易清單以便日後使用的編輯器。"
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "它可以使用 ownCloud 做為儲存位置與線上編輯器。"
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "筆記"
 
@@ -105,34 +105,33 @@ msgstr "GNOME 的簡易筆記本"
 msgid "translator-credits"
 msgstr "Chao-Hsiung Liao"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "顯示應用程式的版本"
 
-#: ../src/bjb-bijiben.c:452
-#| msgid "Copy selection to a new note"
+#: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
 msgstr "建立新筆記"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[檔案…]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "隨時隨地做筆記並把它們匯出。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "無法分析引數"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: ../src/bjb-bijiben.c:492
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "無法註冊應用程式"
 
@@ -141,43 +140,41 @@ msgid "Note Color"
 msgstr "筆記顏色"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "剪下"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "複製"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "貼上"
 
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "粗體"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "斜體"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "删除線"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "將選擇區域複製到新的筆記"
 
 #: ../src/bjb-empty-results-box.c:101
-#| msgid "Notes"
 msgid "No notes"
 msgstr "沒有筆記"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Enter a name to create a notebook"
 msgid "Press the new button to create a note."
 msgstr "按下新增按鈕建立新筆記。"
 
@@ -254,8 +251,8 @@ msgid "New and Recent"
 msgstr "新增與最近使用"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "新增"
+msgid "_New"
+msgstr "新增(_N)"
 
 #: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
 msgid "Selection mode"
@@ -321,15 +318,15 @@ msgstr "寄出這份筆記"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "移至回收筒"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:896
 msgid "More options…"
 msgstr "更多選項…"
 
-#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:391
+#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "筆記顏色"
 
@@ -348,7 +345,6 @@ msgstr "筆記"
 #.
 #: ../src/bjb-note-view.c:186
 #, c-format
-#| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>上次更新時間</b> %s"
 
@@ -368,22 +364,22 @@ msgstr "取消(_C)"
 msgid "_OK"
 msgstr "確定(_O)"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:385
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "還原"
 
-#: ../src/bjb-selection-toolbar.c:401
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "分享筆記"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:405
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "在另一個視窗開啟"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:417
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "永遠刪除"
 
@@ -465,6 +461,9 @@ msgstr "關於(_A)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "離開(_Q)"
+
+#~ msgid "New"
+#~ msgstr "新增"
 
 #~ msgid "No Notes Found"
 #~ msgstr "找不到筆記"

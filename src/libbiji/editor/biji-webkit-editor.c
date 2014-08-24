@@ -289,36 +289,28 @@ on_content_changed (WebKitWebView *view)
 }
 
 
-
 static void
-biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
+on_css_directory_created (GObject *source,
+                          GAsyncResult *res,
+                          gpointer user_data)
 {
   BijiWebkitEditorPrivate *priv;
-  const gchar *system_temp_dir;
-  gchar *path_src, *path_dest, *css_path, *bijiben_temp_dir_path;
-  GFile *src, *dest, *bijiben_temp_dir_URI;
+  gchar *path_src, *path_dest, *css_path;
+  GFile *src, *dest;
   GString *sed_command;
   GdkRGBA color;
-  GError *error;
+  GError *error = NULL;
 
-  priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
+  priv = BIJI_WEBKIT_EDITOR (user_data)->priv;
 
-  biji_note_obj_get_rgba(priv->note,&color);
-
-  /* Get temp directory from system */
-  system_temp_dir = g_get_tmp_dir();
+  biji_note_obj_get_rgba (priv->note,&color);
 
   /* build the path for source and Destination of Default.css */
   path_src = g_build_filename(DATADIR, "bijiben", "Default.css", NULL);
-  src = g_file_new_for_path(path_src);
+  src = g_file_new_for_path (path_src);
 
-  path_dest = g_build_filename(system_temp_dir, "bijiben", "Default.css", NULL);
-  dest = g_file_new_for_path(path_dest);
-
-  /* Generate Temp directory path and URI for bijiben */
-  bijiben_temp_dir_path = g_build_filename(system_temp_dir, "bijiben", NULL);
-  bijiben_temp_dir_URI = g_file_new_for_path(bijiben_temp_dir_path);
-  g_file_make_directory(bijiben_temp_dir_URI, NULL, NULL);
+  path_dest = g_build_filename(g_get_tmp_dir (), "bijiben", "Default.css", NULL);
+  dest = g_file_new_for_path (path_dest);
 
   /* Generate sed for Default.css Color */
   if(color.red < 0.5)
@@ -326,16 +318,30 @@ biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
   else
     sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/black/g ");
 
-  g_string_append_printf(sed_command, "%s", path_dest);
+  g_string_append_printf (sed_command, "%s", path_dest);
 
   /* copy the Default.css file */
-  g_file_copy(src, dest, G_FILE_COPY_OVERWRITE,
-              NULL, NULL, NULL, &error);
+  g_file_copy (src, dest, G_FILE_COPY_OVERWRITE,
+               NULL, NULL, NULL, &error);
 
-  g_spawn_command_line_sync(sed_command->str, NULL,
-                            NULL, NULL, &error);
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    return;
+  }
 
-  css_path = g_file_get_uri(dest);
+  g_spawn_command_line_sync (sed_command->str, NULL,
+                             NULL, NULL, &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    return;
+  }
+
+  css_path = g_file_get_uri (dest);
 
   /* Change the css path to NULL and then
      again set it back to actual css path
@@ -352,10 +358,25 @@ biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
   g_free (css_path);
   g_free (path_src);
   g_free (path_dest);
-  g_free (bijiben_temp_dir_path);
-  g_string_free(sed_command, TRUE);
+  g_string_free (sed_command, TRUE);
+}
 
-  return;
+static void
+biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
+{
+  gchar *bijiben_temp_dir_path;
+  GFile *bijiben_temp_dir;
+
+  /* Generate Temp directory path and URI for bijiben */
+  bijiben_temp_dir_path = g_build_filename (g_get_tmp_dir (), "bijiben", NULL);
+  bijiben_temp_dir = g_file_new_for_path (bijiben_temp_dir_path);
+  g_file_make_directory (bijiben_temp_dir, NULL, NULL);
+
+  g_file_make_directory_async (bijiben_temp_dir,
+                               G_PRIORITY_DEFAULT,
+                               NULL, /* cancellable */
+                               on_css_directory_created,
+                               self);
 }
 
 

@@ -295,6 +295,77 @@ on_content_changed (WebKitWebView *view)
   biji_note_obj_save_note (note);
 }
 
+
+
+static void
+biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
+{
+  BijiWebkitEditorPrivate *priv;
+  const gchar *system_temp_dir;
+  gchar *path_src, *path_dest, *css_path, *bijiben_temp_dir_path;
+  GFile *src, *dest, *bijiben_temp_dir_URI;
+  GString *sed_command;
+  GdkRGBA color;
+  GError *error;
+
+  priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
+
+  biji_note_obj_get_rgba(priv->note,&color);
+
+  /* Get temp directory from system */
+  system_temp_dir = g_get_tmp_dir();
+
+  /* build the path for source and Destination of Default.css */
+  path_src = g_build_filename(DATADIR, "bijiben", "Default.css", NULL);
+  src = g_file_new_for_path(path_src);
+
+  path_dest = g_build_filename(system_temp_dir, "bijiben", "Default.css", NULL);
+  dest = g_file_new_for_path(path_dest);
+
+  /* Generate Temp directory path and URI for bijiben */
+  bijiben_temp_dir_path = g_build_filename(system_temp_dir, "bijiben", NULL);
+  bijiben_temp_dir_URI = g_file_new_for_path(bijiben_temp_dir_path);
+  g_file_make_directory(bijiben_temp_dir_URI, NULL, NULL);
+
+  /* Generate sed for Default.css Color */
+  if(color.red < 0.5)
+    sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/white/g ");
+  else
+    sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/black/g ");
+
+  g_string_append_printf(sed_command, "%s", path_dest);
+
+  /* copy the Default.css file */
+  g_file_copy(src, dest, G_FILE_COPY_OVERWRITE,
+              NULL, NULL, NULL, &error);
+
+  g_spawn_command_line_sync(sed_command->str, NULL,
+                            NULL, NULL, &error);
+
+  css_path = g_file_get_uri(dest);
+
+  /* Change the css path to NULL and then
+     again set it back to actual css path
+     so that changes in css file are considered
+     immediately */
+  g_object_set (G_OBJECT(priv->settings),
+               "user-stylesheet-uri", NULL,
+               NULL);
+
+  g_object_set (G_OBJECT(priv->settings),
+                "user-stylesheet-uri", css_path,
+                NULL);
+
+  g_free (css_path);
+  g_free (path_src);
+  g_free (path_dest);
+  g_free (bijiben_temp_dir_path);
+  g_string_free(sed_command, TRUE);
+
+  return;
+}
+
+
 static void
 on_note_color_changed (BijiNoteObj *note, BijiWebkitEditor *self)
 {
@@ -463,73 +534,4 @@ biji_webkit_editor_new (BijiNoteObj *note)
   return g_object_new (BIJI_TYPE_WEBKIT_EDITOR,
                        "note", note,
                        NULL);
-}
-
-
-void
-biji_webkit_editor_change_css_file(BijiWebkitEditor *self)
-{
-  BijiWebkitEditorPrivate *priv;
-  const gchar *system_temp_dir;
-  gchar *path_src, *path_dest, *css_path, *bijiben_temp_dir_path;
-  GFile *src, *dest, *bijiben_temp_dir_URI;
-  GString *sed_command;
-  GdkRGBA color;
-  GError *error;
-
-  priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
-
-  biji_note_obj_get_rgba(priv->note,&color);
-
-  /* Get temp directory from system */
-  system_temp_dir = g_get_tmp_dir();
-
-  /* build the path for source and Destination of Default.css */
-  path_src = g_build_filename(DATADIR, "bijiben", "Default.css", NULL);
-  src = g_file_new_for_path(path_src);
-
-  path_dest = g_build_filename(system_temp_dir, "bijiben", "Default.css", NULL);
-  dest = g_file_new_for_path(path_dest);
-
-  /* Generate Temp directory path and URI for bijiben */
-  bijiben_temp_dir_path = g_build_filename(system_temp_dir, "bijiben", NULL);
-  bijiben_temp_dir_URI = g_file_new_for_path(bijiben_temp_dir_path);
-  g_file_make_directory(bijiben_temp_dir_URI, NULL, NULL);
-
-  /* Generate sed for Default.css Color */
-  if(color.red < 0.5)
-    sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/white/g ");
-  else
-    sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/black/g ");
-
-  g_string_append_printf(sed_command, "%s", path_dest);
-
-  /* copy the Default.css file */
-  g_file_copy(src, dest, G_FILE_COPY_OVERWRITE,
-              NULL, NULL, NULL, &error);
-
-  g_spawn_command_line_sync(sed_command->str, NULL,
-                            NULL, NULL, &error);
-
-  css_path = g_file_get_uri(dest);
-
-  /* Change the css path to NULL and then
-     again set it back to actual css path
-     so that changes in css file are considered
-     immediately */
-  g_object_set (G_OBJECT(priv->settings),
-               "user-stylesheet-uri", NULL,
-               NULL);
-
-  g_object_set (G_OBJECT(priv->settings),
-                "user-stylesheet-uri", css_path,
-                NULL);
-
-  g_free (css_path);
-  g_free (path_src);
-  g_free (path_dest);
-  g_free (bijiben_temp_dir_path);
-  g_string_free(sed_command, TRUE);
-
-  return;
 }

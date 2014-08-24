@@ -45,6 +45,7 @@ struct _BijiWebkitEditorPrivate
   BijiNoteObj *note;
   gulong content_changed;
   gulong color_changed;
+  gchar *font_color;
 
   WebKitWebSettings *settings;
   EEditorSelection *sel;
@@ -203,6 +204,7 @@ biji_webkit_editor_init (BijiWebkitEditor *self)
   self->priv = priv;
 
   priv->sel = e_editor_selection_new (view);
+  priv->font_color = NULL;
 
   /* Settings */
   webkit_web_view_set_editable (view, TRUE);
@@ -229,6 +231,7 @@ biji_webkit_editor_finalize (GObject *object)
   /* priv->spell_check is ref by webkit. probably not to unref */
   g_object_unref (priv->sel);
 
+  g_free (priv->font_color);
 
   if (priv->note != NULL)
     g_signal_handler_disconnect (priv->note, priv->color_changed);
@@ -295,15 +298,32 @@ on_css_directory_created (GObject *source,
                           gpointer user_data)
 {
   BijiWebkitEditorPrivate *priv;
-  gchar *path_src, *path_dest, *css_path;
-  GFile *src, *dest;
-  GString *sed_command;
+  gchar *path_src = NULL, *path_dest = NULL, *css_path = NULL, *font_color = NULL, *css = NULL;
+  GFile *src = NULL, *dest = NULL;
   GdkRGBA color;
   GError *error = NULL;
+  GFileInputStream *str;
+  gchar buffer[1000] = "";
+  gsize bytes;
+  GRegex *rgxp = NULL;
 
   priv = BIJI_WEBKIT_EDITOR (user_data)->priv;
-
   biji_note_obj_get_rgba (priv->note,&color);
+
+  /*
+   * Generate font color
+   * See if need need to change css.
+   */
+  if (color.red < 0.5)
+    font_color = "white";
+  else
+    font_color = "black";
+
+  if (g_strcmp0 (priv->font_color, font_color) == 0)
+    return;
+  else
+    priv->font_color = g_strdup (font_color);
+
 
   /* build the path for source and Destination of Default.css */
   path_src = g_build_filename(DATADIR, "bijiben", "Default.css", NULL);
@@ -311,42 +331,53 @@ on_css_directory_created (GObject *source,
 
   path_dest = g_build_filename(g_get_tmp_dir (), "bijiben", "Default.css", NULL);
   dest = g_file_new_for_path (path_dest);
+  css_path = g_file_get_uri (dest);
 
-  /* Generate sed for Default.css Color */
-  if(color.red < 0.5)
-    sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/white/g ");
-  else
-    sed_command = g_string_new("sed -i s/_BIJI_TEXT_COLOR/black/g ");
+  /* Read & amend the css */
+  str = g_file_read (src, NULL, &error);
 
-  g_string_append_printf (sed_command, "%s", path_dest);
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    goto out;
+  }
+
+  g_input_stream_read_all (G_INPUT_STREAM (str), buffer, 1000, &bytes, NULL, &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    goto out;
+  }
+
+  g_input_stream_close (G_INPUT_STREAM (str), NULL, NULL);
+  rgxp = g_regex_new ("_BIJI_TEXT_COLOR", 0, 0, NULL);
+  css = g_regex_replace_literal (rgxp, buffer, -1, 0, priv->font_color, 0, &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+    goto out;
+  }
 
   /* copy the Default.css file */
-  g_file_copy (src, dest, G_FILE_COPY_OVERWRITE,
-               NULL, NULL, NULL, &error);
+  g_file_replace_contents (dest, css, 1000, NULL, FALSE, G_FILE_CREATE_NONE, NULL, NULL, &error);
 
   if (error)
   {
     g_warning ("%s", error->message);
     g_error_free (error);
-    return;
+    goto out;
   }
-
-  g_spawn_command_line_sync (sed_command->str, NULL,
-                             NULL, NULL, &error);
-
-  if (error)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-    return;
-  }
-
-  css_path = g_file_get_uri (dest);
 
   /* Change the css path to NULL and then
      again set it back to actual css path
      so that changes in css file are considered
      immediately */
+
   g_object_set (G_OBJECT(priv->settings),
                "user-stylesheet-uri", NULL,
                NULL);
@@ -355,10 +386,15 @@ on_css_directory_created (GObject *source,
                 "user-stylesheet-uri", css_path,
                 NULL);
 
+out:
+  g_object_unref (str);
   g_free (css_path);
   g_free (path_src);
   g_free (path_dest);
-  g_string_free (sed_command, TRUE);
+  g_object_unref (src);
+  g_object_unref (dest);
+  g_free (css);
+  g_regex_unref (rgxp);
 }
 
 static void

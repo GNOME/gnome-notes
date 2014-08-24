@@ -198,7 +198,6 @@ biji_webkit_editor_init (BijiWebkitEditor *self)
 {
   WebKitWebView *view = WEBKIT_WEB_VIEW (self);
   BijiWebkitEditorPrivate *priv;
-  gchar *css_path;
 
   priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
   self->priv = priv;
@@ -210,19 +209,13 @@ biji_webkit_editor_init (BijiWebkitEditor *self)
   webkit_web_view_set_transparent (view, TRUE);
   priv->settings = webkit_web_view_get_settings (view);
 
-  css_path = g_build_filename ("file://",
-                               DATADIR, "bijiben",
-                               "Default.css",NULL);
 
   g_object_set (G_OBJECT(priv->settings),
                 "enable-plugins", FALSE,
                 "enable-file-access-from-file-uris", TRUE,
-                "user-stylesheet-uri", css_path,
                 "enable-spell-checking", TRUE,
                 "tab-key-cycles-through-elements", FALSE,
                 NULL);
-
-  g_free (css_path);
 
   priv->spell_check = webkit_get_text_checker ();
 }

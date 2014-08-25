@@ -167,30 +167,46 @@ on_note_trashed (BijiNoteObj *note, BjbNoteView *view)
 }
 
 
-
-/* Number of days since last updated
- * Instead we might want to play with a func to have a date
- * Also this might be integrated in text view */
-GtkWidget *
-bjb_note_view_last_updated_actor_new (BjbNoteView *self)
+static void
+on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
-  GtkWidget *ret;
-  gchar *str;
+  gchar *font_color, *span, *text;
+  BjbNoteViewPrivate *priv = self->priv;
+  GdkRGBA color;
 
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+
+  biji_note_obj_get_rgba (priv->note, &color);
+  if (color.red < 0.5)
+    font_color = "white";
+  else
+    font_color = "black";
 
   /* Translators: %s is the note last recency description.
    * Last updated is placed as in left to right language
    * right to left languages might move %s
    *         '%s <b>Last Updated</b>'
    */
-  str = g_strdup_printf (_("<b>Last updated</b> %s"),
-		         biji_note_obj_get_last_change_date_string (self->priv->note));
-                       // "<span background='white'><b>Last updated</b> %s</span>
-  ret = gtk_label_new (str);
-  gtk_label_set_use_markup (GTK_LABEL (ret), TRUE);
+  text = g_strdup_printf (_("<b>Last updated</b> %s"),
+                          biji_note_obj_get_last_change_date_string
+			            (priv->note));
+  span = g_strdup_printf ("<span color='%s'>%s</span>", font_color, text);
+  gtk_label_set_markup (GTK_LABEL (priv->last_update), span);
 
-  g_free (str);
-  return ret;
+  g_free (text);
+  g_free (span);
+}
+
+
+/* Number of days since last updated
+ * Instead we might want to play with a func to have a date
+ * Also this might be integrated in text view */
+static void
+bjb_note_view_last_updated_actor_new (BjbNoteView *self)
+{
+  self->priv->last_update = gtk_label_new ("");
+  gtk_label_set_use_markup (GTK_LABEL (self->priv->last_update), TRUE);
+  on_note_color_changed_cb (self->priv->note, self);
 }
 
 
@@ -260,11 +276,15 @@ bjb_note_view_constructed (GObject *obj)
       biji_note_obj_set_rgba (priv->note, &color);
   }
 
+  g_signal_connect (priv->note, "color-changed",
+                    G_CALLBACK (on_note_color_changed_cb), self);
+
+
   /* Edition Toolbar for text selection */
   priv->edit_bar = bjb_editor_toolbar_new (self, priv->note);
 
   /* Last updated row */
-  priv->last_update = bjb_note_view_last_updated_actor_new (self);
+  bjb_note_view_last_updated_actor_new (self);
   gtk_widget_set_halign (priv->last_update, GTK_ALIGN_START);
   gtk_widget_set_margin_start (priv->last_update, 50);
   gtk_widget_set_valign (priv->last_update, GTK_ALIGN_END);

@@ -15,6 +15,10 @@ body {
   padding:          2.0em;
 }
 
+body:first-line {
+  font-weight:      bold;
+}
+
 ul {
   list-style-position:inside;
   margin-top :      0;

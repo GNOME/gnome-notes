@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
-"POT-Creation-Date: 2014-05-14 02:52+0000\n"
-"PO-Revision-Date: 2014-05-14 14:09+0100\n"
+"POT-Creation-Date: 2014-08-26 02:52+0000\n"
+"PO-Revision-Date: 2014-08-26 08:19+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -52,9 +52,9 @@ msgstr "2013"
 
 #. (itstool) path: credit/name
 #: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
-#: C/introduction.page:11 C/formatting.page:20 C/search.page:20
-#: C/rename.page:11 C/share.page:20 C/index.page:18 C/listing.page:20
-#: C/cut-copy-paste.page:11
+#: C/introduction.page:11 C/introduction.page:26 C/formatting.page:20
+#: C/search.page:20 C/rename.page:11 C/share.page:20 C/index.page:18
+#: C/listing.page:20 C/cut-copy-paste.page:11 C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
@@ -68,9 +68,10 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
 #: C/create.page:27 C/delete.page:27 C/introduction.page:23
-#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/rename.page:18
-#: C/share.page:22 C/share.page:27 C/listing.page:27 C/cut-copy-paste.page:13
-#: C/cut-copy-paste.page:18
+#: C/introduction.page:28 C/formatting.page:22 C/formatting.page:27
+#: C/search.page:27 C/rename.page:18 C/share.page:22 C/share.page:27
+#: C/listing.page:27 C/cut-copy-paste.page:13 C/cut-copy-paste.page:18
+#: C/view-trash.page:13
 msgid "2014"
 msgstr "2014"
 
@@ -280,25 +281,25 @@ msgstr "Klikněte na tlačítko <gui style=\"button\">Přesunout do koše</gui>.
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:38
+#: C/introduction.page:43
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 msgstr ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 
 #. (itstool) path: info/desc
-#: C/introduction.page:28
+#: C/introduction.page:33
 msgid "A simple application for creating, editing and viewing notes."
 msgstr "Jednoduchá aplikace pro vytváření, úpravy a prohlížení poznámek."
 
 #. (itstool) path: page/title
-#: C/introduction.page:31
+#: C/introduction.page:36
 msgid "Introduction to Notes"
 msgstr "Úvod do aplikace Poznámky"
 
 #. (itstool) path: page/p
-#: C/introduction.page:33
+#: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
 "notes. You can also search for a note from the <gui>Activities</gui> "
@@ -519,6 +520,80 @@ msgid ""
 msgstr ""
 "Klikněte na <gui style=\"button\">Vyjmout</gui>, <gui style=\"button"
 "\">Kopírovat</gui> nebo <gui style=\"button\">Vložit</gui>."
+
+#. (itstool) path: info/desc
+#: C/view-trash.page:16
+msgid "View Trash to delete or restore notes."
+msgstr "Jak si zobrazit koš kvůli smazání nebo obnovení poznámek."
+
+#. (itstool) path: page/p
+#: C/view-trash.page:18
+msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
+msgstr ""
+"Poznámky v <gui>koši</gui> si můžete zobrazit, obnovit je nebo trvale smazat."
+
+#. (itstool) path: page/title
+#: C/view-trash.page:19
+msgid "Access trashed notes"
+msgstr "Přístup k vyhozeným poznámkám"
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:21
+msgid "To restore trashed notes:"
+msgstr "Když chcete obnovit vyhozené poznámky:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:23 C/view-trash.page:48
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr ""
+"V zobrazení <gui>koše</gui> klikněte na tlačítko <gui>Režim výběru</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:26
+msgid "Select all the notes that you want to restore."
+msgstr "Vyberte všechny poznámky, které chcete obnovit."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:29
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr "Klikněte na tlačítko <gui style=\"button\">Obnovit</gui>."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:33
+msgid "To permanently delete all the notes in Trash:"
+msgstr "Když chcete trvale smazat všechny poznámky v koši:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:35
+msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgstr "Klikněte na ikonu <gui>Poznámky</gui> vedle <gui>Činnosti</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:38
+msgid "Select <gui>View Trash</gui>."
+msgstr "Vyberte <gui>Zobrazit koš</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:41
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr ""
+"Klikněte na tlačítko <gui style=\"button\">Vyprázdnit</gui> na nástrojové "
+"liště."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:46
+msgid "To delete selected notes from Trash:"
+msgstr "Když chcete z koše smazat vybrané poznámky:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:51
+msgid "Select all the notes that you want to delete permanently."
+msgstr "Vyberte všechny poznámky, které chcete trvale smazat."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:54
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr "Klikněte na tlačítko <gui style=\"button\">Smazat trvale</gui>."
 
 #. (itstool) path: p/link
 #: C/legal.xml:5

@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-01 02:51+0000\n"
-"PO-Revision-Date: 2014-08-01 11:35-0300\n"
+"POT-Creation-Date: 2014-08-26 20:01+0000\n"
+"PO-Revision-Date: 2014-08-26 18:20-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -79,8 +79,10 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Fornecedor primário de notas para usar para novas notas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
-msgstr "O catálogo de notas primário é o lugar onde novas notas são criadas."
+#| msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
+msgstr ""
+"O catálogo de notas primário é o lugar onde as novas notas são criadas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
 msgid "Window maximized"
@@ -117,33 +119,33 @@ msgstr ""
 "Enrico Nicoletto <liverig@gmail.com>, 2013, 2014.\n"
 "Fábio Nogueira<deb-user-ba@ubuntu.com>, 2013."
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Mostra a versão do aplicativo"
 
-#: ../src/bjb-bijiben.c:452
+#: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
 msgstr "Cria uma nova nota"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[ARQUIVO...]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Tome notas e exporte-as para qualquer lugar."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Não foi possível interpretar os argumentos"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "Notas do GNOME"
 
-#: ../src/bjb-bijiben.c:494
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Não foi possível registrar o aplicativo"
 
@@ -152,33 +154,33 @@ msgid "Note Color"
 msgstr "Cor da nota"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Cortar"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Copiar"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Colar"
 
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Negrito"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Itálico"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Tachado"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Copia a seleção para uma nova nota"
 
@@ -356,7 +358,7 @@ msgstr "Nota"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Última atualização</b> %s"

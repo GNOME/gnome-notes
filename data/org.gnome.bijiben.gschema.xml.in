@@ -17,7 +17,7 @@
     <key type="s" name="default-location">
       <default>'local'</default>
       <_summary>Primary notes provider to use for new notes.</_summary>
-      <_description>The primary notebook is the place where are created new notes.</_description>
+      <_description>The primary notebook is the place where new notes are created.</_description>
     </key>
     <key name="window-maximized" type="b">
       <default>false</default>

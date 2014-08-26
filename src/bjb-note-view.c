@@ -285,8 +285,8 @@ bjb_note_view_constructed (GObject *obj)
 
   /* Last updated row */
   bjb_note_view_last_updated_actor_new (self);
-  gtk_widget_set_halign (priv->last_update, GTK_ALIGN_START);
-  gtk_widget_set_margin_start (priv->last_update, 50);
+  gtk_widget_set_halign (priv->last_update, GTK_ALIGN_END);
+  gtk_widget_set_margin_end (priv->last_update, 50);
   gtk_widget_set_valign (priv->last_update, GTK_ALIGN_END);
   gtk_widget_set_margin_bottom (priv->last_update, 50);
   gtk_overlay_add_overlay (GTK_OVERLAY (self), priv->last_update);

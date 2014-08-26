@@ -440,7 +440,8 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
     gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->new);
     gtk_widget_set_size_request (priv->new, 70, -1);
-
+    gtk_widget_add_accelerator (priv->new, "clicked", priv->accel, GDK_KEY_n,
+                                GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
     g_signal_connect(priv->new,"clicked",
                      G_CALLBACK(on_new_note_clicked),priv->parent);
   }
@@ -838,6 +839,9 @@ bjb_note_menu_new (BjbMainToolbar *self)
   /* Delete Note */
   item = gtk_menu_item_new_with_label(_("Move to Trash"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
+  gtk_widget_add_accelerator (item, "activate", priv->accel,
+                              GDK_KEY_Delete, GDK_CONTROL_MASK,
+                              GTK_ACCEL_VISIBLE);
   g_signal_connect(item,"activate",
                    G_CALLBACK(trash_item_callback),self);
 

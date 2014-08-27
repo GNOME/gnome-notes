@@ -373,9 +373,9 @@ on_notes_mined (GObject       *source_object,
 
 
 
-/* From gnome-calendar */
+/* From gnome-calendar -> ported to GdkRGBA */
 GdkPixbuf*
-get_pixbuf_from_color    (GdkColor              *color, gint size)
+get_pixbuf_from_color    (GdkRGBA              *color, gint size)
 {
   cairo_surface_t *surface;
   cairo_t *cr;
@@ -388,9 +388,9 @@ get_pixbuf_from_color    (GdkColor              *color, gint size)
   cr = cairo_create (surface);
 
   cairo_set_source_rgb (cr,
-                        color->red / 65535.0,
-                        color->green / 65535.0,
-                        color->blue / 65535.0);
+                        color->red,
+                        color->green,
+                        color->blue);
   cairo_rectangle (cr, 0, 0, width, height);
   cairo_fill (cr);
   cairo_destroy (cr);
@@ -407,15 +407,18 @@ _get_icon (BijiMemoProvider *self,
            GtkWidget        **result)
 {
   ESourceExtension *ext;
-  GdkColor          color;
+  const gchar      *color;
+  GdkRGBA           rgba;
   GdkPixbuf        *pix, *embed;
   GtkBorder         frame_slice = { 4, 3, 3, 6 };
 
   ext = e_source_get_extension (self->priv->source, E_SOURCE_EXTENSION_MEMO_LIST);
-  if (!gdk_color_parse (e_source_selectable_get_color (E_SOURCE_SELECTABLE (ext)), &color))
+  color = e_source_selectable_get_color (E_SOURCE_SELECTABLE (ext));
+
+  if (color == NULL || !gdk_rgba_parse (&rgba, color))
     return FALSE;
 
-  pix = get_pixbuf_from_color (&color, 48);
+  pix = get_pixbuf_from_color (&rgba, 48);
   embed = gd_embed_image_in_frame (pix, "resource:///org/gnome/bijiben/thumbnail-frame.png",
                                     &frame_slice, &frame_slice);
   *result = gtk_image_new_from_pixbuf (embed);

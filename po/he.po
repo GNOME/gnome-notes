@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-13 15:41+0300\n"
-"PO-Revision-Date: 2014-07-13 15:42+0300\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2014-08-28 16:58+0300\n"
+"PO-Revision-Date: 2014-08-28 16:59+0300\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gnome.org>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "הוא מאפשר להשתמש ב־ownCloud כמקום אחסון ועורך מקוון."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "פתקיות"
 
@@ -73,8 +73,8 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Primary notes provider to use for new notes."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
-msgstr "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
+msgstr "The primary notebook is the place where new notes are created."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
 msgid "Window maximized"
@@ -110,33 +110,33 @@ msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gnome.org>"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Show the application's version"
 
-#: ../src/bjb-bijiben.c:452
+#: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
 msgstr "יצירת פתקית חדשה"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[FILE...]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Take notes and export them everywhere."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Could not parse arguments"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: ../src/bjb-bijiben.c:494
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Could not register the application"
 
@@ -145,33 +145,33 @@ msgid "Note Color"
 msgstr "צבע הפתקית"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "גזירה"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "העתקה"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "הדבקה"
 
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "מודגש"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "נטוי"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "קו חוצה"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "העתקת הבחירה לפתקית חדשה"
 
@@ -257,82 +257,82 @@ msgid "New and Recent"
 msgstr "חדש ואחרונים"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "חדש"
+msgid "_New"
+msgstr "_חדש"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "מצב בחירה"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "צפייה בפתקיות ובאוספים ברשימה"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "צפייה בפתקיות ובאוספים בתצוגת רשת"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "אשפה"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "ריקון"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "ללא כותרת"
 
-#: ../src/bjb-main-toolbar.c:761
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "פתיחה בחלון חדש"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "ביטול"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "תבליטים"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "רשימה ממוספרת"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "אוספים"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "שליחת הפתקית בדוא״ל"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "אפשרויות נוספות…"
 
-#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "צבע הפתקית"
 
@@ -349,7 +349,7 @@ msgstr "פתקית"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>עדכון אחרון</b> %s"
@@ -467,6 +467,9 @@ msgstr "על _אודות"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "י_ציאה"
+
+#~ msgid "New"
+#~ msgstr "חדש"
 
 #~ msgid "No Notes Found"
 #~ msgstr "לא נמצאו פתקיות"

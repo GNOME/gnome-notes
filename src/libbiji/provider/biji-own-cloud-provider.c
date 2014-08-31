@@ -656,7 +656,6 @@ on_owncloudclient_read (GObject *source_object,
   gsize             length = 0;
   GString          *string;
 
-
   stream = g_file_read_finish (G_FILE (source_object),
                                res,
                                &error);
@@ -776,11 +775,11 @@ biji_own_cloud_provider_constructed (GObject *obj)
     client = g_file_new_for_path (owncloudclient);
     g_free (owncloudclient);
 
-    g_file_read_async (client,
-                       G_PRIORITY_DEFAULT_IDLE,
-                       NULL,
-		                   on_owncloudclient_read,
-                       self);
+    if (g_file_query_exists (client, NULL))
+      g_file_read_async (client, G_PRIORITY_DEFAULT_IDLE,
+                       NULL, on_owncloudclient_read, self);
+    else
+			get_mount (self);
 
     return;
   }

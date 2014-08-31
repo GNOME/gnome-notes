@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#create"/>
-    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.13" date="2014-08-31" status="review"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -17,14 +17,14 @@
       <years>2013</years>
     </credit>
     <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email its:translate="no">tyagishobha@gmail.com</email>
-      <years>2014</years>
-    </credit>
-    <credit type="editor">
       <name>Michael Hill</name>
       <email its:translate="no">mdhillca@gmail.com</email>
       <years>2014</years>
+    </credit>
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>31 Aug 2014</years>
     </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
@@ -51,5 +51,8 @@
       note containing this text.</p>
     </item>
   </list>
-
+  <note style="tip">
+    <p>To open a new note using the keyboard shortcut press
+    <keyseq><key>Ctrl</key><key>N</key></keyseq>.</p>
+  </note>
 </page>

@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#create"/>
-    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.13" date="2014-08-31" status="review"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -24,6 +24,11 @@
     <credit type="editor">
       <name>Michael Hill</name>
       <email>mdhillca@gmail.com</email>
+      <years>2014</years>
+    </credit>
+  <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2014</years>
     </credit>
 
@@ -45,7 +50,9 @@
       <p>Type your search term. Search results will appear instantly.</p>
     </item>
   </steps>
-
+  <note style="tip"><p>You can directly start typing the search string
+    in the <em>New and Recent</em> view to search notes.</p>
+  </note>
   <note><p>You can also search for notes from the <gui>Activities</gui> overview.</p></note>
 
   <!-- TODO talk about sorting notes by colour -->

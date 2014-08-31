@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-22 14:51+0000\n"
-"PO-Revision-Date: 2014-08-22 23:42+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"POT-Creation-Date: 2014-08-31 02:52+0000\n"
+"PO-Revision-Date: 2014-08-31 13:39+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -70,7 +70,8 @@ msgid "Primary notes provider to use for new notes."
 msgstr "新筆記要使用的主要筆記供應處。"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+#| msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "主要筆記本是新建筆記的地方。"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -254,79 +255,79 @@ msgstr "新增與最近使用"
 msgid "_New"
 msgstr "新增(_N)"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "選擇區域模式"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "檢視清單中的筆記和筆記本"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "以圖示來顯示筆記和筆記本"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "回收筒"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "空的"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "無標題"
 
-#: ../src/bjb-main-toolbar.c:761
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "在新的視窗開啟"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "復原"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "取消復原"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "項目符號"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "有序清單"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "筆記本"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "寄出這份筆記"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "移至回收筒"
 
-#: ../src/bjb-main-toolbar.c:896
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "更多選項…"
 
-#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "筆記顏色"
 
@@ -343,7 +344,7 @@ msgstr "筆記"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>上次更新時間</b> %s"

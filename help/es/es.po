@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2014-08-19 02:52+0000\n"
-"PO-Revision-Date: 2014-08-19 12:58+0200\n"
+"POT-Creation-Date: 2014-09-01 14:52+0000\n"
+"PO-Revision-Date: 2014-09-01 17:40+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -52,15 +52,16 @@ msgid "2013"
 msgstr "2013"
 
 #. (itstool) path: credit/name
-#: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
+#: C/colors.page:20 C/notebooks.page:20 C/create.page:25 C/delete.page:20
 #: C/introduction.page:11 C/introduction.page:26 C/formatting.page:20
-#: C/search.page:20 C/rename.page:11 C/share.page:20 C/index.page:18
-#: C/listing.page:20 C/cut-copy-paste.page:11 C/view-trash.page:11
+#: C/search.page:20 C/search.page:30 C/rename.page:11 C/share.page:20
+#: C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
+#: C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/name
-#: C/colors.page:25 C/notebooks.page:25 C/create.page:25 C/delete.page:25
+#: C/colors.page:25 C/notebooks.page:25 C/create.page:20 C/delete.page:25
 #: C/introduction.page:21 C/formatting.page:25 C/search.page:25
 #: C/rename.page:16 C/share.page:25 C/listing.page:25 C/cut-copy-paste.page:16
 msgid "Michael Hill"
@@ -68,11 +69,10 @@ msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
 #: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
-#: C/create.page:27 C/delete.page:27 C/introduction.page:23
-#: C/introduction.page:28 C/formatting.page:22 C/formatting.page:27
-#: C/search.page:27 C/rename.page:18 C/share.page:22 C/share.page:27
-#: C/listing.page:27 C/cut-copy-paste.page:13 C/cut-copy-paste.page:18
-#: C/view-trash.page:13
+#: C/delete.page:27 C/introduction.page:23 C/introduction.page:28
+#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/search.page:32
+#: C/rename.page:18 C/share.page:22 C/share.page:27 C/listing.page:27
+#: C/cut-copy-paste.page:13 C/cut-copy-paste.page:18 C/view-trash.page:13
 msgid "2014"
 msgstr "2014"
 
@@ -193,6 +193,11 @@ msgstr ""
 "Escriba un nombre adecuado para el cuaderno de notas y pulse el botón <gui "
 "style=\"button\">Nuevo cuaderno de notas</gui>."
 
+#. (itstool) path: credit/years
+#: C/create.page:27
+msgid "31 Aug 2014"
+msgstr "31 de agosto de 2014"
+
 #. (itstool) path: info/desc
 #: C/create.page:32
 msgid ""
@@ -237,6 +242,15 @@ msgstr ""
 "Abra una nota, seleccione algo de texto y pulse el botón <gui style=\"button"
 "\">Copiar selección a la nota nueva</gui> para crear una nota que contenga "
 "ese texto."
+
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+"Para abrir una nota nueva usando el atado del teclado, pulse "
+"<keyseq><key>Ctrl</key><key>N</key></keyseq>."
 
 #. (itstool) path: info/desc
 #: C/delete.page:32
@@ -340,41 +354,50 @@ msgstr ""
 "gui> oi <gui style=\"button\">Tachado</gui>."
 
 #. (itstool) path: info/desc
-#: C/search.page:32
+#: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
 msgstr "Buscar una nota existente, contenido de la nota y cuadernos de notas."
 
 #. (itstool) path: page/title
-#: C/search.page:35
+#: C/search.page:40
 msgid "Find a note"
 msgstr "Buscar una nota"
 
 #. (itstool) path: page/p
-#: C/search.page:37
+#: C/search.page:42
 msgid "The default <em>New and Recent</em> view shows recently used notes."
 msgstr ""
 "La vista predeterminada <em>Nuevas y recientes</em> muestra las notas usadas "
 "recientemente."
 
 #. (itstool) path: steps/title
-#: C/search.page:40
+#: C/search.page:45
 msgid "To find notes while in <em>New and Recent</em>:"
 msgstr "Para buscar notas en <em>Nuevas y recientes</em>:"
 
 #. (itstool) path: item/p
-#: C/search.page:42
+#: C/search.page:47
 msgid "Click the <gui>Search</gui> button."
 msgstr "Pulse el botón <gui>Buscar</gui>."
 
 #. (itstool) path: item/p
-#: C/search.page:45
+#: C/search.page:50
 msgid "Type your search term. Search results will appear instantly."
 msgstr ""
 "Escriba el término que quiere buscar. Los resultados aparecerán "
 "inmediatamente."
 
 #. (itstool) path: note/p
-#: C/search.page:49
+#: C/search.page:53
+msgid ""
+"You can directly start typing the search string in the <em>New and Recent</"
+"em> view to search notes."
+msgstr ""
+"Puede empezar a escribir directamente la cadena de búsqueda en la vista de "
+"<em>Nuevas y recientes</em> para buscar notas."
+
+#. (itstool) path: note/p
+#: C/search.page:56
 msgid "You can also search for notes from the <gui>Activities</gui> overview."
 msgstr "También puede buscar notas desde la vista de <gui>Actividades</gui>."
 
@@ -538,15 +561,11 @@ msgstr "Acceder a las notas eliminadas"
 
 #. (itstool) path: steps/title
 #: C/view-trash.page:21
-#| msgid "To share a note:"
 msgid "To restore trashed notes:"
 msgstr "Para restaurar las notas eliminadas:"
 
 #. (itstool) path: item/p
 #: C/view-trash.page:23 C/view-trash.page:48
-#| msgid ""
-#| "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
-#| "\">Selection mode</gui> button."
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "En la vista de la <gui>Papelera</gui> pulse el botón <gui>Modo de selección</"
@@ -554,13 +573,11 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/view-trash.page:26
-#| msgid "Select the text that you want to format."
 msgid "Select all the notes that you want to restore."
 msgstr "Seleccione todas las notas que quiere restaurar."
 
 #. (itstool) path: item/p
 #: C/view-trash.page:29
-#| msgid "Click the <gui style=\"button\">Close</gui> button."
 msgid "Click on <gui style=\"button\">Restore</gui> button."
 msgstr "Pulse el botón <gui style=\"button\">Restaurar</gui>."
 
@@ -581,7 +598,6 @@ msgstr "Seleccione <gui>Ver papelera</gui>."
 
 #. (itstool) path: item/p
 #: C/view-trash.page:41
-#| msgid "Click the <gui style=\"button\">Close</gui> button."
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Pulse el botón <gui style=\"button\">Vaciar</gui> en la barra de "
@@ -589,19 +605,16 @@ msgstr ""
 
 #. (itstool) path: steps/title
 #: C/view-trash.page:46
-#| msgid "To delete multiple notes and notebooks:"
 msgid "To delete selected notes from Trash:"
 msgstr "Para eliminar notas de la papelera:"
 
 #. (itstool) path: item/p
 #: C/view-trash.page:51
-#| msgid "Select the text that you want to format."
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Seleccione todas las notas que quiere eliminar permanentemente."
 
 #. (itstool) path: item/p
 #: C/view-trash.page:54
-#| msgid "Click the <gui style=\"button\">Close</gui> button."
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Pulse el botón <gui style=\"button\">Eliminar permanentemente</gui>."
 

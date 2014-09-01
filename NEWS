@@ -1,3 +1,28 @@
+Overview of changes in 3.13.91
+==============================
+
+* UI
+  Bold title
+  Move Last Updated on the right side. Adapt on color.
+  Do not align selection bar on keyboard input
+
+* Documentation
+  Add tips (Shoba Tyagi)
+
+* Misc
+  Add Shortcuts
+  Remove GdkColor
+
+* Translations
+  Asamese
+  Brazilian Portuguese
+  Chinese
+  Greek
+  Hebrew
+  Oriya
+  Spanish
+  Traditional Chinese
+
 Overview of changes in 3.13.90
 ==============================
 

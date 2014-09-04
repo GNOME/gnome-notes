@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2014-09-01 14:52+0000\n"
-"PO-Revision-Date: 2014-09-01 17:40+0200\n"
+"POT-Creation-Date: 2014-09-04 03:42+0000\n"
+"PO-Revision-Date: 2014-09-04 12:23+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -53,9 +53,9 @@ msgstr "2013"
 
 #. (itstool) path: credit/name
 #: C/colors.page:20 C/notebooks.page:20 C/create.page:25 C/delete.page:20
-#: C/introduction.page:11 C/introduction.page:26 C/formatting.page:20
-#: C/search.page:20 C/search.page:30 C/rename.page:11 C/share.page:20
-#: C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
+#: C/delete.page:30 C/introduction.page:11 C/introduction.page:26
+#: C/formatting.page:20 C/search.page:20 C/search.page:30 C/rename.page:11
+#: C/share.page:20 C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
 #: C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
@@ -92,7 +92,7 @@ msgid "To change the color of an individual note:"
 msgstr "Para cambiar el color de una nota individual:"
 
 #. (itstool) path: item/p
-#: C/colors.page:40 C/notebooks.page:40 C/delete.page:40 C/rename.page:31
+#: C/colors.page:40 C/notebooks.page:40 C/delete.page:45 C/rename.page:31
 #: C/share.page:40
 msgid "Click on the note to open it."
 msgstr "Pulse en la nota para abrirla."
@@ -116,7 +116,7 @@ msgid "To change the color of multiple notes:"
 msgstr "Para cambiar el color de varias notas:"
 
 #. (itstool) path: item/p
-#: C/colors.page:54 C/notebooks.page:58 C/delete.page:51
+#: C/colors.page:54 C/notebooks.page:58 C/delete.page:61
 msgid ""
 "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
 "\">Selection mode</gui> button."
@@ -252,23 +252,29 @@ msgstr ""
 "Para abrir una nota nueva usando el atado del teclado, pulse "
 "<keyseq><key>Ctrl</key><key>N</key></keyseq>."
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/years
 #: C/delete.page:32
+#| msgid "31 Aug 2014"
+msgid "01 sep 2014"
+msgstr "01 de septiembre de 2014"
+
+#. (itstool) path: info/desc
+#: C/delete.page:37
 msgid "Delete old and unwanted notes."
 msgstr "Eliminar notas antiguas y que no quiera."
 
 #. (itstool) path: page/title
-#: C/delete.page:35
+#: C/delete.page:40
 msgid "Delete a note"
 msgstr "Eliminar una nota"
 
 #. (itstool) path: steps/title
-#: C/delete.page:38
+#: C/delete.page:43
 msgid "To delete a note:"
 msgstr "Para eliminar una nota:"
 
 #. (itstool) path: item/p
-#: C/delete.page:43
+#: C/delete.page:48
 msgid ""
 "Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Move to Trash</gui></guiseq>."
@@ -276,18 +282,30 @@ msgstr ""
 "Seleccione <guiseq><gui style=\"button\">Más opciones…</gui><gui style="
 "\"menuitem\">Mover a la papelera</gui></guiseq>."
 
+#. (itstool) path: note/p
+#: C/delete.page:54
+#| msgid ""
+#| "To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
+#| "key><key>N</key></keyseq>."
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+"Pulse el atajo del teclado <keyseq><key>Ctrl</key><key>Supr</key></keyseq> "
+"para eliminar una nota abierta."
+
 #. (itstool) path: steps/title
-#: C/delete.page:49
+#: C/delete.page:59
 msgid "To delete multiple notes and notebooks:"
 msgstr "Para eliminar varias notas y cuadernos de notas:"
 
 #. (itstool) path: item/p
-#: C/delete.page:55
+#: C/delete.page:65
 msgid "Select the notes and the notebooks you want to delete."
 msgstr "Seleccione las notas y los cuadernos de notas que quiere eliminar."
 
 #. (itstool) path: item/p
-#: C/delete.page:58
+#: C/delete.page:68
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
 msgstr "Pulse el botón <gui style=\"button\">Mover a la papelera</gui>."
 

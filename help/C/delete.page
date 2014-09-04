@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#delete"/>
-    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.13" date="2014-09-04" status="review"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -26,6 +26,11 @@
       <email its:translate="no">mdhillca@gmail.com</email>
       <years>2014</years>
     </credit>
+    <credit type="editor">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>01 sep 2014</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -41,9 +46,14 @@
     </item>
     <item>
       <p>Select
-      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Move to Trash</gui></guiseq>.</p>
+      <guiseq><gui style="button">More options…</gui><gui style="menuitem">Move to Trash</gui></guiseq>.
+      </p>
     </item>
   </steps>
+  <note style="tip">
+    <p>Press the keyboard shortcut
+    <keyseq><key>Ctrl</key><key>Delete</key></keyseq> to delete an open note.</p>
+  </note>
 
   <steps>
     <title>To delete multiple notes and notebooks:</title>

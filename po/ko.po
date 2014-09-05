@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-05 15:54+0000\n"
-"PO-Revision-Date: 2014-03-06 14:25+0900\n"
+"POT-Creation-Date: 2014-09-05 14:51+0000\n"
+"PO-Revision-Date: 2014-09-06 05:53+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -31,7 +31,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "저장 위치 및 온라인 편집기로 ownCloud를 사용할 수 있습니다."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "메모"
 
@@ -70,11 +70,11 @@ msgstr "여기서 설정한 색 이름은 새 메모를 만들 때 색으로 사
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:6
 msgid "Primary notes provider to use for new notes."
-msgstr "새 메모에 사용할 주요 메모 서비스."
+msgstr "새 메모에 사용할 주요 메모책."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
-msgstr "주요 메모 서비스는 새 메모를 만들 위치를 말합니다."
+msgid "The primary notebook is the place where new notes are created."
+msgstr "주요 메모책은 새 메모를 만드는 위치를 말합니다."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
 msgid "Window maximized"
@@ -98,7 +98,7 @@ msgstr "창 위치"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:13
 msgid "Window position (x and y)."
-msgstr "창 위치(가로 및 세로)"
+msgstr "창 위치(가로 및 세로)."
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -108,29 +108,33 @@ msgstr "그놈 데스크톱의 간단한 메모지"
 msgid "translator-credits"
 msgstr "류창우 <cwryu@debian.org>"
 
-#: ../src/bjb-bijiben.c:387
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "프로그램의 버전을 표시합니다"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:456
+msgid "Create a new note"
+msgstr "새 메모 만들기"
+
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[파일...]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "메모를 작성하고 내보냅니다."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "명령행 인자를 분석할 수 없습니다"
 
-#: ../src/bjb-bijiben.c:414
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "그놈 메모"
 
-#: ../src/bjb-bijiben.c:424
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "프로그램을 등록할 수 없습니다"
 
@@ -139,47 +143,43 @@ msgid "Note Color"
 msgstr "메모 색"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "잘라내기"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "복사"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "붙여넣기"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "굵게"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "기울임"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "취소선"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "선택한 사항을 새 메모로 복사합니다"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "메모가 없습니다"
+msgid "No notes"
+msgstr "메모 없음"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"메모책이 비어 있습니다.\n"
-"첫 메모를 만드려면 새로 만들기 단추를 누르십시오."
+msgid "Press the new button to create a note."
+msgstr "새 메모를 만드려면 단추를 누르십시오."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -197,23 +197,19 @@ msgstr "사용자 설정 위치"
 msgid "Import Notes"
 msgstr "메모 가져오기"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "취소(_C)"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "가져오기"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "가져오기 위치 선택"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "톰보이 프로그램"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "지노트 프로그램"
 
@@ -240,98 +236,100 @@ msgid "Search note titles, content and notebooks"
 msgstr "메모 제목, 내용, 메모책을 검색합니다"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "선택 모드 끝내기"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "%s에 대한 결과"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "새 항목 및 최근 항목"
 
-#: ../src/bjb-main-toolbar.c:435
-msgid "New"
-msgstr "새로 만들기"
+#: ../src/bjb-main-toolbar.c:438
+msgid "_New"
+msgstr "새로 만들기(_N)"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "선택 모드"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "목록에서 메모와 메모책을 봅니다"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "격자에서 메모와 메모책을 봅니다"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "휴지통"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "비었음"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "제목 없음"
 
-#: ../src/bjb-main-toolbar.c:755
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "새 창에서 열기"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "실행 취소"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "다시 실행"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "번호 없는 목록"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "번호 목록"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "메모책"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "이 메모 메일로 보내기"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "휴지통으로 옮기기"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "다른 옵션…"
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "메모 색"
 
@@ -343,44 +341,48 @@ msgstr "메모책"
 msgid "Note"
 msgstr "메모"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:225
-msgid "Last updated"
-msgstr "최근 업데이트"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>최근 업데이트</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "메모책을 만드려면 이름을 입력하십시오"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "새 메모책"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "닫기(_C)"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "취소(_C)"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "확인(_O)"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "복구"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "메모 공유"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "다른 창에서 열기"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "완전히 삭제"
 
@@ -399,13 +401,17 @@ msgstr "메모 글꼴"
 msgid "Default Color"
 msgstr "기본 색"
 
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "기본 설정"
+
 # 글꼴, 색 설정 페이지
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "메모 형식"
 
 # 메모 저장 위치 설정 페이지
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "메모 저장"
 
@@ -433,7 +439,7 @@ msgstr "이번해"
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: ../src/libbiji/provider/biji-local-provider.c:361
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "로컬 저장소"
 
@@ -460,3 +466,19 @@ msgstr "정보(_A)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "끝내기(_Q)"
+
+#~ msgid "No Notes Found"
+#~ msgstr "메모가 없습니다"
+
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "메모책이 비어 있습니다.\n"
+#~ "첫 메모를 만드려면 새로 만들기 단추를 누르십시오."
+
+#~ msgid "New"
+#~ msgstr "새로 만들기"
+
+#~ msgid "_Close"
+#~ msgstr "닫기(_C)"

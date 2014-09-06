@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 11:52+0200\n"
-"PO-Revision-Date: 2014-08-16 11:52+0200\n"
+"POT-Creation-Date: 2014-09-06 13:43+0200\n"
+"PO-Revision-Date: 2014-09-06 13:44+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -70,7 +70,7 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Primær notattilbyder som skal brukes for nye notater."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Primær notisblokk er stedet hvor nye notater lages."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -140,33 +140,33 @@ msgid "Note Color"
 msgstr "Farge på notat"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Klipp ut"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Kopier"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Lim inn"
 
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Uthevet"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Gjennomstrek"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Kopier utvalg til nytt notat"
 
@@ -255,79 +255,79 @@ msgstr "Nye og nylige"
 msgid "_New"
 msgstr "_Ny"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "Utvalgsmodus"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "Vis notater og notatblokker i en liste"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "Vis notater og notatblokker i et rutenett"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "Papirkurv"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "Tom"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "Uten navn"
 
-#: ../src/bjb-main-toolbar.c:761
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "Åpne i nytt vindu"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "Angre"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "Gjenta"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "Kulepunkter"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "Nummerert liste"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Notatblokker"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "Send dette notatet som e-post"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Flytt til papirkurv"
 
-#: ../src/bjb-main-toolbar.c:896
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Flere alternativer …"
 
-#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Farge på notat"
 
@@ -344,7 +344,7 @@ msgstr "Notat"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Sist oppdatert</b> %s"

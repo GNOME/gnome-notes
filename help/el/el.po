@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2014-07-16 14:52+0000\n"
-"PO-Revision-Date: 2014-08-02 16:34+0200\n"
+"POT-Creation-Date: 2014-09-06 07:33+0000\n"
+"PO-Revision-Date: 2014-09-06 11:36+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: www.gnome.gr\n"
 "Language: el\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Για την Ελληνική μεταφραστική ομάδα GNOME <team@gnome.gr>, 2014\n"
+"Ελληνική μεταφραστική ομάδα GNOME <team@gnome.gr>, 2014\n"
 "Δημήτρης Σπίγγος <dmtrs32@gmail.com>, 2014\n"
 "Μαυρίδου Μαρία <mavridou@gmail.com>, 2014"
 
@@ -54,15 +54,16 @@ msgid "2013"
 msgstr "2013"
 
 #. (itstool) path: credit/name
-#: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
-#: C/introduction.page:11 C/formatting.page:20 C/search.page:20
-#: C/rename.page:11 C/share.page:20 C/index.page:18 C/listing.page:20
-#: C/cut-copy-paste.page:11
+#: C/colors.page:20 C/notebooks.page:20 C/create.page:25 C/delete.page:20
+#: C/delete.page:30 C/introduction.page:11 C/introduction.page:26
+#: C/formatting.page:20 C/search.page:20 C/search.page:30 C/rename.page:11
+#: C/share.page:20 C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
+#: C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/name
-#: C/colors.page:25 C/notebooks.page:25 C/create.page:25 C/delete.page:25
+#: C/colors.page:25 C/notebooks.page:25 C/create.page:20 C/delete.page:25
 #: C/introduction.page:21 C/formatting.page:25 C/search.page:25
 #: C/rename.page:16 C/share.page:25 C/listing.page:25 C/cut-copy-paste.page:16
 msgid "Michael Hill"
@@ -70,10 +71,10 @@ msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
 #: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
-#: C/create.page:27 C/delete.page:27 C/introduction.page:23
-#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/rename.page:18
-#: C/share.page:22 C/share.page:27 C/listing.page:27 C/cut-copy-paste.page:13
-#: C/cut-copy-paste.page:18
+#: C/delete.page:27 C/introduction.page:23 C/introduction.page:28
+#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/search.page:32
+#: C/rename.page:18 C/share.page:22 C/share.page:27 C/listing.page:27
+#: C/cut-copy-paste.page:13 C/cut-copy-paste.page:18 C/view-trash.page:13
 msgid "2014"
 msgstr "2014"
 
@@ -93,23 +94,23 @@ msgid "To change the color of an individual note:"
 msgstr "Για να αλλάξετε το χρώμα μιας μεμονωμένης σημείωσης:"
 
 #. (itstool) path: item/p
-#: C/colors.page:40 C/notebooks.page:40 C/delete.page:40 C/rename.page:31
+#: C/colors.page:40 C/notebooks.page:40 C/delete.page:45 C/rename.page:31
 #: C/share.page:40
 msgid "Click on the note to open it."
-msgstr "Πατήστε στη σημείωση για να την ανοίξετε."
+msgstr "Κάντε κλικ στη σημείωση για να την ανοίξετε."
 
 #. (itstool) path: item/p
 #: C/colors.page:43 C/colors.page:61
 msgid "Click the <gui style=\"button\">Note color</gui> button."
-msgstr "Πατήστε το κουμπί <gui style=\"button\">Χρώμα σημείωσης</gui>."
+msgstr "Κάντε κλικ στο κουμπί <gui style=\"button\">Χρώμα σημείωσης</gui>."
 
 #. (itstool) path: item/p
 #: C/colors.page:46 C/colors.page:64
 msgid ""
 "Select a new color and click the <gui style=\"button\">Select</gui> button."
 msgstr ""
-"Επιλέξτε ένα νέο χρώμα και πατήστε το κουμπί <gui style=\"button\">Επιλογή</"
-"gui>."
+"Επιλέξτε ένα νέο χρώμα και κάντε κλικ στο κουμπί <gui style=\"button"
+"\">Επιλογή</gui>."
 
 #. (itstool) path: steps/title
 #: C/colors.page:52
@@ -117,12 +118,12 @@ msgid "To change the color of multiple notes:"
 msgstr "Για να αλλάξετε το χρώμα πολλαπλών σημειώσεων:"
 
 #. (itstool) path: item/p
-#: C/colors.page:54 C/notebooks.page:58 C/delete.page:51
+#: C/colors.page:54 C/notebooks.page:58 C/delete.page:61
 msgid ""
 "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
 "\">Selection mode</gui> button."
 msgstr ""
-"Στην προβολή <gui>Νέα και πρόσφατα</gui>, πατήστε το κουμπί <gui style="
+"Στην προβολή <gui>Νέα και πρόσφατα</gui>, κάντε κλικ στο κουμπί <gui style="
 "\"button\">Λειτουργία επιλογής</gui>."
 
 #. (itstool) path: item/p
@@ -153,8 +154,8 @@ msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Notebooks</gui></guiseq>."
 msgstr ""
-"Πατήστε <guiseq><gui style=\"button\">Περισσότερες επιλογές…</gui><gui style="
-"\"menuitem\">Σημειωματάρια</gui></guiseq>."
+"Κάντε κλικ στο <guiseq><gui style=\"button\">Περισσότερες επιλογές…</"
+"gui><gui style=\"menuitem\">Σημειωματάρια</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:47
@@ -162,13 +163,13 @@ msgid ""
 "Type a suitable name for the notebook and click the <gui style=\"button"
 "\">New notebook</gui> button."
 msgstr ""
-"Πληκτρολογήστε ένα κατάλληλο όνομα για το σημειωματάριο και πατήστε το "
+"Πληκτρολογήστε ένα κατάλληλο όνομα για το σημειωματάριο και κάντε κλικ στο "
 "κουμπί <gui style=\"button\">Νέο σημειωματάριο</gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:51 C/notebooks.page:72
 msgid "Click the <gui style=\"button\">Close</gui> button."
-msgstr "Πατήστε το κουμπί <gui style=\"button\">Κλείσιμο</gui>."
+msgstr "Κάντε κλικ στο κουμπί <gui style=\"button\">Κλείσιμο</gui>."
 
 #. (itstool) path: steps/title
 #: C/notebooks.page:56
@@ -184,7 +185,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/notebooks.page:65
 msgid "Click the <gui style=\"button\">Notebooks</gui> button."
-msgstr "Πατήστε το κουμπί <gui style=\"button\">Σημειωματάρια</gui>."
+msgstr "Κάντε κλικ στο κουμπί <gui style=\"button\">Σημειωματάρια</gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:68
@@ -192,8 +193,13 @@ msgid ""
 "Type a suitable name for the notebook and click <gui style=\"button\">New "
 "notebook</gui> button."
 msgstr ""
-"Πληκτρολογήστε ένα κατάλληλο όνομα για το σημειωματάριο και πατήστε το "
+"Πληκτρολογήστε ένα κατάλληλο όνομα για το σημειωματάριο και κάντε κλικ στο "
 "κουμπί <gui style=\"button\">Νέο σημειωματάριο</gui>."
+
+#. (itstool) path: credit/years
+#: C/create.page:27
+msgid "31 Aug 2014"
+msgstr "31 Αυγ. 2014"
 
 #. (itstool) path: info/desc
 #: C/create.page:32
@@ -220,8 +226,8 @@ msgstr ""
 msgid ""
 "Click the <gui style=\"button\">New</gui> button to create a blank note."
 msgstr ""
-"Πατήστε το κουμπί <gui style=\"button\">Νέο</gui> για να δημιουργήσετε μια "
-"κενή σημείωση."
+"Κάντε κλικ στο κουμπί <gui style=\"button\">Νέο</gui> για να δημιουργήσετε "
+"μια κενή σημείωση."
 
 #. (itstool) path: item/p
 #: C/create.page:45
@@ -238,27 +244,41 @@ msgid ""
 "Open a note, select some text and click the <gui style=\"button\">Copy "
 "selection to a new note</gui> button to create a note containing this text."
 msgstr ""
-"Ανοίξτε μια σημείωση, επιλέξτε κάποιο κείμενο και πατήστε το κουμπί <gui "
+"Ανοίξτε μια σημείωση, επιλέξτε κάποιο κείμενο και κάντε κλικ στο κουμπί <gui "
 "style=\"button\">Αντιγραφή επιλογής σε νέα σημείωση</gui> για να "
 "δημιουργήσετε μια σημείωση που περιέχει αυτό το κείμενο."
 
-#. (itstool) path: info/desc
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+"Για να ανοίξετε μια νέα σημείωση χρησιμοποιώντας το πληκτρολόγιο πατήστε "
+"<keyseq><key>Ctrl</key><key>N</key></keyseq>."
+
+#. (itstool) path: credit/years
 #: C/delete.page:32
+msgid "01 sep 2014"
+msgstr "01 Σεπ. 2014"
+
+#. (itstool) path: info/desc
+#: C/delete.page:37
 msgid "Delete old and unwanted notes."
 msgstr "Διαγράψτε παλιές και ανεπιθύμητες σημειώσεις."
 
 #. (itstool) path: page/title
-#: C/delete.page:35
+#: C/delete.page:40
 msgid "Delete a note"
 msgstr "Διαγραφή μιας σημείωσης"
 
 #. (itstool) path: steps/title
-#: C/delete.page:38
+#: C/delete.page:43
 msgid "To delete a note:"
 msgstr "Για να διαγράψετε μια σημείωση:"
 
 #. (itstool) path: item/p
-#: C/delete.page:43
+#: C/delete.page:48
 msgid ""
 "Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Move to Trash</gui></guiseq>."
@@ -266,46 +286,55 @@ msgstr ""
 "Επιλέξτε <guiseq><gui style=\"button\">Περισσότερες επιλογές…</gui><gui "
 "style=\"menuitem\">Μετακίνηση στα απορρίμματα</gui></guiseq>."
 
+#. (itstool) path: note/p
+#: C/delete.page:54
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+"Για να διαγράψετε μια ανοιχτή σημείωση πατήστε τη συντόμευση "
+"<keyseq><key>Ctrl</key><key>Delete</key></keyseq>."
+
 #. (itstool) path: steps/title
-#: C/delete.page:49
+#: C/delete.page:59
 msgid "To delete multiple notes and notebooks:"
 msgstr "Για να διαγράψετε πολλές σημειώσεις και σημειωματάρια:"
 
 #. (itstool) path: item/p
-#: C/delete.page:55
+#: C/delete.page:65
 msgid "Select the notes and the notebooks you want to delete."
 msgstr "Επιλέξτε τις σημειώσεις και τα σημειωματάρια που θέλετε να διαγράψετε."
 
 #. (itstool) path: item/p
-#: C/delete.page:58
+#: C/delete.page:68
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
 msgstr ""
-"Πατήστε το κουμπί <gui style=\"button\">Μετακίνηση στα απορρίμματα</gui>."
+"Κάντε κλικ στο κουμπί <gui style=\"button\">Μετακίνηση στα απορρίμματα</gui>."
 
 #. (itstool) path: media
 #. This is a reference to an external file such as an image or video. When
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:38
+#: C/introduction.page:43
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 msgstr ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 
 #. (itstool) path: info/desc
-#: C/introduction.page:28
+#: C/introduction.page:33
 msgid "A simple application for creating, editing and viewing notes."
 msgstr "Μια απλή εφαρμογή για δημιουργία, επεξεργασία και προβολή σημειώσεων."
 
 #. (itstool) path: page/title
-#: C/introduction.page:31
+#: C/introduction.page:36
 msgid "Introduction to Notes"
-msgstr "Εισαγωγή στις σημειώσεις"
+msgstr "Εισαγωγή στις Σημειώσεις"
 
 #. (itstool) path: page/p
-#: C/introduction.page:33
+#: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
 "notes. You can also search for a note from the <gui>Activities</gui> "
@@ -314,7 +343,7 @@ msgstr ""
 "Οι <app>Σημειώσεις</app> είναι μια απλή εφαρμογή για δημιουργία, επεξεργασία "
 "και προβολή σημειώσεων. Μπορείτε επίσης να αναζητήσετε μια σημείωση από την "
 "επισκόπηση <gui>Δραστηριότητες</gui>. Οι <app>Σημειώσεις</app> "
-"ενσωματώνονται εύκολα με τους <app>Δικτυακούς λογαριασμούς</app>."
+"ενσωματώνονται εύκολα με τους <app>διαδικτυακούς λογαριασμούς</app>."
 
 #. (itstool) path: info/desc
 #: C/formatting.page:32
@@ -343,46 +372,55 @@ msgid ""
 "Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
 "or <gui style=\"button\">Strike</gui>."
 msgstr ""
-"Πατήστε <gui style=\"button\">Έντονα</gui>, <gui style=\"button\">Πλάγια</"
-"gui> ή <gui style=\"button\">Επιγράμμιση</gui>."
+"Κάντε κλικ στο <gui style=\"button\">Έντονα</gui>, <gui style=\"button"
+"\">Πλάγια</gui> ή <gui style=\"button\">Επιγράμμιση</gui>."
 
 #. (itstool) path: info/desc
-#: C/search.page:32
+#: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
 msgstr ""
 "Αναζητήστε μια υπάρχουσα σημείωση, περιεχόμενο σημείωσης και σημειωματάρια."
 
 #. (itstool) path: page/title
-#: C/search.page:35
+#: C/search.page:40
 msgid "Find a note"
 msgstr "Εύρεση σημείωσης"
 
 #. (itstool) path: page/p
-#: C/search.page:37
+#: C/search.page:42
 msgid "The default <em>New and Recent</em> view shows recently used notes."
 msgstr ""
 "Η προεπιλεγμένη προβολή <em>Νέα και πρόσφατα</em> εμφανίζει τις πρόσφατα "
 "χρησιμοποιημένες σημειώσεις."
 
 #. (itstool) path: steps/title
-#: C/search.page:40
+#: C/search.page:45
 msgid "To find notes while in <em>New and Recent</em>:"
 msgstr "Για να βρείτε σημειώσεις στο <em>Νέα και πρόσφατα</em>:"
 
 #. (itstool) path: item/p
-#: C/search.page:42
+#: C/search.page:47
 msgid "Click the <gui>Search</gui> button."
-msgstr "Πατήστε το κουμπί <gui>Αναζήτηση</gui>."
+msgstr "Κάντε κλικ στο κουμπί <gui>Αναζήτηση</gui>."
 
 #. (itstool) path: item/p
-#: C/search.page:45
+#: C/search.page:50
 msgid "Type your search term. Search results will appear instantly."
 msgstr ""
 "Πληκτρολογήστε τον όρο αναζήτησης. Τα αποτελέσματα αναζήτησης θα εμφανιστούν "
 "άμεσα."
 
 #. (itstool) path: note/p
-#: C/search.page:49
+#: C/search.page:53
+msgid ""
+"You can directly start typing the search string in the <em>New and Recent</"
+"em> view to search notes."
+msgstr ""
+"Μπορείτε άμεσα να πληκτρολογήσετε τον όρο αναζήτησης στην προβολή <em>Νέα "
+"και πρόσφατα</em> για να αναζητήσετε σημειώσεις."
+
+#. (itstool) path: note/p
+#: C/search.page:56
 msgid "You can also search for notes from the <gui>Activities</gui> overview."
 msgstr ""
 "Μπορείτε επίσης να αναζητήσετε σημειώσεις από την επισκόπηση "
@@ -429,8 +467,9 @@ msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Email this Note</gui></guiseq>."
 msgstr ""
-"Πατήστε <guiseq><gui style=\"button\">Περισσότερες επιλογές…</gui><gui style="
-"\"menuitem\">Στείλτε αυτή τη σημείωση ηλεκτρονικά</gui></guiseq>."
+"Κάντε κλικ στο <guiseq><gui style=\"button\">Περισσότερες επιλογές…</"
+"gui><gui style=\"menuitem\">Στείλτε αυτή τη σημείωση ηλεκτρονικά</gui></"
+"guiseq>."
 
 #. (itstool) path: item/p
 #: C/share.page:47
@@ -491,9 +530,9 @@ msgid ""
 "To create an unordered list, click <guiseq><gui style=\"button\">More "
 "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
 msgstr ""
-"Για να δημιουργήσετε μια μη διατεταγμένη λίστα, πατήστε <guiseq><gui style="
-"\"button\">Περισσότερες επιλογές…</gui> <gui style=\"menuitem\">Κουκκίδες</"
-"gui></guiseq>."
+"Για να δημιουργήσετε μια μη διατεταγμένη λίστα, κάντε κλικ στο <guiseq><gui "
+"style=\"button\">Περισσότερες επιλογές…</gui> <gui style=\"menuitem"
+"\">Κουκκίδες</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/listing.page:45
@@ -501,8 +540,9 @@ msgid ""
 "To create an ordered list, click <guiseq><gui style=\"button\">More options…"
 "</gui> <gui>Numbered List</gui></guiseq>."
 msgstr ""
-"Για να δημιουργήσετε μια διατεταγμένη λίστα, πατήστε <guiseq><gui style="
-"\"button\">Περισσότερες επιλογές…</gui> <gui>Αριθμημένη λίστα</gui></guiseq>."
+"Για να δημιουργήσετε μια διατεταγμένη λίστα, κάντε κλικ στο <guiseq><gui "
+"style=\"button\">Περισσότερες επιλογές…</gui> <gui>Αριθμημένη λίστα</gui></"
+"guiseq>."
 
 #. (itstool) path: info/desc
 #: C/cut-copy-paste.page:23
@@ -530,8 +570,86 @@ msgid ""
 "Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> or "
 "<gui style=\"button\">Paste</gui>."
 msgstr ""
-"Πατήστε <gui style=\"button\">Αποκοπή</gui>, <gui style=\"button"
+"Κάντε κλικ στο <gui style=\"button\">Αποκοπή</gui>, <gui style=\"button"
 "\">Αντιγραφή</gui> ή <gui style=\"button\">Επικόλληση</gui>."
+
+#. (itstool) path: info/desc
+#: C/view-trash.page:16
+msgid "View Trash to delete or restore notes."
+msgstr "Προβολή απορριμμάτων για διαγραφή ή να επαναφορά σημειώσεων."
+
+#. (itstool) path: page/p
+#: C/view-trash.page:18
+msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
+msgstr ""
+"Μπορείτε να προβάλετε, να επαναφέρετε ή να διαγράψετε σημειώσεις στα "
+"<gui>Απορρίμματα</gui>."
+
+#. (itstool) path: page/title
+#: C/view-trash.page:19
+msgid "Access trashed notes"
+msgstr "Πρόσβαση σημειώσεων στα απορρίμματα "
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:21
+msgid "To restore trashed notes:"
+msgstr "Για να επαναφέρετε μια σημείωση από τα απορρίματα:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:23 C/view-trash.page:48
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr ""
+"Στην προβολή <gui>Απορρίματα</gui>, κάντε κλικ στο κουμπί <gui>Λειτουργία "
+"επιλογής</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:26
+msgid "Select all the notes that you want to restore."
+msgstr "Επιλέξτε όλες τις σημειώσεις που θέλετε να επαναφέρετε."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:29
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr "Κάντε κλικ στο κουμπί <gui style=\"button\">Επαναφορά</gui>."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:33
+msgid "To permanently delete all the notes in Trash:"
+msgstr "Για να διαγράψετε οριστικά όλες τις σημειώσεις στα απορρίμματα:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:35
+msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgstr ""
+"Κάντε κλικ στο εικονίδιο <gui>Σημειώσεις</gui> δίπλα στις "
+"<gui>Δραστηριότητες</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:38
+msgid "Select <gui>View Trash</gui>."
+msgstr "Επιλέξτε <gui>Προβολή απορριμμάτων</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:41
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr ""
+"Κάντε κλικ στο κουμπί <gui style=\"button\">Άδειασμα</gui> της "
+"εργαλειοθήκης. "
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:46
+msgid "To delete selected notes from Trash:"
+msgstr "Για να διαγράψετε τις επιλεγμένες σημειώσεις από τα απορρίμματα:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:51
+msgid "Select all the notes that you want to delete permanently."
+msgstr "Επιλέξτε όλες τις σημειώσεις που θέλετε να διαγράψετε οριστικά."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:54
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr "Κάντε κλικ στο κουμπί <gui style=\"button\">Μόνιμη διαγραφή</gui>."
 
 #. (itstool) path: p/link
 #: C/legal.xml:5

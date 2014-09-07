@@ -2,24 +2,25 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 #
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013.
 # Juhani Numminen <juhaninumminen0@gmail.com>, 2014.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2014.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013, 2014.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-09 02:52+0000\n"
-"PO-Revision-Date: 2014-08-09 12:30+0300\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
-"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-06 02:52+0000\n"
+"PO-Revision-Date: 2014-09-06 16:02+0300\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
+"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -76,7 +77,8 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Ensisijainen muistilappujen tuottaja uusille muistiinpanoille."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+#| msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Ensisijainen muistikirja on paikka, jonne uudet muistilaput luodaan."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -113,35 +115,34 @@ msgstr ""
 "Juhani Numminen, 2014\n"
 "Jiri Grönroos, 2013"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Näytä sovelluksen versio"
 
-#: ../src/bjb-bijiben.c:452
-#, fuzzy
+#: ../src/bjb-bijiben.c:456
 #| msgid "Copy selection to a new note"
 msgid "Create a new note"
-msgstr "Kopioi valinta uuteen muistilappuun"
+msgstr "Luo uusi muistilappu"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[TIEDOSTO...]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Tee muistilappuja ja vie niitä muihin sovelluksiin."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Argumenttien jäsentäminen epäonnistui"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "Gnomen muistilaput"
 
-#: ../src/bjb-bijiben.c:494
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Sovelluksen rekisteröiminen epäonnistui"
 
@@ -150,47 +151,45 @@ msgid "Note Color"
 msgstr "Muistilapun väri"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Leikkaa"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Kopioi"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Liitä"
 
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Lihavoi"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Kursivoi"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Yliviivaa"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Kopioi valinta uuteen muistilappuun"
 
 #: ../src/bjb-empty-results-box.c:101
-#, fuzzy
 #| msgid "Notes"
 msgid "No notes"
-msgstr "Muistilaput"
+msgstr "Ei muistilappuja"
 
 #: ../src/bjb-empty-results-box.c:145
-#, fuzzy
 #| msgid "Enter a name to create a notebook"
 msgid "Press the new button to create a note."
-msgstr "Kirjoita nimi luodaksesi muistikirjan"
+msgstr "Napsauta Uusi-painiketta luodaksesi uuden muistilapun."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -267,81 +266,81 @@ msgstr "Uudet ja viimeisimmät"
 
 #: ../src/bjb-main-toolbar.c:438
 msgid "_New"
-msgstr ""
+msgstr "_Uusi"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "Valintatila"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "Näytä muistilaput ja -kirjat luettelona"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "Näytä muistilaput ja -kirjat ruudukkona"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "Roskakori"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "Tyhjennä"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: ../src/bjb-main-toolbar.c:761
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "Avaa uudessa ikkunassa"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "Kumoa"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "Tee uudelleen"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "Järjestämätön luettelo"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "Numeroitu luettelo"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Muistikirjat"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "Lähetä tämä muistilappu sähköpostilla"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
-#: ../src/bjb-main-toolbar.c:896
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "Lisää valintoja…"
 
-#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Muistilapun väri"
 
@@ -358,11 +357,11 @@ msgstr "Muistilappu"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
-#, fuzzy, c-format
+#: ../src/bjb-note-view.c:190
+#, c-format
 #| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
-msgstr "Viimeksi päivitetty"
+msgstr "<b>Viimeksi päivitetty</b> %s"
 
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"

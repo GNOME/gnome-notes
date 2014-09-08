@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
-"POT-Creation-Date: 2014-08-26 02:52+0000\n"
-"PO-Revision-Date: 2014-08-26 08:19+0200\n"
+"POT-Creation-Date: 2014-09-08 14:52+0000\n"
+"PO-Revision-Date: 2014-09-08 17:55+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -51,15 +51,16 @@ msgid "2013"
 msgstr "2013"
 
 #. (itstool) path: credit/name
-#: C/colors.page:20 C/notebooks.page:20 C/create.page:20 C/delete.page:20
-#: C/introduction.page:11 C/introduction.page:26 C/formatting.page:20
-#: C/search.page:20 C/rename.page:11 C/share.page:20 C/index.page:18
-#: C/listing.page:20 C/cut-copy-paste.page:11 C/view-trash.page:11
+#: C/colors.page:20 C/notebooks.page:20 C/create.page:25 C/delete.page:20
+#: C/delete.page:30 C/introduction.page:11 C/introduction.page:26
+#: C/formatting.page:20 C/search.page:20 C/search.page:30 C/rename.page:11
+#: C/share.page:20 C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
+#: C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/name
-#: C/colors.page:25 C/notebooks.page:25 C/create.page:25 C/delete.page:25
+#: C/colors.page:25 C/notebooks.page:25 C/create.page:20 C/delete.page:25
 #: C/introduction.page:21 C/formatting.page:25 C/search.page:25
 #: C/rename.page:16 C/share.page:25 C/listing.page:25 C/cut-copy-paste.page:16
 msgid "Michael Hill"
@@ -67,11 +68,10 @@ msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
 #: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
-#: C/create.page:27 C/delete.page:27 C/introduction.page:23
-#: C/introduction.page:28 C/formatting.page:22 C/formatting.page:27
-#: C/search.page:27 C/rename.page:18 C/share.page:22 C/share.page:27
-#: C/listing.page:27 C/cut-copy-paste.page:13 C/cut-copy-paste.page:18
-#: C/view-trash.page:13
+#: C/delete.page:27 C/introduction.page:23 C/introduction.page:28
+#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/search.page:32
+#: C/rename.page:18 C/share.page:22 C/share.page:27 C/listing.page:27
+#: C/cut-copy-paste.page:13 C/cut-copy-paste.page:18 C/view-trash.page:13
 msgid "2014"
 msgstr "2014"
 
@@ -91,7 +91,7 @@ msgid "To change the color of an individual note:"
 msgstr "Abyste změnili barvu jedné poznámky:"
 
 #. (itstool) path: item/p
-#: C/colors.page:40 C/notebooks.page:40 C/delete.page:40 C/rename.page:31
+#: C/colors.page:40 C/notebooks.page:40 C/delete.page:45 C/rename.page:31
 #: C/share.page:40
 msgid "Click on the note to open it."
 msgstr "Kliknutím poznámku otevřete."
@@ -115,7 +115,7 @@ msgid "To change the color of multiple notes:"
 msgstr "Abyste změnili barvu více poznámek:"
 
 #. (itstool) path: item/p
-#: C/colors.page:54 C/notebooks.page:58 C/delete.page:51
+#: C/colors.page:54 C/notebooks.page:58 C/delete.page:61
 msgid ""
 "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
 "\">Selection mode</gui> button."
@@ -191,6 +191,11 @@ msgstr ""
 "Pro sešit zadejte vhodný název a klikněte na tlačítko <gui style=\"button"
 "\">Nový sešit</gui>."
 
+#. (itstool) path: credit/years
+#: C/create.page:27
+msgid "31 Aug 2014"
+msgstr "31. srpen 2014"
+
 #. (itstool) path: info/desc
 #: C/create.page:32
 msgid ""
@@ -237,23 +242,37 @@ msgstr ""
 "\">Kopírovat výběr do nové poznámky</gui> vytvoříte poznámku obsahující "
 "tento text."
 
-#. (itstool) path: info/desc
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+"Pro otevření nové poznámky pomocí klávesové zkratky zmáčkněte "
+"<keyseq><key>Ctrl</key><key>N</key></keyseq>."
+
+#. (itstool) path: credit/years
 #: C/delete.page:32
+msgid "01 sep 2014"
+msgstr "1. srpen 2014"
+
+#. (itstool) path: info/desc
+#: C/delete.page:37
 msgid "Delete old and unwanted notes."
 msgstr "Jak smazat staré a nepotřebné poznámky."
 
 #. (itstool) path: page/title
-#: C/delete.page:35
+#: C/delete.page:40
 msgid "Delete a note"
 msgstr "Smazání poznámky"
 
 #. (itstool) path: steps/title
-#: C/delete.page:38
+#: C/delete.page:43
 msgid "To delete a note:"
-msgstr "Abyste smazali poznámku:"
+msgstr "Když chcete smazat poznámku:"
 
 #. (itstool) path: item/p
-#: C/delete.page:43
+#: C/delete.page:48
 msgid ""
 "Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Move to Trash</gui></guiseq>."
@@ -261,18 +280,27 @@ msgstr ""
 "Vyberte <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
 "\"menuitem\">Přesunout do koše</gui></guiseq>."
 
+#. (itstool) path: note/p
+#: C/delete.page:54
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+"Zmáčkněte klávesovou zkratku <keyseq><key>Ctrl</key> <key>Delete</key></"
+"keyseq>, abyste smazali otevřenou poznámku."
+
 #. (itstool) path: steps/title
-#: C/delete.page:49
+#: C/delete.page:59
 msgid "To delete multiple notes and notebooks:"
 msgstr "Abyste smazali více poznámek a sešitů:"
 
 #. (itstool) path: item/p
-#: C/delete.page:55
+#: C/delete.page:65
 msgid "Select the notes and the notebooks you want to delete."
 msgstr "Vyberte poznámky a sešity, které chcete smazat."
 
 #. (itstool) path: item/p
-#: C/delete.page:58
+#: C/delete.page:68
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
 msgstr "Klikněte na tlačítko <gui style=\"button\">Přesunout do koše</gui>."
 
@@ -340,39 +368,48 @@ msgstr ""
 "\">Kurzíva</gui> a/nebo <gui style=\"button\">Přeškrtnuté</gui>."
 
 #. (itstool) path: info/desc
-#: C/search.page:32
+#: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
 msgstr "Jak najít existující poznámku, obsah poznámky a sešit."
 
 #. (itstool) path: page/title
-#: C/search.page:35
+#: C/search.page:40
 msgid "Find a note"
 msgstr "Vyhledání poznámky"
 
 #. (itstool) path: page/p
-#: C/search.page:37
+#: C/search.page:42
 msgid "The default <em>New and Recent</em> view shows recently used notes."
 msgstr "Zobrazení <em>Nové a nedávné</em> zobrazuje nedávno použité poznámky."
 
 #. (itstool) path: steps/title
-#: C/search.page:40
+#: C/search.page:45
 msgid "To find notes while in <em>New and Recent</em>:"
 msgstr ""
 "Když máte zobrazeny <em>Nové a nedávné</em> a chcete vyhledat poznámku:"
 
 #. (itstool) path: item/p
-#: C/search.page:42
+#: C/search.page:47
 msgid "Click the <gui>Search</gui> button."
 msgstr "Klikněte na tlačítko <gui>Hledat</gui>."
 
 #. (itstool) path: item/p
-#: C/search.page:45
+#: C/search.page:50
 msgid "Type your search term. Search results will appear instantly."
 msgstr ""
 "Pište výraz, který chcete najít. Výsledky se budou zobrazovat průběžně."
 
 #. (itstool) path: note/p
-#: C/search.page:49
+#: C/search.page:53
+msgid ""
+"You can directly start typing the search string in the <em>New and Recent</"
+"em> view to search notes."
+msgstr ""
+"Pokud chcete hledat poznámky v zobrazení <em>Nové a nedávné</em>, můžete "
+"začít psát hledaný text i přímo."
+
+#. (itstool) path: note/p
+#: C/search.page:56
 msgid "You can also search for notes from the <gui>Activities</gui> overview."
 msgstr "Poznámku můžete hledat také v přehledu <gui>Činností</gui>."
 

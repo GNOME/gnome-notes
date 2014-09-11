@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-06-22 02:51+0000\n"
-"PO-Revision-Date: 2014-06-22 12:18+0200\n"
+"POT-Creation-Date: 2014-09-11 14:52+0000\n"
+"PO-Revision-Date: 2014-09-11 19:19+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -34,7 +34,7 @@ msgstr ""
 "szerkesztést."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Jegyzetek"
 
@@ -77,7 +77,8 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Elsődlegesen használandó jegyzetszolgáltató új jegyzetekhez."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+#| msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Az elsődleges jegyzettömb az a hely, ahol új jegyzetek jönnek létre."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -114,34 +115,33 @@ msgstr ""
 "Havris György <gh at c2 dot hu>\n"
 "Úr Balázs <urbalazs at gmail dot com>"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Az alkalmazás verziószámának megjelenítése"
 
-#: ../src/bjb-bijiben.c:452
-#| msgid "Copy selection to a new note"
+#: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
 msgstr "Új jegyzet létrehozása"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[FÁJL…]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Jegyzetek készítése és azok exportálása mindenhová."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Az argumentumok nem dolgozhatók fel"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "GNOME jegyzetek"
 
-#: ../src/bjb-bijiben.c:492
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Az alkalmazás nem regisztrálható"
 
@@ -150,43 +150,41 @@ msgid "Note Color"
 msgstr "Jegyzet színe"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Kivágás"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Másolás"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Félkövér"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Dőlt"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Áthúzott"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Kijelölés új jegyzetbe másolása"
 
 #: ../src/bjb-empty-results-box.c:101
-#| msgid "Notes"
 msgid "No notes"
 msgstr "Nincsenek jegyzetek"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Enter a name to create a notebook"
 msgid "Press the new button to create a note."
 msgstr "Nyomja meg az új gombot egy jegyzet létrehozásához."
 
@@ -264,82 +262,82 @@ msgid "New and Recent"
 msgstr "Új és legutóbbi"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "Új"
+msgid "_New"
+msgstr "Ú_j"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "Kijelölési mód"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "Jegyzetek és gyűjtemények megjelenítése listában"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "Jegyzetek és gyűjtemények megjelenítése rácsban"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "Kuka"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "Üres"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "Névtelen"
 
-#: ../src/bjb-main-toolbar.c:761
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "Megnyitás új ablakban"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "Újra"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "Felsorolás"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "Számozott lista"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Jegyzettömbök"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "Jegyzet küldése e-mailben"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Áthelyezés a Kukába"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:900
 msgid "More options…"
 msgstr "További beállítások…"
 
-#: ../src/bjb-main-toolbar.c:921 ../src/bjb-selection-toolbar.c:391
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Jegyzet színe"
 
@@ -356,9 +354,8 @@ msgstr "Jegyzet"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:190
 #, c-format
-#| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Utoljára frissítve</b> %s"
 
@@ -378,22 +375,22 @@ msgstr "Mé_gse"
 msgid "_OK"
 msgstr "_OK"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:385
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "Visszaállítás"
 
-#: ../src/bjb-selection-toolbar.c:401
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "Jegyzet megosztása"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:405
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "Megnyitás másik ablakban"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:417
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "Végleges törlés"
 
@@ -475,6 +472,9 @@ msgstr "_Névjegy"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Kilépés"
+
+#~ msgid "New"
+#~ msgstr "Új"
 
 #~ msgid "No Notes Found"
 #~ msgstr "Nincsenek jegyzetek"

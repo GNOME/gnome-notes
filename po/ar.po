@@ -1,0 +1,471 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Shuaib Zahda <shuaib.zahda@gmail.com>, 2014.
+# Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014.
+# Abderrahim Kitouni <a.kitouni@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: GNOME 3.14\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-07 14:52+0000\n"
+"PO-Revision-Date: 2014-09-11 21:13+0100\n"
+"Last-Translator: Abderrahim Kitouni <a.kitouni@gmail.com>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr "\"ملاحظات\" هو محرّر يسمح بإنشاء قوائم بسيطة لاستخدامها لاحقًا."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "يسمح باستخدام Owncloud كموقع تخزين ومحرّر على الخطّ."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "ملاحظات;مذكرات;ملاحظة;مذكرة;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "دوّن الملاحظات، أوسِم الملفات!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "آخذ الملاحظات"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "خط مخصّص"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "اسم الخط المُعيَّن هنا سيُستخدَم كخطّ عرض الملاحظات."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "فيما إذا كان يجب استخدام خط النظام monospace"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "لون الملاحظات الجديد."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr "اسم اللون المُعيَّن هنا سيُستخدَم كلون عند إنشاء ملاحظات جديدة."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "مُوفِّر الملاحظات الأساسي ليُستخدَم للملاحظات الجديدة."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where new notes are created."
+msgstr "دفتر الملاحظات الأساسي هو المكان حيث تُنشأ الملاحظات الجديدة فيه."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "النافذة مُكبَّرة"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "حالة النافذة مُكبَّرة."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "حجم النافذة"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "حجم النافذة (العرض والارتفاع)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "موقع النافذة"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "موقع النافذة (x و y)"
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "دفتر ملاحظات بسيط لجنوم"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr ""
+"فريق عربآيز للترجمة http://www.arabeyes.org :\n"
+"Shuaib Zahda\t<shuaib.zahda@gmail.com>\n"
+"صفا الفليج\t<safa1996alfulaij@gmail.com>"
+
+#: ../src/bjb-bijiben.c:454
+msgid "Show the application's version"
+msgstr "أظهر إصدار التطبيق"
+
+#: ../src/bjb-bijiben.c:456
+msgid "Create a new note"
+msgstr "أنشئ ملاحظة جديدة"
+
+#: ../src/bjb-bijiben.c:458
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:465
+msgid "Take notes and export them everywhere."
+msgstr "خُذ الملاحظات وصدّرها في أيّ مكان."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:476
+msgid "Could not parse arguments"
+msgstr "تعذّر تحليل المُعطيات"
+
+#: ../src/bjb-bijiben.c:485
+msgid "GNOME Notes"
+msgstr "ملاحظات جنوم"
+
+#: ../src/bjb-bijiben.c:498
+msgid "Could not register the application"
+msgstr "تعذّر تسجيل التطبيق"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "لون الملاحظة"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:365
+msgid "Cut"
+msgstr "قصّ"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:372
+msgid "Copy"
+msgstr "انسخ"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:378
+msgid "Paste"
+msgstr "الصق"
+
+#: ../src/bjb-editor-toolbar.c:393
+msgid "Bold"
+msgstr "عريض"
+
+#: ../src/bjb-editor-toolbar.c:403
+msgid "Italic"
+msgstr "مائل"
+
+#: ../src/bjb-editor-toolbar.c:413
+msgid "Strike"
+msgstr "شطب"
+
+#: ../src/bjb-editor-toolbar.c:441
+msgid "Copy selection to a new note"
+msgstr "انسخ التحديد إلى ملاحظة جديدة"
+
+#: ../src/bjb-empty-results-box.c:101
+msgid "No notes"
+msgstr "لا ملاحظات"
+
+#: ../src/bjb-empty-results-box.c:145
+msgid "Press the new button to create a note."
+msgstr "اضغط زرّ \"جديد\" لإنشاء ملاحظة."
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Oops"
+msgstr "آخ"
+
+#: ../src/bjb-empty-results-box.c:173
+msgid "Please install 'Tracker' then restart the application."
+msgstr "رجاءً ثبّت 'Tracker' ثمّ أعد تشغيل التطبيق."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "موقع مخصّص"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "استورد ملاحظات"
+
+#: ../src/bjb-import-dialog.c:411
+msgid "Import"
+msgstr "استورد"
+
+#: ../src/bjb-import-dialog.c:422
+msgid "Select import location"
+msgstr "اختر موقع الاستيراد"
+
+#: ../src/bjb-import-dialog.c:443
+msgid "Tomboy application"
+msgstr "تطبيق Tomboy"
+
+#: ../src/bjb-import-dialog.c:449
+msgid "Gnote application"
+msgstr "تطبيق Gnote"
+
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+msgid "Load More"
+msgstr "حمّل المزيد"
+
+#: ../src/bjb-load-more-button.c:98
+msgid "Loading..."
+msgstr "يحمّل..."
+
+#: ../src/bjb-main-toolbar.c:142
+msgid "Click on items to select them"
+msgstr "انقر عناصر لتحديدها"
+
+#: ../src/bjb-main-toolbar.c:144
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "لا شيء محدّد"
+msgstr[1] "واحدة محدّدة"
+msgstr[2] "اثنتان محدّدتان"
+msgstr[3] "%d محدّدة"
+msgstr[4] "%d محدّدة"
+msgstr[5] "%d محدّدة"
+
+#: ../src/bjb-main-toolbar.c:264
+msgid "Search note titles, content and notebooks"
+msgstr "ابحث في عناوين الملاحظات، محتوياتها ودفاتر الملاحظات"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:306
+msgid "Cancel"
+msgstr "ألغِ"
+
+#: ../src/bjb-main-toolbar.c:320
+msgid "Exit selection mode"
+msgstr "أنهِ وضع التحديد"
+
+#: ../src/bjb-main-toolbar.c:350
+#, c-format
+msgid "Results for %s"
+msgstr "نتائج %s"
+
+#: ../src/bjb-main-toolbar.c:353
+msgid "New and Recent"
+msgstr "الجديدة والحديثة"
+
+#: ../src/bjb-main-toolbar.c:438
+msgid "_New"
+msgstr "_جديد"
+
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
+msgid "Selection mode"
+msgstr "وضع التحديد"
+
+#: ../src/bjb-main-toolbar.c:492
+msgid "View notes and notebooks in a list"
+msgstr "اعرض الملاحظات ودفاتر الملاحظات في قائمة"
+
+#: ../src/bjb-main-toolbar.c:516
+msgid "View notes and notebooks in a grid"
+msgstr "اعرض الملاحظات ودفاتر الملاحظات في شبكة"
+
+#: ../src/bjb-main-toolbar.c:535
+msgid "Trash"
+msgstr "المهملات"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:574
+msgid "Empty"
+msgstr "أفرِغ"
+
+#: ../src/bjb-main-toolbar.c:656
+msgid "Untitled"
+msgstr "غير مُعنوَنة"
+
+#: ../src/bjb-main-toolbar.c:762
+msgid "Open in New Window"
+msgstr "افتح في نافذة جديدة"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:773
+msgid "Undo"
+msgstr "تراجع"
+
+#: ../src/bjb-main-toolbar.c:781
+msgid "Redo"
+msgstr "أعد"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:796
+msgid "Bullets"
+msgstr "قائمة غير مرقّمة"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:803
+msgid "Numbered List"
+msgstr "قائمة مُرقَّمة"
+
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
+msgid "Notebooks"
+msgstr "دفاتر الملاحظات"
+
+#. Share
+#: ../src/bjb-main-toolbar.c:827
+msgid "Email this Note"
+msgstr "أرسل هذه الملاحظة بالبريد الإلكتروني"
+
+#. Delete Note
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "انقل إلى المهملات"
+
+#: ../src/bjb-main-toolbar.c:900
+msgid "More options…"
+msgstr "خيارات أكثر…"
+
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
+msgid "Note color"
+msgstr "لون الملاحظة"
+
+#: ../src/bjb-main-view.c:516
+msgid "Notebook"
+msgstr "دفتر ملاحظات"
+
+#: ../src/bjb-main-view.c:519
+msgid "Note"
+msgstr "ملاحظة"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "%s <b>آخر تحديث</b>"
+
+#: ../src/bjb-organize-dialog.c:396
+msgid "Enter a name to create a notebook"
+msgstr "أدخِل اسمًا لإنشاء دفتر ملاحظات"
+
+#: ../src/bjb-organize-dialog.c:406
+msgid "New notebook"
+msgstr "دفتر ملاحظات جديد"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "أل_غِ"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_حسنًا"
+
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Restore"
+msgstr "استعد"
+
+#: ../src/bjb-selection-toolbar.c:403
+msgid "Share note"
+msgstr "شارك الملاحظة"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:409
+msgid "Open in another window"
+msgstr "افتح في نافذة أخرى"
+
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
+msgid "Permanently Delete"
+msgstr "احذف إلى الأبد"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "استخدم خط النظام"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:405
+msgid "Note Font"
+msgstr "خط الملاحظة"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:417
+msgid "Default Color"
+msgstr "اللون الافتراضي"
+
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "تفضيلات"
+
+#: ../src/bjb-settings-dialog.c:494
+msgid "Note Edition"
+msgstr "إصدار الملاحظة"
+
+#: ../src/bjb-settings-dialog.c:497
+msgid "Primary Book"
+msgstr "الكتاب الأساسي"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "اليوم"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "الأمس"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "هذا الاسبوع"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "هذا الشهر"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "هذه السنة"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "مجهول"
+
+#: ../src/libbiji/provider/biji-local-provider.c:363
+msgid "Local storage"
+msgstr "التخزين المحليّ"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_Import Notes"
+msgstr "ا_ستورد ملاحظات"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "ا_عرض المهملات"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "تف_ضيلات"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_Help"
+msgstr "م_ساعدة"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "_عنْ"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "أ_نهِ"

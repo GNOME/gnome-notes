@@ -2,15 +2,15 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, 2012-2013.
+# Matej Urbančič <mateju@svn.gnome.org>, 2012-2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-31 14:56+0000\n"
-"PO-Revision-Date: 2014-03-31 21:52+0100\n"
+"POT-Creation-Date: 2014-09-14 14:52+0000\n"
+"PO-Revision-Date: 2014-09-14 19:40+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -35,7 +35,7 @@ msgstr ""
 "urejevalnika."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Sporočilca"
 
@@ -78,7 +78,7 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Ponudnik upravljanja sporočilc, ki naj bo uporabljen za sporočilca."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Osnovna beležnica je mesto, kjer bodo ustvarjena nova sporočilca."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -113,29 +113,33 @@ msgstr "Enostavna sporočilca za GNOME"
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Pokaži različico programa"
 
-#: ../src/bjb-bijiben.c:398
+#: ../src/bjb-bijiben.c:456
+msgid "Create a new note"
+msgstr "Ustvari novo sporočilce"
+
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[DATOTEKA ...]"
 
-#: ../src/bjb-bijiben.c:405
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Beleži sporočilca in jih izvozi kamorkoli."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:415
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Ni mogoče razčleniti argumentov"
 
-#: ../src/bjb-bijiben.c:423
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "Opombe GNOME"
 
-#: ../src/bjb-bijiben.c:433
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Ni mogoče vpisati programa"
 
@@ -144,47 +148,43 @@ msgid "Note Color"
 msgstr "Barva sporočilca"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Izreži"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Kopiraj"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Prilepi"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Krepko"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Ležeče"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Prečrtano"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Kopiraj izbor v novo sporočilce"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "Ni najdenih sporočilc"
+msgid "No notes"
+msgstr "NIi sporočilc"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"Zbirka sporočilc je prazna.\n"
-"S klikom na gumb Novo sporočilce, lahko ustvarite prvo."
+msgid "Press the new button to create a note."
+msgstr "Pritisnite gumb za ustvarjanje nove beležnice"
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -202,23 +202,19 @@ msgstr "Mesto po meri"
 msgid "Import Notes"
 msgstr "Uvozi sporočilca"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Prekliči"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "Uvozi"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "Izbor mesta uvoza"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Program Tomboy"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Program Gnote"
 
@@ -266,74 +262,74 @@ msgid "New and Recent"
 msgstr "Novo in nedavno"
 
 #: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "Novo"
+msgid "_New"
+msgstr "_Nova"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
 msgid "Selection mode"
 msgstr "Izbirni način"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:492
 msgid "View notes and notebooks in a list"
 msgstr "Poglej sporočilca in zbirke kot seznam"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:516
 msgid "View notes and notebooks in a grid"
 msgstr "Poglej sporočilca in zbirke na mreži"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:535
 msgid "Trash"
 msgstr "Smeti"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:574
 msgid "Empty"
 msgstr "Izprazni"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:656
 msgid "Untitled"
 msgstr "Neimenovano"
 
-#: ../src/bjb-main-toolbar.c:763
+#: ../src/bjb-main-toolbar.c:762
 msgid "Open in New Window"
 msgstr "Odpri v novem oknu"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:773
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: ../src/bjb-main-toolbar.c:782
+#: ../src/bjb-main-toolbar.c:781
 msgid "Redo"
 msgstr "Ponovi"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:797
+#: ../src/bjb-main-toolbar.c:796
 msgid "Bullets"
 msgstr "Vrstične oznake"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:804
+#: ../src/bjb-main-toolbar.c:803
 msgid "Numbered List"
 msgstr "Oštevilčen seznam"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:820 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Beležnice"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:828
+#: ../src/bjb-main-toolbar.c:827
 msgid "Email this Note"
 msgstr "Pošlji to sporočilce"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:841 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Premakni v smeti"
 
@@ -341,7 +337,7 @@ msgstr "Premakni v smeti"
 msgid "More options…"
 msgstr "Več podrobnosti ..."
 
-#: ../src/bjb-main-toolbar.c:922 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Barva sporočilca"
 
@@ -353,44 +349,48 @@ msgstr "Beležnica"
 msgid "Note"
 msgstr "Sporočilce"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:225
-msgid "Last updated"
-msgstr "Zadnjič posodobljeno"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Zadnjič posodobljeno</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "Vnos imena nove beležnice"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "Nova beležnica"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "_Zapri"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Prekliči"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_V redu"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "Obnovi"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "Objavi sporočilce"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "Odpri v novem oknu"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "Trajno izbriši"
 
@@ -409,11 +409,15 @@ msgstr "Pisava sporočilca"
 msgid "Default Color"
 msgstr "Privzeta barva"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "Možnosti"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "Izdaja opombe"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "Osnovni imenik stikov"
 
@@ -441,7 +445,7 @@ msgstr "To leto"
 msgid "Unknown"
 msgstr "Neznano"
 
-#: ../src/libbiji/provider/biji-local-provider.c:361
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Krajevna shramba"
 
@@ -468,6 +472,22 @@ msgstr "_O programu"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Končaj"
+
+#~ msgid "No Notes Found"
+#~ msgstr "Ni najdenih sporočilc"
+
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "Zbirka sporočilc je prazna.\n"
+#~ "S klikom na gumb Novo sporočilce, lahko ustvarite prvo."
+
+#~ msgid "New"
+#~ msgstr "Novo"
+
+#~ msgid "_Close"
+#~ msgstr "_Zapri"
 
 #~ msgid "No result found for this research."
 #~ msgstr "Ni najdenih rezultatov za to iskanje."
@@ -498,9 +518,6 @@ msgstr "_Končaj"
 
 #~ msgid "Done"
 #~ msgstr "Končano"
-
-#~ msgid "Preferences"
-#~ msgstr "Možnosti"
 
 #~ msgid "_About Bijiben"
 #~ msgstr "_O programu"

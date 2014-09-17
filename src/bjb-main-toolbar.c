@@ -432,9 +432,12 @@ populate_bar_for_standard(BjbMainToolbar *self)
                               G_CALLBACK (on_back_button_clicked), self);
   }
 
-  /* New Note button */
   else
   {
+    /*
+     * Translators : <_New> refers to new note creation.
+     * User clicks new, which opens a new blank note.
+     */
     priv->new = gtk_button_new_with_mnemonic (_("_New"));
     gtk_widget_set_valign (priv->new, GTK_ALIGN_CENTER);
 
@@ -755,10 +758,13 @@ bjb_note_menu_new (BjbMainToolbar *self)
   result = gtk_menu_new();
   editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (priv->note));
 
-  /* Detach and separator */
   detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
   if (detached == FALSE)
   {
+    /*
+     * Open the current note in a new window
+     * in order to be able to see it and others at the same time
+     */
     item = gtk_menu_item_new_with_label (_("Open in New Window"));
     gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
     g_signal_connect_swapped (item, "activate",

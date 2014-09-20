@@ -6,17 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-15 22:30+0200\n"
-"PO-Revision-Date: 2014-03-15 22:32+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
+"n&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-19 02:51+0000\n"
+"PO-Revision-Date: 2014-09-19 12:00+0300\n"
 "Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Language-Team: linux.org.ua\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
@@ -29,7 +30,7 @@ msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Можна використовувати ownCloud як місце зберігання та редагування."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Примітки"
 
@@ -73,7 +74,8 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Основний постачальник приміток для нових приміток."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+#| msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Основний записник — місце, де створюються нові примітки."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -110,29 +112,34 @@ msgstr ""
 "Микола Ткач <Stuartlittle1970@gmail.com>, 2013.\n"
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Показати версію програми"
 
-#: ../src/bjb-bijiben.c:398
+#: ../src/bjb-bijiben.c:456
+#| msgid "Copy selection to a new note"
+msgid "Create a new note"
+msgstr "Створити нову примітку"
+
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[ФАЙЛ…]"
 
-#: ../src/bjb-bijiben.c:405
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Взяти примітки і експортувати їх скрізь."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:415
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Неможливо розібрати аргументи"
 
-#: ../src/bjb-bijiben.c:423
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "Примітки GNOME"
 
-#: ../src/bjb-bijiben.c:433
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Неможливо зареєструвати програму"
 
@@ -141,47 +148,45 @@ msgid "Note Color"
 msgstr "Колір примітки"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Вирізати"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Копіювати"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Вставити"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Напівжирний"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Курсив"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Підкреслений"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Скопіювати вибране в нову примітку"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "Не знайдено жодної примітки"
+#| msgid "Notes"
+msgid "No notes"
+msgstr "Немає приміток"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"Ваш записник приміток порожній.\n"
-"Натисніть «Створити», щоб одержати першу примітку."
+#| msgid "Enter a name to create a notebook"
+msgid "Press the new button to create a note."
+msgstr "Натисніть кнопку «Створити», щоб створити примітку."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -199,23 +204,19 @@ msgstr "Інша адреса"
 msgid "Import Notes"
 msgstr "Імпортувати примітки"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Скасувати"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "Імпортувати"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "Вибрати адресу імпортування"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Tomboy"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Gnote"
 
@@ -261,81 +262,91 @@ msgstr "Результати для %s"
 msgid "New and Recent"
 msgstr "Нові та нещодавні"
 
-#: ../src/bjb-main-toolbar.c:438
-msgid "New"
-msgstr "Створити"
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "_Створити"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Режим вибирання"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
 msgstr "Переглядати примітки і записники у списку"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "Переглядати примітки і записники у ґратках"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "Смітник"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:571
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Спорожнити"
 
-#: ../src/bjb-main-toolbar.c:653
+#: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
 msgstr "Неназвано"
 
-#: ../src/bjb-main-toolbar.c:761
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:768
 msgid "Open in New Window"
 msgstr "Відкрити у новому вікні"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:779
 msgid "Undo"
 msgstr "Повернути"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:787
 msgid "Redo"
 msgstr "Повторити"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
+#: ../src/bjb-main-toolbar.c:802
 msgid "Bullets"
 msgstr "Тип сортування"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
+#: ../src/bjb-main-toolbar.c:809
 msgid "Numbered List"
 msgstr "Пронумерований список"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-main-toolbar.c:825 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Записники"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:833
 msgid "Email this Note"
 msgstr "Надіслати цю примітку"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:846 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Пересунути у смітник"
 
-#: ../src/bjb-main-toolbar.c:898
+#: ../src/bjb-main-toolbar.c:906
 msgid "More options…"
 msgstr "Більше параметрів…"
 
-#: ../src/bjb-main-toolbar.c:920 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:929 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Колір примітки"
 
@@ -347,44 +358,49 @@ msgstr "Записник"
 msgid "Note"
 msgstr "Примітка"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:225
-msgid "Last updated"
-msgstr "Востаннє оновлено"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+#| msgid "Last updated"
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Востаннє оновлено</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "Уведіть назву, щоб створити записник"
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "Створити записник"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "_Закрити"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Скасувати"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_Гаразд"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "Відновити"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "Оприлюднити примітку"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "Відкрити в іншому вікні"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "Остаточно вилучити"
 
@@ -403,11 +419,15 @@ msgstr "Шрифт приміток"
 msgid "Default Color"
 msgstr "Типовий колір"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "Параметри"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "Редакція приміток"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
 msgstr "Первинна книга"
 
@@ -435,7 +455,7 @@ msgstr "У цьому році"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: ../src/libbiji/provider/biji-local-provider.c:361
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Локальне сховище"
 
@@ -462,6 +482,22 @@ msgstr "_Про програму"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "Ви_йти"
+
+#~ msgid "No Notes Found"
+#~ msgstr "Не знайдено жодної примітки"
+
+#~ msgid ""
+#~ "Your notes notebook is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "Ваш записник приміток порожній.\n"
+#~ "Натисніть «Створити», щоб одержати першу примітку."
+
+#~ msgid "New"
+#~ msgstr "Створити"
+
+#~ msgid "_Close"
+#~ msgstr "_Закрити"
 
 #~ msgid "No result found for this research."
 #~ msgstr "Жодного результату не знайдено для цього дослідження."
@@ -510,9 +546,6 @@ msgstr "Ви_йти"
 
 #~ msgid "Tag"
 #~ msgstr "Мітка"
-
-#~ msgid "Preferences"
-#~ msgstr "Параметри"
 
 #~ msgid "_External Notes"
 #~ msgstr "_Зовнішні примітки"

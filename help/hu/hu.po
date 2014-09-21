@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the bijiben user help.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2014.
+# Balázs Úr <urbalazs at gmail dot com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben_help master\n"
-"POT-Creation-Date: 2014-03-19 03:53+0000\n"
-"PO-Revision-Date: 2014-03-24 10:45+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"POT-Creation-Date: 2014-09-21 02:51+0000\n"
+"PO-Revision-Date: 2014-09-21 12:56+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,112 +24,55 @@ msgid "translator-credits"
 msgstr "Kelemen Gábor <kelemeng at gnome dot hu>, 2014"
 
 #. (itstool) path: credit/name
-#: C/colors.page:11
-#: C/notebooks.page:11
-#: C/create.page:11
-#: C/delete.page:11
-#: C/introduction.page:16
-#: C/formatting.page:11
-#: C/search.page:11
-#: C/share.page:11
-#: C/index.page:13
-#: C/listing.page:11
+#: C/colors.page:11 C/notebooks.page:11 C/create.page:11 C/delete.page:11
+#: C/introduction.page:16 C/formatting.page:11 C/search.page:11
+#: C/share.page:11 C/index.page:13 C/listing.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
-#: C/colors.page:12
-#: C/notebooks.page:12
-#: C/create.page:12
-#: C/delete.page:12
-#: C/introduction.page:18
-#: C/formatting.page:12
-#: C/search.page:12
-#: C/share.page:12
-#: C/index.page:15
-#: C/listing.page:12
+#: C/colors.page:12 C/notebooks.page:12 C/create.page:12 C/delete.page:12
+#: C/introduction.page:18 C/formatting.page:12 C/search.page:12
+#: C/share.page:12 C/index.page:15 C/listing.page:12
 msgid "2012"
 msgstr "2012"
 
 #. (itstool) path: credit/name
-#: C/colors.page:15
-#: C/notebooks.page:15
-#: C/create.page:15
-#: C/delete.page:15
-#: C/formatting.page:15
-#: C/search.page:15
-#: C/share.page:15
-#: C/listing.page:15
+#: C/colors.page:15 C/notebooks.page:15 C/create.page:15 C/delete.page:15
+#: C/formatting.page:15 C/search.page:15 C/share.page:15 C/listing.page:15
 msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #. (itstool) path: credit/years
-#: C/colors.page:17
-#: C/colors.page:22
-#: C/notebooks.page:17
-#: C/create.page:17
-#: C/delete.page:17
-#: C/delete.page:22
-#: C/introduction.page:13
-#: C/formatting.page:17
-#: C/search.page:17
-#: C/search.page:22
-#: C/rename.page:13
-#: C/share.page:17
-#: C/share.page:22
-#: C/index.page:20
-#: C/listing.page:17
-#: C/listing.page:22
+#: C/colors.page:17 C/colors.page:22 C/notebooks.page:17 C/create.page:17
+#: C/delete.page:17 C/delete.page:22 C/introduction.page:13
+#: C/formatting.page:17 C/search.page:17 C/search.page:22 C/rename.page:13
+#: C/share.page:17 C/index.page:20 C/listing.page:17 C/listing.page:22
 msgid "2013"
 msgstr "2013"
 
 #. (itstool) path: credit/name
-#: C/colors.page:20
-#: C/notebooks.page:20
-#: C/create.page:20
-#: C/delete.page:20
-#: C/introduction.page:11
-#: C/formatting.page:20
-#: C/search.page:20
-#: C/rename.page:11
-#: C/share.page:20
-#: C/index.page:18
-#: C/listing.page:20
-#: C/cut-copy-paste.page:11
+#: C/colors.page:20 C/notebooks.page:20 C/create.page:25 C/delete.page:20
+#: C/delete.page:30 C/introduction.page:11 C/introduction.page:26
+#: C/formatting.page:20 C/search.page:20 C/search.page:30 C/rename.page:11
+#: C/share.page:20 C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
+#: C/view-trash.page:11
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/name
-#: C/colors.page:25
-#: C/notebooks.page:25
-#: C/create.page:25
-#: C/delete.page:25
-#: C/introduction.page:21
-#: C/formatting.page:25
-#: C/search.page:25
-#: C/rename.page:16
-#: C/share.page:25
-#: C/listing.page:25
-#: C/cut-copy-paste.page:16
+#: C/colors.page:25 C/notebooks.page:25 C/create.page:20 C/delete.page:25
+#: C/introduction.page:21 C/formatting.page:25 C/search.page:25
+#: C/rename.page:16 C/share.page:25 C/listing.page:25 C/cut-copy-paste.page:16
 msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/colors.page:27
-#: C/notebooks.page:22
-#: C/notebooks.page:27
-#: C/create.page:22
-#: C/create.page:27
-#: C/delete.page:27
-#: C/introduction.page:23
-#: C/formatting.page:22
-#: C/formatting.page:27
-#: C/search.page:27
-#: C/rename.page:18
-#: C/share.page:27
-#: C/listing.page:27
-#: C/cut-copy-paste.page:13
-#: C/cut-copy-paste.page:18
+#: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
+#: C/delete.page:27 C/introduction.page:23 C/introduction.page:28
+#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/search.page:32
+#: C/rename.page:18 C/share.page:22 C/share.page:27 C/listing.page:27
+#: C/cut-copy-paste.page:13 C/cut-copy-paste.page:18 C/view-trash.page:13
 msgid "2014"
 msgstr "2014"
 
@@ -148,28 +92,23 @@ msgid "To change the color of an individual note:"
 msgstr "Egy adott jegyzet színének megváltoztatásához:"
 
 #. (itstool) path: item/p
-#: C/colors.page:40
-#: C/notebooks.page:40
-#: C/delete.page:40
-#: C/rename.page:31
+#: C/colors.page:40 C/notebooks.page:40 C/delete.page:45 C/rename.page:31
 #: C/share.page:40
 msgid "Click on the note to open it."
 msgstr "Kattintson a jegyzetre a megnyitásához."
 
 #. (itstool) path: item/p
-#: C/colors.page:43
-#: C/colors.page:61
+#: C/colors.page:43 C/colors.page:61
 msgid "Click the <gui style=\"button\">Note color</gui> button."
 msgstr "Kattintson a <gui style=\"button\">Jegyzet színe</gui> gombra."
 
 #. (itstool) path: item/p
-#: C/colors.page:46
-#: C/colors.page:64
+#: C/colors.page:46 C/colors.page:64
 msgid ""
 "Select a new color and click the <gui style=\"button\">Select</gui> button."
 msgstr ""
-"Válassza ki az új színt, és nyomja meg a <gui style=\"button\">Kiválasztás<"
-"/gui> gombot."
+"Válassza ki az új színt, és nyomja meg a <gui style=\"button\">Kiválasztás</"
+"gui> gombot."
 
 #. (itstool) path: steps/title
 #: C/colors.page:52
@@ -177,15 +116,13 @@ msgid "To change the color of multiple notes:"
 msgstr "Több jegyzet színének megváltoztatásához:"
 
 #. (itstool) path: item/p
-#: C/colors.page:54
-#: C/notebooks.page:58
-#: C/delete.page:51
+#: C/colors.page:54 C/notebooks.page:58 C/delete.page:61
 msgid ""
-"In the <gui>New and Recent</gui> view, click the <gui style=\"button\">"
-"Selection mode</gui> button."
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button."
 msgstr ""
-"Az <gui>Új és legutóbbi</gui> nézetben kattintson a <gui style=\"button\">"
-"Kijelölési mód</gui> gombra."
+"Az <gui>Új és legutóbbi</gui> nézetben kattintson a <gui style=\"button"
+"\">Kijelölési mód</gui> gombra."
 
 #. (itstool) path: item/p
 #: C/colors.page:58
@@ -211,24 +148,23 @@ msgstr "Új jegyzettömb létrehozása egy jegyzettel:"
 #. (itstool) path: item/p
 #: C/notebooks.page:43
 msgid ""
-"Click <guiseq><gui style=\"button\">More options…</gui><gui "
-"style=\"menuitem\">Notebooks</gui></guiseq>."
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Notebooks</gui></guiseq>."
 msgstr ""
-"Válassza a <guiseq><gui style=\"button\">Több beállítás…</gui><gui "
-"style=\"menuitem\">Jegyzettömbök</gui></guiseq> menüpontot."
+"Válassza a <guiseq><gui style=\"button\">Több beállítás…</gui><gui style="
+"\"menuitem\">Jegyzettömbök</gui></guiseq> menüpontot."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:47
 msgid ""
-"Type a suitable name for the notebook and click the <gui style=\"button\">New "
-"notebook</gui> button."
+"Type a suitable name for the notebook and click the <gui style=\"button"
+"\">New notebook</gui> button."
 msgstr ""
-"Írjon be egy nevet a jegyzettömbnek, és kattintson az <gui style=\"button\">"
-"Új jegyzettömb</gui> gombra."
+"Írjon be egy nevet a jegyzettömbnek, és kattintson az <gui style=\"button"
+"\">Új jegyzettömb</gui> gombra."
 
 #. (itstool) path: item/p
-#: C/notebooks.page:51
-#: C/notebooks.page:72
+#: C/notebooks.page:51 C/notebooks.page:72
 msgid "Click the <gui style=\"button\">Close</gui> button."
 msgstr "Kattintson a <gui style=\"button\">Bezárás</gui> gombra."
 
@@ -253,8 +189,13 @@ msgid ""
 "Type a suitable name for the notebook and click <gui style=\"button\">New "
 "notebook</gui> button."
 msgstr ""
-"Írjon be egy nevet a jegyzettömbnek, és kattintson az <gui style=\"button\">"
-"Új jegyzettömb</gui> gombra."
+"Írjon be egy nevet a jegyzettömbnek, és kattintson az <gui style=\"button"
+"\">Új jegyzettömb</gui> gombra."
+
+#. (itstool) path: credit/years
+#: C/create.page:27
+msgid "31 Aug 2014"
+msgstr "2014. augusztus 31."
 
 #. (itstool) path: info/desc
 #: C/create.page:32
@@ -289,8 +230,8 @@ msgid ""
 "Drag and drop text to the <gui>New and Recent</gui> view to create a note "
 "containing this text."
 msgstr ""
-"Fogd és vidd módszerrel ejtsen szöveget az <gui>Új és legutóbbi</gui> nézetbe "
-"egy új jegyzet létrehozásához az adott szöveggel."
+"Fogd és vidd módszerrel ejtsen szöveget az <gui>Új és legutóbbi</gui> "
+"nézetbe egy új jegyzet létrehozásához az adott szöveggel."
 
 #. (itstool) path: item/p
 #: C/create.page:49
@@ -302,42 +243,65 @@ msgstr ""
 "style=\"button\">Kijelölés új jegyzetbe másolása</gui> gombra az adott "
 "szöveget tartalmazó jegyzet létrehozásához."
 
-#. (itstool) path: info/desc
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+"A gyorsbillentyű használatával való új jegyzet megnyitásához nyomja meg a <"
+"keyseq><key>Ctrl</key><key>N</key></keyseq> billentyűkombinációt."
+
+#. (itstool) path: credit/years
 #: C/delete.page:32
+msgid "01 sep 2014"
+msgstr "2014. szeptember 1."
+
+#. (itstool) path: info/desc
+#: C/delete.page:37
 msgid "Delete old and unwanted notes."
 msgstr "Régi és fölösleges jegyzetet törlése."
 
 #. (itstool) path: page/title
-#: C/delete.page:35
+#: C/delete.page:40
 msgid "Delete a note"
 msgstr "Jegyzet törlése"
 
 #. (itstool) path: steps/title
-#: C/delete.page:38
+#: C/delete.page:43
 msgid "To delete a note:"
 msgstr "Jegyzet törléséhez:"
 
 #. (itstool) path: item/p
-#: C/delete.page:43
+#: C/delete.page:48
 msgid ""
-"Select <guiseq><gui style=\"button\">More options…</gui><gui "
-"style=\"menuitem\">Move to Trash</gui></guiseq>."
+"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Move to Trash</gui></guiseq>."
 msgstr ""
 "Válassza a <guiseq><gui style=\"button\">További beállítások…</gui><gui "
 "style=\"menuitem\">Áthelyezés a Kukába</gui></guiseq> menüpontot."
 
+#. (itstool) path: note/p
+#: C/delete.page:54
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+"Nyomja meg a <keyseq><key>Ctrl</key><key>Delete</key></keyseq> "
+"gyorsbillentyűt egy megnyitott jegyzet törléséhez."
+
 #. (itstool) path: steps/title
-#: C/delete.page:49
+#: C/delete.page:59
 msgid "To delete multiple notes and notebooks:"
 msgstr "Több jegyzet és jegyzettömb törléséhez:"
 
 #. (itstool) path: item/p
-#: C/delete.page:55
+#: C/delete.page:65
 msgid "Select the notes and the notebooks you want to delete."
 msgstr "Válassza ki a törölni kívánt jegyzeteket és jegyzettömböket."
 
 #. (itstool) path: item/p
-#: C/delete.page:58
+#: C/delete.page:68
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
 msgstr "Kattintson az <gui style=\"button\">Áthelyezés a Kukába</gui> gombra."
 
@@ -346,35 +310,39 @@ msgstr "Kattintson az <gui style=\"button\">Áthelyezés a Kukába</gui> gombra.
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:38
+#: C/introduction.page:43
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='figures/notes-scr.png' "
+#| "md5='ab9553778241bb262b0e2c2b4b7d014b'"
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 msgstr ""
-"external ref='figures/notes-scr.png' md5='ab9553778241bb262b0e2c2b4b7d014b'"
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 
 #. (itstool) path: info/desc
-#: C/introduction.page:28
+#: C/introduction.page:33
 msgid "A simple application for creating, editing and viewing notes."
 msgstr ""
 "Egyszerű alkalmazás jegyzetek létrehozásához, szerkesztéséhez és "
 "megjelenítéséhez."
 
 #. (itstool) path: page/title
-#: C/introduction.page:31
+#: C/introduction.page:36
 msgid "Introduction to Notes"
 msgstr "A Jegyzetek bemutatása"
 
 #. (itstool) path: page/p
-#: C/introduction.page:33
+#: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
 "notes. You can also search for a note from the <gui>Activities</gui> "
 "overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
 msgstr ""
 "A <app>Jegyzetek</app> egy egyszerű alkalmazás jegyzetek létrehozásához, "
-"szerkesztéséhez és megjelenítéséhez. A jegyzetek közt a <gui>Tevékenységek<"
-"/gui> áttekintésből is kereshet. A <app>Jegyzetek</app> egyszerűen "
+"szerkesztéséhez és megjelenítéséhez. A jegyzetek közt a <gui>Tevékenységek</"
+"gui> áttekintésből is kereshet. A <app>Jegyzetek</app> egyszerűen "
 "integrálódik az <app>Online fiókokkal</app>."
 
 #. (itstool) path: info/desc
@@ -400,46 +368,55 @@ msgstr "Jelölje ki a formázni kívánt szöveget."
 #. (itstool) path: item/p
 #: C/formatting.page:43
 msgid ""
-"Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> or "
-"<gui style=\"button\">Strike</gui>."
+"Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
+"or <gui style=\"button\">Strike</gui>."
 msgstr ""
-"Kattintson a <gui style=\"button\">Félkövér</gui>, <gui style=\"button\">"
-"Dőlt</gui> vagy <gui style=\"button\">Áthúzott</gui> egyikére."
+"Kattintson a <gui style=\"button\">Félkövér</gui>, <gui style=\"button"
+"\">Dőlt</gui> vagy <gui style=\"button\">Áthúzott</gui> egyikére."
 
 #. (itstool) path: info/desc
-#: C/search.page:32
+#: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
 msgstr "Meglévő jegyzet, jegyzettartalom és jegyzettömbök keresése."
 
 #. (itstool) path: page/title
-#: C/search.page:35
+#: C/search.page:40
 msgid "Find a note"
 msgstr "Jegyzet keresése"
 
 #. (itstool) path: page/p
-#: C/search.page:37
+#: C/search.page:42
 msgid "The default <em>New and Recent</em> view shows recently used notes."
 msgstr ""
 "Az alapértelmezett <em>Új és nemrég használt</em> nézet a legutóbb használt "
 "jegyzeteket jeleníti meg."
 
 #. (itstool) path: steps/title
-#: C/search.page:40
+#: C/search.page:45
 msgid "To find notes while in <em>New and Recent</em>:"
 msgstr "Jegyzetek kereséséhez az <em>Új és legutóbbi</em> nézetben:"
 
 #. (itstool) path: item/p
-#: C/search.page:42
+#: C/search.page:47
 msgid "Click the <gui>Search</gui> button."
 msgstr "Kattintson a <gui>Keresés</gui> gombra."
 
 #. (itstool) path: item/p
-#: C/search.page:45
+#: C/search.page:50
 msgid "Type your search term. Search results will appear instantly."
 msgstr "Írja be a keresendő kifejezést. A találatok azonnal megjelennek."
 
 #. (itstool) path: note/p
-#: C/search.page:49
+#: C/search.page:53
+msgid ""
+"You can directly start typing the search string in the <em>New and Recent</"
+"em> view to search notes."
+msgstr ""
+"Elkezdheti közvetlenül a keresési szöveg gépelését az <em>Új és legutóbbi</em>"
+" nézetben a jegyzetek kereséséhez."
+
+#. (itstool) path: note/p
+#: C/search.page:56
 msgid "You can also search for notes from the <gui>Activities</gui> overview."
 msgstr "Jegyzeteket a <gui>Tevékenységek</gui> áttekintésből is kereshet."
 
@@ -480,12 +457,15 @@ msgstr "Egy jegyzet megosztásához:"
 
 #. (itstool) path: item/p
 #: C/share.page:43
+#| msgid ""
+#| "Click <guiseq><gui style=\"button\">More options…</gui><gui style="
+#| "\"menuitem\">Notebooks</gui></guiseq>."
 msgid ""
-"Click the <gui style=\"button\">Share note</gui> button. Your default email "
-"client will start up."
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Email this Note</gui></guiseq>."
 msgstr ""
-"Kattintson a <gui style=\"button\">Jegyzet megosztása</gui> gombra. Elindul "
-"az alapértelmezett e-mail kliens."
+"Kattintson a <guiseq><gui style=\"button\">Több beállítás…</gui><gui "
+"style=\"menuitem\">Jegyzet küldése e-mailben</gui></guiseq> menüpontra."
 
 #. (itstool) path: item/p
 #: C/share.page:47
@@ -545,18 +525,18 @@ msgid ""
 "To create an unordered list, click <guiseq><gui style=\"button\">More "
 "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
 msgstr ""
-"Rendezetlen lista létrehozásához válassza a <guiseq><gui style=\"button\">"
-"További beállítások…</gui><gui style=\"menuitem\">Felsorolás</gui></guiseq> "
-"menüpontot."
+"Rendezetlen lista létrehozásához válassza a <guiseq><gui style=\"button"
+"\">További beállítások…</gui><gui style=\"menuitem\">Felsorolás</gui></"
+"guiseq> menüpontot."
 
 #. (itstool) path: item/p
 #: C/listing.page:45
 msgid ""
-"To create an ordered list, click <guiseq><gui style=\"button\">More options…<"
-"/gui> <gui>Numbered List</gui></guiseq>."
+"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
+"</gui> <gui>Numbered List</gui></guiseq>."
 msgstr ""
-"Rendezett lista létrehozásához válassza a <guiseq><gui style=\"button\">"
-"További beállítások…</gui><gui>Számozott lista</gui></guiseq> menüpontot."
+"Rendezett lista létrehozásához válassza a <guiseq><gui style=\"button"
+"\">További beállítások…</gui><gui>Számozott lista</gui></guiseq> menüpontot."
 
 #. (itstool) path: info/desc
 #: C/cut-copy-paste.page:23
@@ -581,11 +561,97 @@ msgstr "Jelölje ki a szöveget."
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:33
 msgid ""
-"Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> or <"
-"gui style=\"button\">Paste</gui>."
+"Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> or "
+"<gui style=\"button\">Paste</gui>."
 msgstr ""
-"Kattintson a <gui style=\"button\">Kivágás</gui>, <gui style=\"button\">"
-"Másolás</gui> vagy <gui style=\"button\">Beillesztés</gui> gombok egyikére."
+"Kattintson a <gui style=\"button\">Kivágás</gui>, <gui style=\"button"
+"\">Másolás</gui> vagy <gui style=\"button\">Beillesztés</gui> gombok "
+"egyikére."
+
+#. (itstool) path: info/desc
+#: C/view-trash.page:16
+msgid "View Trash to delete or restore notes."
+msgstr "Kuka megtekintése jegyzetek törléséhez vagy visszaállításához."
+
+#. (itstool) path: page/p
+#: C/view-trash.page:18
+msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
+msgstr ""
+"Megtekintheti, visszaállíthatja vagy törölheti a <gui>Kukában</gui> lévő "
+"jegyzeteket."
+
+#. (itstool) path: page/title
+#: C/view-trash.page:19
+msgid "Access trashed notes"
+msgstr "Hozzáférés a kidobott jegyzetekhez"
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:21
+#| msgid "To share a note:"
+msgid "To restore trashed notes:"
+msgstr "A kidobott jegyzetek visszaállításához:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:23 C/view-trash.page:48
+#| msgid ""
+#| "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+#| "\">Selection mode</gui> button."
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr ""
+"A <gui>Kuka</gui> nézetben kattintson a <gui>Kijelölési mód</gui> gombra."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:26
+#| msgid "Select the text that you want to format."
+msgid "Select all the notes that you want to restore."
+msgstr "Jelölje ki az összes jegyzetet, amelyet vissza szeretne állítani."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:29
+#| msgid "Click the <gui style=\"button\">Close</gui> button."
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr "Kattintson a <gui style=\"button\">Visszaállítás</gui> gombra."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:33
+msgid "To permanently delete all the notes in Trash:"
+msgstr "A Kukában lévő összes jegyzet végleges törléséhez:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:35
+msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgstr ""
+"Kattintson a <gui>Tevékenységek</gui> közelében lévő <gui>Jegyzetek</gui> "
+"ikonra."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:38
+msgid "Select <gui>View Trash</gui>."
+msgstr "Válassza a <gui>Kuka megtekintése</gui> menüpontot."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:41
+#| msgid "Click the <gui style=\"button\">Close</gui> button."
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr "Kattintson a <gui style=\"button\">Ürítés</gui> gombra az eszköztáron."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:46
+#| msgid "To delete multiple notes and notebooks:"
+msgid "To delete selected notes from Trash:"
+msgstr "A kijelölt jegyzetek törléséhez a Kukából:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:51
+#| msgid "Select the text that you want to format."
+msgid "Select all the notes that you want to delete permanently."
+msgstr "Jelölje ki az összes jegyzetet, amelyeket véglegesen törölni szeretne."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:54
+#| msgid "Click the <gui style=\"button\">Close</gui> button."
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr "Kattintson a <gui style=\"button\">Végleges törlés</gui> gombra."
 
 #. (itstool) path: p/link
 #: C/legal.xml:5
@@ -597,4 +663,9 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Ez a munka a <_:link-1/> feltételei szerint használható."
 
-
+#~ msgid ""
+#~ "Click the <gui style=\"button\">Share note</gui> button. Your default "
+#~ "email client will start up."
+#~ msgstr ""
+#~ "Kattintson a <gui style=\"button\">Jegyzet megosztása</gui> gombra. "
+#~ "Elindul az alapértelmezett e-mail kliens."

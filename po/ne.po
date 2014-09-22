@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben \n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-09-18 14:52+0000\n"
+"PO-Revision-Date: 2014-09-22 05:21+0400\n"
+"Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
+"Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-Language: Nepali\n"
+"X-Poedit-Country: NEPAL\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+
+#: ../data/bijiben.desktop.in.in.h:1
+#: ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "द्रष्टव्यहरू"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "द्रष्टव्यहरू;रिमाइन्डर;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr ""
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "द्रष्टव्य-प्रापक"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "अनुकूल फन्ट"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#, fuzzy
+msgid "Whether to use the system monospace font"
+msgstr "पूर्व निर्धारित प्रणाली फन्ट प्रयोग गर्नु पर्दछ वा पर्दैन"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "नयाँ द्रष्टव्यहरूका रङ्ग"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid "The color name set here will be used as the color when creating new notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where new notes are created."
+msgstr ""
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "सञ्झ्यालको अधिकतम स्थिति"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "सञ्झ्यालको अधिकतम स्थिति"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "सञ्झ्याल साइज"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "सञ्झ्यालको उचाइ र चौडाई"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "संझ्यालको स्थिति"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "सञ्झ्यालको  स्थान(X र Y)."
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "जिनोम सामान्य नोटबुक"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr "Pawan Chitrakar < chautari@gmail.com >"
+
+#: ../src/bjb-bijiben.c:454
+#, fuzzy
+msgid "Show the application's version"
+msgstr "अनुप्रयोगको संस्करण देखाउनुहोस्"
+
+#: ../src/bjb-bijiben.c:456
+msgid "Create a new note"
+msgstr "एउटा नयाँ द्रष्टव्य सिर्जना गर्नुहोस्"
+
+#: ../src/bjb-bijiben.c:458
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:465
+msgid "Take notes and export them everywhere."
+msgstr ""
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:476
+msgid "Could not parse arguments"
+msgstr "तर्क पदवर्णन गर्न सकेन"
+
+#: ../src/bjb-bijiben.c:485
+msgid "GNOME Notes"
+msgstr "जिनोम द्रष्टव्यहरू"
+
+#: ../src/bjb-bijiben.c:498
+msgid "Could not register the application"
+msgstr "अनुप्रयोग दर्ता सकेन"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "द्रष्टव्य रङ्ग:"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:365
+#, fuzzy
+msgid "Cut"
+msgstr "काट्नुहोस्"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:372
+msgid "Copy"
+msgstr "प्रतिलिपि गर्नुहोस्"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:378
+msgid "Paste"
+msgstr "टाँस्नुहोस्"
+
+#: ../src/bjb-editor-toolbar.c:393
+msgid "Bold"
+msgstr "बाक्लो"
+
+#: ../src/bjb-editor-toolbar.c:403
+msgid "Italic"
+msgstr "छड्के"
+
+#: ../src/bjb-editor-toolbar.c:413
+msgid "Strike"
+msgstr "काटिएको"
+
+#: ../src/bjb-editor-toolbar.c:441
+#, fuzzy
+msgid "Copy selection to a new note"
+msgstr "सर्भरमा नयाँ द्रष्टव्य अपलोड गरियो"
+
+#: ../src/bjb-empty-results-box.c:101
+msgid "No notes"
+msgstr "नोटहरू फेला परेन"
+
+#: ../src/bjb-empty-results-box.c:145
+msgid "Press the new button to create a note."
+msgstr ""
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Oops"
+msgstr ""
+
+#: ../src/bjb-empty-results-box.c:173
+msgid "Please install 'Tracker' then restart the application."
+msgstr ""
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "अनुकूल स्थान"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr " नोटहरू आयात गर्नुहोस्"
+
+#: ../src/bjb-import-dialog.c:411
+msgid "Import"
+msgstr "आयात गर्नुहोस्"
+
+#: ../src/bjb-import-dialog.c:422
+#, fuzzy
+msgid "Select import location"
+msgstr "सूचीबाट स्थान चयन गर्नुहोस्"
+
+#: ../src/bjb-import-dialog.c:443
+msgid "Tomboy application"
+msgstr "टमब्वाई अनुप्रयोग"
+
+#: ../src/bjb-import-dialog.c:449
+msgid "Gnote application"
+msgstr "जिनोट अनुप्रयोग"
+
+#: ../src/bjb-load-more-button.c:72
+#: ../src/bjb-load-more-button.c:171
+msgid "Load More"
+msgstr "अरु लोड गर्नुहोस्"
+
+#: ../src/bjb-load-more-button.c:98
+msgid "Loading..."
+msgstr "लोड गर्दैछ..."
+
+#: ../src/bjb-main-toolbar.c:142
+msgid "Click on items to select them"
+msgstr "वस्तुहरू चयनका लागि क्लिक गर्नुहोस्"
+
+#: ../src/bjb-main-toolbar.c:144
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d चयन गरियो"
+msgstr[1] "%d चयन गरियो"
+
+#: ../src/bjb-main-toolbar.c:264
+msgid "Search note titles, content and notebooks"
+msgstr ""
+
+#. Select
+#: ../src/bjb-main-toolbar.c:306
+msgid "Cancel"
+msgstr "रद्द गर्नुहोस्"
+
+#: ../src/bjb-main-toolbar.c:320
+#, fuzzy
+msgid "Exit selection mode"
+msgstr "स्क्रिनसेभर विषयवस्तु चयन मोड"
+
+#: ../src/bjb-main-toolbar.c:350
+#, c-format
+msgid "Results for %s"
+msgstr "\"%s\" का लागि नतिजा"
+
+#: ../src/bjb-main-toolbar.c:353
+#, fuzzy
+msgid "New and Recent"
+msgstr "हालका कागजात खाली गर्नुहोस्"
+
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "नयाँ"
+
+#: ../src/bjb-main-toolbar.c:460
+#: ../src/bjb-main-toolbar.c:558
+msgid "Selection mode"
+msgstr "चयन गर्ने अबस्था"
+
+#: ../src/bjb-main-toolbar.c:495
+msgid "View notes and notebooks in a list"
+msgstr ""
+
+#: ../src/bjb-main-toolbar.c:519
+msgid "View notes and notebooks in a grid"
+msgstr ""
+
+#: ../src/bjb-main-toolbar.c:538
+msgid "Trash"
+msgstr "रद्दीटोकरी"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
+msgid "Empty"
+msgstr "(खाली)"
+
+#: ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "शीर्षक विहिन"
+
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:768
+msgid "Open in New Window"
+msgstr "नयाँ सञ्झ्यालमा खोल्नुहोस्"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:779
+msgid "Undo"
+msgstr "पूर्वस्थितिमा फर्काउनुहोस्"
+
+#: ../src/bjb-main-toolbar.c:787
+msgid "Redo"
+msgstr "फेरि गर्नुहोस्"
+
+#. Bullets, ordered list, separator
+#. Bullets : unordered list format
+#: ../src/bjb-main-toolbar.c:802
+msgid "Bullets"
+msgstr "गोली चिन्हहरू"
+
+#. Ordered list as 1.mouse 2.cats 3.dogs
+#: ../src/bjb-main-toolbar.c:809
+msgid "Numbered List"
+msgstr "क्रमाङ्कित सूची"
+
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:825
+#: ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
+msgid "Notebooks"
+msgstr ""
+
+#. Share
+#: ../src/bjb-main-toolbar.c:833
+#, fuzzy
+msgid "Email this Note"
+msgstr "यो द्रष्टव्य मेट्नुहोस्"
+
+#. Delete Note
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:846
+#: ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "रद्दीटोकरीमा सार्नुहोस्"
+
+#: ../src/bjb-main-toolbar.c:906
+msgid "More options…"
+msgstr "विकल्प लोड गर्दै"
+
+#: ../src/bjb-main-toolbar.c:929
+#: ../src/bjb-selection-toolbar.c:392
+msgid "Note color"
+msgstr "द्रष्टव्य रङ्ग:"
+
+#: ../src/bjb-main-view.c:516
+msgid "Notebook"
+msgstr ""
+
+#: ../src/bjb-main-view.c:519
+msgid "Note"
+msgstr "टिपोट"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "अन्तिम अद्यावधिक: %s"
+
+#: ../src/bjb-organize-dialog.c:396
+#, fuzzy
+msgid "Enter a name to create a notebook"
+msgstr "फिल्टर नाम प्रविष्ट गर्न आवश्यक छ"
+
+#: ../src/bjb-organize-dialog.c:406
+msgid "New notebook"
+msgstr "नयाँ टिपोट"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "रद्द गर्नुहोस्"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "ठिक छ"
+
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Restore"
+msgstr "पूर्वावस्थामा ल्याउनुहोस्"
+
+#: ../src/bjb-selection-toolbar.c:403
+msgid "Share note"
+msgstr "द्रष्टव्य साझा गर्ने"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:409
+msgid "Open in another window"
+msgstr "नयाँ सञ्झ्यालमा खोल्नुहोस्"
+
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
+msgid "Permanently Delete"
+msgstr "स्थायी रूपमा मेट्नुहोस्"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "प्रणाली फन्ट प्रयोग गर्ने"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:405
+msgid "Note Font"
+msgstr "द्रष्टव्य फन्ट"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:417
+msgid "Default Color"
+msgstr "पूर्वनिर्धारित रङ"
+
+#: ../src/bjb-settings-dialog.c:463
+msgid "Preferences"
+msgstr "प्राथमिकताहरू"
+
+#: ../src/bjb-settings-dialog.c:494
+msgid "Note Edition"
+msgstr "द्रष्टव्य संस्करण"
+
+#: ../src/bjb-settings-dialog.c:497
+#, fuzzy
+msgid "Primary Book"
+msgstr "ठेगाना पुस्तिका"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "आज"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "हिजो"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "यो हप्ता"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "यो महिना:"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "यो वर्ष"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#: ../src/libbiji/provider/biji-local-provider.c:363
+msgid "Local storage"
+msgstr "सन्देश भण्डारण"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_Import Notes"
+msgstr "नोटहरू आयात गर्नुहोस्"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "रद्दीटोकरी हेर्नुहोस्"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "प्राथमिकता"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_Help"
+msgstr "मद्दत"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "बारेमा"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "अन्त्य गर्नुहोस्"
+

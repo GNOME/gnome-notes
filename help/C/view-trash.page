@@ -12,15 +12,21 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2014</years>
     </credit>
+
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
     <desc>View Trash to delete or restore notes.</desc>
   </info>
-  <p>You can view, restore or delete notes in the <gui>Trash</gui>.</p>
+
   <title>Access trashed notes</title>
+
+  <p>You can view, restore or delete notes in the <gui>Trash</gui>.</p>
+
   <steps>
     <title>To restore trashed notes:</title>
     <item>
-      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui> button.</p>
+      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui>
+      button.</p>
     </item>
     <item>
       <p>Select all the notes that you want to restore.</p>
@@ -29,6 +35,7 @@
       <p>Click on <gui style="button">Restore</gui> button.</p>
     </item>
   </steps>
+
   <steps>
     <title>To permanently delete all the notes in Trash:</title>
     <item>
@@ -38,14 +45,15 @@
       <p>Select <gui>View Trash</gui>.</p>
     </item>
     <item>
-      <p>Click on <gui style="button">Empty</gui>
-      button in the toolbar.</p>
+      <p>Click on <gui style="button">Empty</gui> button in the toolbar.</p>
     </item>
   </steps>
+
   <steps>
     <title>To delete selected notes from Trash:</title>
     <item>
-      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui> button.</p>
+      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui>
+      button.</p>
     </item>
     <item>
       <p>Select all the notes that you want to delete permanently.</p>

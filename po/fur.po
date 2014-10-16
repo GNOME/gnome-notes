@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-20 00:01+0000\n"
-"PO-Revision-Date: 2013-08-20 14:11+0100\n"
+"POT-Creation-Date: 2014-10-13 19:42+0000\n"
+"PO-Revision-Date: 2014-10-16 10:51+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -19,9 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Notis al è un editor che al permet di creâ semplicis listis di doprâ plui "
+"indenant."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "Al permet di doprâ ownCloud par l'archivi e le modifiche in-linie."
+
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:35 ../src/bjb-main-toolbar.c:429
-#: ../src/bjb-main-toolbar.c:776 ../src/bjb-window-base.c:19
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notis"
 
@@ -34,261 +43,405 @@ msgid "Post notes, tag files!"
 msgstr "Publiche notis, etichete file"
 
 #: ../data/bijiben.desktop.in.in.h:4
-#, fuzzy
 msgid "Note-taker"
-msgstr "Cjape-note"
+msgstr "Anotazions"
 
-#: ../src/bjb-app-menu.c:36
-msgid "Simple notebook for GNOME"
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#| msgid "Note Font"
+msgid "Custom Font"
+msgstr "Caratar personalizât"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
+"Il caratar impostât a chi al vegnarà doprât cuant che a si mostrarà lis "
+"notis."
 
-#: ../src/bjb-app-menu.c:40
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Indiche se doprâ il caratar di sisteme a spazi fis."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#| msgid "Note color"
+msgid "New notes color."
+msgstr "Colôr des gnovis notis."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr "Il colôr sielzût a chi al vegnarà doprât par lis gnovis notis creadis."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Furnidôr primari di doprâ par lis gnovis notis."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where new notes are created."
+msgstr ""
+"Il tacuin primari al è il puest dulà che lis gnovis notis a saran creadis."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Barcon slargjât"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Stât slargjât dal barcon"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Dimension barcon"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "Dimension barcon (largjece e altece)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Posizion barcon"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "Posizion barcon (x e y)."
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Sempliç tacuin par GNOME"
+
+#: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr "Fabio Tomat"
 
+#: ../src/bjb-bijiben.c:454
+#| msgid "Gnote application"
+msgid "Show the application's version"
+msgstr "Mostre le version de aplicazion"
+
+#: ../src/bjb-bijiben.c:456
+#| msgid "Copy selection to a new note"
+msgid "Create a new note"
+msgstr "Cree une gnove note"
+
+#: ../src/bjb-bijiben.c:458
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:465
+msgid "Take notes and export them everywhere."
+msgstr "Cjape notis e puartilis fûr dapardut."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:476
+msgid "Could not parse arguments"
+msgstr "Impussibil analizâ i argoments"
+
+#: ../src/bjb-bijiben.c:485
+#| msgid "Notes"
+msgid "GNOME Notes"
+msgstr "Notis GNOME"
+
+#: ../src/bjb-bijiben.c:498
+#| msgid "Gnote application"
+msgid "Could not register the application"
+msgstr "Impussibil regjistrâ le aplicazion"
+
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
-msgstr ""
+msgstr "Colôr de note"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:367
+#: ../src/bjb-editor-toolbar.c:365
 msgid "Cut"
 msgstr "Tae"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:372
 msgid "Copy"
 msgstr "Copie"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:378
 msgid "Paste"
 msgstr "Tache"
 
-#: ../src/bjb-editor-toolbar.c:396
+#: ../src/bjb-editor-toolbar.c:393
 msgid "Bold"
 msgstr "Gruessut "
 
-#: ../src/bjb-editor-toolbar.c:407
+#: ../src/bjb-editor-toolbar.c:403
 msgid "Italic"
 msgstr "Corsîf"
 
-#: ../src/bjb-editor-toolbar.c:418
+#: ../src/bjb-editor-toolbar.c:413
 msgid "Strike"
 msgstr "Stricât"
 
-#: ../src/bjb-editor-toolbar.c:450
+#: ../src/bjb-editor-toolbar.c:441
 msgid "Copy selection to a new note"
 msgstr "Copie la selezion intune gnove note"
 
-#: ../src/bjb-empty-results-box.c:102
-msgid "No Notes Found"
-msgstr "Nissune note cjatade"
+#: ../src/bjb-empty-results-box.c:101
+#| msgid "Notes"
+msgid "No notes"
+msgstr "Nissune note"
 
-#: ../src/bjb-empty-results-box.c:142
-msgid ""
-"Your notes collection is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"La tô colezion di notis a je vueide.\n"
-"Sclice il boton Gnove par creâ la tô prime note."
+#: ../src/bjb-empty-results-box.c:145
+msgid "Press the new button to create a note."
+msgstr "Frache il pulsant \"Gnove\" pare creâ une note"
 
-#: ../src/bjb-empty-results-box.c:148
-msgid "No result found for this research."
-msgstr "Nissun risultât cjatât par cheste ricercje."
+#: ../src/bjb-empty-results-box.c:167
+#| msgid "Oops, "
+msgid "Oops"
+msgstr "Orpo"
 
-#: ../src/bjb-empty-results-box.c:160
-msgid "Oops, "
-msgstr "Orpo, "
-
-#: ../src/bjb-empty-results-box.c:168
+#: ../src/bjb-empty-results-box.c:173
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Par plasê instale 'Tracker' e dopo torne invie le aplicazion."
 
-#: ../src/bjb-import-dialog.c:310
+#: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
-msgstr ""
+msgstr "Posizion personalizade"
 
-#: ../src/bjb-import-dialog.c:405
+#: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
 msgstr "Impuarte notis"
 
-#: ../src/bjb-import-dialog.c:408 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr ""
-
-#: ../src/bjb-import-dialog.c:410
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "Impuarte"
 
-#: ../src/bjb-import-dialog.c:421
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
-msgstr ""
+msgstr "Selezionâ le posizion di dulà impuartâ"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Aplicazion Tomboy"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Aplicazion Gnote"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Cjame ancjemò"
 
-#: ../src/bjb-load-more-button.c:82
+#: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
 msgstr "Cjamant..."
 
-#: ../src/bjb-main-toolbar.c:143
+#: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
 msgstr "Sclice sui elements par selezionaju"
 
-#: ../src/bjb-main-toolbar.c:145
+#: ../src/bjb-main-toolbar.c:144
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d selezionât"
 msgstr[1] "%d selezionâts"
 
-#: ../src/bjb-main-toolbar.c:272
-msgid "Search note titles, content and collections"
-msgstr "Cîr titui, contignûts e colezions dais notis"
+#: ../src/bjb-main-toolbar.c:264
+#| msgid "Search note titles, content and collections"
+msgid "Search note titles, content and notebooks"
+msgstr "Cîr titui, contignûts e tacuins des notis"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:332
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
-msgstr ""
+msgstr "Anule"
 
-#: ../src/bjb-main-toolbar.c:338
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Jes de modalitât selezion"
 
-#: ../src/bjb-main-toolbar.c:368
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Risultâts par %s"
 
-#: ../src/bjb-main-toolbar.c:371
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Gnovis e recentis"
 
-#: ../src/bjb-main-toolbar.c:445
-msgid "New"
-msgstr "Gnove"
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "_Gnove"
 
-#: ../src/bjb-main-toolbar.c:472
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Modalitât selezion"
 
-#: ../src/bjb-main-toolbar.c:500
-msgid "View notes and collections in a list"
-msgstr "Mostre notis e colezions intune liste"
+#: ../src/bjb-main-toolbar.c:495
+#| msgid "View notes and collections in a list"
+msgid "View notes and notebooks in a list"
+msgstr "Mostre notis e tacuins intune liste"
 
-#: ../src/bjb-main-toolbar.c:524
-msgid "View notes and collections in a grid"
-msgstr "Mostre notis e colezions intune gridele"
+#: ../src/bjb-main-toolbar.c:519
+#| msgid "View notes and collections in a grid"
+msgid "View notes and notebooks in a grid"
+msgstr "Mostre notis e tacuins intune gridele"
 
-#: ../src/bjb-main-toolbar.c:653
-msgid "Rename Note"
-msgstr ""
+#: ../src/bjb-main-toolbar.c:538
+msgid "Trash"
+msgstr "Scovacere"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
+msgid "Empty"
+msgstr "Disvuede"
+
+#: ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Cence titul"
+
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:768
+#| msgid "_New Window"
+msgid "Open in New Window"
+msgstr "Vierç intun gnûf barcon"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:674
+#: ../src/bjb-main-toolbar.c:779
 msgid "Undo"
 msgstr "Anule"
 
-#: ../src/bjb-main-toolbar.c:682
+#: ../src/bjb-main-toolbar.c:787
 msgid "Redo"
-msgstr "Torne fâ"
+msgstr "Torne fâs"
 
 #. Bullets, ordered list, separator
 #. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:697
+#: ../src/bjb-main-toolbar.c:802
 msgid "Bullets"
 msgstr "Liste pontade"
 
 #. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:704
+#: ../src/bjb-main-toolbar.c:809
 msgid "Numbered List"
 msgstr "Liste numerade"
 
-#. Rename, view tags, separtor
-#: ../src/bjb-main-toolbar.c:716
-msgid "Rename"
-msgstr ""
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:825 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
+#| msgid "Notes"
+msgid "Notebooks"
+msgstr "Tacuins"
 
-#: ../src/bjb-main-toolbar.c:724 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "Colezions"
+#. Share
+#: ../src/bjb-main-toolbar.c:833
+#| msgid "Delete this Note"
+msgid "Email this Note"
+msgstr "Invie cheste note vie mail"
 
 #. Delete Note
-#: ../src/bjb-main-toolbar.c:736
-msgid "Delete this Note"
-msgstr "Elimine cheste note"
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:846 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "Môf te scovacere"
 
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:249
-msgid "Note color"
-msgstr "Colôr de note"
-
-#: ../src/bjb-main-toolbar.c:839
-msgid "Share note"
-msgstr "Condivît note"
-
-#: ../src/bjb-main-toolbar.c:860
+#: ../src/bjb-main-toolbar.c:906
 msgid "More options…"
 msgstr "Plui opzions..."
 
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "Scrîf un non par creâ une colezion"
+#: ../src/bjb-main-toolbar.c:929 ../src/bjb-selection-toolbar.c:392
+msgid "Note color"
+msgstr "Colôr de note"
 
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "Gnove colezion"
+#: ../src/bjb-main-view.c:516
+#| msgid "Note color"
+msgid "Notebook"
+msgstr "Tacuin"
 
-#. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:407
-msgid "_Close"
-msgstr "_Siere"
+#: ../src/bjb-main-view.c:519
+#| msgid "Notes"
+msgid "Note"
+msgstr "Note"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:228
-msgid "Last updated "
-msgstr "Ultime modifiche"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+#| msgid "Last updated "
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Ultin inzornament</b> %s"
+
+#: ../src/bjb-organize-dialog.c:396
+#| msgid "Enter a name to create a collection"
+msgid "Enter a name to create a notebook"
+msgstr "Scrîf un non par creâ un tacuin"
+
+#: ../src/bjb-organize-dialog.c:406
+msgid "New notebook"
+msgstr "Gnûf tacuin"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Anule"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_OK"
 
-#. Trash notes
-#: ../src/bjb-selection-toolbar.c:242
-msgid "Delete"
-msgstr "Elimine"
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Restore"
+msgstr "Ripristinâ"
 
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:254
-msgid "Add to Collection"
-msgstr "Zonte ae colezion"
+#: ../src/bjb-selection-toolbar.c:403
+msgid "Share note"
+msgstr "Condivît note"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:409
+msgid "Open in another window"
+msgstr "Vierç intun altri barcon"
+
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
+msgid "Permanently Delete"
+msgstr "Elimine par simpri"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:391
+msgid "Use System Font"
+msgstr "Dopre il caratar di sisteme"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:350
+#: ../src/bjb-settings-dialog.c:405
 msgid "Note Font"
 msgstr "Tipo di caratar de note"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:361
+#: ../src/bjb-settings-dialog.c:417
 msgid "Default Color"
 msgstr "Colôr predefinît"
 
-#: ../src/bjb-settings-dialog.c:437
+#: ../src/bjb-settings-dialog.c:463
+#| msgid "_Preferences"
+msgid "Preferences"
+msgstr "Preferencis"
+
+#: ../src/bjb-settings-dialog.c:494
 msgid "Note Edition"
 msgstr "Edizion de note"
 
-#: ../src/bjb-settings-dialog.c:440
+#: ../src/bjb-settings-dialog.c:497
 msgid "Primary Book"
-msgstr ""
+msgstr "Libri principâl"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -314,30 +467,61 @@ msgstr "Chest an"
 msgid "Unknown"
 msgstr "No cognossût"
 
-#: ../src/libbiji/provider/biji-local-provider.c:293
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
-msgstr ""
+msgstr "Archivi locâl"
 
 #: ../src/resources/app-menu.ui.h:1
-msgid "_New Window"
-msgstr "G_nûf balcon"
-
-#: ../src/resources/app-menu.ui.h:2
 msgid "_Import Notes"
 msgstr "_Impuartâ notis"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "_Mostre scovacere"
 
 #: ../src/resources/app-menu.ui.h:3
 msgid "_Preferences"
 msgstr "_Preferencis"
 
 #: ../src/resources/app-menu.ui.h:4
-msgid "_About Notes"
-msgstr ""
-
-#: ../src/resources/app-menu.ui.h:5
 msgid "_Help"
 msgstr "_Jutori"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "_Informazions"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "J_es"
+
+#~ msgid "No Notes Found"
+#~ msgstr "Nissune note cjatade"
+
+#~ msgid ""
+#~ "Your notes collection is empty.\n"
+#~ "Click the New button to create your first note."
+#~ msgstr ""
+#~ "La tô colezion di notis a je vueide.\n"
+#~ "Sclice il boton Gnove par creâ la tô prime note."
+
+#~ msgid "No result found for this research."
+#~ msgstr "Nissun risultât cjatât par cheste ricercje."
+
+#~ msgid "New"
+#~ msgstr "Gnove"
+
+#~ msgid "Collections"
+#~ msgstr "Colezions"
+
+#~ msgid "New collection"
+#~ msgstr "Gnove colezion"
+
+#~ msgid "_Close"
+#~ msgstr "_Siere"
+
+#~ msgid "Delete"
+#~ msgstr "Elimine"
+
+#~ msgid "Add to Collection"
+#~ msgstr "Zonte ae colezion"

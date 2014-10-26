@@ -1,3 +1,20 @@
+Overview of changes in 3.15.1
+=============================
+
+* Misc
+  Move bullets to popover (fixes 732212)
+  Update to latest ligdg (737267)
+
+* Documentation
+  Trash
+  Detached notes
+
+* Translations
+  Brazilian Portuguese
+  Kazakh
+  Latvian
+
+
 Overview of changes in 3.14.0
 =============================
 

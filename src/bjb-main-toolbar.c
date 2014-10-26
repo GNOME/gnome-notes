@@ -701,17 +701,6 @@ on_note_content_changed (BjbMainToolbar *self)
   gtk_widget_set_sensitive (self->priv->share, sensitive);
 }
 
-static void
-bjb_toggle_bullets (BijiWebkitEditor *editor)
-{
-  biji_webkit_editor_apply_format (editor, BIJI_BULLET_LIST);
-}
-
-static void
-bjb_toggle_list (BijiWebkitEditor *editor)
-{
-  biji_webkit_editor_apply_format (editor, BIJI_ORDER_LIST);
-}
 
 static void
 action_view_tags_callback (GtkWidget *item, gpointer user_data)
@@ -793,29 +782,6 @@ bjb_note_menu_new (BjbMainToolbar *self)
 
   item = gtk_separator_menu_item_new ();
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-
-  if (biji_note_obj_can_format (priv->note))
-  {
-
-    /* Bullets, ordered list, separator */
-    /* Bullets : unordered list format  */
-    item = gtk_menu_item_new_with_label (_("Bullets"));
-    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-    g_signal_connect_swapped (item, "activate",
-                              G_CALLBACK (bjb_toggle_bullets), editor);
-
-
-    /* Ordered list as 1.mouse 2.cats 3.dogs */
-    item = gtk_menu_item_new_with_label (_("Numbered List"));
-    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-    g_signal_connect_swapped (item, "activate",
-                              G_CALLBACK (bjb_toggle_list), editor);
-
-
-    item = gtk_separator_menu_item_new ();
-    gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
-
-  }
 
 
   /* Notebooks */

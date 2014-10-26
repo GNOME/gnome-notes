@@ -69,6 +69,8 @@ struct _BjbEditorToolbarPrivate
   GtkWidget          *toolbar_bold;
   GtkWidget          *toolbar_italic;
   GtkWidget          *toolbar_strike;
+  GtkWidget          *toolbar_bullet;
+  GtkWidget          *toolbar_list;
   GtkWidget          *toolbar_link;
 };
 
@@ -293,6 +295,20 @@ strike_button_callback (GtkWidget *button, BjbEditorToolbar *self)
 }
 
 static void
+on_bullet_clicked (GtkWidget *button, BjbEditorToolbar *self)
+{
+  biji_note_obj_editor_apply_format (self->priv->note, BIJI_BULLET_LIST);
+  bjb_editor_toolbar_fade_out (self);
+}
+
+static void
+on_list_clicked (GtkWidget *button, BjbEditorToolbar *self)
+{
+  biji_note_obj_editor_apply_format (self->priv->note, BIJI_ORDER_LIST);
+  bjb_editor_toolbar_fade_out (self);
+}
+
+static void
 link_callback (GtkWidget *button, BjbEditorToolbar *self)
 {
   BjbSettings             *settings;
@@ -383,6 +399,23 @@ bjb_editor_toolbar_constructed (GObject *obj)
   if (biji_note_obj_can_format (priv->note))
   {
 
+    /* Bullet
+     * Translator : "* " stands for a bullet list.
+     * This is displayed inside a button. */
+    priv->toolbar_bullet = GTK_WIDGET (gtk_tool_button_new (NULL, _("* ")));
+    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_bullet), TRUE);
+    gtk_widget_show (priv->toolbar_bullet);
+    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_bullet), -1);
+
+    /* List
+     * Translator : this "1." temporarilly stands for ordered list.
+     * This is displayed inside a button. */
+    priv->toolbar_list = GTK_WIDGET (gtk_tool_button_new (NULL, _("1.")));
+    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_list), TRUE);
+    gtk_widget_show (priv->toolbar_list);
+    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_list), -1);
+
+
     /* Bold */
     image = gtk_image_new_from_icon_name ("format-text-bold-symbolic", GTK_ICON_SIZE_INVALID);
     gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
@@ -465,6 +498,12 @@ bjb_editor_toolbar_constructed (GObject *obj)
 
   g_signal_connect (priv->toolbar_paste,"clicked",
                     G_CALLBACK(on_paste_clicked), self);
+
+  g_signal_connect (priv->toolbar_bullet,"clicked",
+                    G_CALLBACK(on_bullet_clicked), self);
+
+  g_signal_connect (priv->toolbar_list,"clicked",
+                    G_CALLBACK(on_list_clicked), self);
 
   g_signal_connect (priv->toolbar_bold,"clicked",
                     G_CALLBACK(bold_button_callback), self);

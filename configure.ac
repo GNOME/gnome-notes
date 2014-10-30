@@ -53,7 +53,13 @@ AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
 
 AM_PROG_LIBTOOL
 
+# Requirements
 
+# check for AppStream
+APPSTREAM_XML
+
+
+# version, modules
 GLIB_REQUIRED_VERSION=2.28
 GTK_REQUIRED_VERSION=3.11.4
 

@@ -10,7 +10,7 @@ bijibendoc = \
 	INSTALL\
 	NEWS
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-update-mimedb
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --disable-update-mimedb --enable-appstream-util
 
 # Ignore gtk theme cache files on distcheck
 distuninstallcheck_listfiles = find . -type f -print | grep -v 'icon-theme.cache'

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-04 18:58+0200\n"
-"PO-Revision-Date: 2014-11-04 18:58+0200\n"
+"PO-Revision-Date: 2014-11-04 19:03+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -164,7 +164,7 @@ msgstr "הדבקה"
 #. * This is displayed inside a button.
 #: ../src/bjb-editor-toolbar.c:405
 msgid "* "
-msgstr "* "
+msgstr "• "
 
 #. List
 #. * Translator : this "1." temporarilly stands for ordered list.

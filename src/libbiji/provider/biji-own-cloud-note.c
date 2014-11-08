@@ -244,6 +244,7 @@ create_new_file (BijiOwnCloudNote *self, const gchar *basename)
                basename);
   g_object_set (self->priv->id, "path", key, NULL);
 
+  g_file_create (self->priv->location, G_FILE_CREATE_NONE, NULL, NULL);
   ocloud_note_save (note);
   ocloud_note_ensure_ressource (note);
 

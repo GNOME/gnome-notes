@@ -699,17 +699,39 @@ on_owncloudclient_read (GObject *source_object,
 
   string = g_string_new (buffer);
   g_string_erase (string, 0, 10); // localPath=
-  g_warning ("now, %s", string->str);
 
   /* ok we have the path. Now create the notes */
-  self->priv->path = g_build_filename (string->str, "Notes", NULL);
-  self->priv->folder = g_file_new_for_path (self->priv->path);
-  g_file_enumerate_children_async (self->priv->folder,
-                                   "standard::name,time::modified,time::created", 0,
-                                   G_PRIORITY_DEFAULT,
-                                   NULL,
-                                   enumerate_children_ready_cb,
-                                   self);
+  priv->path = g_build_filename (string->str, "Notes", NULL);
+  priv->folder = g_file_new_for_path (priv->path);
+  g_file_make_directory (priv->folder, NULL, &error);
+
+
+  if (error)
+  {
+    /* This error is not a blocker - the file may already exist. */
+    g_message ("Cannot create %s - %s", priv->path, error->message);
+
+    /* if so, just print the message and go on */
+    if (error->code == G_IO_ERROR_EXISTS)
+    {
+      g_file_enumerate_children_async (priv->folder,
+          "standard::name,time::modified,time::created", 0,
+          G_PRIORITY_DEFAULT,
+          NULL,
+          enumerate_children_ready_cb,
+          self);
+    }
+
+    /* if the creation really failed, fall back to webdav */
+    else
+    {
+      g_warning ("Cannot create %s - trying webdav", priv->path);
+      get_mount (self);
+    }
+
+
+    g_error_free (error);
+  }
 
 
   g_free (buffer);

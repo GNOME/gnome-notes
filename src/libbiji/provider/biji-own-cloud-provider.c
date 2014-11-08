@@ -514,10 +514,11 @@ static void
 handle_mount (BijiOwnCloudProvider *self)
 {
   GFile *root;
+	BijiOwnCloudProviderPrivate *priv = self->priv;
 
   root = NULL;
-  if (G_IS_MOUNT (self->priv->mount))
-    root = g_mount_get_root (self->priv->mount);
+  if (G_IS_MOUNT (priv->mount))
+    root = g_mount_get_root (priv->mount);
 
 
   if (G_IS_FILE (root))
@@ -525,8 +526,9 @@ handle_mount (BijiOwnCloudProvider *self)
     /* OwnCloud Notes folder is not localized.
      * https://github.com/owncloud/notes/issues/7 */
 
-    self->priv->folder = g_file_get_child (root, "Notes");
-    self->priv->monitor = g_file_monitor_directory
+    priv->folder = g_file_get_child (root, "Notes");
+    g_file_make_directory (priv->folder, NULL, NULL);
+    priv->monitor = g_file_monitor_directory
       (self->priv->folder, G_FILE_MONITOR_NONE, NULL, NULL); // cancel, error
 
 

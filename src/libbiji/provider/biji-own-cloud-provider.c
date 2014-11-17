@@ -651,6 +651,7 @@ on_owncloudclient_read (GObject *source_object,
                         gpointer user_data)
 {
   BijiOwnCloudProvider *self = user_data;
+  BijiOwnCloudProviderPrivate *priv = self->priv;
   GFileInputStream *stream;
 	GDataInputStream *reader;
   GError           *error = NULL;

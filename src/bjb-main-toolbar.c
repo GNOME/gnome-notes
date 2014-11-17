@@ -870,7 +870,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                                "image-button");
   gtk_header_bar_pack_end (bar, priv->menu);
   gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->menu);
 
   /* Show close button */
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);

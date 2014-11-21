@@ -142,7 +142,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
     case BJB_EMPTY_RESULTS_NO_NOTE:
       gtk_label_set_label (
         self->priv->details_label,
-        _("Press the new button to create a note."));
+        _("Press the New button to create a note."));
 
       gtk_widget_show (GTK_WIDGET (self->priv->details_label));
       gtk_widget_show (self->priv->image);

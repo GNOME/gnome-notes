@@ -5,7 +5,9 @@
 
   <info>
     <link type="guide" xref="index#use"/>
+
     <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.14" date="2014-11-22" status="candidate"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -14,7 +16,7 @@
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
       <email its:translate="no">kittykat3756@gmail.com</email>
-      <years>2013</years>
+      <years>2013, 2014</years>
     </credit>
     <credit type="editor">
       <name>Shobha Tyagi</name>
@@ -34,6 +36,9 @@
 
   <title>Change note color</title>
 
+  <p>You can change the background colour of a note to emphasize it or to
+  differentiate it from other notes.</p>
+
   <steps>
     <title>To change the color of an individual note:</title>
     <item>
@@ -47,7 +52,10 @@
       <gui style="button">Select</gui> button.</p>
     </item>
   </steps>
-  
+
+  <p>You can also change the background colour in a group of notes at the same
+  time.</p>
+
   <steps>
     <title>To change the color of multiple notes:</title>
     <item>

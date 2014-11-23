@@ -5,10 +5,6 @@ body {
   margin-bottom:    8em;
   word-wrap:        break-word;
 
-  background-image: -webkit-linear-gradient(90deg,
-                               rgba(97%,97%,100%,0) 0%,
-                               rgba(97%,97%,100%,0) 90%,
-                               rgba(0%,0%,0%,0.15) 100%);
   color:            _BIJI_TEXT_COLOR;
   background-size:  2.0em 2.0em;
   line-height:      2.0em;

@@ -1,3 +1,22 @@
+Overview of changes in 3.15.2
+=============================
+
+* Drop background lines
+  Validate AppData
+  Ensure ownCloud folder exists
+
+* Documentation
+  Updates on colors page
+  Refer to <New> button
+
+* Translations
+  cs
+  el
+  es
+  he
+  nb
+  zh
+
 Overview of changes in 3.15.1
 =============================
 

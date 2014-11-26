@@ -187,6 +187,7 @@ child_toggle_new ()
 
   w = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (w), 48);
+  gtk_widget_set_halign (w, GTK_ALIGN_END);
   gtk_widget_show (w);
   return w;
 }

@@ -458,8 +458,8 @@ bjb_settings_dialog_constructed (GObject *object)
   priv->settings = bjb_app_get_settings (app);
 
 
-  gtk_window_set_default_size (window, 500, 300);
   gtk_window_set_modal (window, TRUE);
+  gtk_window_set_resizable (window, FALSE);
   gtk_window_set_title (window, _("Preferences"));
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR
     (gtk_dialog_get_header_bar (dialog)), TRUE);

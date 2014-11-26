@@ -473,9 +473,11 @@ bjb_settings_dialog_constructed (GObject *object)
   gtk_widget_set_vexpand (GTK_WIDGET (priv->stack), TRUE);
 
   priv->switcher = GTK_STACK_SWITCHER (gtk_stack_switcher_new ());
+  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (gtk_dialog_get_header_bar (dialog)), GTK_WIDGET (priv->switcher));
+  gtk_widget_show (GTK_WIDGET (priv->switcher));
+
   hbox = gtk_grid_new ();
   gtk_widget_set_vexpand (hbox, TRUE);
-  gtk_grid_attach (GTK_GRID (hbox), GTK_WIDGET (priv->switcher), 1, 1, 1, 1);
   gtk_widget_set_halign (hbox, GTK_ALIGN_CENTER);
   gtk_widget_set_valign (hbox, GTK_ALIGN_CENTER);
   gtk_stack_switcher_set_stack (priv->switcher, priv->stack);
@@ -483,7 +485,6 @@ bjb_settings_dialog_constructed (GObject *object)
   grid = gtk_grid_new ();
   gtk_container_add (GTK_CONTAINER (area),grid);
   gtk_grid_attach (GTK_GRID (grid), hbox, 1, 1, 1, 1);
-  gtk_widget_set_valign (GTK_WIDGET (priv->switcher), GTK_ALIGN_START);
   gtk_grid_attach (GTK_GRID (grid), GTK_WIDGET (priv->stack), 1, 2, 1, 1);
   gtk_widget_set_valign (GTK_WIDGET (priv->stack), GTK_ALIGN_CENTER);
 

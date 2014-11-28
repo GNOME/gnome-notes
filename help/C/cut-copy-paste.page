@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#use"/>
-    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.12" date="2014-11-28" status="candidate"/>
 
     <credit type="author">
       <name>Shobha Tyagi</name>
@@ -17,22 +17,34 @@
       <email its:translate="no">mdhillca@gmail.com</email>
       <years>2014</years>
     </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2014</years>
+    </credit>
  
    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Cut, copy and paste is simple to use.</desc>
+    <desc>Move text inside a note or to a different note.</desc>
   </info>
 
   <title>Cut, copy and paste</title>
+
+  <p>You can move text inside a note or to another note by cutting or copying
+  it and pasting it somewhere else.</p>
 
   <steps>
     <title>To cut, copy or paste in a note:</title>
     <item>
       <p>Select the text.</p>
     </item>
-    <item><p>Click <gui style="button">Cut</gui>,
-    <gui style="button">Copy</gui>
-    or <gui style="button">Paste</gui>.</p>
+    <item>
+      <p>Press <gui style="button">Cut</gui> or
+      <gui style="button">Copy</gui>.</p>
+    </item>
+    <item>
+      <p>Select where you want to paste the text and press
+      <gui style="button">Paste</gui>.</p>
     </item>
   </steps>
 

@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#use"/>
-    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.12" date="2014-11-28" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -14,7 +14,7 @@
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
       <email its:translate="no">kittykat3756@gmail.com</email>
-      <years>2013</years>
+      <years>2013, 2014</years>
     </credit>
     <credit type="editor">
       <name>Shobha Tyagi</name>
@@ -33,6 +33,9 @@
   </info>
 
   <title>Share a note</title>
+
+  <p>You can share a note with your friends or colleagues by emailing it to
+  them.</p>
 
   <steps>
     <title>To share a note:</title>

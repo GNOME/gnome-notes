@@ -8,10 +8,10 @@ HELP_FILES = \
 	create.page \
 	cut-copy-paste.page \
 	delete.page \
-	formatting.page \
+	format-list.page \
+	format-text.page \
 	index.page \
 	introduction.page \
-	listing.page \
 	new-window.page \
 	notebooks.page \
 	rename.page \

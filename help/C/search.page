@@ -5,7 +5,7 @@
 
   <info>
     <link type="guide" xref="index#create"/>
-    <revision pkgversion="3.13" date="2014-08-31" status="review"/>
+    <revision pkgversion="3.14" date="2014-11-28" status="candidate"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>
@@ -14,7 +14,7 @@
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
       <email its:translate="no">kittykat3756@gmail.com</email>
-      <years>2013</years>
+      <years>2013, 3014</years>
     </credit>
     <credit type="editor">
       <name>Shobha Tyagi</name>
@@ -39,10 +39,12 @@
 
   <title>Find a note</title>
 
-  <p>The default <em>New and Recent</em> view shows recently used notes.</p>
+  <p>You can search your note in the <gui>New and Recent</gui> view in
+  <app>Notes</app> or find them from your
+  <gui href="help:gnome-help/shell-terminology">Activities</gui> overview.</p>
 
   <steps>
-  <title>To find notes while in <em>New and Recent</em>:</title>
+  <title>To find notes while in <gui>New and Recent</gui>:</title>
     <item>
       <p>Click the <gui>Search</gui> button.</p>
     </item>
@@ -50,10 +52,11 @@
       <p>Type your search term. Search results will appear instantly.</p>
     </item>
   </steps>
-  <note style="tip"><p>You can directly start typing the search string
-    in the <em>New and Recent</em> view to search notes.</p>
+
+  <note style="tip">
+    <p>You can directly start typing the search string in the <gui>New and
+    Recent</gui> view to search notes.</p>
   </note>
-  <note><p>You can also search for notes from the <gui>Activities</gui> overview.</p></note>
 
   <!-- TODO talk about sorting notes by colour -->
 

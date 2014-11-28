@@ -22,7 +22,7 @@ HELP_FILES = \
 	legal.xml
 
 HELP_MEDIA = \
-	figures/HighContrast_apps_scalable_bijiben.svg \
+	figures/hicolor_apps_48x48_bijiben.png \
 	figures/notes-3-12.png
 
 -include $(top_srcdir)/git.mk

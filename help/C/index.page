@@ -23,8 +23,8 @@
   </info>
 
   <title>
-  <media type="image" mime="image/png" src="figures/HighContrast_apps_scalable_bijiben.svg"
-  its:translate="no"/>
+  <media type="image" mime="image/png"
+  src="figures/hicolor_apps_48x48_bijiben.png" its:translate="no"/>
   Notes
   </title>
 

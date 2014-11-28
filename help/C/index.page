@@ -19,7 +19,10 @@
       <email its:translate="no">tyagishobha@gmail.com</email>
       <years>2013</years>
     </credit>
+
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Learn how to use and manage your notes.</desc>
   </info>
 
   <title>

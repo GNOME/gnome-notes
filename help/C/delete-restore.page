@@ -1,0 +1,45 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="guide" style="2column task"
+      id="delete-restore">
+
+  <info>
+    <link type="guide" xref="index#delete"/>
+    <revision pkgversion="3.12" date="2014-11-28" status="review"/>
+
+    <credit type="author">
+      <name>Shobha Tyagi</name>
+      <email its:translate="no">tyagishobha@gmail.com</email>
+      <years>2014</years>
+    </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2014</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Restore a deleted note.</desc>
+  </info>
+
+  <title>Restore notes</title>
+
+  <p>If you think that you have accidentally deleted a note, you can view and
+  restore it from <gui>Trash</gui></p>
+
+  <steps>
+    <title>To restore trashed notes:</title>
+    <item><!--What is the trash view? Explain how to get there.-->
+      <p>In the <gui>Trash</gui> view, click <gui>Selection mode</gui>
+      button.</p>
+    </item>
+    <item>
+      <p>Select all the notes that you want to restore.</p>
+    </item>
+    <item>
+      <p>Click on <gui style="button">Restore</gui> button.</p>
+    </item>
+  </steps>
+
+</page>

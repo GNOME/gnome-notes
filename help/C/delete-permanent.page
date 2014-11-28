@@ -1,11 +1,11 @@
 <page xmlns="http://projectmallard.org/1.0/"
       xmlns:its="http://www.w3.org/2005/11/its"
       type="guide" style="2column task"
-      id="view-trash">
+      id="delete-permanent">
 
   <info>
     <link type="guide" xref="index#delete"/>
-    <revision pkgversion="3.12" date="2014-08-15" status="review"/>
+    <revision pkgversion="3.12" date="2014-11-28" status="review"/>
 
     <credit type="author">
       <name>Shobha Tyagi</name>
@@ -15,26 +15,14 @@
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>View Trash to delete or restore notes.</desc>
+    <desc>Permanently delete notes from the <gui>Trash</gui> view.</desc>
   </info>
 
-  <title>Access trashed notes</title>
+  <title>Empty the Trash</title>
 
-  <p>You can view, restore or delete notes in the <gui>Trash</gui>.</p>
+  <p>You can permanently delete notes from the <gui>Trash</gui>.</p>
 
-  <steps>
-    <title>To restore trashed notes:</title>
-    <item>
-      <p>In the <gui>Trash</gui> view click <gui>Selection mode</gui>
-      button.</p>
-    </item>
-    <item>
-      <p>Select all the notes that you want to restore.</p>
-    </item>
-    <item>
-      <p>Click on <gui style="button">Restore</gui> button.</p>
-    </item>
-  </steps>
+  <!--Where is the Trash view? Explain how to get there.-->
 
   <steps>
     <title>To permanently delete all the notes in Trash:</title>

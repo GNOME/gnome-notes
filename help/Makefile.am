@@ -8,6 +8,8 @@ HELP_FILES = \
 	create.page \
 	cut-copy-paste.page \
 	delete.page \
+	delete-permanent.page \
+	delete-restore.page \
 	format-list.page \
 	format-text.page \
 	index.page \
@@ -17,7 +19,6 @@ HELP_FILES = \
 	rename.page \
 	search.page \
 	share.page \
-	view-trash.page \
 	legal.xml
 
 HELP_MEDIA = \

@@ -88,7 +88,9 @@ on_system_font_toggled (GtkSwitch         *button,
 
 
   settings = self->priv->settings;
-  bjb_settings_set_use_system_font (settings, gtk_switch_get_active (button));
+  g_settings_set_boolean (G_SETTINGS (settings),
+                          "use-system-font",
+                          gtk_switch_get_active (button));
   update_buttons (self);
 }
 

@@ -1,0 +1,664 @@
+# German translation for bijiben.
+# Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Benjamin Steinwender <b@stbe.at>, 2014.
+# Christian Kirbach <Christian.Kirbach@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben gnome-3-14\n"
+"POT-Creation-Date: 2014-10-06 14:55+0000\n"
+"PO-Revision-Date: 2014-11-26 13:09+0100\n"
+"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.9\n"
+"Language-Team: \n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Benjamin Steinwender <b@stbe.at>, 2014\n"
+"Christian Kirbach <christian.kirbach@gmail.com>, 2014"
+
+#. (itstool) path: credit/name
+#: C/colors.page:11 C/notebooks.page:11 C/create.page:11 C/delete.page:11
+#: C/introduction.page:16 C/formatting.page:11 C/search.page:11
+#: C/share.page:11 C/index.page:13 C/listing.page:11
+msgid "Pierre-Yves Luyten"
+msgstr "Pierre-Yves Luyten"
+
+#. (itstool) path: credit/years
+#: C/colors.page:12 C/notebooks.page:12 C/create.page:12 C/delete.page:12
+#: C/introduction.page:18 C/formatting.page:12 C/search.page:12
+#: C/share.page:12 C/index.page:15 C/listing.page:12
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: credit/name
+#: C/colors.page:15 C/notebooks.page:15 C/create.page:15 C/delete.page:15
+#: C/formatting.page:15 C/search.page:15 C/share.page:15 C/listing.page:15
+msgid "Ekaterina Gerasimova"
+msgstr "Ekaterina Gerasimova"
+
+#. (itstool) path: credit/years
+#: C/colors.page:17 C/colors.page:22 C/notebooks.page:17 C/create.page:17
+#: C/delete.page:17 C/delete.page:22 C/introduction.page:13
+#: C/formatting.page:17 C/search.page:17 C/search.page:22 C/rename.page:13
+#: C/share.page:17 C/index.page:20 C/listing.page:17 C/listing.page:22
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: credit/name
+#: C/colors.page:20 C/notebooks.page:20 C/create.page:25 C/delete.page:20
+#: C/delete.page:30 C/introduction.page:11 C/introduction.page:26
+#: C/formatting.page:20 C/search.page:20 C/search.page:30 C/rename.page:11
+#: C/share.page:20 C/index.page:18 C/listing.page:20 C/cut-copy-paste.page:11
+#: C/view-trash.page:11
+msgid "Shobha Tyagi"
+msgstr "Shobha Tyagi"
+
+#. (itstool) path: credit/name
+#: C/colors.page:25 C/notebooks.page:25 C/create.page:20 C/delete.page:25
+#: C/introduction.page:21 C/formatting.page:25 C/search.page:25
+#: C/rename.page:16 C/share.page:25 C/listing.page:25 C/cut-copy-paste.page:16
+msgid "Michael Hill"
+msgstr "Michael Hill"
+
+#. (itstool) path: credit/years
+#: C/colors.page:27 C/notebooks.page:22 C/notebooks.page:27 C/create.page:22
+#: C/delete.page:27 C/introduction.page:23 C/introduction.page:28
+#: C/formatting.page:22 C/formatting.page:27 C/search.page:27 C/search.page:32
+#: C/rename.page:18 C/share.page:22 C/share.page:27 C/listing.page:27
+#: C/cut-copy-paste.page:13 C/cut-copy-paste.page:18 C/view-trash.page:13
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/colors.page:32
+msgid "Edit the note background color."
+msgstr "Die Hintergrundfarbe der Notiz bearbeiten."
+
+#. (itstool) path: page/title
+#: C/colors.page:35
+msgid "Change note color"
+msgstr "Notizfarbe ändern"
+
+#. (itstool) path: steps/title
+#: C/colors.page:38
+msgid "To change the color of an individual note:"
+msgstr "So ändern Sie die Farbe einer einzelnen Notiz:"
+
+#. (itstool) path: item/p
+#: C/colors.page:40 C/notebooks.page:40 C/delete.page:45 C/rename.page:31
+#: C/share.page:40
+msgid "Click on the note to open it."
+msgstr "Klicken sie auf die Notiz, um sie zu öffnen."
+
+#. (itstool) path: item/p
+#: C/colors.page:43 C/colors.page:61
+msgid "Click the <gui style=\"button\">Note color</gui> button."
+msgstr "Klicken Sie auf den Knopf <gui style=\"button\">Notizfarbe</gui>."
+
+#. (itstool) path: item/p
+#: C/colors.page:46 C/colors.page:64
+msgid ""
+"Select a new color and click the <gui style=\"button\">Select</gui> button."
+msgstr ""
+"Wählen Sie eine neue Farbe und klicken Sie anschließend auf <gui style="
+"\"button\">Wählen</gui>."
+
+#. (itstool) path: steps/title
+#: C/colors.page:52
+msgid "To change the color of multiple notes:"
+msgstr "So ändern Sie die Farbe mehrerer Notizen:"
+
+#. (itstool) path: item/p
+#: C/colors.page:54 C/notebooks.page:58 C/delete.page:61
+msgid ""
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button."
+msgstr ""
+"Klicken Sie auf den <gui style=\"button\">Auswahlmodus</gui>-Knopf in der "
+"Ansicht <gui>Neu und kürzlich verwendet</gui>."
+
+#. (itstool) path: item/p
+#: C/colors.page:58
+msgid "Select the notes you want to change."
+msgstr "Wählen Sie die Notizen, die Sie ändern möchten."
+
+#. (itstool) path: info/desc
+#: C/notebooks.page:32
+msgid "Add a note to a notebook to make sorting and searching notes easier."
+msgstr ""
+"Geben Sie eine Notiz in eine Notizsammlung, um Sortieren und Suchen "
+"einfacher zu gestalten."
+
+#. (itstool) path: page/title
+#: C/notebooks.page:35
+msgid "Notebooks"
+msgstr "Notizsammlungen"
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:38
+msgid "To create a notebook with a single note:"
+msgstr "So erstellen Sie eine Notizsammlung mit einer einzelnen Notiz:"
+
+#. (itstool) path: item/p
+#: C/notebooks.page:43
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Notebooks</gui></guiseq>."
+msgstr ""
+"Klicken Sie <guiseq><gui style=\"button\">Mehr Optionen …</gui><gui style="
+"\"menuitem\">Notizsammlungen</gui></guiseq>."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:47
+msgid ""
+"Type a suitable name for the notebook and click the <gui style=\"button"
+"\">New notebook</gui> button."
+msgstr ""
+"Geben Sie einen passenden Namen für die Notizsammlung ein und klicken Sie "
+"auf den Knopf <gui style=\"button\">Notizsammlung</gui> button."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:51 C/notebooks.page:72
+msgid "Click the <gui style=\"button\">Close</gui> button."
+msgstr "Klicken Sie auf den Knopf <gui style=\"button\">Schließen</gui>."
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:56
+msgid "To create a notebook with multiple notes:"
+msgstr "So erstellen Sie eine Notizsammlung mit mehreren Notizen:"
+
+#. (itstool) path: item/p
+#: C/notebooks.page:62
+msgid "Select all the notes which you want to add to the notebook."
+msgstr "Wählen Sie alle Notizen, die Sie zur Notizsammlung hinzufügen möchten."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:65
+msgid "Click the <gui style=\"button\">Notebooks</gui> button."
+msgstr "Klicken Sie auf den Knopf <gui style=\"button\">Notizsammlungen</gui>."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:68
+msgid ""
+"Type a suitable name for the notebook and click <gui style=\"button\">New "
+"notebook</gui> button."
+msgstr ""
+"Geben Sie einen passenden Namen für die Notizsammlung ein und klicken Sie "
+"auf den Knopf <gui style=\"button\">Neue Notizsammlung</gui>."
+
+#. (itstool) path: credit/years
+#: C/create.page:27
+msgid "31 Aug 2014"
+msgstr "31. Aug. 2014"
+
+#. (itstool) path: info/desc
+#: C/create.page:32
+msgid ""
+"Create a new note from scratch, using some text from another application or "
+"from another note."
+msgstr ""
+"Erstellen einer neuen Notiz durch Verwenden von Text aus einer anderen "
+"Anwendung oder einer andere Notiz."
+
+#. (itstool) path: page/title
+#: C/create.page:36
+msgid "Create a note"
+msgstr "Eine Notiz erstellen"
+
+#. (itstool) path: page/p
+#: C/create.page:38
+msgid "You can create a new note in three different ways:"
+msgstr "Sie können eine neue Notiz auf drei verschiedene Wege erstellen:"
+
+#. (itstool) path: item/p
+#: C/create.page:41
+msgid ""
+"Click the <gui style=\"button\">New</gui> button to create a blank note."
+msgstr ""
+"Klicken Sie auf den <gui style=\"button\">Neu</gui>-Knopf, um eine leere "
+"Notiz zu erstellen."
+
+#. (itstool) path: item/p
+#: C/create.page:45
+msgid ""
+"Drag and drop text to the <gui>New and Recent</gui> view to create a note "
+"containing this text."
+msgstr ""
+"Ziehen und legen Sie Text in der Ansicht <gui>Neu und kürzlich verwendet</"
+"gui> ab, um eine Notiz mit dem entsprechenden Text zu erstellen."
+
+#. (itstool) path: item/p
+#: C/create.page:49
+msgid ""
+"Open a note, select some text and click the <gui style=\"button\">Copy "
+"selection to a new note</gui> button to create a note containing this text."
+msgstr ""
+"Öffnen Sie eine Notiz, wählen Sie einen Text aus und klicken Sie den Knopf "
+"<gui style=\"button\">Auswahl in eine neue Notiz kopieren</gui>, um eine "
+"Notiz mit dem entsprechenden Text zu erstellen."
+
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+"Zum Anlegen einer neuen Notiz mit Tastenkürzel drücken Sie "
+"<keyseq><key>Strg</key><key>N</key></keyseq>."
+
+#. (itstool) path: credit/years
+#: C/delete.page:32
+msgid "01 sep 2014"
+msgstr "1. Sep. 2014"
+
+#. (itstool) path: info/desc
+#: C/delete.page:37
+msgid "Delete old and unwanted notes."
+msgstr "Alte und ungewünschte Notizen entfernen."
+
+#. (itstool) path: page/title
+#: C/delete.page:40
+msgid "Delete a note"
+msgstr "Eine Notiz entfernen"
+
+#. (itstool) path: steps/title
+#: C/delete.page:43
+msgid "To delete a note:"
+msgstr "So löschen Sie eine Notiz:"
+
+#. (itstool) path: item/p
+#: C/delete.page:48
+msgid ""
+"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Move to Trash</gui></guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui style=\"button\">Mehr Optionen …</gui><gui style="
+"\"menuitem\">In den Papierkorb verschieben</gui></guiseq>."
+
+#. (itstool) path: note/p
+#: C/delete.page:54
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+"Drücken Sie die Tastenfolge <keyseq><key>Strg</key><key>Entf</key></keyseq> "
+"zum Löschen einer geöffneten Notiz."
+
+#. (itstool) path: steps/title
+#: C/delete.page:59
+msgid "To delete multiple notes and notebooks:"
+msgstr "So entfernen Sie mehrere Notizen und Notizsammlungen:"
+
+#. (itstool) path: item/p
+#: C/delete.page:65
+msgid "Select the notes and the notebooks you want to delete."
+msgstr "Wählen Sie die zu entfernenden Notizen und Notizsammlungen aus."
+
+#. (itstool) path: item/p
+#: C/delete.page:68
+msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
+msgstr ""
+"Klicken Sie auf den Knopf <gui style=\"button\">In den Papierkorb "
+"verschieben</gui>."
+
+#. (itstool) path: media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/introduction.page:43
+msgctxt "_"
+msgid ""
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
+msgstr "ok"
+
+#. (itstool) path: info/desc
+#: C/introduction.page:33
+msgid "A simple application for creating, editing and viewing notes."
+msgstr ""
+"Eine einfache Anwendung zum Erstellen, Bearbeiten und Betrachten von "
+"Notizen. "
+
+#. (itstool) path: page/title
+#: C/introduction.page:36
+msgid "Introduction to Notes"
+msgstr "Einführung zu Notizen"
+
+#. (itstool) path: page/p
+#: C/introduction.page:38
+msgid ""
+"<app>Notes</app> is a simple application for creating, editing, and viewing "
+"notes. You can also search for a note from the <gui>Activities</gui> "
+"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+msgstr ""
+"<app>Notizen</app> ist eine einfache Anwendung zum Erstellen, Bearbeiten und "
+"Betrachten von Notizen. Sie können auch nach Notizen in der "
+"<gui>Aktivitäten</gui>-Übersicht suchen. <app>Notizen</app> integriert auch "
+"einfach mit <app>Online-Konten</app>."
+
+#. (itstool) path: info/desc
+#: C/formatting.page:32
+msgid "Apply different formatting options to the text."
+msgstr "Wenden Sie verschiedene Formatierungsoptionen auf den Text an."
+
+#. (itstool) path: page/title
+#: C/formatting.page:35
+msgid "Change the text style"
+msgstr "Ändern Sie den Textstil"
+
+#. (itstool) path: steps/title
+#: C/formatting.page:38
+msgid "To change the formatting options of text in your note:"
+msgstr "So ändern Sie die Formatierungsoptionen für den Text in Ihren Notizen:"
+
+#. (itstool) path: item/p
+#: C/formatting.page:40
+msgid "Select the text that you want to format."
+msgstr "Wählen Sie den zu formatierenden Text aus."
+
+#. (itstool) path: item/p
+#: C/formatting.page:43
+msgid ""
+"Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
+"or <gui style=\"button\">Strike</gui>."
+msgstr ""
+"Klicken Sie <gui style=\"button\">Fett</gui>, <gui style=\"button\">Kursiv</"
+"gui> oder <gui style=\"button\">Durchgestrichen</gui>."
+
+#. (itstool) path: info/desc
+#: C/search.page:37
+msgid "Search for an existing note, note content and notebooks."
+msgstr ""
+"Suchen Sie nach einer existierenden Notiz, nach Notizinhalt und "
+"Notizsammlungen."
+
+#. (itstool) path: page/title
+#: C/search.page:40
+msgid "Find a note"
+msgstr "Eine Notiz suchen"
+
+#. (itstool) path: page/p
+#: C/search.page:42
+msgid "The default <em>New and Recent</em> view shows recently used notes."
+msgstr ""
+"Die Vorgabeansicht <em>Neu und kürzlich verwendet</em> zeigt kürzlich "
+"verwendete Notizen."
+
+#. (itstool) path: steps/title
+#: C/search.page:45
+msgid "To find notes while in <em>New and Recent</em>:"
+msgstr ""
+"So suchen sie nach Notizen, während Sie sich in der <em>Neu und kürzlich "
+"verwendet</em>-Ansicht befinden:"
+
+#. (itstool) path: item/p
+#: C/search.page:47
+msgid "Click the <gui>Search</gui> button."
+msgstr "Klicken Sie auf den <gui>Suchen</gui>-Knopf."
+
+#. (itstool) path: item/p
+#: C/search.page:50
+msgid "Type your search term. Search results will appear instantly."
+msgstr ""
+"Geben Sie Ihren Suchbegriff ein. Suchergebnisse werden sofort angezeigt."
+
+#. (itstool) path: note/p
+#: C/search.page:53
+msgid ""
+"You can directly start typing the search string in the <em>New and Recent</"
+"em> view to search notes."
+msgstr ""
+"Sie können Ihren Suchtext direkt in der <em>Neu und kürzlich</em>-Ansicht "
+"tippen, um nach Notizen zu suchen."
+
+#. (itstool) path: note/p
+#: C/search.page:56
+msgid "You can also search for notes from the <gui>Activities</gui> overview."
+msgstr ""
+"Sie können auch in der <gui>Aktivitäten</gui>-Übersicht nach Notizen suchen."
+
+#. (itstool) path: info/desc
+#: C/rename.page:23
+msgid "Change the name of an existing note."
+msgstr "Den Namen einer existierenden Notiz ändern."
+
+#. (itstool) path: page/title
+#: C/rename.page:26
+msgid "Rename a note"
+msgstr "Eine Notiz umbenennen"
+
+#. (itstool) path: steps/title
+#: C/rename.page:29
+msgid "To rename a note:"
+msgstr "So benennen Sie eine Notiz um:"
+
+#. (itstool) path: item/p
+#: C/rename.page:34
+msgid "Change the text in the first line of the note."
+msgstr "Ändern Sie den Text in der ersten Zeile der Notiz."
+
+#. (itstool) path: info/desc
+#: C/share.page:32
+msgid "Email a note to your contacts."
+msgstr "Senden Sie eine Notiz per E-Mail an Ihre Kontakte."
+
+#. (itstool) path: page/title
+#: C/share.page:35
+msgid "Share a note"
+msgstr "Eine Notiz teilen"
+
+#. (itstool) path: steps/title
+#: C/share.page:38
+msgid "To share a note:"
+msgstr "So teilen Sie eine Notiz:"
+
+#. (itstool) path: item/p
+#: C/share.page:43
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Email this Note</gui></guiseq>."
+msgstr ""
+"Klicken Sie <guiseq><gui style=\"button\">Weitere Optionen …</gui><gui style="
+"\"menuitem\">Diese Notiz per E-Mail versenden</gui></guiseq>."
+
+#. (itstool) path: item/p
+#: C/share.page:47
+msgid "Send the note by email."
+msgstr "Senden Sie die Notiz per E-Mail."
+
+#. (itstool) path: info/title
+#: C/index.page:6
+msgctxt "link"
+msgid "Notes"
+msgstr "Notizen"
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "text"
+msgid "Notes"
+msgstr "Notizen"
+
+#. (itstool) path: page/title
+#: C/index.page:25
+msgid "<_:media-1/> Notes"
+msgstr "<_:media-1/> Notizen"
+
+#. (itstool) path: section/title
+#: C/index.page:32
+msgid "Create notes"
+msgstr "Notizen anlegen"
+
+#. (itstool) path: section/title
+#: C/index.page:35
+msgid "Edit and share notes"
+msgstr "Notizen bearbeiten und teilen"
+
+#. (itstool) path: section/title
+#: C/index.page:38
+msgid "Delete notes"
+msgstr "Notizen löschen"
+
+#. (itstool) path: info/desc
+#: C/listing.page:32
+msgid "format a note with ordered and unordered lists."
+msgstr "Eine Notiz mit Aufzählungen und Nummerierung formatieren."
+
+#. (itstool) path: page/title
+#: C/listing.page:35
+msgid "Create a list"
+msgstr "Eine Liste anlegen"
+
+#. (itstool) path: list/title
+#: C/listing.page:38
+msgid "While the note is open:"
+msgstr "Während die Notiz geöffnet ist:"
+
+#. (itstool) path: item/p
+#: C/listing.page:40
+msgid ""
+"To create an unordered list, click <guiseq><gui style=\"button\">More "
+"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+msgstr ""
+"Um eine Aufzählungsliste zu erstellen, klicken Sie <guiseq><gui style="
+"\"button\">Mehr Optionen …</gui> <gui style=\"menuitem\">Aufzählungspunkte</"
+"gui></guiseq>."
+
+#. (itstool) path: item/p
+#: C/listing.page:45
+msgid ""
+"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
+"</gui> <gui>Numbered List</gui></guiseq>."
+msgstr ""
+"Um eine nummerierte Liste zu erstellen, klicken Sie <guiseq><gui style="
+"\"button\">Mehr Optionen …</gui> <gui style=\"menuitem\">Nummerierte Liste</"
+"gui></guiseq>."
+
+#. (itstool) path: info/desc
+#: C/cut-copy-paste.page:23
+msgid "Cut, copy and paste is simple to use."
+msgstr "Ausschneiden, kopieren und einfügen ist einfach anzuwenden."
+
+#. (itstool) path: page/title
+#: C/cut-copy-paste.page:26
+msgid "Cut, copy and paste"
+msgstr "Ausschneiden, kopieren und einfügen"
+
+#. (itstool) path: steps/title
+#: C/cut-copy-paste.page:29
+msgid "To cut, copy or paste in a note:"
+msgstr "So können Sie in Notizen ausschneiden, kopieren oder einfügen:"
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:31
+msgid "Select the text."
+msgstr "Wählen Sie den Text."
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:33
+msgid ""
+"Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> or "
+"<gui style=\"button\">Paste</gui>."
+msgstr ""
+"Klicken sie <gui style=\"button\">Ausschneiden</gui>, <gui style=\"button"
+"\">Kopieren</gui> or <gui style=\"button\">Einfügen</gui>."
+
+#. (itstool) path: info/desc
+#: C/view-trash.page:16
+msgid "View Trash to delete or restore notes."
+msgstr ""
+"Den Papierkorb zum Löschen oder Wiederherstellen von Notizen betrachten."
+
+#. (itstool) path: page/p
+#: C/view-trash.page:18
+msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
+msgstr ""
+"Sie können Notizen im <gui>Papierkorb</gui> betrachten, wiederherstellen "
+"oder endgültig löschen."
+
+#. (itstool) path: page/title
+#: C/view-trash.page:19
+msgid "Access trashed notes"
+msgstr "Auf Notizen im Papierkorb zugreifen"
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:21
+msgid "To restore trashed notes:"
+msgstr "So stellen Sie Notizen aus dem Papierkorb wieder her:"
+
+#. (itstool) path: item/p
+#: C/view-trash.page:23 C/view-trash.page:48
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr ""
+"Klicken Sie auf den <gui>Auswahlmodus</gui>-Knopf in der <gui>Papierkorb</"
+"gui>-Ansicht."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:26
+msgid "Select all the notes that you want to restore."
+msgstr "Wählen Sie alle Notizen, die Sie wiederherstellen möchten."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:29
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr "Klicken Sie den <gui style=\"button\">Wiederherstellen</gui>-Knopf."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:33
+msgid "To permanently delete all the notes in Trash:"
+msgstr "So löschen Sie alle Notizen im Papierkorb endgültig."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:35
+msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgstr ""
+"Klicken Sie auf das <gui>Notizen</gui>-Symbol in der Nähe von "
+"<gui>Aktivitäten</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:38
+msgid "Select <gui>View Trash</gui>."
+msgstr "Wählen Sie <gui>Papierkorb ansehen</gui>."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:41
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr ""
+"Klicken Sie auf den <gui style=\"button\">Leeren</gui>-Knopf in der "
+"Werkzeugleiste."
+
+#. (itstool) path: steps/title
+#: C/view-trash.page:46
+msgid "To delete selected notes from Trash:"
+msgstr "So löschen Sie ausgewählte Notizen aus dem Papierkorb."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:51
+msgid "Select all the notes that you want to delete permanently."
+msgstr "Wählen Sie alle Notizen, die Sie endgültig löschen möchten."
+
+#. (itstool) path: item/p
+#: C/view-trash.page:54
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr ""
+"Klicken Sie auf den Knopf <gui style=\"button\">Endgültig löschen</gui>."
+
+#. (itstool) path: p/link
+#: C/legal.xml:5
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr ""
+"Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 "
+"nicht angepasst"
+
+#. (itstool) path: license/p
+#: C/legal.xml:4
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Dieses Werk ist unter <_:link-1/> lizenziert."

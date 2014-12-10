@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-04 18:58+0200\n"
-"PO-Revision-Date: 2014-11-04 19:03+0200\n"
+"POT-Creation-Date: 2014-12-10 15:13+0200\n"
+"PO-Revision-Date: 2014-12-10 15:14+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -194,7 +194,7 @@ msgid "No notes"
 msgstr "אין פתקיות"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
 msgstr "יש ללחוץ על הכפתור חדש ליצירת פתקית."
 
 #: ../src/bjb-empty-results-box.c:167
@@ -401,29 +401,29 @@ msgid "Permanently Delete"
 msgstr "למחוק לצמיתות"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "שימוש בגופן מערכת"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "גופן הפתקית"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "צבע הפתקית"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "העדפות"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "מהדורת הפתקית"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "ספר ראשי"
 

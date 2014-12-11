@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-03 03:55+0000\n"
-"PO-Revision-Date: 2014-12-04 09:53+0000\n"
+"POT-Creation-Date: 2014-12-11 03:55+0000\n"
+"PO-Revision-Date: 2014-12-11 19:49+0000\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -190,8 +190,8 @@ msgid "No notes"
 msgstr "Not yok"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
-msgstr "Not oluşturmak için yeni düğmesine basın"
+msgid "Press the New button to create a note."
+msgstr "Not oluşturmak için Yeni düğmesine basın"
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -391,29 +391,29 @@ msgid "Permanently Delete"
 msgstr "Tamamen Sil"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:392
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Sistem Yazıtipini Kullan"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:406
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Not Yazıtipi"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:418
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Öntanımlı Renk"
 
-#: ../src/bjb-settings-dialog.c:464
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Not Sürümü"
 
-#: ../src/bjb-settings-dialog.c:499
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Birincil Kitap"
 

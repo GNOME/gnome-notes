@@ -1,3 +1,20 @@
+Overview of changes in 3.15.3
+=============================
+
+* Improve preferences dialog (Trinh Anh Ngoc)
+
+* Misc
+  Fix use-system-font
+
+* Documentation (Ekaterina Gerasimova)
+  Trash, Share
+  Cut Copy Paste
+  Notebooks, Search
+
+* Translations
+  cz
+  hu
+
 Overview of changes in 3.15.2
 =============================
 

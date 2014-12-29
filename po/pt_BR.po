@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-30 14:55+0000\n"
-"PO-Revision-Date: 2014-08-26 18:20-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2014-12-29 03:55+0000\n"
+"PO-Revision-Date: 2014-12-29 12:23-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.7.1\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -153,33 +153,47 @@ msgid "Note Color"
 msgstr "Cor da nota"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:365
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "Cortar"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:372
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "Copiar"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:378
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "Colar"
 
-#: ../src/bjb-editor-toolbar.c:393
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "Negrito"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "Itálico"
 
-#: ../src/bjb-editor-toolbar.c:413
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "Tachado"
 
-#: ../src/bjb-editor-toolbar.c:441
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "Copia a seleção para uma nova nota"
 
@@ -188,8 +202,8 @@ msgid "No notes"
 msgstr "Sem notas"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
-msgstr "Pressione o botão nova para criar uma nota."
+msgid "Press the New button to create a note."
+msgstr "Pressione o botão \"Nova\" para criar uma nota."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -293,7 +307,7 @@ msgstr "Lixeira"
 #. * This action permanently deletes notes
 #: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
-msgstr "Vazia"
+msgstr "Esvaziar"
 
 #: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
@@ -303,52 +317,41 @@ msgstr "Sem título"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:768
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "Abrir em nova janela"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:779
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "Desfazer"
 
-#: ../src/bjb-main-toolbar.c:787
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "Refazer"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:802
-msgid "Bullets"
-msgstr "Marcadores"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:809
-msgid "Numbered List"
-msgstr "Lista numerada"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:825 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Catálogos de notas"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:833
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "Enviar essa nota por e-mail"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:846 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Mover para lixeira"
 
-#: ../src/bjb-main-toolbar.c:906
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "Mais opções…"
 
-#: ../src/bjb-main-toolbar.c:929 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Cor da nota"
 
@@ -406,29 +409,29 @@ msgid "Permanently Delete"
 msgstr "Excluir permanentemente"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Utilizar fonte do sistema"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Fonte da nota"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Cor padrão"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Preferências"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Edição da nota"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Livro primário"
 
@@ -483,6 +486,12 @@ msgstr "S_obre"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Sair"
+
+#~ msgid "Bullets"
+#~ msgstr "Marcadores"
+
+#~ msgid "Numbered List"
+#~ msgstr "Lista numerada"
 
 #~ msgid "New"
 #~ msgstr "Nova"

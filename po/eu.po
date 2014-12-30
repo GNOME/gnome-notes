@@ -2,14 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-#
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-05 12:10+0200\n"
-"PO-Revision-Date: 2014-08-05 12:10+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-12-30 16:57+0100\n"
+"PO-Revision-Date: 2014-12-30 16:58+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -75,7 +76,7 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Oharren hornitzaile nagusia ohar berrietan erabiltzeko."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Koaderno nagusia ohar berriak sortuko diren lekua da."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:8
@@ -110,33 +111,33 @@ msgstr "GNOMEren koaderno xumea"
 msgid "translator-credits"
 msgstr "Iñaki Larrañaga Murgoitio <dooteo@zundan.com>"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Erakutsi aplikazioaren bertsioa"
 
-#: ../src/bjb-bijiben.c:452
+#: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
 msgstr "Sortu ohar berria"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[FITXATEGIA...]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Hartu oharrak eta esportatu edonora."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Ezin izan dira argumentuak analizatu"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "GNOMEren oharrak"
 
-#: ../src/bjb-bijiben.c:494
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Ezin izan da aplikazioa erregistratu"
 
@@ -145,33 +146,47 @@ msgid "Note Color"
 msgstr "Oharraren kolorea"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "Ebaki"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "Kopiatu"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "Itsatsi"
 
-#: ../src/bjb-editor-toolbar.c:374
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "Lodia"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "Etzana"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "Marratua"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "Kopiatu hautapena ohar berri batean"
 
@@ -180,7 +195,7 @@ msgid "No notes"
 msgstr "Oharrik ez"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
 msgstr "Sakatu 'Berria' botoia oharra sortzeko."
 
 #: ../src/bjb-empty-results-box.c:167
@@ -256,83 +271,80 @@ msgstr "'%s'(r)en emaitzak"
 msgid "New and Recent"
 msgstr "Berria eta azkena"
 
-#: ../src/bjb-main-toolbar.c:438
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
 msgid "_New"
 msgstr "_Berria"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Hautapen modua"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
 msgstr "Ikusi oharrak eta koadernoak zerrendan"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "Ikusi oharrak eta koadernoak saretan"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "Zakarrontzia"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Hutsik"
 
-#: ../src/bjb-main-toolbar.c:655
+#: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
 msgstr "Izengabea"
 
-#: ../src/bjb-main-toolbar.c:761
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "Ireki leiho berrian"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "Desegin"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "Berregin"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
-msgid "Bullets"
-msgstr "Buletak"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
-msgid "Numbered List"
-msgstr "Zenbatutako zerrenda"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Koadernoak"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "Bidali ohar hau mezu elektronikoz"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Bota zakarrontzira"
 
-#: ../src/bjb-main-toolbar.c:896
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "Aukera gehiago…"
 
-#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Oharraren kolorea"
 
@@ -349,7 +361,7 @@ msgstr "Oharra"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Azken eguneraketa</b> %s"
@@ -390,29 +402,29 @@ msgid "Permanently Delete"
 msgstr "Ezabatu betirako"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Erabili sistemako letra-tipoa"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Oharraren letra-tipoa"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Kolore lehenetsia"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Oharraren edizioa"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Liburu nagusia"
 
@@ -467,6 +479,12 @@ msgstr "Honi _buruz"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "I_rten"
+
+#~ msgid "Bullets"
+#~ msgstr "Buletak"
+
+#~ msgid "Numbered List"
+#~ msgstr "Zenbatutako zerrenda"
 
 #~ msgid "New"
 #~ msgstr "Berria"

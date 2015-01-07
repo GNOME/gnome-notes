@@ -1,15 +1,15 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Marek Černocký <marek@manet.cz>, 2013, 2014.
+# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-02 03:55+0000\n"
-"PO-Revision-Date: 2014-11-02 10:49+0100\n"
+"POT-Creation-Date: 2015-01-07 03:54+0000\n"
+"PO-Revision-Date: 2015-01-07 08:13+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -195,7 +195,7 @@ msgid "No notes"
 msgstr "Žádné poznámky"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
 msgstr "Zmáčknutím tlačítka Nová vytvoříte novou poznámku."
 
 #: ../src/bjb-empty-results-box.c:167
@@ -403,29 +403,29 @@ msgid "Permanently Delete"
 msgstr "Smazat trvale"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Používat systémové písmo"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Písmo poznámek"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Výchozí barva"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Vzhled poznámky"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Hlavní sešit"
 

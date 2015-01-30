@@ -1,18 +1,18 @@
 # Russian translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Stas Solovey <whats_up@tut.by>, 2013.
 # Yuri Myasoedov <ymyasoedov@yandex.ru>, 2014.
+# Stas Solovey <whats_up@tut.by>, 2013, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-06 02:52+0000\n"
-"PO-Revision-Date: 2014-09-06 11:30+0400\n"
-"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
-"Language-Team: русский <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2015-01-30 03:55+0000\n"
+"PO-Revision-Date: 2015-01-30 15:41+0300\n"
+"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +76,6 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Основной провайдер заметок, используемый для новых заметок."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-#| msgid "The primary notebook is the place where are created new notes."
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Основная записная книжка — это место, где создаются новые заметки."
 
@@ -111,7 +110,7 @@ msgstr "Простая записная книжка среды рабочего
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
-"Стас Соловей <whats_up@tut.by>, 2013.\n"
+"Станислав Соловей <whats_up@tut.by>, 2013-2015.\n"
 "Юрий Мясоедов <ymyasoedov@yandex.ru>, 2014."
 
 #: ../src/bjb-bijiben.c:454
@@ -149,33 +148,47 @@ msgid "Note Color"
 msgstr "Цвет заметки"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:365
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "Вырезать"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:372
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "Копировать"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:378
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "Вставить"
 
-#: ../src/bjb-editor-toolbar.c:393
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "Полужирный"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "Курсив"
 
-#: ../src/bjb-editor-toolbar.c:413
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "Подчёркнутый"
 
-#: ../src/bjb-editor-toolbar.c:441
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "Копировать выделение в новую заметку"
 
@@ -184,8 +197,9 @@ msgid "No notes"
 msgstr "Нет заметок"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
-msgstr "Нажмите кнопку, чтобы создать заметку."
+#| msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
+msgstr "Нажмите кнопку Создать, чтобы создать заметку."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -261,83 +275,80 @@ msgstr "Результаты для %s"
 msgid "New and Recent"
 msgstr "Новые и недавние"
 
-#: ../src/bjb-main-toolbar.c:438
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
 msgid "_New"
 msgstr "_Создать"
 
-#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Режим выделения"
 
-#: ../src/bjb-main-toolbar.c:492
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
 msgstr "Показывать заметки и записные книжки в виде списка"
 
-#: ../src/bjb-main-toolbar.c:516
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "Показывать заметки и записные книжки в виде таблицы"
 
-#: ../src/bjb-main-toolbar.c:535
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "Корзина"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:574
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Очистить"
 
-#: ../src/bjb-main-toolbar.c:656
+#: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
 msgstr "Безымянная"
 
-#: ../src/bjb-main-toolbar.c:762
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "Отменить"
 
-#: ../src/bjb-main-toolbar.c:781
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "Вернуть"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:796
-msgid "Bullets"
-msgstr "Тип сортировки"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:803
-msgid "Numbered List"
-msgstr "Нумерованный список"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Записные книжки"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:827
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "Отправить заметку по эл. почте"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Удалить в корзину"
 
-#: ../src/bjb-main-toolbar.c:900
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "Дополнительные параметры…"
 
-#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Цвет заметки"
 
@@ -395,29 +406,29 @@ msgid "Permanently Delete"
 msgstr "Удалить навсегда"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Использовать системный шрифт"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Шрифт заметок"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Цвет по умолчанию"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Параметры"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Изменение заметки"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Первичная книга"
 
@@ -471,4 +482,10 @@ msgstr "_О приложении"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
-msgstr "_Закончить"
+msgstr "_Завершить"
+
+#~ msgid "Bullets"
+#~ msgstr "Тип сортировки"
+
+#~ msgid "Numbered List"
+#~ msgstr "Нумерованный список"

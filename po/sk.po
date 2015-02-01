@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-10 02:52+0000\n"
-"PO-Revision-Date: 2014-09-10 16:17+0100\n"
+"POT-Creation-Date: 2015-02-01 15:55+0000\n"
+"PO-Revision-Date: 2015-02-01 22:41+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -53,8 +53,7 @@ msgstr "Vlastné písmo"
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
-"Názov písma, ktorý je tu nastavený, sa použije ako písmo zobrazujúce "
-"poznámky."
+"Názov písma, ktorý je tu nastavený, sa použije ako písmo zobrazujúce poznámky."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:3
 msgid "Whether to use the system monospace font"
@@ -66,18 +65,16 @@ msgid "New notes color."
 msgstr "Farba nových poznámok."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:5
-msgid ""
-"The color name set here will be used as the color when creating new notes."
+msgid "The color name set here will be used as the color when creating new notes."
 msgstr ""
-"Názov farby, ktorý je tu nastavený, sa použije ako faraba pri vytváraní "
-"nových poznámok."
+"Názov farby, ktorý je tu nastavený, sa použije ako faraba pri vytváraní nových "
+"poznámok."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Hlavný poskytovateľ poznámok pre nové poznámky."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-#| msgid "The primary notebook is the place where are created new notes."
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Hlavný zápisník je miesto, kam sa budú vytvárať nové poznámky."
 
@@ -120,7 +117,6 @@ msgstr "Vypíše verziu aplikácie"
 
 # cmd desc
 #: ../src/bjb-bijiben.c:456
-#| msgid "Copy selection to a new note"
 msgid "Create a new note"
 msgstr "Vytvorí novú poznámku"
 
@@ -153,46 +149,58 @@ msgid "Note Color"
 msgstr "Farba poznámky"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:365
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "Vystrihnúť"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:372
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "Kopírovať"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:378
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "Prilepiť"
 
-#: ../src/bjb-editor-toolbar.c:393
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "Tučné"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "Kurzíva"
 
-#: ../src/bjb-editor-toolbar.c:413
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "Preškrtnuté"
 
 # tooltip
-#: ../src/bjb-editor-toolbar.c:441
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "Skopíruje výber do novej poznámky"
 
 #: ../src/bjb-empty-results-box.c:101
-#| msgid "Notes"
 msgid "No notes"
 msgstr "Žiadne poznámky"
 
 # label
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Enter a name to create a notebook"
-msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
 msgstr "Stlačením tlačidla Nová vytvoríte novú poznámku."
 
 # DK: https://bugzilla.gnome.org/show_bug.cgi?id=706476
@@ -275,91 +283,86 @@ msgstr "Výsledky pre %s"
 msgid "New and Recent"
 msgstr "Nové a nedávno použité"
 
-#: ../src/bjb-main-toolbar.c:438
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
 msgid "_New"
 msgstr "_Nová"
 
-#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Režim výberu"
 
 # tooltip
-#: ../src/bjb-main-toolbar.c:492
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
 msgstr "Zobrazí poznámky a zápisníky v zozname"
 
 # tooltip
-#: ../src/bjb-main-toolbar.c:516
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "Zobrazí poznámky a zápisníky v mriežke"
 
-#: ../src/bjb-main-toolbar.c:535
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "Kôš"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:574
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Vyprádzniť"
 
-#: ../src/bjb-main-toolbar.c:656
+#: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
 msgstr "Bez názvu"
 
-#: ../src/bjb-main-toolbar.c:762
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "Otvoriť v novom okne"
 
 # menu item
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "Vrátiť späť"
 
 # menu item
-#: ../src/bjb-main-toolbar.c:781
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "Opakovať vrátené"
 
-# menu item
-# DK: vybratim tejto volby program vytvori odrazky vo forme guliciek - preto odrazky
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:796
-msgid "Bullets"
-msgstr "Odrážky"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:803
-msgid "Numbered List"
-msgstr "Očíslovaný zoznam"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Zápisníky"
 
 # menu item
 #. Share
-#: ../src/bjb-main-toolbar.c:827
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "Odoslať túto poznámku e-mailom"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Presúnúž do Koša"
 
-#: ../src/bjb-main-toolbar.c:900
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "Viac volieb…"
 
 # label
-#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Farba poznámok"
 
@@ -379,7 +382,6 @@ msgstr "Poznámka"
 #.
 #: ../src/bjb-note-view.c:190
 #, c-format
-#| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Naposledy aktualizované</b> %s"
 
@@ -421,33 +423,32 @@ msgid "Permanently Delete"
 msgstr "Trvalo odstrániť"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Použije systémové písmo"
 
 # label
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Písmo poznámok"
 
 # label
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Predvolená farba"
 
-#: ../src/bjb-settings-dialog.c:463
-#| msgid "_Preferences"
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Nastavenia"
 
 # dialog title
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Úprava poznámky"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Hlavná kniha"
 
@@ -502,3 +503,11 @@ msgstr "_O programe"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "U_končiť"
+
+# menu item
+# DK: vybratim tejto volby program vytvori odrazky vo forme guliciek - preto odrazky
+#~ msgid "Bullets"
+#~ msgstr "Odrážky"
+
+#~ msgid "Numbered List"
+#~ msgstr "Očíslovaný zoznam"

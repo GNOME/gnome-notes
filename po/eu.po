@@ -1,16 +1,16 @@
-# Basque translation for bijiben.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015.
+# Edurne Labaka <elabaka@uzei.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-30 16:57+0100\n"
-"PO-Revision-Date: 2014-12-30 16:58+0100\n"
+"POT-Creation-Date: 2015-02-07 11:12+0100\n"
+"PO-Revision-Date: 2015-02-07 11:14+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Beranduago erabiliko diren zerrenda xumeak egitea baimentzen duen editore "
-"bat da 'Oharrak'."
+"bat da 'Oharrak'"
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
@@ -117,7 +117,7 @@ msgstr "Erakutsi aplikazioaren bertsioa"
 
 #: ../src/bjb-bijiben.c:456
 msgid "Create a new note"
-msgstr "Sortu ohar berria"
+msgstr "Sortu ohar berri bat"
 
 #: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
@@ -196,7 +196,7 @@ msgstr "Oharrik ez"
 
 #: ../src/bjb-empty-results-box.c:145
 msgid "Press the New button to create a note."
-msgstr "Sakatu 'Berria' botoia oharra sortzeko."
+msgstr "Sakatu Berria botoia oharra sortzeko."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -364,7 +364,7 @@ msgstr "Oharra"
 #: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
-msgstr "<b>Azken eguneraketa</b> %s"
+msgstr "<b>Azken eguneratzea</b> %s"
 
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
@@ -399,7 +399,7 @@ msgstr "Ireki beste leihoan"
 #. Permanently delete (do not show )
 #: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
-msgstr "Ezabatu betirako"
+msgstr "Ezabatu betiko"
 
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:394
@@ -486,9 +486,6 @@ msgstr "I_rten"
 #~ msgid "Numbered List"
 #~ msgstr "Zenbatutako zerrenda"
 
-#~ msgid "New"
-#~ msgstr "Berria"
-
 #~ msgid "No Notes Found"
 #~ msgstr "Ez da oharrik aurkitu"
 
@@ -498,6 +495,9 @@ msgstr "I_rten"
 #~ msgstr ""
 #~ "Zure oharren koadernoa hutsik dago.\n"
 #~ "Egin klik 'Berria' botoian zure aurreneko oharra sortzeko."
+
+#~ msgid "New"
+#~ msgstr "Berria"
 
 #~ msgid "_Close"
 #~ msgstr "_Itxi"

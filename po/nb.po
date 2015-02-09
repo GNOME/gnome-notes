@@ -1,14 +1,14 @@
 # Norwegian bokmål translation of bijiben.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2013-2014.
+# Kjartan Maraas <kmaraas@gnome.org>, 2013-2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.15.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-13 19:36+0100\n"
-"PO-Revision-Date: 2014-11-13 19:36+0100\n"
+"POT-Creation-Date: 2015-02-09 18:24+0100\n"
+"PO-Revision-Date: 2015-02-09 18:24+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -189,8 +189,8 @@ msgid "No notes"
 msgstr "Ingen notater"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
-msgstr "Trykk på kappen «Ny» å lage et notat."
+msgid "Press the New button to create a note."
+msgstr "Trykk på «Ny»-knappen for å lage et notat."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -396,29 +396,29 @@ msgid "Permanently Delete"
 msgstr "Slett permanent"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Bruk systemets skrift"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Skrift for notat"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Forvalgt farge"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Versjon av notat"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Hovedbok"
 

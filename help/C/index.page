@@ -3,11 +3,13 @@
       type="guide" id="index">
 
   <info>
+    <title type="link" role="trail"><media type="image" its:translate="no"
+    src="figures/hicolor_apps_16x16_bijiben.png"/></title>
     <title type="link">Notes</title>
     <title type="text">Notes</title>
     <revision pkgversion="3.8" date="2013-04-29" status="outdated"/>
     <revision pkgversion="3.10" date="2013-07-23" status="review"/>
-    <revision pkgversion="3.11" date="2014-01-28" status="final"/>
+    <revision pkgversion="3.11" date="2015-02-12" status="final"/>
 
     <credit type="author">
       <name>Pierre-Yves Luyten</name>

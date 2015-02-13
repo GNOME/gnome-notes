@@ -23,6 +23,7 @@ HELP_FILES = \
 
 HELP_MEDIA = \
 	figures/hicolor_apps_48x48_bijiben.png \
+	hicolor_apps_16x16_bijiben.png \
 	figures/notes-3-12.png
 
 HELP_LINGUAS = cs de el es fr hu pt_BR

@@ -259,7 +259,7 @@ biji_notebook_get_mtime (BijiItem *coll)
 static const gchar *
 biji_notebook_get_place (BijiItem *coll)
 {
-  return "Local";
+  return _("Local");
 }
 
 

@@ -498,6 +498,7 @@ biji_memo_provider_constructed (GObject *obj)
 
   e_cal_client_connect (self->priv->source,
                         E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
+			10, /* wait up to 10 seconds until the memo list is connected */
                         NULL, /* cancel */
                         on_client_connected,
                         self);

@@ -3,21 +3,23 @@
 # This file is distributed under the same license as the bijiben package.
 # Dimitris Spingos <dmtrs32@gmail.com>, 2013.
 # Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013, 2014.
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-16 15:54+0000\n"
-"PO-Revision-Date: 2014-11-16 22:06+0200\n"
-"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
-"Language-Team: team@lists.gnome.gr\n"
+"POT-Creation-Date: 2015-02-14 03:55+0000\n"
+"PO-Revision-Date: 2015-02-14 14:50+0200\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"Language-Team: Greek, Modern (1453-) <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
@@ -207,8 +209,9 @@ msgid "No notes"
 msgstr "Δεν υπάρχουν σημειώσεις"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
-msgstr "Πατήστε το κουμπί νέα για τη δημιουργία σημείωσης"
+#| msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
+msgstr "Πατήστε το κουμπί Νέα για τη δημιουργία σημείωσης."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -415,29 +418,29 @@ msgid "Permanently Delete"
 msgstr "Μόνιμη διαγραφή"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Χρήση γραμματοσειράς συστήματος"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Γραμματοσειρά σημείωσης"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Προεπιλεγμένο χρώμα"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Σημείωση έκδοσης"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
 

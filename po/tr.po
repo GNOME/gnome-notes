@@ -4,29 +4,35 @@
 # adamc <ceviriadam@gmail.com>, 2013.
 # Osman Karagöz <osmank3@gmail.com>, 2013, 2014.
 # Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2013, 2014.
-# Muhammet Kara <muhammetk@gmail.com>, 2013, 2014.
+# Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-11 03:55+0000\n"
-"PO-Revision-Date: 2014-12-11 19:49+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-20 09:14+0000\n"
+"PO-Revision-Date: 2015-02-20 15:52+0200\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
-"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr_TR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr "Notlar, sonradan kullanmak üzere basit listeler oluşturmaya izin veren bir düzenleyicidir."
+msgstr ""
+"Notlar, sonradan kullanmak üzere basit listeler oluşturmaya izin veren bir "
+"düzenleyicidir."
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr "ownCloud'u bir depolama konumu ve çevrimiçi düzenleyici olarak kullanmaya izin verir."
+msgstr ""
+"ownCloud'u bir depolama konumu ve çevrimiçi düzenleyici olarak kullanmaya "
+"izin verir."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
 #: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
@@ -104,7 +110,9 @@ msgstr "GNOME için basit not defteri"
 
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
-msgstr "Osman Karagöz <osmank3@gmail.com>"
+msgstr ""
+"Osman Karagöz <osmank3@gmail.com>\n"
+"Muhammet Kara <muhammetk@gmail.com>"
 
 #: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
@@ -265,8 +273,10 @@ msgstr "%s için sonuçlar"
 msgid "New and Recent"
 msgstr "Yeni ve En Son"
 
+#.
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
+#.
 #: ../src/bjb-main-toolbar.c:441
 msgid "_New"
 msgstr "_Yeni"
@@ -298,8 +308,10 @@ msgstr "Boşalt"
 msgid "Untitled"
 msgstr "Başlıksız"
 
+#.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
+#.
 #: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "Yeni Pencerede Aç"
@@ -350,6 +362,7 @@ msgstr "Not"
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
+#.
 #: ../src/bjb-note-view.c:190
 #, c-format
 msgid "<b>Last updated</b> %s"
@@ -440,6 +453,10 @@ msgstr "Bu yıl"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Bilinmeyen"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Yerel"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

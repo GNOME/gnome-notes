@@ -20,5 +20,6 @@ src/bjb-settings.c
 src/bjb-settings-dialog.c
 src/bjb-window-base.c
 src/libbiji/biji-date-time.c
+src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c
 [type: gettext/glade]src/resources/app-menu.ui

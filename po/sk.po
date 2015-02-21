@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-01 15:55+0000\n"
-"PO-Revision-Date: 2015-02-01 22:41+0100\n"
+"POT-Creation-Date: 2015-02-21 03:56+0000\n"
+"PO-Revision-Date: 2015-02-21 14:51+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -475,6 +475,10 @@ msgstr "V tomto roku"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Nevedno kedy"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Miestny"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

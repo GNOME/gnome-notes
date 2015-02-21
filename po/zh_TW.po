@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-31 02:52+0000\n"
-"PO-Revision-Date: 2014-08-31 13:39+0800\n"
+"POT-Creation-Date: 2015-02-20 09:14+0000\n"
+"PO-Revision-Date: 2015-02-21 12:23+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -70,7 +70,6 @@ msgid "Primary notes provider to use for new notes."
 msgstr "新筆記要使用的主要筆記供應處。"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-#| msgid "The primary notebook is the place where are created new notes."
 msgid "The primary notebook is the place where new notes are created."
 msgstr "主要筆記本是新建筆記的地方。"
 
@@ -141,33 +140,47 @@ msgid "Note Color"
 msgstr "筆記顏色"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:365
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "剪下"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:372
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "複製"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:378
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "貼上"
 
-#: ../src/bjb-editor-toolbar.c:393
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "粗體"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "斜體"
 
-#: ../src/bjb-editor-toolbar.c:413
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "删除線"
 
-#: ../src/bjb-editor-toolbar.c:441
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "將選擇區域複製到新的筆記"
 
@@ -176,7 +189,7 @@ msgid "No notes"
 msgstr "沒有筆記"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
 msgstr "按下新增按鈕建立新筆記。"
 
 #: ../src/bjb-empty-results-box.c:167
@@ -251,83 +264,80 @@ msgstr "「%s」的結果"
 msgid "New and Recent"
 msgstr "新增與最近使用"
 
-#: ../src/bjb-main-toolbar.c:438
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
 msgid "_New"
 msgstr "新增(_N)"
 
-#: ../src/bjb-main-toolbar.c:457 ../src/bjb-main-toolbar.c:555
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "選擇區域模式"
 
-#: ../src/bjb-main-toolbar.c:492
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
 msgstr "檢視清單中的筆記和筆記本"
 
-#: ../src/bjb-main-toolbar.c:516
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "以圖示來顯示筆記和筆記本"
 
-#: ../src/bjb-main-toolbar.c:535
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "回收筒"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:574
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "空的"
 
-#: ../src/bjb-main-toolbar.c:656
+#: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
 msgstr "無標題"
 
-#: ../src/bjb-main-toolbar.c:762
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "在新的視窗開啟"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:773
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "復原"
 
-#: ../src/bjb-main-toolbar.c:781
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "取消復原"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:796
-msgid "Bullets"
-msgstr "項目符號"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:803
-msgid "Numbered List"
-msgstr "有序清單"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:819 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "筆記本"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:827
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "寄出這份筆記"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:840 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "移至回收筒"
 
-#: ../src/bjb-main-toolbar.c:900
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "更多選項…"
 
-#: ../src/bjb-main-toolbar.c:923 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "筆記顏色"
 
@@ -385,29 +395,29 @@ msgid "Permanently Delete"
 msgstr "永遠刪除"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "使用系統字型"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "筆記字型"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "預設顏色"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "筆記版本"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:501
 msgid "Primary Book"
 msgstr "主要書籍"
 
@@ -434,6 +444,10 @@ msgstr "今年"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "不明"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "本地端"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
@@ -462,6 +476,12 @@ msgstr "關於(_A)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "離開(_Q)"
+
+#~ msgid "Bullets"
+#~ msgstr "項目符號"
+
+#~ msgid "Numbered List"
+#~ msgstr "有序清單"
 
 #~ msgid "New"
 #~ msgstr "新增"

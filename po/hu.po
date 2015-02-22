@@ -1,16 +1,16 @@
 # Hungarian translation for bijiben.
-# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# Copyright (C) 2013, 2014, 2015 Free Software Foundation, Inc.
 # This file is distributed under the same license as the bijiben package.
 #
-# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014.
+# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014, 2015.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-11 15:55+0000\n"
-"PO-Revision-Date: 2014-12-11 22:08+0100\n"
+"POT-Creation-Date: 2015-02-22 15:55+0000\n"
+"PO-Revision-Date: 2015-02-22 20:45+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -197,7 +197,6 @@ msgid "No notes"
 msgstr "Nincsenek jegyzetek"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Press the new button to create a note."
 msgid "Press the New button to create a note."
 msgstr "Nyomja meg az új gombot egy jegyzet létrehozásához."
 
@@ -454,6 +453,10 @@ msgstr "Ebben az évben"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Ismeretlen"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Helyi"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

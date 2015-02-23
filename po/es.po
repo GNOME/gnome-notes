@@ -2,15 +2,15 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-17 03:55+0000\n"
-"PO-Revision-Date: 2014-12-17 11:50+0100\n"
+"POT-Creation-Date: 2015-02-23 15:54+0000\n"
+"PO-Revision-Date: 2015-02-23 18:50+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -196,7 +196,6 @@ msgid "No notes"
 msgstr "No hay notas"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Press the new button to create a note."
 msgid "Press the New button to create a note."
 msgstr "Pulse el botón «Nueva» para crear una nota."
 
@@ -453,6 +452,10 @@ msgstr "Este año"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Desconocida"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Local"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

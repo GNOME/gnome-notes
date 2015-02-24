@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the bijiben package.
 # Yuri Myasoedov <ymyasoedov@yandex.ru>, 2014.
 # Stas Solovey <whats_up@tut.by>, 2013, 2015.
+# Ivan Komaritsyn <vantu5z@mail.ru>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-30 03:55+0000\n"
-"PO-Revision-Date: 2015-01-30 15:41+0300\n"
-"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"POT-Creation-Date: 2015-02-20 09:14+0000\n"
+"PO-Revision-Date: 2015-02-20 13:55+0300\n"
+"Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -197,7 +198,6 @@ msgid "No notes"
 msgstr "Нет заметок"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Press the new button to create a note."
 msgid "Press the New button to create a note."
 msgstr "Нажмите кнопку Создать, чтобы создать заметку."
 
@@ -455,6 +455,10 @@ msgstr "В этом году"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Неизвестный"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Локальный"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

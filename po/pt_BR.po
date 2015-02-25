@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-29 03:55+0000\n"
-"PO-Revision-Date: 2014-12-29 12:23-0300\n"
+"POT-Creation-Date: 2015-02-25 03:55+0000\n"
+"PO-Revision-Date: 2015-02-25 02:01-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -458,6 +458,10 @@ msgstr "Este ano"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Desconhecido"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Local"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

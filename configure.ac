@@ -62,7 +62,7 @@ APPSTREAM_XML
 # version, modules
 GLIB_REQUIRED_VERSION=2.28
 GTK_REQUIRED_VERSION=3.11.4
-EDSEVO_REQUIRED_VERSION=3.13.90
+EDS_REQUIRED_VERSION=3.13.90
 
 
 PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-sparql-1.0"],
@@ -70,8 +70,9 @@ PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-spar
 ])
 
 PKG_CHECK_MODULES(BIJIBEN,
-                  [ evolution-calendar-3.0 >= $EDSEVO_REQUIRED_VERSION
-		    evolution-data-server-1.2 >= $EDSEVO_REQUIRED_VERSION
+                  [ libecal-1.2 >= $EDS_REQUIRED_VERSION
+		    libedataserver-1.2 >= $EDS_REQUIRED_VERSION
+		    libedataserverui-1.2 >= $EDS_REQUIRED_VERSION
                     gio-unix-2.0
                     glib-2.0 >= $GLIB_REQUIRED_VERSION
                     goa-1.0

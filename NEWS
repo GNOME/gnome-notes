@@ -1,3 +1,27 @@
+Overview of changes in 3.15.91
+==============================
+
+* Misc
+  Settings Dialog : pack providers
+  Build : Translate GSettings directly
+  Drop Dependency on Evolution
+
+* Translations
+  Brazilian Portuguese
+  Chinese (Taiwan)
+  French
+  Greek
+  Hebrew
+  Hungarian
+  Lithuanian
+  Russian
+  Slovak
+  Slovenian
+  Spanish
+  Turkish
+  Ukrainian
+
+
 Overview of changes in 3.15.90
 ==============================
 

@@ -443,7 +443,7 @@ bjb_settings_dialog_constructed (GObject *object)
   BjbSettingsDialog          *self;
   GtkDialog                  *dialog; //also self
   BjbSettingsDialogPrivate   *priv;
-  GtkWidget                  *area, *grid, *hbox, *page;
+  GtkWidget                  *area, *grid, *hbox, *page, *scroll, *viewport;
   GtkWindow                  *window;
   GApplication               *app;
 
@@ -498,7 +498,11 @@ bjb_settings_dialog_constructed (GObject *object)
   gtk_stack_add_titled (priv->stack, page, "edition", _("Note Edition"));
 
   page = create_page_primary (self);
-  gtk_stack_add_titled (priv->stack, page, "provider", _("Primary Book"));
+  scroll = gtk_scrolled_window_new (NULL, NULL);
+  viewport = gtk_viewport_new (NULL, NULL);
+  gtk_container_add (GTK_CONTAINER (viewport), page);
+  gtk_container_add (GTK_CONTAINER (scroll), viewport);
+  gtk_stack_add_titled (priv->stack, scroll, "provider", _("Primary Book"));
 
   gtk_widget_show_all (area);
 }

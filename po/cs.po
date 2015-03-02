@@ -1,6 +1,7 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
+#
 # Marek Černocký <marek@manet.cz>, 2013, 2014, 2015.
 #
 msgid ""
@@ -8,10 +9,10 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-07 03:54+0000\n"
-"PO-Revision-Date: 2015-01-07 08:13+0100\n"
+"POT-Creation-Date: 2015-03-02 15:55+0000\n"
+"PO-Revision-Date: 2015-03-02 21:40+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
-"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,60 +47,60 @@ msgstr "Vylepujte si poznámky, štítkujte soubory!"
 msgid "Note-taker"
 msgstr "Poznámky"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Vlastní písmo"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Název písma nastavený zde se bude používat jako písmo při zobrazování "
 "poznámek."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "Zda používat systémové písmo s pevnou šířkou"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Barva nové poznámky"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Název barvy nastavený zde se bude používat jako barva, když se vytvoří nová "
 "poznámka."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Hlavní sešit k dispozici pro nové poznámky."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Hlavní sešit je místem, kde jsou vytvářeny nové poznámky."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Okno maximalizováno"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Maximalizovaný stav okna."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Velikost okna"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Velikost okna (šířka a výška)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Poloha okna"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Poloha okna (X a Y)."
 
@@ -425,7 +426,7 @@ msgstr "Předvolby"
 msgid "Note Edition"
 msgstr "Vzhled poznámky"
 
-#: ../src/bjb-settings-dialog.c:501
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
 msgstr "Hlavní sešit"
 
@@ -452,6 +453,10 @@ msgstr "tento rok"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "neznámo kdy"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Místní"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

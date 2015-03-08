@@ -8,10 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-25 03:55+0000\n"
-"PO-Revision-Date: 2015-01-25 17:19+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-25 15:55+0000\n"
+"PO-Revision-Date: 2015-02-25 23:31+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: svenska <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -23,9 +22,7 @@ msgstr ""
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr ""
-"Anteckningar är en redigerare som låter dig göra enkla listor för senare "
-"bruk."
+msgstr "Anteckningar är en redigerare som låter dig göra enkla listor för senare bruk."
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
@@ -54,9 +51,7 @@ msgstr "Anpassat typsnitt"
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:2
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr ""
-"Typsnittet som anges här kommer att användas som typsnitt när anteckningar "
-"visas."
+msgstr "Typsnittet som anges här kommer att användas som typsnitt när anteckningar visas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:3
 msgid "Whether to use the system monospace font"
@@ -67,11 +62,8 @@ msgid "New notes color."
 msgstr "Färg för nya anteckningar."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:5
-msgid ""
-"The color name set here will be used as the color when creating new notes."
-msgstr ""
-"Färgen som anges här kommer att användas som färg när nya anteckningar "
-"skapas."
+msgid "The color name set here will be used as the color when creating new notes."
+msgstr "Färgen som anges här kommer att användas som färg när nya anteckningar skapas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.in.h:6
 msgid "Primary notes provider to use for new notes."
@@ -458,6 +450,10 @@ msgstr "I år"
 msgid "Unknown"
 msgstr "Okänd"
 
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Lokal"
+
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Lokal lagring"
@@ -485,3 +481,4 @@ msgstr "_Om"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Avsluta"
+

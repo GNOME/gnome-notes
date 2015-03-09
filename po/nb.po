@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben 3.15.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-09 18:24+0100\n"
-"PO-Revision-Date: 2015-02-09 18:24+0100\n"
+"POT-Creation-Date: 2015-03-09 19:34+0100\n"
+"PO-Revision-Date: 2015-03-09 19:34+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -43,57 +43,57 @@ msgstr "Legg ut notater, merk filer!"
 msgid "Note-taker"
 msgstr "Notater"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Egendefinert skrift"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Skriftnavnet som settes her vil bli brukt som skrift når notater vises."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "Hvorvidt systemets enhetlige skrift skal brukes"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Ny farge for notater."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Fargenavnet som settes her vil bli brukt når du lager nye notater."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Primær notattilbyder som skal brukes for nye notater."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Primær notisblokk er stedet hvor nye notater lages."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Vindu maksimert"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Maksimert tilstand for vindu."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Vindustørrelse"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Vindustørrelse (bredde og høyde)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Vindusposisjon"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Vindusposisjon (x og y)."
 
@@ -418,7 +418,7 @@ msgstr "Brukervalg"
 msgid "Note Edition"
 msgstr "Versjon av notat"
 
-#: ../src/bjb-settings-dialog.c:501
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
 msgstr "Hovedbok"
 
@@ -445,6 +445,10 @@ msgstr "Dette året"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Ukjent"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Lokal"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"

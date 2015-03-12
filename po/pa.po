@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# A S Alam <aalam@users.sf.net>, 2013, 2014.
+# A S Alam <aalam@users.sf.net>, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-21 02:51+0000\n"
-"PO-Revision-Date: 2014-09-21 07:54-0500\n"
+"POT-Creation-Date: 2015-03-07 15:55+0000\n"
+"PO-Revision-Date: 2015-03-12 06:46-0500\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "Language: pa\n"
@@ -44,60 +44,59 @@ msgstr "ਨੋਟਿਸ, ਟੈਗ ਫਾਇਲਾਂ ਪੋਸਟ ਕਰੋ!"
 msgid "Note-taker"
 msgstr "ਨੋਟ-ਕਰਤਾ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "ਪਸੰਦੀਦਾ ਫੋਂਟ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "ਇੱਥੇ ਸੈੱਟ ਕੀਤਾ ਫੋਂਟ ਨਾਂ ਨੋਟਿਸ ਵੇਖਾਉਣ ਦੇ ਦੌਰਾਨ ਫੋਂਟ ਦੇ ਵਜੋਂ ਵਰਤਿਆ ਜਾਵੇਗਾ।"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "ਕੀ ਸਿਸਟਮ ਮੋਨੋ-ਸਪੇਸ ਫੋਂਟ ਵਰਤਣੇ ਹਨ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "ਨਵਾਂ ਨੋਟ ਰੰਗ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "ਇੱਥੇ ਸੈੱਟ ਕੀਤੇ ਰੰਗ ਨਾਂ ਨੂੰ ਰੰਗ ਵਜੋਂ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ, ਜਦੋਂ ਨਵੇਂ ਨੋਟਿਸ ਬਣਾਏ "
 "ਜਾਂਦੇ ਹਨ।"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "ਪ੍ਰਾਇਮਰੀ ਨੋਟਿਸ ਨਵੇਂ ਨੋਟਿਸਾਂ ਲਈ ਵਰਤਣ ਲਈ ਹਨ।"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-#| msgid "The primary notebook is the place where are created new notes."
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr "ਪ੍ਰਾਇਮਰੀ ਨੋਟਬੁੱਕ ਥਾਂ ਹੈ, ਜਿੱਥੇ ਨਵੇਂ ਨੋਟਿਸ ਬਣਾਏ ਜਾਂਦੇ ਹਨ।"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "ਵਿੰਡੋ ਵੱਧੋ-ਵੱਧ ਕੀਤੀ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "ਵਿੰਡੋ ਵੱਧੋ-ਵੱਧ ਆਕਾਰ ਸਥਿਤੀ ਹੈ।"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "ਵਿੰਡੋ ਆਕਾਰ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "ਵਿੰਡੋ ਆਕਾਰ (ਚੌੜਾਈ ਅਤੇ ਉਚਾਈ) ਹੈ।"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "ਵਿੰਡੋ ਸਥਿਤੀ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "ਵਿੰਡੋ ਸਥਿਤੀ (x ਅਤੇ y) ਹੈ।"
 
@@ -117,7 +116,6 @@ msgid "Show the application's version"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਵਰਜਨ ਵੇਖੋ"
 
 #: ../src/bjb-bijiben.c:456
-#| msgid "Copy selection to a new note"
 msgid "Create a new note"
 msgstr "ਨਵਾਂ ਨੋਟ ਬਣਾਓ"
 
@@ -148,44 +146,57 @@ msgid "Note Color"
 msgstr "ਨੋਟ ਰੰਗ"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:365
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "ਕੱਟੋ"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:372
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "ਕਾਪੀ ਕਰੋ"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:378
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "ਚੇਪੋ"
 
-#: ../src/bjb-editor-toolbar.c:393
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "ਗੂੜ੍ਹੇ"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "ਤਿਰਛੇ"
 
-#: ../src/bjb-editor-toolbar.c:413
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "ਵਿੰਨ੍ਹੋ"
 
-#: ../src/bjb-editor-toolbar.c:441
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "ਚੋਣ ਨੂੰ ਨਵੇਂ ਨੋਟ ਲਈ ਕਾਪੀ ਕਰੋ"
 
 #: ../src/bjb-empty-results-box.c:101
-#| msgid "Notes"
 msgid "No notes"
 msgstr "ਕੋਈ ਨੋਟ ਨਹੀਂ"
 
 #: ../src/bjb-empty-results-box.c:145
-#| msgid "Enter a name to create a notebook"
-msgid "Press the new button to create a note."
+#| msgid "Press the new button to create a note."
+msgid "Press the New button to create a note."
 msgstr "ਨਵਾਂ ਨੋਟ ਬਣਾਉਣ ਲਈ ਨਵਾਂ ਬਟਨ ਦੱਬੋ।"
 
 #: ../src/bjb-empty-results-box.c:167
@@ -300,52 +311,41 @@ msgstr "ਬਿਨਾਂ ਨਾਂ"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:768
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਖੋਲ੍ਹੋ"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:779
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "ਵਾਪਸ"
 
-#: ../src/bjb-main-toolbar.c:787
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "ਪਰਤਾਓ"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:802
-msgid "Bullets"
-msgstr "ਬਿੰਦੀਆਂ"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:809
-msgid "Numbered List"
-msgstr "ਅੰਕਾਂ ਵਾਲੀ ਸੂਚੀ"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:825 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "ਨੋਟਬੁੱਕ"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:833
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "ਇਹ ਨੋਟ ਈਮੇਲ ਕਰੋ"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:846 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "ਰੱਦੀ ਵਿੱਚ ਭੇਜੋ"
 
-#: ../src/bjb-main-toolbar.c:906
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "...ਹੋਰ ਚੋਣਾਂ"
 
-#: ../src/bjb-main-toolbar.c:929 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "ਨੋਟ ਰੰਗ"
 
@@ -364,7 +364,6 @@ msgstr "ਨੋਟ"
 #.
 #: ../src/bjb-note-view.c:190
 #, c-format
-#| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>ਆਖਰੀ ਅੱਪਡੇਟ</b> %s"
 
@@ -404,29 +403,29 @@ msgid "Permanently Delete"
 msgstr "ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਓ"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "ਸਿਸਟਮ ਫੋਂਟ ਵਰਤੋਂ"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "ਨੋਟ ਫੋਂਟ"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "ਮੂਲ ਫੋਂਟ"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "ਮੇਰੀ ਪਸੰਦ"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "ਨੋਟ ਐਡੀਸ਼ਨ"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
 msgstr "ਪ੍ਰਾਇਮਰੀ ਬੁੱਕ"
 
@@ -453,6 +452,10 @@ msgstr "ਇਹ ਸਾਲ"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "ਲੋਕਲ"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
@@ -481,6 +484,12 @@ msgstr "ਇਸ ਬਾਰੇ(_A)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "ਬੰਦ ਕਰੋ(_Q)"
+
+#~ msgid "Bullets"
+#~ msgstr "ਬਿੰਦੀਆਂ"
+
+#~ msgid "Numbered List"
+#~ msgstr "ਅੰਕਾਂ ਵਾਲੀ ਸੂਚੀ"
 
 #~ msgid "No Notes Found"
 #~ msgstr "ਕੋਈ ਨੋਟਿਸ ਨਹੀਂ ਲੱਭਿਆ"

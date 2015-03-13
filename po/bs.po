@@ -1,0 +1,494 @@
+# Bosnian translation for bosnianuniversetranslation
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the bosnianuniversetranslation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bosnianuniversetranslation\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-27 03:55+0000\n"
+"PO-Revision-Date: 2015-02-28 14:59+0100\n"
+"Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Launchpad-Export-Date: 2015-02-15 06:17+0000\n"
+
+#: ../data/bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Notes je uređivač koji vam omogućava kreiranje jednostavnih listi za kasniju "
+"upotrebu."
+
+#: ../data/bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Dopušta korištenje ownCloud-a kao opcije za pohranu podataka i online "
+"uređivanje."
+
+#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "Napomene"
+
+#: ../data/bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "napomene;podsjetnik;"
+
+#: ../data/bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Piši napomene, označavaj datoteke!"
+
+#: ../data/bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Pisanje napomena"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+msgid "Custom Font"
+msgstr "Prilagođena slova"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"Ime vrste slova postavljeno ovdje će biti korišteno kao slova pri "
+"prikazivanju zabilješki."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Bilo da koristi sistem monospace garniture slova."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+msgid "New notes color."
+msgstr "Nova boja zabilješke."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"Ime boje  postavljeno ovdje će biti korišteno kao boja pri prikazivanju "
+"zabilješki."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "Primarni provajder zabilješki za korištenje za nove zabilješke."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+msgid "The primary notebook is the place where new notes are created."
+msgstr "Primarna bilježnica je mjesto gdje su sve zabilješke kreirane."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+msgid "Window maximized"
+msgstr "Maksimalno uvećan prozor"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+msgid "Window maximized state."
+msgstr "Stanje uvećanog prozora."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+msgid "Window size"
+msgstr "Veličina prozora"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+msgid "Window size (width and height)."
+msgstr "Veličina prozora(širina  i visina)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+msgid "Window position"
+msgstr "Pozicija prozora"
+
+#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+msgid "Window position (x and y)."
+msgstr "Pozicija prozora (x i y)."
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Jednostavne napomene za GNOME"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr ""
+"   Ajla Sukrija https://launchpad.net/~asukrija2\n"
+"  Kenan Dervišević https://launchpad.net/~kenan3008\n"
+"  Samir Ribić https://launchpad.net/~megaribi"
+
+#: ../src/bjb-bijiben.c:454
+msgid "Show the application's version"
+msgstr "Ispisuje podatke o izdanju programa"
+
+#: ../src/bjb-bijiben.c:456
+msgid "Create a new note"
+msgstr "Napravi novu bilješku"
+
+#: ../src/bjb-bijiben.c:458
+msgid "[FILE...]"
+msgstr "[DATOTEKA...]"
+
+#: ../src/bjb-bijiben.c:465
+msgid "Take notes and export them everywhere."
+msgstr "Uzima zabilješke i prenosi ih svugdje."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command linije
+#: ../src/bjb-bijiben.c:476
+msgid "Could not parse arguments"
+msgstr "Nije moguće razdvojiti argumente"
+
+#: ../src/bjb-bijiben.c:485
+msgid "GNOME Notes"
+msgstr "GNOME Bilješke"
+
+#: ../src/bjb-bijiben.c:498
+msgid "Could not register the application"
+msgstr "Ne mogu registrovati aplikaciju"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Boja napomene"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Cut"
+msgstr "Isijeci"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:388
+msgid "Copy"
+msgstr "Kopiraj"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:394
+msgid "Paste"
+msgstr "Umetni"
+
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "*"
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
+msgid "Bold"
+msgstr "Podebljano"
+
+#: ../src/bjb-editor-toolbar.c:436
+msgid "Italic"
+msgstr "Kurzivno"
+
+#: ../src/bjb-editor-toolbar.c:446
+msgid "Strike"
+msgstr "Precrtano"
+
+#: ../src/bjb-editor-toolbar.c:474
+msgid "Copy selection to a new note"
+msgstr "Kopiraj odabir u novu napomenu"
+
+#: ../src/bjb-empty-results-box.c:101
+msgid "No notes"
+msgstr "Nema zabilješki"
+
+#: ../src/bjb-empty-results-box.c:145
+msgid "Press the New button to create a note."
+msgstr "Pritisnute novu tipku da kreirate zabilješku."
+
+#: ../src/bjb-empty-results-box.c:167
+msgid "Oops"
+msgstr "Ups"
+
+#: ../src/bjb-empty-results-box.c:173
+msgid "Please install 'Tracker' then restart the application."
+msgstr ""
+"Molimo vas da instalirate 'Tracker', a da zatim ponovo pokrenete aplikaciju."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "Prilagođena lokacija"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "Uvezi bilješke"
+
+#: ../src/bjb-import-dialog.c:411
+msgid "Import"
+msgstr "Uvezi"
+
+#: ../src/bjb-import-dialog.c:422
+msgid "Select import location"
+msgstr "Odaberite lokaciju za uvoz"
+
+#: ../src/bjb-import-dialog.c:443
+msgid "Tomboy application"
+msgstr "Tomboy aplikacija"
+
+#: ../src/bjb-import-dialog.c:449
+msgid "Gnote application"
+msgstr "Gnote aplikacija"
+
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+msgid "Load More"
+msgstr "Učitaj još"
+
+#: ../src/bjb-load-more-button.c:98
+msgid "Loading..."
+msgstr "Učitavam..."
+
+#: ../src/bjb-main-toolbar.c:142
+msgid "Click on items to select them"
+msgstr "Kliknite na stavke da ih označite"
+
+#: ../src/bjb-main-toolbar.c:144
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d odabran"
+msgstr[1] "%d odabrana"
+msgstr[2] "%d odabrano"
+
+#: ../src/bjb-main-toolbar.c:264
+msgid "Search note titles, content and notebooks"
+msgstr "Traži naslov zabilješjke, sadržaj i bilježnicu"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:306
+msgid "Cancel"
+msgstr "Odustani"
+
+#: ../src/bjb-main-toolbar.c:320
+msgid "Exit selection mode"
+msgstr "Zatvori režim izbora"
+
+#: ../src/bjb-main-toolbar.c:350
+#, c-format
+msgid "Results for %s"
+msgstr "Rezultati za %s"
+
+#: ../src/bjb-main-toolbar.c:353
+msgid "New and Recent"
+msgstr "Novo i Nedavno"
+
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "_Novi"
+
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
+msgid "Selection mode"
+msgstr "Režim izbora"
+
+#: ../src/bjb-main-toolbar.c:495
+msgid "View notes and notebooks in a list"
+msgstr "Pogledaj zabilješke i bilježnice u listi"
+
+#: ../src/bjb-main-toolbar.c:519
+msgid "View notes and notebooks in a grid"
+msgstr "Pogledaj zabilješke i bilježnice u mreži"
+
+#: ../src/bjb-main-toolbar.c:538
+msgid "Trash"
+msgstr "Smeće"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
+msgid "Empty"
+msgstr "Izprazni"
+
+#: ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Neimenovano"
+
+#.
+#. * Opijen the current note in a new window
+#. * in order to bje able to seje it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
+msgid "Open in New Window"
+msgstr "Otvori u novom prozoru"
+
+#. Undo Rijedo separator
+#: ../src/bjb-main-toolbar.c:768
+msgid "Undo"
+msgstr "Poništi"
+
+#: ../src/bjb-main-toolbar.c:776
+msgid "Redo"
+msgstr "Ponovi"
+
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
+msgid "Notebooks"
+msgstr "Bilježnice"
+
+#. Share
+#: ../src/bjb-main-toolbar.c:799
+msgid "Email this Note"
+msgstr "Počalji preko e-maila ovu zabilješku"
+
+#. Delete Note
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "Baci u smeće"
+
+#: ../src/bjb-main-toolbar.c:872
+msgid "More options…"
+msgstr "Više opcija…"
+
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
+msgid "Note color"
+msgstr "Boja napomene"
+
+#: ../src/bjb-main-view.c:516
+msgid "Notebook"
+msgstr "Bilježnica"
+
+#: ../src/bjb-main-view.c:519
+msgid "Note"
+msgstr "Bilješka"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in lift to right language
+#. * right to lift languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Zadnji put  unaprijeđeno</b> %s"
+
+#: ../src/bjb-organize-dialog.c:396
+msgid "Enter a name to create a notebook"
+msgstr "Upiši ime da kreiraš bilježnicu"
+
+#: ../src/bjb-organize-dialog.c:406
+msgid "New notebook"
+msgstr "Nova bilježnica"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Otkaži"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "U _redu"
+
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Restore"
+msgstr "Obnovi"
+
+#: ../src/bjb-selection-toolbar.c:403
+msgid "Share note"
+msgstr "Podijeli napomenu"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:409
+msgid "Open in another window"
+msgstr "Otvori u novom prozoru"
+
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
+msgid "Permanently Delete"
+msgstr "Uništi trajno"
+
+#. Usi System Font
+#: ../src/bjb-settings-dialog.c:394
+msgid "Use System Font"
+msgstr "Koristi sistemski font"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:408
+msgid "Note Font"
+msgstr "Font napomene"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:420
+msgid "Default Color"
+msgstr "Podrazumijevana boja"
+
+#: ../src/bjb-settings-dialog.c:466
+msgid "Preferences"
+msgstr "Postavke"
+
+#: ../src/bjb-settings-dialog.c:498
+msgid "Note Edition"
+msgstr "Izdanje napomene"
+
+#: ../src/bjb-settings-dialog.c:501
+msgid "Primary Book"
+msgstr "Glavna knjiga"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Danas"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Jučer"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Ove sedmice"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Ovog mjeseca"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Ove godine"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Lokalno"
+
+#: ../src/libbiji/provider/biji-local-provider.c:363
+msgid "Local storage"
+msgstr "Lokalna pohrana podataka"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_Import Notes"
+msgstr "_Uvoz napomena"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "_Pogledaj Smeće"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Postavke"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_Help"
+msgstr "Po_moć"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "_O programu"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Izađi"

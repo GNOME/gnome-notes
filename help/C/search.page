@@ -14,7 +14,7 @@
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
       <email its:translate="no">kittykat3756@gmail.com</email>
-      <years>2013, 3014</years>
+      <years>2013, 2014</years>
     </credit>
     <credit type="editor">
       <name>Shobha Tyagi</name>
@@ -39,8 +39,8 @@
 
   <title>Find a note</title>
 
-  <p>You can search your note in the <gui>New and Recent</gui> view in
-  <app>Notes</app> or find them from your
+  <p>You can search your notes in the <gui>New and Recent</gui> view in
+  <app>Notes</app> or find notes from your
   <gui href="help:gnome-help/shell-terminology">Activities</gui> overview.</p>
 
   <steps>

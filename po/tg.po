@@ -1,15 +1,15 @@
 # Tajik translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Victor Ibragimov <victor.ibragimov@gmail.com>, 2013.
+# Victor Ibragimov <victor.ibragimov@gmail.com>, 2013, 2014, 2015
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-19 03:54+0000\n"
-"PO-Revision-Date: 2014-02-20 14:27+0500\n"
+"POT-Creation-Date: 2015-04-07 02:58+0000\n"
+"PO-Revision-Date: 2015-04-07 10:38+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik <tg@li.org>\n"
 "Language: tg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -32,7 +32,7 @@ msgstr ""
 "муҳаррири онлайн истифода баред."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:17
+#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Ёддоштҳо"
 
@@ -48,59 +48,59 @@ msgstr "Ёддоштҳоро фиристонед, файлҳоро барчас
 msgid "Note-taker"
 msgstr "Ёддоштнавис"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Ранги фармоишӣ"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Номи шрифти дар ин ҷо танзимшуда барои намоиши ёддоштҳо истифода мешавад."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "Оё шрифти якфосилавии система истифода шавад"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Ранги ёддошти нав."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Номи ранги дар ин ҷо танзимшуда барои эҷод кардани ёддоштҳои нав истифода "
 "мешавад."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Таъминкунандаи ёддоштҳои асосӣ барои ёддоштҳои нав."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
+msgid "The primary notebook is the place where new notes are created."
 msgstr "Дафтари асосӣ барои эҷод кардани ёддоштҳои нав истифода мешавад."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Равзана дар ҳадди аксар"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Вазъияти равзана дар ҳадди аксар"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Андозаи равзана"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Андозаи равзана (бар ва баландӣ)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Мавқеи равзана"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Мавқеи равзана (x ва y)."
 
@@ -112,32 +112,33 @@ msgstr "Дафтари ёддоштҳои оддӣ барои GNOME"
 msgid "translator-credits"
 msgstr "Victor Ibragimov"
 
-#: ../src/bjb-bijiben.c:387
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:454
 msgid "Show the application's version"
 msgstr "Намоиш додани версияи барнома"
 
-#: ../src/bjb-bijiben.c:389
+#: ../src/bjb-bijiben.c:456
+msgid "Create a new note"
+msgstr "Эҷод кардани ёддошти нав"
+
+#: ../src/bjb-bijiben.c:458
 msgid "[FILE...]"
 msgstr "[ФАЙЛ...]"
 
-#: ../src/bjb-bijiben.c:396
+#: ../src/bjb-bijiben.c:465
 msgid "Take notes and export them everywhere."
 msgstr "Ёддоштҳоро қайд кунед ва онҳоро ба ҷои дилхоҳ гузаред."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:476
 msgid "Could not parse arguments"
 msgstr "Аргументҳо таҷзия намешванд"
 
-#: ../src/bjb-bijiben.c:414
-#| msgid "Notes"
+#: ../src/bjb-bijiben.c:485
 msgid "GNOME Notes"
 msgstr "Ёддоштҳои GNOME"
 
-#: ../src/bjb-bijiben.c:424
-#| msgid "Gnote application"
+#: ../src/bjb-bijiben.c:498
 msgid "Could not register the application"
 msgstr "Барномаи қайд карда нашуд"
 
@@ -146,47 +147,57 @@ msgid "Note Color"
 msgstr "Ранги ёддошт"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:374
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "Буридан"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:381
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "Нусха бардоштан"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:388
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "Гузоштан"
 
-#: ../src/bjb-editor-toolbar.c:403
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "Ғафс"
 
-#: ../src/bjb-editor-toolbar.c:414
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "Хам"
 
-#: ../src/bjb-editor-toolbar.c:425
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "Кур"
 
-#: ../src/bjb-editor-toolbar.c:457
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "Нусха бардоштани интихоб ба ёддошти нав"
 
 #: ../src/bjb-empty-results-box.c:101
-msgid "No Notes Found"
-msgstr "Ягон ёддошт ёфт нашуд"
+msgid "No notes"
+msgstr "Ёддошт нест"
 
 #: ../src/bjb-empty-results-box.c:145
-msgid ""
-"Your notes notebook is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"Дафтари ёддоштҳои шумо холӣ аст.\n"
-"Барои вориди ёддошти аввалин, тугмаи \"Нав\"-ро зер кунед."
+msgid "Press the New button to create a note."
+msgstr "Барои эҷод кардани ёддошт, тугмаи \"Нав\"-ро зер кунед."
 
 #: ../src/bjb-empty-results-box.c:167
 msgid "Oops"
@@ -205,23 +216,19 @@ msgstr "Ҷойгиршавии фармоишӣ"
 msgid "Import Notes"
 msgstr "Ворид кардани ёддоштҳо"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Бекор кардан"
-
-#: ../src/bjb-import-dialog.c:409
+#: ../src/bjb-import-dialog.c:411
 msgid "Import"
 msgstr "Воридот"
 
-#: ../src/bjb-import-dialog.c:420
+#: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
 msgstr "Интихоби ҷойгиршавии воридот"
 
-#: ../src/bjb-import-dialog.c:441
+#: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
 msgstr "Барномаи Tomboy"
 
-#: ../src/bjb-import-dialog.c:447
+#: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
 msgstr "Барномаи Gnote"
 
@@ -249,170 +256,177 @@ msgid "Search note titles, content and notebooks"
 msgstr "Ҷустуҷӯи сарлавҳаҳои ёддоштҳо, мӯҳтаво ва дафтарҳо"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:303
+#: ../src/bjb-main-toolbar.c:306
 msgid "Cancel"
 msgstr "Бекор кардан"
 
-#: ../src/bjb-main-toolbar.c:317
+#: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
 msgstr "Хуруҷи ҳолати интихоб"
 
-#: ../src/bjb-main-toolbar.c:347
+#: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
 msgstr "Натиҷаҳои %s"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
 msgstr "Нав ва охирин"
 
-#: ../src/bjb-main-toolbar.c:435
-msgid "New"
-msgstr "Нав"
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "_Нав"
 
-#: ../src/bjb-main-toolbar.c:453 ../src/bjb-main-toolbar.c:551
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Ҳолати интихоб"
 
-#: ../src/bjb-main-toolbar.c:488
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
 msgstr "Намоиши ёддоштҳо ва дафтарҳо дар рӯйхат"
 
-#: ../src/bjb-main-toolbar.c:512
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "Намоиши ёддоштҳо ва дафтарҳо дар тӯр"
 
-#: ../src/bjb-main-toolbar.c:531
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "Сабад"
 
 #. Add Empty-Bin
-#: ../src/bjb-main-toolbar.c:568
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Холӣ кардан"
 
-#: ../src/bjb-main-toolbar.c:647
+#: ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
 msgstr "Беном"
 
-#: ../src/bjb-main-toolbar.c:755
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "Кушодан дар равзанаи нав"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:766
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "Ботил сохтан"
 
-#: ../src/bjb-main-toolbar.c:774
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "Дубора анҷом додан"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:789
-msgid "Bullets"
-msgstr "Нишонҳо"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:796
-msgid "Numbered List"
-msgstr "Рӯйхати рақамдор"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Дафтарҳо"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:820
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "Фиристодани ин паём бо почтаи электронӣ"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:833 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Интиқол ба сабад"
 
-#: ../src/bjb-main-toolbar.c:892
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "Имконоти бештар..."
 
-#: ../src/bjb-main-toolbar.c:914 ../src/bjb-selection-toolbar.c:396
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "Ранги ёддошт"
 
-#: ../src/bjb-main-view.c:486
+#: ../src/bjb-main-view.c:516
 msgid "Notebook"
 msgstr "Дафтар"
 
-#: ../src/bjb-main-view.c:489
+#: ../src/bjb-main-view.c:519
 msgid "Note"
 msgstr "Ёддошт"
 
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-msgid "Last updated"
-msgstr "Навсозии охирин"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:190
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Навсозии охирин</b> %s"
 
-#: ../src/bjb-organize-dialog.c:399
+#: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "Номеро барои эҷод кардани дафтар ворид кунед."
 
-#: ../src/bjb-organize-dialog.c:409
+#: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "Дафтари нав"
 
-#. Response
-#: ../src/bjb-organize-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "_Пӯшидан"
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_Бекор кардан"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
 msgstr "_OK"
 
-#. Restore
-#: ../src/bjb-selection-toolbar.c:390
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
 msgid "Restore"
 msgstr "Барқарор кардан"
 
-#: ../src/bjb-selection-toolbar.c:406
+#: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
 msgstr "Мубодила кардани ёддошт"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:410
+#: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
 msgstr "Кушодан дар равзанаи дигар"
 
-#. Permanently delete
-#: ../src/bjb-selection-toolbar.c:422
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
 msgid "Permanently Delete"
 msgstr "Бебозгашт нест кардан"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Истифодаи шрифти системавӣ"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Шрифти ёддошт"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Ранги пешфарз"
 
-#: ../src/bjb-settings-dialog.c:493
+#: ../src/bjb-settings-dialog.c:466
+msgid "Preferences"
+msgstr "Бартариҳо"
+
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Тавзеҳи нашр"
 
-#: ../src/bjb-settings-dialog.c:496
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
 msgstr "Китоби асосӣ"
 
@@ -440,7 +454,11 @@ msgstr "Ин сол"
 msgid "Unknown"
 msgstr "Номаълум"
 
-#: ../src/libbiji/provider/biji-local-provider.c:355
+#: ../src/libbiji/biji-notebook.c:262
+msgid "Local"
+msgstr "Маҳаллӣ"
+
+#: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Захирагоҳи маҳаллӣ"
 
@@ -468,6 +486,21 @@ msgstr "_Дар бораи барнома"
 msgid "_Quit"
 msgstr "_Хуруҷ"
 
+#~ msgid "No Notes Found"
+#~ msgstr "Ягон ёддошт ёфт нашуд"
+
+#~ msgid "New"
+#~ msgstr "Нав"
+
+#~ msgid "Bullets"
+#~ msgstr "Нишонҳо"
+
+#~ msgid "Numbered List"
+#~ msgstr "Рӯйхати рақамдор"
+
+#~ msgid "_Close"
+#~ msgstr "_Пӯшидан"
+
 #~ msgid "No result found for this research."
 #~ msgstr "Барои ин пажӯҳиш ягон натиҷа ёфт нашуд."
 
@@ -494,6 +527,3 @@ msgstr "_Хуруҷ"
 
 #~ msgid "Done"
 #~ msgstr "Тайёр"
-
-#~ msgid "Preferences"
-#~ msgstr "Бартариҳо"

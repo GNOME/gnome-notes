@@ -828,6 +828,11 @@ on_info_queried (GObject *source_object,
   {
     g_warning ("Check for Info : error %s", error->message);
     g_error_free (error);
+
+    /* Something went wrong, callback and free memory
+       & leave tracker alone */
+    if (finisher->info_cb != NULL)
+      finisher->info_cb (retval, finisher->user_data);
     biji_tracker_finisher_free (finisher);
     return;
   }

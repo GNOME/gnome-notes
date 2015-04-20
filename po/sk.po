@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-21 03:56+0000\n"
-"PO-Revision-Date: 2015-02-21 14:51+0100\n"
+"POT-Creation-Date: 2015-04-20 02:59+0000\n"
+"PO-Revision-Date: 2015-04-20 09:33+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -46,59 +46,59 @@ msgstr "Zapíšte si poznámky, označte súbory!"
 msgid "Note-taker"
 msgstr "Záznam poznámok"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Vlastné písmo"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Názov písma, ktorý je tu nastavený, sa použije ako písmo zobrazujúce poznámky."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "Či sa má použiť systémové písmo typu monospace"
 
 # label
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Farba nových poznámok."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid "The color name set here will be used as the color when creating new notes."
 msgstr ""
-"Názov farby, ktorý je tu nastavený, sa použije ako faraba pri vytváraní nových "
+"Názov farby, ktorý je tu nastavený, sa použije ako farba pri vytváraní nových "
 "poznámok."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Hlavný poskytovateľ poznámok pre nové poznámky."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Hlavný zápisník je miesto, kam sa budú vytvárať nové poznámky."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Maximalizovanie okna"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Stav maximalizácie okna."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Veľkosť okna"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Veľkosť okna (šírka a výška)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Pozícia okna"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Pozícia okna (súradnice X a Y)"
 
@@ -355,7 +355,7 @@ msgstr "Odoslať túto poznámku e-mailom"
 #. Trash notes
 #: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
-msgstr "Presúnúž do Koša"
+msgstr "Presunúť do Koša"
 
 #: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
@@ -369,7 +369,7 @@ msgstr "Farba poznámok"
 # label
 #: ../src/bjb-main-view.c:516
 msgid "Notebook"
-msgstr "Zípisník"
+msgstr "Zápisník"
 
 #: ../src/bjb-main-view.c:519
 msgid "Note"
@@ -388,7 +388,7 @@ msgstr "<b>Naposledy aktualizované</b> %s"
 # label
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
-msgstr "Zadajte názov pre vytvoraný zápisnik"
+msgstr "Zadajte názov pre vytvorený zápisník"
 
 #: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
@@ -448,7 +448,7 @@ msgstr "Nastavenia"
 msgid "Note Edition"
 msgstr "Úprava poznámky"
 
-#: ../src/bjb-settings-dialog.c:501
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
 msgstr "Hlavná kniha"
 

@@ -1,3 +1,16 @@
+Overview of changes in 3.17.1
+=============================
+
+* Bugs
+  Symbolic variant of the app icon (Jakub Steiner)
+  Fix tracker callback
+  Typos in help (Alexander Franke)
+
+* Translations
+  Basque
+  Czech
+  Slovak
+
 Overview of changes in 3.16.0
 =============================
 

@@ -2,13 +2,13 @@
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2014.
 #
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2014-12-18 03:55+0000\n"
-"PO-Revision-Date: 2014-12-18 11:54+0100\n"
+"POT-Creation-Date: 2015-05-29 02:58+0000\n"
+"PO-Revision-Date: 2015-05-29 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -25,14 +25,14 @@ msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:13 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:15 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -45,15 +45,15 @@ msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #. (itstool) path: credit/years
-#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/share.page:17
-#| msgid "01 sep 2014"
+#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/search.page:17
+#: C/share.page:17
 msgid "2013, 2014"
 msgstr "2013, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete.page:30 C/delete-permanent.page:11 C/delete-restore.page:11
-#: C/format-list.page:20 C/format-text.page:20 C/index.page:18
+#: C/format-list.page:20 C/format-text.page:20 C/index.page:20
 #: C/introduction.page:11 C/introduction.page:26 C/notebooks.page:20
 #: C/rename.page:11 C/search.page:20 C/search.page:30 C/share.page:20
 msgid "Shobha Tyagi"
@@ -61,7 +61,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/delete.page:22 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:20
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
 #: C/introduction.page:13 C/rename.page:13 C/search.page:22
 msgid "2013"
 msgstr "2013"
@@ -203,9 +203,6 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/create.page:55
-#| msgid ""
-#| "To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
-#| "key><key>N</key></keyseq>."
 msgid ""
 "To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
 "key><key>N</key></keyseq>."
@@ -244,9 +241,6 @@ msgstr "Seleccione el texto."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:42
-#| msgid ""
-#| "Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> "
-#| "or <gui style=\"button\">Paste</gui>."
 msgid ""
 "Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
 msgstr ""
@@ -255,9 +249,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:46
-#| msgid ""
-#| "Select a new color and click the <gui style=\"button\">Select</gui> "
-#| "button."
 msgid ""
 "Select where you want to paste the text and press <gui style=\"button"
 "\">Paste</gui>."
@@ -320,7 +311,6 @@ msgstr "Pulse el botón <gui style=\"button\">Mover a la papelera</gui>."
 
 #. (itstool) path: info/desc
 #: C/delete-permanent.page:18
-#| msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
 msgid "Permanently delete notes from the <gui>Trash</gui> view."
 msgstr "Eliminar notas permanentemente de la vista de la <gui>Papelera</gui>."
 
@@ -331,7 +321,6 @@ msgstr "Vaciar la papelera"
 
 #. (itstool) path: page/p
 #: C/delete-permanent.page:23
-#| msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
 msgid "You can permanently delete notes from the <gui>Trash</gui>."
 msgstr "Puede eliminar notas permanentemente de la <gui>Papelera</gui>."
 
@@ -381,13 +370,11 @@ msgstr "Pulse el botón <gui style=\"button\">Eliminar permanentemente</gui>."
 
 #. (itstool) path: info/desc
 #: C/delete-restore.page:23
-#| msgid "To delete a note:"
 msgid "Restore a deleted note."
 msgstr "Restaurar una nota eliminada."
 
 #. (itstool) path: page/title
 #: C/delete-restore.page:26
-#| msgid "Create notes"
 msgid "Restore notes"
 msgstr "Restaurar notas"
 
@@ -407,7 +394,6 @@ msgstr "Para restaurar las notas eliminadas:"
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:34
-#| msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
 msgstr ""
 "En la vista de la <gui>Papelera</gui> pulse el botón <gui>Modo de selección</"
@@ -486,39 +472,39 @@ msgstr ""
 "gui> oi <gui style=\"button\">Tachado</gui>."
 
 #. (itstool) path: info/title
-#: C/index.page:6
+#: C/index.page:8
 msgctxt "link"
 msgid "Notes"
 msgstr "Notas"
 
 #. (itstool) path: info/title
-#: C/index.page:7
+#: C/index.page:9
 msgctxt "text"
 msgid "Notes"
 msgstr "Notas"
 
 #. (itstool) path: info/desc
-#: C/index.page:25
+#: C/index.page:27
 msgid "Learn how to use and manage your notes."
 msgstr "Aprender cómo usar y gestionar sus notas."
 
 #. (itstool) path: page/title
-#: C/index.page:28
+#: C/index.page:30
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Notas"
 
 #. (itstool) path: section/title
-#: C/index.page:35
+#: C/index.page:37
 msgid "Create notes"
 msgstr "Crear notas"
 
 #. (itstool) path: section/title
-#: C/index.page:38
+#: C/index.page:40
 msgid "Edit and share notes"
 msgstr "Editar y compartir notas"
 
 #. (itstool) path: section/title
-#: C/index.page:41
+#: C/index.page:43
 msgid "Delete notes"
 msgstr "Eliminar notas"
 
@@ -690,11 +676,6 @@ msgstr "Para renombrar una nota:"
 msgid "Change the text in the first line of the note."
 msgstr "Cambie el texto en la primera línea de la nota."
 
-#. (itstool) path: credit/years
-#: C/search.page:17
-msgid "2013, 3014"
-msgstr "2013, 3014"
-
 #. (itstool) path: info/desc
 #: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
@@ -707,18 +688,21 @@ msgstr "Buscar una nota"
 
 #. (itstool) path: page/p
 #: C/search.page:42
+#| msgid ""
+#| "You can search your note in the <gui>New and Recent</gui> view in "
+#| "<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
+#| "terminology\">Activities</gui> overview."
 msgid ""
-"You can search your note in the <gui>New and Recent</gui> view in "
-"<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
+"You can search your notes in the <gui>New and Recent</gui> view in "
+"<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Puede buscar sus notas en la vista de <gui>Nuevas y recientes</gui> en "
-"<app>Noteos</app> o buscarla en la vista de <gui href=\"help:gnome-help/"
-"shell-terminology\">Actividades</gui>."
+"<app>Notas</app> o buscarla en la vista de <gui href=\"help:gnome-help/shell-"
+"terminology\">Actividades</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:47
-#| msgid "To find notes while in <em>New and Recent</em>:"
 msgid "To find notes while in <gui>New and Recent</gui>:"
 msgstr "Para buscar notas en <em>Nuevas y recientes</em>:"
 
@@ -736,9 +720,6 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/search.page:57
-#| msgid ""
-#| "You can directly start typing the search string in the <em>New and "
-#| "Recent</em> view to search notes."
 msgid ""
 "You can directly start typing the search string in the <gui>New and Recent</"
 "gui> view to search notes."
@@ -791,6 +772,9 @@ msgstr "Creative Commons de Atribución-Compartir Igual 3.0 sin soporte"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Este trabajo está licenciado bajo la <_:link-1/>."
+
+#~ msgid "2013, 3014"
+#~ msgstr "2013, 3014"
 
 #~ msgid "31 Aug 2014"
 #~ msgstr "31 de agosto de 2014"

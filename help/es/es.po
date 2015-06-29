@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "POT-Creation-Date: 2015-05-29 02:58+0000\n"
-"PO-Revision-Date: 2015-05-29 \n"
+"PO-Revision-Date: 2015-06-29 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2014"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2014 - 2015"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -698,8 +698,8 @@ msgid ""
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Puede buscar sus notas en la vista de <gui>Nuevas y recientes</gui> en "
-"<app>Notas</app> o buscarla en la vista de <gui href=\"help:gnome-help/shell-"
-"terminology\">Actividades</gui>."
+"<app>Notas</app> o buscarlas en la vista de <gui href=\"help:gnome-help/"
+"shell-terminology\">Actividades</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:47

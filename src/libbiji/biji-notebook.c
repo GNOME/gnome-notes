@@ -234,8 +234,7 @@ biji_notebook_get_emblem (BijiItem *coll,
   if (!self->priv->emblem)
   {
     pix = get_collected_pix (self, scale);
-    self->priv->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH, scale,
-                                                    get_collected_pix (self, scale));
+    self->priv->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH, scale, pix);
     g_list_free (pix);
   }
 

@@ -176,7 +176,6 @@ on_content_replaced  (GObject *source_object,
 
   else
   {
-    biji_note_obj_save_icon (user_data);
     ocloud_note_ensure_ressource (user_data);
   }
 }

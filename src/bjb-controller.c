@@ -103,7 +103,7 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_STRING,      // uri
                               G_TYPE_STRING,      // name
                               G_TYPE_STRING,      // author
-                              GDK_TYPE_PIXBUF,    // icon then note
+                              CAIRO_GOBJECT_TYPE_SURFACE, // icon then note
                               G_TYPE_INT64,       // mtime
                               G_TYPE_BOOLEAN,     // state
                               G_TYPE_UINT);       // pulse
@@ -251,9 +251,10 @@ bjb_controller_add_item (BjbController *self,
 {
   GtkTreeIter    iter;
   GtkListStore  *store;
-  GdkPixbuf     *pix = NULL;
+  cairo_surface_t *surface = NULL;
   const gchar   *uuid;
   BjbWindowBase  *win;
+  gint scale;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->priv->model);
@@ -277,14 +278,16 @@ bjb_controller_add_item (BjbController *self,
   /* First , if there is a gd main view , and if gd main view
    * is a list, then load the smaller emblem */
   win = self->priv->window;
+  scale = gtk_widget_get_scale_factor (GTK_WIDGET (win));
+
   if (bjb_window_base_get_main_view (win)
       && bjb_main_view_get_view_type
                 (bjb_window_base_get_main_view (win)) == GD_MAIN_VIEW_LIST)
-    pix = biji_item_get_emblem (item);
+    surface = biji_item_get_emblem (item, scale);
 
   /* Else, load the icon */
-  if (!pix)
-    pix = biji_item_get_icon (item);
+  if (!surface)
+    surface = biji_item_get_icon (item, scale);
 
   /* Appart from pixbuf, both icon & list view types
    * currently use the same model */
@@ -295,7 +298,7 @@ bjb_controller_add_item (BjbController *self,
        GD_MAIN_COLUMN_URI, uuid,
        GD_MAIN_COLUMN_PRIMARY_TEXT, biji_item_get_title (item),
        GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
-       GD_MAIN_COLUMN_ICON, pix,
+       GD_MAIN_COLUMN_ICON, surface,
        GD_MAIN_COLUMN_MTIME, biji_item_get_mtime (item),
        -1);
 

@@ -191,28 +191,31 @@ biji_item_get_manager     (BijiItem *item)
 }
 
 
-GdkPixbuf *
-biji_item_get_icon          (BijiItem *item)
+cairo_surface_t *
+biji_item_get_icon          (BijiItem *item,
+                             gint scale)
 {
   g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
 
-  return BIJI_ITEM_GET_CLASS (item)->get_icon (item);
+  return BIJI_ITEM_GET_CLASS (item)->get_icon (item, scale);
 }
 
-GdkPixbuf *
-biji_item_get_emblem        (BijiItem *item)
+cairo_surface_t *
+biji_item_get_emblem        (BijiItem *item,
+                             gint scale)
 {
   g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
 
-  return BIJI_ITEM_GET_CLASS (item)->get_emblem (item);
+  return BIJI_ITEM_GET_CLASS (item)->get_emblem (item, scale);
 }
 
-GdkPixbuf *
-biji_item_get_pristine        (BijiItem *item)
+cairo_surface_t *
+biji_item_get_pristine        (BijiItem *item,
+                               gint scale)
 {
   g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
 
-  return BIJI_ITEM_GET_CLASS (item)->get_pristine (item);
+  return BIJI_ITEM_GET_CLASS (item)->get_pristine (item, scale);
 }
 
 

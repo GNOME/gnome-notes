@@ -46,8 +46,8 @@ struct BijiNotebookPrivate_
   gchar           *name;
   gint64           mtime;
 
-  GdkPixbuf       *icon;
-  GdkPixbuf       *emblem;
+  cairo_surface_t *icon;
+  cairo_surface_t *emblem;
 
   GList           *collected_items;
 };
@@ -101,13 +101,11 @@ biji_notebook_get_uuid (BijiItem *coll)
 }
 
 
-static GdkPixbuf *
-biji_create_notebook_icon (gint base_size, GList *pixbufs)
+static cairo_surface_t *
+biji_create_notebook_icon (gint base_size, gint scale, GList *surfaces)
 {
-  cairo_surface_t *surface;
+  cairo_surface_t *surface, *pix;
   cairo_t *cr;
-  GdkPixbuf *pix;
-  GdkPixbuf *ret_val;
   GList *l;
   GtkStyleContext *context;
   GtkWidgetPath *path;
@@ -117,6 +115,8 @@ biji_create_notebook_icon (gint base_size, GList *pixbufs)
   gint padding;
   gint pix_height;
   gint pix_width;
+  gdouble pix_scale_x;
+  gdouble pix_scale_y;
   gint scale_size;
   gint tile_size;
 
@@ -133,12 +133,14 @@ biji_create_notebook_icon (gint base_size, GList *pixbufs)
   gtk_style_context_set_path (context, path);
   gtk_widget_path_unref (path);
 
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, base_size, base_size);
+  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, base_size * scale, base_size * scale);
+  cairo_surface_set_device_scale (surface, scale, scale);
   cr = cairo_create (surface);
 
+  gtk_render_frame (context, cr, 0, 0, base_size, base_size);
   gtk_render_background (context, cr, 0, 0, base_size, base_size);
 
-  l = pixbufs;
+  l = surfaces;
   idx = 0;
   cur_x = padding;
   cur_y = padding;
@@ -147,8 +149,9 @@ biji_create_notebook_icon (gint base_size, GList *pixbufs)
   while (l != NULL && idx < 4)
     {
       pix = l->data;
-      pix_width = gdk_pixbuf_get_width (pix);
-      pix_height = gdk_pixbuf_get_height (pix);
+      cairo_surface_get_device_scale (pix, &pix_scale_x, &pix_scale_y);
+      pix_width = cairo_image_surface_get_width (pix) / (gint) pix_scale_x;
+      pix_height = cairo_image_surface_get_height (pix) / (gint) pix_scale_y;
 
       scale_size = MIN (pix_width, pix_height);
 
@@ -161,7 +164,7 @@ biji_create_notebook_icon (gint base_size, GList *pixbufs)
       cairo_clip (cr);
 
       cairo_scale (cr, (gdouble) tile_size / (gdouble) scale_size, (gdouble) tile_size / (gdouble) scale_size);
-      gdk_cairo_set_source_pixbuf (cr, pix, 0, 0);
+      cairo_set_source_surface (cr, pix, 0, 0);
 
       cairo_paint (cr);
       cairo_restore (cr);
@@ -180,17 +183,15 @@ biji_create_notebook_icon (gint base_size, GList *pixbufs)
       l = l->next;
     }
 
-  ret_val = gdk_pixbuf_get_from_surface (surface, 0, 0, base_size, base_size);
-
-  cairo_surface_destroy (surface);
   cairo_destroy (cr);
   g_object_unref (context);
 
-  return ret_val;
+  return surface;
 }
 
 static GList *
-get_collected_pix (BijiNotebook *self)
+get_collected_pix (BijiNotebook *self,
+                   gint scale)
 {
   GList *result = NULL, *l;
 
@@ -199,22 +200,23 @@ get_collected_pix (BijiNotebook *self)
     if (BIJI_IS_ITEM (l->data))
       result = g_list_prepend (
                         result,
-                        biji_item_get_pristine (BIJI_ITEM (l->data)));
+                        biji_item_get_pristine (BIJI_ITEM (l->data), scale));
   }
 
   return result;
 }
 
-static GdkPixbuf *
-biji_notebook_get_icon (BijiItem *coll)
+static cairo_surface_t *
+biji_notebook_get_icon (BijiItem *coll,
+                        gint scale)
 {
   BijiNotebook *self = BIJI_NOTEBOOK (coll);
   GList *pix;
 
   if (!self->priv->icon)
   {
-    pix = get_collected_pix (self);
-    self->priv->icon = biji_create_notebook_icon (BIJI_ICON_WIDTH, pix);
+    pix = get_collected_pix (self, scale);
+    self->priv->icon = biji_create_notebook_icon (BIJI_ICON_WIDTH, scale, pix);
     g_list_free (pix);
   }
 
@@ -222,17 +224,18 @@ biji_notebook_get_icon (BijiItem *coll)
 }
 
 
-static GdkPixbuf *
-biji_notebook_get_emblem (BijiItem *coll)
+static cairo_surface_t *
+biji_notebook_get_emblem (BijiItem *coll,
+                          gint scale)
 {
   BijiNotebook *self = BIJI_NOTEBOOK (coll);
   GList *pix;
 
   if (!self->priv->emblem)
   {
-    pix = get_collected_pix (self);
-    self->priv->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH,
-                                                      get_collected_pix (self));
+    pix = get_collected_pix (self, scale);
+    self->priv->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH, scale,
+                                                    get_collected_pix (self, scale));
     g_list_free (pix);
   }
 
@@ -395,8 +398,8 @@ biji_notebook_update_collected (GList *result,
   GList *l;
 
   g_clear_pointer (&priv->collected_items, g_list_free);
-  g_clear_pointer (&priv->icon, g_object_unref);
-  g_clear_pointer (&priv->emblem, g_object_unref);
+  g_clear_pointer (&priv->icon, cairo_surface_destroy);
+  g_clear_pointer (&priv->emblem, cairo_surface_destroy);
 
   priv->collected_items = result;
 

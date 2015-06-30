@@ -634,27 +634,6 @@ biji_lazy_deserializer_new (BijiNoteObj *note)
                        NULL);
 }
 
-/* As soon as a deserializer is there, 
- * the note HAS a path, a GFile, and most probably an icon.*/
-static void
-biji_note_obj_load_icon (BijiNoteObj *note)
-{
-  gchar *filename;
-  GdkPixbuf *retval;
-  GError *error = NULL;
-
-  filename = biji_note_obj_get_icon_file (note);
-  retval = gdk_pixbuf_new_from_file (filename, &error);
-
-  if (error)
-     g_error_free (error);
-
-  else
-     biji_note_obj_set_icon (note, retval);
-
-  g_free (filename);
-}
-
 gboolean
 biji_lazy_deserialize (BijiNoteObj *note)
 {
@@ -664,8 +643,6 @@ biji_lazy_deserialize (BijiNoteObj *note)
   bld = biji_lazy_deserializer_new (note);
   result = biji_lazy_deserialize_internal (bld);
   g_clear_object (&bld);
-
-  biji_note_obj_load_icon (note);
 
   return result;
 }

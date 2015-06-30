@@ -21,6 +21,7 @@
 #ifndef BIJI_ITEM_H_
 #define BIJI_ITEM_H_ 1
 
+#include <cairo-gobject.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
@@ -59,9 +60,12 @@ struct BijiItemClass_
 
   const gchar * (*get_title)            (BijiItem *item);
   const gchar * (*get_uuid)             (BijiItem *item);
-  GdkPixbuf *   (*get_icon)             (BijiItem *item);
-  GdkPixbuf *   (*get_emblem)           (BijiItem *item);
-  GdkPixbuf *   (*get_pristine)         (BijiItem *item);
+  cairo_surface_t * (*get_icon)         (BijiItem *item,
+                                         gint scale);
+  cairo_surface_t * (*get_emblem)       (BijiItem *item,
+                                         gint scale);
+  cairo_surface_t * (*get_pristine)     (BijiItem *item,
+                                         gint scale);
 
   /* Just return some provider information */
   const gchar * (*get_place)            (BijiItem *item);
@@ -101,13 +105,16 @@ gpointer         biji_item_get_manager         (BijiItem *item);
 gboolean         biji_item_has_color           (BijiItem *item);
 
 
-GdkPixbuf *      biji_item_get_icon            (BijiItem *item);
+cairo_surface_t * biji_item_get_icon           (BijiItem *item,
+                                                gint scale);
 
 
-GdkPixbuf *      biji_item_get_emblem          (BijiItem *item);
+cairo_surface_t * biji_item_get_emblem         (BijiItem *item,
+                                                gint scale);
 
 
-GdkPixbuf *      biji_item_get_pristine        (BijiItem *item);
+cairo_surface_t * biji_item_get_pristine       (BijiItem *item,
+                                                gint scale);
 
 
 const gchar *    biji_item_get_place           (BijiItem *item);

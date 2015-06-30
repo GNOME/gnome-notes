@@ -269,27 +269,6 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   return retval;
 }
 
-/* No matter if icon is saved or not.
- * We just try */
-void
-biji_note_obj_save_icon (BijiNoteObj *note)
-{
-  gchar *filename;
-  GError *error = NULL;
-
-  /* Png */
-  filename = biji_note_obj_get_icon_file (note);
-  gdk_pixbuf_save (biji_item_get_icon (BIJI_ITEM (note)), filename, "png", &error, NULL);
-
-  if (error)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-  }
-
-  g_free (filename);
-}
-
 gboolean
 biji_lazy_serialize (BijiNoteObj *note)
 {
@@ -300,8 +279,6 @@ biji_lazy_serialize (BijiNoteObj *note)
                        "note", note, NULL);
   result = biji_lazy_serialize_internal (self);
   g_object_unref (self);
-
-  biji_note_obj_save_icon (note);
 
   return result;
 }

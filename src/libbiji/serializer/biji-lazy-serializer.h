@@ -58,12 +58,6 @@ GType            biji_lazy_serializer_get_type           (void) G_GNUC_CONST;
 
 gboolean         biji_lazy_serialize                     (BijiNoteObj *note);
 
-
-/* biji_lazy_serialize is for local notes & include icon save
- * however, icon can still be saved separately */
-
-void             biji_note_obj_save_icon                 (BijiNoteObj *note);
-
 G_END_DECLS
 
 #endif /* _BIJI_LAZY_SERIALIZER_H_ */

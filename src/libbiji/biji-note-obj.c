@@ -47,9 +47,9 @@ struct _BijiNoteObjPrivate
 
   /* Icon might be null untill usefull
    * Emblem is smaller & just shows the color */
-  GdkPixbuf             *icon;
-  GdkPixbuf             *emblem;
-  GdkPixbuf             *pristine;
+  cairo_surface_t       *icon;
+  cairo_surface_t       *emblem;
+  cairo_surface_t       *pristine;
 
   /* Tags
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
@@ -164,13 +164,13 @@ biji_note_obj_finalize (GObject *object)
   g_hash_table_destroy (priv->labels);
 
   if (priv->icon)
-    g_object_unref (priv->icon);
+    cairo_surface_destroy (priv->icon);
 
   if (priv->emblem)
-    g_object_unref (priv->emblem);
+    cairo_surface_destroy (priv->emblem);
 
   if (priv->pristine)
-    g_object_unref (priv->pristine);
+    cairo_surface_destroy (priv->pristine);
 
   gdk_rgba_free (priv->color);
 
@@ -403,9 +403,9 @@ biji_note_obj_set_note_create_date (BijiNoteObj* n, gint64 time)
 static void
 biji_note_obj_clear_icons (BijiNoteObj *note)
 {
-  g_clear_pointer (&note->priv->icon, g_object_unref);
-  g_clear_pointer (&note->priv->emblem, g_object_unref);
-  g_clear_pointer (&note->priv->pristine, g_object_unref);
+  g_clear_pointer (&note->priv->icon, cairo_surface_destroy);
+  g_clear_pointer (&note->priv->emblem, cairo_surface_destroy);
+  g_clear_pointer (&note->priv->pristine, cairo_surface_destroy);
 }
 
 static void
@@ -610,30 +610,17 @@ biji_note_obj_get_icon_file (BijiNoteObj *note)
   return filename;
 }
 
-void
-biji_note_obj_set_icon (BijiNoteObj *note, GdkPixbuf *pix)
-{
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
-
-  if (!note->priv->icon)
-    note->priv->icon = pix;
-
-  else
-    g_warning ("Cannot use _set_icon_ with iconified note. This has no sense.");
-}
-
-static GdkPixbuf *
-biji_note_obj_get_icon (BijiItem *item)
+static cairo_surface_t *
+biji_note_obj_get_icon (BijiItem *item,
+                        gint scale)
 {
   GdkRGBA               note_color;
   const gchar           *text;
   cairo_t               *cr;
   PangoLayout           *layout;
   PangoFontDescription  *desc;
-  GdkPixbuf             *ret = NULL;
   cairo_surface_t       *surface = NULL;
   GtkBorder              frame_slice = { 4, 3, 3, 6 };
-
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
 
   if (note->priv->icon)
@@ -641,8 +628,9 @@ biji_note_obj_get_icon (BijiItem *item)
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        BIJI_ICON_WIDTH,
-                                        BIJI_ICON_HEIGHT) ;
+                                        BIJI_ICON_WIDTH * scale,
+                                        BIJI_ICON_HEIGHT * scale) ;
+  cairo_surface_set_device_scale (surface, scale, scale);
   cr = cairo_create (surface);
 
   /* Background */
@@ -681,21 +669,16 @@ biji_note_obj_get_icon (BijiItem *item)
 
   cairo_destroy (cr);
 
-  ret = gdk_pixbuf_get_from_surface (surface,
-                                     0, 0,
-                                     BIJI_ICON_WIDTH,
-                                     BIJI_ICON_HEIGHT);
+  note->priv->icon = gd_embed_surface_in_frame (surface, "resource:///org/gnome/bijiben/thumbnail-frame.png",
+                                                &frame_slice, &frame_slice);
   cairo_surface_destroy (surface);
-
-  note->priv->icon = gd_embed_image_in_frame (ret, "resource:///org/gnome/bijiben/thumbnail-frame.png",
-                                              &frame_slice, &frame_slice);
-  g_clear_object (&ret);
 
   return note->priv->icon;
 }
 
-static GdkPixbuf *
-biji_note_obj_get_pristine (BijiItem *item)
+static cairo_surface_t *
+biji_note_obj_get_pristine (BijiItem *item,
+                            gint scale)
 {
   GdkRGBA                note_color;
   cairo_t               *cr;
@@ -707,8 +690,9 @@ biji_note_obj_get_pristine (BijiItem *item)
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        BIJI_EMBLEM_WIDTH,
-                                        BIJI_EMBLEM_HEIGHT) ;
+                                        BIJI_EMBLEM_WIDTH * scale,
+                                        BIJI_EMBLEM_HEIGHT * scale) ;
+  cairo_surface_set_device_scale (surface, scale, scale);
   cr = cairo_create (surface);
 
   /* Background */
@@ -719,18 +703,13 @@ biji_note_obj_get_pristine (BijiItem *item)
   cairo_fill (cr);
   cairo_destroy (cr);
 
-  note->priv->pristine = gdk_pixbuf_get_from_surface (surface,
-                                                      0, 0,
-                                                      BIJI_EMBLEM_WIDTH,
-                                                      BIJI_EMBLEM_HEIGHT);
-
-  cairo_surface_destroy (surface);
-
+  note->priv->pristine = surface;
   return note->priv->pristine;
 }
 
-static GdkPixbuf *
-biji_note_obj_get_emblem (BijiItem *item)
+static cairo_surface_t *
+biji_note_obj_get_emblem (BijiItem *item,
+                          gint scale)
 {
   GdkRGBA                note_color;
   cairo_t               *cr;
@@ -742,8 +721,9 @@ biji_note_obj_get_emblem (BijiItem *item)
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        BIJI_EMBLEM_WIDTH,
-                                        BIJI_EMBLEM_HEIGHT) ;
+                                        BIJI_EMBLEM_WIDTH * scale,
+                                        BIJI_EMBLEM_HEIGHT * scale) ;
+  cairo_surface_set_device_scale (surface, scale, scale);
   cr = cairo_create (surface);
 
   /* Background */
@@ -755,19 +735,13 @@ biji_note_obj_get_emblem (BijiItem *item)
 
   /* Border */
   cairo_set_source_rgba (cr, 0.3, 0.3, 0.3, 1);
-  cairo_set_line_width (cr, 1);
+  cairo_set_line_width (cr, 1 * scale);
   cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
   cairo_stroke (cr);
 
   cairo_destroy (cr);
 
-  note->priv->emblem = gdk_pixbuf_get_from_surface (surface,
-                                                    0, 0,
-                                                    BIJI_EMBLEM_WIDTH,
-                                                    BIJI_EMBLEM_HEIGHT);
-
-  cairo_surface_destroy (surface);
-
+  note->priv->emblem = surface;
   return note->priv->emblem;
 }
 

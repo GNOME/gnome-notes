@@ -345,10 +345,55 @@ on_registry_got (GObject *obj,
 }
 
 
+static void
+theme_changed (GtkSettings *settings)
+{
+  static GtkCssProvider *provider = NULL;
+  gchar *theme;
+  GdkScreen *screen;
 
+  g_object_get (settings, "gtk-theme-name", &theme, NULL);
+  screen = gdk_screen_get_default ();
 
+  if (g_str_equal (theme, "Adwaita"))
+  {
+    if (provider == NULL)
+    {
+        GFile *file;
 
+        provider = gtk_css_provider_new ();
+        file = g_file_new_for_uri ("resource:///org/gnome/bijiben/Adwaita.css");
+        gtk_css_provider_load_from_file (provider, file, NULL);
+        g_object_unref (file);
+    }
 
+    gtk_style_context_add_provider_for_screen (screen,
+                                               GTK_STYLE_PROVIDER (provider),
+                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  }
+  else if (provider != NULL)
+  {
+    gtk_style_context_remove_provider_for_screen (screen,
+                                                  GTK_STYLE_PROVIDER (provider));
+    g_clear_object (&provider);
+  }
+
+  g_free (theme);
+}
+
+static void
+bjb_apply_style (void)
+{
+  GtkSettings *settings;
+
+  /* Set up a handler to load our custom css for Adwaita.
+   * See https://bugzilla.gnome.org/show_bug.cgi?id=732959
+   * for a more automatic solution that is still under discussion.
+   */
+  settings = gtk_settings_get_default ();
+  g_signal_connect (settings, "notify::gtk-theme-name", G_CALLBACK (theme_changed), NULL);
+  theme_changed (settings);
+}
 
 static void
 bijiben_startup (GApplication *application)
@@ -365,6 +410,7 @@ bijiben_startup (GApplication *application)
   self = BIJIBEN_APPLICATION (application);
   error = NULL;
 
+  bjb_apply_style ();
 
   bjb_app_menu_set(application);
 

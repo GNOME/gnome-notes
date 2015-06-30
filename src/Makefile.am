@@ -33,6 +33,7 @@ bijiben_LDFLAGS = \
 	-Wl,--export-dynamic
 
 resource_files = \
+	resources/Adwaita.css \
 	resources/app-menu.ui \
 	resources/thumbnail-frame.png
 

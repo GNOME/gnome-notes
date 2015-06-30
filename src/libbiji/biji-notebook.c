@@ -126,7 +126,7 @@ biji_create_notebook_icon (gint base_size, gint scale, GList *surfaces)
   tile_size = (base_size - (3 * padding)) / 2;
 
   context = gtk_style_context_new ();
-  gtk_style_context_add_class (context, "documents-collection-icon");
+  gtk_style_context_add_class (context, "biji-notebook-icon");
 
   path = gtk_widget_path_new ();
   gtk_widget_path_append_type (path, GTK_TYPE_ICON_VIEW);

@@ -48,10 +48,10 @@ bjb_empty_results_box_constructed (GObject *object)
   BjbEmptyResultsBox *self;
   BjbEmptyResultsBoxPrivate *priv;
   GtkStyleContext *context;
-  GdkPixbuf *pixbuf;
   GtkWidget *labels_grid;
-  gchar *label, *icons_path, *note_icon_path, *markup;
-  GError *error;
+  gchar *label, *markup;
+  GFile *note_icon_file;
+  GIcon *icon;
 
   G_OBJECT_CLASS (bjb_empty_results_box_parent_class)->constructed (object);
   self = BJB_EMPTY_RESULTS_BOX (object);
@@ -68,27 +68,12 @@ bjb_empty_results_box_constructed (GObject *object)
   context = gtk_widget_get_style_context (GTK_WIDGET (self));
   gtk_style_context_add_class (context, "dim-label");
 
-  icons_path = (gchar*) bijiben_get_bijiben_dir ();
-  note_icon_path = g_build_filename (icons_path,
-                                "bijiben",
-                                "icons",
-                                "hicolor",
-                                "scalable",
-                                "actions",
-                                "note.svg",
-                                NULL);
+  note_icon_file = g_file_new_for_uri ("resource://org/gnome/bijiben/note-symbolic.svg");
+  icon = g_file_icon_new (note_icon_file);
+  g_object_unref (note_icon_file);
 
-  error = NULL;
-  pixbuf = gdk_pixbuf_new_from_file_at_size (note_icon_path, 64, 64, &error);
-
-  if (error)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-  }
-
-  priv->image  = gtk_image_new_from_pixbuf (pixbuf);
-  g_free (note_icon_path);
+  priv->image  = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_DIALOG);
+  g_object_unref (icon);
 
   gtk_container_add (GTK_CONTAINER (self), priv->image);
 

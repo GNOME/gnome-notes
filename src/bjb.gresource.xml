@@ -4,5 +4,6 @@
     <file alias="Adwaita.css">resources/Adwaita.css</file>
     <file alias="app-menu.ui">resources/app-menu.ui</file>
     <file alias="thumbnail-frame.png">resources/thumbnail-frame.png</file>
+    <file alias="note-symbolic.svg">resources/note-symbolic.svg</file>
   </gresource>
 </gresources>

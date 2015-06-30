@@ -35,6 +35,7 @@ bijiben_LDFLAGS = \
 resource_files = \
 	resources/Adwaita.css \
 	resources/app-menu.ui \
+	resources/note-symbolic.svg \
 	resources/thumbnail-frame.png
 
 bjb-resources.c: bjb.gresource.xml $(resource_files)

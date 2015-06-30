@@ -246,105 +246,6 @@ bijiben_import_notes (Bijiben *self, gchar *uri)
                            uri);
 }
 
-
-/* Just filter on ownCloud accounts
- * TODO : settings to force activate & inactivate
- * but, up to libbiji to survey GoaObject
- */
-static void
-on_client_got (GObject *source_object,
-               GAsyncResult *res,
-               gpointer user_data)
-{
-  Bijiben *self;
-  GoaClient *client;
-  GError *error;
-  GList *accounts, *l;
-  GoaObject *object;
-  GoaAccount *account;
-  const gchar *type;
-
-  self = BIJIBEN_APPLICATION (user_data);
-  error = NULL;
-  client =  goa_client_new_finish  (res, &error);
-
-  if (error)
-  {
-     g_warning ("%s", error->message);
-     g_error_free (error);
-     return;
-  }
-
-  accounts = goa_client_get_accounts (client);
-
-  for (l=accounts; l!=NULL; l=l->next)
-  {
-    object = GOA_OBJECT (l->data);
-    account =  goa_object_get_account (object);
-
-    if (GOA_IS_ACCOUNT (account))
-    {
-      type = goa_account_get_provider_type (account);
-
-
-      /* We do not need to store any object here.
-       * account_get_id can be used to talk with libbji */
-
-      if (g_strcmp0 (type, "owncloud") ==0)
-      {
-        g_message ("Loading account %s", goa_account_get_id (account));
-        biji_manager_add_goa_object (self->priv->manager, object);
-      }
-
-      else
-      {
-        g_object_unref (object);
-      }
-    }
-  }
-
-  g_list_free (accounts);
-}
-
-
-
-
-
-/*
- * Currently bjb checks eds accounts
- * and asks libbiji about them.
- * This, in case we want a setting
- * Another way might be to let libbiji live its life
- */
-void
-on_registry_got (GObject *obj,
-                 GAsyncResult *res,
-                 gpointer user_data)
-{
-  GError *error;
-  ESourceRegistry *registry;
-  GList *list, *l;
-  Bijiben *self = BIJIBEN_APPLICATION (user_data);
-
-  error = NULL;
-  registry = e_source_registry_new_finish (res, &error);
-
-  if (error)
-  {
-    g_warning ("no registry :(, %s", error->message);
-    return;
-  }
-
-  list = e_source_registry_list_sources (registry, E_SOURCE_EXTENSION_MEMO_LIST);
-  for (l=list; l!= NULL; l=l->next)
-  {
-    biji_manager_add_e_source_extension_memo (self->priv->manager, l->data);
-  }
-
-  g_list_free_full (list, g_object_unref);
-}
-
-
 static void
 theme_changed (GtkSettings *settings)
 {
@@ -396,6 +297,27 @@ bjb_apply_style (void)
 }
 
 static void
+manager_ready_cb (GObject *source,
+                  GAsyncResult *res,
+                  gpointer user_data)
+{
+  Bijiben *self = user_data;
+  GError *error = NULL;
+
+  self->priv->manager = biji_manager_new_finish (res, &error);
+  g_application_release (G_APPLICATION (self));
+
+  if (error != NULL)
+    {
+      g_warning ("Cannot initialize BijiManager: %s\n", error->message);
+      g_clear_error (&error);
+      return;
+    }
+
+  bijiben_new_window_internal (self, NULL, NULL, NULL);
+}
+
+static void
 bijiben_startup (GApplication *application)
 {
   Bijiben        *self;
@@ -443,15 +365,8 @@ bijiben_startup (GApplication *application)
   g_object_get (self->priv->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
 
-  error = NULL;
-  self->priv->manager = biji_manager_new (storage, &color, &error);
-  if (error)
-    goto out;
-
-  /* Goa, e-d-s */
-  goa_client_new  (NULL, on_client_got, self); // cancellable
-  e_source_registry_new (NULL, on_registry_got, self);
-
+  g_application_hold (application);
+  biji_manager_new_async (storage, &color, manager_ready_cb, self);
 
   /* Automatic imports on startup */
   if (self->priv->first_run == TRUE)
@@ -469,9 +384,6 @@ bijiben_startup (GApplication *application)
     g_free (uri);
   }
 
-  /* Create the first window */
-  out:
-  bijiben_new_window_internal (BIJIBEN_APPLICATION (application), NULL, NULL, error);
   g_free (default_color);
   g_free (storage_path);
   g_object_unref (storage);

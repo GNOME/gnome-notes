@@ -75,21 +75,18 @@ BijiManager     *biji_manager_new                   (GFile *location,
                                                     GdkRGBA *color,
                                                     GError **error);
 
+void             biji_manager_new_async             (GFile *location,
+                                                     GdkRGBA *color,
+                                                     GAsyncReadyCallback callback,
+                                                     gpointer user_data);
+
+BijiManager     *biji_manager_new_finish            (GAsyncResult *res,
+                                                     GError **error);
+
 
 void             biji_manager_import_uri            (BijiManager *manager,
                                                      gchar *target_provider_id,
                                                      gchar *uri);
-
-
-
-void             biji_manager_add_e_source_extension_memo
-                                                    (BijiManager *self,
-                                                     ESource *source);
-
-
-void             biji_manager_add_goa_object        (BijiManager *manager,
-                                                     GoaObject *object);
-
 
 GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
 

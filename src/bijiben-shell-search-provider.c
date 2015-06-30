@@ -50,6 +50,7 @@
 typedef struct {
   GApplication parent;
 
+  BijiManager *manager;
   BijibenShellSearchProvider2 *skeleton;
   TrackerSparqlConnection *connection;
 
@@ -197,64 +198,49 @@ handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
   g_application_release (user_data);
 }
 
-static gchar *
-get_note_icon (const gchar *note__nie_url)
+static GVariant *
+get_note_icon (BijibenShellSearchProviderApp *self,
+               const gchar *note__nie_url)
 {
-  gchar **split;
-  gchar *path, *basename, *hash;
-  GFile *file;
+  GVariant *variant;
   GIcon *gicon;
+  gint scale_factor;
+  GdkScreen *screen;
+  BijiItem *item;
 
+  screen = gdk_screen_get_default ();
+  scale_factor = gdk_screen_get_monitor_scale_factor (screen,
+                                                      gdk_screen_get_primary_monitor (screen));
 
-  /*
-   *      FIXME - below is ok for local notes only
-   * 
-   * URL  :  DATA_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.note
-   * URL  :  davs://..../Notes/Trial.txt
-   *
-   * ICON :  CACHE_DIR/bijiben/bf74f3b4-9363-44a1-852a-5746f3118ea7.png
-   * ICON :  CACHE_DIR/bijiben/Trial.png
-   */
-  split = g_strsplit (note__nie_url, "/", 20);
+  gicon = NULL;
+  item = biji_manager_get_item_at_path (self->manager, note__nie_url);
+  if (item != NULL)
+    {
+      /* Load the icon from the note */
+      cairo_surface_t *surface = biji_item_get_icon (item, scale_factor);
+      gicon = G_ICON (gdk_pixbuf_get_from_surface (surface, 0, 0,
+                                                   cairo_image_surface_get_width (surface),
+                                                   cairo_image_surface_get_height (surface)));
 
-  basename = biji_str_mass_replace (split [g_strv_length (split)-1],
-                                    ".note",
-                                    ".png",
-                                    ".txt",
-                                    ".png",
-                                    NULL);
+      cairo_surface_destroy (surface);
+    }
 
-  path = g_build_filename (g_get_user_cache_dir (),
-                           "bijiben",
-                           basename,
-                           NULL);
+  if (gicon == NULL)
+    {
+      /* Fallback to generic icon */
+      char *path = g_build_filename (DATADIR, "bijiben", "icons", "hicolor",
+                                     "48x48", "actions", "note.png", NULL);
+      GFile *file = g_file_new_for_path (path);
+      gicon = g_file_icon_new (file);
 
+      g_free (path);
+      g_object_unref (file);
+    }
 
-
-  file = g_file_new_for_path (path);
-
-  if (g_file_query_exists (file, NULL))
-    goto out;
-
-  /* Well, else, just pick up something generic */
-  if (path)
-    g_free (path);
-  if (file)
-    g_object_unref (file);
-
-  path = g_build_filename (DATADIR, "bijiben", "icons", "hicolor",
-                           "48x48", "actions", "note.png", NULL);
-  file = g_file_new_for_path (path);
-
-out:
-  g_strfreev (split);
-  gicon = g_file_icon_new (file);
-  hash = g_icon_to_string (gicon);
-  g_free (path);
-  g_object_unref (file);
+  variant = g_icon_serialize (gicon);
   g_object_unref (gicon);
 
-  return hash;
+  return variant;
 }
 
 static void
@@ -266,6 +252,7 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
   const gchar *url;
   const gchar *result;
   TrackerSparqlCursor *cursor;
+  GVariant *icon;
 
   query = g_strdup_printf ("SELECT nie:url(<%s>) nie:title(<%s>) WHERE { }",
                            note__id, note__id);
@@ -291,8 +278,8 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
    /* ICON is currently generic icon,        *
     * TODO serialize icons in libbiji        *
     *      or deserialize note here )        */
-    result = get_note_icon (url);
-    g_variant_builder_add (results, "{sv}", "gicon", g_variant_new_string (result));
+    icon = get_note_icon (self, url);
+    g_variant_builder_add (results, "{sv}", "icon", icon);
 
     g_variant_builder_close (results);
   }
@@ -416,7 +403,8 @@ search_provider_app_dispose (GObject *obj)
 {
   BijibenShellSearchProviderApp *self = BIJIBEN_SHELL_SEARCH_PROVIDER_APP (obj);
 
-  g_object_unref (self->connection);
+  g_clear_object (&self->connection);
+  g_clear_object (&self->manager);
 
   G_OBJECT_CLASS (bijiben_shell_search_provider_app_parent_class)->dispose (obj);
 }
@@ -435,12 +423,29 @@ static void
 bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
 {
   GError *error = NULL;
+  char *storage_path;
+  GFile *storage;
+  GdkRGBA color = { 0, 0, 0, 0 };
 
   self->connection = tracker_sparql_connection_get (NULL, &error);
 
   if (error)
   {
-     g_message ("%s", error->message);
+     g_warning ("Unable to connect to Tracker: %s", error->message);
+     g_clear_error (&error);
+  }
+
+  storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
+  storage = g_file_new_for_path (storage_path);
+  g_free (storage_path);
+
+  self->manager = biji_manager_new (storage, &color, &error);
+  g_object_unref (storage);
+
+  if (error)
+  {
+     g_warning ("Unable to create BijiManager: %s", error->message);
+     g_clear_error (&error);
   }
 }
 

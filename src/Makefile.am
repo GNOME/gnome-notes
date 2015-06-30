@@ -109,6 +109,7 @@ bijiben_shell_search_provider_SOURCES = 	\
 	$(NULL)
 
 nodist_bijiben_shell_search_provider_SOURCES =		\
+	$(bijiben_built_sources) \
 	$(dbus_shell_search_provider_built_sources)	\
 	$(NULL)
 

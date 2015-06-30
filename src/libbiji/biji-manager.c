@@ -46,7 +46,6 @@ struct _BijiManagerPrivate
   gulong note_renamed ;
 
   GFile *location;
-  GError *error;
   TrackerSparqlConnection *connection;
 
 
@@ -63,7 +62,6 @@ enum {
   PROP_0,
   PROP_LOCATION,
   PROP_COLOR,
-  PROP_ERROR,
   BIJI_MANAGER_PROPERTIES
 };
 
@@ -76,17 +74,203 @@ enum {
 
 static guint biji_manager_signals[BIJI_MANAGER_SIGNALS] = { 0 };
 static GParamSpec *properties[BIJI_MANAGER_PROPERTIES] = { NULL, };
-
-
+static void biji_manager_initable_iface_init (GInitableIface *iface);
+static void biji_manager_async_initable_iface_init (GAsyncInitableIface *iface);
 
 #define BIJI_MANAGER_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_MANAGER, BijiManagerPrivate))
 
-G_DEFINE_TYPE (BijiManager, biji_manager, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_CODE (BijiManager, biji_manager, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, biji_manager_initable_iface_init)
+                         G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE, biji_manager_async_initable_iface_init))
 
+static void
+on_provider_loaded_cb (BijiProvider *provider,
+                       GList *items,
+                       BijiItemsGroup  group,
+                       BijiManager *manager)
+{
+  GList *l;
 
+  switch (group)
+  {
+    case BIJI_LIVING_ITEMS:
+      for (l=items; l!=NULL; l=l->next)
+      {
+        if (BIJI_IS_ITEM (l->data))
+          biji_manager_add_item (manager, l->data, BIJI_LIVING_ITEMS, FALSE);
+      }
+      break;
 
+    case BIJI_ARCHIVED_ITEMS:
+      for (l=items; l!= NULL; l=l->next)
+      {
+        if (BIJI_IS_ITEM (l->data))
+          biji_manager_add_item (manager, l->data, BIJI_ARCHIVED_ITEMS, FALSE);
+      }
+      break;
 
+   default:
+     break;
+  }
 
+  /* More cautious to ask to fully rebuild the model
+   * because this might be the first provider.
+   * See #708458
+   * There are more performant fixes but not worth it */
+  biji_manager_notify_changed (manager, group, BIJI_MANAGER_MASS_CHANGE, NULL);
+  g_print ("sending the mass change\n");
+}
+
+static void
+on_provider_abort_cb (BijiProvider *provider,
+                      BijiManager  *self)
+{
+  const BijiProviderInfo *info;
+
+  info = biji_provider_get_info (provider);
+  g_hash_table_remove (self->priv->providers, (gpointer) info->unique_id);
+
+  g_object_unref (G_OBJECT (provider));
+}
+
+/*
+ * It should be the right place
+ * to stock somehow providers list
+ * in order to handle properly manager__note_new ()
+ *
+ */
+static void
+_add_provider (BijiManager *self,
+               BijiProvider *provider)
+{
+  /* we can safely cast get_id from const to gpointer
+   * since there is no key free func */
+
+  const BijiProviderInfo *info;
+
+  info = biji_provider_get_info (provider);
+  g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);
+
+  g_signal_connect (provider, "loaded",
+                    G_CALLBACK (on_provider_loaded_cb), self);
+  g_signal_connect (provider, "abort",
+                    G_CALLBACK (on_provider_abort_cb), self);
+}
+
+static void
+load_goa_client (BijiManager *self,
+                 GoaClient *client)
+{
+  GList *accounts, *l;
+  GoaObject *object;
+  GoaAccount *account;
+  const gchar *type;
+  BijiProvider *provider;
+
+  accounts = goa_client_get_accounts (client);
+
+  for (l = accounts; l != NULL; l = l->next)
+  {
+    object = GOA_OBJECT (l->data);
+    account =  goa_object_peek_account (object);
+
+    if (GOA_IS_ACCOUNT (account))
+    {
+      type = goa_account_get_provider_type (account);
+
+      /* We do not need to store any object here.
+       * account_get_id can be used to talk with libbji */
+      if (g_strcmp0 (type, "owncloud") == 0)
+      {
+        g_message ("Loading account %s", goa_account_get_id (account));
+        provider = biji_own_cloud_provider_new (self, object);
+        _add_provider (self, provider);
+      }
+    }
+  }
+
+  g_list_free_full (accounts, g_object_unref);
+}
+
+static void
+load_eds_registry (BijiManager *self,
+                   ESourceRegistry *registry)
+{
+  GList *list, *l;
+  BijiProvider *provider;
+
+  list = e_source_registry_list_sources (registry, E_SOURCE_EXTENSION_MEMO_LIST);
+  for (l = list; l != NULL; l = l->next)
+  {
+    provider = biji_memo_provider_new (self, l->data);
+    _add_provider (self, provider);
+  }
+
+  g_list_free_full (list, g_object_unref);
+}
+
+static gboolean
+biji_manager_initable_init (GInitable *initable,
+                            GCancellable *cancellable,
+                            GError **error)
+{
+  BijiManager *self = BIJI_MANAGER (initable);
+  BijiManagerPrivate *priv = self->priv;
+  GError *local_error = NULL;
+  GoaClient *client;
+  ESourceRegistry *registry;
+
+  /* If tracker fails for some reason,
+   * do not attempt anything */
+  priv->connection = tracker_sparql_connection_get (NULL, &local_error);
+
+  if (local_error)
+  {
+    g_warning ("Unable to connect to Tracker: %s", local_error->message);
+    g_propagate_error (error, local_error);
+    return FALSE;
+  }
+
+  client = goa_client_new_sync (NULL, &local_error);
+  if (local_error)
+  {
+    g_warning ("Unable to connect to GOA: %s", local_error->message);
+    g_propagate_error (error, local_error);
+    return FALSE;
+  }
+
+  registry = e_source_registry_new_sync (NULL, &local_error);
+  if (local_error)
+  {
+    g_object_unref (client);
+    g_warning ("Unable to connect to EDS: %s", local_error->message);
+    g_propagate_error (error, local_error);
+    return FALSE;
+  }
+
+  priv->local_provider = biji_local_provider_new (self, self->priv->location);
+  _add_provider (self, priv->local_provider);
+
+  load_goa_client (self, client);
+  load_eds_registry (self, registry);
+
+  g_object_unref (client);
+  g_object_unref (registry);
+
+  return TRUE;
+}
+
+static void
+biji_manager_initable_iface_init (GInitableIface *iface)
+{
+  iface->init = biji_manager_initable_init;
+}
+
+static void
+biji_manager_async_initable_iface_init (GAsyncInitableIface *iface)
+{
+  /* Use default */
+}
 
 static void
 biji_manager_init (BijiManager *self)
@@ -184,10 +368,6 @@ biji_manager_set_property (GObject      *object,
     {
     case PROP_LOCATION:
       self->priv->location = g_value_dup_object (value);
-      break;
-
-    case PROP_ERROR:
-      self->priv->error = g_value_get_pointer (value);
       break;
 
     case PROP_COLOR:
@@ -463,155 +643,13 @@ biji_manager_add_item (BijiManager *manager,
   return retval;
 }
 
-
-
-
-static void
-on_provider_loaded_cb (BijiProvider *provider,
-                       GList *items,
-                       BijiItemsGroup  group,
-                       BijiManager *manager)
-{
-  GList *l;
-
-
-  switch (group)
-  {
-    case BIJI_LIVING_ITEMS:
-      for (l=items; l!=NULL; l=l->next)
-      {
-        if (BIJI_IS_ITEM (l->data))
-          biji_manager_add_item (manager, l->data, BIJI_LIVING_ITEMS, FALSE);
-      }
-      break;
-
-    case BIJI_ARCHIVED_ITEMS:
-      for (l=items; l!= NULL; l=l->next)
-      {
-        if (BIJI_IS_ITEM (l->data))
-          biji_manager_add_item (manager, l->data, BIJI_ARCHIVED_ITEMS, FALSE);
-      }
-      break;
-
-   default:
-     break;
-  }
-
-
-  /* More cautious to ask to fully rebuild the model
-   * because this might be the first provider.
-   * See #708458
-   * There are more performant fixes but not worth it */
-  biji_manager_notify_changed (manager, group, BIJI_MANAGER_MASS_CHANGE, NULL);
-}
-
-
-static void
-on_provider_abort_cb (BijiProvider *provider,
-                      BijiManager  *self)
-{
-  const BijiProviderInfo *info;
-
-  info = biji_provider_get_info (provider);
-  g_hash_table_remove (self->priv->providers, (gpointer) info->unique_id);
-
-  g_object_unref (G_OBJECT (provider));
-}
-
-
-
-/* 
- * It should be the right place
- * to stock somehow providers list
- * in order to handle properly manager__note_new ()
- * 
- */
-static void
-_add_provider (BijiManager *self,
-               BijiProvider *provider)
-{
-  g_return_if_fail (BIJI_IS_PROVIDER (provider));
-
-
-  /* we can safely cast get_id from const to gpointer
-   * since there is no key free func */
-
-  const BijiProviderInfo *info;
-
-  info = biji_provider_get_info (provider);
-  g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);  info = biji_provider_get_info (provider);
-  g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);
-
-  g_signal_connect (provider, "loaded",
-                    G_CALLBACK (on_provider_loaded_cb), self);
-  g_signal_connect (provider, "abort",
-                    G_CALLBACK (on_provider_abort_cb), self);
-}
-
-
-
-
-void
-biji_manager_add_e_source_extension_memo (BijiManager *self,
-                                          ESource *source)
-{
-  BijiProvider *provider = NULL;
-
-  provider = biji_memo_provider_new (self, source);
-  _add_provider (self, provider);
-}
-
-
-void
-biji_manager_add_goa_object (BijiManager *self,
-                               GoaObject *object)
-{
-  BijiProvider *provider;
-  GoaAccount *account;
-  const gchar *type;
-
-  provider = NULL;
-  account =  goa_object_get_account (object);
-
-  if (GOA_IS_ACCOUNT (account))
-  {
-    type = goa_account_get_provider_type (account);
-
-    if (g_strcmp0 (type, "owncloud") ==0)
-      provider = biji_own_cloud_provider_new (self, object);
-  }
-
-  _add_provider (self, provider);
-}
-
-
 static void
 biji_manager_constructed (GObject *object)
 {
-  BijiManager *self;
-  BijiManagerPrivate *priv;
   gchar *filename;
   GFile *cache;
-  GError *error;
-
 
   G_OBJECT_CLASS (biji_manager_parent_class)->constructed (object);
-  self = BIJI_MANAGER (object);
-  priv = self->priv;
-  error = NULL;
-
-  /* If tracker fails for some reason,
-   * do not attempt anything */
-  priv->connection = tracker_sparql_connection_get (NULL, &error);
-
-  if (error)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-    priv->error = g_error_new (BIJI_ERROR, BIJI_ERROR_TRACKER, "Tracker is not available");
-    return;
-  }
-
 
 #ifdef BUILD_ZEITGEIST
   priv->log = biji_zeitgeist_init ();
@@ -625,11 +663,7 @@ biji_manager_constructed (GObject *object)
   g_free (filename);
   g_file_make_directory (cache, NULL, NULL);
   g_object_unref (cache);
-
-  priv->local_provider = biji_local_provider_new (self, self->priv->location);
-  _add_provider (self, priv->local_provider);
 }
-
 
 static void
 biji_manager_class_init (BijiManagerClass *klass)
@@ -661,12 +695,6 @@ biji_manager_class_init (BijiManagerClass *klass)
                          "Note manager default color for notes",
                          G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
-
-  properties[PROP_ERROR] =
-    g_param_spec_pointer ("error",
-                          "Unrecoverable error",
-                          "Note manager unrecoverable error",
-                          G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (object_class, BIJI_MANAGER_PROPERTIES, properties);
   g_type_class_add_private (klass, sizeof (BijiManagerPrivate));
@@ -752,20 +780,39 @@ biji_manager_new (GFile *location, GdkRGBA *color, GError **error)
 {
   BijiManager *retval;
 
-  retval = g_object_new (BIJI_TYPE_MANAGER,
+  retval = g_initable_new (BIJI_TYPE_MANAGER, NULL, error,
                            "location", location,
                            "color", color,
-                           "error", *error,
                            NULL);
 
-  *error = retval->priv->error;
   return retval;
 }
 
+void
+biji_manager_new_async (GFile *location, GdkRGBA *color,
+                        GAsyncReadyCallback callback, gpointer user_data)
+{
+  g_async_initable_new_async (BIJI_TYPE_MANAGER, G_PRIORITY_DEFAULT,
+                              NULL,
+                              callback, user_data,
+                              "location", location,
+                              "color", color,
+                              NULL);
+}
 
+BijiManager *
+biji_manager_new_finish (GAsyncResult *res,
+                         GError **error)
+{
+  GObject *source_obj;
+  GObject *object;
 
+  source_obj = g_async_result_get_source_object (res);
+  object = g_async_initable_new_finish (G_ASYNC_INITABLE (source_obj), res, error);
+  g_object_unref (source_obj);
 
-
+  return object != NULL ? BIJI_MANAGER (object) : NULL;
+}
 
 /* Create the importer == switch depending on the uri.
  * That's all, the importer is responsible

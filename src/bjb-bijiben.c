@@ -366,9 +366,6 @@ bijiben_startup (GApplication *application)
   error = NULL;
 
 
-  gtk_init (NULL, NULL);
-
-
   bjb_app_menu_set(application);
 
   storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);

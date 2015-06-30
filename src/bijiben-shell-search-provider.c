@@ -284,9 +284,9 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
 
     /* NIE:TITLE (name) is the title pushed by libbiji */
     result = tracker_sparql_cursor_get_string (cursor, 1, 0);
+    if (result == NULL || result[0] == '\0')
+      result = _("Untitled");
     g_variant_builder_add (results, "{sv}", "name", g_variant_new_string (result));
-
-
 
    /* ICON is currently generic icon,        *
     * TODO serialize icons in libbiji        *

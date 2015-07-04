@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the bijiben package.
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2014.
 # António Lima <amrlima@gmail.com>, 2013, 2015.
+# Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-08 02:58+0000\n"
-"PO-Revision-Date: 2015-06-11 11:36+0100\n"
-"Last-Translator: António Lima <amrlima@gmail.com>\n"
-"Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
+"POT-Creation-Date: 2015-07-04 02:58+0000\n"
+"PO-Revision-Date: 2015-07-04 07:16+0100\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
+"Language-Team: Português <palbuquerque73@openmailbox.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,6 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Fornecedor principal de notas a utilizar para novas notas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
-#, fuzzy
 #| msgid "The primary notebook is the place where are created new notes."
 msgid "The primary notebook is the place where new notes are created."
 msgstr "O livro de notas principal é o local onde as novas notas são criadas."
@@ -105,6 +105,10 @@ msgstr "Posição da janela"
 msgid "Window position (x and y)."
 msgstr "Posição da janela (x e y)."
 
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Sem título"
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "Bloco de notas simples para o GNOME"
@@ -115,35 +119,34 @@ msgstr ""
 "António Lima <amrlima@gmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:409
 msgid "Show the application's version"
 msgstr "Mostrar a versão da aplicação"
 
-#: ../src/bjb-bijiben.c:456
-#, fuzzy
+#: ../src/bjb-bijiben.c:411
 #| msgid "Copy selection to a new note"
 msgid "Create a new note"
-msgstr "Copiar seleção para uma nova nota"
+msgstr "Criar uma nova nota"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:413
 msgid "[FILE...]"
 msgstr "[FICHEIRO...]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:420
 msgid "Take notes and export them everywhere."
 msgstr "Tome notas e exporte-as para todo o lado."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:431
 msgid "Could not parse arguments"
 msgstr "Impossível processar os argumentos"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:440
 msgid "GNOME Notes"
 msgstr "Notas GNOME"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:453
 msgid "Could not register the application"
 msgstr "Impossível registar a aplicação"
 
@@ -196,23 +199,19 @@ msgstr "Rasurado"
 msgid "Copy selection to a new note"
 msgstr "Copiar seleção para uma nova nota"
 
-#: ../src/bjb-empty-results-box.c:101
-#| msgid "Notes"
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Sem notas"
 
-#: ../src/bjb-empty-results-box.c:145
-#| msgid ""
-#| "Your notes notebook is empty.\n"
-#| "Click the New button to create your first note."
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Clique no botão Nova para criar uma nota."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Oops"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Por favor instale o 'Tracker' e reinicie a aplicação."
 
@@ -312,10 +311,6 @@ msgstr "Lixo"
 msgid "Empty"
 msgstr "Vazio"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Sem título"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
@@ -373,7 +368,6 @@ msgstr "Nota"
 #.
 #: ../src/bjb-note-view.c:190
 #, c-format
-#| msgid "Last updated"
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Última atualização</b> %s"
 
@@ -428,7 +422,6 @@ msgid "Default Color"
 msgstr "Cor predefinida"
 
 #: ../src/bjb-settings-dialog.c:466
-#| msgid "_Preferences"
 msgid "Preferences"
 msgstr "Preferências"
 
@@ -464,7 +457,7 @@ msgstr "Este ano"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Local"
 

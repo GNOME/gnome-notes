@@ -261,6 +261,8 @@ biji_note_id_get_content (BijiNoteID *id)
 gint64
 biji_note_id_get_mtime (BijiNoteID *n)
 {
+  g_return_val_if_fail (BIJI_IS_NOTE_ID (n), 0);
+
   return n->priv->mtime;
 }
 
@@ -268,6 +270,8 @@ biji_note_id_get_mtime (BijiNoteID *n)
 gboolean
 biji_note_id_set_mtime (BijiNoteID *n, gint64 time)
 {
+  g_return_if_fail (BIJI_IS_NOTE_ID (n));
+
   if (n->priv->mtime != time)
   {
     n->priv->mtime = time;

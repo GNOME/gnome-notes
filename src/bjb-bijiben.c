@@ -52,8 +52,7 @@ G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
 static void
 bijiben_new_window_internal (Bijiben *app,
                              GFile *file,
-                             BijiItem *item,
-                             GError *error);
+                             BijiItem *item);
 
 
 static void
@@ -90,7 +89,7 @@ on_window_activated_cb   (BjbWindowBase *window,
            bjb_window_base_switch_to_item (window, item);
 
         else
-           bijiben_new_window_internal (self, NULL, item, NULL);
+           bijiben_new_window_internal (self, NULL, item);
       }
       g_free (path);
     }
@@ -122,7 +121,7 @@ on_window_activated_cb   (BjbWindowBase *window,
                         priv->manager,
                         NULL,
                         bjb_settings_get_default_location (self->priv->settings)));
-    bijiben_new_window_internal (self, NULL, item, NULL);
+    bijiben_new_window_internal (self, NULL, item);
   }
 }
 
@@ -130,8 +129,7 @@ on_window_activated_cb   (BjbWindowBase *window,
 static void
 bijiben_new_window_internal (Bijiben     *self,
                              GFile       *file,
-                             BijiItem    *item,
-                             GError      *error)
+                             BijiItem    *item)
 {
   BjbWindowBase *window;
   BijiNoteObj   *note;
@@ -140,7 +138,6 @@ bijiben_new_window_internal (Bijiben     *self,
   gboolean       not_first_window;
 
   note = NULL;
-  path = NULL;
 
   windows = gtk_application_get_windows (GTK_APPLICATION (self));
   not_first_window = (gboolean) g_list_length (windows);
@@ -149,6 +146,7 @@ bijiben_new_window_internal (Bijiben     *self,
   {
     path = g_file_get_parse_name (file);
     note = BIJI_NOTE_OBJ (biji_manager_get_item_at_path (self->priv->manager, path));
+    g_free (path);
   }
 
   else if (item != NULL && BIJI_IS_NOTE_OBJ (item))
@@ -161,18 +159,6 @@ bijiben_new_window_internal (Bijiben     *self,
   g_signal_connect (window, "activated",
                     G_CALLBACK (on_window_activated_cb), self);
 
-
-  if (error!= NULL)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-    bjb_window_base_switch_to (window, BJB_WINDOW_BASE_ERROR_TRACKER);
-  }
-
-
-  if (path != NULL)
-    g_free (path);
-
   gtk_widget_show (GTK_WIDGET (window));
 
   if (not_first_window)
@@ -183,7 +169,7 @@ void
 bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
-  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), NULL, BIJI_ITEM (note), NULL);
+  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), NULL, BIJI_ITEM (note));
 }
 
 static void
@@ -213,7 +199,7 @@ bijiben_open (GApplication  *application,
   for (i = 0; i < n_files; i++)
   {
     if (self->priv->is_loaded == TRUE)
-      bijiben_new_window_internal (self, files[i], NULL, NULL);
+      bijiben_new_window_internal (self, files[i], NULL);
 
     else
       g_queue_push_head (self->priv->files_to_open, g_file_get_parse_name (files[i]));
@@ -314,7 +300,7 @@ manager_ready_cb (GObject *source,
       return;
     }
 
-  bijiben_new_window_internal (self, NULL, NULL, NULL);
+  bijiben_new_window_internal (self, NULL, NULL);
 }
 
 static void

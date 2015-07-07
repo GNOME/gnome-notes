@@ -176,7 +176,7 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
-  biji_note_obj_get_rgba (priv->note, &color);
+  biji_note_obj_get_rgba (note, &color);
   if (color.red < 0.5)
     font_color = "white";
   else
@@ -189,7 +189,7 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
    */
   text = g_strdup_printf (_("<b>Last updated</b> %s"),
                           biji_note_obj_get_last_change_date_string
-			            (priv->note));
+			            (note));
   span = g_strdup_printf ("<span color='%s'>%s</span>", font_color, text);
   gtk_label_set_markup (GTK_LABEL (priv->last_update), span);
 

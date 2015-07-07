@@ -265,11 +265,6 @@ bjb_window_base_constructed (GObject *obj)
 {
   BjbWindowBase *self = BJB_WINDOW_BASE (obj);
   BjbWindowBasePriv *priv;
-  const gchar *icons_path;
-  gchar *full_path;
-  GList *icons = NULL;
-  GdkPixbuf *bjb ;
-  GError *error = NULL;
   gboolean maximized;
   const gint32 *position;
   const gint32 *size;
@@ -304,31 +299,6 @@ bjb_window_base_constructed (GObject *obj)
   maximized = g_settings_get_boolean (G_SETTINGS (priv->settings), "window-maximized");
   if (maximized)
     gtk_window_maximize (GTK_WINDOW (self));
-
-
-  /* Icon for window. TODO - Should be BjbApp */
-  icons_path = bijiben_get_bijiben_dir ();
-  full_path = g_build_filename (icons_path,
-                                "icons",
-                                "hicolor",
-                                "48x48",
-                                "apps",
-                                "org.gnome.bijiben.png",
-                                NULL);
-
-  bjb = gdk_pixbuf_new_from_file (full_path, &error);
-  g_free (full_path);
-
-  if ( error )
-  {
-    g_message("%s", error->message);
-    g_error_free(error);
-  }
-
-  icons = g_list_prepend(icons,bjb);
-  gtk_window_set_default_icon_list(icons);
-  g_list_foreach (icons, (GFunc) g_object_unref, NULL);
-  g_list_free (icons);
 
   /*  We probably want to offer a no entry window at first (startup) */
   priv->entry = NULL ;

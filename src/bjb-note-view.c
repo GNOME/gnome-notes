@@ -57,7 +57,7 @@ struct _BjbNoteViewPrivate {
 
 static void on_window_closed(GtkWidget *window,gpointer note);
 static gboolean on_note_trashed (BijiNoteObj *note, BjbNoteView *view);
-
+static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
 
 static void
 bjb_note_view_disconnect (BjbNoteView *self)
@@ -67,6 +67,7 @@ bjb_note_view_disconnect (BjbNoteView *self)
   priv = self->priv;
   g_signal_handlers_disconnect_by_func (priv->window, on_window_closed, priv->note);
   g_signal_handlers_disconnect_by_func (priv->note, on_note_trashed, self);
+  g_signal_handlers_disconnect_by_func (priv->note, on_note_color_changed_cb, self);
 }
 
 

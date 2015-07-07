@@ -17,9 +17,6 @@
 
 #define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
 
-#define BJB_DEFAULT_FONT "Serif 10"
-
-
 enum {
   PROP_0,
   PROP_NOTE,
@@ -61,9 +58,6 @@ struct _BjbWindowBasePriv
   /* when a note is opened */
   BijiNoteObj          *note;
   gboolean              detached; // detached note
-
-
-  PangoFontDescription *font ;
 };
 
 /* Gobject */
@@ -338,7 +332,6 @@ bjb_window_base_constructed (GObject *obj)
 
   /*  We probably want to offer a no entry window at first (startup) */
   priv->entry = NULL ;
-  priv->font = pango_font_description_from_string (BJB_DEFAULT_FONT);
 
   priv->controller = bjb_controller_new
     (bijiben_get_manager (BIJIBEN_APPLICATION(g_application_get_default())),
@@ -501,13 +494,6 @@ BjbController *
 bjb_window_base_get_controller ( BjbWindowBase *window )
 {
   return window->priv->controller ;
-}
-
-PangoFontDescription *
-window_base_get_font(GtkWidget *window)
-{
-  BjbWindowBase *b = BJB_WINDOW_BASE(window);
-  return b->priv->font ;
 }
 
 BijiNoteObj *

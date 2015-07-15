@@ -652,7 +652,7 @@ biji_manager_constructed (GObject *object)
   G_OBJECT_CLASS (biji_manager_parent_class)->constructed (object);
 
 #ifdef BUILD_ZEITGEIST
-  priv->log = biji_zeitgeist_init ();
+  BIJI_MANAGER (object)->priv->log = biji_zeitgeist_init ();
 #endif /* BUILD_ZEITGEIST */
 
   /* Ensure cache directory for icons */

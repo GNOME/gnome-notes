@@ -1,3 +1,19 @@
+Overview of changes in 3.17.4
+=============================
+
+* Hi dpi (Cosimo Cecchi)
+  - Notes & notebooks icons
+  - Fix thumbnails inside shell
+  - Empty result box
+
+* Bugs
+  Fix crash when note color changes, RH BZ 1204815
+  Build error (Yosef Or Boczko)
+
+* Translations
+  Portuguese
+  Spanish
+
 Overview of changes in 3.17.3
 =============================
 

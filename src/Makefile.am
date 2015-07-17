@@ -120,8 +120,7 @@ BUILT_SOURCES = \
 
 EXTRA_DIST = \
 	bjb.gresource.xml \
-	resources/app-menu.ui \
-	resources/thumbnail-frame.png \
+  $(resource_files) \
 	$(NULL)
 
 CLEANFILES = \

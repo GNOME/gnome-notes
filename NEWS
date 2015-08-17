@@ -1,3 +1,12 @@
+Overview of changes in 3.17.90
+==============================
+
+* Bugs
+  Fix missing return (Cheng-Chia Tseng)
+
+* Translation
+  Chinese (Taiwan)
+
 Overview of changes in 3.17.4
 =============================
 

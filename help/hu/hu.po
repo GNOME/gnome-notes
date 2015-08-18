@@ -2,13 +2,13 @@
 # Copyright (C) 2014. Free Software Foundation, Inc.
 # This file is distributed under the same license as the bijiben user help.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2014.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2014, 2015.
 # Balázs Úr <urbalazs at gmail dot com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben_help master\n"
-"POT-Creation-Date: 2014-12-29 03:55+0000\n"
-"PO-Revision-Date: 2014-12-29 12:10+0100\n"
+"POT-Creation-Date: 2015-08-18 14:59+0000\n"
+"PO-Revision-Date: 2015-08-18 17:11+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <openscope at gmail dot com>\n"
 "Language: hu\n"
@@ -25,14 +25,14 @@ msgstr "Kelemen Gábor <kelemeng at gnome dot hu>, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:13 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:15 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -45,15 +45,15 @@ msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #. (itstool) path: credit/years
-#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/share.page:17
-#| msgid "01 sep 2014"
+#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/search.page:17
+#: C/share.page:17
 msgid "2013, 2014"
 msgstr "2013, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete.page:30 C/delete-permanent.page:11 C/delete-restore.page:11
-#: C/format-list.page:20 C/format-text.page:20 C/index.page:18
+#: C/format-list.page:20 C/format-text.page:20 C/index.page:20
 #: C/introduction.page:11 C/introduction.page:26 C/notebooks.page:20
 #: C/rename.page:11 C/search.page:20 C/search.page:30 C/share.page:20
 msgid "Shobha Tyagi"
@@ -61,7 +61,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/delete.page:22 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:20
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
 #: C/introduction.page:13 C/rename.page:13 C/search.page:22
 msgid "2013"
 msgstr "2013"
@@ -202,9 +202,6 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/create.page:55
-#| msgid ""
-#| "To open a new note using the keyboard shortcut press <keyseq><key>Ctrl</"
-#| "key><key>N</key></keyseq>."
 msgid ""
 "To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
 "key><key>N</key></keyseq>."
@@ -243,9 +240,6 @@ msgstr "Jelölje ki a szöveget."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:42
-#| msgid ""
-#| "Click <gui style=\"button\">Cut</gui>, <gui style=\"button\">Copy</gui> "
-#| "or <gui style=\"button\">Paste</gui>."
 msgid ""
 "Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
 msgstr ""
@@ -254,16 +248,12 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:46
-#| msgid ""
-#| "Select a new color and click the <gui style=\"button\">Select</gui> "
-#| "button."
 msgid ""
 "Select where you want to paste the text and press <gui style=\"button"
 "\">Paste</gui>."
 msgstr ""
-"Válassza ki a szöveg új helyét, és nyomja meg a <gui style=\"button\">"
-"Beillesztés</"
-"gui> gombot."
+"Válassza ki a szöveg új helyét, és nyomja meg a <gui style=\"button"
+"\">Beillesztés</gui> gombot."
 
 #. (itstool) path: credit/years
 #: C/delete.page:32
@@ -320,7 +310,6 @@ msgstr "Kattintson az <gui style=\"button\">Áthelyezés a Kukába</gui> gombra.
 
 #. (itstool) path: info/desc
 #: C/delete-permanent.page:18
-#| msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
 msgid "Permanently delete notes from the <gui>Trash</gui> view."
 msgstr "Jegyzetek végleges törlése a <gui>Kuka</gui> nézetből."
 
@@ -331,7 +320,6 @@ msgstr "A Kuka ürítése"
 
 #. (itstool) path: page/p
 #: C/delete-permanent.page:23
-#| msgid "You can view, restore or delete notes in the <gui>Trash</gui>."
 msgid "You can permanently delete notes from the <gui>Trash</gui>."
 msgstr "A <gui>Kuka</gui> nézetből véglegesen törölhet jegyzeteket."
 
@@ -380,13 +368,11 @@ msgstr "Kattintson a <gui style=\"button\">Végleges törlés</gui> gombra."
 
 #. (itstool) path: info/desc
 #: C/delete-restore.page:23
-#| msgid "To delete a note:"
 msgid "Restore a deleted note."
 msgstr "Törölt jegyzet visszaállítása."
 
 #. (itstool) path: page/title
 #: C/delete-restore.page:26
-#| msgid "Create notes"
 msgid "Restore notes"
 msgstr "Jegyzetek visszaállítása"
 
@@ -406,7 +392,6 @@ msgstr "A kidobott jegyzetek visszaállításához:"
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:34
-#| msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
 msgstr ""
 "A <gui>Kuka</gui> nézetben kattintson a <gui>Kijelölési mód</gui> gombra."
@@ -485,39 +470,39 @@ msgstr ""
 "\">Dőlt</gui> vagy <gui style=\"button\">Áthúzott</gui> egyikére."
 
 #. (itstool) path: info/title
-#: C/index.page:6
+#: C/index.page:8
 msgctxt "link"
 msgid "Notes"
 msgstr "Jegyzetek"
 
 #. (itstool) path: info/title
-#: C/index.page:7
+#: C/index.page:9
 msgctxt "text"
 msgid "Notes"
 msgstr "Jegyzetek"
 
 #. (itstool) path: info/desc
-#: C/index.page:25
+#: C/index.page:27
 msgid "Learn how to use and manage your notes."
 msgstr "Ismerje meg a jegyzetek használatát és kezelését."
 
 #. (itstool) path: page/title
-#: C/index.page:28
+#: C/index.page:30
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Jegyzetek"
 
 #. (itstool) path: section/title
-#: C/index.page:35
+#: C/index.page:37
 msgid "Create notes"
 msgstr "Jegyzetek létrehozása"
 
 #. (itstool) path: section/title
-#: C/index.page:38
+#: C/index.page:40
 msgid "Edit and share notes"
 msgstr "Jegyzetek szerkesztése és megosztása"
 
 #. (itstool) path: section/title
-#: C/index.page:41
+#: C/index.page:43
 msgid "Delete notes"
 msgstr "Jegyzetek törlése"
 
@@ -574,15 +559,11 @@ msgstr "Jegyzet megnyitása másik ablakban"
 
 #. (itstool) path: page/p
 #: C/new-window.page:23
-#| msgid "To create a notebook with a single note:"
 msgid "To open a note in a new window:"
 msgstr "Jegyzet megnyitásához új ablakban:"
 
 #. (itstool) path: item/p
 #: C/new-window.page:27
-#| msgid ""
-#| "Click <guiseq><gui style=\"button\">More options…</gui><gui style="
-#| "\"menuitem\">Notebooks</gui></guiseq>."
 msgid ""
 "Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui "
 "style=\"menuitem\">Open in New Window</gui></guiseq>."
@@ -696,11 +677,6 @@ msgstr "Egy jegyzet átnevezéséhez:"
 msgid "Change the text in the first line of the note."
 msgstr "Módosítsa a jegyzet első sorában lévő szöveget."
 
-#. (itstool) path: credit/years
-#: C/search.page:17
-msgid "2013, 3014"
-msgstr "2013, 3014"
-
 #. (itstool) path: info/desc
 #: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
@@ -713,18 +689,21 @@ msgstr "Jegyzet keresése"
 
 #. (itstool) path: page/p
 #: C/search.page:42
+#| msgid ""
+#| "You can search your note in the <gui>New and Recent</gui> view in "
+#| "<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
+#| "terminology\">Activities</gui> overview."
 msgid ""
-"You can search your note in the <gui>New and Recent</gui> view in "
-"<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
+"You can search your notes in the <gui>New and Recent</gui> view in "
+"<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Jegyzeteket kereshet a <app>Jegyzetek</app> <gui>Új és legutóbbi</gui> "
-"nézetében, vagy a <gui href=\"help:gnome-help/shell-terminology\">"
-"Tevékenységek</gui> áttekintésben is."
+"nézetében, vagy a <gui href=\"help:gnome-help/shell-terminology"
+"\">Tevékenységek</gui> áttekintésben is."
 
 #. (itstool) path: steps/title
 #: C/search.page:47
-#| msgid "To find notes while in <em>New and Recent</em>:"
 msgid "To find notes while in <gui>New and Recent</gui>:"
 msgstr "Jegyzetek kereséséhez az <gui>Új és legutóbbi</gui> nézetben:"
 
@@ -740,15 +719,12 @@ msgstr "Írja be a keresendő kifejezést. A találatok azonnal megjelennek."
 
 #. (itstool) path: note/p
 #: C/search.page:57
-#| msgid ""
-#| "You can directly start typing the search string in the <em>New and "
-#| "Recent</em> view to search notes."
 msgid ""
 "You can directly start typing the search string in the <gui>New and Recent</"
 "gui> view to search notes."
 msgstr ""
-"A jegyzetek kereséséhez elkezdheti közvetlenül gépelni a keresési szöveget az "
-"<em>Új és legutóbbi</em> nézetben."
+"A jegyzetek kereséséhez elkezdheti közvetlenül gépelni a keresési szöveget "
+"az <em>Új és legutóbbi</em> nézetben."
 
 #. (itstool) path: info/desc
 #: C/share.page:32
@@ -794,6 +770,9 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Ez a munka a <_:link-1/> feltételei szerint használható."
+
+#~ msgid "2013, 3014"
+#~ msgstr "2013, 3014"
 
 #~ msgid "31 Aug 2014"
 #~ msgstr "2014. augusztus 31."

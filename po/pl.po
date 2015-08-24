@@ -4,16 +4,16 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2014.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2015.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015.
 # Aviary.pl <gnomepl@aviary.pl>, 2012-2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-08 19:05+0100\n"
-"PO-Revision-Date: 2015-03-08 13:04+0100\n"
-"Last-Translator: Paweł Żołnowski <pawel@zolnowski.name>\n"
+"POT-Creation-Date: 2015-08-24 19:04+0200\n"
+"PO-Revision-Date: 2015-08-24 19:05+0200\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,11 @@ msgstr "Położenie okna"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
-msgstr "Położenie okna (x i y)."
+msgstr "Położenie okna (na osi X i Y)."
+
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Bez tytułu"
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -111,37 +115,37 @@ msgstr "Prosty notatnik dla środowiska GNOME"
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2014\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2015\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
 "Aviary.pl <gnomepl@aviary.pl>, 2012-2015"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:409
 msgid "Show the application's version"
 msgstr "Wyświetla wersję programu"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:411
 msgid "Create a new note"
 msgstr "Tworzy nową notatkę"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:413
 msgid "[FILE...]"
-msgstr "[PLIK...]"
+msgstr "[PLIK…]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:420
 msgid "Take notes and export them everywhere."
 msgstr "Umożliwia robienie i eksportowanie notatek."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:431
 msgid "Could not parse arguments"
 msgstr "Nie można przetworzyć parametrów"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:440
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:453
 msgid "Could not register the application"
 msgstr "Nie można zarejestrować programu"
 
@@ -194,22 +198,22 @@ msgstr "Przekreślenie"
 msgid "Copy selection to a new note"
 msgstr "Skopiuj zaznaczenie do nowej notatki"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Brak notatek"
 
-#: ../src/bjb-empty-results-box.c:145
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Proszę nacisnąć przycisk Nowa, aby utworzyć notatkę."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr ""
-"Proszę zainstalować program \"Tracker\", a następnie ponownie uruchomić ten "
+"Proszę zainstalować program „Tracker”, a następnie ponownie uruchomić ten "
 "program."
 
 #: ../src/bjb-import-dialog.c:309
@@ -242,7 +246,7 @@ msgstr "Wczytaj więcej"
 
 #: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
-msgstr "Wczytywanie..."
+msgstr "Wczytywanie…"
 
 #: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
@@ -272,7 +276,7 @@ msgstr "Wyjście z trybu zaznaczania"
 #: ../src/bjb-main-toolbar.c:350
 #, c-format
 msgid "Results for %s"
-msgstr "Wyniki dla %s"
+msgstr "Wyniki dla „%s”"
 
 #: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
@@ -308,10 +312,6 @@ msgstr "Kosz"
 #: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Opróżnij"
-
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Bez tytułu"
 
 #.
 #. * Open the current note in a new window
@@ -368,7 +368,7 @@ msgstr "Notatka"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Ostatnio zaktualizowano</b> %s"
@@ -459,7 +459,7 @@ msgstr "Ten rok"
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Lokalne"
 

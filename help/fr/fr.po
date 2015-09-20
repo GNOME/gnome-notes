@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2015-03-25 12:02+0000\n"
-"PO-Revision-Date: 2015-03-16 21:55+0100\n"
+"POT-Creation-Date: 2015-09-20 10:18+0000\n"
+"PO-Revision-Date: 2015-09-20 16:34+0200\n"
 "Last-Translator: Myriam Economou <myriam.economou@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -78,12 +78,11 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
 #: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
-#: C/delete-permanent.page:13 C/delete-restore.page:13
-#: C/delete-restore.page:18 C/format-list.page:27 C/format-text.page:22
-#: C/format-text.page:27 C/introduction.page:23 C/introduction.page:28
-#: C/new-window.page:13 C/notebooks.page:22 C/notebooks.page:27
-#: C/rename.page:18 C/search.page:27 C/search.page:32 C/share.page:22
-#: C/share.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
+#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
+#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
+#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
+#: C/search.page:32 C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
@@ -229,8 +228,8 @@ msgid ""
 "You can move text inside a note or to another note by cutting or copying it "
 "and pasting it somewhere else."
 msgstr ""
-"Vous pouvez déplacer du texte au sein d'une note ou vers une autre note en la "
-"coupant ou copiant et collant ailleurs."
+"Vous pouvez déplacer du texte au sein d'une note ou vers une autre note en "
+"la coupant ou copiant et collant ailleurs."
 
 #. (itstool) path: steps/title
 #: C/cut-copy-paste.page:37
@@ -523,12 +522,10 @@ msgstr "Supprimer des notes"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:43
-#, fuzzy
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 msgstr ""
-"external"
 
 #. (itstool) path: info/desc
 #: C/introduction.page:33
@@ -579,8 +576,8 @@ msgid ""
 "style=\"menuitem\">Open in New Window</gui></guiseq>."
 msgstr ""
 "Ouvrez une note et cliquez ensuite sur <guiseq><gui style=\"button\">Plus "
-"d'options…</gui><gui style=\"menuitem\">Ouvrir dans une nouvelle fenêtre</gui></"
-"guiseq>."
+"d'options…</gui><gui style=\"menuitem\">Ouvrir dans une nouvelle fenêtre</"
+"gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/new-window.page:32
@@ -706,8 +703,8 @@ msgid ""
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Vous pouvez rechercher vos notes dans la vue <gui>Nouveau et récent</gui> "
-"dans <app>Notes</app> ou les trouver à partir de la vue d'ensemble des <gui href="
-"\"help:gnome-help/shell-terminology\">Activités</gui>"
+"dans <app>Notes</app> ou les trouver à partir de la vue d'ensemble des <gui "
+"href=\"help:gnome-help/shell-terminology\">Activités</gui>"
 
 #. (itstool) path: steps/title
 #: C/search.page:47
@@ -783,4 +780,3 @@ msgstr ""
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Cet ouvrage est sous licence <_:link-1/>."
-

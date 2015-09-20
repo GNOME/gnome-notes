@@ -765,6 +765,10 @@ BijiItem *
 biji_manager_get_item_at_path (BijiManager *manager, const gchar *path)
 {
   BijiItem *retval;
+  g_return_val_if_fail (BIJI_IS_MANAGER(manager), NULL);
+
+  if (path == NULL)
+    return NULL;
 
   retval = g_hash_table_lookup (manager->priv->items, (gconstpointer) path);
 

@@ -1,3 +1,11 @@
+Overview of changes in 3.18.0
+==============================
+
+* manager::get_item_at_path : handle null
+
+* Translation
+  Latvian
+
 Overview of changes in 3.17.92
 ==============================
 

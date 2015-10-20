@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2015-10-20 03:01+0000\n"
-"PO-Revision-Date: 2015-10-20 06:37+0000\n"
+"PO-Revision-Date: 2015-10-20 08:17+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -21,27 +21,29 @@ msgstr ""
 #: ../data/bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
+"Minnismiðar er ritill sem gerir kleift að hripa niður minnismiða fyrir síðari "
+"tíma notkun."
 
 #: ../data/bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr ""
+msgstr "Hægt er að nota ownCloud sem geymslumiðil og netritil."
 
 #: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
 #: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
 msgid "Notes"
-msgstr "Minnispunktar"
+msgstr "Minnismiðar"
 
 #: ../data/bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
-msgstr ""
+msgstr "minnismiðar;minnispunktar;áminning;"
 
 #: ../data/bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
-msgstr ""
+msgstr "Birta minnismiða, merkja skrár!"
 
 #: ../data/bijiben.desktop.in.in.h:4
 msgid "Note-taker"
-msgstr ""
+msgstr "Glósuforrit"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
@@ -50,27 +52,31 @@ msgstr "Sérsniðið letur"
 #: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
+"Nafnið hér verður notað sem nafn á lit sem notaður er þegar minnismiðar eru "
+"birtir."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
-msgstr ""
+msgstr "Hvort nota eigi jafnbreytt kerfisletur"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
-msgstr ""
+msgstr "Litur nýrra minnismiða."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
+"Nafnið hér verður notað sem nafn á lit sem notaður er þegar nýjir minnismiðar "
+"eru búnir til."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
-msgstr ""
+msgstr "Aðal-minnismiðaþjónusta sem á að nota fyrir nýja minnismiða."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
-msgstr ""
+msgstr "Aðal-minnisbókin er staðurinn þar sem nýjir minnismiðar eru búnir til."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
@@ -114,7 +120,7 @@ msgstr "Birta útgáfuupplýsingar forrits"
 
 #: ../src/bjb-bijiben.c:411
 msgid "Create a new note"
-msgstr "Búa til nýjan minnispunkt"
+msgstr "Búa til nýjan minnismiða"
 
 #: ../src/bjb-bijiben.c:413
 msgid "[FILE...]"
@@ -122,7 +128,7 @@ msgstr "[SKRÁ...]"
 
 #: ../src/bjb-bijiben.c:420
 msgid "Take notes and export them everywhere."
-msgstr "Taka niður minnispunkta og flytja þá hvert sem er."
+msgstr "Taka niður minnismiða og flytja þá hvert sem er."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
@@ -132,7 +138,7 @@ msgstr "Ekki tókst að þátta viðföng"
 
 #: ../src/bjb-bijiben.c:440
 msgid "GNOME Notes"
-msgstr "GNOME minnispunktar"
+msgstr "GNOME minnismiðar"
 
 #: ../src/bjb-bijiben.c:453
 msgid "Could not register the application"
@@ -181,19 +187,19 @@ msgstr "Skáletrað"
 
 #: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
-msgstr ""
+msgstr "Yfirstrikað"
 
 #: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
-msgstr ""
+msgstr "Afrita valið í nýjan minnismiða"
 
 #: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
-msgstr "Engir minnispunktar"
+msgstr "Engir minnismiðar"
 
 #: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
-msgstr ""
+msgstr "Ýttu á Nýtt-hnappinn til að búa til minnismiða."
 
 #: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
@@ -201,7 +207,7 @@ msgstr "Úbbs"
 
 #: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
-msgstr ""
+msgstr "Settu upp 'Tracker' og endurræstu forritið."
 
 #: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
@@ -209,7 +215,7 @@ msgstr "Sérsniðin staðsetning"
 
 #: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
-msgstr "Flytja inn minnispunkta"
+msgstr "Flytja inn minnismiða"
 
 #: ../src/bjb-import-dialog.c:411
 msgid "Import"
@@ -217,15 +223,15 @@ msgstr "Flytja inn"
 
 #: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
-msgstr ""
+msgstr "Veldu staðsetningu innflutnings"
 
 #: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
-msgstr ""
+msgstr "Tomboy forritið"
 
 #: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
-msgstr ""
+msgstr "Gnote forritið"
 
 #: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
@@ -248,7 +254,7 @@ msgstr[1] "%d valið"
 
 #: ../src/bjb-main-toolbar.c:264
 msgid "Search note titles, content and notebooks"
-msgstr ""
+msgstr "Leita í titlum minnismiða, efni og í minnisbókum"
 
 #. Select
 #: ../src/bjb-main-toolbar.c:306
@@ -257,7 +263,7 @@ msgstr "Hætta við"
 
 #: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
-msgstr ""
+msgstr "Hætta í valham"
 
 #: ../src/bjb-main-toolbar.c:350
 #, c-format
@@ -282,11 +288,11 @@ msgstr "Valhamur"
 
 #: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
-msgstr ""
+msgstr "Skoða minnismiða og minnisbækur sem lista"
 
 #: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
-msgstr ""
+msgstr "Skoða minnismiða og minnisbækur sem töflu"
 
 #: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
@@ -347,7 +353,7 @@ msgstr "Minnisbók"
 
 #: ../src/bjb-main-view.c:519
 msgid "Note"
-msgstr "Minnispunktur"
+msgstr "Minnismiði"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
@@ -382,7 +388,7 @@ msgstr "Endurheimta"
 
 #: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
-msgstr "Deila minnispunkti"
+msgstr "Deila minnismiða"
 
 #. Detach
 #: ../src/bjb-selection-toolbar.c:409
@@ -402,7 +408,7 @@ msgstr "Nota kerfisletur"
 #. Default font
 #: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
-msgstr "Letur á minnispunkti"
+msgstr "Letur á minnismiða"
 
 #. Default color
 #: ../src/bjb-settings-dialog.c:420
@@ -415,7 +421,7 @@ msgstr "Kjörstillingar"
 
 #: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
-msgstr ""
+msgstr "Útgáfa minnismiða"
 
 #: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
@@ -455,7 +461,7 @@ msgstr "Geymt staðvært"
 
 #: ../src/resources/app-menu.ui.h:1
 msgid "_Import Notes"
-msgstr "Flytja _inn minnispunkta"
+msgstr "Flytja _inn minnismiða"
 
 #: ../src/resources/app-menu.ui.h:2
 msgid "_View Trash"

@@ -1,0 +1,327 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-10-06 15:03+0000\n"
+"PO-Revision-Date: 2015-10-07 02:08+0000\n"
+"Last-Translator: Michael Findlay <translate@cobber-linux.org>\n"
+"Language-Team: Australian English en_AU\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;;\n"
+
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr "Notes is an editor allowing to make simple lists for later use."
+
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr "It allows to use ownCloud as a storage location and online editor."
+
+msgid "Notes"
+msgstr "Notes"
+
+msgid "notes;reminder;"
+msgstr "notes;reminder;"
+
+msgid "Post notes, tag files!"
+msgstr "Post notes, tag files!"
+
+msgid "Note-taker"
+msgstr "Note-taker"
+
+msgid "Custom Font"
+msgstr "Custom Font"
+
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "The font name set here will be used as the font when displaying notes."
+
+msgid "Whether to use the system monospace font"
+msgstr "Whether to use the system monospace font"
+
+msgid "New notes color."
+msgstr "New notes colour."
+
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"The colour name set here will be used as the colour when creating new notes."
+
+msgid "Primary notes provider to use for new notes."
+msgstr "Primary notes provider to use for new notes."
+
+msgid "The primary notebook is the place where new notes are created."
+msgstr "The primary notebook is the place where new notes are created."
+
+msgid "Window maximized"
+msgstr "Window maximised"
+
+msgid "Window maximized state."
+msgstr "Window maximised state."
+
+msgid "Window size"
+msgstr "Window size"
+
+msgid "Window size (width and height)."
+msgstr "Window size (width and height)."
+
+msgid "Window position"
+msgstr "Window position"
+
+msgid "Window position (x and y)."
+msgstr "Window position (x and y)."
+
+msgid "Untitled"
+msgstr "Untitled"
+
+msgid "Simple notebook for GNOME"
+msgstr "Simple notebook for GNOME"
+
+msgid "translator-credits"
+msgstr "translator-credits"
+
+msgid "Show the application's version"
+msgstr "Show the application's version"
+
+msgid "Create a new note"
+msgstr "Create a new note"
+
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+msgid "Take notes and export them everywhere."
+msgstr "Take notes and export them everywhere."
+
+msgid "Could not parse arguments"
+msgstr "Could not parse arguments"
+
+msgid "GNOME Notes"
+msgstr "GNOME Notes"
+
+msgid "Could not register the application"
+msgstr "Could not register the application"
+
+msgid "Note Color"
+msgstr "Note Colour"
+
+msgid "Cut"
+msgstr "Cut"
+
+msgid "Copy"
+msgstr "Copy"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "* "
+msgstr "* "
+
+msgid "1."
+msgstr "1."
+
+msgid "Bold"
+msgstr "Bold"
+
+msgid "Italic"
+msgstr "Italic"
+
+msgid "Strike"
+msgstr "Strike"
+
+msgid "Copy selection to a new note"
+msgstr "Copy selection to a new note"
+
+msgid "No notes"
+msgstr "No notes"
+
+msgid "Press the New button to create a note."
+msgstr "Press the New button to create a note."
+
+msgid "Oops"
+msgstr "Oops"
+
+msgid "Please install 'Tracker' then restart the application."
+msgstr "Please install 'Tracker' then restart the application."
+
+msgid "Custom Location"
+msgstr "Custom Location"
+
+msgid "Import Notes"
+msgstr "Import Notes"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Select import location"
+msgstr "Select import location"
+
+msgid "Tomboy application"
+msgstr "Tomboy application"
+
+msgid "Gnote application"
+msgstr "Gnote application"
+
+msgid "Load More"
+msgstr "Load More"
+
+msgid "Loading..."
+msgstr "Loading..."
+
+msgid "Click on items to select them"
+msgstr "Click on items to select them"
+
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d selected"
+msgstr[1] "%d selected"
+
+msgid "Search note titles, content and notebooks"
+msgstr "Search note titles, content and notebooks"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Exit selection mode"
+msgstr "Exit selection mode"
+
+msgid "Results for %s"
+msgstr "Results for %s"
+
+msgid "New and Recent"
+msgstr "New and Recent"
+
+msgid "_New"
+msgstr "_New"
+
+msgid "Selection mode"
+msgstr "Selection mode"
+
+msgid "View notes and notebooks in a list"
+msgstr "View notes and notebooks in a list"
+
+msgid "View notes and notebooks in a grid"
+msgstr "View notes and notebooks in a grid"
+
+msgid "Trash"
+msgstr "Rubbish"
+
+msgid "Empty"
+msgstr "Empty"
+
+msgid "Open in New Window"
+msgstr "Open in New Window"
+
+msgid "Undo"
+msgstr "Undo"
+
+msgid "Redo"
+msgstr "Redo"
+
+msgid "Notebooks"
+msgstr "Notebooks"
+
+msgid "Email this Note"
+msgstr "Email this Note"
+
+msgid "Move to Trash"
+msgstr "Move to Rubbish"
+
+msgid "More options…"
+msgstr "More options…"
+
+msgid "Note color"
+msgstr "Note colour"
+
+msgid "Notebook"
+msgstr "Notebook"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Last updated</b> %s"
+
+msgid "Enter a name to create a notebook"
+msgstr "Enter a name to create a notebook"
+
+msgid "New notebook"
+msgstr "New notebook"
+
+msgid "_Cancel"
+msgstr "_Cancel"
+
+msgid "_OK"
+msgstr "_OK"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "Share note"
+msgstr "Share note"
+
+msgid "Open in another window"
+msgstr "Open in another window"
+
+msgid "Permanently Delete"
+msgstr "Permanently Delete"
+
+msgid "Use System Font"
+msgstr "Use System Font"
+
+msgid "Note Font"
+msgstr "Note Font"
+
+msgid "Default Color"
+msgstr "Default Colour"
+
+msgid "Preferences"
+msgstr "Preferences"
+
+msgid "Note Edition"
+msgstr "Note Edition"
+
+msgid "Primary Book"
+msgstr "Primary Book"
+
+msgid "Today"
+msgstr "Today"
+
+msgid "Yesterday"
+msgstr "Yesterday"
+
+msgid "This week"
+msgstr "This week"
+
+msgid "This month"
+msgstr "This month"
+
+msgid "This year"
+msgstr "This year"
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "Local"
+msgstr "Local"
+
+msgid "Local storage"
+msgstr "Local storage"
+
+msgid "_Import Notes"
+msgstr "_Import Notes"
+
+msgid "_View Trash"
+msgstr "_View Rubbish"
+
+msgid "_Preferences"
+msgstr "_Preferences"
+
+msgid "_Help"
+msgstr "_Help"
+
+msgid "_About"
+msgstr "_About"
+
+msgid "_Quit"
+msgstr "_Quit"

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the bijiben package.
 # tuhaihe <1132321739qq@gmail.com>, 2013.
 # Tong Hui <tonghuix@gmail.com>, 2013, 2014.
+# Jeff Bai <jeffbai@aosc.xyz>, 2015.
 #
 # Trash 我手贱翻译成了废纸篓，以与系统的回收站区别 - Wylmer Wang
 #
@@ -11,15 +12,15 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-14 15:54+0000\n"
-"PO-Revision-Date: 2014-11-15 00:42+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"POT-Creation-Date: 2015-11-10 16:03+0000\n"
+"PO-Revision-Date: 2015-11-08 13:56-0700\n"
+"Last-Translator: Jeff Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.5\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/bijiben.appdata.xml.in.h:1
@@ -47,58 +48,62 @@ msgstr "发布便笺，为文件做好标签哟！"
 msgid "Note-taker"
 msgstr "便笺记录工具"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "自定义字体"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "此处设置的字体将用于显示便笺。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "是否使用系统等宽字体"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "新便笺颜色。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "此处设置的颜色用于创建新便笺的颜色。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "用来新建便笺时的主便笺提供者。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr "主便笺本是创建新便笺的地方。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "窗口已最大化"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "窗口最大化状态。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "窗口尺寸"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "窗口尺寸(宽度和高度)。"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "窗口位置"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "窗口位置(X 和 Y)。"
+
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "未命名"
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -110,33 +115,33 @@ msgstr ""
 "tuhaihe <1132321739qq@gmail.com>, 2013\n"
 "Tong Hui <tonghuix@gmail.com>, 2014"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:409
 msgid "Show the application's version"
 msgstr "显示应用程序版本"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:411
 msgid "Create a new note"
 msgstr "创建新便笺"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:413
 msgid "[FILE...]"
 msgstr "[文件...]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:420
 msgid "Take notes and export them everywhere."
 msgstr "写便笺和和自由导出便笺。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:431
 msgid "Could not parse arguments"
 msgstr "无法解析参数"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:440
 msgid "GNOME Notes"
 msgstr "GNOME 便笺"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:453
 msgid "Could not register the application"
 msgstr "无法注册应用程序"
 
@@ -145,49 +150,63 @@ msgid "Note Color"
 msgstr "便笺颜色"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:365
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "剪切"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:372
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "复制"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:378
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "粘贴"
 
-#: ../src/bjb-editor-toolbar.c:393
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "粗体"
 
-#: ../src/bjb-editor-toolbar.c:403
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "斜体"
 
-#: ../src/bjb-editor-toolbar.c:413
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "删除线"
 
-#: ../src/bjb-editor-toolbar.c:441
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "将选中区域复制到新便笺"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "无便笺"
 
-#: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
-msgstr "点击新建按钮创建新便笺。"
+#: ../src/bjb-empty-results-box.c:130
+msgid "Press the New button to create a note."
+msgstr "点击新建按钮以创建新便笺。"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "哎呀"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "请先安装“Tracker”然后重新打开本应用程序。"
 
@@ -286,61 +305,45 @@ msgstr "废纸篓"
 msgid "Empty"
 msgstr "空"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "未命名"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:768
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "在新窗口中打开"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:779
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "撤消"
 
-#: ../src/bjb-main-toolbar.c:787
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "重做"
 
-# 点句，与“项目符号列表”表达的意思都是一个，但后者更加常用。
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:802
-msgid "Bullets"
-msgstr "项目符号列表"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:809
-msgid "Numbered List"
-msgstr "编号列表"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:825 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "便笺本"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:833
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "邮寄此便笺"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:846 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "移入废纸篓"
 
-#: ../src/bjb-main-toolbar.c:906
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "更多选项..."
 
-#: ../src/bjb-main-toolbar.c:929 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
 msgstr "便笺颜色"
 
@@ -358,7 +361,7 @@ msgstr "便笺"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>最近更新</b> %s"
@@ -399,29 +402,29 @@ msgid "Permanently Delete"
 msgstr "永久删除"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "使用系统字体"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "便笺字体"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "默认颜色"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "首选项"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "便笺版本"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
 msgstr "主便笺本"
 
@@ -448,6 +451,10 @@ msgstr "今年"
 #: ../src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "未知"
+
+#: ../src/libbiji/biji-notebook.c:264
+msgid "Local"
+msgstr "本地"
 
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
@@ -476,6 +483,13 @@ msgstr "关于(_A)"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "退出(_Q)"
+
+# 点句，与“项目符号列表”表达的意思都是一个，但后者更加常用。
+#~ msgid "Bullets"
+#~ msgstr "项目符号列表"
+
+#~ msgid "Numbered List"
+#~ msgstr "编号列表"
 
 #~ msgid "No Notes Found"
 #~ msgstr "未发现便笺"

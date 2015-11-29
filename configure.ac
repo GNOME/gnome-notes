@@ -83,9 +83,24 @@ PKG_CHECK_MODULES(BIJIBEN,
                     uuid
                     webkitgtk-3.0])
 
-PKG_CHECK_MODULES(ZEITGEIST, zeitgeist-2.0, [have_zeitgeist=yes], [have_zeitgeist=no])
 
-AM_CONDITIONAL(BUILD_ZEITGEIST, test x$have_zeitgeist = xyes)
+# check for zeitgeist
+AC_ARG_ENABLE([zeitgeist],
+  [AS_HELP_STRING([--disable-zeitgeist], [Disable zeitgeist support @<:@auto@:>@])],
+  [:],
+  [enable_zeitgeist=auto])
+
+AS_IF([test "$enable_zeitgeist" != "no"],
+  [PKG_CHECK_MODULES([ZEITGEIST],
+    [zeitgeist-2.0],
+    [enable_zeitgeist=yes],
+    [AS_IF([test "$enable_zeitgeist" = "yes"],
+      [AC_MSG_ERROR([zeitgeist-2.0 required, but not found.])],
+      [enable_zeitgeist=no])
+    ])
+])
+
+AM_CONDITIONAL([BUILD_ZEITGEIST], [test "$enable_zeitgeist" = "yes"])
 
 
 GLIB_GSETTINGS
@@ -113,7 +128,7 @@ src/Makefile
 AC_OUTPUT
 
 echo "	Version:	        $VERSION
-        Enable Zeitgeist  $have_zeitgeist
+        Enable Zeitgeist  $enable_zeitgeist
 
 	Run make to compile."
 

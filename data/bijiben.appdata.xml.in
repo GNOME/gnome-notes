@@ -10,6 +10,13 @@
   </_p>
   <_p>It allows to use ownCloud as a storage location and online editor.</_p>
  </description>
+  <kudos>
+    <kudo>AppMenu</kudo>
+    <kudo>HiDpiIcon</kudo>
+    <kudo>ModernToolkit</kudo>
+    <kudo>SearchProvider</kudo>
+    <kudo>UserDocs</kudo>
+  </kudos>
  <screenshots>
   <screenshot type="default" width="627" height="396">http://py.luyten.fr/Publique/bijiben-notes-scr.png</screenshot>
  </screenshots>

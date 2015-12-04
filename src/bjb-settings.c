@@ -271,7 +271,7 @@ gchar *
 bjb_settings_get_system_font            (BjbSettings *settings)
 {
   return g_settings_get_string (settings->priv->system,
-                                "font-name");
+                                "document-font-name");
 }
 
 

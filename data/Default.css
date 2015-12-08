@@ -7,7 +7,7 @@ body {
 
   color:            _BIJI_TEXT_COLOR;
   background-size:  2.0em 2.0em;
-  line-height:      2.0em;
+  line-height:      1.5em;
   padding:          2.0em;
 }
 
@@ -19,14 +19,16 @@ ul {
   list-style-position:inside;
   margin-top :      0;
   margin-bottom:    0;
-  line-height:      2.0em;
-  padding:          0;
+  padding:          0 0 0 .75em;
 }
 
 ol {
   list-style-position:inside;
   margin-top :      0;
   margin-bottom:    0;
-  line-height:      2.0em;
-  padding:          0;
+  padding:          0 0 0 .75em;
+}
+
+body > div > div {
+  margin:           0.75em 0;
 }

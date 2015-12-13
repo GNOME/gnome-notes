@@ -41,7 +41,7 @@ typedef enum
 } BjbToolbarType;
 
 /* Color Button */
-#define COLOR_SIZE 20
+#define COLOR_SIZE 22
 
 struct _BjbMainToolbarPrivate
 {

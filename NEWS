@@ -1,3 +1,14 @@
+Overview of changes in 3.19.3
+=============================
+
+* CSS updates (Carl van Tonder)
+* Search entry on no result (Hernawan Fa'iz Abdillah)
+* Color button update (Trinh Anh Ngoc)
+* Build : arg to make zeitgeist optional (Poncho)
+* appdata : kudos
+* Translations
+
+
 Overview of changes in 3.19.1
 =============================
 

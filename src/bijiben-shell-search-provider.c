@@ -214,7 +214,7 @@ get_note_icon (BijibenShellSearchProviderApp *self,
 
   gicon = NULL;
   item = biji_manager_get_item_at_path (self->manager, note__nie_url);
-  if (item != NULL)
+  if (item != NULL && BIJI_IS_ITEM(item))
     {
       /* Load the icon from the note */
       cairo_surface_t *surface = biji_item_get_icon (item, scale_factor);

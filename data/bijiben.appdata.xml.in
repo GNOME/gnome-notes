@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
- <id type="desktop">bijiben.desktop</id>
- <licence>CC0</licence>
- <name>Notes</name>
- <summary>Quickly jot notes</summary>
- <description>
-  <_p>
-   Notes is an editor allowing to make simple lists for later use.
-  </_p>
-  <_p>It allows to use ownCloud as a storage location and online editor.</_p>
- </description>
+<component type="desktop">
+  <id>bijiben.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+ and LGPL-3.0 and LGPL-2.0+</project_license>
+  <name>Bijiben</name>
+  <summary>Quickly jot notes</summary>
+  <description>
+    <_p>
+      Notes is an editor allowing to make simple lists for later use.
+    </_p>
+    <_p>
+      It allows to use ownCloud as a storage location and online editor.
+    </_p>
+  </description>
   <kudos>
     <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
@@ -17,9 +20,15 @@
     <kudo>SearchProvider</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
- <screenshots>
-  <screenshot type="default" width="627" height="396">http://py.luyten.fr/Publique/bijiben-notes-scr.png</screenshot>
- </screenshots>
- <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>
- <updatecontact>py_at_luyten.fr</updatecontact>
-</application>
+  <screenshots>
+    <screenshot type="default" width="627" height="396">
+      <image>http://py.luyten.fr/Publique/bijiben-notes-scr.png</image>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>
+  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=bijiben</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+  <url type="help">https://help.gnome.org/users/bijiben/stable/</url>
+  <update_contact>py_at_luyten.fr</update_contact>
+  <project_group>GNOME</project_group>
+</component>

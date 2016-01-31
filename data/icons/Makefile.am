@@ -5,13 +5,13 @@ public_icons_themes = \
 	$(NULL)
 
 public_icons = \
-	hicolor_apps_16x16_bijiben.png \
-	hicolor_apps_22x22_bijiben.png \
-	hicolor_apps_24x24_bijiben.png \
-	hicolor_apps_32x32_bijiben.png \
-	hicolor_apps_48x48_bijiben.png \
-	hicolor_apps_256x256_bijiben.png \
-	hicolor_apps_scalable_bijiben-symbolic.svg \
+	hicolor_apps_16x16_org.gnome.bijiben.png \
+	hicolor_apps_22x22_org.gnome.bijiben.png \
+	hicolor_apps_24x24_org.gnome.bijiben.png \
+	hicolor_apps_32x32_org.gnome.bijiben.png \
+	hicolor_apps_48x48_org.gnome.bijiben.png \
+	hicolor_apps_256x256_org.gnome.bijiben.png \
+	hicolor_apps_scalable_org.gnome.bijiben-symbolic.svg \
 	$(NULL)
 
 private_icons = \
@@ -22,7 +22,7 @@ private_icons = \
 	$(NULL)
 
 noinst_DATA = \
-	bijiben-src.svg \
+	org.gnome.bijiben-src.svg \
 	$(NULL)
 
 EXTRA_DIST = \

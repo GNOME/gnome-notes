@@ -319,7 +319,7 @@ bjb_window_base_constructed (GObject *obj)
                                 "hicolor",
                                 "48x48",
                                 "apps",
-                                "bijiben.png",
+                                "org.gnome.bijiben.png",
                                 NULL);
 
   bjb = gdk_pixbuf_new_from_file (full_path, &error);

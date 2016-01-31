@@ -117,7 +117,7 @@ AC_CONFIG_FILES([
 Makefile
 libgd/Makefile
 data/Makefile
-data/bijiben.desktop.in
+data/org.gnome.bijiben.desktop.in
 data/icons/Makefile
 help/Makefile
 po/Makefile.in

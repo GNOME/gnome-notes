@@ -11,8 +11,8 @@ app_data_files = $(app_data_in_files:.xml.in=.xml)
 
 appstream_XML = $(app_data_files)
 
-check-local: bijiben.desktop
-	$(DESKTOP_FILE_VALIDATE) bijiben.desktop
+check-local: org.gnome.bijiben.desktop
+	$(DESKTOP_FILE_VALIDATE) org.gnome.bijiben.desktop
 
 
 
@@ -20,7 +20,7 @@ check-local: bijiben.desktop
 
 @INTLTOOL_DESKTOP_RULE@
 
-desktop_in_files = bijiben.desktop.in
+desktop_in_files = org.gnome.bijiben.desktop.in
 desktop_files    = $(desktop_in_files:.desktop.in=.desktop)
 
 desktopdir   = $(datadir)/applications

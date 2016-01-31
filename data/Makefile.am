@@ -3,10 +3,10 @@ SUBDIRS = icons
 
 @APPSTREAM_XML_RULES@
 
-xml_in_files = bijiben.xml.in
+xml_in_files = org.gnome.bijiben.xml.in
 xml_files = $(xml_in_files:.xml.in=.xml)
 
-app_data_in_files = bijiben.appdata.xml.in
+app_data_in_files = org.gnome.bijiben.appdata.xml.in
 app_data_files = $(app_data_in_files:.xml.in=.xml)
 
 appstream_XML = $(app_data_files)

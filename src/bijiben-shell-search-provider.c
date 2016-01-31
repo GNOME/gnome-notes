@@ -465,7 +465,7 @@ static GApplication *
 bijiben_shell_search_provider_app_new (void)
 {
   return g_object_new (bijiben_shell_search_provider_app_get_type (),
-                       "application-id", "org.gnome.Bijiben.SearchProvider",
+                       "application-id", "org.gnome.bijiben.SearchProvider",
                        "flags", G_APPLICATION_IS_SERVICE,
                        "inactivity-timeout", SEARCH_PROVIDER_INACTIVITY_TIMEOUT,
                        NULL);

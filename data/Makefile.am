@@ -33,16 +33,16 @@ appdata_DATA = $(app_data_files)
 servicedir = $(datadir)/dbus-1/services
 service_DATA = $(service_in_files:.service.in=.service)
 service_in_files = 				\
-	org.gnome.Bijiben.SearchProvider.service.in
+	org.gnome.bijiben.SearchProvider.service.in
 
 mimedir = $(datadir)/mime/packages
 mime_DATA = $(xml_files)
 
-org.gnome.Bijiben.SearchProvider.service: org.gnome.Bijiben.SearchProvider.service.in Makefile
+org.gnome.bijiben.SearchProvider.service: org.gnome.bijiben.SearchProvider.service.in Makefile
 	$(AM_V_GEN) sed -e "s|\@libexecdir\@|$(libexecdir)|" $< > $@
 
 searchproviderdir = $(datadir)/gnome-shell/search-providers
-searchprovider_DATA = bijiben-search-provider.ini
+searchprovider_DATA = org.gnome.bijiben-search-provider.ini
 
 css_files = Default.css
 

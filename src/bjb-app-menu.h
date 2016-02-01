@@ -20,9 +20,6 @@
 
 #include <gtk/gtk.h>
 
-void          show_about_dialog            (GtkApplication *app);
-
-
 void          bjb_app_menu_set             (GApplication *application) ;
 
 

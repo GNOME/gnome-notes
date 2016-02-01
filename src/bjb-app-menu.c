@@ -26,8 +26,8 @@
 #include "bjb-window-base.h"
 
 /* Callbacks */
-
-void show_about_dialog(GtkApplication *app)
+static void
+show_about_dialog (GtkApplication *app)
 {
   GList * windows = gtk_application_get_windows (app);
 
@@ -41,18 +41,18 @@ void show_about_dialog(GtkApplication *app)
     NULL
   };
 
-  gtk_show_about_dialog( g_list_nth_data (windows, 0),
-  "program-name", _("Notes"),
-  "comments", _("Simple notebook for GNOME"),
-  "license-type", GTK_LICENSE_GPL_3_0,
-  "version", VERSION,
-  "copyright", "Copyright © 2013 Pierre-Yves Luyten",
-  "authors", authors,
-  "artists", artists,
-  "translator-credits", _("translator-credits"),
-  "website", "https://wiki.gnome.org/Apps/Bijiben",
-  NULL,NULL,NULL);
-
+  gtk_show_about_dialog (g_list_nth_data (windows, 0),
+                         "program-name", _("Notes"),
+                         "comments", _("Simple notebook for GNOME"),
+                         "license-type", GTK_LICENSE_GPL_3_0,
+                         "version", VERSION,
+                         "copyright", "Copyright © 2013 Pierre-Yves Luyten",
+                         "authors", authors,
+                         "artists", artists,
+                         "translator-credits", _("translator-credits"),
+                         "website", "https://wiki.gnome.org/Apps/Bijiben",
+                         "logo-icon-name", "org.gnome.bijiben",
+                         NULL);
 }
 
 

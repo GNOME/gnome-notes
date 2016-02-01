@@ -1,8 +1,8 @@
 # List of source files containing translatable strings.
-data/bijiben.appdata.xml.in
-data/bijiben.desktop.in.in
-data/bijiben.xml.in
+data/org.gnome.bijiben.appdata.xml.in
+data/org.gnome.bijiben.desktop.in.in
 [type: gettext/gsettings]data/org.gnome.bijiben.gschema.xml
+data/org.gnome.bijiben.xml.in
 src/bijiben-shell-search-provider.c
 src/bjb-app-menu.c
 src/bjb-bijiben.c

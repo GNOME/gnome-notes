@@ -1,4 +1,4 @@
-data/bijiben.desktop.in
+data/org.gnome.bijiben.desktop.in
 libgd/libgd/gd-header-bar.c
-sub/data/bijiben.desktop.in
-bijiben.desktop.in
+org.gnome.bijiben.desktop.in
+sub/data/org.gnome.bijiben.desktop.in

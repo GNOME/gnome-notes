@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-14 19:26+0100\n"
-"PO-Revision-Date: 2015-03-14 03:40+0100\n"
+"POT-Creation-Date: 2016-02-07 16:35+0100\n"
+"PO-Revision-Date: 2016-02-04 19:12+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -19,30 +19,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Noter er et redigeringsprogram som lader dig lave simple lister til senere "
 "brug."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Den tillader at bruge ownCloud som lagersted og online redigering."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Noter"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "noter;huskeseddel;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Lav noter, mærk filer!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Noteprogram"
 
@@ -102,6 +103,10 @@ msgstr "Vinduesposition"
 msgid "Window position (x and y)."
 msgstr "Vinduesposition (x og y)."
 
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Unavngivet"
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "Simpelt noteprogram for GNOME"
@@ -115,33 +120,33 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Vis programmets version"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Opret en ny note"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[FIL...]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Opret noter og eksportér dem hvor som helst."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Kunne ikke fortolke argumenter"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "GNOME Noter"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Kunne ikke registrere programmet"
 
@@ -194,19 +199,19 @@ msgstr "Gennemstreg"
 msgid "Copy selection to a new note"
 msgstr "Kopiér markeringen til en ny note"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Ingen noter"
 
-#: ../src/bjb-empty-results-box.c:145
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Tryk på \"Ny\"-tasten for at oprette en ny note."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Installér venligst \"Tracker\" og genstart så programmet."
 
@@ -307,10 +312,6 @@ msgstr "Papirkurv"
 msgid "Empty"
 msgstr "Tom"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Unavngivet"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
@@ -366,7 +367,7 @@ msgstr "Note"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Senest opdateret</b> %s"
@@ -385,7 +386,7 @@ msgstr "_Annullér"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
-msgstr "_O.k."
+msgstr "_OK"
 
 #. Restore (do not show)
 #: ../src/bjb-selection-toolbar.c:386
@@ -458,7 +459,7 @@ msgid "Unknown"
 msgstr "Ukendt"
 
 # ?
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Lokal"
 

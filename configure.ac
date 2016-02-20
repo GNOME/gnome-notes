@@ -49,6 +49,7 @@ AC_PATH_PROG([DESKTOP_FILE_VALIDATE], [desktop-file-validate])
 
 # Utility programs
 AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources])
+AC_PATH_PROG([GDBUS_CODEGEN],[gdbus-codegen])
 
 LT_INIT
 

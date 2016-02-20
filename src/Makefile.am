@@ -88,7 +88,7 @@ dbus_shell_search_provider_built_sources =		\
 	bijiben-shell-search-provider-generated.h
 
 $(dbus_shell_search_provider_built_sources) : Makefile.am $(top_srcdir)/data/shell-search-provider-dbus-interfaces.xml
-	gdbus-codegen									\
+	$(AM_V_GEN)$(GDBUS_CODEGEN)							\
 		--interface-prefix org.gnome.						\
 		--c-namespace Bijiben							\
 		--generate-c-code bijiben-shell-search-provider-generated		\

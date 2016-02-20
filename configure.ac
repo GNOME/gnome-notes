@@ -47,7 +47,7 @@ AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, (test x$enable_update_mimedb = xyes) && (te
 AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
 
 
-AM_PROG_LIBTOOL
+LT_INIT
 
 # Requirements
 

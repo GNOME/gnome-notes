@@ -24,6 +24,14 @@ libbiji_la_built_sources = \
 	biji-marshalers.h \
 	$(NULL)
 
+libbiji_la_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(NULL)
+
+libbiji_la_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(NULL)
+
 libbiji_la_SOURCES =  \
 	$(libbiji_la_built_sources) \
 	libbiji.h \

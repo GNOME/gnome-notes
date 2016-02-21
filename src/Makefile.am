@@ -21,8 +21,14 @@ LDADD = libbiji/libbiji.la \
 	$(top_builddir)/libgd/libgd.la \
 	$(BIJIBEN_LIBS)
 
+bijiben_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(NULL)
+
 bijiben_LDFLAGS = \
-	-Wl,--export-dynamic
+	-Wl,--export-dynamic \
+	$(WARN_LDFLAGS) \
+	$(NULL)
 
 bjb_gresource_xml_deps = \
 	$(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(srcdir) $(srcdir)/bjb.gresource.xml)
@@ -94,6 +100,14 @@ $(dbus_shell_search_provider_built_sources) : Makefile.am $(top_srcdir)/data/she
 		--generate-c-code bijiben-shell-search-provider-generated		\
 		$(top_srcdir)/data/shell-search-provider-dbus-interfaces.xml		\
 		$(NULL)
+
+bijiben_shell_search_provider_CFLAGS = \
+	$(WARN_CFLAGS) \
+	$(NULL)
+
+bijiben_shell_search_provider_LDFLAGS = \
+	$(WARN_LDFLAGS) \
+	$(NULL)
 
 bijiben_shell_search_provider_SOURCES = 	\
 	bijiben-shell-search-provider.c		\

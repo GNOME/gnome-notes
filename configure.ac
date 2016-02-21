@@ -25,11 +25,8 @@ AC_SUBST([GETTEXT_PACKAGE])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"], [GETTEXT package name])
 IT_PROG_INTLTOOL([0.50.1])
 
-
-
-
-
-
+# Compiler warnings
+AX_COMPILER_FLAGS()
 
 #
 # Check if we should update the mime database

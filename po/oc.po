@@ -1,14 +1,14 @@
 # Occitan translation for bijiben.
 # Copyright (C) 2012-2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# 
+#
 # Cédric Valmary (Tot en Òc) <cvalmary@yahoo.fr>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
-"n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-04 02:58+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-06-04 14:58+0000\n"
 "PO-Revision-Date: 2015-06-04 14:42+0200\n"
 "Last-Translator: Cédric Valmary (Tot en Òc) <cvalmary@yahoo.fr>\n"
 "Language-Team: www.totenoc.eu\n"
@@ -496,14 +496,14 @@ msgstr "_Quitar"
 #~ "Your notes notebook is empty.\n"
 #~ "Click the New button to create your first note."
 #~ msgstr ""
-#~ "Votre carnet de notes est vide.\n"
+#~ "Votre quasernet de notes est vide.\n"
 #~ "Cliquez sur le bouton Nouveau pour créer votre première note."
 
 #~ msgid "New"
 #~ msgstr "Nouveau"
 
 #~ msgid "_Close"
-#~ msgstr "_Fermer"
+#~ msgstr "_Tampar"
 
 #~ msgid "No result found for this research."
 #~ msgstr "Aucun résultat pour cette recherche."
@@ -533,7 +533,7 @@ msgstr "_Quitar"
 #~ msgstr "Cliquer sur les notes à importer"
 
 #~ msgid "Choose a color for note"
-#~ msgstr "Sélectionner une couleur pour la note"
+#~ msgstr "Sélectionner una couleur pour la note"
 
 #~ msgid "New tag"
 #~ msgstr "Nouvelle étiquette"

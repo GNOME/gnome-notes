@@ -11,7 +11,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-I$(top_srcdir)/libgd \
 	-I$(top_srcdir)/src/ \
-	-I$(top_srcdir)/src/libiji \
+	-I$(top_srcdir)/src/libbiji \
 	$(BIJIBEN_CFLAGS) \
 	$(ZEITGEIST_CFLAGS)
 

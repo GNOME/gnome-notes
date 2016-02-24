@@ -296,14 +296,6 @@ biji_note_obj_get_path (BijiItem *item)
   return biji_note_id_get_path (note->priv->id);
 }
 
-
-BijiNoteID *
-note_get_id(BijiNoteObj* n)
-{
-  return n->priv->id;
-}
-
-
 static const gchar *
 biji_note_obj_get_title (BijiItem *note)
 {
@@ -394,14 +386,6 @@ biji_note_obj_set_last_metadata_change_date (BijiNoteObj* n, gint64 time)
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ(n), FALSE);
 
   return biji_note_id_set_last_metadata_change_date (n->priv->id, time);
-}
-
-gboolean
-biji_note_obj_set_note_create_date (BijiNoteObj* n, gint64 time)
-{
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ(n), FALSE);
-
-  return biji_note_id_set_create_date (n->priv->id, time);
 }
 
 static void
@@ -556,27 +540,6 @@ biji_note_obj_remove_notebook (BijiItem *item, BijiItem *notebook)
   }
 
   return FALSE;
-}
-
-gboolean
-biji_note_obj_has_tag_prefix (BijiNoteObj *note, gchar *label)
-{
-  gboolean retval = FALSE;
-  GList *tags, *l;
-
-  tags = g_hash_table_get_keys (note->priv->labels);
-
-  for (l = tags; l != NULL; l=l->next)
-  {
-    if (g_str_has_prefix (l->data, label))
-    {
-      retval = TRUE;
-      break;
-    }
-  }
-
-  g_list_free (tags);
-  return retval;
 }
 
 gboolean

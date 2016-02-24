@@ -183,9 +183,6 @@ gboolean         biji_note_obj_set_title                     (BijiNoteObj* note_
 gboolean         biji_note_obj_is_template                   (BijiNoteObj *note);
 
 
-gboolean         biji_note_obj_is_trashed                    (BijiNoteObj *note);
-
-
 GtkWidget       *biji_note_obj_open                          (BijiNoteObj *note);
 
 

@@ -4,7 +4,7 @@
 #include <glib-object.h>
 #include <tracker-sparql.h>
 
-#if BUILD_ZEITGEIST
+#ifdef BUILD_ZEITGEIST
 #include <zeitgeist.h>
 #endif /* BUILD_ZEIGEIST */
 
@@ -91,7 +91,7 @@ void             biji_manager_import_uri            (BijiManager *manager,
 GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
 
 
-#if BUILD_ZEITGEIST
+#ifdef BUILD_ZEITGEIST
 ZeitgeistLog    *biji_manager_get_zg_log            (BijiManager *manager);
 #endif /* BUILD_ZEITGEIST */
 

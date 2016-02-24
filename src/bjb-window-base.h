@@ -76,7 +76,7 @@ gpointer               bjb_window_base_get_main_view (BjbWindowBase *self);
 BijiNoteObj           *bjb_window_base_get_note (BjbWindowBase *self);
 
 
-gboolean               switch_window_fullscreen();
+gboolean               switch_window_fullscreen (void);
 
 
 gboolean               bjb_window_base_get_show_search_bar (BjbWindowBase *self);

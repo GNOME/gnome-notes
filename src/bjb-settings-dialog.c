@@ -147,7 +147,7 @@ typedef struct
 
 
 static ProviderChild *
-provider_child_new ()
+provider_child_new (void)
 {
   ProviderChild *retval;
 
@@ -183,7 +183,7 @@ application_quark (void)
 
 
 static GtkWidget *
-child_toggle_new ()
+child_toggle_new (void)
 {
   GtkWidget *w;
 

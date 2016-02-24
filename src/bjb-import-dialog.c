@@ -85,7 +85,7 @@ G_DEFINE_TYPE (BjbImportDialog, bjb_import_dialog, GTK_TYPE_DIALOG)
 
 
 static ImportDialogChild *
-import_dialog_child_new ()
+import_dialog_child_new (void)
 {
   ImportDialogChild *retval = g_slice_new (ImportDialogChild);
 
@@ -154,7 +154,7 @@ application_quark (void)
 
 
 static GtkWidget *
-child_toggle_new ()
+child_toggle_new (void)
 {
   GtkWidget *w;
 

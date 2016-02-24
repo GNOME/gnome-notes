@@ -21,7 +21,7 @@
 
 
 BijiInfoSet *
-biji_info_set_new ()
+biji_info_set_new (void)
 {
   BijiInfoSet *retval;
 

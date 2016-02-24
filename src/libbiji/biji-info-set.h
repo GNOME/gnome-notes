@@ -57,7 +57,7 @@ typedef struct
 } BijiInfoSet;
 
 
-BijiInfoSet * biji_info_set_new ();
+BijiInfoSet * biji_info_set_new (void);
 
 void biji_info_set_free (BijiInfoSet *info);
 

@@ -3,142 +3,153 @@
 # This file is distributed under the same license as the bijiben package.
 # Erwin Poeze <donnut@outlook.com>, 2013.
 # Reinout van Schouwen <reinouts@gnome.org>, 2014.
+# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016.
+# Nathan Follens <nthn@unseen.is>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-12 23:48+0200\n"
-"PO-Revision-Date: 2014-08-12 23:50+0200\n"
-"Last-Translator: Reinout van Schouwen <reinouts@gnome.org>\n"
-"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-02-03 17:23+0000\n"
+"PO-Revision-Date: 2016-02-29 17:02+0100\n"
+"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Lokalize 1.5\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Notities is een editor waarmee eenvoudige lijstjes gemaakt kunnen worden."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Het maakt het mogelijk Owncloud als een opslaglocatie en online-editor te "
 "gebruiken."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notities"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notes;reminder;notities;herinnering;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
-msgstr "Publiceer notities, markeer bestanden!"
+msgstr "Plaats notities, voorzie bestanden van een label!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Notitieopnemer"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Aangepast lettertype"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
-"De lettertypenaam die hier staat wordt gebruikt als het lettertype voor het "
-"weergeven van notities."
+"Het hier gekozen lettertype wordt gebruikt als lettertype bij het weergeven "
+"van notities."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
-msgstr "Of het systeemlettertype voor vaste breedte gebruikt wordt."
+msgstr "Of het systeemlettertype voor vaste breedte gebruikt wordt"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Kleur voor nieuwe notities."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
-"De kleurnaam die hier staat wordt gebruikt als de kleur bij het maken van "
+"De hier gekozen kleur wordt gebruikt als achtergrondkleur bij het maken van "
 "nieuwe notities."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Primaire notities-provider voor nieuwe notities."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
-msgid "The primary notebook is the place where are created new notes."
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
+msgid "The primary notebook is the place where new notes are created."
 msgstr ""
 "Het primaire notitieboek is de plek waar nieuwe notities worden gemaakt."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Venster gemaximaliseerd"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Venstermaximalisatiestaat."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Venstergrootte"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Venstergrootte (breedte en hoogte)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Vensterpositie"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Vensterpositie (x en y)."
 
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Naamloos"
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
-msgstr "Eenvoudig notitieboek voor Gnome"
+msgstr "Eenvoudig notitieboekje voor Gnome"
 
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
-msgstr "Erwin Poeze <donnut@outlook.com>"
+msgstr ""
+"Erwin Poeze <donnut@outlook.com>\n"
+"Nathan Follens <nthn@unseen.is>\n"
+"Hannie Dumoleyn <hannie@ubuntu-nl.org>"
 
-#: ../src/bjb-bijiben.c:450
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Versie van toepassing tonen"
 
-#: ../src/bjb-bijiben.c:452
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Nieuwe notitie maken"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[BESTAND…]"
 
-#: ../src/bjb-bijiben.c:461
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Maak notities en exporteer ze overal."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:472
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Argumenten ontleden is mislukt"
 
-#: ../src/bjb-bijiben.c:481
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Gnome Notities"
 
-#: ../src/bjb-bijiben.c:494
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Toepassing registreren is mislukt"
 
@@ -147,49 +158,63 @@ msgid "Note Color"
 msgstr "Achtergrondkleur notities"
 
 #. Cut
-#: ../src/bjb-editor-toolbar.c:346
+#: ../src/bjb-editor-toolbar.c:381
 msgid "Cut"
 msgstr "Knippen"
 
 #. Copy
-#: ../src/bjb-editor-toolbar.c:353
+#: ../src/bjb-editor-toolbar.c:388
 msgid "Copy"
 msgstr "Kopiëren"
 
 #. 'n paste
-#: ../src/bjb-editor-toolbar.c:359
+#: ../src/bjb-editor-toolbar.c:394
 msgid "Paste"
 msgstr "Plakken"
 
-#: ../src/bjb-editor-toolbar.c:374
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "1."
+
+#: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
 msgstr "Vet"
 
-#: ../src/bjb-editor-toolbar.c:384
+#: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
 msgstr "Cursief"
 
-#: ../src/bjb-editor-toolbar.c:394
+#: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
 msgstr "Doorhalen"
 
-#: ../src/bjb-editor-toolbar.c:422
+#: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
 msgstr "Selectie kopiëren naar een nieuwe notitie"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Geen notities"
 
-#: ../src/bjb-empty-results-box.c:145
-msgid "Press the new button to create a note."
+#: ../src/bjb-empty-results-box.c:130
+msgid "Press the New button to create a note."
 msgstr "Druk op de knop Nieuw om een notitie te maken."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Oeps"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Installeer de toepassing 'Tracker' en herstart Notities."
 
@@ -211,11 +236,11 @@ msgstr "Selecteer de importeerlocatie"
 
 #: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
-msgstr "Tomboytoepassing"
+msgstr "Tomboy"
 
 #: ../src/bjb-import-dialog.c:449
 msgid "Gnote application"
-msgstr "Gnotetoepassing"
+msgstr "Gnote"
 
 #: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
@@ -238,7 +263,7 @@ msgstr[1] "%d geselecteerd"
 
 #: ../src/bjb-main-toolbar.c:264
 msgid "Search note titles, content and notebooks"
-msgstr "Notitietitels, -inhoud en notitieboeken doorzoeken"
+msgstr "Notitietitels, -inhoud en -boeken doorzoeken"
 
 #. Select
 #: ../src/bjb-main-toolbar.c:306
@@ -258,85 +283,78 @@ msgstr "Resultaten voor %s"
 msgid "New and Recent"
 msgstr "Nieuw en recent"
 
-#: ../src/bjb-main-toolbar.c:438
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
 msgid "_New"
 msgstr "_Nieuw"
 
-#: ../src/bjb-main-toolbar.c:456 ../src/bjb-main-toolbar.c:554
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
 msgid "Selection mode"
 msgstr "Selectiemodus"
 
-#: ../src/bjb-main-toolbar.c:491
+#: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
-msgstr "Notities en notitieboeken als lijst bekijken"
+msgstr "Notities en notitieboekjes als lijst bekijken"
 
-#: ../src/bjb-main-toolbar.c:515
+#: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
 msgstr "Notities en notitieboeken als matrix bekijken"
 
-#: ../src/bjb-main-toolbar.c:534
+#: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
 msgstr "Prullenbak"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:573
+#: ../src/bjb-main-toolbar.c:577
 msgid "Empty"
 msgstr "Legen"
 
-#: ../src/bjb-main-toolbar.c:655
-msgid "Untitled"
-msgstr "Naamloos"
-
-#: ../src/bjb-main-toolbar.c:761
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
 msgstr "In een nieuw venster openen"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:772
+#: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: ../src/bjb-main-toolbar.c:780
+#: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
 msgstr "Opnieuw"
 
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:795
-msgid "Bullets"
-msgstr "Aandachtspunten"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:802
-msgid "Numbered List"
-msgstr "Genummerde lijst"
-
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:818 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
 #: ../src/bjb-selection-toolbar.c:381
 msgid "Notebooks"
 msgstr "Notitieboeken"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:826
+#: ../src/bjb-main-toolbar.c:799
 msgid "Email this Note"
 msgstr "Deze notitie e-mailen"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:839 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
 msgid "Move to Trash"
 msgstr "Naar prullenbak verplaatsen"
 
-#: ../src/bjb-main-toolbar.c:896
+#: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
 msgstr "Meer opties…"
 
-#: ../src/bjb-main-toolbar.c:919 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
-msgstr "Notitiekleur"
+msgstr "Achtergrondkleur notitie"
 
 #: ../src/bjb-main-view.c:516
 msgid "Notebook"
@@ -351,7 +369,7 @@ msgstr "Notitie"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:186
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Laatst bijgewerkt</b> %s"
@@ -370,7 +388,7 @@ msgstr "_Annuleren"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
-msgstr "_OK"
+msgstr "_Ok"
 
 #. Restore (do not show)
 #: ../src/bjb-selection-toolbar.c:386
@@ -392,31 +410,31 @@ msgid "Permanently Delete"
 msgstr "Permanent verwijderen"
 
 #. Use System Font
-#: ../src/bjb-settings-dialog.c:391
+#: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
 msgstr "Systeemlettertype gebruiken"
 
 #. Default font
-#: ../src/bjb-settings-dialog.c:405
+#: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
 msgstr "Notitielettertype"
 
 #. Default color
-#: ../src/bjb-settings-dialog.c:417
+#: ../src/bjb-settings-dialog.c:420
 msgid "Default Color"
 msgstr "Standaardkleur"
 
-#: ../src/bjb-settings-dialog.c:463
+#: ../src/bjb-settings-dialog.c:466
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: ../src/bjb-settings-dialog.c:494
+#: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
 msgstr "Notitieversie"
 
-#: ../src/bjb-settings-dialog.c:497
+#: ../src/bjb-settings-dialog.c:505
 msgid "Primary Book"
-msgstr "Hoofdverzameling"
+msgstr "Primaire notitieboek"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -442,6 +460,10 @@ msgstr "Dit jaar"
 msgid "Unknown"
 msgstr "Onbekend"
 
+#: ../src/libbiji/biji-notebook.c:264
+msgid "Local"
+msgstr "Lokaal"
+
 #: ../src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Lokale opslag"
@@ -464,11 +486,17 @@ msgstr "_Hulp"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_About"
-msgstr "_Over Notities"
+msgstr "I_nfo Notities"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Afsluiten"
+
+#~ msgid "Bullets"
+#~ msgstr "Aandachtspunten"
+
+#~ msgid "Numbered List"
+#~ msgstr "Genummerde lijst"
 
 #~ msgid "No Notes Found"
 #~ msgstr "Geen notities gevonden"

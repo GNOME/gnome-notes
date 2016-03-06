@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-28 04:03+0000\n"
-"PO-Revision-Date: 2015-10-28 15:59+0100\n"
+"POT-Creation-Date: 2016-03-06 16:03+0000\n"
+"PO-Revision-Date: 2016-03-06 21:28+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -19,30 +19,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.5\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Notis al è un editor che al permet di creâ semplicis listis di doprâ plui "
 "indenant."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Al permet di doprâ ownCloud par archiviâ e modificâ online."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notis"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notis;promemorie;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Publiche notis, etichete file"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Anotazions"
 
@@ -78,8 +79,7 @@ msgstr "Archivi principâl di doprâ par lis gnovis notis."
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr ""
-"Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin "
-"creadis."
+"Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin creadis."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
@@ -117,33 +117,33 @@ msgstr "Sempliç tacuin par GNOME"
 msgid "translator-credits"
 msgstr "Fabio Tomat"
 
-#: ../src/bjb-bijiben.c:409
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Mostre la version de aplicazion"
 
-#: ../src/bjb-bijiben.c:411
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Cree une gnove note"
 
-#: ../src/bjb-bijiben.c:413
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[FILE...]"
 
-#: ../src/bjb-bijiben.c:420
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Cjape notis e espuartilis dapardut."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:431
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Impussibil analizâ i argoments"
 
-#: ../src/bjb-bijiben.c:440
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Notis GNOME"
 
-#: ../src/bjb-bijiben.c:453
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Impussibil regjistrâ l'aplicazion"
 
@@ -275,7 +275,7 @@ msgstr "Risultâts par %s"
 
 #: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
-msgstr "Gnovis e recentis"
+msgstr "Gnovis e resintis"
 
 #.
 #. * Translators : <_New> refers to new note creation.

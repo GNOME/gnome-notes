@@ -49,7 +49,6 @@ struct _BijiWebkitEditorPrivate
 
   WebKitWebSettings *settings;
   EEditorSelection *sel;
-  GObject *spell_check;
 };
 
 G_DEFINE_TYPE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW);
@@ -218,8 +217,6 @@ biji_webkit_editor_init (BijiWebkitEditor *self)
                 "enable-spell-checking", TRUE,
                 "tab-key-cycles-through-elements", FALSE,
                 NULL);
-
-  priv->spell_check = webkit_get_text_checker ();
 }
 
 static void
@@ -227,9 +224,6 @@ biji_webkit_editor_finalize (GObject *object)
 {
   BijiWebkitEditor *self = BIJI_WEBKIT_EDITOR (object);
   BijiWebkitEditorPrivate *priv = self->priv;
-
-  /* priv->spell_check is ref by webkit. probably not to unref */
-  g_object_unref (priv->sel);
 
   g_free (priv->font_color);
 

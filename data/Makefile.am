@@ -44,17 +44,17 @@ org.gnome.bijiben.SearchProvider.service: org.gnome.bijiben.SearchProvider.servi
 searchproviderdir = $(datadir)/gnome-shell/search-providers
 searchprovider_DATA = org.gnome.bijiben-search-provider.ini
 
-css_files = Default.css
+web_files = Default.css bijiben.js
 
-cssdir = $(pkgdatadir)
-css_DATA = $(css_files)
+webdir = $(pkgdatadir)
+web_DATA = $(web_files)
 
 gsettings_SCHEMAS = org.gnome.bijiben.gschema.xml
 @GSETTINGS_RULES@
 
 EXTRA_DIST =                            \
 	$(desktop_in_files)     	\
-	$(css_files)			\
+	$(web_files)			\
 	$(gsettings_SCHEMAS) \
 	shell-search-provider-dbus-interfaces.xml \
 	$(service_in_files)		\

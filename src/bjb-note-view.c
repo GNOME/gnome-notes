@@ -218,7 +218,6 @@ bjb_note_view_constructed (GObject *obj)
   BjbNoteView            *self = BJB_NOTE_VIEW (obj);
   BjbNoteViewPrivate     *priv = self->priv;
   BjbSettings            *settings;
-  GtkWidget              *scroll;
   gchar                  *default_font;
   GdkRGBA                 color;
 
@@ -243,18 +242,7 @@ bjb_note_view_constructed (GObject *obj)
   gtk_widget_show (priv->box);
 
   /* Text Editor (WebKitMainView) */
-  scroll = gtk_scrolled_window_new (NULL,NULL);
-  gtk_widget_show (scroll);
-
-  gtk_widget_set_hexpand (scroll, TRUE);
-  gtk_widget_set_vexpand (scroll, TRUE);
-
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
-                                  GTK_POLICY_NEVER,
-                                  GTK_POLICY_AUTOMATIC);
-
-  gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET(priv->view));
-  gtk_box_pack_start (GTK_BOX (priv->box), scroll, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->box), GTK_WIDGET(priv->view), TRUE, TRUE, 0);
   gtk_widget_show (priv->view);
 
   /* Apply the gsettings font */

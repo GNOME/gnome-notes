@@ -768,7 +768,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   item = gtk_menu_item_new_with_label (_("Undo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (webkit_web_view_undo), editor);
+                            G_CALLBACK (biji_webkit_editor_undo), editor);
   gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_z,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
@@ -776,7 +776,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   item = gtk_menu_item_new_with_label (_("Redo"));
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
-                            G_CALLBACK (webkit_web_view_redo), editor);
+                            G_CALLBACK (biji_webkit_editor_redo), editor);
   gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_z,
                              GDK_CONTROL_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
 
@@ -802,7 +802,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
                     G_CALLBACK (on_email_note_callback), priv->note);
 
   g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
-                            "user-changed-contents",
+                            "content-changed",
                             G_CALLBACK (on_note_content_changed),
                             self);
 

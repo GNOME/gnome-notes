@@ -62,8 +62,6 @@ libbiji_la_SOURCES =  \
 	deserializer/biji-tomboy-reader.h \
 	editor/biji-editor-selection.c \
 	editor/biji-editor-selection.h \
-	editor/biji-editor-utils.c \
-	editor/biji-editor-utils.h \
 	editor/biji-webkit-editor.c \
 	editor/biji-webkit-editor.h \
 	provider/biji-import-provider.c \

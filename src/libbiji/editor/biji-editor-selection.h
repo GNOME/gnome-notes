@@ -20,7 +20,7 @@
 #define E_EDITOR_SELECTION_H
 
 #include <glib-object.h>
-#include <webkit/webkit.h>
+#include <webkit2/webkit2.h>
 
 /* Standard GObject macros */
 #define E_TYPE_EDITOR_SELECTION \
@@ -47,12 +47,6 @@ typedef struct _EEditorSelection EEditorSelection;
 typedef struct _EEditorSelectionClass EEditorSelectionClass;
 typedef struct _EEditorSelectionPrivate EEditorSelectionPrivate;
 
-typedef enum {
-	E_EDITOR_SELECTION_BLOCK_FORMAT_NONE = 0,
-	E_EDITOR_SELECTION_BLOCK_FORMAT_UNORDERED_LIST,
-	E_EDITOR_SELECTION_BLOCK_FORMAT_ORDERED_LIST,
-} EEditorSelectionBlockFormat;
-
 struct _EEditorSelection {
 	GObject parent;
 
@@ -67,18 +61,9 @@ GType			e_editor_selection_get_type 	(void);
 
 EEditorSelection *	e_editor_selection_new		(WebKitWebView *parent_view);
 
-gboolean		e_editor_selection_has_text	(EEditorSelection *selection);
-
 void			e_editor_selection_set_bold	(EEditorSelection *selection,
 							 gboolean bold);
 gboolean		e_editor_selection_get_bold	(EEditorSelection *selection);
-
-void			e_editor_selection_set_block_format
-							(EEditorSelection *selection,
-							 EEditorSelectionBlockFormat format);
-EEditorSelectionBlockFormat
-			e_editor_selection_get_block_format
-							(EEditorSelection *selection);
 
 void			e_editor_selection_set_italic	(EEditorSelection *selection,
 							 gboolean italic);
@@ -89,8 +74,6 @@ void			e_editor_selection_set_strike_through
 							 gboolean strike_through);
 gboolean		e_editor_selection_get_strike_through
 							(EEditorSelection *selection);
-
-const gchar *		e_editor_selection_get_string	(EEditorSelection *selection);
 
 G_END_DECLS
 

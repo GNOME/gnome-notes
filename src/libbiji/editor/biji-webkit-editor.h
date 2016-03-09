@@ -19,7 +19,7 @@
 #define _BIJI_WEBKIT_EDITOR_H_
 
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
+#include <webkit2/webkit2.h>
 
 #include "../biji-note-obj.h"
 
@@ -55,13 +55,16 @@ void biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format);
 
 gboolean biji_webkit_editor_has_selection (BijiWebkitEditor *self);
 
-gchar * biji_webkit_editor_get_selection (BijiWebkitEditor *self);
+const gchar * biji_webkit_editor_get_selection (BijiWebkitEditor *self);
 
 void biji_webkit_editor_cut (BijiWebkitEditor *self);
 
 void biji_webkit_editor_copy (BijiWebkitEditor *self);
 
 void biji_webkit_editor_paste (BijiWebkitEditor *self);
+
+void biji_webkit_editor_undo (BijiWebkitEditor *self);
+void biji_webkit_editor_redo (BijiWebkitEditor *self);
 
 void biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font);
 

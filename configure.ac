@@ -63,6 +63,7 @@ APPSTREAM_XML
 GLIB_REQUIRED_VERSION=2.28
 GTK_REQUIRED_VERSION=3.11.4
 EDS_REQUIRED_VERSION=3.13.90
+WEBKITGTK_REQUIRED_VERSION=2.10.0
 
 
 PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-sparql-1.0"],
@@ -80,7 +81,7 @@ PKG_CHECK_MODULES(BIJIBEN,
                     libxml-2.0
                     $sparql_version
                     uuid
-                    webkitgtk-3.0])
+                    webkit2gtk-4.0 >= $WEBKITGTK_REQUIRED_VERSION])
 
 
 # check for zeitgeist

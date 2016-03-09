@@ -808,12 +808,11 @@ html_from_plain_text                        (gchar *content)
                                 NULL);
 
   retval = g_strconcat ("<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+                        "<head>",
+                        "<link rel='stylesheet' href='Default.css' type='text/css'/>",
+                        "<script language='javascript' src='bijiben.js'></script>"
+                        "</head>",
                         "<body contenteditable='true' id='editable'>",
-                        "<script type='text/javascript'>",
-                        "    window.onload = function () {",
-                        "      document.getElementById('editable').focus();",
-                        "    };",
-                        "</script>",
                         escaped,
                         "</body></html>", NULL);
 

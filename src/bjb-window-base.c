@@ -270,14 +270,20 @@ bjb_window_base_constructed (GObject *obj)
   const gint32 *size;
   gsize n_elements;
   GVariant *variant;
+  GdkVisual *rgba_visual;
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 
   priv = self->priv;
   priv->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
-
-
+  /* Allow transparencies if possible */
+  rgba_visual = gdk_screen_get_rgba_visual (gtk_window_get_screen (GTK_WINDOW (self)));
+  if (rgba_visual)
+  {
+    gtk_widget_set_visual (GTK_WIDGET (self), rgba_visual);
+    gtk_widget_set_app_paintable (GTK_WIDGET (self), TRUE);
+  }
 
   gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));

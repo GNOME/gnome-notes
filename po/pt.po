@@ -4,49 +4,51 @@
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2014.
 # António Lima <amrlima@gmail.com>, 2013, 2015.
 # Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
+# Sérgio Cardeira <cardeira dot sergio at gmail dot com>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-04 02:58+0000\n"
-"PO-Revision-Date: 2015-07-04 07:16+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
-"Language-Team: Português <palbuquerque73@openmailbox.com>\n"
+"POT-Creation-Date: 2016-02-18 04:03+0000\n"
+"PO-Revision-Date: 2016-02-17 20:44-0100\n"
+"Last-Translator: Sérgio Cardeira <cardeira dot sergio at gmail dot com>\n"
+"Language-Team: Português <>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "O Notas é um editor que permite fazer listas simples para utilizar mais "
 "tarde."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Permite a utilização da ownCloud como uma localização de armazenamento e "
 "editor online."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notas"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notas;lembrete;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Publique notas, etiquete ficheiros!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Bloco de notas"
 
@@ -77,7 +79,6 @@ msgid "Primary notes provider to use for new notes."
 msgstr "Fornecedor principal de notas a utilizar para novas notas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
-#| msgid "The primary notebook is the place where are created new notes."
 msgid "The primary notebook is the place where new notes are created."
 msgstr "O livro de notas principal é o local onde as novas notas são criadas."
 
@@ -119,34 +120,33 @@ msgstr ""
 "António Lima <amrlima@gmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
-#: ../src/bjb-bijiben.c:409
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Mostrar a versão da aplicação"
 
-#: ../src/bjb-bijiben.c:411
-#| msgid "Copy selection to a new note"
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Criar uma nova nota"
 
-#: ../src/bjb-bijiben.c:413
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[FICHEIRO...]"
 
-#: ../src/bjb-bijiben.c:420
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Tome notas e exporte-as para todo o lado."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:431
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Impossível processar os argumentos"
 
-#: ../src/bjb-bijiben.c:440
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Notas GNOME"
 
-#: ../src/bjb-bijiben.c:453
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Impossível registar a aplicação"
 
@@ -366,7 +366,7 @@ msgstr "Nota"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Última atualização</b> %s"
@@ -479,7 +479,7 @@ msgstr "_Preferências"
 
 #: ../src/resources/app-menu.ui.h:4
 msgid "_Help"
-msgstr "A_Juda"
+msgstr "A_juda"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_About"

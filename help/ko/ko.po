@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "POT-Creation-Date: 2016-03-11 04:02+0000\n"
-"PO-Revision-Date: 2016-03-11 16:40+0900\n"
+"PO-Revision-Date: 2016-03-13 03:27+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -500,7 +500,7 @@ msgstr "메모 삭제"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
-msgstr ""
+msgstr "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 
 #. (itstool) path: info/desc
 #: C/introduction.page:33

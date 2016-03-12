@@ -1,0 +1,746 @@
+# Korean translation for bijiben.
+# This file is distributed under the same license as the bijiben package.
+# Seong-ho Cho <shcho@gnome.org>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"POT-Creation-Date: 2016-03-11 04:02+0000\n"
+"PO-Revision-Date: 2016-03-11 16:40+0900\n"
+"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
+"Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "조성호 <shcho@gnome.org>, 2016."
+
+#. (itstool) path: credit/name
+#: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
+#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
+#: C/notebooks.page:11 C/search.page:11 C/share.page:11
+msgid "Pierre-Yves Luyten"
+msgstr "Pierre-Yves Luyten"
+
+#. (itstool) path: credit/years
+#: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
+#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
+#: C/notebooks.page:12 C/search.page:12 C/share.page:12
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: credit/name
+#: C/colors.page:17 C/create.page:15 C/cut-copy-paste.page:21 C/delete.page:15
+#: C/delete-restore.page:16 C/format-list.page:15 C/format-text.page:15
+#: C/notebooks.page:15 C/search.page:15 C/share.page:15
+msgid "Ekaterina Gerasimova"
+msgstr "Ekaterina Gerasimova"
+
+#. (itstool) path: credit/years
+#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/search.page:17
+#: C/share.page:17
+msgid "2013, 2014"
+msgstr "2013, 2014"
+
+#. (itstool) path: credit/name
+#: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
+#: C/delete.page:30 C/delete-permanent.page:11 C/delete-restore.page:11
+#: C/format-list.page:20 C/format-text.page:20 C/index.page:20
+#: C/introduction.page:11 C/introduction.page:26 C/notebooks.page:20
+#: C/rename.page:11 C/search.page:20 C/search.page:30 C/share.page:20
+msgid "Shobha Tyagi"
+msgstr "Shobha Tyagi"
+
+#. (itstool) path: credit/years
+#: C/colors.page:24 C/delete.page:17 C/delete.page:22 C/format-list.page:17
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
+#: C/introduction.page:13 C/rename.page:13 C/search.page:22
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: credit/name
+#: C/colors.page:27 C/create.page:20 C/cut-copy-paste.page:16 C/delete.page:25
+#: C/format-list.page:25 C/format-text.page:25 C/introduction.page:21
+#: C/notebooks.page:25 C/rename.page:16 C/search.page:25 C/share.page:25
+msgid "Michael Hill"
+msgstr "Michael Hill"
+
+#. (itstool) path: credit/years
+#: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
+#: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
+#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
+#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
+#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
+#: C/search.page:32 C/share.page:22 C/share.page:27
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/colors.page:34
+msgid "Edit the note background color."
+msgstr "메모 배경 색을 편집합니다."
+
+#. (itstool) path: page/title
+#: C/colors.page:37
+msgid "Change note color"
+msgstr "메모 배경 색 바꾸기"
+
+#. (itstool) path: page/p
+#: C/colors.page:39
+msgid ""
+"You can change the background colour of a note to emphasize it or to "
+"differentiate it from other notes."
+msgstr ""
+"메모를 강조하거나 다른 메모와 구별할 수 있도록 배경 색을 바꿀 수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/colors.page:43
+msgid "To change the color of an individual note:"
+msgstr "개별 메모 색을 바꾸려면:"
+
+#. (itstool) path: item/p
+#: C/colors.page:45 C/delete.page:45 C/notebooks.page:43 C/rename.page:31
+#: C/share.page:43
+msgid "Click on the note to open it."
+msgstr "메모를 눌러 여십시오."
+
+#. (itstool) path: item/p
+#: C/colors.page:48 C/colors.page:69
+msgid "Click the <gui style=\"button\">Note color</gui> button."
+msgstr "<gui style=\"button\">메모 색</gui> 단추를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/colors.page:51 C/colors.page:72
+msgid ""
+"Select a new color and click the <gui style=\"button\">Select</gui> button."
+msgstr "새 색을 선택하고 <gui style=\"button\">선택</gui> 단추를 누르십시오."
+
+#. (itstool) path: page/p
+#: C/colors.page:56
+msgid ""
+"You can also change the background colour in a group of notes at the same "
+"time."
+msgstr "노트 그룹의 배경 색을 한번에 바꿀 수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/colors.page:60
+msgid "To change the color of multiple notes:"
+msgstr "여러 메모 색을 바꾸려면:"
+
+#. (itstool) path: item/p
+#: C/colors.page:62 C/delete.page:61 C/notebooks.page:61
+msgid ""
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button."
+msgstr ""
+"<gui>새 항목 및 최근 항목</gui> 보기에서 <gui style=\"button\">선택 모드</"
+"gui> 단추를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/colors.page:66
+msgid "Select the notes you want to change."
+msgstr "색을 바꾸려는 메모를 선택하십시오."
+
+#. (itstool) path: info/desc
+#: C/create.page:32
+msgid ""
+"Create a new note from scratch, using some text from another application or "
+"from another note."
+msgstr "다른 프로그램 또는 다른 노트의 글을 활용하여 새 메모를 만듭니다."
+
+#. (itstool) path: page/title
+#: C/create.page:36
+msgid "Create a note"
+msgstr "메모 만들기"
+
+#. (itstool) path: page/p
+#: C/create.page:38
+msgid "You can create a new note in three different ways:"
+msgstr "세가지 방법으로 새 메모를 만들 수 있습니다:"
+
+#. (itstool) path: item/p
+#: C/create.page:41
+msgid ""
+"Click the <gui style=\"button\">New</gui> button to create a blank note."
+msgstr ""
+"<gui style=\"button\">새로 만들기</gui> 단추를 눌러 빈 메모를 만듭니다."
+
+#. (itstool) path: item/p
+#: C/create.page:45
+msgid ""
+"Drag and drop text to the <gui>New and Recent</gui> view to create a note "
+"containing this text."
+msgstr ""
+"<gui>새 항목 및 최근 항목</gui> 보기에 글을 끌어다 놓아 글 내용을 넣은 메모"
+"를 만듭니다."
+
+#. (itstool) path: item/p
+#: C/create.page:49
+msgid ""
+"Open a note, select some text and click the <gui style=\"button\">Copy "
+"selection to a new note</gui> button to create a note containing this text."
+msgstr ""
+"메모를 열고, 임의의 글을 선택한 후 <gui style=\"button\">선택한 사항을 새 메"
+"모로 복사하기</gui> 를 눌러 이 글이 들어간 메모를 만듭니다."
+
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+"키보드 바로 가기 키를 활용하여 새 메모를 열려면 <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq> 키를 누르십시오."
+
+#. (itstool) path: info/desc
+#: C/cut-copy-paste.page:28
+msgid "Move text inside a note or to a different note."
+msgstr "메모간에 또는 다른 메모로 글을 옮깁니다."
+
+#. (itstool) path: page/title
+#: C/cut-copy-paste.page:31
+msgid "Cut, copy and paste"
+msgstr "잘라내기, 복사 및 붙여넣기"
+
+#. (itstool) path: page/p
+#: C/cut-copy-paste.page:33
+msgid ""
+"You can move text inside a note or to another note by cutting or copying it "
+"and pasting it somewhere else."
+msgstr ""
+"메모간에 또는 다른 메모로 글을 잘라내거나, 다른 곳으로 복사 및 붙여넣기 할 "
+"수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/cut-copy-paste.page:37
+msgid "To cut, copy or paste in a note:"
+msgstr "메모의 글을 잘라내거나, 복사하거나, 붙여넣으려면:"
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:39
+msgid "Select the text."
+msgstr "글을 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:42
+msgid ""
+"Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
+msgstr ""
+"<gui style=\"button\">잘라내기</gui> 또는 <gui style=\"button\">복사</gui>를 "
+"누르십시오."
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:46
+msgid ""
+"Select where you want to paste the text and press <gui style=\"button"
+"\">Paste</gui>."
+msgstr ""
+"글을 붙여넣을 곳을 선택하고 <gui style=\"button\">붙여넣기</gui>를 누르십시"
+"오."
+
+#. (itstool) path: credit/years
+#: C/delete.page:32
+msgid "01 sep 2014"
+msgstr "2014년 9월 1일"
+
+#. (itstool) path: info/desc
+#: C/delete.page:37
+msgid "Delete old and unwanted notes."
+msgstr "오래되거나 필요없는 메모를 삭제합니다."
+
+#. (itstool) path: page/title
+#: C/delete.page:40
+msgid "Delete a note"
+msgstr "메모 삭제"
+
+#. (itstool) path: steps/title
+#: C/delete.page:43
+msgid "To delete a note:"
+msgstr "메모를 삭제하려면:"
+
+#. (itstool) path: item/p
+#: C/delete.page:48
+msgid ""
+"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Move to Trash</gui></guiseq>."
+msgstr ""
+"<guiseq><gui style=\"button\">다른 옵션…</gui><gui style=\"menuitem\">휴지통"
+"으로 옮기기</gui></guiseq>를 선택하십시오."
+
+#. (itstool) path: note/p
+#: C/delete.page:54
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+"<keyseq><key>Ctrl</key><key>Delete</key></keyseq> 바로 가기 키를 눌러 열어놓"
+"은 메모를 삭제하십시오."
+
+#. (itstool) path: steps/title
+#: C/delete.page:59
+msgid "To delete multiple notes and notebooks:"
+msgstr "여러 메모와 메모책을 삭제하려면:"
+
+#. (itstool) path: item/p
+#: C/delete.page:65
+msgid "Select the notes and the notebooks you want to delete."
+msgstr "삭제하려는 메모와 메모책을 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/delete.page:68
+msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
+msgstr "<gui style=\"button\">휴지통으로 이동</gui> 단추를 누르십시오."
+
+#. (itstool) path: info/desc
+#: C/delete-permanent.page:18
+msgid "Permanently delete notes from the <gui>Trash</gui> view."
+msgstr "메모를 <gui>휴지통</gui> 보기에서 완전히 삭제합니다."
+
+#. (itstool) path: page/title
+#: C/delete-permanent.page:21
+msgid "Empty the Trash"
+msgstr "휴지통 비우기"
+
+#. (itstool) path: page/p
+#: C/delete-permanent.page:23
+msgid "You can permanently delete notes from the <gui>Trash</gui>."
+msgstr "메모를 <gui>휴지통</gui> 에서 완전히 삭제할 수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/delete-permanent.page:28
+msgid "To permanently delete all the notes in Trash:"
+msgstr "휴지통에 있는 모든 메모를 완전히 삭제하려면:"
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:30
+msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgstr "<gui>현재 활동</gui>에 있는 <gui>메모</gui>를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:33
+msgid "Select <gui>View Trash</gui>."
+msgstr "<gui>휴지통 보기</gui>를 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:36
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr "도구 모음에서 <gui style=\"button\">비우기</gui> 단추를 누르십시오."
+
+#. (itstool) path: steps/title
+#: C/delete-permanent.page:41
+msgid "To delete selected notes from Trash:"
+msgstr "선택한 메모를 휴지통에서 삭제하려면:"
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:43
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr "<gui>휴지통</gui> 보기에서 <gui>선택 모드</gui> 단추를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:47
+msgid "Select all the notes that you want to delete permanently."
+msgstr "완전히 삭제할 모든 메모를 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:50
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr "<gui style=\"button\">완전히 삭제</gui> 단추를 누르십시오."
+
+#. (itstool) path: info/desc
+#: C/delete-restore.page:23
+msgid "Restore a deleted note."
+msgstr "삭제한 메모를 복원합니다."
+
+#. (itstool) path: page/title
+#: C/delete-restore.page:26
+msgid "Restore notes"
+msgstr "메모 복원"
+
+#. (itstool) path: page/p
+#: C/delete-restore.page:28
+msgid ""
+"If you think that you have accidentally deleted a note, you can view and "
+"restore it from <gui>Trash</gui>"
+msgstr ""
+"실수로 삭제한 메모가 있는 것 같다면 <gui>휴지통</gui>에서 메모를 보고 복원할 "
+"수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/delete-restore.page:32
+msgid "To restore trashed notes:"
+msgstr "휴지통에 버린 메모를 복원하려면:"
+
+#. (itstool) path: item/p
+#: C/delete-restore.page:34
+msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
+msgstr "<gui>휴지통</gui>  보기에서 <gui>선택 모드</gui> 단추를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/delete-restore.page:38
+msgid "Select all the notes that you want to restore."
+msgstr "복원할 모든 메모를 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/delete-restore.page:41
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr "<gui style=\"button\">복원</gui> 단추를 누르십시오."
+
+#. (itstool) path: info/desc
+#: C/format-list.page:32
+msgid "format a note with ordered and unordered lists."
+msgstr "순서, 비순서 목록으로 메모에 서식을 적용합니다."
+
+#. (itstool) path: page/title
+#: C/format-list.page:35
+msgid "Create a list"
+msgstr "목록 만들기"
+
+#. (itstool) path: list/title
+#: C/format-list.page:38
+msgid "While the note is open:"
+msgstr "메모를 열었을 때:"
+
+#. (itstool) path: item/p
+#: C/format-list.page:40
+msgid ""
+"To create an unordered list, click <guiseq><gui style=\"button\">More "
+"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+msgstr ""
+"비순서 목록을 만들려면 <guiseq><gui style=\"button\">다른 옵션…</gui> <gui "
+"style=\"menuitem\">목록</gui></guiseq>을 누르십시오."
+
+#. (itstool) path: item/p
+#: C/format-list.page:45
+msgid ""
+"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
+"</gui> <gui>Numbered List</gui></guiseq>."
+msgstr ""
+"순서 목록을 만들려면 <guiseq><gui style=\"button\">다른 옵션…</gui> <gui "
+"style=\"menuitem\">숫자 목록</gui></guiseq>을 누르십시오."
+
+#. (itstool) path: info/desc
+#: C/format-text.page:32
+msgid "Apply different formatting options to the text."
+msgstr "글에 다른 서식 옵션을 적용합니다."
+
+#. (itstool) path: page/title
+#: C/format-text.page:35
+msgid "Change the text style"
+msgstr "글 모양새 바꾸기"
+
+#. (itstool) path: steps/title
+#: C/format-text.page:38
+msgid "To change the formatting options of text in your note:"
+msgstr "메모 글 서식 설정을 바꾸려면:"
+
+#. (itstool) path: item/p
+#: C/format-text.page:40
+msgid "Select the text that you want to format."
+msgstr "서식을 달리할 글을 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/format-text.page:43
+msgid ""
+"Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
+"or <gui style=\"button\">Strike</gui>."
+msgstr ""
+"<gui style=\"button\">굵게</gui>, <gui style=\"button\">기울기</gui>, <gui "
+"style=\"button\">취소선</gui> 중 하나를 누르십시오."
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "link"
+msgid "Notes"
+msgstr "메모"
+
+#. (itstool) path: info/title
+#: C/index.page:9
+msgctxt "text"
+msgid "Notes"
+msgstr "메모"
+
+#. (itstool) path: info/desc
+#: C/index.page:27
+msgid "Learn how to use and manage your notes."
+msgstr "메모 활용 관리법을 알아봅니다."
+
+#. (itstool) path: page/title
+#: C/index.page:30
+msgid "<_:media-1/> Notes"
+msgstr "<_:media-1/> 메모"
+
+#. (itstool) path: section/title
+#: C/index.page:37
+msgid "Create notes"
+msgstr "메모 만들기"
+
+#. (itstool) path: section/title
+#: C/index.page:40
+msgid "Edit and share notes"
+msgstr "메모 편집하고 공유하기"
+
+#. (itstool) path: section/title
+#: C/index.page:43
+msgid "Delete notes"
+msgstr "메모 삭제"
+
+#. (itstool) path: media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/introduction.page:43
+msgctxt "_"
+msgid ""
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/introduction.page:33
+msgid "A simple application for creating, editing and viewing notes."
+msgstr "메모를 만들고, 편집하고, 보는 간단한 프로그램입니다."
+
+#. (itstool) path: page/title
+#: C/introduction.page:36
+msgid "Introduction to Notes"
+msgstr "메모 소개"
+
+#. (itstool) path: page/p
+#: C/introduction.page:38
+msgid ""
+"<app>Notes</app> is a simple application for creating, editing, and viewing "
+"notes. You can also search for a note from the <gui>Activities</gui> "
+"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+msgstr ""
+"<app>메모</app>는 메모를 새로 만들고, 편집하고, 보는 간단한 프로그램입니다. "
+"<gui>현재 활동</gui> 개요에서 메모를 검색할 수도 있습니다. <app>메모</app>는 "
+"<app>온라인 계정</app> 프로그램과 쉽게 연동됩니다."
+
+#. (itstool) path: credit/name
+#: C/new-window.page:11
+msgid "Lisa Hui"
+msgstr "Lisa Hui"
+
+#. (itstool) path: info/desc
+#: C/new-window.page:18
+msgid "Open a note in a new window."
+msgstr "메모를 새 창에 엽니다."
+
+#. (itstool) path: page/title
+#: C/new-window.page:21
+msgid "Open a note in another window"
+msgstr "다른 창에 메모 열기"
+
+#. (itstool) path: page/p
+#: C/new-window.page:23
+msgid "To open a note in a new window:"
+msgstr "메모를 새 창에서 열려면:"
+
+#. (itstool) path: item/p
+#: C/new-window.page:27
+msgid ""
+"Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Open in New Window</gui></guiseq>."
+msgstr ""
+"메모를 열고 <guiseq><gui style=\"button\">다른 옵션…</gui><gui style="
+"\"menuitem\">새 창에서 열기</gui></guiseq>를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/new-window.page:32
+msgid ""
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button, select all the notes which you want to open "
+"in new window, then click the <gui style=\"button\">Open in another window</"
+"gui> button."
+msgstr ""
+"<gui>새 항목 및 최근 항목</gui> 보기에서 <gui style=\"button\">선택 모드</"
+"gui> 단추를 누르고, 새 창에서 열 모든 메모를 선택하신 후, <gui style=\"button"
+"\">다른 창에서 열기</gui> 단추를 누르십시오."
+
+#. (itstool) path: info/desc
+#: C/notebooks.page:32
+msgid "Add a note to a notebook to make sorting and searching notes easier."
+msgstr "메모 정돈 및 검색을 쉽게 하는 메모책에 메모를 추가합니다."
+
+#. (itstool) path: page/title
+#: C/notebooks.page:35
+msgid "Notebooks"
+msgstr "메모책"
+
+#. (itstool) path: page/p
+#: C/notebooks.page:37
+msgid ""
+"You can use notebooks to group your notes together to make it easier to "
+"search and sort through your notes."
+msgstr ""
+"메모를 쉽게 검색하고 정돈할 수 있게 메모를 모아두는 메모책을 활용할 수 있습니"
+"다."
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:41
+msgid "To create a notebook with a single note:"
+msgstr "단일 메모로 메모책을 만들려면:"
+
+#. (itstool) path: item/p
+#: C/notebooks.page:46
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Notebooks</gui></guiseq>."
+msgstr ""
+"<guiseq><gui style=\"button\">다른 옵션…</gui><gui style=\"menuitem\">메모책"
+"</gui></guiseq>을 누르십시오."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:50
+msgid ""
+"Type a suitable name for the notebook and click the <gui style=\"button"
+"\">New notebook</gui> button."
+msgstr ""
+"메모책 이름을 적당하게 입력하고 <gui style=\"button\">새 메모책</gui> 단추를 "
+"누르십시오."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:54 C/notebooks.page:75
+msgid "Click the <gui style=\"button\">Close</gui> button."
+msgstr "<gui style=\"button\">닫기</gui> 단추를 누르십시오."
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:59
+msgid "To create a notebook with multiple notes:"
+msgstr "여러 메모로 메모책을 만들려면:"
+
+#. (itstool) path: item/p
+#: C/notebooks.page:65
+msgid "Select all the notes which you want to add to the notebook."
+msgstr "메모책을 만들려는 모든 메모를 선택하십시오."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:68
+msgid "Click the <gui style=\"button\">Notebooks</gui> button."
+msgstr "<gui style=\"button\">메모책</gui> 단추를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/notebooks.page:71
+msgid ""
+"Type a suitable name for the notebook and click <gui style=\"button\">New "
+"notebook</gui> button."
+msgstr ""
+"메모책 이름을 적당하게 입력하고 <gui style=\"button\">새 메모책</gui> 단추를 "
+"누르십시오."
+
+#. (itstool) path: info/desc
+#: C/rename.page:23
+msgid "Change the name of an existing note."
+msgstr "기존 메모의 이름을 바꿉니다."
+
+#. (itstool) path: page/title
+#: C/rename.page:26
+msgid "Rename a note"
+msgstr "메모 이름 바꾸기"
+
+#. (itstool) path: steps/title
+#: C/rename.page:29
+msgid "To rename a note:"
+msgstr "메모 이름을 바꾸려면:"
+
+#. (itstool) path: item/p
+#: C/rename.page:34
+msgid "Change the text in the first line of the note."
+msgstr "메모 첫 줄에 있는 글 내용을 바꿉니다."
+
+#. (itstool) path: info/desc
+#: C/search.page:37
+msgid "Search for an existing note, note content and notebooks."
+msgstr "기존의 메모, 메모 내용, 메모책을 검색합니다."
+
+#. (itstool) path: page/title
+#: C/search.page:40
+msgid "Find a note"
+msgstr "메모 찾기"
+
+#. (itstool) path: page/p
+#: C/search.page:42
+msgid ""
+"You can search your notes in the <gui>New and Recent</gui> view in "
+"<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui> overview."
+msgstr ""
+"<app>메모</app>의 <gui>새 항목 및 최근 항목</gui> 보기 또는 <gui href=\"help:"
+"gnome-help/shell-terminology\">현재 활동</gui> 개요에서 메모 찾기로 메모를 검"
+"색할 수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/search.page:47
+msgid "To find notes while in <gui>New and Recent</gui>:"
+msgstr "<gui>새 항목 및 최근 항목</gui>에서 메모를 찾으려면:"
+
+#. (itstool) path: item/p
+#: C/search.page:49
+msgid "Click the <gui>Search</gui> button."
+msgstr "<gui>검색</gui> 단추를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/search.page:52
+msgid "Type your search term. Search results will appear instantly."
+msgstr "검색 단어를 입력하십시오. 검색 결과는 즉시 나타납니다."
+
+#. (itstool) path: note/p
+#: C/search.page:57
+msgid ""
+"You can directly start typing the search string in the <gui>New and Recent</"
+"gui> view to search notes."
+msgstr ""
+"<gui>새 항목 및 최근 항목</gui> 보기에서 검색 문장을 입력하여 메모 검색을 바"
+"로 시작할 수 있습니다."
+
+#. (itstool) path: info/desc
+#: C/share.page:32
+msgid "Email a note to your contacts."
+msgstr "연락처의 지인에게 메모를 메일로 보냅니다."
+
+#. (itstool) path: page/title
+#: C/share.page:35
+msgid "Share a note"
+msgstr "메모 공유하기"
+
+#. (itstool) path: page/p
+#: C/share.page:37
+msgid ""
+"You can share a note with your friends or colleagues by emailing it to them."
+msgstr "친구 또는 동료에게 메모를 전자메일로 보내서 공유할 수 있습니다."
+
+#. (itstool) path: steps/title
+#: C/share.page:41
+msgid "To share a note:"
+msgstr "메모를 공유하려면:"
+
+#. (itstool) path: item/p
+#: C/share.page:46
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Email this Note</gui></guiseq>."
+msgstr ""
+"<guiseq><gui style=\"button\">다른 옵션…</gui><gui style=\"menuitem\">이 메"
+"모 메일로 보내기</gui></guiseq>를 누르십시오."
+
+#. (itstool) path: item/p
+#: C/share.page:50
+msgid "Send the note by email."
+msgstr "전자메일로 메모를 보내십시오."
+
+#. (itstool) path: p/link
+#: C/legal.xml:5
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr "크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0 Unported 라이선스"
+
+#. (itstool) path: license/p
+#: C/legal.xml:4
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "이 문서는 <_:link-1/>에 따른 활용을 허가합니다."

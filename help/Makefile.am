@@ -26,6 +26,6 @@ HELP_MEDIA = \
 	figures/hicolor_apps_16x16_bijiben.png \
 	figures/notes-3-12.png
 
-HELP_LINGUAS = cs de el es fr hu pt_BR
+HELP_LINGUAS = cs de el es fr hu ko pt_BR
 
 -include $(top_srcdir)/git.mk

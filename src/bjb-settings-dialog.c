@@ -499,6 +499,7 @@ bjb_settings_dialog_constructed (GObject *object)
 
   page = create_page_primary (self);
   scroll = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
   viewport = gtk_viewport_new (NULL, NULL);
   gtk_container_add (GTK_CONTAINER (viewport), page);
   gtk_container_add (GTK_CONTAINER (scroll), viewport);

@@ -1,15 +1,15 @@
 # Hungarian translation of bijiben_help
-# Copyright (C) 2014. Free Software Foundation, Inc.
+# Copyright (C) 2014, 2015. Free Software Foundation, Inc.
 # This file is distributed under the same license as the bijiben user help.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2014, 2015.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2014, 2015, 2016.
 # Balázs Úr <urbalazs at gmail dot com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben_help master\n"
 "POT-Creation-Date: 2015-08-18 14:59+0000\n"
-"PO-Revision-Date: 2015-08-18 17:11+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"PO-Revision-Date: 2016-03-19 09:09+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
 "Language-Team: Hungarian <openscope at gmail dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,9 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Kelemen Gábor <kelemeng at gnome dot hu>, 2014"
+msgstr ""
+"Kelemen Gábor <kelemeng at gnome dot hu>, 2014, 2015"
+"Úr Balázs <urbalazs at gmail dot com>, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -515,8 +517,7 @@ msgstr "Jegyzetek törlése"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
-msgstr ""
-"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
+msgstr "LEFORDÍTVA"
 
 #. (itstool) path: info/desc
 #: C/introduction.page:33

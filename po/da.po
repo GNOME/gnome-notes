@@ -8,9 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-07 16:35+0100\n"
-"PO-Revision-Date: 2016-02-04 19:12+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-03-18 16:03+0000\n"
+"PO-Revision-Date: 2015-03-14 03:40+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -280,7 +281,6 @@ msgstr "Resultater for %s"
 msgid "New and Recent"
 msgstr "Nye og seneste"
 
-# Fejlmeldt for mangel på kontekts
 #.
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
@@ -327,7 +327,7 @@ msgstr "Fortryd"
 
 #: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
-msgstr "Gendan"
+msgstr "Omgør"
 
 #. Notes tags
 #: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
@@ -490,76 +490,3 @@ msgstr "_Om"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Afslut"
-
-#~ msgid "Bullets"
-#~ msgstr "Punkttegn"
-
-#~ msgid "Numbered List"
-#~ msgstr "Nummereret liste"
-
-#~ msgid "No Notes Found"
-#~ msgstr "Ingen noter fundet"
-
-#~ msgid ""
-#~ "Your notes notebook is empty.\n"
-#~ "Click the New button to create your first note."
-#~ msgstr ""
-#~ "Din notesbog er tom.\n"
-#~ "Klik på Ny-knappen for at oprette din første note."
-
-#~ msgid "New"
-#~ msgstr "Ny"
-
-#~ msgid "_Close"
-#~ msgstr "_Luk"
-
-#~ msgid "No result found for this research."
-#~ msgstr "Intet resultat fundet for denne søgning."
-
-#~ msgid "Collections"
-#~ msgstr "Samlinger"
-
-#~ msgid "New collection"
-#~ msgstr "Ny samling"
-
-#~ msgid "Delete"
-#~ msgstr "Slet"
-
-#~ msgid "Add to Collection"
-#~ msgstr "Føj til samling"
-
-#~ msgid "Bijiben"
-#~ msgstr "Bijiben"
-
-#~ msgid "External Notes"
-#~ msgstr "Eksterne noter"
-
-#~ msgid "Click on the external notes to import"
-#~ msgstr "Klik på de eksterne noter for at importere"
-
-#~ msgid "Choose a color for note"
-#~ msgstr "Vælg en notefarve"
-
-#~ msgid "Link"
-#~ msgstr "Henvisning"
-
-#~ msgid "New tag"
-#~ msgstr "Nyt mærke"
-
-#~ msgid "Rename Note"
-#~ msgstr "Omdøb note"
-
-#~ msgid "List"
-#~ msgstr "Liste"
-
-#~ msgid "Rename"
-#~ msgstr "Omdøb"
-
-#~ msgid "Tags"
-#~ msgstr "Mærker"
-
-#~ msgid "Tag"
-#~ msgstr "Mærke"
-
-#~ msgid "_External Notes"
-#~ msgstr "_Eksterne noter"

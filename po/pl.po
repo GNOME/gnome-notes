@@ -4,15 +4,15 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2015.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2016.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015.
-# Aviary.pl <gnomepl@aviary.pl>, 2012-2015.
+# Aviary.pl <gnomepl@aviary.pl>, 2012-2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-24 19:04+0200\n"
-"PO-Revision-Date: 2015-08-24 19:05+0200\n"
+"POT-Creation-Date: 2016-04-07 20:11+0200\n"
+"PO-Revision-Date: 2016-04-07 20:12+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -24,30 +24,31 @@ msgstr ""
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Ten program umożliwia zapisywanie prostych list do późniejszego użytku."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Umożliwia używanie usługi ownCloud do przechowywania i modyfikowania notatek."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notatki"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notatki;przypomnienia;przypominanie;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Robienie notatek"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Robienie notatek"
 
@@ -115,37 +116,37 @@ msgstr "Prosty notatnik dla środowiska GNOME"
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2015\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2016\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
-"Aviary.pl <gnomepl@aviary.pl>, 2012-2015"
+"Aviary.pl <gnomepl@aviary.pl>, 2012-2016"
 
-#: ../src/bjb-bijiben.c:409
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Wyświetla wersję programu"
 
-#: ../src/bjb-bijiben.c:411
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Tworzy nową notatkę"
 
-#: ../src/bjb-bijiben.c:413
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[PLIK…]"
 
-#: ../src/bjb-bijiben.c:420
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Umożliwia robienie i eksportowanie notatek."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:431
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Nie można przetworzyć parametrów"
 
-#: ../src/bjb-bijiben.c:440
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
-#: ../src/bjb-bijiben.c:453
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Nie można zarejestrować programu"
 
@@ -396,7 +397,7 @@ msgstr "Przywróć"
 
 #: ../src/bjb-selection-toolbar.c:403
 msgid "Share note"
-msgstr "Współdziel notatkę"
+msgstr "Udostępnij notatkę"
 
 #. Detach
 #: ../src/bjb-selection-toolbar.c:409

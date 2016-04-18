@@ -1,15 +1,15 @@
 # Brazilian Portuguese translation for bijiben.
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2014.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2014, 2016.
 # Enrico Nicoletto <liverig@gmail.com>, 2014.
 # Felipe Braga <fbobraga@gmail.com>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-12\n"
-"POT-Creation-Date: 2015-05-06 14:58+0000\n"
-"PO-Revision-Date: 2015-05-06 14:54-0200\n"
-"Last-Translator: Felipe Braga <fbobraga@gmail.com>\n"
+"POT-Creation-Date: 2016-04-18 21:23+0000\n"
+"PO-Revision-Date: 2016-04-18 18:25-0200\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,8 @@ msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #. (itstool) path: credit/years
-#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/share.page:17
+#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/search.page:17
+#: C/share.page:17
 msgid "2013, 2014"
 msgstr "2013, 2014"
 
@@ -79,12 +80,11 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
 #: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
-#: C/delete-permanent.page:13 C/delete-restore.page:13
-#: C/delete-restore.page:18 C/format-list.page:27 C/format-text.page:22
-#: C/format-text.page:27 C/introduction.page:23 C/introduction.page:28
-#: C/new-window.page:13 C/notebooks.page:22 C/notebooks.page:27
-#: C/rename.page:18 C/search.page:27 C/search.page:32 C/share.page:22
-#: C/share.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
+#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
+#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
+#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
+#: C/search.page:32 C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
@@ -255,8 +255,8 @@ msgid ""
 "Select where you want to paste the text and press <gui style=\"button"
 "\">Paste</gui>."
 msgstr ""
-"Selecione onde você que colocar o texto e clique no botão <gui style="
-"\"button\">Colar</gui>."
+"Selecione onde você que colocar o texto e clique no botão <gui style=\"button"
+"\">Colar</gui>."
 
 #. (itstool) path: credit/years
 #: C/delete.page:32
@@ -357,7 +357,8 @@ msgstr "Para excluir as notas selecionadas da lixeira:"
 #. (itstool) path: item/p
 #: C/delete-permanent.page:43
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
-msgstr "Na visão da <gui>Lixeira</gui>, clique no botão <gui>Modo seleção</gui>."
+msgstr ""
+"Na visão da <gui>Lixeira</gui>, clique no botão <gui>Modo seleção</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:47
@@ -396,7 +397,8 @@ msgstr "Para restaurar uma nota excluída:"
 #. (itstool) path: item/p
 #: C/delete-restore.page:34
 msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
-msgstr "Na visão da <gui>Lixeira</gui>, clique no botão <gui>Modo seleção</gui>."
+msgstr ""
+"Na visão da <gui>Lixeira</gui>, clique no botão <gui>Modo seleção</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:38
@@ -677,12 +679,6 @@ msgstr "Para renomear uma nota:"
 msgid "Change the text in the first line of the note."
 msgstr "Altere o texto na primeira linha da nota."
 
-# Erro de digitação do autor: "3014" ao invés de "2014"...
-#. (itstool) path: credit/years
-#: C/search.page:17
-msgid "2013, 3014"
-msgstr "2013, 2014"
-
 #. (itstool) path: info/desc
 #: C/search.page:37
 msgid "Search for an existing note, note content and notebooks."
@@ -696,14 +692,18 @@ msgstr "Encontrando uma nota"
 
 #. (itstool) path: page/p
 #: C/search.page:42
+#| msgid ""
+#| "You can search your note in the <gui>New and Recent</gui> view in "
+#| "<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
+#| "terminology\">Activities</gui> overview."
 msgid ""
-"You can search your note in the <gui>New and Recent</gui> view in "
-"<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
+"You can search your notes in the <gui>New and Recent</gui> view in "
+"<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Você pode procurar suas notas na visão <gui>Novas e recentes</gui> do "
-"<app>Notas</app> ou encontrá-las a partir do panorama de <gui href=\"help:"
-"gnome-help/shell-terminology\">Atividades</gui>."
+"<app>Notas</app> ou encontrá-las a partir do panorama de <gui href=\"help"
+":gnome-help/shell-terminology\">Atividades</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:47
@@ -777,6 +777,10 @@ msgstr ""
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Essa obra está licenciada sob uma <_:link-1/>."
+
+# Erro de digitação do autor: "3014" ao invés de "2014"...
+#~ msgid "2013, 3014"
+#~ msgstr "2013, 2014"
 
 #~ msgid "The default <em>New and Recent</em> view shows recently used notes."
 #~ msgstr ""

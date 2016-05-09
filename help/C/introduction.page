@@ -36,7 +36,8 @@
   <title>Introduction to Notes</title>
 
   <p><app>Notes</app> is a simple application for creating, editing, and
-  viewing notes. You can also search for a note from the <gui>Activities</gui>
+  viewing notes. You can also search for a note from the
+  <gui href="help:gnome-help/shell-terminology">Activities</gui>
   overview. <app>Notes</app> integrates easily with
   <app>Online Accounts</app>.</p>
 

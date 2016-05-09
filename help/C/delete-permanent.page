@@ -27,7 +27,8 @@
   <steps>
     <title>To permanently delete all the notes in Trash:</title>
     <item>
-      <p>Click on the <gui>Notes</gui> icon near <gui>Activities</gui>.</p>
+      <p>Click on the <gui>Notes</gui> icon near
+      <gui href="help:gnome-help/shell-terminology">Activities</gui>.</p>
     </item>
     <item>
       <p>Select <gui>View Trash</gui>.</p>

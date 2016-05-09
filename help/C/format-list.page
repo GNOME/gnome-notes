@@ -29,7 +29,7 @@
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>format a note with ordered and unordered lists.</desc>
+    <desc>Format a note with ordered and unordered lists.</desc>
   </info>
 
   <title>Create a list</title>

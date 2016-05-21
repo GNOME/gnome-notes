@@ -1,0 +1,492 @@
+# Vietnamese translation for bijiben.
+# Copyright (C) 2016 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+# Trong Nguyen <nguyetro95@gmail.com>, 2016.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-05-21 09:05+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"Ghi chú là một trình soạn thảo cho phép tạo các danh sách đơn giản để sử "
+"dụng sau này."
+
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"Nó cho phép sử dụng ownCloud như một kho dự trữ và trình soạn thảo trực "
+"tuyến."
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "Ghi chú"
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "notes;reminder;ghi chú;nhắc nhở;ghi chu;nhac nho;"
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "Ghi chú đã đăng, các tập tin đánh thẻ!"
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "Bộ đọc ghi chú"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
+msgid "Custom Font"
+msgstr "Phông riêng"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"Phông chữ được đặt ở đây sẽ được sử dụng như một phông chữ bình thường khi "
+"ghi chú."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
+msgid "Whether to use the system monospace font"
+msgstr "Có nên sử dụng hệ thống phông chữ đơn cách?"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
+msgid "New notes color."
+msgstr "Màu ghi chú mới."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"Màu sắc được sử dụng ở đây sẽ được sử dụng như một màu chủ đạo khi tạo bản "
+"ghi chép mới."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr ""
+"Người cung cấp các bản ghi chép cũ để sử dụng cho các bản ghi chép mới."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
+msgid "The primary notebook is the place where new notes are created."
+msgstr "Các sổ ghi chú cũ sẽ là nơi các bản ghi chép mới được tạo thành."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
+msgid "Window maximized"
+msgstr "Cửa sổ đã phóng to"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
+msgid "Window maximized state."
+msgstr "Cửa sổ ở trạng thái phóng to hết cỡ."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
+msgid "Window size"
+msgstr "Kích thước cửa sổ"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
+msgid "Window size (width and height)."
+msgstr "Kích thước cửa sổ (rộng và cao)."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
+msgid "Window position"
+msgstr "Vị trí cửa sổ"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
+msgid "Window position (x and y)."
+msgstr "Vị trí cửa sổ (x và y)."
+
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Không tiêu đề"
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Ghi chép đơn giản cho GNOME"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
+
+#: ../src/bjb-bijiben.c:395
+msgid "Show the application's version"
+msgstr "Hiển thị phiên bản của ứng dụng"
+
+#: ../src/bjb-bijiben.c:397
+msgid "Create a new note"
+msgstr "Tạo một ghi chép mới"
+
+#: ../src/bjb-bijiben.c:399
+msgid "[FILE...]"
+msgstr "[TẬP TIN…]"
+
+#: ../src/bjb-bijiben.c:406
+msgid "Take notes and export them everywhere."
+msgstr "Ghi chú và đưa xuất chúng đến khắp mọi nơi."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:417
+msgid "Could not parse arguments"
+msgstr ""
+"không thể parse arguments-ngôn ngữ tin học dùng nhiều trong java hoặc các "
+"ngôn ngữ lập trình khác"
+
+#: ../src/bjb-bijiben.c:426
+msgid "GNOME Notes"
+msgstr "Ghi chép GNOME"
+
+#: ../src/bjb-bijiben.c:439
+msgid "Could not register the application"
+msgstr "Không thể đăng ký ứng dụng này"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "Màu sắc của bản ghi chép"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Cut"
+msgstr "Cắt"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:388
+msgid "Copy"
+msgstr "Chép"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:394
+msgid "Paste"
+msgstr "Dán"
+
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "Một ký hiệu thường dùng để tạo danh sách đánh dấu chấm"
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "Một ký hiệu thường dùng để tạo danh sách đánh thứ tự"
+
+#: ../src/bjb-editor-toolbar.c:426
+msgid "Bold"
+msgstr "Đậm"
+
+#: ../src/bjb-editor-toolbar.c:436
+msgid "Italic"
+msgstr "Nghiêng"
+
+#: ../src/bjb-editor-toolbar.c:446
+msgid "Strike"
+msgstr "Gạch ngang"
+
+#: ../src/bjb-editor-toolbar.c:474
+msgid "Copy selection to a new note"
+msgstr "Sao chép các sự lựa chọn vào bảng ghi chép mới"
+
+#: ../src/bjb-empty-results-box.c:86
+msgid "No notes"
+msgstr "Không có các bản ghi chép"
+
+#: ../src/bjb-empty-results-box.c:130
+msgid "Press the New button to create a note."
+msgstr "Nhấn vào nút Mới để tạo bản ghi chép."
+
+#: ../src/bjb-empty-results-box.c:152
+msgid "Oops"
+msgstr "Rõ tiếc!"
+
+#: ../src/bjb-empty-results-box.c:158
+msgid "Please install 'Tracker' then restart the application."
+msgstr ""
+"Xin vui lòng cài đặt ứng dụng “Tracker” và sau đó khởi động lại ứng dụng này."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "Vị trí tự chọn"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "Thêm bản ghi chép vào"
+
+#: ../src/bjb-import-dialog.c:411
+msgid "Import"
+msgstr "Nhập vào"
+
+#: ../src/bjb-import-dialog.c:422
+msgid "Select import location"
+msgstr "Chọn địa điểm thêm vào"
+
+#: ../src/bjb-import-dialog.c:443
+msgid "Tomboy application"
+msgstr "Ứng dụng Tomboy"
+
+#: ../src/bjb-import-dialog.c:449
+msgid "Gnote application"
+msgstr "Ứng dụng Gnote"
+
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+msgid "Load More"
+msgstr "Tải thêm nữa"
+
+#: ../src/bjb-load-more-button.c:98
+msgid "Loading..."
+msgstr "Đang tải…"
+
+#: ../src/bjb-main-toolbar.c:142
+msgid "Click on items to select them"
+msgstr "Chọn các mục trên thanh dụng cụ để lựa chọn chúng"
+
+#: ../src/bjb-main-toolbar.c:144
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "Đã chọn %d"
+
+#: ../src/bjb-main-toolbar.c:264
+msgid "Search note titles, content and notebooks"
+msgstr "Kiếm đầu đề, nội dung và các sổ ghi chép"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:306
+msgid "Cancel"
+msgstr "Thôi"
+
+#: ../src/bjb-main-toolbar.c:320
+msgid "Exit selection mode"
+msgstr "Thoát khỏi chế độ lựa chọn"
+
+#: ../src/bjb-main-toolbar.c:350
+#, c-format
+msgid "Results for %s"
+msgstr "Kết quả cho “%s”"
+
+#: ../src/bjb-main-toolbar.c:353
+msgid "New and Recent"
+msgstr "Mới và Mới dùng"
+
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "_Mới"
+
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
+msgid "Selection mode"
+msgstr "Chế độ chọn"
+
+#: ../src/bjb-main-toolbar.c:495
+msgid "View notes and notebooks in a list"
+msgstr "Xem lại ghi chép và sổ ghi chép trong danh sách"
+
+#: ../src/bjb-main-toolbar.c:519
+msgid "View notes and notebooks in a grid"
+msgstr "Xem lại các bản ghi chép và các sổ ghi chép ở dạng lưới"
+
+#: ../src/bjb-main-toolbar.c:538
+msgid "Trash"
+msgstr "Thùng rác"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
+msgid "Empty"
+msgstr "Làm trống"
+
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
+msgid "Open in New Window"
+msgstr "Mở một cửa sổ mới"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:768
+msgid "Undo"
+msgstr "Trở lại"
+
+#: ../src/bjb-main-toolbar.c:776
+msgid "Redo"
+msgstr "Làm lại"
+
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
+msgid "Notebooks"
+msgstr "Các sổ ghi chép"
+
+#. Share
+#: ../src/bjb-main-toolbar.c:799
+msgid "Email this Note"
+msgstr "Gửi ghi chép này"
+
+#. Delete Note
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "Chuyển vào thùng rác"
+
+#: ../src/bjb-main-toolbar.c:872
+msgid "More options…"
+msgstr "Các tùy chọn khác…"
+
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
+msgid "Note color"
+msgstr "Màu của bản ghi chép"
+
+#: ../src/bjb-main-view.c:516
+msgid "Notebook"
+msgstr "Sổ ghi chép"
+
+#: ../src/bjb-main-view.c:519
+msgid "Note"
+msgstr "Ghi chép"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:191
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>Lần cập nhật gần nhất</b> %s"
+
+#: ../src/bjb-organize-dialog.c:396
+msgid "Enter a name to create a notebook"
+msgstr "Gõ tên vào để tạo sổ ghi chép"
+
+#: ../src/bjb-organize-dialog.c:406
+msgid "New notebook"
+msgstr "Sổ ghi chép mới"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "T_hôi"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_Được"
+
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Restore"
+msgstr "Phục hồi"
+
+#: ../src/bjb-selection-toolbar.c:403
+msgid "Share note"
+msgstr "Chia sẻ bản ghi chép"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:409
+msgid "Open in another window"
+msgstr "Mở một cửa sổ khác"
+
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
+msgid "Permanently Delete"
+msgstr "Xóa vĩnh viễn"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:394
+msgid "Use System Font"
+msgstr "Sử dụng phông chữ của hệ thống"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:408
+msgid "Note Font"
+msgstr "Phông chữ của bản ghi chép"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:420
+msgid "Default Color"
+msgstr "Màu sắc được định dạng sẵn"
+
+#: ../src/bjb-settings-dialog.c:466
+msgid "Preferences"
+msgstr "Tùy thích"
+
+#: ../src/bjb-settings-dialog.c:498
+msgid "Note Edition"
+msgstr "Sửa Bản ghi chép"
+
+#: ../src/bjb-settings-dialog.c:506
+msgid "Primary Book"
+msgstr "Quyển sách chính"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "Hôm nay"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "Hôm qua"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "Tuần này"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "Tháng này"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "Năm này"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "Chưa biết"
+
+#: ../src/libbiji/biji-notebook.c:264
+msgid "Local"
+msgstr "Nội bộ"
+
+#: ../src/libbiji/provider/biji-local-provider.c:363
+msgid "Local storage"
+msgstr "Kho dự trữ nội bộ"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_Import Notes"
+msgstr "_Nhập các ghi chép"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "_Xem Thùng rác"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_Tùy thích"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_Help"
+msgstr "T_rợ giúp"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "G_iới thiệu"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_Thoát"

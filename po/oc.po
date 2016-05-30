@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben"
 "&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-29 15:06+0000\n"
-"PO-Revision-Date: 2016-05-08 17:18+0200\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-05-29 20:30+0200\n"
 "Last-Translator: Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
@@ -424,7 +424,7 @@ msgstr "Preferéncias"
 msgid "Note Edition"
 msgstr "Modificacion de la nòta"
 
-#: ../src/bjb-settings-dialog.c:505
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Quasernet principal"
 

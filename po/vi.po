@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-05-19 15:03+0000\n"
-"PO-Revision-Date: 2016-05-21 09:05+0700\n"
+"PO-Revision-Date: 2016-05-30 07:45+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -78,11 +78,11 @@ msgstr ""
 #: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr ""
-"Người cung cấp các bản ghi chép cũ để sử dụng cho các bản ghi chép mới."
+"Người cung cấp các bản ghi chép chính được sử dụng cho các bản ghi chép mới."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
-msgstr "Các sổ ghi chú cũ sẽ là nơi các bản ghi chép mới được tạo thành."
+msgstr "Các sổ ghi chú chính sẽ là nơi các bản ghi chép mới được tạo thành."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
@@ -140,9 +140,7 @@ msgstr "Ghi chú và đưa xuất chúng đến khắp mọi nơi."
 #. * printed on the command line
 #: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
-msgstr ""
-"không thể parse arguments-ngôn ngữ tin học dùng nhiều trong java hoặc các "
-"ngôn ngữ lập trình khác"
+msgstr "Không thể phân tích đối số"
 
 #: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
@@ -176,14 +174,14 @@ msgstr "Dán"
 #. * This is displayed inside a button.
 #: ../src/bjb-editor-toolbar.c:405
 msgid "* "
-msgstr "Một ký hiệu thường dùng để tạo danh sách đánh dấu chấm"
+msgstr "* "
 
 #. List
 #. * Translator : this "1." temporarilly stands for ordered list.
 #. * This is displayed inside a button.
 #: ../src/bjb-editor-toolbar.c:413
 msgid "1."
-msgstr "Một ký hiệu thường dùng để tạo danh sách đánh thứ tự"
+msgstr "1."
 
 #: ../src/bjb-editor-toolbar.c:426
 msgid "Bold"
@@ -199,11 +197,11 @@ msgstr "Gạch ngang"
 
 #: ../src/bjb-editor-toolbar.c:474
 msgid "Copy selection to a new note"
-msgstr "Sao chép các sự lựa chọn vào bảng ghi chép mới"
+msgstr "Sao chép phần đã chọn thành bản ghi chép mới"
 
 #: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
-msgstr "Không có các bản ghi chép"
+msgstr "Không có các bản ghi chép nào"
 
 #: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
@@ -224,7 +222,7 @@ msgstr "Vị trí tự chọn"
 
 #: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
-msgstr "Thêm bản ghi chép vào"
+msgstr "Nhập bản ghi chép vào"
 
 #: ../src/bjb-import-dialog.c:411
 msgid "Import"
@@ -232,7 +230,7 @@ msgstr "Nhập vào"
 
 #: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
-msgstr "Chọn địa điểm thêm vào"
+msgstr "Chọn vị trí muốn nhập vào"
 
 #: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
@@ -319,12 +317,12 @@ msgstr "Làm trống"
 #.
 #: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
-msgstr "Mở một cửa sổ mới"
+msgstr "Mở trong cửa sổ mới"
 
 #. Undo Redo separator
 #: ../src/bjb-main-toolbar.c:768
 msgid "Undo"
-msgstr "Trở lại"
+msgstr "Hoàn tác"
 
 #: ../src/bjb-main-toolbar.c:776
 msgid "Redo"
@@ -371,7 +369,7 @@ msgstr "Ghi chép"
 #: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
-msgstr "<b>Lần cập nhật gần nhất</b> %s"
+msgstr "<b>Cập nhật lần cuối:</b> %s"
 
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
@@ -387,7 +385,7 @@ msgstr "T_hôi"
 
 #: ../src/bjb-rename-note.c:19
 msgid "_OK"
-msgstr "_Được"
+msgstr "Đồn_g ý"
 
 #. Restore (do not show)
 #: ../src/bjb-selection-toolbar.c:386
@@ -429,11 +427,11 @@ msgstr "Tùy thích"
 
 #: ../src/bjb-settings-dialog.c:498
 msgid "Note Edition"
-msgstr "Sửa Bản ghi chép"
+msgstr "Sửa ghi chép"
 
 #: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
-msgstr "Quyển sách chính"
+msgstr "Quyển chính"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"

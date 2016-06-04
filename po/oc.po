@@ -1,51 +1,52 @@
 # Occitan translation for bijiben.
 # Copyright (C) 2012-2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# 
 # Cédric Valmary (Tot en Òc) <cvalmary@yahoo.fr>, 2015.
+# Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
-"n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-04 02:58+0000\n"
-"PO-Revision-Date: 2015-06-04 14:42+0200\n"
-"Last-Translator: Cédric Valmary (Tot en Òc) <cvalmary@yahoo.fr>\n"
-"Language-Team: www.totenoc.eu\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben"
+"&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-05-29 20:30+0200\n"
+"Last-Translator: Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>\n"
+"Language-Team: Tot En Òc\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Nòtas es un editor que permet de crear de listas simplas per un usatge "
 "ulterior."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Permet d'utilizar ownCloud coma emplaçament d'emmagazinatge e editor en "
 "linha."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Nòtas"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "nòtas;bremba-te;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Publicar de nòtas, etiquetar de fichièrs !"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Editor de nòtas"
 
@@ -76,7 +77,7 @@ msgstr "Provesidor de nòtas principala d'utilizar per las nòtas novèlas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
-msgstr "Lo quasernet principal es l'endrech ont las nòtas novèlas son creadas."
+msgstr "Lo quasernet principal es l'endreit ont las nòtas novèlas son creadas."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
@@ -102,6 +103,10 @@ msgstr "Posicion de la fenèstra"
 msgid "Window position (x and y)."
 msgstr "Posicion de la fenèstra (x e y)."
 
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Sens títol"
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "Quasernet de nòtas per GNOME"
@@ -110,33 +115,33 @@ msgstr "Quasernet de nòtas per GNOME"
 msgid "translator-credits"
 msgstr "Cédric Valmary (totenoc.eu)"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Afichar la version de l'aplicacion"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Crear una novèla nòta"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[FICHIÈR...]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Prenètz de nòtas e exportatz-las pertot."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Impossible d'analisar los arguments"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Nòtas GNOME"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Impossible d'enregistrar l'aplicacion"
 
@@ -189,19 +194,19 @@ msgstr "Raiat"
 msgid "Copy selection to a new note"
 msgstr "Copiar la seleccion cap a una nòta novèla"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Cap de nòta"
 
-#: ../src/bjb-empty-results-box.c:145
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Quichar sul boton Novèl per crear una nòta."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Ops"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Installatz « Tracker » puèi reaviar l'aplicacion."
 
@@ -301,10 +306,6 @@ msgstr "Escobilhièr"
 msgid "Empty"
 msgstr "Voidar"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Sens títol"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
@@ -360,7 +361,7 @@ msgstr "Nòta"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Darrièra mesa a jorn</b> %s"
@@ -423,7 +424,7 @@ msgstr "Preferéncias"
 msgid "Note Edition"
 msgstr "Modificacion de la nòta"
 
-#: ../src/bjb-settings-dialog.c:505
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Quasernet principal"
 
@@ -451,7 +452,7 @@ msgstr "Ongan"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Local"
 
@@ -484,59 +485,59 @@ msgid "_Quit"
 msgstr "_Quitar"
 
 #~ msgid "Bullets"
-#~ msgstr "Puces"
+#~ msgstr "Piuses"
 
 #~ msgid "Numbered List"
-#~ msgstr "Liste numérotée"
+#~ msgstr "Lista numerotada"
 
 #~ msgid "No Notes Found"
-#~ msgstr "Aucune note trouvée"
+#~ msgstr "Cap de nòta pas trobada"
 
 #~ msgid ""
 #~ "Your notes notebook is empty.\n"
 #~ "Click the New button to create your first note."
 #~ msgstr ""
-#~ "Votre carnet de notes est vide.\n"
-#~ "Cliquez sur le bouton Nouveau pour créer votre première note."
+#~ "Votre quasernet de notes es vide.\n"
+#~ "Clicatz sul boton Novèl per crear vòstra primièra nòta."
 
 #~ msgid "New"
-#~ msgstr "Nouveau"
+#~ msgstr "Novèl"
 
 #~ msgid "_Close"
-#~ msgstr "_Fermer"
+#~ msgstr "_Tampar"
 
 #~ msgid "No result found for this research."
-#~ msgstr "Aucun résultat pour cette recherche."
+#~ msgstr "Pas cap de resultat per aquesta recèrca."
 
 #~ msgid "Collections"
-#~ msgstr "Collections"
+#~ msgstr "Colleccions"
 
 #~ msgid "New collection"
-#~ msgstr "Nouvelle collection"
+#~ msgstr "Novèla colleccion"
 
 #~ msgid "Delete"
-#~ msgstr "Supprimer"
+#~ msgstr "Suprimir"
 
 #~ msgid "Add to Collection"
-#~ msgstr "Ajouter à la collection"
+#~ msgstr "Apondre a la colleccion"
 
 #~ msgid "Rename Note"
-#~ msgstr "Renommer la note"
+#~ msgstr "Renomenar la nòta"
 
 #~ msgid "Rename"
-#~ msgstr "Renommer"
+#~ msgstr "Renomenar"
 
 #~ msgid "External Notes"
-#~ msgstr "Notes externes"
+#~ msgstr "Nòtas extèrnas"
 
 #~ msgid "Click on the external notes to import"
-#~ msgstr "Cliquer sur les notes à importer"
+#~ msgstr "Clicar sus las nòtas d'importar"
 
 #~ msgid "Choose a color for note"
-#~ msgstr "Sélectionner une couleur pour la note"
+#~ msgstr "Seleccionar una color per la nòta"
 
 #~ msgid "New tag"
-#~ msgstr "Nouvelle étiquette"
+#~ msgstr "Novèla etiqueta"
 
 #~ msgid "_External Notes"
-#~ msgstr "Notes _externes"
+#~ msgstr "Nòtas _extèrnas"

@@ -13,6 +13,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	-I$(top_srcdir)/libgd \
+	-I$(top_builddir)/src/libbiji \
 	$(BIJIBEN_CFLAGS)
 
 AM_CFLAGS =\

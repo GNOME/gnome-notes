@@ -27,7 +27,7 @@
  * 
  */
 
-#include "../biji-marshalers.h"
+#include "biji-marshalers.h"
 
 #include "biji-provider.h"
 

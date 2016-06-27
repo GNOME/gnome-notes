@@ -2,13 +2,14 @@
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2014, 2015., 2016.
 #
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2015-05-29 02:58+0000\n"
-"PO-Revision-Date: 2015-06-29 \n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-06-27 16:07+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2014 - 2015"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2014 - 2016"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -331,40 +332,45 @@ msgstr "Para eliminar permanentemente todas las notas de la papelera:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
-msgstr "Pulse en el icono de <gui>Notas</gui> junto a <gui>Actividades</gui>."
+#| msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
+msgstr ""
+"Pulse en el icono de <gui>Notas</gui> junto a <gui href=\"help:gnome-help/"
+"shell-terminology\">Actividades</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "Seleccione <gui>Ver papelera</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Pulse el botón <gui style=\"button\">Vaciar</gui> en la barra de "
 "herramientas."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
 msgstr "Para eliminar notas de la papelera:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "En la vista de la <gui>Papelera</gui> pulse el botón <gui>Modo de selección</"
 "gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Seleccione todas las notas que quiere eliminar permanentemente."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Pulse el botón <gui style=\"button\">Eliminar permanentemente</gui>."
 
@@ -380,12 +386,15 @@ msgstr "Restaurar notas"
 
 #. (itstool) path: page/p
 #: C/delete-restore.page:28
+#| msgid ""
+#| "If you think that you have accidentally deleted a note, you can view and "
+#| "restore it from <gui>Trash</gui>"
 msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
-"restore it from <gui>Trash</gui>"
+"restore it from <gui>Trash</gui>."
 msgstr ""
 "Si cree que ha eliminado accidentalmente una nota, puede verla y restaurarla "
-"en la <gui>Papelera</gui>"
+"en la <gui>Papelera</gui>."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
@@ -411,8 +420,9 @@ msgstr "Pulse el botón <gui style=\"button\">Restaurar</gui>."
 
 #. (itstool) path: info/desc
 #: C/format-list.page:32
-msgid "format a note with ordered and unordered lists."
-msgstr "formatear una nota con listas ordenadas y sin ordenar."
+#| msgid "format a note with ordered and unordered lists."
+msgid "Format a note with ordered and unordered lists."
+msgstr "Formatear una nota con listas ordenadas y sin ordenar."
 
 #. (itstool) path: page/title
 #: C/format-list.page:35
@@ -513,7 +523,7 @@ msgstr "Eliminar notas"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:43
+#: C/introduction.page:44
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
@@ -532,14 +542,21 @@ msgstr "Introducción a Notas"
 
 #. (itstool) path: page/p
 #: C/introduction.page:38
+#| msgid ""
+#| "<app>Notes</app> is a simple application for creating, editing, and "
+#| "viewing notes. You can also search for a note from the <gui>Activities</"
+#| "gui> overview. <app>Notes</app> integrates easily with <app>Online "
+#| "Accounts</app>."
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui>Activities</gui> "
-"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
 msgstr ""
 "<app>Notas</app> es una sencilla aplicación para crear, editar y ver notas. "
-"También puede buscar una nota desde la vista de <gui>Actividades</gui>. "
-"<app>Notas</app> se integra fácilmente con las <app>Cuentas en línea</app>."
+"También puede buscar una nota desde la vista de <gui href=\"help:gnome-help/"
+"shell-terminology\">Actividades</gui>. <app>Notas</app> se integra "
+"fácilmente con las <app>Cuentas en línea</app>."
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -688,10 +705,6 @@ msgstr "Buscar una nota"
 
 #. (itstool) path: page/p
 #: C/search.page:42
-#| msgid ""
-#| "You can search your note in the <gui>New and Recent</gui> view in "
-#| "<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
-#| "terminology\">Activities</gui> overview."
 msgid ""
 "You can search your notes in the <gui>New and Recent</gui> view in "
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-23 15:54+0000\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
 "PO-Revision-Date: 2015-02-23 18:50+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
@@ -20,89 +20,94 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Notas es un editor que permite hacer listas sencillas para usarlas más tarde."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Permite usar ownCloud como almacenamiento y editor en línea."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notas"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notas;recordatorio;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Publique notas y etiquete archivos"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Para tomar notas"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Tipografía personalizada"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "El nombre de la tipografía aquí establecido se usará como tipografía al "
 "mostrar las notas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "Indica si se debe usar la tipografía monoespaciada del sistema"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Nuevo color de las notas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "El nombre del color aquí establecido se usará como el color al crear las "
 "notas nuevas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Proveedor de notas primario que usar para las notas nuevas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr ""
 "El cuaderno de notas primario es el lugar donde se crean las notas nuevas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Ventana maximizada"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Estado maximizado de la ventana."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Tamaño de la ventana"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Tamaño de la ventana (anchura y altura)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Posición de la ventana"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Posición de la ventana (X e Y)."
+
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Sin título"
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -112,33 +117,33 @@ msgstr "Cuaderno de notas sencillo para GNOME"
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Mostrar la versión de la aplicación"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Crear una nota nueva"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[ARCHIVO…]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Tomar notas y exportarlas a cualquier parte."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "No se pudieron analizar los argumentos"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Notas de GNOME"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "No se pudo registrar la aplicación"
 
@@ -191,19 +196,19 @@ msgstr "Tachada"
 msgid "Copy selection to a new note"
 msgstr "Copiar selección a una nota nueva"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "No hay notas"
 
-#: ../src/bjb-empty-results-box.c:145
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Pulse el botón «Nueva» para crear una nota."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Vaya"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instale «Tracker» y reinicie la aplicación."
 
@@ -303,10 +308,6 @@ msgstr "Papelera"
 msgid "Empty"
 msgstr "Vaciar"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Sin título"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
@@ -362,7 +363,7 @@ msgstr "Nota"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Última actualización</b> %s"
@@ -425,7 +426,7 @@ msgstr "Preferencias"
 msgid "Note Edition"
 msgstr "Edición de la nota"
 
-#: ../src/bjb-settings-dialog.c:501
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Libro principal"
 
@@ -453,7 +454,7 @@ msgstr "Este año"
 msgid "Unknown"
 msgstr "Desconocida"
 
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Local"
 

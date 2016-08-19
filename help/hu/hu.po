@@ -1,29 +1,29 @@
-# Hungarian translation of bijiben_help
-# Copyright (C) 2014, 2015. Free Software Foundation, Inc.
+# Hungarian translation for bijiben help.
+# Copyright (C) 2014-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the bijiben user help.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2014, 2015, 2016.
-# Balázs Úr <urbalazs at gmail dot com>, 2014.
+# Balázs Úr <urbalazs at gmail dot com>, 2014, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben_help master\n"
-"POT-Creation-Date: 2015-08-18 14:59+0000\n"
-"PO-Revision-Date: 2016-03-19 09:09+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
+"POT-Creation-Date: 2016-06-27 14:13+0000\n"
+"PO-Revision-Date: 2016-08-19 22:31+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at gmail dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 1.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Kelemen Gábor <kelemeng at gnome dot hu>, 2014, 2015"
-"Úr Balázs <urbalazs at gmail dot com>, 2014"
+"Kelemen Gábor <kelemeng at gnome dot hu>, 2014, 2015.\n"
+"Úr Balázs <urbalazs at gmail dot com>, 2014, 2016."
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -78,12 +78,11 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
 #: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
-#: C/delete-permanent.page:13 C/delete-restore.page:13
-#: C/delete-restore.page:18 C/format-list.page:27 C/format-text.page:22
-#: C/format-text.page:27 C/introduction.page:23 C/introduction.page:28
-#: C/new-window.page:13 C/notebooks.page:22 C/notebooks.page:27
-#: C/rename.page:18 C/search.page:27 C/search.page:32 C/share.page:22
-#: C/share.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
+#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
+#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
+#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
+#: C/search.page:32 C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
@@ -332,39 +331,42 @@ msgstr "A Kukában lévő összes jegyzet végleges törléséhez:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+#| msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
 msgstr ""
-"Kattintson a <gui>Tevékenységek</gui> közelében lévő <gui>Jegyzetek</gui> "
-"ikonra."
+"Kattintson a <gui href=\"help:gnome-help/shell-terminology\">Tevékenységek<"
+"/gui> közelében lévő <gui>Jegyzetek</gui> ikonra."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "Válassza a <gui>Kuka megtekintése</gui> menüpontot."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr "Kattintson a <gui style=\"button\">Ürítés</gui> gombra az eszköztáron."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
 msgstr "A kijelölt jegyzetek törléséhez a Kukából:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "A <gui>Kuka</gui> nézetben kattintson a <gui>Kijelölési mód</gui> gombra."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Jelölje ki az összes jegyzetet, amelyeket véglegesen törölni szeretne."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Kattintson a <gui style=\"button\">Végleges törlés</gui> gombra."
 
@@ -380,9 +382,12 @@ msgstr "Jegyzetek visszaállítása"
 
 #. (itstool) path: page/p
 #: C/delete-restore.page:28
+#| msgid ""
+#| "If you think that you have accidentally deleted a note, you can view and "
+#| "restore it from <gui>Trash</gui>"
 msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
-"restore it from <gui>Trash</gui>"
+"restore it from <gui>Trash</gui>."
 msgstr ""
 "Ha úgy érzi, véletlenül törölt egy jegyzetet, akkor a <gui>Kukában</gui> "
 "megnézheti és visszaállíthatja."
@@ -410,7 +415,8 @@ msgstr "Kattintson a <gui style=\"button\">Visszaállítás</gui> gombra."
 
 #. (itstool) path: info/desc
 #: C/format-list.page:32
-msgid "format a note with ordered and unordered lists."
+#| msgid "format a note with ordered and unordered lists."
+msgid "Format a note with ordered and unordered lists."
 msgstr "Jegyzet formázása rendezett és rendezetlen listákkal."
 
 #. (itstool) path: page/title
@@ -513,7 +519,7 @@ msgstr "Jegyzetek törlése"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:43
+#: C/introduction.page:44
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
@@ -533,15 +539,22 @@ msgstr "A Jegyzetek bemutatása"
 
 #. (itstool) path: page/p
 #: C/introduction.page:38
+#| msgid ""
+#| "<app>Notes</app> is a simple application for creating, editing, and "
+#| "viewing notes. You can also search for a note from the <gui>Activities</"
+#| "gui> overview. <app>Notes</app> integrates easily with <app>Online "
+#| "Accounts</app>."
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui>Activities</gui> "
-"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
 msgstr ""
 "A <app>Jegyzetek</app> egy egyszerű alkalmazás jegyzetek létrehozásához, "
-"szerkesztéséhez és megjelenítéséhez. A jegyzetek közt a <gui>Tevékenységek</"
-"gui> áttekintésből is kereshet. A <app>Jegyzetek</app> egyszerűen "
-"integrálódik az <app>Online fiókokkal</app>."
+"szerkesztéséhez és megjelenítéséhez. A jegyzetek közt a <gui "
+"href=\"help:gnome-help/shell-terminology\">Tevékenységek</gui> áttekintőből "
+"is kereshet. A <app>Jegyzetek</app> egyszerűen integrálódik az <app>Online "
+"fiókokkal</app>."
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -690,10 +703,6 @@ msgstr "Jegyzet keresése"
 
 #. (itstool) path: page/p
 #: C/search.page:42
-#| msgid ""
-#| "You can search your note in the <gui>New and Recent</gui> view in "
-#| "<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
-#| "terminology\">Activities</gui> overview."
 msgid ""
 "You can search your notes in the <gui>New and Recent</gui> view in "
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
@@ -701,7 +710,7 @@ msgid ""
 msgstr ""
 "Jegyzeteket kereshet a <app>Jegyzetek</app> <gui>Új és legutóbbi</gui> "
 "nézetében, vagy a <gui href=\"help:gnome-help/shell-terminology"
-"\">Tevékenységek</gui> áttekintésben is."
+"\">Tevékenységek</gui> áttekintőben is."
 
 #. (itstool) path: steps/title
 #: C/search.page:47

@@ -1,28 +1,24 @@
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Aviary.pl
-# Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
-# pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
-# gnomepl@aviary.pl
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Polish translation for bijiben.
+# Copyright © 2012-2016 the bijiben authors.
+# This file is distributed under the same license as the bijiben package.
 # Piotr Drąg <piotrdrag@gmail.com>, 2012-2016.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015.
-# Aviary.pl <gnomepl@aviary.pl>, 2012-2016.
+# Aviary.pl <community-poland@mozilla.org>, 2012-2016.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-07 20:11+0200\n"
-"PO-Revision-Date: 2016-04-07 20:12+0200\n"
+"POT-Creation-Date: 2016-08-22 15:04+0200\n"
+"PO-Revision-Date: 2016-08-22 15:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <gnomepl@aviary.pl>\n"
+"Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: Poland\n"
 
 #: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -32,7 +28,7 @@ msgstr ""
 #: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
-"Umożliwia używanie usługi ownCloud do przechowywania i modyfikowania notatek."
+"Umożliwia używanie usługi ownCloud do przechowywania i modyfikowania notatek."
 
 #: ../data/org.gnome.bijiben.desktop.in.in.h:1
 #: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
@@ -58,11 +54,11 @@ msgstr "Własna czcionka"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr "Podana tutaj czcionka zostanie użyta w wyświetlanych notatkach."
+msgstr "Podana tutaj czcionka zostanie użyta w wyświetlanych notatkach."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
-msgstr "Użycie systemowej czcionki o stałej szerokości"
+msgstr "Użycie systemowej czcionki o stałej szerokości"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
@@ -79,7 +75,7 @@ msgstr "Główny notatnik dla nowych notatek."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
-msgstr "W głównym notatniku tworzone są nowe notatki."
+msgstr "W głównym notatniku tworzone są nowe notatki."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
@@ -95,7 +91,7 @@ msgstr "Rozmiar okna"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
-msgstr "Rozmiar okna (szerokość i wysokość)."
+msgstr "Rozmiar okna (szerokość i wysokość)."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
@@ -103,7 +99,7 @@ msgstr "Położenie okna"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
-msgstr "Położenie okna (na osi X i Y)."
+msgstr "Położenie okna (na osi X i Y)."
 
 #: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
 msgid "Untitled"
@@ -118,7 +114,7 @@ msgid "translator-credits"
 msgstr ""
 "Piotr Drąg <piotrdrag@gmail.com>, 2012-2016\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
-"Aviary.pl <gnomepl@aviary.pl>, 2012-2016"
+"Aviary.pl <community-poland@mozilla.org>, 2012-2016"
 
 #: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
@@ -134,7 +130,7 @@ msgstr "[PLIK…]"
 
 #: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
-msgstr "Umożliwia robienie i eksportowanie notatek."
+msgstr "Umożliwia robienie i eksportowanie notatek."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
@@ -214,7 +210,7 @@ msgstr "Ups"
 #: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr ""
-"Proszę zainstalować program „Tracker”, a następnie ponownie uruchomić ten "
+"Proszę zainstalować program „Tracker”, a następnie ponownie uruchomić ten "
 "program."
 
 #: ../src/bjb-import-dialog.c:309
@@ -263,7 +259,7 @@ msgstr[2] "Zaznaczono: %d"
 
 #: ../src/bjb-main-toolbar.c:264
 msgid "Search note titles, content and notebooks"
-msgstr "Przeszukiwanie tytułów i treści notatek oraz notatników"
+msgstr "Przeszukiwanie tytułów i treści notatek oraz notatników"
 
 #. Select
 #: ../src/bjb-main-toolbar.c:306
@@ -272,7 +268,7 @@ msgstr "Anuluj"
 
 #: ../src/bjb-main-toolbar.c:320
 msgid "Exit selection mode"
-msgstr "Wyjście z trybu zaznaczania"
+msgstr "Wyjście z trybu zaznaczania"
 
 #: ../src/bjb-main-toolbar.c:350
 #, c-format
@@ -281,7 +277,7 @@ msgstr "Wyniki dla „%s”"
 
 #: ../src/bjb-main-toolbar.c:353
 msgid "New and Recent"
-msgstr "Nowe i ostatnie"
+msgstr "Nowe i ostatnio używane"
 
 #.
 #. * Translators : <_New> refers to new note creation.
@@ -297,11 +293,11 @@ msgstr "Tryb zaznaczania"
 
 #: ../src/bjb-main-toolbar.c:495
 msgid "View notes and notebooks in a list"
-msgstr "Wyświetla notatki i notatniki jako listę"
+msgstr "Wyświetla notatki i notatniki jako listę"
 
 #: ../src/bjb-main-toolbar.c:519
 msgid "View notes and notebooks in a grid"
-msgstr "Wyświetla notatki i notatniki w siatce"
+msgstr "Wyświetla notatki i notatniki w siatce"
 
 #: ../src/bjb-main-toolbar.c:538
 msgid "Trash"
@@ -320,7 +316,7 @@ msgstr "Opróżnij"
 #.
 #: ../src/bjb-main-toolbar.c:757
 msgid "Open in New Window"
-msgstr "Otwórz w nowym oknie"
+msgstr "Otwórz w nowym oknie"
 
 #. Undo Redo separator
 #: ../src/bjb-main-toolbar.c:768
@@ -402,7 +398,7 @@ msgstr "Udostępnij notatkę"
 #. Detach
 #: ../src/bjb-selection-toolbar.c:409
 msgid "Open in another window"
-msgstr "Otwórz w osobnym oknie"
+msgstr "Otwórz w osobnym oknie"
 
 #. Permanently delete (do not show )
 #: ../src/bjb-selection-toolbar.c:423
@@ -432,7 +428,7 @@ msgstr "Preferencje"
 msgid "Note Edition"
 msgstr "Edycja notatki"
 
-#: ../src/bjb-settings-dialog.c:505
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Główna książka"
 
@@ -486,7 +482,7 @@ msgstr "Pomo_c"
 
 #: ../src/resources/app-menu.ui.h:5
 msgid "_About"
-msgstr "_O programie"
+msgstr "_O programie"
 
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"

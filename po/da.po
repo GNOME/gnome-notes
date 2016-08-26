@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-18 16:03+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-26 03:43+0200\n"
 "PO-Revision-Date: 2015-03-14 03:40+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -63,7 +62,7 @@ msgstr "Hvorvidt systemets fastbredde-skrifttype skal anvendes"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
-msgstr "Farve for nye noter"
+msgstr "Farve for nye noter."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
@@ -430,7 +429,7 @@ msgstr "Indstillinger"
 msgid "Note Edition"
 msgstr "Noteudgave"
 
-#: ../src/bjb-settings-dialog.c:505
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Primær bog"
 

@@ -5,16 +5,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2016-03-11 04:02+0000\n"
-"PO-Revision-Date: 2016-03-13 03:27+0900\n"
-"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
+"POT-Creation-Date: 2016-06-27 14:13+0000\n"
+"PO-Revision-Date: 2016-09-03 05:20+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -320,36 +320,40 @@ msgstr "휴지통에 있는 모든 메모를 완전히 삭제하려면:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
-msgstr "<gui>현재 활동</gui>에 있는 <gui>메모</gui>를 누르십시오."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
+msgstr ""
+"<gui href=\"help:gnome-help/shell-terminology\">현재 활동</gui>에 있는 <gui>"
+"메모</gui>를 누르십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "<gui>휴지통 보기</gui>를 선택하십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr "도구 모음에서 <gui style=\"button\">비우기</gui> 단추를 누르십시오."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
 msgstr "선택한 메모를 휴지통에서 삭제하려면:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr "<gui>휴지통</gui> 보기에서 <gui>선택 모드</gui> 단추를 누르십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
 msgstr "완전히 삭제할 모든 메모를 선택하십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "<gui style=\"button\">완전히 삭제</gui> 단추를 누르십시오."
 
@@ -367,10 +371,10 @@ msgstr "메모 복원"
 #: C/delete-restore.page:28
 msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
-"restore it from <gui>Trash</gui>"
+"restore it from <gui>Trash</gui>."
 msgstr ""
-"실수로 삭제한 메모가 있는 것 같다면 <gui>휴지통</gui>에서 메모를 보고 복원할 "
-"수 있습니다."
+"실수로 삭제한 메모가 있는 것 같다면, <gui>휴지통</gui>에서 메모를 보고 복원"
+"할 수 있습니다."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
@@ -394,7 +398,7 @@ msgstr "<gui style=\"button\">복원</gui> 단추를 누르십시오."
 
 #. (itstool) path: info/desc
 #: C/format-list.page:32
-msgid "format a note with ordered and unordered lists."
+msgid "Format a note with ordered and unordered lists."
 msgstr "순서, 비순서 목록으로 메모에 서식을 적용합니다."
 
 #. (itstool) path: page/title
@@ -496,11 +500,12 @@ msgstr "메모 삭제"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:43
+#: C/introduction.page:44
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
-msgstr "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
+msgstr ""
+"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
 
 #. (itstool) path: info/desc
 #: C/introduction.page:33
@@ -516,12 +521,14 @@ msgstr "메모 소개"
 #: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui>Activities</gui> "
-"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
 msgstr ""
 "<app>메모</app>는 메모를 새로 만들고, 편집하고, 보는 간단한 프로그램입니다. "
-"<gui>현재 활동</gui> 개요에서 메모를 검색할 수도 있습니다. <app>메모</app>는 "
-"<app>온라인 계정</app> 프로그램과 쉽게 연동됩니다."
+"<gui href=\"help:gnome-help/shell-terminology\">현재 활동</gui> 개요에서 메모"
+"를 검색할 수도 있습니다. <app>메모</app>는 <app>온라인 계정</app> 프로그램과 "
+"쉽게 연동됩니다."
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11

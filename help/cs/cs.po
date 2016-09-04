@@ -1,13 +1,13 @@
 # Czech translation for bijiben.
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Marek Černocký <marek@manet.cz>, 2014, 2015.
+# Marek Černocký <marek@manet.cz>, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
-"POT-Creation-Date: 2015-04-24 14:59+0000\n"
-"PO-Revision-Date: 2015-04-24 22:17+0200\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-09-04 23:14+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -75,12 +75,11 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
 #: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
-#: C/delete-permanent.page:13 C/delete-restore.page:13
-#: C/delete-restore.page:18 C/format-list.page:27 C/format-text.page:22
-#: C/format-text.page:27 C/introduction.page:23 C/introduction.page:28
-#: C/new-window.page:13 C/notebooks.page:22 C/notebooks.page:27
-#: C/rename.page:18 C/search.page:27 C/search.page:32 C/share.page:22
-#: C/share.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
+#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
+#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
+#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
+#: C/search.page:32 C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
@@ -329,39 +328,42 @@ msgstr "Když chcete trvale smazat všechny poznámky v koši:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
-msgstr "Klikněte na ikonu <gui>Poznámky</gui> vedle <gui>Činnosti</gui>."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
+msgstr "Klikněte na ikonu <gui>Poznámky</gui> vedle <gui href=\"help:gnome"
+"-help/shell-terminology\">Činnosti</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "Vyberte <gui>Zobrazit koš</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Klikněte na tlačítko <gui style=\"button\">Vyprázdnit</gui> na nástrojové "
 "liště."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
 msgstr "Když chcete z koše smazat vybrané poznámky:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "V zobrazení <gui>koše</gui> klikněte na tlačítko <gui>Režim výběru</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Vyberte všechny poznámky, které chcete trvale smazat."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Klikněte na tlačítko <gui style=\"button\">Smazat trvale</gui>."
 
@@ -379,7 +381,7 @@ msgstr "Obnovení poznámek"
 #: C/delete-restore.page:28
 msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
-"restore it from <gui>Trash</gui>"
+"restore it from <gui>Trash</gui>."
 msgstr ""
 "Když zjistíte, že jste některou poznámku smazali nechtěně, můžete si ji "
 "zobrazit v <gui>koši</gui> a obnovit ji z něj."
@@ -407,7 +409,7 @@ msgstr "Klikněte na tlačítko <gui style=\"button\">Obnovit</gui>."
 
 #. (itstool) path: info/desc
 #: C/format-list.page:32
-msgid "format a note with ordered and unordered lists."
+msgid "Format a note with ordered and unordered lists."
 msgstr "Jak formátovat poznámku jak číslovaný nebo odrážkový seznam."
 
 #. (itstool) path: page/title
@@ -511,7 +513,7 @@ msgstr "Mazání poznámek"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:43
+#: C/introduction.page:44
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
@@ -532,13 +534,14 @@ msgstr "Úvod do aplikace Poznámky"
 #: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui>Activities</gui> "
-"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
 msgstr ""
 "<app>Poznámky</app> jsou jednoduchá aplikace pro vytváření, úpravy a "
 "prohlížení poznámek. Poznámky můžete také vyhledávat v přehledu "
-"<gui>Činností</gui>. <app>Poznámky</app> umí jednoduše spolupracovat s "
-"<app>Účty on-line</app>."
+"<gui href=\"help:gnome-help/shell-terminology\">Činností</gui>. <app>"
+"Poznámky</app> umí jednoduše spolupracovat s <app>Účty on-line</app>."
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11

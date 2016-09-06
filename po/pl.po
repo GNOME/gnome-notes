@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-22 15:04+0200\n"
-"PO-Revision-Date: 2016-08-22 15:05+0200\n"
+"POT-Creation-Date: 2016-09-06 04:54+0200\n"
+"PO-Revision-Date: 2016-09-06 04:55+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -247,7 +247,7 @@ msgstr "Wczytywanie…"
 
 #: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
-msgstr "Kliknięcie na elementach zaznacza je"
+msgstr "Kliknięcie elementów zaznacza je"
 
 #: ../src/bjb-main-toolbar.c:144
 #, c-format

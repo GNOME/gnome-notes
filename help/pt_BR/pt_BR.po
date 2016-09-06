@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-12\n"
-"POT-Creation-Date: 2016-04-18 21:23+0000\n"
-"PO-Revision-Date: 2016-04-18 18:25-0200\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-09-06 02:05-0200\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -333,40 +333,44 @@ msgstr "Para excluir permanentemente todas as notas da lixeira:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+#| msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
 msgstr ""
-"Clique no ícone <gui>Notas</gui> próximo do panorama de <gui>Atividades</"
-"gui> para abrir o menu da aplicação."
+"Clique no ícone <gui>Notas</gui> próximo do panorama de <gui href=\"help"
+":gnome-help/shell-terminology\">Atividades</gui> para abrir o menu da "
+"aplicação."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "Selecione <gui>Visualizar lixeira</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Clique no botão <gui style=\"button\">Esvaziar</gui> da barra de ferramentas."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
 msgstr "Para excluir as notas selecionadas da lixeira:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "Na visão da <gui>Lixeira</gui>, clique no botão <gui>Modo seleção</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Selecione as notas que você deseja excluir permanentemente."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Clique no botão <gui style=\"button\">Excluir permanentemente</gui>."
 
@@ -382,12 +386,15 @@ msgstr "Restaurando notas"
 
 #. (itstool) path: page/p
 #: C/delete-restore.page:28
+#| msgid ""
+#| "If you think that you have accidentally deleted a note, you can view and "
+#| "restore it from <gui>Trash</gui>"
 msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
-"restore it from <gui>Trash</gui>"
+"restore it from <gui>Trash</gui>."
 msgstr ""
 "Se você tiver apagado acidentalmente uma nota, você pode visualizá-la e "
-"restaurá-la a partir da <gui>Lixeira</gui>"
+"restaurá-la a partir da <gui>Lixeira</gui>."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
@@ -412,7 +419,8 @@ msgstr "Clique no botão <gui style=\"button\">Restaurar</gui>."
 
 #. (itstool) path: info/desc
 #: C/format-list.page:32
-msgid "format a note with ordered and unordered lists."
+#| msgid "format a note with ordered and unordered lists."
+msgid "Format a note with ordered and unordered lists."
 msgstr "Formate uma nota com listar organizadas e desorganizadas."
 
 #. (itstool) path: page/title
@@ -514,7 +522,7 @@ msgstr "Excluindo notas"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:43
+#: C/introduction.page:44
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
@@ -533,15 +541,21 @@ msgstr "Introdução ao Notas"
 
 #. (itstool) path: page/p
 #: C/introduction.page:38
+#| msgid ""
+#| "<app>Notes</app> is a simple application for creating, editing, and "
+#| "viewing notes. You can also search for a note from the <gui>Activities</"
+#| "gui> overview. <app>Notes</app> integrates easily with <app>Online "
+#| "Accounts</app>."
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui>Activities</gui> "
-"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
 msgstr ""
 "<app>Notas</app> é um aplicativo simples para criar, editar e ver notas. "
-"Você também pode pesquisar por uma nota a partir do panorama de "
-"<gui>Atividades</gui>. <app>Notas</app> integra facilmente com <app>Contas "
-"on-line</app>."
+"Você também pode pesquisar por uma nota a partir do panorama de <gui href=\""
+"help:gnome-help/shell-terminology\">Atividades</gui>. <app>Notas</app> "
+"integra facilmente com <app>Contas on-line</app>."
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -692,18 +706,14 @@ msgstr "Encontrando uma nota"
 
 #. (itstool) path: page/p
 #: C/search.page:42
-#| msgid ""
-#| "You can search your note in the <gui>New and Recent</gui> view in "
-#| "<app>Notes</app> or find them from your <gui href=\"help:gnome-help/shell-"
-#| "terminology\">Activities</gui> overview."
 msgid ""
 "You can search your notes in the <gui>New and Recent</gui> view in "
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Você pode procurar suas notas na visão <gui>Novas e recentes</gui> do "
-"<app>Notas</app> ou encontrá-las a partir do panorama de <gui href=\"help"
-":gnome-help/shell-terminology\">Atividades</gui>."
+"<app>Notas</app> ou encontrá-las a partir do panorama de <gui href=\"help:"
+"gnome-help/shell-terminology\">Atividades</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:47

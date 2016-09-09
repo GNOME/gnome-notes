@@ -1,0 +1,485 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-09-09 16:42+0430\n"
+"PO-Revision-Date: 2016-09-09 16:59+0430\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.8\n"
+"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
+"Language: fa_IR\n"
+
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
+msgid "Notes is an editor allowing to make simple lists for later use."
+msgstr ""
+"«یادداشت‌ها» یک ویرایشگر است که به شما اجازه ذخیره فهرست‌های ساده برای "
+"استفاده در آینده را می‌دهد."
+
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
+msgid "It allows to use ownCloud as a storage location and online editor."
+msgstr ""
+"به شما امکان استفاده از ownCloud به عنوان فضای ذخیره‌سازی و ویرایشگر برخط را "
+"می‌دهد."
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "یادداشت‌ها"
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
+msgid "notes;reminder;"
+msgstr "notes;reminder;یادداشت‌ها;یادآوری;"
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
+msgid "Post notes, tag files!"
+msgstr "یادداشت ارسال کنید، پرونده‌ها را برچست بزنید!"
+
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
+msgid "Note-taker"
+msgstr "یادداشت گیر"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
+msgid "Custom Font"
+msgstr "قلم سفارشی"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "نام قلمی که اینجا تنظیم شود برای نمایش یادداشت‌ها استفاده می‌شود."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
+msgid "Whether to use the system monospace font"
+msgstr "اینکه آیا از قلم monospace سیستم استفاده شود یا خیر"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
+msgid "New notes color."
+msgstr "رنگ یادداشت‌های جدید."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"نام رنگی که اینجا ثبت شود برای رنگ یادداشت‌هایی جدیدی که ساخته می‌شوند "
+"استفاده خواهد شد."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
+msgid "Primary notes provider to use for new notes."
+msgstr "فراهم‌کننده یادداشت اصلی برای استفاده در یادداشت‌های جدید"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
+msgid "The primary notebook is the place where new notes are created."
+msgstr "دفترچه اصلی که یادداشت‌های جدید ساخته شده در آن قرار گیرند."
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
+msgid "Window maximized"
+msgstr "پنجره بیشینه شد"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
+msgid "Window maximized state."
+msgstr "حالت بیشینه پنجره"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
+msgid "Window size"
+msgstr "اندازه پنجره"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
+msgid "Window size (width and height)."
+msgstr "اندازه پنجره (طول و ارتفاع)"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
+msgid "Window position"
+msgstr "مکان پنجره"
+
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
+msgid "Window position (x and y)."
+msgstr "مکان پنجره (x و y)"
+
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "بدون عنوان"
+
+#: ../src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "یک دفترچه یادداشت ساده برای گنوم"
+
+#: ../src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr "آرش موسوی <mousavi.arash@gmail.com>"
+
+#: ../src/bjb-bijiben.c:395
+msgid "Show the application's version"
+msgstr "نمایش نسخه برنامه‌ها"
+
+#: ../src/bjb-bijiben.c:397
+msgid "Create a new note"
+msgstr "ساخت یا یادداشت جدید"
+
+#: ../src/bjb-bijiben.c:399
+msgid "[FILE...]"
+msgstr "[FILE...]"
+
+#: ../src/bjb-bijiben.c:406
+msgid "Take notes and export them everywhere."
+msgstr "یادداشت کنید و خروجی آنها را هرجایی با خود داشته باشید."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:417
+msgid "Could not parse arguments"
+msgstr "امکان تجزیه متغیرها نبود"
+
+#: ../src/bjb-bijiben.c:426
+msgid "GNOME Notes"
+msgstr "یادداشت‌های گنوم"
+
+#: ../src/bjb-bijiben.c:439
+msgid "Could not register the application"
+msgstr "امکان ثبت برنامه نبود"
+
+#: ../src/bjb-color-button.c:146
+msgid "Note Color"
+msgstr "رنگ یادداشت"
+
+#. Cut
+#: ../src/bjb-editor-toolbar.c:381
+msgid "Cut"
+msgstr "برش"
+
+#. Copy
+#: ../src/bjb-editor-toolbar.c:388
+msgid "Copy"
+msgstr "رونوشت"
+
+#. 'n paste
+#: ../src/bjb-editor-toolbar.c:394
+msgid "Paste"
+msgstr "چسباندن"
+
+#. Bullet
+#. * Translator : "* " stands for a bullet list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:405
+msgid "* "
+msgstr "* "
+
+#. List
+#. * Translator : this "1." temporarilly stands for ordered list.
+#. * This is displayed inside a button.
+#: ../src/bjb-editor-toolbar.c:413
+msgid "1."
+msgstr "۱."
+
+#: ../src/bjb-editor-toolbar.c:426
+msgid "Bold"
+msgstr "پررنگ"
+
+#: ../src/bjb-editor-toolbar.c:436
+msgid "Italic"
+msgstr "مورب"
+
+#: ../src/bjb-editor-toolbar.c:446
+msgid "Strike"
+msgstr "زیرخط"
+
+#: ../src/bjb-editor-toolbar.c:474
+msgid "Copy selection to a new note"
+msgstr "رونوشت انتخاب شده به یک یادداشت جدید"
+
+#: ../src/bjb-empty-results-box.c:86
+msgid "No notes"
+msgstr "هیچ یادداشتی موجود نیست"
+
+#: ../src/bjb-empty-results-box.c:130
+msgid "Press the New button to create a note."
+msgstr "دکمه یادداشت جدید را برای ساخت یک یادداشت فشار دهید."
+
+#: ../src/bjb-empty-results-box.c:152
+msgid "Oops"
+msgstr "اُخ!"
+
+#: ../src/bjb-empty-results-box.c:158
+msgid "Please install 'Tracker' then restart the application."
+msgstr "لطفا ابتدا «Tracker» را نصب کنید سپس برنامه را دوباره باز کنید."
+
+#: ../src/bjb-import-dialog.c:309
+msgid "Custom Location"
+msgstr "مکان‌های سفارشی"
+
+#: ../src/bjb-import-dialog.c:404
+msgid "Import Notes"
+msgstr "وارد کردن یادداشت‌ها"
+
+#: ../src/bjb-import-dialog.c:411
+msgid "Import"
+msgstr "وارد کردن"
+
+#: ../src/bjb-import-dialog.c:422
+msgid "Select import location"
+msgstr "انتخاب مکان برای وارد کردن"
+
+#: ../src/bjb-import-dialog.c:443
+msgid "Tomboy application"
+msgstr "برنامه Tomboy"
+
+#: ../src/bjb-import-dialog.c:449
+msgid "Gnote application"
+msgstr "برنامه Gnote"
+
+#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+msgid "Load More"
+msgstr "بارگیری بیشتر"
+
+#: ../src/bjb-load-more-button.c:98
+msgid "Loading..."
+msgstr "در حال بار کردن…"
+
+#: ../src/bjb-main-toolbar.c:142
+msgid "Click on items to select them"
+msgstr "بر روی موارد کلیک کنید تا انتخاب شوند"
+
+#: ../src/bjb-main-toolbar.c:144
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "تعداد %Id مورد انتخاب شدند"
+
+#: ../src/bjb-main-toolbar.c:264
+msgid "Search note titles, content and notebooks"
+msgstr "جست‌وجو عنوان، متن و دفترچه‌های یادداشت"
+
+#. Select
+#: ../src/bjb-main-toolbar.c:306
+msgid "Cancel"
+msgstr "لغو"
+
+#: ../src/bjb-main-toolbar.c:320
+msgid "Exit selection mode"
+msgstr "خروج از حالت انتخاب"
+
+#: ../src/bjb-main-toolbar.c:350
+#, c-format
+msgid "Results for %s"
+msgstr "نتایج برای %s"
+
+#: ../src/bjb-main-toolbar.c:353
+msgid "New and Recent"
+msgstr "موارد جدید و اخیر"
+
+#.
+#. * Translators : <_New> refers to new note creation.
+#. * User clicks new, which opens a new blank note.
+#.
+#: ../src/bjb-main-toolbar.c:441
+msgid "_New"
+msgstr "_جدید"
+
+#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
+msgid "Selection mode"
+msgstr "حالت انتخاب"
+
+#: ../src/bjb-main-toolbar.c:495
+msgid "View notes and notebooks in a list"
+msgstr "نمایش یادداشت‌ها و دفترچه‌ها در یک فهرست"
+
+#: ../src/bjb-main-toolbar.c:519
+msgid "View notes and notebooks in a grid"
+msgstr "نمایش یادداشت‌ها و دفترچه‌ها در یک شبکه"
+
+#: ../src/bjb-main-toolbar.c:538
+msgid "Trash"
+msgstr "زباله‌دان"
+
+#. Add Empty-Bin
+#. * translators : Empty is the verb.
+#. * This action permanently deletes notes
+#: ../src/bjb-main-toolbar.c:577
+msgid "Empty"
+msgstr "تخلیه"
+
+#.
+#. * Open the current note in a new window
+#. * in order to be able to see it and others at the same time
+#.
+#: ../src/bjb-main-toolbar.c:757
+msgid "Open in New Window"
+msgstr "باز کردن در یک پنجره جدید"
+
+#. Undo Redo separator
+#: ../src/bjb-main-toolbar.c:768
+msgid "Undo"
+msgstr "برگردان"
+
+#: ../src/bjb-main-toolbar.c:776
+msgid "Redo"
+msgstr "انجام دوباره"
+
+#. Notes tags
+#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:381
+msgid "Notebooks"
+msgstr "دفترچه‌ها"
+
+#. Share
+#: ../src/bjb-main-toolbar.c:799
+msgid "Email this Note"
+msgstr "ارسال پست‌الکترونیکی این یادداشت"
+
+#. Delete Note
+#. Trash notes
+#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
+msgid "Move to Trash"
+msgstr "انداختن در زباله‌دان"
+
+#: ../src/bjb-main-toolbar.c:872
+msgid "More options…"
+msgstr "گزینه‌های بیشتر…"
+
+#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
+msgid "Note color"
+msgstr "رنگ یادداشت"
+
+#: ../src/bjb-main-view.c:516
+msgid "Notebook"
+msgstr "دفترچه"
+
+#: ../src/bjb-main-view.c:519
+msgid "Note"
+msgstr "یادداشت"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s <b>Last Updated</b>'
+#.
+#: ../src/bjb-note-view.c:191
+#, c-format
+msgid "<b>Last updated</b> %s"
+msgstr "<b>آخرین بروزرسانی</b> %s"
+
+#: ../src/bjb-organize-dialog.c:396
+msgid "Enter a name to create a notebook"
+msgstr "یک نام وارد کنید تا یادداشت را بسازید"
+
+#: ../src/bjb-organize-dialog.c:406
+msgid "New notebook"
+msgstr "یادداشت جدید"
+
+#: ../src/bjb-rename-note.c:17
+msgid "_Cancel"
+msgstr "_لغو"
+
+#: ../src/bjb-rename-note.c:19
+msgid "_OK"
+msgstr "_تایید"
+
+#. Restore (do not show)
+#: ../src/bjb-selection-toolbar.c:386
+msgid "Restore"
+msgstr "بازآوری"
+
+#: ../src/bjb-selection-toolbar.c:403
+msgid "Share note"
+msgstr "اشتراک‌گذاری یادداشت"
+
+#. Detach
+#: ../src/bjb-selection-toolbar.c:409
+msgid "Open in another window"
+msgstr "بازکردن در یک پنجره دیگر"
+
+#. Permanently delete (do not show )
+#: ../src/bjb-selection-toolbar.c:423
+msgid "Permanently Delete"
+msgstr "حذف برای همیشه"
+
+#. Use System Font
+#: ../src/bjb-settings-dialog.c:394
+msgid "Use System Font"
+msgstr "استفاده از قلم سیستم"
+
+#. Default font
+#: ../src/bjb-settings-dialog.c:408
+msgid "Note Font"
+msgstr "قلم یادداشت‌ها"
+
+#. Default color
+#: ../src/bjb-settings-dialog.c:420
+msgid "Default Color"
+msgstr "رنگ پیش‌فرض"
+
+#: ../src/bjb-settings-dialog.c:466
+msgid "Preferences"
+msgstr "ترجیحات"
+
+#: ../src/bjb-settings-dialog.c:498
+msgid "Note Edition"
+msgstr "ویرایش یادداشت"
+
+#: ../src/bjb-settings-dialog.c:506
+msgid "Primary Book"
+msgstr "کتاب اصلی"
+
+#: ../src/libbiji/biji-date-time.c:32
+msgid "Today"
+msgstr "امروز"
+
+#: ../src/libbiji/biji-date-time.c:35
+msgid "Yesterday"
+msgstr "دیروز"
+
+#: ../src/libbiji/biji-date-time.c:38
+msgid "This week"
+msgstr "این هفته"
+
+#: ../src/libbiji/biji-date-time.c:41
+msgid "This month"
+msgstr "این ماه"
+
+#: ../src/libbiji/biji-date-time.c:44
+msgid "This year"
+msgstr "امسال"
+
+#: ../src/libbiji/biji-date-time.c:46
+msgid "Unknown"
+msgstr "نامعلوم"
+
+#: ../src/libbiji/biji-notebook.c:264
+msgid "Local"
+msgstr "محلی"
+
+#: ../src/libbiji/provider/biji-local-provider.c:363
+msgid "Local storage"
+msgstr "ذخیره‌سازی محلی"
+
+#: ../src/resources/app-menu.ui.h:1
+msgid "_Import Notes"
+msgstr "_وارد کردن یادداشت‌ها"
+
+#: ../src/resources/app-menu.ui.h:2
+msgid "_View Trash"
+msgstr "_نمایش زباله‌دان"
+
+#: ../src/resources/app-menu.ui.h:3
+msgid "_Preferences"
+msgstr "_ترجیحات"
+
+#: ../src/resources/app-menu.ui.h:4
+msgid "_Help"
+msgstr "_راهنما"
+
+#: ../src/resources/app-menu.ui.h:5
+msgid "_About"
+msgstr "_درباره"
+
+#: ../src/resources/app-menu.ui.h:6
+msgid "_Quit"
+msgstr "_خروج"

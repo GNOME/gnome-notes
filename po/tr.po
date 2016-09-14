@@ -5,104 +5,110 @@
 # Osman Karagöz <osmank3@gmail.com>, 2013, 2014.
 # Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2013, 2014.
 # Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-20 09:14+0000\n"
-"PO-Revision-Date: 2015-02-20 15:52+0200\n"
-"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
-"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"POT-Creation-Date: 2016-07-14 18:49+0000\n"
+"PO-Revision-Date: 2016-09-12 00:35+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Notlar, sonradan kullanmak üzere basit listeler oluşturmaya izin veren bir "
 "düzenleyicidir."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "ownCloud'u bir depolama konumu ve çevrimiçi düzenleyici olarak kullanmaya "
 "izin verir."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notlar"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "notlar;hatırlatma;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Not bırak, dosyaları etiketle!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Not-tutucu"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:1
+#: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
 msgstr "Özel Yazıtipi"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:2
+#: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Burada ayarlanan yazıtipi, notları gösterirken kullanılacak."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:3
+#: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
 msgstr "Sistemin sabit aralıklı yazıtipinin kullanılıp kullanılmayacağı"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:4
+#: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
 msgstr "Yeni not rengi."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:5
+#: ../data/org.gnome.bijiben.gschema.xml.h:5
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Yeni notlar oluşturulurken burada ayarlanan renk adı kullanılacak."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:6
+#: ../data/org.gnome.bijiben.gschema.xml.h:6
 msgid "Primary notes provider to use for new notes."
 msgstr "Yeni notlarda kullanmak için birincil not sağlayıcısı."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:7
+#: ../data/org.gnome.bijiben.gschema.xml.h:7
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Birincil not defteri, yeni notların oluşturulduğu yerdir."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:8
+#: ../data/org.gnome.bijiben.gschema.xml.h:8
 msgid "Window maximized"
 msgstr "Pencere büyültüldü"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:9
+#: ../data/org.gnome.bijiben.gschema.xml.h:9
 msgid "Window maximized state."
 msgstr "Pencere büyültülme durumu."
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:10
+#: ../data/org.gnome.bijiben.gschema.xml.h:10
 msgid "Window size"
 msgstr "Pencere boyutu"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:11
+#: ../data/org.gnome.bijiben.gschema.xml.h:11
 msgid "Window size (width and height)."
 msgstr "Pencere boyutu (genişlik ve yükseklik)"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:12
+#: ../data/org.gnome.bijiben.gschema.xml.h:12
 msgid "Window position"
 msgstr "Pencere konumu"
 
-#: ../data/org.gnome.bijiben.gschema.xml.in.h:13
+#: ../data/org.gnome.bijiben.gschema.xml.h:13
 msgid "Window position (x and y)."
 msgstr "Pencere konumu (x ve y)."
+
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Başlıksız"
 
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -114,33 +120,33 @@ msgstr ""
 "Osman Karagöz <osmank3@gmail.com>\n"
 "Muhammet Kara <muhammetk@gmail.com>"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Uygulamanın sürümünü göster"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Yeni not oluştur"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[DOSYA...]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Notlar alın ve notları her yerde dışa aktarın."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Argümanlar ayrıştırılamadı"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "GNOME Notlar"
 
-#: ../src/bjb-bijiben.c:498
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Uygulama kaydedilemedi"
 
@@ -183,7 +189,7 @@ msgstr "Kalın"
 
 #: ../src/bjb-editor-toolbar.c:436
 msgid "Italic"
-msgstr "İtalik"
+msgstr "Eğik"
 
 #: ../src/bjb-editor-toolbar.c:446
 msgid "Strike"
@@ -193,19 +199,19 @@ msgstr "Üstü Çizili"
 msgid "Copy selection to a new note"
 msgstr "Seçimi yeni bir nota kopyala"
 
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Not yok"
 
-#: ../src/bjb-empty-results-box.c:145
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Not oluşturmak için Yeni düğmesine basın"
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Aman"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Lütfen 'Tracker' kurup uygulamayı tekrar başlatın."
 
@@ -243,7 +249,7 @@ msgstr "Yükleniyor..."
 
 #: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
-msgstr "Öğeleri seçmek için tıklayın"
+msgstr "Ögeleri seçmek için tıklayın"
 
 #: ../src/bjb-main-toolbar.c:144
 #, c-format
@@ -304,10 +310,6 @@ msgstr "Çöp"
 msgid "Empty"
 msgstr "Boşalt"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Başlıksız"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
@@ -363,10 +365,10 @@ msgstr "Not"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:191
 #, c-format
 msgid "<b>Last updated</b> %s"
-msgstr "<b>Son güncellenen</b> %s"
+msgstr "<b>Son güncelleme</b> %s"
 
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
@@ -426,7 +428,7 @@ msgstr "Tercihler"
 msgid "Note Edition"
 msgstr "Not Sürümü"
 
-#: ../src/bjb-settings-dialog.c:501
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Birincil Kitap"
 
@@ -454,7 +456,7 @@ msgstr "Bu yıl"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Yerel"
 

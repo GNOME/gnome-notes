@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2015-09-20 10:18+0000\n"
-"PO-Revision-Date: 2015-09-20 16:34+0200\n"
+"POT-Creation-Date: 2016-05-19 15:03+0000\n"
+"PO-Revision-Date: 2016-09-19 10:46+0200\n"
 "Last-Translator: Myriam Economou <myriam.economou@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -337,41 +337,44 @@ msgstr "Pour supprimer définitivement toutes les notes de la Corbeille :"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid "Click on the <gui>Notes</gui> icon near <gui>Activities</gui>."
-msgstr "Cliquez sur l'icône <gui>Notes</gui> à côté de <gui>Activités</gui>."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
+msgstr "Cliquez sur l'icône <gui>Notes</gui> à côté de <gui href=\"help:gnome-help/shell-"
+"terminology\">Activités</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "Sélectionnez <gui>Voir la Corbeille</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Cliquez sur le bouton <gui style=\"button\">Vider</gui> dans la barre "
 "d'outils."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
 msgstr "Pour supprimer les notes sélectionnées de la Corbeille :"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "Dans la vue <gui>Corbeille</gui>, cliquez sur le bouton <gui>Mode de "
 "sélection</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
 msgstr ""
 "Sélectionnez toutes les notes que vous souhaitez supprimer définitivement."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr ""
 "Cliquez sur le bouton <gui style=\"button\">Supprimer définitivement</gui>."
@@ -390,10 +393,10 @@ msgstr "Restaurer des notes"
 #: C/delete-restore.page:28
 msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
-"restore it from <gui>Trash</gui>"
+"restore it from <gui>Trash</gui>."
 msgstr ""
 "Si vous pensez que vous avez accidentellement supprimé une note, vous pouvez "
-"la voir et la restaurer via <gui>Corbeille</gui>"
+"la voir et la restaurer via <gui>Corbeille</gui>."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
@@ -419,8 +422,8 @@ msgstr "Cliquez sur le bouton <gui style=\"button\">Restaurer</gui>."
 
 #. (itstool) path: info/desc
 #: C/format-list.page:32
-msgid "format a note with ordered and unordered lists."
-msgstr "formater une note avec des listes ordonnées et non ordonnées."
+msgid "Format a note with ordered and unordered lists."
+msgstr "Formater une note avec des listes ordonnées et non ordonnées."
 
 #. (itstool) path: page/title
 #: C/format-list.page:35
@@ -521,7 +524,7 @@ msgstr "Supprimer des notes"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:43
+#: C/introduction.page:44
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
@@ -541,12 +544,14 @@ msgstr "Introduction à Notes"
 #: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui>Activities</gui> "
-"overview. <app>Notes</app> integrates easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
 msgstr ""
 "<app>Notes</app> est une application simple pour créer, modifier et "
 "visualiser des notes. Vous pouvez également rechercher une note dans la vue "
-"d'ensemble des <gui>Activités</gui>. <app>Notes</app> s'intègre facilement "
+"d'ensemble des <gui href=\"help:gnome-help/"
+"shell-terminology\">Activités</gui>. <app>Notes</app> s'intègre facilement "
 "dans l'application <app>Comptes en ligne</app>."
 
 #. (itstool) path: credit/name

@@ -433,9 +433,9 @@ bijiben_application_local_command_line (GApplication *application,
 
   if (error != NULL)
   {
-    /* Translators: this is a fatal error quit message
-     * printed on the command line */
     g_printerr ("%s: %s\n",
+                /* Translators: this is a fatal error quit message
+                 * printed on the command line */
                 _("Could not register the application"),
                 error->message);
     g_error_free (error);

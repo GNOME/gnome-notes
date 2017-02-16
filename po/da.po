@@ -8,8 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 03:43+0200\n"
+"Report-Msgid-Bugs-To: "
+"http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-01-26 03:25+0000\n"
 "PO-Revision-Date: 2015-03-14 03:40+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -130,7 +131,7 @@ msgstr "Opret en ny note"
 
 #: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
-msgstr "[FIL...]"
+msgstr "[FIL …]"
 
 #: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
@@ -146,6 +147,8 @@ msgstr "Kunne ikke fortolke argumenter"
 msgid "GNOME Notes"
 msgstr "GNOME Noter"
 
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
 #: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Kunne ikke registrere programmet"
@@ -245,7 +248,7 @@ msgstr "Indlæs mere"
 
 #: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
-msgstr "Indlæser..."
+msgstr "Indlæser …"
 
 #: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
@@ -347,7 +350,7 @@ msgstr "Flyt til papirkurv"
 
 #: ../src/bjb-main-toolbar.c:872
 msgid "More options…"
-msgstr "Flere indstillinger…"
+msgstr "Flere indstillinger …"
 
 #: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
 msgid "Note color"
@@ -489,3 +492,4 @@ msgstr "_Om"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Afslut"
+

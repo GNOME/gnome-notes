@@ -26,35 +26,17 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_EDITOR_TOOLBAR (bjb_editor_toolbar_get_type ())
 
-#define BJB_EDITOR_TOOLBAR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_EDITOR_TOOLBAR, BjbEditorToolbar))
+G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkActionBar);
 
-#define BJB_EDITOR_TOOLBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_EDITOR_TOOLBAR, BjbEditorToolbarClass))
-
-#define BJB_IS_EDITOR_TOOLBAR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_EDITOR_TOOLBAR))
-
-#define BJB_IS_EDITOR_TOOLBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_EDITOR_TOOLBAR))
-
-#define BJB_EDITOR_TOOLBAR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_EDITOR_TOOLBAR, BjbEditorToolbarClass))
-
-typedef struct _BjbEditorToolbar        BjbEditorToolbar;
-typedef struct _BjbEditorToolbarClass   BjbEditorToolbarClass;
 typedef struct _BjbEditorToolbarPrivate BjbEditorToolbarPrivate;
 
 struct _BjbEditorToolbar
 {
-  GtkActionBar parent_instance;
-  BjbEditorToolbarPrivate *priv;
+  GtkActionBar parent;
 };
 
-struct _BjbEditorToolbarClass
-{
-  GtkActionBarClass parent_class;
-};
-
-GType      bjb_editor_toolbar_get_type (void) G_GNUC_CONST;
-
-GtkWidget *bjb_editor_toolbar_new      (BjbNoteView *bjb_note_view,
-                                        BijiNoteObj *biji_note_obj);
+GtkWidget *bjb_editor_toolbar_new (BjbNoteView *bjb_note_view,
+                                   BijiNoteObj *biji_note_obj);
 
 G_END_DECLS
 

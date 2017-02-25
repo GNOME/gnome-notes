@@ -35,6 +35,7 @@ bijiben_LDFLAGS = \
 resource_files = \
 	resources/Adwaita.css \
 	resources/app-menu.ui \
+	resources/editor-toolbar.ui \
 	resources/note-symbolic.svg \
 	resources/thumbnail-frame.png
 

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkImage" id="format-text-bold">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">format-text-bold-symbolic</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkImage" id="format-text-italic">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">format-text-italic-symbolic</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkImage" id="format-text-strikethrough">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">format-text-strikethrough-symbolic</property>
+    <property name="icon_size">3</property>
+  </object>
+  <object class="GtkImage" id="insert-link">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">insert-link-symbolic</property>
+    <property name="icon_size">3</property>
+  </object>
+  <template class="BjbEditorToolbar" parent="GtkActionBar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <style>
+      <class name="osd" />
+    </style>
+    <child>
+      <object class="GtkButtonBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="layout_style">expand</property>
+        <child>
+          <object class="GtkButton" id="cut_button">
+            <property name="label" translatable="yes">Cut</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_underline">True</property>
+            <signal name="clicked" handler="on_cut_clicked" object="BjbEditorToolbar" swapped="no" />
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="copy_button">
+            <property name="label" translatable="yes">Copy</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_underline">True</property>
+            <signal name="clicked" handler="on_copy_clicked" object="BjbEditorToolbar" swapped="no" />
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="paste_button">
+            <property name="label" translatable="yes">Paste</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_underline">True</property>
+            <signal name="clicked" handler="on_paste_clicked" object="BjbEditorToolbar" swapped="no" />
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="pack_type">start</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child type="center">
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+	<property name="spacing">6</property>
+        <child>
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">expand</property>
+            <child>
+              <object class="GtkButton" id="bold_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Bold</property>
+                <property name="image">format-text-bold</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_bold_clicked" object="BjbEditorToolbar" swapped="no" />
+                <accelerator key="b" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="italic_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Italic</property>
+                <property name="image">format-text-italic</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_italic_clicked" object="BjbEditorToolbar" swapped="no" />
+                <accelerator key="i" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="strike_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Italic</property>
+                <property name="image">format-text-strikethrough</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_strike_clicked" object="BjbEditorToolbar" swapped="no" />
+                <accelerator key="s" modifiers="GDK_CONTROL_MASK" signal="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">expand</property>
+            <child>
+              <object class="GtkButton" id="bullets_button">
+                <property name="label" translatable="yes">* </property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Bullets</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_bullets_clicked" object="BjbEditorToolbar" swapped="no" />
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="list_button">
+                <property name="label" translatable="yes">1.</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">List</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_list_clicked" object="BjbEditorToolbar" swapped="no" />
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="link_button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Copy selection to a new note</property>
+        <property name="image">insert-link</property>
+        <property name="use_underline">True</property>
+        <signal name="clicked" handler="on_link_clicked" object="BjbEditorToolbar" swapped="no" />
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </template>
+</interface>

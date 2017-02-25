@@ -551,7 +551,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 
 
     case BJB_WINDOW_BASE_NOTE_VIEW:
-      gtk_widget_show_all (GTK_WIDGET (priv->note_view));
+      gtk_widget_show (GTK_WIDGET (priv->note_view));
       gtk_widget_hide (GTK_WIDGET (priv->search_bar));
       gtk_stack_set_visible_child_name (priv->stack, "note-view");
       break;

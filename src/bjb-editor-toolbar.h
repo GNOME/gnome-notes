@@ -1,6 +1,7 @@
 /* bjb-editor-toolbar.h
  * Copyright © 2012, 2013 Red Hat, Inc.
  * Copyright © 2013, 2014 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright © 2017 Iñigo Martínez <inigomartinez@gmail.com>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -41,20 +42,19 @@ typedef struct _BjbEditorToolbarPrivate BjbEditorToolbarPrivate;
 
 struct _BjbEditorToolbar
 {
-  GObject parent_instance;
+  GtkActionBar parent_instance;
   BjbEditorToolbarPrivate *priv;
 };
 
 struct _BjbEditorToolbarClass
 {
-  GObjectClass parent_class;
+  GtkActionBarClass parent_class;
 };
 
-GType bjb_editor_toolbar_get_type (void) G_GNUC_CONST;
+GType      bjb_editor_toolbar_get_type (void) G_GNUC_CONST;
 
-BjbEditorToolbar            *bjb_editor_toolbar_new      (BjbNoteView *bjb_note_view,
-                                                          BijiNoteObj *biji_note_obj);
-
+GtkWidget *bjb_editor_toolbar_new      (BjbNoteView *bjb_note_view,
+                                        BijiNoteObj *biji_note_obj);
 
 G_END_DECLS
 

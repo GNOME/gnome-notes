@@ -1,6 +1,7 @@
 /* bjb-editor-toolbar.c
  * Copyright © 2012, 2013 Red Hat, Inc.
  * Copyright © 2013 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright © 2017 Iñigo Martínez <inigomartinez@gmail.com>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -35,6 +36,7 @@
 #include "bjb-editor-toolbar.h"
 #include "bjb-window-base.h"
 
+#define CENTER_BUTTONS_SPACING 6
 
 enum
 {
@@ -52,17 +54,17 @@ struct _BjbEditorToolbarPrivate
   BjbNoteView        *view;
   BijiNoteObj        *note;
 
-  GtkWidget          *widget;
   GtkAccelGroup      *accel;
 
-  /* If user rigth-clicks we want to keep the toolbar visible
-   * untill user changes his mind */
-  gboolean           glued;
+  GtkWidget          *box_actions;
+
+  GtkWidget          *box_center;
+  GtkWidget          *box_style;
+  GtkWidget          *box_points;
 
   /* Do not use toggle buttons. uggly there.
    * Paste : the user might want to paste overriding selected text.
    * Other : when no selection the user won't try to bold "null".*/
-  GtkWidget          *box;
   GtkWidget          *toolbar_cut;
   GtkWidget          *toolbar_copy;
   GtkWidget          *toolbar_paste;
@@ -74,23 +76,7 @@ struct _BjbEditorToolbarPrivate
   GtkWidget          *toolbar_link;
 };
 
-G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, G_TYPE_OBJECT);
-
-static void
-bjb_editor_toolbar_fade_in (BjbEditorToolbar *self)
-{
-  BjbEditorToolbarPrivate *priv = self->priv;
-  gtk_widget_show (priv->widget);
-}
-
-
-
-static void
-bjb_editor_toolbar_fade_out (BjbEditorToolbar *self)
-{
-  gtk_widget_hide (self->priv->widget);
-}
-
+G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR);
 
 static void
 bjb_editor_toolbar_init (BjbEditorToolbar *self)
@@ -141,182 +127,83 @@ bjb_editor_toolbar_set_property (GObject  *object,
   }
 }
 
-
-/* TODO identify selected text. if some text is selected,
- * compute x (left), y (top), width (columns), height (rows) */
-static void
-editor_toolbar_align (BjbEditorToolbar *self, GdkEvent  *event)
-{
-  gint                     x_alignment, y_alignment;
-  BjbEditorToolbarPrivate *priv = self->priv;
-  cairo_rectangle_int_t    rect;
-  GtkWidget *top;
-  GdkDisplay *display;
-  GdkCursor* cursor;
-
-  if (event)
-  {
-    x_alignment = event->button.x;// + EDITOR_TOOLBAR_X_OFFSET;
-    y_alignment = event->button.y + EDITOR_TOOLBAR_Y_OFFSET;
-
-    if ( x_alignment < 0)
-      x_alignment = 0;
-
-    rect.x = x_alignment;
-    rect.y = y_alignment;
-    rect.width = 1;
-    rect.height = 1;
-
-    gtk_popover_set_pointing_to (GTK_POPOVER (priv->widget), &rect);
-  }
-
-  /* Hide the cursor from the main view */
-  top = gtk_widget_get_toplevel (priv->widget);
-
-  if (gtk_widget_is_toplevel (top))
-  {
-    display = gdk_screen_get_display (gtk_window_get_screen (GTK_WINDOW (top)));
-    cursor = gdk_cursor_new_for_display (display, GDK_BLANK_CURSOR);
-    gdk_window_set_cursor (gtk_widget_get_window (biji_note_obj_get_editor (priv->note)),
-                           cursor);
-  }
-}
-
-static void
-show_edit_bar (BjbEditorToolbar *self, GdkEvent *event)
-{
-  if (event)
-    editor_toolbar_align (self, event);
-
-  bjb_editor_toolbar_fade_in (self);
-}
-
 static gboolean
-on_button_released (GtkWidget *widget,
-                    GdkEvent *event,
-                    BjbEditorToolbar *self)
+on_release_event (GtkWidget        *widget,
+                  GdkEvent         *event,
+                  BjbEditorToolbar *self)
 {
-  switch (event->button.button)
-  {
-    /* If left click, see if selection */
-    case 1:
-      if (biji_note_obj_editor_has_selection (self->priv->note))
-        show_edit_bar (self, event);
-
-      else
-        bjb_editor_toolbar_fade_out (self);
-
-      return FALSE;
-
-    default:
-      return FALSE;
-  }
-}
-
-
-static gboolean
-on_key_released                     (GtkWidget *widget,
-                                     GdkEvent  *event,
-                                     gpointer   user_data)
-{
-  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (user_data);
-
-  /* Do not provide event. Event is null in order not to align */
-  if (biji_note_obj_editor_has_selection (self->priv->note))
-    show_edit_bar (self, NULL);
-
-  else
-    bjb_editor_toolbar_fade_out (self);
+  gtk_widget_set_visible (GTK_WIDGET (self),
+                          biji_note_obj_editor_has_selection (self->priv->note));
 
   return FALSE;
 }
 
-static gboolean
-on_button_pressed (GtkWidget *widget,
-                   GdkEvent  *event,
-                   BjbEditorToolbar *self)
-{
-  switch (event->button.button)
-  {
-    /* Show toolbar on right-click */
-    case 3:
-      show_edit_bar (self, event);
-      return TRUE;
-
-    /* Do not break stuff otherwise */
-    default :
-      return FALSE;
-  }
-}
-
-static gboolean
-on_cut_clicked (GtkWidget *button, BjbEditorToolbar *self)
+static void
+on_cut_clicked (GtkWidget        *button,
+                BjbEditorToolbar *self)
 {
   biji_note_obj_editor_cut (self->priv->note);
-  bjb_editor_toolbar_fade_out (self);
-  return TRUE ;
 }
 
-static gboolean
-on_copy_clicked (GtkWidget *button, BjbEditorToolbar *self)
+static void
+on_copy_clicked (GtkWidget        *button,
+                 BjbEditorToolbar *self)
 {
   biji_note_obj_editor_copy (self->priv->note);
-  bjb_editor_toolbar_fade_out (self);
-  return TRUE ;
 }
 
-static gboolean
-on_paste_clicked (GtkWidget *button, BjbEditorToolbar *self)
+static void
+on_paste_clicked (GtkWidget        *button,
+                  BjbEditorToolbar *self)
 {
   biji_note_obj_editor_paste (self->priv->note);
-  bjb_editor_toolbar_fade_out (self);
-  return TRUE ;
 }
 
 static void
-bold_button_callback (GtkWidget *button, BjbEditorToolbar *self)
+bold_button_callback (GtkWidget        *button,
+                      BjbEditorToolbar *self)
 {
   biji_note_obj_editor_apply_format (self->priv->note, BIJI_BOLD);
-  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-italic_button_callback (GtkWidget *button, BjbEditorToolbar *self)
+italic_button_callback (GtkWidget        *button,
+                        BjbEditorToolbar *self)
 {
   biji_note_obj_editor_apply_format (self->priv->note, BIJI_ITALIC);
-  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-strike_button_callback (GtkWidget *button, BjbEditorToolbar *self)
+strike_button_callback (GtkWidget        *button,
+                        BjbEditorToolbar *self)
 {
   biji_note_obj_editor_apply_format (self->priv->note, BIJI_STRIKE);
-  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-on_bullet_clicked (GtkWidget *button, BjbEditorToolbar *self)
+on_bullet_clicked (GtkWidget        *button,
+                   BjbEditorToolbar *self)
 {
   biji_note_obj_editor_apply_format (self->priv->note, BIJI_BULLET_LIST);
-  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-on_list_clicked (GtkWidget *button, BjbEditorToolbar *self)
+on_list_clicked (GtkWidget        *button,
+                 BjbEditorToolbar *self)
 {
   biji_note_obj_editor_apply_format (self->priv->note, BIJI_ORDER_LIST);
-  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
-link_callback (GtkWidget *button, BjbEditorToolbar *self)
+link_callback (GtkWidget        *button,
+               BjbEditorToolbar *self)
 {
   BjbSettings             *settings;
   gchar                   *link;
   GtkWidget               *window;
   BijiNoteObj             *result;
-  GdkRGBA                 color;
-  BijiManager            *manager;
+  GdkRGBA                  color;
+  BijiManager             *manager;
   BjbEditorToolbarPrivate *priv = self->priv;
 
   link = biji_note_obj_editor_get_selection (priv->note);
@@ -337,156 +224,109 @@ link_callback (GtkWidget *button, BjbEditorToolbar *self)
     biji_note_obj_set_rgba (result, &color);
 
   bijiben_new_window_for_note(g_application_get_default(), result);
-  bjb_editor_toolbar_fade_out (self);
 }
 
 static void
 bjb_editor_toolbar_constructed (GObject *obj)
 {
-  BjbEditorToolbar          *self;
-  BjbEditorToolbarPrivate   *priv;
-  GtkWidget                 *view;
-  GtkWidget                 *window;
-  GtkWidget                 *image;
-  GdkPixbuf                 *pixbuf;
-  gchar                     *icons_path, *full_path;
-  GError                    *error = NULL;
+  BjbEditorToolbar        *self;
+  BjbEditorToolbarPrivate *priv;
+  GtkWidget               *view;
+  GtkWidget               *window;
+  gboolean                 can_format;
 
   G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->constructed (obj);
 
   self = BJB_EDITOR_TOOLBAR (obj);
   priv = self->priv;
   window = bjb_note_view_get_base_window (priv->view);
+  can_format = biji_note_obj_can_format (priv->note);
   gtk_window_add_accel_group (GTK_WINDOW (window), priv->accel);
 
-
-  /* Popover */
-  priv->widget = gtk_popover_new (GTK_WIDGET (priv->view));
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->widget),
+  /* Action Bar */
+  gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (self)),
                                GTK_STYLE_CLASS_OSD);
-  gtk_popover_set_position (GTK_POPOVER (priv->widget),
-                            GTK_POS_TOP);
-  gtk_popover_set_modal (GTK_POPOVER (priv->widget), FALSE);
 
-
-  /* Toolbar */
-  priv->box = GTK_WIDGET (gtk_toolbar_new ());
-  gtk_toolbar_set_style (GTK_TOOLBAR (priv->box), GTK_TOOLBAR_TEXT);
-  gtk_toolbar_set_show_arrow (GTK_TOOLBAR (priv->box), FALSE);
-  gtk_widget_show (priv->box);
-  gtk_container_add (GTK_CONTAINER (priv->widget), priv->box);
-
+  priv->box_actions = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_widget_show (priv->box_actions);
+  gtk_action_bar_pack_start (GTK_ACTION_BAR (self), priv->box_actions);
 
   /* Cut */
-  priv->toolbar_cut = GTK_WIDGET (gtk_tool_button_new (NULL, _("Cut")));
-  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_cut), TRUE);
+  priv->toolbar_cut = gtk_button_new_with_label (_("Cut"));
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_cut), TRUE);
   gtk_widget_show (priv->toolbar_cut);
-  gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_cut), -1);
-
+  gtk_box_pack_start (GTK_BOX (priv->box_actions), priv->toolbar_cut, TRUE, TRUE, 0);
 
   /* Copy */
-  priv->toolbar_copy = GTK_WIDGET (gtk_tool_button_new (NULL, _("Copy")));
-  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_copy), TRUE);
+  priv->toolbar_copy = gtk_button_new_with_label (_("Copy"));
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_copy), TRUE);
   gtk_widget_show (priv->toolbar_copy);
-  gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_copy), -1);
+  gtk_box_pack_start (GTK_BOX (priv->box_actions), priv->toolbar_copy, TRUE, TRUE, 0);
 
   /* 'n paste */
-  priv->toolbar_paste = GTK_WIDGET (gtk_tool_button_new (NULL, _("Paste")));
-  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_paste), TRUE);
+  priv->toolbar_paste = gtk_button_new_with_label (_("Paste"));
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_paste), TRUE);
   gtk_widget_show (priv->toolbar_paste);
-  gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_paste), -1);
+  gtk_box_pack_start (GTK_BOX (priv->box_actions), priv->toolbar_paste, TRUE, TRUE, 0);
 
-  if (biji_note_obj_can_format (priv->note))
-  {
+  priv->box_center = gtk_box_new (GTK_ORIENTATION_HORIZONTAL,CENTER_BUTTONS_SPACING);
+  gtk_widget_show (priv->box_center);
+  gtk_action_bar_set_center_widget (GTK_ACTION_BAR (self), priv->box_center);
 
-    /* Bullet
-     * Translator : "* " stands for a bullet list.
-     * This is displayed inside a button. */
-    priv->toolbar_bullet = GTK_WIDGET (gtk_tool_button_new (NULL, _("* ")));
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_bullet), TRUE);
-    gtk_widget_show (priv->toolbar_bullet);
-    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_bullet), -1);
+  priv->box_style = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_widget_show (priv->box_style);
+  gtk_box_pack_start (GTK_BOX (priv->box_center), priv->box_style, FALSE, TRUE, 0);
 
-    /* List
-     * Translator : this "1." temporarilly stands for ordered list.
-     * This is displayed inside a button. */
-    priv->toolbar_list = GTK_WIDGET (gtk_tool_button_new (NULL, _("1.")));
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_list), TRUE);
-    gtk_widget_show (priv->toolbar_list);
-    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_list), -1);
+  /* Bold */
+  priv->toolbar_bold = gtk_button_new_from_icon_name ("format-text-bold-symbolic", GTK_ICON_SIZE_LARGE_TOOLBAR);
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_bold), TRUE);
+  gtk_widget_set_sensitive (priv->toolbar_bold, can_format);
+  gtk_widget_show (priv->toolbar_bold);
+  gtk_widget_set_tooltip_text (priv->toolbar_bold, _("Bold"));
+  gtk_box_pack_start (GTK_BOX (priv->box_style), priv->toolbar_bold, TRUE, TRUE, 0);
 
+  /* Italic */
+  priv->toolbar_italic = gtk_button_new_from_icon_name ("format-text-italic-symbolic", GTK_ICON_SIZE_LARGE_TOOLBAR);
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_italic), TRUE);
+  gtk_widget_set_sensitive (priv->toolbar_italic, can_format);
+  gtk_widget_show (priv->toolbar_italic);
+  gtk_widget_set_tooltip_text (priv->toolbar_italic, _("Italic"));
+  gtk_box_pack_start (GTK_BOX (priv->box_style), priv->toolbar_italic, TRUE, TRUE, 0);
 
-    /* Bold */
-    image = gtk_image_new_from_icon_name ("format-text-bold-symbolic", GTK_ICON_SIZE_INVALID);
-    gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
-    priv->toolbar_bold = GTK_WIDGET (gtk_tool_button_new (image, NULL));
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_bold), TRUE);
-    gtk_widget_show_all (priv->toolbar_bold);
-    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_bold), -1);
-    gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_bold), _("Bold"));
+  /* Strike */
+  priv->toolbar_strike = gtk_button_new_from_icon_name ("format-text-strikethrough-symbolic", GTK_ICON_SIZE_LARGE_TOOLBAR);
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_strike), TRUE);
+  gtk_widget_set_sensitive (priv->toolbar_strike, can_format);
+  gtk_widget_show (priv->toolbar_strike);
+  gtk_widget_set_tooltip_text (priv->toolbar_strike, _("Strike"));
+  gtk_box_pack_start (GTK_BOX (priv->box_style), priv->toolbar_strike, TRUE, TRUE, 0);
 
+  priv->box_points = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_widget_show (priv->box_points);
+  gtk_box_pack_start (GTK_BOX (priv->box_center), priv->box_points, FALSE, TRUE, 0);
 
-    /* Italic */
-    image = gtk_image_new_from_icon_name ("format-text-italic-symbolic", GTK_ICON_SIZE_INVALID);
-    gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
-    priv->toolbar_italic = GTK_WIDGET (gtk_tool_button_new (image, NULL));
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_italic), TRUE);
-    gtk_widget_show_all (priv->toolbar_italic);
-    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_italic), -1);
-    gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_italic), _("Italic"));
-
-
-    /* Strike */
-    image = gtk_image_new_from_icon_name ("format-text-strikethrough-symbolic", GTK_ICON_SIZE_INVALID);
-    gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
-    priv->toolbar_strike = GTK_WIDGET (gtk_tool_button_new (image, NULL));
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_strike), TRUE);
-    gtk_widget_show_all (priv->toolbar_strike);
-    gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_strike), -1);
-    gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_strike), _("Strike"));
-  }
-
+  /* Bullet */
+  priv->toolbar_bullet = gtk_button_new_with_label (_("* "));
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_bullet), TRUE);
+  gtk_widget_set_sensitive (priv->toolbar_bullet, can_format);
+  gtk_widget_show (priv->toolbar_bullet);
+  gtk_box_pack_start (GTK_BOX (priv->box_points), priv->toolbar_bullet, TRUE, TRUE, 0);
 
   /* Link */
-  icons_path = (gchar*) bijiben_get_bijiben_dir ();
-  full_path = g_build_filename (icons_path,
-                                "bijiben",
-                                "icons",
-                                "hicolor",
-                                "scalable",
-                                "actions",
-                                "link.svg",
-                                NULL);
-
-  pixbuf = gdk_pixbuf_new_from_file (full_path, &error);
-  g_free (full_path);
-
-  if (error)
-    g_warning ("error loading link icon : %s",error->message);
-
-  image = gtk_image_new_from_pixbuf (pixbuf);
-  gtk_image_set_pixel_size (GTK_IMAGE (image), 24);
-  priv->toolbar_link = GTK_WIDGET (gtk_tool_button_new (image, NULL));
-  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->toolbar_link), TRUE);
-  gtk_widget_show_all (priv->toolbar_link);
-  gtk_toolbar_insert (GTK_TOOLBAR (priv->box), GTK_TOOL_ITEM (priv->toolbar_link), -1);
-  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->toolbar_link),
-                               _("Copy selection to a new note"));
-
-
-  priv->glued = FALSE;
+  priv->toolbar_link = gtk_button_new_from_icon_name ("insert-link", GTK_ICON_SIZE_LARGE_TOOLBAR);
+  gtk_button_set_use_underline (GTK_BUTTON (priv->toolbar_link), TRUE);
+  gtk_widget_show (priv->toolbar_link);
+  gtk_widget_set_tooltip_text (priv->toolbar_link, _("Copy selection to a new note"));
+  gtk_action_bar_pack_end (GTK_ACTION_BAR (self), priv->toolbar_link);
 
   /* text selected --> fade in , and not selected --> fade out */
   view = biji_note_obj_get_editor (priv->note);
 
-  g_signal_connect(view,"button-press-event",
-                   G_CALLBACK(on_button_pressed),self);
-
   g_signal_connect(view,"button-release-event",
-                   G_CALLBACK(on_button_released),self);
+                   G_CALLBACK(on_release_event),self);
 
   g_signal_connect(view,"key-release-event",
-                   G_CALLBACK(on_key_released),self);
+                   G_CALLBACK(on_release_event),self);
 
   /* buttons */
 
@@ -577,7 +417,7 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *class)
 }
 
 
-BjbEditorToolbar *
+GtkWidget *
 bjb_editor_toolbar_new (BjbNoteView    *bjb_note_view,
                         BijiNoteObj    *biji_note_obj)
 {

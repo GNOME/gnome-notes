@@ -1,16 +1,17 @@
 /* bjb-note-view.c
- * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ * Copyright © 2012 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright © 2017 Iñigo Martínez <inigomartinez@gmail.com>
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -49,8 +50,8 @@ struct _BjbNoteViewPrivate {
 
   /* UI */
   BijiWebkitEditor  *editor;
-  BjbEditorToolbar  *edit_bar;
-  gboolean           edit_bar_is_sticky;
+  GtkWidget         *box;
+  GtkWidget         *edit_bar;
 
   GtkWidget         *last_update;
 };
@@ -229,7 +230,6 @@ bjb_note_view_constructed (GObject *obj)
   /* view new from note deserializes the note-content. */
   priv->view = biji_note_obj_open (priv->note);
 
-
   g_signal_connect(priv->note,"deleted",
                    G_CALLBACK(on_note_trashed),self);
   g_signal_connect(priv->note,"trashed",
@@ -238,6 +238,9 @@ bjb_note_view_constructed (GObject *obj)
   g_signal_connect(priv->window,"destroy",
                    G_CALLBACK(on_window_closed), priv->note);
 
+  priv->box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  gtk_container_add (GTK_CONTAINER (self), priv->box);
+  gtk_widget_show (priv->box);
 
   /* Text Editor (WebKitMainView) */
   scroll = gtk_scrolled_window_new (NULL,NULL);
@@ -251,8 +254,8 @@ bjb_note_view_constructed (GObject *obj)
                                   GTK_POLICY_AUTOMATIC);
 
   gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET(priv->view));
-  gtk_container_add (GTK_CONTAINER (self), scroll);
-  gtk_widget_show (GTK_WIDGET (priv->view));
+  gtk_box_pack_start (GTK_BOX (priv->box), scroll, TRUE, TRUE, 0);
+  gtk_widget_show (priv->view);
 
   /* Apply the gsettings font */
 
@@ -283,6 +286,8 @@ bjb_note_view_constructed (GObject *obj)
 
   /* Edition Toolbar for text selection */
   priv->edit_bar = bjb_editor_toolbar_new (self, priv->note);
+  gtk_box_pack_start (GTK_BOX (priv->box), priv->edit_bar, FALSE, TRUE, 0);
+  gtk_widget_hide (priv->edit_bar);
 
   /* Last updated row */
   bjb_note_view_last_updated_actor_new (self);
@@ -291,6 +296,7 @@ bjb_note_view_constructed (GObject *obj)
   gtk_widget_set_valign (priv->last_update, GTK_ALIGN_END);
   gtk_widget_set_margin_bottom (priv->last_update, 50);
   gtk_overlay_add_overlay (GTK_OVERLAY (self), priv->last_update);
+  gtk_widget_show (priv->last_update);
 }
 
 BjbNoteView *

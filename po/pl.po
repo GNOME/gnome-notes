@@ -1,16 +1,16 @@
 # Polish translation for bijiben.
-# Copyright © 2012-2016 the bijiben authors.
+# Copyright © 2012-2017 the bijiben authors.
 # This file is distributed under the same license as the bijiben package.
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2016.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2017.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015.
-# Aviary.pl <community-poland@mozilla.org>, 2012-2016.
+# Aviary.pl <community-poland@mozilla.org>, 2012-2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-06 04:54+0200\n"
-"PO-Revision-Date: 2016-09-06 04:55+0200\n"
+"POT-Creation-Date: 2017-02-26 17:50+0100\n"
+"PO-Revision-Date: 2017-02-26 17:51+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -112,9 +112,9 @@ msgstr "Prosty notatnik dla środowiska GNOME"
 #: ../src/bjb-app-menu.c:52
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2016\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2017\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
-"Aviary.pl <community-poland@mozilla.org>, 2012-2016"
+"Aviary.pl <community-poland@mozilla.org>, 2012-2017"
 
 #: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
@@ -142,6 +142,8 @@ msgstr "Nie można przetworzyć parametrów"
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
 #: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Nie można zarejestrować programu"
@@ -149,51 +151,6 @@ msgstr "Nie można zarejestrować programu"
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "Kolor notatki"
-
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Wytnij"
-
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Skopiuj"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Wklej"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "* "
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Pogrubienie"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Pochylenie"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Przekreślenie"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Skopiuj zaznaczenie do nowej notatki"
 
 #: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
@@ -365,7 +322,7 @@ msgstr "Notatka"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:191
+#: ../src/bjb-note-view.c:192
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Ostatnio zaktualizowano</b> %s"
@@ -487,3 +444,47 @@ msgstr "_O programie"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "Za_kończ"
+
+#: ../src/resources/editor-toolbar.ui.h:1
+msgid "Cut"
+msgstr "Wytnij"
+
+#: ../src/resources/editor-toolbar.ui.h:2
+msgid "Copy"
+msgstr "Skopiuj"
+
+#: ../src/resources/editor-toolbar.ui.h:3
+msgid "Paste"
+msgstr "Wklej"
+
+#: ../src/resources/editor-toolbar.ui.h:4
+msgid "Bold"
+msgstr "Pogrubia"
+
+#: ../src/resources/editor-toolbar.ui.h:5
+msgid "Italic"
+msgstr "Pochyla"
+
+#: ../src/resources/editor-toolbar.ui.h:6
+msgid "Strike"
+msgstr "Przekreśla"
+
+#: ../src/resources/editor-toolbar.ui.h:7
+msgid "* "
+msgstr "* "
+
+#: ../src/resources/editor-toolbar.ui.h:8
+msgid "Bullets"
+msgstr "Wypunktowanie"
+
+#: ../src/resources/editor-toolbar.ui.h:9
+msgid "1."
+msgstr "1."
+
+#: ../src/resources/editor-toolbar.ui.h:10
+msgid "List"
+msgstr "Lista"
+
+#: ../src/resources/editor-toolbar.ui.h:11
+msgid "Copy selection to a new note"
+msgstr "Kopiuje zaznaczenie do nowej notatki"

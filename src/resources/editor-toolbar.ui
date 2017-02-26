@@ -135,7 +135,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Italic</property>
+                <property name="tooltip_text" translatable="yes">Strike</property>
                 <property name="image">format-text-strikethrough</property>
                 <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_strike_clicked" object="BjbEditorToolbar" swapped="no" />

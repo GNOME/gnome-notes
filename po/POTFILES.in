@@ -24,3 +24,4 @@ src/libbiji/biji-date-time.c
 src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c
 [type: gettext/glade]src/resources/app-menu.ui
+[type: gettext/glade]src/resources/editor-toolbar.ui

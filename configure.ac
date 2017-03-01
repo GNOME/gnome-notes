@@ -72,7 +72,6 @@ PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-spar
 PKG_CHECK_MODULES(BIJIBEN,
                   [ libecal-1.2 >= $EDS_REQUIRED_VERSION
 		    libedataserver-1.2 >= $EDS_REQUIRED_VERSION
-		    libedataserverui-1.2 >= $EDS_REQUIRED_VERSION
                     gio-unix-2.0
                     glib-2.0 >= $GLIB_REQUIRED_VERSION
                     goa-1.0

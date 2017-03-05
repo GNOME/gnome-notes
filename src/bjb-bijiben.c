@@ -1,17 +1,18 @@
 /*
  * bjb-bijiben.c
- * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
- * 
+ * Copyright (C) 2011 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright (C) 2017 Iñigo Martínez <inigomartinez@gmail.com>
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -381,14 +382,12 @@ bijiben_application_local_command_line (GApplication *application,
                                         gint *exit_status)
 {
   gboolean version = FALSE;
-  gchar **remaining = NULL;
+  gchar **remaining;
   GOptionContext *context;
   GError *error = NULL;
   gint argc = 0;
   gchar **argv = NULL;
   *exit_status = EXIT_SUCCESS;
-  GFile **files;
-  gint idx, len;
 
   const GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &version,
@@ -450,52 +449,26 @@ bijiben_application_local_command_line (GApplication *application,
     goto out;
   }
 
-  len = 0;
-  files = NULL;
-
-  /* Convert args to GFiles */
   if (remaining != NULL)
   {
-    GFile *file;
     GPtrArray *file_array;
+    gchar **args;
 
     file_array = g_ptr_array_new ();
+    for (args = remaining; *args != NULL; args++)
+      g_ptr_array_add (file_array, g_file_new_for_commandline_arg (*args));
 
-    for (idx = 0; remaining[idx] != NULL; idx++)
-    {
-      file = g_file_new_for_commandline_arg (remaining[idx]);
-      if (file != NULL)
-        g_ptr_array_add (file_array, file);
-    }
+    /* Invoke "Open" to create new windows */
+    g_application_open (application, (GFile **) file_array->pdata, file_array->len, "");
 
-    len = file_array->len;
-    files = (GFile **) g_ptr_array_free (file_array, FALSE);
-    g_strfreev (remaining);
+    g_ptr_array_foreach (file_array, (GFunc) g_object_unref, NULL);
+    g_ptr_array_free (file_array, TRUE);
   }
-
-  if (files == NULL)
-  {
-    files = g_malloc0 (sizeof (GFile *));
-    len = 0;
-
-    files[0] = NULL;
-  }
-
-  if (len == 0)
-    goto out;
-
-  /* Invoke "Open" to create new windows */
-  g_application_open (application, files, len, "");
-
-  for (idx = 0; idx < len; idx++)
-  {
-    g_object_unref (files[idx]);
-  }
-
-  g_free (files);
 
  out:
+  g_strfreev (remaining);
   g_option_context_free (context);
+
   return TRUE;
 }
 

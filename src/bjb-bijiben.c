@@ -44,117 +44,66 @@ struct _BijibenPriv
   gboolean     first_run;
   gboolean     is_loaded;
   gboolean     new_note;
-  GQueue       *files_to_open; // paths
+  GQueue       files_to_open; // paths
 };
 
 
 G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
 
-static void
-bijiben_new_window_internal (Bijiben *app,
-                             GFile *file,
-                             BijiItem *item);
+static void     bijiben_new_window_internal (Bijiben       *self,
+                                             BijiNoteObj   *note);
+static gboolean bijiben_open_path           (Bijiben       *self,
+                                             gchar         *path,
+                                             BjbWindowBase *window);
 
-
 static void
-on_window_activated_cb   (BjbWindowBase *window,
-                          gboolean win_is_available,
-                          Bijiben *self)
+on_window_activated_cb (BjbWindowBase *window,
+                        gboolean       available,
+                        Bijiben       *self)
 {
   BijibenPriv *priv;
-  gchar *path;
-  BijiItem *item;
-  GList *notfound, *l;
+  GList *l, *next;
 
-  item = NULL;
   priv = self->priv;
   priv->is_loaded = TRUE;
-  notfound = NULL;
 
-  while ((path = g_queue_pop_head (priv->files_to_open)))
+  for (l = priv->files_to_open.head; l != NULL; l = next)
   {
-    item = biji_manager_get_item_at_path (priv->manager, path);
-
-    if (item != NULL)
+    next = l->next;
+    if (bijiben_open_path (self, l->data, (available ? window : NULL)))
     {
-      /* If that's a note, detach it */
-      if (BIJI_IS_NOTE_OBJ (item))
-      {
-	bijiben_new_window_for_note (G_APPLICATION (self), BIJI_NOTE_OBJ (item));
-      }
-
-      /* Else, check */
-      else
-      {
-        if (win_is_available)
-           bjb_window_base_switch_to_item (window, item);
-
-        else
-           bijiben_new_window_internal (self, NULL, item);
-      }
-      g_free (path);
-    }
-
-    else
-    {
-      notfound = g_list_prepend (notfound, path);
+      g_free (l->data);
+      g_queue_delete_link (&priv->files_to_open, l);
     }
   }
-
-  /* We just wait for next provider to be loaded.
-   * TODO should also check if all providers are loaded
-   * in order to trigger file reading. */
-  for (l = notfound; l != NULL; l=l->next)
-  {
-    g_queue_push_head (priv->files_to_open, l->data);
-  }
-
 
   /* All requested notes are loaded, but we have a new one to create...
    * This implementation is not really safe,
    * we might have loaded SOME provider(s)
    * but not the default one - more work is needed here */
-  if (notfound == NULL &&
-      priv->new_note == TRUE)
+  if (priv->new_note && g_queue_is_empty (&priv->files_to_open))
   {
+    BijiItem *item;
+
     priv->new_note = FALSE;
     item = BIJI_ITEM (biji_manager_note_new (
                         priv->manager,
                         NULL,
                         bjb_settings_get_default_location (self->priv->settings)));
-    bijiben_new_window_internal (self, NULL, item);
+    bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
   }
 }
 
-
 static void
 bijiben_new_window_internal (Bijiben     *self,
-                             GFile       *file,
-                             BijiItem    *item)
+                             BijiNoteObj *note)
 {
   BjbWindowBase *window;
-  BijiNoteObj   *note;
-  gchar         *path;
   GList         *windows;
   gboolean       not_first_window;
 
-  note = NULL;
-
   windows = gtk_application_get_windows (GTK_APPLICATION (self));
   not_first_window = (gboolean) g_list_length (windows);
-
-  if (file != NULL)
-  {
-    path = g_file_get_parse_name (file);
-    note = BIJI_NOTE_OBJ (biji_manager_get_item_at_path (self->priv->manager, path));
-    g_free (path);
-  }
-
-  else if (item != NULL && BIJI_IS_NOTE_OBJ (item))
-  {
-    note = BIJI_NOTE_OBJ (item);
-  }
-
 
   window = BJB_WINDOW_BASE (bjb_window_base_new (note));
   g_signal_connect (window, "activated",
@@ -166,11 +115,31 @@ bijiben_new_window_internal (Bijiben     *self,
     gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 }
 
+static gboolean
+bijiben_open_path (Bijiben       *self,
+                   gchar         *path,
+                   BjbWindowBase *window)
+{
+  BijiItem *item;
+
+  if (!self->priv->is_loaded)
+    return FALSE;
+
+  item = biji_manager_get_item_at_path (self->priv->manager, path);
+
+  if (BIJI_IS_NOTE_OBJ (item) || !window)
+    bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
+  else
+    bjb_window_base_switch_to_item (window, item);
+
+  return TRUE;
+}
+
 void
 bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
-  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), NULL, BIJI_ITEM (note));
+  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), note);
 }
 
 static void
@@ -194,16 +163,17 @@ bijiben_open (GApplication  *application,
 {
   Bijiben *self;
   gint i;
+  gchar *path;
 
   self = BIJIBEN_APPLICATION (application);
 
   for (i = 0; i < n_files; i++)
   {
-    if (self->priv->is_loaded == TRUE)
-      bijiben_new_window_internal (self, files[i], NULL);
-
+    path = g_file_get_parse_name (files[i]);
+    if (bijiben_open_path (self, path, NULL))
+      g_free (path);
     else
-      g_queue_push_head (self->priv->files_to_open, g_file_get_parse_name (files[i]));
+      g_queue_push_head (&self->priv->files_to_open, path);
   }
 }
 
@@ -217,7 +187,7 @@ bijiben_init (Bijiben *self)
     G_TYPE_INSTANCE_GET_PRIVATE (self, BIJIBEN_TYPE_APPLICATION, BijibenPriv);
 
   priv->settings = bjb_settings_new ();
-  priv->files_to_open = g_queue_new ();
+  g_queue_init (&priv->files_to_open);
   priv->new_note = FALSE;
   priv->is_loaded = FALSE;
 }
@@ -301,7 +271,7 @@ manager_ready_cb (GObject *source,
       return;
     }
 
-  bijiben_new_window_internal (self, NULL, NULL);
+  bijiben_new_window_internal (self, NULL);
 }
 
 static void
@@ -381,6 +351,7 @@ bijiben_application_local_command_line (GApplication *application,
                                         gchar ***arguments,
                                         gint *exit_status)
 {
+  Bijiben *self;
   gboolean version = FALSE;
   gchar **remaining;
   GOptionContext *context;
@@ -398,7 +369,6 @@ bijiben_application_local_command_line (GApplication *application,
       NULL,  N_("[FILE...]") },
     { NULL }
   };
-
 
   context = g_option_context_new (NULL);
   g_option_context_set_summary (context,
@@ -426,7 +396,6 @@ bijiben_application_local_command_line (GApplication *application,
     goto out;
   }
 
-
   /* bijiben_startup */
   g_application_register (application, NULL, &error);
 
@@ -443,26 +412,15 @@ bijiben_application_local_command_line (GApplication *application,
     goto out;
   }
 
-  if (BIJIBEN_APPLICATION (application)->priv->new_note)
-  {
-    g_application_open (application, NULL, 0, "");
-    goto out;
-  }
+  self = BIJIBEN_APPLICATION (application);
 
-  if (remaining != NULL)
+  if (!self->priv->new_note && remaining != NULL)
   {
-    GPtrArray *file_array;
     gchar **args;
 
-    file_array = g_ptr_array_new ();
-    for (args = remaining; *args != NULL; args++)
-      g_ptr_array_add (file_array, g_file_new_for_commandline_arg (*args));
-
-    /* Invoke "Open" to create new windows */
-    g_application_open (application, (GFile **) file_array->pdata, file_array->len, "");
-
-    g_ptr_array_foreach (file_array, (GFunc) g_object_unref, NULL);
-    g_ptr_array_free (file_array, TRUE);
+    for (args = remaining; *args; args++)
+      if (!bijiben_open_path (self, *args, NULL))
+        g_queue_push_head (&self->priv->files_to_open, g_strdup (*args));
   }
 
  out:
@@ -479,7 +437,8 @@ bijiben_finalize (GObject *object)
 
   g_clear_object (&self->priv->manager);
   g_clear_object (&self->priv->settings);
-  g_queue_free (self->priv->files_to_open);
+  g_queue_foreach (&self->priv->files_to_open, (GFunc) g_free, NULL);
+  g_queue_clear (&self->priv->files_to_open);
 
   G_OBJECT_CLASS (bijiben_parent_class)->finalize (object);
 }

@@ -1,15 +1,15 @@
 # Lithuanian translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014, 2015.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014, 2015, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-01-05 04:03+0000\n"
-"PO-Revision-Date: 2016-01-05 12:47+0200\n"
+"POT-Creation-Date: 2017-02-26 00:58+0000\n"
+"PO-Revision-Date: 2017-03-10 22:19+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -18,33 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Rašteliai yra redaktorius, leidžiantis sukurti paprastus sąrašus vėlesniam "
 "panaudojimui."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Jis leidžia naudoti ownCloud kaip saugyklos vietą ir internetinį redaktorių."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Rašteliai"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "rašteliai;priminimai;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Rašykite raštelius, žymėkite failus!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Užrašinė"
 
@@ -115,84 +116,41 @@ msgstr ""
 "išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: ../src/bjb-bijiben.c:409
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Rodyti programos versiją"
 
-#: ../src/bjb-bijiben.c:411
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Sukurti naują raštelį"
 
-#: ../src/bjb-bijiben.c:413
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[FAILAS...]"
 
-#: ../src/bjb-bijiben.c:420
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Imkite raštelius ir eksportuokite juos visur."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:431
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Nepavyko perskaityti argumentų"
 
-#: ../src/bjb-bijiben.c:440
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "GNOME rašteliai"
 
-#: ../src/bjb-bijiben.c:453
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Nepavyko priregistruoti programos"
 
 #: ../src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "Raštelio spalva"
-
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Iškirpti"
-
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Kopijuoti"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Įdėti"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "* "
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Pusjuodis"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Kursyvas"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Perbrauktas"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Kopijuoti žymėjimą į naują raštelį"
 
 #: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
@@ -362,7 +320,7 @@ msgstr "Raštelis"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:191
+#: ../src/bjb-note-view.c:192
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Paskutinis atnaujinimas</b> %s"
@@ -425,7 +383,7 @@ msgstr "Nuostatos"
 msgid "Note Edition"
 msgstr "Raštelio redakcija"
 
-#: ../src/bjb-settings-dialog.c:505
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Pirminė knyga"
 
@@ -485,8 +443,49 @@ msgstr "_Apie"
 msgid "_Quit"
 msgstr "Iš_eiti"
 
-#~ msgid "Bullets"
-#~ msgstr "Punktai"
+#: ../src/resources/editor-toolbar.ui.h:1
+msgid "Cut"
+msgstr "Iškirpti"
+
+#: ../src/resources/editor-toolbar.ui.h:2
+msgid "Copy"
+msgstr "Kopijuoti"
+
+#: ../src/resources/editor-toolbar.ui.h:3
+msgid "Paste"
+msgstr "Įdėti"
+
+#: ../src/resources/editor-toolbar.ui.h:4
+msgid "Bold"
+msgstr "Pusjuodis"
+
+#: ../src/resources/editor-toolbar.ui.h:5
+msgid "Italic"
+msgstr "Kursyvas"
+
+#: ../src/resources/editor-toolbar.ui.h:6
+msgid "Strike"
+msgstr "Perbrauktas"
+
+#: ../src/resources/editor-toolbar.ui.h:7
+msgid "* "
+msgstr "* "
+
+#: ../src/resources/editor-toolbar.ui.h:8
+msgid "Bullets"
+msgstr "Punktai"
+
+#: ../src/resources/editor-toolbar.ui.h:9
+msgid "1."
+msgstr "1."
+
+#: ../src/resources/editor-toolbar.ui.h:10
+msgid "List"
+msgstr "Sąrašas"
+
+#: ../src/resources/editor-toolbar.ui.h:11
+msgid "Copy selection to a new note"
+msgstr "Kopijuoti žymėjimą į naują raštelį"
 
 #~ msgid "Numbered List"
 #~ msgstr "Numeruotas sąrašas"

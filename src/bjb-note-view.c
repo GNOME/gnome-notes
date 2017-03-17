@@ -179,6 +179,9 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   biji_note_obj_get_rgba (note, &color);
+
+  webkit_web_view_set_background_color (WEBKIT_WEB_VIEW (priv->view), &color);
+
   if (color.red < 0.5)
     font_color = "white";
   else

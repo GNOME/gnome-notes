@@ -1,49 +1,49 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-#
-# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015.
+# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-02 15:55+0000\n"
-"PO-Revision-Date: 2015-03-02 21:40+0100\n"
+"POT-Creation-Date: 2017-02-26 00:58+0000\n"
+"PO-Revision-Date: 2017-03-23 20:03+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Aplikace Poznámky je editor pro vytváření jednoduchých zápisů, které se vám "
 "mohou později hodit."
 
-#: ../data/bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Umožňuje využívat ownCloud jako místo pro ukládání a on-line editor."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: ../data/org.gnome.bijiben.desktop.in.in.h:1
+#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
+#: ../src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Poznámky"
 
-#: ../data/bijiben.desktop.in.in.h:2
+#: ../data/org.gnome.bijiben.desktop.in.in.h:2
 msgid "notes;reminder;"
 msgstr "poznámka;poznámky;připomenutí;blbníček;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: ../data/org.gnome.bijiben.desktop.in.in.h:3
 msgid "Post notes, tag files!"
 msgstr "Vylepujte si poznámky, štítkujte soubory!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
 msgstr "Poznámky"
 
@@ -104,6 +104,10 @@ msgstr "Poloha okna"
 msgid "Window position (x and y)."
 msgstr "Poloha okna (X a Y)."
 
+#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+msgid "Untitled"
+msgstr "Bez názvu"
+
 #: ../src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
 msgstr "Jednoduchý poznámkový sešit pro GNOME"
@@ -112,33 +116,35 @@ msgstr "Jednoduchý poznámkový sešit pro GNOME"
 msgid "translator-credits"
 msgstr "Marek Černocký, <marek@manet.cz>"
 
-#: ../src/bjb-bijiben.c:454
+#: ../src/bjb-bijiben.c:395
 msgid "Show the application's version"
 msgstr "Zobrazit verzi aplikace"
 
-#: ../src/bjb-bijiben.c:456
+#: ../src/bjb-bijiben.c:397
 msgid "Create a new note"
 msgstr "Vytvořit novou poznámku"
 
-#: ../src/bjb-bijiben.c:458
+#: ../src/bjb-bijiben.c:399
 msgid "[FILE...]"
 msgstr "[SOUBOR…]"
 
-#: ../src/bjb-bijiben.c:465
+#: ../src/bjb-bijiben.c:406
 msgid "Take notes and export them everywhere."
 msgstr "Pořídit poznámku a exportovat ji na všechna místa."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:476
+#: ../src/bjb-bijiben.c:417
 msgid "Could not parse arguments"
 msgstr "Nelze zpracovat argumenty"
 
-#: ../src/bjb-bijiben.c:485
+#: ../src/bjb-bijiben.c:426
 msgid "GNOME Notes"
 msgstr "Poznámky GNOME"
 
-#: ../src/bjb-bijiben.c:498
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Nelze zaregistrovat aplikaci"
 
@@ -146,64 +152,19 @@ msgstr "Nelze zaregistrovat aplikaci"
 msgid "Note Color"
 msgstr "Barva poznámky"
 
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Vyjmout"
-
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Kopírovat"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Vložit"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "* "
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Tučné"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Kurzíva"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Přeškrtnuté"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Kopírovat výběr do nové poznámky"
-
-#: ../src/bjb-empty-results-box.c:101
+#: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Žádné poznámky"
 
-#: ../src/bjb-empty-results-box.c:145
+#: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
 msgstr "Zmáčknutím tlačítka Nová vytvoříte novou poznámku."
 
-#: ../src/bjb-empty-results-box.c:167
+#: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
 msgstr "Problém"
 
-#: ../src/bjb-empty-results-box.c:173
+#: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
 msgstr "nainstalujte prosím „Tracker“ a po té aplikaci restartujte."
 
@@ -304,10 +265,6 @@ msgstr "Koš"
 msgid "Empty"
 msgstr "Vyprázdnit"
 
-#: ../src/bjb-main-toolbar.c:659
-msgid "Untitled"
-msgstr "Bez názvu"
-
 #.
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
@@ -363,7 +320,7 @@ msgstr "Poznámka"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:190
+#: ../src/bjb-note-view.c:192
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Naposledy aktualizováno<b> %s"
@@ -426,7 +383,7 @@ msgstr "Předvolby"
 msgid "Note Edition"
 msgstr "Vzhled poznámky"
 
-#: ../src/bjb-settings-dialog.c:505
+#: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
 msgstr "Hlavní sešit"
 
@@ -454,7 +411,7 @@ msgstr "tento rok"
 msgid "Unknown"
 msgstr "neznámo kdy"
 
-#: ../src/libbiji/biji-notebook.c:262
+#: ../src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Místní"
 
@@ -485,3 +442,47 @@ msgstr "O _aplikaci"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "U_končit"
+
+#: ../src/resources/editor-toolbar.ui.h:1
+msgid "Cut"
+msgstr "Vyjmout"
+
+#: ../src/resources/editor-toolbar.ui.h:2
+msgid "Copy"
+msgstr "Kopírovat"
+
+#: ../src/resources/editor-toolbar.ui.h:3
+msgid "Paste"
+msgstr "Vložit"
+
+#: ../src/resources/editor-toolbar.ui.h:4
+msgid "Bold"
+msgstr "Tučné"
+
+#: ../src/resources/editor-toolbar.ui.h:5
+msgid "Italic"
+msgstr "Kurzíva"
+
+#: ../src/resources/editor-toolbar.ui.h:6
+msgid "Strike"
+msgstr "Přeškrtnuté"
+
+#: ../src/resources/editor-toolbar.ui.h:7
+msgid "* "
+msgstr "* "
+
+#: ../src/resources/editor-toolbar.ui.h:8
+msgid "Bullets"
+msgstr "Odrážky"
+
+#: ../src/resources/editor-toolbar.ui.h:9
+msgid "1."
+msgstr "1."
+
+#: ../src/resources/editor-toolbar.ui.h:10
+msgid "List"
+msgstr "Seznam"
+
+#: ../src/resources/editor-toolbar.ui.h:11
+msgid "Copy selection to a new note"
+msgstr "Kopírovat výběr do nové poznámky"

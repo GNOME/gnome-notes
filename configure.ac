@@ -47,6 +47,8 @@ AM_CONDITIONAL([ENABLE_UPDATE_MIMEDB],
 
 AC_PATH_PROG([DESKTOP_FILE_VALIDATE], [desktop-file-validate])
 
+# Utility programs
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources])
 
 LT_INIT
 

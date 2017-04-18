@@ -33,25 +33,19 @@ LDADD = libbiji/libbiji.la \
 bijiben_LDFLAGS = \
 	-Wl,--export-dynamic
 
-resource_files = \
-	resources/Adwaita.css \
-	resources/app-menu.ui \
-	resources/editor-toolbar.ui \
-	resources/note-symbolic.svg \
-	resources/thumbnail-frame.png
+bjb_gresource_xml_deps = \
+	$(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(srcdir) $(srcdir)/bjb.gresource.xml)
+bjb-resources.c: bjb.gresource.xml $(bjb_gresource_xml_deps)
+	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source --c-name bjb $<
+bjb-resources.h: bjb.gresource.xml $(bjb_gresource_xml_deps)
+	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --c-name bjb $<
 
-bjb-resources.c: bjb.gresource.xml $(resource_files)
-	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-source --c-name bjb $(srcdir)/bjb.gresource.xml
-
-bjb-resources.h: bjb.gresource.xml
-	glib-compile-resources --target=$@ --sourcedir=$(srcdir) --generate-header --c-name bjb $(srcdir)/bjb.gresource.xml
-
-bijiben_built_sources = \
+bijiben_resources_sources = \
 	bjb-resources.c \
-	bjb-resources.h
+	bjb-resources.h \
+	$(NULL)
 
 bijiben_SOURCES = \
-	$(bijiben_built_sources) \
 	bjb-app-menu.c \
 	bjb-app-menu.h \
 	bjb-bijiben.c \
@@ -94,6 +88,10 @@ bijiben_SOURCES = \
 	bjb-window-base.c \
 	bjb-window-base.h
 
+nodist_bijiben_SOURCES = \
+	$(bjb_resources_sources) \
+	$(NULL)
+
 dbus_shell_search_provider_built_sources =		\
 	bijiben-shell-search-provider-generated.c	\
 	bijiben-shell-search-provider-generated.h
@@ -111,26 +109,22 @@ bijiben_shell_search_provider_SOURCES = 	\
 	$(NULL)
 
 nodist_bijiben_shell_search_provider_SOURCES =		\
-	$(bijiben_built_sources) \
+	$(bijiben_resources_sources) \
 	$(dbus_shell_search_provider_built_sources)	\
 	$(NULL)
 
 BUILT_SOURCES = \
-	$(bijiben_built_sources) \
+	$(bijiben_resources_sources) \
 	$(dbus_shell_search_provider_built_sources) 	\
 	$(NULL)
 
 EXTRA_DIST = \
 	bjb.gresource.xml \
-  $(resource_files) \
+	$(bjb_gresource_xml_deps) \
 	$(NULL)
 
 CLEANFILES = \
 	$(BUILT_SOURCES)	\
 	$(NULL)
-
-dist-hook:
-	cd $(distdir); rm -f $(CLEANFILES)
-
 
 -include $(top_srcdir)/git.mk

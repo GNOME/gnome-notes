@@ -26,7 +26,7 @@ AM_CFLAGS =\
 
 
 LDADD = libbiji/libbiji.la \
-	-lm \
+	$(LIBM) \
 	$(top_builddir)/libgd/libgd.la \
 	$(BIJIBEN_LIBS)
 

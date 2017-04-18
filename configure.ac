@@ -80,6 +80,8 @@ PKG_CHECK_MODULES([BIJIBEN],
                    uuid
                    webkit2gtk-4.0 >= $WEBKITGTK_REQUIRED_VERSION])
 
+AC_CHECK_LIBM
+AC_SUBST([LIBM])
 
 # check for zeitgeist
 AC_ARG_ENABLE([zeitgeist],

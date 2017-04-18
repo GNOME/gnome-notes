@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(bijiben, 3.21.2)
+AC_INIT([bijiben], [3.21.2])
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 dnl _FOR_DOC
@@ -21,8 +21,8 @@ dnl ***************************************************************************
 dnl Internatinalization
 dnl ***************************************************************************
 GETTEXT_PACKAGE=bijiben
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"], [GETTEXT package name])
 IT_PROG_INTLTOOL([0.50.1])
 
 
@@ -35,16 +35,17 @@ IT_PROG_INTLTOOL([0.50.1])
 # Check if we should update the mime database
 #
 
-AC_PATH_PROG(UPDATE_MIME_DATABASE, update-mime-database, no)
+AC_PATH_PROG([UPDATE_MIME_DATABASE], [update-mime-database], [no])
 
-AC_ARG_ENABLE(update-mimedb,
-   AS_HELP_STRING([--disable-update-mimedb],
-                  [disable the update-mime-database after install [default=no]]),,
-    enable_update_mimedb=yes)
-AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, (test x$enable_update_mimedb = xyes) && (test x$UPDATE_MIME_DATABASE != xno))
+AC_ARG_ENABLE([update-mimedb],
+              [AS_HELP_STRING([--disable-update-mimedb],
+                              [disable the update-mime-database after install [default=no]])],,
+              [enable_update_mimedb=yes])
+AM_CONDITIONAL([ENABLE_UPDATE_MIMEDB],
+               [test "$enable_update_mimedb" = "yes" && test "$UPDATE_MIME_DATABASE" != "no"])
 
 
-AC_PATH_PROG(DESKTOP_FILE_VALIDATE, desktop-file-validate)
+AC_PATH_PROG([DESKTOP_FILE_VALIDATE], [desktop-file-validate])
 
 
 LT_INIT
@@ -66,18 +67,18 @@ PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-spar
    [PKG_CHECK_MODULES([TRACKER], [tracker-sparql-0.18], [sparql_version="tracker-sparql-0.18"])
 ])
 
-PKG_CHECK_MODULES(BIJIBEN,
-                  [ libecal-1.2 >= $EDS_REQUIRED_VERSION
-		    libedataserver-1.2 >= $EDS_REQUIRED_VERSION
-                    gio-unix-2.0
-                    glib-2.0 >= $GLIB_REQUIRED_VERSION
-                    goa-1.0
-                    gtk+-3.0 >= $GTK_REQUIRED_VERSION
-		    libecal-1.2
-                    libxml-2.0
-                    $sparql_version
-                    uuid
-                    webkit2gtk-4.0 >= $WEBKITGTK_REQUIRED_VERSION])
+PKG_CHECK_MODULES([BIJIBEN],
+                  [libecal-1.2 >= $EDS_REQUIRED_VERSION
+                   libedataserver-1.2 >= $EDS_REQUIRED_VERSION
+                   gio-unix-2.0
+                   glib-2.0 >= $GLIB_REQUIRED_VERSION
+                   goa-1.0
+                   gtk+-3.0 >= $GTK_REQUIRED_VERSION
+                   libecal-1.2
+                   libxml-2.0
+                   $sparql_version
+                   uuid
+                   webkit2gtk-4.0 >= $WEBKITGTK_REQUIRED_VERSION])
 
 
 # check for zeitgeist

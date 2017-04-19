@@ -323,7 +323,7 @@ on_object_list_got (GObject      *obj,
 
 
 
-static gchar *
+static const gchar *
 i_want_all_memos (void)
 {
   return "occur-in-time-range? (make-time \"19820421T204153Z\") (make-time \"20820423T232416Z\")";
@@ -376,7 +376,7 @@ on_notes_mined (GObject       *source_object,
 
 
 /* From gnome-calendar -> ported to GdkRGBA */
-GdkPixbuf*
+static GdkPixbuf*
 get_pixbuf_from_color    (GdkRGBA              *color, gint size)
 {
   cairo_surface_t *surface;
@@ -533,7 +533,7 @@ on_object_created (GObject      *client,
 
 
 
-BijiNoteObj *
+static BijiNoteObj *
 memo_create_note (BijiProvider *provider,
                   const gchar  *str)
 {
@@ -717,7 +717,7 @@ biji_memo_provider_get_property (GObject    *object,
 
 
 
-const BijiProviderInfo *
+static const BijiProviderInfo *
 memo_provider_get_info (BijiProvider *provider)
 {
   return &(BIJI_MEMO_PROVIDER (provider)->priv->info);

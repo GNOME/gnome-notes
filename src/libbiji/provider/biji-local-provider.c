@@ -539,7 +539,7 @@ biji_local_provider_get_property (GObject    *object,
 }
 
 
-const BijiProviderInfo *
+static const BijiProviderInfo *
 local_provider_get_info (BijiProvider *provider)
 {
   BijiLocalProvider *self;

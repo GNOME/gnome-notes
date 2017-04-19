@@ -6,12 +6,12 @@
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * WebkitWebView is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -39,7 +39,7 @@ enum
 
 #define TOMBOY_NS "http://beatniksoftware.com/tomboy"
 
-typedef enum 
+typedef enum
 {
   NO_TYPE,
   BIJIBEN_1,
@@ -97,7 +97,7 @@ biji_lazy_deserializer_set_property (GObject  *object,
   BijiLazyDeserializer *self = BIJI_LAZY_DESERIALIZER (object);
 
   switch (property_id)
-  {    
+  {
     case PROP_NOTE:
       self->priv->note = g_value_get_object (value);
       break;
@@ -211,7 +211,7 @@ process_tomboy_end_elem (BijiLazyDeserializer *self)
 {
   BijiLazyDeserializerPrivate *priv = self->priv;
   const gchar *element_name;
-  
+
   element_name = (const gchar *) xmlTextReaderConstName (priv->inner);
 
   if (g_strcmp0 (element_name, "note-content")==0)
@@ -257,7 +257,7 @@ process_tomboy_node (BijiLazyDeserializer *self)
 
   type  = xmlTextReaderNodeType (priv->inner);
   name  = xmlTextReaderConstName (priv->inner);
-  
+
   if (name == NULL)
     name = BAD_CAST "(NULL)";
 
@@ -452,7 +452,7 @@ process_bijiben_html_content (BijiLazyDeserializer *self,
 
 /* Common XML format for both Bijiben / Tomboy */
 static void
-processNode (BijiLazyDeserializer *self) 
+processNode (BijiLazyDeserializer *self)
 {
   xmlTextReaderPtr r = self->priv->r;
   BijiNoteObj * n = self->priv->note;
@@ -503,7 +503,7 @@ processNode (BijiLazyDeserializer *self)
     free (result);
   }
 
-  if (g_strcmp0 ((gchar*) name, "color") == 0 )  
+  if (g_strcmp0 ((gchar*) name, "color") == 0 )
   {
     color_str = (gchar*) xmlTextReaderReadString (r);
 
@@ -516,7 +516,7 @@ processNode (BijiLazyDeserializer *self)
     free (color_str);
   }
 
-  if ( g_strcmp0((gchar*)name,"tag") == 0 )  
+  if ( g_strcmp0((gchar*)name,"tag") == 0 )
   {
     tag = (gchar*) xmlTextReaderReadString(r);
 
@@ -551,19 +551,19 @@ biji_parse_file (BijiLazyDeserializer *self)
   }
 }
 
-gboolean
+static gboolean
 biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 {
   BijiNoteObj* n = self->priv->note;
   const gchar *path;
   xmlDocPtr doc;
   xmlNodePtr cur;
-  xmlChar     *version; 
+  xmlChar     *version;
 
   path = biji_item_get_uuid (BIJI_ITEM (n));
   doc = xmlParseFile (path);
 
-  if (doc == NULL ) 
+  if (doc == NULL )
   {
     g_warning ("File not parsed successfully");
     return FALSE;
@@ -571,14 +571,14 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 
   cur = xmlDocGetRootElement (doc);
 
-  if (cur == NULL) 
+  if (cur == NULL)
   {
     g_warning ("File empty");
     xmlFreeDoc(doc);
     return FALSE;
   }
 
-  if (xmlStrcmp(cur->name, (const xmlChar *) "note")) 
+  if (xmlStrcmp(cur->name, (const xmlChar *) "note"))
   {
     g_message ("document of the wrong type, root node != note");
     xmlFreeDoc(doc);

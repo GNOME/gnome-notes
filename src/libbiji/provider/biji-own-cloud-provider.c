@@ -901,7 +901,7 @@ own_cloud_get_info       (BijiProvider *provider)
  * things will go right.
  * Promise. */
 
-BijiNoteObj *
+static BijiNoteObj *
 own_cloud_create_note (BijiProvider *provider,
                        const gchar  *str)
 {
@@ -927,7 +927,7 @@ own_cloud_create_note (BijiProvider *provider,
 /* This is a dummy func. we can create a note with extra args
  * but can't use path, nor color, nor html. */
 
-BijiNoteObj *
+static BijiNoteObj *
 own_cloud_create_full (BijiProvider  *provider,
                        const gchar   *suggested_path,
                        BijiInfoSet   *info,

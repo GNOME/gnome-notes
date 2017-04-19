@@ -21,8 +21,8 @@
 
 /*
  * Adapted from Nautilus shell-search-provider
- * 
- * Authors: 
+ *
+ * Authors:
  * Original code : Cosimo Cecchi <cosimoc@gnome.org>
  * Bijiben : Pierre-Yves Luyten <py@luyten.fr>
  *
@@ -83,7 +83,7 @@ bjb_perform_query (BijibenShellSearchProviderApp *self, gchar * query )
   return result ;
 }
 
-GList *
+static GList *
 biji_get_notes_with_strings (BijibenShellSearchProviderApp *self, gchar **needles)
 {
   gint parser;
@@ -283,7 +283,7 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
 
     g_variant_builder_close (results);
   }
- 
+
   g_object_unref (cursor);
 }
 

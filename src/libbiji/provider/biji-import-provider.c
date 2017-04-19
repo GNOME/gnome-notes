@@ -250,7 +250,7 @@ biji_import_provider_constructed (GObject *object)
 }
 
 
-const BijiProviderInfo *
+static const BijiProviderInfo *
 biji_import_provider_get_info (BijiProvider *self)
 {
   return & (BIJI_IMPORT_PROVIDER (self)->priv->info);

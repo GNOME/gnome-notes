@@ -1,16 +1,16 @@
 /* bjb-main-view.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -86,7 +86,7 @@ static void bjb_main_view_view_changed (BjbMainView *self);
 static void
 bjb_main_view_init (BjbMainView *object)
 {
-  object->priv = 
+  object->priv =
   G_TYPE_INSTANCE_GET_PRIVATE(object,BJB_TYPE_MAIN_VIEW,BjbMainViewPriv);
 
   object->priv->key = 0;
@@ -258,7 +258,7 @@ switch_to_item (BjbMainView *view, BijiItem *to_open)
 static GList *
 get_selected_paths(BjbMainView *self)
 {
-  return gd_main_view_get_selection ( self->priv->view ) ; 
+  return gd_main_view_get_selection ( self->priv->view ) ;
 }
 
 static gchar *
@@ -268,7 +268,7 @@ get_note_url_from_tree_path(GtkTreePath *path, BjbMainView *self)
   gchar *note_path ;
   GtkTreeModel *model ;
 
-  model = bjb_controller_get_model(self->priv->controller);  
+  model = bjb_controller_get_model(self->priv->controller);
   gtk_tree_model_get_iter (model,&iter, path);
   gtk_tree_model_get (model, &iter,GD_MAIN_COLUMN_URI, &note_path,-1);
 
@@ -378,7 +378,7 @@ on_item_activated (GdMainView        * gd,
   g_return_val_if_fail (item_path != NULL, FALSE); // #709197
 
   /* Switch to that item */
-  manager = bjb_window_base_get_manager (view->priv->window); 
+  manager = bjb_window_base_get_manager (view->priv->window);
   to_open = biji_manager_get_item_at_path (manager, item_path);
   g_free (item_path);
 
@@ -458,14 +458,14 @@ bjb_main_view_connect_signals (BjbMainView *self)
                               G_CALLBACK (on_drag_data_received), self);
 }
 
-void
+static void
 __destroy_n_notify__ (gpointer data)
 {
 }
 
 
 
-BijiItem *
+static BijiItem *
 _get_item_for_tree_path (GtkTreeModel *tree_model,
                          GtkTreeIter *iter,
                          BjbMainView *self)

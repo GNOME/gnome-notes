@@ -6,12 +6,12 @@
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * WebkitWebView is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -162,7 +162,7 @@ serialize_html (BijiLazySerializer *self)
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST html);
 }
 
-gboolean
+static gboolean
 biji_lazy_serialize_internal (BijiLazySerializer *self)
 {
   BijiLazySerializerPrivate *priv = self->priv;
@@ -179,15 +179,15 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   xmlTextWriterStartDocument (priv->writer,"1.0","utf-8",NULL);
 
   xmlTextWriterStartElement (priv->writer, BAD_CAST "note");
-  xmlTextWriterWriteAttributeNS (priv->writer, NULL, 
-                                 BAD_CAST "version",NULL, 
+  xmlTextWriterWriteAttributeNS (priv->writer, NULL,
+                                 BAD_CAST "version",NULL,
                                  BAD_CAST "1");
   xmlTextWriterWriteAttributeNS (priv->writer, BAD_CAST "xmlns",
-                                 BAD_CAST "link", NULL, 
+                                 BAD_CAST "link", NULL,
                                  BAD_CAST "http://projects.gnome.org/bijiben/link");
   xmlTextWriterWriteAttributeNS (priv->writer, BAD_CAST "xmlns", BAD_CAST "size", NULL,
                                  BAD_CAST "http://projects.gnome.org/bijiben/size");
-  xmlTextWriterWriteAttributeNS (priv->writer, NULL, BAD_CAST "xmlns", NULL, 
+  xmlTextWriterWriteAttributeNS (priv->writer, NULL, BAD_CAST "xmlns", NULL,
                                  BAD_CAST "http://projects.gnome.org/bijiben");
 
   // <Title>
@@ -195,14 +195,14 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
                   "title",
                   (gchar*) biji_item_get_title (BIJI_ITEM (priv->note)));
 
-  // <text> 
+  // <text>
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST "\n  ");
   xmlTextWriterStartElement(priv->writer, BAD_CAST "text");
   xmlTextWriterWriteAttributeNS(priv->writer, BAD_CAST "xml",
-                                BAD_CAST "space", NULL, 
+                                BAD_CAST "space", NULL,
                                 BAD_CAST "preserve");
   serialize_html (self);
-  // </text>  
+  // </text>
   xmlTextWriterEndElement(priv->writer);
 
   // <last-change-date>

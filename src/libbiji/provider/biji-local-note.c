@@ -36,7 +36,7 @@ G_DEFINE_TYPE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
 /* Iface */
 
 
-const gchar *
+static const gchar *
 local_note_get_place (BijiItem *local)
 {
   BijiLocalNote *self;
@@ -51,7 +51,7 @@ local_note_get_place (BijiItem *local)
 }
 
 
-gchar *
+static gchar *
 local_note_get_html (BijiNoteObj *note)
 {
   if (BIJI_IS_LOCAL_NOTE (note))
@@ -62,7 +62,7 @@ local_note_get_html (BijiNoteObj *note)
 }
 
 
-void
+static void
 local_note_set_html (BijiNoteObj *note,
                      const gchar *html)
 {
@@ -74,7 +74,7 @@ local_note_set_html (BijiNoteObj *note,
 }
 
 
-void
+static void
 local_note_save (BijiNoteObj *note)
 {
   const BijiProviderInfo *prov_info;

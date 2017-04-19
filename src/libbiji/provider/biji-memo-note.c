@@ -48,7 +48,7 @@ static GParamSpec *properties[MEMO_NOTE_PROP] = { NULL, };
 /* Function from evo calendar gui comp-util.c (LGPL)
  * to be removed if we depen on evo,
  * the func is borrowed as is (=3.13.1) */
-gboolean
+static gboolean
 cal_comp_is_on_server (ECalComponent *comp,
                        ECalClient *client)
 {

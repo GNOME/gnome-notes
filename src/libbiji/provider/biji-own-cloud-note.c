@@ -54,7 +54,7 @@ G_DEFINE_TYPE (BijiOwnCloudNote, biji_own_cloud_note, BIJI_TYPE_NOTE_OBJ)
 
 
 
-const gchar *
+static const gchar *
 ocloud_note_get_place (BijiItem *local)
 {
   BijiOwnCloudNote *self;
@@ -154,7 +154,7 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
 
 /* TODO: propagate error if any
  * through generic provider -> manager */
-void
+static void
 on_content_replaced  (GObject *source_object,
                       GAsyncResult *res,
                       gpointer user_data)

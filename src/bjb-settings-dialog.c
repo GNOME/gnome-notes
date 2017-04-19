@@ -1,6 +1,6 @@
 /*
  * bjb_settings_dialog.c
- * 
+ *
  * Copyright © 2013 Pierre-Yves LUYTEN <py@luyten.fr>
  *
  * bijiben is free software: you can redistribute it and/or modify it
@@ -335,7 +335,7 @@ add_child (gpointer provider_info, gpointer user_data)
 }
 
 
-GtkWidget *
+static GtkWidget *
 create_page_primary (BjbSettingsDialog *self)
 {
   BjbSettingsDialogPrivate *priv;
@@ -372,7 +372,7 @@ create_page_primary (BjbSettingsDialog *self)
 /* Edition page (font, color) */
 
 
-GtkWidget *
+static GtkWidget *
 create_page_edition (BjbSettingsDialog *self)
 {
   BjbSettingsDialogPrivate   *priv;

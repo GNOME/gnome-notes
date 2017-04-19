@@ -234,7 +234,7 @@ biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
 
 /* First cancel timeout
  * this func is most probably stupid it might exists (move file) */
-gboolean
+static gboolean
 biji_note_obj_trash (BijiItem *item)
 {
   BijiNoteObj *note_to_kill;
@@ -478,7 +478,7 @@ biji_note_obj_get_notebooks (BijiNoteObj *n)
   return g_hash_table_get_values (n->priv->labels);
 }
 
-gboolean
+static gboolean
 biji_note_obj_has_notebook (BijiItem *item, gchar *label)
 {
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
@@ -501,7 +501,7 @@ _biji_notebook_refresh (gboolean query_result,
 }
 
 
-/*static */ gboolean
+static gboolean
 biji_note_obj_add_notebook (BijiItem *item,
                               BijiItem *notebook,
                               gchar    *title)
@@ -533,7 +533,7 @@ biji_note_obj_add_notebook (BijiItem *item,
 }
 
 
-gboolean
+static gboolean
 biji_note_obj_remove_notebook (BijiItem *item, BijiItem *notebook)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);

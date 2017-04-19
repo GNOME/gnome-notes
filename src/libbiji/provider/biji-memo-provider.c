@@ -535,7 +535,7 @@ on_object_created (GObject      *client,
 
 BijiNoteObj *
 memo_create_note (BijiProvider *provider,
-                  gchar        *str)
+                  const gchar  *str)
 {
   BijiMemoProvider *self = BIJI_MEMO_PROVIDER (provider);
   BijiInfoSet    info;
@@ -603,7 +603,7 @@ memo_create_note (BijiProvider *provider,
 
 
   /* make sure the component has an UID and info get it */
-  if (! (info.url = icalcomponent_get_uid (icalcomp)))
+  if (! (info.url = (gchar *) icalcomponent_get_uid (icalcomp)))
   {
     gchar *uid;
 

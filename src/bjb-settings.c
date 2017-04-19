@@ -253,21 +253,21 @@ bjb_settings_set_use_system_font        (BjbSettings *settings, gboolean value)
 }
 
 
-gchar *
+const gchar *
 bjb_settings_get_default_font           (BjbSettings *settings)
 {
   return settings->priv->font;
 }
 
 
-gchar *
+const gchar *
 bjb_settings_get_default_color          (BjbSettings *settings)
 {
   return settings->priv->color;
 }
 
 
-gchar *
+const gchar *
 bjb_settings_get_default_location       (BjbSettings *settings)
 {
   return settings->priv->primary;

@@ -1,16 +1,16 @@
 /* bjb-provider.h
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -95,7 +95,7 @@ struct BijiProviderClass_
    * Does not allow to trick color or dates */
 
   BijiNoteObj*               (*create_new_note)       (BijiProvider *provider,
-                                                       gchar        *content);
+                                                       const gchar  *content);
 
   /* Creates a single note representing some existing data,
    * with title, content, dates, html, color.
@@ -116,11 +116,11 @@ struct BijiProviderClass_
    * TODO: rebase startup code on local provider create note full when good enough
    * TODO: owncloud provider (to handle importing) */
 
-  BijiNoteObj*               (*create_note_full)      (BijiProvider *provider,
-                                                       gchar        *suggested_path,
-                                                       BijiInfoSet  *info,
-                                                       gchar        *html,
-                                                       GdkRGBA      *color);
+  BijiNoteObj*               (*create_note_full)      (BijiProvider  *provider,
+                                                       const gchar   *suggested_path,
+                                                       BijiInfoSet   *info,
+                                                       const gchar   *html,
+                                                       const GdkRGBA *color);
 
 
    /* TODO : (*create_notebook). Add a flag into provider info? */

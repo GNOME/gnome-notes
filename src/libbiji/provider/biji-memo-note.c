@@ -25,7 +25,7 @@ struct _BijiMemoNotePrivate
   BijiProvider  *provider;
   ECalComponent *ecal;
   ECalClient    *client;
-  gchar         *description;
+  const gchar   *description;
   BijiNoteID    *id;
 };
 
@@ -309,7 +309,8 @@ biji_memo_note_get_property (GObject    *object,
 
 
 static void
-memo_set_html (BijiNoteObj *note, gchar *html)
+memo_set_html (BijiNoteObj *note,
+               const gchar *html)
 {
   /* NULL */
 }
@@ -460,7 +461,7 @@ biji_memo_note_new_from_info          (BijiMemoProvider *provider,
                                        BijiManager      *manager,
                                        BijiInfoSet      *info,
 				       ECalComponent    *component,
-                                       gchar            *description,
+                                       const gchar      *description,
 				       ECalClient       *client)
 {
   BijiNoteID *id;

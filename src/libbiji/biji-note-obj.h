@@ -1,16 +1,16 @@
 /* biji-note-obj.h
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -66,7 +66,7 @@ struct _BijiNoteObjClass
 
   /*
    * Mandatory. When editor amends html, assign it */
-  void          (*set_html)          (BijiNoteObj *note, gchar *html);
+  void          (*set_html)          (BijiNoteObj *note, const gchar *html);
 
   /*
    * Mandatory. Store the note. This might be async. */
@@ -142,7 +142,8 @@ gboolean         biji_note_obj_get_rgba                      (BijiNoteObj *n,
                                                               GdkRGBA *rgba) ;
 
 
-void             biji_note_obj_set_rgba                      (BijiNoteObj *n, GdkRGBA *rgba) ;
+void             biji_note_obj_set_rgba                      (BijiNoteObj *n,
+                                                              const GdkRGBA *rgba) ;
 
 
 GList           *biji_note_obj_get_notebooks               (BijiNoteObj *n);
@@ -172,7 +173,7 @@ const gchar     *biji_note_obj_get_raw_text                  (BijiNoteObj *note)
 
 
 void             biji_note_obj_set_raw_text                  (BijiNoteObj *note,
-                                                              gchar *plain_text);
+                                                              const gchar *plain_text);
 
 
 gboolean         biji_note_obj_set_title                     (BijiNoteObj* note_obj_ptr,
@@ -197,11 +198,11 @@ GtkWidget       *biji_note_obj_get_editor                    (BijiNoteObj *note)
 gboolean         biji_note_obj_can_format                    (BijiNoteObj *note);
 
 
-gchar           *html_from_plain_text                        (gchar *content);
+gchar           *html_from_plain_text                        (const gchar *content);
 
 
-void             biji_note_obj_set_html                       (BijiNoteObj *note,
-                                                              gchar *html);
+void             biji_note_obj_set_html                      (BijiNoteObj *note,
+                                                              const gchar *html);
 
 
 gchar           *biji_note_obj_get_html                      (BijiNoteObj *note);

@@ -85,8 +85,8 @@ BijiManager     *biji_manager_new_finish            (GAsyncResult *res,
 
 
 void             biji_manager_import_uri            (BijiManager *manager,
-                                                     gchar *target_provider_id,
-                                                     gchar *uri);
+                                                     const gchar *target_provider_id,
+                                                     const gchar *uri);
 
 GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
 
@@ -138,16 +138,16 @@ void             biji_manager_empty_bin              (BijiManager        *manage
 
 
 BijiNoteObj     *biji_manager_note_new              (BijiManager *manager,
-                                                     gchar        *str,
-                                                     gchar        *provider_id);
+                                                     const gchar *str,
+                                                     const gchar *provider_id);
 
 
-BijiNoteObj     *biji_manager_note_new_full         (BijiManager *manager,
-                                                     gchar        *provider_id,
-                                                     gchar        *suggested_path,
-                                                     BijiInfoSet  *info,
-                                                     gchar        *html,
-                                                     GdkRGBA      *color);
+BijiNoteObj     *biji_manager_note_new_full         (BijiManager   *manager,
+                                                     const gchar   *provider_id,
+                                                     const gchar   *suggested_path,
+                                                     BijiInfoSet   *info,
+                                                     const gchar   *html,
+                                                     const GdkRGBA *color);
 
 
 G_END_DECLS

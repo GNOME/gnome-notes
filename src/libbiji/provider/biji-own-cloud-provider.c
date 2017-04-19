@@ -902,8 +902,8 @@ own_cloud_get_info       (BijiProvider *provider)
  * Promise. */
 
 BijiNoteObj *
-own_cloud_create_note         (BijiProvider *provider,
-                               gchar        *str)
+own_cloud_create_note (BijiProvider *provider,
+                       const gchar  *str)
 {
   BijiInfoSet info;
   BijiOwnCloudProvider *self;
@@ -928,11 +928,11 @@ own_cloud_create_note         (BijiProvider *provider,
  * but can't use path, nor color, nor html. */
 
 BijiNoteObj *
-own_cloud_create_full (BijiProvider *provider,
-                       gchar        *suggested_path,
-                       BijiInfoSet  *info,
-                       gchar        *html,
-                       GdkRGBA      *color)
+own_cloud_create_full (BijiProvider  *provider,
+                       const gchar   *suggested_path,
+                       BijiInfoSet   *info,
+                       const gchar   *html,
+                       const GdkRGBA *color)
 {
   BijiOwnCloudProvider *self;
   BijiNoteObj *retval;

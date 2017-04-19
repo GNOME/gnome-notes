@@ -61,7 +61,7 @@ BijiNoteObj           *biji_memo_note_new_from_info          (BijiMemoProvider *
                                                               BijiManager      *manager,
                                                               BijiInfoSet      *info,
 							      ECalComponent    *comp,
-							      gchar            *description,
+							      const gchar      *description,
                                                               ECalClient       *client);
 
 

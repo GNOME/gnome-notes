@@ -829,8 +829,8 @@ biji_manager_new_finish (GAsyncResult *res,
  * And no need to _add_provider, it's a tmp provider. */
 void
 biji_manager_import_uri (BijiManager *manager,
-                           gchar *target_provider_id,
-                           gchar *uri)
+                         const gchar *target_provider_id,
+                         const gchar *uri)
 {
   BijiProvider *ret;
 
@@ -846,8 +846,8 @@ biji_manager_import_uri (BijiManager *manager,
  */
 BijiNoteObj *
 biji_manager_note_new            (BijiManager  *self,
-                                  gchar        *str,
-                                  gchar        *provider_id)
+                                  const gchar  *str,
+                                  const gchar  *provider_id)
 {
   BijiProvider *provider = NULL;
   BijiNoteObj *retval;
@@ -872,12 +872,12 @@ biji_manager_note_new            (BijiManager  *self,
 
 
 BijiNoteObj *
-biji_manager_note_new_full (BijiManager *manager,
-                              gchar        *provider_id,
-                              gchar        *suggested_path,
-                              BijiInfoSet  *info,
-                              gchar        *html,
-                              GdkRGBA      *color)
+biji_manager_note_new_full (BijiManager   *manager,
+                            const gchar   *provider_id,
+                            const gchar   *suggested_path,
+                            BijiInfoSet   *info,
+                            const gchar   *html,
+                            const GdkRGBA *color)
 {
   BijiProvider *provider;
   BijiNoteObj *retval;

@@ -61,13 +61,13 @@ void              bjb_settings_set_use_system_font        (BjbSettings *settings
                                                            gboolean value);
 
 
-gchar            *bjb_settings_get_default_font           (BjbSettings *settings);
+const gchar      *bjb_settings_get_default_font           (BjbSettings *settings);
 
 
-gchar            *bjb_settings_get_default_color          (BjbSettings *settings);
+const gchar      *bjb_settings_get_default_color          (BjbSettings *settings);
 
 
-gchar            *bjb_settings_get_default_location       (BjbSettings *settings);
+const gchar      *bjb_settings_get_default_location       (BjbSettings *settings);
 
 
 gchar            *bjb_settings_get_system_font            (BjbSettings *settings);

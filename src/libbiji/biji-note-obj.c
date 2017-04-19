@@ -411,7 +411,8 @@ biji_note_obj_clear_icons (BijiNoteObj *note)
 }
 
 static void
-biji_note_obj_set_rgba_internal (BijiNoteObj *n, GdkRGBA *rgba)
+biji_note_obj_set_rgba_internal (BijiNoteObj *n,
+                                 const GdkRGBA *rgba)
 {
   n->priv->color = gdk_rgba_copy(rgba);
 
@@ -419,7 +420,8 @@ biji_note_obj_set_rgba_internal (BijiNoteObj *n, GdkRGBA *rgba)
 }
 
 void
-biji_note_obj_set_rgba (BijiNoteObj *n, GdkRGBA *rgba)
+biji_note_obj_set_rgba (BijiNoteObj *n,
+                        const GdkRGBA *rgba)
 {
   if (!n->priv->color)
     biji_note_obj_set_rgba_internal (n, rgba);
@@ -458,7 +460,8 @@ biji_note_obj_get_raw_text                  (BijiNoteObj *note)
 }
 
 void
-biji_note_obj_set_raw_text (BijiNoteObj *note, gchar *plain_text)
+biji_note_obj_set_raw_text (BijiNoteObj *note,
+                            const gchar *plain_text)
 {
   if (biji_note_id_set_content (note->priv->id, plain_text))
   {
@@ -793,7 +796,7 @@ biji_note_obj_set_create_date (BijiNoteObj *note, gint64 time)
 /* Webkit */
 
 gchar *
-html_from_plain_text                        (gchar *content)
+html_from_plain_text (const gchar *content)
 {
   gchar *escaped, *retval;
 
@@ -829,7 +832,7 @@ biji_note_obj_get_html (BijiNoteObj *note)
 
 void
 biji_note_obj_set_html (BijiNoteObj *note,
-                        gchar *html)
+                        const gchar *html)
 {
   BIJI_NOTE_OBJ_GET_CLASS (note)->set_html (note, html);
 }

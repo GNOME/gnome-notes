@@ -1,18 +1,18 @@
 /*
  * biji-import-provider.c
- * 
+ *
  * Copyright 2013 Pierre-Yves Luyten <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -239,7 +239,7 @@ biji_import_provider_constructed (GObject *object)
   priv->info.domain = NULL;
   priv->info.user = NULL;
 
-  
+
   to_import = g_file_new_for_uri (self->priv->uri);
 
   g_file_enumerate_children_async (to_import, ATTRIBUTES_FOR_NOTEBOOK,
@@ -358,7 +358,9 @@ biji_import_provider_init (BijiImportProvider *self)
 
 
 BijiProvider *
-biji_import_provider_new (BijiManager *b, gchar *target_provider, gchar *uri)
+biji_import_provider_new (BijiManager *b,
+                          const gchar *target_provider,
+                          const gchar *uri)
 {
   return g_object_new (BIJI_TYPE_IMPORT_PROVIDER,
                        "manager", b,

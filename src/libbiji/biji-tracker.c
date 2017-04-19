@@ -1,16 +1,16 @@
 /* biji-tracker.c
  * Copyright (C) Pierre-Yves LUYTEN 2012, 2013 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -215,7 +215,7 @@ biji_query_info_hash_finish (GObject      *source_object,
 
       set->tracker_urn = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_URN_COL, NULL));
       set->title = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_TITLE_COL, NULL));
-      
+
       if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, BIJI_MTIME_COL, NULL), &time))
         set->mtime = time.tv_sec;
 
@@ -339,6 +339,8 @@ biji_get_all_notebooks_async (BijiManager *manager,
     NULL);
 
   bjb_query_async (manager, query, cb, NULL, user_data);
+
+  g_free (query);
 }
 
 
@@ -745,7 +747,7 @@ ensure_ressource_callback (GObject *source_object,
 
 
 void
-biji_tracker_ensure_ressource_from_info (BijiManager *manager, 
+biji_tracker_ensure_ressource_from_info (BijiManager *manager,
                                          BijiInfoSet *info)
 {
   gchar *query;
@@ -776,6 +778,8 @@ biji_tracker_ensure_ressource_from_info (BijiManager *manager,
 
   tracker_sparql_connection_query_async (
       get_connection (manager), query, NULL, ensure_ressource_callback, finisher);
+
+  g_free (query);
 }
 
 

@@ -19,7 +19,7 @@
 
 /*
  * http://tools.ietf.org/html/rfc2445
- * 
+ *
  * Evolution UI offers to sync Memo to local computer
  * TODO: check this
  */
@@ -171,7 +171,7 @@ create_note_from_item (BijiMemoItem *item)
   biji_manager_get_default_color (manager, &color);
   biji_note_obj_set_rgba (note, &color);
   g_hash_table_replace (item->self->priv->items,
-                        item->set.url,
+                        g_strdup (item->set.url),
                         note);
 }
 
@@ -280,7 +280,7 @@ on_object_list_got (GObject      *obj,
       dtstart = time;
     else
       dtstart = 0;
-    // e_cal_component_free_datetime()
+    e_cal_component_free_datetime(&tz);
 
     e_cal_component_get_last_modified (co, &t); // or dtstart
     if (time_val_from_icaltime (t, &time))
@@ -362,6 +362,8 @@ on_notes_mined (GObject       *source_object,
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL)));
 
     }
+
+    g_object_unref (cursor);
   }
 
   e_cal_client_get_object_list (self->priv->client,
@@ -650,7 +652,8 @@ biji_memo_provider_init (BijiMemoProvider *self)
   priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_MEMO_PROVIDER, BijiMemoProviderPrivate);
 
   priv->queue = g_queue_new ();
-  priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+  priv->items = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                       g_free, g_object_unref);
   priv->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
   priv->memos = NULL;
 
@@ -659,7 +662,13 @@ biji_memo_provider_init (BijiMemoProvider *self)
 static void
 biji_memo_provider_finalize (GObject *object)
 {
-  e_cal_client_free_icalcomp_slist (BIJI_MEMO_PROVIDER (object)->priv->memos);
+  BijiMemoProviderPrivate *priv = BIJI_MEMO_PROVIDER (object)->priv;
+
+  e_cal_client_free_icalcomp_slist (priv->memos);
+
+  g_hash_table_unref (priv->tracker);
+  g_hash_table_unref (priv->items);
+  g_queue_free_full (priv->queue, (GDestroyNotify) memo_item_free);
 
   G_OBJECT_CLASS (biji_memo_provider_parent_class)->finalize (object);
 }

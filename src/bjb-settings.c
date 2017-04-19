@@ -1,16 +1,16 @@
 /* bjb-settings.c
  * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
@@ -59,8 +59,8 @@ G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_SETTINGS);
 
 static void
 bjb_settings_init (BjbSettings *object)
-{    
-  object->priv = 
+{
+  object->priv =
   G_TYPE_INSTANCE_GET_PRIVATE(object,BJB_TYPE_SETTINGS,BjbSettingsPrivate);
 }
 
@@ -71,6 +71,10 @@ bjb_settings_finalize (GObject *object)
 
   self = BJB_SETTINGS (object);
   g_object_unref (self->priv->system);
+
+  g_free (self->priv->font);
+  g_free (self->priv->color);
+  g_free (self->priv->primary);
 
   G_OBJECT_CLASS (bjb_settings_parent_class)->finalize (object);
 }
@@ -100,7 +104,7 @@ bjb_settings_get_property (GObject    *object,
     case PROP_PRIMARY:
       g_value_set_string (value, settings->priv->primary);
       break;
-                                
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -118,21 +122,24 @@ bjb_settings_set_property (GObject      *object,
   switch (prop_id)
   {
     case PROP_USE_SYSTEM_FONT:
-      settings->priv->use_system_font = g_value_get_boolean (value) ; 
+      settings->priv->use_system_font = g_value_get_boolean (value) ;
       break;
 
     case PROP_FONT:
-      settings->priv->font = g_value_dup_string(value) ; 
+      g_free (settings->priv->font);
+      settings->priv->font = g_value_dup_string(value);
       break;
 
     case PROP_COLOR:
+      g_free (settings->priv->color);
       settings->priv->color = g_value_dup_string(value);
       break;
 
     case PROP_PRIMARY:
+      g_free (settings->priv->primary);
       settings->priv->primary = g_value_dup_string (value);
       break;
-            
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -188,7 +195,7 @@ bjb_settings_class_init (BjbSettingsClass *klass)
                                    "Use system font",
                                    "Default System Font for Notes",
                                    TRUE,
-                                   G_PARAM_READWRITE | 
+                                   G_PARAM_READWRITE |
                                    G_PARAM_STATIC_STRINGS);
 
 
@@ -197,7 +204,7 @@ bjb_settings_class_init (BjbSettingsClass *klass)
                                    "Notes Font",
                                    "Font for Notes",
                                    NULL,
-                                   G_PARAM_READWRITE | 
+                                   G_PARAM_READWRITE |
                                    G_PARAM_STATIC_STRINGS);
 
 
@@ -206,7 +213,7 @@ bjb_settings_class_init (BjbSettingsClass *klass)
                                    "New Notes Color",
                                    "Default Color for New Notes",
                                    NULL,
-                                   G_PARAM_READWRITE | 
+                                   G_PARAM_READWRITE |
                                    G_PARAM_STATIC_STRINGS);
 
 
@@ -215,7 +222,7 @@ bjb_settings_class_init (BjbSettingsClass *klass)
                                    "Primary Location",
                                    "Default Provider for New Notes",
                                    NULL,
-                                   G_PARAM_READWRITE | 
+                                   G_PARAM_READWRITE |
                                    G_PARAM_STATIC_STRINGS);
 
 
@@ -242,7 +249,7 @@ bjb_settings_use_system_font            (BjbSettings *settings)
 void
 bjb_settings_set_use_system_font        (BjbSettings *settings, gboolean value)
 {
-  settings->priv->use_system_font = value;  
+  settings->priv->use_system_font = value;
 }
 
 

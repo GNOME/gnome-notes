@@ -1,17 +1,17 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /* biji-own-cloud-provider.c
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -137,6 +137,11 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_object_unref (self->priv->folder);
 
   g_clear_pointer (&self->priv->info.name, g_free);
+  g_clear_pointer (&self->priv->info.datasource, g_free);
+
+  g_queue_free_full (self->priv->queue, g_object_unref);
+  g_hash_table_unref (self->priv->notes);
+  g_hash_table_unref (self->priv->tracker);
 
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->finalize (object);
 }
@@ -790,8 +795,9 @@ biji_own_cloud_provider_constructed (GObject *obj)
     {
       priv->info.icon = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_INVALID);
       gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
-      g_object_ref (priv->info.icon);
     }
+
+    g_object_unref (icon);
 
     owncloudclient = g_build_filename (
         g_get_home_dir (),
@@ -805,6 +811,8 @@ biji_own_cloud_provider_constructed (GObject *obj)
                        NULL, on_owncloudclient_read, self);
     else
 			get_mount (self);
+
+    g_object_unref (client);
 
     return;
   }

@@ -1,16 +1,16 @@
 /* bjb-note-manager.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -128,7 +128,7 @@ on_provider_abort_cb (BijiProvider *provider,
   const BijiProviderInfo *info;
 
   info = biji_provider_get_info (provider);
-  g_hash_table_remove (self->priv->providers, (gpointer) info->unique_id);
+  g_hash_table_remove (self->priv->providers, info->unique_id);
 
   g_object_unref (G_OBJECT (provider));
 }
@@ -149,7 +149,8 @@ _add_provider (BijiManager *self,
   const BijiProviderInfo *info;
 
   info = biji_provider_get_info (provider);
-  g_hash_table_insert (self->priv->providers, (gpointer) info->unique_id, provider);
+  g_hash_table_insert (self->priv->providers,
+                       (gpointer) info->unique_id, provider);
 
   g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);
@@ -185,6 +186,7 @@ load_goa_client (BijiManager *self,
         g_message ("Loading account %s", goa_account_get_id (account));
         provider = biji_own_cloud_provider_new (self, object);
         _add_provider (self, provider);
+        g_object_unref (provider);
       }
     }
   }
@@ -204,6 +206,7 @@ load_eds_registry (BijiManager *self,
   {
     provider = biji_memo_provider_new (self, l->data);
     _add_provider (self, provider);
+    g_object_unref (provider);
   }
 
   g_list_free_full (list, g_object_unref);
@@ -297,8 +300,8 @@ biji_manager_init (BijiManager *self)
    * - local files stored notes = "local"
    * - own cloud notes = account_get_id
    */
-
-  priv->providers = g_hash_table_new (g_str_hash, g_str_equal);
+  priv->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                           g_free, g_object_unref);
 }
 
 
@@ -348,6 +351,8 @@ biji_manager_finalize (GObject *object)
   g_hash_table_destroy (manager->priv->items);
   g_hash_table_destroy (manager->priv->archives);
 
+  g_hash_table_unref (manager->priv->providers);
+  g_clear_object (&manager->priv->local_provider);
 
   G_OBJECT_CLASS (biji_manager_parent_class)->finalize (object);
 }
@@ -830,7 +835,7 @@ biji_manager_import_uri (BijiManager *manager,
   BijiProvider *ret;
 
   ret = biji_import_provider_new (manager, target_provider_id, uri);
-  g_signal_connect (ret, "loaded", 
+  g_signal_connect (ret, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), manager);
 
 }

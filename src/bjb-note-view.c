@@ -81,6 +81,7 @@ bjb_note_view_finalize(GObject *object)
   bjb_note_view_disconnect (self);
 
   g_clear_object (&priv->view);
+  g_clear_object (&priv->edit_bar);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
 }

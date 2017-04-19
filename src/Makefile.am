@@ -16,15 +16,6 @@ AM_CPPFLAGS = \
 	-I$(top_builddir)/src/libbiji \
 	$(BIJIBEN_CFLAGS)
 
-AM_CFLAGS =\
-	 -Wall\
-	 -g
-
-
-
-
-
-
 LDADD = libbiji/libbiji.la \
 	$(LIBM) \
 	$(top_builddir)/libgd/libgd.la \

@@ -361,11 +361,11 @@ bijiben_application_local_command_line (GApplication *application,
 
   const GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &version,
-      N_("Show the application's version"), NULL},
+      N_("Show the application’s version"), NULL},
     { "new-note", 0, 0, G_OPTION_ARG_NONE, &BIJIBEN_APPLICATION(application)->priv->new_note,
       N_("Create a new note"), NULL},
     { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY, &remaining,
-      NULL,  N_("[FILE...]") },
+      NULL,  N_("[FILE…]") },
     { NULL }
   };
 

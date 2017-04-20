@@ -156,7 +156,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
 
       gtk_label_set_label (
         self->priv->details_label,
-        _("Please install 'Tracker' then restart the application."));
+        _("Please install “Tracker” then restart the application."));
 
       gtk_widget_show (GTK_WIDGET (self->priv->details_label));
       gtk_widget_show (self->priv->image);

@@ -95,7 +95,7 @@ bjb_load_more_button_clicked (GtkButton *button)
   self = BJB_LOAD_MORE_BUTTON (button);
   priv = self->priv;
 
-  gtk_label_set_label (GTK_LABEL (priv->label), _("Loading..."));
+  gtk_label_set_label (GTK_LABEL (priv->label), _("Loading…"));
   gtk_widget_show (priv->spinner);
   gtk_spinner_start (GTK_SPINNER (priv->spinner));
 

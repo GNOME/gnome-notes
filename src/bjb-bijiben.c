@@ -353,7 +353,7 @@ bijiben_application_local_command_line (GApplication *application,
 {
   Bijiben *self;
   gboolean version = FALSE;
-  gchar **remaining;
+  gchar **remaining = NULL;
   GOptionContext *context;
   GError *error = NULL;
   gint argc = 0;

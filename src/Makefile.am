@@ -31,7 +31,7 @@ bjb-resources.c: bjb.gresource.xml $(bjb_gresource_xml_deps)
 bjb-resources.h: bjb.gresource.xml $(bjb_gresource_xml_deps)
 	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header --c-name bjb $<
 
-bijiben_resources_sources = \
+bjb_resources_sources = \
 	bjb-resources.c \
 	bjb-resources.h \
 	$(NULL)
@@ -100,12 +100,12 @@ bijiben_shell_search_provider_SOURCES = 	\
 	$(NULL)
 
 nodist_bijiben_shell_search_provider_SOURCES =		\
-	$(bijiben_resources_sources) \
+	$(bjb_resources_sources) \
 	$(dbus_shell_search_provider_built_sources)	\
 	$(NULL)
 
 BUILT_SOURCES = \
-	$(bijiben_resources_sources) \
+	$(bjb_resources_sources) \
 	$(dbus_shell_search_provider_built_sources) 	\
 	$(NULL)
 

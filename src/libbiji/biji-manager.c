@@ -150,7 +150,7 @@ _add_provider (BijiManager *self,
 
   info = biji_provider_get_info (provider);
   g_hash_table_insert (self->priv->providers,
-                       (gpointer) info->unique_id, provider);
+                       g_strdup (info->unique_id), g_object_ref (provider));
 
   g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);

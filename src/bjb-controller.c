@@ -567,7 +567,6 @@ bjb_controller_apply_needle (BjbController *self)
     else
       update_controller_callback (result, self);
 
-    result = g_list_first (result);  /* update_controller_callback() sorts it */
     g_list_free (result);
 
     return;

@@ -93,7 +93,7 @@ check_insert_create_zeitgeist (BijiNoteObj *note)
   uri = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
   log = biji_manager_get_zg_log (biji_item_get_manager (BIJI_ITEM (note)));
 
-  templates = g_ptr_array_new ();
+  templates = g_ptr_array_new_with_free_func (g_object_unref);
   event = zeitgeist_event_new_full (ZEITGEIST_ZG_CREATE_EVENT,
                                     NULL,
                                     "application://bijiben.desktop",

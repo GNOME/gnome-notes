@@ -440,16 +440,16 @@ title_is_unique (BijiManager *manager, gchar *title)
 gchar *
 biji_manager_get_unique_title (BijiManager *manager, const gchar *title)
 {
+  gchar *new_title;
+  gint suffix = 2;
+
   if (!manager)
     return g_strdup (title);
-
-  gchar *new_title;
 
   if (!title)
     title = "";
 
   new_title = g_strdup (title);
-  gint suffix = 2;
 
   while (!title_is_unique (manager, new_title))
   {

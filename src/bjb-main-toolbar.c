@@ -1069,8 +1069,10 @@ bjb_main_toolbar_constructed (GObject *obj)
 static void
 bjb_main_toolbar_init (BjbMainToolbar *self)
 {
+  BjbMainToolbarPrivate *priv;
+
   self->priv = BJB_MAIN_TOOLBAR_GET_PRIVATE(self);
-  BjbMainToolbarPrivate *priv = self->priv;
+  priv = self->priv;
 
   priv->type = BJB_TOOLBAR_0 ;
 

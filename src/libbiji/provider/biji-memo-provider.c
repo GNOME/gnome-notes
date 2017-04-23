@@ -442,8 +442,7 @@ on_client_connected (GObject      *obj,
                      GAsyncResult *res,
                      gpointer      user_data)
 {
-  GError *error;
-  error = NULL;
+  GError *error = NULL;
   gchar *query;
   BijiMemoProvider *self = BIJI_MEMO_PROVIDER (user_data);
 

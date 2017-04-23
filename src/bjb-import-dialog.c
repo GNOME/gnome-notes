@@ -382,8 +382,6 @@ add_application (const gchar *app,
 static void
 bjb_import_dialog_constructed (GObject *obj)
 {
-  G_OBJECT_CLASS(bjb_import_dialog_parent_class)->constructed(obj);
-
   GtkWidget *area, *label_box, *label, *frame;
   gchar *path;
   GList *windows;
@@ -392,6 +390,8 @@ bjb_import_dialog_constructed (GObject *obj)
   GtkDialog              *dialog  = GTK_DIALOG (obj);
   GtkWindow              *win     = GTK_WINDOW (obj);
   BjbImportDialogPrivate *priv    = self->priv;
+
+  G_OBJECT_CLASS(bjb_import_dialog_parent_class)->constructed(obj);
 
   /* Don't finalize locations with HashTable
    * They belong to qdata in gtkwidgets */

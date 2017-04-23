@@ -1,16 +1,16 @@
 /* biji-webkit-editor.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -227,14 +227,16 @@ void
 biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font)
 {
   PangoFontDescription *font_desc;
+  const gchar *family;
+  gint size;
 
   /* parse : but we only parse font properties we'll be able
    * to transfer to webkit editor
    * Maybe is there a better way than webkitSettings,
    * eg applying format to the whole body */
   font_desc = pango_font_description_from_string (font);
-  const gchar * family = pango_font_description_get_family (font_desc);
-  gint size = pango_font_description_get_size (font_desc);
+  family = pango_font_description_get_family (font_desc);
+  size = pango_font_description_get_size (font_desc);
 
   if (!pango_font_description_get_size_is_absolute (font_desc))
     size /= PANGO_SCALE;

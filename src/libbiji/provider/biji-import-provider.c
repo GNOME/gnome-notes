@@ -72,6 +72,10 @@ instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
   gchar *path;
   GdkRGBA *color;
   BijiManager *manager;
+  GError *error = NULL;
+  BijiInfoSet *set;
+  gchar *html = NULL;
+  GList *notebooks = NULL;
 
 
   retval = NULL;
@@ -86,12 +90,6 @@ instanciate_note (BijiImportProvider *self, GFileInfo *info, GFile *container)
 
 
   /* Deserialize it */
-
-  GError *error = NULL;
-  BijiInfoSet *set;
-  gchar *html = NULL;
-  GList *notebooks = NULL;
-
   biji_tomboy_reader_read   (path,
                              &error,
                              &set,

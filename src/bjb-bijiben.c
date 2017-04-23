@@ -358,7 +358,6 @@ bijiben_application_local_command_line (GApplication *application,
   GError *error = NULL;
   gint argc = 0;
   gchar **argv = NULL;
-  *exit_status = EXIT_SUCCESS;
 
   const GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &version,
@@ -369,6 +368,8 @@ bijiben_application_local_command_line (GApplication *application,
       NULL,  N_("[FILE...]") },
     { NULL }
   };
+
+  *exit_status = EXIT_SUCCESS;
 
   context = g_option_context_new (NULL);
   g_option_context_set_summary (context,

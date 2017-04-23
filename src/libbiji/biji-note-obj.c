@@ -287,9 +287,11 @@ biji_note_obj_is_trashed                    (BijiNoteObj *self)
 static const gchar *
 biji_note_obj_get_path (BijiItem *item)
 {
+  BijiNoteObj *note;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
 
-  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+  note = BIJI_NOTE_OBJ (item);
 
   return biji_note_id_get_path (note->priv->id);
 }
@@ -536,10 +538,12 @@ biji_note_obj_add_notebook (BijiItem *item,
 static gboolean
 biji_note_obj_remove_notebook (BijiItem *item, BijiItem *notebook)
 {
+  BijiNoteObj *note;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (notebook), FALSE);
 
-  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+  note = BIJI_NOTE_OBJ (item);
 
   if (g_hash_table_remove (note->priv->labels, biji_item_get_title (notebook)))
   {
@@ -598,10 +602,10 @@ biji_note_obj_save_note (BijiNoteObj *self)
 gchar *
 biji_note_obj_get_icon_file (BijiNoteObj *note)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
-
   const gchar *uuid;
   gchar *basename, *filename;
+
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
 
   uuid = BIJI_NOTE_OBJ_GET_CLASS (note)->get_basename (note);
   basename = biji_str_mass_replace (uuid, ".note", ".png", ".txt", ".png", NULL);

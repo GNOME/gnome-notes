@@ -6,6 +6,8 @@
 
   <name xml:lang="en">Bijiben</name>
   <shortdesc xml:lang="en">Write out notes, every detail matters</shortdesc>
+  <description>GNOME Notes (Bijiben) is a simple application for creating, editing and viewing notes.
+  Write out notes, every detail matters</description>
   <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
   <homepage rdf:resource="https://wiki.gnome.org/Apps/Bijiben" />
   <download-page rdf:resource="http://download.gnome.org/sources/bijiben/" />

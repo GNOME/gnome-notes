@@ -211,8 +211,8 @@ enumerate_next_files_ready_cb (GObject *source,
         continue;
 
       info.url = g_build_filename (base_path, name, NULL);
-      info.title = "";
-      info.content = "";
+      info.title = (gchar *) "";
+      info.content = (gchar *) "";
       info.mtime = 0;
 
 

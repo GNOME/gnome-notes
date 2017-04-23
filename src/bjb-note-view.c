@@ -173,7 +173,8 @@ on_note_trashed (BijiNoteObj *note, BjbNoteView *view)
 static void
 on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
-  gchar *font_color, *span, *text;
+  const gchar *font_color;
+  gchar *span, *text;
   BjbNoteViewPrivate *priv = self->priv;
   GdkRGBA color;
 

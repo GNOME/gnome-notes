@@ -234,7 +234,7 @@ biji_import_provider_constructed (GObject *object)
 
   priv->info.unique_id = NULL;
   priv->info.datasource = NULL;
-  priv->info.name = "import-provider";
+  priv->info.name = (gchar *) "import-provider";
   priv->info.icon =  NULL;
   priv->info.domain = NULL;
   priv->info.user = NULL;

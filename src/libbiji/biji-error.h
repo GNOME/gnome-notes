@@ -45,7 +45,7 @@ GQuark               biji_error_quark                       (void);
 
 
 GError              *biji_error_new                        (BijiErrorType type,
-                                                            gchar *message);
+                                                            const gchar *message);
 
 
 G_END_DECLS

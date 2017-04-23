@@ -131,7 +131,9 @@ biji_lazy_serializer_class_init (BijiLazySerializerClass *klass)
 }
 
 static void
-serialize_node (xmlTextWriterPtr writer, gchar *node, gchar *value)
+serialize_node (xmlTextWriterPtr writer,
+                const gchar *node,
+                const gchar *value)
 {
   xmlTextWriterWriteRaw     (writer, BAD_CAST "\n  ");
   xmlTextWriterStartElement (writer, BAD_CAST node);

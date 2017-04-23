@@ -112,7 +112,7 @@ import_dialog_child_free (ImportDialogChild *child)
  * might use app_info here */
 
 static GdkPixbuf *
-get_app_icon (gchar *app_name)
+get_app_icon (const gchar *app_name)
 {
   gint i;
   GdkPixbuf *retval= NULL;
@@ -333,8 +333,8 @@ add_custom (BjbImportDialog *self)
 
 
 static ImportDialogChild *
-add_application (gchar *app,
-                 gchar *visible_label,
+add_application (const gchar *app,
+                 const gchar *visible_label,
                  gchar *location)
 {
   GtkWidget *box, *w;

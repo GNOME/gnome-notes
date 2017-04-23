@@ -388,7 +388,7 @@ on_item_activated (GdMainView        * gd,
   return FALSE ;
 }
 
-static GtkTargetEntry target_list[] = {
+static const GtkTargetEntry target_list[] = {
   { "text/plain", 0, 2}
 };
 
@@ -556,7 +556,7 @@ render_date     (GtkTreeViewColumn *tree_column,
                  gpointer data)
 {
   BijiItem *item;
-  gchar *str;
+  const gchar *str;
   BjbMainView *self;
 
   self = data;

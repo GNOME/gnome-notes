@@ -49,7 +49,8 @@ bjb_empty_results_box_constructed (GObject *object)
   BjbEmptyResultsBoxPrivate *priv;
   GtkStyleContext *context;
   GtkWidget *labels_grid;
-  gchar *label, *markup;
+  const gchar *label;
+  gchar *markup;
   GFile *note_icon_file;
   GIcon *icon;
 

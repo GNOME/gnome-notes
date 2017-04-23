@@ -120,7 +120,7 @@ check_insert_create_zeitgeist (BijiNoteObj *note)
 
 void
 insert_zeitgeist (BijiNoteObj *note,
-                  gchar *zg_interpretation)
+                  const gchar *zg_interpretation)
 {
   gchar *uri;
   const gchar *title;

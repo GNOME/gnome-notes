@@ -367,7 +367,7 @@ biji_note_obj_get_mtime (BijiItem *note)
   return biji_note_id_get_mtime (BIJI_NOTE_OBJ (note)->priv->id);
 }
 
-gchar *
+const gchar *
 biji_note_obj_get_last_change_date_string (BijiNoteObj *self)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), "");

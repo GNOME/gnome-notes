@@ -1,16 +1,16 @@
 /* bjb-color-button.c
  * Copyright (C) Pierre-Yves Luyten 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * anjuta is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,7 +27,7 @@
 // Bijiben probably wants something like 6 light colors
 #define BJB_NUM_COLORS 4
 
-static gchar *palette_str[BJB_NUM_COLORS] = {
+static const gchar *palette_str[BJB_NUM_COLORS] = {
   "rgb(239, 242, 209)", // eff2d1 from the mockup
   "rgb(210, 219, 230)", // d2dbe6 from the mockup
   "rgb(229, 230, 210)", //
@@ -110,7 +110,7 @@ bjb_color_button_clicked (GtkButton *b)
       for (i=0 ; i< BJB_NUM_COLORS ; i++)
       {
         GdkRGBA color;
-  
+
         if (gdk_rgba_parse (&color, palette_str[i]))
           priv->palette [i] = color;
       }
@@ -161,9 +161,9 @@ bjb_color_button_finalize (GObject *object)
 static void
 bjb_color_button_class_init (BjbColorButtonClass *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass); 
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkButtonClass *button_class = GTK_BUTTON_CLASS (klass);
-    
+
   g_type_class_add_private (klass, sizeof (BjbColorButtonPrivate));
 
   object_class->constructed = bjb_color_button_constructed;

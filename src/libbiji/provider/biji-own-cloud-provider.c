@@ -912,7 +912,7 @@ own_cloud_create_note (BijiProvider *provider,
   info.url = NULL;
   info.title = NULL;
   info.mtime = g_get_real_time ();
-  info.content = "";
+  info.content = (gchar *) "";
   info.created = g_get_real_time ();
 
   return biji_own_cloud_note_new_from_info (

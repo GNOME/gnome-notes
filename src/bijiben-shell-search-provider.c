@@ -325,7 +325,7 @@ handle_activate_result (BijibenShellSearchProvider2  *skeleton,
 
   g_application_hold (user_data);
 
-  app = G_APP_INFO (g_desktop_app_info_new ("bijiben.desktop"));
+  app = G_APP_INFO (g_desktop_app_info_new ("org.gnome.bijiben.desktop"));
 
   context = gdk_display_get_app_launch_context (gdk_display_get_default ());
   gdk_app_launch_context_set_timestamp (context, timestamp);

@@ -36,8 +36,7 @@ typedef enum
   BJB_TOOLBAR_TRASH_LIST,
   BJB_TOOLBAR_TRASH_ICON,
   BJB_TOOLBAR_TRASH_SELECT,
-  BJB_TOOLBAR_NOTE_VIEW,
-  BJB_TOOLBAR_NUM
+  BJB_TOOLBAR_NOTE_VIEW
 } BjbToolbarType;
 
 /* Color Button */
@@ -1016,7 +1015,7 @@ populate_main_toolbar(BjbMainToolbar *self)
     /* Not really a toolbar,
      * still used for Spinner */
     default:
-      to_be = BJB_TOOLBAR_0;
+      break;
   }
 
 

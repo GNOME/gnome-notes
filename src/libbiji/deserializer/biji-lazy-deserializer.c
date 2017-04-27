@@ -278,6 +278,9 @@ process_tomboy_node (BijiLazyDeserializer *self)
     case XML_DTD_NODE:
       process_tomboy_text_elem (self);
       break;
+
+    default:
+      break;
   }
 }
 

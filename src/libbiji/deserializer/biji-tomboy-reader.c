@@ -1,18 +1,18 @@
 /*
  * biji-tomboy-reader.c
- * 
+ *
  * Copyright 2013 Pierre-Yves Luyten <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -46,7 +46,7 @@ enum {
 static GParamSpec *properties[TOMBOY_READER_PROP] = { NULL, };
 
 
-typedef enum 
+typedef enum
 {
   NO_TYPE,
   TOMBOY_1,
@@ -130,7 +130,7 @@ process_tomboy_end_elem (BijiTomboyReader *self)
 {
   BijiTomboyReaderPrivate *priv = self->priv;
   const gchar *element_name;
-  
+
   element_name = (const gchar *) xmlTextReaderConstName (priv->inner);
 
   if (g_strcmp0 (element_name, "note-content")==0)
@@ -211,6 +211,9 @@ process_tomboy_node (BijiTomboyReader *self)
     case XML_DTD_NODE:
       process_tomboy_text_elem (self);
       break;
+
+    default:
+      break;
   }
 }
 
@@ -248,7 +251,7 @@ process_tomboy_xml_content (BijiTomboyReader *self, gchar *text)
 
 
 static void
-processNode (BijiTomboyReader *self) 
+processNode (BijiTomboyReader *self)
 {
   BijiTomboyReaderPrivate *priv;
   xmlTextReaderPtr r;
@@ -264,7 +267,7 @@ processNode (BijiTomboyReader *self)
 
   if (g_strcmp0 (name, "title") == 0)
     priv->set->title = (gchar*) xmlTextReaderReadString (r);
-    
+
 
   if (g_strcmp0(name, "text") == 0)
   {
@@ -297,7 +300,7 @@ processNode (BijiTomboyReader *self)
 
 
 
-  if (g_strcmp0 (name,"tag") == 0 )  
+  if (g_strcmp0 (name,"tag") == 0 )
   {
     tag = (gchar*) xmlTextReaderReadString(r);
 
@@ -330,15 +333,15 @@ biji_tomboy_reader_constructed (GObject *obj)
   BijiTomboyReaderPrivate *priv;
   xmlDocPtr doc;
   xmlNodePtr cur;
-  xmlChar     *version; 
+  xmlChar     *version;
 
   self = BIJI_TOMBOY_READER (obj);
   priv = self->priv;
- 
+
 
   doc = xmlParseFile (priv->path);
 
-  if (doc == NULL ) 
+  if (doc == NULL )
   {
     priv->error = biji_error_new (BIJI_ERROR_SOURCE,
                                   "File not parsed successfully");
@@ -348,7 +351,7 @@ biji_tomboy_reader_constructed (GObject *obj)
 
   cur = xmlDocGetRootElement (doc);
 
-  if (cur == NULL) 
+  if (cur == NULL)
   {
     priv->error = biji_error_new (BIJI_ERROR_SOURCE,
                                   "File empty");
@@ -357,7 +360,7 @@ biji_tomboy_reader_constructed (GObject *obj)
   }
 
 
-  if (xmlStrcmp(cur->name, (const xmlChar *) "note")) 
+  if (xmlStrcmp(cur->name, (const xmlChar *) "note"))
   {
     priv->error = biji_error_new (BIJI_ERROR_SOURCE,
                                   "Root node != note");

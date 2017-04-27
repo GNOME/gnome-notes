@@ -113,20 +113,22 @@ e_editor_selection_get_property (GObject *object,
 		case PROP_BOLD:
 			g_value_set_boolean (value,
 				e_editor_selection_get_bold (selection));
-			return;
+			break;
 
 		case PROP_ITALIC:
 			g_value_set_boolean (value,
 				e_editor_selection_get_italic (selection));
-			return;
+			break;
 
 		case PROP_STRIKE_THROUGH:
 			g_value_set_boolean (value,
 				e_editor_selection_get_strike_through (selection));
-			return;
-	}
+			break;
 
-	G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+			break;
+	}
 }
 
 static void

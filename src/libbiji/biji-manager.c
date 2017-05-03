@@ -118,7 +118,6 @@ on_provider_loaded_cb (BijiProvider *provider,
    * See #708458
    * There are more performant fixes but not worth it */
   biji_manager_notify_changed (manager, group, BIJI_MANAGER_MASS_CHANGE, NULL);
-  g_print ("sending the mass change\n");
 }
 
 static void

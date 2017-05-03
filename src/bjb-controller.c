@@ -607,11 +607,8 @@ on_manager_changed (BijiManager            *manager,
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
-  g_print ("manager changed\n");
-
   if (group != self->priv->group)
   {
-    g_print ("no controller\n");
     g_debug ("Controller received signal for group %i while %i",
              group, self->priv->group);
     return;

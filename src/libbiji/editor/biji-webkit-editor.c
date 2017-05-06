@@ -126,21 +126,20 @@ static void
 biji_toggle_block_format (BijiWebkitEditor *self,
                           BlockFormat block_format)
 {
-  const char *command = NULL;
-
   /* insert commands toggle the formatting */
-  switch (block_format) {
-  case BLOCK_FORMAT_UNORDERED_LIST:
-    command = "insertUnorderedList";
-    break;
-  case BLOCK_FORMAT_ORDERED_LIST:
-    command = "insertOrderedList";
-    break;
-  default:
-    g_assert_not_reached ();
+  switch (block_format)
+  {
+    case BLOCK_FORMAT_NONE:
+      break;
+    case BLOCK_FORMAT_UNORDERED_LIST:
+      webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "insertUnorderedList");
+      break;
+    case BLOCK_FORMAT_ORDERED_LIST:
+      webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "insertOrderedList");
+      break;
+    default:
+      g_assert_not_reached ();
   }
-
-  webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), command);
 }
 
 void

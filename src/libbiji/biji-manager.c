@@ -559,7 +559,7 @@ on_item_restored_cb (BijiItem *item, gchar *old_uuid, BijiManager *manager)
 }
 
 
-void
+static void
 manager_on_note_changed_cb (BijiNoteObj *note, BijiManager *manager)
 {
   biji_manager_notify_changed (manager,

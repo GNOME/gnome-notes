@@ -172,7 +172,7 @@ on_link_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
   BjbSettings             *settings;
-  gchar                   *link;
+  const gchar             *link;
   GtkWidget               *window;
   BijiNoteObj             *result;
   GdkRGBA                  color;

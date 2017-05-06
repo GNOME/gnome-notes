@@ -536,7 +536,7 @@ update_controller_callback (GList *result,
     case BIJI_ARCHIVED_ITEMS:
       bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_ARCHIVE_VIEW);
       break;
-
+    case BIJI_LIVING_ITEMS:
     default:
       break;
   }
@@ -619,6 +619,11 @@ on_manager_changed (BijiManager            *manager,
 
   switch (flag)
   {
+    case BIJI_MANAGER_MASS_CHANGE:
+      bjb_controller_apply_needle (self);
+      g_timeout_add (1, (GSourceFunc) bjb_controller_set_window_active, self);
+      break;
+
     /* If this is a *new* item, per def prepend */
     case BIJI_MANAGER_ITEM_ADDED:
           if (BIJI_IS_NOTE_OBJ (item))
@@ -670,10 +675,10 @@ on_manager_changed (BijiManager            *manager,
      * Use another thread for this, because controller is now up to date,
      * and we need to unlock mutex,
      * since activating window can call this function! */
+
+    case BIJI_MANAGER_CHANGE_FLAG:
     default:
       bjb_controller_apply_needle (self);
-      if (flag == BIJI_MANAGER_MASS_CHANGE)
-        g_timeout_add (1, (GSourceFunc) bjb_controller_set_window_active, self);
   }
 
   g_mutex_unlock (&priv->mutex);

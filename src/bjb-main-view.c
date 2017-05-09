@@ -193,18 +193,6 @@ bjb_main_view_set_property ( GObject        *object,
   }
 }
 
-static GObject *
-biji_main_view_constructor (GType                  gtype,
-                            guint                  n_properties,
-                            GObjectConstructParam  *properties)
-{
-  GObject *obj;
-  {
-    obj = G_OBJECT_CLASS (bjb_main_view_parent_class)->constructor (gtype, n_properties, properties);
-  }
-  return obj;
-}
-
 /* Callbacks */
 
 void
@@ -730,7 +718,6 @@ bjb_main_view_class_init (BjbMainViewClass *klass)
   object_class->finalize = bjb_main_view_finalize;
   object_class->get_property = bjb_main_view_get_property;
   object_class->set_property = bjb_main_view_set_property;
-  object_class->constructor = biji_main_view_constructor;
   object_class->constructed = bjb_main_view_constructed;
 
   g_type_class_add_private (klass, sizeof (BjbMainViewPriv));

@@ -63,20 +63,6 @@ struct _BjbWindowBasePriv
 /* Gobject */
 G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, GTK_TYPE_APPLICATION_WINDOW);
 
-
-static GObject *
-bjb_window_base_constructor (GType                  gtype,
-                             guint                  n_properties,
-                             GObjectConstructParam  *properties)
-{
-  GObject *obj;
-  {
-    obj = G_OBJECT_CLASS (bjb_window_base_parent_class)->constructor (gtype, n_properties, properties);
-  }
-  return obj;
-}
-
-
 static void
 bjb_window_base_finalize (GObject *object)
 {
@@ -415,7 +401,6 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
 
 
   gobject_class->constructed = bjb_window_base_constructed;
-  gobject_class->constructor = bjb_window_base_constructor;
   gobject_class->finalize = bjb_window_base_finalize ;
   gobject_class->get_property = bjb_window_base_get_property;
   gobject_class->set_property = bjb_window_base_set_property;

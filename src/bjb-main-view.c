@@ -376,8 +376,8 @@ on_item_activated (GdMainView        * gd,
   return FALSE ;
 }
 
-static const GtkTargetEntry target_list[] = {
-  { "text/plain", 0, 2}
+static GtkTargetEntry target_list[] = {
+  { (gchar *) "text/plain", 0, 2}
 };
 
 static void

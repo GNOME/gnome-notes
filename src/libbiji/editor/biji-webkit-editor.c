@@ -332,16 +332,6 @@ on_note_color_changed (BijiNoteObj *note, BijiWebkitEditor *self)
     set_editor_color (WEBKIT_WEB_VIEW (self), &color);
 }
 
-
-static void
-open_url ( const char *uri)
-{
-  gtk_show_uri (gdk_screen_get_default (),
-                uri,
-                gtk_get_current_event_time (),
-                NULL);
-}
-
 static gboolean
 on_navigation_request (WebKitWebView           *web_view,
                        WebKitPolicyDecision    *decision,
@@ -351,6 +341,8 @@ on_navigation_request (WebKitWebView           *web_view,
   WebKitNavigationPolicyDecision *navigation_decision;
   WebKitNavigationAction *action;
   const char *requested_uri;
+  GtkWidget *toplevel;
+  GError *error = NULL;
 
   if (decision_type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
     return FALSE;
@@ -361,7 +353,20 @@ on_navigation_request (WebKitWebView           *web_view,
   if (g_strcmp0 (webkit_web_view_get_uri (web_view), requested_uri) == 0)
     return FALSE;
 
-  open_url (requested_uri);
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (web_view));
+  g_return_val_if_fail (gtk_widget_is_toplevel (toplevel), FALSE);
+
+  gtk_show_uri_on_window (GTK_WINDOW (toplevel),
+                          requested_uri,
+                          GDK_CURRENT_TIME,
+                          &error);
+
+  if (error)
+  {
+    g_warning ("%s", error->message);
+    g_error_free (error);
+  }
+
   webkit_policy_decision_ignore (decision);
   return TRUE;
 }

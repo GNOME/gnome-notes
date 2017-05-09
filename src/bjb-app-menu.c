@@ -126,7 +126,11 @@ help_activated (GSimpleAction *action,
                 gpointer       user_data)
 {
   GError *error = NULL;
-  gtk_show_uri (NULL, "help:bijiben", gtk_get_current_event_time (), &error);
+
+  gtk_show_uri_on_window (gtk_application_get_active_window (user_data),
+                          "help:bijiben",
+                          GDK_CURRENT_TIME,
+                          &error);
 
   if (error)
   {

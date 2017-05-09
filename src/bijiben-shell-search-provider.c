@@ -205,12 +205,9 @@ get_note_icon (BijibenShellSearchProviderApp *self,
   GVariant *variant;
   GIcon *gicon;
   gint scale_factor;
-  GdkScreen *screen;
   BijiItem *item;
 
-  screen = gdk_screen_get_default ();
-  scale_factor = gdk_screen_get_monitor_scale_factor (screen,
-                                                      gdk_screen_get_primary_monitor (screen));
+  scale_factor = gdk_monitor_get_scale_factor (gdk_display_get_primary_monitor (gdk_display_get_default ()));
 
   gicon = NULL;
   item = biji_manager_get_item_at_path (self->manager, note__nie_url);

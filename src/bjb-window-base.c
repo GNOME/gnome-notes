@@ -548,6 +548,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
       break;
 
 
+    case BJB_WINDOW_BASE_NO_VIEW:
     default:
       return;
   }

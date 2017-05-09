@@ -1,16 +1,16 @@
 /* bjb-note-tag-dialog.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -421,7 +421,6 @@ bjb_organize_dialog_constructed (GObject *obj)
   gtk_tree_view_set_headers_visible (priv->view, FALSE);
   g_object_unref (self->priv->store);
 
-  gtk_tree_view_set_rules_hint (priv->view, TRUE);
   gtk_tree_selection_set_mode (gtk_tree_view_get_selection (priv->view),
                                GTK_SELECTION_MULTIPLE);
 

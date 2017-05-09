@@ -162,6 +162,7 @@ bjb_empty_results_box_set_type (BjbEmptyResultsBox *self,
       gtk_widget_show (self->priv->image);
       break;
 
+    case BJB_EMPTY_RESULTS_TYPE:
     default:
       break;
   }

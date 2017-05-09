@@ -957,6 +957,7 @@ populate_bar_switch (BjbMainToolbar *self)
       break;
 
     /* Spinner, Empty Results */
+    case BJB_TOOLBAR_0:
     default:
       gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
       break;
@@ -1014,6 +1015,9 @@ populate_main_toolbar(BjbMainToolbar *self)
 
     /* Not really a toolbar,
      * still used for Spinner */
+    case BJB_WINDOW_BASE_SPINNER_VIEW:
+    case BJB_WINDOW_BASE_ERROR_TRACKER:
+    case BJB_WINDOW_BASE_NO_VIEW:
     default:
       break;
   }

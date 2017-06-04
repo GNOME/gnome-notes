@@ -265,7 +265,7 @@ add_child (gpointer provider_info, gpointer user_data)
                            child, provider_child_free);
 
 
-  w = g_object_ref (child->icon);
+  w = child->icon;
   gtk_container_add (GTK_CONTAINER (box), w);
 
   w = gtk_label_new (child->name);

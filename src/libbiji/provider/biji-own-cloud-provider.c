@@ -131,10 +131,10 @@ biji_own_cloud_provider_finalize (GObject *object)
   if (self->priv->path != NULL)
     g_free (self->priv->path);
 
-  g_object_unref (self->priv->account);
-  g_object_unref (self->priv->object);
-  g_object_unref (self->priv->info.icon);
-  g_object_unref (self->priv->folder);
+  g_clear_object (&self->priv->account);
+  g_clear_object (&self->priv->object);
+  g_clear_object (&self->priv->info.icon);
+  g_clear_object (&self->priv->folder);
 
   g_clear_pointer (&self->priv->info.name, g_free);
   g_clear_pointer (&self->priv->info.datasource, g_free);
@@ -795,6 +795,7 @@ biji_own_cloud_provider_constructed (GObject *obj)
     {
       priv->info.icon = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_INVALID);
       gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
+      g_object_ref_sink (priv->info.icon);
     }
 
     g_object_unref (icon);

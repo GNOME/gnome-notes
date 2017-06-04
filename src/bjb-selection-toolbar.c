@@ -374,6 +374,8 @@ bjb_selection_toolbar_init (BjbSelectionToolbar *self)
       GTK_REVEALER (self), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
 
   priv->bar = GTK_ACTION_BAR (gtk_action_bar_new ());
+  context = gtk_widget_get_style_context (GTK_WIDGET (priv->bar));
+  gtk_style_context_add_class (context, "background");
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->bar));
 
 

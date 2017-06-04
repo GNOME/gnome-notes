@@ -25,36 +25,11 @@
 
 G_BEGIN_DECLS
 
-
 #define BJB_TYPE_SETTINGS_DIALOG             (bjb_settings_dialog_get_type ())
-#define BJB_SETTINGS_DIALOG(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_SETTINGS_DIALOG, BjbSettingsDialog))
-#define BJB_SETTINGS_DIALOG_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_SETTINGS_DIALOG, BjbSettingsDialogClass))
-#define BJB_IS_SETTINGS_DIALOG(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_SETTINGS_DIALOG))
-#define BJB_IS_SETTINGS_DIALOG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_SETTINGS_DIALOG))
-#define BJB_SETTINGS_DIALOG_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_SETTINGS_DIALOG, BjbSettingsDialogClass))
 
-typedef struct BjbSettingsDialog_         BjbSettingsDialog;
-typedef struct BjbSettingsDialogClass_    BjbSettingsDialogClass;
-typedef struct BjbSettingsDialogPrivate_  BjbSettingsDialogPrivate;
+G_DECLARE_FINAL_TYPE (BjbSettingsDialog, bjb_settings_dialog, BJB, SETTINGS_DIALOG, GtkDialog)
 
-struct BjbSettingsDialog_
-{
-  GtkDialog parent;
-  BjbSettingsDialogPrivate *priv;
-};
-
-
-struct BjbSettingsDialogClass_
-{
-  GtkDialogClass parent_class;
-};
-
-
-GType                  bjb_settings_dialog_get_type            (void);
-
-
-GtkDialog             *bjb_settings_dialog_new                 (GtkWidget *window);
-
+GtkDialog             *bjb_settings_dialog_new                 (void);
 
 G_END_DECLS
 

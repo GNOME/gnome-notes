@@ -136,11 +136,11 @@ bjb_main_view_disconnect_handlers (BjbMainView *self)
 
 
 static void
-bjb_main_view_finalize (GObject *object)
+bjb_main_view_dispose (GObject *object)
 {
   bjb_main_view_disconnect_handlers (BJB_MAIN_VIEW (object));
   bjb_main_view_disconnect_scrolled_window (BJB_MAIN_VIEW (object));
-  G_OBJECT_CLASS (bjb_main_view_parent_class)->finalize (object);
+  G_OBJECT_CLASS (bjb_main_view_parent_class)->dispose (object);
 }
 
 static void
@@ -715,7 +715,7 @@ bjb_main_view_class_init (BjbMainViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize = bjb_main_view_finalize;
+  object_class->dispose = bjb_main_view_dispose;
   object_class->get_property = bjb_main_view_get_property;
   object_class->set_property = bjb_main_view_set_property;
   object_class->constructed = bjb_main_view_constructed;

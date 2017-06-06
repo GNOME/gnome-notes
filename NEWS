@@ -1,3 +1,44 @@
+Overview of changes in 3.24.0
+=============================
+
+* Update settings dialog (Georges Basile Stavracas Neto)
+* Convert WebKitGTK+ v.1 notes to v.2 (Isaque Galdino)
+* Fix wrong references to bijiben desktop file (Laurent Bigonville)
+* Update build files (Philip Withnall)
+* Port to WebKitGTK+ v.2 (Carlos Garcia Campos)
+* Improve how to handle open files (Iñigo Martínez)
+* Remove dependancy on libedataserverui (Isaque Galdino)
+* Allow build in non-srcdir (Ting-Wei Lan)
+* Transform editor toolbar to an action bar (Iñigo Martínez)
+* Memory leaks fixes and code clean-up (Iñigo Martínez, Philip Withnall and Jonathan Kang)
+
+Translations
+* ca (Jordi Mas, Piotr Drąg)
+* cs (Marek Černocký)
+* da (Ask Hjorth Larsen)
+* de (Mario Blättermann)
+* en_AU (Piotr Drąg)
+* en_GB (Bruce Cowan)
+* es (Daniel Mustieles)
+* fa (Arash Mousavi)
+* fr (Alexandre Franke)
+* hu (Balázs Úr)
+* id (Andika Triwidada)
+* kk (Baurzhan Muftakhidinov)
+* ko (Seong-ho Cho)
+* lt (Aurimas Černius)
+* nb (Piotr Drąg)
+* ne (Piotr Drąg)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* ru (Yuri Myasoedov)
+* sl (Piotr Drąg)
+* sr (Мирослав Николић, Piotr Drąg)
+* sv (Anders Jonsson)
+* tr (E T, Piotr Drąg)
+* zh_HK (Piotr Drąg)
+
+
 Overview of changes in 3.21.2
 =============================
 

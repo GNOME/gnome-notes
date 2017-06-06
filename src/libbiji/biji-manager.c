@@ -128,8 +128,6 @@ on_provider_abort_cb (BijiProvider *provider,
 
   info = biji_provider_get_info (provider);
   g_hash_table_remove (self->priv->providers, info->unique_id);
-
-  g_object_unref (G_OBJECT (provider));
 }
 
 /*

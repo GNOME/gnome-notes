@@ -7,4 +7,8 @@
     <file alias="thumbnail-frame.png">resources/thumbnail-frame.png</file>
     <file alias="note-symbolic.svg">resources/note-symbolic.svg</file>
   </gresource>
+
+  <gresource prefix="/org/gnome/bijiben/ui">
+    <file alias="settings-dialog.ui">resources/settings-dialog.ui</file>
+  </gresource>
 </gresources>

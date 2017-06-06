@@ -287,7 +287,9 @@ show_bijiben_settings_window (GtkWidget *parent_window)
 {
   GtkDialog *dialog;
 
-  dialog = bjb_settings_dialog_new (parent_window);
+  dialog = bjb_settings_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_window));
+
   /* result = */ gtk_dialog_run (dialog);
   gtk_widget_destroy (GTK_WIDGET (dialog));
 }

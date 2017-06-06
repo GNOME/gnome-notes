@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-26 17:50+0100\n"
-"PO-Revision-Date: 2017-02-26 17:51+0100\n"
+"POT-Creation-Date: 2017-06-06 12:19+0200\n"
+"PO-Revision-Date: 2017-06-06 12:20+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -101,7 +101,7 @@ msgstr "Położenie okna"
 msgid "Window position (x and y)."
 msgstr "Położenie okna (na osi X i Y)."
 
-#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+#: ../src/bijiben-shell-search-provider.c:272 ../src/bjb-main-toolbar.c:658
 msgid "Untitled"
 msgstr "Bez tytułu"
 
@@ -116,35 +116,35 @@ msgstr ""
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
 "Aviary.pl <community-poland@mozilla.org>, 2012-2017"
 
-#: ../src/bjb-bijiben.c:395
+#: ../src/bjb-bijiben.c:364
 msgid "Show the application's version"
 msgstr "Wyświetla wersję programu"
 
-#: ../src/bjb-bijiben.c:397
+#: ../src/bjb-bijiben.c:366
 msgid "Create a new note"
 msgstr "Tworzy nową notatkę"
 
-#: ../src/bjb-bijiben.c:399
+#: ../src/bjb-bijiben.c:368
 msgid "[FILE...]"
 msgstr "[PLIK…]"
 
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:376
 msgid "Take notes and export them everywhere."
 msgstr "Umożliwia robienie i eksportowanie notatek."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:417
+#: ../src/bjb-bijiben.c:387
 msgid "Could not parse arguments"
 msgstr "Nie można przetworzyć parametrów"
 
-#: ../src/bjb-bijiben.c:426
+#: ../src/bjb-bijiben.c:396
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:439
+#: ../src/bjb-bijiben.c:408
 msgid "Could not register the application"
 msgstr "Nie można zarejestrować programu"
 
@@ -152,22 +152,22 @@ msgstr "Nie można zarejestrować programu"
 msgid "Note Color"
 msgstr "Kolor notatki"
 
-#: ../src/bjb-empty-results-box.c:86
+#: ../src/bjb-empty-results-box.c:87
 msgid "No notes"
 msgstr "Brak notatek"
 
-#: ../src/bjb-empty-results-box.c:130
+#: ../src/bjb-empty-results-box.c:131
 msgid "Press the New button to create a note."
 msgstr "Proszę nacisnąć przycisk Nowa, aby utworzyć notatkę."
 
-#: ../src/bjb-empty-results-box.c:152
+#: ../src/bjb-empty-results-box.c:153
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:158
+#: ../src/bjb-empty-results-box.c:159
 msgid "Please install 'Tracker' then restart the application."
 msgstr ""
-"Proszę zainstalować program „Tracker”, a następnie ponownie uruchomić ten "
+"Proszę zainstalować pakiet „Tracker”, a następnie ponownie uruchomić ten "
 "program."
 
 #: ../src/bjb-import-dialog.c:309
@@ -202,11 +202,11 @@ msgstr "Wczytaj więcej"
 msgid "Loading..."
 msgstr "Wczytywanie…"
 
-#: ../src/bjb-main-toolbar.c:142
+#: ../src/bjb-main-toolbar.c:141
 msgid "Click on items to select them"
 msgstr "Kliknięcie elementów zaznacza je"
 
-#: ../src/bjb-main-toolbar.c:144
+#: ../src/bjb-main-toolbar.c:143
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -214,25 +214,25 @@ msgstr[0] "Zaznaczono: %d"
 msgstr[1] "Zaznaczono: %d"
 msgstr[2] "Zaznaczono: %d"
 
-#: ../src/bjb-main-toolbar.c:264
+#: ../src/bjb-main-toolbar.c:263
 msgid "Search note titles, content and notebooks"
 msgstr "Przeszukiwanie tytułów i treści notatek oraz notatników"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:306
+#: ../src/bjb-main-toolbar.c:305
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../src/bjb-main-toolbar.c:320
+#: ../src/bjb-main-toolbar.c:319
 msgid "Exit selection mode"
 msgstr "Wyjście z trybu zaznaczania"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:349
 #, c-format
 msgid "Results for %s"
 msgstr "Wyniki dla „%s”"
 
-#: ../src/bjb-main-toolbar.c:353
+#: ../src/bjb-main-toolbar.c:352
 msgid "New and Recent"
 msgstr "Nowe i ostatnio używane"
 
@@ -240,30 +240,30 @@ msgstr "Nowe i ostatnio używane"
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
 #.
-#: ../src/bjb-main-toolbar.c:441
+#: ../src/bjb-main-toolbar.c:440
 msgid "_New"
 msgstr "_Nowa"
 
-#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
+#: ../src/bjb-main-toolbar.c:459 ../src/bjb-main-toolbar.c:557
 msgid "Selection mode"
 msgstr "Tryb zaznaczania"
 
-#: ../src/bjb-main-toolbar.c:495
+#: ../src/bjb-main-toolbar.c:494
 msgid "View notes and notebooks in a list"
 msgstr "Wyświetla notatki i notatniki jako listę"
 
-#: ../src/bjb-main-toolbar.c:519
+#: ../src/bjb-main-toolbar.c:518
 msgid "View notes and notebooks in a grid"
 msgstr "Wyświetla notatki i notatniki w siatce"
 
-#: ../src/bjb-main-toolbar.c:538
+#: ../src/bjb-main-toolbar.c:537
 msgid "Trash"
 msgstr "Kosz"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:577
+#: ../src/bjb-main-toolbar.c:576
 msgid "Empty"
 msgstr "Opróżnij"
 
@@ -271,49 +271,49 @@ msgstr "Opróżnij"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:757
+#: ../src/bjb-main-toolbar.c:756
 msgid "Open in New Window"
 msgstr "Otwórz w nowym oknie"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:768
+#: ../src/bjb-main-toolbar.c:767
 msgid "Undo"
 msgstr "Cofnij"
 
-#: ../src/bjb-main-toolbar.c:776
+#: ../src/bjb-main-toolbar.c:775
 msgid "Redo"
 msgstr "Ponów"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:381
+#: ../src/bjb-main-toolbar.c:790 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:383
 msgid "Notebooks"
 msgstr "Notatniki"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:799
+#: ../src/bjb-main-toolbar.c:798
 msgid "Email this Note"
 msgstr "Wyślij tę notatkę"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:811 ../src/bjb-selection-toolbar.c:417
 msgid "Move to Trash"
 msgstr "Przenieś do kosza"
 
-#: ../src/bjb-main-toolbar.c:872
+#: ../src/bjb-main-toolbar.c:871
 msgid "More options…"
 msgstr "Więcej opcji…"
 
-#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:894 ../src/bjb-selection-toolbar.c:394
 msgid "Note color"
 msgstr "Kolor notatki"
 
-#: ../src/bjb-main-view.c:516
+#: ../src/bjb-main-view.c:504
 msgid "Notebook"
 msgstr "Notatnik"
 
-#: ../src/bjb-main-view.c:519
+#: ../src/bjb-main-view.c:507
 msgid "Note"
 msgstr "Notatka"
 
@@ -322,10 +322,10 @@ msgstr "Notatka"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:192
+#: ../src/bjb-note-view.c:196
 #, c-format
 msgid "<b>Last updated</b> %s"
-msgstr "<b>Ostatnio zaktualizowano</b> %s"
+msgstr "<b>Ostatnia aktualizacja</b> %s"
 
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
@@ -344,50 +344,23 @@ msgid "_OK"
 msgstr "_OK"
 
 #. Restore (do not show)
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-selection-toolbar.c:388
 msgid "Restore"
 msgstr "Przywróć"
 
-#: ../src/bjb-selection-toolbar.c:403
+#: ../src/bjb-selection-toolbar.c:405
 msgid "Share note"
 msgstr "Udostępnij notatkę"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:409
+#: ../src/bjb-selection-toolbar.c:411
 msgid "Open in another window"
 msgstr "Otwórz w osobnym oknie"
 
 #. Permanently delete (do not show )
-#: ../src/bjb-selection-toolbar.c:423
+#: ../src/bjb-selection-toolbar.c:425
 msgid "Permanently Delete"
 msgstr "Usuń trwale"
-
-#. Use System Font
-#: ../src/bjb-settings-dialog.c:394
-msgid "Use System Font"
-msgstr "Użycie czcionki systemowej"
-
-#. Default font
-#: ../src/bjb-settings-dialog.c:408
-msgid "Note Font"
-msgstr "Czcionka notatki"
-
-#. Default color
-#: ../src/bjb-settings-dialog.c:420
-msgid "Default Color"
-msgstr "Domyślny kolor"
-
-#: ../src/bjb-settings-dialog.c:466
-msgid "Preferences"
-msgstr "Preferencje"
-
-#: ../src/bjb-settings-dialog.c:498
-msgid "Note Edition"
-msgstr "Edycja notatki"
-
-#: ../src/bjb-settings-dialog.c:506
-msgid "Primary Book"
-msgstr "Główna książka"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -488,3 +461,31 @@ msgstr "Lista"
 #: ../src/resources/editor-toolbar.ui.h:11
 msgid "Copy selection to a new note"
 msgstr "Kopiuje zaznaczenie do nowej notatki"
+
+#: ../src/resources/settings-dialog.ui.h:1
+msgid "Preferences"
+msgstr "Preferencje"
+
+#: ../src/resources/settings-dialog.ui.h:2
+msgid "Use System Font"
+msgstr "Czcionka systemowa"
+
+#: ../src/resources/settings-dialog.ui.h:3
+msgid "Note Font"
+msgstr "Czcionka notatki"
+
+#: ../src/resources/settings-dialog.ui.h:4
+msgid "Default Color"
+msgstr "Domyślny kolor"
+
+#: ../src/resources/settings-dialog.ui.h:5
+msgid "Note Edition"
+msgstr "Edycja notatki"
+
+#: ../src/resources/settings-dialog.ui.h:6
+msgid "Select the default storage location:"
+msgstr "Wybór domyślnego położenia notatek:"
+
+#: ../src/resources/settings-dialog.ui.h:7
+msgid "Primary Book"
+msgstr "Główna książka"

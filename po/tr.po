@@ -5,17 +5,17 @@
 # Osman Karagöz <osmank3@gmail.com>, 2013, 2014.
 # Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2013, 2014.
 # Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2016.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2016, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-07-14 18:49+0000\n"
-"PO-Revision-Date: 2016-09-12 00:35+0300\n"
+"POT-Creation-Date: 2017-02-26 00:58+0000\n"
+"PO-Revision-Date: 2017-05-22 14:10+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
-"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language-Team: Türkçe <>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,13 +26,13 @@ msgstr ""
 #: ../data/org.gnome.bijiben.appdata.xml.in.h:1
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
-"Notlar, sonradan kullanmak üzere basit listeler oluşturmaya izin veren bir "
+"Notlar, sonradan kullanmak üzere basit listeler oluşturmaya yarayan bir "
 "düzenleyicidir."
 
 #: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
-"ownCloud'u bir depolama konumu ve çevrimiçi düzenleyici olarak kullanmaya "
+"ownCloudʼu bir depolama konumu ve çevrim içi düzenleyici olarak kullanmaya "
 "izin verir."
 
 #: ../data/org.gnome.bijiben.desktop.in.in.h:1
@@ -51,19 +51,19 @@ msgstr "Not bırak, dosyaları etiketle!"
 
 #: ../data/org.gnome.bijiben.desktop.in.in.h:4
 msgid "Note-taker"
-msgstr "Not-tutucu"
+msgstr "Not tutucu"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:1
 msgid "Custom Font"
-msgstr "Özel Yazıtipi"
+msgstr "Özel Yazı Tipi"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:2
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr "Burada ayarlanan yazıtipi, notları gösterirken kullanılacak."
+msgstr "Burada ayarlanan yazı tipi, notları gösterirken kullanılacak."
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:3
 msgid "Whether to use the system monospace font"
-msgstr "Sistemin sabit aralıklı yazıtipinin kullanılıp kullanılmayacağı"
+msgstr "Sistemin sabit aralıklı yazı tipinin kullanılıp kullanılmayacağı"
 
 #: ../data/org.gnome.bijiben.gschema.xml.h:4
 msgid "New notes color."
@@ -146,6 +146,8 @@ msgstr "Argümanlar ayrıştırılamadı"
 msgid "GNOME Notes"
 msgstr "GNOME Notlar"
 
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
 #: ../src/bjb-bijiben.c:439
 msgid "Could not register the application"
 msgstr "Uygulama kaydedilemedi"
@@ -154,58 +156,13 @@ msgstr "Uygulama kaydedilemedi"
 msgid "Note Color"
 msgstr "Not Rengi"
 
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Kes"
-
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Kopyala"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Yapıştır"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "*"
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Kalın"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Eğik"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Üstü Çizili"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Seçimi yeni bir nota kopyala"
-
 #: ../src/bjb-empty-results-box.c:86
 msgid "No notes"
 msgstr "Not yok"
 
 #: ../src/bjb-empty-results-box.c:130
 msgid "Press the New button to create a note."
-msgstr "Not oluşturmak için Yeni düğmesine basın"
+msgstr "Not oluşturmak için Yeni düğmesine bas"
 
 #: ../src/bjb-empty-results-box.c:152
 msgid "Oops"
@@ -213,7 +170,7 @@ msgstr "Aman"
 
 #: ../src/bjb-empty-results-box.c:158
 msgid "Please install 'Tracker' then restart the application."
-msgstr "Lütfen 'Tracker' kurup uygulamayı tekrar başlatın."
+msgstr "Lütfen 'Tracker'i kurup uygulamayı yeniden başlatın."
 
 #: ../src/bjb-import-dialog.c:309
 msgid "Custom Location"
@@ -229,7 +186,7 @@ msgstr "İçe Aktar"
 
 #: ../src/bjb-import-dialog.c:422
 msgid "Select import location"
-msgstr "İçe aktarma konumunu seçin"
+msgstr "İçe aktarma konumunu seç"
 
 #: ../src/bjb-import-dialog.c:443
 msgid "Tomboy application"
@@ -241,7 +198,7 @@ msgstr "Gnote uygulaması"
 
 #: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
 msgid "Load More"
-msgstr "Daha Fazla"
+msgstr "Daha Çok"
 
 #: ../src/bjb-load-more-button.c:98
 msgid "Loading..."
@@ -249,7 +206,7 @@ msgstr "Yükleniyor..."
 
 #: ../src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
-msgstr "Ögeleri seçmek için tıklayın"
+msgstr "Ögeleri seçmek için tıkla"
 
 #: ../src/bjb-main-toolbar.c:144
 #, c-format
@@ -365,14 +322,14 @@ msgstr "Not"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:191
+#: ../src/bjb-note-view.c:192
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Son güncelleme</b> %s"
 
 #: ../src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
-msgstr "Not defteri oluşturmak için bir isim girin"
+msgstr "Not defteri oluşturmak için bir ad girin"
 
 #: ../src/bjb-organize-dialog.c:406
 msgid "New notebook"
@@ -408,12 +365,12 @@ msgstr "Tamamen Sil"
 #. Use System Font
 #: ../src/bjb-settings-dialog.c:394
 msgid "Use System Font"
-msgstr "Sistem Yazıtipini Kullan"
+msgstr "Sistem Yazı Tipini Kullan"
 
 #. Default font
 #: ../src/bjb-settings-dialog.c:408
 msgid "Note Font"
-msgstr "Not Yazıtipi"
+msgstr "Not Yazı Tipi"
 
 #. Default color
 #: ../src/bjb-settings-dialog.c:420
@@ -430,7 +387,7 @@ msgstr "Not Sürümü"
 
 #: ../src/bjb-settings-dialog.c:506
 msgid "Primary Book"
-msgstr "Birincil Kitap"
+msgstr "Birincil Defter"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -487,3 +444,47 @@ msgstr "_Hakkında"
 #: ../src/resources/app-menu.ui.h:6
 msgid "_Quit"
 msgstr "_Çıkış"
+
+#: ../src/resources/editor-toolbar.ui.h:1
+msgid "Cut"
+msgstr "Kes"
+
+#: ../src/resources/editor-toolbar.ui.h:2
+msgid "Copy"
+msgstr "Kopyala"
+
+#: ../src/resources/editor-toolbar.ui.h:3
+msgid "Paste"
+msgstr "Yapıştır"
+
+#: ../src/resources/editor-toolbar.ui.h:4
+msgid "Bold"
+msgstr "Kalın"
+
+#: ../src/resources/editor-toolbar.ui.h:5
+msgid "Italic"
+msgstr "Eğik"
+
+#: ../src/resources/editor-toolbar.ui.h:6
+msgid "Strike"
+msgstr "Üstü Çizili"
+
+#: ../src/resources/editor-toolbar.ui.h:7
+msgid "* "
+msgstr "*"
+
+#: ../src/resources/editor-toolbar.ui.h:8
+msgid "Bullets"
+msgstr "İşaretler"
+
+#: ../src/resources/editor-toolbar.ui.h:9
+msgid "1."
+msgstr "1."
+
+#: ../src/resources/editor-toolbar.ui.h:10
+msgid "List"
+msgstr "Liste"
+
+#: ../src/resources/editor-toolbar.ui.h:11
+msgid "Copy selection to a new note"
+msgstr "Seçimi yeni bir nota kopyala"

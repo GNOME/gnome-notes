@@ -1131,6 +1131,7 @@ bjb_main_toolbar_get_property (GObject     *object,
   {
     case PROP_PARENT:
       g_value_set_object (value, self->priv->parent);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;

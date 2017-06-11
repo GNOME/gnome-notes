@@ -75,6 +75,9 @@ time_val_from_icaltime (icaltimetype *itt, glong *result)
   GTimeVal t;
   gchar *iso;
 
+  if (!itt)
+    return FALSE;
+
   t.tv_sec = 0;
   t.tv_usec = 0;
 

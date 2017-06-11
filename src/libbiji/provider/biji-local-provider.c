@@ -79,7 +79,8 @@ load_location_error (GFile *location,
   gchar *path;
 
   path = g_file_get_path (location);
-  g_printerr ("Unable to load location %s: %s", path, error->message);
+	if (!g_strrstr (path, ".Trash"))
+  	g_printerr ("Unable to load location %s: %s", path, error->message);
   g_free (path);
   g_error_free (error);
 }

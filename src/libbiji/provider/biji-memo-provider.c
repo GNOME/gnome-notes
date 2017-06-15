@@ -203,7 +203,7 @@ handle_next_item (BijiMemoProvider *self)
 
     create_note_from_item (item);
     /* debug pour tracker. Il faut en plus datasource->urn */
-    g_debug ("created=%li", item->set.created);
+    g_debug ("created=%"G_GINT64_FORMAT, item->set.created);
     g_debug ("title=%s", item->set.title);
     g_debug ("url=%s", item->set.url);
     g_debug ("content=%s\n================\n\n\n", item->set.content);

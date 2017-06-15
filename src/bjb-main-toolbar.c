@@ -1024,7 +1024,7 @@ populate_main_toolbar(BjbMainToolbar *self)
 
 
   /* Simply clear then populate */
-  if (to_be != priv->type)
+  if (to_be != priv->type || view_type == BJB_WINDOW_BASE_ARCHIVE_VIEW)
   {
     /* If we leave a note view */
     if (priv->type == BJB_TOOLBAR_NOTE_VIEW)

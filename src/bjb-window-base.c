@@ -481,10 +481,12 @@ void
 bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 {
   BjbWindowBasePriv *priv = self->priv;
-  priv->current_view = type;
 
   if (type != BJB_WINDOW_BASE_NOTE_VIEW)
     destroy_note_if_needed (self);
+
+  if (priv->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW && type == BJB_WINDOW_BASE_NO_NOTE)
+    type = priv->current_view;
 
   switch (type)
   {
@@ -552,6 +554,8 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
     default:
       return;
   }
+
+  priv->current_view = type;
 
   g_signal_emit (G_OBJECT (self), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
 }

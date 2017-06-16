@@ -286,11 +286,14 @@ static gboolean
 local_note_delete (BijiItem *item)
 {
   BijiLocalNote *self;
+  gchar *file_path;
 
   g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
   self = BIJI_LOCAL_NOTE (item);
 
-  g_debug ("local note delete : %s", g_file_get_path (self->priv->location));
+  file_path = g_file_get_path (self->priv->location);
+  g_debug ("local note delete : %s", file_path);
+  g_free (file_path);
 
   biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
   g_file_delete_async (self->priv->location,

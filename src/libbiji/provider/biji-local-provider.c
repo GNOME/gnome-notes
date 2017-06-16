@@ -417,6 +417,8 @@ _get_note_skeleton (BijiLocalProvider *self)
     g_free (path);
   }
 
+  g_free (folder);
+
   biji_note_obj_set_all_dates_now (ret);
   return ret;
 }

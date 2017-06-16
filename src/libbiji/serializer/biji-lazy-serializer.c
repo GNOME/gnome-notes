@@ -162,6 +162,7 @@ serialize_html (BijiLazySerializer *self)
     return;
 
   xmlTextWriterWriteRaw(priv->writer, BAD_CAST html);
+  g_free (html);
 }
 
 static gboolean

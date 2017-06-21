@@ -128,7 +128,7 @@ stamp-biji-marshalers.h: biji-marshalers.list Makefile
 
 biji-marshalers.c: biji-marshalers.list biji-marshalers.h Makefile
 	$(AM_V_GEN) ( \
-		echo "#include \"biji-marshalers.h\"" > xgen-tmc \
+	        echo "@include_marshalers@" > xgen-tmc \
 		&& ( glib-genmarshal \
 			--prefix=_biji_marshal \
 			--body $(srcdir)/biji-marshalers.list \

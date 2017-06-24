@@ -2,17 +2,17 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-19 15:03+0000\n"
-"PO-Revision-Date: 2015-02-23 18:50+0100\n"
+"POT-Creation-Date: 2017-06-06 02:41+0000\n"
+"PO-Revision-Date: 2017-06-20 12:08+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,7 +105,7 @@ msgstr "Posición de la ventana"
 msgid "Window position (x and y)."
 msgstr "Posición de la ventana (X e Y)."
 
-#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+#: ../src/bijiben-shell-search-provider.c:272 ../src/bjb-main-toolbar.c:658
 msgid "Untitled"
 msgstr "Sin título"
 
@@ -117,33 +117,35 @@ msgstr "Cuaderno de notas sencillo para GNOME"
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013"
 
-#: ../src/bjb-bijiben.c:395
+#: ../src/bjb-bijiben.c:364
 msgid "Show the application's version"
 msgstr "Mostrar la versión de la aplicación"
 
-#: ../src/bjb-bijiben.c:397
+#: ../src/bjb-bijiben.c:366
 msgid "Create a new note"
 msgstr "Crear una nota nueva"
 
-#: ../src/bjb-bijiben.c:399
+#: ../src/bjb-bijiben.c:368
 msgid "[FILE...]"
 msgstr "[ARCHIVO…]"
 
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:376
 msgid "Take notes and export them everywhere."
 msgstr "Tomar notas y exportarlas a cualquier parte."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:417
+#: ../src/bjb-bijiben.c:387
 msgid "Could not parse arguments"
 msgstr "No se pudieron analizar los argumentos"
 
-#: ../src/bjb-bijiben.c:426
+#: ../src/bjb-bijiben.c:396
 msgid "GNOME Notes"
 msgstr "Notas de GNOME"
 
-#: ../src/bjb-bijiben.c:439
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: ../src/bjb-bijiben.c:408
 msgid "Could not register the application"
 msgstr "No se pudo registrar la aplicación"
 
@@ -151,64 +153,19 @@ msgstr "No se pudo registrar la aplicación"
 msgid "Note Color"
 msgstr "Color de la nota"
 
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Cortar"
-
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Copiar"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Pegar"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "* "
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Negrita"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Cursiva"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Tachada"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Copiar selección a una nota nueva"
-
-#: ../src/bjb-empty-results-box.c:86
+#: ../src/bjb-empty-results-box.c:87
 msgid "No notes"
 msgstr "No hay notas"
 
-#: ../src/bjb-empty-results-box.c:130
+#: ../src/bjb-empty-results-box.c:131
 msgid "Press the New button to create a note."
 msgstr "Pulse el botón «Nueva» para crear una nota."
 
-#: ../src/bjb-empty-results-box.c:152
+#: ../src/bjb-empty-results-box.c:153
 msgid "Oops"
 msgstr "Vaya"
 
-#: ../src/bjb-empty-results-box.c:158
+#: ../src/bjb-empty-results-box.c:159
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instale «Tracker» y reinicie la aplicación."
 
@@ -244,36 +201,36 @@ msgstr "Cargar más"
 msgid "Loading..."
 msgstr "Cargando…"
 
-#: ../src/bjb-main-toolbar.c:142
+#: ../src/bjb-main-toolbar.c:141
 msgid "Click on items to select them"
 msgstr "Pulse sobre los elementos para seleccionarlos"
 
-#: ../src/bjb-main-toolbar.c:144
+#: ../src/bjb-main-toolbar.c:143
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/bjb-main-toolbar.c:264
+#: ../src/bjb-main-toolbar.c:263
 msgid "Search note titles, content and notebooks"
 msgstr "Buscar en títulos de notas, contenido y cuadernos de notas"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:306
+#: ../src/bjb-main-toolbar.c:305
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/bjb-main-toolbar.c:320
+#: ../src/bjb-main-toolbar.c:319
 msgid "Exit selection mode"
 msgstr "Salir del modo de selección"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:349
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: ../src/bjb-main-toolbar.c:353
+#: ../src/bjb-main-toolbar.c:352
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
@@ -281,30 +238,30 @@ msgstr "Nuevas y recientes"
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
 #.
-#: ../src/bjb-main-toolbar.c:441
+#: ../src/bjb-main-toolbar.c:440
 msgid "_New"
 msgstr "_Nueva"
 
-#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
+#: ../src/bjb-main-toolbar.c:459 ../src/bjb-main-toolbar.c:557
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: ../src/bjb-main-toolbar.c:495
+#: ../src/bjb-main-toolbar.c:494
 msgid "View notes and notebooks in a list"
 msgstr "Ver notas y cuadernos de notas en una lista"
 
-#: ../src/bjb-main-toolbar.c:519
+#: ../src/bjb-main-toolbar.c:518
 msgid "View notes and notebooks in a grid"
 msgstr "Ver notas y cuadernos de notas en una rejilla"
 
-#: ../src/bjb-main-toolbar.c:538
+#: ../src/bjb-main-toolbar.c:537
 msgid "Trash"
 msgstr "Papelera"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:577
+#: ../src/bjb-main-toolbar.c:576
 msgid "Empty"
 msgstr "Vaciar"
 
@@ -312,49 +269,49 @@ msgstr "Vaciar"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:757
+#: ../src/bjb-main-toolbar.c:756
 msgid "Open in New Window"
 msgstr "Abrir en una ventana nueva"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:768
+#: ../src/bjb-main-toolbar.c:767
 msgid "Undo"
 msgstr "Deshacer"
 
-#: ../src/bjb-main-toolbar.c:776
+#: ../src/bjb-main-toolbar.c:775
 msgid "Redo"
 msgstr "Rehacer"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:381
+#: ../src/bjb-main-toolbar.c:790 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:383
 msgid "Notebooks"
 msgstr "Cuadernos de notas"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:799
+#: ../src/bjb-main-toolbar.c:798
 msgid "Email this Note"
 msgstr "Enviar esta nota por correo-e"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:811 ../src/bjb-selection-toolbar.c:417
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
-#: ../src/bjb-main-toolbar.c:872
+#: ../src/bjb-main-toolbar.c:871
 msgid "More options…"
 msgstr "Más opciones…"
 
-#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:894 ../src/bjb-selection-toolbar.c:394
 msgid "Note color"
 msgstr "Color de la nota"
 
-#: ../src/bjb-main-view.c:516
+#: ../src/bjb-main-view.c:504
 msgid "Notebook"
 msgstr "Cuaderno de notas"
 
-#: ../src/bjb-main-view.c:519
+#: ../src/bjb-main-view.c:507
 msgid "Note"
 msgstr "Nota"
 
@@ -363,7 +320,7 @@ msgstr "Nota"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:191
+#: ../src/bjb-note-view.c:196
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Última actualización</b> %s"
@@ -385,50 +342,23 @@ msgid "_OK"
 msgstr "_Aceptar"
 
 #. Restore (do not show)
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-selection-toolbar.c:388
 msgid "Restore"
 msgstr "Restaurar"
 
-#: ../src/bjb-selection-toolbar.c:403
+#: ../src/bjb-selection-toolbar.c:405
 msgid "Share note"
 msgstr "Compartir nota"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:409
+#: ../src/bjb-selection-toolbar.c:411
 msgid "Open in another window"
 msgstr "Abrir en otra ventana"
 
 #. Permanently delete (do not show )
-#: ../src/bjb-selection-toolbar.c:423
+#: ../src/bjb-selection-toolbar.c:425
 msgid "Permanently Delete"
 msgstr "Eliminar permanentemente"
-
-#. Use System Font
-#: ../src/bjb-settings-dialog.c:394
-msgid "Use System Font"
-msgstr "Usar la tipografía del sistema"
-
-#. Default font
-#: ../src/bjb-settings-dialog.c:408
-msgid "Note Font"
-msgstr "Tipografía de la nota"
-
-#. Default color
-#: ../src/bjb-settings-dialog.c:420
-msgid "Default Color"
-msgstr "Color predeterminado"
-
-#: ../src/bjb-settings-dialog.c:466
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: ../src/bjb-settings-dialog.c:498
-msgid "Note Edition"
-msgstr "Edición de la nota"
-
-#: ../src/bjb-settings-dialog.c:506
-msgid "Primary Book"
-msgstr "Libro principal"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -486,8 +416,78 @@ msgstr "_Acerca de"
 msgid "_Quit"
 msgstr "_Salir"
 
-#~ msgid "Bullets"
-#~ msgstr "Topos"
+#: ../src/resources/editor-toolbar.ui.h:1
+msgid "Cut"
+msgstr "Cortar"
+
+#: ../src/resources/editor-toolbar.ui.h:2
+msgid "Copy"
+msgstr "Copiar"
+
+#: ../src/resources/editor-toolbar.ui.h:3
+msgid "Paste"
+msgstr "Pegar"
+
+#: ../src/resources/editor-toolbar.ui.h:4
+msgid "Bold"
+msgstr "Negrita"
+
+#: ../src/resources/editor-toolbar.ui.h:5
+msgid "Italic"
+msgstr "Cursiva"
+
+#: ../src/resources/editor-toolbar.ui.h:6
+msgid "Strike"
+msgstr "Tachada"
+
+#: ../src/resources/editor-toolbar.ui.h:7
+msgid "* "
+msgstr "* "
+
+#: ../src/resources/editor-toolbar.ui.h:8
+msgid "Bullets"
+msgstr "Topos"
+
+#: ../src/resources/editor-toolbar.ui.h:9
+msgid "1."
+msgstr "1."
+
+#: ../src/resources/editor-toolbar.ui.h:10
+msgid "List"
+msgstr "Lista"
+
+#: ../src/resources/editor-toolbar.ui.h:11
+msgid "Copy selection to a new note"
+msgstr "Copiar selección a una nota nueva"
+
+#: ../src/resources/settings-dialog.ui.h:1
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: ../src/resources/settings-dialog.ui.h:2
+msgid "Use System Font"
+msgstr "Usar la tipografía del sistema"
+
+#: ../src/resources/settings-dialog.ui.h:3
+msgid "Note Font"
+msgstr "Tipografía de la nota"
+
+#: ../src/resources/settings-dialog.ui.h:4
+msgid "Default Color"
+msgstr "Color predeterminado"
+
+#: ../src/resources/settings-dialog.ui.h:5
+msgid "Note Edition"
+msgstr "Edición de la nota"
+
+#: ../src/resources/settings-dialog.ui.h:6
+#| msgid "Select import location"
+msgid "Select the default storage location:"
+msgstr "Seleccionar la ubicación predeterminada del almacenamiento:"
+
+#: ../src/resources/settings-dialog.ui.h:7
+msgid "Primary Book"
+msgstr "Libro principal"
 
 #~ msgid "Numbered List"
 #~ msgstr "Lista numerada"
@@ -568,9 +568,6 @@ msgstr "_Salir"
 
 #~ msgid "Link"
 #~ msgstr "Enlace"
-
-#~ msgid "List"
-#~ msgstr "Lista"
 
 #~ msgid "Tag"
 #~ msgstr "Etiqueta"

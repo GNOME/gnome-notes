@@ -69,7 +69,10 @@ PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-spar
 
 PKG_CHECK_MODULES([GENMARSHAL],
   [glib-2.0 >= 2.53.2],
-  [include_marshalers=""],
+  [PKG_CHECK_MODULES([GENMARSHAL],
+    [glib-2.0 >= 2.53.4],
+    [include_marshalers="#include \\\"biji-marshalers.h\\\""],
+    [include_marshalers=""])],
   [include_marshalers="#include \\\"biji-marshalers.h\\\""])
 AC_SUBST([include_marshalers])
 

@@ -1,3 +1,29 @@
+Overview of changes in 3.24.1
+=============================
+
+* Added support for glib 2.53.4 (Isaque Galdino)
+* Fixed transparent window issue when no notes are displayed (Isaque Galdino)
+* Added support for glib 2.53.2 (Isaque Galdino)
+* Fixed memory leak when saving a note (Mohammed Sadiq)
+* Fixed memory leak when deleting note in local provider (Mohammed Sadiq)
+* Fixed application state stuck in trash view (Isaque Galdino)
+* Fixed 64 bits format for text output (Isaque Galdino)
+* Fixed application cash when some dates are null (Milan Crha)
+* Added missing break in a case statement (Isaque Galdino)
+* Removed warning about .Trash folder missing (Isaque Galdino)
+
+Translations
+* cs (Marek Černocký)
+* de (Mario Blättermann)
+* es (Daniel Mustieles)
+* id (Kukuh Syafaat)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* sl (Matej Urbančič)
+* sv (Anders Jonsson)
+* tr (Emin Tufan Çetin)
+
+
 Overview of changes in 3.24.0
 =============================
 

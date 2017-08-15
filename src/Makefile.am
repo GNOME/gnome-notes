@@ -12,13 +12,13 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	-I$(top_srcdir)/libgd \
+	-I$(top_srcdir)/subprojects/libgd \
 	-I$(top_builddir)/src/libbiji \
 	$(BIJIBEN_CFLAGS)
 
 LDADD = libbiji/libbiji.la \
 	$(LIBM) \
-	$(top_builddir)/libgd/libgd.la \
+	$(top_builddir)/subprojects/libgd/libgd.la \
 	$(BIJIBEN_LIBS)
 
 bijiben_CFLAGS = \

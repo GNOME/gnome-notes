@@ -120,11 +120,12 @@ LIBGD_INIT([
   main-view
   static
   tagged-entry
-])
+][subprojects/libgd])
 
 AC_CONFIG_FILES([
 Makefile
-libgd/Makefile
+subprojects/Makefile
+subprojects/libgd/Makefile
 data/Makefile
 data/org.gnome.bijiben.desktop.in
 data/icons/Makefile

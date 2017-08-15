@@ -9,7 +9,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	-I$(top_srcdir)/libgd \
+	-I$(top_srcdir)/subprojects/libgd \
 	-I$(top_srcdir)/src/ \
 	-I$(top_srcdir)/src/libbiji \
 	$(BIJIBEN_CFLAGS) \

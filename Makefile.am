@@ -1,6 +1,6 @@
-ACLOCAL_AMFLAGS = -I m4 -I libgd ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS = -I m4 -I subprojects/libgd ${ACLOCAL_FLAGS}
 
-SUBDIRS = libgd src data po help
+SUBDIRS = subprojects/libgd src data po help
 
 bijibendoc = \
 	README\

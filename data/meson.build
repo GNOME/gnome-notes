@@ -2,22 +2,23 @@ subdir('icons')
 
 mime = 'org.gnome.bijiben.xml'
 
-custom_target(
+i18n.merge_file(
   mime,
   input: mime + '.in',
   output: mime,
-  command: intltool_xml_cmd,
+  po_dir: po_dir,
+  data_dirs: its_dir,
   install: true,
   install_dir: join_paths(bijiben_datadir, 'mime', 'packages')
 )
 
 appdata = 'org.gnome.bijiben.appdata.xml'
 
-custom_target(
+i18n.merge_file(
   appdata,
   input: appdata + '.in',
   output: appdata,
-  command: intltool_xml_cmd,
+  po_dir: po_dir,
   install: true,
   install_dir: join_paths(bijiben_datadir, 'metainfo')
 )
@@ -33,11 +34,12 @@ desktop_in = configure_file(
   configuration: desktop_conf
 )
 
-custom_target(
+i18n.merge_file(
   desktop,
+  type: 'desktop',
   input: desktop_in,
   output: desktop,
-  command: intltool_desktop_cmd,
+  po_dir: po_dir,
   install: true,
   install_dir: join_paths(bijiben_datadir, 'applications')
 )

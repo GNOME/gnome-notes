@@ -1,7 +1,7 @@
 # List of source files containing translatable strings.
 data/org.gnome.bijiben.appdata.xml.in
 data/org.gnome.bijiben.desktop.in.in
-[type: gettext/gsettings]data/org.gnome.bijiben.gschema.xml
+data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in
 src/bijiben-shell-search-provider.c
 src/bjb-app-menu.c
@@ -23,6 +23,6 @@ src/bjb-window-base.c
 src/libbiji/biji-date-time.c
 src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c
-[type: gettext/glade]src/resources/app-menu.ui
-[type: gettext/glade]src/resources/editor-toolbar.ui
-[type: gettext/glade]src/resources/settings-dialog.ui
+src/resources/app-menu.ui
+src/resources/editor-toolbar.ui
+src/resources/settings-dialog.ui

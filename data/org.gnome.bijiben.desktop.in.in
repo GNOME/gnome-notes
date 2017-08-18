@@ -1,9 +1,8 @@
-
 [Desktop Entry]
-_Name=Notes
-_Keywords=notes;reminder;
-_Comment=Post notes, tag files!
-_GenericName=Note-taker
+Name=Notes
+Keywords=notes;reminder;
+Comment=Post notes, tag files!
+GenericName=Note-taker
 Exec=bijiben %u
 Icon=org.gnome.bijiben
 MimeType=x-scheme-handler/note;

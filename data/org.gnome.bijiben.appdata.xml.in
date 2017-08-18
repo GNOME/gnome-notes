@@ -4,14 +4,14 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+ and LGPL-3.0 and LGPL-2.0+</project_license>
   <name>Bijiben</name>
-  <_summary>Quickly jot notes</_summary>
+  <summary>Quickly jot notes</summary>
   <description>
-    <_p>
+    <p>
       Notes is an editor allowing to make simple lists for later use.
-    </_p>
-    <_p>
+    </p>
+    <p>
       It allows to use ownCloud as a storage location and online editor.
-    </_p>
+    </p>
   </description>
   <kudos>
     <kudo>AppMenu</kudo>

@@ -4,7 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+ and LGPL-3.0 and LGPL-2.0+</project_license>
   <name>Bijiben</name>
-  <summary>Quickly jot notes</summary>
+  <_summary>Quickly jot notes</_summary>
   <description>
     <_p>
       Notes is an editor allowing to make simple lists for later use.

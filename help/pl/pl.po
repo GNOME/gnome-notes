@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben-help\n"
-"POT-Creation-Date: 2017-06-07 12:16+0000\n"
-"PO-Revision-Date: 2017-06-08 20:08+0200\n"
+"POT-Creation-Date: 2017-06-28 17:50+0000\n"
+"PO-Revision-Date: 2017-08-18 19:48+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -764,4 +764,4 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported"
 #. (itstool) path: license/p
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
-msgstr "Na warunkach licencji: <_:link-1/>."
+msgstr "Na warunkach licencji <_:link-1/>."

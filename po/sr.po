@@ -1,5 +1,5 @@
 # Serbian translation for bijiben.
-# Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
+# Copyright © 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012—2017.
 msgid ""
@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:50+0000\n"
-"PO-Revision-Date: 2017-08-12 20:13+0200\n"
+"POT-Creation-Date: 2017-08-18 17:46+0000\n"
+"PO-Revision-Date: 2017-08-19 18:14+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian <(nothing)>\n"
+"Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,12 +20,16 @@ msgstr ""
 "X-Project-Style: gnome\n"
 
 #: ../data/org.gnome.bijiben.appdata.xml.in.h:1
+msgid "Quickly jot notes"
+msgstr "Брзо прибележите белешке"
+
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Белешко је уређивач који омогућава стварање једноставних спискова за каснију "
 "употребу."
 
-#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
+#: ../data/org.gnome.bijiben.appdata.xml.in.h:3
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Омогућава коришћење Властитог облака као место складиштења и уређивача на "
@@ -484,7 +488,6 @@ msgid "Note Edition"
 msgstr "Уређивање белешке"
 
 #: ../src/resources/settings-dialog.ui.h:6
-#| msgid "Select import location"
 msgid "Select the default storage location:"
 msgstr "Изаберите основно место за чување:"
 

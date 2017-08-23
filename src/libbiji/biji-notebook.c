@@ -277,6 +277,14 @@ biji_notebook_trash (BijiItem *item)
   return TRUE;
 }
 
+static gboolean
+biji_notebook_delete (BijiItem *item)
+{
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
+
+  g_warning ("Notebooks delete is not yet implemented");
+  return FALSE;
+}
 
 static gboolean
 biji_notebook_restore (BijiItem  *item,
@@ -504,6 +512,7 @@ biji_notebook_class_init (BijiNotebookClass *klass)
   item_class->get_place = biji_notebook_get_place;
   item_class->has_color = say_no;
   item_class->trash = biji_notebook_trash;
+  item_class->delete = biji_notebook_delete;
   item_class->restore = biji_notebook_restore;
   item_class->is_collectable = say_no;
   item_class->has_notebook = biji_notebook_has_notebook;

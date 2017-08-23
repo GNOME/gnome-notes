@@ -16,6 +16,7 @@
 
 
 #define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
+#define SAVE_GEOMETRY_ID_TIMEOUT 100 /* ms */
 
 enum {
   PROP_0,
@@ -54,6 +55,7 @@ struct _BjbWindowBasePriv
   GtkWidget            *spinner;
   GtkWidget            *no_note;
 
+  guint                save_geometry_id;
 
   /* when a note is opened */
   BijiNoteObj          *note;
@@ -185,42 +187,25 @@ bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
   bjb_controller_disconnect (self->priv->controller);
 }
 
-
 static gboolean
-bjb_application_window_state_changed (GtkWidget *widget,
-                                      GdkEvent  *event,
-                                      gpointer   user_data)
-{
-  GSettings *settings;
-  GdkWindowState state;
-  gboolean maximized;
-
-  settings = user_data;
-  state = gdk_window_get_state (gtk_widget_get_window (widget));
-  maximized = state & GDK_WINDOW_STATE_MAXIMIZED;
-
-  g_settings_set_boolean (settings, "window-maximized", maximized);
-
-  return FALSE;
-}
-
-
-static gboolean
-bjb_application_window_configured (GtkWidget *widget,
-                                   GdkEvent  *event,
-                                   gpointer   user_data)
+bjb_application_window_configured (gpointer   user_data)
 {
   BjbWindowBase *win;
   GSettings *settings;
   GVariant *variant;
-  GdkWindowState state;
   gint32 size[2];
   gint32 position[2];
+  gboolean maximized;
 
   win = BJB_WINDOW_BASE (user_data);
   settings = G_SETTINGS (win->priv->settings);
-  state = gdk_window_get_state (gtk_widget_get_window (widget));
-  if (state & GDK_WINDOW_STATE_MAXIMIZED)
+
+  win->priv->save_geometry_id = 0;
+
+  maximized = gtk_window_is_maximized (GTK_WINDOW (win));
+  g_settings_set_boolean (settings, "window-maximized", maximized);
+
+  if (maximized)
     return FALSE;
 
   gtk_window_get_size (GTK_WINDOW (win),
@@ -242,7 +227,25 @@ bjb_application_window_configured (GtkWidget *widget,
   return FALSE;
 }
 
+static gboolean
+bjb_window_base_configure_event (GtkWidget         *widget,
+                                 GdkEventConfigure *event)
+{
+  BjbWindowBase *self;
+  gboolean   retval;
 
+  self = BJB_WINDOW_BASE (widget);
+
+  if (self->priv->save_geometry_id != 0)
+    g_source_remove (self->priv->save_geometry_id);
+
+  self->priv->save_geometry_id = g_timeout_add (SAVE_GEOMETRY_ID_TIMEOUT,
+                                                bjb_application_window_configured,
+                                                self);
+  retval = GTK_WIDGET_CLASS (bjb_window_base_parent_class)->configure_event (widget,
+                                                                             event);
+  return retval;
+}
 
 
 /* Gobj */
@@ -324,16 +327,6 @@ bjb_window_base_constructed (GObject *obj)
                     G_CALLBACK (bjb_window_base_destroy),
                     self);
 
-  g_signal_connect (self,
-                    "window-state-event",
-                    G_CALLBACK (bjb_application_window_state_changed),
-                    priv->settings);
-
-  g_signal_connect (self,
-                    "configure-event",
-                    G_CALLBACK (bjb_application_window_configured),
-                    self);
-
   /* Keys */
 
   g_signal_connect (GTK_WIDGET (self),
@@ -389,12 +382,14 @@ static void
 bjb_window_base_class_init (BjbWindowBaseClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   gobject_class->constructed = bjb_window_base_constructed;
   gobject_class->finalize = bjb_window_base_finalize ;
   gobject_class->get_property = bjb_window_base_get_property;
   gobject_class->set_property = bjb_window_base_set_property;
+
+  widget_class->configure_event = bjb_window_base_configure_event;
 
   g_type_class_add_private (klass, sizeof (BjbWindowBasePriv));
 

@@ -137,7 +137,7 @@ bjb_controller_finalize (GObject *object)
   g_list_free (priv->items_to_show);
 
   if (priv->notebook)
-    g_free (priv->notebook);
+    g_clear_object (&priv->notebook);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }

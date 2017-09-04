@@ -1,22 +1,22 @@
 # Serbian translation for bijiben.
-# Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
+# Copyright © 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012—2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-02-26 00:58+0000\n"
-"PO-Revision-Date: 2017-02-26 14:57+0200\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
+"n&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-09-03 14:05+0000\n"
+"PO-Revision-Date: 2017-09-04 20:09+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian <gnom@prevod.org>\n"
+"Language-Team: srpski <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/org.gnome.bijiben.appdata.xml.in.h:1
@@ -103,7 +103,7 @@ msgstr "Položaj prozora"
 msgid "Window position (x and y)."
 msgstr "Položaj prozora (položeno i uspravno)."
 
-#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+#: ../src/bijiben-shell-search-provider.c:272 ../src/bjb-main-toolbar.c:660
 msgid "Untitled"
 msgstr "Neimenovana"
 
@@ -118,35 +118,35 @@ msgstr ""
 "\n"
 "  http://prevod.org — prevod na srpski jezik"
 
-#: ../src/bjb-bijiben.c:395
+#: ../src/bjb-bijiben.c:364
 msgid "Show the application's version"
 msgstr "Prikazuje izdanje programa"
 
-#: ../src/bjb-bijiben.c:397
+#: ../src/bjb-bijiben.c:366
 msgid "Create a new note"
 msgstr "Pravi novu belešku"
 
-#: ../src/bjb-bijiben.c:399
+#: ../src/bjb-bijiben.c:368
 msgid "[FILE...]"
 msgstr "[DATOTEKA...]"
 
-#: ../src/bjb-bijiben.c:406
+#: ../src/bjb-bijiben.c:376
 msgid "Take notes and export them everywhere."
 msgstr "Hvatajte beleške i izvozite ih svuda."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:417
+#: ../src/bjb-bijiben.c:387
 msgid "Could not parse arguments"
 msgstr "Ne mogu da obradim argumente"
 
-#: ../src/bjb-bijiben.c:426
+#: ../src/bjb-bijiben.c:396
 msgid "GNOME Notes"
 msgstr "Gnomove beleške"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:439
+#: ../src/bjb-bijiben.c:408
 msgid "Could not register the application"
 msgstr "Ne mogu da zabeležim program"
 
@@ -154,19 +154,19 @@ msgstr "Ne mogu da zabeležim program"
 msgid "Note Color"
 msgstr "Boja beleške"
 
-#: ../src/bjb-empty-results-box.c:86
+#: ../src/bjb-empty-results-box.c:87
 msgid "No notes"
 msgstr "Nema beleški"
 
-#: ../src/bjb-empty-results-box.c:130
+#: ../src/bjb-empty-results-box.c:131
 msgid "Press the New button to create a note."
 msgstr "Pritisnite dugme „Novo“ da napravite belešku."
 
-#: ../src/bjb-empty-results-box.c:152
+#: ../src/bjb-empty-results-box.c:153
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:158
+#: ../src/bjb-empty-results-box.c:159
 msgid "Please install 'Tracker' then restart the application."
 msgstr "Instalirajte „Tragača“ zatim ponovo pokrenite program."
 
@@ -202,11 +202,11 @@ msgstr "Učitaj još"
 msgid "Loading..."
 msgstr "Učitavam..."
 
-#: ../src/bjb-main-toolbar.c:142
+#: ../src/bjb-main-toolbar.c:143
 msgid "Click on items to select them"
 msgstr "Kliknite na stavke da ih izaberete"
 
-#: ../src/bjb-main-toolbar.c:144
+#: ../src/bjb-main-toolbar.c:145
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -215,25 +215,25 @@ msgstr[1] "%d su izabrane"
 msgstr[2] "%d je izabrano"
 msgstr[3] "Izabranih — %d"
 
-#: ../src/bjb-main-toolbar.c:264
+#: ../src/bjb-main-toolbar.c:265
 msgid "Search note titles, content and notebooks"
 msgstr "Tražite naslove, sadržaj i beležnice"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:306
+#: ../src/bjb-main-toolbar.c:307
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: ../src/bjb-main-toolbar.c:320
+#: ../src/bjb-main-toolbar.c:321
 msgid "Exit selection mode"
 msgstr "Izađite iz režima izbora"
 
-#: ../src/bjb-main-toolbar.c:350
+#: ../src/bjb-main-toolbar.c:351
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za „%s“"
 
-#: ../src/bjb-main-toolbar.c:353
+#: ../src/bjb-main-toolbar.c:354
 msgid "New and Recent"
 msgstr "Nove i skorašnje"
 
@@ -241,30 +241,30 @@ msgstr "Nove i skorašnje"
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
 #.
-#: ../src/bjb-main-toolbar.c:441
+#: ../src/bjb-main-toolbar.c:442
 msgid "_New"
 msgstr "_Nova"
 
-#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
+#: ../src/bjb-main-toolbar.c:461 ../src/bjb-main-toolbar.c:559
 msgid "Selection mode"
 msgstr "Režim izbora"
 
-#: ../src/bjb-main-toolbar.c:495
+#: ../src/bjb-main-toolbar.c:496
 msgid "View notes and notebooks in a list"
 msgstr "Prikaži beleške i beležnice kao spisak"
 
-#: ../src/bjb-main-toolbar.c:519
+#: ../src/bjb-main-toolbar.c:520
 msgid "View notes and notebooks in a grid"
 msgstr "Prikaži beleške i beležnice kao ikonice"
 
-#: ../src/bjb-main-toolbar.c:538
+#: ../src/bjb-main-toolbar.c:539
 msgid "Trash"
 msgstr "Smeće"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:577
+#: ../src/bjb-main-toolbar.c:578
 msgid "Empty"
 msgstr "Isprazni"
 
@@ -272,49 +272,49 @@ msgstr "Isprazni"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:757
+#: ../src/bjb-main-toolbar.c:758
 msgid "Open in New Window"
 msgstr "Otvori u novom prozoru"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:768
+#: ../src/bjb-main-toolbar.c:769
 msgid "Undo"
 msgstr "Opozovi"
 
-#: ../src/bjb-main-toolbar.c:776
+#: ../src/bjb-main-toolbar.c:777
 msgid "Redo"
 msgstr "Povrati"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:381
+#: ../src/bjb-main-toolbar.c:792 ../src/bjb-organize-dialog.c:370
+#: ../src/bjb-selection-toolbar.c:383
 msgid "Notebooks"
 msgstr "Beležnice"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:799
+#: ../src/bjb-main-toolbar.c:800
 msgid "Email this Note"
 msgstr "Pošaljite el. poštom ovu belešku"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
+#: ../src/bjb-main-toolbar.c:813 ../src/bjb-selection-toolbar.c:417
 msgid "Move to Trash"
 msgstr "Premesti u smeće"
 
-#: ../src/bjb-main-toolbar.c:872
+#: ../src/bjb-main-toolbar.c:873
 msgid "More options…"
 msgstr "Još opcija…"
 
-#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
+#: ../src/bjb-main-toolbar.c:896 ../src/bjb-selection-toolbar.c:394
 msgid "Note color"
 msgstr "Boja beleške"
 
-#: ../src/bjb-main-view.c:516
+#: ../src/bjb-main-view.c:504
 msgid "Notebook"
 msgstr "Beležnica"
 
-#: ../src/bjb-main-view.c:519
+#: ../src/bjb-main-view.c:507
 msgid "Note"
 msgstr "Beleška"
 
@@ -323,7 +323,7 @@ msgstr "Beleška"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:192
+#: ../src/bjb-note-view.c:196
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Poslednje ažuriranje</b> %s"
@@ -345,50 +345,23 @@ msgid "_OK"
 msgstr "U _redu"
 
 #. Restore (do not show)
-#: ../src/bjb-selection-toolbar.c:386
+#: ../src/bjb-selection-toolbar.c:388
 msgid "Restore"
 msgstr "Povrati"
 
-#: ../src/bjb-selection-toolbar.c:403
+#: ../src/bjb-selection-toolbar.c:405
 msgid "Share note"
 msgstr "Delite belešku"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:409
+#: ../src/bjb-selection-toolbar.c:411
 msgid "Open in another window"
 msgstr "Otvori u drugom prozoru"
 
 #. Permanently delete (do not show )
-#: ../src/bjb-selection-toolbar.c:423
+#: ../src/bjb-selection-toolbar.c:425
 msgid "Permanently Delete"
 msgstr "Trajno obriši"
-
-#. Use System Font
-#: ../src/bjb-settings-dialog.c:394
-msgid "Use System Font"
-msgstr "Koristi slovni lik sistema"
-
-#. Default font
-#: ../src/bjb-settings-dialog.c:408
-msgid "Note Font"
-msgstr "Slovni lik beleške"
-
-#. Default color
-#: ../src/bjb-settings-dialog.c:420
-msgid "Default Color"
-msgstr "Osnovna boja"
-
-#: ../src/bjb-settings-dialog.c:466
-msgid "Preferences"
-msgstr "Postavke"
-
-#: ../src/bjb-settings-dialog.c:498
-msgid "Note Edition"
-msgstr "Uređivanje beleške"
-
-#: ../src/bjb-settings-dialog.c:506
-msgid "Primary Book"
-msgstr "Osnovna knjiga"
 
 #: ../src/libbiji/biji-date-time.c:32
 msgid "Today"
@@ -418,7 +391,7 @@ msgstr "Nepoznato"
 msgid "Local"
 msgstr "Mesno"
 
-#: ../src/libbiji/provider/biji-local-provider.c:363
+#: ../src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Mesno skladište"
 
@@ -489,6 +462,35 @@ msgstr "Spisak"
 #: ../src/resources/editor-toolbar.ui.h:11
 msgid "Copy selection to a new note"
 msgstr "Umnoži izbor u novu belešku"
+
+#: ../src/resources/settings-dialog.ui.h:1
+msgid "Preferences"
+msgstr "Postavke"
+
+#: ../src/resources/settings-dialog.ui.h:2
+msgid "Use System Font"
+msgstr "Koristi slovni lik sistema"
+
+#: ../src/resources/settings-dialog.ui.h:3
+msgid "Note Font"
+msgstr "Slovni lik beleške"
+
+#: ../src/resources/settings-dialog.ui.h:4
+msgid "Default Color"
+msgstr "Osnovna boja"
+
+#: ../src/resources/settings-dialog.ui.h:5
+msgid "Note Edition"
+msgstr "Uređivanje beleške"
+
+#: ../src/resources/settings-dialog.ui.h:6
+#| msgid "Select import location"
+msgid "Select the default storage location:"
+msgstr "Izaberite osnovno mesto skladištenja:"
+
+#: ../src/resources/settings-dialog.ui.h:7
+msgid "Primary Book"
+msgstr "Osnovna knjiga"
 
 #~ msgid "Numbered List"
 #~ msgstr "Brojni spisak"

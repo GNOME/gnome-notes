@@ -830,7 +830,7 @@ biji_note_obj_get_html (BijiNoteObj *note)
 {
 	gchar *content = BIJI_NOTE_OBJ_GET_CLASS (note)->get_html (note);
 
-	if (is_webkit1 (content))
+	if (content && is_webkit1 (content))
 		{
 			content = convert_webkit1_to_webkit2 (content);
 			biji_note_obj_set_html (note, content);

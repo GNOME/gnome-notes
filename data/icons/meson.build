@@ -1,42 +1,30 @@
-apps_icon_sizes = [
-  '16x16',
-  '22x22',
-  '24x24',
-  '32x32',
-  '48x48',
-  '256x256'
+apps_icons = [
+  ['16x16', 'org.gnome.bijiben.png'],
+  ['22x22', 'org.gnome.bijiben.png'],
+  ['24x24', 'org.gnome.bijiben.png'],
+  ['32x32', 'org.gnome.bijiben.png'],
+  ['48x48', 'org.gnome.bijiben.png'],
+  ['256x256', 'org.gnome.bijiben.png'],
+  ['scalable', 'org.gnome.bijiben-symbolic.svg']
 ]
 
-# must be renamed to org.gnome.bijiben.png
-foreach icon_size: apps_icon_sizes
+foreach icon: apps_icons
   install_data(
-    '_'.join(['hicolor', 'apps', icon_size, 'org.gnome.bijiben.png']),
-    install_dir: join_paths(bijiben_datadir, 'icons', 'hicolor', icon_size, 'apps')
+    join_paths('hicolor', icon[0], 'apps', icon[1]),
+    install_dir: join_paths(bijiben_datadir, 'icons', 'hicolor', icon[0], 'apps')
   )
 endforeach
 
-# must be renamed to org.gnome.bijiben-symbolic.svg
-install_data(
-  '_'.join(['hicolor', 'apps', 'scalable', 'org.gnome.bijiben-symbolic.svg']),
-  install_dir: join_paths(bijiben_datadir, 'icons', 'hicolor', 'scalable', 'apps')
-)
-
-actions_icon_sizes = [
-  '16x16',
-  '24x24',
-  '48x48'
+actions_icons = [
+  ['16x16', 'note.png'],
+  ['24x24', 'note.png'],
+  ['48x48', 'note.png'],
+  ['scalable', 'link.svg']
 ]
 
-# must be renamed to note.png
-foreach icon_size: actions_icon_sizes
+foreach icon: actions_icons
   install_data(
-    '_'.join(['hicolor', 'actions', icon_size, 'note.png']),
-    install_dir: join_paths(bijiben_pkgdatadir, 'icons', 'hicolor', icon_size, 'actions')
+    join_paths('hicolor', icon[0], 'actions', icon[1]),
+    install_dir: join_paths(bijiben_pkgdatadir, 'icons', 'hicolor', icon[0], 'actions')
   )
 endforeach
-
-# must be renamed to link.svg
-install_data(
-  '_'.join(['hicolor', 'actions', 'scalable', 'link.svg']),
-  install_dir: join_paths(bijiben_pkgdatadir, 'icons', 'hicolor', 'scalable', 'actions')
-)

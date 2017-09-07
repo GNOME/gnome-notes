@@ -559,10 +559,6 @@ memo_create_note (BijiProvider *provider,
       biji_provider_get_manager (provider), str);
   }
 
-  if (!title)
-    title = g_strdup ("1");
-
-
   info.url = NULL;
   info.title = title;
   info.mtime = g_get_real_time ();

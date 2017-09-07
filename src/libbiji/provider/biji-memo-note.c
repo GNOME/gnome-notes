@@ -316,7 +316,14 @@ memo_set_html (BijiNoteObj *note,
 }
 
 
+static gboolean
+memo_item_delete (BijiItem *item)
+{
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
 
+  g_warning ("Memo note delete is not yet implemented");
+  return FALSE;
+}
 
 static void
 on_memo_deleted (GObject *ecal,
@@ -427,6 +434,7 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   item_class->is_collectable = item_no;
   item_class->has_color = item_no;
   item_class->get_place = memo_get_place;
+  item_class->delete = memo_item_delete;
 
   note_class->get_basename = memo_get_basename;
   note_class->get_html = memo_get_html;

@@ -783,6 +783,11 @@ bjb_main_view_update_model (BjbMainView *self)
 gboolean
 bjb_main_view_get_selection_mode (BjbMainView *self)
 {
+  /* if self->priv->view is NULL, that means the view was destroyed
+   * because the windows is being closed by an exit action, so it
+   * doesn't matter which SelectionMode we return.
+   */
+  if (self->priv->view == NULL) return FALSE;
   return gd_main_view_get_selection_mode (self->priv->view);
 }
 
@@ -795,6 +800,11 @@ bjb_main_view_set_selection_mode (BjbMainView *self, gboolean mode)
 GdMainViewType
 bjb_main_view_get_view_type (BjbMainView *view)
 {
+  /* if view->priv->view is NULL, that means the view was destroyed
+   * because the windows is being closed by an exit action, so it
+   * doesn't matter which ViewType we return.
+   */
+  if (view->priv->view == NULL) return GD_MAIN_VIEW_ICON;
   return gd_main_view_get_view_type (view->priv->view);
 }
 

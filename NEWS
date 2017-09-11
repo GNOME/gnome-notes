@@ -1,3 +1,12 @@
+Overview of changes in 3.24.2
+=============================
+
+* Re-enable translations broken in 3.24 cycle (Jonathan Kang)
+
+Translations
+* hu (Balázs Úr)
+* sr (Мирослав Николић)
+
 Overview of changes in 3.24.1
 =============================
 

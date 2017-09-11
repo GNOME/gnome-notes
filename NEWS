@@ -1,3 +1,32 @@
+Overview of changes in 3.26.0
+=============================
+
+* Re-enable translations broken in 3.24 cycle (Jonathan Kang)
+* Fixed crash when closing application in an empty note
+* Fixed title for new Memo notes
+* Fixed crash when removing Memo notes
+* Fixed crash when removing Notebooks from trash (Mohammed Sadiq)
+* Fixed memory leak when releasing Notebooks (Mohammed Sadiq)
+* Reduced I/O usage when saving window state (Mohammed Sadiq)
+
+Translations
+* cs (Marek Černocký)
+* hu (Balázs Úr)
+* id (Kukuh Syafaat)
+* pl (Piotr Drąg)
+* sr (Мирослав Николић)
+* sv (Josef Jonsson)
+* zh_TW (Cheng-Chia Tseng)
+
+Overview of changes in 3.24.2
+=============================
+
+* Re-enable translations broken in 3.24 cycle (Jonathan Kang)
+
+Translations
+* pl (Piotr Drąg)
+* sr (Мирослав Николић)
+
 Overview of changes in 3.24.1
 =============================
 

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-18 19:47+0200\n"
-"PO-Revision-Date: 2017-08-18 19:48+0200\n"
+"POT-Creation-Date: 2017-09-11 21:24+0200\n"
+"PO-Revision-Date: 2017-09-11 21:25+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -162,7 +162,7 @@ msgstr "Brak notatek"
 
 #: ../src/bjb-empty-results-box.c:131
 msgid "Press the New button to create a note."
-msgstr "Proszę nacisnąć przycisk Nowa, aby utworzyć notatkę."
+msgstr "Kliknięcie przycisku „Nowa” utworzy notatkę."
 
 #: ../src/bjb-empty-results-box.c:153
 msgid "Oops"
@@ -180,7 +180,7 @@ msgstr "Inne położenie"
 
 #: ../src/bjb-import-dialog.c:404
 msgid "Import Notes"
-msgstr "Zaimportuj notatki"
+msgstr "Import notatek"
 
 #: ../src/bjb-import-dialog.c:411
 msgid "Import"
@@ -220,7 +220,7 @@ msgstr[2] "Zaznaczono: %d"
 
 #: ../src/bjb-main-toolbar.c:265
 msgid "Search note titles, content and notebooks"
-msgstr "Przeszukiwanie tytułów i treści notatek oraz notatników"
+msgstr "Wyszukuje tytuły i treści notatek oraz notatników"
 
 #. Select
 #: ../src/bjb-main-toolbar.c:307
@@ -229,7 +229,7 @@ msgstr "Anuluj"
 
 #: ../src/bjb-main-toolbar.c:321
 msgid "Exit selection mode"
-msgstr "Wyjście z trybu zaznaczania"
+msgstr "Wychodzi z trybu zaznaczania"
 
 #: ../src/bjb-main-toolbar.c:351
 #, c-format
@@ -354,7 +354,7 @@ msgstr "Przywróć"
 
 #: ../src/bjb-selection-toolbar.c:405
 msgid "Share note"
-msgstr "Udostępnij notatkę"
+msgstr "Udostępnia notatkę"
 
 #. Detach
 #: ../src/bjb-selection-toolbar.c:411
@@ -396,7 +396,7 @@ msgstr "Lokalne"
 
 #: ../src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
-msgstr "Lokalne przechowywanie"
+msgstr "Lokalne notatki"
 
 #: ../src/resources/app-menu.ui.h:1
 msgid "_Import Notes"
@@ -448,7 +448,7 @@ msgstr "Przekreśla"
 
 #: ../src/resources/editor-toolbar.ui.h:7
 msgid "* "
-msgstr "* "
+msgstr "• "
 
 #: ../src/resources/editor-toolbar.ui.h:8
 msgid "Bullets"
@@ -484,7 +484,7 @@ msgstr "Domyślny kolor"
 
 #: ../src/resources/settings-dialog.ui.h:5
 msgid "Note Edition"
-msgstr "Edycja notatki"
+msgstr "Wygląd notatek"
 
 #: ../src/resources/settings-dialog.ui.h:6
 msgid "Select the default storage location:"

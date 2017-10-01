@@ -1,5 +1,5 @@
 <schemalist>
-  <schema path="/org/gnome/bijiben/" id="org.gnome.bijiben">
+  <schema path="/org/gnome/bijiben/" id="org.gnome.bijiben" gettext-domain="bijiben">
     <key type="s" name="font">
       <default>'Cantarell 14'</default>
       <summary>Custom Font</summary>

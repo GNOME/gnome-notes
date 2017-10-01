@@ -1,3 +1,13 @@
+Overview of changes in 3.26.1
+=============================
+
+* Fixed gettext domain (Piotr Drąg)
+* Updated a couple of help screenshots (Piotr Drąg)
+
+Translations
+* sk (Dušan Kazik)
+* sl (Matej Urbančič)
+
 Overview of changes in 3.26.0
 =============================
 

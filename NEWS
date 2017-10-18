@@ -1,3 +1,17 @@
+Overview of changes in 3.27.1
+=============================
+
+* Meson port (Iñigo Martínez)
+* Gettext port (Iñigo Martínez)
+* Add translator comments to .desktop file (Piotr Drąg)
+* Add support for Tracker2
+
+Translations
+* cs (Marek Černocký)
+* de (Mario Blättermann)
+* lt (Aurimas Černius)
+* pt_BR (Rafael Fontenelle)
+
 Overview of changes in 3.26.1
 =============================
 

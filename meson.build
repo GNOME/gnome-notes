@@ -100,9 +100,12 @@ libgd = subproject(
 )
 libgd_dep = libgd.get_variable('libgd_dep')
 
-tracker_sparql_dep = dependency('tracker-sparql-1.0', required: false)
+tracker_sparql_dep = dependency('tracker-sparql-2.0', required: false)
 if not tracker_sparql_dep.found()
-  tracker_sparql_dep = dependency('tracker-sparql-0.18', required: true)
+  tracker_sparql_dep = dependency('tracker-sparql-1.0', required: false)
+  if not tracker_sparql_dep.found()
+    tracker_sparql_dep = dependency('tracker-sparql-0.18', required: true)
+  endif
 endif
 
 bijiben_deps = [

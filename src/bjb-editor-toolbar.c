@@ -24,7 +24,7 @@
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
 
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
 #include "bjb-window-base.h"
 

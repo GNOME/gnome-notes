@@ -19,7 +19,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-settings-dialog.h"
 

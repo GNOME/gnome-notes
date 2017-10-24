@@ -2,6 +2,7 @@
 /*
  * bijiben.h
  * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
+ * Copyright (C) 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  * 
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -27,42 +28,22 @@
 
 G_BEGIN_DECLS
 
-#define BIJIBEN_TYPE_APPLICATION             (bijiben_get_type ())
-#define BIJIBEN_APPLICATION(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJIBEN_TYPE_APPLICATION, Bijiben))
-#define BIJIBEN_APPLICATION_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJIBEN_TYPE_APPLICATION, BijibenClass))
-#define BIJIBEN_IS_APPLICATION(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJIBEN_TYPE_APPLICATION))
-#define BIJIBEN_IS_APPLICATION_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJIBEN_TYPE_APPLICATION))
-#define BIJIBEN_APPLICATION_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJIBEN_TYPE_APPLICATION, BijibenClass))
+#define BJB_TYPE_APPLICATION (bjb_application_get_type ())
 
-typedef struct _BijibenClass BijibenClass;
-typedef struct _Bijiben Bijiben;
+G_DECLARE_FINAL_TYPE (BjbApplication, bjb_application, BJB, APPLICATION, GtkApplication)
 
-typedef struct _BijibenPriv BijibenPriv;
-
-struct _BijibenClass
-{
-  GtkApplicationClass parent_class;
-};
-
-struct _Bijiben
-{
-  GtkApplication parent_instance;
-  BijibenPriv *priv;
-};
-
-GType bijiben_get_type (void) G_GNUC_CONST;
-Bijiben *bijiben_new (void);
+BjbApplication *bjb_application_new (void);
 
 // Accessors
 
 const gchar *bijiben_get_bijiben_dir (void);
-BijiManager * bijiben_get_manager(Bijiben *self);
+BijiManager * bijiben_get_manager(BjbApplication *self);
 BjbSettings * bjb_app_get_settings(gpointer application);
 
 // Windows
 void bijiben_new_window_for_note (GApplication *app, BijiNoteObj *note);
 
-void bijiben_import_notes (Bijiben *self, gchar *uri);
+void bijiben_import_notes (BjbApplication *self, gchar *uri);
 
 G_END_DECLS
 

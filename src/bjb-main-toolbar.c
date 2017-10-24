@@ -20,7 +20,7 @@
 #include <glib/gi18n.h>
 #include <libgd/gd.h>
 
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-color-button.h"
 #include "bjb-main-toolbar.h"
 #include "bjb-organize-dialog.h"

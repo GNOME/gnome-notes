@@ -24,7 +24,7 @@
 #include <gtk/gtk.h>
 #include <libgd/gd.h>
 
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-color-button.h"
 #include "bjb-main-view.h"
 #include "bjb-organize-dialog.h"

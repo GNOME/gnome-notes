@@ -2,6 +2,7 @@
  * bjb-bijiben.c
  * Copyright (C) 2011 Pierre-Yves LUYTEN <py@luyten.fr>
  * Copyright (C) 2017 Iñigo Martínez <inigomartinez@gmail.com>
+ * Copyright (C) 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -28,14 +29,16 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-app-menu.h"
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
 #include "bjb-window-base.h"
 
-struct _BijibenPriv
+struct _BjbApplication
 {
+  GtkApplication parent_instance;
+
   BijiManager *manager;
   BjbSettings *settings;
 
@@ -47,33 +50,30 @@ struct _BijibenPriv
   GQueue       files_to_open; // paths
 };
 
+G_DEFINE_TYPE (BjbApplication, bjb_application, GTK_TYPE_APPLICATION)
 
-G_DEFINE_TYPE (Bijiben, bijiben, GTK_TYPE_APPLICATION);
-
-static void     bijiben_new_window_internal (Bijiben       *self,
+static void     bijiben_new_window_internal (BjbApplication *self,
                                              BijiNoteObj   *note);
-static gboolean bijiben_open_path           (Bijiben       *self,
-                                             gchar         *path,
+static gboolean bijiben_open_path           (BjbApplication *self,
+                                             gchar          *path,
                                              BjbWindowBase *window);
 
 static void
-on_window_activated_cb (BjbWindowBase *window,
-                        gboolean       available,
-                        Bijiben       *self)
+on_window_activated_cb (BjbWindowBase  *window,
+                        gboolean        available,
+                        BjbApplication *self)
 {
-  BijibenPriv *priv;
   GList *l, *next;
 
-  priv = self->priv;
-  priv->is_loaded = TRUE;
+  self->is_loaded = TRUE;
 
-  for (l = priv->files_to_open.head; l != NULL; l = next)
+  for (l = self->files_to_open.head; l != NULL; l = next)
   {
     next = l->next;
     if (bijiben_open_path (self, l->data, (available ? window : NULL)))
     {
       g_free (l->data);
-      g_queue_delete_link (&priv->files_to_open, l);
+      g_queue_delete_link (&self->files_to_open, l);
     }
   }
 
@@ -81,22 +81,22 @@ on_window_activated_cb (BjbWindowBase *window,
    * This implementation is not really safe,
    * we might have loaded SOME provider(s)
    * but not the default one - more work is needed here */
-  if (priv->new_note && g_queue_is_empty (&priv->files_to_open))
+  if (self->new_note && g_queue_is_empty (&self->files_to_open))
   {
     BijiItem *item;
 
-    priv->new_note = FALSE;
+    self->new_note = FALSE;
     item = BIJI_ITEM (biji_manager_note_new (
-                        priv->manager,
+                        self->manager,
                         NULL,
-                        bjb_settings_get_default_location (self->priv->settings)));
+                        bjb_settings_get_default_location (self->settings)));
     bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
   }
 }
 
 static void
-bijiben_new_window_internal (Bijiben     *self,
-                             BijiNoteObj *note)
+bijiben_new_window_internal (BjbApplication *self,
+                             BijiNoteObj    *note)
 {
   BjbWindowBase *window;
   GList         *windows;
@@ -116,16 +116,16 @@ bijiben_new_window_internal (Bijiben     *self,
 }
 
 static gboolean
-bijiben_open_path (Bijiben       *self,
-                   gchar         *path,
-                   BjbWindowBase *window)
+bijiben_open_path (BjbApplication *self,
+                   gchar          *path,
+                   BjbWindowBase  *window)
 {
   BijiItem *item;
 
-  if (!self->priv->is_loaded)
+  if (!self->is_loaded)
     return FALSE;
 
-  item = biji_manager_get_item_at_path (self->priv->manager, path);
+  item = biji_manager_get_item_at_path (self->manager, path);
 
   if (BIJI_IS_NOTE_OBJ (item) || !window)
     bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
@@ -139,7 +139,7 @@ void
 bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
-  bijiben_new_window_internal (BIJIBEN_APPLICATION (app), note);
+  bijiben_new_window_internal (BJB_APPLICATION (app), note);
 }
 
 static void
@@ -161,11 +161,11 @@ bijiben_open (GApplication  *application,
               gint           n_files,
               const gchar   *hint)
 {
-  Bijiben *self;
+  BjbApplication *self;
   gint i;
   gchar *path;
 
-  self = BIJIBEN_APPLICATION (application);
+  self = BJB_APPLICATION (application);
 
   for (i = 0; i < n_files; i++)
   {
@@ -173,33 +173,25 @@ bijiben_open (GApplication  *application,
     if (bijiben_open_path (self, path, NULL))
       g_free (path);
     else
-      g_queue_push_head (&self->priv->files_to_open, path);
+      g_queue_push_head (&self->files_to_open, path);
   }
 }
 
 static void
-bijiben_init (Bijiben *self)
+bjb_application_init (BjbApplication *self)
 {
-  BijibenPriv *priv;
-
-
-  priv = self->priv =
-    G_TYPE_INSTANCE_GET_PRIVATE (self, BIJIBEN_TYPE_APPLICATION, BijibenPriv);
-
-  priv->settings = bjb_settings_new ();
-  g_queue_init (&priv->files_to_open);
-  priv->new_note = FALSE;
-  priv->is_loaded = FALSE;
+  self->settings = bjb_settings_new ();
+  g_queue_init (&self->files_to_open);
 }
 
 
 void
-bijiben_import_notes (Bijiben *self, gchar *uri)
+bijiben_import_notes (BjbApplication *self, gchar *uri)
 {
-  g_debug ("IMPORT to %s", bjb_settings_get_default_location (self->priv->settings));
+  g_debug ("IMPORT to %s", bjb_settings_get_default_location (self->settings));
 
-  biji_manager_import_uri (self->priv->manager,
-                           bjb_settings_get_default_location (self->priv->settings),
+  biji_manager_import_uri (self->manager,
+                           bjb_settings_get_default_location (self->settings),
                            uri);
 }
 
@@ -258,10 +250,10 @@ manager_ready_cb (GObject *source,
                   GAsyncResult *res,
                   gpointer user_data)
 {
-  Bijiben *self = user_data;
+  BjbApplication *self = user_data;
   GError *error = NULL;
 
-  self->priv->manager = biji_manager_new_finish (res, &error);
+  self->manager = biji_manager_new_finish (res, &error);
   g_application_release (G_APPLICATION (self));
 
   if (error != NULL)
@@ -277,7 +269,7 @@ manager_ready_cb (GObject *source,
 static void
 bijiben_startup (GApplication *application)
 {
-  Bijiben        *self;
+  BjbApplication *self;
   gchar          *storage_path, *default_color;
   GFile          *storage;
   GError         *error;
@@ -285,8 +277,8 @@ bijiben_startup (GApplication *application)
   GdkRGBA         color = {0,0,0,0};
 
 
-  G_APPLICATION_CLASS (bijiben_parent_class)->startup (application);
-  self = BIJIBEN_APPLICATION (application);
+  G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
+  self = BJB_APPLICATION (application);
   error = NULL;
 
   bjb_apply_style ();
@@ -297,13 +289,13 @@ bijiben_startup (GApplication *application)
   storage = g_file_new_for_path (storage_path);
 
   // Create the bijiben dir to ensure.
-  self->priv->first_run = TRUE;
+  self->first_run = TRUE;
   g_file_make_directory (storage, NULL, &error);
 
   // If fails it's not the first run
   if (error && error->code == G_IO_ERROR_EXISTS)
   {
-    self->priv->first_run = FALSE;
+    self->first_run = FALSE;
     g_error_free (error);
   }
 
@@ -313,20 +305,14 @@ bijiben_startup (GApplication *application)
     g_error_free (error);
   }
 
-  else
-  {
-    self->priv->first_run = TRUE;
-  }
-
-
-  g_object_get (self->priv->settings, "color", &default_color, NULL);
+  g_object_get (self->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
 
   g_application_hold (application);
   biji_manager_new_async (storage, &color, manager_ready_cb, self);
 
   /* Automatic imports on startup */
-  if (self->priv->first_run == TRUE)
+  if (self->first_run == TRUE)
   {
     path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
     uri = g_filename_to_uri (path, NULL, NULL);
@@ -351,7 +337,7 @@ bijiben_application_local_command_line (GApplication *application,
                                         gchar ***arguments,
                                         gint *exit_status)
 {
-  Bijiben *self;
+  BjbApplication *self;
   gboolean version = FALSE;
   gchar **remaining = NULL;
   GOptionContext *context;
@@ -362,7 +348,7 @@ bijiben_application_local_command_line (GApplication *application,
   const GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &version,
       N_("Show the application’s version"), NULL},
-    { "new-note", 0, 0, G_OPTION_ARG_NONE, &BIJIBEN_APPLICATION(application)->priv->new_note,
+    { "new-note", 0, 0, G_OPTION_ARG_NONE, &BJB_APPLICATION(application)->new_note,
       N_("Create a new note"), NULL},
     { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY, &remaining,
       NULL,  N_("[FILE…]") },
@@ -413,15 +399,15 @@ bijiben_application_local_command_line (GApplication *application,
     goto out;
   }
 
-  self = BIJIBEN_APPLICATION (application);
+  self = BJB_APPLICATION (application);
 
-  if (!self->priv->new_note && remaining != NULL)
+  if (!self->new_note && remaining != NULL)
   {
     gchar **args;
 
     for (args = remaining; *args; args++)
       if (!bijiben_open_path (self, *args, NULL))
-        g_queue_push_head (&self->priv->files_to_open, g_strdup (*args));
+        g_queue_push_head (&self->files_to_open, g_strdup (*args));
   }
 
  out:
@@ -434,18 +420,18 @@ bijiben_application_local_command_line (GApplication *application,
 static void
 bijiben_finalize (GObject *object)
 {
-  Bijiben *self = BIJIBEN_APPLICATION (object);
+  BjbApplication *self = BJB_APPLICATION (object);
 
-  g_clear_object (&self->priv->manager);
-  g_clear_object (&self->priv->settings);
-  g_queue_foreach (&self->priv->files_to_open, (GFunc) g_free, NULL);
-  g_queue_clear (&self->priv->files_to_open);
+  g_clear_object (&self->manager);
+  g_clear_object (&self->settings);
+  g_queue_foreach (&self->files_to_open, (GFunc) g_free, NULL);
+  g_queue_clear (&self->files_to_open);
 
-  G_OBJECT_CLASS (bijiben_parent_class)->finalize (object);
+  G_OBJECT_CLASS (bjb_application_parent_class)->finalize (object);
 }
 
 static void
-bijiben_class_init (BijibenClass *klass)
+bjb_application_class_init (BjbApplicationClass *klass)
 {
   GApplicationClass *aclass = G_APPLICATION_CLASS (klass);
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
@@ -456,23 +442,21 @@ bijiben_class_init (BijibenClass *klass)
   aclass->local_command_line = bijiben_application_local_command_line;
 
   oclass->finalize = bijiben_finalize;
-
-  g_type_class_add_private (klass, sizeof (BijibenPriv));
 }
 
-Bijiben *
-bijiben_new (void)
+BjbApplication *
+bjb_application_new (void)
 {
-  return g_object_new (BIJIBEN_TYPE_APPLICATION,
+  return g_object_new (BJB_TYPE_APPLICATION,
                        "application-id", "org.gnome.bijiben",
                        "flags", G_APPLICATION_HANDLES_OPEN,
                        NULL);
 }
 
 BijiManager *
-bijiben_get_manager(Bijiben *self)
+bijiben_get_manager(BjbApplication *self)
 {
-  return self->priv->manager ;
+  return self->manager;
 }
 
 const gchar *
@@ -483,5 +467,5 @@ bijiben_get_bijiben_dir (void)
 
 BjbSettings * bjb_app_get_settings(gpointer application)
 {
-  return BIJIBEN_APPLICATION(application)->priv->settings ;
+  return BJB_APPLICATION(application)->settings;
 }

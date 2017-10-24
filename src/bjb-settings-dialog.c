@@ -22,7 +22,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-color-button.h"
 #include "bjb-settings.h"
 #include "bjb-settings-dialog.h"
@@ -289,7 +289,7 @@ bjb_settings_dialog_constructed (GObject *object)
 
   self = BJB_SETTINGS_DIALOG (object);
   app = g_application_get_default ();
-  self->manager = bijiben_get_manager (BIJIBEN_APPLICATION (app));
+  self->manager = bijiben_get_manager (BJB_APPLICATION (app));
   self->settings = bjb_app_get_settings (app);
 
   gtk_list_box_set_selection_mode (self->listbox, GTK_SELECTION_NONE);

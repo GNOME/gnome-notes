@@ -21,7 +21,7 @@
 #include <libbiji/libbiji.h>
 #include <libgd/gd.h>
 
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"

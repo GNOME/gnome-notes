@@ -7,7 +7,7 @@
 #include <libgd/gd.h>
 
 #include "bjb-app-menu.h"
-#include "bjb-bijiben.h"
+#include "bjb-application.h"
 #include "bjb-empty-results-box.h"
 #include "bjb-window-base.h"
 #include "bjb-main-toolbar.h"
@@ -290,7 +290,7 @@ bjb_window_base_constructed (GObject *obj)
   priv->entry = NULL ;
 
   priv->controller = bjb_controller_new
-    (bijiben_get_manager (BIJIBEN_APPLICATION(g_application_get_default())),
+    (bijiben_get_manager (BJB_APPLICATION(g_application_get_default())),
      GTK_WINDOW (obj),
      priv->entry );
 
@@ -585,7 +585,7 @@ bjb_window_base_get_view_type (BjbWindowBase *win)
 BijiManager *
 bjb_window_base_get_manager(GtkWidget * win)
 {
-  return bijiben_get_manager (BIJIBEN_APPLICATION (g_application_get_default()));
+  return bijiben_get_manager (BJB_APPLICATION (g_application_get_default()));
 }
 
 void

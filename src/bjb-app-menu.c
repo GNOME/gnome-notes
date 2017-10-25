@@ -163,17 +163,8 @@ static GActionEntry app_entries[] = {
 
 void bjb_app_menu_set(GApplication *application)
 {
-  GtkBuilder *builder;
-
   g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries,
                                    G_N_ELEMENTS (app_entries),
                                    application);
-
-  builder = gtk_builder_new ();
-  gtk_builder_add_from_resource (builder, "/org/gnome/bijiben/app-menu.ui", NULL);
-
-  gtk_application_set_app_menu (GTK_APPLICATION (application),
-                                G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu")));
-  g_object_unref (builder);
 }

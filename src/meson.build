@@ -22,19 +22,11 @@ sources = files(
   'bjb-window-base.c'
 )
 
-resource_data = files(
-  'resources/Adwaita.css',
-  'resources/app-menu.ui',
-  'resources/editor-toolbar.ui',
-  'resources/note-symbolic.svg',
-  'resources/settings-dialog.ui',
-  'resources/thumbnail-frame.png'
-)
-
 sources += gnome.compile_resources(
   'bjb-resources',
-  'bjb.gresource.xml',
+  gresource,
   c_name: 'bjb',
+  source_dir: data_dir,
   dependencies: resource_data,
   export: true
 )

@@ -62,6 +62,18 @@ install_data(
   install_dir: join_paths(bijiben_datadir, 'gnome-shell', 'search-providers')
 )
 
+resource_data = files(
+  'resources/Adwaita.css',
+  'resources/app-menu.ui',
+  'resources/editor-toolbar.ui',
+  'resources/empty-results-box.ui',
+  'resources/note-symbolic.svg',
+  'resources/settings-dialog.ui',
+  'resources/thumbnail-frame.png'
+)
+
+gresource = files('bjb.gresource.xml')
+
 search_provider_dbus_iface = files('shell-search-provider-dbus-interfaces.xml')
 
 web_files = files(

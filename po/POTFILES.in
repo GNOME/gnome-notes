@@ -25,4 +25,5 @@ src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c
 src/resources/app-menu.ui
 src/resources/editor-toolbar.ui
+src/resources/empty-results-box.ui
 src/resources/settings-dialog.ui

@@ -4,6 +4,9 @@
     <file alias="Adwaita.css">resources/Adwaita.css</file>
     <file alias="editor-toolbar.ui" compressed="true" preprocess="xml-stripblanks">resources/editor-toolbar.ui</file>
     <file alias="thumbnail-frame.png">resources/thumbnail-frame.png</file>
+  </gresource>
+
+  <gresource prefix="/org/gnome/bijiben/icons">
     <file alias="note-symbolic.svg">resources/note-symbolic.svg</file>
   </gresource>
 
@@ -13,5 +16,6 @@
     
   <gresource prefix="/org/gnome/bijiben/ui">
     <file alias="settings-dialog.ui">resources/settings-dialog.ui</file>
+    <file alias="empty-results-box.ui">resources/empty-results-box.ui</file>
   </gresource>
 </gresources>

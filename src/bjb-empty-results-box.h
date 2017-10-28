@@ -1,6 +1,7 @@
 /*
  * Bijiben
  * Copyright © 2012, 2013 Red Hat, Inc.
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,42 +40,7 @@ typedef enum {
 
 #define BJB_TYPE_EMPTY_RESULTS_BOX (bjb_empty_results_box_get_type ())
 
-#define BJB_EMPTY_RESULTS_BOX(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), \
-   BJB_TYPE_EMPTY_RESULTS_BOX, BjbEmptyResultsBox))
-
-#define BJB_EMPTY_RESULTS_BOX_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), \
-   BJB_TYPE_EMPTY_RESULTS_BOX, BjbEmptyResultsBoxClass))
-
-#define BJB_IS_EMPTY_RESULTS_BOX(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
-   BJB_TYPE_EMPTY_RESULTS_BOX))
-
-#define BJB_IS_EMPTY_RESULTS_BOX_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), \
-   BJB_TYPE_EMPTY_RESULTS_BOX))
-
-#define BJB_EMPTY_RESULTS_BOX_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), \
-   BJB_TYPE_EMPTY_RESULTS_BOX, BjbEmptyResultsBoxClass))
-
-typedef struct _BjbEmptyResultsBox        BjbEmptyResultsBox;
-typedef struct _BjbEmptyResultsBoxClass   BjbEmptyResultsBoxClass;
-typedef struct _BjbEmptyResultsBoxPrivate BjbEmptyResultsBoxPrivate;
-
-struct _BjbEmptyResultsBox
-{
-  GtkGrid parent_instance;
-  BjbEmptyResultsBoxPrivate *priv;
-};
-
-struct _BjbEmptyResultsBoxClass
-{
-  GtkGridClass parent_class;
-};
-
-GType               bjb_empty_results_box_get_type           (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BjbEmptyResultsBox, bjb_empty_results_box, BJB, EMPTY_RESULTS_BOX, GtkGrid)
 
 GtkWidget          *bjb_empty_results_box_new                (void);
 

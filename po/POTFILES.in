@@ -15,7 +15,6 @@ src/bjb-main-toolbar.c
 src/bjb-main-view.c
 src/bjb-note-view.c
 src/bjb-organize-dialog.c
-src/bjb-rename-note.c
 src/bjb-selection-toolbar.c
 src/bjb-settings.c
 src/bjb-settings-dialog.c

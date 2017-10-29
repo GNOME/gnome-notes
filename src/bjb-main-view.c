@@ -28,7 +28,6 @@
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
 #include "bjb-organize-dialog.h"
-#include "bjb-rename-note.h"
 #include "bjb-search-toolbar.h"
 #include "bjb-selection-toolbar.h"
 #include "bjb-window-base.h"

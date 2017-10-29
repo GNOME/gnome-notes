@@ -24,7 +24,6 @@
 #include "bjb-color-button.h"
 #include "bjb-main-toolbar.h"
 #include "bjb-organize-dialog.h"
-#include "bjb-rename-note.h"
 #include "bjb-share.h"
 #include "bjb-window-base.h"
 

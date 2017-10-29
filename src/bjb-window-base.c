@@ -294,14 +294,14 @@ bjb_window_base_constructed (GObject *obj)
      GTK_WINDOW (obj),
      priv->entry );
 
+  /* Search entry toolbar */
+  priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (obj), priv->controller);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->search_bar), FALSE, FALSE, 0);
+
   /* Shared toolbar */
   priv->view = bjb_main_view_new (GTK_WIDGET (obj), priv->controller);
   priv->main_toolbar = bjb_main_toolbar_new (priv->view, priv->controller);
   gtk_window_set_titlebar (GTK_WINDOW (self), GTK_WIDGET (priv->main_toolbar));
-
-  /* Search entry toolbar */
-  priv->search_bar = bjb_search_toolbar_new (GTK_WIDGET (obj), priv->controller);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), GTK_WIDGET (priv->search_bar), FALSE, FALSE, 0);
 
   /* UI : stack for different views */
   priv->stack = GTK_STACK (gtk_stack_new ());
@@ -554,7 +554,6 @@ bjb_window_base_switch_to_item (BjbWindowBase *bwb, BijiItem *item)
   GtkWidget *w = GTK_WIDGET (bwb);
 
   bjb_search_toolbar_disconnect (priv->search_bar);
-  bjb_search_toolbar_fade_out (priv->search_bar);
   destroy_note_if_needed (bwb);
 
   if (BIJI_IS_NOTE_OBJ (item))
@@ -613,6 +612,12 @@ bjb_window_base_get_main_view (BjbWindowBase *self)
   return (gpointer) self->priv->view;
 }
 
+GtkWidget *
+bjb_window_base_get_search_bar (BjbWindowBase *self)
+{
+  return GTK_WIDGET (self->priv->search_bar);
+}
+
 gboolean
 bjb_window_base_get_show_search_bar (BjbWindowBase *self)
 {
@@ -625,30 +630,6 @@ bjb_window_base_get_show_search_bar (BjbWindowBase *self)
   return gtk_search_bar_get_search_mode (
             GTK_SEARCH_BAR (self->priv->search_bar));
 }
-
-gboolean
-bjb_window_base_set_show_search_bar (BjbWindowBase *self,
-                                     gboolean show)
-{
-  if (show)
-    bjb_search_toolbar_fade_in (self->priv->search_bar);
-
-  else
-    bjb_search_toolbar_fade_out (self->priv->search_bar);
-
-  return TRUE;
-}
-
-gboolean
-bjb_window_base_toggle_search_button (BjbWindowBase *self,
-                                      gboolean active)
-{
-  bjb_main_toolbar_set_search_toggle_state (self->priv->main_toolbar,
-                                            active);
-
-  return TRUE;
-}
-
 
 void
 bjb_window_base_set_active (BjbWindowBase *self, gboolean active)

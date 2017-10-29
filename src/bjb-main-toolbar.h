@@ -55,10 +55,6 @@ GType                  bjb_main_toolbar_get_type                  (void) G_GNUC_
 BjbMainToolbar        *bjb_main_toolbar_new                       (BjbMainView *parent,
                                                                    BjbController *controller);
 
-
-void                   bjb_main_toolbar_set_search_toggle_state   (BjbMainToolbar *self,
-                                                                   gboolean active);
-
 G_END_DECLS
 
 #endif /* _BJB_MAIN_TOOLBAR_H_ */

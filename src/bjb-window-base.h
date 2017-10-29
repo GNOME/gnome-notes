@@ -79,14 +79,10 @@ BijiNoteObj           *bjb_window_base_get_note (BjbWindowBase *self);
 gboolean               switch_window_fullscreen (void);
 
 
+GtkWidget             *bjb_window_base_get_search_bar (BjbWindowBase *self);
+
+
 gboolean               bjb_window_base_get_show_search_bar (BjbWindowBase *self);
-
-
-gboolean               bjb_window_base_set_show_search_bar (BjbWindowBase *self, gboolean show);
-
-
-gboolean               bjb_window_base_toggle_search_button (BjbWindowBase *self,
-                                               gboolean active);
 
 
 void                   bjb_window_base_set_active (BjbWindowBase *self, gboolean active);

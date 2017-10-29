@@ -238,20 +238,10 @@ on_button_press (GtkWidget* widget,
 }
 
 static void
-on_search_button_clicked (BjbMainToolbarPrivate *priv)
-{
-  gboolean show_bar;
-
-  show_bar = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->search));
-  bjb_window_base_set_show_search_bar (BJB_WINDOW_BASE (priv->window), show_bar);
-}
-
-static void
 add_search_button (BjbMainToolbar *self)
 {
   BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *search_image;
-  gboolean active;
 
   priv->search = gtk_toggle_button_new ();
   search_image = gtk_image_new_from_icon_name ("edit-find-symbolic", GTK_ICON_SIZE_MENU);
@@ -263,11 +253,11 @@ add_search_button (BjbMainToolbar *self)
   gtk_widget_set_tooltip_text (priv->search,
                                _("Search note titles, content and notebooks"));
 
-  active =  bjb_window_base_get_show_search_bar (BJB_WINDOW_BASE (self->priv->window));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->search), active);
-
-  g_signal_connect_swapped (priv->search, "clicked",
-                            G_CALLBACK (on_search_button_clicked), priv);
+  g_object_bind_property (priv->search,
+                          "active",
+                          bjb_window_base_get_search_bar (BJB_WINDOW_BASE (priv->window)),
+                          "search-mode-enabled",
+                          G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 }
 
 static void
@@ -1207,14 +1197,4 @@ bjb_main_toolbar_new (BjbMainView *parent,
 
   populate_main_toolbar(self);
   return self;
-}
-
-void
-bjb_main_toolbar_set_search_toggle_state (BjbMainToolbar *self,
-                                          gboolean active)
-{
-  g_return_if_fail (BJB_IS_MAIN_TOOLBAR (self));
-
-  if (self->priv->search)
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->priv->search), active);
 }

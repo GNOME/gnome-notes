@@ -64,8 +64,10 @@ EDS_REQUIRED_VERSION=3.13.90
 WEBKITGTK_REQUIRED_VERSION=2.10.0
 
 
-PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-sparql-1.0"],
-   [PKG_CHECK_MODULES([TRACKER], [tracker-sparql-0.18], [sparql_version="tracker-sparql-0.18"])
+PKG_CHECK_MODULES([TRACKER], [tracker-sparql-2.0], [sparql_version="tracker-sparql-2.0"],
+  [PKG_CHECK_MODULES([TRACKER], [tracker-sparql-1.0], [sparql_version="tracker-sparql-1.0"],
+    [PKG_CHECK_MODULES([TRACKER], [tracker-sparql-0.18], [sparql_version="tracker-sparql-0.18"])
+  ])
 ])
 
 PKG_CHECK_MODULES([GENMARSHAL],

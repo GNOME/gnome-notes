@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-17 21:32+0000\n"
-"PO-Revision-Date: 2017-10-22 17:57+0200\n"
+"POT-Creation-Date: 2017-10-30 18:29+0000\n"
+"PO-Revision-Date: 2017-10-30 20:18+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -47,7 +47,9 @@ msgstr "Notatki"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.bijiben.desktop.in.in:5
 msgid "notes;reminder;"
-msgstr "notatki;przypomnienia;przypominanie;"
+msgstr ""
+"notatki;notatka;notatnik;notki;notka;sticky;notes;karteczka;karteczki;"
+"samoprzylepne;przypomnienia;przypominanie;"
 
 #: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
@@ -55,7 +57,7 @@ msgstr "Robienie notatek"
 
 #: data/org.gnome.bijiben.desktop.in.in:7
 msgid "Note-taker"
-msgstr "Robienie notatek"
+msgstr "Notatnik"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.bijiben.desktop.in.in:10
@@ -131,7 +133,7 @@ msgstr ""
 "Aviary.pl <community-poland@mozilla.org>, 2012-2017"
 
 #: src/bjb-bijiben.c:364
-msgid "Show the application's version"
+msgid "Show the application’s version"
 msgstr "Wyświetla wersję programu"
 
 #: src/bjb-bijiben.c:366
@@ -139,7 +141,7 @@ msgid "Create a new note"
 msgstr "Tworzy nową notatkę"
 
 #: src/bjb-bijiben.c:368
-msgid "[FILE...]"
+msgid "[FILE…]"
 msgstr "[PLIK…]"
 
 #: src/bjb-bijiben.c:376
@@ -179,7 +181,7 @@ msgid "Oops"
 msgstr "Ups"
 
 #: src/bjb-empty-results-box.c:159
-msgid "Please install 'Tracker' then restart the application."
+msgid "Please install “Tracker” then restart the application."
 msgstr ""
 "Proszę zainstalować pakiet „Tracker”, a następnie ponownie uruchomić ten "
 "program."
@@ -213,7 +215,7 @@ msgid "Load More"
 msgstr "Wczytaj więcej"
 
 #: src/bjb-load-more-button.c:98
-msgid "Loading..."
+msgid "Loading…"
 msgstr "Wczytywanie…"
 
 #: src/bjb-main-toolbar.c:143

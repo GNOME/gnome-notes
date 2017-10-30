@@ -1,6 +1,7 @@
 /* biji-timeout.h
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
@@ -22,31 +23,9 @@
 
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_TIMEOUT             (biji_timeout_get_type ())
-#define BIJI_TIMEOUT(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_TIMEOUT, BijiTimeout))
-#define BIJI_TIMEOUT_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_TIMEOUT, BijiTimeoutClass))
-#define BIJI_IS_TIMEOUT(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_TIMEOUT))
-#define BIJI_IS_TIMEOUT_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_TIMEOUT))
-#define BIJI_TIMEOUT_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_TIMEOUT, BijiTimeoutClass))
+#define BIJI_TYPE_TIMEOUT (biji_timeout_get_type ())
 
-typedef struct _BijiTimeoutClass BijiTimeoutClass;
-typedef struct _BijiTimeout BijiTimeout;
-typedef struct _BijiTimeoutPrivate BijiTimeoutPrivate;
-
-
-struct _BijiTimeoutClass
-{
-  GObjectClass parent_class;
-};
-
-struct _BijiTimeout
-{
-  GObject parent_instance;
-
-  BijiTimeoutPrivate *priv; 
-};
-
-GType biji_timeout_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BijiTimeout, biji_timeout, BIJI, TIMEOUT, GObject)
 
 BijiTimeout * biji_timeout_new (void);
 

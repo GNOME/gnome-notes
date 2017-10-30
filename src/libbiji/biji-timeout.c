@@ -1,6 +1,7 @@
 /* biji-timeout.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
- * 
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
@@ -31,25 +32,19 @@ enum {
 
 static guint biji_time_signals [BIJI_TIME_SIGNALS] = { 0 };
 
-/* Private */
-struct _BijiTimeoutPrivate
+struct _BijiTimeout
 {
+  GObject parent_instance;
+
   guint timeout_id;
   guint quit;
 };
-
-#define BIJI_TIMEOUT_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_TIMEOUT, BijiTimeoutPrivate))
 
 G_DEFINE_TYPE (BijiTimeout, biji_timeout, G_TYPE_OBJECT);
 
 static void
 biji_timeout_init (BijiTimeout *self)
 {
-  BijiTimeoutPrivate *priv = BIJI_TIMEOUT_GET_PRIVATE(self);
-  self->priv = priv;
-
-  priv->timeout_id = 0;
-  priv->quit = 0;
 }
 
 static void
@@ -59,8 +54,8 @@ biji_timeout_finalize (GObject *object)
 
   biji_timeout_cancel (self);
 
-  if (self->priv->quit !=0)
-    g_signal_handler_disconnect (g_application_get_default(), self->priv->quit);
+  if (self->quit !=0 )
+    g_signal_handler_disconnect (g_application_get_default(), self->quit);
 
   G_OBJECT_CLASS (biji_timeout_parent_class)->finalize (object);
 }
@@ -80,8 +75,6 @@ biji_timeout_class_init (BijiTimeoutClass *klass)
                                                   g_cclosure_marshal_VOID__VOID,
                                                   G_TYPE_NONE,
                                                   0);
-
-  g_type_class_add_private (klass, sizeof (BijiTimeoutPrivate));
 }
 
 BijiTimeout * biji_timeout_new (void)
@@ -94,7 +87,7 @@ static gboolean
 biji_timeout_expired (BijiTimeout *self)
 {
   g_signal_emit (self, biji_time_signals[BIJI_TIME_OUT], 0);
-  self->priv->timeout_id = 0;
+  self->timeout_id = 0;
   return FALSE;
 }
 
@@ -110,11 +103,10 @@ biji_timeout_callback (BijiTimeout *self)
 void
 biji_timeout_cancel (BijiTimeout *self)
 {
-  if (self->priv->timeout_id != 0)
-  {
-    g_source_remove (self->priv->timeout_id);
-    self->priv->timeout_id = 0;
-  }
+  if (self->timeout_id != 0)
+    g_source_remove (self->timeout_id);
+
+  self->timeout_id = 0;
 }
 
 void
@@ -122,10 +114,10 @@ biji_timeout_reset (BijiTimeout *self, guint millis)
 {
   biji_timeout_cancel (self);
 
-  self->priv->timeout_id = g_timeout_add (
+  self->timeout_id = g_timeout_add (
        millis, (GSourceFunc) biji_timeout_callback, self);
 
   /* Ensure to perform timeout if main loop ends */
-  self->priv->quit = g_signal_connect_swapped (g_application_get_default(), "shutdown",
-                                               G_CALLBACK (biji_timeout_expired), self);
+  self->quit = g_signal_connect_swapped (g_application_get_default(), "shutdown",
+                                         G_CALLBACK (biji_timeout_expired), self);
 }

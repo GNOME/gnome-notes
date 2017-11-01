@@ -28,7 +28,6 @@
 
 #include <glib/gi18n.h>
 
-#include "bjb-bijiben.h"
 #include "bjb-empty-results-box.h"
 
 G_DEFINE_TYPE (BjbEmptyResultsBox, bjb_empty_results_box, GTK_TYPE_GRID);

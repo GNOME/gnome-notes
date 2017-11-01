@@ -24,7 +24,6 @@
 
 #include <libgd/gd.h>
 
-#include "bjb-bijiben.h"
 #include "bjb-controller.h"
 #include "bjb-main-view.h"
 #include "bjb-window-base.h"

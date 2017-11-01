@@ -29,7 +29,6 @@
 
 #include <glib/gi18n.h>
 
-#include "bjb-bijiben.h"
 #include "bjb-import-dialog.h"
 
 

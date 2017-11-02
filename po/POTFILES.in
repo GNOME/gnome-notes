@@ -4,8 +4,8 @@ data/org.gnome.bijiben.desktop.in.in
 data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in
 src/bijiben-shell-search-provider.c
+src/bjb-application.c
 src/bjb-app-menu.c
-src/bjb-bijiben.c
 src/bjb-color-button.c
 src/bjb-editor-toolbar.c
 src/bjb-empty-results-box.c

@@ -34,16 +34,15 @@ static const gchar *palette_str[BJB_NUM_COLORS] = {
   "rgb(235, 239, 244)", //
 };
 
-struct _BjbColorButtonPrivate
+struct _BjbColorButton
 {
+  GtkColorButton parent_instance;
+
   GdkRGBA palette [BJB_NUM_COLORS];
   GtkWidget *dialog;
   gchar *title;
   GdkRGBA rgba;
 };
-
-#define BJB_COLOR_BUTTON_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_COLOR_BUTTON, BjbColorButtonPrivate))
-
 
 G_DEFINE_TYPE (BjbColorButton, bjb_color_button, GTK_TYPE_COLOR_BUTTON);
 
@@ -51,9 +50,9 @@ static gboolean
 dialog_destroy (GtkWidget *widget,
                 gpointer   data)
 {
-  BjbColorButton *button = BJB_COLOR_BUTTON (data);
+  BjbColorButton *self = BJB_COLOR_BUTTON (data);
 
-  button->priv->dialog = NULL;
+  self->dialog = NULL;
 
   return FALSE;
 }
@@ -63,8 +62,7 @@ dialog_response (GtkDialog *dialog,
                  gint       response,
                  gpointer   data)
 {
-  BjbColorButton *button = BJB_COLOR_BUTTON (data);
-  BjbColorButtonPrivate *priv = button->priv;
+  BjbColorButton *self = BJB_COLOR_BUTTON (data);
 
   if (response == GTK_RESPONSE_CANCEL)
     gtk_widget_hide (GTK_WIDGET (dialog));
@@ -72,31 +70,30 @@ dialog_response (GtkDialog *dialog,
   else if (response == GTK_RESPONSE_OK)
   {
       gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (dialog),
-                                  &priv->rgba);
+                                  &self->rgba);
 
       gtk_widget_hide (GTK_WIDGET (dialog));
-      gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button), &priv->rgba);
-      g_signal_emit_by_name (button, "color-set");
+      gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self), &self->rgba);
+      g_signal_emit_by_name (self, "color-set");
   }
 }
 
 static void
 bjb_color_button_clicked (GtkButton *b)
 {
-  BjbColorButton *button = BJB_COLOR_BUTTON (b);
-  BjbColorButtonPrivate *priv = button->priv;
+  BjbColorButton *self = BJB_COLOR_BUTTON (b);
   GtkWidget *dialog;
   gint i;
 
   /* if dialog already exists, make sure it's shown and raised */
-  if (!button->priv->dialog)
+  if (!self->dialog)
     {
       /* Create the dialog and connects its buttons */
       GtkWidget *parent;
 
-      parent = gtk_widget_get_toplevel (GTK_WIDGET (button));
+      parent = gtk_widget_get_toplevel (GTK_WIDGET (self));
 
-      button->priv->dialog = dialog = gtk_color_chooser_dialog_new (button->priv->title, NULL);
+      self->dialog = dialog = gtk_color_chooser_dialog_new (self->title, NULL);
 
       if (gtk_widget_is_toplevel (parent) && GTK_IS_WINDOW (parent))
         {
@@ -112,62 +109,38 @@ bjb_color_button_clicked (GtkButton *b)
         GdkRGBA color;
 
         if (gdk_rgba_parse (&color, palette_str[i]))
-          priv->palette [i] = color;
+          self->palette [i] = color;
       }
 
       gtk_color_chooser_add_palette (GTK_COLOR_CHOOSER (dialog),
                                      GTK_ORIENTATION_HORIZONTAL,
                                      BJB_NUM_COLORS,
                                      BJB_NUM_COLORS,
-                                     priv->palette);
-
+                                     self->palette);
 
       g_signal_connect (dialog, "response",
-                        G_CALLBACK (dialog_response), button);
+                        G_CALLBACK (dialog_response), self);
       g_signal_connect (dialog, "destroy",
-                        G_CALLBACK (dialog_destroy), button);
+                        G_CALLBACK (dialog_destroy), self);
     }
 
-  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &priv->rgba);
-  gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button->priv->dialog),
-                              &button->priv->rgba);
+  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (self), &self->rgba);
+  gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self->dialog),
+                              &self->rgba);
 
-  gtk_window_present (GTK_WINDOW (button->priv->dialog));
+  gtk_window_present (GTK_WINDOW (self->dialog));
 }
-
-
 
 static void
 bjb_color_button_init (BjbColorButton *self)
 {
-  BjbColorButtonPrivate *priv = BJB_COLOR_BUTTON_GET_PRIVATE(self);
-  self->priv = priv;
-
-  priv->title = _("Note Color");
-}
-
-static void
-bjb_color_button_constructed (GObject *obj)
-{
-  G_OBJECT_CLASS (bjb_color_button_parent_class)->constructed (obj);
-}
-
-static void
-bjb_color_button_finalize (GObject *object)
-{
-  G_OBJECT_CLASS (bjb_color_button_parent_class)->finalize (object);
+  self->title = _("Note Color");
 }
 
 static void
 bjb_color_button_class_init (BjbColorButtonClass *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GtkButtonClass *button_class = GTK_BUTTON_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (BjbColorButtonPrivate));
-
-  object_class->constructed = bjb_color_button_constructed;
-  object_class->finalize = bjb_color_button_finalize;
 
   /* Override std::gtk_color_button */
   button_class->clicked = bjb_color_button_clicked;

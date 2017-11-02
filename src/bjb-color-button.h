@@ -22,30 +22,9 @@
 
 G_BEGIN_DECLS
 
-#define BJB_TYPE_COLOR_BUTTON             (bjb_color_button_get_type ())
-#define BJB_COLOR_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_COLOR_BUTTON, BjbColorButton))
-#define BJB_COLOR_BUTTON_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_COLOR_BUTTON, BjbColorButtonClass))
-#define BJB_IS_COLOR_BUTTON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_COLOR_BUTTON))
-#define BJB_IS_COLOR_BUTTON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_COLOR_BUTTON))
-#define BJB_COLOR_BUTTON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_COLOR_BUTTON, BjbColorButtonClass))
+#define BJB_TYPE_COLOR_BUTTON (bjb_color_button_get_type ())
 
-typedef struct _BjbColorButtonClass BjbColorButtonClass;
-typedef struct _BjbColorButton BjbColorButton;
-typedef struct _BjbColorButtonPrivate BjbColorButtonPrivate;
-
-
-struct _BjbColorButtonClass
-{
-  GtkColorButtonClass parent_class;
-};
-
-struct _BjbColorButton
-{
-  GtkColorButton parent_instance;
-  BjbColorButtonPrivate *priv; 
-};
-
-GType bjb_color_button_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BjbColorButton, bjb_color_button, BJB, COLOR_BUTTON, GtkColorButton)
 
 GtkWidget * bjb_color_button_new (void);
 

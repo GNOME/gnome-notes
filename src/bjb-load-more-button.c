@@ -122,14 +122,6 @@ bjb_load_more_button_finalize (GObject *object)
       (self->controller, on_displayed_items_changed, self);
 }
 
-
-static void
-bjb_load_more_button_dispose (GObject *object)
-{
-  G_OBJECT_CLASS (bjb_load_more_button_parent_class)->dispose (object);
-}
-
-
 static void
 bjb_load_more_button_init (BjbLoadMoreButton *self)
 {
@@ -207,7 +199,6 @@ bjb_load_more_button_class_init (BjbLoadMoreButtonClass *class)
   GtkButtonClass *button_class = GTK_BUTTON_CLASS (class);
 
   object_class->constructed = bjb_load_more_button_constructed;
-  object_class->dispose = bjb_load_more_button_dispose;
   object_class->finalize = bjb_load_more_button_finalize;
   object_class->get_property = bjb_load_more_button_get_property;
   object_class->set_property = bjb_load_more_button_set_property;

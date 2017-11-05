@@ -1,7 +1,8 @@
 /*
  * bjb-controller.h
  * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
- * 
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
@@ -25,32 +26,9 @@
 
 G_BEGIN_DECLS
 
-#define BJB_TYPE_CONTROLLER             (bjb_controller_get_type ())
-#define BJB_CONTROLLER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_CONTROLLER, BjbController))
-#define BJB_CONTROLLER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_CONTROLLER, BjbControllerClass))
-#define BJB_IS_CONTROLLER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_CONTROLLER))
-#define BJB_IS_CONTROLLER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_CONTROLLER))
-#define BJB_CONTROLLER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_CONTROLLER, BjbControllerClass))
+#define BJB_TYPE_CONTROLLER (bjb_controller_get_type ())
 
-typedef struct _BjbControllerClass BjbControllerClass;
-typedef struct _BjbController BjbController;
-typedef struct _BjbControllerPrivate BjbControllerPrivate;
-
-
-struct _BjbControllerClass
-{
-  GObjectClass parent_class;
-};
-
-struct _BjbController
-{
-  GObject parent_instance;
-
-  BjbControllerPrivate *priv;
-};
-
-
-GType bjb_controller_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BjbController, bjb_controller, BJB, CONTROLLER, GObject)
 
 BjbController * bjb_controller_new (BijiManager  *manager,
                                     GtkWindow     *bjb_window_base,

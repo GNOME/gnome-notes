@@ -1,6 +1,7 @@
 /*
  * bjb-controller.c
  * Copyright (C) Pierre-Yves Luyten 2012, 2013 <py@luyten.fr>
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -37,10 +38,10 @@
 #define BJB_ITEMS_SLICE 48
 
 
-/* Gobject */
-
-struct _BjbControllerPrivate
+struct _BjbController
 {
+  GObject parent_instance;
+
   /* needle, notebook and group define what the controller shows */
   BijiManager    *manager;
   gchar          *needle;
@@ -50,7 +51,6 @@ struct _BjbControllerPrivate
 
   BjbWindowBase  *window;
 
-  /*  Private  */
   GList          *items_to_show;
   gint            n_items_to_show;
   gboolean        remaining_items;
@@ -81,20 +81,14 @@ enum {
 
 static guint bjb_controller_signals [BJB_CONTROLLER_SIGNALS] = { 0 };
 
-#define BJB_CONTROLLER_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_CONTROLLER, BjbControllerPrivate))
-
-G_DEFINE_TYPE (BjbController, bjb_controller, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BjbController, bjb_controller, G_TYPE_OBJECT)
 
 /* GObject */
 
 static void
 bjb_controller_init (BjbController *self)
 {
-  BjbControllerPrivate *priv  ;
-  GtkListStore     *store ;
-
-  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE
-    (self, BJB_TYPE_CONTROLLER, BjbControllerPrivate);
+  GtkListStore *store;
 
   /* Create the columns */
   store = gtk_list_store_new (GD_MAIN_COLUMN_LAST,
@@ -107,36 +101,29 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_BOOLEAN,     // state
                               G_TYPE_UINT);       // pulse
 
-  priv->model = GTK_TREE_MODEL(store) ;
-  priv->items_to_show = NULL;
-  priv->n_items_to_show = BJB_ITEMS_SLICE;
-  priv->needle = NULL;
-  priv->notebook = NULL;
-  priv->group = BIJI_LIVING_ITEMS;
-  priv->connected = FALSE;
-
+  self->model = GTK_TREE_MODEL (store);
+  self->n_items_to_show = BJB_ITEMS_SLICE;
+  self->group = BIJI_LIVING_ITEMS;
 }
 
 static void
 free_items_store (BjbController *self)
 {
-  gtk_list_store_clear (GTK_LIST_STORE (self->priv->model));
+  gtk_list_store_clear (GTK_LIST_STORE (self->model));
 }
 
 static void
 bjb_controller_finalize (GObject *object)
 {
   BjbController *self = BJB_CONTROLLER(object);
-  BjbControllerPrivate *priv = self->priv ;
 
+  g_object_unref (self->model);
 
-  g_object_unref (priv->model);
+  g_free (self->needle);
+  g_list_free (self->items_to_show);
 
-  g_free (priv->needle);
-  g_list_free (priv->items_to_show);
-
-  if (priv->notebook)
-    g_clear_object (&priv->notebook);
+  if (self->notebook)
+    g_clear_object (&self->notebook);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
@@ -152,16 +139,16 @@ bjb_controller_get_property (GObject  *object,
   switch (property_id)
   {
   case PROP_BOOK:
-    g_value_set_object (value, self->priv->manager);
+    g_value_set_object (value, self->manager);
     break;
   case PROP_WINDOW:
-    g_value_set_object (value, self->priv->window);
+    g_value_set_object (value, self->window);
     break;
   case PROP_NEEDLE:
-    g_value_set_string(value, self->priv->needle);
+    g_value_set_string (value, self->needle);
     break;
   case PROP_MODEL:
-    g_value_set_object(value, self->priv->model);
+    g_value_set_object (value, self->model);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -183,10 +170,10 @@ bjb_controller_set_property (GObject  *object,
     bjb_controller_set_manager(self,g_value_get_object(value));
     break;
   case PROP_WINDOW:
-    self->priv->window = g_value_get_object (value);
+    self->window = g_value_get_object (value);
     break;
   case PROP_NEEDLE:
-    self->priv->needle = g_strdup (g_value_get_string (value));
+    self->needle = g_strdup (g_value_get_string (value));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -201,7 +188,6 @@ bjb_controller_get_iter (BjbController *self,
                          BijiItem *item,
                          GtkTreeIter **iter)
 {
-  BjbControllerPrivate *priv = self->priv;
   gboolean retval = FALSE;
   gboolean try;
   const gchar *needle = NULL;
@@ -209,7 +195,7 @@ bjb_controller_get_iter (BjbController *self,
   if (item && BIJI_IS_ITEM (item))
       needle = biji_item_get_uuid (item);
 
-  try = gtk_tree_model_get_iter_first (priv->model, *iter);
+  try = gtk_tree_model_get_iter_first (self->model, *iter);
 
   if (!try)
     *iter = NULL;
@@ -217,7 +203,7 @@ bjb_controller_get_iter (BjbController *self,
   while (try)
   {
     gchar *item_path;
-    gtk_tree_model_get (priv->model, *iter, GD_MAIN_COLUMN_URI, &item_path,-1);
+    gtk_tree_model_get (self->model, *iter, GD_MAIN_COLUMN_URI, &item_path, -1);
 
     /* If we look for the item, check by uid */
     if (needle && g_strcmp0 (item_path, needle) == 0)
@@ -225,7 +211,7 @@ bjb_controller_get_iter (BjbController *self,
 
     /* Else we check for the first note */
     else if (!needle && BIJI_IS_NOTE_OBJ (
-              biji_manager_get_item_at_path (self->priv->manager, item_path)))
+              biji_manager_get_item_at_path (self->manager, item_path)))
       retval = TRUE;
 
     g_free (item_path);
@@ -234,7 +220,7 @@ bjb_controller_get_iter (BjbController *self,
       break;
 
     else
-      try = gtk_tree_model_iter_next (priv->model, *iter);
+      try = gtk_tree_model_iter_next (self->model, *iter);
   }
 
   return retval;
@@ -256,7 +242,7 @@ bjb_controller_add_item (BjbController *self,
   gint scale;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
-  store = GTK_LIST_STORE (self->priv->model);
+  store = GTK_LIST_STORE (self->model);
 
   /* Only append notes which are not templates. Currently useless */
   if (BIJI_IS_NOTE_OBJ (item)
@@ -276,7 +262,7 @@ bjb_controller_add_item (BjbController *self,
 
   /* First , if there is a gd main view , and if gd main view
    * is a list, then load the smaller emblem */
-  win = self->priv->window;
+  win = self->window;
   scale = gtk_widget_get_scale_factor (GTK_WIDGET (win));
 
   if (bjb_window_base_get_main_view (win)
@@ -313,16 +299,15 @@ bjb_controller_add_item_if_needed (BjbController *self,
   gboolean need_to_add_item = FALSE;
   const gchar *content;
   const gchar *title;
-  BjbControllerPrivate *priv = self->priv;
 
   /* No note... */
   if (!item || !BIJI_IS_ITEM (item))
     return;
 
   /* No search - we add the note */
-  if (!priv->needle || g_strcmp0 (priv->needle, "")==0)
+  if (!self->needle || g_strcmp0 (self->needle, "") == 0)
   {
-    if (!priv->notebook)
+    if (!self->notebook)
       need_to_add_item = TRUE;
 
     /* To do : we might have a notebook
@@ -335,14 +320,14 @@ bjb_controller_add_item_if_needed (BjbController *self,
     title = biji_item_get_title (item);
 
     /* matching title... */
-    if (g_strrstr (title, priv->needle) != NULL)
+    if (g_strrstr (title, self->needle) != NULL)
       need_to_add_item = TRUE;
 
     /* matching content */
     else if (BIJI_IS_NOTE_OBJ (item))
     {
       content = biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (item));
-      if (g_strrstr (content, priv->needle) != NULL)
+      if (g_strrstr (content, self->needle) != NULL)
         need_to_add_item = TRUE;
     }
   }
@@ -399,12 +384,12 @@ bjb_controller_update_view (BjbController *self)
 
 
   /* Do not update if nothing to show */
-  type = bjb_window_base_get_view_type (self->priv->window);
+  type = bjb_window_base_get_view_type (self->window);
   if (! (type == BJB_WINDOW_BASE_MAIN_VIEW
          || type == BJB_WINDOW_BASE_ARCHIVE_VIEW))
     return;
 
-  items = self->priv->items_to_show;
+  items = self->items_to_show;
   free_items_store (self);
 
   sort_items (&items);
@@ -422,8 +407,8 @@ notify_displayed_items_changed (BjbController *self)
   g_signal_emit (G_OBJECT (self),
                  bjb_controller_signals[DISPLAY_NOTES_CHANGED],
                  0,
-                 (self->priv->items_to_show != NULL),
-                 self->priv->remaining_items);
+                 (self->items_to_show != NULL),
+                 self->remaining_items);
 }
 
 static void
@@ -433,14 +418,14 @@ update (BjbController *self)
 
   /* If the user already edits a note, he does not want the view
    * to go back */
-  if (bjb_window_base_get_view_type (self->priv->window) != BJB_WINDOW_BASE_NOTE_VIEW)
+  if (bjb_window_base_get_view_type (self->window) != BJB_WINDOW_BASE_NOTE_VIEW)
   {
-    if (self->priv->group == BIJI_LIVING_ITEMS)
+    if (self->group == BIJI_LIVING_ITEMS)
       type = BJB_WINDOW_BASE_MAIN_VIEW;
     else
       type = BJB_WINDOW_BASE_ARCHIVE_VIEW;
 
-    bjb_window_base_switch_to (self->priv->window, type);
+    bjb_window_base_switch_to (self->window, type);
   }
 
 
@@ -465,8 +450,8 @@ _add_if_group_match (BjbController  *self,
     note = BIJI_NOTE_OBJ (*item);
     trashed = biji_note_obj_is_trashed (note);
 
-    if ((trashed==FALSE && self->priv->group == BIJI_LIVING_ITEMS) ||
-        (trashed==TRUE  && self->priv->group == BIJI_ARCHIVED_ITEMS))
+    if ((trashed==FALSE && self->group == BIJI_LIVING_ITEMS) ||
+        (trashed==TRUE  && self->group == BIJI_ARCHIVED_ITEMS))
       match = TRUE;
   }
 
@@ -488,19 +473,15 @@ update_controller_callback (GList *result,
                             gpointer user_data)
 {
   BjbController *self;
-  BjbControllerPrivate *priv;
   GList *l;
   gint i;
 
   self = BJB_CONTROLLER (user_data);
-  priv = self->priv;
-  priv->remaining_items = FALSE;
+  self->remaining_items = FALSE;
 
-
-
-  if (!result && priv->group == BIJI_LIVING_ITEMS)
+  if (!result && self->group == BIJI_LIVING_ITEMS)
   {
-    bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_NO_RESULT);
+    bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
     return;
   }
 
@@ -512,34 +493,33 @@ update_controller_callback (GList *result,
 
   for (l=result ; l!= NULL ; l=l->next)
   {
-    if (i< priv->n_items_to_show)
+    if (i < self->n_items_to_show)
     {
       _add_if_group_match (self,
-                           &priv->items_to_show,
+                           &self->items_to_show,
                            &l->data,
 			   &i);
     }
 
     else if (l->next != NULL)
     {
-      priv->remaining_items = TRUE;
+      self->remaining_items = TRUE;
       break;
     }
   }
 
-  priv->items_to_show = g_list_reverse (priv->items_to_show);
+  self->items_to_show = g_list_reverse (self->items_to_show);
   update (self);
 
-  switch (self->priv->group)
+  switch (self->group)
   {
     case BIJI_ARCHIVED_ITEMS:
-      bjb_window_base_switch_to (priv->window, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+      bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_ARCHIVE_VIEW);
       break;
     case BIJI_LIVING_ITEMS:
     default:
       break;
   }
-
 }
 
 
@@ -548,20 +528,19 @@ void
 bjb_controller_apply_needle (BjbController *self)
 {
   GList *result;
-  BjbControllerPrivate *priv = self->priv;
   gchar *needle;
 
-  needle = priv->needle;
-  g_clear_pointer (&priv->items_to_show, g_list_free);
+  needle = self->needle;
+  g_clear_pointer (&self->items_to_show, g_list_free);
 
   /* Show all items
    * If no items, tell it - unless trash is visited */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    result = biji_manager_get_items (self->priv->manager, self->priv->group);
+    result = biji_manager_get_items (self->manager, self->group);
 
-    if (result == NULL && priv->group == BIJI_LIVING_ITEMS)
-      bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_NOTE);
+    if (result == NULL && self->group == BIJI_LIVING_ITEMS)
+      bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
 
     else
       update_controller_callback (result, self);
@@ -572,7 +551,7 @@ bjb_controller_apply_needle (BjbController *self)
   }
 
   /* There is a research, apply lookup */
-  biji_get_items_matching_async (self->priv->manager, self->priv->group, needle, update_controller_callback, self);
+  biji_get_items_matching_async (self->manager, self->group, needle, update_controller_callback, self);
 }
 
 static void
@@ -587,7 +566,7 @@ on_needle_changed (BjbController *self)
 static gboolean
 bjb_controller_set_window_active (BjbController *self)
 {
-  bjb_window_base_set_active (self->priv->window, TRUE);
+  bjb_window_base_set_active (self->window, TRUE);
   return FALSE;
 }
 
@@ -601,19 +580,18 @@ on_manager_changed (BijiManager            *manager,
                     gpointer               *biji_item,
                     BjbController          *self)
 {
-  BjbControllerPrivate *priv = self->priv;
   BijiItem    *item = BIJI_ITEM (biji_item);
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
-  if (group != self->priv->group)
+  if (group != self->group)
   {
     g_debug ("Controller received signal for group %i while %i",
-             group, self->priv->group);
+             group, self->group);
     return;
   }
 
-  g_mutex_lock (&priv->mutex);
+  g_mutex_lock (&self->mutex);
 
 
   switch (flag)
@@ -632,8 +610,8 @@ on_manager_changed (BijiManager            *manager,
             p_iter = NULL;
 
           bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
-          priv->n_items_to_show ++;
-          priv->items_to_show = g_list_prepend (priv->items_to_show, item);
+          self->n_items_to_show++;
+          self->items_to_show = g_list_prepend (self->items_to_show, item);
           notify_displayed_items_changed (self);
       break;
 
@@ -642,7 +620,7 @@ on_manager_changed (BijiManager            *manager,
     case BIJI_MANAGER_ITEM_ICON_CHANGED:
       if (bjb_controller_get_iter (self, item, &p_iter))
       {
-        gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
+        gtk_list_store_remove (GTK_LIST_STORE (self->model), p_iter);
 
         if (BIJI_IS_NOTE_OBJ (item))
           bjb_controller_get_iter (self, NULL, &p_iter);
@@ -658,11 +636,11 @@ on_manager_changed (BijiManager            *manager,
     case BIJI_MANAGER_ITEM_TRASHED:
     case BIJI_MANAGER_ITEM_RESTORED:
       if (bjb_controller_get_iter (self, item, &p_iter))
-        gtk_list_store_remove (GTK_LIST_STORE (priv->model), p_iter);
+        gtk_list_store_remove (GTK_LIST_STORE (self->model), p_iter);
 
-      priv->items_to_show = g_list_remove (priv->items_to_show, item);
-      if (priv->items_to_show == NULL)
-        bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_NO_NOTE);
+      self->items_to_show = g_list_remove (self->items_to_show, item);
+      if (self->items_to_show == NULL)
+        bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
 
       else
         notify_displayed_items_changed (self);
@@ -680,19 +658,17 @@ on_manager_changed (BijiManager            *manager,
       bjb_controller_apply_needle (self);
   }
 
-  g_mutex_unlock (&priv->mutex);
+  g_mutex_unlock (&self->mutex);
 }
 
 static void
 bjb_controller_connect (BjbController *self)
 {
-  BjbControllerPrivate *priv = self->priv;
-
-  if (!priv->connected)
+  if (!self->connected)
   {
-    priv->manager_change = g_signal_connect (self->priv->manager, "changed",
+    self->manager_change = g_signal_connect (self->manager, "changed",
                                      G_CALLBACK(on_manager_changed), self);
-    priv->connected = TRUE;
+    self->connected = TRUE;
   }
 
   bjb_controller_update_view (self);
@@ -701,10 +677,8 @@ bjb_controller_connect (BjbController *self)
 void
 bjb_controller_disconnect (BjbController *self)
 {
-  BjbControllerPrivate *priv = self->priv;
-
-  g_signal_handler_disconnect (priv->manager, priv->manager_change);
-  priv->manager_change = 0;
+  g_signal_handler_disconnect (self->manager, self->manager_change);
+  self->manager_change = 0;
 }
 
 static void
@@ -719,8 +693,6 @@ static void
 bjb_controller_class_init (BjbControllerClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (BjbControllerPrivate));
 
   object_class->get_property = bjb_controller_get_property;
   object_class->set_property = bjb_controller_set_property;
@@ -800,45 +772,45 @@ bjb_controller_new (BijiManager  *manager,
 void
 bjb_controller_set_manager (BjbController *self, BijiManager  *manager )
 {
-  self->priv->manager = manager ;
+  self->manager = manager;
 }
 
 void
 bjb_controller_set_needle (BjbController *self, const gchar *needle )
 {
-  if (self->priv->needle)
-    g_free (self->priv->needle);
+  if (self->needle)
+    g_free (self->needle);
 
-  self->priv->needle = g_strdup (needle);
+  self->needle = g_strdup (needle);
   on_needle_changed (self);
 }
 
 gchar *
 bjb_controller_get_needle (BjbController *self)
 {
-  if (!self->priv->needle)
+  if (!self->needle)
     return NULL;
 
-  return self->priv->needle;
+  return self->needle;
 }
 
 GtkTreeModel *
 bjb_controller_get_model  (BjbController *self)
 {
-  return self->priv->model ;
+  return self->model;
 }
 
 
 gboolean
 bjb_controller_shows_item (BjbController *self)
 {
-  return (self->priv->items_to_show != NULL);
+  return (self->items_to_show != NULL);
 }
 
 BijiNotebook *
 bjb_controller_get_notebook (BjbController *self)
 {
-  return self->priv->notebook;
+  return self->notebook;
 }
 
 
@@ -849,26 +821,26 @@ bjb_controller_set_notebook (BjbController *self,
   /* Going back from a notebook */
   if (!coll)
   {
-    if (!self->priv->notebook)
+    if (!self->notebook)
       return;
 
-    bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
-    self->priv->notebook = NULL;
+    bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_SPINNER_VIEW);
+    self->notebook = NULL;
     bjb_controller_apply_needle (self);
     return;
   }
 
   /* Opening an __existing__ notebook */
-  bjb_window_base_switch_to (self->priv->window, BJB_WINDOW_BASE_SPINNER_VIEW);
-  g_clear_pointer (&self->priv->items_to_show, g_list_free);
-  g_clear_pointer (&self->priv->needle, g_free);
+  bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_SPINNER_VIEW);
+  g_clear_pointer (&self->items_to_show, g_list_free);
+  g_clear_pointer (&self->needle, g_free);
 
-  self->priv->needle = g_strdup ("");
-  self->priv->notebook = coll;
-  biji_get_items_with_notebook_async (self->priv->manager,
-                                        biji_item_get_title (BIJI_ITEM (coll)),
-                                        update_controller_callback,
-                                        self);
+  self->needle = g_strdup ("");
+  self->notebook = coll;
+  biji_get_items_with_notebook_async (self->manager,
+                                      biji_item_get_title (BIJI_ITEM (coll)),
+                                      update_controller_callback,
+                                      self);
 }
 
 
@@ -876,7 +848,7 @@ bjb_controller_set_notebook (BjbController *self,
 BijiItemsGroup
 bjb_controller_get_group (BjbController *self)
 {
-  return self->priv->group;
+  return self->group;
 }
 
 
@@ -885,25 +857,23 @@ void
 bjb_controller_set_group (BjbController   *self,
                           BijiItemsGroup   group)
 {
-  if (self->priv->group == group)
+  if (self->group == group)
     return;
 
-  g_clear_pointer (&self->priv->items_to_show, g_list_free);
-  self->priv->group = group;
+  g_clear_pointer (&self->items_to_show, g_list_free);
+  self->group = group;
 
   /* Living group : refresh the ui */
   if (group == BIJI_LIVING_ITEMS)
   {
-    if (self->priv->notebook != NULL)
-      bjb_controller_set_notebook (self, self->priv->notebook);
+    if (self->notebook != NULL)
+      bjb_controller_set_notebook (self, self->notebook);
 
     else
       bjb_controller_apply_needle (self);
-    //bjb_window_base_switch_to (self->priv->window, group);
+    //bjb_window_base_switch_to (self->window, group);
     return;
   }
-
-
   else /* Archives */
   {
     bjb_controller_apply_needle (self);
@@ -915,12 +885,12 @@ bjb_controller_set_group (BjbController   *self,
 void
 bjb_controller_show_more (BjbController *self)
 {
-  self->priv->n_items_to_show += BJB_ITEMS_SLICE;
+  self->n_items_to_show += BJB_ITEMS_SLICE;
 
   /* FIXME: this method to refresh is just non sense */
 
-  if (self->priv->notebook != NULL)
-    bjb_controller_set_notebook (self, self->priv->notebook);
+  if (self->notebook != NULL)
+    bjb_controller_set_notebook (self, self->notebook);
 
   else
     on_needle_changed (self);
@@ -931,5 +901,5 @@ bjb_controller_show_more (BjbController *self)
 gboolean
 bjb_controller_get_remaining_items (BjbController *self)
 {
-  return self->priv->remaining_items;
+  return self->remaining_items;
 }

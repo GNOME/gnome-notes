@@ -24,8 +24,10 @@
 #include "bjb-settings-dialog.h"
 
 
-struct _BjbSettingsPrivate
+struct _BjbSettings
 {
+  GSettings parent_instance;
+
   /* Note edition settings */
   gboolean use_system_font;
   gchar *font;
@@ -52,16 +54,11 @@ enum
 
 static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 
-
-#define BJB_SETTINGS_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_SETTINGS, BjbSettingsPrivate))
-
-G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_SETTINGS);
+G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_SETTINGS)
 
 static void
-bjb_settings_init (BjbSettings *object)
+bjb_settings_init (BjbSettings *self)
 {
-  object->priv =
-  G_TYPE_INSTANCE_GET_PRIVATE(object,BJB_TYPE_SETTINGS,BjbSettingsPrivate);
 }
 
 static void
@@ -70,11 +67,11 @@ bjb_settings_finalize (GObject *object)
   BjbSettings *self;
 
   self = BJB_SETTINGS (object);
-  g_object_unref (self->priv->system);
+  g_object_unref (self->system);
 
-  g_free (self->priv->font);
-  g_free (self->priv->color);
-  g_free (self->priv->primary);
+  g_free (self->font);
+  g_free (self->color);
+  g_free (self->primary);
 
   G_OBJECT_CLASS (bjb_settings_parent_class)->finalize (object);
 }
@@ -85,24 +82,24 @@ bjb_settings_get_property (GObject    *object,
                            GValue     *value,
                            GParamSpec *pspec)
 {
-  BjbSettings *settings = BJB_SETTINGS (object);
+  BjbSettings *self = BJB_SETTINGS (object);
 
   switch (prop_id)
   {
     case PROP_USE_SYSTEM_FONT:
-      g_value_set_boolean (value, settings->priv->use_system_font);
+      g_value_set_boolean (value, self->use_system_font);
       break;
 
     case PROP_FONT:
-      g_value_set_string (value, settings->priv->font);
+      g_value_set_string (value, self->font);
       break;
 
     case PROP_COLOR:
-      g_value_set_string (value, settings->priv->color);
+      g_value_set_string (value, self->color);
       break;
 
     case PROP_PRIMARY:
-      g_value_set_string (value, settings->priv->primary);
+      g_value_set_string (value, self->primary);
       break;
 
     default:
@@ -117,27 +114,27 @@ bjb_settings_set_property (GObject      *object,
                            const GValue *value,
                            GParamSpec   *pspec)
 {
-  BjbSettings *settings = BJB_SETTINGS (object);
+  BjbSettings *self = BJB_SETTINGS (object);
 
   switch (prop_id)
   {
     case PROP_USE_SYSTEM_FONT:
-      settings->priv->use_system_font = g_value_get_boolean (value) ;
+      self->use_system_font = g_value_get_boolean (value);
       break;
 
     case PROP_FONT:
-      g_free (settings->priv->font);
-      settings->priv->font = g_value_dup_string(value);
+      g_free (self->font);
+      self->font = g_value_dup_string (value);
       break;
 
     case PROP_COLOR:
-      g_free (settings->priv->color);
-      settings->priv->color = g_value_dup_string(value);
+      g_free (self->color);
+      self->color = g_value_dup_string (value);
       break;
 
     case PROP_PRIMARY:
-      g_free (settings->priv->primary);
-      settings->priv->primary = g_value_dup_string (value);
+      g_free (self->primary);
+      self->primary = g_value_dup_string (value);
       break;
 
     default:
@@ -157,7 +154,7 @@ bjb_settings_constructed (GObject *object)
 
   self = BJB_SETTINGS (object);
   settings = G_SETTINGS (object);
-  self->priv->system = g_settings_new ("org.gnome.desktop.interface");
+  self->system = g_settings_new ("org.gnome.desktop.interface");
 
 
   g_settings_bind  (settings, "use-system-font",
@@ -182,8 +179,6 @@ static void
 bjb_settings_class_init (BjbSettingsClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (BjbSettingsPrivate));
 
   object_class->constructed = bjb_settings_constructed;
   object_class->finalize = bjb_settings_finalize;
@@ -240,44 +235,44 @@ bjb_settings_new (void)
 
 
 gboolean
-bjb_settings_use_system_font            (BjbSettings *settings)
+bjb_settings_use_system_font            (BjbSettings *self)
 {
-  return settings->priv->use_system_font;
+  return self->use_system_font;
 }
 
 
 void
-bjb_settings_set_use_system_font        (BjbSettings *settings, gboolean value)
+bjb_settings_set_use_system_font        (BjbSettings *self, gboolean value)
 {
-  settings->priv->use_system_font = value;
+  self->use_system_font = value;
 }
 
 
 const gchar *
-bjb_settings_get_default_font           (BjbSettings *settings)
+bjb_settings_get_default_font           (BjbSettings *self)
 {
-  return settings->priv->font;
+  return self->font;
 }
 
 
 const gchar *
-bjb_settings_get_default_color          (BjbSettings *settings)
+bjb_settings_get_default_color          (BjbSettings *self)
 {
-  return settings->priv->color;
+  return self->color;
 }
 
 
 const gchar *
-bjb_settings_get_default_location       (BjbSettings *settings)
+bjb_settings_get_default_location       (BjbSettings *self)
 {
-  return settings->priv->primary;
+  return self->primary;
 }
 
 
 gchar *
-bjb_settings_get_system_font            (BjbSettings *settings)
+bjb_settings_get_system_font            (BjbSettings *self)
 {
-  return g_settings_get_string (settings->priv->system,
+  return g_settings_get_string (self->system,
                                 "document-font-name");
 }
 

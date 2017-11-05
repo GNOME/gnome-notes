@@ -44,18 +44,12 @@ struct _BjbEditorToolbarPrivate
 
   GtkAccelGroup *accel;
 
-  GtkWidget     *cut_button;
-  GtkWidget     *copy_button;
-  GtkWidget     *paste_button;
-
   GtkWidget     *bold_button;
   GtkWidget     *italic_button;
   GtkWidget     *strike_button;
 
   GtkWidget     *bullets_button;
   GtkWidget     *list_button;
-
-  GtkWidget     *link_button;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
@@ -334,15 +328,11 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   widget_class = GTK_WIDGET_CLASS (klass);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/editor-toolbar.ui");
 
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, cut_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, copy_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, paste_button);
   gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, bold_button);
   gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, italic_button);
   gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, strike_button);
   gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, bullets_button);
   gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, list_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, link_button);
 
   gtk_widget_class_bind_template_callback (widget_class, on_cut_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_copy_clicked);

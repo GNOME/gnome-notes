@@ -36,17 +36,6 @@
 #define IMPORT_EMBLEM_HEIGHT 32
 
 
-
-
-enum {
-  PROP_0,
-  PROP_APPLICATION,
-  NUM_PROPERTIES
-};
-
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
-
 typedef struct
 {
   GtkWidget     *overlay;
@@ -62,7 +51,6 @@ typedef struct
 struct BjbImportDialogPrivate_
 {
 
-  GtkApplication       *bijiben;
   GtkListBox           *box;
 
 
@@ -383,7 +371,7 @@ bjb_import_dialog_constructed (GObject *obj)
 {
   GtkWidget *area, *label_box, *label, *frame;
   gchar *path;
-  GList *windows;
+  GtkApplication *app;
   ImportDialogChild *child;
   BjbImportDialog        *self    = BJB_IMPORT_DIALOG (obj);
   GtkDialog              *dialog  = GTK_DIALOG (obj);
@@ -397,9 +385,9 @@ bjb_import_dialog_constructed (GObject *obj)
 
   priv->locations = g_hash_table_new (g_str_hash, g_str_equal);
 
-  windows = gtk_application_get_windows (priv->bijiben);
+  app = GTK_APPLICATION (g_application_get_default ());
 
-  gtk_window_set_transient_for (win, g_list_nth_data (windows, 0));
+  gtk_window_set_transient_for (win, gtk_application_get_active_window (app));
   gtk_window_set_title (win, _("Import Notes"));
   gtk_window_set_modal (win, TRUE);
 
@@ -459,48 +447,6 @@ bjb_import_dialog_constructed (GObject *obj)
   gtk_widget_show_all (GTK_WIDGET (self));
 }
 
-
-static void
-bjb_import_dialog_get_property (GObject  *object,
-                                guint     property_id,
-                                GValue   *value,
-                                GParamSpec *pspec)
-{
-  BjbImportDialog *self = BJB_IMPORT_DIALOG (object);
-
-  switch (property_id)
-  {
-  case PROP_APPLICATION:
-    g_value_set_object (value, self->priv->bijiben);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
-}
-
-
-static void
-bjb_import_dialog_set_property (GObject  *object,
-                                guint     property_id,
-                                const GValue *value,
-                                GParamSpec *pspec)
-{
-  BjbImportDialog *self = BJB_IMPORT_DIALOG (object);
-
-  switch (property_id)
-  {
-  case PROP_APPLICATION:
-    self->priv->bijiben = g_value_get_object (value);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
-}
-
-
-
 static void
 bjb_import_dialog_finalize (GObject *o)
 {
@@ -517,22 +463,8 @@ bjb_import_dialog_class_init (BjbImportDialogClass *klass)
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
   g_type_class_add_private (klass, sizeof (BjbImportDialogPrivate));
 
-
-  object_class->get_property = bjb_import_dialog_get_property;
-  object_class->set_property = bjb_import_dialog_set_property;
   object_class->constructed = bjb_import_dialog_constructed;
   object_class->finalize = bjb_import_dialog_finalize;
-
-  properties[PROP_APPLICATION] =
-    g_param_spec_object ("application",
-                         "Application",
-                         "Bijiben Application",
-                         GTK_TYPE_APPLICATION,
-                         G_PARAM_READWRITE |
-                         G_PARAM_CONSTRUCT |
-                         G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 }
 
 
@@ -547,7 +479,6 @@ GtkDialog *
 bjb_import_dialog_new (GtkApplication *bijiben)
 {
   return g_object_new (BJB_TYPE_IMPORT_DIALOG,
-                       "application", bijiben,
 		       "use-header-bar", TRUE,
                        NULL);
 }

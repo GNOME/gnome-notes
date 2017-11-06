@@ -43,8 +43,10 @@ typedef enum
 /* Color Button */
 #define COLOR_SIZE 22
 
-struct _BjbMainToolbarPrivate
+struct _BjbMainToolbar
 {
+  GtkHeaderBar      parent_instance;
+
   /* Controllers */
   BjbToolbarType    type;
   BjbMainView      *parent;
@@ -86,23 +88,21 @@ enum {
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-#define BJB_MAIN_TOOLBAR_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_MAIN_TOOLBAR, BjbMainToolbarPrivate))
-
-G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, GTK_TYPE_HEADER_BAR);
+G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, GTK_TYPE_HEADER_BAR)
 
 
 static void
 bjb_main_toolbar_clear (BjbMainToolbar *self)
 {
-  g_clear_pointer (&self->priv->back      ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->color     ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->grid      ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->list      ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->menu      ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->new       ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->search    ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->select    ,gtk_widget_destroy);
-  g_clear_pointer (&self->priv->empty_bin ,gtk_widget_destroy);
+  g_clear_pointer (&self->back      ,gtk_widget_destroy);
+  g_clear_pointer (&self->color     ,gtk_widget_destroy);
+  g_clear_pointer (&self->grid      ,gtk_widget_destroy);
+  g_clear_pointer (&self->list      ,gtk_widget_destroy);
+  g_clear_pointer (&self->menu      ,gtk_widget_destroy);
+  g_clear_pointer (&self->new       ,gtk_widget_destroy);
+  g_clear_pointer (&self->search    ,gtk_widget_destroy);
+  g_clear_pointer (&self->select    ,gtk_widget_destroy);
+  g_clear_pointer (&self->empty_bin ,gtk_widget_destroy);
 }
 
 /* Callbacks */
@@ -134,7 +134,7 @@ update_selection_label (BjbMainToolbar *self)
   gint length;
   gchar *label;
 
-  selected = bjb_main_view_get_selected_items (self->priv->parent);
+  selected = bjb_main_view_get_selected_items (self->parent);
   length = g_list_length (selected);
   g_list_free (selected);
 
@@ -160,7 +160,7 @@ on_view_selection_changed_cb (BjbMainToolbar *self)
 
   g_return_if_fail (BJB_IS_MAIN_TOOLBAR (self));
 
-  if (!bjb_main_view_get_selection_mode (self->priv->parent))
+  if (!bjb_main_view_get_selection_mode (self->parent))
     gtk_style_context_remove_class (context, "selection-mode");
 
   else
@@ -171,7 +171,7 @@ on_view_selection_changed_cb (BjbMainToolbar *self)
 
   /* If we were already on selection mode,
    * the bar is not totaly refreshed. just udpate label */
-  if (self->priv->type == BJB_TOOLBAR_SELECT)
+  if (self->type == BJB_TOOLBAR_SELECT)
     update_selection_label (self);
 
   return;
@@ -180,16 +180,16 @@ on_view_selection_changed_cb (BjbMainToolbar *self)
 static void
 on_selection_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
 {
-  if (bjb_main_view_get_selection_mode (self->priv->parent))
+  if (bjb_main_view_get_selection_mode (self->parent))
   {
-    bjb_main_view_set_selection_mode (self->priv->parent, FALSE);
+    bjb_main_view_set_selection_mode (self->parent, FALSE);
   }
 
   /* Force refresh. We go to selection mode but nothing yet selected
    * Thus no signal emited */
   else
   {
-    bjb_main_view_set_selection_mode (self->priv->parent, TRUE);
+    bjb_main_view_set_selection_mode (self->parent, TRUE);
     on_view_selection_changed_cb (self);
   }
 }
@@ -197,21 +197,21 @@ on_selection_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
 static gboolean
 on_view_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
 {
-  GdMainViewType current = bjb_main_view_get_view_type (self->priv->parent);
+  GdMainViewType current = bjb_main_view_get_view_type (self->parent);
 
   switch ( current )
   {
     case GD_MAIN_VIEW_ICON :
-      bjb_main_view_set_view_type (self->priv->parent ,GD_MAIN_VIEW_LIST );
+      bjb_main_view_set_view_type (self->parent, GD_MAIN_VIEW_LIST);
       break ;
     case GD_MAIN_VIEW_LIST :
-      bjb_main_view_set_view_type (self->priv->parent, GD_MAIN_VIEW_ICON );
+      bjb_main_view_set_view_type (self->parent, GD_MAIN_VIEW_ICON);
       break ;
     default:
-      bjb_main_view_set_view_type (self->priv->parent, GD_MAIN_VIEW_ICON );
+      bjb_main_view_set_view_type (self->parent, GD_MAIN_VIEW_ICON);
   }
 
-  bjb_main_view_update_model (self->priv->parent);
+  bjb_main_view_update_model (self->parent);
   populate_main_toolbar (self);
 
   return TRUE;
@@ -240,22 +240,21 @@ on_button_press (GtkWidget* widget,
 static void
 add_search_button (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget *search_image;
 
-  priv->search = gtk_toggle_button_new ();
+  self->search = gtk_toggle_button_new ();
   search_image = gtk_image_new_from_icon_name ("edit-find-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->search), search_image);
-  gtk_widget_set_valign (priv->search, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->search),
+  gtk_button_set_image (GTK_BUTTON (self->search), search_image);
+  gtk_widget_set_valign (self->search, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->search),
                                "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->search);
-  gtk_widget_set_tooltip_text (priv->search,
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->search);
+  gtk_widget_set_tooltip_text (self->search,
                                _("Search note titles, content and notebooks"));
 
-  g_object_bind_property (priv->search,
+  g_object_bind_property (self->search,
                           "active",
-                          bjb_window_base_get_search_bar (BJB_WINDOW_BASE (priv->window)),
+                          bjb_window_base_get_search_bar (BJB_WINDOW_BASE (self->window)),
                           "search-mode-enabled",
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 }
@@ -264,28 +263,25 @@ static void
 update_selection_buttons (BjbController *controller,
                           gboolean some_item_is_visible,
                           gboolean remaining,
-                          BjbMainToolbarPrivate *priv)
+                          BjbMainToolbar *self)
 {
-  if (priv->grid)
-    gtk_widget_set_sensitive (priv->grid, some_item_is_visible);
+  if (self->grid)
+    gtk_widget_set_sensitive (self->grid, some_item_is_visible);
 
-  if (priv->list)
-    gtk_widget_set_sensitive (priv->list, some_item_is_visible);
+  if (self->list)
+    gtk_widget_set_sensitive (self->list, some_item_is_visible);
 
-  if (priv->empty_bin)
-    gtk_widget_set_sensitive (priv->empty_bin, some_item_is_visible);
+  if (self->empty_bin)
+    gtk_widget_set_sensitive (self->empty_bin, some_item_is_visible);
 
-  gtk_widget_set_sensitive (priv->select, some_item_is_visible);
+  gtk_widget_set_sensitive (self->select, some_item_is_visible);
 }
 
 
 static void
 populate_bar_for_selection (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
   GtkSizeGroup *size;
-
-  priv = self->priv;
 
   /* Hide close button */
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), FALSE);
@@ -293,30 +289,30 @@ populate_bar_for_selection (BjbMainToolbar *self)
   size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
   /* Select */
-  priv->select = gtk_button_new_with_mnemonic (_("Cancel"));
-  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+  self->select = gtk_button_new_with_mnemonic (_("Cancel"));
+  gtk_widget_set_valign (self->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->select),
                                "text-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->select);
 
   /* Search button */
   add_search_button (self);
 
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->search);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->search);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->select);
 
   g_object_unref (size);
 
-  gtk_widget_set_tooltip_text (priv->select, _("Exit selection mode"));
-  gtk_widget_reset_style (priv->select);
+  gtk_widget_set_tooltip_text (self->select, _("Exit selection mode"));
+  gtk_widget_reset_style (self->select);
 
-  g_signal_connect (priv->select, "clicked",
+  g_signal_connect (self->select, "clicked",
                     G_CALLBACK (on_selection_mode_clicked), self);
 
-  if (priv->view_selection_changed == 0)
+  if (self->view_selection_changed == 0)
   {
-    priv->view_selection_changed = g_signal_connect_swapped (
-                      self->priv->parent, "view-selection-changed",
+    self->view_selection_changed = g_signal_connect_swapped (
+                      self->parent, "view-selection-changed",
                       G_CALLBACK (on_view_selection_changed_cb), self);
   }
 
@@ -326,12 +322,11 @@ populate_bar_for_selection (BjbMainToolbar *self)
 static void
 update_label_for_standard (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
   BijiNotebook *coll;
   gchar *needle, *label;
 
-  coll = bjb_controller_get_notebook (priv->controller);
-  needle = bjb_controller_get_needle (priv->controller);
+  coll = bjb_controller_get_notebook (self->controller);
+  needle = bjb_controller_get_needle (self->controller);
 
   if (coll)
     label = g_strdup_printf ("%s", biji_item_get_title (BIJI_ITEM (coll)));
@@ -347,21 +342,19 @@ update_label_for_standard (BjbMainToolbar *self)
   gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
   g_free (label);
 
-  self->priv->display_notes = g_signal_connect (self->priv->controller,
+  self->display_notes = g_signal_connect (self->controller,
                                                 "display-items-changed",
                                                 G_CALLBACK (update_selection_buttons),
-                                                self->priv);
+                                                self);
 }
 
 static void
 connect_main_view_handlers (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
-
-  if (priv->view_selection_changed == 0)
+  if (self->view_selection_changed == 0)
   {
-    priv->view_selection_changed = g_signal_connect_swapped (
-                      self->priv->parent, "view-selection-changed",
+    self->view_selection_changed = g_signal_connect_swapped (
+                      self->parent, "view-selection-changed",
                       G_CALLBACK (on_view_selection_changed_cb), self);
   }
 }
@@ -371,16 +364,16 @@ on_back_button_clicked (BjbMainToolbar *self)
 {
   BijiItemsGroup group;
 
-  group = bjb_controller_get_group (self->priv->controller);
+  group = bjb_controller_get_group (self->controller);
 
   /* Back to main view from trash bin */
   if (group == BIJI_ARCHIVED_ITEMS)
-    bjb_controller_set_group (self->priv->controller, BIJI_LIVING_ITEMS);
+    bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
 
 
   /* Back to main view */
   else
-    bjb_controller_set_notebook (self->priv->controller, NULL);
+    bjb_controller_set_notebook (self->controller, NULL);
 }
 
 
@@ -388,14 +381,13 @@ on_back_button_clicked (BjbMainToolbar *self)
 static void
 on_empty_clicked_callback        (BjbMainToolbar *self)
 {
-  biji_manager_empty_bin (bjb_window_base_get_manager (GTK_WIDGET (self->priv->window)));
+  biji_manager_empty_bin (bjb_window_base_get_manager (GTK_WIDGET (self->window)));
 }
 
 
 static void
 populate_bar_for_standard(BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
   BijiNotebook *coll;
   GtkWidget *select_image;
   gboolean rtl;
@@ -405,20 +397,20 @@ populate_bar_for_standard(BjbMainToolbar *self)
 
   /* Label */
   update_label_for_standard (self);
-  priv->search_handler = g_signal_connect_swapped (priv->controller,
+  self->search_handler = g_signal_connect_swapped (self->controller,
          "search-changed", G_CALLBACK(update_label_for_standard), self);
 
   /* Go back to all notes */
-  coll = bjb_controller_get_notebook (priv->controller);
+  coll = bjb_controller_get_notebook (self->controller);
 
   if (coll != NULL)
   {
-    priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+    self->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
                                                 GTK_ICON_SIZE_MENU);
-    gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-    gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
+    gtk_widget_set_valign (self->back, GTK_ALIGN_CENTER);
+    gtk_header_bar_pack_start (GTK_HEADER_BAR (self), self->back);
 
-    g_signal_connect_swapped (priv->back, "clicked",
+    g_signal_connect_swapped (self->back, "clicked",
                               G_CALLBACK (on_back_button_clicked), self);
   }
 
@@ -428,34 +420,34 @@ populate_bar_for_standard(BjbMainToolbar *self)
      * Translators : <_New> refers to new note creation.
      * User clicks new, which opens a new blank note.
      */
-    priv->new = gtk_button_new_with_mnemonic (_("_New"));
-    gtk_widget_set_valign (priv->new, GTK_ALIGN_CENTER);
+    self->new = gtk_button_new_with_mnemonic (_("_New"));
+    gtk_widget_set_valign (self->new, GTK_ALIGN_CENTER);
 
-    gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->new);
-    gtk_widget_set_size_request (priv->new, 70, -1);
-    gtk_widget_add_accelerator (priv->new, "clicked", priv->accel, GDK_KEY_n,
+    gtk_header_bar_pack_start (GTK_HEADER_BAR (self), self->new);
+    gtk_widget_set_size_request (self->new, 70, -1);
+    gtk_widget_add_accelerator (self->new, "clicked", self->accel, GDK_KEY_n,
                                 GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-    g_signal_connect(priv->new,"clicked",
-                     G_CALLBACK(on_new_note_clicked),priv->parent);
+    g_signal_connect(self->new,"clicked",
+                     G_CALLBACK(on_new_note_clicked),self->parent);
   }
 
   /* Go to selection mode */
-  priv->select = gtk_button_new ();
+  self->select = gtk_button_new ();
   select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
-  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+  gtk_button_set_image (GTK_BUTTON (self->select), select_image);
+  gtk_widget_set_valign (self->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->select),
                                "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
-  gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->select);
+  gtk_widget_set_tooltip_text (self->select, _("Selection mode"));
 
-  g_signal_connect (priv->select,"clicked",
+  g_signal_connect (self->select,"clicked",
                     G_CALLBACK(on_selection_mode_clicked),self);
 
   /* Align buttons */
   size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->new);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->select);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->new);
   g_object_unref (size);
 
   /* Show close button */
@@ -469,21 +461,19 @@ populate_bar_for_standard(BjbMainToolbar *self)
 static void
 add_list_button (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
   GtkWidget *list_image;
 
-  priv = self->priv;
-  priv->grid = NULL;
-  priv->list = gtk_button_new ();
+  self->grid = NULL;
+  self->list = gtk_button_new ();
   list_image = gtk_image_new_from_icon_name ("view-list-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->list), list_image);
-  gtk_widget_set_valign (priv->list, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->list),
+  gtk_button_set_image (GTK_BUTTON (self->list), list_image);
+  gtk_widget_set_valign (self->list, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->list),
                                "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->list);
-  gtk_widget_set_tooltip_text (priv->list,
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->list);
+  gtk_widget_set_tooltip_text (self->list,
                                _("View notes and notebooks in a list"));
-  g_signal_connect (priv->list, "clicked",
+  g_signal_connect (self->list, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
 }
 
@@ -492,23 +482,20 @@ add_list_button (BjbMainToolbar *self)
 static void
 add_grid_button (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
   GtkWidget *grid_image;
 
-
-  priv = self->priv;
-  priv->list = NULL;
-  priv->grid = gtk_button_new ();
+  self->list = NULL;
+  self->grid = gtk_button_new ();
   grid_image = gtk_image_new_from_icon_name ("view-grid-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->grid), grid_image);
-  gtk_widget_set_valign (priv->grid, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->grid),
+  gtk_button_set_image (GTK_BUTTON (self->grid), grid_image);
+  gtk_widget_set_valign (self->grid, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->grid),
                                "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->grid);
-  gtk_widget_set_tooltip_text (priv->grid,
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->grid);
+  gtk_widget_set_tooltip_text (self->grid,
                                _("View notes and notebooks in a grid"));
 
-  g_signal_connect (priv->grid, "clicked",
+  g_signal_connect (self->grid, "clicked",
                     G_CALLBACK(on_view_mode_clicked),self);
 }
 
@@ -516,38 +503,35 @@ add_grid_button (BjbMainToolbar *self)
 static void
 populate_bar_for_trash (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
   gboolean rtl;
   GtkWidget *select_image;
   GtkSizeGroup *size;
   GtkStyleContext *context;
-
-  priv = self->priv;
 
   rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
   gtk_header_bar_set_title (GTK_HEADER_BAR (self), _("Trash"));
   gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
 
 
-  priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+  self->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
                                               GTK_ICON_SIZE_MENU);
-  gtk_widget_set_valign (priv->back, GTK_ALIGN_CENTER);
-  gtk_header_bar_pack_start (GTK_HEADER_BAR (self), priv->back);
+  gtk_widget_set_valign (self->back, GTK_ALIGN_CENTER);
+  gtk_header_bar_pack_start (GTK_HEADER_BAR (self), self->back);
 
-  g_signal_connect_swapped (priv->back, "clicked",
+  g_signal_connect_swapped (self->back, "clicked",
                             G_CALLBACK (on_back_button_clicked), self);
 
   /* Go to selection mode */
-  priv->select = gtk_button_new ();
+  self->select = gtk_button_new ();
   select_image = gtk_image_new_from_icon_name ("object-select-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (priv->select), select_image);
-  gtk_widget_set_valign (priv->select, GTK_ALIGN_CENTER);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->select),
+  gtk_button_set_image (GTK_BUTTON (self->select), select_image);
+  gtk_widget_set_valign (self->select, GTK_ALIGN_CENTER);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->select),
                                "image-button");
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->select);
-  gtk_widget_set_tooltip_text (priv->select, _("Selection mode"));
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->select);
+  gtk_widget_set_tooltip_text (self->select, _("Selection mode"));
 
-  g_signal_connect (priv->select,"clicked",
+  g_signal_connect (self->select,"clicked",
                     G_CALLBACK(on_selection_mode_clicked),self);
 
 
@@ -555,21 +539,21 @@ populate_bar_for_trash (BjbMainToolbar *self)
   /* Add Search ? */
 
   /* Grid / List */
-  if (priv->type == BJB_TOOLBAR_TRASH_ICON)
+  if (self->type == BJB_TOOLBAR_TRASH_ICON)
     add_list_button (self);
 
-  if (priv->type == BJB_TOOLBAR_TRASH_LIST)
+  if (self->type == BJB_TOOLBAR_TRASH_LIST)
     add_grid_button (self);
 
   /* Add Empty-Bin
    * translators : Empty is the verb.
    * This action permanently deletes notes */
-  priv->empty_bin = gtk_button_new_with_label(_("Empty"));
-  context = gtk_widget_get_style_context (priv->empty_bin);
+  self->empty_bin = gtk_button_new_with_label(_("Empty"));
+  context = gtk_widget_get_style_context (self->empty_bin);
   gtk_style_context_add_class (context, "destructive-action");
-  gtk_widget_set_valign (priv->empty_bin, GTK_ALIGN_CENTER);
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), priv->empty_bin);
-  g_signal_connect_swapped (priv->empty_bin,
+  gtk_widget_set_valign (self->empty_bin, GTK_ALIGN_CENTER);
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (self), self->empty_bin);
+  g_signal_connect_swapped (self->empty_bin,
                             "clicked",
                             G_CALLBACK (on_empty_clicked_callback),
                             self);
@@ -578,9 +562,9 @@ populate_bar_for_trash (BjbMainToolbar *self)
 
   /* Align buttons */
   size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->select);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->empty_bin);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->select);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->empty_bin);
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->back);
   g_object_unref (size);
 
   /* Show close button */
@@ -588,8 +572,8 @@ populate_bar_for_trash (BjbMainToolbar *self)
 
   /* Watch for main view changing */
   update_selection_buttons (
-    priv->controller, bjb_controller_shows_item (priv->controller),
-    FALSE,priv);
+    self->controller, bjb_controller_shows_item (self->controller),
+    FALSE, self);
   connect_main_view_handlers (self);
 }
 
@@ -613,28 +597,28 @@ populate_bar_for_list_view(BjbMainToolbar *self)
 
 
 static void
-disconnect_note_handlers (BjbMainToolbarPrivate *priv)
+disconnect_note_handlers (BjbMainToolbar *self)
 {
-  if (priv->note_renamed != 0)
+  if (self->note_renamed != 0)
   {
-    g_signal_handler_disconnect (priv->note, priv->note_renamed);
-    priv->note_renamed = 0;
+    g_signal_handler_disconnect (self->note, self->note_renamed);
+    self->note_renamed = 0;
   }
 
-  if (priv->note_color_changed != 0)
+  if (self->note_color_changed != 0)
   {
-    g_signal_handler_disconnect (priv->note, priv->note_color_changed);
-    priv->note_color_changed = 0;
+    g_signal_handler_disconnect (self->note, self->note_color_changed);
+    self->note_color_changed = 0;
   }
 
-  priv->note = NULL;
+  self->note = NULL;
 }
 
 static void
 just_switch_to_main_view (BjbMainToolbar *self)
 {
-  disconnect_note_handlers (self->priv);
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->priv->window),
+  disconnect_note_handlers (self);
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
                              BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
@@ -658,11 +642,11 @@ on_color_button_clicked (GtkColorButton *button,
 {
   GdkRGBA color;
 
-  if (!bar->priv->note)
+  if (!bar->note)
     return;
 
   gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &color);
-  biji_note_obj_set_rgba (bar->priv->note, &color);
+  biji_note_obj_set_rgba (bar->note, &color);
 }
 
 static void
@@ -682,13 +666,13 @@ on_note_content_changed (BjbMainToolbar *self)
   const gchar *str = NULL;
   gboolean sensitive = TRUE;
 
-  if (self->priv->note)
-    str = biji_note_obj_get_raw_text (self->priv->note);
+  if (self->note)
+    str = biji_note_obj_get_raw_text (self->note);
 
   if (!str || g_strcmp0 (str, "") == 0 || g_strcmp0 (str, "\n") == 0)
     sensitive = FALSE;
 
-  gtk_widget_set_sensitive (self->priv->share, sensitive);
+  gtk_widget_set_sensitive (self->share, sensitive);
 }
 
 
@@ -698,8 +682,8 @@ action_view_tags_callback (GtkWidget *item, gpointer user_data)
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR (user_data);
   GList *list = NULL;
 
-  list = g_list_append (list, self->priv->note);
-  bjb_organize_dialog_new (self->priv->window, list);
+  list = g_list_append (list, self->note);
+  bjb_organize_dialog_new (self->window, list);
   g_list_free (list);
 }
 
@@ -710,7 +694,7 @@ trash_item_callback (GtkWidget *item, gpointer user_data)
 
   /* Delete the note from notebook
    * The deleted note will emit a signal. */
-  biji_item_trash (BIJI_ITEM (self->priv->note));
+  biji_item_trash (BIJI_ITEM (self->note));
 }
 
 
@@ -719,8 +703,8 @@ on_detached_clicked_cb (BjbMainToolbar *self)
 {
   BijiNoteObj *note;
 
-  note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->priv->window),
+  note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->window));
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
                              BJB_WINDOW_BASE_MAIN_VIEW);
   bijiben_new_window_for_note (g_application_get_default (), note);
 }
@@ -729,15 +713,14 @@ on_detached_clicked_cb (BjbMainToolbar *self)
 static GtkWidget *
 bjb_note_menu_new (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
   GtkWidget             *result, *item;
   BijiWebkitEditor      *editor;
   gboolean               detached;
 
   result = gtk_menu_new();
-  editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (priv->note));
+  editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note));
 
-  detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
+  detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->window));
   if (detached == FALSE)
   {
     /*
@@ -759,7 +742,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (biji_webkit_editor_undo), editor);
-  gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_z,
+  gtk_widget_add_accelerator (item, "activate", self->accel, GDK_KEY_z,
                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
 
@@ -767,7 +750,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   gtk_menu_shell_append (GTK_MENU_SHELL (result), item);
   g_signal_connect_swapped (item, "activate",
                             G_CALLBACK (biji_webkit_editor_redo), editor);
-  gtk_widget_add_accelerator (item, "activate", priv->accel, GDK_KEY_z,
+  gtk_widget_add_accelerator (item, "activate", self->accel, GDK_KEY_z,
                              GDK_CONTROL_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
 
   item = gtk_separator_menu_item_new ();
@@ -776,7 +759,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
 
   /* Notebooks */
 
-  if (biji_item_is_collectable (BIJI_ITEM (priv->note)))
+  if (biji_item_is_collectable (BIJI_ITEM (self->note)))
   {
     item = gtk_menu_item_new_with_label(_("Notebooks"));
     gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
@@ -786,12 +769,12 @@ bjb_note_menu_new (BjbMainToolbar *self)
   }
 
   /*Share */
-  priv->share = gtk_menu_item_new_with_label (_("Email this Note"));
-  gtk_menu_shell_append (GTK_MENU_SHELL (result), priv->share);
-  g_signal_connect (priv->share, "activate",
-                    G_CALLBACK (on_email_note_callback), priv->note);
+  self->share = gtk_menu_item_new_with_label (_("Email this Note"));
+  gtk_menu_shell_append (GTK_MENU_SHELL (result), self->share);
+  g_signal_connect (self->share, "activate",
+                    G_CALLBACK (on_email_note_callback), self->note);
 
-  g_signal_connect_swapped (biji_note_obj_get_editor (priv->note),
+  g_signal_connect_swapped (biji_note_obj_get_editor (self->note),
                             "content-changed",
                             G_CALLBACK (on_note_content_changed),
                             self);
@@ -801,7 +784,7 @@ bjb_note_menu_new (BjbMainToolbar *self)
   /* Delete Note */
   item = gtk_menu_item_new_with_label(_("Move to Trash"));
   gtk_menu_shell_append(GTK_MENU_SHELL(result),item);
-  gtk_widget_add_accelerator (item, "activate", priv->accel,
+  gtk_widget_add_accelerator (item, "activate", self->accel,
                               GDK_KEY_Delete, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
   g_signal_connect(item,"activate",
@@ -814,7 +797,6 @@ bjb_note_menu_new (BjbMainToolbar *self)
 static void
 populate_bar_for_note_view (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
   GtkHeaderBar          *bar = GTK_HEADER_BAR (self);
   BjbSettings           *settings;
   GdkRGBA                color;
@@ -822,13 +804,13 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   BijiItem *item;
   gboolean rtl, detached;
 
-  priv->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->priv->window));
-  item = BIJI_ITEM (priv->note);
+  self->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->window));
+  item = BIJI_ITEM (self->note);
   size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
   rtl = (gtk_widget_get_default_direction () == GTK_TEXT_DIR_RTL);
-  detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->priv->window));
+  detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->window));
 
-  if (!priv->note) /* no reason this would happen */
+  if (!self->note) /* no reason this would happen */
     return;
 
   settings = bjb_app_get_settings (g_application_get_default());
@@ -836,43 +818,43 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   /* Go to main view basically means closing note */
   if (!detached)
   {
-    priv->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
+    self->back = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic",
                                                 GTK_ICON_SIZE_MENU);
-    gtk_header_bar_pack_start (bar, priv->back);
-    gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->back);
+    gtk_header_bar_pack_start (bar, self->back);
+    gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->back);
 
-    g_signal_connect_swapped (priv->back, "clicked",
+    g_signal_connect_swapped (self->back, "clicked",
                               G_CALLBACK (just_switch_to_main_view), self);
-    gtk_widget_add_accelerator (priv->back, "activate", self->priv->accel,
+    gtk_widget_add_accelerator (self->back, "activate", self->accel,
                                 GDK_KEY_w, GDK_CONTROL_MASK, GTK_ACCEL_MASK);
   }
 
   /* Note Title */
   on_note_renamed (item, self);
-  self->priv->note_renamed = g_signal_connect (priv->note,"renamed",
+  self->note_renamed = g_signal_connect (self->note,"renamed",
                                     G_CALLBACK (on_note_renamed), self);
 
   /* Menu */
 
-  priv->menu = gtk_menu_button_new ();
-  gtk_menu_button_set_direction (GTK_MENU_BUTTON (priv->menu), GTK_ARROW_NONE);
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->menu),
+  self->menu = gtk_menu_button_new ();
+  gtk_menu_button_set_direction (GTK_MENU_BUTTON (self->menu), GTK_ARROW_NONE);
+  gtk_style_context_add_class (gtk_widget_get_style_context (self->menu),
                                "image-button");
-  gtk_header_bar_pack_end (bar, priv->menu);
-  gtk_widget_set_tooltip_text (priv->menu, _("More options…"));
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), priv->menu);
+  gtk_header_bar_pack_end (bar, self->menu);
+  gtk_widget_set_tooltip_text (self->menu, _("More options…"));
+  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->menu);
 
   /* Show close button */
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
 
-  gtk_menu_button_set_popup (GTK_MENU_BUTTON (priv->menu),
+  gtk_menu_button_set_popup (GTK_MENU_BUTTON (self->menu),
                              bjb_note_menu_new (self));
 
 
   /* Note Color */
-  if (biji_item_has_color (BIJI_ITEM (priv->note)))
+  if (biji_item_has_color (BIJI_ITEM (self->note)))
   {
-    if (!biji_note_obj_get_rgba (priv->note, &color))
+    if (!biji_note_obj_get_rgba (self->note, &color))
     {
       gchar *default_color;
 
@@ -881,24 +863,24 @@ populate_bar_for_note_view (BjbMainToolbar *self)
       g_free (default_color);
     }
 
-    priv->color = bjb_color_button_new ();
-    gtk_widget_set_tooltip_text (priv->color, _("Note color"));
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->color),
+    self->color = bjb_color_button_new ();
+    gtk_widget_set_tooltip_text (self->color, _("Note color"));
+    gtk_style_context_add_class (gtk_widget_get_style_context (self->color),
                                  "button");
-    gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (priv->color), &color);
+    gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self->color), &color);
 
 
-    gtk_header_bar_pack_end (bar, priv->color);
-    gtk_widget_set_size_request (gtk_bin_get_child (GTK_BIN (priv->color)),
+    gtk_header_bar_pack_end (bar, self->color);
+    gtk_widget_set_size_request (gtk_bin_get_child (GTK_BIN (self->color)),
                                  COLOR_SIZE, COLOR_SIZE);
-    gtk_widget_show (priv->color);
-    gtk_size_group_add_widget (size, priv->color);
+    gtk_widget_show (self->color);
+    gtk_size_group_add_widget (size, self->color);
 
 
-    g_signal_connect (priv->color, "color-set",
+    g_signal_connect (self->color, "color-set",
                       G_CALLBACK (on_color_button_clicked), self);
-    priv->note_color_changed = g_signal_connect (priv->note, "color-changed",
-                               G_CALLBACK (on_note_color_changed), priv->color);
+    self->note_color_changed = g_signal_connect (self->note, "color-changed",
+                               G_CALLBACK (on_note_color_changed), self->color);
   }
 
   g_object_unref (size);
@@ -907,11 +889,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 static void
 populate_bar_switch (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
-
-  priv = self->priv;
-
-  switch (priv->type)
+  switch (self->type)
   {
     case BJB_TOOLBAR_SELECT:
     case BJB_TOOLBAR_TRASH_SELECT:
@@ -920,19 +898,19 @@ populate_bar_switch (BjbMainToolbar *self)
 
     case BJB_TOOLBAR_STD_ICON:
       populate_bar_for_icon_view(self);
-      update_selection_buttons (priv->controller,
-                                bjb_controller_shows_item (priv->controller),
+      update_selection_buttons (self->controller,
+                                bjb_controller_shows_item (self->controller),
                                 TRUE,
-                                self->priv);
+                                self);
       add_search_button (self);
       break;
 
     case BJB_TOOLBAR_STD_LIST:
       populate_bar_for_list_view(self);
-      update_selection_buttons (priv->controller,
-                                bjb_controller_shows_item (priv->controller),
+      update_selection_buttons (self->controller,
+                                bjb_controller_shows_item (self->controller),
                                 TRUE,
-                                self->priv);
+                                self);
       add_search_button (self);
       break;
 
@@ -960,11 +938,10 @@ populate_bar_switch (BjbMainToolbar *self)
 static void
 populate_main_toolbar(BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv = self->priv;
   BjbToolbarType to_be = BJB_TOOLBAR_0 ;
   BjbWindowViewType view_type;
 
-  view_type = bjb_window_base_get_view_type (BJB_WINDOW_BASE (priv->window));
+  view_type = bjb_window_base_get_view_type (BJB_WINDOW_BASE (self->window));
 
   switch (view_type)
   {
@@ -976,13 +953,13 @@ populate_main_toolbar(BjbMainToolbar *self)
     case BJB_WINDOW_BASE_NO_RESULT:
     case BJB_WINDOW_BASE_MAIN_VIEW:
 
-      if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
+      if (bjb_main_view_get_selection_mode (self->parent) == TRUE)
         to_be = BJB_TOOLBAR_SELECT;
 
-      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
+      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_ICON)
         to_be = BJB_TOOLBAR_STD_ICON;
 
-      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
+      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_LIST)
         to_be = BJB_TOOLBAR_STD_LIST;
 
       break;
@@ -990,13 +967,13 @@ populate_main_toolbar(BjbMainToolbar *self)
 
     case BJB_WINDOW_BASE_ARCHIVE_VIEW:
 
-      if (bjb_main_view_get_selection_mode (priv->parent) == TRUE)
+      if (bjb_main_view_get_selection_mode (self->parent) == TRUE)
         to_be = BJB_TOOLBAR_TRASH_SELECT;
 
-      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_ICON)
+      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_ICON)
         to_be = BJB_TOOLBAR_TRASH_ICON;
 
-      else if (bjb_main_view_get_view_type (priv->parent) == GD_MAIN_VIEW_LIST)
+      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_LIST)
         to_be = BJB_TOOLBAR_TRASH_LIST;
 
 
@@ -1015,32 +992,32 @@ populate_main_toolbar(BjbMainToolbar *self)
 
 
   /* Simply clear then populate */
-  if (to_be != priv->type || view_type == BJB_WINDOW_BASE_ARCHIVE_VIEW)
+  if (to_be != self->type || view_type == BJB_WINDOW_BASE_ARCHIVE_VIEW)
   {
     /* If we leave a note view */
-    if (priv->type == BJB_TOOLBAR_NOTE_VIEW)
-      disconnect_note_handlers (priv);
+    if (self->type == BJB_TOOLBAR_NOTE_VIEW)
+      disconnect_note_handlers (self);
 
-    priv->type = to_be;
+    self->type = to_be;
     bjb_main_toolbar_clear (self);
 
 
-    if (priv->search_handler != 0)
+    if (self->search_handler != 0)
     {
-      g_signal_handler_disconnect (priv->controller, priv->search_handler);
-      priv->search_handler = 0;
+      g_signal_handler_disconnect (self->controller, self->search_handler);
+      self->search_handler = 0;
     }
 
-    if (priv->display_notes != 0)
+    if (self->display_notes != 0)
     {
-      g_signal_handler_disconnect (priv->controller, priv->display_notes);
-      priv->display_notes = 0;
+      g_signal_handler_disconnect (self->controller, self->display_notes);
+      self->display_notes = 0;
     }
 
-    if (priv->view_selection_changed != 0)
+    if (self->view_selection_changed != 0)
     {
-      g_signal_handler_disconnect (priv->parent, priv->view_selection_changed);
-      priv->view_selection_changed = 0;
+      g_signal_handler_disconnect (self->parent, self->view_selection_changed);
+      self->view_selection_changed = 0;
     }
 
     populate_bar_switch (self);
@@ -1052,9 +1029,9 @@ bjb_main_toolbar_constructed (GObject *obj)
 {
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR (obj);
 
-  self->priv->accel = gtk_accel_group_new ();
-  gtk_window_add_accel_group (self->priv->window, self->priv->accel);
-  g_signal_connect_swapped (self->priv->window, "view-changed",
+  self->accel = gtk_accel_group_new ();
+  gtk_window_add_accel_group (self->window, self->accel);
+  g_signal_connect_swapped (self->window, "view-changed",
                             G_CALLBACK (populate_main_toolbar), self);
 
   G_OBJECT_CLASS(bjb_main_toolbar_parent_class)->constructed(obj);
@@ -1063,31 +1040,7 @@ bjb_main_toolbar_constructed (GObject *obj)
 static void
 bjb_main_toolbar_init (BjbMainToolbar *self)
 {
-  BjbMainToolbarPrivate *priv;
-
-  self->priv = BJB_MAIN_TOOLBAR_GET_PRIVATE(self);
-  priv = self->priv;
-
-  priv->type = BJB_TOOLBAR_0 ;
-
-  priv->back = NULL;
-  priv->grid = NULL;
-  priv->list = NULL;
-  priv->search = NULL;
-  priv->empty_bin = NULL;
-  priv->accel = NULL;
-  priv->note = NULL;
-  priv->back = NULL;
-  priv->color = NULL;
-  priv->menu = NULL;
-  priv->share = NULL;
-
-  priv->search_handler = 0;
-  priv->display_notes = 0;
-  priv->view_selection_changed = 0;
-  priv->note_renamed = 0;
-  priv->note_color_changed = 0;
-
+  self->type = BJB_TOOLBAR_0;
   g_signal_connect (self, "button-press-event", G_CALLBACK (on_button_press), NULL);
 }
 
@@ -1095,16 +1048,15 @@ static void
 bjb_main_toolbar_finalize (GObject *object)
 {
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR(object);
-  BjbMainToolbarPrivate *priv = self->priv;
 
-  if (priv->search_handler != 0)
+  if (self->search_handler != 0)
   {
-    g_signal_handler_disconnect (priv->controller, priv->search_handler);
-    priv->search_handler = 0;
+    g_signal_handler_disconnect (self->controller, self->search_handler);
+    self->search_handler = 0;
   }
 
-  gtk_window_remove_accel_group (priv->window, priv->accel);
-  disconnect_note_handlers (priv);
+  gtk_window_remove_accel_group (self->window, self->accel);
+  disconnect_note_handlers (self);
 
   /* chain up */
   G_OBJECT_CLASS (bjb_main_toolbar_parent_class)->finalize (object);
@@ -1121,7 +1073,7 @@ bjb_main_toolbar_get_property (GObject     *object,
   switch (property_id)
   {
     case PROP_PARENT:
-      g_value_set_object (value, self->priv->parent);
+      g_value_set_object (value, self->parent);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -1140,12 +1092,12 @@ bjb_main_toolbar_set_property (GObject      *object,
   switch (property_id)
   {
     case PROP_PARENT:
-      self->priv->parent = g_value_get_object(value);
-      self->priv->window = GTK_WINDOW (
-                       bjb_main_view_get_window (self->priv->parent));
+      self->parent = g_value_get_object(value);
+      self->window = GTK_WINDOW (
+                       bjb_main_view_get_window (self->parent));
       break;
     case PROP_CONTROLLER:
-      self->priv->controller = g_value_get_object (value);
+      self->controller = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -1157,8 +1109,6 @@ static void
 bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (BjbMainToolbarPrivate));
 
   object_class->get_property = bjb_main_toolbar_get_property;
   object_class->set_property = bjb_main_toolbar_set_property;

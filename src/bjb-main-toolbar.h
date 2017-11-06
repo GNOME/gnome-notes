@@ -26,31 +26,9 @@ bijiben is free software: you can redistribute it and/or modify it
 
 G_BEGIN_DECLS
 
-#define BJB_TYPE_MAIN_TOOLBAR             (bjb_main_toolbar_get_type ())
-#define BJB_MAIN_TOOLBAR(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_MAIN_TOOLBAR, BjbMainToolbar))
-#define BJB_MAIN_TOOLBAR_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_MAIN_TOOLBAR, BjbMainToolbarClass))
-#define BJB_IS_MAIN_TOOLBAR(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_MAIN_TOOLBAR))
-#define BJB_IS_MAIN_TOOLBAR_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_MAIN_TOOLBAR))
-#define BJB_MAIN_TOOLBAR_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_MAIN_TOOLBAR, BjbMainToolbarClass))
+#define BJB_TYPE_MAIN_TOOLBAR (bjb_main_toolbar_get_type ())
 
-typedef struct _BjbMainToolbarClass BjbMainToolbarClass;
-typedef struct _BjbMainToolbar BjbMainToolbar;
-typedef struct _BjbMainToolbarPrivate BjbMainToolbarPrivate;
-
-struct _BjbMainToolbarClass
-{
-  GtkHeaderBarClass parent_class;
-};
-
-struct _BjbMainToolbar
-{
-  GtkHeaderBar parent_instance;
-  BjbMainToolbarPrivate *priv; 
-};
-
-
-GType                  bjb_main_toolbar_get_type                  (void) G_GNUC_CONST;
-
+G_DECLARE_FINAL_TYPE (BjbMainToolbar, bjb_main_toolbar, BJB, MAIN_TOOLBAR, GtkHeaderBar)
 
 BjbMainToolbar        *bjb_main_toolbar_new                       (BjbMainView *parent,
                                                                    BjbController *controller);

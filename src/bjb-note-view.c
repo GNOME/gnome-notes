@@ -37,12 +37,10 @@ enum
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
+struct _BjbNoteView
+{
+  GtkOverlay         parent_instance;
 
-#define GET_PRIVATE(o) \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_NOTE_VIEW, BjbNoteViewPrivate))
-
-struct _BjbNoteViewPrivate {
   /* Data */
   GtkWidget         *window ;
   GtkWidget         *view;
@@ -56,6 +54,8 @@ struct _BjbNoteViewPrivate {
   GtkWidget         *last_update;
 };
 
+G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
+
 static void on_window_closed(GtkWidget *window,gpointer note);
 static gboolean on_note_trashed (BijiNoteObj *note, BjbNoteView *view);
 static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
@@ -63,12 +63,9 @@ static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
 static void
 bjb_note_view_disconnect (BjbNoteView *self)
 {
-  BjbNoteViewPrivate *priv;
-
-  priv = self->priv;
-  g_signal_handlers_disconnect_by_func (priv->window, on_window_closed, priv->note);
-  g_signal_handlers_disconnect_by_func (priv->note, on_note_trashed, self);
-  g_signal_handlers_disconnect_by_func (priv->note, on_note_color_changed_cb, self);
+  g_signal_handlers_disconnect_by_func (self->window, on_window_closed, self->note);
+  g_signal_handlers_disconnect_by_func (self->note, on_note_trashed, self);
+  g_signal_handlers_disconnect_by_func (self->note, on_note_color_changed_cb, self);
 }
 
 
@@ -76,11 +73,10 @@ static void
 bjb_note_view_finalize(GObject *object)
 {
   BjbNoteView *self = BJB_NOTE_VIEW (object) ;
-  BjbNoteViewPrivate *priv = self->priv;
 
   bjb_note_view_disconnect (self);
 
-  g_clear_object (&priv->view);
+  g_clear_object (&self->view);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
 }
@@ -96,10 +92,10 @@ bjb_note_view_get_property (GObject      *object,
   switch (prop_id)
   {
     case PROP_WINDOW:
-      g_value_set_object (value, self->priv->window);
+      g_value_set_object (value, self->window);
       break;
     case PROP_NOTE:
-      g_value_set_object (value, self->priv->note);
+      g_value_set_object (value, self->note);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -118,10 +114,10 @@ bjb_note_view_set_property ( GObject        *object,
   switch (prop_id)
   {
     case PROP_WINDOW:
-      self->priv->window = g_value_get_object(value);
+      self->window = g_value_get_object(value);
       break;
     case PROP_NOTE:
-      self->priv->note = g_value_get_object(value);
+      self->note = g_value_get_object(value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -132,9 +128,6 @@ bjb_note_view_set_property ( GObject        *object,
 static void
 bjb_note_view_init (BjbNoteView *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_NOTE_VIEW,
-                                            BjbNoteViewPrivate);
-
 }
 
 static void
@@ -156,7 +149,7 @@ just_switch_to_main_view(BjbNoteView *self)
   /* Avoid stupid crash */
   bjb_note_view_disconnect (self);
 
-  window = GTK_WINDOW(self->priv->window);
+  window = GTK_WINDOW(self->window);
   bjb_window_base_switch_to (BJB_WINDOW_BASE (window),
                              BJB_WINDOW_BASE_MAIN_VIEW);
 }
@@ -174,14 +167,13 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
   const gchar *font_color;
   gchar *span, *text;
-  BjbNoteViewPrivate *priv = self->priv;
   GdkRGBA color;
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   biji_note_obj_get_rgba (note, &color);
 
-  webkit_web_view_set_background_color (WEBKIT_WEB_VIEW (priv->view), &color);
+  webkit_web_view_set_background_color (WEBKIT_WEB_VIEW (self->view), &color);
 
   if (color.red < 0.5)
     font_color = "white";
@@ -197,7 +189,7 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
                           biji_note_obj_get_last_change_date_string
 			            (note));
   span = g_strdup_printf ("<span color='%s'>%s</span>", font_color, text);
-  gtk_label_set_markup (GTK_LABEL (priv->last_update), span);
+  gtk_label_set_markup (GTK_LABEL (self->last_update), span);
 
   g_free (text);
   g_free (span);
@@ -210,9 +202,9 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 static void
 bjb_note_view_last_updated_actor_new (BjbNoteView *self)
 {
-  self->priv->last_update = gtk_label_new ("");
-  gtk_label_set_use_markup (GTK_LABEL (self->priv->last_update), TRUE);
-  on_note_color_changed_cb (self->priv->note, self);
+  self->last_update = gtk_label_new ("");
+  gtk_label_set_use_markup (GTK_LABEL (self->last_update), TRUE);
+  on_note_color_changed_cb (self->note, self);
 }
 
 
@@ -220,7 +212,6 @@ static void
 bjb_note_view_constructed (GObject *obj)
 {
   BjbNoteView            *self = BJB_NOTE_VIEW (obj);
-  BjbNoteViewPrivate     *priv = self->priv;
   BjbSettings            *settings;
   gchar                  *default_font;
   GdkRGBA                 color;
@@ -231,23 +222,23 @@ bjb_note_view_constructed (GObject *obj)
 
 
   /* view new from note deserializes the note-content. */
-  priv->view = biji_note_obj_open (priv->note);
+  self->view = biji_note_obj_open (self->note);
 
-  g_signal_connect(priv->note,"deleted",
+  g_signal_connect(self->note,"deleted",
                    G_CALLBACK(on_note_trashed),self);
-  g_signal_connect(priv->note,"trashed",
+  g_signal_connect(self->note,"trashed",
                    G_CALLBACK(on_note_trashed),self);
 
-  g_signal_connect(priv->window,"destroy",
-                   G_CALLBACK(on_window_closed), priv->note);
+  g_signal_connect(self->window,"destroy",
+                   G_CALLBACK(on_window_closed), self->note);
 
-  priv->box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-  gtk_container_add (GTK_CONTAINER (self), priv->box);
-  gtk_widget_show (priv->box);
+  self->box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  gtk_container_add (GTK_CONTAINER (self), self->box);
+  gtk_widget_show (self->box);
 
   /* Text Editor (WebKitMainView) */
-  gtk_box_pack_start (GTK_BOX (priv->box), GTK_WIDGET(priv->view), TRUE, TRUE, 0);
-  gtk_widget_show (priv->view);
+  gtk_box_pack_start (GTK_BOX (self->box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
+  gtk_widget_show (self->view);
 
   /* Apply the gsettings font */
 
@@ -259,36 +250,36 @@ bjb_note_view_constructed (GObject *obj)
 
   if (default_font != NULL)
   {
-    biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (priv->view), default_font);
+    biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (self->view), default_font);
     g_free (default_font);
   }
 
 
   /* User defined color */
 
-  if (!biji_note_obj_get_rgba(priv->note, &color))
+  if (!biji_note_obj_get_rgba(self->note, &color))
   {
     if (gdk_rgba_parse (&color, bjb_settings_get_default_color (settings)))
-      biji_note_obj_set_rgba (priv->note, &color);
+      biji_note_obj_set_rgba (self->note, &color);
   }
 
-  g_signal_connect (priv->note, "color-changed",
+  g_signal_connect (self->note, "color-changed",
                     G_CALLBACK (on_note_color_changed_cb), self);
 
 
   /* Edition Toolbar for text selection */
-  priv->edit_bar = bjb_editor_toolbar_new (self, priv->note);
-  gtk_box_pack_start (GTK_BOX (priv->box), priv->edit_bar, FALSE, TRUE, 0);
-  gtk_widget_hide (priv->edit_bar);
+  self->edit_bar = bjb_editor_toolbar_new (self, self->note);
+  gtk_box_pack_start (GTK_BOX (self->box), self->edit_bar, FALSE, TRUE, 0);
+  gtk_widget_hide (self->edit_bar);
 
   /* Last updated row */
   bjb_note_view_last_updated_actor_new (self);
-  gtk_widget_set_halign (priv->last_update, GTK_ALIGN_END);
-  gtk_widget_set_margin_end (priv->last_update, 50);
-  gtk_widget_set_valign (priv->last_update, GTK_ALIGN_END);
-  gtk_widget_set_margin_bottom (priv->last_update, 50);
-  gtk_overlay_add_overlay (GTK_OVERLAY (self), priv->last_update);
-  gtk_widget_show (priv->last_update);
+  gtk_widget_set_halign (self->last_update, GTK_ALIGN_END);
+  gtk_widget_set_margin_end (self->last_update, 50);
+  gtk_widget_set_valign (self->last_update, GTK_ALIGN_END);
+  gtk_widget_set_margin_bottom (self->last_update, 50);
+  gtk_overlay_add_overlay (GTK_OVERLAY (self), self->last_update);
+  gtk_widget_show (self->last_update);
 }
 
 BjbNoteView *
@@ -309,8 +300,6 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
   object_class->constructed = bjb_note_view_constructed;
   object_class->get_property = bjb_note_view_get_property;
   object_class->set_property = bjb_note_view_set_property;
-
-  g_type_class_add_private (klass, sizeof (BjbNoteViewPrivate));
 
   properties[PROP_WINDOW] = g_param_spec_object ("window",
                                                  "Window",
@@ -334,16 +323,16 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
 }
 
 GtkWidget *
-bjb_note_view_get_base_window (BjbNoteView *v)
+bjb_note_view_get_base_window (BjbNoteView *self)
 {
-  return v->priv->window;
+  return self->window;
 }
 
 
 
 void
-bjb_note_view_grab_focus     (BjbNoteView *view)
+bjb_note_view_grab_focus     (BjbNoteView *self)
 {
-  gtk_widget_set_can_focus (view->priv->view, TRUE);
-  gtk_widget_grab_focus (view->priv->view);
+  gtk_widget_set_can_focus (self->view, TRUE);
+  gtk_widget_grab_focus (self->view);
 }

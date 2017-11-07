@@ -48,8 +48,10 @@ enum
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-struct _BjbOrganizeDialogPrivate
+struct _BjbOrganizeDialog
 {
+  GtkDialog parent_instance;
+
   // parent
   GtkWindow *window;
 
@@ -78,17 +80,15 @@ G_DEFINE_TYPE (BjbOrganizeDialog, bjb_organize_dialog, GTK_TYPE_DIALOG);
 static void
 append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
 {
-  BjbOrganizeDialogPrivate *priv = self->priv;
-
   GtkTreeIter iter;
   gint item_has_tag;
   GList *l;
 
-  gtk_list_store_append (priv->store, &iter);
-  item_has_tag = biji_item_has_notebook (priv->items->data, set->title);
+  gtk_list_store_append (self->store, &iter);
+  item_has_tag = biji_item_has_notebook (self->items->data, set->title);
 
   /* Check if other notes have the same */
-  for (l = priv->items; l != NULL; l = l->next)
+  for (l = self->items; l != NULL; l = l->next)
   {
     if (biji_item_has_notebook (l->data, set->title) != item_has_tag)
     {
@@ -97,7 +97,7 @@ append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
     }
   }
 
-  gtk_list_store_set (priv->store,    &iter,
+  gtk_list_store_set (self->store,    &iter,
                       COL_SELECTION,  item_has_tag,
                       COL_URN,        set->tracker_urn,
                       COL_TAG_NAME ,  set->title, -1);
@@ -163,32 +163,31 @@ static void
 bjb_organize_dialog_handle_tags (GHashTable *result, gpointer user_data)
 {
   BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (user_data);
-  BjbOrganizeDialogPrivate *priv = self->priv;
   GList *tracker_info;
 
-  if (priv->notebooks)
-    g_hash_table_destroy (priv->notebooks);
+  if (self->notebooks)
+    g_hash_table_destroy (self->notebooks);
 
-  priv->notebooks = result;
+  self->notebooks = result;
 
-  tracker_info = g_hash_table_get_values (priv->notebooks);
+  tracker_info = g_hash_table_get_values (self->notebooks);
   tracker_info = g_list_sort (tracker_info, bjb_compare_notebook);
   g_list_foreach (tracker_info, (GFunc) append_notebook, self);
   g_list_free (tracker_info);
 
   /* If a new tag was added, scroll & free */
-  if (priv->tag_to_scroll_to)
+  if (self->tag_to_scroll_to)
   {
     GtkTreePath *path = NULL;
 
-    if (bjb_get_path_for_str (GTK_TREE_MODEL (priv->store), &path,
-                              COL_TAG_NAME, priv->tag_to_scroll_to))
+    if (bjb_get_path_for_str (GTK_TREE_MODEL (self->store), &path,
+                              COL_TAG_NAME, self->tag_to_scroll_to))
     {
-      gtk_tree_view_scroll_to_cell (priv->view, path, NULL, TRUE, 0.5, 0.5);
+      gtk_tree_view_scroll_to_cell (self->view, path, NULL, TRUE, 0.5, 0.5);
       gtk_tree_path_free (path);
     }
 
-    g_clear_pointer (& (priv->tag_to_scroll_to), g_free);
+    g_clear_pointer (& (self->tag_to_scroll_to), g_free);
   }
 }
 
@@ -197,8 +196,8 @@ update_notebooks_model_async (BjbOrganizeDialog *self)
 {
   BijiManager *manager;
 
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
-  gtk_list_store_clear (self->priv->store);
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self->window));
+  gtk_list_store_clear (self->store);
   biji_get_all_notebooks_async (manager, bjb_organize_dialog_handle_tags, self);
 }
 
@@ -223,10 +222,8 @@ on_tag_toggled (GtkCellRendererToggle *cell,
                 gchar *path_str,
                 BjbOrganizeDialog *self)
 {
-  BjbOrganizeDialogPrivate *priv = self->priv;
-
   GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
-  GtkTreeModel *model = GTK_TREE_MODEL (priv->store);
+  GtkTreeModel *model = GTK_TREE_MODEL (self->store);
   GtkTreeIter iter;
   gint toggle_item;
   gint *column;
@@ -239,27 +236,27 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   gtk_tree_model_get (model, &iter, column, &toggle_item, -1);
   gtk_tree_model_get (model, &iter, COL_URN, &tag, -1);
 
-  priv->toggled_notebook = tag;
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
+  self->toggled_notebook = tag;
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self->window));
   notebook = biji_manager_get_item_at_path (manager, tag);
 
   if (BIJI_IS_NOTEBOOK (notebook))
   {
     if (toggle_item == SELECTION_INCONSISTENT || toggle_item == SELECTION_FALSE)
     {
-      g_list_foreach (priv->items, note_dialog_add_notebook, notebook);
+      g_list_foreach (self->items, note_dialog_add_notebook, notebook);
       toggle_item = SELECTION_TRUE;
     }
 
     else
     {
-      g_list_foreach (priv->items, note_dialog_remove_notebook, notebook);
+      g_list_foreach (self->items, note_dialog_remove_notebook, notebook);
       toggle_item = SELECTION_FALSE;
     }
   }
 
-  priv->toggled_notebook = NULL;
-  gtk_list_store_set (priv->store, &iter, column, toggle_item, -1);
+  self->toggled_notebook = NULL;
+  gtk_list_store_set (self->store, &iter, column, toggle_item, -1);
   gtk_tree_path_free (path);
 }
 
@@ -271,13 +268,12 @@ static void
 on_new_notebook_created_cb (BijiItem *coll, gpointer user_data)
 {
   BjbOrganizeDialog *self = user_data;
-  BjbOrganizeDialogPrivate *priv = self->priv;
 
-  priv->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry)));
-  g_list_foreach (priv->items, note_dialog_add_notebook, coll);
+  self->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (self->entry)));
+  g_list_foreach (self->items, note_dialog_add_notebook, coll);
 
   update_notebooks_model_async (self);
-  gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
+  gtk_entry_set_text (GTK_ENTRY (self->entry), "");
 }
 
 /* Gives the title and manager :
@@ -286,8 +282,8 @@ on_new_notebook_created_cb (BijiItem *coll, gpointer user_data)
 static void
 add_new_tag (BjbOrganizeDialog *self)
 {
-  BijiManager *manager = bjb_window_base_get_manager (GTK_WIDGET (self->priv->window));
-  const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->priv->entry));
+  BijiManager *manager = bjb_window_base_get_manager (GTK_WIDGET (self->window));
+  const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->entry));
 
   if (title && g_utf8_strlen (title, -1) > 0)
     biji_create_new_notebook_async (manager, title, on_new_notebook_created_cb, self);
@@ -355,15 +351,6 @@ add_columns (GtkTreeView *view, BjbOrganizeDialog *self)
 static void
 bjb_organize_dialog_init (BjbOrganizeDialog *self)
 {
-  BjbOrganizeDialogPrivate *priv = BJB_ORGANIZE_DIALOG_GET_PRIVATE(self);
-
-  self->priv = priv;
-  priv->items = NULL;
-  priv->notebooks = NULL;
-  priv->window = NULL;
-  priv->tag_to_scroll_to = NULL;
-  priv->toggled_notebook = NULL;
-
   gtk_window_set_default_size (GTK_WINDOW (self),
                                BJB_ORGANIZE_DIALOG_DEFAULT_WIDTH,
                                BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT);
@@ -374,7 +361,7 @@ bjb_organize_dialog_init (BjbOrganizeDialog *self)
   g_signal_connect_swapped (self, "response",
                             G_CALLBACK (gtk_widget_destroy), self);
 
-  priv->store = gtk_list_store_new (N_COLUMNS,
+  self->store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_INT,      // notebook is active
                                     G_TYPE_STRING,   // notebook urn
                                     G_TYPE_STRING);  // notebook title
@@ -385,10 +372,9 @@ static void
 bjb_organize_dialog_constructed (GObject *obj)
 {
   BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (obj);
-  BjbOrganizeDialogPrivate *priv = self->priv;
   GtkWidget *hbox, *label, *new, *area, *sw;
 
-  gtk_window_set_transient_for (GTK_WINDOW (self), priv->window);
+  gtk_window_set_transient_for (GTK_WINDOW (self), self->window);
 
   area = gtk_dialog_get_content_area (GTK_DIALOG (self));
   gtk_container_set_border_width (GTK_CONTAINER (area), 8);
@@ -400,8 +386,8 @@ bjb_organize_dialog_constructed (GObject *obj)
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
   gtk_box_pack_start (GTK_BOX (area), hbox, FALSE, FALSE, 2);
 
-  self->priv->entry = gtk_entry_new();
-  gtk_box_pack_start (GTK_BOX (hbox), self->priv->entry, TRUE, TRUE, 0);
+  self->entry = gtk_entry_new();
+  gtk_box_pack_start (GTK_BOX (hbox), self->entry, TRUE, TRUE, 0);
 
   new = gtk_button_new_with_label (_("New notebook"));
   g_signal_connect_swapped (new, "clicked", G_CALLBACK (add_new_tag), self);
@@ -417,15 +403,15 @@ bjb_organize_dialog_constructed (GObject *obj)
                                   GTK_POLICY_AUTOMATIC);
 
   update_notebooks_model_async (self);
-  priv->view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (priv->store)));
-  gtk_tree_view_set_headers_visible (priv->view, FALSE);
-  g_object_unref (self->priv->store);
+  self->view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (self->store)));
+  gtk_tree_view_set_headers_visible (self->view, FALSE);
+  g_object_unref (self->store);
 
-  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (priv->view),
+  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (self->view),
                                GTK_SELECTION_MULTIPLE);
 
-  add_columns (priv->view, self);
-  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (priv->view));
+  add_columns (self->view, self);
+  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (self->view));
 
   gtk_box_pack_start (GTK_BOX (area), sw, TRUE, TRUE,2);
   gtk_widget_show_all (area);
@@ -435,13 +421,12 @@ static void
 bjb_organize_dialog_finalize (GObject *object)
 {
   BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (object);
-  BjbOrganizeDialogPrivate *priv = self->priv;
 
-  g_hash_table_destroy (priv->notebooks);
+  g_hash_table_destroy (self->notebooks);
 
   /* no reason, it should have been freed earlier */
-  if (priv->tag_to_scroll_to)
-    g_free (priv->tag_to_scroll_to);
+  if (self->tag_to_scroll_to)
+    g_free (self->tag_to_scroll_to);
 
   G_OBJECT_CLASS (bjb_organize_dialog_parent_class)->finalize (object);
 }
@@ -457,10 +442,10 @@ bjb_organize_dialog_get_property (GObject      *object,
   switch (prop_id)
   {
     case PROP_WINDOW:
-      g_value_set_object (value, self->priv->window);
+      g_value_set_object (value, self->window);
       break;
     case PROP_ITEMS:
-      g_value_set_pointer (value, self->priv->items);
+      g_value_set_pointer (value, self->items);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -479,10 +464,10 @@ bjb_organize_dialog_set_property (GObject        *object,
   switch (prop_id)
   {
     case PROP_WINDOW:
-      self->priv->window = g_value_get_object(value);
+      self->window = g_value_get_object(value);
       break;
     case PROP_ITEMS:
-      self->priv->items = g_value_get_pointer (value);
+      self->items = g_value_get_pointer (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -494,8 +479,6 @@ static void
 bjb_organize_dialog_class_init (BjbOrganizeDialogClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (BjbOrganizeDialogPrivate));
 
   object_class->constructed = bjb_organize_dialog_constructed;
   object_class->finalize = bjb_organize_dialog_finalize;

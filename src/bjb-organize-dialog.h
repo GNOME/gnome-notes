@@ -22,31 +22,9 @@
 
 G_BEGIN_DECLS
 
-#define BJB_TYPE_ORGANIZE_DIALOG             (bjb_organize_dialog_get_type ())
-#define BJB_ORGANIZE_DIALOG(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_ORGANIZE_DIALOG, BjbOrganizeDialog))
-#define BJB_ORGANIZE_DIALOG_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_ORGANIZE_DIALOG, BjbOrganizeDialogClass))
-#define BJB_IS_ORGANIZE_DIALOG(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_ORGANIZE_DIALOG))
-#define BJB_IS_ORGANIZE_DIALOG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_ORGANIZE_DIALOG))
-#define BJB_ORGANIZE_DIALOG_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_ORGANIZE_DIALOG, BjbOrganizeDialogClass))
+#define BJB_TYPE_ORGANIZE_DIALOG (bjb_organize_dialog_get_type ())
 
-typedef struct _BjbOrganizeDialogClass BjbOrganizeDialogClass;
-typedef struct _BjbOrganizeDialog BjbOrganizeDialog;
-typedef struct _BjbOrganizeDialogPrivate BjbOrganizeDialogPrivate;
-
-
-struct _BjbOrganizeDialogClass
-{
-  GtkDialogClass parent_class;
-};
-
-struct _BjbOrganizeDialog
-{
-  GtkDialog parent_instance;
-
-  BjbOrganizeDialogPrivate *priv;
-};
-
-GType bjb_organize_dialog_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BjbOrganizeDialog, bjb_organize_dialog, BJB, ORGANIZE_DIALOG, GtkDialog)
 
 /* Currently only works with one single note
  * the tree view has to be improved to work with several */

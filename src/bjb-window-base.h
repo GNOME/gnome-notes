@@ -6,29 +6,9 @@
 
 #include "bjb-controller.h"
 
-#define BJB_TYPE_WINDOW_BASE                  (bjb_window_base_get_type ())
-#define BJB_WINDOW_BASE(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_WINDOW_BASE, BjbWindowBase))
-#define BJB_IS_WINDOW_BASE(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_WINDOW_BASE))
-#define BJB_WINDOW_BASE_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_WINDOW_BASE, BjbWindowBaseClass))
-#define BJB_IS_WINDOW_BASE_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_WINDOW_BASE))
-#define BJB_WINDOW_BASE_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_WINDOW_BASE, BjbWindowBaseClass))
+#define BJB_TYPE_WINDOW_BASE (bjb_window_base_get_type ())
 
-typedef struct _BjbWindowBase        BjbWindowBase;
-typedef struct _BjbWindowBaseClass   BjbWindowBaseClass;
-
-typedef struct _BjbWindowBasePriv BjbWindowBasePriv;
-
-struct _BjbWindowBaseClass
-{
-  GtkApplicationWindowClass parent_class;
-};
-
-
-struct _BjbWindowBase
-{
-  GtkApplicationWindow parent_instance ;
-  BjbWindowBasePriv *priv;
-};
+G_DECLARE_FINAL_TYPE (BjbWindowBase, bjb_window_base, BJB, WINDOW_BASE, GtkApplicationWindow)
 
 typedef enum {
   BJB_WINDOW_BASE_MAIN_VIEW,
@@ -40,10 +20,6 @@ typedef enum {
   BJB_WINDOW_BASE_ERROR_TRACKER,
   BJB_WINDOW_BASE_NO_VIEW
 } BjbWindowViewType;
-
-
-
-GType                  bjb_window_base_get_type           (void);
 
 
 GtkWindow             *bjb_window_base_new                (BijiNoteObj *note);

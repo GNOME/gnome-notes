@@ -493,10 +493,10 @@ render_type     (GtkTreeViewColumn *tree_column,
 
   if (item != NULL)
   {
-    if BIJI_IS_NOTEBOOK (item)
+    if (BIJI_IS_NOTEBOOK (item))
       str= _("Notebook");
 
-    else if BIJI_IS_NOTE_OBJ (item)
+    else if (BIJI_IS_NOTE_OBJ (item))
       str = _("Note");
   }
 

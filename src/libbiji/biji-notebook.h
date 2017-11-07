@@ -25,32 +25,9 @@
 
 G_BEGIN_DECLS
 
+#define BIJI_TYPE_NOTEBOOK (biji_notebook_get_type ())
 
-#define BIJI_TYPE_NOTEBOOK             (biji_notebook_get_type ())
-#define BIJI_NOTEBOOK(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_NOTEBOOK, BijiNotebook))
-#define BIJI_NOTEBOOK_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_NOTEBOOK, BijiNotebookClass))
-#define BIJI_IS_NOTEBOOK(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_NOTEBOOK))
-#define BIJI_IS_NOTEBOOK_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_NOTEBOOK))
-#define BIJI_NOTEBOOK_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_NOTEBOOK, BijiNotebookClass))
-
-typedef struct BijiNotebook_         BijiNotebook;
-typedef struct BijiNotebookClass_    BijiNotebookClass;
-typedef struct BijiNotebookPrivate_  BijiNotebookPrivate;
-
-struct BijiNotebook_
-{
-  BijiItem parent;
-
-  BijiNotebookPrivate *priv;
-};
-
-struct BijiNotebookClass_
-{
-  BijiItemClass parent_class;
-};
-
-
-GType biji_notebook_get_type (void);
+G_DECLARE_FINAL_TYPE (BijiNotebook, biji_notebook, BIJI, NOTEBOOK, BijiItem)
 
 /* Exiting coll in tracker : provide urn & iso8601 date
  * To create a brand new notebook in tracker rather gobjectize existing one,

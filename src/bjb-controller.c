@@ -345,13 +345,13 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
   glong result = 0;
 
   /* Always sort notebooks before notes */
-  if (BIJI_IS_NOTEBOOK (a))
+  if (BIJI_IS_NOTEBOOK ((gpointer) a))
   {
     if (BIJI_IS_NOTE_OBJ (b))
       result = -1;
   }
 
-  else if (BIJI_IS_NOTEBOOK (b))
+  else if (BIJI_IS_NOTEBOOK ((gpointer) b))
   {
     result = 1;
   }

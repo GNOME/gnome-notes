@@ -39,8 +39,9 @@
 static void biji_notebook_update_collected (GList *result, gpointer user_data);
 
 
-struct BijiNotebookPrivate_
+struct _BijiNotebook
 {
+  BijiItem         parent_instance;
 
   gchar           *urn;
   gchar           *name;
@@ -80,24 +81,24 @@ static guint biji_notebooks_signals [BIJI_NOTEBOOKS_SIGNALS] = { 0 };
 static const gchar *
 biji_notebook_get_title (BijiItem *coll)
 {
-  BijiNotebook *notebook;
+  BijiNotebook *self;
 
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), NULL);
-  notebook = BIJI_NOTEBOOK (coll);
+  self = BIJI_NOTEBOOK (coll);
 
-  return notebook->priv->name;
+  return self->name;
 }
 
 
 static const gchar *
 biji_notebook_get_uuid (BijiItem *coll)
 {
-  BijiNotebook *notebook;
+  BijiNotebook *self;
 
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), NULL);
-  notebook = BIJI_NOTEBOOK (coll);
+  self = BIJI_NOTEBOOK (coll);
 
-  return notebook->priv->urn;
+  return self->urn;
 }
 
 
@@ -195,7 +196,7 @@ get_collected_pix (BijiNotebook *self,
 {
   GList *result = NULL, *l;
 
-  for (l = self->priv->collected_items ; l != NULL; l = l->next)
+  for (l = self->collected_items ; l != NULL; l = l->next)
   {
     if (BIJI_IS_ITEM (l->data))
       result = g_list_prepend (
@@ -213,14 +214,14 @@ biji_notebook_get_icon (BijiItem *coll,
   BijiNotebook *self = BIJI_NOTEBOOK (coll);
   GList *pix;
 
-  if (!self->priv->icon)
+  if (!self->icon)
   {
     pix = get_collected_pix (self, scale);
-    self->priv->icon = biji_create_notebook_icon (BIJI_ICON_WIDTH, scale, pix);
+    self->icon = biji_create_notebook_icon (BIJI_ICON_WIDTH, scale, pix);
     g_list_free (pix);
   }
 
-  return self->priv->icon;
+  return self->icon;
 }
 
 
@@ -231,14 +232,14 @@ biji_notebook_get_emblem (BijiItem *coll,
   BijiNotebook *self = BIJI_NOTEBOOK (coll);
   GList *pix;
 
-  if (!self->priv->emblem)
+  if (!self->emblem)
   {
     pix = get_collected_pix (self, scale);
-    self->priv->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH, scale, pix);
+    self->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH, scale, pix);
     g_list_free (pix);
   }
 
-  return self->priv->emblem;
+  return self->emblem;
 }
 
 
@@ -251,7 +252,7 @@ biji_notebook_get_mtime (BijiItem *coll)
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), 0);
   self = BIJI_NOTEBOOK (coll);
 
-  return self->priv->mtime;
+  return self->mtime;
 }
 
 
@@ -272,7 +273,7 @@ biji_notebook_trash (BijiItem *item)
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
 
   self = BIJI_NOTEBOOK (item);
-  biji_remove_notebook_from_tracker (biji_item_get_manager (item), self->priv->urn);
+  biji_remove_notebook_from_tracker (biji_item_get_manager (item), self->urn);
 
   return TRUE;
 }
@@ -331,13 +332,13 @@ biji_notebook_set_property (GObject      *object,
   switch (property_id)
     {
       case PROP_URN:
-        self->priv->urn = g_strdup (g_value_get_string (value));
+        self->urn = g_strdup (g_value_get_string (value));
         break;
       case PROP_NAME:
-        self->priv->name = g_strdup (g_value_get_string (value));
+        self->name = g_strdup (g_value_get_string (value));
         break;
       case PROP_MTIME:
-        self->priv->mtime = g_value_get_int64 (value);
+        self->mtime = g_value_get_int64 (value);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -357,13 +358,13 @@ biji_notebook_get_property (GObject    *object,
   switch (property_id)
     {
       case PROP_URN:
-        g_value_set_string (value, self->priv->urn);
+        g_value_set_string (value, self->urn);
         break;
       case PROP_NAME:
-        g_value_set_string (value, self->priv->name);
+        g_value_set_string (value, self->name);
         break;
       case PROP_MTIME:
-        g_value_set_int64 (value, self->priv->mtime);
+        g_value_set_int64 (value, self->mtime);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -375,23 +376,22 @@ biji_notebook_get_property (GObject    *object,
 static void
 on_collected_item_change (BijiNotebook *self)
 {
-  BijiNotebookPrivate *priv = self->priv;
   BijiManager *manager;
   GList *l;
 
   manager = biji_item_get_manager (BIJI_ITEM (self));
 
   /* Diconnected any handler */
-  for (l= priv->collected_items; l!= NULL; l=l->next)
+  for (l = self->collected_items; l != NULL; l = l->next)
   {
     g_signal_handlers_disconnect_by_func (l->data, on_collected_item_change, self);
   }
 
   /* Then re-process the whole stuff */
   biji_get_items_with_notebook_async (manager,
-                                        self->priv->name,
-                                        biji_notebook_update_collected,
-                                        self);
+                                      self->name,
+                                      biji_notebook_update_collected,
+                                      self);
 }
 
 /* For convenience, items are retrieved async.
@@ -401,17 +401,16 @@ biji_notebook_update_collected (GList *result,
                                   gpointer user_data)
 {
   BijiNotebook *self = user_data;
-  BijiNotebookPrivate *priv = self->priv;
   GList *l;
 
-  g_clear_pointer (&priv->collected_items, g_list_free);
-  g_clear_pointer (&priv->icon, cairo_surface_destroy);
-  g_clear_pointer (&priv->emblem, cairo_surface_destroy);
+  g_clear_pointer (&self->collected_items, g_list_free);
+  g_clear_pointer (&self->icon, cairo_surface_destroy);
+  g_clear_pointer (&self->emblem, cairo_surface_destroy);
 
-  priv->collected_items = result;
+  self->collected_items = result;
 
   /* Connect */
-  for (l = priv->collected_items; l!= NULL; l=l->next)
+  for (l = self->collected_items; l != NULL; l = l->next)
   {
     g_signal_connect_swapped (l->data, "color-changed",
                               G_CALLBACK (on_collected_item_change), self);
@@ -424,9 +423,9 @@ biji_notebook_update_collected (GList *result,
 }
 
 void
-biji_notebook_refresh (BijiNotebook *notebook)
+biji_notebook_refresh (BijiNotebook *self)
 {
-  on_collected_item_change (notebook);
+  on_collected_item_change (self);
 }
 
 static void
@@ -439,9 +438,9 @@ biji_notebook_constructed (GObject *obj)
   manager = biji_item_get_manager (BIJI_ITEM (obj));
 
   biji_get_items_with_notebook_async (manager,
-                                        self->priv->name,
-                                        biji_notebook_update_collected,
-                                        self);
+                                      self->name,
+                                      biji_notebook_update_collected,
+                                      self);
 }
 
 static gboolean
@@ -464,9 +463,6 @@ biji_notebook_class_init (BijiNotebookClass *klass)
   g_object_class->finalize = biji_notebook_finalize;
   g_object_class->set_property = biji_notebook_set_property;
   g_object_class->get_property = biji_notebook_get_property;
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiNotebookPrivate));
-
 
   properties[PROP_URN] =
     g_param_spec_string ("urn",
@@ -528,8 +524,8 @@ biji_notebook_finalize (GObject *object)
   g_return_if_fail (BIJI_IS_NOTEBOOK (object));
 
   self = BIJI_NOTEBOOK (object);
-  g_free (self->priv->name);
-  g_free (self->priv->urn);
+  g_free (self->name);
+  g_free (self->urn);
 
   G_OBJECT_CLASS (biji_notebook_parent_class)->finalize (object);
 }
@@ -538,14 +534,6 @@ biji_notebook_finalize (GObject *object)
 static void
 biji_notebook_init (BijiNotebook *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTEBOOK, BijiNotebookPrivate);
-
-  self->priv->mtime = 0;
-
-  self->priv->icon = NULL;
-  self->priv->emblem = NULL;
-
-  self->priv->collected_items = NULL;
 }
 
 

@@ -1,6 +1,7 @@
 /*
  * bjb-import-dialog.h
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -26,33 +27,9 @@
 G_BEGIN_DECLS
 
 
-#define BJB_TYPE_IMPORT_DIALOG             (bjb_import_dialog_get_type ())
-#define BJB_IMPORT_DIALOG(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_IMPORT_DIALOG, BjbImportDialog))
-#define BJB_IMPORT_DIALOG_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_IMPORT_DIALOG, BjbImportDialogClass))
-#define BJB_IS_IMPORT_DIALOG(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_IMPORT_DIALOG))
-#define BJB_IS_IMPORT_DIALOG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_IMPORT_DIALOG))
-#define BJB_IMPORT_DIALOG_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_IMPORT_DIALOG, BjbImportDialogClass))
+#define BJB_TYPE_IMPORT_DIALOG (bjb_import_dialog_get_type ())
 
-typedef struct BjbImportDialog_         BjbImportDialog;
-typedef struct BjbImportDialogClass_    BjbImportDialogClass;
-typedef struct BjbImportDialogPrivate_  BjbImportDialogPrivate;
-
-
-struct BjbImportDialog_
-{
-  GtkDialog parent;
-  BjbImportDialogPrivate *priv;
-};
-
-
-struct BjbImportDialogClass_
-{
-  GtkDialogClass parent_class;
-};
-
-
-GType         bjb_import_dialog_get_type     (void);
-
+G_DECLARE_FINAL_TYPE (BjbImportDialog, bjb_import_dialog, BJB, IMPORT_DIALOG, GtkDialog)
 
 GtkDialog *   bjb_import_dialog_new          (GtkApplication *bijiben);
 

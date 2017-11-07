@@ -1,6 +1,7 @@
 /*
  * bjb-import-dialog.c
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -48,8 +49,9 @@ typedef struct
 } ImportDialogChild;
 
 
-struct BjbImportDialogPrivate_
+struct _BjbImportDialog
 {
+  GtkDialog             parent_instance;
 
   GtkListBox           *box;
 
@@ -162,7 +164,6 @@ static void
 toggle_widget (BjbImportDialog *self,
                GObject         *widget)
 {
-  BjbImportDialogPrivate *priv = self->priv;
   ImportDialogChild *child;
   GtkStyleContext *context;
   GList *keys;
@@ -180,7 +181,7 @@ toggle_widget (BjbImportDialog *self,
     child->toggle = child_toggle_new ();
     gtk_overlay_add_overlay (GTK_OVERLAY (child->overlay), child->toggle);
 
-    g_hash_table_add (priv->locations, child->location);
+    g_hash_table_add (self->locations, child->location);
   }
 
   else
@@ -188,16 +189,16 @@ toggle_widget (BjbImportDialog *self,
     if (child->toggle && GTK_IS_WIDGET (child->toggle))
       gtk_widget_destroy (child->toggle);
 
-    g_hash_table_remove (priv->locations, child->location);
+    g_hash_table_remove (self->locations, child->location);
   }
 
-  context = gtk_widget_get_style_context (priv->go_go_go);
-  keys = g_hash_table_get_keys (priv->locations);
+  context = gtk_widget_get_style_context (self->go_go_go);
+  keys = g_hash_table_get_keys (self->locations);
 
   if (keys)
   {
     gtk_style_context_add_class (context, "suggested-action");
-    gtk_widget_set_sensitive (priv->go_go_go, TRUE);
+    gtk_widget_set_sensitive (self->go_go_go, TRUE);
     g_list_free (keys);
   }
 
@@ -206,7 +207,7 @@ toggle_widget (BjbImportDialog *self,
     gtk_style_context_remove_class (context, "suggested-action");
   }
 
-  gtk_widget_reset_style (priv->go_go_go);
+  gtk_widget_reset_style (self->go_go_go);
 }
 
 
@@ -240,76 +241,74 @@ on_file_set_cb (GtkWidget *chooser,
 
   /* Remove the former */
 
-  if (dialog->priv->custom->location)
+  if (dialog->custom->location)
   {
-    g_hash_table_remove (dialog->priv->locations,
-                         dialog->priv->custom->location);
-    g_clear_pointer (&dialog->priv->custom->location, g_free);
+    g_hash_table_remove (dialog->locations,
+                         dialog->custom->location);
+    g_clear_pointer (&dialog->custom->location, g_free);
   }
 
 
   /* Handle the new : force toggle */
 
-  location = dialog->priv->custom->location =
+  location = dialog->custom->location =
     gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
 
   if (location)
   {
-    gtk_widget_set_sensitive (dialog->priv->cust_box, TRUE);
+    gtk_widget_set_sensitive (dialog->cust_box, TRUE);
 
-    dialog->priv->custom->selected = FALSE;
-    if (GTK_IS_WIDGET (dialog->priv->custom->toggle))
-      gtk_widget_destroy (dialog->priv->custom->toggle);
+    dialog->custom->selected = FALSE;
+    if (GTK_IS_WIDGET (dialog->custom->toggle))
+      gtk_widget_destroy (dialog->custom->toggle);
 
-    toggle_widget (dialog, G_OBJECT (dialog->priv->custom->overlay));
+    toggle_widget (dialog, G_OBJECT (dialog->custom->overlay));
     return;
   }
 
-  gtk_widget_set_sensitive (dialog->priv->cust_box, FALSE);
+  gtk_widget_set_sensitive (dialog->cust_box, FALSE);
 }
 
 
 static ImportDialogChild *
 add_custom (BjbImportDialog *self)
 {
-  BjbImportDialogPrivate *priv;
   GtkWidget *box, *w;
   ImportDialogChild *child;
 
-  priv = self->priv;
   child = import_dialog_child_new ();
   child->widget = box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
   child->overlay = gtk_overlay_new ();
   gtk_container_add (GTK_CONTAINER (child->overlay), child->widget);
 
   /* Left group */
-  priv->cust_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  gtk_box_pack_start (GTK_BOX (box), priv->cust_box, TRUE, FALSE, 0);
+  self->cust_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_box_pack_start (GTK_BOX (box), self->cust_box, TRUE, FALSE, 0);
 
   w = gtk_image_new_from_icon_name ("folder", GTK_ICON_SIZE_INVALID);
   gtk_image_set_pixel_size (GTK_IMAGE (w), 48);
   gtk_widget_set_margin_start (w, 12);
   gtk_widget_set_margin_end (w, 12);
-  gtk_container_add (GTK_CONTAINER (priv->cust_box), w);
+  gtk_container_add (GTK_CONTAINER (self->cust_box), w);
 
 
   w = gtk_label_new (_("Custom Location"));
   gtk_widget_set_margin_end (w, 180);
-  gtk_container_add (GTK_CONTAINER (priv->cust_box), w);
+  gtk_container_add (GTK_CONTAINER (self->cust_box), w);
   gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
-  gtk_box_pack_start (GTK_BOX (priv->cust_box), w, TRUE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (self->cust_box), w, TRUE, FALSE, 0);
 
-  gtk_widget_set_sensitive (priv->cust_box, FALSE);
+  gtk_widget_set_sensitive (self->cust_box, FALSE);
 
   /* Right group */
 
-  priv->browser =
+  self->browser =
     gtk_file_chooser_button_new ("", GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (priv->browser),
+  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (self->browser),
                                        g_get_user_data_dir ());
-  gtk_box_pack_start (GTK_BOX (box), priv->browser, TRUE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), self->browser, TRUE, FALSE, 0);
 
-  g_signal_connect (priv->browser, "current-folder-changed",
+  g_signal_connect (self->browser, "current-folder-changed",
                     G_CALLBACK (on_file_set_cb), self);
 
   g_object_set_qdata_full (G_OBJECT (child->overlay), application_quark (),
@@ -376,14 +375,13 @@ bjb_import_dialog_constructed (GObject *obj)
   BjbImportDialog        *self    = BJB_IMPORT_DIALOG (obj);
   GtkDialog              *dialog  = GTK_DIALOG (obj);
   GtkWindow              *win     = GTK_WINDOW (obj);
-  BjbImportDialogPrivate *priv    = self->priv;
 
   G_OBJECT_CLASS(bjb_import_dialog_parent_class)->constructed(obj);
 
   /* Don't finalize locations with HashTable
    * They belong to qdata in gtkwidgets */
 
-  priv->locations = g_hash_table_new (g_str_hash, g_str_equal);
+  self->locations = g_hash_table_new (g_str_hash, g_str_equal);
 
   app = GTK_APPLICATION (g_application_get_default ());
 
@@ -395,8 +393,8 @@ bjb_import_dialog_constructed (GObject *obj)
     (gtk_dialog_get_header_bar (GTK_DIALOG (self))), TRUE);
 
 
-  priv->go_go_go = gtk_dialog_add_button (dialog, _("Import"), GTK_RESPONSE_OK);
-  gtk_widget_set_sensitive (priv->go_go_go, FALSE);
+  self->go_go_go = gtk_dialog_add_button (dialog, _("Import"), GTK_RESPONSE_OK);
+  gtk_widget_set_sensitive (self->go_go_go, FALSE);
 
   /* Dialog Label */
   area = gtk_dialog_get_content_area (dialog);
@@ -414,14 +412,14 @@ bjb_import_dialog_constructed (GObject *obj)
   /* Dialog locations to import */
 
   frame = gtk_frame_new (NULL);
-  priv->box = GTK_LIST_BOX (gtk_list_box_new ());
-  gtk_list_box_set_selection_mode (priv->box, GTK_SELECTION_NONE);
-  gtk_list_box_set_activate_on_single_click (priv->box, TRUE);
-  gtk_list_box_set_header_func (priv->box, (GtkListBoxUpdateHeaderFunc) header_func, NULL, NULL);
-  g_signal_connect (priv->box, "row-activated", G_CALLBACK (on_row_activated_cb), self);
+  self->box = GTK_LIST_BOX (gtk_list_box_new ());
+  gtk_list_box_set_selection_mode (self->box, GTK_SELECTION_NONE);
+  gtk_list_box_set_activate_on_single_click (self->box, TRUE);
+  gtk_list_box_set_header_func (self->box, (GtkListBoxUpdateHeaderFunc) header_func, NULL, NULL);
+  g_signal_connect (self->box, "row-activated", G_CALLBACK (on_row_activated_cb), self);
   gtk_box_pack_start (GTK_BOX (area), GTK_WIDGET (frame) , TRUE, FALSE, 6);
 
-  gtk_container_add (GTK_CONTAINER (frame), GTK_WIDGET (priv->box));
+  gtk_container_add (GTK_CONTAINER (frame), GTK_WIDGET (self->box));
 
   /* Tomboy Gnote ~/.local/share are conditional
    * these are only packed if app is installed     */
@@ -429,19 +427,19 @@ bjb_import_dialog_constructed (GObject *obj)
   path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
   child = add_application ("tomboy", _("Tomboy application"), path);
   if (child)
-    gtk_container_add (GTK_CONTAINER (priv->box), child->overlay);
+    gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
 
 
   path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
   child = add_application ("gnote", _("Gnote application"), path);
   if (child)
-    gtk_container_add (GTK_CONTAINER (priv->box), child->overlay);
+    gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
 
 
   /* User decides path */
 
-  child = priv->custom = add_custom (self);
-  gtk_container_add (GTK_CONTAINER (priv->box), child->overlay);
+  child = self->custom = add_custom (self);
+  gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
 
 
   gtk_widget_show_all (GTK_WIDGET (self));
@@ -451,7 +449,7 @@ static void
 bjb_import_dialog_finalize (GObject *o)
 {
   BjbImportDialog *self = BJB_IMPORT_DIALOG (o);
-  g_hash_table_destroy (self->priv->locations);
+  g_hash_table_destroy (self->locations);
 
   G_OBJECT_CLASS (bjb_import_dialog_parent_class)->finalize (o);
 }
@@ -461,7 +459,6 @@ static void
 bjb_import_dialog_class_init (BjbImportDialogClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
-  g_type_class_add_private (klass, sizeof (BjbImportDialogPrivate));
 
   object_class->constructed = bjb_import_dialog_constructed;
   object_class->finalize = bjb_import_dialog_finalize;
@@ -471,7 +468,6 @@ bjb_import_dialog_class_init (BjbImportDialogClass *klass)
 static void
 bjb_import_dialog_init (BjbImportDialog *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BJB_TYPE_IMPORT_DIALOG, BjbImportDialogPrivate);
 }
 
 
@@ -485,7 +481,7 @@ bjb_import_dialog_new (GtkApplication *bijiben)
 
 
 GList *
-bjb_import_dialog_get_paths (BjbImportDialog *dialog)
+bjb_import_dialog_get_paths (BjbImportDialog *self)
 {
-  return g_hash_table_get_values (dialog->priv->locations);
+  return g_hash_table_get_values (self->locations);
 }

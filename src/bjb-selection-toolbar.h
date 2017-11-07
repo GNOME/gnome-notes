@@ -25,32 +25,7 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_SELECTION_TOOLBAR (bjb_selection_toolbar_get_type ())
 
-#define BJB_SELECTION_TOOLBAR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_SELECTION_TOOLBAR, BjbSelectionToolbar))
-
-#define BJB_SELECTION_TOOLBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_SELECTION_TOOLBAR, BjbSelectionToolbarClass))
-
-#define BJB_IS_SELECTION_TOOLBAR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_SELECTION_TOOLBAR))
-
-#define BJB_IS_SELECTION_TOOLBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_SELECTION_TOOLBAR))
-
-#define BJB_SELECTION_TOOLBAR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_SELECTION_TOOLBAR, BjbSelectionToolbarClass))
-
-typedef struct _BjbSelectionToolbar        BjbSelectionToolbar;
-typedef struct _BjbSelectionToolbarClass   BjbSelectionToolbarClass;
-typedef struct _BjbSelectionToolbarPrivate BjbSelectionToolbarPrivate;
-
-struct _BjbSelectionToolbar
-{
-  GtkRevealer parent_instance;
-  BjbSelectionToolbarPrivate *priv;
-};
-
-struct _BjbSelectionToolbarClass
-{
-  GtkRevealerClass parent_class;
-};
-
-GType bjb_selection_toolbar_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, BJB, SELECTION_TOOLBAR, GtkRevealer)
 
 BjbSelectionToolbar * bjb_selection_toolbar_new (GdMainView   *selection,
                                                  BjbMainView  *bjb_main_view);

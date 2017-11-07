@@ -27,16 +27,9 @@
 
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_ITEM             (biji_item_get_type ())
-#define BIJI_ITEM(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_ITEM, BijiItem))
-#define BIJI_ITEM_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_ITEM, BijiItemClass))
-#define BIJI_IS_ITEM(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_ITEM))
-#define BIJI_IS_ITEM_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_ITEM))
-#define BIJI_ITEM_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_ITEM, BijiItemClass))
+#define BIJI_TYPE_ITEM (biji_item_get_type ())
 
-typedef struct BijiItem_         BijiItem;
-typedef struct BijiItemClass_    BijiItemClass;
-typedef struct BijiItemPrivate_  BijiItemPrivate;
+G_DECLARE_DERIVABLE_TYPE (BijiItem, biji_item, BIJI, ITEM, GObject)
 
 /* Icon */
 #define BIJI_ICON_WIDTH 200
@@ -47,14 +40,7 @@ typedef struct BijiItemPrivate_  BijiItemPrivate;
 #define BIJI_EMBLEM_WIDTH BIJI_ICON_WIDTH / 6
 #define BIJI_EMBLEM_HEIGHT BIJI_EMBLEM_WIDTH
 
-struct BijiItem_
-{
-  GObject parent;
-
-  BijiItemPrivate *priv;
-};
-
-struct BijiItemClass_
+struct _BijiItemClass
 {
   GObjectClass parent_class;
 
@@ -85,9 +71,6 @@ struct BijiItemClass_
 
 /* Do not create a generic items, it's rather an iface
  * but i just need common stuff */
-
-
-GType biji_item_get_type (void);
 
 
 /*  - note uuid is a location (as in GFile)

@@ -42,14 +42,14 @@ enum {
 static guint biji_item_signals [BIJI_ITEM_SIGNALS] = { 0 };
 
 
-struct BijiItemPrivate_
+typedef struct
 {
   BijiManager *manager;
-};
+} BijiItemPrivate;
 
 static void biji_item_finalize (GObject *object);
 
-G_DEFINE_TYPE (BijiItem, biji_item, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (BijiItem, biji_item, G_TYPE_OBJECT)
 
 
 static void
@@ -58,13 +58,12 @@ biji_item_set_property (GObject      *object,
                         const GValue *value,
                         GParamSpec   *pspec)
 {
-  BijiItem *self = BIJI_ITEM (object);
-
+  BijiItemPrivate *priv = biji_item_get_instance_private (BIJI_ITEM (object));
 
   switch (property_id)
     {
     case PROP_BOOK:
-      self->priv->manager = g_value_dup_object (value);
+      priv->manager = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -79,12 +78,12 @@ biji_item_get_property (GObject    *object,
                         GValue     *value,
                         GParamSpec *pspec)
 {
-  BijiItem *self = BIJI_ITEM (object);
+  BijiItemPrivate *priv = biji_item_get_instance_private (BIJI_ITEM (object));
 
   switch (property_id)
     {
     case PROP_BOOK:
-      g_value_set_object (value, self->priv->manager);
+      g_value_set_object (value, priv->manager);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -146,8 +145,6 @@ biji_item_class_init (BijiItemClass *klass)
                   G_TYPE_NONE,
                   1,
                   G_TYPE_STRING);
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiItemPrivate));
 }
 
 
@@ -163,8 +160,6 @@ biji_item_finalize (GObject *object)
 static void
 biji_item_init (BijiItem *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_ITEM, BijiItemPrivate);
-  self->priv->manager = NULL;
 }
 
 const gchar *
@@ -185,9 +180,13 @@ biji_item_get_uuid          (BijiItem *item)
 gpointer
 biji_item_get_manager     (BijiItem *item)
 {
+  BijiItemPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
 
-  return item->priv->manager;
+  priv = biji_item_get_instance_private (item);
+
+  return priv->manager;
 }
 
 

@@ -340,8 +340,8 @@ bjb_controller_add_item_if_needed (BjbController *self,
 static gint
 most_recent_item_first (gconstpointer a, gconstpointer b)
 {
-  BijiItem *one = BIJI_ITEM (a);
-  BijiItem *other = BIJI_ITEM (b);
+  const BijiItem *one = a;
+  const BijiItem *other = b;
   glong result = 0;
 
   /* Always sort notebooks before notes */
@@ -360,8 +360,8 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
    * two notebooks, use the most recent cookbook */
   else
   {
-    result =   biji_item_get_mtime (other)
-             - biji_item_get_mtime (one);
+    result = biji_item_get_mtime ((gpointer) other)
+      - biji_item_get_mtime ((gpointer) one);
   }
 
   return result;

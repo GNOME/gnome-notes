@@ -53,7 +53,10 @@ static guint bjb_main_view_signals [BJB_MAIN_VIEW_SIGNALS] = { 0 };
 
 /************************** Gobject ***************************/
 
-struct _BjbMainViewPriv {
+struct _BjbMainView
+{
+  GtkGrid           parent_instance;
+
   GtkWidget        *window;
   GtkWidget        *label;
 
@@ -76,22 +79,15 @@ struct _BjbMainViewPriv {
 };
 
 
-G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_GRID);
+G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_GRID)
 
 
 static void bjb_main_view_view_changed (BjbMainView *self);
 
 
 static void
-bjb_main_view_init (BjbMainView *object)
+bjb_main_view_init (BjbMainView *self)
 {
-  object->priv =
-  G_TYPE_INSTANCE_GET_PRIVATE(object,BJB_TYPE_MAIN_VIEW,BjbMainViewPriv);
-
-  object->priv->key = 0;
-  object->priv->activated = 0;
-  object->priv->data = 0;
-  object->priv->view_selection_changed =0;
 }
 
 
@@ -101,14 +97,13 @@ bjb_main_view_disconnect_scrolled_window (BjbMainView *self)
 {
   GtkAdjustment *vadjustment;
   GtkWidget *vscrollbar;
-  BjbMainViewPriv *priv = self->priv;
 
-  if (priv->view == NULL ||
-      !GTK_IS_SCROLLED_WINDOW (priv->view))
+  if (self->view == NULL ||
+      !GTK_IS_SCROLLED_WINDOW (self->view))
     return;
 
-  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
-  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
+  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->view));
+  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->view));
 
   g_signal_handlers_disconnect_by_func (vadjustment, bjb_main_view_view_changed, self);
   g_signal_handlers_disconnect_by_func (vscrollbar, bjb_main_view_view_changed, self);
@@ -119,17 +114,19 @@ bjb_main_view_disconnect_scrolled_window (BjbMainView *self)
 static void
 bjb_main_view_disconnect_handlers (BjbMainView *self)
 {
-  BjbMainViewPriv *priv = self->priv;
+  if (self->key)
+    g_signal_handler_disconnect (self->window, self->key);
+  if (self->activated)
+    g_signal_handler_disconnect (self->view, self->activated);
+  if (self->data)
+    g_signal_handler_disconnect (self->view, self->data);
+  if (self->view_selection_changed)
+    g_signal_handler_disconnect (self->view, self->view_selection_changed);
 
-  g_signal_handler_disconnect (priv->window, priv->key);
-  g_signal_handler_disconnect (priv->view, priv->activated);
-  g_signal_handler_disconnect (priv->view, priv->data);
-  g_signal_handler_disconnect (priv->view, priv->view_selection_changed);
-
-  priv->key = 0;
-  priv->activated = 0;
-  priv->data = 0;
-  priv->view_selection_changed =0;
+  self->key = 0;
+  self->activated = 0;
+  self->data = 0;
+  self->view_selection_changed =0;
 }
 
 
@@ -145,7 +142,7 @@ bjb_main_view_dispose (GObject *object)
 static void
 bjb_main_view_set_controller ( BjbMainView *self, BjbController *controller)
 {
-  self->priv->controller = controller ;
+  self->controller = controller;
 }
 
 static void
@@ -159,10 +156,10 @@ bjb_main_view_get_property ( GObject      *object,
   switch (prop_id)
   {
     case PROP_WINDOW:
-      g_value_set_object (value, self->priv->window);
+      g_value_set_object (value, self->window);
       break;
     case PROP_BJB_CONTROLLER:
-      g_value_set_object (value, self->priv->controller);
+      g_value_set_object (value, self->controller);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -181,7 +178,7 @@ bjb_main_view_set_property ( GObject        *object,
   switch (prop_id)
   {
     case PROP_WINDOW:
-      self->priv->window = g_value_get_object(value);
+      self->window = g_value_get_object(value);
       break;
     case PROP_BJB_CONTROLLER:
       bjb_main_view_set_controller(self,g_value_get_object(value));
@@ -198,7 +195,7 @@ void
 switch_to_note_view (BjbMainView *self, BijiNoteObj *note)
 {
   bjb_main_view_disconnect_handlers (self);
-  bjb_window_base_switch_to_item (BJB_WINDOW_BASE (self->priv->window), BIJI_ITEM (note));
+  bjb_window_base_switch_to_item (BJB_WINDOW_BASE (self->window), BIJI_ITEM (note));
 }
 
 static void
@@ -215,7 +212,7 @@ show_window_if_note (gpointer data, gpointer user_data)
 }
 
 static void
-switch_to_item (BjbMainView *view, BijiItem *to_open)
+switch_to_item (BjbMainView *self, BijiItem *to_open)
 {
   if (BIJI_IS_NOTE_OBJ (to_open))
   {
@@ -230,14 +227,14 @@ switch_to_item (BjbMainView *view, BijiItem *to_open)
     }
 
     /* Otherwise, leave main view */
-    switch_to_note_view (view, BIJI_NOTE_OBJ (to_open));
+    switch_to_note_view (self, BIJI_NOTE_OBJ (to_open));
   }
 
   /* Notebook
    * TODO : check if already opened (same as above) */
   else if (BIJI_IS_NOTEBOOK (to_open))
   {
-    bjb_controller_set_notebook (view->priv->controller,
+    bjb_controller_set_notebook (self->controller,
                                    BIJI_NOTEBOOK (to_open));
   }
 }
@@ -245,7 +242,7 @@ switch_to_item (BjbMainView *view, BijiItem *to_open)
 static GList *
 get_selected_paths(BjbMainView *self)
 {
-  return gd_main_view_get_selection ( self->priv->view ) ;
+  return gd_main_view_get_selection (self->view);
 }
 
 static gchar *
@@ -255,7 +252,7 @@ get_note_url_from_tree_path(GtkTreePath *path, BjbMainView *self)
   gchar *note_path ;
   GtkTreeModel *model ;
 
-  model = bjb_controller_get_model(self->priv->controller);
+  model = bjb_controller_get_model (self->controller);
   gtk_tree_model_get_iter (model,&iter, path);
   gtk_tree_model_get (model, &iter,GD_MAIN_COLUMN_URI, &note_path,-1);
 
@@ -264,21 +261,21 @@ get_note_url_from_tree_path(GtkTreePath *path, BjbMainView *self)
 
 
 GList *
-bjb_main_view_get_selected_items (BjbMainView *view)
+bjb_main_view_get_selected_items (BjbMainView *self)
 {
   GList *l, *paths, *result = NULL;
   gchar *url;
   BijiItem *item;
 
   /*  GtkTreePath */
-  paths = get_selected_paths (view);
+  paths = get_selected_paths (self);
 
 
   for (l=paths; l!= NULL; l=l->next)
   {
-    url = get_note_url_from_tree_path (l->data, view);
+    url = get_note_url_from_tree_path (l->data, self);
     item = biji_manager_get_item_at_path (
-              bjb_window_base_get_manager (view->priv->window), url);
+              bjb_window_base_get_manager (self->window), url);
     if (BIJI_IS_ITEM (item))
       result = g_list_prepend (result, item);
 
@@ -299,11 +296,11 @@ on_selection_mode_changed_cb (BjbMainView *self)
 
   /* Workaround if items are selected
    * but selection mode not really active (?) */
-  select = gd_main_view_get_selection (self->priv->view);
+  select = gd_main_view_get_selection (self->view);
   if (select)
   {
     g_list_free (select);
-    gd_main_view_set_selection_mode (self->priv->view, TRUE);
+    gd_main_view_set_selection_mode (self->view, TRUE);
   }
 
   /* Any case, tell */
@@ -318,23 +315,22 @@ on_key_press_event_cb (GtkWidget *widget,
                        gpointer   user_data)
 {
   BjbMainView *self = BJB_MAIN_VIEW (user_data);
-  BjbMainViewPriv *priv = self->priv;
 
   switch (event->key.keyval)
   {
     case GDK_KEY_a:
     case GDK_KEY_A:
-      if (gd_main_view_get_selection_mode (priv->view) && event->key.state & GDK_CONTROL_MASK)
+      if (gd_main_view_get_selection_mode (self->view) && event->key.state & GDK_CONTROL_MASK)
       {
-        gd_main_view_select_all (priv->view);
+        gd_main_view_select_all (self->view);
         return TRUE;
       }
       break;
 
     case GDK_KEY_Escape:
-      if (gd_main_view_get_selection_mode (priv->view))
+      if (gd_main_view_get_selection_mode (self->view))
       {
-        gd_main_view_set_selection_mode (priv->view, FALSE);
+        gd_main_view_set_selection_mode (self->view, FALSE);
         return TRUE;
       }
 
@@ -349,7 +345,7 @@ static gboolean
 on_item_activated (GdMainView        * gd,
                    const gchar       * id,
                    const GtkTreePath * path,
-                   BjbMainView       * view)
+                   BjbMainView       * self)
 {
   BijiManager * manager ;
   BijiItem     * to_open ;
@@ -365,12 +361,12 @@ on_item_activated (GdMainView        * gd,
   g_return_val_if_fail (item_path != NULL, FALSE); // #709197
 
   /* Switch to that item */
-  manager = bjb_window_base_get_manager (view->priv->window);
+  manager = bjb_window_base_get_manager (self->window);
   to_open = biji_manager_get_item_at_path (manager, item_path);
   g_free (item_path);
 
   if (to_open)
-    switch_to_item (view, to_open);
+    switch_to_item (self, to_open);
 
   return FALSE ;
 }
@@ -403,7 +399,7 @@ on_drag_data_received (GtkWidget        *widget,
       BjbSettings *settings;
 
       /* FIXME Text is guchar utf 8, conversion to perform */
-      manager =  bjb_window_base_get_manager (self->priv->window);
+      manager =  bjb_window_base_get_manager (self->window);
       settings = bjb_app_get_settings (g_application_get_default ());
       ret = biji_manager_note_new (manager,
                                      (gchar*) text,
@@ -423,25 +419,23 @@ on_drag_data_received (GtkWidget        *widget,
 void
 bjb_main_view_connect_signals (BjbMainView *self)
 {
-  BjbMainViewPriv *priv = self->priv;
-
-  if (priv->view_selection_changed == 0)
-    priv->view_selection_changed = g_signal_connect_swapped
-                                  (priv->view,
+  if (self->view_selection_changed == 0)
+    self->view_selection_changed = g_signal_connect_swapped
+                                  (self->view,
                                    "view-selection-changed",
                                    G_CALLBACK (on_selection_mode_changed_cb),
                                    self);
 
-  if (priv->key == 0)
-    priv->key = g_signal_connect (priv->window, "key-press-event",
+  if (self->key == 0)
+    self->key = g_signal_connect (self->window, "key-press-event",
                               G_CALLBACK (on_key_press_event_cb), self);
 
-  if (priv->activated == 0)
-    priv->activated = g_signal_connect(priv->view,"item-activated",
+  if (self->activated == 0)
+    self->activated = g_signal_connect(self->view,"item-activated",
                                     G_CALLBACK(on_item_activated),self);
 
-  if (priv->data == 0)
-    priv->data = g_signal_connect (priv->view, "drag-data-received",
+  if (self->data == 0)
+    self->data = g_signal_connect (self->view, "drag-data-received",
                               G_CALLBACK (on_drag_data_received), self);
 }
 
@@ -473,7 +467,7 @@ _get_item_for_tree_path (GtkTreeModel *tree_model,
   if (uuid != NULL)
   {
     retval = biji_manager_get_item_at_path (
-               bjb_window_base_get_manager (self->priv->window), uuid);
+               bjb_window_base_get_manager (self->window), uuid);
     g_free (uuid);
   }
 
@@ -563,7 +557,7 @@ add_list_renderers (BjbMainView *self)
   GtkWidget *generic;
   GtkCellRenderer *cell;
 
-  generic =  gd_main_view_get_generic_view (self->priv->view);
+  generic =  gd_main_view_get_generic_view (self->view);
 
   /* Type Renderer */
   cell = gd_styled_text_renderer_new ();
@@ -606,7 +600,6 @@ add_list_renderers (BjbMainView *self)
 static void
 bjb_main_view_view_changed (BjbMainView *self)
 {
-  BjbMainViewPriv *priv;
   GtkAdjustment *vadjustment;
   GtkWidget *vscrollbar;
   gboolean end;
@@ -615,21 +608,20 @@ bjb_main_view_view_changed (BjbMainView *self)
   gdouble value;
   gint reveal_area_height;
 
-  priv = self->priv;
   reveal_area_height = 32;
   end = FALSE;
-  if (priv->view == NULL)
+  if (self->view == NULL)
     return;
 
-  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
+  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->view));
 
   if (vscrollbar == NULL || !gtk_widget_get_visible (GTK_WIDGET (vscrollbar)))
   {
-    bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (priv->load_more), TRUE);
+    bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (self->load_more), TRUE);
     return;
   }
 
-  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
+  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->view));
   page_size = gtk_adjustment_get_page_size (vadjustment);
   upper = gtk_adjustment_get_upper (vadjustment);
   value = gtk_adjustment_get_value (vadjustment);
@@ -640,7 +632,7 @@ bjb_main_view_view_changed (BjbMainView *self)
   else
     end = !(value < (upper - page_size - reveal_area_height));
 
-  bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (priv->load_more), !end);
+  bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (self->load_more), !end);
 }
 
 
@@ -648,7 +640,6 @@ static void
 bjb_main_view_constructed(GObject *o)
 {
   BjbMainView          *self;
-  BjbMainViewPriv      *priv;
   GtkAdjustment        *vadjustment;
   GtkWidget            *vscrollbar;
   GtkWidget            *button;
@@ -656,21 +647,20 @@ bjb_main_view_constructed(GObject *o)
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
   self = BJB_MAIN_VIEW(o);
-  priv = self->priv;
 
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
-  priv->view = gd_main_view_new (DEFAULT_VIEW);
-  g_object_add_weak_pointer (G_OBJECT (priv->view), (gpointer*) &(priv->view));
+  self->view = gd_main_view_new (DEFAULT_VIEW);
+  g_object_add_weak_pointer (G_OBJECT (self->view), (gpointer*) &(self->view));
 
   /* Main view */
-  gd_main_view_set_selection_mode (priv->view, FALSE);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->view),
+  gd_main_view_set_selection_mode (self->view, FALSE);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (self->view),
                                        GTK_SHADOW_NONE);
-  gd_main_view_set_model (priv->view, bjb_controller_get_model(priv->controller));
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->view));
-  gtk_widget_show (GTK_WIDGET (priv->view));
+  gd_main_view_set_model (self->view, bjb_controller_get_model(self->controller));
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->view));
+  gtk_widget_show (GTK_WIDGET (self->view));
 
-  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->view));
+  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->view));
 
   g_signal_connect_object (vadjustment,
                            "changed",
@@ -683,7 +673,7 @@ bjb_main_view_constructed(GObject *o)
                            self,
                            G_CONNECT_SWAPPED);
 
-  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (priv->view));
+  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->view));
   g_signal_connect_object (vscrollbar,
                            "notify::visible",
                            G_CALLBACK (bjb_main_view_view_changed),
@@ -691,18 +681,18 @@ bjb_main_view_constructed(GObject *o)
                            G_CONNECT_SWAPPED);
 
   /* Load more */
-  priv->load_more = bjb_load_more_button_new (priv->controller);
-  button = bjb_load_more_button_get_revealer (BJB_LOAD_MORE_BUTTON (priv->load_more));
+  self->load_more = bjb_load_more_button_new (self->controller);
+  button = bjb_load_more_button_get_revealer (BJB_LOAD_MORE_BUTTON (self->load_more));
   gtk_container_add (GTK_CONTAINER (self), button);
   bjb_main_view_view_changed (self);
 
 
   /* Selection Panel */
-  priv->select_bar = bjb_selection_toolbar_new (priv->view, self);
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (priv->select_bar));
+  self->select_bar = bjb_selection_toolbar_new (self->view, self);
+  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->select_bar));
 
   /* Drag n drop */
-  gtk_drag_dest_set (GTK_WIDGET (priv->view), GTK_DEST_DEFAULT_ALL,
+  gtk_drag_dest_set (GTK_WIDGET (self->view), GTK_DEST_DEFAULT_ALL,
                      target_list, 1, GDK_ACTION_COPY);
 
   bjb_main_view_connect_signals (self);
@@ -718,8 +708,6 @@ bjb_main_view_class_init (BjbMainViewClass *klass)
   object_class->get_property = bjb_main_view_get_property;
   object_class->set_property = bjb_main_view_set_property;
   object_class->constructed = bjb_main_view_constructed;
-
-  g_type_class_add_private (klass, sizeof (BjbMainViewPriv));
 
   properties[PROP_WINDOW] = g_param_spec_object ("window",
                                                  "Window",
@@ -762,18 +750,16 @@ bjb_main_view_new(GtkWidget *win,
 }
 
 GtkWidget *
-bjb_main_view_get_window(BjbMainView *view)
+bjb_main_view_get_window(BjbMainView *self)
 {
-  return view->priv->window ;
+  return self->window;
 }
 
 void
 bjb_main_view_update_model (BjbMainView *self)
 {
-  BjbMainViewPriv *priv = self->priv;
-
-  bjb_controller_update_view (priv->controller);
-  gd_main_view_set_model (priv->view, bjb_controller_get_model (priv->controller));
+  bjb_controller_update_view (self->controller);
+  gd_main_view_set_model (self->view, bjb_controller_get_model (self->controller));
 }
 
 /* interface for notes view (GdMainView)
@@ -782,35 +768,35 @@ bjb_main_view_update_model (BjbMainView *self)
 gboolean
 bjb_main_view_get_selection_mode (BjbMainView *self)
 {
-  /* if self->priv->view is NULL, that means the view was destroyed
+  /* if self->view is NULL, that means the view was destroyed
    * because the windows is being closed by an exit action, so it
    * doesn't matter which SelectionMode we return.
    */
-  if (self->priv->view == NULL) return FALSE;
-  return gd_main_view_get_selection_mode (self->priv->view);
+  if (self->view == NULL) return FALSE;
+  return gd_main_view_get_selection_mode (self->view);
 }
 
 void
 bjb_main_view_set_selection_mode (BjbMainView *self, gboolean mode)
 {
-  gd_main_view_set_selection_mode (self->priv->view, mode);
+  gd_main_view_set_selection_mode (self->view, mode);
 }
 
 GdMainViewType
-bjb_main_view_get_view_type (BjbMainView *view)
+bjb_main_view_get_view_type (BjbMainView *self)
 {
-  /* if view->priv->view is NULL, that means the view was destroyed
+  /* if self->view is NULL, that means the view was destroyed
    * because the windows is being closed by an exit action, so it
    * doesn't matter which ViewType we return.
    */
-  if (view->priv->view == NULL) return GD_MAIN_VIEW_ICON;
-  return gd_main_view_get_view_type (view->priv->view);
+  if (self->view == NULL) return GD_MAIN_VIEW_ICON;
+  return gd_main_view_get_view_type (self->view);
 }
 
 void
 bjb_main_view_set_view_type (BjbMainView *self, GdMainViewType type)
 {
-  gd_main_view_set_view_type (self->priv->view, type);
+  gd_main_view_set_view_type (self->view, type);
 
   if (type == GD_MAIN_VIEW_LIST)
     add_list_renderers (self);

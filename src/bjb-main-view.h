@@ -27,30 +27,9 @@
 
 G_BEGIN_DECLS
 
-#define BJB_TYPE_MAIN_VIEW             (bjb_main_view_get_type ())
-#define BJB_MAIN_VIEW(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BJB_TYPE_MAIN_VIEW, BjbMainView))
-#define BJB_MAIN_VIEW_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BJB_TYPE_MAIN_VIEW, BjbMainViewClass))
-#define BJB_IS_MAIN_VIEW(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BJB_TYPE_MAIN_VIEW))
-#define BJB_IS_MAIN_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BJB_TYPE_MAIN_VIEW))
-#define BJB_MAIN_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BJB_TYPE_MAIN_VIEW, BjbMainViewClass))
+#define BJB_TYPE_MAIN_VIEW (bjb_main_view_get_type ())
 
-typedef struct _BjbMainViewClass BjbMainViewClass;
-typedef struct _BjbMainView BjbMainView;
-
-typedef struct _BjbMainViewPriv BjbMainViewPriv;
-
-struct _BjbMainViewClass
-{
-  GtkGridClass parent_class;
-};
-
-struct _BjbMainView
-{
-  GtkGrid parent_instance;
-  BjbMainViewPriv *priv;
-};
-
-GType bjb_main_view_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BjbMainView, bjb_main_view, BJB, MAIN_VIEW, GtkGrid)
 
 BjbMainView * bjb_main_view_new(GtkWidget *win, BjbController *controller);
 

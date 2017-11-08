@@ -3,6 +3,10 @@ data/org.gnome.bijiben.appdata.xml.in
 data/org.gnome.bijiben.desktop.in.in
 data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in
+data/resources/app-menu.ui
+data/resources/editor-toolbar.ui
+data/resources/empty-results-box.ui
+data/resources/settings-dialog.ui
 src/bijiben-shell-search-provider.c
 src/bjb-application.c
 src/bjb-app-menu.c
@@ -22,7 +26,3 @@ src/bjb-window-base.c
 src/libbiji/biji-date-time.c
 src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c
-src/resources/app-menu.ui
-src/resources/editor-toolbar.ui
-src/resources/empty-results-box.ui
-src/resources/settings-dialog.ui

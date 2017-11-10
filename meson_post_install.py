@@ -19,7 +19,7 @@ if not os.environ.get('DESTDIR'):
   print('Validate desktop file...')
   subprocess.call(['desktop-file-validate', desktop_file])
 
-  if sys.argv[2] == 'update-mimedb':
+  if sys.argv[2] == 'update_mimedb':
     mimedir = os.path.join(datadir, 'mime')
     print('Update mime database...')
     subprocess.call(['update-mime-database', mimedir])

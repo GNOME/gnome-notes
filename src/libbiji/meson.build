@@ -38,7 +38,7 @@ deps = bijiben_deps
 
 cflags = []
 
-enable_zeitgeist = get_option('enable-zeitgeist')
+enable_zeitgeist = get_option('zeitgeist')
 if enable_zeitgeist
   deps += [dependency('zeitgeist-2.0')]
 

@@ -1,2 +1,2 @@
-option('enable-zeitgeist', type: 'boolean', value: true, description: 'Enable Zeitgeist')
-option('enable-update-mimedb', type: 'boolean', value: true, description: 'update-mime-database after install')
+option('zeitgeist', type: 'boolean', value: true, description: 'Enable Zeitgeist')
+option('update_mimedb', type: 'boolean', value: true, description: 'update-mime-database after install')

@@ -52,7 +52,6 @@ if get_option('buildtype').contains('debug')
     '-fno-strict-aliasing',
     '-Wcast-align',
     '-Wdeclaration-after-statement',
-    '-Werror',
     '-Wformat=2',
     '-Winit-self',
     '-Winline',
@@ -142,7 +141,7 @@ configure_file(
 meson.add_install_script(
   'meson_post_install.py',
   bijiben_datadir,
-  get_option('enable-update-mimedb') ? 'update-mimedb' : ''
+  get_option('update_mimedb') ? 'update_mimedb' : ''
 )
 
 output = '  Version:          ' + bijiben_version + '\n'

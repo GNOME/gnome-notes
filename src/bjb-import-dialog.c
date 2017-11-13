@@ -425,15 +425,21 @@ bjb_import_dialog_constructed (GObject *obj)
    * these are only packed if app is installed     */
 
   path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
-  child = add_application ("tomboy", _("Tomboy application"), path);
-  if (child)
-    gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
+  if (g_file_test (path, G_FILE_TEST_EXISTS))
+    {
+      child = add_application ("tomboy", _("Tomboy application"), path);
+      if (child)
+        gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
+    }
 
 
   path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
-  child = add_application ("gnote", _("Gnote application"), path);
-  if (child)
-    gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
+  if (g_file_test (path, G_FILE_TEST_EXISTS))
+    {
+      child = add_application ("gnote", _("Gnote application"), path);
+      if (child)
+        gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
+    }
 
 
   /* User decides path */

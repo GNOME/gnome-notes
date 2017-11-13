@@ -96,40 +96,6 @@ import_dialog_child_free (ImportDialogChild *child)
   g_slice_free (ImportDialogChild, child);
 }
 
-
-/* First try to find the real icon
- * might use app_info here */
-
-static GdkPixbuf *
-get_app_icon (const gchar *app_name)
-{
-  gint i;
-  GdkPixbuf *retval= NULL;
-  const gchar * const *paths = g_get_system_data_dirs ();
-  gchar *app_svg = g_strdup_printf ("%s.svg", app_name);
-
-  for (i=0; paths[i] != NULL; i++)
-  {
-    gchar *path;
-    GError *error = NULL;
-
-    path = g_build_filename (paths[i], "icons", "hicolor",
-                             "scalable", "apps", app_svg, NULL);
-    retval = gdk_pixbuf_new_from_file (path, &error);
-    g_free (path);
-
-    if (!error && GDK_IS_PIXBUF (retval))
-      break;
-
-    else
-      retval = NULL;
-  }
-
-  g_free (app_svg);
-  return retval;
-}
-
-
 static inline GQuark
 application_quark (void)
 {
@@ -278,6 +244,8 @@ add_custom (BjbImportDialog *self)
 
   child = import_dialog_child_new ();
   child->widget = box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
+  gtk_widget_set_margin_top (child->widget, 6);
+  gtk_widget_set_margin_bottom (child->widget, 6);
   child->overlay = gtk_overlay_new ();
   gtk_container_add (GTK_CONTAINER (child->overlay), child->widget);
 
@@ -285,8 +253,8 @@ add_custom (BjbImportDialog *self)
   self->cust_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (GTK_BOX (box), self->cust_box, TRUE, FALSE, 0);
 
-  w = gtk_image_new_from_icon_name ("folder", GTK_ICON_SIZE_INVALID);
-  gtk_image_set_pixel_size (GTK_IMAGE (w), 48);
+  w = gtk_image_new_from_icon_name ("folder-visiting-symbolic", GTK_ICON_SIZE_INVALID);
+  gtk_image_set_pixel_size (GTK_IMAGE (w), 24);
   gtk_widget_set_margin_start (w, 12);
   gtk_widget_set_margin_end (w, 12);
   gtk_container_add (GTK_CONTAINER (self->cust_box), w);
@@ -324,11 +292,12 @@ add_application (const gchar *app,
                  gchar *location)
 {
   GtkWidget *box, *w;
-  GdkPixbuf *pix;
   ImportDialogChild *child;
 
   child = import_dialog_child_new ();
   child->widget = box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
+  gtk_widget_set_margin_top (child->widget, 6);
+  gtk_widget_set_margin_bottom (child->widget, 6);
   child->overlay = gtk_overlay_new ();
   child->location = location;
   gtk_container_add (GTK_CONTAINER (child->overlay), child->widget);
@@ -337,22 +306,10 @@ add_application (const gchar *app,
     g_object_set_qdata_full (G_OBJECT (child->overlay), application_quark (),
                              child, (GDestroyNotify) import_dialog_child_free);
 
-  /* If the icon is not found, consider the app is not installed
-   * to avoid the dialog showing the feature */
-
-  pix = get_app_icon (app);
-
-  if (pix == NULL)
-  {
-    g_object_ref_sink (box);
-    import_dialog_child_free (child);
-    return NULL;
-  }
-
-  w = gtk_image_new_from_pixbuf (pix);
+  w = gtk_image_new_from_icon_name ("folder-documents-symbolic", GTK_ICON_SIZE_INVALID);
+  gtk_image_set_pixel_size (GTK_IMAGE (w), 24);
   gtk_widget_set_margin_start (w, 12);
   gtk_container_add (GTK_CONTAINER (box), w);
-
 
   w = gtk_label_new (visible_label);
   gtk_widget_set_margin_end (w, 180);
@@ -421,15 +378,16 @@ bjb_import_dialog_constructed (GObject *obj)
 
   gtk_container_add (GTK_CONTAINER (frame), GTK_WIDGET (self->box));
 
-  /* Tomboy Gnote ~/.local/share are conditional
-   * these are only packed if app is installed     */
+  /*
+   * Tomboy and Gnote ~/.local/share are conditional.
+   * These are only packed if their data directories are present.
+   */
 
   path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
   if (g_file_test (path, G_FILE_TEST_EXISTS))
     {
       child = add_application ("tomboy", _("Tomboy application"), path);
-      if (child)
-        gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
+      gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
     }
 
 
@@ -437,8 +395,7 @@ bjb_import_dialog_constructed (GObject *obj)
   if (g_file_test (path, G_FILE_TEST_EXISTS))
     {
       child = add_application ("gnote", _("Gnote application"), path);
-      if (child)
-        gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
+      gtk_container_add (GTK_CONTAINER (self->box), child->overlay);
     }
 
 

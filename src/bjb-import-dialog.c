@@ -204,7 +204,7 @@ toggle_widget (BjbImportDialog *self,
 
   else
   {
-    gtk_style_context_remove_class (context, "suggested-action");
+    gtk_widget_set_sensitive (self->go_go_go, FALSE);
   }
 
   gtk_widget_reset_style (self->go_go_go);

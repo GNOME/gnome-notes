@@ -1,3 +1,22 @@
+Overview of changes in 3.27.2
+=============================
+
+* Fixed missing Unicode strings (Piotr Drąg)
+* Code clean up (Mohammed Sadiq)
+* Improve adherence to GNOME code standards (Mohammed Sadiq)
+* Widgets migration to GtkBuilder (Mohammed Sadiq)
+* Move resources to data directory (Iñigo Martínez)
+* Improve Meson support (Iñigo Martínez)
+* Improve import dialog (Mohammed Sadiq)
+
+Translations
+* cs (Marek Cernocky)
+* da (Alan Mortensen / Ask Hjorth Larsen)
+* lt (Aurimas Černius)
+* pl (Piotr Drąg)
+* sk (Dušan Kazik)
+* sl (Matej Urbančič)
+
 Overview of changes in 3.27.1
 =============================
 

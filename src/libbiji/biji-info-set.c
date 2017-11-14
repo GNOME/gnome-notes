@@ -23,17 +23,7 @@
 BijiInfoSet *
 biji_info_set_new (void)
 {
-  BijiInfoSet *retval;
-
-  retval = g_slice_new0 (BijiInfoSet);
-  retval->url = NULL;
-  retval->title = NULL;
-  retval->content = NULL;
-  retval->datasource_urn = NULL;
-  retval->tracker_urn = NULL;
-  retval->user_data = NULL;
-
-  return retval;
+  return g_slice_new0 (BijiInfoSet);
 }
 
 

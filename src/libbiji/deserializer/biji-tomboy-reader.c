@@ -56,9 +56,9 @@ typedef enum
 } BijiTomboyType;
 
 
-struct BijiTomboyReaderPrivate_
+struct _BijiTomboyReader
 {
-
+  GObject parent_instance;
   /* File */
 
   gchar *path;
@@ -96,31 +96,29 @@ G_DEFINE_TYPE (BijiTomboyReader, biji_tomboy_reader, G_TYPE_OBJECT)
 static void
 process_tomboy_start_elem (BijiTomboyReader *self)
 {
-  BijiTomboyReaderPrivate *priv;
   const gchar *element_name;
 
-  priv = self->priv;
-  element_name = (const gchar *) xmlTextReaderConstName (priv->inner);
+  element_name = (const gchar *) xmlTextReaderConstName (self->inner);
 
   if (g_strcmp0 (element_name, "note-content")==0)
     return;
 
   if (g_strcmp0 (element_name, "bold")==0)
-    priv->html = g_string_append (priv->html, "<b>");
+    self->html = g_string_append (self->html, "<b>");
 
   if (g_strcmp0 (element_name, "italic")==0)
-    priv->html = g_string_append (priv->html, "<i>");
+    self->html = g_string_append (self->html, "<i>");
 
   if (g_strcmp0 (element_name, "strikethrough")==0)
-    priv->html = g_string_append (priv->html, "<strike>");
+    self->html = g_string_append (self->html, "<strike>");
 
   /* Currently tomboy has unordered list */
 
   if (g_strcmp0 (element_name, "list")==0)
-    priv->html = g_string_append (priv->html, "<ul>");
+    self->html = g_string_append (self->html, "<ul>");
 
   if (g_strcmp0 (element_name, "list-item")==0)
-    priv->html = g_string_append (priv->html, "<li>");
+    self->html = g_string_append (self->html, "<li>");
 }
 
 
@@ -128,30 +126,29 @@ process_tomboy_start_elem (BijiTomboyReader *self)
 static void
 process_tomboy_end_elem (BijiTomboyReader *self)
 {
-  BijiTomboyReaderPrivate *priv = self->priv;
   const gchar *element_name;
 
-  element_name = (const gchar *) xmlTextReaderConstName (priv->inner);
+  element_name = (const gchar *) xmlTextReaderConstName (self->inner);
 
   if (g_strcmp0 (element_name, "note-content")==0)
     return;
 
   if (g_strcmp0 (element_name, "bold")==0)
-    priv->html = g_string_append (priv->html, "</b>");
+    self->html = g_string_append (self->html, "</b>");
 
   if (g_strcmp0 (element_name, "italic")==0)
-    priv->html = g_string_append (priv->html, "</i>");
+    self->html = g_string_append (self->html, "</i>");
 
   if (g_strcmp0 (element_name, "strikethrough")==0)
-    priv->html = g_string_append (priv->html, "</strike>");
+    self->html = g_string_append (self->html, "</strike>");
 
   /* Currently tomboy has unordered list */
 
   if (g_strcmp0 (element_name, "list")==0)
-    priv->html = g_string_append (priv->html, "</ul>");
+    self->html = g_string_append (self->html, "</ul>");
 
   if (g_strcmp0 (element_name, "list-item")==0)
-    priv->html = g_string_append (priv->html, "</li>");
+    self->html = g_string_append (self->html, "</li>");
 }
 
 
@@ -160,14 +157,13 @@ static void
 process_tomboy_text_elem (BijiTomboyReader *self)
 {
   gchar *text, *html_txt;
-  BijiTomboyReaderPrivate *priv = self->priv;
 
-  text = (gchar*) xmlTextReaderConstValue (priv->inner);
+  text = (gchar*) xmlTextReaderConstValue (self->inner);
 
   /* Simply append the text to both raw & html
    * FIXME : escape things for html */
 
-  priv->raw_text = g_string_append (priv->raw_text, text);
+  self->raw_text = g_string_append (self->raw_text, text);
 
   html_txt  =  biji_str_mass_replace (text,
                                     "&",  "&amp;",
@@ -175,7 +171,7 @@ process_tomboy_text_elem (BijiTomboyReader *self)
                                     ">",  "&gt;",
                                     NULL);
 
-  priv->html = g_string_append (priv->html, html_txt);
+  self->html = g_string_append (self->html, html_txt);
   g_free (html_txt);
 }
 
@@ -186,10 +182,9 @@ process_tomboy_node (BijiTomboyReader *self)
 {
   int            type;
   const xmlChar *name ;
-  BijiTomboyReaderPrivate *priv = self->priv;
 
-  type  = xmlTextReaderNodeType (priv->inner);
-  name  = xmlTextReaderConstName (priv->inner);
+  type  = xmlTextReaderNodeType (self->inner);
+  name  = xmlTextReaderConstName (self->inner);
 
   if (name == NULL)
     name = BAD_CAST "(NULL)";
@@ -222,27 +217,25 @@ process_tomboy_node (BijiTomboyReader *self)
 static void
 process_tomboy_xml_content (BijiTomboyReader *self, gchar *text)
 {
-  BijiTomboyReaderPrivate *priv;
   gint ret;
 
-  priv = self->priv;
-  priv->inner = xmlReaderForMemory (text,
+  self->inner = xmlReaderForMemory (text,
                                     strlen (text),
                                     "", "UTF-8", 0);
 
-  ret = xmlTextReaderRead (priv->inner);
+  ret = xmlTextReaderRead (self->inner);
 
   /* Make the GString grow as we read */
   while (ret == 1)
   {
     process_tomboy_node (self);
-    ret = xmlTextReaderRead (priv->inner);
+    ret = xmlTextReaderRead (self->inner);
   }
 
 
   /* Close the html and set content */
-  g_string_append (priv->html, "</body></html>");
-  priv->set->content = g_strdup (priv->raw_text->str);
+  g_string_append (self->html, "</body></html>");
+  self->set->content = g_strdup (self->raw_text->str);
 }
 
 
@@ -253,20 +246,17 @@ process_tomboy_xml_content (BijiTomboyReader *self, gchar *text)
 static void
 processNode (BijiTomboyReader *self)
 {
-  BijiTomboyReaderPrivate *priv;
   xmlTextReaderPtr r;
   gchar *name, *result;
   gchar     *tag;
   GString   *norm;
 
-
-  priv = self->priv;
-  r = priv->r;
+  r = self->r;
   name = (gchar*) xmlTextReaderName (r);
 
 
   if (g_strcmp0 (name, "title") == 0)
-    priv->set->title = (gchar*) xmlTextReaderReadString (r);
+    self->set->title = (gchar*) xmlTextReaderReadString (r);
 
 
   if (g_strcmp0(name, "text") == 0)
@@ -278,7 +268,7 @@ processNode (BijiTomboyReader *self)
   if (g_strcmp0 (name, "last-change-date") == 0)
   {
     result = (gchar*) xmlTextReaderReadString (r);
-    priv->set->mtime = iso8601_to_gint64 (result);
+    self->set->mtime = iso8601_to_gint64 (result);
     g_free (result);
   }
 
@@ -286,7 +276,7 @@ processNode (BijiTomboyReader *self)
   if (g_strcmp0 (name, "last-metadata-change-date") == 0)
   {
     result = (gchar*) xmlTextReaderReadString (r);
-    priv->metadata_mtime = iso8601_to_gint64 (result);
+    self->metadata_mtime = iso8601_to_gint64 (result);
     g_free (result);
   }
 
@@ -294,7 +284,7 @@ processNode (BijiTomboyReader *self)
   if (g_strcmp0 (name, "create-date") == 0)
   {
     result = (gchar*) xmlTextReaderReadString (r);
-    priv->set->created  =  iso8601_to_gint64 (result);
+    self->set->created  =  iso8601_to_gint64 (result);
     g_free (result);
   }
 
@@ -306,7 +296,7 @@ processNode (BijiTomboyReader *self)
 
     if (g_str_has_prefix (tag,"system:template"))
     {
-      priv->error = biji_error_new (BIJI_ERROR_SOURCE,
+      self->error = biji_error_new (BIJI_ERROR_SOURCE,
                                     "Aborting import for template note.");
     }
 
@@ -315,7 +305,7 @@ processNode (BijiTomboyReader *self)
       norm = g_string_new (tag);
       g_string_erase (norm,0,16);
       //biji_item_add_notebook (BIJI_ITEM (n), NULL, norm->str);
-      //g_queue_push_head (priv->notebooks, norm->str);
+      //g_queue_push_head (self->notebooks, norm->str);
       g_string_free (norm, TRUE);
     }
 
@@ -330,20 +320,17 @@ static void
 biji_tomboy_reader_constructed (GObject *obj)
 {
   BijiTomboyReader *self;
-  BijiTomboyReaderPrivate *priv;
   xmlDocPtr doc;
   xmlNodePtr cur;
   xmlChar     *version;
 
   self = BIJI_TOMBOY_READER (obj);
-  priv = self->priv;
 
-
-  doc = xmlParseFile (priv->path);
+  doc = xmlParseFile (self->path);
 
   if (doc == NULL )
   {
-    priv->error = biji_error_new (BIJI_ERROR_SOURCE,
+    self->error = biji_error_new (BIJI_ERROR_SOURCE,
                                   "File not parsed successfully");
     return;
   }
@@ -353,7 +340,7 @@ biji_tomboy_reader_constructed (GObject *obj)
 
   if (cur == NULL)
   {
-    priv->error = biji_error_new (BIJI_ERROR_SOURCE,
+    self->error = biji_error_new (BIJI_ERROR_SOURCE,
                                   "File empty");
     xmlFreeDoc(doc);
     return;
@@ -362,7 +349,7 @@ biji_tomboy_reader_constructed (GObject *obj)
 
   if (xmlStrcmp(cur->name, (const xmlChar *) "note"))
   {
-    priv->error = biji_error_new (BIJI_ERROR_SOURCE,
+    self->error = biji_error_new (BIJI_ERROR_SOURCE,
                                   "Root node != note");
     xmlFreeDoc(doc);
     return;
@@ -371,19 +358,19 @@ biji_tomboy_reader_constructed (GObject *obj)
   version = xmlGetNoNsProp (cur, BAD_CAST "version");
 
   if (g_strcmp0 ((const gchar*) version, "0.1") == 0)
-    priv->type = TOMBOY_1;
+    self->type = TOMBOY_1;
 
   else if (g_strcmp0 ((const gchar*) version, "0.2") == 0)
-    priv->type = TOMBOY_2;
+    self->type = TOMBOY_2;
 
   else if (g_strcmp0 ((const gchar*) version, "0.3") == 0)
-    priv->type = TOMBOY_3;
+    self->type = TOMBOY_3;
 
-  priv->r = xmlNewTextReaderFilename (priv->path);
+  self->r = xmlNewTextReaderFilename (self->path);
 
-  while ( xmlTextReaderRead(self->priv->r) == 1 )
+  while ( xmlTextReaderRead(self->r) == 1 )
   {
-    if ( xmlTextReaderNodeType(self->priv->r) == 1 )
+    if ( xmlTextReaderNodeType(self->r) == 1 )
     {
       processNode(self);
     }
@@ -406,7 +393,7 @@ biji_tomboy_reader_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_SRC_PATH:
-      self->priv->path = g_value_dup_string (value);
+      self->path = g_value_dup_string (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -427,7 +414,7 @@ biji_tomboy_reader_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_SRC_PATH:
-      g_value_set_string (value, self->priv->path);
+      g_value_set_string (value, self->path);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -442,19 +429,17 @@ static void
 biji_tomboy_reader_finalize (GObject *object)
 {
   BijiTomboyReader *self;
-  BijiTomboyReaderPrivate *priv;
 
   g_return_if_fail (BIJI_IS_TOMBOY_READER (object));
 
   self = BIJI_TOMBOY_READER (object);
-  priv = self->priv;
 
-  g_string_free (priv->raw_text, TRUE);
-  g_string_free (priv->html, TRUE);
+  g_string_free (self->raw_text, TRUE);
+  g_string_free (self->html, TRUE);
 
 
-  xmlFreeTextReader (priv->r);
-  xmlFreeTextReader (priv->inner);
+  xmlFreeTextReader (self->r);
+  xmlFreeTextReader (self->inner);
 
 
   G_OBJECT_CLASS (biji_tomboy_reader_parent_class)->finalize (object);
@@ -464,15 +449,10 @@ biji_tomboy_reader_finalize (GObject *object)
 static void
 biji_tomboy_reader_init (BijiTomboyReader *self)
 {
-  BijiTomboyReaderPrivate *priv;
+  self->raw_text = g_string_new ("");
+  self->html = g_string_new ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>");
 
-  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE
-             (self, BIJI_TYPE_TOMBOY_READER, BijiTomboyReaderPrivate);
-
-  priv->raw_text = g_string_new ("");
-  priv->html = g_string_new ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><body>");
-
-  priv->set = biji_info_set_new ();
+  self->set = biji_info_set_new ();
 }
 
 
@@ -497,9 +477,6 @@ biji_tomboy_reader_class_init (BijiTomboyReaderClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, TOMBOY_READER_PROP, properties);
-
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiTomboyReaderPrivate));
 }
 
 
@@ -519,18 +496,16 @@ biji_tomboy_reader_read (gchar *source,
                          GList **notebooks)
 {
   BijiTomboyReader *self;
-  BijiTomboyReaderPrivate *priv;
   gchar *html_revamped;
 
   self = biji_tomboy_reader_new (source);
-  priv = self->priv;
 
-  html_revamped = biji_str_mass_replace (priv->html->str,
+  html_revamped = biji_str_mass_replace (self->html->str,
                                          "\n", "<br/>",
                                          NULL);
 
-  *error = priv->error;
-  *set = priv->set;
+  *error = self->error;
+  *set = self->set;
   *html = html_revamped;
 
   g_object_unref (self);

@@ -27,33 +27,9 @@
 
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_NOTE_ID             (biji_note_id_get_type ())
-#define BIJI_NOTE_ID(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_NOTE_ID, BijiNoteID))
-#define BIJI_NOTE_ID_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_NOTE_ID, BijiNoteIDClass))
-#define BIJI_IS_NOTE_ID(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_NOTE_ID))
-#define BIJI_IS_NOTE_ID_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_NOTE_ID))
-#define BIJI_NOTE_ID_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_NOTE_ID, BijiNoteIDClass))
+#define BIJI_TYPE_NOTE_ID (biji_note_id_get_type ())
 
-
-
-typedef struct _BijiNoteIDClass BijiNoteIDClass;
-typedef struct _BijiNoteID BijiNoteID;
-
-typedef struct _BijiNoteIDPrivate BijiNoteIDPrivate;
-
-struct _BijiNoteIDClass
-{
-  GObjectClass parent_class;
-};
-
-struct _BijiNoteID
-{
-  GObject parent_instance;
-  BijiNoteIDPrivate* priv;
-};
-
-GType             biji_note_id_get_type                           (void) G_GNUC_CONST;
-
+G_DECLARE_FINAL_TYPE (BijiNoteID, biji_note_id, BIJI, NOTE_ID, GObject)
 
 gboolean          biji_note_id_equal                              (BijiNoteID *a, BijiNoteID *b);
 

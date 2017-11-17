@@ -30,8 +30,9 @@ enum {
 static GParamSpec *properties[BIJI_ID_PROPERTIES] = { NULL, };
 
 
-struct _BijiNoteIDPrivate
+struct _BijiNoteID
 {
+  GObject       parent_instance;
   /* InfoSet */
 
   const gchar  *path;
@@ -48,33 +49,21 @@ struct _BijiNoteIDPrivate
 
 };
 
-#define NOTE_OBJ_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), NOTE_TYPE_OBJ, NoteObjPrivate))
 
-
-G_DEFINE_TYPE (BijiNoteID, biji_note_id, G_TYPE_OBJECT);
+G_DEFINE_TYPE (BijiNoteID, biji_note_id, G_TYPE_OBJECT)
 
 
 static void
 biji_note_id_init (BijiNoteID *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, biji_note_id_get_type(),
-                                            BijiNoteIDPrivate);
-
-  self->priv->title = NULL;
-  self->priv->content = NULL;
-  self->priv->create_date = 0;
-  self->priv->basename = 0;
-  self->priv->last_metadata_change_date = 0;
-
 }
 
 static void
 biji_note_id_finalize (GObject *object)
 {
-  BijiNoteID *id = BIJI_NOTE_ID (object);
-  BijiNoteIDPrivate *priv = id->priv;
+  BijiNoteID *self = BIJI_NOTE_ID (object);
 
-  g_free (priv->title);
+  g_free (self->title);
 
   G_OBJECT_CLASS (biji_note_id_parent_class)->finalize (object);
 }
@@ -84,7 +73,7 @@ biji_note_id_set_path (BijiNoteID *self, const gchar *path)
 {
   g_return_if_fail (BIJI_IS_NOTE_ID (self));
 
-  self->priv->path = g_strdup (path);
+  self->path = g_strdup (path);
 }
 
 
@@ -107,10 +96,10 @@ biji_note_id_set_property  (GObject      *object,
       g_object_notify_by_pspec (object, properties[PROP_TITLE]);
       break;
     case PROP_MTIME:
-      self->priv->mtime = g_value_get_int64 (value);
+      self->mtime = g_value_get_int64 (value);
       break;
     case PROP_CONTENT:
-      self->priv->content = g_strdup (g_value_get_string (value));
+      self->content = g_strdup (g_value_get_string (value));
       g_object_notify_by_pspec (object, properties[PROP_CONTENT]);
       break;
     default:
@@ -130,16 +119,16 @@ biji_note_id_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_PATH:
-      g_value_set_object (value, self->priv->basename);
+      g_value_set_object (value, self->basename);
       break;
     case PROP_TITLE:
-      g_value_set_string (value, self->priv->title);
+      g_value_set_string (value, self->title);
       break;
     case PROP_MTIME:
-      g_value_set_int64 (value, self->priv->mtime);
+      g_value_set_int64 (value, self->mtime);
       break;
     case PROP_CONTENT:
-      g_value_set_string (value, self->priv->content);
+      g_value_set_string (value, self->content);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -186,15 +175,13 @@ biji_note_id_class_init (BijiNoteIDClass *klass)
                         G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
 
   g_object_class_install_properties (object_class, BIJI_ID_PROPERTIES, properties);
-
-  g_type_class_add_private (klass, sizeof (BijiNoteIDPrivate));
 }
 
 gboolean
 biji_note_id_equal (BijiNoteID *a, BijiNoteID *b)
 {
-  if (g_strcmp0 (a->priv->path, b->priv->path) == 0 &&
-      g_strcmp0 (a->priv->content ,b->priv->content) ==0)
+  if (g_strcmp0 (a->path, b->path) == 0 &&
+      g_strcmp0 (a->content, b->content) == 0)
     return TRUE;
 
   return FALSE;
@@ -205,17 +192,17 @@ biji_note_id_get_path (BijiNoteID* n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (n), NULL);
 
-  return n->priv->path;
+  return n->path;
 }
 
 
 void
 biji_note_id_set_title  (BijiNoteID *n, gchar* title)
 {
-  if (n->priv->title)
-    g_free (n->priv->title);
+  if (n->title)
+    g_free (n->title);
 
-  n->priv->title = g_strdup (title);
+  n->title = g_strdup (title);
   g_object_notify_by_pspec (G_OBJECT (n), properties[PROP_TITLE]);
 }
 
@@ -223,7 +210,7 @@ biji_note_id_set_title  (BijiNoteID *n, gchar* title)
 const gchar *
 biji_note_id_get_title (BijiNoteID* n)
 {
-  return n->priv->title ;
+  return n->title;
 }
 
 
@@ -234,14 +221,14 @@ biji_note_id_set_content (BijiNoteID *id,
   g_return_val_if_fail (BIJI_IS_NOTE_ID (id), FALSE);
   g_return_val_if_fail ((content != NULL), FALSE);
 
-  if (id->priv->content != NULL &&
-      g_strcmp0 (id->priv->content, content) !=0)
-    g_clear_pointer (&id->priv->content, g_free);
+  if (id->content != NULL &&
+      g_strcmp0 (id->content, content) != 0)
+    g_clear_pointer (&id->content, g_free);
 
 
-  if (id->priv->content == NULL)
+  if (id->content == NULL)
   {
-    id->priv->content = g_strdup (content);
+    id->content = g_strdup (content);
     return TRUE;
   }
 
@@ -254,7 +241,7 @@ biji_note_id_get_content (BijiNoteID *id)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (id), NULL);
 
-  return id->priv->content;
+  return id->content;
 }
 
 
@@ -264,7 +251,7 @@ biji_note_id_get_mtime (BijiNoteID *n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (n), 0);
 
-  return n->priv->mtime;
+  return n->mtime;
 }
 
 
@@ -273,9 +260,9 @@ biji_note_id_set_mtime (BijiNoteID *n, gint64 time)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (n), FALSE);
 
-  if (n->priv->mtime != time)
+  if (n->mtime != time)
   {
-    n->priv->mtime = time;
+    n->mtime = time;
     return TRUE;
   }
 
@@ -288,16 +275,16 @@ biji_note_id_get_last_metadata_change_date (BijiNoteID* n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (n), 0);
 
-  return n->priv->last_metadata_change_date;
+  return n->last_metadata_change_date;
 }
 
 
 gboolean
 biji_note_id_set_last_metadata_change_date (BijiNoteID* n, gint64 time)
 {
-  if (n->priv->last_metadata_change_date != time)
+  if (n->last_metadata_change_date != time)
   {
-    n->priv->last_metadata_change_date = time;
+    n->last_metadata_change_date = time;
     return TRUE;
   }
 
@@ -310,16 +297,16 @@ biji_note_id_get_create_date (BijiNoteID* n)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (n), 0);
 
-  return n->priv->create_date;
+  return n->create_date;
 }
 
 
 gboolean
 biji_note_id_set_create_date (BijiNoteID* n, gint64 time)
 {
-  if (n->priv->create_date != time)
+  if (n->create_date != time)
   {
-    n->priv->create_date = time;
+    n->create_date = time;
     return TRUE;
   }
 

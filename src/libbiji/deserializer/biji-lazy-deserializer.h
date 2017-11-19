@@ -23,30 +23,9 @@
 
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_LAZY_DESERIALIZER              (biji_lazy_deserializer_get_type ())
-#define BIJI_LAZY_DESERIALIZER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_LAZY_DESERIALIZER , BijiLazyDeserializer))
-#define BIJI_LAZY_DESERIALIZER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_LAZY_DESERIALIZER , BijiLazyDeserializerClass))
-#define BIJI_IS_LAZY_DESERIALIZER (obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_LAZY_DESERIALIZER ))
-#define BIJI_IS_LAZY_DESERIALIZER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_LAZY_DESERIALIZER ))
-#define BIJI_LAZY_DESERIALIZER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_LAZY_DESERIALIZER , BijiLazyDeserializerClass))
+#define BIJI_TYPE_LAZY_DESERIALIZER (biji_lazy_deserializer_get_type ())
 
-typedef struct _BijiLazyDeserializerClass BijiLazyDeserializerClass;
-typedef struct _BijiLazyDeserializer BijiLazyDeserializer;
-
-typedef struct _BijiLazyDeserializerPrivate BijiLazyDeserializerPrivate;
-
-struct _BijiLazyDeserializerClass
-{
-  GObjectClass parent_class;
-};
-
-struct _BijiLazyDeserializer
-{
-  GObject parent_instance;
-  BijiLazyDeserializerPrivate *priv;
-};
-
-GType biji_lazy_deserializer_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (BijiLazyDeserializer, biji_lazy_deserializer, BIJI, LAZY_DESERIALIZER, GObject)
 
 gboolean biji_lazy_deserialize (BijiNoteObj *note);
 

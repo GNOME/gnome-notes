@@ -29,32 +29,9 @@
 
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_LAZY_SERIALIZER             (biji_lazy_serializer_get_type ())
-#define BIJI_LAZY_SERIALIZER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_LAZY_SERIALIZER, BijiLazySerializer))
-#define BIJI_LAZY_SERIALIZER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_LAZY_SERIALIZER, BijiLazySerializerClass))
-#define BIJI_IS_LAZY_SERIALIZER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_LAZY_SERIALIZER))
-#define BIJI_IS_LAZY_SERIALIZER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_LAZY_SERIALIZER))
-#define BIJI_LAZY_SERIALIZER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_LAZY_SERIALIZER, BijiLazySerializerClass))
+#define BIJI_TYPE_LAZY_SERIALIZER (biji_lazy_serializer_get_type ())
 
-typedef struct _BijiLazySerializerClass BijiLazySerializerClass;
-typedef struct _BijiLazySerializer BijiLazySerializer;
-
-typedef struct _BijiLazySerializerPrivate BijiLazySerializerPrivate;
-
-struct _BijiLazySerializerClass
-{
-  GObjectClass parent_class;
-};
-
-struct _BijiLazySerializer
-{
-  GObject parent_instance;
-  BijiLazySerializerPrivate *priv;
-};
-
-
-GType            biji_lazy_serializer_get_type           (void) G_GNUC_CONST;
-
+G_DECLARE_FINAL_TYPE (BijiLazySerializer, biji_lazy_serializer, BIJI, LAZY_SERIALIZER, GObject)
 
 gboolean         biji_lazy_serialize                     (BijiNoteObj *note);
 

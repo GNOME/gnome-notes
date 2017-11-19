@@ -31,7 +31,7 @@
 
 #include <libgd/gd.h>
 
-struct _BijiNoteObjPrivate
+typedef struct
 {
   /* Metadata */
   BijiNoteID            *id;
@@ -59,7 +59,7 @@ struct _BijiNoteObjPrivate
   /* Signals */
   gulong note_renamed;
   gulong save;
-};
+} BijiNoteObjPrivate;
 
 /* Properties */
 enum {
@@ -82,9 +82,7 @@ enum {
 static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
 
 
-#define BIJI_NOTE_OBJ_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_NOTE_OBJ, BijiNoteObjPrivate))
-
-G_DEFINE_TYPE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM);
+G_DEFINE_TYPE_WITH_PRIVATE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM)
 
 gboolean is_webkit1 (const char *content);
 gchar * convert_webkit1_to_webkit2 (const gchar *content);
@@ -92,7 +90,7 @@ gchar * convert_webkit1_to_webkit2 (const gchar *content);
 static void
 on_save_timeout (BijiNoteObj *self)
 {
-  BijiNoteObjPrivate *priv = self->priv;
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 
   /* g_mutex_lock (priv->mutex); */
 
@@ -120,32 +118,11 @@ on_save_timeout (BijiNoteObj *self)
 static void
 biji_note_obj_init (BijiNoteObj *self)
 {
-  BijiNoteObjPrivate *priv ;
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 
-  priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_NOTE_OBJ, BijiNoteObjPrivate);
-
-  self->priv = priv ;
-  priv->id = NULL;
-
-  priv->needs_save = FALSE;
   priv->timeout = biji_timeout_new ();
   priv->save = g_signal_connect_swapped (priv->timeout, "timeout",
                             G_CALLBACK (on_save_timeout), self);
-
-
-  priv->is_template = FALSE ;
-
-  /* The editor is NULL so we know it's not opened
-   * neither fully deserialized */
-  priv->editor = NULL;
-
-  /* Icon is only computed when necessary */
-  priv->icon = NULL;
-  priv->emblem = NULL;
-  priv->pristine = NULL;
-
-  /* Keep value unitialied, so bijiben knows to assign default color */
-  priv->color = NULL;
 
   priv->labels = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 }
@@ -154,7 +131,7 @@ static void
 biji_note_obj_finalize (GObject *object)
 {
   BijiNoteObj        *self = BIJI_NOTE_OBJ(object);
-  BijiNoteObjPrivate *priv = self->priv;
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 
   if (priv->timeout)
     g_object_unref (priv->timeout);
@@ -194,13 +171,12 @@ biji_note_obj_set_property (GObject      *object,
                             const GValue *value,
                             GParamSpec   *pspec)
 {
-  BijiNoteObj *self = BIJI_NOTE_OBJ (object);
-
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (object));
 
   switch (property_id)
     {
     case PROP_ID:
-      self->priv->id = g_value_dup_object (value);
+      priv->id = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -214,12 +190,12 @@ biji_note_obj_get_property (GObject    *object,
                             GValue     *value,
                             GParamSpec *pspec)
 {
-  BijiNoteObj *self = BIJI_NOTE_OBJ (object);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (object));
 
   switch (property_id)
     {
     case PROP_ID:
-      g_value_set_object (value, self->priv->id);
+      g_value_set_object (value, priv->id);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -231,7 +207,10 @@ biji_note_obj_get_property (GObject    *object,
 gboolean
 biji_note_obj_are_same (BijiNoteObj *a, BijiNoteObj* b)
 {
-  return biji_note_id_equal (a->priv->id, b->priv->id);
+  BijiNoteObjPrivate *a_priv = biji_note_obj_get_instance_private (a);
+  BijiNoteObjPrivate *b_priv = biji_note_obj_get_instance_private (b);
+
+  return biji_note_id_equal (a_priv->id, b_priv->id);
 }
 
 
@@ -247,7 +226,7 @@ biji_note_obj_trash (BijiItem *item)
   gboolean result;
 
   note_to_kill = BIJI_NOTE_OBJ (item);
-  priv = note_to_kill->priv;
+  priv = biji_note_obj_get_instance_private (note_to_kill);
   icon = NULL;
   icon_path = NULL;
   result = FALSE;
@@ -290,21 +269,25 @@ biji_note_obj_is_trashed                    (BijiNoteObj *self)
 static const gchar *
 biji_note_obj_get_path (BijiItem *item)
 {
-  BijiNoteObj *note;
+  BijiNoteObjPrivate *priv;
 
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
 
-  note = BIJI_NOTE_OBJ (item);
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (item));
 
-  return biji_note_id_get_path (note->priv->id);
+  return biji_note_id_get_path (priv->id);
 }
 
 static const gchar *
-biji_note_obj_get_title (BijiItem *note)
+biji_note_obj_get_title (BijiItem *item)
 {
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+  BijiNoteObjPrivate *priv;
 
-  return biji_note_id_get_title (BIJI_NOTE_OBJ (note)->priv->id);
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
+
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (item));
+
+  return biji_note_id_get_title (priv->id);
 }
 
 /* If already a title, then note is renamed */
@@ -313,9 +296,10 @@ biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
 {
   gchar *old_title, *title;
   gboolean retval;
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
 
   title = NULL;
-  old_title = g_strdup (biji_note_id_get_title (note->priv->id));
+  old_title = g_strdup (biji_note_id_get_title (priv->id));
 
 
   if (g_strcmp0 (proposed_title, old_title) == 0)
@@ -327,12 +311,12 @@ biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
 
   title = biji_manager_get_unique_title (
               biji_item_get_manager (BIJI_ITEM (note)), proposed_title);
-  biji_note_id_set_last_metadata_change_date (note->priv->id,
+  biji_note_id_set_last_metadata_change_date (priv->id,
                                               g_get_real_time () / G_USEC_PER_SEC);
 
 
   /* Emit signal even if initial title, just to let know */
-  biji_note_id_set_title (note->priv->id, title);
+  biji_note_id_set_title (priv->id, title);
   g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED], 0);
   retval = TRUE;
 
@@ -350,60 +334,84 @@ out:
 gboolean
 biji_note_obj_set_mtime (BijiNoteObj* n, gint64 mtime)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), FALSE);
 
-  return biji_note_id_set_mtime (n->priv->id, mtime);
+  priv = biji_note_obj_get_instance_private (n);
+
+  return biji_note_id_set_mtime (priv->id, mtime);
 }
 
 
 static gint64
 biji_note_obj_get_mtime (BijiItem *note)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), 0);
 
-  return biji_note_id_get_mtime (BIJI_NOTE_OBJ (note)->priv->id);
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (note));
+
+  return biji_note_id_get_mtime (priv->id);
 }
 
 const gchar *
 biji_note_obj_get_last_change_date_string (BijiNoteObj *self)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), "");
 
+  priv = biji_note_obj_get_instance_private (self);
+
   return biji_get_time_diff_with_time (
-             biji_note_id_get_mtime (self->priv->id));
+             biji_note_id_get_mtime (priv->id));
 }
 
 
 gint64
 biji_note_obj_get_last_metadata_change_date (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), 0);
 
-  return biji_note_id_get_last_metadata_change_date (note->priv->id);
+  priv = biji_note_obj_get_instance_private (note);
+
+  return biji_note_id_get_last_metadata_change_date (priv->id);
 }
 
 
 gboolean
 biji_note_obj_set_last_metadata_change_date (BijiNoteObj* n, gint64 time)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ(n), FALSE);
 
-  return biji_note_id_set_last_metadata_change_date (n->priv->id, time);
+  priv = biji_note_obj_get_instance_private (n);
+
+  return biji_note_id_set_last_metadata_change_date (priv->id, time);
 }
 
 static void
 biji_note_obj_clear_icons (BijiNoteObj *note)
 {
-  g_clear_pointer (&note->priv->icon, cairo_surface_destroy);
-  g_clear_pointer (&note->priv->emblem, cairo_surface_destroy);
-  g_clear_pointer (&note->priv->pristine, cairo_surface_destroy);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
+  g_clear_pointer (&priv->icon, cairo_surface_destroy);
+  g_clear_pointer (&priv->emblem, cairo_surface_destroy);
+  g_clear_pointer (&priv->pristine, cairo_surface_destroy);
 }
 
 static void
 biji_note_obj_set_rgba_internal (BijiNoteObj *n,
                                  const GdkRGBA *rgba)
 {
-  n->priv->color = gdk_rgba_copy(rgba);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (n);
+
+  priv->color = gdk_rgba_copy(rgba);
 
   g_signal_emit (G_OBJECT (n), biji_obj_signals[NOTE_COLOR_CHANGED],0);
 }
@@ -412,16 +420,18 @@ void
 biji_note_obj_set_rgba (BijiNoteObj *n,
                         const GdkRGBA *rgba)
 {
-  if (!n->priv->color)
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (n);
+
+  if (!priv->color)
     biji_note_obj_set_rgba_internal (n, rgba);
 
-  else if (!gdk_rgba_equal (n->priv->color,rgba))
+  else if (!gdk_rgba_equal (priv->color,rgba))
   {
-    gdk_rgba_free (n->priv->color);
+    gdk_rgba_free (priv->color);
     biji_note_obj_clear_icons (n);
     biji_note_obj_set_rgba_internal (n, rgba);
 
-    biji_note_id_set_last_metadata_change_date (n->priv->id, g_get_real_time () / G_USEC_PER_SEC);
+    biji_note_id_set_last_metadata_change_date (priv->id, g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (n);
   }
 }
@@ -430,11 +440,13 @@ gboolean
 biji_note_obj_get_rgba(BijiNoteObj *n,
                        GdkRGBA *rgba)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (n);
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), FALSE);
 
-  if (n->priv->color && rgba)
+  if (priv->color && rgba)
     {
-      *rgba = *(n->priv->color);
+      *rgba = *(priv->color);
       return TRUE;
     }
 
@@ -445,14 +457,18 @@ biji_note_obj_get_rgba(BijiNoteObj *n,
 const gchar *
 biji_note_obj_get_raw_text                  (BijiNoteObj *note)
 {
-  return biji_note_id_get_content (note->priv->id);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
+  return biji_note_id_get_content (priv->id);
 }
 
 void
 biji_note_obj_set_raw_text (BijiNoteObj *note,
                             const gchar *plain_text)
 {
-  if (biji_note_id_set_content (note->priv->id, plain_text))
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
+  if (biji_note_id_set_content (priv->id, plain_text))
   {
     biji_note_obj_clear_icons (note);
     g_signal_emit (note, biji_obj_signals[NOTE_CHANGED],0);
@@ -462,17 +478,21 @@ biji_note_obj_set_raw_text (BijiNoteObj *note,
 GList *
 biji_note_obj_get_notebooks (BijiNoteObj *n)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (n), NULL);
 
-  return g_hash_table_get_values (n->priv->labels);
+  priv = biji_note_obj_get_instance_private (n);
+
+  return g_hash_table_get_values (priv->labels);
 }
 
 static gboolean
 biji_note_obj_has_notebook (BijiItem *item, gchar *label)
 {
-  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (item));
 
-  if (g_hash_table_lookup (note->priv->labels, label))
+  if (g_hash_table_lookup (priv->labels, label))
     return TRUE;
 
   return FALSE;
@@ -496,10 +516,12 @@ biji_note_obj_add_notebook (BijiItem *item,
                               gchar    *title)
 {
   BijiNoteObj *note;
+  BijiNoteObjPrivate *priv;
   gchar *label = title;
 
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
   note = BIJI_NOTE_OBJ (item);
+  priv = biji_note_obj_get_instance_private (note);
 
   if (BIJI_IS_NOTEBOOK (notebook))
     label = (gchar*) biji_item_get_title (notebook);
@@ -507,13 +529,13 @@ biji_note_obj_add_notebook (BijiItem *item,
   if (biji_note_obj_has_notebook (item, label))
     return FALSE;
 
-  g_hash_table_add (note->priv->labels, g_strdup (label));
+  g_hash_table_add (priv->labels, g_strdup (label));
 
   if (BIJI_IS_NOTEBOOK (notebook))
   {
     biji_push_existing_notebook_to_note (
       note, label, _biji_notebook_refresh, notebook); // Tracker
-    biji_note_id_set_last_metadata_change_date (note->priv->id,
+    biji_note_id_set_last_metadata_change_date (priv->id,
                                                 g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (note);
   }
@@ -526,17 +548,19 @@ static gboolean
 biji_note_obj_remove_notebook (BijiItem *item, BijiItem *notebook)
 {
   BijiNoteObj *note;
+  BijiNoteObjPrivate *priv;
 
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (notebook), FALSE);
 
   note = BIJI_NOTE_OBJ (item);
+  priv = biji_note_obj_get_instance_private (note);
 
-  if (g_hash_table_remove (note->priv->labels, biji_item_get_title (notebook)))
+  if (g_hash_table_remove (priv->labels, biji_item_get_title (notebook)))
   {
     biji_remove_notebook_from_note (
       note, notebook, _biji_notebook_refresh, notebook); // tracker.
-    biji_note_id_set_last_metadata_change_date (note->priv->id,
+    biji_note_id_set_last_metadata_change_date (priv->id,
                                                 g_get_real_time () / G_USEC_PER_SEC);
     biji_note_obj_save_note (note);
     return TRUE;
@@ -548,21 +572,30 @@ biji_note_obj_remove_notebook (BijiItem *item, BijiItem *notebook)
 gboolean
 note_obj_is_template (BijiNoteObj *n)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail(BIJI_IS_NOTE_OBJ(n),FALSE);
-  return n->priv->is_template;
+
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (n));
+
+  return priv->is_template;
 }
 
 void
 note_obj_set_is_template (BijiNoteObj *n,gboolean is_template)
 {
-  n->priv->is_template = is_template ;
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (n));
+
+  priv->is_template = is_template;
 }
 
 void
 biji_note_obj_save_note (BijiNoteObj *self)
 {
-  self->priv->needs_save = TRUE;
-  biji_timeout_reset (self->priv->timeout, 3000);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (self));
+
+  priv->needs_save = TRUE;
+  biji_timeout_reset (priv->timeout, 3000);
 }
 
 gchar *
@@ -597,9 +630,10 @@ biji_note_obj_get_icon (BijiItem *item,
   cairo_surface_t       *surface = NULL;
   GtkBorder              frame_slice = { 4, 3, 3, 6 };
   BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
 
-  if (note->priv->icon)
-    return note->priv->icon;
+  if (priv->icon)
+    return priv->icon;
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
@@ -616,7 +650,7 @@ biji_note_obj_get_icon (BijiItem *item,
   cairo_fill (cr);
 
   /* Text */
-  text = biji_note_id_get_content (note->priv->id);
+  text = biji_note_id_get_content (priv->id);
   if (text != NULL)
   {
     cairo_translate (cr, 10, 10);
@@ -644,11 +678,11 @@ biji_note_obj_get_icon (BijiItem *item,
 
   cairo_destroy (cr);
 
-  note->priv->icon = gd_embed_surface_in_frame (surface, "resource:///org/gnome/bijiben/thumbnail-frame.png",
+  priv->icon = gd_embed_surface_in_frame (surface, "resource:///org/gnome/bijiben/thumbnail-frame.png",
                                                 &frame_slice, &frame_slice);
   cairo_surface_destroy (surface);
 
-  return note->priv->icon;
+  return priv->icon;
 }
 
 static cairo_surface_t *
@@ -659,9 +693,10 @@ biji_note_obj_get_pristine (BijiItem *item,
   cairo_t               *cr;
   cairo_surface_t       *surface = NULL;
   BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
+  BijiNoteObjPrivate    *priv = biji_note_obj_get_instance_private (note);
 
-  if (note->priv->pristine)
-    return note->priv->pristine;
+  if (priv->pristine)
+    return priv->pristine;
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
@@ -678,8 +713,8 @@ biji_note_obj_get_pristine (BijiItem *item,
   cairo_fill (cr);
   cairo_destroy (cr);
 
-  note->priv->pristine = surface;
-  return note->priv->pristine;
+  priv->pristine = surface;
+  return priv->pristine;
 }
 
 static cairo_surface_t *
@@ -690,9 +725,10 @@ biji_note_obj_get_emblem (BijiItem *item,
   cairo_t               *cr;
   cairo_surface_t       *surface = NULL;
   BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
+  BijiNoteObjPrivate    *priv = biji_note_obj_get_instance_private (note);
 
-  if (note->priv->emblem)
-    return note->priv->emblem;
+  if (priv->emblem)
+    return priv->emblem;
 
   /* Create & Draw surface */
   surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
@@ -716,8 +752,8 @@ biji_note_obj_get_emblem (BijiItem *item,
 
   cairo_destroy (cr);
 
-  note->priv->emblem = surface;
-  return note->priv->emblem;
+  priv->emblem = surface;
+  return priv->emblem;
 }
 
 /* Single Note */
@@ -727,10 +763,12 @@ biji_note_obj_set_all_dates_now             (BijiNoteObj *note)
 {
   gint64 time;
   BijiNoteID *id;
+  BijiNoteObjPrivate *priv;
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
-  id = note->priv->id;
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (note));
+  id = priv->id;
   time = g_get_real_time () / G_USEC_PER_SEC;
   biji_note_id_set_create_date (id, time);
   biji_note_id_set_last_metadata_change_date (id, time);
@@ -748,18 +786,26 @@ biji_note_obj_is_template(BijiNoteObj *note)
 gint64
 biji_note_obj_get_create_date (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), 0);
 
-  return biji_note_id_get_create_date (note->priv->id);
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (note));
+
+  return biji_note_id_get_create_date (priv->id);
 }
 
 
 gboolean
 biji_note_obj_set_create_date (BijiNoteObj *note, gint64 time)
 {
+  BijiNoteObjPrivate *priv;
+
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), FALSE);
 
-  return biji_note_id_set_create_date (note->priv->id, time);
+  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (note));
+
+  return biji_note_id_set_create_date (priv->id, time);
 }
 
 
@@ -851,7 +897,9 @@ biji_note_obj_set_html (BijiNoteObj *note,
 gboolean
 biji_note_obj_is_opened (BijiNoteObj *note)
 {
-  return BIJI_IS_WEBKIT_EDITOR (note->priv->editor);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
+  return BIJI_IS_WEBKIT_EDITOR (priv->editor);
 }
 
 static void
@@ -861,7 +909,7 @@ on_biji_note_obj_closed_cb (BijiNoteObj *note)
   BijiItem *item;
   const gchar *title;
 
-  priv = note->priv;
+  priv = biji_note_obj_get_instance_private (note);
   item = BIJI_ITEM (note);
   priv->editor = NULL;
   title = biji_item_get_title (item);
@@ -891,25 +939,29 @@ on_biji_note_obj_closed_cb (BijiNoteObj *note)
 GtkWidget *
 biji_note_obj_open (BijiNoteObj *note)
 {
-  note->priv->editor = biji_webkit_editor_new (note);
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
 
-  g_signal_connect_swapped (note->priv->editor, "destroy",
+  priv->editor = biji_webkit_editor_new (note);
+
+  g_signal_connect_swapped (priv->editor, "destroy",
                             G_CALLBACK (on_biji_note_obj_closed_cb), note);
 
 #ifdef BUILD_ZEITGEIST
   insert_zeitgeist (note, ZEITGEIST_ZG_ACCESS_EVENT);
 #endif /* BUILD_ZEITGEIST */
 
-  return GTK_WIDGET (note->priv->editor);
+  return GTK_WIDGET (priv->editor);
 }
 
 GtkWidget *
 biji_note_obj_get_editor (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (!biji_note_obj_is_opened (note))
     return NULL;
 
-  return GTK_WIDGET (note->priv->editor);
+  return GTK_WIDGET (priv->editor);
 }
 
 
@@ -923,15 +975,19 @@ biji_note_obj_can_format       (BijiNoteObj *note)
 void
 biji_note_obj_editor_apply_format (BijiNoteObj *note, gint format)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (biji_note_obj_is_opened (note))
-    biji_webkit_editor_apply_format ( note->priv->editor , format);
+    biji_webkit_editor_apply_format (priv->editor, format);
 }
 
 gboolean
 biji_note_obj_editor_has_selection (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (biji_note_obj_is_opened (note))
-    return biji_webkit_editor_has_selection (note->priv->editor);
+    return biji_webkit_editor_has_selection (priv->editor);
 
   return FALSE;
 }
@@ -939,28 +995,36 @@ biji_note_obj_editor_has_selection (BijiNoteObj *note)
 const gchar *
 biji_note_obj_editor_get_selection (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (biji_note_obj_is_opened (note))
-    return biji_webkit_editor_get_selection (note->priv->editor);
+    return biji_webkit_editor_get_selection (priv->editor);
 
   return NULL;
 }
 
 void biji_note_obj_editor_cut (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (biji_note_obj_is_opened (note))
-    biji_webkit_editor_cut (note->priv->editor);
+    biji_webkit_editor_cut (priv->editor);
 }
 
 void biji_note_obj_editor_copy (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (biji_note_obj_is_opened (note))
-    biji_webkit_editor_copy (note->priv->editor);
+    biji_webkit_editor_copy (priv->editor);
 }
 
 void biji_note_obj_editor_paste (BijiNoteObj *note)
 {
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+
   if (biji_note_obj_is_opened (note))
-    biji_webkit_editor_paste (note->priv->editor);
+    biji_webkit_editor_paste (priv->editor);
 }
 
 static void
@@ -1015,9 +1079,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
                   0);
-
-
-  g_type_class_add_private (klass, sizeof (BijiNoteObjPrivate));
 
   /* Interface
    * is_collectable is implemented at higher level, eg local_note */

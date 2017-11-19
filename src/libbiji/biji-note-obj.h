@@ -39,18 +39,9 @@ typedef enum
   BIJI_ORDER_LIST
 } BijiEditorFormat;
 
-#define BIJI_TYPE_NOTE_OBJ             (biji_note_obj_get_type ())
-#define BIJI_NOTE_OBJ(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_NOTE_OBJ, BijiNoteObj))
-#define BIJI_NOTE_OBJ_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_NOTE_OBJ, BijiNoteObjClass))
-#define BIJI_IS_NOTE_OBJ(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_NOTE_OBJ))
-#define BIJI_IS_NOTE_OBJ_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_NOTE_OBJ))
-#define BIJI_NOTE_OBJ_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_NOTE_OBJ, BijiNoteObjClass))
+#define BIJI_TYPE_NOTE_OBJ (biji_note_obj_get_type ())
 
-
-typedef struct _BijiNoteObjClass BijiNoteObjClass;
-typedef struct _BijiNoteObj BijiNoteObj;
-
-typedef struct _BijiNoteObjPrivate BijiNoteObjPrivate;
+G_DECLARE_DERIVABLE_TYPE (BijiNoteObj, biji_note_obj, BIJI, NOTE_OBJ, BijiItem)
 
 struct _BijiNoteObjClass
 {
@@ -97,17 +88,6 @@ struct _BijiNoteObjClass
    */
   gboolean      (*can_format)        (BijiNoteObj *note);
 };
-
-
-struct _BijiNoteObj
-{
-  BijiItem parent_instance;
-  BijiNoteObjPrivate* priv ;
-};
-
-
-
-GType            biji_note_obj_get_type                      (void) G_GNUC_CONST;
 
 
 gboolean         biji_note_obj_are_same                      (BijiNoteObj *a,

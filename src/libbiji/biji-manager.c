@@ -28,8 +28,10 @@
 #include "provider/biji-own-cloud-provider.h"
 
 
-struct _BijiManagerPrivate
+struct _BijiManager
 {
+  GObject parent_instance;
+
   /* Notes & Collections.
    * Keep a direct pointer to local provider for convenience
    *
@@ -76,8 +78,6 @@ static guint biji_manager_signals[BIJI_MANAGER_SIGNALS] = { 0 };
 static GParamSpec *properties[BIJI_MANAGER_PROPERTIES] = { NULL, };
 static void biji_manager_initable_iface_init (GInitableIface *iface);
 static void biji_manager_async_initable_iface_init (GAsyncInitableIface *iface);
-
-#define BIJI_MANAGER_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BIJI_TYPE_MANAGER, BijiManagerPrivate))
 
 G_DEFINE_TYPE_WITH_CODE (BijiManager, biji_manager, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, biji_manager_initable_iface_init)
@@ -127,7 +127,7 @@ on_provider_abort_cb (BijiProvider *provider,
   const BijiProviderInfo *info;
 
   info = biji_provider_get_info (provider);
-  g_hash_table_remove (self->priv->providers, info->unique_id);
+  g_hash_table_remove (self->providers, info->unique_id);
 }
 
 /*
@@ -146,7 +146,7 @@ _add_provider (BijiManager *self,
   const BijiProviderInfo *info;
 
   info = biji_provider_get_info (provider);
-  g_hash_table_insert (self->priv->providers,
+  g_hash_table_insert (self->providers,
                        g_strdup (info->unique_id), g_object_ref (provider));
 
   g_signal_connect (provider, "loaded",
@@ -215,14 +215,13 @@ biji_manager_initable_init (GInitable *initable,
                             GError **error)
 {
   BijiManager *self = BIJI_MANAGER (initable);
-  BijiManagerPrivate *priv = self->priv;
   GError *local_error = NULL;
   GoaClient *client;
   ESourceRegistry *registry;
 
   /* If tracker fails for some reason,
    * do not attempt anything */
-  priv->connection = tracker_sparql_connection_get (NULL, &local_error);
+  self->connection = tracker_sparql_connection_get (NULL, &local_error);
 
   if (local_error)
   {
@@ -248,8 +247,8 @@ biji_manager_initable_init (GInitable *initable,
     return FALSE;
   }
 
-  priv->local_provider = biji_local_provider_new (self, self->priv->location);
-  _add_provider (self, priv->local_provider);
+  self->local_provider = biji_local_provider_new (self, self->location);
+  _add_provider (self, self->local_provider);
 
   load_goa_client (self, client);
   load_eds_registry (self, registry);
@@ -275,18 +274,13 @@ biji_manager_async_initable_iface_init (GAsyncInitableIface *iface)
 static void
 biji_manager_init (BijiManager *self)
 {
-  BijiManagerPrivate *priv;
-
-  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_MANAGER,
-                                                   BijiManagerPrivate);
-
   /* Item path is key for table */
-  priv->items = g_hash_table_new_full (g_str_hash,
+  self->items = g_hash_table_new_full (g_str_hash,
                                        g_str_equal,
                                        NULL,
                                        NULL);
 
-  priv->archives = g_hash_table_new_full (g_str_hash,
+  self->archives = g_hash_table_new_full (g_str_hash,
                                           g_str_equal,
                                           NULL,
                                           NULL);
@@ -297,35 +291,35 @@ biji_manager_init (BijiManager *self)
    * - local files stored notes = "local"
    * - own cloud notes = account_get_id
    */
-  priv->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
+  self->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
                                            g_free, g_object_unref);
 }
 
 
 #ifdef BUILD_ZEITGEIST
 ZeitgeistLog *
-biji_manager_get_zg_log (BijiManager *manager)
+biji_manager_get_zg_log (BijiManager *self)
 {
-  return manager->priv->log;
+  return self->log;
 }
 #endif /* BUILD_ZEITGEIST */
 
 
 TrackerSparqlConnection *
-biji_manager_get_tracker_connection (BijiManager *manager)
+biji_manager_get_tracker_connection (BijiManager *self)
 {
-  return manager->priv->connection;
+  return self->connection;
 }
 
 
 
 GList *
-biji_manager_get_providers         (BijiManager *manager)
+biji_manager_get_providers (BijiManager *self)
 {
   GList *providers, *l, *retval;
 
   retval = NULL;
-  providers = g_hash_table_get_values (manager->priv->providers);
+  providers = g_hash_table_get_values (self->providers);
 
   for (l = providers; l != NULL; l = l->next)
   {
@@ -341,15 +335,15 @@ biji_manager_get_providers         (BijiManager *manager)
 static void
 biji_manager_finalize (GObject *object)
 {
-  BijiManager *manager = BIJI_MANAGER (object) ;
+  BijiManager *self = BIJI_MANAGER (object);
 
 
-  g_clear_object (&manager->priv->location);
-  g_hash_table_destroy (manager->priv->items);
-  g_hash_table_destroy (manager->priv->archives);
+  g_clear_object (&self->location);
+  g_hash_table_destroy (self->items);
+  g_hash_table_destroy (self->archives);
 
-  g_hash_table_unref (manager->priv->providers);
-  g_clear_object (&manager->priv->local_provider);
+  g_hash_table_unref (self->providers);
+  g_clear_object (&self->local_provider);
 
   G_OBJECT_CLASS (biji_manager_parent_class)->finalize (object);
 }
@@ -369,15 +363,15 @@ biji_manager_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_LOCATION:
-      self->priv->location = g_value_dup_object (value);
+      self->location = g_value_dup_object (value);
       break;
 
     case PROP_COLOR:
       color = g_value_get_pointer (value);
-      self->priv->color.red = color->red;
-      self->priv->color.blue = color->blue;
-      self->priv->color.green = color->green;
-      self->priv->color.alpha = color->alpha;
+      self->color.red = color->red;
+      self->color.blue = color->blue;
+      self->color.green = color->green;
+      self->color.alpha = color->alpha;
       break;
 
     default:
@@ -397,7 +391,7 @@ biji_manager_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_LOCATION:
-      g_value_set_object (value, self->priv->location);
+      g_value_set_object (value, self->location);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -406,13 +400,13 @@ biji_manager_get_property (GObject    *object,
 }
 
 static gboolean
-title_is_unique (BijiManager *manager, gchar *title)
+title_is_unique (BijiManager *self, gchar *title)
 {
   gboolean is_unique = TRUE;
   BijiItem *iter;
   GList *items, *l;
 
-  items = g_hash_table_get_values (manager->priv->items);
+  items = g_hash_table_get_values (self->items);
 
   for ( l=items ; l != NULL ; l = l->next)
   {
@@ -488,14 +482,14 @@ on_item_deleted_cb (BijiItem *item, BijiManager *self)
   path = biji_item_get_uuid (item);
   store = NULL;
 
-  if ((to_delete = g_hash_table_lookup (self->priv->archives, path)))
+  if ((to_delete = g_hash_table_lookup (self->archives, path)))
   {
-    store = self->priv->archives;
+    store = self->archives;
     group = BIJI_ARCHIVED_ITEMS;
   }
-  else if ((to_delete = g_hash_table_lookup (self->priv->items, path)))
+  else if ((to_delete = g_hash_table_lookup (self->items, path)))
   {
-    store = self->priv->items;
+    store = self->items;
     group = BIJI_LIVING_ITEMS;
   }
 
@@ -516,15 +510,15 @@ on_item_trashed_cb (BijiItem *item, BijiManager *self)
   const gchar *path;
 
   path = biji_item_get_uuid (item);
-  item = g_hash_table_lookup (self->priv->items, path);
+  item = g_hash_table_lookup (self->items, path);
 
   if (item == NULL)
     return;
 
   biji_manager_notify_changed (self, BIJI_LIVING_ITEMS, BIJI_MANAGER_ITEM_TRASHED, item);
-  g_hash_table_insert (self->priv->archives,
+  g_hash_table_insert (self->archives,
                        (gpointer) biji_item_get_uuid (item), item);
-  g_hash_table_remove (self->priv->items, path);
+  g_hash_table_remove (self->items, path);
 }
 
 
@@ -546,9 +540,9 @@ on_item_restored_cb (BijiItem *item, gchar *old_uuid, BijiManager *manager)
   if (BIJI_IS_NOTE_OBJ (item))
     biji_note_obj_save_note (BIJI_NOTE_OBJ (item));
 
-  g_hash_table_insert (manager->priv->items,
+  g_hash_table_insert (manager->items,
                        (gpointer) biji_item_get_uuid (item), item);
-  g_hash_table_remove (manager->priv->archives, old_uuid);
+  g_hash_table_remove (manager->archives, old_uuid);
 
   biji_manager_notify_changed (manager,
                                BIJI_ARCHIVED_ITEMS,
@@ -595,11 +589,11 @@ biji_manager_add_item (BijiManager *manager,
   if (uid != NULL)
   {
     if (group == BIJI_LIVING_ITEMS &&
-        g_hash_table_lookup (manager->priv->items, uid))
+        g_hash_table_lookup (manager->items, uid))
       retval = FALSE;
 
     if (group == BIJI_ARCHIVED_ITEMS &&
-        g_hash_table_lookup (manager->priv->archives, uid))
+        g_hash_table_lookup (manager->archives, uid))
       retval = FALSE;
   }
 
@@ -612,10 +606,10 @@ biji_manager_add_item (BijiManager *manager,
   {
     /* Add the item*/
     if (group == BIJI_LIVING_ITEMS)
-      g_hash_table_insert (manager->priv->items,
+      g_hash_table_insert (manager->items,
                            (gpointer) biji_item_get_uuid (item), item);
     else if (group == BIJI_ARCHIVED_ITEMS)
-      g_hash_table_insert (manager->priv->archives,
+      g_hash_table_insert (manager->archives,
                            (gpointer) biji_item_get_uuid (item), item);
 
     /* Connect */
@@ -654,7 +648,7 @@ biji_manager_constructed (GObject *object)
   G_OBJECT_CLASS (biji_manager_parent_class)->constructed (object);
 
 #ifdef BUILD_ZEITGEIST
-  BIJI_MANAGER (object)->priv->log = biji_zeitgeist_init ();
+  BIJI_MANAGER (object)->log = biji_zeitgeist_init ();
 #endif /* BUILD_ZEITGEIST */
 
   /* Ensure cache directory for icons */
@@ -699,26 +693,25 @@ biji_manager_class_init (BijiManagerClass *klass)
 
 
   g_object_class_install_properties (object_class, BIJI_MANAGER_PROPERTIES, properties);
-  g_type_class_add_private (klass, sizeof (BijiManagerPrivate));
 }
 
 
 void
-biji_manager_get_default_color (BijiManager *manager, GdkRGBA *color)
+biji_manager_get_default_color (BijiManager *self, GdkRGBA *color)
 {
-  g_return_if_fail (BIJI_IS_MANAGER (manager));
+  g_return_if_fail (BIJI_IS_MANAGER (self));
 
-  color->red = manager->priv->color.red;
-  color->blue = manager->priv->color.blue;
-  color->green = manager->priv->color.green;
-  color->alpha = manager->priv->color.alpha;
+  color->red = self->color.red;
+  color->blue = self->color.blue;
+  color->green = self->color.green;
+  color->alpha = self->color.alpha;
 }
 
 
 
 GList *
-biji_manager_get_items             (BijiManager         *manager,
-                                    BijiItemsGroup       group)
+biji_manager_get_items (BijiManager    *self,
+                        BijiItemsGroup  group)
 {
   GList *list;
 
@@ -726,11 +719,11 @@ biji_manager_get_items             (BijiManager         *manager,
   switch (group)
   {
     case BIJI_LIVING_ITEMS:
-      list = g_hash_table_get_values (manager->priv->items);
+      list = g_hash_table_get_values (self->items);
       break;
 
     case BIJI_ARCHIVED_ITEMS:
-      list = g_hash_table_get_values (manager->priv->archives);
+      list = g_hash_table_get_values (self->archives);
       break;
 
     default:
@@ -757,25 +750,25 @@ biji_manager_empty_bin              (BijiManager        *self)
 {
   GList *items;
 
-  items = g_hash_table_get_values (self->priv->archives);
+  items = g_hash_table_get_values (self->archives);
   g_list_foreach (items, _delete_item, NULL);
   g_list_free (items);
 }
 
 
 BijiItem *
-biji_manager_get_item_at_path (BijiManager *manager, const gchar *path)
+biji_manager_get_item_at_path (BijiManager *self, const gchar *path)
 {
   BijiItem *retval;
-  g_return_val_if_fail (BIJI_IS_MANAGER(manager), NULL);
+  g_return_val_if_fail (BIJI_IS_MANAGER (self), NULL);
 
   if (path == NULL)
     return NULL;
 
-  retval = g_hash_table_lookup (manager->priv->items, (gconstpointer) path);
+  retval = g_hash_table_lookup (self->items, (gconstpointer) path);
 
   if (retval == NULL)
-    retval = g_hash_table_lookup (manager->priv->archives, (gconstpointer) path);
+    retval = g_hash_table_lookup (self->archives, (gconstpointer) path);
 
   return retval;
 }
@@ -851,11 +844,11 @@ biji_manager_note_new            (BijiManager  *self,
 
 
   if (provider_id != NULL)
-    provider = g_hash_table_lookup (self->priv->providers,
+    provider = g_hash_table_lookup (self->providers,
                                     provider_id);
 
   if (provider == NULL)
-    provider = self->priv->local_provider;
+    provider = self->local_provider;
 
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_new_note (provider, str);
 
@@ -869,7 +862,7 @@ biji_manager_note_new            (BijiManager  *self,
 
 
 BijiNoteObj *
-biji_manager_note_new_full (BijiManager   *manager,
+biji_manager_note_new_full (BijiManager   *self,
                             const gchar   *provider_id,
                             const gchar   *suggested_path,
                             BijiInfoSet   *info,
@@ -879,7 +872,7 @@ biji_manager_note_new_full (BijiManager   *manager,
   BijiProvider *provider;
   BijiNoteObj *retval;
 
-  provider = g_hash_table_lookup (manager->priv->providers,
+  provider = g_hash_table_lookup (self->providers,
                                   provider_id);
 
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_note_full (provider,

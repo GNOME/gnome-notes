@@ -41,35 +41,9 @@ typedef enum
   BIJI_ARCHIVED_ITEMS
 } BijiItemsGroup;
 
+#define BIJI_TYPE_MANAGER (biji_manager_get_type ())
 
-#define BIJI_TYPE_MANAGER             (biji_manager_get_type ())
-#define BIJI_MANAGER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_MANAGER, BijiManager))
-#define BIJI_MANAGER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_MANAGER, BijiManagerClass))
-#define BIJI_IS_MANAGER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_MANAGER))
-#define BIJI_IS_MANAGER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_MANAGER))
-#define BIJI_MANAGER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_MANAGER, BijiManagerClass))
-
-typedef struct _BijiManagerClass BijiManagerClass;
-typedef struct _BijiManager BijiManager;
-
-typedef struct _BijiManagerPrivate BijiManagerPrivate;
-
-struct _BijiManagerClass
-{
-  GObjectClass parent_class;
-};
-
-struct _BijiManager
-{
-  GObject parent_instance;
-  BijiManagerPrivate *priv ;
-};
-
-
-
-GType biji_manager_get_type (void) G_GNUC_CONST;
-
-
+G_DECLARE_FINAL_TYPE (BijiManager, biji_manager, BIJI, MANAGER, GObject)
 
 BijiManager     *biji_manager_new                   (GFile *location,
                                                     GdkRGBA *color,

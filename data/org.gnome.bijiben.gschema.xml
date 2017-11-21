@@ -34,5 +34,10 @@
       <summary>Window position</summary>
       <description>Window position (x and y).</description>
     </key>
+    <key name="view-type" enum="org.gnome.bijiben.GdMainViewType">
+      <summary>How to show note items</summary>
+      <description>Whether show note items in icon view or list view.</description>
+      <default>'icon'</default>
+    </key>
   </schema>
 </schemalist>

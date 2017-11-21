@@ -32,8 +32,6 @@
 #include "bjb-selection-toolbar.h"
 #include "bjb-window-base.h"
 
-#define DEFAULT_VIEW GD_MAIN_VIEW_ICON
-
 enum
 {
   PROP_0,
@@ -643,13 +641,20 @@ bjb_main_view_constructed(GObject *o)
   GtkAdjustment        *vadjustment;
   GtkWidget            *vscrollbar;
   GtkWidget            *button;
+  BjbSettings *settings;
+  GdMainViewType type;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
   self = BJB_MAIN_VIEW(o);
 
+  settings = bjb_app_get_settings (g_application_get_default ());
+  type = g_settings_get_enum (G_SETTINGS (settings), "view-type");
+
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
-  self->view = gd_main_view_new (DEFAULT_VIEW);
+  self->view = gd_main_view_new (type);
+  if (type == GD_MAIN_VIEW_LIST)
+    add_list_renderers (self);
   g_object_add_weak_pointer (G_OBJECT (self->view), (gpointer*) &(self->view));
 
   /* Main view */
@@ -796,6 +801,11 @@ bjb_main_view_get_view_type (BjbMainView *self)
 void
 bjb_main_view_set_view_type (BjbMainView *self, GdMainViewType type)
 {
+  BjbSettings *settings;
+
+  settings = bjb_app_get_settings(g_application_get_default());
+  g_settings_set_enum (G_SETTINGS (settings), "view-type", type);
+
   gd_main_view_set_view_type (self->view, type);
 
   if (type == GD_MAIN_VIEW_LIST)

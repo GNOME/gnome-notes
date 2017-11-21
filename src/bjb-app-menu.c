@@ -79,7 +79,7 @@ external_activated (GSimpleAction *action,
       g_free (uri);
     }
 
-    g_list_free (locations);
+    g_list_free_full (locations, g_free);
   }
 
   if (dialog)

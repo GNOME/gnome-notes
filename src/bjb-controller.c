@@ -347,7 +347,7 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
   /* Always sort notebooks before notes */
   if (BIJI_IS_NOTEBOOK ((gpointer) a))
   {
-    if (BIJI_IS_NOTE_OBJ (b))
+    if (BIJI_IS_NOTE_OBJ ((gpointer) b))
       result = -1;
   }
 

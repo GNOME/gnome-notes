@@ -1,5 +1,6 @@
 /* biji-date-time.c
  * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
+ * Copyright (C) 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -21,29 +22,48 @@
 const gchar *
 biji_get_time_diff_with_time (glong sec_since_epoch)
 {
-  GTimeVal now;
-  glong    diff;
+  GDate *now = g_date_new ();
+  GDate *date = g_date_new ();
+  gchar *str;
+  gint   diff;
 
-  /* Retrieve the number of days */
-  g_get_current_time (&now);
-  diff = (now.tv_sec - sec_since_epoch) / 86400 ;
+  g_return_val_if_fail (sec_since_epoch >= 0, _("Unknown"));
 
-  if (diff < 1)
-    return _("Today");
+  g_date_set_time_t (date, sec_since_epoch);
+  g_date_set_time_t (now, time (NULL));
+  diff = g_date_days_between (date, now);
 
-  if (diff < 2)
-    return _("Yesterday");
+  if (diff == 0)
+    {
+      str = _("Today");
+    }
+  else if (diff == 1)
+    {
+      str = _("Yesterday");
+    }
+  else if (diff < 7 &&
+           g_date_get_weekday (date) < g_date_get_weekday (now))
+    {
+      str = _("This week");
+    }
+  else if (diff < 0 || g_date_get_year (date) != g_date_get_year (now))
+    {
+      str = _("Unknown");
+    }
+  else if (diff < 31 &&
+           g_date_get_month (date) == g_date_get_month (now))
+    {
+      str = _("This month");
+    }
+  else
+    {
+      str = _("This year");
+    }
 
-  if (diff < 7)
-    return _("This week");
+  g_date_free (date);
+  g_date_free (now);
 
-  if (diff < 30)
-    return _("This month");
-
-  if (diff < 365)
-    return _("This year");
-
-  return _("Unknown");
+  return str;
 }
 
 

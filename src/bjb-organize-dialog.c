@@ -73,8 +73,6 @@ struct _BjbOrganizeDialog
 
 };
 
-#define BJB_ORGANIZE_DIALOG_GET_PRIVATE(o)  (G_TYPE_INSTANCE_GET_PRIVATE ((o), BJB_TYPE_ORGANIZE_DIALOG, BjbOrganizeDialogPrivate))
-
 G_DEFINE_TYPE (BjbOrganizeDialog, bjb_organize_dialog, GTK_TYPE_DIALOG);
 
 static void

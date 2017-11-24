@@ -331,25 +331,6 @@ bjb_settings_dialog_finalize (GObject *object)
   G_OBJECT_CLASS (bjb_settings_dialog_parent_class)->finalize (object);
 }
 
-
-static void
-bjb_settings_dialog_get_property (GObject    *object,
-                                  guint       prop_id,
-                                  GValue     *value,
-                                  GParamSpec *pspec)
-{
-  G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-}
-
-static void
-bjb_settings_dialog_set_property (GObject      *object,
-                                  guint         prop_id,
-                                  const GValue *value,
-                                  GParamSpec   *pspec)
-{
-  G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-}
-
 static void
 bjb_settings_dialog_init (BjbSettingsDialog *self)
 {
@@ -365,8 +346,6 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
   g_object_class = G_OBJECT_CLASS (klass);
   gtk_widget_class = GTK_WIDGET_CLASS (klass);
 
-  g_object_class->set_property = bjb_settings_dialog_set_property;
-  g_object_class->get_property = bjb_settings_dialog_get_property;
   g_object_class->finalize = bjb_settings_dialog_finalize;
   g_object_class->constructed = bjb_settings_dialog_constructed;
 

@@ -28,8 +28,6 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <libgd/gd-entry-focus-hack.h>
-#include <libgd/gd-tagged-entry.h>
 
 #include "bjb-controller.h"
 #include "bjb-main-toolbar.h"

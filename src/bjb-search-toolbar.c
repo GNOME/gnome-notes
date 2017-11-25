@@ -53,13 +53,11 @@ struct _BjbSearchToolbar
 
   GtkWidget         *entry;
   gchar             *needle;
-  GtkEntryBuffer    *entry_buf;
   BjbController     *controller;
 
   /* Signals */
   gulong            key_pressed;
-  gulong            deleted;
-  gulong            inserted;
+  gulong            text_id;
 
 
   GtkWidget         *window;
@@ -122,51 +120,24 @@ bjb_search_toolbar_set_property (GObject      *object,
 }
 
 static void
-action_search_entry (GtkEntry *entry, BjbController *controller)
+action_entry_text_change_callback (GtkEntry         *entry,
+                                   GParamSpec       *pspec,
+                                   BjbSearchToolbar *self)
 {
-  bjb_controller_set_needle (controller, gtk_entry_get_text (entry));
+  bjb_controller_set_needle (BJB_CONTROLLER (self->controller),
+                             gtk_entry_get_text (entry));
 }
-
-
-
-static void
-action_entry_insert_callback (GtkEntryBuffer *buffer,
-                              guint position,
-                              gchar *chars,
-                              guint n_chars,
-                              BjbSearchToolbar *self)
-{
-  action_search_entry (GTK_ENTRY (self->entry),
-                       self->controller);
-}
-
-
-
-
-static void
-action_entry_delete_callback (GtkEntryBuffer *buffer,
-                              guint position,
-                              guint n_chars,
-                              BjbSearchToolbar *self)
-{
-  action_search_entry (GTK_ENTRY (self->entry),
-                       self->controller);
-}
-
 
 void
 bjb_search_toolbar_disconnect (BjbSearchToolbar *self)
 {
   if (self->key_pressed)
     g_signal_handler_disconnect (self->window, self->key_pressed);
-  if (self->inserted)
-    g_signal_handler_disconnect (self->entry_buf, self->inserted);
-  if (self->deleted)
-    g_signal_handler_disconnect (self->entry_buf, self->deleted);
+  if (self->text_id)
+    g_signal_handler_disconnect (self->entry, self->text_id);
 
   self->key_pressed = 0;
-  self->inserted = 0;
-  self->deleted = 0;
+  self->text_id = 0;
 }
 
 void
@@ -178,13 +149,9 @@ bjb_search_toolbar_connect (BjbSearchToolbar *self)
                                          G_CALLBACK(on_key_pressed), self);
 
 
-  if (self->inserted == 0)
-    self->inserted = g_signal_connect (self->entry_buf, "inserted-text",
-                        G_CALLBACK (action_entry_insert_callback), self);
-
-  if (self->deleted == 0)
-    self->deleted = g_signal_connect (self->entry_buf, "deleted-text",
-                        G_CALLBACK (action_entry_delete_callback), self);
+  if (self->text_id == 0)
+    self->text_id = g_signal_connect (self->entry, "notify::text",
+                        G_CALLBACK (action_entry_text_change_callback), self);
 }
 
 static void
@@ -196,7 +163,6 @@ bjb_search_toolbar_constructed (GObject *obj)
 
   /* Get the needle from controller */
   self->needle = bjb_controller_get_needle (self->controller);
-  self->entry_buf = gtk_entry_get_buffer (GTK_ENTRY (self->entry));
 
   if (self->needle && g_strcmp0 (self->needle, "") != 0)
   {

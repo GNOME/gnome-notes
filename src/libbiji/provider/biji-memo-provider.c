@@ -34,8 +34,10 @@
 
 #define MINER_ID "gn:memo:miner:fd48e15b-2460-4761-a7be-942616102fa6"
 
-struct _BijiMemoProviderPrivate
+struct _BijiMemoProvider
 {
+  BijiProvider         parent_instance;
+
   BijiProviderInfo     info;
   ESource             *source;
   ECalClient          *client;
@@ -169,11 +171,11 @@ create_note_from_item (BijiMemoItem *item)
                                        &item->set,
 				       item->ecal,
                                        item->set.content,
-                                       item->self->priv->client);
+                                       item->self->client);
 
   biji_manager_get_default_color (manager, &color);
   biji_note_obj_set_rgba (note, &color);
-  g_hash_table_replace (item->self->priv->items,
+  g_hash_table_replace (item->self->items,
                         g_strdup (item->set.url),
                         note);
 }
@@ -191,15 +193,14 @@ trash (gpointer urn_uuid, gpointer self)
 static void
 handle_next_item (BijiMemoProvider *self)
 {
-  BijiMemoProviderPrivate *priv = self->priv;
   BijiMemoItem *item;
   GList        *list;
 
-  item = g_queue_pop_head (self->priv->queue);
+  item = g_queue_pop_head (self->queue);
 
   if (item != NULL)
   {
-    g_hash_table_remove (priv->tracker, item->set.url);
+    g_hash_table_remove (self->tracker, item->set.url);
 
     create_note_from_item (item);
     /* debug pour tracker. Il faut en plus datasource->urn */
@@ -220,12 +221,12 @@ handle_next_item (BijiMemoProvider *self)
   else
   {
     /* Post load tracker db clean-up */
-    list = g_hash_table_get_values (self->priv->tracker);
+    list = g_hash_table_get_values (self->tracker);
     g_list_foreach (list, trash, self);
     g_list_free (list);
 
     /* Now simply provide data to controller */
-    list = g_hash_table_get_values (self->priv->items);
+    list = g_hash_table_get_values (self->items);
     BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list, BIJI_LIVING_ITEMS);
     g_list_free (list);
   }
@@ -243,9 +244,9 @@ on_object_list_got (GObject      *obj,
   BijiMemoProvider *self = BIJI_MEMO_PROVIDER (user_data);
 
   error = NULL;
-  e_cal_client_get_object_list_finish (self->priv->client,
+  e_cal_client_get_object_list_finish (self->client,
                                        res,
-                                       &self->priv->memos,
+                                       &self->memos,
                                        &error);
 
   if (error)
@@ -255,7 +256,7 @@ on_object_list_got (GObject      *obj,
     return;
   }
 
-  for (l=self->priv->memos; l!=NULL; l=l->next)
+  for (l = self->memos; l != NULL; l = l->next)
   {
     ECalComponent      *co; /* Memo */
     ECalComponentText   text;
@@ -267,7 +268,7 @@ on_object_list_got (GObject      *obj,
 
 
     item = memo_item_new (self);
-    item->set.datasource_urn = g_strdup (self->priv->info.datasource);
+    item->set.datasource_urn = g_strdup (self->info.datasource);
     co = item->ecal = e_cal_component_new_from_icalcomponent (l->data);
 
     /* Summary, url */
@@ -317,7 +318,7 @@ on_object_list_got (GObject      *obj,
 
 
     e_cal_component_free_text_list (desc);
-    g_queue_push_head (self->priv->queue, item);
+    g_queue_push_head (self->queue, item);
   }
 
   handle_next_item (self);
@@ -360,7 +361,7 @@ on_notes_mined (GObject       *source_object,
   {
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      g_hash_table_insert (self->priv->tracker,
+      g_hash_table_insert (self->tracker,
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL)),
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL)));
 
@@ -369,7 +370,7 @@ on_notes_mined (GObject       *source_object,
     g_object_unref (cursor);
   }
 
-  e_cal_client_get_object_list (self->priv->client,
+  e_cal_client_get_object_list (self->client,
                                 i_want_all_memos(), /* sexp, not null */
                                 NULL, /* Cancellable */
                                 on_object_list_got,
@@ -417,7 +418,7 @@ _get_icon (BijiMemoProvider *self,
   GdkPixbuf        *pix, *embed;
   GtkBorder         frame_slice = { 4, 3, 3, 6 };
 
-  ext = e_source_get_extension (self->priv->source, E_SOURCE_EXTENSION_MEMO_LIST);
+  ext = e_source_get_extension (self->source, E_SOURCE_EXTENSION_MEMO_LIST);
   color = e_source_selectable_get_color (E_SOURCE_SELECTABLE (ext));
 
   if (color == NULL || !gdk_rgba_parse (&rgba, color))
@@ -457,10 +458,10 @@ on_client_connected (GObject      *obj,
       return;
   }
 
-  self->priv->client = E_CAL_CLIENT (obj);
+  self->client = E_CAL_CLIENT (obj);
   query = g_strdup_printf ("SELECT ?url ?urn WHERE {?urn a nfo:Note; "
                            " nie:dataSource '%s' ; nie:url ?url}",
-                           self->priv->info.datasource);
+                           self->info.datasource);
 
   tracker_sparql_connection_query_async (
       biji_manager_get_tracker_connection (
@@ -482,25 +483,23 @@ static void
 biji_memo_provider_constructed (GObject *obj)
 {
   BijiMemoProvider        *self;
-  BijiMemoProviderPrivate *priv;
 
   G_OBJECT_CLASS (biji_memo_provider_parent_class)->constructed (obj);
 
   self = BIJI_MEMO_PROVIDER (obj);
-  priv = self->priv;
 
   /* Info */
-  priv->info.unique_id = e_source_get_uid (priv->source);
-  priv->info.datasource = g_strdup_printf ("memo:%s",
-                                           priv->info.unique_id);
-  priv->info.name = g_strdup (e_source_get_display_name (priv->source));
-  if (!_get_icon (self, &priv->info.icon))
-     priv->info.icon = gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
+  self->info.unique_id = e_source_get_uid (self->source);
+  self->info.datasource = g_strdup_printf ("memo:%s",
+                                           self->info.unique_id);
+  self->info.name = g_strdup (e_source_get_display_name (self->source));
+  if (!_get_icon (self, &self->info.icon))
+     self->info.icon = gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
 
-  gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
-  g_object_ref (priv->info.icon);
+  gtk_image_set_pixel_size (GTK_IMAGE (self->info.icon), 48);
+  g_object_ref (self->info.icon);
 
-  e_cal_client_connect (self->priv->source,
+  e_cal_client_connect (self->source,
                         E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
 			10, /* wait up to 10 seconds until the memo list is connected */
                         NULL, /* cancel */
@@ -566,7 +565,7 @@ memo_create_note (BijiProvider *provider,
   info.created = g_get_real_time ();
 
   e_cal_client_get_default_object_sync (
-    self->priv->client, &icalcomp, NULL, NULL);
+    self->client, &icalcomp, NULL, NULL);
 
   if (icalcomp == NULL)
     icalcomp = icalcomponent_new (ICAL_VJOURNAL_COMPONENT);
@@ -581,7 +580,7 @@ memo_create_note (BijiProvider *provider,
 
   /* Dates and commit sequence */
   dttime = time (NULL);
-  zone = e_cal_client_get_default_timezone (self->priv->client);
+  zone = e_cal_client_get_default_timezone (self->client);
 
   if (dttime)
   {
@@ -618,7 +617,7 @@ memo_create_note (BijiProvider *provider,
     &info,
     comp,
     str,
-    self->priv->client);
+    self->client);
 
 
   biji_note_obj_set_title (note, title);
@@ -628,7 +627,7 @@ memo_create_note (BijiProvider *provider,
   g_free (html);
 
 
-  e_cal_client_create_object (self->priv->client,
+  e_cal_client_create_object (self->client,
                               icalcomp,
                               NULL, /* GCancellable */
                               on_object_created,
@@ -645,28 +644,22 @@ memo_create_note (BijiProvider *provider,
 static void
 biji_memo_provider_init (BijiMemoProvider *self)
 {
-  BijiMemoProviderPrivate *priv;
-
-  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_MEMO_PROVIDER, BijiMemoProviderPrivate);
-
-  priv->queue = g_queue_new ();
-  priv->items = g_hash_table_new_full (g_str_hash, g_str_equal,
+  self->queue = g_queue_new ();
+  self->items = g_hash_table_new_full (g_str_hash, g_str_equal,
                                        g_free, g_object_unref);
-  priv->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-  priv->memos = NULL;
-
+  self->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 }
 
 static void
 biji_memo_provider_finalize (GObject *object)
 {
-  BijiMemoProviderPrivate *priv = BIJI_MEMO_PROVIDER (object)->priv;
+  BijiMemoProvider *self = BIJI_MEMO_PROVIDER (object);
 
-  e_cal_client_free_icalcomp_slist (priv->memos);
+  e_cal_client_free_icalcomp_slist (self->memos);
 
-  g_hash_table_unref (priv->tracker);
-  g_hash_table_unref (priv->items);
-  g_queue_free_full (priv->queue, (GDestroyNotify) memo_item_free);
+  g_hash_table_unref (self->tracker);
+  g_hash_table_unref (self->items);
+  g_queue_free_full (self->queue, (GDestroyNotify) memo_item_free);
 
   G_OBJECT_CLASS (biji_memo_provider_parent_class)->finalize (object);
 }
@@ -685,7 +678,7 @@ biji_memo_provider_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_SOURCE:
-      self->priv->source = g_value_get_object (value);
+      self->source = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -705,7 +698,7 @@ biji_memo_provider_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_SOURCE:
-      g_value_set_object (value, self->priv->source);
+      g_value_set_object (value, self->source);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -718,7 +711,7 @@ biji_memo_provider_get_property (GObject    *object,
 static const BijiProviderInfo *
 memo_provider_get_info (BijiProvider *provider)
 {
-  return &(BIJI_MEMO_PROVIDER (provider)->priv->info);
+  return &(BIJI_MEMO_PROVIDER (provider)->info);
 }
 
 
@@ -745,8 +738,6 @@ biji_memo_provider_class_init (BijiMemoProviderClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (object_class, BIJI_MEMO_PROP, properties);
-
-  g_type_class_add_private (klass, sizeof (BijiMemoProviderPrivate));
 }
 
 

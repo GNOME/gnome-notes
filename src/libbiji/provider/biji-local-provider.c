@@ -37,8 +37,10 @@
  *
  */
 
-struct BijiLocalProviderPrivate_
+struct _BijiLocalProvider
 {
+  BijiProvider        parent_instance;
+
   BijiProviderInfo    info;
 
   GFile               *location;
@@ -117,14 +119,14 @@ create_notebook_if_needed (gpointer key,
 
   set = value;
   self = BIJI_LOCAL_PROVIDER (helper->provider);
-  notebook = g_hash_table_lookup (self->priv->items, key);
+  notebook = g_hash_table_lookup (self->items, key);
   manager = biji_provider_get_manager (BIJI_PROVIDER (self));
 
   if (!notebook)
   {
     notebook = biji_notebook_new (G_OBJECT (manager), key, set->title, set->mtime);
 
-    g_hash_table_insert (self->priv->items,
+    g_hash_table_insert (self->items,
                          g_strdup (key),
                          notebook);
   }
@@ -151,9 +153,9 @@ local_provider_finish (GHashTable *notebooks,
 
   /* Now simply provide data to controller */
   if (helper->group == BIJI_LIVING_ITEMS)
-    list = g_hash_table_get_values (self->priv->items);
+    list = g_hash_table_get_values (self->items);
   else
-    list = g_hash_table_get_values (self->priv->archives);
+    list = g_hash_table_get_values (self->archives);
 
   BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list, helper->group);
   g_list_free (list);
@@ -193,9 +195,9 @@ enumerate_next_files_ready_cb (GObject *source,
 
 
   if (helper->group == BIJI_LIVING_ITEMS)
-    base_path = g_file_get_path (self->priv->location);
+    base_path = g_file_get_path (self->location);
   else
-    base_path = g_file_get_path (self->priv->trash_file);
+    base_path = g_file_get_path (self->trash_file);
 
   for (l = files; l != NULL; l = l->next)
     {
@@ -223,9 +225,9 @@ enumerate_next_files_ready_cb (GObject *source,
       biji_lazy_deserialize (note);
 
       if (helper->group == BIJI_LIVING_ITEMS)
-        target = self->priv->items;
+        target = self->items;
       else
-        target = self->priv->archives;
+        target = self->archives;
 
       g_hash_table_replace (target, info.url, note);
 
@@ -269,7 +271,7 @@ enumerate_children_ready_cb (GObject *source,
 
   g_file_enumerator_next_files_async (enumerator, G_MAXINT,
                                       G_PRIORITY_DEFAULT,
-                                      self->priv->load_cancellable,
+                                      self->load_cancellable,
                                       enumerate_next_files_ready_cb,
                                       helper);
 }
@@ -289,13 +291,13 @@ load_from_location (BijiProviderHelper *helper)
 
   if (helper->group == BIJI_LIVING_ITEMS)
   {
-    file = self->priv->location;
-    cancel = self->priv->load_cancellable;
+    file = self->location;
+    cancel = self->load_cancellable;
   }
 
   else /* BIJI_ARCHIVED_ITEMS */
   {
-    file = self->priv->trash_file;
+    file = self->trash_file;
     cancel = NULL;
   }
 
@@ -318,8 +320,8 @@ biji_local_provider_constructed (GObject *object)
   self = BIJI_LOCAL_PROVIDER (object);
 
 
-  self->priv->trash_file = g_file_get_child (self->priv->location, ".Trash");
-  load_from_location (self->priv->living_helper);
+  self->trash_file = g_file_get_child (self->location, ".Trash");
+  load_from_location (self->living_helper);
 }
 
 
@@ -332,16 +334,16 @@ biji_local_provider_finalize (GObject *object)
 
   self = BIJI_LOCAL_PROVIDER (object);
 
-  if (self->priv->load_cancellable)
-    g_cancellable_cancel (self->priv->load_cancellable);
+  if (self->load_cancellable)
+    g_cancellable_cancel (self->load_cancellable);
 
-  g_object_unref (self->priv->load_cancellable);
-  g_object_unref (self->priv->info.icon);
-  g_object_unref (self->priv->location);
-  g_object_unref (self->priv->trash_file);
+  g_object_unref (self->load_cancellable);
+  g_object_unref (self->info.icon);
+  g_object_unref (self->location);
+  g_object_unref (self->trash_file);
 
-  biji_provider_helper_free (self->priv->living_helper);
-  biji_provider_helper_free (self->priv->archives_helper);
+  biji_provider_helper_free (self->living_helper);
+  biji_provider_helper_free (self->archives_helper);
 
   G_OBJECT_CLASS (biji_local_provider_parent_class)->finalize (object);
 }
@@ -350,27 +352,24 @@ biji_local_provider_finalize (GObject *object)
 static void
 biji_local_provider_init (BijiLocalProvider *self)
 {
-  BijiLocalProviderPrivate *priv;
-
-  priv = self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_LOCAL_PROVIDER, BijiLocalProviderPrivate);
-  priv->load_cancellable = g_cancellable_new ();
-  priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
-  priv->archives = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+  self->load_cancellable = g_cancellable_new ();
+  self->items = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+  self->archives = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
 
   /* Info */
-  priv->info.unique_id = "local";
-  priv->info.datasource = g_strdup_printf ("local:%s",
-                                           priv->info.unique_id);
-  priv->info.name = _("Local storage");
-  priv->info.icon =
+  self->info.unique_id = "local";
+  self->info.datasource = g_strdup_printf ("local:%s",
+                                           self->info.unique_id);
+  self->info.name = _("Local storage");
+  self->info.icon =
     gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
-  gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
-  g_object_ref (priv->info.icon);
+  gtk_image_set_pixel_size (GTK_IMAGE (self->info.icon), 48);
+  g_object_ref (self->info.icon);
 
   /* Helpers */
-  priv->living_helper = biji_provider_helper_new (BIJI_PROVIDER (self),
+  self->living_helper = biji_provider_helper_new (BIJI_PROVIDER (self),
                                                   BIJI_LIVING_ITEMS);
-  priv->archives_helper = biji_provider_helper_new (BIJI_PROVIDER (self),
+  self->archives_helper = biji_provider_helper_new (BIJI_PROVIDER (self),
                                                    BIJI_ARCHIVED_ITEMS);
 }
 
@@ -402,7 +401,7 @@ _get_note_skeleton (BijiLocalProvider *self)
   set.title = NULL;
   set.content = NULL;
   set.mtime = 0;
-  folder = g_file_get_path (self->priv->location);
+  folder = g_file_get_path (self->location);
 
   while (!ret)
   {
@@ -472,7 +471,7 @@ local_prov_create_note_full (BijiProvider  *provider,
   retval = NULL;
 
   /* PATH */
-  folder = g_file_get_path (self->priv->location);
+  folder = g_file_get_path (self->location);
   info->url = g_build_filename (folder, suggested_path, NULL);
   g_free (folder);
 
@@ -498,7 +497,7 @@ local_prov_load_archives (BijiProvider *prov)
   g_return_if_fail (BIJI_IS_LOCAL_PROVIDER (prov));
 
   self = BIJI_LOCAL_PROVIDER (prov);
-  load_from_location (self->priv->archives_helper);
+  load_from_location (self->archives_helper);
 }
 
 
@@ -514,7 +513,7 @@ biji_local_provider_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_LOCATION:
-      self->priv->location = g_value_dup_object (value);
+      self->location = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -533,7 +532,7 @@ biji_local_provider_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_LOCATION:
-      g_value_set_object (value, self->priv->location);
+      g_value_set_object (value, self->location);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -548,7 +547,7 @@ local_provider_get_info (BijiProvider *provider)
   BijiLocalProvider *self;
 
   self = BIJI_LOCAL_PROVIDER (provider);
-  return &(self->priv->info);
+  return &(self->info);
 }
 
 
@@ -579,8 +578,6 @@ biji_local_provider_class_init (BijiLocalProviderClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_LOCAL_PROP, properties);
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiLocalProviderPrivate));
 }
 
 

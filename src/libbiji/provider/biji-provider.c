@@ -52,13 +52,12 @@ static guint biji_provider_signals[PROVIDER_SIGNALS] = { 0 };
 static GParamSpec *properties[PROVIDER_PROP] = { NULL, };
 
 
-struct BijiProviderPrivate_
+typedef struct
 {
-  BijiManager        *manager;
-};
+  BijiManager *manager;
+} BijiProviderPrivate;
 
-G_DEFINE_TYPE (BijiProvider, biji_provider, G_TYPE_OBJECT)
-
+G_DEFINE_TYPE_WITH_PRIVATE (BijiProvider, biji_provider, G_TYPE_OBJECT)
 
 
 
@@ -88,7 +87,9 @@ biji_provider_helper_free          (BijiProviderHelper *helper)
 BijiManager *
 biji_provider_get_manager                (BijiProvider *provider)
 {
-  return provider->priv->manager;
+  BijiProviderPrivate *priv = biji_provider_get_instance_private (provider);
+
+  return priv->manager;
 }
 
 
@@ -123,8 +124,6 @@ biji_provider_finalize (GObject *object)
 static void
 biji_provider_init (BijiProvider *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_PROVIDER, BijiProviderPrivate);
-  self->priv->manager = NULL;
 }
 
 
@@ -155,12 +154,12 @@ biji_provider_set_property (GObject      *object,
                             GParamSpec   *pspec)
 {
   BijiProvider *self = BIJI_PROVIDER (object);
-
+  BijiProviderPrivate *priv = biji_provider_get_instance_private (self);
 
   switch (property_id)
     {
     case PROP_BOOK:
-      self->priv->manager = g_value_dup_object (value);
+      priv->manager = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -175,11 +174,12 @@ biji_provider_get_property (GObject    *object,
                             GParamSpec *pspec)
 {
   BijiProvider *self = BIJI_PROVIDER (object);
+  BijiProviderPrivate *priv = biji_provider_get_instance_private (self);
 
   switch (property_id)
     {
     case PROP_BOOK:
-      g_value_set_object (value, self->priv->manager);
+      g_value_set_object (value, priv->manager);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -232,6 +232,4 @@ biji_provider_class_init (BijiProviderClass *klass)
 
 
   g_object_class_install_properties (g_object_class, PROVIDER_PROP, properties);
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiProviderPrivate));
 }

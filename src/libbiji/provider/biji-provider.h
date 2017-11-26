@@ -21,22 +21,14 @@
 #include <glib-object.h>
 #include <glib/gi18n.h>  // translate providers type
 
-#include "../biji-info-set.h"
-#include "../biji-manager.h"
+#include "biji-info-set.h"
+#include "biji-manager.h"
 
 G_BEGIN_DECLS
 
+#define BIJI_TYPE_PROVIDER (biji_provider_get_type ())
 
-#define BIJI_TYPE_PROVIDER             (biji_provider_get_type ())
-#define BIJI_PROVIDER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_PROVIDER, BijiProvider))
-#define BIJI_PROVIDER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_PROVIDER, BijiProviderClass))
-#define BIJI_IS_PROVIDER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_PROVIDER))
-#define BIJI_IS_PROVIDER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_PROVIDER))
-#define BIJI_PROVIDER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_PROVIDER, BijiProviderClass))
-
-typedef struct BijiProvider_         BijiProvider;
-typedef struct BijiProviderClass_    BijiProviderClass;
-typedef struct BijiProviderPrivate_  BijiProviderPrivate;
+G_DECLARE_DERIVABLE_TYPE (BijiProvider, biji_provider, BIJI, PROVIDER, GObject)
 
 
 typedef struct
@@ -52,15 +44,7 @@ typedef struct
 
 } BijiProviderInfo;
 
-
-struct BijiProvider_
-{
-  GObject parent;
-  BijiProviderPrivate *priv;
-};
-
-
-struct BijiProviderClass_
+struct _BijiProviderClass
 {
   GObjectClass parent_class;
 
@@ -138,11 +122,6 @@ typedef struct
   BijiProvider *provider;
   BijiItemsGroup group;
 } BijiProviderHelper;
-
-
-GType                      biji_provider_get_type             (void);
-
-
 
 BijiProviderHelper*        biji_provider_helper_new           (BijiProvider *provider,
                                                                BijiItemsGroup group);

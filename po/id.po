@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-08-18 17:46+0000\n"
-"PO-Revision-Date: 2017-08-22 09:49+0700\n"
+"POT-Creation-Date: 2017-11-02 17:29+0000\n"
+"PO-Revision-Date: 2017-11-28 16:33+0700\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -17,226 +17,231 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.4\n"
 
-#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
+#: data/org.gnome.bijiben.appdata.xml.in:6
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: data/org.gnome.bijiben.appdata.xml.in:7
 msgid "Quickly jot notes"
 msgstr "Mencatat dengan cepat"
 
-#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
+#: data/org.gnome.bijiben.appdata.xml.in:9
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Catatan adalah suatu penyunting yang memungkinkan membuat daftar sederhana "
 "untuk dipakai nanti."
 
-#: ../data/org.gnome.bijiben.appdata.xml.in.h:3
+#: data/org.gnome.bijiben.appdata.xml.in:12
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Itu mengijinkan penggunaan ownCloud sebagai lokasi penyimpanan dan "
 "penyunting daring."
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:1
-#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
-#: ../src/bjb-window-base.c:18
+#: data/org.gnome.bijiben.desktop.in.in:3 src/bjb-app-menu.c:45
+#: src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Catatan"
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:2
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.bijiben.desktop.in.in:5
 msgid "notes;reminder;"
 msgstr "catatan;pengingat;"
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:3
+#: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
 msgstr "Kirim catatan, tag berkas!"
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:4
+#: data/org.gnome.bijiben.desktop.in.in:7
 msgid "Note-taker"
 msgstr "Perekam catatan"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:1
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.bijiben.desktop.in.in:10
+msgid "org.gnome.bijiben"
+msgstr "org.gnome.bijiben"
+
+#: data/org.gnome.bijiben.gschema.xml:5
 msgid "Custom Font"
 msgstr "Fonta Ubahan"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:2
+#: data/org.gnome.bijiben.gschema.xml:6
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Nama fonta yang diisi di sini akan dipakai sebagai fonta ketika menampilkan "
 "catatan."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:3
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Whether to use the system monospace font"
 msgstr "Apakah memakai fonta lebar-tetap sistem"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:4
+#: data/org.gnome.bijiben.gschema.xml:14
 msgid "New notes color."
 msgstr "Warna catatan baru."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:5
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Nama warna yang diisi di sini akan dipakai sebagai warna ketika membuat "
 "catatan baru."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:6
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "Primary notes provider to use for new notes."
 msgstr "Penyedia catatan primer yang dipakai untuk catatan baru."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:7
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Buku catatan primer adalah tempat dimana catatan baru dibuat."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:8
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Window maximized"
 msgstr "Jendela dimaksimalkan"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:9
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "Window maximized state."
 msgstr "Keadaan termaksimalkan jendela."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:10
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window size"
 msgstr "Ukuran jendela"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:11
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window size (width and height)."
 msgstr "Ukuran jendela (lebar dan tinggi)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:12
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window position"
 msgstr "Posisi jendela"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:13
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window position (x and y)."
 msgstr "Posisi jendela (x dan y)."
 
-#: ../src/bijiben-shell-search-provider.c:272 ../src/bjb-main-toolbar.c:660
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:649
 msgid "Untitled"
 msgstr "Tanpa Judul"
 
-#: ../src/bjb-app-menu.c:46
-msgid "Simple notebook for GNOME"
-msgstr "Buku catatan sederhana bagi GNOME"
-
-#: ../src/bjb-app-menu.c:52
-msgid "translator-credits"
-msgstr ""
-"Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
-"Kukuh Syafaat <syafaatkukuh@gmail.com>, 2017."
-
-#: ../src/bjb-bijiben.c:364
-msgid "Show the application's version"
+#: src/bjb-application.c:350
+msgid "Show the application’s version"
 msgstr "Tampilkan versi aplikasi"
 
-#: ../src/bjb-bijiben.c:366
+#: src/bjb-application.c:352
 msgid "Create a new note"
 msgstr "Buat catatan baru"
 
-#: ../src/bjb-bijiben.c:368
-msgid "[FILE...]"
+#: src/bjb-application.c:354
+msgid "[FILE…]"
 msgstr "[BERKAS...]"
 
-#: ../src/bjb-bijiben.c:376
+#: src/bjb-application.c:362
 msgid "Take notes and export them everywhere."
 msgstr "Merekam catatan dan mengekspor mereka kemana-mana."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:387
+#: src/bjb-application.c:373
 msgid "Could not parse arguments"
 msgstr "Tak bisa mengurai argumen"
 
-#: ../src/bjb-bijiben.c:396
+#: src/bjb-application.c:382
 msgid "GNOME Notes"
 msgstr "GNOME Catatan"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:408
+#: src/bjb-application.c:394
 msgid "Could not register the application"
 msgstr "Tak bisa mendaftarkan aplikasi"
 
-#: ../src/bjb-color-button.c:146
+#: src/bjb-app-menu.c:46
+msgid "Simple notebook for GNOME"
+msgstr "Buku catatan sederhana bagi GNOME"
+
+#: src/bjb-app-menu.c:52
+msgid "translator-credits"
+msgstr ""
+"Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
+"Kukuh Syafaat <syafaatkukuh@gmail.com>, 2017."
+
+#: src/bjb-color-button.c:146
 msgid "Note Color"
 msgstr "Warna Catatan"
 
-#: ../src/bjb-empty-results-box.c:87
-msgid "No notes"
-msgstr "Tiada catatan"
-
-#: ../src/bjb-empty-results-box.c:131
+#: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
 msgstr "Tekan tombol Baru untuk membuat sebuah catatan."
 
-#: ../src/bjb-empty-results-box.c:153
+#: src/bjb-empty-results-box.c:85
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:159
-msgid "Please install 'Tracker' then restart the application."
-msgstr "Mohon pasang 'Pelacak' lalu mulai lagi aplikasi."
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr "Mohon pasang \"Pelacak\" lalu mulai lagi aplikasi."
 
-#: ../src/bjb-import-dialog.c:309
+#: src/bjb-import-dialog.c:308
 msgid "Custom Location"
 msgstr "Lokasi Ubahan"
 
-#: ../src/bjb-import-dialog.c:404
+#: src/bjb-import-dialog.c:403
 msgid "Import Notes"
 msgstr "Impro Catatan"
 
-#: ../src/bjb-import-dialog.c:411
+#: src/bjb-import-dialog.c:410
 msgid "Import"
 msgstr "Impor"
 
-#: ../src/bjb-import-dialog.c:422
+#: src/bjb-import-dialog.c:421
 msgid "Select import location"
 msgstr "Pilih lokasi impor"
 
-#: ../src/bjb-import-dialog.c:443
+#: src/bjb-import-dialog.c:442
 msgid "Tomboy application"
 msgstr "Aplikasi Tomboy"
 
-#: ../src/bjb-import-dialog.c:449
+#: src/bjb-import-dialog.c:448
 msgid "Gnote application"
 msgstr "Aplikasi Gnote"
 
-#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+#: src/bjb-load-more-button.c:72 src/bjb-load-more-button.c:171
 msgid "Load More"
 msgstr "Muat Lebih Banyak"
 
-#: ../src/bjb-load-more-button.c:98
-msgid "Loading..."
+#: src/bjb-load-more-button.c:98
+msgid "Loading…"
 msgstr "Memuat..."
 
-#: ../src/bjb-main-toolbar.c:143
+#: src/bjb-main-toolbar.c:142
 msgid "Click on items to select them"
 msgstr "Klik pada butir untuk memilihnya"
 
-#: ../src/bjb-main-toolbar.c:145
+#: src/bjb-main-toolbar.c:144
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d dipilih"
 
-#: ../src/bjb-main-toolbar.c:265
+#: src/bjb-main-toolbar.c:254
 msgid "Search note titles, content and notebooks"
 msgstr "Cari judul catatan, isi, dan buku catatan"
 
 #. Select
-#: ../src/bjb-main-toolbar.c:307
+#: src/bjb-main-toolbar.c:296
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../src/bjb-main-toolbar.c:321
+#: src/bjb-main-toolbar.c:310
 msgid "Exit selection mode"
 msgstr "Keluar mode pemilihan"
 
-#: ../src/bjb-main-toolbar.c:351
+#: src/bjb-main-toolbar.c:340
 #, c-format
 msgid "Results for %s"
 msgstr "Hasil bagi %s"
 
-#: ../src/bjb-main-toolbar.c:354
+#: src/bjb-main-toolbar.c:343
 msgid "New and Recent"
 msgstr "Baru dan Terkini"
 
@@ -244,30 +249,30 @@ msgstr "Baru dan Terkini"
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
 #.
-#: ../src/bjb-main-toolbar.c:442
+#: src/bjb-main-toolbar.c:431
 msgid "_New"
 msgstr "_Baru"
 
-#: ../src/bjb-main-toolbar.c:461 ../src/bjb-main-toolbar.c:559
+#: src/bjb-main-toolbar.c:450 src/bjb-main-toolbar.c:548
 msgid "Selection mode"
 msgstr "Mode pemilihan"
 
-#: ../src/bjb-main-toolbar.c:496
+#: src/bjb-main-toolbar.c:485
 msgid "View notes and notebooks in a list"
 msgstr "Lihat catatan dan buku catatan dalam suatu daftar"
 
-#: ../src/bjb-main-toolbar.c:520
+#: src/bjb-main-toolbar.c:509
 msgid "View notes and notebooks in a grid"
 msgstr "Lihat catatan dan buku catatan dalam suatu kisi"
 
-#: ../src/bjb-main-toolbar.c:539
+#: src/bjb-main-toolbar.c:528
 msgid "Trash"
 msgstr "Tong Sampah"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:578
+#: src/bjb-main-toolbar.c:567
 msgid "Empty"
 msgstr "Kosong"
 
@@ -275,49 +280,49 @@ msgstr "Kosong"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: ../src/bjb-main-toolbar.c:758
+#: src/bjb-main-toolbar.c:747
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
 #. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:769
+#: src/bjb-main-toolbar.c:758
 msgid "Undo"
 msgstr "Batal"
 
-#: ../src/bjb-main-toolbar.c:777
+#: src/bjb-main-toolbar.c:766
 msgid "Redo"
 msgstr "Jadi Lagi"
 
 #. Notes tags
-#: ../src/bjb-main-toolbar.c:792 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:383
+#: src/bjb-main-toolbar.c:781 src/bjb-organize-dialog.c:370
+#: src/bjb-selection-toolbar.c:383
 msgid "Notebooks"
 msgstr "Buku Catatan"
 
 #. Share
-#: ../src/bjb-main-toolbar.c:800
+#: src/bjb-main-toolbar.c:789
 msgid "Email this Note"
 msgstr "Surelkan Catatan ini"
 
 #. Delete Note
 #. Trash notes
-#: ../src/bjb-main-toolbar.c:813 ../src/bjb-selection-toolbar.c:417
+#: src/bjb-main-toolbar.c:802 src/bjb-selection-toolbar.c:417
 msgid "Move to Trash"
 msgstr "Pindahkan ke Tong Sampah"
 
-#: ../src/bjb-main-toolbar.c:873
+#: src/bjb-main-toolbar.c:862
 msgid "More options…"
 msgstr "Lebih banyak opsi..."
 
-#: ../src/bjb-main-toolbar.c:896 ../src/bjb-selection-toolbar.c:394
+#: src/bjb-main-toolbar.c:885 src/bjb-selection-toolbar.c:394
 msgid "Note color"
 msgstr "Warna catatan"
 
-#: ../src/bjb-main-view.c:504
+#: src/bjb-main-view.c:503
 msgid "Notebook"
 msgstr "Buku Catatan"
 
-#: ../src/bjb-main-view.c:507
+#: src/bjb-main-view.c:506
 msgid "Note"
 msgstr "Catatan"
 
@@ -326,170 +331,172 @@ msgstr "Catatan"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: ../src/bjb-note-view.c:196
+#: src/bjb-note-view.c:196
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Terakhir diperbarui</b> %s"
 
-#: ../src/bjb-organize-dialog.c:396
+#: src/bjb-organize-dialog.c:396
 msgid "Enter a name to create a notebook"
 msgstr "Masukkan suatu nama untuk membuat sebuah buku catatan"
 
-#: ../src/bjb-organize-dialog.c:406
+#: src/bjb-organize-dialog.c:406
 msgid "New notebook"
 msgstr "Buku catatan baru"
 
-#: ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Batal"
-
-#: ../src/bjb-rename-note.c:19
-msgid "_OK"
-msgstr "_OK"
-
 #. Restore (do not show)
-#: ../src/bjb-selection-toolbar.c:388
+#: src/bjb-selection-toolbar.c:388
 msgid "Restore"
 msgstr "Pulihkan"
 
-#: ../src/bjb-selection-toolbar.c:405
+#: src/bjb-selection-toolbar.c:405
 msgid "Share note"
 msgstr "Berbagi catatan"
 
 #. Detach
-#: ../src/bjb-selection-toolbar.c:411
+#: src/bjb-selection-toolbar.c:411
 msgid "Open in another window"
 msgstr "Buka di jendela lain"
 
 #. Permanently delete (do not show )
-#: ../src/bjb-selection-toolbar.c:425
+#: src/bjb-selection-toolbar.c:425
 msgid "Permanently Delete"
 msgstr "Hapus Secara Permanen"
 
-#: ../src/libbiji/biji-date-time.c:32
+#: src/libbiji/biji-date-time.c:32
 msgid "Today"
 msgstr "Hari ini"
 
-#: ../src/libbiji/biji-date-time.c:35
+#: src/libbiji/biji-date-time.c:35
 msgid "Yesterday"
 msgstr "Kemarin"
 
-#: ../src/libbiji/biji-date-time.c:38
+#: src/libbiji/biji-date-time.c:38
 msgid "This week"
 msgstr "Minggu ini"
 
-#: ../src/libbiji/biji-date-time.c:41
+#: src/libbiji/biji-date-time.c:41
 msgid "This month"
 msgstr "Bulan ini"
 
-#: ../src/libbiji/biji-date-time.c:44
+#: src/libbiji/biji-date-time.c:44
 msgid "This year"
 msgstr "Tahun ini"
 
-#: ../src/libbiji/biji-date-time.c:46
+#: src/libbiji/biji-date-time.c:46
 msgid "Unknown"
 msgstr "Tak diketahui"
 
-#: ../src/libbiji/biji-notebook.c:264
+#: src/libbiji/biji-notebook.c:264
 msgid "Local"
 msgstr "Lokal"
 
-#: ../src/libbiji/provider/biji-local-provider.c:364
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
 
-#: ../src/resources/app-menu.ui.h:1
+#: src/resources/app-menu.ui:5
 msgid "_Import Notes"
 msgstr "_Impor Catatan"
 
-#: ../src/resources/app-menu.ui.h:2
+#: src/resources/app-menu.ui:9
 msgid "_View Trash"
 msgstr "_Tilik Tong Sampah"
 
-#: ../src/resources/app-menu.ui.h:3
+#: src/resources/app-menu.ui:15
 msgid "_Preferences"
 msgstr "_Preferensi"
 
-#: ../src/resources/app-menu.ui.h:4
+#: src/resources/app-menu.ui:21
 msgid "_Help"
 msgstr "_Bantuan"
 
-#: ../src/resources/app-menu.ui.h:5
+#: src/resources/app-menu.ui:25
 msgid "_About"
 msgstr "Tent_ang"
 
-#: ../src/resources/app-menu.ui.h:6
+#: src/resources/app-menu.ui:29
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: ../src/resources/editor-toolbar.ui.h:1
+#: src/resources/editor-toolbar.ui:40
 msgid "Cut"
 msgstr "Potong"
 
-#: ../src/resources/editor-toolbar.ui.h:2
+#: src/resources/editor-toolbar.ui:55
 msgid "Copy"
 msgstr "Salin"
 
-#: ../src/resources/editor-toolbar.ui.h:3
+#: src/resources/editor-toolbar.ui:70
 msgid "Paste"
 msgstr "Tempel"
 
-#: ../src/resources/editor-toolbar.ui.h:4
+#: src/resources/editor-toolbar.ui:104
 msgid "Bold"
 msgstr "Tebal"
 
-#: ../src/resources/editor-toolbar.ui.h:5
+#: src/resources/editor-toolbar.ui:120
 msgid "Italic"
 msgstr "Miring"
 
-#: ../src/resources/editor-toolbar.ui.h:6
+#: src/resources/editor-toolbar.ui:136
 msgid "Strike"
 msgstr "Coret"
 
-#: ../src/resources/editor-toolbar.ui.h:7
+#: src/resources/editor-toolbar.ui:161
 msgid "* "
 msgstr "* "
 
-#: ../src/resources/editor-toolbar.ui.h:8
+#: src/resources/editor-toolbar.ui:165
 msgid "Bullets"
 msgstr "Bulet"
 
-#: ../src/resources/editor-toolbar.ui.h:9
+#: src/resources/editor-toolbar.ui:177
 msgid "1."
 msgstr "1."
 
-#: ../src/resources/editor-toolbar.ui.h:10
+#: src/resources/editor-toolbar.ui:181
 msgid "List"
 msgstr "Daftar"
 
-#: ../src/resources/editor-toolbar.ui.h:11
+#: src/resources/editor-toolbar.ui:205
 msgid "Copy selection to a new note"
 msgstr "Salin pilihan ke catatan baru"
 
-#: ../src/resources/settings-dialog.ui.h:1
+#: src/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "Tiada catatan"
+
+#: src/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: ../src/resources/settings-dialog.ui.h:2
+#: src/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Pakai Fonta Sistem"
 
-#: ../src/resources/settings-dialog.ui.h:3
+#: src/resources/settings-dialog.ui:50
 msgid "Note Font"
 msgstr "Fonta Catatan"
 
-#: ../src/resources/settings-dialog.ui.h:4
+#: src/resources/settings-dialog.ui:62
 msgid "Default Color"
 msgstr "Warna Baku"
 
-#: ../src/resources/settings-dialog.ui.h:5
+#: src/resources/settings-dialog.ui:113
 msgid "Note Edition"
 msgstr "Edisi Catatan"
 
-#: ../src/resources/settings-dialog.ui.h:6
+#: src/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
 msgstr "Pilih lokasi penyimpanan bawaan:"
 
-#: ../src/resources/settings-dialog.ui.h:7
+#: src/resources/settings-dialog.ui:157
 msgid "Primary Book"
 msgstr "Buku Primer"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Batal"
+
+#~ msgid "_OK"
+#~ msgstr "_OK"

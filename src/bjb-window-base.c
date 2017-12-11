@@ -57,11 +57,16 @@ struct _BjbWindowBase
   GtkWidget            *spinner;
   GtkWidget            *no_note;
 
-  guint                save_geometry_id;
-
   /* when a note is opened */
   BijiNoteObj          *note;
   gboolean              detached; // detached note
+
+  /* window geometry */
+  gint                  width;
+  gint                  height;
+  gint                  pos_x;
+  gint                  pos_y;
+  gboolean              is_maximized;
 };
 
 /* Gobject */
@@ -174,9 +179,25 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
   return FALSE;
 }
 
+static void
+bjb_window_base_save_geometry (BjbWindowBase *self)
+{
+  GSettings *settings = G_SETTINGS (self->settings);
 
+  g_settings_set_boolean (settings, "window-maximized", self->is_maximized);
+  g_settings_set (settings, "window-size", "(ii)", self->width, self->height);
+  g_settings_set (settings, "window-position", "(ii)", self->pos_x, self->pos_y);
+}
 
+static void
+bjb_window_base_load_geometry (BjbWindowBase *self)
+{
+  GSettings *settings = G_SETTINGS (self->settings);
 
+  self->is_maximized = g_settings_get_boolean (settings, "window-maximized");
+  g_settings_get (settings, "window-size", "(ii)", &self->width, &self->height);
+  g_settings_get (settings, "window-position", "(ii)", &self->pos_x, &self->pos_y);
+}
 
 /* Just disconnect to avoid crash, the finalize does the real
  * job */
@@ -185,46 +206,7 @@ bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
 {
   bjb_main_view_disconnect_scrolled_window (self->view);
   bjb_controller_disconnect (self->controller);
-}
-
-static gboolean
-bjb_application_window_configured (gpointer   user_data)
-{
-  BjbWindowBase *self;
-  GSettings *settings;
-  GVariant *variant;
-  gint32 size[2];
-  gint32 position[2];
-  gboolean maximized;
-
-  self = BJB_WINDOW_BASE (user_data);
-  settings = G_SETTINGS (self->settings);
-
-  self->save_geometry_id = 0;
-
-  maximized = gtk_window_is_maximized (GTK_WINDOW (self));
-  g_settings_set_boolean (settings, "window-maximized", maximized);
-
-  if (maximized)
-    return FALSE;
-
-  gtk_window_get_size (GTK_WINDOW (self),
-                       (gint *) &size[0],
-                       (gint *) &size[1]);
-  variant = g_variant_new_fixed_array (G_VARIANT_TYPE_INT32,
-                                       size, 2,
-                                       sizeof (size[0]));
-  g_settings_set_value (settings, "window-size", variant);
-
-  gtk_window_get_position (GTK_WINDOW (self),
-                           (gint *) &position[0],
-                           (gint *) &position[1]);
-  variant = g_variant_new_fixed_array (G_VARIANT_TYPE_INT32,
-                                       position, 2,
-                                       sizeof (position[0]));
-  g_settings_set_value (settings, "window-position", variant);
-
-  return FALSE;
+  bjb_window_base_save_geometry (self);
 }
 
 static gboolean
@@ -232,19 +214,18 @@ bjb_window_base_configure_event (GtkWidget         *widget,
                                  GdkEventConfigure *event)
 {
   BjbWindowBase *self;
-  gboolean   retval;
 
   self = BJB_WINDOW_BASE (widget);
 
-  if (self->save_geometry_id != 0)
-    g_source_remove (self->save_geometry_id);
+  self->is_maximized = gtk_window_is_maximized (GTK_WINDOW (self));
+  if (!self->is_maximized)
+    {
+      gtk_window_get_size (GTK_WINDOW (self), &self->width, &self->height);
+      gtk_window_get_position (GTK_WINDOW (self), &self->pos_x, &self->pos_y);
+    }
 
-  self->save_geometry_id = g_timeout_add (SAVE_GEOMETRY_ID_TIMEOUT,
-                                          bjb_application_window_configured,
-                                          self);
-  retval = GTK_WIDGET_CLASS (bjb_window_base_parent_class)->configure_event (widget,
-                                                                             event);
-  return retval;
+  return GTK_WIDGET_CLASS (bjb_window_base_parent_class)->configure_event (widget,
+                                                                           event);
 }
 
 
@@ -253,11 +234,6 @@ static void
 bjb_window_base_constructed (GObject *obj)
 {
   BjbWindowBase *self = BJB_WINDOW_BASE (obj);
-  gboolean maximized;
-  const gint32 *position;
-  const gint32 *size;
-  gsize n_elements;
-  GVariant *variant;
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
 
@@ -266,23 +242,13 @@ bjb_window_base_constructed (GObject *obj)
   gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
-  variant = g_settings_get_value (G_SETTINGS (self->settings), "window-size");
-  size = g_variant_get_fixed_array (variant, &n_elements, sizeof (gint32));
-  if (n_elements == 2)
-    gtk_window_set_default_size (GTK_WINDOW (self), size[0], size[1]);
+  bjb_window_base_load_geometry (self);
+  gtk_window_set_default_size (GTK_WINDOW (self), self->width, self->height);
 
-  g_variant_unref (variant);
-
-  variant = g_settings_get_value (G_SETTINGS (self->settings), "window-position");
-  position = g_variant_get_fixed_array (variant, &n_elements, sizeof (gint32));
-  if (n_elements == 2)
-    gtk_window_move (GTK_WINDOW (self), position[0], position[1]);
-
-  g_variant_unref (variant);
-
-  maximized = g_settings_get_boolean (G_SETTINGS (self->settings), "window-maximized");
-  if (maximized)
+  if (self->is_maximized)
     gtk_window_maximize (GTK_WINDOW (self));
+  else if (self->pos_x >= 0)
+    gtk_window_move (GTK_WINDOW (self), self->pos_x, self->pos_y);
 
   /*  We probably want to offer a no entry window at first (startup) */
   self->entry = NULL;

@@ -1,3 +1,16 @@
+Overview of changes in 3.27.3
+=============================
+
+* More code clean up (Mohammed Sadiq)
+* More widgets migrated to GtkBuilder (Mohammed Sadiq)
+* Remember last application view style (Jonathan Kang)
+
+Translations
+* de (Mario Blättermann)
+* id (Kukuh Syafaat)
+* nb (Kjartan Maraas)
+* pt_BR (Rafael Fontenelle)
+
 Overview of changes in 3.27.2
 =============================
 

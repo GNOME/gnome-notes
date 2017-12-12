@@ -1,6 +1,7 @@
 /* bjb-selection-toolbar.c
  * Copyright © 2012, 2013 Red Hat, Inc.
  * Copyright © 2013 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -46,46 +47,30 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 struct _BjbSelectionToolbar
 {
-  GtkRevealer         parent_instance;
+  GtkRevealer parent_instance;
 
-  GtkActionBar       *bar;
-  BjbMainView        *view ;
-  GtkWidget          *widget ;
-  GdMainView         *selection ;
+  BjbMainView *view;
+  GdMainView *selection;
 
-  /* Header bar members. Classic view */
-  GtkWidget          *toolbar_trash;
-  GtkWidget          *toolbar_color;
-  GtkWidget          *toolbar_tag;
-  GtkWidget          *toolbar_share;
-  GtkWidget          *toolbar_detach;
-
-  /* Header bar, archive view */
-  GtkWidget          *toolbar_restore;
-  GtkWidget          *toolbar_delete;
+  GtkWidget *button_stack;
+  GtkWidget *notebook_button;
+  GtkWidget *detach_button;
+  GtkWidget *color_button;
+  GtkWidget *share_button;
 };
 
 G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_REVEALER)
 
 
-/*
- * Color dialog is transient and could damage the display of self
- * We do not want a modal window since the app may have several
- * The fix is to hide self untill dialog has run
- *
- */
 static void
-hide_self (GtkWidget *self)
-{
-  gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
-}
-
-
-static void
-action_color_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+action_color_selected_items (GtkWidget           *w,
+                             BjbSelectionToolbar *self)
 {
   GList *l, *selection;
   GdkRGBA color = {0,0,0,0};
+
+  g_assert (GTK_IS_COLOR_CHOOSER (w));
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   gtk_widget_set_visible (GTK_WIDGET (self), TRUE);
   gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (w), &color);
@@ -101,11 +86,12 @@ action_color_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
   g_list_free (selection);
 }
 
-
 static void
-action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+action_tag_selected_items (BjbSelectionToolbar *self)
 {
   GList *selection;
+
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   selection = bjb_main_view_get_selected_items (self->view);
   bjb_organize_dialog_new
@@ -115,28 +101,38 @@ action_tag_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
   g_list_free (selection);
 }
 
-
 static void
-action_trash_selected_items (GtkWidget *w, BjbSelectionToolbar *self)
+action_trash_selected_items (BjbSelectionToolbar *self)
 {
   GList *l, *selection;
+
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   selection = bjb_main_view_get_selected_items (self->view);
   for (l=selection; l !=NULL; l=l->next)
     biji_item_trash (BIJI_ITEM (l->data));
 
+  /*
+   * HACK: When every item is deleted, Empty view is shown in the
+   * main window. Thus the action bar is hidden in the view.
+   * But it actually isn't. And the bar appears when the view
+   * is changed to Trash view.
+   * So hide the widget all together.
+   */
+  gtk_widget_hide (GTK_WIDGET (self));
+  gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
   bjb_main_view_set_selection_mode (self->view, FALSE);
   g_list_free (selection);
 }
 
-
 static void
-action_pop_up_note_callback (GtkWidget *w, BjbSelectionToolbar *self)
+action_pop_up_note_callback (BjbSelectionToolbar *self)
 {
   GList *l, *selection;
 
-  selection = bjb_main_view_get_selected_items (self->view);
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
+  selection = bjb_main_view_get_selected_items (self->view);
   for (l=selection; l !=NULL; l=l->next)
   {
     bijiben_new_window_for_note (g_application_get_default (),
@@ -147,28 +143,30 @@ action_pop_up_note_callback (GtkWidget *w, BjbSelectionToolbar *self)
   g_list_free (selection);
 }
 
-
 static void
-action_share_item_callback (GtkWidget *w, BjbSelectionToolbar *self)
+action_share_item_callback (BjbSelectionToolbar *self,
+                            GtkButton           *button)
 {
   GList *l, *selection;
 
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
+  g_assert (GTK_IS_BUTTON (button));
+
   selection = bjb_main_view_get_selected_items (self->view);
 
-  for (l=selection; l!= NULL; l=l->next)
-  {
-     on_email_note_callback (w, l->data);
-  }
+  for (l = selection; l != NULL; l = l->next)
+    on_email_note_callback (GTK_WIDGET (button), l->data);
 
   bjb_main_view_set_selection_mode (self->view, FALSE);
   g_list_free (selection);
 }
 
-
 static void
-on_restore_clicked_callback      (BjbSelectionToolbar *self)
+on_restore_clicked_callback (BjbSelectionToolbar *self)
 {
   GList *selection, *l;
+
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   selection = bjb_main_view_get_selected_items (self->view);
 
@@ -179,12 +177,12 @@ on_restore_clicked_callback      (BjbSelectionToolbar *self)
   g_list_free (selection);
 }
 
-
-
 static void
-on_delete_clicked_callback        (BjbSelectionToolbar *self)
+on_delete_clicked_callback (BjbSelectionToolbar *self)
 {
   GList *selection, *l;
+
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   selection = bjb_main_view_get_selected_items (self->view);
   for (l=selection; l!=NULL; l=l->next)
@@ -194,8 +192,6 @@ on_delete_clicked_callback        (BjbSelectionToolbar *self)
   g_list_free (selection);
 }
 
-
-
 static void
 set_sensitivity (BjbSelectionToolbar *self)
 {
@@ -203,7 +199,7 @@ set_sensitivity (BjbSelectionToolbar *self)
   GdkRGBA color;
   gboolean can_tag, can_color, can_share, are_notes;
 
-  g_return_if_fail (BJB_IS_SELECTION_TOOLBAR (self));
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   selection = bjb_main_view_get_selected_items (self->view);
 
@@ -235,7 +231,7 @@ set_sensitivity (BjbSelectionToolbar *self)
         can_color = FALSE;
 
      else
-       gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self->toolbar_color), &color);
+       gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self->color_button), &color);
     }
 
     if (can_share == TRUE) /* share is default. check. */
@@ -245,31 +241,20 @@ set_sensitivity (BjbSelectionToolbar *self)
     }
   }
 
-
-  gtk_widget_set_sensitive (self->toolbar_color, can_color);
-  gtk_widget_set_sensitive (self->toolbar_tag, can_tag);
-  gtk_widget_set_sensitive (self->toolbar_share, can_share);
-  gtk_widget_set_sensitive (self->toolbar_detach, are_notes);
+  gtk_widget_set_sensitive (self->notebook_button, can_tag);
+  gtk_widget_set_sensitive (self->detach_button, are_notes);
+  gtk_widget_set_sensitive (self->color_button, can_color);
+  gtk_widget_set_sensitive (self->share_button, can_share);
 
   g_list_free (selection);
 }
-
-
-
-static void
-set_trash_bar_sensitivity (BjbSelectionToolbar *self)
-{
-  gtk_widget_set_sensitive (self->toolbar_restore, TRUE);
-  gtk_widget_set_sensitive (self->toolbar_delete, TRUE);
-}
-
 
 static void
 bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 {
   BijiItemsGroup group;
 
-  g_return_if_fail (BJB_IS_SELECTION_TOOLBAR (self));
+  g_assert (BJB_IS_SELECTION_TOOLBAR (self));
 
   group = bjb_controller_get_group (
             bjb_window_base_get_controller (
@@ -277,37 +262,15 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
                 bjb_main_view_get_window (self->view))));
 
   if (group == BIJI_LIVING_ITEMS)
-  {
-    gtk_widget_hide (self->toolbar_restore);
-    gtk_widget_hide (self->toolbar_delete);
-
-    gtk_widget_show (self->toolbar_trash);
-    gtk_widget_show (self->toolbar_color);
-    gtk_widget_show (self->toolbar_tag);
-    gtk_widget_show (self->toolbar_share);
-    gtk_widget_show (self->toolbar_detach);
-
-    set_sensitivity (self);
-  }
-
+    {
+      gtk_stack_set_visible_child_name (GTK_STACK (self->button_stack), "main");
+      set_sensitivity (self);
+    }
   else if (group == BIJI_ARCHIVED_ITEMS)
-  {
-    gtk_widget_hide (self->toolbar_trash);
-    gtk_widget_hide (self->toolbar_color);
-    gtk_widget_hide (self->toolbar_tag);
-    gtk_widget_hide (self->toolbar_share);
-    gtk_widget_hide (self->toolbar_detach);
-
-    gtk_widget_show (self->toolbar_restore);
-    gtk_widget_show (self->toolbar_delete);
-
-    set_trash_bar_sensitivity (self);
-  }
+    {
+      gtk_stack_set_visible_child_name (GTK_STACK (self->button_stack), "trash");
+    }
 }
-
-
-
-
 
 static void
 bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
@@ -316,16 +279,15 @@ bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
   //bjb_selection_toolbar_set_item_visibility
 }
 
-
 static void
 bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
 {
   gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
 }
 
-
 static void
-bjb_selection_toolbar_selection_changed (GdMainView *view, gpointer user_data)
+bjb_selection_toolbar_selection_changed (GdMainView *view,
+                                         gpointer    user_data)
 {
   BjbSelectionToolbar *self;
   GList *selection;
@@ -335,111 +297,28 @@ bjb_selection_toolbar_selection_changed (GdMainView *view, gpointer user_data)
 
   if (g_list_length (selection) > 0)
   {
+    gtk_widget_show (GTK_WIDGET (self));
     bjb_selection_toolbar_set_item_visibility (self);
     bjb_selection_toolbar_fade_in (self);
   }
-
   else
-    bjb_selection_toolbar_fade_out (self);
+    {
+      bjb_selection_toolbar_fade_out (self);
+    }
 
   g_list_free (selection);
 }
 
 static void
-bjb_selection_toolbar_dispose (GObject *object)
-{
-  G_OBJECT_CLASS (bjb_selection_toolbar_parent_class)->dispose (object);
-}
-
-
-static void
 bjb_selection_toolbar_init (BjbSelectionToolbar *self)
 {
-  GtkWidget                  *widget, *share;
-  GtkStyleContext            *context;
-  GtkSizeGroup               *size;
-
-  widget = GTK_WIDGET (self);
-
-  gtk_revealer_set_transition_type (
-      GTK_REVEALER (self), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
-
-  self->bar = GTK_ACTION_BAR (gtk_action_bar_new ());
-  context = gtk_widget_get_style_context (GTK_WIDGET (self->bar));
-  gtk_style_context_add_class (context, "background");
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->bar));
-
-
-  /* Notes tags */
-  self->toolbar_tag = gtk_button_new_with_label (_("Notebooks"));
-  gtk_action_bar_pack_start (self->bar, self->toolbar_tag);
-  gtk_widget_show (self->toolbar_tag);
-
-  /* Restore (do not show) */
-  self->toolbar_restore = gtk_button_new_with_label (_("Restore"));
-  gtk_action_bar_pack_start (self->bar, self->toolbar_restore);
-
-  /* Notes color */
-  self->toolbar_color = bjb_color_button_new ();
-  gtk_widget_set_tooltip_text (GTK_WIDGET (self->toolbar_color),
-                               _("Note color"));
-  gtk_action_bar_pack_start (self->bar, self->toolbar_color);
-  gtk_widget_show (self->toolbar_color);
-
-
-  /* Share */
-  self->toolbar_share = gtk_button_new ();
-  share = gtk_image_new_from_icon_name ("mail-unread-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (self->toolbar_share), share);
-  gtk_style_context_add_class (gtk_widget_get_style_context (self->toolbar_share),
-                               "image-button");
-  gtk_widget_set_tooltip_text (self->toolbar_share, _("Share note"));
-  gtk_action_bar_pack_start (self->bar, self->toolbar_share);
-  gtk_widget_show (self->toolbar_color);
-
-
-  /* Detach */
-  self->toolbar_detach = gtk_button_new_with_label (_("Open in another window"));
-  gtk_action_bar_pack_start (self->bar, self->toolbar_detach);
-  gtk_widget_show (self->toolbar_detach);
-
-
-  /* Trash notes */
-  self->toolbar_trash = gtk_button_new_with_label (_("Move to Trash"));
-  context = gtk_widget_get_style_context (self->toolbar_trash);
-  gtk_style_context_add_class (context, "destructive-action");
-  gtk_action_bar_pack_end (self->bar, self->toolbar_trash);
-  gtk_widget_show (self->toolbar_trash);
-
-
-  /* Permanently delete (do not show )*/
-  self->toolbar_delete = gtk_button_new_with_label (_("Permanently Delete"));
-  context = gtk_widget_get_style_context (self->toolbar_delete);
-  gtk_style_context_add_class (context, "destructive-action");
-  gtk_action_bar_pack_end (self->bar, self->toolbar_delete);
-
-
-  /* Align buttons */
-  size = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_tag);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_color);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_share);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_detach);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_trash);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_restore);
-  gtk_size_group_add_widget (GTK_SIZE_GROUP (size), self->toolbar_delete);
-  g_object_unref (size);
-
-
-  gtk_widget_show (GTK_WIDGET (self->bar));
-  gtk_widget_show (widget);
-  bjb_selection_toolbar_fade_out (self);
+  gtk_widget_init_template (GTK_WIDGET (self));
 }
 
 static void
-bjb_selection_toolbar_get_property (GObject  *object,
-                                    guint     property_id,
-                                    GValue   *value,
+bjb_selection_toolbar_get_property (GObject    *object,
+                                    guint       property_id,
+                                    GValue     *value,
                                     GParamSpec *pspec)
 {
   BjbSelectionToolbar *self = BJB_SELECTION_TOOLBAR (object);
@@ -456,10 +335,10 @@ bjb_selection_toolbar_get_property (GObject  *object,
 }
 
 static void
-bjb_selection_toolbar_set_property (GObject  *object,
-                                    guint     property_id,
+bjb_selection_toolbar_set_property (GObject      *object,
+                                    guint         property_id,
                                     const GValue *value,
-                                    GParamSpec *pspec)
+                                    GParamSpec   *pspec)
 {
   BjbSelectionToolbar *self = BJB_SELECTION_TOOLBAR (object);
 
@@ -484,49 +363,21 @@ bjb_selection_toolbar_constructed(GObject *obj)
 
   G_OBJECT_CLASS (bjb_selection_toolbar_parent_class)->constructed (obj);
 
-
   g_signal_connect (self->selection,
-                    "view-selection-changed", 
-                    G_CALLBACK(bjb_selection_toolbar_selection_changed),
+                    "view-selection-changed",
+                    G_CALLBACK (bjb_selection_toolbar_selection_changed),
                     self);
-
-  /* BIJI LIVING ITEMS */
-  g_signal_connect (self->toolbar_tag, "clicked",
-                    G_CALLBACK (action_tag_selected_items), self);
-
-  g_signal_connect_swapped (self->toolbar_color, "clicked",
-                    G_CALLBACK (hide_self), self);
-
-  g_signal_connect (self->toolbar_color, "color-set",
-                    G_CALLBACK (action_color_selected_items), self);
-
-  g_signal_connect (self->toolbar_share, "clicked",
-                    G_CALLBACK (action_share_item_callback), self);
-
-  g_signal_connect (self->toolbar_detach, "clicked",
-                    G_CALLBACK (action_pop_up_note_callback), self);
-
-  g_signal_connect (self->toolbar_trash, "clicked",
-                    G_CALLBACK (action_trash_selected_items), self);
-
-
-  /* BIJI ARCHIVED ITEMS */
-  g_signal_connect_swapped (self->toolbar_restore, "clicked",
-                    G_CALLBACK (on_restore_clicked_callback), self);
-
-  g_signal_connect_swapped (self->toolbar_delete, "clicked",
-                    G_CALLBACK (on_delete_clicked_callback), self);
 }
 
 static void
 bjb_selection_toolbar_class_init (BjbSelectionToolbarClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
 
-  object_class->dispose = bjb_selection_toolbar_dispose;
-  object_class->get_property = bjb_selection_toolbar_get_property ;
-  object_class->set_property = bjb_selection_toolbar_set_property ;
-  object_class->constructed = bjb_selection_toolbar_constructed ;
+  object_class->get_property = bjb_selection_toolbar_get_property;
+  object_class->set_property = bjb_selection_toolbar_set_property;
+  object_class->constructed = bjb_selection_toolbar_constructed;
 
   properties[PROP_BJB_SELECTION] = g_param_spec_object ("selection",
                                                         "Selection",
@@ -547,6 +398,22 @@ bjb_selection_toolbar_class_init (BjbSelectionToolbarClass *class)
                                                         G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_property (object_class,PROP_BJB_MAIN_VIEW,properties[PROP_BJB_MAIN_VIEW]);
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/selection-toolbar.ui");
+
+  gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, button_stack);
+  gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, notebook_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, color_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, share_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, detach_button);
+
+  gtk_widget_class_bind_template_callback (widget_class, action_tag_selected_items);
+  gtk_widget_class_bind_template_callback (widget_class, action_color_selected_items);
+  gtk_widget_class_bind_template_callback (widget_class, action_share_item_callback);
+  gtk_widget_class_bind_template_callback (widget_class, action_pop_up_note_callback);
+  gtk_widget_class_bind_template_callback (widget_class, action_trash_selected_items);
+  gtk_widget_class_bind_template_callback (widget_class, on_restore_clicked_callback);
+  gtk_widget_class_bind_template_callback (widget_class, on_delete_clicked_callback);
 }
 
 

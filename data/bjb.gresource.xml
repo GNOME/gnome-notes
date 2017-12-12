@@ -19,5 +19,6 @@
     <file alias="settings-dialog.ui">resources/settings-dialog.ui</file>
     <file alias="empty-results-box.ui">resources/empty-results-box.ui</file>
     <file alias="import-dialog.ui" preprocess="xml-stripblanks">resources/import-dialog.ui</file>
+    <file alias="selection-toolbar.ui" preprocess="xml-stripblanks">resources/selection-toolbar.ui</file>
   </gresource>
 </gresources>

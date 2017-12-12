@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BjbSelectionToolbar" parent="GtkRevealer">
+    <property name="visible">1</property>
+    <style>
+     <class name="background"/>
+    </style>
+
+    <child>
+      <object class="GtkActionBar">
+        <property name="visible">1</property>
+
+        <child>
+          <object class="GtkStack" id="button_stack">
+            <property name="visible">1</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">1</property>
+                <property name="hexpand">1</property>
+                <property name="spacing">6</property>
+
+                <child>
+                  <object class="GtkButton" id="notebook_button">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="yes">Notebooks</property>
+                    <signal name="clicked" handler="action_tag_selected_items" object="BjbSelectionToolbar" swapped="yes"/>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="BjbColorButton" id="color_button">
+                    <property name="visible">1</property>
+                    <property name="tooltip-text" translatable="yes">Note color</property>
+                    <signal name="color-set" handler="action_color_selected_items" object="BjbSelectionToolbar" swapped="no"/>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton" id="share_button">
+                    <property name="visible">1</property>
+                    <signal name="clicked" handler="action_share_item_callback" object="BjbSelectionToolbar" swapped="yes"/>
+                    <style>
+                     <class name="image-button"/>
+                    </style>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">1</property>
+                        <property name="icon-name">mail-unread-symbolic</property>
+                        <property name="icon-size">1</property>
+                        <property name="tooltip-text" translatable="yes">Share note</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton" id="detach_button">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="yes">Open in another window</property>
+                    <signal name="clicked" handler="action_pop_up_note_callback" object="BjbSelectionToolbar" swapped="yes"/>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="yes">Move to Trash</property>
+                    <signal name="clicked" handler="action_trash_selected_items" object="BjbSelectionToolbar" swapped="yes"/>
+                    <style>
+                     <class name="destructive-action"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="pack-type">end</property>
+                  </packing>
+                </child>
+
+              </object>
+              <packing>
+                <property name="name">main</property>
+              </packing>
+            </child> <!-- /GtkBox main-->
+
+            <child>
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <property name="visible">1</property>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="yes">Restore</property>
+                    <signal name="clicked" handler="on_restore_clicked_callback" object="BjbSelectionToolbar" swapped="yes"/>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">1</property>
+                    <property name="label" translatable="yes">Permanently Delete</property>
+                    <signal name="clicked" handler="on_delete_clicked_callback" object="BjbSelectionToolbar" swapped="yes"/>
+                    <style>
+                     <class name="destructive-action"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="pack-type">end</property>
+                  </packing>
+                </child>
+
+              </object>
+              <packing>
+                <property name="name">trash</property>
+              </packing>
+            </child> <!-- /GtkBox trash-->
+          </object>
+        </child> <!-- /GtkStack button_stack -->
+
+      </object>
+    </child> <!-- /GtkActionBar -->
+  </template>
+</interface>

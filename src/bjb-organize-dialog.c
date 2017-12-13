@@ -1,5 +1,6 @@
 /* bjb-note-tag-dialog.c
  * Copyright (C) Pierre-Yves LUYTEN 2012 <py@luyten.fr>
+ * Copyright 2017 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -19,9 +20,6 @@
 
 #include "bjb-organize-dialog.h"
 #include "bjb-window-base.h"
-
-#define BJB_ORGANIZE_DIALOG_DEFAULT_WIDTH  460
-#define BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT 380
 
 /* Model for tree view */
 enum {
@@ -56,12 +54,14 @@ struct _BjbOrganizeDialog
   GtkWindow *window;
 
   // widgets
-  GtkWidget    * entry;
-  GtkTreeView  * view;
+  GtkWidget  *entry;
+  GtkWidget  *view;
+  GtkTreeViewColumn *enabled_column;
+  GtkCellRenderer   *enabled_cell;
 
   // data
+  GtkListStore *notebook_store;
   GList *items;
-  GtkListStore *store;
   GHashTable *notebooks;
 
   // tmp when a new tag added
@@ -73,7 +73,7 @@ struct _BjbOrganizeDialog
 
 };
 
-G_DEFINE_TYPE (BjbOrganizeDialog, bjb_organize_dialog, GTK_TYPE_DIALOG);
+G_DEFINE_TYPE (BjbOrganizeDialog, bjb_organize_dialog, GTK_TYPE_DIALOG)
 
 static void
 append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
@@ -82,7 +82,7 @@ append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
   gint item_has_tag;
   GList *l;
 
-  gtk_list_store_append (self->store, &iter);
+  gtk_list_store_append (self->notebook_store, &iter);
   item_has_tag = biji_item_has_notebook (self->items->data, set->title);
 
   /* Check if other notes have the same */
@@ -95,7 +95,7 @@ append_notebook (BijiInfoSet *set, BjbOrganizeDialog *self)
     }
   }
 
-  gtk_list_store_set (self->store,    &iter,
+  gtk_list_store_set (self->notebook_store,    &iter,
                       COL_SELECTION,  item_has_tag,
                       COL_URN,        set->tracker_urn,
                       COL_TAG_NAME ,  set->title, -1);
@@ -178,10 +178,10 @@ bjb_organize_dialog_handle_tags (GHashTable *result, gpointer user_data)
   {
     GtkTreePath *path = NULL;
 
-    if (bjb_get_path_for_str (GTK_TREE_MODEL (self->store), &path,
+    if (bjb_get_path_for_str (GTK_TREE_MODEL (self->notebook_store), &path,
                               COL_TAG_NAME, self->tag_to_scroll_to))
     {
-      gtk_tree_view_scroll_to_cell (self->view, path, NULL, TRUE, 0.5, 0.5);
+      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (self->view), path, NULL, TRUE, 0.5, 0.5);
       gtk_tree_path_free (path);
     }
 
@@ -195,7 +195,7 @@ update_notebooks_model_async (BjbOrganizeDialog *self)
   BijiManager *manager;
 
   manager = bjb_window_base_get_manager (GTK_WIDGET (self->window));
-  gtk_list_store_clear (self->store);
+  gtk_list_store_clear (self->notebook_store);
   biji_get_all_notebooks_async (manager, bjb_organize_dialog_handle_tags, self);
 }
 
@@ -221,7 +221,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
                 BjbOrganizeDialog *self)
 {
   GtkTreePath *path = gtk_tree_path_new_from_string (path_str);
-  GtkTreeModel *model = GTK_TREE_MODEL (self->store);
+  GtkTreeModel *model = GTK_TREE_MODEL (self->notebook_store);
   GtkTreeIter iter;
   gint toggle_item;
   gint *column;
@@ -254,7 +254,7 @@ on_tag_toggled (GtkCellRendererToggle *cell,
   }
 
   self->toggled_notebook = NULL;
-  gtk_list_store_set (self->store, &iter, column, toggle_item, -1);
+  gtk_list_store_set (self->notebook_store, &iter, column, toggle_item, -1);
   gtk_tree_path_free (path);
 }
 
@@ -283,7 +283,7 @@ add_new_tag (BjbOrganizeDialog *self)
   BijiManager *manager = bjb_window_base_get_manager (GTK_WIDGET (self->window));
   const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->entry));
 
-  if (title && g_utf8_strlen (title, -1) > 0)
+  if (title && title[0])
     biji_create_new_notebook_async (manager, title, on_new_notebook_created_cb, self);
 }
 
@@ -307,112 +307,22 @@ bjb_organize_toggle_cell_data_func (GtkTreeViewColumn *column,
 }
 
 static void
-add_columns (GtkTreeView *view, BjbOrganizeDialog *self)
-{
-  GtkTreeViewColumn *column;
-  GtkCellRenderer *cell_renderer;
-
-  /* List column: toggle */
-  column = gtk_tree_view_column_new ();
-  gtk_tree_view_append_column (view, column);
-
-  gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-  gtk_tree_view_column_set_fixed_width (column, 50);
-
-  cell_renderer = gtk_cell_renderer_toggle_new ();
-  g_signal_connect (cell_renderer, "toggled",
-                    G_CALLBACK (on_tag_toggled), self);
-
-  gtk_tree_view_column_pack_start (column, cell_renderer, TRUE);
-  gtk_tree_view_column_set_cell_data_func (column,
-                                           cell_renderer,
-                                           bjb_organize_toggle_cell_data_func,
-                                           NULL,
-                                           NULL);
-
-  /* URN */
-  column = gtk_tree_view_column_new ();
-  gtk_tree_view_append_column (view, column);
-
-
-  /* List column: notebook title */
-  column = gtk_tree_view_column_new ();
-  gtk_tree_view_append_column (view, column);
-
-  cell_renderer = gtk_cell_renderer_text_new ();
-  gtk_tree_view_column_set_expand (column, TRUE);
-  gtk_tree_view_column_pack_start (column, cell_renderer, TRUE);
-  gtk_tree_view_column_add_attribute (column, cell_renderer, "text", COL_TAG_NAME);
-
-}
-
-static void
 bjb_organize_dialog_init (BjbOrganizeDialog *self)
 {
-  gtk_window_set_default_size (GTK_WINDOW (self),
-                               BJB_ORGANIZE_DIALOG_DEFAULT_WIDTH,
-                               BJB_ORGANIZE_DIALOG_DEFAULT_HEIGHT);
-  gtk_window_set_title (GTK_WINDOW (self), _("Notebooks"));
-
-  gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (gtk_dialog_get_header_bar (GTK_DIALOG (self))), TRUE);
-
-  g_signal_connect_swapped (self, "response",
-                            G_CALLBACK (gtk_widget_destroy), self);
-
-  self->store = gtk_list_store_new (N_COLUMNS,
-                                    G_TYPE_INT,      // notebook is active
-                                    G_TYPE_STRING,   // notebook urn
-                                    G_TYPE_STRING);  // notebook title
+  gtk_widget_init_template (GTK_WIDGET (self));
 }
-
 
 static void
 bjb_organize_dialog_constructed (GObject *obj)
 {
   BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (obj);
-  GtkWidget *hbox, *label, *new, *area, *sw;
-
-  gtk_window_set_transient_for (GTK_WINDOW (self), self->window);
-
-  area = gtk_dialog_get_content_area (GTK_DIALOG (self));
-  gtk_container_set_border_width (GTK_CONTAINER (area), 8);
-
-  label = gtk_label_new (_("Enter a name to create a notebook"));
-  gtk_box_pack_start (GTK_BOX (area), label, FALSE, FALSE, 2);
-
-  /* New Tag */
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
-  gtk_box_pack_start (GTK_BOX (area), hbox, FALSE, FALSE, 2);
-
-  self->entry = gtk_entry_new();
-  gtk_box_pack_start (GTK_BOX (hbox), self->entry, TRUE, TRUE, 0);
-
-  new = gtk_button_new_with_label (_("New notebook"));
-  g_signal_connect_swapped (new, "clicked", G_CALLBACK (add_new_tag), self);
-
-  gtk_box_pack_start (GTK_BOX (hbox), new, FALSE, FALSE, 2);
-
-  /* List of notebooks */
-  sw = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
-                                       GTK_SHADOW_ETCHED_IN);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-                                  GTK_POLICY_AUTOMATIC,
-                                  GTK_POLICY_AUTOMATIC);
 
   update_notebooks_model_async (self);
-  self->view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (self->store)));
-  gtk_tree_view_set_headers_visible (self->view, FALSE);
-  g_object_unref (self->store);
-
-  gtk_tree_selection_set_mode (gtk_tree_view_get_selection (self->view),
-                               GTK_SELECTION_MULTIPLE);
-
-  add_columns (self->view, self);
-  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (self->view));
-
-  gtk_box_pack_start (GTK_BOX (area), sw, TRUE, TRUE,2);
-  gtk_widget_show_all (area);
+  gtk_tree_view_column_set_cell_data_func (self->enabled_column,
+                                           self->enabled_cell,
+                                           bjb_organize_toggle_cell_data_func,
+                                           NULL,
+                                           NULL);
 }
 
 static void
@@ -477,6 +387,7 @@ static void
 bjb_organize_dialog_class_init (BjbOrganizeDialogClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->constructed = bjb_organize_dialog_constructed;
   object_class->finalize = bjb_organize_dialog_finalize;
@@ -499,6 +410,17 @@ bjb_organize_dialog_class_init (BjbOrganizeDialogClass *klass)
                                                  G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/organize-dialog.ui");
+
+  gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, entry);
+  gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, view);
+  gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, notebook_store);
+  gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, enabled_column);
+  gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, enabled_cell);
+
+  gtk_widget_class_bind_template_callback (widget_class, add_new_tag);
+  gtk_widget_class_bind_template_callback (widget_class, on_tag_toggled);
 }
 
 void
@@ -509,7 +431,7 @@ bjb_organize_dialog_new (GtkWindow *parent,
 					  "use-header-bar", TRUE,
                                           "window", parent,
                                           "items", biji_items,
+                                          "transient-for", parent,
                                           NULL);
-
   gtk_dialog_run (GTK_DIALOG (self));
 }

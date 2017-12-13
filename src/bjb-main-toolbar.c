@@ -217,26 +217,6 @@ on_view_mode_clicked (GtkWidget *button, BjbMainToolbar *self)
   return TRUE;
 }
 
-/* Just makes toolbar draggable */
-static gboolean
-on_button_press (GtkWidget* widget,
-                 GdkEventButton * event,
-                 GdkWindowEdge edge)
-{
-  if (event->type == GDK_BUTTON_PRESS)
-  {
-    if (event->button == 1) {
-      gtk_window_begin_move_drag (GTK_WINDOW (gtk_widget_get_toplevel (widget)),
-                                  event->button,
-                                  event->x_root,
-                                  event->y_root,
-                                  event->time);
-    }
-  }
-
-  return FALSE;
-}
-
 static void
 add_search_button (BjbMainToolbar *self)
 {
@@ -1041,7 +1021,6 @@ static void
 bjb_main_toolbar_init (BjbMainToolbar *self)
 {
   self->type = BJB_TOOLBAR_0;
-  g_signal_connect (self, "button-press-event", G_CALLBACK (on_button_press), NULL);
 }
 
 static void

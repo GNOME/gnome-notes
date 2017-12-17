@@ -1,13 +1,13 @@
 # Polish translation for bijiben help.
 # Copyright © 2017 the bijiben authors.
-# This file is distributed under the same license as the bijiben package.
+# This file is distributed under the same license as the bijiben help.
 # Piotr Drąg <piotrdrag@gmail.com>, 2017.
 # Aviary.pl <community-poland@mozilla.org>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben-help\n"
-"POT-Creation-Date: 2017-06-28 17:50+0000\n"
+"POT-Creation-Date: 2017-10-17 21:32+0000\n"
 "PO-Revision-Date: 2017-08-18 19:48+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"

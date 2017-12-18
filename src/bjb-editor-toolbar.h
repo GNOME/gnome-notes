@@ -26,14 +26,7 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_EDITOR_TOOLBAR (bjb_editor_toolbar_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkActionBar);
-
-typedef struct _BjbEditorToolbarPrivate BjbEditorToolbarPrivate;
-
-struct _BjbEditorToolbar
-{
-  GtkActionBar parent;
-};
+G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkActionBar)
 
 GtkWidget *bjb_editor_toolbar_new (BjbNoteView *bjb_note_view,
                                    BijiNoteObj *biji_note_obj);

@@ -36,8 +36,10 @@ enum
   NUM_PROPERTIES
 };
 
-struct _BjbEditorToolbarPrivate
+struct _BjbEditorToolbar
 {
+  GtkActionBar   parent_instance;
+
   /* Note provide us the WebKitWebView editor */
   BjbNoteView   *view;
   BijiNoteObj   *note;
@@ -52,19 +54,15 @@ struct _BjbEditorToolbarPrivate
   GtkWidget     *list_button;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
+G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
 
 static gboolean
 on_release_event (GtkWidget        *widget,
                   GdkEvent         *event,
                   BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
   gtk_widget_set_visible (GTK_WIDGET (self),
-                          biji_note_obj_editor_has_selection (priv->note));
+                          biji_note_obj_editor_has_selection (self->note));
 
   return FALSE;
 }
@@ -73,11 +71,7 @@ static void
 on_cut_clicked (GtkButton        *button,
                 BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_cut (priv->note);
+  biji_note_obj_editor_cut (self->note);
 
   gtk_widget_hide (GTK_WIDGET (self));
 }
@@ -86,22 +80,14 @@ static void
 on_copy_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_copy (priv->note);
+  biji_note_obj_editor_copy (self->note);
 }
 
 static void
 on_paste_clicked (GtkButton        *button,
                   BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_paste (priv->note);
+  biji_note_obj_editor_paste (self->note);
 
   gtk_widget_hide (GTK_WIDGET (self));
 }
@@ -110,55 +96,35 @@ static void
 on_bold_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_apply_format (priv->note, BIJI_BOLD);
+  biji_note_obj_editor_apply_format (self->note, BIJI_BOLD);
 }
 
 static void
 on_italic_clicked (GtkButton        *button,
                    BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_apply_format (priv->note, BIJI_ITALIC);
+  biji_note_obj_editor_apply_format (self->note, BIJI_ITALIC);
 }
 
 static void
 on_strike_clicked (GtkButton        *button,
                    BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_apply_format (priv->note, BIJI_STRIKE);
+  biji_note_obj_editor_apply_format (self->note, BIJI_STRIKE);
 }
 
 static void
 on_bullets_clicked (GtkButton        *button,
                     BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_apply_format (priv->note, BIJI_BULLET_LIST);
+  biji_note_obj_editor_apply_format (self->note, BIJI_BULLET_LIST);
 }
 
 static void
 on_list_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  biji_note_obj_editor_apply_format (priv->note, BIJI_ORDER_LIST);
+  biji_note_obj_editor_apply_format (self->note, BIJI_ORDER_LIST);
 }
 
 static void
@@ -171,16 +137,13 @@ on_link_clicked (GtkButton        *button,
   BijiNoteObj             *result;
   GdkRGBA                  color;
   BijiManager             *manager;
-  BjbEditorToolbarPrivate *priv;
 
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  link = biji_note_obj_editor_get_selection (priv->note);
+  link = biji_note_obj_editor_get_selection (self->note);
 
   if (link == NULL)
     return;
 
-  window = bjb_note_view_get_base_window (priv->view);
+  window = bjb_note_view_get_base_window (self->view);
   manager = bjb_window_base_get_manager(window);
 
   settings = bjb_app_get_settings (g_application_get_default ());
@@ -189,10 +152,10 @@ on_link_clicked (GtkButton        *button,
                                     bjb_settings_get_default_location (settings));
 
   /* Change result color. */
-  if (biji_note_obj_get_rgba (priv->note, &color))
+  if (biji_note_obj_get_rgba (self->note, &color))
     biji_note_obj_set_rgba (result, &color);
 
-  bijiben_new_window_for_note(g_application_get_default(), result);
+  bijiben_new_window_for_note (g_application_get_default (), result);
 }
 
 static void
@@ -215,17 +178,15 @@ bjb_editor_toolbar_set_property (GObject      *object,
                                  const GValue *value,
                                  GParamSpec   *pspec)
 {
-  BjbEditorToolbarPrivate *priv;
-
-  priv = bjb_editor_toolbar_get_instance_private (BJB_EDITOR_TOOLBAR (object));
+  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (object);
 
   switch (property_id)
   {
     case PROP_NOTE:
-      priv->note = g_value_get_object (value);
+      self->note = g_value_get_object (value);
       break;
     case PROP_NOTE_VIEW:
-      priv->view = g_value_get_object (value);
+      self->view = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -236,31 +197,28 @@ bjb_editor_toolbar_set_property (GObject      *object,
 static void
 bjb_editor_toolbar_constructed (GObject *object)
 {
-  BjbEditorToolbar        *self;
-  BjbEditorToolbarPrivate *priv;
-  GtkWidget               *view;
-  GtkWidget               *window;
-  gboolean                 can_format;
+  BjbEditorToolbar *self;
+  GtkWidget        *view;
+  GtkWidget        *window;
+  gboolean          can_format;
 
   G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->constructed (object);
 
   self = BJB_EDITOR_TOOLBAR (object);
 
-  priv = bjb_editor_toolbar_get_instance_private (self);
+  window = bjb_note_view_get_base_window (self->view);
+  gtk_window_add_accel_group (GTK_WINDOW (window), self->accel);
 
-  window = bjb_note_view_get_base_window (priv->view);
-  gtk_window_add_accel_group (GTK_WINDOW (window), priv->accel);
-
-  gtk_widget_add_accelerator (priv->bold_button, "clicked", priv->accel,
+  gtk_widget_add_accelerator (self->bold_button, "clicked", self->accel,
                               GDK_KEY_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-  gtk_widget_add_accelerator (priv->italic_button, "clicked", priv->accel,
+  gtk_widget_add_accelerator (self->italic_button, "clicked", self->accel,
                               GDK_KEY_i, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-  gtk_widget_add_accelerator (priv->strike_button, "clicked", priv->accel,
+  gtk_widget_add_accelerator (self->strike_button, "clicked", self->accel,
                               GDK_KEY_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-  view = biji_note_obj_get_editor (priv->note);
+  view = biji_note_obj_get_editor (self->note);
 
   g_signal_connect (view,"button-release-event",
                     G_CALLBACK (on_release_event), self);
@@ -268,27 +226,25 @@ bjb_editor_toolbar_constructed (GObject *object)
   g_signal_connect (view,"key-release-event",
                    G_CALLBACK (on_release_event), self);
 
-  can_format = biji_note_obj_can_format (priv->note);
+  can_format = biji_note_obj_can_format (self->note);
 
-  gtk_widget_set_sensitive (priv->bold_button, can_format);
-  gtk_widget_set_sensitive (priv->italic_button, can_format);
-  gtk_widget_set_sensitive (priv->strike_button, can_format);
+  gtk_widget_set_sensitive (self->bold_button, can_format);
+  gtk_widget_set_sensitive (self->italic_button, can_format);
+  gtk_widget_set_sensitive (self->strike_button, can_format);
 
-  gtk_widget_set_sensitive (priv->bullets_button, can_format);
-  gtk_widget_set_sensitive (priv->list_button, can_format);
+  gtk_widget_set_sensitive (self->bullets_button, can_format);
+  gtk_widget_set_sensitive (self->list_button, can_format);
 }
 
 static void
 bjb_editor_toolbar_finalize (GObject *object)
 {
-  BjbEditorToolbarPrivate *priv;
+  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (object);
   GtkWidget *window;
 
-  priv = bjb_editor_toolbar_get_instance_private (BJB_EDITOR_TOOLBAR (object));
-
-  window = bjb_note_view_get_base_window (priv->view);
-  gtk_window_remove_accel_group (GTK_WINDOW (window), priv->accel);
-  g_object_unref (priv->accel);
+  window = bjb_note_view_get_base_window (self->view);
+  gtk_window_remove_accel_group (GTK_WINDOW (window), self->accel);
+  g_object_unref (self->accel);
 
   G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->finalize (object);
 }
@@ -328,11 +284,11 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   widget_class = GTK_WIDGET_CLASS (klass);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/editor-toolbar.ui");
 
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, bold_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, italic_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, strike_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, bullets_button);
-  gtk_widget_class_bind_template_child_private (widget_class, BjbEditorToolbar, list_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bold_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, italic_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, strike_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bullets_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, list_button);
 
   gtk_widget_class_bind_template_callback (widget_class, on_cut_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_copy_clicked);
@@ -348,13 +304,9 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
 static void
 bjb_editor_toolbar_init (BjbEditorToolbar *self)
 {
-  BjbEditorToolbarPrivate *priv;
-
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  priv = bjb_editor_toolbar_get_instance_private (self);
-
-  priv->accel = gtk_accel_group_new ();
+  self->accel = gtk_accel_group_new ();
 }
 
 GtkWidget *

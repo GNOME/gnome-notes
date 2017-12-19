@@ -7,6 +7,7 @@ data/resources/app-menu.ui
 data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui
 data/resources/import-dialog.ui
+data/resources/organize-dialog.ui
 data/resources/settings-dialog.ui
 src/bijiben-shell-search-provider.c
 src/bjb-application.c
@@ -18,7 +19,6 @@ src/bjb-load-more-button.c
 src/bjb-main-toolbar.c
 src/bjb-main-view.c
 src/bjb-note-view.c
-src/bjb-organize-dialog.c
 src/bjb-selection-toolbar.c
 src/bjb-settings.c
 src/bjb-settings-dialog.c

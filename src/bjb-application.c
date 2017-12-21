@@ -254,6 +254,7 @@ manager_ready_cb (GObject *source,
 {
   BjbApplication *self = user_data;
   GError *error = NULL;
+  gchar *path, *uri;
 
   self->manager = biji_manager_new_finish (res, &error);
   g_application_release (G_APPLICATION (self));
@@ -263,6 +264,24 @@ manager_ready_cb (GObject *source,
       g_warning ("Cannot initialize BijiManager: %s\n", error->message);
       g_clear_error (&error);
       return;
+    }
+
+  /* Automatic imports on startup */
+  if (self->first_run == TRUE)
+    {
+      path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
+      uri = g_filename_to_uri (path, NULL, NULL);
+      if (g_file_test (path, G_FILE_TEST_EXISTS))
+        bijiben_import_notes (self, uri);
+      g_free (path);
+      g_free (uri);
+
+      path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
+      uri = g_filename_to_uri (path, NULL, NULL);
+      if (g_file_test (path, G_FILE_TEST_EXISTS))
+        bijiben_import_notes (self, uri);
+      g_free (path);
+      g_free (uri);
     }
 
   bijiben_new_window_internal (self, NULL);
@@ -275,7 +294,6 @@ bijiben_startup (GApplication *application)
   gchar          *storage_path, *default_color;
   GFile          *storage;
   GError         *error;
-  gchar          *path, *uri;
   GdkRGBA         color = {0,0,0,0};
 
 
@@ -312,22 +330,6 @@ bijiben_startup (GApplication *application)
 
   g_application_hold (application);
   biji_manager_new_async (storage, &color, manager_ready_cb, self);
-
-  /* Automatic imports on startup */
-  if (self->first_run == TRUE)
-  {
-    path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
-    uri = g_filename_to_uri (path, NULL, NULL);
-    bijiben_import_notes (self, uri);
-    g_free (path);
-    g_free (uri);
-
-    path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
-    uri = g_filename_to_uri (path, NULL, NULL);
-    bijiben_import_notes (self, uri);
-    g_free (path);
-    g_free (uri);
-  }
 
   g_free (default_color);
   g_free (storage_path);

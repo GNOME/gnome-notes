@@ -415,8 +415,7 @@ _get_icon (BijiMemoProvider *self,
   ESourceExtension *ext;
   const gchar      *color;
   GdkRGBA           rgba;
-  GdkPixbuf        *pix, *embed;
-  GtkBorder         frame_slice = { 4, 3, 3, 6 };
+  GdkPixbuf        *pix;
 
   ext = e_source_get_extension (self->source, E_SOURCE_EXTENSION_MEMO_LIST);
   color = e_source_selectable_get_color (E_SOURCE_SELECTABLE (ext));
@@ -424,13 +423,10 @@ _get_icon (BijiMemoProvider *self,
   if (color == NULL || !gdk_rgba_parse (&rgba, color))
     return FALSE;
 
-  pix = get_pixbuf_from_color (&rgba, 48);
-  embed = gd_embed_image_in_frame (pix, "resource:///org/gnome/bijiben/thumbnail-frame.png",
-                                    &frame_slice, &frame_slice);
-  *result = gtk_image_new_from_pixbuf (embed);
-
-  g_clear_object (&pix);
-  g_clear_object (&embed);
+  pix = get_pixbuf_from_color (&rgba, 40);
+  *result = gtk_image_new_from_pixbuf (pix);
+  g_object_set (G_OBJECT (*result), "margin", 4, NULL);
+  g_object_unref (pix);
 
   return TRUE;
 }

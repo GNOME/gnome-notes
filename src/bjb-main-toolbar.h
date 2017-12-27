@@ -16,8 +16,7 @@ bijiben is free software: you can redistribute it and/or modify it
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BJB_MAIN_TOOLBAR_H_
-#define _BJB_MAIN_TOOLBAR_H_
+#pragma once
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
@@ -34,5 +33,3 @@ BjbMainToolbar        *bjb_main_toolbar_new                       (BjbMainView *
                                                                    BjbController *controller);
 
 G_END_DECLS
-
-#endif /* _BJB_MAIN_TOOLBAR_H_ */

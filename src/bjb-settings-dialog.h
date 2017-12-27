@@ -18,8 +18,7 @@
  */
 
 
-#ifndef BJB_SETTINGS_DIALOG_H_
-#define BJB_SETTINGS_DIALOG_H_ 1
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -32,5 +31,3 @@ G_DECLARE_FINAL_TYPE (BjbSettingsDialog, bjb_settings_dialog, BJB, SETTINGS_DIAL
 GtkDialog             *bjb_settings_dialog_new                 (void);
 
 G_END_DECLS
-
-#endif /* BJB_SETTINGS_DIALOG_H_ */

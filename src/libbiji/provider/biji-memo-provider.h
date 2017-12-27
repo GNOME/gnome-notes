@@ -16,9 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_MEMO_PROVIDER_H_
-#define _BIJI_MEMO_PROVIDER_H_ 1
-
+#pragma once
 
 #include <libedataserver/libedataserver.h> /* ESourceRegistry */
 #include <libecal/libecal.h>               /* ECalClient      */
@@ -48,6 +46,3 @@ gboolean        time_val_from_icaltime          (icaltimetype *itt,
 
 
 G_END_DECLS
-
-#endif /* _BIJI_MEMO_PROVIDER_H_ */
-

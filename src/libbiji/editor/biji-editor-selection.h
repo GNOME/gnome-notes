@@ -16,8 +16,7 @@
  *
  */
 
-#ifndef E_EDITOR_SELECTION_H
-#define E_EDITOR_SELECTION_H
+#pragma once
 
 #include <glib-object.h>
 #include <webkit2/webkit2.h>
@@ -76,5 +75,3 @@ gboolean		e_editor_selection_get_strike_through
 							(EEditorSelection *selection);
 
 G_END_DECLS
-
-#endif /* E_EDITOR_SELECTION_H */

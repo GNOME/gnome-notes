@@ -17,9 +17,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#ifndef BIJI_TOMBOY_READER_H_
-#define BIJI_TOMBOY_READER_H_ 1
+#pragma once
 
 #include <glib-object.h>
 
@@ -37,5 +35,3 @@ gboolean             biji_tomboy_reader_read              (gchar *source,
 
 
 G_END_DECLS
-
-#endif /* BIJI_TOMBOY_READER_H_ */

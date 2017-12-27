@@ -16,8 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_LAZY_DESERIALIZER_H_
-#define _BIJI_LAZY_DESERIALIZER_H_
+#pragma once
 
 #include "../biji-note-obj.h"
 
@@ -30,6 +29,3 @@ G_DECLARE_FINAL_TYPE (BijiLazyDeserializer, biji_lazy_deserializer, BIJI, LAZY_D
 gboolean biji_lazy_deserialize (BijiNoteObj *note);
 
 G_END_DECLS
-
-#endif /* _BIJI_LAZY_DESERIALIZER _H_ */
-

@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BIJI_PROVIDER_H_
-#define BIJI_PROVIDER_H_ 1
+#pragma once
 
 #include <glib-object.h>
 #include <glib/gi18n.h>  // translate providers type
@@ -144,5 +143,3 @@ const BijiProviderInfo    *biji_provider_get_info             (BijiProvider *pro
 void                       biji_provider_abort                (BijiProvider *provider);
 
 G_END_DECLS
-
-#endif /* BIJI_PROVIDER_H_ */

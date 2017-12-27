@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BJB_COLOR_BUTTON_H_
-#define _BJB_COLOR_BUTTON_H_
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -29,5 +28,3 @@ G_DECLARE_FINAL_TYPE (BjbColorButton, bjb_color_button, BJB, COLOR_BUTTON, GtkCo
 GtkWidget * bjb_color_button_new (void);
 
 G_END_DECLS
-
-#endif /* _BJB_COLOR_BUTTON_H_ */

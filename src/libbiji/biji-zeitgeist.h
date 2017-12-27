@@ -14,11 +14,7 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
-
-
-
-#ifndef _BIJI_ZEITGEIST_H
-#define _BIJI_ZEITGEIST_H
+#pragma once
 
 #ifdef BUILD_ZEITGEIST
 
@@ -34,7 +30,3 @@ void                    insert_zeitgeist                (BijiNoteObj *note,
                                                          const gchar *zg_interpretation);
 
 #endif /* BUILD_ZEITGEIST */
-
-#endif /* _BIJI_ZEITGEIST_H */
-
-

@@ -18,8 +18,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJIBEN_
-#define _BIJIBEN_
+#pragma once
 
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
@@ -46,5 +45,3 @@ void bijiben_new_window_for_note (GApplication *app, BijiNoteObj *note);
 void bijiben_import_notes (BjbApplication *self, gchar *uri);
 
 G_END_DECLS
-
-#endif /* _APPLICATION_H_ */

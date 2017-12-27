@@ -18,8 +18,7 @@
  */
 
 
-#ifndef BIJI_ITEM_H_
-#define BIJI_ITEM_H_ 1
+#pragma once
 
 #include <cairo-gobject.h>
 #include <glib-object.h>
@@ -136,5 +135,3 @@ gboolean         biji_item_add_notebook  (BijiItem *item, BijiItem *collection, 
 gboolean         biji_item_remove_notebook   (BijiItem *item, BijiItem *collection);
 
 G_END_DECLS
-
-#endif /* BIJI_ITEM_H_ */

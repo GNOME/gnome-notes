@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BJB_ORGANIZE_DIALOG_H_
-#define _BJB_ORGANIZE_DIALOG_H_
+#pragma once
 
 #include <libbiji/libbiji.h>
 
@@ -32,5 +31,3 @@ void bjb_organize_dialog_new (GtkWindow *parent,
                               GList     *biji_note_obj);
 
 G_END_DECLS
-
-#endif /* _BJB_ORGANIZE_DIALOG_H_ */

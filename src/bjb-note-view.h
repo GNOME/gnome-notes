@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _NOTE_VIEW_H
-#define _NOTE_VIEW_H
+#pragma once
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
@@ -39,5 +38,3 @@ GtkWidget          *bjb_note_view_get_base_window    (BjbNoteView *v);
 void                bjb_note_view_grab_focus         (BjbNoteView *view);
 
 G_END_DECLS
-
-#endif /* _NOTE_VIEW_H */

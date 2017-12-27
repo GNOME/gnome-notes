@@ -16,8 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BJB_SELECTION_TOOLBAR_H
-#define BJB_SELECTION_TOOLBAR_H
+#pragma once
 
 #include <libgd/gd.h>
 
@@ -31,5 +30,3 @@ BjbSelectionToolbar * bjb_selection_toolbar_new (GdMainView   *selection,
                                                  BjbMainView  *bjb_main_view);
 
 G_END_DECLS
-
-#endif /* BJB_SELECTION_TOOLBAR_H */

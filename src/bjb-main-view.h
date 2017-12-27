@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _MAIN_VIEW_H_
-#define _MAIN_VIEW_H_
+#pragma once
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
@@ -69,5 +68,3 @@ void bjb_main_view_disconnect_scrolled_window (BjbMainView *self);
 
 
 G_END_DECLS
-
-#endif /* _MAIN_VIEW_H_ */

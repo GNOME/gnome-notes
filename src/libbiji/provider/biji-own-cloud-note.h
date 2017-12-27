@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BIJI_OWN_CLOUD_NOTE_H_
-#define BIJI_OWN_CLOUD_NOTE_H_ 1
+#pragma once
 
 #include "../biji-note-obj.h"
 #include "../biji-note-id.h"
@@ -58,5 +57,3 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
                                                                  gboolean     online);
 
 G_END_DECLS
-
-#endif /* BIJI_OWN_CLOUD_NOTE_H_ */

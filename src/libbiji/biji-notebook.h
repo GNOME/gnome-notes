@@ -18,8 +18,7 @@
  */
 
 
-#ifndef BIJI_NOTEBOOK_H_
-#define BIJI_NOTEBOOK_H_ 1
+#pragma once
 
 #include "biji-item.h"
 
@@ -39,5 +38,3 @@ BijiNotebook * biji_notebook_new (GObject *manager, gchar *urn, gchar *name, gin
 void             biji_notebook_refresh (BijiNotebook *collection);
 
 G_END_DECLS
-
-#endif /* BIJI_NOTEBOOK_H_ */

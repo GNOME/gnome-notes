@@ -16,8 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BJB_SEARCH_TOOLBAR_H
-#define BJB_SEARCH_TOOLBAR_H
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -40,5 +39,3 @@ void               bjb_search_toolbar_connect               (BjbSearchToolbar *s
 
 
 G_END_DECLS
-
-#endif /* BJB_SEARCH_TOOLBAR_H */

@@ -14,9 +14,7 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
-#ifndef _BIJI_DATE_TIME_H
-#define _BIJI_DATE_TIME_H
-
+#pragma once
 
 #include <glib-object.h>
 #include <glib/gprintf.h>
@@ -28,6 +26,3 @@ const gchar      *biji_get_time_diff_with_time            (glong sec_since_epoch
 
 
 gint64            iso8601_to_gint64                       (gchar *iso8601);
-
-
-#endif /* _BIJI_DATE_TIME_H */

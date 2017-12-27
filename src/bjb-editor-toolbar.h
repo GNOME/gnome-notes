@@ -17,8 +17,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BJB_EDITOR_TOOLBAR_H
-#define BJB_EDITOR_TOOLBAR_H
+#pragma once
 
 #include "bjb-note-view.h"
 
@@ -32,5 +31,3 @@ GtkWidget *bjb_editor_toolbar_new (BjbNoteView *bjb_note_view,
                                    BijiNoteObj *biji_note_obj);
 
 G_END_DECLS
-
-#endif /* BJB_EDITOR_TOOLBAR_H */

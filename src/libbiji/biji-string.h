@@ -15,9 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#ifndef _BIJI_STRING__H
-#define _BIJI_STRING__H
+#pragma once
 
 #include <glib.h>
 
@@ -32,7 +30,3 @@ gchar * biji_str_replace (const gchar *string, const gchar *as_is, const gchar *
 gchar * biji_str_mass_replace (const gchar *string, ...) G_GNUC_NULL_TERMINATED ;
 
 G_END_DECLS
-
-#endif /* _BIJI_STRING__H */
-
-

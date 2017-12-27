@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_WEBKIT_EDITOR_H_
-#define _BIJI_WEBKIT_EDITOR_H_
+#pragma once
 
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
@@ -69,5 +68,3 @@ void biji_webkit_editor_redo (BijiWebkitEditor *self);
 void biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font);
 
 G_END_DECLS
-
-#endif /* _WEBKIT_EDITOR_H_ */

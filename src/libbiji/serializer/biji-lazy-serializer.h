@@ -22,8 +22,7 @@
  *
  * This format is NOT compatible with anything as of today.*/
 
-#ifndef _BIJI_LAZY_SERIALIZER_H_
-#define _BIJI_LAZY_SERIALIZER_H_
+#pragma once
 
 #include "../biji-note-obj.h"
 
@@ -36,6 +35,3 @@ G_DECLARE_FINAL_TYPE (BijiLazySerializer, biji_lazy_serializer, BIJI, LAZY_SERIA
 gboolean         biji_lazy_serialize                     (BijiNoteObj *note);
 
 G_END_DECLS
-
-#endif /* _BIJI_LAZY_SERIALIZER_H_ */
-

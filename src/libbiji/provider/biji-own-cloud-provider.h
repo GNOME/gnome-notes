@@ -15,9 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#ifndef BIJI_OWN_CLOUD_PROVIDER_H_
-#define BIJI_OWN_CLOUD_PROVIDER_H_ 1
+#pragma once
 
 #include "biji-provider.h"
 
@@ -63,5 +61,3 @@ gchar            *biji_own_cloud_provider_get_readable_path (BijiOwnCloudProvide
 
 
 G_END_DECLS
-
-#endif /* BIJI_OWN_CLOUD_PROVIDER_H_ */

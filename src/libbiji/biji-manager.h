@@ -1,5 +1,4 @@
-#ifndef _BIJI_MANAGER_H_
-#define _BIJI_MANAGER_H_
+#pragma once
 
 #include <glib-object.h>
 #include <tracker-sparql.h>
@@ -125,5 +124,3 @@ BijiNoteObj     *biji_manager_note_new_full         (BijiManager   *manager,
 
 
 G_END_DECLS
-
-#endif /* _BIJI_MANAGER_H_ */

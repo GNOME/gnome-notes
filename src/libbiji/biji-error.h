@@ -17,9 +17,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_ERROR_H
-#define _BIJI_ERROR_H
-
+#pragma once
 
 #include <gio/gio.h>
 
@@ -49,5 +47,3 @@ GError              *biji_error_new                        (BijiErrorType type,
 
 
 G_END_DECLS
-
-#endif /* _BIJI_ERROR_H */

@@ -24,8 +24,7 @@
  *   + Photos
  */
 
-#ifndef BJB_EMPTY_RESULTS_BOX_H
-#define BJB_EMPTY_RESULTS_BOX_H
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -48,5 +47,3 @@ void                bjb_empty_results_box_set_type           (BjbEmptyResultsBox
                                                               BjbEmptyResultsBoxType type);
 
 G_END_DECLS
-
-#endif /* BJB_EMPTY_RESULTS_BOX_H */

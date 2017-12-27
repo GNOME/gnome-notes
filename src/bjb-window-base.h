@@ -1,5 +1,4 @@
-#ifndef _BJB_WINDOW_BASE_H
-#define _BJB_WINDOW_BASE_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
@@ -66,6 +65,3 @@ void                   bjb_window_base_set_active (BjbWindowBase *self, gboolean
 
 
 gboolean               bjb_window_base_is_detached (BjbWindowBase *self);
-
-
-#endif /* _BJB_WINDOW_BASE_H */

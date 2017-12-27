@@ -16,8 +16,7 @@
  */
 
 
-#ifndef _BIJI_TRACKER_H
-#define _BIJI_TRACKER_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include <tracker-sparql.h>
@@ -118,5 +117,3 @@ void        biji_tracker_check_for_info                (BijiManager *manager,
                                                         gint64 mtime,
                                                         BijiInfoCallback callback,
                                                         gpointer user_data);
-
-#endif /*_BIJI_TRACKER_H*/

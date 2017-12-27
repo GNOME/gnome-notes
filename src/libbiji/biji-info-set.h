@@ -26,9 +26,7 @@
  */
 
 
-#ifndef _BIJI_INFO_SET_H_
-#define _BIJI_INFO_SET_H_ 1
-
+#pragma once
 
 #include <glib-object.h>
 
@@ -60,5 +58,3 @@ typedef struct
 BijiInfoSet * biji_info_set_new (void);
 
 void biji_info_set_free (BijiInfoSet *info);
-
-#endif /* _BIJI_NOTE_ID_H_ */

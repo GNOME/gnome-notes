@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _APP_MENU_H
-#define _APP_MENU_H
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -26,5 +25,3 @@ void          bjb_app_menu_set             (GApplication *application) ;
 void          help_activated               (GSimpleAction *action,
                                             GVariant      *parameter,
                                             gpointer       user_data);
-
-#endif /*_APP_MENU_H*/

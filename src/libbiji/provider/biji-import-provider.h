@@ -29,9 +29,7 @@
 /* As of today this is the direct class to be used by notemanager.
  * Later on manager might use different importProviders sub-classes */
 
-#ifndef BIJI_IMPORT_PROVIDER_H_
-#define BIJI_IMPORT_PROVIDER_H_ 1
-
+#pragma once
 
 #include "../biji-manager.h"
 #include "biji-provider.h"
@@ -71,5 +69,3 @@ BijiProvider           *biji_import_provider_new                  (BijiManager *
 
 
 G_END_DECLS
-
-#endif /* BIJI_IMPORT_PROVIDER_H_ */

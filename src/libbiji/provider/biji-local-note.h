@@ -15,9 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#ifndef BIJI_LOCAL_NOTE_H_
-#define BIJI_LOCAL_NOTE_H_ 1
+#pragma once
 
 #include "biji-note-id.h"
 #include "biji-note-obj.h"
@@ -56,5 +54,3 @@ BijiNoteObj          *biji_local_note_new_from_info   (BijiProvider *provider,
                                                        BijiInfoSet *set);
 
 G_END_DECLS
-
-#endif /* BIJI_LOCAL_NOTE_H_ */

@@ -16,11 +16,7 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
-
-
-
-#ifndef BJB_IMPORT_DIALOG_H_
-#define BJB_IMPORT_DIALOG_H_ 1
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -38,5 +34,3 @@ GList *       bjb_import_dialog_get_paths    (BjbImportDialog *dialog);
 
 
 G_END_DECLS
-
-#endif /* BJB_IMPORT_DIALOG_H_ */

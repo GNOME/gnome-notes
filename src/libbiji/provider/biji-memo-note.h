@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_MEMO_NOTE_H_
-#define _BIJI_MEMO_NOTE_H_ 1
+#pragma once
 
 #include <libecal/libecal.h>               /* ECalClient      */
 
@@ -66,6 +65,3 @@ BijiNoteObj           *biji_memo_note_new_from_info          (BijiMemoProvider *
 
 
 G_END_DECLS
-
-#endif /* _BIJI_MEMO_NOTE_H_ */
-

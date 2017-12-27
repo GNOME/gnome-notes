@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _LIB_BIJI_H
-#define _LIB_BIJI_H
+#pragma once
 
 #define _LIBBIJI_INSIDE_H
 
@@ -40,4 +39,3 @@
 
 
 #undef _LIBBIJI_INSIDE_H
-#endif /*_LIB_BIJI_H*/

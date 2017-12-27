@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BJB_SETTINGS_H_
-#define _BJB_SETTINGS_H_
+#pragma once
 
 #include <glib-object.h>
 
@@ -54,5 +53,3 @@ gchar            *bjb_settings_get_system_font            (BjbSettings *self);
 void              show_bijiben_settings_window            (GtkWidget *parent_window);
 
 G_END_DECLS
-
-#endif /* _BJB_SETTINGS_H_ */

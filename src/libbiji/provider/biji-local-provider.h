@@ -16,11 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
-#ifndef BIJI_LOCAL_PROVIDER_H_
-#define BIJI_LOCAL_PROVIDER_H_ 1
-
+#pragma once
 
 #include "biji-manager.h"
 #include "biji-provider.h"
@@ -37,5 +33,3 @@ BijiProvider        *biji_local_provider_new                         (BijiManage
 
 
 G_END_DECLS
-
-#endif /* BIJI_LOCAL_PROVIDER_H_ */

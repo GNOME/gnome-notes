@@ -16,8 +16,7 @@
  */
 
 
-#ifndef _BIJI_NOTE_ID_H_
-#define _BIJI_NOTE_ID_H_
+#pragma once
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
@@ -71,5 +70,3 @@ BijiNoteID        *biji_note_id_new_from_info                     (BijiInfoSet *
 
 
 G_END_DECLS
-
-#endif /* _BIJI_NOTE_ID_H_ */

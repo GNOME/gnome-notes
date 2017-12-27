@@ -20,8 +20,7 @@
 
 /* Chained based on Photos, Documents */
 
-#ifndef BJB_LOAD_MORE_BUTTON_H
-#define BJB_LOAD_MORE_BUTTON_H
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -45,5 +44,3 @@ GtkWidget             *bjb_load_more_button_get_revealer           (BjbLoadMoreB
 void                   bjb_load_more_button_set_block              (BjbLoadMoreButton *button, gboolean block);
 
 G_END_DECLS
-
-#endif /* BJB_LOAD_MORE_BUTTON_H */

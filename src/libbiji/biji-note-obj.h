@@ -15,8 +15,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_NOTE_OBJ_H_
-#define _BIJI_NOTE_OBJ_H_
+#pragma once
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
@@ -206,5 +205,3 @@ void             biji_note_obj_editor_paste                  (BijiNoteObj *note)
 
 
 G_END_DECLS
-
-#endif /* _BIJI_NOTE_OBJ_H_ */

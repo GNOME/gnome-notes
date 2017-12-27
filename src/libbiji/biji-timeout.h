@@ -16,8 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _BIJI_TIMEOUT_H_
-#define _BIJI_TIMEOUT_H_
+#pragma once
 
 #include <glib-object.h>
 
@@ -36,5 +35,3 @@ void biji_timeout_cancel (BijiTimeout *self);
 void biji_timeout_free (BijiTimeout *self);
 
 G_END_DECLS
-
-#endif /* _BIJI_TIMEOUT_H_ */

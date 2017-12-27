@@ -6,6 +6,7 @@ data/org.gnome.bijiben.xml.in
 data/resources/app-menu.ui
 data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui
+data/resources/help-overlay.ui
 data/resources/import-dialog.ui
 data/resources/organize-dialog.ui
 data/resources/selection-toolbar.ui

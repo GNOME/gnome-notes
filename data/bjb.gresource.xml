@@ -12,6 +12,7 @@
 
   <gresource prefix="/org/gnome/bijiben/gtk">
     <file alias="menus.ui">resources/app-menu.ui</file>
+    <file alias="help-overlay.ui">resources/help-overlay.ui</file>
   </gresource>
     
   <gresource prefix="/org/gnome/bijiben/ui">

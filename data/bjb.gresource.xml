@@ -16,6 +16,7 @@
   </gresource>
     
   <gresource prefix="/org/gnome/bijiben/ui">
+    <file alias="main-toolbar.ui" preprocess="xml-stripblanks">resources/main-toolbar.ui</file>
     <file alias="organize-dialog.ui" preprocess="xml-stripblanks">resources/organize-dialog.ui</file>
     <file alias="settings-dialog.ui">resources/settings-dialog.ui</file>
     <file alias="empty-results-box.ui">resources/empty-results-box.ui</file>

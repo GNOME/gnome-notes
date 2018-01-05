@@ -127,7 +127,7 @@ on_file_set_cb (GtkWidget       *chooser,
 static void
 bjb_import_dialog_constructed (GObject *obj)
 {
-  gchar *path;
+  g_autofree gchar *path = NULL;
   BjbImportDialog *self = BJB_IMPORT_DIALOG (obj);
 
   G_OBJECT_CLASS(bjb_import_dialog_parent_class)->constructed(obj);
@@ -147,8 +147,6 @@ bjb_import_dialog_constructed (GObject *obj)
 
   if (g_file_test (path, G_FILE_TEST_EXISTS))
     gtk_widget_show (self->gnote_import);
-
-  g_free (path);
 }
 
 static void

@@ -163,16 +163,14 @@ bijiben_open (GApplication  *application,
 {
   BjbApplication *self;
   gint i;
-  gchar *path;
+  g_autofree gchar *path = NULL;
 
   self = BJB_APPLICATION (application);
 
   for (i = 0; i < n_files; i++)
   {
     path = g_file_get_parse_name (files[i]);
-    if (bijiben_open_path (self, path, NULL))
-      g_free (path);
-    else
+    if (!bijiben_open_path (self, path, NULL))
       g_queue_push_head (&self->files_to_open, path);
   }
 }
@@ -201,7 +199,7 @@ static void
 theme_changed (GtkSettings *settings)
 {
   static GtkCssProvider *provider = NULL;
-  gchar *theme;
+  g_autofree gchar *theme = NULL;
   GdkScreen *screen;
 
   g_object_get (settings, "gtk-theme-name", &theme, NULL);
@@ -211,12 +209,11 @@ theme_changed (GtkSettings *settings)
   {
     if (provider == NULL)
     {
-        GFile *file;
+        g_autoptr(GFile) file = NULL;
 
         provider = gtk_css_provider_new ();
         file = g_file_new_for_uri ("resource:///org/gnome/bijiben/Adwaita.css");
         gtk_css_provider_load_from_file (provider, file, NULL);
-        g_object_unref (file);
     }
 
     gtk_style_context_add_provider_for_screen (screen,
@@ -229,8 +226,6 @@ theme_changed (GtkSettings *settings)
                                                   GTK_STYLE_PROVIDER (provider));
     g_clear_object (&provider);
   }
-
-  g_free (theme);
 }
 
 static void
@@ -253,8 +248,9 @@ manager_ready_cb (GObject *source,
                   gpointer user_data)
 {
   BjbApplication *self = user_data;
-  GError *error = NULL;
-  gchar *path, *uri;
+  g_autoptr(GError) error = NULL;
+  g_autofree gchar *path = NULL;
+  g_autofree gchar *uri = NULL;
 
   self->manager = biji_manager_new_finish (res, &error);
   g_application_release (G_APPLICATION (self));
@@ -262,7 +258,6 @@ manager_ready_cb (GObject *source,
   if (error != NULL)
     {
       g_warning ("Cannot initialize BijiManager: %s\n", error->message);
-      g_clear_error (&error);
       return;
     }
 
@@ -280,8 +275,6 @@ manager_ready_cb (GObject *source,
       uri = g_filename_to_uri (path, NULL, NULL);
       if (g_file_test (path, G_FILE_TEST_EXISTS))
         bijiben_import_notes (self, uri);
-      g_free (path);
-      g_free (uri);
     }
 
   bijiben_new_window_internal (self, NULL);
@@ -291,15 +284,15 @@ static void
 bijiben_startup (GApplication *application)
 {
   BjbApplication *self;
-  gchar          *storage_path, *default_color;
-  GFile          *storage;
-  GError         *error;
+  g_autofree gchar *storage_path = NULL;
+  g_autofree gchar *default_color = NULL;
+  g_autoptr(GFile) storage = NULL;
+  g_autoptr(GError) error = NULL;
   GdkRGBA         color = {0,0,0,0};
 
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
-  error = NULL;
 
   bjb_apply_style ();
 
@@ -314,26 +307,15 @@ bijiben_startup (GApplication *application)
 
   // If fails it's not the first run
   if (error && error->code == G_IO_ERROR_EXISTS)
-  {
     self->first_run = FALSE;
-    g_error_free (error);
-  }
-
   else if (error)
-  {
     g_warning ("%s", error->message);
-    g_error_free (error);
-  }
 
   g_object_get (self->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
 
   g_application_hold (application);
   biji_manager_new_async (storage, &color, manager_ready_cb, self);
-
-  g_free (default_color);
-  g_free (storage_path);
-  g_object_unref (storage);
 }
 
 static gboolean
@@ -345,7 +327,7 @@ bijiben_application_local_command_line (GApplication *application,
   gboolean version = FALSE;
   gchar **remaining = NULL;
   GOptionContext *context;
-  GError *error = NULL;
+  g_autoptr(GError) error = NULL;
   gint argc = 0;
   gchar **argv = NULL;
 
@@ -375,7 +357,6 @@ bijiben_application_local_command_line (GApplication *application,
     /* Translators: this is a fatal error quit message
      * printed on the command line */
     g_printerr ("%s: %s\n", _("Could not parse arguments"), error->message);
-    g_error_free (error);
 
     *exit_status = EXIT_FAILURE;
     goto out;
@@ -397,7 +378,6 @@ bijiben_application_local_command_line (GApplication *application,
                  * printed on the command line */
                 _("Could not register the application"),
                 error->message);
-    g_error_free (error);
 
     *exit_status = EXIT_FAILURE;
     goto out;

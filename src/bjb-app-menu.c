@@ -74,9 +74,8 @@ external_activated (GSimpleAction *action,
     locations = bjb_import_dialog_get_paths (BJB_IMPORT_DIALOG (dialog));
     for (l=locations; l!= NULL; l=l->next)
     {
-      gchar *uri = g_filename_to_uri (l->data, NULL, NULL);
+      g_autofree gchar *uri = g_filename_to_uri (l->data, NULL, NULL);
       bijiben_import_notes (user_data, uri);
-      g_free (uri);
     }
 
     g_list_free_full (locations, g_free);
@@ -125,7 +124,7 @@ help_activated (GSimpleAction *action,
                 GVariant      *parameter,
                 gpointer       user_data)
 {
-  GError *error = NULL;
+  g_autoptr(GError) error = NULL;
 
   gtk_show_uri_on_window (gtk_application_get_active_window (user_data),
                           "help:bijiben",
@@ -133,10 +132,7 @@ help_activated (GSimpleAction *action,
                           &error);
 
   if (error)
-  {
     g_warning ("%s", error->message);
-    g_error_free (error);
-  }
 }
 
 static void

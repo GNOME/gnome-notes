@@ -105,19 +105,15 @@ static gint
 bjb_compare_notebook (gconstpointer a, gconstpointer b)
 {
 
-  gchar *up_a, *up_b;
+  g_autofree gchar *up_a = NULL;
+  g_autofree gchar *up_b = NULL;
   BijiInfoSet *set_a, *set_b;
-  gint retval;
   set_a = (BijiInfoSet *) a;
   set_b = (BijiInfoSet *) b;
 
   up_a = g_utf8_strup (set_a->title, -1);
   up_b = g_utf8_strup (set_b->title, -1);
-  retval = g_strcmp0 (up_a, up_b);
-
-  g_free (up_a);
-  g_free (up_b);
-  return retval;
+  return g_strcmp0 (up_a, up_b);
 }
 
 /* If true, free the retval with gtk_tree_path_free */
@@ -134,15 +130,13 @@ bjb_get_path_for_str (GtkTreeModel  *model,
 
   while (valid)
   {
-    gchar *cur_str = NULL;
+    g_autofree gchar *cur_str = NULL;
     gtk_tree_model_get (model, &iter, column, &cur_str, -1);
 
     if (cur_str)
     {
       if (g_strcmp0 (cur_str, needle)==0)
         *return_value = gtk_tree_model_get_path (model, &iter);
-
-      g_free (cur_str);
     }
 
     if (*return_value)

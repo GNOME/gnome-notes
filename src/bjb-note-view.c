@@ -166,7 +166,8 @@ static void
 on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
   const gchar *font_color;
-  gchar *span, *text;
+  g_autofree gchar *span = NULL;
+  g_autofree gchar *text = NULL;
   GdkRGBA color;
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
@@ -190,9 +191,6 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 			            (note));
   span = g_strdup_printf ("<span color='%s'>%s</span>", font_color, text);
   gtk_label_set_markup (GTK_LABEL (self->last_update), span);
-
-  g_free (text);
-  g_free (span);
 }
 
 
@@ -213,11 +211,9 @@ bjb_note_view_constructed (GObject *obj)
 {
   BjbNoteView            *self = BJB_NOTE_VIEW (obj);
   BjbSettings            *settings;
-  gchar                  *default_font;
+  g_autofree gchar       *default_font = NULL;
   GdkRGBA                 color;
 
-
-  default_font = NULL;
   settings = bjb_app_get_settings(g_application_get_default());
 
 
@@ -249,11 +245,7 @@ bjb_note_view_constructed (GObject *obj)
      default_font = g_strdup (bjb_settings_get_default_font (settings));
 
   if (default_font != NULL)
-  {
     biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (self->view), default_font);
-    g_free (default_font);
-  }
-
 
   /* User defined color */
 

@@ -26,16 +26,12 @@
 int
 main (int argc, char *argv[])
 {
-  BjbApplication *app;
-  int status;
+  g_autoptr(BjbApplication) app = NULL;
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
   app = bjb_application_new ();
-  status = g_application_run (G_APPLICATION (app), argc, argv);
-  g_object_unref (app);
-
-  return status;
+  return g_application_run (G_APPLICATION (app), argc, argv);
 }

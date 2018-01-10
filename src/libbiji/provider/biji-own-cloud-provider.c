@@ -55,8 +55,10 @@ static GParamSpec *properties[OCLOUD_PROV_PROP] = { NULL, };
  * todo: monitor, cancel monitor
  */
 
-struct BijiOwnCloudProviderPrivate_
+struct _BijiOwnCloudProvider
 {
+  BijiProvider     parent_instance;
+
   BijiProviderInfo info;
 
   GoaObject        *object;
@@ -128,20 +130,20 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_PROVIDER (object));
   self = BIJI_OWN_CLOUD_PROVIDER (object);
 
-  if (self->priv->path != NULL)
-    g_free (self->priv->path);
+  if (self->path != NULL)
+    g_free (self->path);
 
-  g_clear_object (&self->priv->account);
-  g_clear_object (&self->priv->object);
-  g_clear_object (&self->priv->info.icon);
-  g_clear_object (&self->priv->folder);
+  g_clear_object (&self->account);
+  g_clear_object (&self->object);
+  g_clear_object (&self->info.icon);
+  g_clear_object (&self->folder);
 
-  g_clear_pointer (&self->priv->info.name, g_free);
-  g_clear_pointer (&self->priv->info.datasource, g_free);
+  g_clear_pointer (&self->info.name, g_free);
+  g_clear_pointer (&self->info.datasource, g_free);
 
-  g_queue_free_full (self->priv->queue, g_object_unref);
-  g_hash_table_unref (self->priv->notes);
-  g_hash_table_unref (self->priv->tracker);
+  g_queue_free_full (self->queue, g_object_unref);
+  g_hash_table_unref (self->notes);
+  g_hash_table_unref (self->tracker);
 
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->finalize (object);
 }
@@ -169,7 +171,7 @@ create_note_from_item (BijiOCloudItem *item)
   BijiNoteObj *note;
   GdkRGBA color;
   BijiManager *manager;
-  gboolean online = (item->self->priv->mount != NULL);
+  gboolean online = (item->self->mount != NULL);
 
   manager = biji_provider_get_manager (BIJI_PROVIDER (item->self));
 
@@ -179,7 +181,7 @@ create_note_from_item (BijiOCloudItem *item)
                                             online);
   biji_manager_get_default_color (manager, &color);
   biji_note_obj_set_rgba (note, &color);
-  g_hash_table_replace (item->self->priv->notes,
+  g_hash_table_replace (item->self->notes,
                         item->set.url,
                         note);
 }
@@ -302,11 +304,11 @@ handle_next_item (BijiOwnCloudProvider *self)
   BijiOCloudItem *item;
   GList *list;
 
-  item = g_queue_pop_head (self->priv->queue);
+  item = g_queue_pop_head (self->queue);
 
   if (item != NULL)
   {
-    g_hash_table_remove (self->priv->tracker, item->set.url);
+    g_hash_table_remove (self->tracker, item->set.url);
 
     biji_tracker_check_for_info (biji_provider_get_manager (BIJI_PROVIDER (self)),
                                  item->set.url,
@@ -319,13 +321,13 @@ handle_next_item (BijiOwnCloudProvider *self)
   else
   {
     /* Post load tracker db clean-up */
-    list = g_hash_table_get_values (self->priv->tracker);
+    list = g_hash_table_get_values (self->tracker);
     g_list_foreach (list, trash, self);
     g_list_free (list);
 
 
     /* Now simply provide data to controller */
-    list = g_hash_table_get_values (self->priv->notes);
+    list = g_hash_table_get_values (self->notes);
     BIJI_PROVIDER_GET_CLASS (self)->notify_loaded (BIJI_PROVIDER (self), list, BIJI_LIVING_ITEMS);
     g_list_free (list);
   }
@@ -370,20 +372,20 @@ enumerate_next_files_ready_cb (GObject *source,
     item = o_cloud_item_new (self);
     item->set.title = g_strdup (g_file_info_get_name (info));
     item->set.url = g_build_filename
-      (g_file_get_parse_name (self->priv->folder),
+      (g_file_get_parse_name (self->folder),
        "/", item->set.title, NULL);
 
     g_file_info_get_modification_time (info, &time);
     item->set.mtime = time.tv_sec;
     item->set.created = g_file_info_get_attribute_uint64 (info, "time:created");
-    item->set.datasource_urn = g_strdup (self->priv->info.datasource);
+    item->set.datasource_urn = g_strdup (self->info.datasource);
 
-    if (self->priv->mount == NULL) /* offline (synced mode) */
+    if (self->mount == NULL) /* offline (synced mode) */
       item->file = g_file_new_for_path (item->set.url);
     else                          /* online (webdav) */
       item->file = g_file_new_for_uri (item->set.url);
 
-    g_queue_push_head (self->priv->queue, item);
+    g_queue_push_head (self->queue, item);
   }
 
   // TODO - create the dir monitor
@@ -457,14 +459,14 @@ on_notes_mined (GObject       *source_object,
   {
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
-      g_hash_table_insert (self->priv->tracker,
+      g_hash_table_insert (self->tracker,
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL)),
                            g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL)));
 
     }
   }
 
-  g_file_enumerate_children_async (self->priv->folder,
+  g_file_enumerate_children_async (self->folder,
                                    "standard::name,time::modified,time::created", 0,
                                    G_PRIORITY_DEFAULT,
                                    NULL,
@@ -519,11 +521,10 @@ static void
 handle_mount (BijiOwnCloudProvider *self)
 {
   GFile *root;
-	BijiOwnCloudProviderPrivate *priv = self->priv;
 
   root = NULL;
-  if (G_IS_MOUNT (priv->mount))
-    root = g_mount_get_root (priv->mount);
+  if (G_IS_MOUNT (self->mount))
+    root = g_mount_get_root (self->mount);
 
 
   if (G_IS_FILE (root))
@@ -531,16 +532,16 @@ handle_mount (BijiOwnCloudProvider *self)
     /* OwnCloud Notes folder is not localized.
      * https://github.com/owncloud/notes/issues/7 */
 
-    priv->folder = g_file_get_child (root, "Notes");
-    g_file_make_directory (priv->folder, NULL, NULL);
-    priv->monitor = g_file_monitor_directory
-      (self->priv->folder, G_FILE_MONITOR_NONE, NULL, NULL); // cancel, error
+    self->folder = g_file_get_child (root, "Notes");
+    g_file_make_directory (self->folder, NULL, NULL);
+    self->monitor = g_file_monitor_directory
+      (self->folder, G_FILE_MONITOR_NONE, NULL, NULL); // cancel, error
 
 
     g_object_unref (root);
     biji_tracker_ensure_datasource (
       biji_provider_get_manager (BIJI_PROVIDER (self)),
-      self->priv->info.datasource,
+      self->info.datasource,
       MINER_ID,
       mine_notes,
       self);
@@ -565,7 +566,7 @@ on_owncloud_volume_mounted (GObject *source_object,
   self = BIJI_OWN_CLOUD_PROVIDER (user_data);
 
   /* bug #701021 makes this fail */
-  g_volume_mount_finish (self->priv->volume, res, &error);
+  g_volume_mount_finish (self->volume, res, &error);
 
   if (error != NULL)
   {
@@ -575,9 +576,9 @@ on_owncloud_volume_mounted (GObject *source_object,
     return;
   }
 
-  self->priv->mount = g_volume_get_mount (self->priv->volume);
+  self->mount = g_volume_get_mount (self->volume);
 
-  if (!G_IS_MOUNT (self->priv->mount))
+  if (!G_IS_MOUNT (self->mount))
   {
     g_warning ("OwnCloud Provider : !G_IS_MOUNT");
     biji_provider_abort (BIJI_PROVIDER (self));
@@ -598,34 +599,34 @@ get_mount (BijiOwnCloudProvider *self)
 
   monitor = g_volume_monitor_get ();
 
-  if (!GOA_IS_OBJECT (self->priv->object))
+  if (!GOA_IS_OBJECT (self->object))
   {
     biji_provider_abort (BIJI_PROVIDER (self));
     return;
   }
 
-  files = goa_object_peek_files (self->priv->object);
+  files = goa_object_peek_files (self->object);
 
   if (GOA_IS_FILES (files))
   {
     uri = goa_files_get_uri  (files);
-    self->priv->path = g_strdup_printf ("%sNotes", uri);
-    self->priv->volume = g_volume_monitor_get_volume_for_uuid (monitor, uri);
-    self->priv->mount = g_volume_get_mount (self->priv->volume);
+    self->path = g_strdup_printf ("%sNotes", uri);
+    self->volume = g_volume_monitor_get_volume_for_uuid (monitor, uri);
+    self->mount = g_volume_get_mount (self->volume);
 
 
-    if (self->priv->mount != NULL &&
-        G_IS_MOUNT (self->priv->mount))
+    if (self->mount != NULL &&
+        G_IS_MOUNT (self->mount))
     {
       handle_mount (self);
     }
 
 
     /* not already mounted. no matter, we mount. in theory. */
-    //else if (self->priv->mount == NULL)
+    //else if (self->mount == NULL)
     else
     {
-      g_volume_mount (self->priv->volume,
+      g_volume_mount (self->volume,
                       G_MOUNT_MOUNT_NONE,
                       NULL,
                       NULL,
@@ -656,7 +657,6 @@ on_owncloudclient_read (GObject *source_object,
                         gpointer user_data)
 {
   BijiOwnCloudProvider *self = user_data;
-  BijiOwnCloudProviderPrivate *priv = self->priv;
   GFileInputStream *stream;
 	GDataInputStream *reader;
   GError           *error = NULL;
@@ -707,20 +707,20 @@ on_owncloudclient_read (GObject *source_object,
   g_string_erase (string, 0, 10); // localPath=
 
   /* ok we have the path. Now create the notes */
-  priv->path = g_build_filename (string->str, "Notes", NULL);
-  priv->folder = g_file_new_for_path (priv->path);
-  g_file_make_directory (priv->folder, NULL, &error);
+  self->path = g_build_filename (string->str, "Notes", NULL);
+  self->folder = g_file_new_for_path (self->path);
+  g_file_make_directory (self->folder, NULL, &error);
 
 
   if (error)
   {
     /* This error is not a blocker - the file may already exist. */
-    g_message ("Cannot create %s - %s", priv->path, error->message);
+    g_message ("Cannot create %s - %s", self->path, error->message);
 
     /* if so, just print the message and go on */
     if (error->code == G_IO_ERROR_EXISTS)
     {
-      g_file_enumerate_children_async (priv->folder,
+      g_file_enumerate_children_async (self->folder,
           "standard::name,time::modified,time::created", 0,
           G_PRIORITY_DEFAULT,
           NULL,
@@ -731,7 +731,7 @@ on_owncloudclient_read (GObject *source_object,
     /* if the creation really failed, fall back to webdav */
     else
     {
-      g_warning ("Cannot create %s - trying webdav", priv->path);
+      g_warning ("Cannot create %s - trying webdav", self->path);
       get_mount (self);
     }
 
@@ -753,7 +753,6 @@ static void
 biji_own_cloud_provider_constructed (GObject *obj)
 {
   BijiOwnCloudProvider *self;
-  BijiOwnCloudProviderPrivate *priv;
   GError *error;
   GIcon *icon;
   gchar *owncloudclient;
@@ -762,40 +761,38 @@ biji_own_cloud_provider_constructed (GObject *obj)
   G_OBJECT_CLASS (biji_own_cloud_provider_parent_class)->constructed (obj);
 
   self = BIJI_OWN_CLOUD_PROVIDER (obj);
-  priv = self->priv;
 
-
-  if (!GOA_IS_OBJECT (priv->object))
+  if (!GOA_IS_OBJECT (self->object))
   {
    biji_provider_abort (BIJI_PROVIDER (self));
    return;
   }
 
-  priv->account = goa_object_get_account (priv->object);
+  self->account = goa_object_get_account (self->object);
 
-  if (priv->account != NULL)
+  if (self->account != NULL)
   {
 
-    priv->info.unique_id = goa_account_get_id (priv->account);
-    priv->info.datasource = g_strdup_printf ("gn:goa-account:%s",
-                                             priv->info.unique_id);
-    priv->info.name = g_strdup (goa_account_get_provider_name (priv->account));
+    self->info.unique_id = goa_account_get_id (self->account);
+    self->info.datasource = g_strdup_printf ("gn:goa-account:%s",
+                                             self->info.unique_id);
+    self->info.name = g_strdup (goa_account_get_provider_name (self->account));
 
     error = NULL;
-    icon = g_icon_new_for_string (goa_account_get_provider_icon (priv->account),
+    icon = g_icon_new_for_string (goa_account_get_provider_icon (self->account),
                                   &error);
     if (error)
     {
       g_warning ("%s", error->message);
       g_error_free (error);
-      priv->info.icon = NULL;
+      self->info.icon = NULL;
     }
 
     else
     {
-      priv->info.icon = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_INVALID);
-      gtk_image_set_pixel_size (GTK_IMAGE (priv->info.icon), 48);
-      g_object_ref_sink (priv->info.icon);
+      self->info.icon = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_INVALID);
+      gtk_image_set_pixel_size (GTK_IMAGE (self->info.icon), 48);
+      g_object_ref_sink (self->info.icon);
     }
 
     g_object_unref (icon);
@@ -834,14 +831,9 @@ ocloud_prov_load_archives (BijiProvider *provider)
 static void
 biji_own_cloud_provider_init (BijiOwnCloudProvider *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_OWN_CLOUD_PROVIDER, BijiOwnCloudProviderPrivate);
-
-
-  self->priv->notes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-  self->priv->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-  self->priv->queue = g_queue_new ();
-  self->priv->path = NULL;
-  self->priv->folder = NULL;
+  self->notes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+  self->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+  self->queue = g_queue_new ();
 }
 
 
@@ -857,7 +849,7 @@ biji_own_cloud_provider_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_GOA_OBJECT:
-      self->priv->object = g_value_dup_object (value);
+      self->object = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -876,7 +868,7 @@ biji_own_cloud_provider_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_GOA_OBJECT:
-      g_value_set_object (value, self->priv->object);
+      g_value_set_object (value, self->object);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -891,7 +883,7 @@ own_cloud_get_info       (BijiProvider *provider)
   BijiOwnCloudProvider *self;
 
   self = BIJI_OWN_CLOUD_PROVIDER (provider);
-  return &(self->priv->info);
+  return &(self->info);
 }
 
 
@@ -920,7 +912,7 @@ own_cloud_create_note (BijiProvider *provider,
 		   self,
        biji_provider_get_manager (provider),
        &info,
-       (self->priv->mount != NULL));
+       (self->mount != NULL));
 }
 
 
@@ -943,7 +935,7 @@ own_cloud_create_full (BijiProvider  *provider,
   self = BIJI_OWN_CLOUD_PROVIDER (provider);
   manager = biji_provider_get_manager (provider);
 
-  retval = biji_own_cloud_note_new_from_info (self, manager, info, (self->priv->mount != NULL));
+  retval = biji_own_cloud_note_new_from_info (self, manager, info, (self->mount != NULL));
   biji_note_obj_set_html (retval, html);
 
   /* We do not use suggested color.
@@ -958,9 +950,9 @@ own_cloud_create_full (BijiProvider  *provider,
 
 
 GFile *
-biji_own_cloud_provider_get_folder     (BijiOwnCloudProvider *provider)
+biji_own_cloud_provider_get_folder     (BijiOwnCloudProvider *self)
 {
-  return provider->priv->folder;
+  return self->folder;
 }
 
 
@@ -991,8 +983,6 @@ biji_own_cloud_provider_class_init (BijiOwnCloudProviderClass *klass)
                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, OCLOUD_PROV_PROP, properties);
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiOwnCloudProviderPrivate));
 }
 
 
@@ -1008,7 +998,7 @@ biji_own_cloud_provider_new (BijiManager *manager,
 
 
 gchar *
-biji_own_cloud_provider_get_readable_path (BijiOwnCloudProvider *p)
+biji_own_cloud_provider_get_readable_path (BijiOwnCloudProvider *self)
 {
-  return p->priv->path;
+  return self->path;
 }

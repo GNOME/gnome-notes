@@ -21,34 +21,9 @@
 
 G_BEGIN_DECLS
 
+#define BIJI_TYPE_OWN_CLOUD_PROVIDER (biji_own_cloud_provider_get_type ())
 
-#define BIJI_TYPE_OWN_CLOUD_PROVIDER             (biji_own_cloud_provider_get_type ())
-#define BIJI_OWN_CLOUD_PROVIDER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_OWN_CLOUD_PROVIDER, BijiOwnCloudProvider))
-#define BIJI_OWN_CLOUD_PROVIDER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_OWN_CLOUD_PROVIDER, BijiOwnCloudProviderClass))
-#define BIJI_IS_OWN_CLOUD_PROVIDER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_OWN_CLOUD_PROVIDER))
-#define BIJI_IS_OWN_CLOUD_PROVIDER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_OWN_CLOUD_PROVIDER))
-#define BIJI_OWN_CLOUD_PROVIDER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_OWN_CLOUD_PROVIDER, BijiOwnCloudProviderClass))
-
-typedef struct BijiOwnCloudProvider_         BijiOwnCloudProvider;
-typedef struct BijiOwnCloudProviderClass_    BijiOwnCloudProviderClass;
-typedef struct BijiOwnCloudProviderPrivate_  BijiOwnCloudProviderPrivate;
-
-struct BijiOwnCloudProvider_
-{
-  BijiProvider parent;
-  BijiOwnCloudProviderPrivate *priv;
-};
-
-
-struct BijiOwnCloudProviderClass_
-{
-  BijiProviderClass parent_class;
-};
-
-
-GType             biji_own_cloud_provider_get_type      (void);
-
-
+G_DECLARE_FINAL_TYPE (BijiOwnCloudProvider, biji_own_cloud_provider, BIJI, OWN_CLOUD_PROVIDER, BijiProvider)
 
 BijiProvider     *biji_own_cloud_provider_new           (BijiManager *manager,
                                                          GoaObject *object);

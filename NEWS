@@ -1,3 +1,21 @@
+Overview of changes in 3.27.4
+=============================
+
+* Improve window geometry state (Mohammed Sadiq)
+* Set default application icon (Mohammed Sadiq)
+* Fix crash when running X11 instead of Wayland (Mohammed Sadiq)
+* Improve notes import on startup (Mohammed Sadiq)
+* Add shortcuts window (Jonathan Kang)
+* More code clean up (Mohammed Sadiq)
+* More widgets migrated to GtkBuilder (Mohammed Sadiq)
+* Disable Zeitgeist support by default
+* Adopt #pragma once
+
+Translations
+* es (Daniel Mustieles)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+
 Overview of changes in 3.27.3
 =============================
 

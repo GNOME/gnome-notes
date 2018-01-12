@@ -2,15 +2,15 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015, 2017.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-12-11 13:50+0000\n"
-"PO-Revision-Date: 2017-12-14 13:09+0100\n"
+"POT-Creation-Date: 2017-12-27 12:37+0000\n"
+"PO-Revision-Date: 2018-01-12 13:27+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -44,8 +44,8 @@ msgstr "Notas"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.bijiben.desktop.in.in:5
-msgid "notes;reminder;"
-msgstr "notas;recordatorio;"
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "notas;recordatorio;cuaderno;adhesivas;"
 
 #: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
@@ -143,10 +143,14 @@ msgid "_Help"
 msgstr "Ay_uda"
 
 #: data/resources/app-menu.ui:25
+msgid "_Keyboard Shortcuts"
+msgstr "Atajos del _teclado"
+
+#: data/resources/app-menu.ui:29
 msgid "_About"
 msgstr "_Acerca de"
 
-#: data/resources/app-menu.ui:29
+#: data/resources/app-menu.ui:33
 msgid "_Quit"
 msgstr "_Salir"
 
@@ -198,6 +202,93 @@ msgstr "Copiar selección a una nota nueva"
 msgid "No notes"
 msgstr "No hay notas"
 
+#: data/resources/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
+
+#: data/resources/help-overlay.ui:13
+#| msgid "New notebook"
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "Nota nueva"
+
+#: data/resources/help-overlay.ui:20
+#| msgid "_New Window"
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Cerrar la ventana"
+
+#: data/resources/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Mostrar ayuda"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Atajos"
+
+#: data/resources/help-overlay.ui:42
+#| msgid "Selection mode"
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "Modo de selección"
+
+#: data/resources/help-overlay.ui:47
+#| msgid "Exit selection mode"
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "Salir del modo de selección"
+
+#: data/resources/help-overlay.ui:54
+#| msgid "Select a Folder"
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Seleccionar todas"
+
+#: data/resources/help-overlay.ui:62
+#| msgid "Note Edition"
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "Modo de edición de la nota"
+
+#: data/resources/help-overlay.ui:67
+#| msgid "Bold"
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Negrita"
+
+#: data/resources/help-overlay.ui:74
+#| msgid "Italic"
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Cursiva"
+
+#: data/resources/help-overlay.ui:81
+#| msgid "Strike"
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "Tachado"
+
+#: data/resources/help-overlay.ui:88
+#| msgid "Undo"
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Deshacer"
+
+#: data/resources/help-overlay.ui:95
+#| msgid "Redo"
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Rehacer"
+
+#: data/resources/help-overlay.ui:102
+#| msgid "Move to Trash"
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "Mover nota a la papelera"
+
 #: data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importar notas"
@@ -207,7 +298,6 @@ msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: data/resources/import-dialog.ui:22
-#| msgid "Import"
 msgid "_Import"
 msgstr "_Importar"
 
@@ -228,9 +318,46 @@ msgid "Custom Location"
 msgstr "Ubicación personalizada"
 
 #: data/resources/import-dialog.ui:224
-#| msgid "Selection mode"
 msgid "Select a Folder"
 msgstr "Seleccionar una carpeta"
+
+#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:25
+#: src/bjb-main-toolbar.c:744
+msgid "Notebooks"
+msgstr "Cuadernos de notas"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "Introduzca un nombre para crear la cuaderno de notas"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "Cuaderno de notas nuevo"
+
+#: data/resources/selection-toolbar.ui:33 src/bjb-main-toolbar.c:847
+msgid "Note color"
+msgstr "Color de la nota"
+
+#: data/resources/selection-toolbar.ui:50
+msgid "Share note"
+msgstr "Compartir nota"
+
+#: data/resources/selection-toolbar.ui:59
+msgid "Open in another window"
+msgstr "Abrir en otra ventana"
+
+#. Delete Note
+#: data/resources/selection-toolbar.ui:67 src/bjb-main-toolbar.c:765
+msgid "Move to Trash"
+msgstr "Mover a la papelera"
+
+#: data/resources/selection-toolbar.ui:92
+msgid "Restore"
+msgstr "Restaurar"
+
+#: data/resources/selection-toolbar.ui:100
+msgid "Permanently Delete"
+msgstr "Eliminar permanentemente"
 
 #: data/resources/settings-dialog.ui:10
 msgid "Preferences"
@@ -260,41 +387,39 @@ msgstr "Seleccionar la ubicación predeterminada del almacenamiento:"
 msgid "Primary Book"
 msgstr "Libro principal"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:633
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:613
 msgid "Untitled"
 msgstr "Sin título"
 
-#: src/bjb-application.c:350
-#| msgid "Show the application's version"
+#: src/bjb-application.c:354
 msgid "Show the application’s version"
 msgstr "Mostrar la versión de la aplicación"
 
-#: src/bjb-application.c:352
+#: src/bjb-application.c:356
 msgid "Create a new note"
 msgstr "Crear una nota nueva"
 
-#: src/bjb-application.c:354
-#| msgid "[FILE...]"
+#: src/bjb-application.c:358
 msgid "[FILE…]"
 msgstr "[ARCHIVO…]"
 
-#: src/bjb-application.c:362
+#: src/bjb-application.c:366
 msgid "Take notes and export them everywhere."
 msgstr "Tomar notas y exportarlas a cualquier parte."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:373
+#: src/bjb-application.c:377
 msgid "Could not parse arguments"
 msgstr "No se pudieron analizar los argumentos"
 
-#: src/bjb-application.c:382
+#: src/bjb-application.c:386
 msgid "GNOME Notes"
 msgstr "Notas de GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:394
+#: src/bjb-application.c:398
 msgid "Could not register the application"
 msgstr "No se pudo registrar la aplicación"
 
@@ -319,7 +444,6 @@ msgid "Oops"
 msgstr "Vaya"
 
 #: src/bjb-empty-results-box.c:91
-#| msgid "Please install 'Tracker' then restart the application."
 msgid "Please install “Tracker” then restart the application."
 msgstr "Instale «Tracker» y reinicie la aplicación."
 
@@ -328,7 +452,6 @@ msgid "Load More"
 msgstr "Cargar más"
 
 #: src/bjb-load-more-button.c:90
-#| msgid "Loading..."
 msgid "Loading…"
 msgstr "Cargando…"
 
@@ -343,25 +466,25 @@ msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: src/bjb-main-toolbar.c:253
+#: src/bjb-main-toolbar.c:233
 msgid "Search note titles, content and notebooks"
 msgstr "Buscar en títulos de notas, contenido y cuadernos de notas"
 
 #. Select
-#: src/bjb-main-toolbar.c:292
+#: src/bjb-main-toolbar.c:272
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/bjb-main-toolbar.c:306
+#: src/bjb-main-toolbar.c:286
 msgid "Exit selection mode"
 msgstr "Salir del modo de selección"
 
-#: src/bjb-main-toolbar.c:335
+#: src/bjb-main-toolbar.c:315
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: src/bjb-main-toolbar.c:338
+#: src/bjb-main-toolbar.c:318
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
@@ -369,30 +492,30 @@ msgstr "Nuevas y recientes"
 #. * Translators : <_New> refers to new note creation.
 #. * User clicks new, which opens a new blank note.
 #.
-#: src/bjb-main-toolbar.c:423
+#: src/bjb-main-toolbar.c:403
 msgid "_New"
 msgstr "_Nueva"
 
-#: src/bjb-main-toolbar.c:442 src/bjb-main-toolbar.c:532
+#: src/bjb-main-toolbar.c:422 src/bjb-main-toolbar.c:512
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: src/bjb-main-toolbar.c:475
+#: src/bjb-main-toolbar.c:455
 msgid "View notes and notebooks in a list"
 msgstr "Ver notas y cuadernos de notas en una lista"
 
-#: src/bjb-main-toolbar.c:496
+#: src/bjb-main-toolbar.c:476
 msgid "View notes and notebooks in a grid"
 msgstr "Ver notas y cuadernos de notas en una rejilla"
 
-#: src/bjb-main-toolbar.c:512
+#: src/bjb-main-toolbar.c:492
 msgid "Trash"
 msgstr "Papelera"
 
 #. Add Empty-Bin
 #. * translators : Empty is the verb.
 #. * This action permanently deletes notes
-#: src/bjb-main-toolbar.c:551
+#: src/bjb-main-toolbar.c:531
 msgid "Empty"
 msgstr "Vaciar"
 
@@ -400,43 +523,27 @@ msgstr "Vaciar"
 #. * Open the current note in a new window
 #. * in order to be able to see it and others at the same time
 #.
-#: src/bjb-main-toolbar.c:730
+#: src/bjb-main-toolbar.c:710
 msgid "Open in New Window"
 msgstr "Abrir en una ventana nueva"
 
 #. Undo Redo separator
-#: src/bjb-main-toolbar.c:741
+#: src/bjb-main-toolbar.c:721
 msgid "Undo"
 msgstr "Deshacer"
 
-#: src/bjb-main-toolbar.c:749
+#: src/bjb-main-toolbar.c:729
 msgid "Redo"
 msgstr "Rehacer"
 
-#. Notes tags
-#: src/bjb-main-toolbar.c:764 src/bjb-organize-dialog.c:355
-#: src/bjb-selection-toolbar.c:374
-msgid "Notebooks"
-msgstr "Cuadernos de notas"
-
 #. Share
-#: src/bjb-main-toolbar.c:772
+#: src/bjb-main-toolbar.c:752
 msgid "Email this Note"
 msgstr "Enviar esta nota por correo-e"
 
-#. Delete Note
-#. Trash notes
-#: src/bjb-main-toolbar.c:785 src/bjb-selection-toolbar.c:408
-msgid "Move to Trash"
-msgstr "Mover a la papelera"
-
-#: src/bjb-main-toolbar.c:844
+#: src/bjb-main-toolbar.c:824
 msgid "More options…"
 msgstr "Más opciones…"
-
-#: src/bjb-main-toolbar.c:867 src/bjb-selection-toolbar.c:385
-msgid "Note color"
-msgstr "Color de la nota"
 
 #: src/bjb-main-view.c:495
 msgid "Notebook"
@@ -455,33 +562,6 @@ msgstr "Nota"
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Última actualización</b> %s"
-
-#: src/bjb-organize-dialog.c:380
-msgid "Enter a name to create a notebook"
-msgstr "Introduzca un nombre para crear la cuaderno de notas"
-
-#: src/bjb-organize-dialog.c:390
-msgid "New notebook"
-msgstr "Cuaderno de notas nuevo"
-
-#. Restore (do not show)
-#: src/bjb-selection-toolbar.c:379
-msgid "Restore"
-msgstr "Restaurar"
-
-#: src/bjb-selection-toolbar.c:396
-msgid "Share note"
-msgstr "Compartir nota"
-
-#. Detach
-#: src/bjb-selection-toolbar.c:402
-msgid "Open in another window"
-msgstr "Abrir en otra ventana"
-
-#. Permanently delete (do not show )
-#: src/bjb-selection-toolbar.c:416
-msgid "Permanently Delete"
-msgstr "Eliminar permanentemente"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -515,6 +595,9 @@ msgstr "Local"
 msgid "Local storage"
 msgstr "Almacenamiento local"
 
+#~ msgid "notes;reminder;"
+#~ msgstr "notas;recordatorio;"
+
 #~ msgid "_OK"
 #~ msgstr "_Aceptar"
 
@@ -543,9 +626,6 @@ msgstr "Almacenamiento local"
 
 #~ msgid "No result found for this research."
 #~ msgstr "No se han encontrado resultados para esta búsqueda."
-
-#~ msgid "_New Window"
-#~ msgstr "Ventana _nueva"
 
 #~ msgid "Delete"
 #~ msgstr "Eliminar"

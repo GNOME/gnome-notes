@@ -27,13 +27,12 @@
 #include "biji-item.h"
 #include "biji-own-cloud-note.h"
 #include "biji-own-cloud-provider.h"
-#include "../biji-timeout.h"
+#include "biji-timeout.h"
 #include "../serializer/biji-lazy-serializer.h"
 
-
-
-struct BijiOwnCloudNotePrivate_
+struct _BijiOwnCloudNote
 {
+  BijiNoteObj           parent_instance;
   BijiOwnCloudProvider *prov;
   BijiNoteID *id;
 
@@ -63,7 +62,7 @@ ocloud_note_get_place (BijiItem *local)
   g_return_val_if_fail (BIJI_IS_OWN_CLOUD_NOTE (local), NULL);
 
   self = BIJI_OWN_CLOUD_NOTE (local);
-  info = biji_provider_get_info (BIJI_PROVIDER (self->priv->prov));
+  info = biji_provider_get_info (BIJI_PROVIDER (self->prov));
 
   return info->name;
 }
@@ -88,7 +87,7 @@ ocloud_note_get_html (BijiNoteObj *note)
   err = NULL;
   self = BIJI_OWN_CLOUD_NOTE (note);
 
-  if (g_file_load_contents (self->priv->location, NULL, &content, 0, NULL, &err))
+  if (g_file_load_contents (self->location, NULL, &content, 0, NULL, &err))
   {
     html = html_from_plain_text (content);
     g_free (content);
@@ -131,13 +130,13 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
   const BijiProviderInfo *provider;
 
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
-  g_return_if_fail (G_IS_FILE (BIJI_OWN_CLOUD_NOTE (note)->priv->location));
+  g_return_if_fail (G_IS_FILE (BIJI_OWN_CLOUD_NOTE (note)->location));
 
   item = BIJI_ITEM (note);
   ocnote = BIJI_OWN_CLOUD_NOTE (note);
-  file = ocnote->priv->location;
+  file = ocnote->location;
   file_info = g_file_query_info (file, "time::modified", G_FILE_QUERY_INFO_NONE, NULL, NULL);
-  provider = biji_provider_get_info (BIJI_PROVIDER (ocnote->priv->prov));
+  provider = biji_provider_get_info (BIJI_PROVIDER (ocnote->prov));
 
   info = biji_info_set_new ();
   info->url = (gchar*) biji_item_get_uuid (item);
@@ -198,13 +197,13 @@ ocloud_note_save (BijiNoteObj *note)
   /* backup would fail for some reason.
    * gfilemove for workaround? */
   g_file_replace_contents_async  (
-      self->priv->location,
+      self->location,
       str->str,
       str->len,
       NULL,   // etag
       FALSE,  //backup
       G_FILE_CREATE_REPLACE_DESTINATION,
-      self->priv->cancellable,
+      self->cancellable,
       on_content_replaced,
       self);
 
@@ -232,18 +231,18 @@ create_new_file (BijiOwnCloudNote *self, const gchar *basename)
   gchar *key;
 
   note = BIJI_NOTE_OBJ (self);
-  folder = biji_own_cloud_provider_get_folder (self->priv->prov);
+  folder = biji_own_cloud_provider_get_folder (self->prov);
 
   /* TODO just free old location before, but check for no mistake */
 
-  self->priv->location = g_file_get_child (folder, basename);
+  self->location = g_file_get_child (folder, basename);
   key = g_strdup_printf (
                "%s/%s",
-               biji_own_cloud_provider_get_readable_path (self->priv->prov),
+               biji_own_cloud_provider_get_readable_path (self->prov),
                basename);
-  g_object_set (self->priv->id, "path", key, NULL);
+  g_object_set (self->id, "path", key, NULL);
 
-  g_file_create (self->priv->location, G_FILE_CREATE_NONE, NULL, NULL);
+  g_file_create (self->location, G_FILE_CREATE_NONE, NULL, NULL);
   ocloud_note_save (note);
   ocloud_note_ensure_ressource (note);
 
@@ -255,11 +254,11 @@ create_new_file (BijiOwnCloudNote *self, const gchar *basename)
 static void
 on_timeout (BijiOwnCloudNote *self)
 {
-  if (!self->priv->needs_save)
+  if (!self->needs_save)
     return;
 
-  self->priv->needs_save = FALSE;
-  create_new_file (self, self->priv->basename);
+  self->needs_save = FALSE;
+  create_new_file (self, self->basename);
 }
 
 
@@ -270,19 +269,19 @@ on_title_change                     (BijiOwnCloudNote *self)
 
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (self));
 
-  g_free (self->priv->basename);
-  new_title = biji_note_id_get_title (self->priv->id);
-  self->priv->basename = g_strdup_printf ("%s.txt", new_title);
-  self->priv->needs_save = TRUE;
+  g_free (self->basename);
+  new_title = biji_note_id_get_title (self->id);
+  self->basename = g_strdup_printf ("%s.txt", new_title);
+  self->needs_save = TRUE;
 
 
-  g_file_delete_async (self->priv->location,
+  g_file_delete_async (self->location,
                        G_PRIORITY_LOW,
                        NULL,
                        NULL,
                        NULL);
 
-  biji_timeout_reset (self->priv->timeout, 3000);
+  biji_timeout_reset (self->timeout, 3000);
 }
 
 
@@ -298,9 +297,9 @@ biji_own_cloud_note_finalize (GObject *object)
 
   self = BIJI_OWN_CLOUD_NOTE (object);
 
-  g_object_unref (self->priv->location);
-  g_object_unref (self->priv->timeout);
-  g_object_unref (self->priv->cancellable);
+  g_object_unref (self->location);
+  g_object_unref (self->timeout);
+  g_object_unref (self->cancellable);
 
   G_OBJECT_CLASS (biji_own_cloud_note_parent_class)->finalize (object);
 }
@@ -318,13 +317,10 @@ biji_own_cloud_note_constructed (GObject *object)
 static void
 biji_own_cloud_note_init (BijiOwnCloudNote *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_OWN_CLOUD_NOTE, BijiOwnCloudNotePrivate);
-  self->priv->cancellable = g_cancellable_new ();
-  self->priv->id = NULL;
-  self->priv->needs_save = FALSE;
+  self->cancellable = g_cancellable_new ();
 
-  self->priv->timeout = biji_timeout_new ();
-  g_signal_connect_swapped (self->priv->timeout, "timeout",
+  self->timeout = biji_timeout_new ();
+  g_signal_connect_swapped (self->timeout, "timeout",
                             G_CALLBACK (on_timeout), self);
 }
 
@@ -350,14 +346,14 @@ ocloud_note_delete (BijiNoteObj *note)
 
   self = BIJI_OWN_CLOUD_NOTE (note);
   biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
-  return g_file_delete (self->priv->location, NULL, NULL);
+  return g_file_delete (self->location, NULL, NULL);
 }
 
 
 static gchar *
 ocloud_note_get_basename (BijiNoteObj *note)
 {
-  return BIJI_OWN_CLOUD_NOTE (note)->priv->basename;
+  return BIJI_OWN_CLOUD_NOTE (note)->basename;
 }
 
 
@@ -386,8 +382,6 @@ biji_own_cloud_note_class_init (BijiOwnCloudNoteClass *klass)
   note_class->can_format = note_no;
   note_class->archive = ocloud_note_delete;
   note_class->is_trashed = note_no;
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiOwnCloudNotePrivate));
 }
 
 
@@ -436,19 +430,19 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
                          NULL);
 
   ocloud = BIJI_OWN_CLOUD_NOTE (retval);
-  ocloud->priv->id = id;
-  ocloud->priv->prov = prov;
+  ocloud->id = id;
+  ocloud->prov = prov;
   biji_note_obj_set_create_date (retval, info->created);
   g_signal_connect_swapped (id, "notify::title",
                             G_CALLBACK (on_title_change), retval);
 
 
   if (online)
-    ocloud->priv->location = g_file_new_for_commandline_arg (info->url);
+    ocloud->location = g_file_new_for_commandline_arg (info->url);
   else
-    ocloud->priv->location = g_file_new_for_path (info->url);
+    ocloud->location = g_file_new_for_path (info->url);
 
-  ocloud->priv->basename = g_file_get_basename (ocloud->priv->location);
+  ocloud->basename = g_file_get_basename (ocloud->location);
 
   return retval;
 }

@@ -17,39 +17,15 @@
 
 #pragma once
 
-#include "../biji-note-obj.h"
-#include "../biji-note-id.h"
-
+#include "biji-note-obj.h"
+#include "biji-note-id.h"
 #include "biji-own-cloud-provider.h"
 
 G_BEGIN_DECLS
 
+#define BIJI_TYPE_OWN_CLOUD_NOTE (biji_own_cloud_note_get_type ())
 
-#define BIJI_TYPE_OWN_CLOUD_NOTE             (biji_own_cloud_note_get_type ())
-#define BIJI_OWN_CLOUD_NOTE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_OWN_CLOUD_NOTE, BijiOwnCloudNote))
-#define BIJI_OWN_CLOUD_NOTE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_OWN_CLOUD_NOTE, BijiOwnCloudNoteClass))
-#define BIJI_IS_OWN_CLOUD_NOTE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_OWN_CLOUD_NOTE))
-#define BIJI_IS_OWN_CLOUD_NOTE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_OWN_CLOUD_NOTE))
-#define BIJI_OWN_CLOUD_NOTE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_OWN_CLOUD_NOTE, BijiOwnCloudNoteClass))
-
-typedef struct BijiOwnCloudNote_         BijiOwnCloudNote;
-typedef struct BijiOwnCloudNoteClass_    BijiOwnCloudNoteClass;
-typedef struct BijiOwnCloudNotePrivate_  BijiOwnCloudNotePrivate;
-
-struct BijiOwnCloudNote_
-{
-  BijiNoteObj parent;
-  BijiOwnCloudNotePrivate *priv;
-};
-
-struct BijiOwnCloudNoteClass_
-{
-  BijiNoteObjClass parent_class;
-};
-
-
-GType              biji_own_cloud_note_get_type                (void);
-
+G_DECLARE_FINAL_TYPE (BijiOwnCloudNote, biji_own_cloud_note, BIJI, OWN_CLOUD_NOTE, BijiNoteObj)
 
 BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudProvider *prov,
                                                                  BijiManager *manager,

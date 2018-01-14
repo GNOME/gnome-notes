@@ -191,7 +191,7 @@
     <child>
       <object class="GtkMenuItem" id="new_window_item">
         <property name="visible">1</property>
-        <property name="label">Open in New Window</property>
+        <property name="label" translatable="yes">Open in New Window</property>
         <signal name="activate" handler="on_detached_clicked_cb" swapped="yes"/>
       </object>
     </child>
@@ -205,7 +205,7 @@
     <child>
       <object class="GtkMenuItem" id="undo_item">
         <property name="visible">1</property>
-        <property name="label">Undo</property>
+        <property name="label" translatable="yes">Undo</property>
         <signal name="activate" handler="on_undo_or_redo_cb" swapped="yes"/>
       </object>
     </child>
@@ -213,7 +213,7 @@
     <child>
       <object class="GtkMenuItem" id="redo_item">
         <property name="visible">1</property>
-        <property name="label">Redo</property>
+        <property name="label" translatable="yes">Redo</property>
         <signal name="activate" handler="on_undo_or_redo_cb" swapped="yes"/>
       </object>
     </child>
@@ -227,7 +227,7 @@
     <child>
       <object class="GtkMenuItem" id="notebook_item">
         <property name="visible">1</property>
-        <property name="label">Notebooks</property>
+        <property name="label" translatable="yes">Notebooks</property>
         <signal name="activate" handler="action_view_tags_callback" swapped="yes"/>
       </object>
     </child>
@@ -235,7 +235,7 @@
     <child>
       <object class="GtkMenuItem" id="email_item">
         <property name="visible">1</property>
-        <property name="label">Email this Note</property>
+        <property name="label" translatable="yes">Email this Note</property>
         <signal name="activate" handler="on_email_cb" swapped="yes"/>
       </object>
     </child>
@@ -243,7 +243,7 @@
     <child>
       <object class="GtkMenuItem" id="trash_item">
         <property name="visible">1</property>
-        <property name="label">Move to Trash</property>
+        <property name="label" translatable="yes">Move to Trash</property>
         <signal name="activate" handler="trash_item_callback" swapped="yes"/>
       </object>
     </child>

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-12-27 12:37+0000\n"
-"PO-Revision-Date: 2018-01-11 23:07+0100\n"
+"POT-Creation-Date: 2018-01-14 21:30+0000\n"
+"PO-Revision-Date: 2018-01-15 11:57+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -282,7 +282,7 @@ msgstr "Sposte la note te scovacere"
 msgid "Import Notes"
 msgstr "Impuarte notis"
 
-#: data/resources/import-dialog.ui:12
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
 msgid "_Cancel"
 msgstr "_Anule"
 
@@ -310,10 +310,66 @@ msgstr "Posizion personalizade"
 msgid "Select a Folder"
 msgstr "Selezione une cartele"
 
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:25
-#: src/bjb-main-toolbar.c:744
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "_Gnove"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+msgid "Note color"
+msgstr "Colôr de note"
+
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "_Disvuede"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "Jes de modalitât selezion"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "Cîr tai titui, tai contignûts e tai tacuins"
+
+#: data/resources/main-toolbar.ui:119
+msgid "View notes and notebooks in a grid"
+msgstr "Mostre notis e tacuins intune gridele"
+
+#: data/resources/main-toolbar.ui:137
+msgid "View notes and notebooks in a list"
+msgstr "Mostre notis e tacuins intune liste"
+
+#: data/resources/main-toolbar.ui:161
+msgid "Selection mode"
+msgstr "Modalitât selezion"
+
+#: data/resources/main-toolbar.ui:175
+msgid "More options…"
+msgstr "Plui opzions..."
+
+#: data/resources/main-toolbar.ui:194
+msgid "Open in New Window"
+msgstr "Vierç intun gnûf barcon"
+
+#: data/resources/main-toolbar.ui:208
+msgid "Undo"
+msgstr "Anule"
+
+#: data/resources/main-toolbar.ui:216
+msgid "Redo"
+msgstr "Torne fâ"
+
+#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Tacuins"
+
+#: data/resources/main-toolbar.ui:238
+msgid "Email this Note"
+msgstr "Invie cheste note vie e-mail"
+
+#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+msgid "Move to Trash"
+msgstr "Sposte te scovacere"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
@@ -323,10 +379,6 @@ msgstr "Scrîf un non par creâ un tacuin"
 msgid "New notebook"
 msgstr "Gnûf tacuin"
 
-#: data/resources/selection-toolbar.ui:33 src/bjb-main-toolbar.c:847
-msgid "Note color"
-msgstr "Colôr de note"
-
 #: data/resources/selection-toolbar.ui:50
 msgid "Share note"
 msgstr "Condivît note"
@@ -334,11 +386,6 @@ msgstr "Condivît note"
 #: data/resources/selection-toolbar.ui:59
 msgid "Open in another window"
 msgstr "Vierç intun altri barcon"
-
-#. Delete Note
-#: data/resources/selection-toolbar.ui:67 src/bjb-main-toolbar.c:765
-msgid "Move to Trash"
-msgstr "Sposte te scovacere"
 
 #: data/resources/selection-toolbar.ui:92
 msgid "Restore"
@@ -376,40 +423,39 @@ msgstr "Selezione la posizion di archiviazion predefinide"
 msgid "Primary Book"
 msgstr "Libri principâl"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:613
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:378
 msgid "Untitled"
 msgstr "Cence titul"
 
-#: src/bjb-application.c:354
+#: src/bjb-application.c:336
 msgid "Show the application’s version"
 msgstr "Mostre la version de aplicazion"
 
-#: src/bjb-application.c:356
+#: src/bjb-application.c:338
 msgid "Create a new note"
 msgstr "Cree une gnove note"
 
-#: src/bjb-application.c:358
-#| msgid "[FILE...]"
+#: src/bjb-application.c:340
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:366
+#: src/bjb-application.c:348
 msgid "Take notes and export them everywhere."
 msgstr "Cjape notis e espuartilis dapardut."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:359
 msgid "Could not parse arguments"
 msgstr "Impussibil analizâ i argoments"
 
-#: src/bjb-application.c:386
+#: src/bjb-application.c:367
 msgid "GNOME Notes"
 msgstr "Notis GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:398
+#: src/bjb-application.c:379
 msgid "Could not register the application"
 msgstr "Impussibil regjistrâ l'aplicazion"
 
@@ -445,95 +491,29 @@ msgstr "Cjame ancjemò"
 msgid "Loading…"
 msgstr "Daûr a cjariâ…"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "Sclice sui elements par selezionaju"
 
-#: src/bjb-main-toolbar.c:144
+#: src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d selezionât"
 msgstr[1] "%d selezionâts"
 
-#: src/bjb-main-toolbar.c:233
-msgid "Search note titles, content and notebooks"
-msgstr "Cîr tai titui, tai contignûts e tai tacuins"
-
-#. Select
 #: src/bjb-main-toolbar.c:272
-msgid "Cancel"
-msgstr "Anule"
-
-#: src/bjb-main-toolbar.c:286
-msgid "Exit selection mode"
-msgstr "Jes de modalitât selezion"
-
-#: src/bjb-main-toolbar.c:315
 #, c-format
 msgid "Results for %s"
 msgstr "Risultâts par %s"
 
-#: src/bjb-main-toolbar.c:318
+#: src/bjb-main-toolbar.c:275
 msgid "New and Recent"
 msgstr "Gnovis e resintis"
 
-#.
-#. * Translators : <_New> refers to new note creation.
-#. * User clicks new, which opens a new blank note.
-#.
-#: src/bjb-main-toolbar.c:403
-msgid "_New"
-msgstr "_Gnove"
-
-#: src/bjb-main-toolbar.c:422 src/bjb-main-toolbar.c:512
-msgid "Selection mode"
-msgstr "Modalitât selezion"
-
-#: src/bjb-main-toolbar.c:455
-msgid "View notes and notebooks in a list"
-msgstr "Mostre notis e tacuins intune liste"
-
-#: src/bjb-main-toolbar.c:476
-msgid "View notes and notebooks in a grid"
-msgstr "Mostre notis e tacuins intune gridele"
-
-#: src/bjb-main-toolbar.c:492
+#: src/bjb-main-toolbar.c:355
 msgid "Trash"
 msgstr "Scovacere"
-
-#. Add Empty-Bin
-#. * translators : Empty is the verb.
-#. * This action permanently deletes notes
-#: src/bjb-main-toolbar.c:531
-msgid "Empty"
-msgstr "Disvuede"
-
-#.
-#. * Open the current note in a new window
-#. * in order to be able to see it and others at the same time
-#.
-#: src/bjb-main-toolbar.c:710
-msgid "Open in New Window"
-msgstr "Vierç intun gnûf barcon"
-
-#. Undo Redo separator
-#: src/bjb-main-toolbar.c:721
-msgid "Undo"
-msgstr "Anule"
-
-#: src/bjb-main-toolbar.c:729
-msgid "Redo"
-msgstr "Torne fâ"
-
-#. Share
-#: src/bjb-main-toolbar.c:752
-msgid "Email this Note"
-msgstr "Invie cheste note vie e-mail"
-
-#: src/bjb-main-toolbar.c:824
-msgid "More options…"
-msgstr "Plui opzions..."
 
 #: src/bjb-main-view.c:495
 msgid "Notebook"
@@ -548,7 +528,7 @@ msgstr "Note"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: src/bjb-note-view.c:188
+#: src/bjb-note-view.c:189
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Ultin inzornament</b> %s"
@@ -584,6 +564,9 @@ msgstr "Locâl"
 #: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Archivi locâl"
+
+#~ msgid "Cancel"
+#~ msgstr "Anule"
 
 #~ msgid "notes;reminder;"
 #~ msgstr "notis;promemorie;"

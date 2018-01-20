@@ -56,12 +56,12 @@ on_font_selected (GtkFontButton     *widget,
                   BjbSettingsDialog *self)
 {
   BjbSettings *settings;
+  g_autofree gchar *font_name = NULL;
 
   settings = self->settings;
+  font_name = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (widget));
 
-  g_settings_set_string (G_SETTINGS (settings),
-                         "font",
-                         gtk_font_button_get_font_name (widget));
+  g_settings_set_string (G_SETTINGS (settings), "font", font_name);
 
 }
 
@@ -301,8 +301,8 @@ bjb_settings_dialog_constructed (GObject *object)
                           "active",
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-  gtk_font_button_set_font_name (self->font_button,
-                                 bjb_settings_get_default_font (self->settings));
+  gtk_font_chooser_set_font (GTK_FONT_CHOOSER (self->font_button),
+                             bjb_settings_get_default_font (self->settings));
 
   gdk_rgba_parse (&color, bjb_settings_get_default_color (self->settings));
   gtk_color_chooser_set_rgba (self->color_button, &color);

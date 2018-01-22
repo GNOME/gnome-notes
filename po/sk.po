@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-11-02 17:29+0000\n"
-"PO-Revision-Date: 2017-11-11 10:21+0100\n"
+"POT-Creation-Date: 2018-01-14 21:30+0000\n"
+"PO-Revision-Date: 2018-01-22 20:53+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 
 #: data/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -44,8 +44,8 @@ msgstr "Poznámky"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.bijiben.desktop.in.in:5
-msgid "notes;reminder;"
-msgstr "poznámky;pripomienka;pripomienky;"
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "poznámky;pripomienka;pripomienky;zápisník;notebook;lepkavé poznámky;"
 
 #: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
@@ -118,42 +118,368 @@ msgstr "Pozícia okna"
 msgid "Window position (x and y)."
 msgstr "Pozícia okna (súradnice X a Y)"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:649
+#: data/org.gnome.bijiben.gschema.xml:38
+msgid "How to show note items"
+msgstr "Ako zobraziť položky poznámok"
+
+#: data/org.gnome.bijiben.gschema.xml:39
+msgid "Whether show note items in icon view or list view."
+msgstr "Či sa majú položky poznámok zobraziť v zobrazení ikon alebo zoznamu."
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "_Importovať poznámky"
+
+#: data/resources/app-menu.ui:9
+msgid "_View Trash"
+msgstr "_Zobraziť Kôš"
+
+#: data/resources/app-menu.ui:15
+msgid "_Preferences"
+msgstr "Nas_tavenia"
+
+#: data/resources/app-menu.ui:21
+msgid "_Help"
+msgstr "_Pomocník"
+
+#: data/resources/app-menu.ui:25
+msgid "_Keyboard Shortcuts"
+msgstr "_Klávesové skratky"
+
+#: data/resources/app-menu.ui:29
+msgid "_About"
+msgstr "_O programe"
+
+#: data/resources/app-menu.ui:33
+msgid "_Quit"
+msgstr "U_končiť"
+
+#: data/resources/editor-toolbar.ui:40
+msgid "Cut"
+msgstr "Vystrihnúť"
+
+#: data/resources/editor-toolbar.ui:55
+msgid "Copy"
+msgstr "Kopírovať"
+
+#: data/resources/editor-toolbar.ui:70
+msgid "Paste"
+msgstr "Prilepiť"
+
+#: data/resources/editor-toolbar.ui:104
+msgid "Bold"
+msgstr "Tučné"
+
+#: data/resources/editor-toolbar.ui:120
+msgid "Italic"
+msgstr "Kurzíva"
+
+#: data/resources/editor-toolbar.ui:136
+msgid "Strike"
+msgstr "Preškrtnuté"
+
+#: data/resources/editor-toolbar.ui:161
+msgid "* "
+msgstr "* "
+
+# menu item
+# DK: vybratim tejto volby program vytvori odrazky vo forme guliciek - preto odrazky
+#: data/resources/editor-toolbar.ui:165
+msgid "Bullets"
+msgstr "Odrážky"
+
+#: data/resources/editor-toolbar.ui:177
+msgid "1."
+msgstr "1."
+
+#: data/resources/editor-toolbar.ui:181
+msgid "List"
+msgstr "Zoznam"
+
+# tooltip
+#: data/resources/editor-toolbar.ui:205
+msgid "Copy selection to a new note"
+msgstr "Skopíruje výber do novej poznámky"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "Žiadne poznámky"
+
+#: data/resources/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Všeobecné"
+
+#: data/resources/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "Nová poznámka"
+
+#: data/resources/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Zatvorenie okna"
+
+#: data/resources/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Zobrazenie pomocníka"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Klávesové skratky"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "Režim výberu"
+
+# tooltip
+#: data/resources/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "Ukončenie režimu výberu"
+
+#: data/resources/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Výber všetkého"
+
+# dialog title
+#: data/resources/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "Režim úpravy poznámky"
+
+#: data/resources/help-overlay.ui:67
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Tučné"
+
+#: data/resources/help-overlay.ui:74
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Kurzíva"
+
+#: data/resources/help-overlay.ui:81
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "Preškrtnuté"
+
+# menu item
+#: data/resources/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Vrátenie späť"
+
+# menu item
+#: data/resources/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Zopakovanie"
+
+#: data/resources/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "Presunutie do Koša"
+
+# gtk_window_set_title
+#: data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "Import poznámok"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "_Zrušiť"
+
+# dialog title
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_Importovať"
+
+# gtk_label_new
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "Vyberte umiestnenie importu"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "Aplikácia Gnote"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "Aplikácia Tomboy"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "Vlastné umiestnenie"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "Výber priečinka"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "_Nová"
+
+# label
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+msgid "Note color"
+msgstr "Farba poznámok"
+
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "Vy_prádzniť"
+
+# tooltip
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "Ukončí režim výberu"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "Hľadajte v názvoch poznámok, obsahu a zápisníkoch"
+
+# tooltip
+#: data/resources/main-toolbar.ui:119
+msgid "View notes and notebooks in a grid"
+msgstr "Zobrazí poznámky a zápisníky v mriežke"
+
+# tooltip
+#: data/resources/main-toolbar.ui:137
+msgid "View notes and notebooks in a list"
+msgstr "Zobrazí poznámky a zápisníky v zozname"
+
+#: data/resources/main-toolbar.ui:161
+msgid "Selection mode"
+msgstr "Režim výberu"
+
+#: data/resources/main-toolbar.ui:175
+msgid "More options…"
+msgstr "Viac volieb…"
+
+#: data/resources/main-toolbar.ui:194
+msgid "Open in New Window"
+msgstr "Otvoriť v novom okne"
+
+# menu item
+#: data/resources/main-toolbar.ui:208
+msgid "Undo"
+msgstr "Vrátiť späť"
+
+# menu item
+#: data/resources/main-toolbar.ui:216
+msgid "Redo"
+msgstr "Opakovať vrátené"
+
+#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:25
+msgid "Notebooks"
+msgstr "Zápisníky"
+
+# menu item
+#: data/resources/main-toolbar.ui:238
+msgid "Email this Note"
+msgstr "Odoslať túto poznámku e-mailom"
+
+#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+msgid "Move to Trash"
+msgstr "Presunúť do Koša"
+
+# label
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "Zadajte názov pre vytvorený zápisník"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "Nový zápisník"
+
+# tooltip
+#: data/resources/selection-toolbar.ui:50
+msgid "Share note"
+msgstr "Sprístupní poznámku"
+
+#: data/resources/selection-toolbar.ui:59
+msgid "Open in another window"
+msgstr "Otvoriť v inom okne"
+
+#: data/resources/selection-toolbar.ui:92
+msgid "Restore"
+msgstr "Obnoviť"
+
+#: data/resources/selection-toolbar.ui:100
+msgid "Permanently Delete"
+msgstr "Trvalo odstrániť"
+
+#: data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Nastavenia"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "Použiť systémové písmo"
+
+# label
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "Písmo poznámok"
+
+# label
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "Predvolená farba"
+
+# dialog title
+#: data/resources/settings-dialog.ui:113
+msgid "Note Edition"
+msgstr "Úprava poznámky"
+
+# gtk_label_new
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "Vyberte predvolené umiestnenie úložiska:"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "Hlavná kniha"
+
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:378
 msgid "Untitled"
 msgstr "Bez názvu"
 
 # cmd desc
-#: src/bjb-application.c:350
+#: src/bjb-application.c:336
 msgid "Show the application’s version"
 msgstr "Vypíše verziu aplikácie"
 
 # cmd desc
-#: src/bjb-application.c:352
+#: src/bjb-application.c:338
 msgid "Create a new note"
 msgstr "Vytvorí novú poznámku"
 
-#: src/bjb-application.c:354
-#| msgid "[FILE...]"
+#: src/bjb-application.c:340
 msgid "[FILE…]"
 msgstr "[SÚBOR…]"
 
-#: src/bjb-application.c:362
+#: src/bjb-application.c:348
 msgid "Take notes and export them everywhere."
 msgstr "Umožňuje zápis poznámok a ich export."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:373
+#: src/bjb-application.c:359
 msgid "Could not parse arguments"
 msgstr "Nepodarilo sa spracovať parametre"
 
-#: src/bjb-application.c:382
+#: src/bjb-application.c:367
 msgid "GNOME Notes"
 msgstr "Poznámky prostredia GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:394
+#: src/bjb-application.c:379
 msgid "Could not register the application"
 msgstr "Nepodarilo sa zaregistrovať aplikáciu"
 
@@ -167,7 +493,7 @@ msgstr "Dušan Kazik <prescott66@gmail.com>"
 
 # DK:meni farbu danej poznamky
 # label
-#: src/bjb-color-button.c:146
+#: src/bjb-color-button.c:137
 msgid "Note Color"
 msgstr "Farba poznámky"
 
@@ -186,46 +512,19 @@ msgid "Please install “Tracker” then restart the application."
 msgstr ""
 "Prosím, nainštalujte program „Tracker“, a potom znovu spustite aplikáciu."
 
-#: src/bjb-import-dialog.c:308
-msgid "Custom Location"
-msgstr "Vlastné umiestnenie"
-
-# gtk_window_set_title
-#: src/bjb-import-dialog.c:403
-msgid "Import Notes"
-msgstr "Import poznámok"
-
-# dialog title
-#: src/bjb-import-dialog.c:410
-msgid "Import"
-msgstr "Import"
-
-# gtk_label_new
-#: src/bjb-import-dialog.c:421
-msgid "Select import location"
-msgstr "Vyberte umiestnenie importu"
-
-#: src/bjb-import-dialog.c:442
-msgid "Tomboy application"
-msgstr "Aplikácia Tomboy"
-
-#: src/bjb-import-dialog.c:448
-msgid "Gnote application"
-msgstr "Aplikácia Gnote"
-
-#: src/bjb-load-more-button.c:72 src/bjb-load-more-button.c:171
+#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
 msgstr "Načítať viac"
 
-#: src/bjb-load-more-button.c:98
+#: src/bjb-load-more-button.c:90
 msgid "Loading…"
 msgstr "Načítava sa…"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "Kliknutím na položky ich vyberiete"
 
-#: src/bjb-main-toolbar.c:144
+#: src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -233,114 +532,25 @@ msgstr[0] "%d vybraných"
 msgstr[1] "%d vybraná"
 msgstr[2] "%d vybrané"
 
-#: src/bjb-main-toolbar.c:254
-msgid "Search note titles, content and notebooks"
-msgstr "Hľadajte v názvoch poznámok, obsahu a zápisníkoch"
-
-#. Select
-#: src/bjb-main-toolbar.c:296
-msgid "Cancel"
-msgstr "Zrušiť"
-
-# tooltip
-#: src/bjb-main-toolbar.c:310
-msgid "Exit selection mode"
-msgstr "Ukončí režim výberu"
-
-#: src/bjb-main-toolbar.c:340
+#: src/bjb-main-toolbar.c:272
 #, c-format
 msgid "Results for %s"
 msgstr "Výsledky pre %s"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:275
 msgid "New and Recent"
 msgstr "Nové a nedávno použité"
 
-#.
-#. * Translators : <_New> refers to new note creation.
-#. * User clicks new, which opens a new blank note.
-#.
-#: src/bjb-main-toolbar.c:431
-msgid "_New"
-msgstr "_Nová"
-
-#: src/bjb-main-toolbar.c:450 src/bjb-main-toolbar.c:548
-msgid "Selection mode"
-msgstr "Režim výberu"
-
-# tooltip
-#: src/bjb-main-toolbar.c:485
-msgid "View notes and notebooks in a list"
-msgstr "Zobrazí poznámky a zápisníky v zozname"
-
-# tooltip
-#: src/bjb-main-toolbar.c:509
-msgid "View notes and notebooks in a grid"
-msgstr "Zobrazí poznámky a zápisníky v mriežke"
-
-#: src/bjb-main-toolbar.c:528
+#: src/bjb-main-toolbar.c:355
 msgid "Trash"
 msgstr "Kôš"
 
-#. Add Empty-Bin
-#. * translators : Empty is the verb.
-#. * This action permanently deletes notes
-#: src/bjb-main-toolbar.c:567
-msgid "Empty"
-msgstr "Vyprádzniť"
-
-#.
-#. * Open the current note in a new window
-#. * in order to be able to see it and others at the same time
-#.
-#: src/bjb-main-toolbar.c:747
-msgid "Open in New Window"
-msgstr "Otvoriť v novom okne"
-
-# menu item
-#. Undo Redo separator
-#: src/bjb-main-toolbar.c:758
-msgid "Undo"
-msgstr "Vrátiť späť"
-
-# menu item
-#: src/bjb-main-toolbar.c:766
-msgid "Redo"
-msgstr "Opakovať vrátené"
-
-#. Notes tags
-#: src/bjb-main-toolbar.c:781 src/bjb-organize-dialog.c:370
-#: src/bjb-selection-toolbar.c:383
-msgid "Notebooks"
-msgstr "Zápisníky"
-
-# menu item
-#. Share
-#: src/bjb-main-toolbar.c:789
-msgid "Email this Note"
-msgstr "Odoslať túto poznámku e-mailom"
-
-#. Delete Note
-#. Trash notes
-#: src/bjb-main-toolbar.c:802 src/bjb-selection-toolbar.c:417
-msgid "Move to Trash"
-msgstr "Presunúť do Koša"
-
-#: src/bjb-main-toolbar.c:862
-msgid "More options…"
-msgstr "Viac volieb…"
-
 # label
-#: src/bjb-main-toolbar.c:885 src/bjb-selection-toolbar.c:394
-msgid "Note color"
-msgstr "Farba poznámok"
-
-# label
-#: src/bjb-main-view.c:503
+#: src/bjb-main-view.c:495
 msgid "Notebook"
 msgstr "Zápisník"
 
-#: src/bjb-main-view.c:506
+#: src/bjb-main-view.c:498
 msgid "Note"
 msgstr "Poznámka"
 
@@ -349,181 +559,48 @@ msgstr "Poznámka"
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: src/bjb-note-view.c:196
+#: src/bjb-note-view.c:189
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Naposledy aktualizované</b> %s"
 
-# label
-#: src/bjb-organize-dialog.c:396
-msgid "Enter a name to create a notebook"
-msgstr "Zadajte názov pre vytvorený zápisník"
-
-#: src/bjb-organize-dialog.c:406
-msgid "New notebook"
-msgstr "Nový zápisník"
-
-#. Restore (do not show)
-#: src/bjb-selection-toolbar.c:388
-msgid "Restore"
-msgstr "Obnoviť"
-
-# tooltip
-#: src/bjb-selection-toolbar.c:405
-msgid "Share note"
-msgstr "Sprístupní poznámku"
-
-#. Detach
-#: src/bjb-selection-toolbar.c:411
-msgid "Open in another window"
-msgstr "Otvoriť v inom okne"
-
-#. Permanently delete (do not show )
-#: src/bjb-selection-toolbar.c:425
-msgid "Permanently Delete"
-msgstr "Trvalo odstrániť"
-
-#: src/libbiji/biji-date-time.c:32
-msgid "Today"
-msgstr "Dnes"
-
-#: src/libbiji/biji-date-time.c:35
-msgid "Yesterday"
-msgstr "Včera"
-
-#: src/libbiji/biji-date-time.c:38
-msgid "This week"
-msgstr "V tomto týždni"
-
-#: src/libbiji/biji-date-time.c:41
-msgid "This month"
-msgstr "V tomto mesiaci"
-
-#: src/libbiji/biji-date-time.c:44
-msgid "This year"
-msgstr "V tomto roku"
-
-#: src/libbiji/biji-date-time.c:46
+#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nevedno kedy"
 
-#: src/libbiji/biji-notebook.c:264
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "Dnes"
+
+#: src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Včera"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "V tomto týždni"
+
+#: src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "V tomto mesiaci"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "V tomto roku"
+
+#: src/libbiji/biji-notebook.c:265
 msgid "Local"
 msgstr "Miestny"
 
-#: src/libbiji/provider/biji-local-provider.c:364
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Miestne úložisko"
 
-#: src/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Importovať poznámky"
+#~ msgid "notes;reminder;"
+#~ msgstr "poznámky;pripomienka;pripomienky;"
 
-#: src/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Zobraziť Kôš"
-
-#: src/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "Nas_tavenia"
-
-#: src/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "_Pomocník"
-
-#: src/resources/app-menu.ui:25
-msgid "_About"
-msgstr "_O programe"
-
-#: src/resources/app-menu.ui:29
-msgid "_Quit"
-msgstr "U_končiť"
-
-#: src/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Vystrihnúť"
-
-#: src/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Kopírovať"
-
-#: src/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Prilepiť"
-
-#: src/resources/editor-toolbar.ui:104
-msgid "Bold"
-msgstr "Tučné"
-
-#: src/resources/editor-toolbar.ui:120
-msgid "Italic"
-msgstr "Kurzíva"
-
-#: src/resources/editor-toolbar.ui:136
-msgid "Strike"
-msgstr "Preškrtnuté"
-
-#: src/resources/editor-toolbar.ui:161
-msgid "* "
-msgstr "* "
-
-# menu item
-# DK: vybratim tejto volby program vytvori odrazky vo forme guliciek - preto odrazky
-#: src/resources/editor-toolbar.ui:165
-msgid "Bullets"
-msgstr "Odrážky"
-
-#: src/resources/editor-toolbar.ui:177
-msgid "1."
-msgstr "1."
-
-#: src/resources/editor-toolbar.ui:181
-msgid "List"
-msgstr "Zoznam"
-
-# tooltip
-#: src/resources/editor-toolbar.ui:205
-msgid "Copy selection to a new note"
-msgstr "Skopíruje výber do novej poznámky"
-
-#: src/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Žiadne poznámky"
-
-#: src/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Nastavenia"
-
-#: src/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Použiť systémové písmo"
-
-# label
-#: src/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Písmo poznámok"
-
-# label
-#: src/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Predvolená farba"
-
-# dialog title
-#: src/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Úprava poznámky"
-
-# gtk_label_new
-#: src/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Vyberte predvolené umiestnenie úložiska:"
-
-#: src/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Hlavná kniha"
-
-#~ msgid "_Cancel"
-#~ msgstr "_Zrušiť"
+#~ msgid "Cancel"
+#~ msgstr "Zrušiť"
 
 #~ msgid "_OK"
 #~ msgstr "_OK"

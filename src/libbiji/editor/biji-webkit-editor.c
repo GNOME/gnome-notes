@@ -57,7 +57,7 @@ struct _BijiWebkitEditorPrivate
   gboolean has_text;
   gchar *selected_text;
   BlockFormat block_format;
-
+  gboolean first_load;
   EEditorSelection *sel;
 };
 
@@ -516,7 +516,12 @@ on_script_message (WebKitUserContentManager *user_content,
 
   message_name = get_js_property_string (js_context, js_object, "messageName");
   if (g_strcmp0 (message_name, "ContentsUpdate") == 0)
-    biji_webkit_editor_handle_contents_update (self, js_context, js_object);
+    {
+      if (self->priv->first_load)
+        self->priv->first_load = FALSE;
+      else
+        biji_webkit_editor_handle_contents_update (self, js_context, js_object);
+    }
   else if (g_strcmp0 (message_name, "SelectionChange") == 0)
     biji_webkit_editor_handle_selection_change (self, js_context, js_object);
   g_free (message_name);
@@ -535,6 +540,7 @@ biji_webkit_editor_constructed (GObject *obj)
   self = BIJI_WEBKIT_EDITOR (obj);
   view = WEBKIT_WEB_VIEW (self);
   priv = self->priv;
+  priv->first_load = TRUE;
 
   G_OBJECT_CLASS (biji_webkit_editor_parent_class)->constructed (obj);
 

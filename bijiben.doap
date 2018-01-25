@@ -27,4 +27,11 @@
       <gnome:userid>igaldino</gnome:userid>
     </foaf:Person>
   </maintainer>
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Mohammed Sadiq</foaf:name>
+      <foaf:mbox rdf:resource="mailto:sadiq@sadiqpk.org" />
+      <gnome:userid>pksadiq</gnome:userid>
+    </foaf:Person>
+  </maintainer>
 </Project>

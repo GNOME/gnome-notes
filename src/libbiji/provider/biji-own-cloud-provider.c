@@ -1,4 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /* biji-own-cloud-provider.c
  * Copyright (C) Pierre-Yves LUYTEN 2013 <py@luyten.fr>
  *

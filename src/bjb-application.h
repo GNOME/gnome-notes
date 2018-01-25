@@ -1,4 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * bijiben.h
  * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>

@@ -1,0 +1,125 @@
+{
+    "app-id": "org.gnome.bijiben",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "command": "bijiben",
+    "tags": ["nightly"],
+    "desktop-file-name-prefix": "(Nightly) ",
+    "finish-args": [
+        /* X11 + XShm access */
+        "--share=ipc", "--socket=x11",
+        /* Wayland access */
+        "--socket=wayland",
+        /* Needs to talk to the network: */
+        "--share=network",
+        "--talk-name=org.gtk.vfs", "--talk-name=org.gtk.vfs.*",
+        /* Full filesystem access. Is this needed? */
+        "--filesystem=host",
+        /* Needed for dconf to work */
+        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        /* Evolution data server access */
+        "--talk-name=org.gnome.OnlineAccounts",
+        "--talk-name=org.gnome.evolution.dataserver.AddressBook9",
+        "--talk-name=org.gnome.evolution.dataserver.Calendar7",
+        "--talk-name=org.gnome.evolution.dataserver.Sources5",
+        "--talk-name=org.gnome.evolution.dataserver.Subprocess.Backend.*",
+        /* Tracker access */
+        "--talk-name=org.freedesktop.Tracker1"
+    ],
+    "build-options" : {
+        "cflags": "-O2 -g",
+        "cxxflags": "-O2 -g",
+        "env": {
+            "V": "1"
+        }
+    },
+    "cleanup": ["/include", "/lib/pkgconfig",
+                "/share/pkgconfig", "/share/aclocal",
+                "/man", "/share/man", "/share/gtk-doc",
+                "/share/vala",
+                "*.la", "*.a"],
+    "modules": [
+        {
+            "name": "gnome-online-accounts",
+            "config-opts": ["--disable-telepathy", "--disable-documentation", "--disable-backend"],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.gnome.org/browse/gnome-online-accounts"
+                }
+            ]
+        },
+        {
+            "name": "libical",
+            "cleanup": [ "/lib/cmake"],
+            "buildsystem": "cmake",
+            "config-opts": [ "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+                             "-DBUILD_SHARED_LIBS:BOOL=ON" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/libical/libical/releases/download/v2.0.0/libical-2.0.0.tar.gz",
+                    "sha256": "654c11f759c19237be39f6ad401d917e5a05f36f1736385ed958e60cf21456da"
+                }
+            ]
+        },
+        {
+            "name": "evolution-data-server",
+            "cleanup": [
+                "/lib/cmake",
+                "/lib/evolution-data-server/*-backends",
+                "/libexec",
+                "/share/dbus-1/services"
+            ],
+            "buildsystem": "cmake",
+            "config-opts": [
+                "-DENABLE_GTK=ON",
+                "-DENABLE_GOOGLE_AUTH=OFF",
+                "-DENABLE_UOA=OFF",
+                "-DENABLE_GOOGLE=OFF",
+                "-DENABLE_VALA_BINDINGS=ON",
+                "-DENABLE_WEATHER=OFF",
+                "-DWITH_OPENLDAP=OFF",
+                "-DENABLE_INTROSPECTION=ON",
+                "-DENABLE_INSTALLED_TESTS=OFF",
+                "-DENABLE_GTK_DOC=OFF",
+                "-DENABLE_EXAMPLES=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.gnome.org/browse/evolution-data-server"
+                }
+            ]
+        },
+        {
+            "name": "tracker",
+            "cleanup": [ "/bin", "/etc", "/libexec" ],
+            "config-opts": [ "--disable-miner-apps", "--disable-static",
+                             "--disable-tracker-extract", "--disable-tracker-needle",
+                             "--disable-tracker-preferences", "--disable-artwork",
+                             "--disable-tracker-writeback", "--disable-miner-user-guides",
+                             "--with-bash-completion-dir=no" ],
+
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.gnome.org/browse/tracker"
+                }
+            ]
+        },
+        {
+            "name": "bijiben",
+            "buildsystem": "meson",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.gnome.org/browse/bijiben"
+                }
+            ]
+        }
+    ]
+}

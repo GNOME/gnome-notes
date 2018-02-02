@@ -420,9 +420,6 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
   if (type != BJB_WINDOW_BASE_NOTE_VIEW)
     destroy_note_if_needed (self);
 
-  if (self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW && type == BJB_WINDOW_BASE_NO_NOTE)
-    type = self->current_view;
-
   switch (type)
   {
 

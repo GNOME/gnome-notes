@@ -639,7 +639,7 @@ on_manager_changed (BijiManager            *manager,
         gtk_list_store_remove (GTK_LIST_STORE (self->model), p_iter);
 
       self->items_to_show = g_list_remove (self->items_to_show, item);
-      if (self->items_to_show == NULL)
+      if (self->items_to_show == NULL && group == BIJI_LIVING_ITEMS)
         bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
 
       else

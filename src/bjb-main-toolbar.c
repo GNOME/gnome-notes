@@ -308,6 +308,7 @@ on_back_button_clicked (BjbMainToolbar *self)
       disconnect_note_handlers (self);
       bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
                                  BJB_WINDOW_BASE_MAIN_VIEW);
+      bjb_main_view_update_model (self->parent);
       return;
     }
 

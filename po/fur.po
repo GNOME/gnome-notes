@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-14 21:30+0000\n"
-"PO-Revision-Date: 2018-01-15 11:57+0100\n"
+"POT-Creation-Date: 2018-02-02 15:15+0000\n"
+"PO-Revision-Date: 2018-02-03 18:57+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -123,9 +123,10 @@ msgid "How to show note items"
 msgstr "Ce mût mostrâ i elements des notis"
 
 #: data/org.gnome.bijiben.gschema.xml:39
-msgid "Whether show note items in icon view or list view."
+msgid "Whether to show note items in icon view or list view."
 msgstr ""
-"Indiche se mostrâ i elements des notis in viodude a iconis o viodude a liste."
+"Indiche se mostrâ i elements des notis inte viodude a iconis o te viodude a "
+"liste."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"

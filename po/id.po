@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-14 21:30+0000\n"
-"PO-Revision-Date: 2018-01-16 10:49+0700\n"
-"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
+"POT-Creation-Date: 2018-02-02 15:15+0000\n"
+"PO-Revision-Date: 2018-02-03 13:20+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -124,7 +124,7 @@ msgid "How to show note items"
 msgstr "Cara menampilkan butir catatan"
 
 #: data/org.gnome.bijiben.gschema.xml:39
-msgid "Whether show note items in icon view or list view."
+msgid "Whether to show note items in icon view or list view."
 msgstr ""
 "Apakah menampilkan butir catatan pada tampilan ikon atau tampilan daftar."
 
@@ -566,12 +566,3 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
-
-#~ msgid "notes;reminder;"
-#~ msgstr "catatan;pengingat;"
-
-#~ msgid "Cancel"
-#~ msgstr "Batal"
-
-#~ msgid "_OK"
-#~ msgstr "_OK"

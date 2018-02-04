@@ -52,7 +52,7 @@
     <child>
       <object class="GtkButton" id="empty_button">
         <property name="visible">1</property>
-        <property name="label" translatable="yes">_Empty</property>
+        <property name="label" translatable="yes" comments="Translators: “Empty” is a verb.">_Empty</property>
         <property name="use-underline">1</property>
         <!-- <property name="sensitive" bind-source="select_button" bind-property="sensitive" bind-flags="default"/> -->
         <signal name="clicked" handler="on_empty_clicked_callback" swapped="yes"/>

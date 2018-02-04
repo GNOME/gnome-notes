@@ -139,7 +139,7 @@ configure_file(
 )
 
 meson.add_install_script(
-  'meson_post_install.py',
+  'build-aux/meson_post_install.py',
   bijiben_datadir,
   get_option('update_mimedb') ? 'update_mimedb' : ''
 )

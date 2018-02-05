@@ -296,10 +296,7 @@ biji_webkit_editor_content_changed (BijiWebkitEditor *self,
 
   rows = g_strsplit (text, "\n", 2);
 
-  /* if we have a line feed, we have a proper title */
-  /* this is equivalent to g_strv_length (rows) > 1 */
-
-  if (rows && rows[0] && rows[1])
+  if (rows && rows[0])
   {
     gchar *title;
     gchar *unique_title;

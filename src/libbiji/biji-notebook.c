@@ -138,8 +138,8 @@ biji_create_notebook_icon (gint base_size, gint scale, GList *surfaces)
   cairo_surface_set_device_scale (surface, scale, scale);
   cr = cairo_create (surface);
 
-  gtk_render_frame (context, cr, 0, 0, base_size, base_size);
   gtk_render_background (context, cr, 0, 0, base_size, base_size);
+  gtk_render_frame (context, cr, 0, 0, base_size, base_size);
 
   l = surfaces;
   idx = 0;

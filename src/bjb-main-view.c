@@ -472,38 +472,6 @@ _get_item_for_tree_path (GtkTreeModel *tree_model,
   return retval;
 }
 
-
-
-static void
-render_type     (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer *cell,
-                 GtkTreeModel *tree_model,
-                 GtkTreeIter *iter,
-                 gpointer data)
-{
-  BijiItem *item;
-  const gchar *str;
-  BjbMainView *self;
-
-  self = data;
-  str = NULL;
-  item = _get_item_for_tree_path (tree_model, iter, self);
-
-  if (item != NULL)
-  {
-    if (BIJI_IS_NOTEBOOK (item))
-      str= _("Notebook");
-
-    else if (BIJI_IS_NOTE_OBJ (item))
-      str = _("Note");
-  }
-
-  if (str != NULL)
-    g_object_set (cell, "text", str, NULL);
-}
-
-
-
 static void
 render_where    (GtkTreeViewColumn *tree_column,
                  GtkCellRenderer *cell,
@@ -556,18 +524,6 @@ add_list_renderers (BjbMainView *self)
   GtkCellRenderer *cell;
 
   generic =  gd_main_view_get_generic_view (self->view);
-
-  /* Type Renderer */
-  cell = gd_styled_text_renderer_new ();
-  gd_styled_text_renderer_add_class (GD_STYLED_TEXT_RENDERER (cell), "dim-label");
-  gtk_cell_renderer_set_padding (cell, 16, 0);
-
-  gd_main_list_view_add_renderer (GD_MAIN_LIST_VIEW (generic),
-                                  cell,
-                                  render_type,
-                                  self,
-                                  __destroy_n_notify__);
-
 
   /* Where Renderer */
   cell = gd_styled_text_renderer_new ();

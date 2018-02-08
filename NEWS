@@ -1,3 +1,28 @@
+Overview of changes in 3.27.90
+==============================
+
+* Fix saving title
+* Fix back button in trash view (Mohammed Sadiq)
+* Improve list view
+* Add flatpak support (Mohammed Sadiq)
+* Fix owncloud saving issue
+* Use g_auto* (Mohammed Sadiq)
+* More widgets migrated to GtkBuilder (Mohammed Sadiq)
+* More code clean up
+
+Translations
+* ca (Jordi Mas)
+* de (Tim Sabsch)
+* es (Daniel Mustieles)
+* fi (Jiri Grönroos)
+* fur (Fabio Tomat)
+* hu (Balázs Úr)
+* id (Kukuh Syafaat, Andika Triwidada)
+* lt (Aurimas Černius)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* sk (Dušan Kazik)
+
 Overview of changes in 3.27.4
 =============================
 

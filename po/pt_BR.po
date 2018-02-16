@@ -4,14 +4,14 @@
 # Georges Basile Stavracas Neto <georges.stavracas@gmail.com>, 2013.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2013.
 # Enrico Nicoletto <liverig@gmail.com>, 2013, 2014.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2012-2014, 2017, 2018.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2012-2014, 2017-2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
 "n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-14 21:30+0000\n"
-"PO-Revision-Date: 2018-02-01 20:27-0200\n"
+"POT-Creation-Date: 2018-02-05 20:48+0000\n"
+"PO-Revision-Date: 2018-02-16 13:28-0200\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -126,7 +126,8 @@ msgid "How to show note items"
 msgstr "Como mostrar itens da nota"
 
 #: data/org.gnome.bijiben.gschema.xml:39
-msgid "Whether show note items in icon view or list view."
+#| msgid "Whether show note items in icon view or list view."
+msgid "Whether to show note items in icon view or list view."
 msgstr "Se deve mostrar itens da nota na visão de ícone ou visão de lista."
 
 #: data/resources/app-menu.ui:5
@@ -320,8 +321,8 @@ msgstr "_Nova"
 msgid "Note color"
 msgstr "Cor da nota"
 
+#. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
-#| msgid "Empty"
 msgid "_Empty"
 msgstr "_Esvaziar"
 
@@ -521,14 +522,6 @@ msgstr "Novas e recentes"
 msgid "Trash"
 msgstr "Lixeira"
 
-#: src/bjb-main-view.c:495
-msgid "Notebook"
-msgstr "Catálogo de notas"
-
-#: src/bjb-main-view.c:498
-msgid "Note"
-msgstr "Nota"
-
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
@@ -570,6 +563,12 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Armazenamento local"
+
+#~ msgid "Notebook"
+#~ msgstr "Catálogo de notas"
+
+#~ msgid "Note"
+#~ msgstr "Nota"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"

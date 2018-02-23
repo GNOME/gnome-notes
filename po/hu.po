@@ -2,15 +2,15 @@
 # Copyright (C) 2013, 2014, 2015, 2017, 2018 Free Software Foundation, Inc.
 # This file is distributed under the same license as the bijiben package.
 #
-# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014, 2015, 2017, 2018.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2013.
+# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014, 2015, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-14 21:30+0000\n"
-"PO-Revision-Date: 2018-01-21 20:38+0100\n"
+"POT-Creation-Date: 2018-02-21 21:52+0000\n"
+"PO-Revision-Date: 2018-02-23 23:25+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -122,8 +122,8 @@ msgid "How to show note items"
 msgstr "Jegyzetek megjelenítési módja"
 
 #: data/org.gnome.bijiben.gschema.xml:39
-msgid "Whether show note items in icon view or list view."
-msgstr "A jegyzetek megjelenítése ikon- vagy listanézetben."
+msgid "Whether to show note items in icon view or list view."
+msgstr "Jelenjenek-e meg jegyzetek az ikon- vagy listanézetben."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -207,7 +207,6 @@ msgid "General"
 msgstr "Általános"
 
 #: data/resources/help-overlay.ui:13
-#| msgid "New notebook"
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Új jegyzet"
@@ -228,13 +227,11 @@ msgid "Shortcuts"
 msgstr "Gyorsbillentyűk"
 
 #: data/resources/help-overlay.ui:42
-#| msgid "Selection mode"
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Kijelölési mód"
 
 #: data/resources/help-overlay.ui:47
-#| msgid "Exit selection mode"
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Kilépés a kijelölési módból"
@@ -245,43 +242,36 @@ msgid "Select all"
 msgstr "Összes kijelölése"
 
 #: data/resources/help-overlay.ui:62
-#| msgid "Note Edition"
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Jegyzetszerkesztő mód"
 
 #: data/resources/help-overlay.ui:67
-#| msgid "Bold"
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Félkövér"
 
 #: data/resources/help-overlay.ui:74
-#| msgid "Italic"
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Dőlt"
 
 #: data/resources/help-overlay.ui:81
-#| msgid "Strike"
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Áthúzott"
 
 #: data/resources/help-overlay.ui:88
-#| msgid "Undo"
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Visszavonás"
 
 #: data/resources/help-overlay.ui:95
-#| msgid "Redo"
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Újra"
 
 #: data/resources/help-overlay.ui:102
-#| msgid "Move to Trash"
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Áthelyezés a Kukába"
@@ -295,7 +285,6 @@ msgid "_Cancel"
 msgstr "Mé_gse"
 
 #: data/resources/import-dialog.ui:22
-#| msgid "Import"
 msgid "_Import"
 msgstr "_Importálás"
 
@@ -316,7 +305,6 @@ msgid "Custom Location"
 msgstr "Egyéni hely"
 
 #: data/resources/import-dialog.ui:224
-#| msgid "Selection mode"
 msgid "Select a Folder"
 msgstr "Válasszon egy mappát"
 
@@ -328,8 +316,8 @@ msgstr "Ú_j"
 msgid "Note color"
 msgstr "Jegyzet színe"
 
+#. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
-#| msgid "Empty"
 msgid "_Empty"
 msgstr "Ü_rítés"
 
@@ -434,12 +422,11 @@ msgstr "Válassza ki az alapértelmezett tárolóhelyet:"
 msgid "Primary Book"
 msgstr "Elsődleges könyv"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:378
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
 msgid "Untitled"
 msgstr "Névtelen"
 
 #: src/bjb-application.c:336
-#| msgid "Show the application's version"
 msgid "Show the application’s version"
 msgstr "Az alkalmazás verziószámának megjelenítése"
 
@@ -448,7 +435,6 @@ msgid "Create a new note"
 msgstr "Új jegyzet létrehozása"
 
 #: src/bjb-application.c:340
-#| msgid "[FILE...]"
 msgid "[FILE…]"
 msgstr "[FÁJL…]"
 
@@ -495,7 +481,6 @@ msgid "Oops"
 msgstr "Hoppá"
 
 #: src/bjb-empty-results-box.c:91
-#| msgid "Please install 'Tracker' then restart the application."
 msgid "Please install “Tracker” then restart the application."
 msgstr "Telepítse a „Tracker” csomagot, majd indítsa újra az alkalmazást."
 
@@ -504,7 +489,6 @@ msgid "Load More"
 msgstr "Több betöltése"
 
 #: src/bjb-load-more-button.c:90
-#| msgid "Loading..."
 msgid "Loading…"
 msgstr "Betöltés…"
 
@@ -528,17 +512,9 @@ msgstr "Találatok erre: %s"
 msgid "New and Recent"
 msgstr "Új és legutóbbi"
 
-#: src/bjb-main-toolbar.c:355
+#: src/bjb-main-toolbar.c:356
 msgid "Trash"
 msgstr "Kuka"
-
-#: src/bjb-main-view.c:495
-msgid "Notebook"
-msgstr "Jegyzettömb"
-
-#: src/bjb-main-view.c:498
-msgid "Note"
-msgstr "Jegyzet"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language

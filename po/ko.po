@@ -4,6 +4,7 @@
 # This file is distributed under the same license as the bijiben package.
 #
 # Changwoo Ryu <cwryu@debian.org>, 2013-2015.
+# Hongmin Yang <hongminy@naver.com>, 2018.
 #
 # - 이 프로그램의 이름인 Bijiben는 "비지벤"이라고 음역.
 #
@@ -12,23 +13,24 @@ msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-02-21 21:52+0000\n"
-"PO-Revision-Date: 2018-02-23 11:44+0900\n"
-"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"POT-Creation-Date: 2018-02-23 02:46+0000\n"
+"PO-Revision-Date: 2018-02-24 16:51+0900\n"
+"Last-Translator: Hongmin Yang <hongminy@naver.com>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
-msgstr ""
+msgstr "비지벤"
 
 #: data/org.gnome.bijiben.appdata.xml.in:7
 msgid "Quickly jot notes"
-msgstr ""
+msgstr "빠르게 적을 수 있는 메모장"
 
 #: data/org.gnome.bijiben.appdata.xml.in:9
 msgid "Notes is an editor allowing to make simple lists for later use."
@@ -46,7 +48,7 @@ msgstr "메모"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.bijiben.desktop.in.in:5
 msgid "notes;reminder;notebook;sticky notes;"
-msgstr ""
+msgstr "notes;reminder;notebook;sticky notes;"
 
 #: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
@@ -59,7 +61,7 @@ msgstr "메모장"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.bijiben.desktop.in.in:10
 msgid "org.gnome.bijiben"
-msgstr ""
+msgstr "org.gnome.bijiben"
 
 #: data/org.gnome.bijiben.gschema.xml:5
 msgid "Custom Font"
@@ -116,11 +118,11 @@ msgstr "창 위치(가로 및 세로)."
 
 #: data/org.gnome.bijiben.gschema.xml:38
 msgid "How to show note items"
-msgstr ""
+msgstr "메모 항목 표시 방법"
 
 #: data/org.gnome.bijiben.gschema.xml:39
 msgid "Whether to show note items in icon view or list view."
-msgstr ""
+msgstr "메모한 항목을 아이콘 또는 목록 형태로 보기."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -140,7 +142,7 @@ msgstr "도움말(_H)"
 
 #: data/resources/app-menu.ui:25
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "키보드 바로 가기(_K)"
 
 #: data/resources/app-menu.ui:29
 msgid "_About"
@@ -180,7 +182,7 @@ msgstr "* "
 
 #: data/resources/editor-toolbar.ui:165
 msgid "Bullets"
-msgstr ""
+msgstr "글 머리 기호"
 
 #: data/resources/editor-toolbar.ui:177
 msgid "1."
@@ -188,7 +190,7 @@ msgstr "1."
 
 #: data/resources/editor-toolbar.ui:181
 msgid "List"
-msgstr ""
+msgstr "목록"
 
 #: data/resources/editor-toolbar.ui:205
 msgid "Copy selection to a new note"
@@ -201,40 +203,34 @@ msgstr "메모 없음"
 #: data/resources/help-overlay.ui:8
 msgctxt "shortcut window"
 msgid "General"
-msgstr ""
+msgstr "일반"
 
 #: data/resources/help-overlay.ui:13
-#, fuzzy
-#| msgid "New notebook"
 msgctxt "shortcut window"
 msgid "New note"
-msgstr "새 메모책"
+msgstr "새 메모"
 
 #: data/resources/help-overlay.ui:20
 msgctxt "shortcut window"
 msgid "Close window"
-msgstr ""
+msgstr "창 닫기"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
 msgid "Show help"
-msgstr ""
+msgstr "도움말 보기"
 
 #: data/resources/help-overlay.ui:34
 msgctxt "shortcut window"
 msgid "Shortcuts"
-msgstr ""
+msgstr "바로 가기"
 
 #: data/resources/help-overlay.ui:42
-#, fuzzy
-#| msgid "Selection mode"
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "선택 모드"
 
 #: data/resources/help-overlay.ui:47
-#, fuzzy
-#| msgid "Exit selection mode"
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "선택 모드 끝내기"
@@ -242,54 +238,40 @@ msgstr "선택 모드 끝내기"
 #: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr ""
+msgstr "모두 선택"
 
 # 글꼴, 색 설정 페이지
 #: data/resources/help-overlay.ui:62
-#, fuzzy
-#| msgid "Note Edition"
 msgctxt "shortcut window"
 msgid "Note edit mode"
-msgstr "메모 형식"
+msgstr "메모 편집 모드"
 
 #: data/resources/help-overlay.ui:67
-#, fuzzy
-#| msgid "Bold"
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "굵게"
 
 #: data/resources/help-overlay.ui:74
-#, fuzzy
-#| msgid "Italic"
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "기울임"
 
 #: data/resources/help-overlay.ui:81
-#, fuzzy
-#| msgid "Strike"
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "취소선"
 
 #: data/resources/help-overlay.ui:88
-#, fuzzy
-#| msgid "Undo"
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "실행 취소"
 
 #: data/resources/help-overlay.ui:95
-#, fuzzy
-#| msgid "Redo"
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "다시 실행"
 
 #: data/resources/help-overlay.ui:102
-#, fuzzy
-#| msgid "Move to Trash"
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "휴지통으로 옮기기"
@@ -303,10 +285,8 @@ msgid "_Cancel"
 msgstr "취소(_C)"
 
 #: data/resources/import-dialog.ui:22
-#, fuzzy
-#| msgid "Import"
 msgid "_Import"
-msgstr "가져오기"
+msgstr "가져오기(_I)"
 
 #: data/resources/import-dialog.ui:41
 msgid "Select import location"
@@ -325,10 +305,8 @@ msgid "Custom Location"
 msgstr "사용자 설정 위치"
 
 #: data/resources/import-dialog.ui:224
-#, fuzzy
-#| msgid "Selection mode"
 msgid "Select a Folder"
-msgstr "선택 모드"
+msgstr "폴더 선택"
 
 #: data/resources/main-toolbar.ui:14
 msgid "_New"
@@ -340,10 +318,8 @@ msgstr "메모 색"
 
 #. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
-#, fuzzy
-#| msgid "Empty"
 msgid "_Empty"
-msgstr "비우기"
+msgstr "비우기(_E)"
 
 #: data/resources/main-toolbar.ui:74
 msgid "Exit selection mode"
@@ -440,10 +416,8 @@ msgid "Note Edition"
 msgstr "메모 형식"
 
 #: data/resources/settings-dialog.ui:126
-#, fuzzy
-#| msgid "Select import location"
 msgid "Select the default storage location:"
-msgstr "가져오기 위치 선택"
+msgstr "기본 저장 경로 선택:"
 
 # 메모 저장 위치 설정 페이지
 #: data/resources/settings-dialog.ui:157
@@ -455,8 +429,6 @@ msgid "Untitled"
 msgstr "제목 없음"
 
 #: src/bjb-application.c:336
-#, fuzzy
-#| msgid "Show the application's version"
 msgid "Show the application’s version"
 msgstr "프로그램의 버전을 표시합니다"
 
@@ -465,8 +437,6 @@ msgid "Create a new note"
 msgstr "새 메모 만들기"
 
 #: src/bjb-application.c:340
-#, fuzzy
-#| msgid "[FILE...]"
 msgid "[FILE…]"
 msgstr "[파일...]"
 
@@ -511,8 +481,6 @@ msgid "Oops"
 msgstr "앗"
 
 #: src/bjb-empty-results-box.c:91
-#, fuzzy
-#| msgid "Please install 'Tracker' then restart the application."
 msgid "Please install “Tracker” then restart the application."
 msgstr "'트래커'를 설치하고 프로그램을 다시 시작하십시오."
 
@@ -521,10 +489,8 @@ msgid "Load More"
 msgstr "더 읽어들이기"
 
 #: src/bjb-load-more-button.c:90
-#, fuzzy
-#| msgid "Loading..."
 msgid "Loading…"
-msgstr "읽어들이는 중..."
+msgstr "읽어들이는 중…"
 
 #: src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"

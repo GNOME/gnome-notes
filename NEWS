@@ -1,3 +1,54 @@
+Overview of changes in 3.28.0
+==============================
+
+Changes since 3.26.1 stable version
+
+* Meson port (Iñigo Martínez)
+* Gettext port (Iñigo Martínez)
+* Add shortcuts window (Jonathan Kang)
+* Remember last application view style (Jonathan Kang)
+* Add flatpak support (Mohammed Sadiq)
+* Fix back button in trash view (Mohammed Sadiq)
+* Fix crash when running X11 instead of Wayland (Mohammed Sadiq)
+* Improve window geometry state (Mohammed Sadiq)
+* Improve notes import on startup (Mohammed Sadiq)
+* Improve import dialog (Mohammed Sadiq)
+* Set default application icon (Mohammed Sadiq)
+* Use g_auto* (Mohammed Sadiq)
+* Widgets migration to GtkBuilder (Mohammed Sadiq)
+* Code clean up (Mohammed Sadiq)
+* Disable Zeitgeist support by default
+* Adopt #pragma once
+* Add support for Tracker2
+* Fix owncloud saving issue
+* Improve list view
+
+Translations
+* ca (Jordi Mas)
+* cs (Marek Černocký)
+* da (Alan Mortensen / Ask Hjorth Larsen)
+* de (Mario Blättermann / Tim Sabsch)
+* el (Efstathios Iosifidis)
+* es (Daniel Mustieles)
+* fi (Jiri Grönroos)
+* fur (Fabio Tomat)
+* gl (Fran Dieguez)
+* hu (Balázs Úr)
+* id (Kukuh Syafaat / Andika Triwidada)
+* it (Gianvito Cavasoli)
+* kk (Baurzhan Muftakhidinov)
+* ko (Changwoo Ryu / Hongmin Yang)
+* lt (Aurimas Černius)
+* lv (Rūdolfs Mazurs)
+* nb (Kjartan Maraas)
+* nl (Nathan Follens)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* sk (Dušan Kazik)
+* sl (Matej Urbančič)
+* tr (Emin Tufan Çetin)
+* zh_TW (Cheng-Chia Tseng)
+
 Overview of changes in 3.27.90
 ==============================
 

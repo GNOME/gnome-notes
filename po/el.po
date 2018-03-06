@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-14 21:30+0000\n"
-"PO-Revision-Date: 2018-01-28 16:52+0200\n"
+"POT-Creation-Date: 2018-02-16 20:45+0000\n"
+"PO-Revision-Date: 2018-02-16 23:11+0200\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
@@ -131,8 +131,10 @@ msgid "How to show note items"
 msgstr "Τρόπος εμφάνισης σημειώσεων"
 
 #: data/org.gnome.bijiben.gschema.xml:39
-msgid "Whether show note items in icon view or list view."
-msgstr "Εμφάνιση σημειώσεων σε προβολή εικονιδίων είτε σε προβολή λίστας."
+#| msgid "Whether show note items in icon view or list view."
+msgid "Whether to show note items in icon view or list view."
+msgstr ""
+"Αν θα εμφανιστούν σημειώσεις σε προβολή εικονιδίων είτε σε προβολή λίστας."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -216,13 +218,11 @@ msgid "General"
 msgstr "Γενικά"
 
 #: data/resources/help-overlay.ui:13
-#| msgid "New notebook"
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Νέα σημείωση"
 
 #: data/resources/help-overlay.ui:20
-#| msgid "_New Window"
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Κλείσιμο παραθύρου"
@@ -238,13 +238,11 @@ msgid "Shortcuts"
 msgstr "Συντομεύσεις"
 
 #: data/resources/help-overlay.ui:42
-#| msgid "Selection mode"
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Λειτουργία επιλογής"
 
 #: data/resources/help-overlay.ui:47
-#| msgid "Exit selection mode"
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Έξοδος από την λειτουργία επιλογής"
@@ -255,43 +253,36 @@ msgid "Select all"
 msgstr "Επιλογή όλων"
 
 #: data/resources/help-overlay.ui:62
-#| msgid "Note Edition"
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Λειτουργία επεξεργασίας σημείωσης"
 
 #: data/resources/help-overlay.ui:67
-#| msgid "Bold"
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Έντονα"
 
 #: data/resources/help-overlay.ui:74
-#| msgid "Italic"
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Πλάγια"
 
 #: data/resources/help-overlay.ui:81
-#| msgid "Strike"
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Επιγράμμιση"
 
 #: data/resources/help-overlay.ui:88
-#| msgid "Undo"
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Αναίρεση"
 
 #: data/resources/help-overlay.ui:95
-#| msgid "Redo"
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
 #: data/resources/help-overlay.ui:102
-#| msgid "Move to Trash"
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Μετακίνηση σημείωσης στα απορρίμματα"
@@ -305,7 +296,6 @@ msgid "_Cancel"
 msgstr "_Ακύρωση"
 
 #: data/resources/import-dialog.ui:22
-#| msgid "Import"
 msgid "_Import"
 msgstr "_Εισαγωγή"
 
@@ -326,7 +316,6 @@ msgid "Custom Location"
 msgstr "Προσαρμοσμένη τοποθεσία"
 
 #: data/resources/import-dialog.ui:224
-#| msgid "Selection mode"
 msgid "Select a Folder"
 msgstr "Επιλογή φακέλου"
 
@@ -338,8 +327,8 @@ msgstr "_Νέα"
 msgid "Note color"
 msgstr "Χρώμα σημείωσης"
 
+#. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
-#| msgid "Empty"
 msgid "_Empty"
 msgstr "Ά_δειασμα"
 
@@ -437,7 +426,6 @@ msgid "Note Edition"
 msgstr "Σημείωση έκδοσης"
 
 #: data/resources/settings-dialog.ui:126
-#| msgid "Select import location"
 msgid "Select the default storage location:"
 msgstr "Επιλογή προεπιλεγμένης τοποθεσίας αποθήκευσης:"
 
@@ -445,12 +433,11 @@ msgstr "Επιλογή προεπιλεγμένης τοποθεσίας απο�
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:378
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
 #: src/bjb-application.c:336
-#| msgid "Show the application's version"
 msgid "Show the application’s version"
 msgstr "Εμφάνιση έκδοσης της εφαρμογής"
 
@@ -459,7 +446,6 @@ msgid "Create a new note"
 msgstr "Δημιουργία νέας σημείωσης"
 
 #: src/bjb-application.c:340
-#| msgid "[FILE...]"
 msgid "[FILE…]"
 msgstr "[ΑΡΧΕΙΟ…]"
 
@@ -512,7 +498,6 @@ msgid "Oops"
 msgstr "Ώχ!"
 
 #: src/bjb-empty-results-box.c:91
-#| msgid "Please install 'Tracker' then restart the application."
 msgid "Please install “Tracker” then restart the application."
 msgstr ""
 "Παρακαλούμε, εγκαταστήστε το «Tracker» και μετά επανεκκινήστε την εφαρμογή."
@@ -522,7 +507,6 @@ msgid "Load More"
 msgstr "Φόρτωση περισσοτέρων"
 
 #: src/bjb-load-more-button.c:90
-#| msgid "Loading..."
 msgid "Loading…"
 msgstr "Γίνεται φόρτωση…"
 
@@ -546,17 +530,9 @@ msgstr "Αποτελέσματα για %s"
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: src/bjb-main-toolbar.c:355
+#: src/bjb-main-toolbar.c:356
 msgid "Trash"
 msgstr "Απορρίμματα"
-
-#: src/bjb-main-view.c:495
-msgid "Notebook"
-msgstr "Σημειωματάριο"
-
-#: src/bjb-main-view.c:498
-msgid "Note"
-msgstr "Σημείωση"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
@@ -599,6 +575,12 @@ msgstr "Τοπικά"
 #: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
+
+#~ msgid "Notebook"
+#~ msgstr "Σημειωματάριο"
+
+#~ msgid "Note"
+#~ msgstr "Σημείωση"
 
 #~ msgid "notes;reminder;"
 #~ msgstr "σημειώσεις;υπενθύμιση;notes;reminder;"

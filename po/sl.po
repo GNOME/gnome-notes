@@ -2,15 +2,15 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, + 2012–2017.
+# Matej Urbančič <mateju@svn.gnome.org>, + 2012–2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-18 02:52+0000\n"
-"PO-Revision-Date: 2017-10-18 18:14+0200\n"
+"POT-Creation-Date: 2018-03-07 17:32+0000\n"
+"PO-Revision-Date: 2018-03-08 19:47+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -41,15 +41,15 @@ msgstr ""
 "Omogoča uporabo oblaka ownCloud kot mesta shranjevanja in spletnega "
 "urejevalnika."
 
-#: data/org.gnome.bijiben.desktop.in.in:3 src/bjb-app-menu.c:45
-#: src/bjb-window-base.c:18
+#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Sporočilca"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.bijiben.desktop.in.in:5
-msgid "notes;reminder;"
-msgstr "sporočilca;opomniki;notes;owncloud;"
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "sporočilca;sporočila;opomniki;seznami;zapiski,papirčki;"
 
 #: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
@@ -119,9 +119,346 @@ msgstr "Položaj okna"
 msgid "Window position (x and y)."
 msgstr "Položaj okna (osi x in y)."
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:660
+#: data/org.gnome.bijiben.gschema.xml:38
+msgid "How to show note items"
+msgstr "Kako naj bodo prikazana sporočilca"
+
+#: data/org.gnome.bijiben.gschema.xml:39
+msgid "Whether to show note items in icon view or list view."
+msgstr "Ali naj bodo sporočilca prikazana v načinu ikon ali seznama."
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "_Uvozi sporočilca"
+
+#: data/resources/app-menu.ui:9
+msgid "_View Trash"
+msgstr "_Poglej smeti"
+
+#: data/resources/app-menu.ui:15
+msgid "_Preferences"
+msgstr "_Možnosti"
+
+#: data/resources/app-menu.ui:21
+msgid "_Help"
+msgstr "Pomo_č"
+
+#: data/resources/app-menu.ui:25
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovne bližnjice‫"
+
+#: data/resources/app-menu.ui:29
+msgid "_About"
+msgstr "_O programu"
+
+#: data/resources/app-menu.ui:33
+msgid "_Quit"
+msgstr "_Končaj"
+
+#: data/resources/editor-toolbar.ui:40
+msgid "Cut"
+msgstr "Izreži"
+
+#: data/resources/editor-toolbar.ui:55
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: data/resources/editor-toolbar.ui:70
+msgid "Paste"
+msgstr "Prilepi"
+
+#: data/resources/editor-toolbar.ui:104
+msgid "Bold"
+msgstr "Krepko"
+
+#: data/resources/editor-toolbar.ui:120
+msgid "Italic"
+msgstr "Ležeče"
+
+#: data/resources/editor-toolbar.ui:136
+msgid "Strike"
+msgstr "Prečrtano"
+
+#: data/resources/editor-toolbar.ui:161
+msgid "* "
+msgstr "* "
+
+#: data/resources/editor-toolbar.ui:165
+msgid "Bullets"
+msgstr "Vrstične oznake"
+
+#: data/resources/editor-toolbar.ui:177
+msgid "1."
+msgstr "1."
+
+#: data/resources/editor-toolbar.ui:181
+msgid "List"
+msgstr "Seznam"
+
+#: data/resources/editor-toolbar.ui:205
+msgid "Copy selection to a new note"
+msgstr "Kopiraj izbor v novo sporočilce"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "Ni sporočilc"
+
+#: data/resources/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Splošno"
+
+#: data/resources/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "Novo sporočilce"
+
+#: data/resources/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Zapri okno"
+
+#: data/resources/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Pokaži pomoč"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Tipkovne bližnjice"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "Izbirni način"
+
+#: data/resources/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "Prekliči izbirni način"
+
+#: data/resources/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Izberi vse"
+
+#: data/resources/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "Način urejanja sporočilc"
+
+#: data/resources/help-overlay.ui:67
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Krepko"
+
+#: data/resources/help-overlay.ui:74
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Ležeče"
+
+#: data/resources/help-overlay.ui:81
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "Prečrtano"
+
+#: data/resources/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Razveljavi"
+
+#: data/resources/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Ponovno uveljavi"
+
+#: data/resources/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "Premakni v smeti"
+
+#: data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "Uvozi sporočilca"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "_Prekliči"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_Uvozi"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "Izbor mesta uvoza"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "Program Gnote"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "Program Tomboy"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "Mesto po meri"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "Izbor mape"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "_Nova"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+msgid "Note color"
+msgstr "Barva sporočilca"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "_Izprazni"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "Končan izbirni način"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "Iskanje naslovov in vsebine sporočilc in zbirk"
+
+#: data/resources/main-toolbar.ui:119
+msgid "View notes and notebooks in a grid"
+msgstr "Poglej sporočilca in zbirke na mreži"
+
+#: data/resources/main-toolbar.ui:137
+msgid "View notes and notebooks in a list"
+msgstr "Poglej sporočilca in zbirke kot seznam"
+
+#: data/resources/main-toolbar.ui:161
+msgid "Selection mode"
+msgstr "Izbirni način"
+
+#: data/resources/main-toolbar.ui:175
+msgid "More options…"
+msgstr "Več podrobnosti ..."
+
+#: data/resources/main-toolbar.ui:194
+msgid "Open in New Window"
+msgstr "Odpri v novem oknu"
+
+#: data/resources/main-toolbar.ui:208
+msgid "Undo"
+msgstr "Razveljavi"
+
+#: data/resources/main-toolbar.ui:216
+msgid "Redo"
+msgstr "Ponovi"
+
+#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:25
+msgid "Notebooks"
+msgstr "Beležnice"
+
+#: data/resources/main-toolbar.ui:238
+msgid "Email this Note"
+msgstr "Pošlji to sporočilce"
+
+#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+msgid "Move to Trash"
+msgstr "Premakni v smeti"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "Vnos imena nove beležnice"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "Nova beležnica"
+
+#: data/resources/selection-toolbar.ui:50
+msgid "Share note"
+msgstr "Objavi sporočilce"
+
+#: data/resources/selection-toolbar.ui:59
+msgid "Open in another window"
+msgstr "Odpri v novem oknu"
+
+#: data/resources/selection-toolbar.ui:92
+msgid "Restore"
+msgstr "Obnovi"
+
+#: data/resources/selection-toolbar.ui:100
+msgid "Permanently Delete"
+msgstr "Trajno izbriši"
+
+#: data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Možnosti"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "Uporabi sistemsko pisavo"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "Pisava sporočilca"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "Privzeta barva"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Edition"
+msgstr "Izdaja opombe"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "Privzeto mesto za shranjevanje:"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "Osnovni imenik stikov"
+
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
 msgid "Untitled"
 msgstr "Neimenovano"
+
+#: src/bjb-application.c:336
+msgid "Show the application’s version"
+msgstr "Pokaži različico programa"
+
+#: src/bjb-application.c:338
+msgid "Create a new note"
+msgstr "Ustvari novo sporočilce"
+
+#: src/bjb-application.c:340
+msgid "[FILE…]"
+msgstr "[DATOTEKA ...]"
+
+#: src/bjb-application.c:348
+msgid "Take notes and export them everywhere."
+msgstr "Beleži sporočilca in jih izvozi kamorkoli."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:359
+msgid "Could not parse arguments"
+msgstr "Ni mogoče razčleniti argumentov"
+
+#: src/bjb-application.c:367
+msgid "GNOME Notes"
+msgstr "Opombe GNOME"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:379
+msgid "Could not register the application"
+msgstr "Ni mogoče vpisati programa"
 
 #: src/bjb-app-menu.c:46
 msgid "Simple notebook for GNOME"
@@ -131,96 +468,36 @@ msgstr "Enostavna sporočilca za GNOME"
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: src/bjb-bijiben.c:364
-msgid "Show the application's version"
-msgstr "Pokaži različico programa"
-
-#: src/bjb-bijiben.c:366
-msgid "Create a new note"
-msgstr "Ustvari novo sporočilce"
-
-#: src/bjb-bijiben.c:368
-msgid "[FILE...]"
-msgstr "[DATOTEKA ...]"
-
-#: src/bjb-bijiben.c:376
-msgid "Take notes and export them everywhere."
-msgstr "Beleži sporočilca in jih izvozi kamorkoli."
-
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-bijiben.c:387
-msgid "Could not parse arguments"
-msgstr "Ni mogoče razčleniti argumentov"
-
-#: src/bjb-bijiben.c:396
-msgid "GNOME Notes"
-msgstr "Opombe GNOME"
-
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-bijiben.c:408
-msgid "Could not register the application"
-msgstr "Ni mogoče vpisati programa"
-
-#: src/bjb-color-button.c:146
+#: src/bjb-color-button.c:137
 msgid "Note Color"
 msgstr "Barva sporočilca"
 
-#: src/bjb-empty-results-box.c:87
-msgid "No notes"
-msgstr "Ni sporočilc"
-
-#: src/bjb-empty-results-box.c:131
+#: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
 msgstr "Pritisnite gumb za ustvarjanje novega sporočilca."
 
-#: src/bjb-empty-results-box.c:153
+#: src/bjb-empty-results-box.c:85
 msgid "Oops"
-msgstr "Opa, napaka"
+msgstr "Ojoj, napaka"
 
-#: src/bjb-empty-results-box.c:159
-msgid "Please install 'Tracker' then restart the application."
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
 msgstr ""
 "Namestiti je treba program »tracker« in nato program bijiben znova zagnati."
 
-#: src/bjb-import-dialog.c:309
-msgid "Custom Location"
-msgstr "Mesto po meri"
-
-#: src/bjb-import-dialog.c:404
-msgid "Import Notes"
-msgstr "Uvozi sporočilca"
-
-#: src/bjb-import-dialog.c:411
-msgid "Import"
-msgstr "Uvozi"
-
-#: src/bjb-import-dialog.c:422
-msgid "Select import location"
-msgstr "Izbor mesta uvoza"
-
-#: src/bjb-import-dialog.c:443
-msgid "Tomboy application"
-msgstr "Program Tomboy"
-
-#: src/bjb-import-dialog.c:449
-msgid "Gnote application"
-msgstr "Program Gnote"
-
-#: src/bjb-load-more-button.c:72 src/bjb-load-more-button.c:171
+#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
 msgstr "Naloži več"
 
-#: src/bjb-load-more-button.c:98
-msgid "Loading..."
-msgstr "Nalaganje ..."
+#: src/bjb-load-more-button.c:90
+msgid "Loading…"
+msgstr "Poteka nalaganje ..."
 
-#: src/bjb-main-toolbar.c:143
+#: src/bjb-main-toolbar.c:138
 msgid "Click on items to select them"
 msgstr "S klikom se predmet izbere"
 
-#: src/bjb-main-toolbar.c:145
+#: src/bjb-main-toolbar.c:140
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -229,281 +506,75 @@ msgstr[1] "%d izbrana"
 msgstr[2] "%d izbrani"
 msgstr[3] "%d izbrane"
 
-#: src/bjb-main-toolbar.c:265
-msgid "Search note titles, content and notebooks"
-msgstr "Iskanje naslovov in vsebine sporočilc in zbirk"
-
-#. Select
-#: src/bjb-main-toolbar.c:307
-msgid "Cancel"
-msgstr "Prekliči"
-
-#: src/bjb-main-toolbar.c:321
-msgid "Exit selection mode"
-msgstr "Končan izbirni način"
-
-#: src/bjb-main-toolbar.c:351
+#: src/bjb-main-toolbar.c:272
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za %s"
 
-#: src/bjb-main-toolbar.c:354
+#: src/bjb-main-toolbar.c:275
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#.
-#. * Translators : <_New> refers to new note creation.
-#. * User clicks new, which opens a new blank note.
-#.
-#: src/bjb-main-toolbar.c:442
-msgid "_New"
-msgstr "_Nova"
-
-#: src/bjb-main-toolbar.c:461 src/bjb-main-toolbar.c:559
-msgid "Selection mode"
-msgstr "Izbirni način"
-
-#: src/bjb-main-toolbar.c:496
-msgid "View notes and notebooks in a list"
-msgstr "Poglej sporočilca in zbirke kot seznam"
-
-#: src/bjb-main-toolbar.c:520
-msgid "View notes and notebooks in a grid"
-msgstr "Poglej sporočilca in zbirke na mreži"
-
-#: src/bjb-main-toolbar.c:539
+#: src/bjb-main-toolbar.c:356
 msgid "Trash"
 msgstr "Smeti"
-
-#. Add Empty-Bin
-#. * translators : Empty is the verb.
-#. * This action permanently deletes notes
-#: src/bjb-main-toolbar.c:578
-msgid "Empty"
-msgstr "Izprazni"
-
-#.
-#. * Open the current note in a new window
-#. * in order to be able to see it and others at the same time
-#.
-#: src/bjb-main-toolbar.c:758
-msgid "Open in New Window"
-msgstr "Odpri v novem oknu"
-
-#. Undo Redo separator
-#: src/bjb-main-toolbar.c:769
-msgid "Undo"
-msgstr "Razveljavi"
-
-#: src/bjb-main-toolbar.c:777
-msgid "Redo"
-msgstr "Ponovi"
-
-#. Notes tags
-#: src/bjb-main-toolbar.c:792 src/bjb-organize-dialog.c:370
-#: src/bjb-selection-toolbar.c:383
-msgid "Notebooks"
-msgstr "Beležnice"
-
-#. Share
-#: src/bjb-main-toolbar.c:800
-msgid "Email this Note"
-msgstr "Pošlji to sporočilce"
-
-#. Delete Note
-#. Trash notes
-#: src/bjb-main-toolbar.c:813 src/bjb-selection-toolbar.c:417
-msgid "Move to Trash"
-msgstr "Premakni v smeti"
-
-#: src/bjb-main-toolbar.c:873
-msgid "More options…"
-msgstr "Več podrobnosti ..."
-
-#: src/bjb-main-toolbar.c:896 src/bjb-selection-toolbar.c:394
-msgid "Note color"
-msgstr "Barva sporočilca"
-
-#: src/bjb-main-view.c:504
-msgid "Notebook"
-msgstr "Beležnica"
-
-#: src/bjb-main-view.c:507
-msgid "Note"
-msgstr "Sporočilce"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s <b>Last Updated</b>'
 #.
-#: src/bjb-note-view.c:196
+#: src/bjb-note-view.c:189
 #, c-format
 msgid "<b>Last updated</b> %s"
 msgstr "<b>Nazadnje posodobljeno</b> %s"
 
-#: src/bjb-organize-dialog.c:396
-msgid "Enter a name to create a notebook"
-msgstr "Vnos imena nove beležnice"
-
-#: src/bjb-organize-dialog.c:406
-msgid "New notebook"
-msgstr "Nova beležnica"
-
-#: src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Prekliči"
-
-#: src/bjb-rename-note.c:19
-msgid "_OK"
-msgstr "_V redu"
-
-#. Restore (do not show)
-#: src/bjb-selection-toolbar.c:388
-msgid "Restore"
-msgstr "Obnovi"
-
-#: src/bjb-selection-toolbar.c:405
-msgid "Share note"
-msgstr "Objavi sporočilce"
-
-#. Detach
-#: src/bjb-selection-toolbar.c:411
-msgid "Open in another window"
-msgstr "Odpri v novem oknu"
-
-#. Permanently delete (do not show )
-#: src/bjb-selection-toolbar.c:425
-msgid "Permanently Delete"
-msgstr "Trajno izbriši"
-
-#: src/libbiji/biji-date-time.c:32
-msgid "Today"
-msgstr "Danes"
-
-#: src/libbiji/biji-date-time.c:35
-msgid "Yesterday"
-msgstr "Včeraj"
-
-#: src/libbiji/biji-date-time.c:38
-msgid "This week"
-msgstr "Ta teden"
-
-#: src/libbiji/biji-date-time.c:41
-msgid "This month"
-msgstr "Ta mesec"
-
-#: src/libbiji/biji-date-time.c:44
-msgid "This year"
-msgstr "To leto"
-
-#: src/libbiji/biji-date-time.c:46
+#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Neznano"
 
-#: src/libbiji/biji-notebook.c:264
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "Danes"
+
+#: src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Včeraj"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "Ta teden"
+
+#: src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Ta mesec"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "To leto"
+
+#: src/libbiji/biji-notebook.c:265
 msgid "Local"
 msgstr "Krajevno"
 
-#: src/libbiji/provider/biji-local-provider.c:364
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Krajevna shramba"
 
-#: src/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Uvozi sporočilca"
+#~ msgid "notes;reminder;"
+#~ msgstr "sporočilca;opomniki;notes;owncloud;"
 
-#: src/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Poglej smeti"
+#~ msgid "Cancel"
+#~ msgstr "Prekliči"
 
-#: src/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "_Možnosti"
+#~ msgid "Notebook"
+#~ msgstr "Beležnica"
 
-#: src/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "Pomo_č"
+#~ msgid "Note"
+#~ msgstr "Sporočilce"
 
-#: src/resources/app-menu.ui:25
-msgid "_About"
-msgstr "_O programu"
-
-#: src/resources/app-menu.ui:29
-msgid "_Quit"
-msgstr "_Končaj"
-
-#: src/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Izreži"
-
-#: src/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Kopiraj"
-
-#: src/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Prilepi"
-
-#: src/resources/editor-toolbar.ui:104
-msgid "Bold"
-msgstr "Krepko"
-
-#: src/resources/editor-toolbar.ui:120
-msgid "Italic"
-msgstr "Ležeče"
-
-#: src/resources/editor-toolbar.ui:136
-msgid "Strike"
-msgstr "Prečrtano"
-
-#: src/resources/editor-toolbar.ui:161
-msgid "* "
-msgstr "* "
-
-#: src/resources/editor-toolbar.ui:165
-msgid "Bullets"
-msgstr "Vrstične oznake"
-
-#: src/resources/editor-toolbar.ui:177
-msgid "1."
-msgstr "1."
-
-#: src/resources/editor-toolbar.ui:181
-msgid "List"
-msgstr "Seznam"
-
-#: src/resources/editor-toolbar.ui:205
-msgid "Copy selection to a new note"
-msgstr "Kopiraj izbor v novo sporočilce"
-
-#: src/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Možnosti"
-
-#: src/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Uporabi sistemsko pisavo"
-
-#: src/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Pisava sporočilca"
-
-#: src/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Privzeta barva"
-
-#: src/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Izdaja opombe"
-
-#: src/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Privzeto mesto za shranjevanje:"
-
-#: src/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Osnovni imenik stikov"
+#~ msgid "_OK"
+#~ msgstr "_V redu"
 
 #~ msgid "Numbered List"
 #~ msgstr "Oštevilčen seznam"

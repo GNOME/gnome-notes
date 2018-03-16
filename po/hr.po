@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2018-03-11 20:24+0000\n"
-"PO-Revision-Date: 2018-03-16 17:12+0100\n"
+"PO-Revision-Date: 2018-03-16 18:13+0100\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr "* "
 
 #: data/resources/editor-toolbar.ui:165
 msgid "Bullets"
-msgstr ""
+msgstr "Grafičke oznake"
 
 #: data/resources/editor-toolbar.ui:177
 msgid "1."
@@ -415,7 +415,7 @@ msgstr "Zadana slova"
 
 #: data/resources/settings-dialog.ui:113
 msgid "Note Edition"
-msgstr "Izdanje bilješke"
+msgstr "Bilješka"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"

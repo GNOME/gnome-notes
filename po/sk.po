@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-14 21:30+0000\n"
-"PO-Revision-Date: 2018-01-22 20:53+0100\n"
+"POT-Creation-Date: 2018-03-07 17:32+0000\n"
+"PO-Revision-Date: 2018-03-17 11:10+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -37,8 +37,8 @@ msgstr ""
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "Umožňuje použiť službu ownCloud ako miesto uloženia a online editor."
 
-#: data/org.gnome.bijiben.desktop.in.in:3 src/bjb-app-menu.c:45
-#: src/bjb-window-base.c:18
+#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Poznámky"
 
@@ -123,8 +123,8 @@ msgid "How to show note items"
 msgstr "Ako zobraziť položky poznámok"
 
 #: data/org.gnome.bijiben.gschema.xml:39
-msgid "Whether show note items in icon view or list view."
-msgstr "Či sa majú položky poznámok zobraziť v zobrazení ikon alebo zoznamu."
+msgid "Whether to show note items in icon view or list view."
+msgstr "Či sa majú položky poznámok zobraziť v zobrazení ikôn alebo zoznamu."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -328,6 +328,7 @@ msgstr "_Nová"
 msgid "Note color"
 msgstr "Farba poznámok"
 
+#. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
 msgid "_Empty"
 msgstr "Vy_prádzniť"
@@ -445,7 +446,7 @@ msgstr "Vyberte predvolené umiestnenie úložiska:"
 msgid "Primary Book"
 msgstr "Hlavná kniha"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:378
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
 msgid "Untitled"
 msgstr "Bez názvu"
 
@@ -541,18 +542,9 @@ msgstr "Výsledky pre %s"
 msgid "New and Recent"
 msgstr "Nové a nedávno použité"
 
-#: src/bjb-main-toolbar.c:355
+#: src/bjb-main-toolbar.c:356
 msgid "Trash"
 msgstr "Kôš"
-
-# label
-#: src/bjb-main-view.c:495
-msgid "Notebook"
-msgstr "Zápisník"
-
-#: src/bjb-main-view.c:498
-msgid "Note"
-msgstr "Poznámka"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
@@ -595,6 +587,13 @@ msgstr "Miestny"
 #: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Miestne úložisko"
+
+# label
+#~ msgid "Notebook"
+#~ msgstr "Zápisník"
+
+#~ msgid "Note"
+#~ msgstr "Poznámka"
 
 #~ msgid "notes;reminder;"
 #~ msgstr "poznámky;pripomienka;pripomienky;"

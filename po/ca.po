@@ -109,7 +109,7 @@ msgstr "Mida de la finestra"
 
 #: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window size (width and height)."
-msgstr "Mida de la finestra (amplada i alçada)"
+msgstr "Mida de la finestra (amplada i alçada)."
 
 #: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window position"
@@ -117,7 +117,7 @@ msgstr "Posició de la finestra"
 
 #: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window position (x and y)."
-msgstr "Posició de la finestra (x i y)"
+msgstr "Posició de la finestra (x i y)."
 
 #: data/org.gnome.bijiben.gschema.xml:38
 msgid "How to show note items"
@@ -241,7 +241,7 @@ msgstr "Cancel·la el mode de selecció"
 #: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr "Selecciona'ls totes"
+msgstr "Selecciona-ho tot"
 
 #: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"

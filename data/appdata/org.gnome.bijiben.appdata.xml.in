@@ -21,8 +21,20 @@
     <kudo>UserDocs</kudo>
   </kudos>
   <screenshots>
-    <screenshot type="default" width="627" height="396">
-      <image>http://py.luyten.fr/Publique/bijiben-notes-scr.png</image>
+    <screenshot type="default">
+      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/default.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Edit view</caption>
+      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/edit.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Select view</caption>
+      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/select.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>List view</caption>
+      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/list.png</image>
     </screenshot>
   </screenshots>
   <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>

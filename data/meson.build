@@ -1,4 +1,5 @@
 subdir('icons')
+subdir('appdata')
 
 mime = 'org.gnome.bijiben.xml'
 
@@ -10,17 +11,6 @@ i18n.merge_file(
   data_dirs: its_dir,
   install: true,
   install_dir: join_paths(bijiben_datadir, 'mime', 'packages')
-)
-
-appdata = 'org.gnome.bijiben.appdata.xml'
-
-i18n.merge_file(
-  appdata,
-  input: appdata + '.in',
-  output: appdata,
-  po_dir: po_dir,
-  install: true,
-  install_dir: join_paths(bijiben_datadir, 'metainfo')
 )
 
 desktop = 'org.gnome.bijiben.desktop'

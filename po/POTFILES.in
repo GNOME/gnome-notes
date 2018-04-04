@@ -1,5 +1,5 @@
 # List of source files containing translatable strings.
-data/org.gnome.bijiben.appdata.xml.in
+data/appdata/org.gnome.bijiben.appdata.xml.in
 data/org.gnome.bijiben.desktop.in.in
 data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in

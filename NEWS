@@ -1,3 +1,30 @@
+Overview of changes in 3.28.1
+=============================
+
+* Fix appdata and screenshots improving flatpak support
+
+Translations
+* ca (Jordi Mas)
+* cs (Marek Černocký)
+* da (Alan Mortensen)
+* el (Efstathios Iosifidis)
+* en_GB (Bruce Cowan)
+* fr (Alain Lojewski)
+* hr (gogo)
+* it (Gianvito Cavasoli)
+* ja (Jiro Matsuzawa)
+* lt (Aurimas Černius)
+* lv (Rūdolfs Mazurs)
+* nl (Hannie Dumoleyn / Nathan Follens)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* ro (Daniel Șerbănescu)
+* sk (Dušan Kazik)
+* sl (Matej Urbančič)
+* sr (Мирослав Николић)
+* sv (Anders Jonsson)
+* zh_CN (Aron Xu)
+
 Overview of changes in 3.28.0
 ==============================
 

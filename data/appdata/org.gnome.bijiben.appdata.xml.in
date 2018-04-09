@@ -37,6 +37,20 @@
       <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/list.png</image>
     </screenshot>
   </screenshots>
+
+  <releases>
+    <release date="2018-04-09" version="3.28.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fix appdata and screenshots improving flatpak support.</li>
+        </ul>
+        <p>This release also updates many translations.</p>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
+  </releases>
+
   <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>
   <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=bijiben</url>
   <url type="donation">http://www.gnome.org/friends/</url>

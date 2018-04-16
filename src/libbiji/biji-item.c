@@ -151,7 +151,8 @@ biji_item_class_init (BijiItemClass *klass)
 static void
 biji_item_finalize (GObject *object)
 {
-  g_return_if_fail (BIJI_IS_ITEM (object));
+  BijiItemPrivate *priv = biji_item_get_instance_private (BIJI_ITEM (object));
+  g_clear_object (&priv->manager);
 
   G_OBJECT_CLASS (biji_item_parent_class)->finalize (object);
 }

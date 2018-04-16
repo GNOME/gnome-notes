@@ -111,11 +111,8 @@ biji_provider_load_archives        (BijiProvider *provider)
 static void
 biji_provider_finalize (GObject *object)
 {
-  //BijiProvider *self;
-
-  //g_return_if_fail (BIJI_IS_PROVIDER (object));
-
-  //self = BIJI_PROVIDER (object);
+  BijiProviderPrivate *priv = biji_provider_get_instance_private (BIJI_PROVIDER (object));
+  g_clear_object (&priv->manager);
 
   G_OBJECT_CLASS (biji_provider_parent_class)->finalize (object);
 }

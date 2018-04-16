@@ -115,26 +115,31 @@ bjb_settings_set_property (GObject      *object,
                            GParamSpec   *pspec)
 {
   BjbSettings *self = BJB_SETTINGS (object);
+  GSettings   *settings = G_SETTINGS (object);
 
   switch (prop_id)
   {
     case PROP_USE_SYSTEM_FONT:
       self->use_system_font = g_value_get_boolean (value);
+      g_settings_set_boolean (settings, "use-system-font", self->use_system_font);
       break;
 
     case PROP_FONT:
       g_free (self->font);
       self->font = g_value_dup_string (value);
+      g_settings_set_string (settings, "font", self->font);
       break;
 
     case PROP_COLOR:
       g_free (self->color);
       self->color = g_value_dup_string (value);
+      g_settings_set_string (settings, "color", self->color);
       break;
 
     case PROP_PRIMARY:
       g_free (self->primary);
       self->primary = g_value_dup_string (value);
+      g_settings_set_string (settings, "default-location", self->primary);
       break;
 
     default:
@@ -156,22 +161,10 @@ bjb_settings_constructed (GObject *object)
   settings = G_SETTINGS (object);
   self->system = g_settings_new ("org.gnome.desktop.interface");
 
-
-  g_settings_bind  (settings, "use-system-font",
-                    self,     "use-system-font",
-                    G_SETTINGS_BIND_DEFAULT);
-
-  g_settings_bind  (settings, "font",
-                    self,     "font",
-                    G_SETTINGS_BIND_DEFAULT);
-
-  g_settings_bind  (settings, "color",
-                    self,     "color",
-                    G_SETTINGS_BIND_DEFAULT);
-
-  g_settings_bind  (settings,  "default-location",
-                    self,      "default-location",
-                    G_SETTINGS_BIND_DEFAULT);
+  self->use_system_font = g_settings_get_boolean (settings, "use-system-font");
+  self->font = g_settings_get_string (settings, "font");
+  self->color = g_settings_get_string (settings, "color");
+  self->primary = g_settings_get_string (settings, "default-location");
 }
 
 

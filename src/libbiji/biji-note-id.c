@@ -35,7 +35,7 @@ struct _BijiNoteID
   GObject       parent_instance;
   /* InfoSet */
 
-  const gchar  *path;
+  gchar        *path;
   gchar        *title;
   gchar        *content;
   gint64        mtime;
@@ -63,7 +63,9 @@ biji_note_id_finalize (GObject *object)
 {
   BijiNoteID *self = BIJI_NOTE_ID (object);
 
+  g_free (self->path);
   g_free (self->title);
+  g_free (self->content);
 
   G_OBJECT_CLASS (biji_note_id_parent_class)->finalize (object);
 }
@@ -99,7 +101,7 @@ biji_note_id_set_property  (GObject      *object,
       self->mtime = g_value_get_int64 (value);
       break;
     case PROP_CONTENT:
-      self->content = g_strdup (g_value_get_string (value));
+      biji_note_id_set_content (self, g_value_get_string (value));
       g_object_notify_by_pspec (object, properties[PROP_CONTENT]);
       break;
     default:

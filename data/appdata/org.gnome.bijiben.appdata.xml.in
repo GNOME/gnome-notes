@@ -39,6 +39,14 @@
   </screenshots>
 
   <releases>
+    <release date="2018-04-16" version="3.29.1.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fix typo in appdata release section</li>
+        </ul>
+      </description>
+    </release>
     <release date="2018-04-16" version="3.29.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

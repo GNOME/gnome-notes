@@ -157,65 +157,134 @@ ocloud_note_set_id (BijiOwnCloudNote *self)
 }
 
 static void
-ocloud_note_save (BijiNoteObj *note)
+on_file_updated_cb (GObject *source_object,
+                    GAsyncResult *res,
+                    gpointer user_data)
 {
-  BijiOwnCloudNote *self;
-  GFile *folder, *tmp_file;
-  const gchar *str;
+  BijiOwnCloudNote *self = BIJI_OWN_CLOUD_NOTE (user_data);
   g_autoptr(GError) error = NULL;
-  GFileOutputStream *new_file;
 
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
-  self = BIJI_OWN_CLOUD_NOTE (note);
-  str = biji_note_obj_get_raw_text (note);
-
-  /* create note file if it doesn't exist */
-  if (self->location == NULL || !g_file_query_exists (self->location, NULL))
+  if (!g_file_replace_contents_finish (self->location, res, NULL, &error))
     {
-      folder = biji_own_cloud_provider_get_folder (self->prov);
-      if (self->location)
-        g_object_unref (self->location);
-      self->location = g_file_get_child (folder, self->basename);
-      new_file = g_file_create (self->location, G_FILE_CREATE_NONE,
-                                NULL, &error);
-      if (error)
-        {
-          g_warning ("ownCloud note not created. %s", error->message);
-          return;
-        }
-      g_clear_object (&new_file);
-      self->needs_rename = FALSE;
-      ocloud_note_set_id (self);
-    }
-  /* if file exists and its title was changed */
-  else if (self->needs_rename)
-    {
-      tmp_file = self->location;
-      self->location = g_file_set_display_name (self->location, self->basename,
-                                                NULL, &error);
-      if (error)
-        {
-          g_warning ("ownCloud note not renamed. %s", error->message);
-          self->location = tmp_file;
-          return;
-        }
-      g_clear_object (&tmp_file);
-      self->needs_rename = FALSE;
-      ocloud_note_set_id (self);
-    }
-
-  /* backup would fail for some reason.
-   * gfilemove for workaround? */
-  if (!g_file_replace_contents (self->location, str, strlen(str), NULL, FALSE,
-                                G_FILE_CREATE_REPLACE_DESTINATION, NULL,
-                                self->cancellable, &error))
-    {
-      g_file_get_path (self->location);
       g_warning ("ownCloud note not updated. %s", error->message);
       return;
     }
 
   ocloud_note_ensure_ressource (BIJI_NOTE_OBJ (self));
+}
+
+static void
+biji_own_cloud_note_file_update (BijiOwnCloudNote *self)
+{
+  const gchar *str = biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (self));
+
+  g_file_replace_contents_async (self->location,
+                                 str,
+                                 strlen(str),
+                                 NULL,
+                                 FALSE,
+                                 G_FILE_CREATE_REPLACE_DESTINATION,
+                                 self->cancellable,
+                                 on_file_updated_cb,
+                                 self);
+}
+
+static void
+on_file_renamed_cb (GObject *source_object,
+                    GAsyncResult *res,
+                    gpointer user_data)
+{
+  BijiOwnCloudNote *self = BIJI_OWN_CLOUD_NOTE (user_data);
+  GFile *tmp_file = self->location;
+  g_autoptr(GError) error = NULL;
+
+  self->location = g_file_set_display_name_finish (self->location, res, &error);
+  if (error)
+    {
+      g_warning ("ownCloud note not renamed. %s", error->message);
+      self->location = tmp_file;
+      return;
+    }
+  g_clear_object (&tmp_file);
+
+  self->needs_rename = FALSE;
+  ocloud_note_set_id (self);
+  biji_own_cloud_note_file_update (self);
+}
+
+static void
+biji_own_cloud_note_file_rename (BijiOwnCloudNote *self)
+{
+  g_file_set_display_name_async (self->location,
+                                 self->basename,
+                                 G_PRIORITY_DEFAULT,
+                                 NULL,
+                                 on_file_renamed_cb,
+                                 self);
+}
+
+static void
+on_file_created_cb (GObject *source_object,
+                    GAsyncResult *res,
+                    gpointer user_data)
+{
+  BijiOwnCloudNote *self = BIJI_OWN_CLOUD_NOTE (user_data);
+  GFileOutputStream *new_file;
+  g_autoptr(GError) error = NULL;
+
+  new_file = g_file_create_finish (self->location, res, &error);
+  if (error)
+    {
+      g_warning ("ownCloud note not created. %s", error->message);
+      return;
+    }
+  g_clear_object (&new_file);
+
+  self->needs_rename = FALSE;
+  ocloud_note_set_id (self);
+  biji_own_cloud_note_file_update (self);
+}
+
+static void
+biji_own_cloud_note_file_create (BijiOwnCloudNote *self)
+{
+  if (self->location)
+    g_object_unref (self->location);
+
+  self->location = g_file_get_child (biji_own_cloud_provider_get_folder (self->prov),
+                                     self->basename);
+
+  g_file_create_async (self->location,
+                       G_FILE_CREATE_NONE,
+                       G_PRIORITY_DEFAULT,
+                       NULL,
+                       on_file_created_cb,
+                       self);
+}
+
+static void
+ocloud_note_save (BijiNoteObj *note)
+{
+  BijiOwnCloudNote *self;
+
+  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
+  self = BIJI_OWN_CLOUD_NOTE (note);
+
+  /* create note file if it doesn't exist */
+  if (self->location == NULL || !g_file_query_exists (self->location, NULL))
+    {
+      biji_own_cloud_note_file_create (self);
+    }
+  /* if file exists and its title was changed */
+  else if (self->needs_rename)
+    {
+      biji_own_cloud_note_file_rename (self);
+    }
+  /* or just update it */
+  else
+    {
+      biji_own_cloud_note_file_update (self);
+    }
 }
 
 static void

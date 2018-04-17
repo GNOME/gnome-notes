@@ -1,3 +1,16 @@
+Overview of changes in 3.29.1
+=============================
+
+* Fix memory leak in Settings
+* Make own/nextCloud notes saving async
+* Use g_auto* (Mohammed Sadiq)
+
+Translations
+* de (Mario Blättermann)
+* fi (Jiri Grönroos)
+* hu (Balázs Meskó)
+* sl (Matej Urbančič)
+
 Overview of changes in 3.28.1
 =============================
 

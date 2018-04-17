@@ -39,6 +39,17 @@
   </screenshots>
 
   <releases>
+    <release date="2018-04-16" version="3.29.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fix memory leak in Settings</li>
+          <li>Make own/nextCloud notes saving async</lib>
+        </ul>
+        <p>This release also updates many translations.</p>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-04-09" version="3.28.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

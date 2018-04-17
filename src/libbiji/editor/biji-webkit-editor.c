@@ -213,13 +213,12 @@ biji_webkit_editor_redo (BijiWebkitEditor *self)
 static void
 set_editor_color (WebKitWebView *w, GdkRGBA *col)
 {
-  gchar *script;
+  g_autofree gchar *script = NULL;
 
   webkit_web_view_set_background_color (w, col);
   script = g_strdup_printf ("document.getElementById('editable').style.color = '%s';",
                             col->red < 0.5 ? "white" : "black");
   webkit_web_view_run_javascript (w, script, NULL, NULL, NULL);
-  g_free (script);
 }
 
 void
@@ -299,7 +298,7 @@ biji_webkit_editor_content_changed (BijiWebkitEditor *self,
   if (rows && rows[0])
   {
     gchar *title;
-    gchar *unique_title;
+    g_autofree gchar *unique_title = NULL;
 
     title = rows[0];
 
@@ -309,7 +308,6 @@ biji_webkit_editor_content_changed (BijiWebkitEditor *self,
                                                       title);
 
       biji_note_obj_set_title (note, unique_title);
-      g_free (unique_title);
     }
   }
 
@@ -449,7 +447,8 @@ biji_webkit_editor_handle_contents_update (BijiWebkitEditor *self,
                                            JSGlobalContextRef js_context,
                                            JSObjectRef js_object)
 {
-  char *html, *text;
+  g_autofree gchar *html = NULL;
+  g_autofree gchar *text = NULL;
 
   html = get_js_property_string (js_context, js_object, "outerHTML");
   if (!html)
@@ -457,14 +456,9 @@ biji_webkit_editor_handle_contents_update (BijiWebkitEditor *self,
 
   text = get_js_property_string (js_context, js_object, "innerText");
   if (!text)
-  {
-    g_free (html);
     return;
-  }
 
   biji_webkit_editor_content_changed (self, html, text);
-  g_free (html);
-  g_free (text);
 }
 
 static void
@@ -472,7 +466,7 @@ biji_webkit_editor_handle_selection_change (BijiWebkitEditor *self,
                                             JSGlobalContextRef js_context,
                                             JSObjectRef js_object)
 {
-  char *block_format_str;
+  g_autofree char *block_format_str = NULL;
 
   self->priv->has_text = get_js_property_boolean (js_context, js_object, "hasText");
 
@@ -486,7 +480,6 @@ biji_webkit_editor_handle_selection_change (BijiWebkitEditor *self,
     self->priv->block_format = BLOCK_FORMAT_ORDERED_LIST;
   else
     self->priv->block_format = BLOCK_FORMAT_NONE;
-  g_free (block_format_str);
 }
 
 static void
@@ -497,7 +490,7 @@ on_script_message (WebKitUserContentManager *user_content,
   JSGlobalContextRef js_context;
   JSValueRef js_value;
   JSObjectRef js_object;
-  char *message_name;
+  g_autofree char *message_name = NULL;
 
   js_context = webkit_javascript_result_get_global_context (message);
   js_value = webkit_javascript_result_get_value (message);
@@ -521,7 +514,6 @@ on_script_message (WebKitUserContentManager *user_content,
     }
   else if (g_strcmp0 (message_name, "SelectionChange") == 0)
     biji_webkit_editor_handle_selection_change (self, js_context, js_object);
-  g_free (message_name);
 }
 
 static void
@@ -531,7 +523,7 @@ biji_webkit_editor_constructed (GObject *obj)
   BijiWebkitEditorPrivate *priv;
   WebKitWebView *view;
   WebKitUserContentManager *user_content;
-  GBytes *html_data;
+  g_autoptr(GBytes) html_data = NULL;
   gchar *body;
 
   self = BIJI_WEBKIT_EDITOR (obj);
@@ -562,7 +554,6 @@ biji_webkit_editor_constructed (GObject *obj)
   html_data = g_bytes_new_take (body, strlen (body));
   webkit_web_view_load_bytes (view, html_data, "application/xhtml+xml", NULL,
                               "file://" DATADIR G_DIR_SEPARATOR_S "bijiben" G_DIR_SEPARATOR_S);
-  g_bytes_unref (html_data);
 
   /* Do not be a browser */
   g_signal_connect (view, "decide-policy",

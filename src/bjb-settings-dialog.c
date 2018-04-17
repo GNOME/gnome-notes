@@ -55,13 +55,11 @@ static void
 on_font_selected (GtkFontButton     *widget,
                   BjbSettingsDialog *self)
 {
-  BjbSettings *settings;
   g_autofree gchar *font_name = NULL;
 
-  settings = self->settings;
   font_name = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (widget));
 
-  g_settings_set_string (G_SETTINGS (settings), "font", font_name);
+  g_object_set (self->settings, "font", font_name, NULL);
 
 }
 
@@ -69,20 +67,13 @@ static void
 on_color_set (GtkColorButton    *button,
               BjbSettingsDialog *self)
 {
-  BjbSettings *settings;
   GdkRGBA color;
-  gchar *color_str;
-
-  settings = self->settings;
+  g_autofree gchar *color_str = NULL;
 
   gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &color);
   color_str = gdk_rgba_to_string (&color);
 
-  g_settings_set_string (G_SETTINGS (settings),
-                         "color",
-                         color_str);
-
-  g_free (color_str);
+  g_object_set (self->settings, "color", color_str, NULL);
 }
 
 /* Primary Provider page */
@@ -209,9 +200,7 @@ on_row_activated_cb    (GtkListBox    *list_box,
   if (child->selected == TRUE)
     return;
 
-  g_object_set (bjb_app_get_settings (g_application_get_default ()),
-                "default-location", child->id, NULL);
-
+  g_object_set (self->settings, "default-location", child->id, NULL);
 
   /* Toggle everything : unselect all but this one */
   g_list_foreach (self->children, unselect_child, NULL);

@@ -63,7 +63,7 @@ biji_item_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_BOOK:
-      priv->manager = g_value_dup_object (value);
+      priv->manager = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -151,9 +151,6 @@ biji_item_class_init (BijiItemClass *klass)
 static void
 biji_item_finalize (GObject *object)
 {
-  BijiItemPrivate *priv = biji_item_get_instance_private (BIJI_ITEM (object));
-  g_clear_object (&priv->manager);
-
   G_OBJECT_CLASS (biji_item_parent_class)->finalize (object);
 }
 

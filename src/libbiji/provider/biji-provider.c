@@ -111,9 +111,6 @@ biji_provider_load_archives        (BijiProvider *provider)
 static void
 biji_provider_finalize (GObject *object)
 {
-  BijiProviderPrivate *priv = biji_provider_get_instance_private (BIJI_PROVIDER (object));
-  g_clear_object (&priv->manager);
-
   G_OBJECT_CLASS (biji_provider_parent_class)->finalize (object);
 }
 
@@ -156,7 +153,7 @@ biji_provider_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_BOOK:
-      priv->manager = g_value_dup_object (value);
+      priv->manager = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

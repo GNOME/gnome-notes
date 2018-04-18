@@ -229,7 +229,7 @@ enumerate_next_files_ready_cb (GObject *source,
       else
         target = self->archives;
 
-      g_hash_table_replace (target, info.url, note);
+      g_hash_table_replace (target, g_strdup (info.url), note);
 
     }
 
@@ -342,6 +342,9 @@ biji_local_provider_finalize (GObject *object)
   g_object_unref (self->location);
   g_object_unref (self->trash_file);
 
+  g_hash_table_unref (self->items);
+  g_hash_table_unref (self->archives);
+
   biji_provider_helper_free (self->living_helper);
   biji_provider_helper_free (self->archives_helper);
 
@@ -353,8 +356,8 @@ static void
 biji_local_provider_init (BijiLocalProvider *self)
 {
   self->load_cancellable = g_cancellable_new ();
-  self->items = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
-  self->archives = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+  self->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
+  self->archives = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 
   /* Info */
   self->info.unique_id = "local";

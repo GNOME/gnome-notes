@@ -181,7 +181,7 @@ create_note_from_item (BijiOCloudItem *item)
   biji_manager_get_default_color (manager, &color);
   biji_note_obj_set_rgba (note, &color);
   g_hash_table_replace (item->self->notes,
-                        item->set.url,
+                        g_strdup (item->set.url),
                         note);
 }
 
@@ -830,7 +830,7 @@ ocloud_prov_load_archives (BijiProvider *provider)
 static void
 biji_own_cloud_provider_init (BijiOwnCloudProvider *self)
 {
-  self->notes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+  self->notes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
   self->tracker = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
   self->queue = g_queue_new ();
 }

@@ -176,7 +176,8 @@ biji_note_obj_set_property (GObject      *object,
   switch (property_id)
     {
     case PROP_ID:
-      priv->id = g_value_dup_object (value);
+      /* From now on BijiNoteID is managed by BijiNoteObj */
+      priv->id = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

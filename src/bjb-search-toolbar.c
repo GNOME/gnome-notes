@@ -119,7 +119,6 @@ bjb_search_toolbar_set_property (GObject      *object,
 
 static void
 action_entry_text_change_callback (GtkEntry         *entry,
-                                   GParamSpec       *pspec,
                                    BjbSearchToolbar *self)
 {
   bjb_controller_set_needle (BJB_CONTROLLER (self->controller),
@@ -148,7 +147,7 @@ bjb_search_toolbar_connect (BjbSearchToolbar *self)
 
 
   if (self->text_id == 0)
-    self->text_id = g_signal_connect (self->entry, "notify::text",
+    self->text_id = g_signal_connect (self->entry, "search-changed",
                         G_CALLBACK (action_entry_text_change_callback), self);
 }
 

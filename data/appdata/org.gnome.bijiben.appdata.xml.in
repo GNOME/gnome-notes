@@ -39,6 +39,24 @@
   </screenshots>
 
   <releases>
+    <release date="2018-05-07" version="3.28.2">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fix memory leaks and circular references in many objects.</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>de (Mario Blättermann)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>hu (Balázs Meskó)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>tr (Muhammet Kara)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-04-09" version="3.28.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

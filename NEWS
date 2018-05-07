@@ -1,3 +1,16 @@
+Overview of changes in 3.28.2
+=============================
+
+* Fix memory leaks and circular references in many objects.
+
+Translations
+* de (Mario Blättermann)
+* es (Daniel Mustieles)
+* fi (Jiri Grönroos)
+* hu (Balázs Meskó)
+* sl (Matej Urbančič)
+* tr (Muhammet Kara)
+
 Overview of changes in 3.28.1
 =============================
 

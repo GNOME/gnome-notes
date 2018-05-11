@@ -1,10 +1,10 @@
 body {
-  margin-top:      -2em;
+  margin-top:       -1em;
   margin-left:      0;
   margin-right:     2em;
   margin-bottom:    8em;
   word-wrap:        break-word;
-
+  text-align:       justify;
   color:            black;
   background-size:  2.0em 2.0em;
   line-height:      1.5em;
@@ -12,6 +12,7 @@ body {
 }
 
 body:first-line {
+  font-size:        150%;
   font-weight:      bold;
 }
 
@@ -29,6 +30,6 @@ ol {
   padding:          0 0 0 .75em;
 }
 
-body > div > div {
+body > div {
   margin:           0.75em 0;
 }

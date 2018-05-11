@@ -50,8 +50,6 @@ struct _BjbNoteView
   BijiWebkitEditor  *editor;
   GtkWidget         *box;
   GtkWidget         *edit_bar;
-
-  GtkWidget         *last_update;
 };
 
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
@@ -165,9 +163,6 @@ on_note_trashed (BijiNoteObj *note, BjbNoteView *view)
 static void
 on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
-  const gchar *font_color;
-  g_autofree gchar *span = NULL;
-  g_autofree gchar *text = NULL;
   GdkRGBA color;
 
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
@@ -175,36 +170,7 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
   biji_note_obj_get_rgba (note, &color);
 
   webkit_web_view_set_background_color (WEBKIT_WEB_VIEW (self->view), &color);
-
-  if (color.red < 0.5)
-    font_color = "white";
-  else
-    font_color = "black";
-
-  /* Translators: %s is the note last recency description.
-   * Last updated is placed as in left to right language
-   * right to left languages might move %s
-   *         '%s <b>Last Updated</b>'
-   */
-  text = g_strdup_printf (_("<b>Last updated</b> %s"),
-                          biji_note_obj_get_last_change_date_string
-			            (note));
-  span = g_strdup_printf ("<span color='%s'>%s</span>", font_color, text);
-  gtk_label_set_markup (GTK_LABEL (self->last_update), span);
 }
-
-
-/* Number of days since last updated
- * Instead we might want to play with a func to have a date
- * Also this might be integrated in text view */
-static void
-bjb_note_view_last_updated_actor_new (BjbNoteView *self)
-{
-  self->last_update = gtk_label_new ("");
-  gtk_label_set_use_markup (GTK_LABEL (self->last_update), TRUE);
-  on_note_color_changed_cb (self->note, self);
-}
-
 
 static void
 bjb_note_view_constructed (GObject *obj)
@@ -263,15 +229,6 @@ bjb_note_view_constructed (GObject *obj)
   self->edit_bar = bjb_editor_toolbar_new (self, self->note);
   gtk_box_pack_start (GTK_BOX (self->box), self->edit_bar, FALSE, TRUE, 0);
   gtk_widget_hide (self->edit_bar);
-
-  /* Last updated row */
-  bjb_note_view_last_updated_actor_new (self);
-  gtk_widget_set_halign (self->last_update, GTK_ALIGN_END);
-  gtk_widget_set_margin_end (self->last_update, 50);
-  gtk_widget_set_valign (self->last_update, GTK_ALIGN_END);
-  gtk_widget_set_margin_bottom (self->last_update, 50);
-  gtk_overlay_add_overlay (GTK_OVERLAY (self), self->last_update);
-  gtk_widget_show (self->last_update);
 }
 
 BjbNoteView *

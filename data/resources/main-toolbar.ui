@@ -248,5 +248,18 @@
       </object>
     </child>
 
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">1</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuItem" id="last_update_item">
+        <property name="visible">1</property>
+        <property name="sensitive">0</property>
+      </object>
+    </child>
+
   </object>
 </interface>

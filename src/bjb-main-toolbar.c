@@ -75,6 +75,7 @@ struct _BjbMainToolbar
   GtkWidget *notebook_item;
   GtkWidget *email_item;
   GtkWidget *trash_item;
+  GtkWidget *last_update_item;
 
   /* Signals */
   gulong search_handler;
@@ -85,6 +86,7 @@ struct _BjbMainToolbar
   BijiNoteObj *note;
   gulong note_renamed;
   gulong note_color_changed;
+  gulong last_updated;
   GtkAccelGroup *accel;
 };
 
@@ -295,6 +297,12 @@ disconnect_note_handlers (BjbMainToolbar *self)
       self->note_color_changed = 0;
     }
 
+  if (self->last_updated != 0)
+    {
+      g_signal_handler_disconnect (self->note, self->last_updated);
+      self->last_updated = 0;
+    }
+
   self->note = NULL;
 }
 
@@ -403,6 +411,22 @@ on_note_color_changed (BijiNoteObj    *note,
 
   if (biji_note_obj_get_rgba (note, &color))
     gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (button), &color);
+}
+
+static void
+on_last_updated_cb (BijiItem       *note,
+                    BjbMainToolbar *self)
+{
+  g_autofree gchar *label;
+
+  /* Translators: %s is the note last recency description.
+   * Last updated is placed as in left to right language
+   * right to left languages might move %s
+   *         '%s Last Updated'
+   */
+  label = g_strdup_printf (_("Last updated %s"),
+                           biji_note_obj_get_last_change_date_string (self->note));
+  gtk_menu_item_set_label (GTK_MENU_ITEM (self->last_update_item), label);
 }
 
 static void
@@ -523,6 +547,12 @@ populate_bar_for_note_view (BjbMainToolbar *self)
     self->note_color_changed = g_signal_connect (self->note, "color-changed",
                                G_CALLBACK (on_note_color_changed), self->color_button);
   }
+
+  /* Note Last Updated */
+  on_last_updated_cb (BIJI_ITEM (self->note), self);
+  self->last_updated = g_signal_connect (self->note,"changed",
+                                         G_CALLBACK (on_last_updated_cb), self);
+
 }
 
 static void
@@ -828,6 +858,7 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, notebook_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, email_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, trash_item);
+  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, last_update_item);
 
   gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_selection_mode_clicked);

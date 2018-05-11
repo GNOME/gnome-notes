@@ -28,7 +28,7 @@ struct _BjbSettings
 {
   GSettings parent_instance;
 
-  /* Note edition settings */
+  /* Note Appearance settings */
   gboolean use_system_font;
   gchar *font;
   gchar *color;

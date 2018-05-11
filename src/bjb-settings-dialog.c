@@ -41,7 +41,7 @@ struct _BjbSettingsDialog
   GtkListBox       *listbox;
   GList            *children;
 
-  /* Note Edition page */
+  /* Note Appearance page */
   GtkColorChooser *color_button;
   GtkFontButton   *font_button;
   GtkSwitch       *system_font_switch;

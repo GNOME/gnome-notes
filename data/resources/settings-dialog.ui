@@ -109,8 +109,8 @@
                 </child>
               </object>
               <packing>
-                <property name="name">edition</property>
-                <property name="title" translatable="yes">Note Edition</property>
+                <property name="name">appearance</property>
+                <property name="title" translatable="yes">Note Appearance</property>
               </packing>
             </child>
             <child>

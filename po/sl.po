@@ -7,10 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-09 15:44+0000\n"
-"PO-Revision-Date: 2018-04-09 20:04+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-05-11 18:26+0000\n"
+"PO-Revision-Date: 2018-05-15 22:10+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -228,12 +227,12 @@ msgstr "Novo sporočilce"
 #: data/resources/help-overlay.ui:20
 msgctxt "shortcut window"
 msgid "Close window"
-msgstr "Zapri okno"
+msgstr "Zapre okno"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
 msgid "Show help"
-msgstr "Pokaži pomoč"
+msgstr "Pokaže pomoč"
 
 #: data/resources/help-overlay.ui:34
 msgctxt "shortcut window"
@@ -248,12 +247,12 @@ msgstr "Izbirni način"
 #: data/resources/help-overlay.ui:47
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
-msgstr "Prekliči izbirni način"
+msgstr "Prekliče izbirni način"
 
 #: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Select all"
-msgstr "Izberi vse"
+msgstr "Izbere vse predmete"
 
 #: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
@@ -263,12 +262,12 @@ msgstr "Način urejanja sporočilc"
 #: data/resources/help-overlay.ui:67
 msgctxt "shortcut window"
 msgid "Bold"
-msgstr "Krepko"
+msgstr "Krepka pisava"
 
 #: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Italic"
-msgstr "Ležeče"
+msgstr "Ležeča pisava"
 
 #: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
@@ -288,7 +287,7 @@ msgstr "Ponovno uveljavi"
 #: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Move note to trash"
-msgstr "Premakni v smeti"
+msgstr "Premakne v smeti"
 
 #: data/resources/import-dialog.ui:5
 msgid "Import Notes"
@@ -304,7 +303,7 @@ msgstr "_Uvozi"
 
 #: data/resources/import-dialog.ui:41
 msgid "Select import location"
-msgstr "Izbor mesta uvoza"
+msgstr "Izbor mesta"
 
 #: data/resources/import-dialog.ui:78
 msgid "Gnote application"
@@ -324,7 +323,7 @@ msgstr "Izbor mape"
 
 #: data/resources/main-toolbar.ui:14
 msgid "_New"
-msgstr "_Nova"
+msgstr "_Novo"
 
 #: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
 msgid "Note color"
@@ -386,11 +385,11 @@ msgstr "Premakni v smeti"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
-msgstr "Vnos imena nove beležnice"
+msgstr "Ime nove beležnice"
 
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
-msgstr "Nova beležnica"
+msgstr "Ustvari"
 
 #: data/resources/selection-toolbar.ui:50
 msgid "Share note"
@@ -425,8 +424,8 @@ msgid "Default Color"
 msgstr "Privzeta barva"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Izdaja opombe"
+msgid "Note Appearance"
+msgstr "Videz programa"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -436,7 +435,7 @@ msgstr "Privzeto mesto za shranjevanje:"
 msgid "Primary Book"
 msgstr "Osnovni imenik stikov"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
 msgid "Untitled"
 msgstr "Neimenovano"
 
@@ -486,7 +485,7 @@ msgstr "Barva sporočilca"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Pritisnite gumb za ustvarjanje novega sporočilca."
+msgstr "Pritisnite na gumb za ustvarjanje novega sporočilca."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
@@ -494,8 +493,7 @@ msgstr "Ojoj, napaka"
 
 #: src/bjb-empty-results-box.c:91
 msgid "Please install “Tracker” then restart the application."
-msgstr ""
-"Namestiti je treba program »tracker« in nato program bijiben znova zagnati."
+msgstr "Namestiti je treba paket »tracker« in nato program znova zagnati."
 
 #: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
@@ -505,11 +503,11 @@ msgstr "Naloži več"
 msgid "Loading…"
 msgstr "Poteka nalaganje ..."
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "S klikom se predmet izbere"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -518,28 +516,28 @@ msgstr[1] "%d izbrana"
 msgstr[2] "%d izbrani"
 msgstr[3] "%d izbrane"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za %s"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:364
 msgid "Trash"
 msgstr "Smeti"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:427
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Nazadnje posodobljeno</b> %s"
+msgid "Last updated %s"
+msgstr "Nazadnje posodobljeno %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -569,9 +567,12 @@ msgstr "To leto"
 msgid "Local"
 msgstr "Krajevno"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Krajevna shramba"
+
+#~ msgid "Note Edition"
+#~ msgstr "Izdaja opombe"
 
 #~ msgid "notes;reminder;"
 #~ msgstr "sporočilca;opomniki;notes;owncloud;"

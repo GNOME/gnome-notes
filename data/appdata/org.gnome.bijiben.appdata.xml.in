@@ -39,6 +39,28 @@
   </screenshots>
 
   <releases>
+    <release date="2018-05-21" version="3.29.2">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Improve overall note styling</li>
+          <li>Move "Last updated" info to window menu</li>
+          <li>Fix UI freeze in text search (Mohammed Sadiq)</li>
+          <li>Fix memory leak and circular references in notes and providers</li>
+          <li>Drop obsolete configure script (Jeremy Bicha)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>be (Yuras Shumovich)</li>
+          <li>cs (Marek Černocký)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>tr (Muhammet Kara)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-04-16" version="3.29.1.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

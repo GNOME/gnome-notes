@@ -1,3 +1,20 @@
+Overview of changes in 3.29.2
+=============================
+
+* Improve overall note styling
+* Move "Last updated" info to window menu
+* Fix UI freeze in text search (Mohammed Sadiq)
+* Fix memory leak and circular references in notes and providers
+* Drop obsolete configure script (Jeremy Bicha)
+
+Translations
+* be (Yuras Shumovich)
+* cs (Marek Černocký)
+* es (Daniel Mustieles)
+* ro (Daniel Șerbănescu)
+* sl (Matej Urbančič)
+* tr (Muhammet Kara)
+
 Overview of changes in 3.29.1.1
 ===============================
 

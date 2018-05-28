@@ -1,43 +1,54 @@
 # Chinese (China) translation for bijiben.
-# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# Copyright (C) 2013-2018 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # tuhaihe <1132321739qq@gmail.com>, 2013.
 # Tong Hui <tonghuix@gmail.com>, 2013, 2014.
-# Jeff Bai <jeffbai@aosc.xyz>, 2015.
-#
-# Trash 我手贱翻译成了废纸篓，以与系统的回收站区别 - Wylmer Wang
+# Mingcong Bai <jeffbai@aosc.xyz>, 2015, 2018.
+# sh29791383 <sh29791383@gmail.com>, 2018.
+# Dingzhong Chen <wsxy162@gmail.com>, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-07 17:32+0000\n"
-"PO-Revision-Date: 2018-02-03 19:43+0800\n"
-"Last-Translator: Jeff Bai <jeffbai@aosc.xyz>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-05-11 18:26+0000\n"
+"PO-Revision-Date: 2018-05-23 22:24+0800\n"
+"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/org.gnome.bijiben.appdata.xml.in:6
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
 msgstr "Bijiben"
 
-#: data/org.gnome.bijiben.appdata.xml.in:7
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
 msgid "Quickly jot notes"
 msgstr "快速写笔记"
 
-#: data/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr "便笺是一款编辑器，可制作简单的清单，用于备忘。"
 
-#: data/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr "它支持使用 ownCloud 作为存储位置和在线编辑器。"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+msgid "Edit view"
+msgstr "编辑视图"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+msgid "Select view"
+msgstr "选择视图"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+msgid "List view"
+msgstr "列表视图"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
 #: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
@@ -47,7 +58,7 @@ msgstr "便笺"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.bijiben.desktop.in.in:5
 msgid "notes;reminder;notebook;sticky notes;"
-msgstr "notes;reminder;notebook;sticky notes;便笺;提醒;便笺本;"
+msgstr "notes;reminder;notebook;sticky notes;便笺;提醒;便笺本;笔记;"
 
 #: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
@@ -81,7 +92,7 @@ msgstr "新便笺颜色。"
 #: data/org.gnome.bijiben.gschema.xml:15
 msgid ""
 "The color name set here will be used as the color when creating new notes."
-msgstr "此处设置的颜色用于创建新便笺的颜色。"
+msgstr "此处设置的颜色将用作创建新便笺的颜色。"
 
 #: data/org.gnome.bijiben.gschema.xml:19
 msgid "Primary notes provider to use for new notes."
@@ -105,7 +116,7 @@ msgstr "窗口尺寸"
 
 #: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window size (width and height)."
-msgstr "窗口尺寸(宽度和高度)。"
+msgstr "窗口尺寸（宽度和高度）。"
 
 #: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window position"
@@ -113,7 +124,7 @@ msgstr "窗口位置"
 
 #: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window position (x and y)."
-msgstr "窗口位置(X 和 Y)。"
+msgstr "窗口位置（X 和 Y）。"
 
 #: data/org.gnome.bijiben.gschema.xml:38
 msgid "How to show note items"
@@ -318,7 +329,7 @@ msgstr "便笺颜色"
 #. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
 msgid "_Empty"
-msgstr "空(_E)"
+msgstr "清空(_E)"
 
 #: data/resources/main-toolbar.ui:74
 msgid "Exit selection mode"
@@ -410,8 +421,8 @@ msgid "Default Color"
 msgstr "默认颜色"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "便笺版本"
+msgid "Note Appearance"
+msgstr "便笺外观"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -421,7 +432,7 @@ msgstr "选择默认存储位置："
 msgid "Primary Book"
 msgstr "主便笺本"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
 msgid "Untitled"
 msgstr "未命名"
 
@@ -439,7 +450,7 @@ msgstr "[文件…]"
 
 #: src/bjb-application.c:348
 msgid "Take notes and export them everywhere."
-msgstr "写便笺和和自由导出便笺。"
+msgstr "写便笺，然后随意导出。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
@@ -465,7 +476,8 @@ msgstr "GNOME 下的简易便笺本"
 msgid "translator-credits"
 msgstr ""
 "tuhaihe <1132321739qq@gmail.com>, 2013\n"
-"Tong Hui <tonghuix@gmail.com>, 2014"
+"Tong Hui <tonghuix@gmail.com>, 2014\n"
+"Mingcong Bai <jeffbai@aosc.xyz>, 2018"
 
 #: src/bjb-color-button.c:137
 msgid "Note Color"
@@ -491,26 +503,26 @@ msgstr "加载更多"
 msgid "Loading…"
 msgstr "正在加载…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "点击条目以选中它们"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "已选中 %d 条"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "%s 的结果"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "新建和最近打开的便笺"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:364
 msgid "Trash"
 msgstr "废纸篓"
 
@@ -518,12 +530,12 @@ msgstr "废纸篓"
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:427
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>最近更新</b> %s"
+msgid "Last updated %s"
+msgstr "最近更新 %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -553,9 +565,12 @@ msgstr "今年"
 msgid "Local"
 msgstr "本地"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "本地存储"
+
+#~ msgid "Note Edition"
+#~ msgstr "便笺版本"
 
 #~ msgid "Notebook"
 #~ msgstr "便笺本"

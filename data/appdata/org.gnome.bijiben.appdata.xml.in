@@ -7,10 +7,10 @@
   <summary>Quickly jot notes</summary>
   <description>
     <p>
-      Notes is an editor allowing to make simple lists for later use.
+      A quick and easy way to make freeform notes or jot down simple lists. Store as many notes as you like and share them by email.
     </p>
     <p>
-      It allows to use ownCloud as a storage location and online editor.
+      You can store your notes locally on your computer or sync with online services like ownCloud.
     </p>
   </description>
   <kudos>
@@ -109,10 +109,39 @@
   </releases>
 
   <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>
-  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=bijiben</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/gnome-notes/issues</url>
   <url type="donation">http://www.gnome.org/friends/</url>
   <url type="help">https://help.gnome.org/users/bijiben/stable/</url>
   <update_contact>py_at_luyten.fr</update_contact>
   <project_group>GNOME</project_group>
   <translation type="gettext">bijiben</translation>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="sex-homosexuality">none</content_attribute>
+    <content_attribute id="sex-prostitution">none</content_attribute>
+    <content_attribute id="sex-adultery">none</content_attribute>
+    <content_attribute id="sex-appearance">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
 </component>

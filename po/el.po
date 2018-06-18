@@ -8,10 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-04 15:08+0000\n"
-"PO-Revision-Date: 2018-04-05 21:22+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-05-11 18:26+0000\n"
+"PO-Revision-Date: 2018-06-18 17:02+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
@@ -19,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
@@ -47,13 +46,10 @@ msgid "Edit view"
 msgstr "Προβολή επεξεργασίας"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:32
-#| msgctxt "shortcut window"
-#| msgid "Select all"
 msgid "Select view"
 msgstr "Προβολή επιλογής"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:36
-#| msgid "List"
 msgid "List view"
 msgstr "Προβολή λίστας"
 
@@ -436,8 +432,8 @@ msgid "Default Color"
 msgstr "Προεπιλεγμένο χρώμα"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Σημείωση έκδοσης"
+msgid "Note Appearance"
+msgstr "Εμφάνιση σημείωσης"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -447,7 +443,7 @@ msgstr "Επιλογή προεπιλεγμένης τοποθεσίας απο�
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
@@ -524,39 +520,39 @@ msgstr "Φόρτωση περισσοτέρων"
 msgid "Loading…"
 msgstr "Γίνεται φόρτωση…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Πατήστε στα αντικείμενα για να τα επιλέξετε"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d επιλεγμένο"
 msgstr[1] "%d επιλεγμένα"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "Αποτελέσματα για %s"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:364
 msgid "Trash"
 msgstr "Απορρίμματα"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:427
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Τελευταία ενημέρωση</b> %s"
+msgid "Last updated %s"
+msgstr "Τελευταία ενημέρωση %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -586,9 +582,12 @@ msgstr "Φέτος"
 msgid "Local"
 msgstr "Τοπικά"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
+
+#~ msgid "Note Edition"
+#~ msgstr "Σημείωση έκδοσης"
 
 #~ msgid "Notebook"
 #~ msgstr "Σημειωματάριο"

@@ -39,6 +39,22 @@
   </screenshots>
 
   <releases>
+    <release date="2018-06-19" version="3.29.3">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Flatpak fixes</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>zh_CN (Dz Chen)</li>
+          <li>zh_TW (Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-05-21" version="3.29.2">
       <description>
         <p>This release brings the following new features and improvements:</p>

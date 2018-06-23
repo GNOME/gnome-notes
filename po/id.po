@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-02-02 15:15+0000\n"
-"PO-Revision-Date: 2018-02-03 13:20+0700\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-05-11 18:26+0000\n"
+"PO-Revision-Date: 2018-05-12 14:17+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -19,28 +18,40 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: data/org.gnome.bijiben.appdata.xml.in:6
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
 msgstr "Bijiben"
 
-#: data/org.gnome.bijiben.appdata.xml.in:7
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
 msgid "Quickly jot notes"
 msgstr "Mencatat dengan cepat"
 
-#: data/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
 msgid "Notes is an editor allowing to make simple lists for later use."
 msgstr ""
 "Catatan adalah suatu penyunting yang memungkinkan membuat daftar sederhana "
 "untuk dipakai nanti."
 
-#: data/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
 msgid "It allows to use ownCloud as a storage location and online editor."
 msgstr ""
 "Itu mengijinkan penggunaan ownCloud sebagai lokasi penyimpanan dan "
 "penyunting daring."
 
-#: data/org.gnome.bijiben.desktop.in.in:3 src/bjb-app-menu.c:45
-#: src/bjb-window-base.c:18
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+msgid "Edit view"
+msgstr "Tampilan sunting"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+msgid "Select view"
+msgstr "Tampilan pilih"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+msgid "List view"
+msgstr "Tampilan daftar"
+
+#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Catatan"
 
@@ -319,6 +330,7 @@ msgstr "_Baru"
 msgid "Note color"
 msgstr "Warna catatan"
 
+#. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
 msgid "_Empty"
 msgstr "_Kosong"
@@ -413,8 +425,8 @@ msgid "Default Color"
 msgstr "Warna Baku"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Edisi Catatan"
+msgid "Note Appearance"
+msgstr "Tampilan Catatan"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -424,7 +436,7 @@ msgstr "Pilih lokasi penyimpanan bawaan:"
 msgid "Primary Book"
 msgstr "Buku Primer"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:378
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
 msgid "Untitled"
 msgstr "Tanpa Judul"
 
@@ -468,7 +480,7 @@ msgstr "Buku catatan sederhana bagi GNOME"
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
-"Kukuh Syafaat <syafaatkukuh@gmail.com>, 2017."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018."
 
 #: src/bjb-color-button.c:137
 msgid "Note Color"
@@ -494,46 +506,38 @@ msgstr "Muat Lebih Banyak"
 msgid "Loading…"
 msgstr "Memuat..."
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Klik pada butir untuk memilihnya"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d dipilih"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "Hasil bagi %s"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Baru dan Terkini"
 
-#: src/bjb-main-toolbar.c:355
+#: src/bjb-main-toolbar.c:364
 msgid "Trash"
 msgstr "Tong Sampah"
-
-#: src/bjb-main-view.c:495
-msgid "Notebook"
-msgstr "Buku Catatan"
-
-#: src/bjb-main-view.c:498
-msgid "Note"
-msgstr "Catatan"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:427
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Terakhir diperbarui</b> %s"
+msgid "Last updated %s"
+msgstr "Terakhir diperbarui %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -563,6 +567,15 @@ msgstr "Tahun ini"
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
+
+#~ msgid "Note Edition"
+#~ msgstr "Edisi Catatan"
+
+#~ msgid "Notebook"
+#~ msgstr "Buku Catatan"
+
+#~ msgid "Note"
+#~ msgstr "Catatan"

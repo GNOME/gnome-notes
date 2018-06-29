@@ -24,6 +24,8 @@
 #include "biji-editor-selection.h"
 #include <JavaScriptCore/JavaScript.h>
 
+#define INTENSITY(c) ((c->red) * 0.30 + (c->green) * 0.59 + (c->blue) * 0.11)
+
 /* Prop */
 enum {
   PROP_0,
@@ -217,7 +219,7 @@ set_editor_color (WebKitWebView *w, GdkRGBA *col)
 
   webkit_web_view_set_background_color (w, col);
   script = g_strdup_printf ("document.getElementById('editable').style.color = '%s';",
-                            col->red < 0.5 ? "white" : "black");
+                            INTENSITY (col) < 0.5 ? "white" : "black");
   webkit_web_view_run_javascript (w, script, NULL, NULL, NULL);
 }
 

@@ -7,9 +7,6 @@ body {
   background-size:  2.0em 2.0em;
   line-height:      1.5em;
   padding:          2.0em;
-}
-
-body:first-line {
   font-size:        150%;
   font-weight:      bold;
 }
@@ -30,4 +27,6 @@ ol {
 
 body > div {
   margin:           0.75em 0;
+  font-size:        100%;
+  font-weight:      normal;
 }

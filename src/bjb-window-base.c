@@ -6,7 +6,6 @@
 #include <libbiji/libbiji.h>
 #include <libgd/gd.h>
 
-#include "bjb-app-menu.h"
 #include "bjb-application.h"
 #include "bjb-empty-results-box.h"
 #include "bjb-window-base.h"
@@ -154,12 +153,7 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
 
   switch (event->key.keyval)
   {
-    /* Help on F1 */
     case GDK_KEY_F1:
-      help_activated (NULL, NULL, NULL);
-      return TRUE;
-
-    /* Reserve other func keys for window */
     case GDK_KEY_F2:
     case GDK_KEY_F3:
     case GDK_KEY_F4:

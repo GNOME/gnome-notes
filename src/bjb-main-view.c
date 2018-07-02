@@ -20,7 +20,6 @@
 #include <libbiji/libbiji.h>
 #include <libgd/gd-main-view.h>
 
-#include "bjb-app-menu.h"
 #include "bjb-application.h"
 #include "bjb-controller.h"
 #include "bjb-load-more-button.h"

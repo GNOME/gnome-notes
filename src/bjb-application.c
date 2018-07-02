@@ -28,7 +28,6 @@
 
 #include <libbiji/libbiji.h>
 
-#include "bjb-app-menu.h"
 #include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-main-view.h"
@@ -295,8 +294,6 @@ bijiben_startup (GApplication *application)
   self = BJB_APPLICATION (application);
 
   bjb_apply_style ();
-
-  bjb_app_menu_set(application);
 
   storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
   storage = g_file_new_for_path (storage_path);

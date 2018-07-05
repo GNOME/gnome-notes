@@ -128,6 +128,7 @@ bjb_window_base_set_property (GObject  *object,
 static gboolean
 on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
 {
+  GApplication *app = g_application_get_default ();
   BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
   GdkModifierType modifiers;
 
@@ -136,16 +137,20 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
   /* First check for Alt <- to go back */
   if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
       event->key.keyval == GDK_KEY_Left &&
-      self->current_view == BJB_WINDOW_BASE_NOTE_VIEW)
+      (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
+       self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW ||
+       self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
   {
     BijiItemsGroup items;
 
     items = bjb_controller_get_group (self->controller);
-    if (items == BIJI_LIVING_ITEMS)
-      bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
 
-    else if (items == BIJI_ARCHIVED_ITEMS)
-      bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+    /* Back to main view from trash bin */
+    if (items == BIJI_ARCHIVED_ITEMS)
+      bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+    /* Back to main view */
+    else
+      bjb_controller_set_notebook (self->controller, NULL);
 
     return TRUE;
   }
@@ -154,6 +159,13 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
   switch (event->key.keyval)
   {
     case GDK_KEY_F1:
+      if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
+        {
+          bjb_app_help (BJB_APPLICATION (app));
+          return TRUE;
+        }
+      break;
+
     case GDK_KEY_F2:
     case GDK_KEY_F3:
     case GDK_KEY_F4:
@@ -166,8 +178,14 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
     case GDK_KEY_F11:
       return TRUE;
 
-    default:
-      return FALSE;
+    case GDK_KEY_q:
+      if ((event->key.state & modifiers) == GDK_CONTROL_MASK)
+        {
+          g_application_quit (app);
+          return TRUE;
+        }
+      break;
+
   }
 
   return FALSE;

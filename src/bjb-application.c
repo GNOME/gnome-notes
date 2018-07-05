@@ -33,6 +33,7 @@
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
 #include "bjb-window-base.h"
+#include "bjb-import-dialog.h"
 
 struct _BjbApplication
 {
@@ -184,7 +185,7 @@ bjb_application_init (BjbApplication *self)
 }
 
 
-void
+static void
 bijiben_import_notes (BjbApplication *self, gchar *uri)
 {
   g_debug ("IMPORT to %s", bjb_settings_get_default_location (self->settings));
@@ -450,3 +451,72 @@ BjbSettings * bjb_app_get_settings(gpointer application)
 {
   return BJB_APPLICATION(application)->settings;
 }
+
+void
+bjb_app_import_notes (BjbApplication *self)
+{
+  GtkDialog *dialog = bjb_import_dialog_new (GTK_APPLICATION (self));
+  gint result = gtk_dialog_run (dialog);
+
+  if (result == GTK_RESPONSE_OK)
+    {
+      GList *locations = bjb_import_dialog_get_paths (BJB_IMPORT_DIALOG (dialog));
+      for (GList *l = locations; l != NULL; l = l->next)
+        {
+          g_autofree gchar *uri = g_filename_to_uri (l->data, NULL, NULL);
+          bijiben_import_notes (self, uri);
+        }
+
+      g_list_free_full (locations, g_free);
+    }
+
+  if (dialog)
+    g_clear_pointer (&dialog, gtk_widget_destroy);
+}
+
+void
+bjb_app_help (BjbApplication *self)
+{
+  GtkApplication *app = GTK_APPLICATION (self);
+  g_autoptr(GError) error = NULL;
+
+  gtk_show_uri_on_window (gtk_application_get_active_window (app),
+                          "help:bijiben",
+                          GDK_CURRENT_TIME,
+                          &error);
+
+  if (error)
+    g_warning ("%s", error->message);
+}
+
+
+void
+bjb_app_about (BjbApplication *self)
+{
+  GtkApplication *app = GTK_APPLICATION (self);
+  GList *windows = gtk_application_get_windows (app);
+
+  const gchar *authors[] = {
+    "Pierre-Yves Luyten <py@luyten.fr>",
+    NULL
+  };
+
+  const gchar *artists[] = {
+    "William Jon McCann <jmccann@redhat.com>",
+    NULL
+  };
+
+  gtk_show_about_dialog (g_list_nth_data (windows, 0),
+                         "program-name", _("Notes"),
+                         "comments", _("Simple notebook for GNOME"),
+                         "license-type", GTK_LICENSE_GPL_3_0,
+                         "version", VERSION,
+                         "copyright", "Copyright © 2013 Pierre-Yves Luyten",
+                         "authors", authors,
+                         "artists", artists,
+                         "translator-credits", _("translator-credits"),
+                         "website", "https://wiki.gnome.org/Apps/Bijiben",
+                         "logo-icon-name", "org.gnome.bijiben",
+                         NULL);
+}
+

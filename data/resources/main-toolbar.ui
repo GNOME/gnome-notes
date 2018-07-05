@@ -96,7 +96,7 @@
         </child>
       </object>
       <packing>
-        <property name="position">2</property>
+        <property name="position">3</property>
         <property name="pack-type">end</property>
       </packing>
     </child>
@@ -141,7 +141,7 @@
         </child>
       </object>
       <packing>
-        <property name="position">1</property>
+        <property name="position">2</property>
         <property name="pack-type">end</property>
       </packing>
     </child> <!-- /GtkStack style_buttons -->
@@ -163,6 +163,22 @@
         </child>
       </object>
       <packing>
+        <property name="position">1</property>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkMenuButton" id="main_button">
+        <property name="visible">1</property>
+        <property name="direction">none</property>
+        <property name="tooltip-text" translatable="yes">Open menu</property>
+        <property name="popup">main_menu</property>
+        <style>
+         <class name="image-button"/>
+        </style>
+      </object>
+      <packing>
         <property name="position">0</property>
         <property name="pack-type">end</property>
       </packing>
@@ -177,14 +193,87 @@
         <style>
          <class name="image-button"/>
         </style>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">1</property>
+            <property name="icon-name">view-more-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
       </object>
       <packing>
-        <property name="position">1</property>
+        <property name="position">0</property>
         <property name="pack-type">end</property>
       </packing>
     </child>
 
   </template>
+
+  <object class="GtkMenu" id="main_menu">
+    <property name="visible">1</property>
+
+    <child>
+      <object class="GtkMenuItem" id="import_notes_item">
+        <property name="visible">1</property>
+        <property name="label" translatable="yes">Import Notes</property>
+        <signal name="activate" handler="on_import_notes_cb" swapped="yes"/>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuItem" id="view_trash_item">
+        <property name="visible">1</property>
+        <property name="label" translatable="yes">View Trash</property>
+        <signal name="activate" handler="on_view_trash_cb" swapped="yes"/>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">1</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuItem" id="preferences_item">
+        <property name="visible">1</property>
+        <property name="label" translatable="yes">Preferences</property>
+        <signal name="activate" handler="on_preferences_cb" swapped="yes"/>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">1</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuItem" id="help_item">
+        <property name="visible">1</property>
+        <property name="label" translatable="yes">Help</property>
+        <signal name="activate" handler="on_help_cb" swapped="yes"/>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuItem" id="shortcuts_item">
+        <property name="visible">1</property>
+        <property name="label" translatable="yes">Keyboard Shortcuts</property>
+        <property name="action_name">win.show-help-overlay</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkMenuItem" id="about_item">
+        <property name="visible">1</property>
+        <property name="label" translatable="yes">About</property>
+        <signal name="activate" handler="on_about_cb" swapped="yes"/>
+      </object>
+    </child>
+
+  </object>
+
   <object class="GtkMenu" id="menu">
     <property name="visible">1</property>
 

@@ -66,14 +66,13 @@ struct _BjbMainToolbar
   GtkWidget *empty_button;
   GtkWidget *color_button;
   GtkWidget *button_stack;
+  GtkWidget *main_button;
   GtkWidget *menu_button;
 
   /* Menu items */
   GtkWidget *new_window_item;
   GtkWidget *undo_item;
   GtkWidget *redo_item;
-  GtkWidget *notebook_item;
-  GtkWidget *email_item;
   GtkWidget *trash_item;
   GtkWidget *last_update_item;
 
@@ -102,6 +101,44 @@ enum {
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 G_DEFINE_TYPE (BjbMainToolbar, bjb_main_toolbar, GTK_TYPE_HEADER_BAR)
+
+static void
+on_about_cb (BjbMainToolbar *self)
+{
+  bjb_app_about (BJB_APPLICATION (g_application_get_default ()));
+}
+
+static void
+on_import_notes_cb (BjbMainToolbar *self)
+{
+  bjb_app_import_notes (BJB_APPLICATION (g_application_get_default ()));
+}
+
+static void
+on_view_trash_cb (BjbMainToolbar *self)
+{
+  GtkApplication *app = GTK_APPLICATION (g_application_get_default ());
+  GList *windows = gtk_application_get_windows (app);
+  BjbController *controller = bjb_window_base_get_controller (BJB_WINDOW_BASE (windows->data));
+
+  bjb_controller_set_group (controller, BIJI_ARCHIVED_ITEMS);
+}
+
+static void
+on_preferences_cb (BjbMainToolbar *self)
+{
+  GtkApplication *app = GTK_APPLICATION (g_application_get_default ());
+  GList *windows = gtk_application_get_windows (app);
+
+  show_bijiben_settings_window (g_list_nth_data (windows, 0));
+}
+
+
+static void
+on_help_cb (BjbMainToolbar *self)
+{
+  bjb_app_help (BJB_APPLICATION (g_application_get_default ()));
+}
 
 static void
 on_new_note_clicked (BjbMainToolbar *self)
@@ -252,6 +289,7 @@ populate_bar_for_selection (BjbMainToolbar *self)
   gtk_widget_hide (self->select_button);
   gtk_widget_hide (self->button_stack);
   gtk_widget_hide (self->style_buttons);
+  gtk_widget_hide (self->main_button);
   gtk_widget_show (self->cancel_button);
 
   connect_main_view_handlers (self);
@@ -348,6 +386,7 @@ populate_bar_for_standard(BjbMainToolbar *self)
   if (bjb_controller_get_notebook (self->controller))
     {
       gtk_widget_hide (self->new_button);
+      gtk_widget_hide (self->main_button);
       gtk_widget_show (self->back_button);
     }
 
@@ -366,6 +405,7 @@ populate_bar_for_trash (BjbMainToolbar *self)
 
   gtk_widget_hide (self->new_button);
   gtk_widget_hide (self->search_button);
+  gtk_widget_hide (self->main_button);
   gtk_widget_show (self->empty_button);
   gtk_widget_show (self->back_button);
 
@@ -515,6 +555,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   gtk_widget_hide (self->style_buttons);
   gtk_widget_hide (self->search_button);
   gtk_widget_hide (self->select_button);
+  gtk_widget_hide (self->main_button);
 
   gtk_widget_show (self->back_button);
   gtk_widget_show (self->menu_button);
@@ -565,6 +606,7 @@ bjb_main_toolbar_reset (BjbMainToolbar *self)
   gtk_widget_show (self->select_button);
   gtk_widget_show (self->search_button);
   gtk_widget_show (self->new_button);
+  gtk_widget_show (self->main_button);
 
   gtk_widget_hide (self->back_button);
   gtk_widget_hide (self->color_button);
@@ -850,13 +892,12 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, cancel_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, select_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, color_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, main_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, menu_button);
 
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, new_window_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, undo_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, redo_item);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, notebook_item);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, email_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, trash_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, last_update_item);
 
@@ -867,6 +908,14 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_empty_clicked_callback);
   gtk_widget_class_bind_template_callback (widget_class, on_color_button_clicked);
 
+  /* Main menu items */
+  gtk_widget_class_bind_template_callback (widget_class, on_import_notes_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_view_trash_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_preferences_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_help_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_about_cb);
+
+  /* Menu items */
   gtk_widget_class_bind_template_callback (widget_class, on_detached_clicked_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_undo_or_redo_cb);
   gtk_widget_class_bind_template_callback (widget_class, action_view_tags_callback);

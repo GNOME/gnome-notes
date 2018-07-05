@@ -3,7 +3,6 @@ data/appdata/org.gnome.bijiben.appdata.xml.in
 data/org.gnome.bijiben.desktop.in.in
 data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in
-data/resources/app-menu.ui
 data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui
 data/resources/help-overlay.ui
@@ -14,7 +13,6 @@ data/resources/selection-toolbar.ui
 data/resources/settings-dialog.ui
 src/bijiben-shell-search-provider.c
 src/bjb-application.c
-src/bjb-app-menu.c
 src/bjb-color-button.c
 src/bjb-editor-toolbar.c
 src/bjb-empty-results-box.c

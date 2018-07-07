@@ -9,18 +9,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-10\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-04 15:08+0000\n"
-"PO-Revision-Date: 2018-04-14 12:07+0200\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-07-06 11:02+0000\n"
+"PO-Revision-Date: 2018-07-06 23:29+0200\n"
+"Last-Translator: Vinzenz Vietzke <vinz@vinzv.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -54,7 +53,7 @@ msgid "List view"
 msgstr "Listenansicht"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: src/bjb-application.c:510 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notizen"
 
@@ -141,34 +140,6 @@ msgstr ""
 "Legt fest, ob Notizobjekte in einer Symbol- oder Listenansicht dargestellt "
 "werden."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "Notizen _importieren"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "Papierkorb _zeigen"
-
-#: data/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "_Einstellungen"
-
-#: data/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "_Hilfe"
-
-#: data/resources/app-menu.ui:25
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastaturkürzel"
-
-#: data/resources/app-menu.ui:29
-msgid "_About"
-msgstr "_Info"
-
-#: data/resources/app-menu.ui:33
-msgid "_Quit"
-msgstr "_Beenden"
-
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
 msgstr "Ausschneiden"
@@ -234,65 +205,70 @@ msgstr "Fenster schließen"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Zurück gehen"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Hilfe anzeigen"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Tastenkombinationen"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Auswahlmodus"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Auswahlmodus abbrechen"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Bearbeitungsmodus für Notizen"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Fett"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursiv"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Durchstreichen"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Notiz in den Papierkorb verschieben"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Notizen importieren"
 
@@ -358,31 +334,55 @@ msgid "Selection mode"
 msgstr "Auswahlmodus"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Menü öffnen"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Mehr Optionen …"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Papierkorb zeigen"
+
+#: data/resources/main-toolbar.ui:240 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: data/resources/main-toolbar.ui:254
+msgid "Help"
+msgstr "Hilfe"
+
+#: data/resources/main-toolbar.ui:262
+msgid "Keyboard Shortcuts"
+msgstr "Tastaturkürzel"
+
+#: data/resources/main-toolbar.ui:270
+msgid "About"
+msgstr "Info"
+
+#: data/resources/main-toolbar.ui:283
 msgid "Open in New Window"
 msgstr "In neuem Fenster öffnen"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:297
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:305
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:319 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Notizsammlungen"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:327
 msgid "Email this Note"
 msgstr "Diese Notiz per E-Mail versenden"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:335 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
@@ -410,10 +410,6 @@ msgstr "Wiederherstellen"
 msgid "Permanently Delete"
 msgstr "Dauerhaft löschen"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Einstellungen"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Systemschrift verwenden"
@@ -427,8 +423,8 @@ msgid "Default Color"
 msgstr "Voreingestellte Farbe"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Notizen"
+msgid "Note Appearance"
+msgstr "Aussehen einer Notiz"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -438,47 +434,47 @@ msgstr "Wählen Sie den vorgegebenen Ort zum Speichern:"
 msgid "Primary Book"
 msgstr "Hauptbuch"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:427
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:334
 msgid "Show the application’s version"
 msgstr "Die Version der Anwendung zeigen"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:336
 msgid "Create a new note"
 msgstr "Eine neue Notiz erstellen"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:338
 msgid "[FILE…]"
 msgstr "[DATEI…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:346
 msgid "Take notes and export them everywhere."
 msgstr "Speichern Sie Notizen und exportieren Sie sie überall."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:357
 msgid "Could not parse arguments"
 msgstr "Argumente konnten nicht analysiert werden"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:365
 msgid "GNOME Notes"
 msgstr "GNOME-Notizen"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:377
 msgid "Could not register the application"
 msgstr "Anwendung konnte nicht registriert werden"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:511
 msgid "Simple notebook for GNOME"
 msgstr "Ein einfaches Notizbuch für GNOME"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:517
 msgid "translator-credits"
 msgstr ""
 "Christian Kirbach <Christian.Kirbach@gmail.com>, 2013\n"
@@ -510,39 +506,39 @@ msgstr "Weitere laden"
 msgid "Loading…"
 msgstr "Laden …"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:177
 msgid "Click on items to select them"
 msgstr "Klicken Sie auf Objekte, um diese auszuwählen"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:179
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d ausgewählt"
 msgstr[1] "%d ausgewählt"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:312
 #, c-format
 msgid "Results for %s"
 msgstr "Ergebnisse für %s"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:315
 msgid "New and Recent"
 msgstr "Neu und kürzlich verwendet"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:403
 msgid "Trash"
 msgstr "Papierkorb"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:467
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Zuletzt aktualisiert</b> %s"
+msgid "Last updated %s"
+msgstr "Zuletzt aktualisiert %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -572,6 +568,18 @@ msgstr "Dieses Jahr"
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokaler Speicherplatz"
+
+#~ msgid "_Import Notes"
+#~ msgstr "Notizen _importieren"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Einstellungen"
+
+#~ msgid "_Quit"
+#~ msgstr "_Beenden"
+
+#~ msgid "Note Edition"
+#~ msgstr "Notizen"

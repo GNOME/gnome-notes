@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-05-11 18:26+0000\n"
-"PO-Revision-Date: 2018-05-13 14:59+0300\n"
+"POT-Creation-Date: 2018-07-05 15:46+0000\n"
+"PO-Revision-Date: 2018-07-17 18:45+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.9\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
@@ -53,7 +53,7 @@ msgid "List view"
 msgstr "Vizualizare listă"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: src/bjb-application.c:510 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notițe"
 
@@ -139,34 +139,6 @@ msgstr "Cum să se arate notițele"
 msgid "Whether to show note items in icon view or list view."
 msgstr "Dacă să se arate notițe în modul de vizualizare iconițe sau listă."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Importă notițe"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Vezi coșul de gunoi"
-
-#: data/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "_Preferințe"
-
-#: data/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "_Ajutor"
-
-#: data/resources/app-menu.ui:25
-msgid "_Keyboard Shortcuts"
-msgstr "S_curtături de tastatură"
-
-#: data/resources/app-menu.ui:29
-msgid "_About"
-msgstr "_Despre"
-
-#: data/resources/app-menu.ui:33
-msgid "_Quit"
-msgstr "_Ieșire"
-
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
 msgstr "Taie"
@@ -232,65 +204,70 @@ msgstr "Închide fereastra"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Navighează înapoi"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Arată ajutorul"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Scurtături"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Mod de selectare"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Anulează modul de selectare"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Selectează toate"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Mod de editare notiță"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Aldin"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Cursiv"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Tăiat"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Anulează"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Refă"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Mută notița la coșul de gunoi"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Importă notițe"
 
@@ -356,31 +333,55 @@ msgid "Selection mode"
 msgstr "Mod de selectare"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Deschide meniul"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Mai multe opțiuni…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Vezi coșul de gunoi"
+
+#: data/resources/main-toolbar.ui:240 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Preferințe"
+
+#: data/resources/main-toolbar.ui:254
+msgid "Help"
+msgstr "Ajutor"
+
+#: data/resources/main-toolbar.ui:262
+msgid "Keyboard Shortcuts"
+msgstr "Scurtături de tastatură"
+
+#: data/resources/main-toolbar.ui:270
+msgid "About"
+msgstr "Despre"
+
+#: data/resources/main-toolbar.ui:283
 msgid "Open in New Window"
 msgstr "Deschide într-o fereastră nouă"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:297
 msgid "Undo"
 msgstr "Anulează"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:305
 msgid "Redo"
 msgstr "Refă"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:319 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Carnețele"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:327
 msgid "Email this Note"
 msgstr "Trimite această notiță prin email"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:335 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Mută la coșul de gunoi"
 
@@ -408,10 +409,6 @@ msgstr "Restabilește"
 msgid "Permanently Delete"
 msgstr "Șterge permanent"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Preferințe"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Utilizează fontul sistemului"
@@ -436,47 +433,47 @@ msgstr "Selectați locația de stocare implicită:"
 msgid "Primary Book"
 msgstr "Carte primară"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:427
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:334
 msgid "Show the application’s version"
 msgstr "Arată versiunea aplicației"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:336
 msgid "Create a new note"
 msgstr "Creează o notiță nouă"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:338
 msgid "[FILE…]"
 msgstr "[FIȘIER…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:346
 msgid "Take notes and export them everywhere."
 msgstr "Luați notițe și exportați-le oriunde."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:357
 msgid "Could not parse arguments"
 msgstr "Nu au putut fi parsate argumentele"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:365
 msgid "GNOME Notes"
 msgstr "Notițe GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:377
 msgid "Could not register the application"
 msgstr "Nu s-a putut înregistra aplicația"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:511
 msgid "Simple notebook for GNOME"
 msgstr "Carnețel simplu pentru GNOME"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:517
 msgid "translator-credits"
 msgstr ""
 "Vasile,\n"
@@ -506,11 +503,11 @@ msgstr "Încarcă mai multe"
 msgid "Loading…"
 msgstr "Se încarcă…"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:177
 msgid "Click on items to select them"
 msgstr "Clic pe obiecte pentru a le selecta"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:179
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -518,16 +515,16 @@ msgstr[0] "%d selectat"
 msgstr[1] "%d selectate"
 msgstr[2] "%d selectate"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:312
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultate pentru %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:315
 msgid "New and Recent"
 msgstr "Noi și recente"
 
-#: src/bjb-main-toolbar.c:364
+#: src/bjb-main-toolbar.c:403
 msgid "Trash"
 msgstr "Gunoi"
 
@@ -536,7 +533,7 @@ msgstr "Gunoi"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:427
+#: src/bjb-main-toolbar.c:467
 #, c-format
 msgid "Last updated %s"
 msgstr "Ultima actualizare %s"
@@ -572,6 +569,15 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Stocarea locală"
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Importă notițe"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferințe"
+
+#~ msgid "_Quit"
+#~ msgstr "_Ieșire"
 
 #~ msgid "Note Edition"
 #~ msgstr "Editare notiță"

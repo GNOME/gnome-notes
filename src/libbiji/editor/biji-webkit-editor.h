@@ -21,6 +21,7 @@
 #include <webkit2/webkit2.h>
 
 #include "../biji-note-obj.h"
+#include "../bjb-settings.h"
 
 G_BEGIN_DECLS
 
@@ -66,5 +67,8 @@ void biji_webkit_editor_undo (BijiWebkitEditor *self);
 void biji_webkit_editor_redo (BijiWebkitEditor *self);
 
 void biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font);
+
+void biji_webkit_editor_set_text_size (BijiWebkitEditor *self,
+                                       BjbTextSizeType   text_size);
 
 G_END_DECLS

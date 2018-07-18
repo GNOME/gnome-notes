@@ -25,6 +25,9 @@
 #include <JavaScriptCore/JavaScript.h>
 
 #define INTENSITY(c) ((c->red) * 0.30 + (c->green) * 0.59 + (c->blue) * 0.11)
+#define ZOOM_LARGE  1.5f;
+#define ZOOM_MEDIUM 1.0f;
+#define ZOOM_SMALL  0.8f;
 
 /* Prop */
 enum {
@@ -257,6 +260,23 @@ biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font)
   pango_font_description_free (font_desc);
 }
 
+void
+biji_webkit_editor_set_text_size (BijiWebkitEditor *self,
+                                  BjbTextSizeType   text_size)
+{
+  double zoom_level = ZOOM_MEDIUM;
+
+  if (text_size == BJB_TEXT_SIZE_LARGE)
+    {
+      zoom_level = ZOOM_LARGE;
+    }
+  else if (text_size == BJB_TEXT_SIZE_SMALL)
+    {
+      zoom_level = ZOOM_SMALL;
+    }
+
+  webkit_web_view_set_zoom_level (WEBKIT_WEB_VIEW (self), zoom_level);
+}
 
 static void
 biji_webkit_editor_init (BijiWebkitEditor *self)

@@ -179,6 +179,7 @@ bjb_note_view_constructed (GObject *obj)
   BjbSettings            *settings;
   g_autofree gchar       *default_font = NULL;
   GdkRGBA                 color;
+  BjbTextSizeType         text_size;
 
   settings = bjb_app_get_settings(g_application_get_default());
 
@@ -212,6 +213,10 @@ bjb_note_view_constructed (GObject *obj)
 
   if (default_font != NULL)
     biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (self->view), default_font);
+
+  /* Apply the gsettings text size */
+  text_size = bjb_settings_get_text_size (settings);
+  biji_webkit_editor_set_text_size (BIJI_WEBKIT_EDITOR (self->view), text_size);
 
   /* User defined color */
 

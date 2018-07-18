@@ -27,6 +27,11 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbSettings, bjb_settings, BJB, SETTINGS, GSettings)
 
+typedef enum {
+  BJB_TEXT_SIZE_LARGE,
+  BJB_TEXT_SIZE_MEDIUM,
+  BJB_TEXT_SIZE_SMALL
+} BjbTextSizeType;
 
 BjbSettings      *bjb_settings_new                        (void);
 
@@ -49,6 +54,7 @@ const gchar      *bjb_settings_get_default_location       (BjbSettings *self);
 
 gchar            *bjb_settings_get_system_font            (BjbSettings *self);
 
+BjbTextSizeType   bjb_settings_get_text_size              (BjbSettings *self);
 
 void              show_bijiben_settings_window            (GtkWidget *parent_window);
 

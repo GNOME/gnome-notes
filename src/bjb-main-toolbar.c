@@ -69,6 +69,11 @@ struct _BjbMainToolbar
   GtkWidget *main_button;
   GtkWidget *menu_button;
 
+  /* Main menu items */
+  GtkWidget *large_item;
+  GtkWidget *medium_item;
+  GtkWidget *small_item;
+
   /* Menu items */
   GtkWidget *new_window_item;
   GtkWidget *undo_item;
@@ -125,6 +130,33 @@ on_view_trash_cb (BjbMainToolbar *self)
 }
 
 static void
+on_text_size_cb (BjbMainToolbar *self,
+                 GtkWidget      *item)
+{
+  BjbSettings *settings = bjb_app_get_settings (g_application_get_default ());
+  BjbTextSizeType text_size = g_settings_get_enum (G_SETTINGS (settings), "text-size");
+  BjbTextSizeType new_text_size = text_size;
+
+  if (item == self->large_item)
+    {
+      new_text_size = BJB_TEXT_SIZE_LARGE;
+    }
+  else if (item == self->medium_item)
+    {
+      new_text_size = BJB_TEXT_SIZE_MEDIUM;
+    }
+  else if (item == self->small_item)
+    {
+      new_text_size = BJB_TEXT_SIZE_SMALL;
+    }
+
+  if (text_size != new_text_size)
+    {
+      g_settings_set_enum (G_SETTINGS (settings), "text-size", new_text_size);
+    }
+}
+
+static void
 on_preferences_cb (BjbMainToolbar *self)
 {
   GtkApplication *app = GTK_APPLICATION (g_application_get_default ());
@@ -132,7 +164,6 @@ on_preferences_cb (BjbMainToolbar *self)
 
   show_bijiben_settings_window (g_list_nth_data (windows, 0));
 }
-
 
 static void
 on_help_cb (BjbMainToolbar *self)
@@ -750,6 +781,9 @@ populate_main_toolbar(BjbMainToolbar *self)
 static void
 bjb_main_toolbar_setup_menu (BjbMainToolbar *self)
 {
+  BjbSettings *settings = bjb_app_get_settings (g_application_get_default ());
+  BjbTextSizeType text_size = g_settings_get_enum (G_SETTINGS (settings), "text-size");
+
   gtk_widget_add_accelerator (self->undo_item, "activate", self->accel, GDK_KEY_z,
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
   gtk_widget_add_accelerator (self->redo_item, "activate", self->accel, GDK_KEY_z,
@@ -757,6 +791,11 @@ bjb_main_toolbar_setup_menu (BjbMainToolbar *self)
   gtk_widget_add_accelerator (self->trash_item, "activate", self->accel,
                               GDK_KEY_Delete, GDK_CONTROL_MASK,
                               GTK_ACCEL_VISIBLE);
+
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (self->large_item), text_size == BJB_TEXT_SIZE_LARGE);
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (self->medium_item), text_size == BJB_TEXT_SIZE_MEDIUM);
+  gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (self->small_item), text_size == BJB_TEXT_SIZE_SMALL);
+
 }
 
 static void
@@ -895,6 +934,12 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, main_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, menu_button);
 
+  /* Main menu items */
+  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, large_item);
+  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, medium_item);
+  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, small_item);
+
+  /* Menu items */
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, new_window_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, undo_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, redo_item);
@@ -914,6 +959,7 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_preferences_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_help_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_about_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_text_size_cb);
 
   /* Menu items */
   gtk_widget_class_bind_template_callback (widget_class, on_detached_clicked_cb);

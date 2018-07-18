@@ -269,6 +269,11 @@ bjb_settings_get_system_font            (BjbSettings *self)
                                 "document-font-name");
 }
 
+BjbTextSizeType
+bjb_settings_get_text_size              (BjbSettings *self)
+{
+  return g_settings_get_enum (G_SETTINGS (self), "text-size");
+}
 
 void
 show_bijiben_settings_window (GtkWidget *parent_window)

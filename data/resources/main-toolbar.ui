@@ -235,6 +235,52 @@
     </child>
 
     <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">_Text Sizes</property>
+        <property name="use_underline">True</property>
+
+        <child type="submenu">
+          <object class="GtkMenu">
+            <property name="visible">True</property>
+
+            <child>
+              <object class="GtkRadioMenuItem" id="large_item">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Large</property>
+                <property name="use_underline">True</property>
+                <property name="draw_as_radio">True</property>
+                <signal name="activate" handler="on_text_size_cb" swapped="yes"/>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkRadioMenuItem" id="medium_item">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Medium</property>
+                <property name="use_underline">True</property>
+                <property name="draw_as_radio">True</property>
+                <property name="group">large_item</property>
+                <signal name="activate" handler="on_text_size_cb" swapped="yes"/>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkRadioMenuItem" id="small_item">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Small</property>
+                <property name="use_underline">True</property>
+                <property name="draw_as_radio">True</property>
+                <property name="group">large_item</property>
+                <signal name="activate" handler="on_text_size_cb" swapped="yes"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
       <object class="GtkMenuItem" id="preferences_item">
         <property name="visible">1</property>
         <property name="label" translatable="yes">Preferences</property>

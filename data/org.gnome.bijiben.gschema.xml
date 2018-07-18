@@ -1,4 +1,9 @@
 <schemalist>
+  <enum id="org.gnome.bijiben.BjbTextSizeType">
+    <value nick="large" value="0"/>
+    <value nick="medium" value="1"/>
+    <value nick="small" value="2"/>
+  </enum>
   <schema path="/org/gnome/bijiben/" id="org.gnome.bijiben" gettext-domain="bijiben">
     <key type="s" name="font">
       <default>'Cantarell 14'</default>
@@ -38,6 +43,11 @@
       <summary>How to show note items</summary>
       <description>Whether to show note items in icon view or list view.</description>
       <default>'icon'</default>
+    </key>
+    <key name="text-size" enum="org.gnome.bijiben.BjbTextSizeType">
+      <summary>Text size used by note editor.</summary>
+      <description>There are three text sizes available: small, medium (default) and large.</description>
+      <default>'medium'</default>
     </key>
   </schema>
 </schemalist>

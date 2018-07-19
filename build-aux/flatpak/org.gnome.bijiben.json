@@ -50,7 +50,7 @@
         {
             "name" : "gnome-online-accounts",
             "config-opts" : [
-                "--disable-telepathy",
+                "--disable-Werror",
                 "--disable-documentation",
                 "--disable-backend"
             ],

@@ -1,3 +1,18 @@
+Overview of changes in 3.29.4
+=============================
+
+* Removed application menu and added a new primary menu to the main view
+* Added a "Text Size" option in primary menu to let users scale note view
+* Add OARS metadata (Nick Richards)
+
+Translations
+* de (Vinzenz Vietzke)
+* es (Daniel Mustieles)
+* fur (Fabio Tomat)
+* id (Kukuh Syafaat)
+* ro (Daniel Șerbănescu)
+* pt_BR (Bruno Lopes da Silva)
+
 Overview of changes in 3.29.3
 =============================
 

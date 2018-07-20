@@ -39,6 +39,26 @@
   </screenshots>
 
   <releases>
+    <release date="2018-07-20" version="3.29.4">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Removed application menu and added a new primary menu to the main view</li>
+          <li>Added a "Text Size" option in primary menu to let users scale note view</li>
+          <li>Add OARS metadata (Nick Richards)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>de (Vinzenz Vietzke)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>pt_BR (Bruno Lopes da Silva)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-06-19" version="3.29.3">
       <description>
         <p>This release brings the following new features and improvements:</p>

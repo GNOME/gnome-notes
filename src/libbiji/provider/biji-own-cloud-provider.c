@@ -139,6 +139,8 @@ biji_own_cloud_provider_finalize (GObject *object)
 
   g_clear_pointer (&self->info.name, g_free);
   g_clear_pointer (&self->info.datasource, g_free);
+  g_clear_pointer (&self->info.user, g_free);
+  g_clear_pointer (&self->info.domain, g_free);
 
   g_queue_free_full (self->queue, g_object_unref);
   g_hash_table_unref (self->notes);
@@ -754,6 +756,7 @@ biji_own_cloud_provider_constructed (GObject *obj)
   BijiOwnCloudProvider *self;
   GError *error;
   GIcon *icon;
+  gchar** identity;
   gchar *owncloudclient;
   GFile *client;
 
@@ -776,6 +779,17 @@ biji_own_cloud_provider_constructed (GObject *obj)
     self->info.datasource = g_strdup_printf ("gn:goa-account:%s",
                                              self->info.unique_id);
     self->info.name = g_strdup (goa_account_get_provider_name (self->account));
+
+    identity = g_strsplit (goa_account_get_presentation_identity (self->account),
+                           "@", 2);
+    if (identity)
+      {
+        self->info.user = g_strdup (identity[0]);
+        if (identity[1])
+          self->info.domain = g_strdup (identity[1]);
+
+        g_strfreev(identity);
+      }
 
     error = NULL;
     icon = g_icon_new_for_string (goa_account_get_provider_icon (self->account),

@@ -85,6 +85,8 @@ typedef struct
 
   const gchar    *id;
   const char     *name;
+  const char     *user;
+  const char     *domain;
   GtkWidget      *icon;
 
   gboolean       selected;
@@ -228,7 +230,8 @@ add_child (gpointer provider_info, gpointer user_data)
   BjbSettingsDialog           *self;
   const BijiProviderInfo      *info;
   ProviderChild               *child;
-  GtkWidget                   *box, *w;
+  GtkWidget                   *box, *w, *hbox;
+  g_autofree char             *identity = NULL;
 
   self = BJB_SETTINGS_DIALOG (user_data);
   info = (const BijiProviderInfo*) provider_info;
@@ -237,6 +240,11 @@ add_child (gpointer provider_info, gpointer user_data)
   child->id = info->unique_id;
   child->icon = info->icon;
   child->name = info->name;
+  child->user = info->user;
+  child->domain = info->domain;
+
+  if (child->user && info->domain)
+    identity = g_strconcat(child->user, "@", child->domain, NULL);
 
   /* Is the provider the primary ? */
   if (g_strcmp0 (child->id, bjb_settings_get_default_location (self->settings)) ==0)
@@ -257,10 +265,25 @@ add_child (gpointer provider_info, gpointer user_data)
   w = child->icon;
   gtk_container_add (GTK_CONTAINER (box), w);
 
+  hbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 2);
+  gtk_container_add (GTK_CONTAINER (box), hbox);
+
   w = gtk_label_new (child->name);
-  gtk_label_set_xalign (GTK_LABEL (w), 0.0);
+  gtk_widget_set_halign (w, GTK_ALIGN_START);
+  gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
   gtk_widget_set_hexpand (w, TRUE);
-  gtk_container_add (GTK_CONTAINER (box), w);
+  gtk_widget_set_vexpand (w, TRUE);
+  gtk_container_add (GTK_CONTAINER (hbox), w);
+
+  if (identity)
+    {
+      w = gtk_label_new (identity);
+      gtk_widget_set_opacity (w, 0.5);
+      gtk_widget_set_halign (w, GTK_ALIGN_START);
+      gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
+      gtk_widget_set_hexpand (w, TRUE);
+      gtk_container_add (GTK_CONTAINER (hbox), w);
+    }
 
   self->children = g_list_prepend (self->children, child);
   gtk_widget_show_all (box);

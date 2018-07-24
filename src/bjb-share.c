@@ -16,6 +16,7 @@
  */
 
 #include "bjb-share.h"
+#include <stdio.h>
 
 static gchar *
 mail_str (const gchar * string )
@@ -26,39 +27,49 @@ mail_str (const gchar * string )
   return g_strdelimit (g_strdup (string), "\n", ' ');
 }
 
-/* TODO find EOL for xdg-email */
 gboolean
-on_email_note_callback(GtkWidget *widget, BijiNoteObj *note)
+on_email_note_callback (BijiNoteObj *note)
 {
   GError *error = NULL;
-  gchar *title_mail, *text_mail;
-  const gchar *execute[7];
+  g_autofree gchar *title_mail;
+  g_autofree gchar *text_mail;
+  g_autoptr(GDBusProxy) proxy;
+  GVariantBuilder *arraybuilder;
+  GVariant *dict;
 
   title_mail = mail_str ((gchar*) biji_item_get_title (BIJI_ITEM (note)));
   text_mail = mail_str (biji_note_obj_get_raw_text (note));
 
-  execute[0] = "xdg-email";
-  execute[1] = "--utf8";
-  execute[2] = "--subject";
-  execute[3] = title_mail;
-  execute[4] = "--body";
-  execute[5] = text_mail;
-  execute[6] = NULL;
+  proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
+                                         G_DBUS_PROXY_FLAGS_NONE,
+                                         NULL,
+                                         "org.freedesktop.portal.Desktop",
+                                         "/org/freedesktop/portal/desktop",
+                                         "org.freedesktop.portal.Email",
+                                         NULL,
+                                         &error);
 
-  g_spawn_async ( NULL,
-                  (gchar **) execute,
-                  NULL,
-                  G_SPAWN_SEARCH_PATH,
-                  NULL,
-                  NULL,
-                  NULL,
-                  &error);
-  if ( error != NULL )
-    g_message("error :%s",error->message);
+  if (proxy == NULL) {
+    fprintf (stderr, "Proxy creation failed: %s\n", error->message);
+    g_error_free (error);
+    return FALSE;
+  }
 
-  g_free (title_mail);
-  g_free (text_mail);
+  arraybuilder = g_variant_builder_new (G_VARIANT_TYPE ("a{sv}"));
+  g_variant_builder_add (arraybuilder, "{sv}", "subject", g_variant_new_string (title_mail));
+  g_variant_builder_add (arraybuilder, "{sv}", "body", g_variant_new_string (text_mail));
 
-  return TRUE ;
+  dict = g_variant_new ("(sa{sv})", "", arraybuilder);
+  g_variant_builder_unref (arraybuilder);
+
+  g_dbus_proxy_call_sync (proxy, "ComposeEmail", dict, G_DBUS_CALL_FLAGS_NONE, -1, NULL, &error);
+  if (error != NULL) {
+    g_error ("%s", error->message);
+    fprintf (stderr, "ComposeEmail portal call failed: %s", error->message);
+    g_error_free (error);
+    return FALSE;
+  }
+
+  return TRUE;
 }
 

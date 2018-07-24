@@ -564,7 +564,7 @@ on_email_cb (BjbMainToolbar *self,
 {
   g_return_if_fail (self->note);
 
-  on_email_note_callback (menu_item, self->note);
+  on_email_note_callback (self->note);
 }
 
 static void

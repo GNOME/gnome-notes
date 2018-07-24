@@ -155,7 +155,9 @@ action_share_item_callback (BjbSelectionToolbar *self,
   selection = bjb_main_view_get_selected_items (self->view);
 
   for (l = selection; l != NULL; l = l->next)
-    on_email_note_callback (GTK_WIDGET (button), l->data);
+    {
+        on_email_note_callback (l->data);
+    }
 
   bjb_main_view_set_selection_mode (self->view, FALSE);
   g_list_free (selection);

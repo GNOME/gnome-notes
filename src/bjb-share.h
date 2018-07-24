@@ -18,6 +18,5 @@
 #pragma once
 
 #include <libbiji/libbiji.h>
-#include <gtk/gtk.h>
 
-gboolean on_email_note_callback(GtkWidget *widget, BijiNoteObj *note) ;
+gboolean on_email_note_callback (BijiNoteObj *note);

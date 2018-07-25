@@ -130,7 +130,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git"
+                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git",
+                    "tag" : "2.0.3"
                 }
             ]
         },

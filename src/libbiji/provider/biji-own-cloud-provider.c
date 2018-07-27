@@ -774,19 +774,25 @@ biji_own_cloud_provider_constructed (GObject *obj)
 
   if (self->account != NULL)
   {
+    const gchar *presentation_identity;
 
     self->info.unique_id = goa_account_get_id (self->account);
     self->info.datasource = g_strdup_printf ("gn:goa-account:%s",
                                              self->info.unique_id);
     self->info.name = g_strdup (goa_account_get_provider_name (self->account));
 
-    identity = g_strsplit (goa_account_get_presentation_identity (self->account),
-                           "@", 2);
-    if (identity)
+    presentation_identity = goa_account_get_presentation_identity (self->account);
+
+    if (presentation_identity)
       {
-        self->info.user = g_strdup (identity[0]);
-        if (identity[1])
-          self->info.domain = g_strdup (identity[1]);
+        identity = g_strsplit (presentation_identity, "@", 2);
+
+        if (identity[0])
+          {
+            self->info.user = g_strdup (identity[0]);
+            if (identity[1])
+              self->info.domain = g_strdup (identity[1]);
+          }
 
         g_strfreev(identity);
       }

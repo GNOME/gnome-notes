@@ -28,6 +28,7 @@
 
 #include <libbiji/libbiji.h>
 
+#include "bjb-app-menu.h"
 #include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-main-view.h"
@@ -286,6 +287,7 @@ bijiben_startup (GApplication *application)
   BjbApplication *self;
   g_autofree gchar *storage_path = NULL;
   g_autofree gchar *default_color = NULL;
+  g_autoptr(GAction) text_size_action = NULL;
   g_autoptr(GFile) storage = NULL;
   g_autoptr(GError) error = NULL;
   GdkRGBA         color = {0,0,0,0};
@@ -295,6 +297,11 @@ bijiben_startup (GApplication *application)
   self = BJB_APPLICATION (application);
 
   bjb_apply_style ();
+
+  bjb_app_menu_set(application);
+
+  text_size_action = g_settings_create_action (G_SETTINGS (self->settings), "text-size");
+  g_action_map_add_action (G_ACTION_MAP (application), text_size_action);
 
   storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
   storage = g_file_new_for_path (storage_path);

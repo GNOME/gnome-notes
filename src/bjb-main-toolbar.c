@@ -637,8 +637,8 @@ bjb_main_toolbar_reset (BjbMainToolbar *self)
   gtk_widget_show (self->select_button);
   gtk_widget_show (self->search_button);
   gtk_widget_show (self->new_button);
-  gtk_widget_show (self->main_button);
 
+  gtk_widget_hide (self->main_button);
   gtk_widget_hide (self->back_button);
   gtk_widget_hide (self->color_button);
   gtk_widget_hide (self->empty_button);

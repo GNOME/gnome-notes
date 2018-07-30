@@ -54,6 +54,7 @@ install_data(
 
 resource_data = files(
   'resources/Adwaita.css',
+  'resources/app-menu.ui',
   'resources/editor-toolbar.ui',
   'resources/empty-results-box.ui',
   'resources/note-symbolic.svg',

@@ -39,6 +39,23 @@
   </screenshots>
 
   <releases>
+    <release date="2018-07-30" version="3.29.90">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added back application menu and removed the primary menu from the main view</li>
+          <li>Show online account user and domain information in settings dialog (Julius Härtl)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>de (Tim Sabsch)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>nl (Hannie Dumoleyn)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-07-20" version="3.29.4">
       <description>
         <p>This release brings the following new features and improvements:</p>

@@ -1,3 +1,15 @@
+Overview of changes in 3.29.90
+==============================
+
+* Added back application menu and removed the primary menu from the main view
+* Show online account user and domain information in settings dialog (Julius Härtl)
+
+Translations
+* de (Tim Sabsch)
+* el (Efstathios Iosifidis)
+* es (Daniel Mustieles)
+* nl (Hannie Dumoleyn)
+
 Overview of changes in 3.29.4
 =============================
 

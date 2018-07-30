@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-05-11 18:26+0000\n"
-"PO-Revision-Date: 2018-06-18 17:02+0300\n"
+"POT-Creation-Date: 2018-07-30 21:26+0000\n"
+"PO-Revision-Date: 2018-07-31 02:02+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.9\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
@@ -30,16 +30,21 @@ msgid "Quickly jot notes"
 msgstr "Γρήγορη δημιουργία σημειώσεων"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
 msgstr ""
-"Οι Σημειώσεις είναι ένα πρόγραμμα επεξεργασίας, που σας επιτρέπει να "
-"δημιουργείτε απλές λίστες για μεταγενέστερη χρήση."
+"Ένας γρήγορος και εύκολος τρόπος για να κάνετε ελεύθερες σημειώσεις ή να "
+"καταγράψετε απλές λίστες. Αποθηκεύστε όσες σημειώσεις θέλετε και μοιραστείτε "
+"με ηλεκτρονική αλληλογραφία."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
 msgstr ""
-"Σας επιτρέπει να χρησιμοποιείτε το ownCloud σαν μια τοποθεσία αποθήκευσης "
-"και σαν διαδικτυακό πρόγραμμα επεξεργασίας."
+"Μπορείτε να αποθηκεύσετε τις σημειώσεις σας τοπικά στον υπολογιστή σας ή να "
+"συγχρονίσετε με τις δικτυακές υπηρεσίες όπως το ownCloud."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:28
 msgid "Edit view"
@@ -54,7 +59,7 @@ msgid "List view"
 msgstr "Προβολή λίστας"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: src/bjb-application.c:510 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -78,101 +83,84 @@ msgstr "Πρόγραμμα λήψης σημειώσεων"
 msgid "org.gnome.bijiben"
 msgstr "org.gnome.bijiben"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Προσαρμοσμένη γραμματοσειρά"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Το όνομα της γραμματοσειράς που ορίστηκε εδώ θα χρησιμοποιηθεί ως "
 "γραμματοσειρά όταν εμφανιστούν οι σημειώσεις."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Αν θα χρησιμοποιείται η γραμματοσειρά monospace του συστήματος"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Χρώμα νέων σημειώσεων."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Το όνομα του χρώματος που ορίστηκε εδώ θα χρησιμοποιηθεί ως χρώμα όταν "
 "δημιουργηθούν νέες σημειώσεις."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr ""
 "Ο πάροχος των κύριων σημειώσεων που θα χρησιμοποιηθούν για νέες σημειώσεις."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr ""
 "Το κύριο σημειωματάριο είναι η θέση όπου δημιουργούνται νέες σημειώσεις."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Μεγιστοποιημένο παράθυρο"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Κατάσταση μεγιστοποιημένου παραθύρου."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Μέγεθος παραθύρου"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Μέγεθος παραθύρου (πλάτος και ύψος)."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Θέση παραθύρου"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Θέση παραθύρου (x και y)."
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "Τρόπος εμφάνισης σημειώσεων"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr ""
 "Αν θα εμφανιστούν σημειώσεις σε προβολή εικονιδίων είτε σε προβολή λίστας."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "Ε_ισαγωγή σημειώσεων"
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Το μέγεθος κειμένου που χρησιμοποιείται από τον επεξεργαστή σημείωσης."
 
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Προβολή απορριμμάτων"
-
-#: data/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "_Προτιμήσεις"
-
-#: data/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "_Βοήθεια"
-
-#: data/resources/app-menu.ui:25
-msgid "_Keyboard Shortcuts"
-msgstr "Συντομεύσεις _πληκτρολογίου"
-
-#: data/resources/app-menu.ui:29
-msgid "_About"
-msgstr "_Περί"
-
-#: data/resources/app-menu.ui:33
-msgid "_Quit"
-msgstr "Έ_ξοδος"
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"Υπάρχουν διαθέσιμα τρία μεγέθη κειμένου: μικρά, μεσαία (προεπιλογή) και "
+"μεγάλα."
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -239,65 +227,70 @@ msgstr "Κλείσιμο παραθύρου"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Μετακίνηση πίσω"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Εμφάνιση βοήθειας"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Συντομεύσεις"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Λειτουργία επιλογής"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Έξοδος από την λειτουργία επιλογής"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Επιλογή όλων"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Λειτουργία επεξεργασίας σημείωσης"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Έντονα"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Πλάγια"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Επιγράμμιση"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Μετακίνηση σημείωσης στα απορρίμματα"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Εισαγωγή σημειώσεων"
 
@@ -363,31 +356,71 @@ msgid "Selection mode"
 msgstr "Λειτουργία επιλογής"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Άνοιγμα μενού"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Περισσότερες επιλογές…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Προβολή απορριμμάτων"
+
+#: data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "Μεγέθη _κειμένων"
+
+#: data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "Με_γάλο"
+
+#: data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Μεσαίο"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "Μι_κρό"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Συντομεύσεις πληκτρολογίου"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "Περί"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "Άνοιγμα σε ένα νέο παράθυρο"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Σημειωματάρια"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "Στείλτε αυτή τη σημείωση ηλεκτρονικά"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Μετακίνηση στα απορρίμματα"
 
@@ -415,10 +448,6 @@ msgstr "Επαναφορά"
 msgid "Permanently Delete"
 msgstr "Μόνιμη διαγραφή"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Προτιμήσεις"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Χρήση γραμματοσειράς συστήματος"
@@ -443,47 +472,47 @@ msgstr "Επιλογή προεπιλεγμένης τοποθεσίας απο�
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:334
 msgid "Show the application’s version"
 msgstr "Εμφάνιση έκδοσης της εφαρμογής"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:336
 msgid "Create a new note"
 msgstr "Δημιουργία νέας σημείωσης"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:338
 msgid "[FILE…]"
 msgstr "[ΑΡΧΕΙΟ…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:346
 msgid "Take notes and export them everywhere."
 msgstr "Πάρτε σημειώσεις και κάντετες εξαγωγή παντού."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:357
 msgid "Could not parse arguments"
 msgstr "Δεν ήταν δυνατή η ανάλυση των ορισμάτων"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:365
 msgid "GNOME Notes"
 msgstr "Σημειώσεις"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:377
 msgid "Could not register the application"
 msgstr "Αδύνατη η καταγραφή της εφαμρογής"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:511
 msgid "Simple notebook for GNOME"
 msgstr "Απλό σημειωματάριο για το GNOME"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:517
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -520,27 +549,27 @@ msgstr "Φόρτωση περισσοτέρων"
 msgid "Loading…"
 msgstr "Γίνεται φόρτωση…"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Πατήστε στα αντικείμενα για να τα επιλέξετε"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d επιλεγμένο"
 msgstr[1] "%d επιλεγμένα"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Αποτελέσματα για %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: src/bjb-main-toolbar.c:364
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Απορρίμματα"
 
@@ -549,7 +578,7 @@ msgstr "Απορρίμματα"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:427
+#: src/bjb-main-toolbar.c:498
 #, c-format
 msgid "Last updated %s"
 msgstr "Τελευταία ενημέρωση %s"
@@ -585,6 +614,25 @@ msgstr "Τοπικά"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Οι Σημειώσεις είναι ένα πρόγραμμα επεξεργασίας, που σας επιτρέπει να "
+#~ "δημιουργείτε απλές λίστες για μεταγενέστερη χρήση."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Σας επιτρέπει να χρησιμοποιείτε το ownCloud σαν μια τοποθεσία αποθήκευσης "
+#~ "και σαν διαδικτυακό πρόγραμμα επεξεργασίας."
+
+#~ msgid "_Import Notes"
+#~ msgstr "Ε_ισαγωγή σημειώσεων"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Προτιμήσεις"
+
+#~ msgid "_Quit"
+#~ msgstr "Έ_ξοδος"
 
 #~ msgid "Note Edition"
 #~ msgstr "Σημείωση έκδοσης"

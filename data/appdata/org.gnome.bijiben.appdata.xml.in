@@ -128,7 +128,7 @@
     </release>
   </releases>
 
-  <url type="homepage">https://wiki.gnome.org/Apps/Bijiben</url>
+  <url type="homepage">https://wiki.gnome.org/Apps/Notes</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/gnome-notes/issues</url>
   <url type="donation">http://www.gnome.org/friends/</url>
   <url type="help">https://help.gnome.org/users/bijiben/stable/</url>

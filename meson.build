@@ -29,7 +29,7 @@ set_defines = [
   ['PACKAGE_NAME', bijiben_name],
   ['PACKAGE_STRING', '@0@ @1@'.format(bijiben_name, bijiben_version)],
   ['PACKAGE_TARNAME', bijiben_name],
-  ['PACKAGE_URL', 'https://wiki.gnome.org/Apps/Bijiben'],
+  ['PACKAGE_URL', 'https://wiki.gnome.org/Apps/Notes'],
   ['PACKAGE_VERSION', bijiben_version],
   ['VERSION', bijiben_version],
   # i18n

@@ -515,7 +515,7 @@ bjb_app_about (BjbApplication *self)
                          "authors", authors,
                          "artists", artists,
                          "translator-credits", _("translator-credits"),
-                         "website", "https://wiki.gnome.org/Apps/Bijiben",
+                         "website", "https://wiki.gnome.org/Apps/Notes",
                          "logo-icon-name", "org.gnome.bijiben",
                          NULL);
 }

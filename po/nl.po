@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-18 07:02+0000\n"
-"PO-Revision-Date: 2018-07-28 12:18+0100\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-07-31 09:18+0100\n"
 "Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -34,16 +34,16 @@ msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
-"Een snelle en gemakkelijke manier om eenvoudige notities of lijstjes te"
-" maken. Sla zoveel notities op als u wilt en deel ze per e-mail."
+"Een snelle en gemakkelijke manier om eenvoudige notities of lijstjes te "
+"maken. Sla zoveel notities op als u wilt en deel ze per e-mail."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
 msgstr ""
-"U kunt uw notities lokaal op uw computer opslaan of synchroniseren met"
-" onlinediensten zoals ownCloud."
+"U kunt uw notities lokaal op uw computer opslaan of synchroniseren met "
+"onlinediensten zoals ownCloud."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:28
 msgid "Edit view"
@@ -58,7 +58,7 @@ msgid "List view"
 msgstr "Lijstweergave"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:510 src/bjb-window-base.c:17
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notities"
 
@@ -157,6 +157,54 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Er zijn drie tekstgroottes beschikbaar: klein, medium (standaard) en groot."
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "Notities _importeren"
+
+#: data/resources/app-menu.ui:9
+#| msgid "View Trash"
+msgid "_View Trash"
+msgstr "Prullenbak _bekijken"
+
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Tekstgroottes"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Groot"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Medium"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Klein"
+
+#: data/resources/app-menu.ui:35
+msgid "_Preferences"
+msgstr "_Voorkeuren"
+
+#: data/resources/app-menu.ui:41
+#| msgid "Help"
+msgid "_Help"
+msgstr "_Hulp"
+
+#: data/resources/app-menu.ui:45
+#| msgid "Keyboard Shortcuts"
+msgid "_Keyboard Shortcuts"
+msgstr "_Sneltoetsen"
+
+#: data/resources/app-menu.ui:49
+#| msgid "About"
+msgid "_About"
+msgstr "I_nfo"
+
+#: data/resources/app-menu.ui:53
+msgid "_Quit"
+msgstr "_Afsluiten"
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -360,42 +408,22 @@ msgid "More options…"
 msgstr "Meer opties…"
 
 #: data/resources/main-toolbar.ui:226
-#| msgid "_View Trash"
 msgid "View Trash"
 msgstr "Prullenbak bekijken"
-
-#: data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "_Tekstgroottes"
-
-#: data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "_Groot"
-
-#: data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Medium"
-
-#: data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "_Klein"
 
 #: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Voorkeuren"
 
 #: data/resources/main-toolbar.ui:300
-#| msgid "_Help"
 msgid "Help"
 msgstr "Hulp"
 
 #: data/resources/main-toolbar.ui:308
-#| msgid "_Keyboard Shortcuts"
 msgid "Keyboard Shortcuts"
 msgstr "Sneltoetsen"
 
 #: data/resources/main-toolbar.ui:316
-#| msgid "_About"
 msgid "About"
 msgstr "Info"
 
@@ -476,43 +504,43 @@ msgstr "Primaire notitieboek"
 msgid "Untitled"
 msgstr "Naamloos"
 
-#: src/bjb-application.c:334
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Versie van toepassing tonen"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Nieuwe notitie maken"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[BESTAND…]"
 
-#: src/bjb-application.c:346
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Maak notities en exporteer ze overal."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:357
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Argumenten ontleden is mislukt"
 
-#: src/bjb-application.c:365
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "Gnome Notities"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Toepassing registreren is mislukt"
 
-#: src/bjb-application.c:511
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Eenvoudig notitieboekje voor Gnome"
 
-#: src/bjb-application.c:517
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "Erwin Poeze <donnut@outlook.com>\n"
@@ -577,7 +605,6 @@ msgstr "Prullenbak"
 #.
 #: src/bjb-main-toolbar.c:498
 #, c-format
-#| msgid "<b>Last updated</b> %s"
 msgid "Last updated %s"
 msgstr "Laatst bijgewerkt %s"
 
@@ -622,15 +649,6 @@ msgstr "Lokale opslag"
 #~ msgstr ""
 #~ "Het maakt het mogelijk Owncloud als een opslaglocatie en online-editor te "
 #~ "gebruiken."
-
-#~ msgid "_Import Notes"
-#~ msgstr "Notities _importeren"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Voorkeuren"
-
-#~ msgid "_Quit"
-#~ msgstr "_Afsluiten"
 
 #~ msgid "Note Edition"
 #~ msgstr "Notitieversie"

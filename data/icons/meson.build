@@ -1,11 +1,6 @@
 apps_icons = [
-  ['16x16', 'org.gnome.bijiben.png'],
-  ['22x22', 'org.gnome.bijiben.png'],
-  ['24x24', 'org.gnome.bijiben.png'],
-  ['32x32', 'org.gnome.bijiben.png'],
-  ['48x48', 'org.gnome.bijiben.png'],
-  ['256x256', 'org.gnome.bijiben.png'],
-  ['scalable', 'org.gnome.bijiben-symbolic.svg']
+  ['scalable', 'org.gnome.Notes.svg'],
+  ['symbolic', 'org.gnome.Notes-symbolic.svg']
 ]
 
 foreach icon: apps_icons
@@ -19,7 +14,7 @@ actions_icons = [
   ['16x16', 'note.png'],
   ['24x24', 'note.png'],
   ['48x48', 'note.png'],
-  ['scalable', 'link.svg']
+  ['symbolic', 'link-symbolic.svg']
 ]
 
 foreach icon: actions_icons

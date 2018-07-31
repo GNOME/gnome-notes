@@ -1,0 +1,6 @@
+<svg height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+    <g font-weight="400" color="#000" fill="#bebebe" font-family="sans-serif">
+        <path d="M.973 1v14H11l4.029-4.013V1zM3 3h10v7h-3v3H3z" style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;marker:none" overflow="visible"/>
+        <path d="M4.945 5v1H11V5zM4.965 7v1H11V7zM5 9v1h4V9z" style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb" fill-rule="evenodd" overflow="visible"/>
+    </g>
+</svg>

@@ -3,6 +3,7 @@ data/appdata/org.gnome.bijiben.appdata.xml.in
 data/org.gnome.bijiben.desktop.in.in
 data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in
+data/resources/app-menu.ui
 data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui
 data/resources/help-overlay.ui

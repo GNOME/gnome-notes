@@ -1,6 +1,6 @@
 # List of source files containing translatable strings.
-data/appdata/org.gnome.bijiben.appdata.xml.in
-data/org.gnome.bijiben.desktop.in.in
+data/appdata/org.gnome.Notes.appdata.xml.in
+data/org.gnome.Notes.desktop.in
 data/org.gnome.bijiben.gschema.xml
 data/org.gnome.bijiben.xml.in
 data/resources/editor-toolbar.ui

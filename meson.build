@@ -25,7 +25,7 @@ config_h = configuration_data()
 set_defines = [
   # package
   ['PACKAGE', bijiben_name],
-  ['PACKAGE_BUGREPORT', 'http://bugzilla.gnome.org/enter_bug.cgi?product=' + bijiben_name],
+  ['PACKAGE_BUGREPORT', 'https://gitlab.gnome.org/GNOME/gnome-notes/issues'],
   ['PACKAGE_NAME', bijiben_name],
   ['PACKAGE_STRING', '@0@ @1@'.format(bijiben_name, bijiben_version)],
   ['PACKAGE_TARNAME', bijiben_name],

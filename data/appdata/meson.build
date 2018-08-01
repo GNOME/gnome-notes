@@ -1,4 +1,4 @@
-info = 'org.gnome.bijiben.appdata.xml'
+info = 'org.gnome.Notes.appdata.xml'
 
 i18n.merge_file(
   info,

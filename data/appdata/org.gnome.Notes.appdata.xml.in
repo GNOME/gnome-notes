@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>org.gnome.bijiben.desktop</id>
+  <id>org.gnome.Notes.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+ and LGPL-3.0 and LGPL-2.0+</project_license>
-  <name>Bijiben</name>
-  <summary>Quickly jot notes</summary>
+  <name>Notes</name>
+  <summary>Notes for GNOME</summary>
   <description>
     <p>
       A quick and easy way to make freeform notes or jot down simple lists. Store as many notes as you like and share them by email.
@@ -22,19 +22,19 @@
   </kudos>
   <screenshots>
     <screenshot type="default">
-      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/default.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdatadefault.png</image>
     </screenshot>
     <screenshot>
       <caption>Edit view</caption>
-      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/edit.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdataedit.png</image>
     </screenshot>
     <screenshot>
       <caption>Select view</caption>
-      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/select.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdataselect.png</image>
     </screenshot>
     <screenshot>
       <caption>List view</caption>
-      <image width="800" height="647">https://git.gnome.org/browse/bijiben/plain/data/appdata/list.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdatalist.png</image>
     </screenshot>
   </screenshots>
 
@@ -134,7 +134,7 @@
   <url type="help">https://help.gnome.org/users/bijiben/stable/</url>
   <update_contact>py_at_luyten.fr</update_contact>
   <project_group>GNOME</project_group>
-  <translation type="gettext">bijiben</translation>
+  <translation type="gettext">gnome-notes</translation>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
     <content_attribute id="violence-fantasy">none</content_attribute>

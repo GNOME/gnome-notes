@@ -13,21 +13,12 @@ i18n.merge_file(
   install_dir: join_paths(bijiben_datadir, 'mime', 'packages')
 )
 
-desktop = 'org.gnome.bijiben.desktop'
-
-desktop_conf = configuration_data()
-desktop_conf.set('VERSION', bijiben_version)
-
-desktop_in = configure_file(
-  input: desktop + '.in.in',
-  output: desktop + '.in',
-  configuration: desktop_conf
-)
+desktop = 'org.gnome.Notes.desktop'
 
 i18n.merge_file(
   desktop,
   type: 'desktop',
-  input: desktop_in,
+  input: desktop + '.in',
   output: desktop,
   po_dir: po_dir,
   install: true,

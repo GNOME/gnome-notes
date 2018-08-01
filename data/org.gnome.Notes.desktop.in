@@ -12,7 +12,3 @@ StartupNotify=true
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;Utility;
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=bijiben
-X-GNOME-Bugzilla-Component=main
-X-GNOME-Bugzilla-Version=@VERSION@

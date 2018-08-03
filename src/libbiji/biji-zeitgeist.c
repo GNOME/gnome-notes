@@ -34,7 +34,7 @@ biji_zeitgeist_init (void)
 
   log = zeitgeist_log_new ();
   event = zeitgeist_event_new_full (
-    NULL, NULL, "application://org.gnome.bijiben.desktop", NULL, NULL);
+    NULL, NULL, "application://org.gnome.Notes.desktop", NULL, NULL);
 
   ptr_arr = g_ptr_array_new_with_free_func (g_object_unref);
   g_ptr_array_add (ptr_arr, event);
@@ -96,7 +96,7 @@ check_insert_create_zeitgeist (BijiNoteObj *note)
   templates = g_ptr_array_new_with_free_func (g_object_unref);
   event = zeitgeist_event_new_full (ZEITGEIST_ZG_CREATE_EVENT,
                                     NULL,
-                                    "application://org.gnome.bijiben.desktop",
+                                    "application://org.gnome.Notes.desktop",
                                     NULL, NULL);
   subject = zeitgeist_subject_new ();
   zeitgeist_subject_set_uri (subject, uri);
@@ -153,7 +153,7 @@ insert_zeitgeist (BijiNoteObj *note,
 
   event = zeitgeist_event_new_full (zg_interpretation,
                                     ZEITGEIST_ZG_USER_ACTIVITY,
-                                    "application://org.gnome.bijiben.desktop",
+                                    "application://org.gnome.Notes.desktop",
                                     "",
                                     subject,
                                     NULL);

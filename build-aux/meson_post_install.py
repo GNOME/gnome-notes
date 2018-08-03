@@ -15,7 +15,7 @@ if not os.environ.get('DESTDIR'):
   print('Compile gsettings schemas...')
   subprocess.call(['glib-compile-schemas', schemadir])
 
-  desktop_file = os.path.join(datadir, 'applications', 'org.gnome.bijiben.desktop')
+  desktop_file = os.path.join(datadir, 'applications', 'org.gnome.Notes.desktop')
   print('Validate desktop file...')
   subprocess.call(['desktop-file-validate', desktop_file])
 

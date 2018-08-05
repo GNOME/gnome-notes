@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-04 15:08+0000\n"
-"PO-Revision-Date: 2018-04-08 17:33+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-08-05 15:14+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -29,33 +28,35 @@ msgid "Quickly jot notes"
 msgstr "Greitai rašykite užrašus"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
 msgstr ""
-"Rašteliai yra redaktorius, leidžiantis sukurti paprastus sąrašus vėlesniam "
-"panaudojimui."
+"Greitas ir paprastas būdas parašyti pavienius raštelius ar nedidelius "
+"sąrašus. Rašykite kiek norite raštelių ir dalinkitės jais el. paštu."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
 msgstr ""
-"Jis leidžia naudoti ownCloud kaip saugyklos vietą ir internetinį redaktorių."
+"Galite įrašyti savo raštelius kompiuteryje arba sinchronizuoti su "
+"internetinėmis tarnybomis, pvz. ownCloud."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:28
 msgid "Edit view"
 msgstr "Redagavimo rodinys"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:32
-#| msgctxt "shortcut window"
-#| msgid "Select all"
 msgid "Select view"
 msgstr "Žymėjimo rodinys"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:36
-#| msgid "List"
 msgid "List view"
 msgstr "Sąrašo rodinys"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Rašteliai"
 
@@ -77,66 +78,75 @@ msgstr "Užrašinė"
 msgid "org.gnome.bijiben"
 msgstr "org.gnome.bijiben"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Pasirinktinis šriftas"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Čia nustatytas šriftas bus naudojamas rodant raštelius."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Ar naudoti sistemos lygiaplotį šriftą"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Naujų raštelių spalva."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Čia nustatyta spalva bus naudojama kuriant naujus raštelius."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Pagrindinis raštelių tiekėjas kuriant naujus raštelius."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Pagrindinė užrašinė yra vieta, kurioje kuriami nauji rašteliai."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Langas išdidintas"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Lango išdidinimo būsena."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Lango dydis"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Lango dydis (plotis ir aukštis)."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Lango padėtis"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Lango padėtis (x ir y)."
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "Kaip rodyti raštelius"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Ar rodyti raštelius piktogramų rodinyje ar sąraše."
+
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Teksto dydis, naudojamas raštelio redaktoriuje."
+
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "Yra trys teksto dydžiai: mažas, vidutinis (numatytasis) ir didelis."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -146,23 +156,39 @@ msgstr "_Importuoti raštelius"
 msgid "_View Trash"
 msgstr "_Rodyti šiukšlinę"
 
-#: data/resources/app-menu.ui:15
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Tekstų dydžiai"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Didelis"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Vidutinis"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Mažas"
+
+#: data/resources/app-menu.ui:35
 msgid "_Preferences"
 msgstr "_Nuostatos"
 
-#: data/resources/app-menu.ui:21
+#: data/resources/app-menu.ui:41
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: data/resources/app-menu.ui:25
+#: data/resources/app-menu.ui:45
 msgid "_Keyboard Shortcuts"
 msgstr "_Klaviatūros trumpiniai"
 
-#: data/resources/app-menu.ui:29
+#: data/resources/app-menu.ui:49
 msgid "_About"
 msgstr "_Apie"
 
-#: data/resources/app-menu.ui:33
+#: data/resources/app-menu.ui:53
 msgid "_Quit"
 msgstr "Iš_eiti"
 
@@ -231,65 +257,70 @@ msgstr "Užverti langą"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Grįžti"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Rodyti žinyną"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Trumpiniai"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Žymėjimo veiksena"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Atsisakyti žymėjimo veiksenos"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Žymėti viską"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Raštelio redagavimo veiksena"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Pusjuodis"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursyvas"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Perbrauktas"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Pakartoti"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Perkelti į šiukšlinę"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Importuoti raštelius"
 
@@ -355,31 +386,59 @@ msgid "Selection mode"
 msgstr "Žymėjimo veiksena"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Atverti meniu"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Daugiau…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+#| msgid "_View Trash"
+msgid "View Trash"
+msgstr "Rodyti šiukšlinę"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Nuostatos"
+
+#: data/resources/main-toolbar.ui:300
+#| msgid "_Help"
+msgid "Help"
+msgstr "Žinynas"
+
+#: data/resources/main-toolbar.ui:308
+#| msgid "_Keyboard Shortcuts"
+msgid "Keyboard Shortcuts"
+msgstr "Klaviatūros trumpiniai"
+
+#: data/resources/main-toolbar.ui:316
+#| msgid "_About"
+msgid "About"
+msgstr "Apie"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "Atverti naujame lange"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "Pakartoti"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Užrašinės"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "Siųsti šį raštelį el. paštu"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Perkelti į šiukšlinę"
 
@@ -407,10 +466,6 @@ msgstr "Atstatyti"
 msgid "Permanently Delete"
 msgstr "Visiškai ištrinti"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Nuostatos"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Naudoti sistemos šriftą"
@@ -424,8 +479,8 @@ msgid "Default Color"
 msgstr "Numatytoji spalva"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Raštelio redakcija"
+msgid "Note Appearance"
+msgstr "Raštelio išvaizda"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -435,47 +490,47 @@ msgstr "Pasirinkite numatytąją laikymo vietą:"
 msgid "Primary Book"
 msgstr "Pirminė knyga"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Nepavadinta"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Rodyti programos versiją"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Sukurti naują raštelį"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[FAILAS…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Imkite raštelius ir eksportuokite juos visur."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Nepavyko perskaityti argumentų"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "GNOME rašteliai"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Nepavyko priregistruoti programos"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Paprasta užrašinė GNOME aplinkai"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "išvertė:\n"
@@ -505,11 +560,11 @@ msgstr "Įkelti daugiau"
 msgid "Loading…"
 msgstr "Įkeliama…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Spauskite ant elementų jiems pažymėti"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -517,28 +572,29 @@ msgstr[0] "%d pažymėtas"
 msgstr[1] "%d pažymėti"
 msgstr[2] "%d pažymėta"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "%s rezultatai"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Nauji ir neseniai naudoti"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Šiukšlinė"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:498
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Paskutinis atnaujinimas</b> %s"
+#| msgid "<b>Last updated</b> %s"
+msgid "Last updated %s"
+msgstr "Paskutinis atnaujinimas %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -568,9 +624,22 @@ msgstr "Šiemet"
 msgid "Local"
 msgstr "Vietinė"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Vietinė saugykla"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Rašteliai yra redaktorius, leidžiantis sukurti paprastus sąrašus "
+#~ "vėlesniam panaudojimui."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Jis leidžia naudoti ownCloud kaip saugyklos vietą ir internetinį "
+#~ "redaktorių."
+
+#~ msgid "Note Edition"
+#~ msgstr "Raštelio redakcija"
 
 #~ msgid "Cancel"
 #~ msgstr "Atsisakyti"

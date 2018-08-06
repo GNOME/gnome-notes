@@ -12,6 +12,7 @@
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
+        "--device=dri",
         "--share=network",
         "--talk-name=org.gtk.vfs",
         "--talk-name=org.gtk.vfs.*",

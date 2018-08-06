@@ -223,7 +223,7 @@ bjb_settings_class_init (BjbSettingsClass *klass)
 BjbSettings *
 bjb_settings_new (void)
 {
-  return g_object_new (BJB_TYPE_SETTINGS, "schema-id", "org.gnome.bijiben", NULL);
+  return g_object_new (BJB_TYPE_SETTINGS, "schema-id", "org.gnome.Notes", NULL);
 }
 
 

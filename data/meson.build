@@ -1,7 +1,7 @@
 subdir('icons')
 subdir('appdata')
 
-mime = 'org.gnome.bijiben.xml'
+mime = 'org.gnome.Notes.xml'
 
 i18n.merge_file(
   mime,
@@ -28,7 +28,7 @@ i18n.merge_file(
 service_conf = configuration_data()
 service_conf.set('libexecdir', bijiben_libexecdir)
 
-service = 'org.gnome.bijiben.SearchProvider.service'
+service = 'org.gnome.Notes.SearchProvider.service'
 
 configure_file(
   input: service + '.in',
@@ -39,7 +39,7 @@ configure_file(
 )
 
 install_data(
-  'org.gnome.bijiben-search-provider.ini',
+  'org.gnome.Notes-search-provider.ini',
   install_dir: join_paths(bijiben_datadir, 'gnome-shell', 'search-providers')
 )
 
@@ -84,6 +84,6 @@ custom_target('gsettings-enums',
   ]
 )
 install_data(
-  'org.gnome.bijiben.gschema.xml',
+  'org.gnome.Notes.gschema.xml',
   install_dir: join_paths(bijiben_datadir, 'glib-2.0', 'schemas')
 )

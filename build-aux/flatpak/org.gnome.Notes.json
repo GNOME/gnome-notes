@@ -1,5 +1,5 @@
 {
-    "app-id" : "org.gnome.bijiben",
+    "app-id" : "org.gnome.Notes",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",

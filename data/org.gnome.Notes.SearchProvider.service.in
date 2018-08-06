@@ -1,4 +1,4 @@
 [D-BUS Service]
-Name=org.gnome.bijiben.SearchProvider
+Name=org.gnome.Notes.SearchProvider
 Exec=@libexecdir@/bijiben-shell-search-provider
 

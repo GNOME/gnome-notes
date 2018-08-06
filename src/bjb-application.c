@@ -181,7 +181,7 @@ bjb_application_init (BjbApplication *self)
   self->settings = bjb_settings_new ();
   g_queue_init (&self->files_to_open);
 
-  gtk_window_set_default_icon_name ("org.gnome.bijiben");
+  gtk_window_set_default_icon_name ("org.gnome.Notes");
 }
 
 
@@ -430,7 +430,7 @@ BjbApplication *
 bjb_application_new (void)
 {
   return g_object_new (BJB_TYPE_APPLICATION,
-                       "application-id", "org.gnome.bijiben",
+                       "application-id", "org.gnome.Notes",
                        "flags", G_APPLICATION_HANDLES_OPEN,
                        NULL);
 }

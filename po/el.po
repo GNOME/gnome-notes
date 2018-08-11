@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-30 21:26+0000\n"
-"PO-Revision-Date: 2018-07-31 02:02+0300\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-08-12 00:15+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
@@ -59,7 +59,7 @@ msgid "List view"
 msgstr "Προβολή λίστας"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:510 src/bjb-window-base.c:17
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -161,6 +161,50 @@ msgid ""
 msgstr ""
 "Υπάρχουν διαθέσιμα τρία μεγέθη κειμένου: μικρά, μεσαία (προεπιλογή) και "
 "μεγάλα."
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "Ε_ισαγωγή σημειώσεων"
+
+#: data/resources/app-menu.ui:9
+msgid "_View Trash"
+msgstr "Προβολή _απορριμμάτων"
+
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "Μεγέθη _κειμένων"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "Με_γάλο"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Μεσαίο"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "Μι_κρό"
+
+#: data/resources/app-menu.ui:35
+msgid "_Preferences"
+msgstr "_Προτιμήσεις"
+
+#: data/resources/app-menu.ui:41
+msgid "_Help"
+msgstr "_Βοήθεια"
+
+#: data/resources/app-menu.ui:45
+msgid "_Keyboard Shortcuts"
+msgstr "_Συντομεύσεις πληκτρολογίου"
+
+#: data/resources/app-menu.ui:49
+msgid "_About"
+msgstr "_Περί"
+
+#: data/resources/app-menu.ui:53
+msgid "_Quit"
+msgstr "Έ_ξοδος"
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -367,22 +411,6 @@ msgstr "Περισσότερες επιλογές…"
 msgid "View Trash"
 msgstr "Προβολή απορριμμάτων"
 
-#: data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Μεγέθη _κειμένων"
-
-#: data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "Με_γάλο"
-
-#: data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Μεσαίο"
-
-#: data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "Μι_κρό"
-
 #: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Προτιμήσεις"
@@ -476,43 +504,43 @@ msgstr "Κύριο σημειωματάριο"
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
-#: src/bjb-application.c:334
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Εμφάνιση έκδοσης της εφαρμογής"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Δημιουργία νέας σημείωσης"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[ΑΡΧΕΙΟ…]"
 
-#: src/bjb-application.c:346
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Πάρτε σημειώσεις και κάντετες εξαγωγή παντού."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:357
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Δεν ήταν δυνατή η ανάλυση των ορισμάτων"
 
-#: src/bjb-application.c:365
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "Σημειώσεις"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Αδύνατη η καταγραφή της εφαμρογής"
 
-#: src/bjb-application.c:511
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Απλό σημειωματάριο για το GNOME"
 
-#: src/bjb-application.c:517
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -624,15 +652,6 @@ msgstr "Τοπική αποθήκευση"
 #~ msgstr ""
 #~ "Σας επιτρέπει να χρησιμοποιείτε το ownCloud σαν μια τοποθεσία αποθήκευσης "
 #~ "και σαν διαδικτυακό πρόγραμμα επεξεργασίας."
-
-#~ msgid "_Import Notes"
-#~ msgstr "Ε_ισαγωγή σημειώσεων"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Προτιμήσεις"
-
-#~ msgid "_Quit"
-#~ msgstr "Έ_ξοδος"
 
 #~ msgid "Note Edition"
 #~ msgstr "Σημείωση έκδοσης"

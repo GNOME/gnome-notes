@@ -4,18 +4,17 @@
 # adamc <ceviriadam@gmail.com>, 2013.
 # Osman Karagöz <osmank3@gmail.com>, 2013, 2014.
 # Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2013, 2014.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2016, 2017, 2018.
 # Muhammet Kara <muhammetk@gnome.org>, 2013, 2014, 2015, 2018.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-17 09:36+0000\n"
-"PO-Revision-Date: 2018-05-03 10:11+0300\n"
-"Last-Translator: Muhammet Kara <muhammetk@gnome.org>\n"
-"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-08-04 17:11+0000\n"
+"PO-Revision-Date: 2018-08-05 00:43+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,152 +22,132 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Hızlıca not alın"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr ""
-"Notlar, sonradan kullanmak üzere basit listeler oluşturmaya yarayan bir "
-"düzenleyicidir."
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr ""
-"ownCloudʼu bir depolama konumu ve çevrim içi düzenleyici olarak kullanmaya "
-"izin verir."
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
-msgid "Edit view"
-msgstr "Düzenleme görünümü"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
-#| msgctxt "shortcut window"
-#| msgid "Select all"
-msgid "Select view"
-msgstr "Seçim görünümü"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
-#| msgid "List"
-msgid "List view"
-msgstr "Liste görünümü"
-
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-application.c:510 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notlar"
 
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "GNOME için Notlar"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"Serbest biçim notlar veya basit listeler oluşturmanın hızlı ve kolay yolu. "
+"İstediğiniz kadar not saklayın ve e-postayla paylaşın."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"Notlarınızı bilgisayarınızda yerel olarak saklayabilir veya ownCloud gibi "
+"çevrim içi hizmetlerle eşzamanlayabilirsiniz."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "Düzenleme görünümü"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "Seçim görünümü"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "Liste görünümü"
+
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "notlar;anımsatıcı;hatırlatıcı;not defteri;yapışkan notlar;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Not bırak, dosyaları etiketle!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Not tutucu"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:10
+msgid "org.gnome.Notes"
+msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Özel Yazı Tipi"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Burada ayarlanan yazı tipi, notları gösterirken kullanılacak."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Sistemin sabit aralıklı yazı tipinin kullanılıp kullanılmayacağı"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Yeni not rengi."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Yeni notlar oluşturulurken burada ayarlanan renk adı kullanılacak."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Yeni notlarda kullanmak için birincil not sağlayıcısı."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Birincil not defteri, yeni notların oluşturulduğu yerdir."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Pencere büyültüldü"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Pencere büyültülme durumu."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Pencere boyutu"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Pencere boyutu (genişlik ve yükseklik)"
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Pencere konumu"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Pencere konumu (x ve y)."
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "Not ögelerinin nasıl gösterileceği"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Not ögelerinin simge görünümünde veya liste görünümünde gösterilmesi"
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "Notları _İçe Aktar"
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Not düzenleyici tarafından kullanılan metin boyutu."
 
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Çöpü Görüntüle"
-
-#: data/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "_Tercihler"
-
-#: data/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "_Yardım"
-
-#: data/resources/app-menu.ui:25
-msgid "_Keyboard Shortcuts"
-msgstr "_Klavye Kısayolları"
-
-#: data/resources/app-menu.ui:29
-msgid "_About"
-msgstr "_Hakkında"
-
-#: data/resources/app-menu.ui:33
-msgid "_Quit"
-msgstr "_Çıkış"
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"Kullanılabilir üç metin boyutu vardır: küçük, orta (öntanımlı) ve büyük."
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -235,65 +214,70 @@ msgstr "Pencereyi kapat"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Geri git"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Yardımı göster"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Kısayollar"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Seçim kipi"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Seçim kipini iptal et"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Not düzenleme kipi"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Kalın"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Eğik"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Üstü çizili"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Geri al"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Yinele"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Notu çöpe taşı"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Notları İçe Aktar"
 
@@ -356,40 +340,80 @@ msgstr "Notları ve not defterlerini liste olarak göster"
 
 #: data/resources/main-toolbar.ui:161
 msgid "Selection mode"
-msgstr "Seçim Kipi"
+msgstr "Seçim kipi"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Menüyü aç"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Diğer seçenekler…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Çöpü Gör"
+
+#: data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Metin Boyutları"
+
+#: data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Büyük"
+
+#: data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Orta"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Küçük"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "Yardım"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Klavye Kısayolları"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "Hakkında"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "Yeni Pencerede Aç"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "Geri Al"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "Yinele"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Not Defterleri"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "Bu Notu E-postala"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Çöpe Taşı"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
-msgstr "Not defteri oluşturmak için bir ad girin"
+msgstr "Not defteri oluşturmak için ad girin"
 
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
@@ -409,11 +433,7 @@ msgstr "Geri Yükle"
 
 #: data/resources/selection-toolbar.ui:100
 msgid "Permanently Delete"
-msgstr "Tamamen Sil"
-
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Tercihler"
+msgstr "Tümüyle Sil"
 
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
@@ -428,8 +448,8 @@ msgid "Default Color"
 msgstr "Öntanımlı Renk"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Not Sürümü"
+msgid "Note Appearance"
+msgstr "Not Görünümü"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -439,51 +459,52 @@ msgstr "Öntanımlı depolama konumunu seçin:"
 msgid "Primary Book"
 msgstr "Birincil Defter"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Başlıksız"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:334
 msgid "Show the application’s version"
 msgstr "Uygulamanın sürümünü göster"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:336
 msgid "Create a new note"
 msgstr "Yeni not oluştur"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:338
 msgid "[FILE…]"
 msgstr "[DOSYA…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:346
 msgid "Take notes and export them everywhere."
-msgstr "Notlar alın ve notları her yerde dışa aktarın."
+msgstr "Not alın ve notları her yerde dışa aktarın."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:357
 msgid "Could not parse arguments"
 msgstr "Argümanlar ayrıştırılamadı"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:365
 msgid "GNOME Notes"
 msgstr "GNOME Notlar"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:377
 msgid "Could not register the application"
 msgstr "Uygulama kaydedilemedi"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:511
 msgid "Simple notebook for GNOME"
 msgstr "GNOME için basit not defteri"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:517
 msgid "translator-credits"
 msgstr ""
 "Osman Karagöz <osmank3@gmail.com>\n"
-"Muhammet Kara <muhammetk@gmail.com>"
+"Muhammet Kara <muhammetk@gmail.com>\n"
+"Emin Tufan Çetin <etcetin@gmail.com>"
 
 #: src/bjb-color-button.c:137
 msgid "Note Color"
@@ -509,38 +530,38 @@ msgstr "Daha Çok"
 msgid "Loading…"
 msgstr "Yükleniyor…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Ögeleri seçmek için tıkla"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d adet seçildi"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "%s için sonuçlar"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Yeni ve En Son"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Çöp"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:498
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Son güncelleme</b> %s"
+msgid "Last updated %s"
+msgstr "Son güncelleme %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -570,9 +591,49 @@ msgstr "Bu yıl"
 msgid "Local"
 msgstr "Yerel"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Yerel depolama"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Hızlıca not alın"
+
+#~ msgid "_Import Notes"
+#~ msgstr "Notları _İçe Aktar"
+
+#~ msgid "_View Trash"
+#~ msgstr "_Çöpü Görüntüle"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Tercihler"
+
+#~ msgid "_Help"
+#~ msgstr "_Yardım"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "_Klavye Kısayolları"
+
+#~ msgid "_About"
+#~ msgstr "_Hakkında"
+
+#~ msgid "_Quit"
+#~ msgstr "_Çıkış"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Notlar, sonradan kullanmak üzere basit listeler oluşturmaya yarayan bir "
+#~ "düzenleyicidir."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "ownCloudʼu bir depolama konumu ve çevrim içi düzenleyici olarak "
+#~ "kullanmaya izin verir."
+
+#~ msgid "Note Edition"
+#~ msgstr "Not Sürümü"
 
 #~ msgid "notes;reminder;"
 #~ msgstr "notlar;hatırlatma;"

@@ -39,6 +39,26 @@
   </screenshots>
 
   <releases>
+    <release date="2018-08-13" version="3.29.91">
+      <description>
+        <p>This release brings the following translations:</p>
+        <ul>
+          <li>be (Yuras Shumovich)</li>
+          <li>de (Mario Blättermann)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>fr (Alexandre Franke)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>nl (Hannie Dumoleyn)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>tr (Emin Tufan Çetin)</li>
+          <li>zh_TW (Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-07-30" version="3.29.90">
       <description>
         <p>This release brings the following new features and improvements:</p>

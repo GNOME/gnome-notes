@@ -9,10 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-04 15:08+0000\n"
-"PO-Revision-Date: 2018-04-10 10:38+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-08-17 12:22+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -20,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -31,16 +30,20 @@ msgid "Quickly jot notes"
 msgstr "Täytä muistilaput nopeasti"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
 msgstr ""
-"Muistilappujen avulla on mahdollista tehdä muistiinpanoja myöhempää käyttöä "
-"varten."
+"Nopea ja helppo tapa tehdä muistiinpanoja tai muistiinpanolistoja. Talleta "
+"niin monta muistiinpanoa kuin haluat ja jaa ne sähköpostitse."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
 msgstr ""
-"Se mahdollistaa ownCloudin käytön tallennussijaintina ja verkossa toimivana "
-"editorina."
+"Voit tallettaa muistiinpanot paikallisesti tietokoneellesi tai synkronoida "
+"ne verkkopalvelujen, kuten ownCloudin, kanssa."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:28
 msgid "Edit view"
@@ -55,7 +58,7 @@ msgid "List view"
 msgstr "Luettelonäkymä"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Muistilaput"
 
@@ -77,66 +80,76 @@ msgstr "Muistio"
 msgid "org.gnome.bijiben"
 msgstr "org.gnome.bijiben"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Omavalintainen fontti"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Tässä asetettua fonttia käytetään muistilappuja näytettäessä."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Käytetäänkö järjestelmän tasalevyistä fonttia"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Uusien muistilappujen väri."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Tässä asetettua väriä käytetään uusia muistilappuja luotaessa."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Ensisijainen muistilappujen tuottaja uusille muistiinpanoille."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Ensisijainen muistikirja on paikka, jonne uudet muistilaput luodaan."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Ikkuna suurennettu"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Ikkunan suurentamisen tila."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Ikkunan koko"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Ikkunan koko (leveys ja korkeus)."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Ikkunan sijainti"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Ikkunan sijainti (x ja y)."
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "Miten muistilaput esitetään"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Näytetäänkö muistilaput kuvake- vai luettelonäkymässä."
+
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Muokkaimessa käytettävä tekstikoko."
+
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"Tarjolla on kolme eri tekstikokoa: pieni, tavallinen (oletus) ja suuri."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -146,23 +159,39 @@ msgstr "_Tuo muistilaput"
 msgid "_View Trash"
 msgstr "_Näytä roskakori"
 
-#: data/resources/app-menu.ui:15
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Tekstikoot"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Suuri"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Tavallinen"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Pieni"
+
+#: data/resources/app-menu.ui:35
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: data/resources/app-menu.ui:21
+#: data/resources/app-menu.ui:41
 msgid "_Help"
 msgstr "_Ohje"
 
-#: data/resources/app-menu.ui:25
+#: data/resources/app-menu.ui:45
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#: data/resources/app-menu.ui:29
+#: data/resources/app-menu.ui:49
 msgid "_About"
 msgstr "_Tietoja"
 
-#: data/resources/app-menu.ui:33
+#: data/resources/app-menu.ui:53
 msgid "_Quit"
 msgstr "_Lopeta"
 
@@ -231,65 +260,70 @@ msgstr "Sulje ikkuna"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Siirry takaisin"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Näytä ohje"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Pikanäppäimet"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Valintatila"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Poistu valintatilasta"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Valitse kaikki"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Muistilapun muokkaustila"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Lihavoi"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursivoi"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Yliviivaa"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Kumoa"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Tee uudelleen"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Siirrä muistilappu roskakoriin"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Tuo muistilappuja"
 
@@ -355,31 +389,55 @@ msgid "Selection mode"
 msgstr "Valintatila"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Avaa valikko"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Lisää valintoja…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Näytä roskakori"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Asetukset"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "Ohje"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Pikanäppäimet"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "Tietoja"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "Avaa uudessa ikkunassa"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "Kumoa"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "Tee uudelleen"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Muistikirjat"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "Lähetä tämä muistilappu sähköpostilla"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
@@ -407,10 +465,6 @@ msgstr "Palauta"
 msgid "Permanently Delete"
 msgstr "Poista pysyvästi"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Asetukset"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Käytä järjestelmän fonttia"
@@ -424,8 +478,8 @@ msgid "Default Color"
 msgstr "Oletusväri"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Muistilapun muokkaus"
+msgid "Note Appearance"
+msgstr "Muistilapun ulkoasu"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -435,47 +489,47 @@ msgstr "Valitse tallennustilan oletussijainti:"
 msgid "Primary Book"
 msgstr "Ensisijainen kirja"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Näytä sovelluksen versio"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Luo uusi muistilappu"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[TIEDOSTO…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Tee muistilappuja ja vie niitä muihin sovelluksiin."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Argumenttien jäsentäminen epäonnistui"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "Gnomen muistilaput"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Sovelluksen rekisteröiminen epäonnistui"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Yksinkertainen muistio Gnomelle"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "Juhani Numminen, 2014\n"
@@ -505,39 +559,39 @@ msgstr "Lataa lisää"
 msgid "Loading…"
 msgstr "Ladataan…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Napsauta kohteita valitaksesi ne"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valittu"
 msgstr[1] "%d valittu"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Tulokset haulle %s"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Uudet ja viimeisimmät"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Roskakori"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:498
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Viimeksi päivitetty</b> %s"
+msgid "Last updated %s"
+msgstr "Viimeksi päivitetty %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -567,9 +621,22 @@ msgstr "Tänä vuonna"
 msgid "Local"
 msgstr "Paikallinen"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Paikallinen tallennustila"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Muistilappujen avulla on mahdollista tehdä muistiinpanoja myöhempää "
+#~ "käyttöä varten."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Se mahdollistaa ownCloudin käytön tallennussijaintina ja verkossa "
+#~ "toimivana editorina."
+
+#~ msgid "Note Edition"
+#~ msgstr "Muistilapun muokkaus"
 
 #~ msgid "Cancel"
 #~ msgstr "Peru"

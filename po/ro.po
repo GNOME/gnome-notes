@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-18 07:02+0000\n"
-"PO-Revision-Date: 2018-07-18 16:48+0300\n"
-"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
-"com>\n"
+"POT-Creation-Date: 2018-08-13 12:01+0000\n"
+"PO-Revision-Date: 2018-08-17 17:32+0200\n"
+"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.9\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
@@ -58,7 +57,7 @@ msgid "List view"
 msgstr "Vizualizare listă"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:510 src/bjb-window-base.c:17
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notițe"
 
@@ -153,6 +152,50 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Există trei dimensiuni de text disponibile: mic, mediu (implicit) și mare."
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "_Importă notițe"
+
+#: data/resources/app-menu.ui:9
+msgid "_View Trash"
+msgstr "_Vezi coșul de gunoi"
+
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "Dimensiuni de _text"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "M_are"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Mediu"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "Mi_c"
+
+#: data/resources/app-menu.ui:35
+msgid "_Preferences"
+msgstr "_Preferințe"
+
+#: data/resources/app-menu.ui:41
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: data/resources/app-menu.ui:45
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtături de _tastatură"
+
+#: data/resources/app-menu.ui:49
+msgid "_About"
+msgstr "_Despre"
+
+#: data/resources/app-menu.ui:53
+msgid "_Quit"
+msgstr "_Ieșire"
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -359,22 +402,6 @@ msgstr "Mai multe opțiuni…"
 msgid "View Trash"
 msgstr "Vezi coșul de gunoi"
 
-#: data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Dimensiuni de _text"
-
-#: data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "M_are"
-
-#: data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Mediu"
-
-#: data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "Mi_c"
-
 #: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferințe"
@@ -468,43 +495,43 @@ msgstr "Carte primară"
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: src/bjb-application.c:334
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Arată versiunea aplicației"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Creează o notiță nouă"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[FIȘIER…]"
 
-#: src/bjb-application.c:346
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Luați notițe și exportați-le oriunde."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:357
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Nu au putut fi parsate argumentele"
 
-#: src/bjb-application.c:365
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "Notițe GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Nu s-a putut înregistra aplicația"
 
-#: src/bjb-application.c:511
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Carnețel simplu pentru GNOME"
 
-#: src/bjb-application.c:517
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "Vasile,\n"
@@ -609,15 +636,6 @@ msgstr "Stocarea locală"
 #~ msgid "It allows to use ownCloud as a storage location and online editor."
 #~ msgstr ""
 #~ "Acesta permite utilizarea ownCloud ca loc de depozitare și editor online."
-
-#~ msgid "_Import Notes"
-#~ msgstr "_Importă notițe"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Preferințe"
-
-#~ msgid "_Quit"
-#~ msgstr "_Ieșire"
 
 #~ msgid "Note Edition"
 #~ msgstr "Editare notiță"

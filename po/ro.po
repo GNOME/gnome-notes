@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-08-13 12:01+0000\n"
-"PO-Revision-Date: 2018-08-17 17:32+0200\n"
+"POT-Creation-Date: 2018-08-19 15:19+0000\n"
+"PO-Revision-Date: 2018-08-19 17:21+0200\n"
 "Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
@@ -20,15 +20,17 @@ msgstr ""
 "X-Generator: Poedit 2.1.1\n"
 "X-Project-Style: gnome\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijben"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:510 src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "Notițe"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Luați notițe rapid"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "Note pentru GNOME"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
@@ -36,7 +38,7 @@ msgstr ""
 "O metodă rapidă și ușoară de a crea notițe cu formă liberă sau de a însemna "
 "liste simple. Stocați cât de multe notițe doriți și partajați-le prin email."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
@@ -44,158 +46,109 @@ msgstr ""
 "Puteți stoca notițele local pe calculator sau le puteți sincroniza cu "
 "servicii online precum ownCloud."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
 msgstr "Vizualizare de editare"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
 msgstr "Vizualizare de selectare"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
 msgstr "Vizualizare listă"
 
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:517 src/bjb-window-base.c:17
-msgid "Notes"
-msgstr "Notițe"
-
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr ""
 "notes;reminder;notebook;sticky notes;notițe;memento;carnețel;notițe "
 "lipicioase;postit;post-it;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Publică notițe, etichetează fișiere!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Carnețel de notițe"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:10
+msgid "org.gnome.Notes"
+msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Font personalizat"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Numele fontului stabilit aici va fi folosit la afișarea notițelor."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Dacă doriți să utilizați fontul monospațiat al sistemului"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Culoarea notițelor noi."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Numele de culoare stabilită aici va fi folosit atunci când creați notițe noi."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Furnizor de notițe primar folosit pentru notițe noi."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Carnețelul principal este locul în care sunt create noi notițe."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Fereastră maximizată"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Starea fereastrei maximizată."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Dimensiunea ferestrei"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Dimensiunea ferestrei (lățime și înălțime)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Poziție fereastră"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Poziție fereastră (x și y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "How to show note items"
 msgstr "Cum să se arate notițele"
 
-#: data/org.gnome.bijiben.gschema.xml:44
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Dacă să se arate notițe în modul de vizualizare iconițe sau listă."
 
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Dimensiunea textului utilizat de editorul de notițe."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:49
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Există trei dimensiuni de text disponibile: mic, mediu (implicit) și mare."
-
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Importă notițe"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Vezi coșul de gunoi"
-
-#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Dimensiuni de _text"
-
-#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "M_are"
-
-#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Mediu"
-
-#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "Mi_c"
-
-#: data/resources/app-menu.ui:35
-msgid "_Preferences"
-msgstr "_Preferințe"
-
-#: data/resources/app-menu.ui:41
-msgid "_Help"
-msgstr "_Ajutor"
-
-#: data/resources/app-menu.ui:45
-msgid "_Keyboard Shortcuts"
-msgstr "Scurtături de _tastatură"
-
-#: data/resources/app-menu.ui:49
-msgid "_About"
-msgstr "_Despre"
-
-#: data/resources/app-menu.ui:53
-msgid "_Quit"
-msgstr "_Ieșire"
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -402,6 +355,22 @@ msgstr "Mai multe opțiuni…"
 msgid "View Trash"
 msgstr "Vezi coșul de gunoi"
 
+#: data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "Dimensiuni de _text"
+
+#: data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "M_are"
+
+#: data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Mediu"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "Mi_c"
+
 #: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferințe"
@@ -495,43 +464,43 @@ msgstr "Carte primară"
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: src/bjb-application.c:341
+#: src/bjb-application.c:334
 msgid "Show the application’s version"
 msgstr "Arată versiunea aplicației"
 
-#: src/bjb-application.c:343
+#: src/bjb-application.c:336
 msgid "Create a new note"
 msgstr "Creează o notiță nouă"
 
-#: src/bjb-application.c:345
+#: src/bjb-application.c:338
 msgid "[FILE…]"
 msgstr "[FIȘIER…]"
 
-#: src/bjb-application.c:353
+#: src/bjb-application.c:346
 msgid "Take notes and export them everywhere."
 msgstr "Luați notițe și exportați-le oriunde."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:364
+#: src/bjb-application.c:357
 msgid "Could not parse arguments"
 msgstr "Nu au putut fi parsate argumentele"
 
-#: src/bjb-application.c:372
+#: src/bjb-application.c:365
 msgid "GNOME Notes"
 msgstr "Notițe GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:384
+#: src/bjb-application.c:377
 msgid "Could not register the application"
 msgstr "Nu s-a putut înregistra aplicația"
 
-#: src/bjb-application.c:518
+#: src/bjb-application.c:511
 msgid "Simple notebook for GNOME"
 msgstr "Carnețel simplu pentru GNOME"
 
-#: src/bjb-application.c:524
+#: src/bjb-application.c:517
 msgid "translator-credits"
 msgstr ""
 "Vasile,\n"
@@ -627,6 +596,33 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Stocarea locală"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Luați notițe rapid"
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Importă notițe"
+
+#~ msgid "_View Trash"
+#~ msgstr "_Vezi coșul de gunoi"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferințe"
+
+#~ msgid "_Help"
+#~ msgstr "_Ajutor"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "Scurtături de _tastatură"
+
+#~ msgid "_About"
+#~ msgstr "_Despre"
+
+#~ msgid "_Quit"
+#~ msgstr "_Ieșire"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""

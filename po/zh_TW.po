@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-31 00:35+0000\n"
-"PO-Revision-Date: 2018-08-12 16:32+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"POT-Creation-Date: 2018-08-13 12:01+0000\n"
+"PO-Revision-Date: 2018-08-21 23:57+0800\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -151,7 +151,7 @@ msgstr "匯入筆記(_I)"
 
 #: data/resources/app-menu.ui:9
 msgid "_View Trash"
-msgstr "檢視回收筒(_V)"
+msgstr "檢視垃圾桶(_V)"
 
 #: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
 msgid "_Text Sizes"
@@ -315,7 +315,7 @@ msgstr "再次動作"
 #: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
-msgstr "將筆記移至回收筒"
+msgstr "將筆記移至垃圾桶"
 
 #: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
@@ -392,7 +392,7 @@ msgstr "更多選項…"
 
 #: data/resources/main-toolbar.ui:226
 msgid "View Trash"
-msgstr "檢視回收筒"
+msgstr "檢視垃圾桶"
 
 #: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
 msgid "Preferences"
@@ -433,7 +433,7 @@ msgstr "寄出這份筆記"
 
 #: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
-msgstr "移至回收筒"
+msgstr "移至垃圾桶"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
@@ -572,7 +572,7 @@ msgstr "新增與最近使用"
 
 #: src/bjb-main-toolbar.c:434
 msgid "Trash"
-msgstr "回收筒"
+msgstr "垃圾桶"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language

@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-18 07:02+0000\n"
-"PO-Revision-Date: 2018-07-16 12:41-0300\n"
-"Last-Translator: Bruno Lopes da Silva <brunolopesbldsb@gmail.com>\n"
+"POT-Creation-Date: 2018-08-13 12:01+0000\n"
+"PO-Revision-Date: 2018-08-22 08:14-0200\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Virtaal 1.0.0-beta1\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
@@ -59,7 +59,7 @@ msgid "List view"
 msgstr "Visão de lista"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:510 src/bjb-window-base.c:17
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notas"
 
@@ -154,6 +154,54 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Há três tamanhos de texto disponíveis: “small”, “medium” (padrão) e “large”"
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "_Importar notas"
+
+#: data/resources/app-menu.ui:9
+#| msgid "View Trash"
+msgid "_View Trash"
+msgstr "_Visualizar lixeira"
+
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Tamanhos de texto"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Grande"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Médio"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Pequeno"
+
+#: data/resources/app-menu.ui:35
+msgid "_Preferences"
+msgstr "Pr_eferências"
+
+#: data/resources/app-menu.ui:41
+#| msgid "Help"
+msgid "_Help"
+msgstr "Aj_uda"
+
+#: data/resources/app-menu.ui:45
+#| msgid "Keyboard Shortcuts"
+msgid "_Keyboard Shortcuts"
+msgstr "Atalhos de _teclado"
+
+#: data/resources/app-menu.ui:49
+#| msgid "About"
+msgid "_About"
+msgstr "So_bre"
+
+#: data/resources/app-menu.ui:53
+msgid "_Quit"
+msgstr "_Sair"
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -360,22 +408,6 @@ msgstr "Mais opções…"
 msgid "View Trash"
 msgstr "Visualizar lixeira"
 
-#: data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "_Tamanhos de texto"
-
-#: data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "_Grande"
-
-#: data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Médio"
-
-#: data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "_Pequeno"
-
 #: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferências"
@@ -469,43 +501,43 @@ msgstr "Livro primário"
 msgid "Untitled"
 msgstr "Sem título"
 
-#: src/bjb-application.c:334
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Mostra a versão do aplicativo"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Cria uma nova nota"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[ARQUIVO…]"
 
-#: src/bjb-application.c:346
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Tome notas e exporte-as para qualquer lugar."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:357
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Não foi possível interpretar os argumentos"
 
-#: src/bjb-application.c:365
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "Notas do GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Não foi possível registrar o aplicativo"
 
-#: src/bjb-application.c:511
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Um catálogo simples de notas para o GNOME"
 
-#: src/bjb-application.c:517
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "Rafael Fontenelle <rafaelff@gnome.org>, 2012-2014, 2017, 2018.\n"
@@ -611,15 +643,6 @@ msgstr "Armazenamento local"
 #~ msgstr ""
 #~ "Permite que seja usado ownCloud como um local de armazenamento e editor "
 #~ "on-line."
-
-#~ msgid "_Import Notes"
-#~ msgstr "_Importar notas"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Preferências"
-
-#~ msgid "_Quit"
-#~ msgstr "_Sair"
 
 #~ msgid "Note Edition"
 #~ msgstr "Edição da nota"

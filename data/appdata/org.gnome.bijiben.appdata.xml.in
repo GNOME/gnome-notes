@@ -39,6 +39,22 @@
   </screenshots>
 
   <releases>
+    <release date="2018-08-27" version="3.29.92">
+      <description>
+        <p>This release brings the following translations:</p>
+        <ul>
+          <li>en_GB (Bruce Cowan)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>zh_TW (Cheng-Chia Tseng)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-08-13" version="3.29.91">
       <description>
         <p>This release brings the following translations:</p>

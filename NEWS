@@ -1,3 +1,8 @@
+Overview of changes in 3.29.92.1
+================================
+
+* Fix submodule project link which was still pointing to git.gnome.org
+
 Overview of changes in 3.29.92
 ==============================
 

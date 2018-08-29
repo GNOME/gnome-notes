@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-05-11 18:26+0000\n"
-"PO-Revision-Date: 2018-05-12 12:31+0200\n"
+"POT-Creation-Date: 2018-08-06 16:13+0000\n"
+"PO-Revision-Date: 2018-08-29 12:34+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -18,154 +18,139 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Rychlé poznámky"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr ""
-"Aplikace Poznámky je editor pro vytváření jednoduchých zápisů, které se vám "
-"mohou později hodit."
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr "Umožňuje využívat ownCloud jako místo pro ukládání a on-line editor."
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
-msgid "Edit view"
-msgstr "Ukázka úprav"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
-msgid "Select view"
-msgstr "Ukázka výběru"
-
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
-msgid "List view"
-msgstr "Ukázka seznamu"
-
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-application.c:510 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Poznámky"
 
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "Poznámky pro GNOME"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"Rychlý a jednoduchý způsob, jak si zapisovat volně psané poznámky nebo "
+"krátké bodové myšlenky. Zapište si tolik poznámek, kolik chcete a sdílejte "
+"je přes e-mail."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"Své poznámky si můžete uchovávat samostatně na svém počítači, nebo je "
+"synchronizovat se službami on-line, jako je ownCloud."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "Ukázka úprav"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "Ukázka výběru"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "Ukázka seznamu"
+
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr ""
 "poznámky;tahák;blbníček;zapomnětníček;připomenutí;sešit;lepicí poznámky;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Vylepujte si poznámky, štítkujte soubory!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Poznámky"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:10
+msgid "org.gnome.Notes"
+msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Vlastní font"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Název fontu nastavený zde se bude používat jako font při zobrazování "
 "poznámek."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Zda používat systémový font s pevnou šířkou"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Barva nové poznámky"
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Název barvy nastavený zde se bude používat jako barva, když se vytvoří nová "
 "poznámka."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Hlavní sešit k dispozici pro nové poznámky."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Hlavní sešit je místem, kde jsou vytvářeny nové poznámky."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Okno maximalizováno"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Maximalizovaný stav okna."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Velikost okna"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Velikost okna (šířka a výška)."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Poloha okna"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Poloha okna (X a Y)."
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "Jak zobrazovat poznámky"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr ""
 "Zda zobrazovat položky představující poznámky jako ikonové zobrazení nebo "
 "seznamové zobrazení."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Import poznámek"
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Velikost textu používaná editorem poznámek."
 
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Zobrazit koš"
-
-#: data/resources/app-menu.ui:15
-msgid "_Preferences"
-msgstr "_Předvolby"
-
-#: data/resources/app-menu.ui:21
-msgid "_Help"
-msgstr "_Nápověda"
-
-#: data/resources/app-menu.ui:25
-msgid "_Keyboard Shortcuts"
-msgstr "_Klávesové zkratky"
-
-#: data/resources/app-menu.ui:29
-msgid "_About"
-msgstr "O _aplikaci"
-
-#: data/resources/app-menu.ui:33
-msgid "_Quit"
-msgstr "U_končit"
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "K dispozici jsou tři velikosti textu: malý, střední (výchozí) a velký."
 
 #: data/resources/editor-toolbar.ui:40
 msgid "Cut"
@@ -232,65 +217,70 @@ msgstr "Zavřít okno"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Přejít zpět"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Zobrazit nápovědu"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Klávesové zkratky"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Režim výběru"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Ukončit režim výběru"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Vybrat vše"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Režim úprav poznámky"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Tučné"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kurzíva"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Přeškrtnuté"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Zpět"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Znovu"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Hodit poznámku do koše"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Import poznámek"
 
@@ -356,31 +346,71 @@ msgid "Selection mode"
 msgstr "Režim výběru"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Otevřít nabídku"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Další volby…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Zobrazit koš"
+
+#: data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "Velikosti _textu"
+
+#: data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "Ve_lký"
+
+#: data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Střední"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Malý"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "Nápověda"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové zkratky"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "O aplikaci"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "Otevřít v novém okně"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "Zpět"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "Znovu"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Sešity"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "Poslat tuto poznámku e-mailem"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
@@ -408,10 +438,6 @@ msgstr "Obnovit"
 msgid "Permanently Delete"
 msgstr "Smazat trvale"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Předvolby"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Používat systémový font"
@@ -436,47 +462,47 @@ msgstr "Vyberte výchozí místo pro ukládání:"
 msgid "Primary Book"
 msgstr "Hlavní sešit"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:387
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Bez názvu"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:334
 msgid "Show the application’s version"
 msgstr "Zobrazit verzi aplikace"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:336
 msgid "Create a new note"
 msgstr "Vytvořit novou poznámku"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:338
 msgid "[FILE…]"
 msgstr "[SOUBOR…]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:346
 msgid "Take notes and export them everywhere."
 msgstr "Pořídit poznámku a exportovat ji na všechna místa."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:357
 msgid "Could not parse arguments"
 msgstr "Nelze zpracovat argumenty"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:365
 msgid "GNOME Notes"
 msgstr "Poznámky GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:377
 msgid "Could not register the application"
 msgstr "Nelze zaregistrovat aplikaci"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:511
 msgid "Simple notebook for GNOME"
 msgstr "Jednoduchý poznámkový sešit pro GNOME"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:517
 msgid "translator-credits"
 msgstr "Marek Černocký, <marek@manet.cz>"
 
@@ -504,11 +530,11 @@ msgstr "Načíst další"
 msgid "Loading…"
 msgstr "Načítá se…"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Klikáním na položky je označíte"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -516,16 +542,16 @@ msgstr[0] "%d vybrána"
 msgstr[1] "%d vybrány"
 msgstr[2] "%d vybráno"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Výsledky pro %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: src/bjb-main-toolbar.c:364
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Koš"
 
@@ -534,7 +560,7 @@ msgstr "Koš"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:427
+#: src/bjb-main-toolbar.c:498
 #, c-format
 msgid "Last updated %s"
 msgstr "Naposledy aktualizováno %s"
@@ -570,3 +596,27 @@ msgstr "Místní"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Místní úložiště"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Rychlé poznámky"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Aplikace Poznámky je editor pro vytváření jednoduchých zápisů, které se "
+#~ "vám mohou později hodit."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Umožňuje využívat ownCloud jako místo pro ukládání a on-line editor."
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Import poznámek"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Předvolby"
+
+#~ msgid "_Quit"
+#~ msgstr "U_končit"

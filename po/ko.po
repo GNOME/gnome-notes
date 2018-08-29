@@ -5,17 +5,17 @@
 #
 # Changwoo Ryu <cwryu@debian.org>, 2013-2015.
 # Hongmin Yang <hongminy@naver.com>, 2018.
+# Seong-ho Cho <shcho@gnome.org>, 2018.
 #
 # - 이 프로그램의 이름인 Bijiben는 "비지벤"이라고 음역.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-02-23 02:46+0000\n"
-"PO-Revision-Date: 2018-02-24 16:51+0900\n"
-"Last-Translator: Hongmin Yang <hongminy@naver.com>\n"
+"Project-Id-Version: gnome-notes gnome-3-30\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-08-29 13:30+0900\n"
+"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -24,24 +24,44 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: data/org.gnome.bijiben.appdata.xml.in:6
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
 msgstr "비지벤"
 
-#: data/org.gnome.bijiben.appdata.xml.in:7
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
 msgid "Quickly jot notes"
 msgstr "빠르게 적을 수 있는 메모장"
 
-#: data/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr "메모는 나중에 확인할 수 있도록 간단한 목록을 기록하는 편집기입니다."
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"메모를 자유롭게 작성하고 간단한 목록을 적는 간편하고 쉬운 수단입니다. 원하"
+"는 만큼 메모를 저장하고 전자메일로 공유하세요."
 
-#: data/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr "저장 위치 및 온라인 편집기로 ownCloud를 사용할 수 있습니다."
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"컴퓨터에 메모를 저장하거나 오운클라우드 같은 온라인 서비스에 동기화할 수 있"
+"습니다."
 
-#: data/org.gnome.bijiben.desktop.in.in:3 src/bjb-app-menu.c:45
-#: src/bjb-window-base.c:18
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+msgid "Edit view"
+msgstr "편집 보기"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+msgid "Select view"
+msgstr "선택 보기"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+msgid "List view"
+msgstr "목록 보기"
+
+#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "메모"
 
@@ -63,66 +83,75 @@ msgstr "메모장"
 msgid "org.gnome.bijiben"
 msgstr "org.gnome.bijiben"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "사용자 설정 글꼴"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "여기서 설정한 글꼴 이름은 메모를 표시할 글꼴로 사용합니다."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "시스템 고정폭 글꼴을 사용할지 여부"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "새 메모 색."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "여기서 설정한 색 이름은 새 메모를 만들 때 색으로 사용합니다."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "새 메모에 사용할 주요 메모책."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "주요 메모책은 새 메모를 만드는 위치를 말합니다."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "창 최대화"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "창 최대화 상태."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "창 크기"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "창 크기(너비 및 높이)."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "창 위치"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "창 위치(가로 및 세로)."
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "메모 항목 표시 방법"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "메모한 항목을 아이콘 또는 목록 형태로 보기."
+
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "메모 편집기에서 사용하는 텍스트 크기입니다."
+
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "텍스트 크기에는 작게, 중간(기본), 크게 세가지가 있습니다."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -132,23 +161,39 @@ msgstr "메모 가져오기(_I)"
 msgid "_View Trash"
 msgstr "휴지통 보기(_V)"
 
-#: data/resources/app-menu.ui:15
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "텍스트 크기(_T)"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "크게(_L)"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "중간(_M)"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "작게(_S)"
+
+#: data/resources/app-menu.ui:35
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: data/resources/app-menu.ui:21
+#: data/resources/app-menu.ui:41
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: data/resources/app-menu.ui:25
+#: data/resources/app-menu.ui:45
 msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기(_K)"
 
-#: data/resources/app-menu.ui:29
+#: data/resources/app-menu.ui:49
 msgid "_About"
 msgstr "정보(_A)"
 
-#: data/resources/app-menu.ui:33
+#: data/resources/app-menu.ui:53
 msgid "_Quit"
 msgstr "끝내기(_Q)"
 
@@ -217,66 +262,71 @@ msgstr "창 닫기"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "뒤로 가기"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "도움말 보기"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "바로 가기"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "선택 모드"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "선택 모드 끝내기"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "모두 선택"
 
 # 글꼴, 색 설정 페이지
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "메모 편집 모드"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "굵게"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "기울임"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "취소선"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "실행 취소"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "다시 실행"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "휴지통으로 옮기기"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "메모 가져오기"
 
@@ -342,31 +392,55 @@ msgid "Selection mode"
 msgstr "선택 모드"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "메뉴 열기"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "다른 옵션…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "휴지통 보기"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "기본 설정"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "도움말"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "키보드 바로 가기"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "정보"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "새 창에서 열기"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "실행 취소"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "다시 실행"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "메모책"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "이 메모 메일로 보내기"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "휴지통으로 옮기기"
 
@@ -394,10 +468,6 @@ msgstr "복구"
 msgid "Permanently Delete"
 msgstr "완전히 삭제"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "기본 설정"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "시스템 글꼴 사용"
@@ -410,10 +480,9 @@ msgstr "메모 글꼴"
 msgid "Default Color"
 msgstr "기본 색"
 
-# 글꼴, 색 설정 페이지
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "메모 형식"
+msgid "Note Appearance"
+msgstr "메모 모양새"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -424,47 +493,47 @@ msgstr "기본 저장 경로 선택:"
 msgid "Primary Book"
 msgstr "메모 저장"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "제목 없음"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "프로그램의 버전을 표시합니다"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "새 메모 만들기"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[파일...]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "메모를 작성하고 내보냅니다."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "명령행 인자를 분석할 수 없습니다"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "그놈 메모"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "프로그램을 등록할 수 없습니다"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "그놈 데스크톱의 간단한 메모지"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr "류창우 <cwryu@debian.org>"
 
@@ -482,7 +551,7 @@ msgstr "앗"
 
 #: src/bjb-empty-results-box.c:91
 msgid "Please install “Tracker” then restart the application."
-msgstr "'트래커'를 설치하고 프로그램을 다시 시작하십시오."
+msgstr "“트래커”를 설치하고 프로그램을 다시 시작하십시오."
 
 #: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
@@ -492,38 +561,38 @@ msgstr "더 읽어들이기"
 msgid "Loading…"
 msgstr "읽어들이는 중…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "항목을 눌러 선택하십시오"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d개 선택"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "%s에 대한 결과"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "새 항목 및 최근 항목"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "휴지통"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:498
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>최근 업데이트</b> %s"
+msgid "Last updated %s"
+msgstr "최근 업데이트한 %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -553,6 +622,17 @@ msgstr "이번해"
 msgid "Local"
 msgstr "로컬"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "로컬 저장소"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "메모는 나중에 확인할 수 있도록 간단한 목록을 기록하는 편집기입니다."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr "저장 위치 및 온라인 편집기로 ownCloud를 사용할 수 있습니다."
+
+# 글꼴, 색 설정 페이지
+#~ msgid "Note Edition"
+#~ msgstr "메모 형식"

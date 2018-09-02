@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-04-04 15:08+0000\n"
-"PO-Revision-Date: 2018-04-05 11:44+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-09-02 15:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -18,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:6
 msgid "Bijiben"
@@ -29,15 +28,20 @@ msgid "Quickly jot notes"
 msgstr "Brzo pribilježiti bilješke"
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:9
-msgid "Notes is an editor allowing to make simple lists for later use."
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
 msgstr ""
-"Bilješke je uređivač koji vam omogućuje stvaranje jednostavnih popisa za "
-"kasnije korištenje."
+"Brz i lagan način za stvaranje raznih bilješka ili jednostavnih popisa. "
+"Spremite po želji mnogo bilješka i dijelite ih pomoću e-pošte."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:12
-msgid "It allows to use ownCloud as a storage location and online editor."
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
 msgstr ""
-"Omogućuje vam korištenje ownClouda kao lokacije pohrane i mrežni uređivač."
+"Možete spremiti svoje bilješke lokalno na svojem računalu ili ih uskladiti s "
+"mrežnim uslugama poput ownClouda."
 
 #: data/appdata/org.gnome.bijiben.appdata.xml.in:28
 msgid "Edit view"
@@ -52,7 +56,7 @@ msgid "List view"
 msgstr "Zbijeni prikaz"
 
 #: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-app-menu.c:45 src/bjb-window-base.c:18
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Bilješke"
 
@@ -74,71 +78,80 @@ msgstr "Zabilježivač"
 msgid "org.gnome.bijiben"
 msgstr "org.gnome.bijiben"
 
-#: data/org.gnome.bijiben.gschema.xml:5
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Prilagođena slova"
 
-#: data/org.gnome.bijiben.gschema.xml:6
+#: data/org.gnome.bijiben.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Naziv slova postavljenih ovdje koristiti će se kao slova pri prikazu "
 "bilješke."
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Treba li koristiti monospace slova sustava"
 
-#: data/org.gnome.bijiben.gschema.xml:14
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Boja nove bilješke."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.bijiben.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Naziv boje postavljen ovdje će se koristiti kao boja pri stvaranju nove "
 "bilješke."
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.bijiben.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Glavni pružatelj usluge za nove bilješke."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.bijiben.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Glava bilježnica je mjesto gdje su nove bilješke stvorene."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Prozor uvećan"
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Stanje uvećanog prozora."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Veličina prozora"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Veličina prozora (širina i visina)."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Položaj prozora"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Položaj prozora (x-os i y-os)"
 
-#: data/org.gnome.bijiben.gschema.xml:38
+#: data/org.gnome.bijiben.gschema.xml:43
 msgid "How to show note items"
 msgstr "Kako prikazati stavku bilješke"
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.bijiben.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr ""
 "Treba li prikazati stavku bilješke u pogledu ikona ili zbijenom pogledu."
+
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Veličina teksta koju koristi uređivač bilješka."
+
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "Dostupne su tri veličine teksta: mala, srednja (zadana) i velika."
 
 #: data/resources/app-menu.ui:5
 msgid "_Import Notes"
@@ -148,23 +161,39 @@ msgstr "_Uvezi bilješke"
 msgid "_View Trash"
 msgstr "_Pogledaj smeće"
 
-#: data/resources/app-menu.ui:15
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Veličina teksta"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Mala"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Srednja"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "_Velika"
+
+#: data/resources/app-menu.ui:35
 msgid "_Preferences"
 msgstr "_Osobitosti"
 
-#: data/resources/app-menu.ui:21
+#: data/resources/app-menu.ui:41
 msgid "_Help"
 msgstr "_Priručnik"
 
-#: data/resources/app-menu.ui:25
+#: data/resources/app-menu.ui:45
 msgid "_Keyboard Shortcuts"
 msgstr "_Prečaci tipkovnice"
 
-#: data/resources/app-menu.ui:29
+#: data/resources/app-menu.ui:49
 msgid "_About"
 msgstr "_O programu"
 
-#: data/resources/app-menu.ui:33
+#: data/resources/app-menu.ui:53
 msgid "_Quit"
 msgstr "_Zatvori"
 
@@ -233,65 +262,70 @@ msgstr "Zatvori prozor"
 
 #: data/resources/help-overlay.ui:27
 msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Idi natrag"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Prikaži priručnik"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:41
 msgctxt "shortcut window"
 msgid "Shortcuts"
 msgstr "Prečaci tipkovnice"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Način odabira"
 
-#: data/resources/help-overlay.ui:47
+#: data/resources/help-overlay.ui:54
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Poništi način odabira"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:61
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Odaberi sve"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Način uređivanja bilješke"
 
-#: data/resources/help-overlay.ui:67
+#: data/resources/help-overlay.ui:74
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Podebljano"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:81
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Ukošeno"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:88
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Precrtano"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:95
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Poništi"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:102
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Ponovi"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:109
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Premjesti bilješku u smeće"
 
-#: data/resources/import-dialog.ui:5
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "Uvezi bilješke"
 
@@ -357,31 +391,55 @@ msgid "Selection mode"
 msgstr "Način odabira"
 
 #: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Otvori izbornik"
+
+#: data/resources/main-toolbar.ui:191
 msgid "More options…"
 msgstr "Više mogućnosti…"
 
-#: data/resources/main-toolbar.ui:194
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Pogledaj smeće"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Osobitosti"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "Priručnik"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Prečaci tipkovnice"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "O programu"
+
+#: data/resources/main-toolbar.ui:329
 msgid "Open in New Window"
 msgstr "Otvori u novom prozoru"
 
-#: data/resources/main-toolbar.ui:208
+#: data/resources/main-toolbar.ui:343
 msgid "Undo"
 msgstr "Poništi"
 
-#: data/resources/main-toolbar.ui:216
+#: data/resources/main-toolbar.ui:351
 msgid "Redo"
 msgstr "Ponovi"
 
-#: data/resources/main-toolbar.ui:230 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Bilježnice"
 
-#: data/resources/main-toolbar.ui:238
+#: data/resources/main-toolbar.ui:373
 msgid "Email this Note"
 msgstr "Pošalji ovu bilješku e-poštom"
 
-#: data/resources/main-toolbar.ui:246 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Premjesti u smeće"
 
@@ -409,10 +467,6 @@ msgstr "Vrati"
 msgid "Permanently Delete"
 msgstr "Trajno obriši"
 
-#: data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Osobitosti"
-
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
 msgstr "Koristi slova sustava"
@@ -426,8 +480,8 @@ msgid "Default Color"
 msgstr "Zadana slova"
 
 #: data/resources/settings-dialog.ui:113
-msgid "Note Edition"
-msgstr "Bilješka"
+msgid "Note Appearance"
+msgstr "Pojavljivanje bilješke"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
@@ -437,47 +491,47 @@ msgstr "Odaberi zadanu lokaciju pohrane:"
 msgid "Primary Book"
 msgstr "Glavna bilježnica"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:379
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Neimenovano"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:341
 msgid "Show the application’s version"
 msgstr "Prikaži inačicu aplikacije"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Stvori novu bilješku"
 
-#: src/bjb-application.c:340
+#: src/bjb-application.c:345
 msgid "[FILE…]"
 msgstr "[DATOTEKA...]"
 
-#: src/bjb-application.c:348
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Stvorite bilješku i izvezite ju bilo gdje."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:359
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Nemoguća obrada argumenata"
 
-#: src/bjb-application.c:367
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "GNOME Bilješke"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:379
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Nemoguća registracija aplikacije"
 
-#: src/bjb-app-menu.c:46
+#: src/bjb-application.c:518
 msgid "Simple notebook for GNOME"
 msgstr "Jednostavna bilježnica za GNOME"
 
-#: src/bjb-app-menu.c:52
+#: src/bjb-application.c:524
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -507,11 +561,11 @@ msgstr "Učitaj više"
 msgid "Loading…"
 msgstr "Učitavanje…"
 
-#: src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Kliknite na stavku za odabir"
 
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -519,28 +573,28 @@ msgstr[0] "%d odabrana"
 msgstr[1] "%d odabrane"
 msgstr[2] "%d odabrano"
 
-#: src/bjb-main-toolbar.c:272
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Rezultati za %s"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Novo i nedavno"
 
-#: src/bjb-main-toolbar.c:356
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Smeće"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: src/bjb-note-view.c:189
+#: src/bjb-main-toolbar.c:498
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Posljednja nadopuna</b> %s"
+msgid "Last updated %s"
+msgstr "Posljednja nadopuna %s"
 
 #: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
@@ -570,6 +624,18 @@ msgstr "Ove godine"
 msgid "Local"
 msgstr "Lokalno"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokalna pohrana"
+
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Bilješke je uređivač koji vam omogućuje stvaranje jednostavnih popisa za "
+#~ "kasnije korištenje."
+
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Omogućuje vam korištenje ownClouda kao lokacije pohrane i mrežni uređivač."
+
+#~ msgid "Note Edition"
+#~ msgstr "Bilješka"

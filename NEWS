@@ -1,3 +1,43 @@
+Overview of changes in 3.30.0
+=============================
+
+* Added a "Text Size" option in primary menu to let users scale note view
+* Added OARS metadata (Nick Richards)
+* Added online account user and domain information to settings dialog (Julius Härtl)
+* Changed code to use g_auto* (Mohammed Sadiq)
+* Droped obsolete configure script (Jeremy Bicha)
+* Fixed memory leak and circular references in notes and providers
+* Fixed memory leak in Settings
+* Fixed typo in appdata release section
+* Fixed UI freeze in text search (Mohammed Sadiq)
+* Improved overall note styling
+* Improved own/nextCloud notes to save async
+* Moved "Last updated" info to window menu
+
+Translations
+* be (Yuras Shumovich)
+* cs (Marek Černocký)
+* de (Mario Blättermann / Tim Sabsch / Vinzenz Vietzke)
+* el (Efstathios Iosifidis)
+* en_GB (Bruce Cowan)
+* es (Daniel Mustieles)
+* fi (Jiri Grönroos)
+* fr (Alexandre Franke)
+* fur (Fabio Tomat)
+* hu (Balázs Meskó)
+* id (Kukuh Syafaat)
+* kk (Baurzhan Muftakhidinov)
+* lt (Aurimas Černius)
+* nl (Hannie Dumoleyn)
+* pl (Piotr Drąg)
+* pt_BR (Bruno Lopes da Silva / Rafael Fontenelle)
+* ro (Daniel Șerbănescu)
+* sl (Matej Urbančič)
+* sv (Anders Jonsson)
+* tr (Emin Tufan Çetin / Muhammet Kara)
+* zh_CN (Dz Chen)
+* zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)
+
 Overview of changes in 3.29.92.1
 ================================
 

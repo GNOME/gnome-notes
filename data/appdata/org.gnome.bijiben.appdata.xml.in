@@ -39,6 +39,51 @@
   </screenshots>
 
   <releases>
+    <release date="2018-09-03" version="3.30.0">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added a "Text Size" option in primary menu to let users scale note view</li>
+          <li>Added OARS metadata (Nick Richards)</li>
+          <li>Added online account user and domain information to settings dialog (Julius Härtl)</li>
+          <li>Changed code to use g_auto* (Mohammed Sadiq)</li>
+          <li>Droped obsolete configure script (Jeremy Bicha)</li>
+          <li>Fixed memory leak and circular references in notes and providers</li>
+          <li>Fixed memory leak in Settings</li>
+          <li>Fixed typo in appdata release section</li>
+          <li>Fixed UI freeze in text search (Mohammed Sadiq)</li>
+          <li>Improved overall note styling</li>
+          <li>Improved own/nextCloud notes to save async</li>
+          <li>Moved "Last updated" info to window menu</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>be (Yuras Shumovich)</li>
+          <li>cs (Marek Černocký)</li>
+          <li>de (Mario Blättermann / Tim Sabsch / Vinzenz Vietzke)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>en_GB (Bruce Cowan)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>fr (Alexandre Franke)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>hu (Balázs Meskó)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>nl (Hannie Dumoleyn)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>pt_BR (Bruno Lopes da Silva / Rafael Fontenelle)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>tr (Emin Tufan Çetin / Muhammet Kara)</li>
+          <li>zh_CN (Dz Chen)</li>
+          <li>zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-08-27" version="3.29.92.1">
       <description>
         <p>This release brings the following fixes:</p>

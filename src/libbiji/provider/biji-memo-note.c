@@ -30,7 +30,7 @@ struct _BijiMemoNotePrivate
 };
 
 
-G_DEFINE_TYPE (BijiMemoNote, biji_memo_note, BIJI_TYPE_NOTE_OBJ);
+G_DEFINE_TYPE_WITH_PRIVATE (BijiMemoNote, biji_memo_note, BIJI_TYPE_NOTE_OBJ);
 
 
 /* Properties */
@@ -250,7 +250,7 @@ biji_memo_note_constructed (GObject *obj)
 static void
 biji_memo_note_init (BijiMemoNote *biji_memo_note)
 {
-  biji_memo_note->priv = G_TYPE_INSTANCE_GET_PRIVATE (biji_memo_note, BIJI_TYPE_MEMO_NOTE, BijiMemoNotePrivate);
+  biji_memo_note->priv = biji_memo_note_get_instance_private (biji_memo_note);
 
 }
 
@@ -423,8 +423,6 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
 
   item_class = BIJI_ITEM_CLASS (klass);
   note_class = BIJI_NOTE_OBJ_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (BijiMemoNotePrivate));
 
   object_class->finalize = biji_memo_note_finalize;
   object_class->constructed = biji_memo_note_constructed;

@@ -66,7 +66,7 @@ struct _BijiWebkitEditorPrivate
   EEditorSelection *sel;
 };
 
-G_DEFINE_TYPE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW);
+G_DEFINE_TYPE_WITH_PRIVATE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW);
 
 gboolean
 biji_webkit_editor_has_selection (BijiWebkitEditor *self)
@@ -281,7 +281,7 @@ biji_webkit_editor_set_text_size (BijiWebkitEditor *self,
 static void
 biji_webkit_editor_init (BijiWebkitEditor *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorPrivate);
+  self->priv = biji_webkit_editor_get_instance_private (self);
 }
 
 static void
@@ -658,8 +658,6 @@ biji_webkit_editor_class_init (BijiWebkitEditorClass *klass)
                                          g_cclosure_marshal_VOID__VOID,
                                          G_TYPE_NONE,
                                          0);
-
-  g_type_class_add_private (klass, sizeof (BijiWebkitEditorPrivate));
 }
 
 BijiWebkitEditor *

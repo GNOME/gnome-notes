@@ -31,7 +31,7 @@ struct BijiLocalNotePrivate_
 };
 
 
-G_DEFINE_TYPE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
+G_DEFINE_TYPE_WITH_PRIVATE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
 
 /* Iface */
 
@@ -127,7 +127,7 @@ biji_local_note_finalize (GObject *object)
 static void
 biji_local_note_init (BijiLocalNote *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_LOCAL_NOTE, BijiLocalNotePrivate);
+  self->priv = biji_local_note_get_instance_private (self);
   self->priv->html = NULL;
   self->priv->trashed = FALSE;
 }
@@ -339,8 +339,6 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
   note_class->can_format = note_yes;
   note_class->archive = local_note_archive;
   note_class->is_trashed = local_note_is_trashed;
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiLocalNotePrivate));
 }
 
 

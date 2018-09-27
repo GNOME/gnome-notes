@@ -55,7 +55,7 @@ struct BijiImportProviderPrivate_
 
 static void biji_import_provider_finalize (GObject *object);
 
-G_DEFINE_TYPE (BijiImportProvider, biji_import_provider, BIJI_TYPE_PROVIDER)
+G_DEFINE_TYPE_WITH_PRIVATE (BijiImportProvider, biji_import_provider, BIJI_TYPE_PROVIDER)
 
 
 #define ATTRIBUTES_FOR_NOTEBOOK "standard::content-type,standard::name"
@@ -334,9 +334,6 @@ biji_import_provider_class_init (BijiImportProviderClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, IMPORT_PROV_PROP, properties);
-
-
-  g_type_class_add_private ((gpointer)klass, sizeof (BijiImportProviderPrivate));
 }
 
 
@@ -350,7 +347,7 @@ biji_import_provider_finalize (GObject *object)
 static void
 biji_import_provider_init (BijiImportProvider *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, BIJI_TYPE_IMPORT_PROVIDER, BijiImportProviderPrivate);
+  self->priv = biji_import_provider_get_instance_private (self);
   self->priv->items = g_hash_table_new (g_str_hash, g_str_equal);
 }
 

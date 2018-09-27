@@ -26,16 +26,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define E_EDITOR_SELECTION_GET_PRIVATE(obj) \
-	(G_TYPE_INSTANCE_GET_PRIVATE \
-	((obj), E_TYPE_EDITOR_SELECTION, EEditorSelectionPrivate))
-
 struct _EEditorSelectionPrivate {
 	WebKitWebView *webview;
         WebKitEditorTypingAttributes attrs;
 };
 
-G_DEFINE_TYPE (
+G_DEFINE_TYPE_WITH_PRIVATE (
 	EEditorSelection,
 	e_editor_selection,
 	G_TYPE_OBJECT
@@ -180,8 +176,6 @@ e_editor_selection_class_init (EEditorSelectionClass *klass)
 {
 	GObjectClass *object_class;
 
-	g_type_class_add_private (klass, sizeof (EEditorSelectionPrivate));
-
 	object_class = G_OBJECT_CLASS (klass);
 	object_class->get_property = e_editor_selection_get_property;
 	object_class->set_property = e_editor_selection_set_property;
@@ -232,7 +226,7 @@ e_editor_selection_class_init (EEditorSelectionClass *klass)
 static void
 e_editor_selection_init (EEditorSelection *selection)
 {
-	selection->priv = E_EDITOR_SELECTION_GET_PRIVATE (selection);
+	selection->priv = e_editor_selection_get_instance_private (selection);
 }
 
 EEditorSelection *

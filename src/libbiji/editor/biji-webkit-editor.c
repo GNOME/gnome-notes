@@ -22,7 +22,7 @@
 #include "../biji-manager.h"
 #include "biji-webkit-editor.h"
 #include "biji-editor-selection.h"
-#include <JavaScriptCore/JavaScript.h>
+#include <jsc/jsc.h>
 
 #define INTENSITY(c) ((c->red) * 0.30 + (c->green) * 0.59 + (c->blue) * 0.11)
 #define ZOOM_LARGE  1.5f;
@@ -413,70 +413,22 @@ on_load_change (WebKitWebView  *web_view,
   }
 }
 
-static char *
-get_js_property_string (JSGlobalContextRef js_context,
-                        JSObjectRef js_object,
-                        const char *property_name)
-{
-  JSStringRef js_property_name;
-  JSValueRef js_property_value;
-  JSStringRef js_string_value;
-  size_t max_size;
-  char *property_value = NULL;
-
-  js_property_name = JSStringCreateWithUTF8CString (property_name);
-  js_property_value = JSObjectGetProperty (js_context, js_object, js_property_name, NULL);
-  JSStringRelease (js_property_name);
-
-  if (!js_property_value || !JSValueIsString (js_context, js_property_value))
-    return NULL;
-
-  js_string_value = JSValueToStringCopy (js_context, js_property_value, NULL);
-  if (!js_string_value)
-    return NULL;
-
-  max_size = JSStringGetMaximumUTF8CStringSize (js_string_value);
-  if (max_size)
-  {
-    property_value = g_malloc (max_size);
-    JSStringGetUTF8CString (js_string_value, property_value, max_size);
-  }
-  JSStringRelease (js_string_value);
-
-  return property_value;
-}
-
-static gboolean
-get_js_property_boolean (JSGlobalContextRef js_context,
-                         JSObjectRef js_object,
-                         const char *property_name)
-{
-  JSStringRef js_property_name;
-  JSValueRef js_property_value;
-
-  js_property_name = JSStringCreateWithUTF8CString (property_name);
-  js_property_value = JSObjectGetProperty (js_context, js_object, js_property_name, NULL);
-  JSStringRelease (js_property_name);
-
-  if (!js_property_value || !JSValueIsBoolean (js_context, js_property_value))
-    return FALSE;
-
-  return JSValueToBoolean (js_context, js_property_value);
-}
-
 static void
 biji_webkit_editor_handle_contents_update (BijiWebkitEditor *self,
-                                           JSGlobalContextRef js_context,
-                                           JSObjectRef js_object)
+                                           JSCValue         *js_value)
 {
+  g_autoptr (JSCValue) js_outer_html = NULL;
+  g_autoptr (JSCValue) js_inner_text = NULL;
   g_autofree gchar *html = NULL;
   g_autofree gchar *text = NULL;
 
-  html = get_js_property_string (js_context, js_object, "outerHTML");
+  js_outer_html = jsc_value_object_get_property (js_value, "outerHTML");
+  html = jsc_value_to_string (js_outer_html);
   if (!html)
     return;
 
-  text = get_js_property_string (js_context, js_object, "innerText");
+  js_inner_text = jsc_value_object_get_property (js_value, "innerText");
+  text = jsc_value_to_string (js_inner_text);
   if (!text)
     return;
 
@@ -485,17 +437,22 @@ biji_webkit_editor_handle_contents_update (BijiWebkitEditor *self,
 
 static void
 biji_webkit_editor_handle_selection_change (BijiWebkitEditor *self,
-                                            JSGlobalContextRef js_context,
-                                            JSObjectRef js_object)
+                                            JSCValue         *js_value)
 {
+  g_autoptr (JSCValue) js_has_text     = NULL;
+  g_autoptr (JSCValue) js_text         = NULL;
+  g_autoptr (JSCValue) js_block_format = NULL;
   g_autofree char *block_format_str = NULL;
 
-  self->priv->has_text = get_js_property_boolean (js_context, js_object, "hasText");
+  js_has_text = jsc_value_object_get_property (js_value, "hasText");
+  self->priv->has_text = jsc_value_to_boolean (js_has_text);
 
+  js_text = jsc_value_object_get_property (js_value, "text");
   g_free (self->priv->selected_text);
-  self->priv->selected_text = get_js_property_string (js_context, js_object, "text");
+  self->priv->selected_text = jsc_value_to_string (js_text);
 
-  block_format_str = get_js_property_string (js_context, js_object, "blockFormat");
+  js_block_format = jsc_value_object_get_property (js_value, "blockFormat");
+  block_format_str = jsc_value_to_string (js_block_format);
   if (g_strcmp0 (block_format_str, "UL") == 0)
     self->priv->block_format = BLOCK_FORMAT_UNORDERED_LIST;
   else if (g_strcmp0 (block_format_str, "OL") == 0)
@@ -509,33 +466,24 @@ on_script_message (WebKitUserContentManager *user_content,
                    WebKitJavascriptResult *message,
                    BijiWebkitEditor *self)
 {
-  JSGlobalContextRef js_context;
-  JSValueRef js_value;
-  JSObjectRef js_object;
+  JSCValue             *js_value        = NULL;
+  g_autoptr (JSCValue)  js_message_name = NULL;
   g_autofree char *message_name = NULL;
 
-  js_context = webkit_javascript_result_get_global_context (message);
-  js_value = webkit_javascript_result_get_value (message);
-  if (!js_value || !JSValueIsObject (js_context, js_value))
-  {
-    g_warning ("Invalid script message received");
-    return;
-  }
+  js_value = webkit_javascript_result_get_js_value (message);
+  g_assert (jsc_value_is_object (js_value));
 
-  js_object = JSValueToObject (js_context, js_value, NULL);
-  if (!js_object)
-    return;
-
-  message_name = get_js_property_string (js_context, js_object, "messageName");
+  js_message_name = jsc_value_object_get_property (js_value, "messageName");
+  message_name = jsc_value_to_string (js_message_name);
   if (g_strcmp0 (message_name, "ContentsUpdate") == 0)
     {
       if (self->priv->first_load)
         self->priv->first_load = FALSE;
       else
-        biji_webkit_editor_handle_contents_update (self, js_context, js_object);
+        biji_webkit_editor_handle_contents_update (self, js_value);
     }
   else if (g_strcmp0 (message_name, "SelectionChange") == 0)
-    biji_webkit_editor_handle_selection_change (self, js_context, js_object);
+    biji_webkit_editor_handle_selection_change (self, js_value);
 }
 
 static void

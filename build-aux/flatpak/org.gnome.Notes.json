@@ -25,8 +25,7 @@
         "--talk-name=org.gnome.evolution.dataserver.AddressBook9",
         "--talk-name=org.gnome.evolution.dataserver.Calendar7",
         "--talk-name=org.gnome.evolution.dataserver.Sources5",
-        "--talk-name=org.gnome.evolution.dataserver.Subprocess.Backend.*",
-        "--talk-name=org.freedesktop.Tracker1"
+        "--talk-name=org.gnome.evolution.dataserver.Subprocess.Backend.*"
     ],
     "build-options" : {
         "cflags" : "-O2 -g",

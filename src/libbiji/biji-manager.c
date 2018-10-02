@@ -218,10 +218,21 @@ biji_manager_initable_init (GInitable *initable,
   GError *local_error = NULL;
   GoaClient *client;
   ESourceRegistry *registry;
+  g_autofree char *filename = NULL;
+  g_autoptr (GFile) data_location = NULL;
+
+  filename = g_build_filename (g_get_user_cache_dir (),
+                               g_get_application_name (),
+                               "tracker",
+                               NULL);
+  data_location = g_file_new_for_path (filename);
 
   /* If tracker fails for some reason,
    * do not attempt anything */
-  self->connection = tracker_sparql_connection_get (NULL, &local_error);
+  self->connection = tracker_sparql_connection_local_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
+                                                          data_location,
+                                                          NULL, NULL, NULL,
+                                                          &local_error);
 
   if (local_error)
   {

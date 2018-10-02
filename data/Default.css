@@ -1,8 +1,7 @@
 body {
-  max-width:        500px;
+  max-width:        35.0em;
   margin:           0 auto;
   word-wrap:        break-word;
-  text-align:       justify;
   color:            black;
   background-size:  2.0em 2.0em;
   line-height:      1.5em;

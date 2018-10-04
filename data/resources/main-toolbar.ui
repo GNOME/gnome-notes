@@ -313,7 +313,7 @@
     <child>
       <object class="GtkMenuItem" id="about_item">
         <property name="visible">1</property>
-        <property name="label" translatable="yes">About</property>
+        <property name="label" translatable="yes">About Notes</property>
         <signal name="activate" handler="on_about_cb" swapped="yes"/>
       </object>
     </child>

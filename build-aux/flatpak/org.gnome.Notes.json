@@ -112,27 +112,27 @@
         },
         {
             "name" : "tracker",
+            "buildsystem" : "meson",
             "cleanup" : [
                 "/bin",
                 "/etc",
-                "/libexec"
+                "/lib/systemd",
+                "/libexec",
+                "/share/dbus-1/services"
             ],
             "config-opts" : [
-                "--disable-miner-apps",
-                "--disable-static",
-                "--disable-tracker-extract",
-                "--disable-tracker-needle",
-                "--disable-tracker-preferences",
-                "--disable-artwork",
-                "--disable-tracker-writeback",
-                "--disable-miner-user-guides",
-                "--with-bash-completion-dir=no"
+                "--default-library=shared",
+                "-Ddocs=false",
+                "-Dfts=false",
+                "-Dfunctional_tests=false",
+                "-Djournal=false",
+                "-Dbash-completion=no",
+                "-Dsystemd_user_services=no"
             ],
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git",
-                    "tag" : "2.0.3"
+                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git"
                 }
             ]
         },

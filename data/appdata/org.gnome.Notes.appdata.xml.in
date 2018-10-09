@@ -39,6 +39,14 @@
   </screenshots>
 
   <releases>
+    <release date="2018-10-08" version="3.31.1.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fix typo in appdata release section</li>
+        </ul>
+      </description>
+    </release>
     <release date="2018-10-08" version="3.31.1">
       <description>
         <p>This release brings the following new features and improvements:</p>
@@ -85,7 +93,6 @@
         <p>Thanks to all the contributors that worked on GNOME Notes!</p>
       </description>
     </release>
-  <releases>
     <release date="2018-07-20" version="3.29.4">
       <description>
         <p>This release brings the following new features and improvements:</p>

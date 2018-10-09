@@ -39,6 +39,53 @@
   </screenshots>
 
   <releases>
+    <release date="2018-10-08" version="3.31.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added flatpak CI in Gitlab (Felipe Borges / Isaque Galdino)</li>
+          <li>Added new GNOME Notes icon (Sam Hewitt)</li>
+          <li>Added online account user and domain information to settings dialog (Julius Härtl)</li>
+          <li>Changed application name from org.gnome.bijiben to org.gnome.Notes (Mathieu Bridon / Isaque Galdino)</li>
+          <li>Changed flatpak to use desktop portal for email sharing (Günther Wagner)</li>
+          <li>Changed Tracker setup to use a private store (Carlos Garnacho)</li>
+          <li>Increased notes view width and removed alignment (Isaque Galdino)</li>
+          <li>Updated javascript API to JSC (Isaque Galdino)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>be (Yuras Shumovich)</li>
+          <li>cs (Marek Cernocky)</li>
+          <li>da (Alan Mortensen)</li>
+          <li>de (Mario Blättermann / Tim Sabsch)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>en_GB (Bruce Cowan)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>fr (Alexandre Franke)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>hr (gogo)</li>
+          <li>hu (Balázs Meskó)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>ko (Seong-ho Cho)</li>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>lv (Rūdolfs Mazurs)</li>
+          <li>nl (Hannie Dumoleyn)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>ru (Stas Solovey)</li>
+          <li>sk (Peter Vágner)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>tr (Emin Tufan Çetin)</li>
+          <li>zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
+  <releases>
     <release date="2018-07-20" version="3.29.4">
       <description>
         <p>This release brings the following new features and improvements:</p>

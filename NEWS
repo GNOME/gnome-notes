@@ -1,3 +1,44 @@
+Overview of changes in 3.31.1
+=============================
+
+* Added flatpak CI in Gitlab (Felipe Borges / Isaque Galdino)
+* Added new GNOME Notes icon (Sam Hewitt)
+* Added online account user and domain information to settings dialog (Julius Härtl)
+* Changed application name from org.gnome.bijiben to org.gnome.Notes (Mathieu Bridon / Isaque Galdino)
+* Changed flatpak to use desktop portal for email sharing (Günther Wagner)
+* Changed Tracker setup to use a private store (Carlos Garnacho)
+* Increased notes view width and removed alignment (Isaque Galdino)
+* Updated javascript API to JSC (Isaque Galdino)
+
+Translations
+* be (Yuras Shumovich)
+* cs (Marek Cernocky)
+* da (Alan Mortensen)
+* de (Mario Blättermann / Tim Sabsch)
+* el (Efstathios Iosifidis)
+* en_GB (Bruce Cowan)
+* es (Daniel Mustieles)
+* fi (Jiri Grönroos)
+* fr (Alexandre Franke)
+* fur (Fabio Tomat)
+* hr (gogo)
+* hu (Balázs Meskó)
+* id (Kukuh Syafaat)
+* ko (Seong-ho Cho)
+* kk (Baurzhan Muftakhidinov)
+* lt (Aurimas Černius)
+* lv (Rūdolfs Mazurs)
+* nl (Hannie Dumoleyn)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* ro (Daniel Șerbănescu)
+* ru (Stas Solovey)
+* sk (Peter Vágner)
+* sl (Matej Urbančič)
+* sv (Anders Jonsson)
+* tr (Emin Tufan Çetin)
+* zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)
+
 Overview of changes in 3.29.4
 =============================
 

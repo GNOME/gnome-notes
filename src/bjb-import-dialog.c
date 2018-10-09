@@ -157,7 +157,7 @@ bjb_import_dialog_class_init (BjbImportDialogClass *klass)
 
   object_class->constructed = bjb_import_dialog_constructed;
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/import-dialog.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/import-dialog.ui");
   gtk_widget_class_bind_template_child (widget_class, BjbImportDialog, import_button);
   gtk_widget_class_bind_template_child (widget_class, BjbImportDialog, gnote_label);
   gtk_widget_class_bind_template_child (widget_class, BjbImportDialog, gnote_stack);

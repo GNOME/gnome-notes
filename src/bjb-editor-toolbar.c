@@ -282,7 +282,7 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
                                                         G_PARAM_STATIC_STRINGS));
 
   widget_class = GTK_WIDGET_CLASS (klass);
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/editor-toolbar.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/editor-toolbar.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bold_button);
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, italic_button);

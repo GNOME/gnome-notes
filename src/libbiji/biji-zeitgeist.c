@@ -39,7 +39,7 @@ biji_zeitgeist_init (void)
   ptr_arr = g_ptr_array_new_with_free_func (g_object_unref);
   g_ptr_array_add (ptr_arr, event);
 
-  ds = zeitgeist_data_source_new_full ("org.gnome.bijiben,dataprovider",
+  ds = zeitgeist_data_source_new_full ("org.gnome.Notes,dataprovider",
                                        "Notes dataprovider",
                                        "Logs events about accessed notes",
                                        ptr_arr),

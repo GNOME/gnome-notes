@@ -106,7 +106,7 @@ static void
 bjb_empty_results_box_init (BjbEmptyResultsBox *self)
 {
   gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
-                                    "/org/gnome/bijiben/icons");
+                                    "/org/gnome/Notes/icons");
 
   gtk_widget_init_template (GTK_WIDGET (self));
 }
@@ -116,7 +116,7 @@ bjb_empty_results_box_class_init (BjbEmptyResultsBoxClass *klass)
 {
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/empty-results-box.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/empty-results-box.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbEmptyResultsBox, primary_label);
   gtk_widget_class_bind_template_child (widget_class, BjbEmptyResultsBox, details_label);

@@ -361,7 +361,7 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
   g_object_class->finalize = bjb_settings_dialog_finalize;
   g_object_class->constructed = bjb_settings_dialog_constructed;
 
-  gtk_widget_class_set_template_from_resource (gtk_widget_class, "/org/gnome/bijiben/ui/settings-dialog.ui");
+  gtk_widget_class_set_template_from_resource (gtk_widget_class, "/org/gnome/Notes/ui/settings-dialog.ui");
 
   gtk_widget_class_bind_template_child (gtk_widget_class, BjbSettingsDialog, color_button);
   gtk_widget_class_bind_template_child (gtk_widget_class, BjbSettingsDialog, font_button);

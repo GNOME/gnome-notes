@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/gnome/bijiben">
+  <gresource prefix="/org/gnome/Notes">
     <file alias="Adwaita.css">resources/Adwaita.css</file>
     <file alias="editor-toolbar.ui" compressed="true" preprocess="xml-stripblanks">resources/editor-toolbar.ui</file>
     <file alias="thumbnail-frame.png">resources/thumbnail-frame.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/bijiben/icons">
+  <gresource prefix="/org/gnome/Notes/icons">
     <file alias="note-symbolic.svg">resources/note-symbolic.svg</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/bijiben/gtk">
+  <gresource prefix="/org/gnome/Notes/gtk">
     <file alias="help-overlay.ui">resources/help-overlay.ui</file>
   </gresource>
     
-  <gresource prefix="/org/gnome/bijiben/ui">
+  <gresource prefix="/org/gnome/Notes/ui">
     <file alias="main-toolbar.ui" preprocess="xml-stripblanks">resources/main-toolbar.ui</file>
     <file alias="organize-dialog.ui" preprocess="xml-stripblanks">resources/organize-dialog.ui</file>
     <file alias="settings-dialog.ui">resources/settings-dialog.ui</file>

@@ -212,7 +212,7 @@ theme_changed (GtkSettings *settings)
         g_autoptr(GFile) file = NULL;
 
         provider = gtk_css_provider_new ();
-        file = g_file_new_for_uri ("resource:///org/gnome/bijiben/Adwaita.css");
+        file = g_file_new_for_uri ("resource:///org/gnome/Notes/Adwaita.css");
         gtk_css_provider_load_from_file (provider, file, NULL);
     }
 

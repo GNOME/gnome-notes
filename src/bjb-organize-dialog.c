@@ -405,7 +405,7 @@ bjb_organize_dialog_class_init (BjbOrganizeDialogClass *klass)
 
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/organize-dialog.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/organize-dialog.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, entry);
   gtk_widget_class_bind_template_child (widget_class, BjbOrganizeDialog, view);

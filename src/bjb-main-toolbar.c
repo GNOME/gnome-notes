@@ -918,7 +918,7 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
 
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/main-toolbar.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/main-toolbar.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, button_stack);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, new_button);

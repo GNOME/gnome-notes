@@ -401,7 +401,7 @@ bjb_selection_toolbar_class_init (BjbSelectionToolbarClass *class)
 
   g_object_class_install_property (object_class,PROP_BJB_MAIN_VIEW,properties[PROP_BJB_MAIN_VIEW]);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/bijiben/ui/selection-toolbar.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/selection-toolbar.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, button_stack);
   gtk_widget_class_bind_template_child (widget_class, BjbSelectionToolbar, notebook_button);

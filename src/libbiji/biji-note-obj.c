@@ -679,7 +679,7 @@ biji_note_obj_get_icon (BijiItem *item,
 
   cairo_destroy (cr);
 
-  priv->icon = gd_embed_surface_in_frame (surface, "resource:///org/gnome/bijiben/thumbnail-frame.png",
+  priv->icon = gd_embed_surface_in_frame (surface, "resource:///org/gnome/Notes/thumbnail-frame.png",
                                                 &frame_slice, &frame_slice);
   cairo_surface_destroy (surface);
 

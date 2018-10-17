@@ -170,13 +170,16 @@
 
     <child>
       <object class="GtkMenuButton" id="main_button">
-        <property name="visible">1</property>
-        <property name="direction">none</property>
-        <property name="tooltip-text" translatable="yes">Open menu</property>
-        <property name="popup">main_menu</property>
-        <style>
-         <class name="image-button"/>
-        </style>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="popover">main_menu</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage" id="main_button_image">
+            <property name="visible">True</property>
+            <property name="icon_name">open-menu-symbolic</property>
+          </object>
+        </child>
       </object>
       <packing>
         <property name="position">0</property>
@@ -209,115 +212,127 @@
 
   </template>
 
-  <object class="GtkMenu" id="main_menu">
-    <property name="visible">1</property>
-
+  <object class="GtkPopoverMenu" id="main_menu">
+    <property name="can_focus">False</property>
     <child>
-      <object class="GtkMenuItem" id="import_notes_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Import Notes</property>
-        <signal name="activate" handler="on_import_notes_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="view_trash_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">View Trash</property>
-        <signal name="activate" handler="on_view_trash_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible">1</property>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">_Text Sizes</property>
-        <property name="use_underline">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin">12</property>
+        <property name="orientation">vertical</property>
 
-        <child type="submenu">
-          <object class="GtkMenu">
+        <child>
+          <object class="GtkModelButton">
             <property name="visible">True</property>
-
-            <child>
-              <object class="GtkRadioMenuItem" id="large_item">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Large</property>
-                <property name="use_underline">True</property>
-                <property name="draw_as_radio">True</property>
-                <signal name="activate" handler="on_text_size_cb" swapped="yes"/>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkRadioMenuItem" id="medium_item">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Medium</property>
-                <property name="use_underline">True</property>
-                <property name="draw_as_radio">True</property>
-                <property name="group">large_item</property>
-                <signal name="activate" handler="on_text_size_cb" swapped="yes"/>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkRadioMenuItem" id="small_item">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Small</property>
-                <property name="use_underline">True</property>
-                <property name="draw_as_radio">True</property>
-                <property name="group">large_item</property>
-                <signal name="activate" handler="on_text_size_cb" swapped="yes"/>
-              </object>
-            </child>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Import Notes</property>
+            <property name="action-name">app.import-notes</property>
           </object>
         </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">View Trash</property>
+            <property name="action-name">app.view-trash</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="label" translatable="yes">Text Sizes</property>
+            <property name="margin-left">6</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">_Large</property>
+            <property name="action-name">app.text-size</property>
+            <property name="action-target">'large'</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">_Medium</property>
+            <property name="action-name">app.text-size</property>
+            <property name="action-target">'medium'</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">_Small</property>
+            <property name="action-name">app.text-size</property>
+            <property name="action-target">'small'</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Preferences</property>
+            <property name="action-name">app.preferences</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Help</property>
+            <property name="action_name">app.help</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">win.show-help-overlay</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">About Notes</property>
+            <property name="action-name">app.about</property>
+          </object>
+        </child>
+
       </object>
     </child>
-
-    <child>
-      <object class="GtkMenuItem" id="preferences_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Preferences</property>
-        <signal name="activate" handler="on_preferences_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible">1</property>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="help_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Help</property>
-        <signal name="activate" handler="on_help_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="shortcuts_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Keyboard Shortcuts</property>
-        <property name="action_name">win.show-help-overlay</property>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="about_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">About Notes</property>
-        <signal name="activate" handler="on_about_cb" swapped="yes"/>
-      </object>
-    </child>
-
   </object>
 
   <object class="GtkMenu" id="menu">

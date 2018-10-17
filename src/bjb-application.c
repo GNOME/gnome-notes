@@ -43,7 +43,7 @@ struct _BjbApplication
   BjbSettings *settings;
 
   /* Controls. to_open is for startup */
-
+  GAction     *text_size;
   gboolean     first_run;
   gboolean     is_loaded;
   gboolean     new_note;
@@ -57,6 +57,34 @@ static void     bijiben_new_window_internal (BjbApplication *self,
 static gboolean bijiben_open_path           (BjbApplication *self,
                                              gchar          *path,
                                              BjbWindowBase *window);
+
+void            on_import_notes_cb          (GSimpleAction      *action,
+                                             GVariant           *parameter,
+                                             gpointer            user_data);
+
+void            on_view_trash_cb            (GSimpleAction      *action,
+                                             GVariant           *parameter,
+                                             gpointer            user_data);
+
+void            on_preferences_cb           (GSimpleAction      *action,
+                                             GVariant           *parameter,
+                                             gpointer            user_data);
+
+void            on_help_cb                  (GSimpleAction      *action,
+                                             GVariant           *parameter,
+                                             gpointer            user_data);
+
+void            on_about_cb                 (GSimpleAction      *action,
+                                             GVariant           *parameter,
+                                             gpointer            user_data);
+
+gboolean        text_size_mapping_get       (GValue             *value,
+                                             GVariant           *variant,
+                                             gpointer            user_data);
+
+GVariant       *text_size_mapping_set       (const GValue       *value,
+                                             const GVariantType *expected_type,
+                                             gpointer            user_data);
 
 static void
 on_window_activated_cb (BjbWindowBase  *window,
@@ -195,6 +223,69 @@ bijiben_import_notes (BjbApplication *self, gchar *uri)
                            uri);
 }
 
+void
+on_import_notes_cb (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+  bjb_app_import_notes (BJB_APPLICATION (user_data));
+}
+
+void
+on_view_trash_cb (GSimpleAction *action,
+                  GVariant      *parameter,
+                  gpointer       user_data)
+{
+  GList *windows = gtk_application_get_windows (GTK_APPLICATION (user_data));
+  BjbController *controller = bjb_window_base_get_controller (BJB_WINDOW_BASE (windows->data));
+
+  bjb_controller_set_group (controller, BIJI_ARCHIVED_ITEMS);
+}
+
+void
+on_preferences_cb (GSimpleAction *action,
+                   GVariant      *parameter,
+                   gpointer       user_data)
+{
+  GtkApplication *app = GTK_APPLICATION (user_data);
+  GList *windows = gtk_application_get_windows (app);
+
+  show_bijiben_settings_window (g_list_nth_data (windows, 0));
+}
+
+void
+on_help_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
+{
+  bjb_app_help (BJB_APPLICATION (user_data));
+}
+
+void
+on_about_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
+{
+  bjb_app_about (BJB_APPLICATION (user_data));
+}
+
+gboolean
+text_size_mapping_get (GValue   *value,
+                       GVariant *variant,
+                       gpointer  user_data)
+{
+  g_value_set_variant (value, variant);
+  return TRUE;
+}
+
+GVariant *
+text_size_mapping_set (const GValue       *value,
+                       const GVariantType *expected_type,
+                       gpointer            user_data)
+{
+  return g_value_dup_variant (value);
+}
+
 static void
 theme_changed (GtkSettings *settings)
 {
@@ -280,6 +371,15 @@ manager_ready_cb (GObject *source,
   bijiben_new_window_internal (self, NULL);
 }
 
+static GActionEntry app_entries[] = {
+  { "import-notes", on_import_notes_cb, NULL, NULL, NULL },
+  { "view-trash", on_view_trash_cb, NULL, NULL, NULL },
+  { "text-size", NULL, "s", "'medium'", NULL },
+  { "preferences", on_preferences_cb, NULL, NULL, NULL },
+  { "help", on_help_cb, NULL, NULL, NULL },
+  { "about", on_about_cb, NULL, NULL, NULL },
+};
+
 static void
 bijiben_startup (GApplication *application)
 {
@@ -296,6 +396,11 @@ bijiben_startup (GApplication *application)
 
   bjb_apply_style ();
 
+  g_action_map_add_action_entries (G_ACTION_MAP (application),
+                                   app_entries,
+                                   G_N_ELEMENTS (app_entries),
+                                   application);
+
   storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
   storage = g_file_new_for_path (storage_path);
 
@@ -311,6 +416,17 @@ bijiben_startup (GApplication *application)
 
   g_object_get (self->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
+
+  self->text_size = g_action_map_lookup_action (G_ACTION_MAP (application), "text-size");
+  g_settings_bind_with_mapping (G_SETTINGS (self->settings),
+                                "text-size",
+                                self->text_size,
+                                "state",
+                                G_SETTINGS_BIND_DEFAULT,
+                                text_size_mapping_get,
+                                text_size_mapping_set,
+                                NULL,
+                                NULL);
 
   g_application_hold (application);
   biji_manager_new_async (storage, &color, manager_ready_cb, self);

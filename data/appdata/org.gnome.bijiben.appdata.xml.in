@@ -39,6 +39,20 @@
   </screenshots>
 
   <releases>
+    <release date="2018-10-21" version="3.30.2">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Increased notes view width and removed alignment</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>nb (Kjartan Maraas)</li>
+          <li>sr (Марко Костић)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-09-24" version="3.30.1">
       <description>
         <p>This release updates the following translations:</p>

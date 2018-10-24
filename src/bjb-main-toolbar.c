@@ -428,74 +428,7 @@ on_last_updated_cb (BijiItem       *note,
    */
   label = g_strdup_printf (_("Last updated %s"),
                            biji_note_obj_get_last_change_date_string (self->note));
-  gtk_menu_item_set_label (GTK_MENU_ITEM (self->last_update_item), label);
-}
-
-static void
-action_view_tags_callback (BjbMainToolbar *self)
-{
-  GList *list = NULL;
-
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-
-  list = g_list_append (list, self->note);
-  bjb_organize_dialog_new (self->window, list);
-  g_list_free (list);
-}
-
-static void
-trash_item_callback (BjbMainToolbar *self)
-{
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-
-  if (!self->note)
-    return;
-
-  /* Delete the note from notebook
-   * The deleted note will emit a signal. */
-  biji_item_trash (BIJI_ITEM (self->note));
-}
-
-static void
-on_undo_or_redo_cb (BjbMainToolbar *self,
-                    GtkWidget      *menu_item)
-{
-  BijiWebkitEditor *editor;
-
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-  g_assert (GTK_IS_MENU_ITEM (menu_item));
-
-  if (!self->note)
-    return;
-
-  editor = BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note));
-
-  if (menu_item == self->undo_item)
-    biji_webkit_editor_undo (editor);
-  else
-    biji_webkit_editor_redo (editor);
-}
-
-static void
-on_detached_clicked_cb (BjbMainToolbar *self)
-{
-  BijiNoteObj *note;
-
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-
-  note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->window));
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
-                             BJB_WINDOW_BASE_MAIN_VIEW);
-  bijiben_new_window_for_note (g_application_get_default (), note);
-}
-
-static void
-on_email_cb (BjbMainToolbar *self,
-             GtkWidget      *menu_item)
-{
-  g_return_if_fail (self->note);
-
-  on_email_note_callback (self->note);
+  gtk_label_set_text (GTK_LABEL (self->last_update_item), label);
 }
 
 static void
@@ -870,13 +803,6 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_view_mode_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_empty_clicked_callback);
   gtk_widget_class_bind_template_callback (widget_class, on_color_button_clicked);
-
-  /* Menu items */
-  gtk_widget_class_bind_template_callback (widget_class, on_detached_clicked_cb);
-  gtk_widget_class_bind_template_callback (widget_class, on_undo_or_redo_cb);
-  gtk_widget_class_bind_template_callback (widget_class, action_view_tags_callback);
-  gtk_widget_class_bind_template_callback (widget_class, trash_item_callback);
-  gtk_widget_class_bind_template_callback (widget_class, on_email_cb);
 }
 
 BjbMainToolbar *

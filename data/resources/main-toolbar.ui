@@ -190,18 +190,14 @@
 
     <child>
       <object class="GtkMenuButton" id="menu_button">
-        <property name="visible">1</property>
-        <property name="direction">none</property>
-        <property name="tooltip-text" translatable="yes">More options…</property>
-        <property name="popup">menu</property>
-        <style>
-         <class name="image-button"/>
-        </style>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="tooltip-text" translatable="yes">More options</property>
+        <property name="popover">menu</property>
         <child>
           <object class="GtkImage">
             <property name="visible">1</property>
             <property name="icon-name">view-more-symbolic</property>
-            <property name="icon-size">1</property>
           </object>
         </child>
       </object>
@@ -344,81 +340,104 @@
     </child>
   </object>
 
-  <object class="GtkMenu" id="menu">
-    <property name="visible">1</property>
-
+  <object class="GtkPopoverMenu" id="menu">
+    <property name="can_focus">False</property>
     <child>
-      <object class="GtkMenuItem" id="new_window_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Open in New Window</property>
-        <signal name="activate" handler="on_detached_clicked_cb" swapped="yes"/>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin">12</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkModelButton" id="new_window_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Open in New Window</property>
+            <property name="action-name">win.detach-window</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible" bind-source="new_window_item" bind-property="visible" bind-flags="default|sync-create"/>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="undo_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Undo</property>
+            <property name="action-name">win.undo</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="redo_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Redo</property>
+            <property name="action-name">win.redo</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="notebook_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Notebooks</property>
+            <property name="action-name">win.view-notebooks</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="email_item">
+            <property name="visible">1</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Email this Note</property>
+            <property name="action-name">win.email</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="trash_item">
+            <property name="visible">1</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Move to Trash</property>
+            <property name="action-name">win.trash</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="last_update_item">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="margin-left">6</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
       </object>
     </child>
-
-    <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible" bind-source="new_window_item" bind-property="visible" bind-flags="default"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="undo_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Undo</property>
-        <signal name="activate" handler="on_undo_or_redo_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="redo_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Redo</property>
-        <signal name="activate" handler="on_undo_or_redo_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible">1</property>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="notebook_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Notebooks</property>
-        <signal name="activate" handler="action_view_tags_callback" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="email_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Email this Note</property>
-        <signal name="activate" handler="on_email_cb" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="trash_item">
-        <property name="visible">1</property>
-        <property name="label" translatable="yes">Move to Trash</property>
-        <signal name="activate" handler="trash_item_callback" swapped="yes"/>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible">1</property>
-      </object>
-    </child>
-
-    <child>
-      <object class="GtkMenuItem" id="last_update_item">
-        <property name="visible">1</property>
-        <property name="sensitive">0</property>
-      </object>
-    </child>
-
   </object>
+
 </interface>

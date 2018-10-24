@@ -12,7 +12,8 @@
 #include "bjb-main-toolbar.h"
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
-
+#include "bjb-organize-dialog.h"
+#include "bjb-share.h"
 
 #define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
 #define SAVE_GEOMETRY_ID_TIMEOUT 100 /* ms */
@@ -192,6 +193,91 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
 }
 
 static void
+on_detach_window_cb (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       user_data)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BijiNoteObj   *note = bjb_window_base_get_note (self);
+
+  if (!note)
+    return;
+
+  bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+  bijiben_new_window_for_note (g_application_get_default (), note);
+}
+
+static void
+on_undo_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+
+  if (!note)
+    return;
+
+  biji_webkit_editor_undo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (note)));
+}
+
+static void
+on_redo_cb (GSimpleAction *action,
+            GVariant      *parameter,
+            gpointer       user_data)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+
+  if (!note)
+    return;
+
+  biji_webkit_editor_redo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (note)));
+}
+
+static void
+on_view_notebooks_cb (GSimpleAction *action,
+                      GVariant      *parameter,
+                      gpointer       user_data)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BijiNoteObj *note = bjb_window_base_get_note (self);
+  g_autoptr (GList) list = NULL;
+
+  if (!note)
+    return;
+
+  list = g_list_append (list, note);
+  bjb_organize_dialog_new (GTK_WINDOW (self), list);
+}
+
+static void
+on_email_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+
+  if (!note)
+    return;
+
+  on_email_note_callback (note);
+}
+
+static void
+on_trash_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+
+  if (!note)
+    return;
+
+  /* Delete the note from notebook
+   * The deleted note will emit a signal. */
+  biji_item_trash (BIJI_ITEM (note));
+}
+
+static void
 bjb_window_base_save_geometry (BjbWindowBase *self)
 {
   GSettings *settings = G_SETTINGS (self->settings);
@@ -240,6 +326,14 @@ bjb_window_base_configure_event (GtkWidget         *widget,
                                                                            event);
 }
 
+static GActionEntry win_entries[] = {
+  { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
+  { "undo", on_undo_cb, NULL, NULL, NULL },
+  { "redo", on_redo_cb, NULL, NULL, NULL },
+  { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
+  { "email", on_email_cb, NULL, NULL, NULL },
+  { "trash", on_trash_cb, NULL, NULL, NULL },
+};
 
 /* Gobj */
 static void
@@ -248,6 +342,11 @@ bjb_window_base_constructed (GObject *obj)
   BjbWindowBase *self = BJB_WINDOW_BASE (obj);
 
   G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
+
+  g_action_map_add_action_entries (G_ACTION_MAP (self),
+                                   win_entries,
+                                   G_N_ELEMENTS (win_entries),
+                                   self);
 
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 

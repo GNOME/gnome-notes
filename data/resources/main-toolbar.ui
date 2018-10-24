@@ -172,6 +172,10 @@
       <object class="GtkMenuButton" id="main_button">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+<<<<<<< HEAD
+        <property name="tooltip-text" translatable="yes">Open menu</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
         <property name="popover">main_menu</property>
         <property name="receives_default">True</property>
         <child>
@@ -233,6 +237,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">View Trash</property>
             <property name="action-name">app.view-trash</property>
           </object>
@@ -259,6 +267,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">_Large</property>
             <property name="action-name">app.text-size</property>
             <property name="action-target">'large'</property>
@@ -268,6 +280,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">_Medium</property>
             <property name="action-name">app.text-size</property>
             <property name="action-target">'medium'</property>
@@ -277,6 +293,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">_Small</property>
             <property name="action-name">app.text-size</property>
             <property name="action-target">'small'</property>
@@ -294,6 +314,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">Preferences</property>
             <property name="action-name">app.preferences</property>
           </object>
@@ -310,6 +334,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">Help</property>
             <property name="action_name">app.help</property>
           </object>
@@ -318,6 +346,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">Keyboard Shortcuts</property>
             <property name="action_name">win.show-help-overlay</property>
           </object>
@@ -326,6 +358,10 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
+<<<<<<< HEAD
+            <property name="can_focus">False</property>
+=======
+>>>>>>> 5058fcc00f934b20286d735e397ef0d725e94f10
             <property name="text" translatable="yes">About Notes</property>
             <property name="action-name">app.about</property>
           </object>

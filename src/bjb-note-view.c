@@ -233,7 +233,6 @@ bjb_note_view_constructed (GObject *obj)
   /* Edition Toolbar for text selection */
   self->edit_bar = bjb_editor_toolbar_new (self, self->note);
   gtk_box_pack_start (GTK_BOX (self->box), self->edit_bar, FALSE, TRUE, 0);
-  gtk_widget_hide (self->edit_bar);
 }
 
 BjbNoteView *

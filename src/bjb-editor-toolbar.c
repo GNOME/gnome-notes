@@ -56,24 +56,11 @@ struct _BjbEditorToolbar
 
 G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
 
-static gboolean
-on_release_event (GtkWidget        *widget,
-                  GdkEvent         *event,
-                  BjbEditorToolbar *self)
-{
-  gtk_widget_set_visible (GTK_WIDGET (self),
-                          biji_note_obj_editor_has_selection (self->note));
-
-  return FALSE;
-}
-
 static void
 on_cut_clicked (GtkButton        *button,
                 BjbEditorToolbar *self)
 {
   biji_note_obj_editor_cut (self->note);
-
-  gtk_widget_hide (GTK_WIDGET (self));
 }
 
 static void
@@ -88,8 +75,6 @@ on_paste_clicked (GtkButton        *button,
                   BjbEditorToolbar *self)
 {
   biji_note_obj_editor_paste (self->note);
-
-  gtk_widget_hide (GTK_WIDGET (self));
 }
 
 static void
@@ -140,7 +125,7 @@ on_link_clicked (GtkButton        *button,
 
   link = biji_note_obj_editor_get_selection (self->note);
 
-  if (link == NULL)
+  if (link == NULL || strlen (link) == 0)
     return;
 
   window = bjb_note_view_get_base_window (self->view);
@@ -198,7 +183,6 @@ static void
 bjb_editor_toolbar_constructed (GObject *object)
 {
   BjbEditorToolbar *self;
-  GtkWidget        *view;
   GtkWidget        *window;
   gboolean          can_format;
 
@@ -217,14 +201,6 @@ bjb_editor_toolbar_constructed (GObject *object)
 
   gtk_widget_add_accelerator (self->strike_button, "clicked", self->accel,
                               GDK_KEY_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  view = biji_note_obj_get_editor (self->note);
-
-  g_signal_connect (view,"button-release-event",
-                    G_CALLBACK (on_release_event), self);
-
-  g_signal_connect (view,"key-release-event",
-                   G_CALLBACK (on_release_event), self);
 
   can_format = biji_note_obj_can_format (self->note);
 

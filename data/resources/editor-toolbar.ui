@@ -4,25 +4,25 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">format-text-bold-symbolic</property>
-    <property name="icon_size">3</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="format-text-italic">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">format-text-italic-symbolic</property>
-    <property name="icon_size">3</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="format-text-strikethrough">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">format-text-strikethrough-symbolic</property>
-    <property name="icon_size">3</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="insert-link">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">insert-link-symbolic</property>
-    <property name="icon_size">3</property>
+    <property name="icon_size">1</property>
   </object>
   <template class="BjbEditorToolbar" parent="GtkActionBar">
     <property name="visible">True</property>

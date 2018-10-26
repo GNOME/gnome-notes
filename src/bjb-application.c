@@ -586,8 +586,7 @@ bjb_app_import_notes (BjbApplication *self)
       g_list_free_full (locations, g_free);
     }
 
-  if (dialog)
-    g_clear_pointer (&dialog, gtk_widget_destroy);
+  gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
 void

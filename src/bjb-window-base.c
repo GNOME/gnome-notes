@@ -521,7 +521,9 @@ destroy_note_if_needed (BjbWindowBase *self)
   self->note = NULL;
 
   if (self->note_view && GTK_IS_WIDGET (self->note_view))
-    g_clear_pointer (&(self->note_view), gtk_widget_destroy);
+    gtk_widget_destroy (GTK_WIDGET (self->note_view));
+
+  self->note_view = NULL;
 }
 
 

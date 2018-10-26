@@ -138,7 +138,6 @@ biji_own_cloud_provider_finalize (GObject *object)
   g_clear_object (&self->folder);
 
   g_clear_pointer (&self->info.name, g_free);
-  g_clear_pointer (&self->info.datasource, g_free);
   g_clear_pointer (&self->info.user, g_free);
   g_clear_pointer (&self->info.domain, g_free);
 

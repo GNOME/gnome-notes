@@ -187,6 +187,8 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
         }
       break;
 
+    default:
+      ;
   }
 
   return FALSE;

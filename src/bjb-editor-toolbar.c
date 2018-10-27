@@ -57,27 +57,6 @@ struct _BjbEditorToolbar
 G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
 
 static void
-on_cut_clicked (GtkButton        *button,
-                BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_cut (self->note);
-}
-
-static void
-on_copy_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_copy (self->note);
-}
-
-static void
-on_paste_clicked (GtkButton        *button,
-                  BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_paste (self->note);
-}
-
-static void
 on_bold_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
@@ -266,9 +245,6 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bullets_button);
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, list_button);
 
-  gtk_widget_class_bind_template_callback (widget_class, on_cut_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_copy_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_paste_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_bold_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_italic_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_strike_clicked);

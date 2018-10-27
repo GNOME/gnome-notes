@@ -4,487 +4,619 @@
 # Ryan LORTIE <desrt@desrt.ca>, 2013.
 # Daniel PUENTES <blatberk@openmailbox.org>, 2015.
 # Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2013, 2015.
+# Carmen Bianca BAKKER <carmen@carmenbianca.eu>, 2018.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijibe"
-"n&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-25 15:03+0000\n"
-"PO-Revision-Date: 2015-10-04 00:39+0200\n"
-"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
-"Language-Team: Esperanto <gnome-l10n-eo@lists.launchpad.net>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-07-31 00:35+0000\n"
+"PO-Revision-Date: 2018-10-25 15:10+0200\n"
+"Last-Translator: Carmen Bianca BAKKER <carmen@carmenbianca.eu>\n"
+"Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-DamnedLies-Scope: partial\n"
+"X-Generator: Poedit 2.2\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
-msgid "Notes is an editor allowing to make simple lists for later use."
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
+msgid "Bijiben"
+msgstr "Bijiben"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
+msgid "Quickly jot notes"
+msgstr "Rapide skribi notojn"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
 msgstr ""
-"Notoj estas redaktilo kiu ebligas vin fari simplajn listojn por posta uzo."
+"Rapida kaj facila maniero por fari liberformajn notojn aŭ skribi simplajn "
+"listojn. Konservu tiom da notoj kiel vi ŝatas, kaj kunhavigu ilin per "
+"retpoŝto."
 
-#: ../data/bijiben.appdata.xml.in.h:2
-msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr "Ĝi ebligas vin uzi na ownCloud kiel konserva loko kaj reta redaktilo."
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"Vi povas konservi viajn notojn loke sur via komputilo aŭ sinkronigi ilin per "
+"retaj servoj kiel ownCloud."
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:18
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+msgid "Edit view"
+msgstr "Redakti vidon"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+msgid "Select view"
+msgstr "Elekti vidon"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+msgid "List view"
+msgstr "Lista vido"
+
+#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notoj"
 
-#: ../data/bijiben.desktop.in.in.h:2
-msgid "notes;reminder;"
-msgstr "notoj;memorigo;"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.bijiben.desktop.in.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "notoj;memorigilo;notlibro;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
 msgstr "Skribi notojn, marki dosierojn!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: data/org.gnome.bijiben.desktop.in.in:7
 msgid "Note-taker"
-msgstr "Noton faranto"
+msgstr "Notilo"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:1
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.bijiben.desktop.in.in:10
+msgid "org.gnome.bijiben"
+msgstr "org.gnome.bijiben"
+
+#: data/org.gnome.bijiben.gschema.xml:10
 msgid "Custom Font"
 msgstr "Propra tiparo"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:2
-msgid "The font name set here will be used as the font when displaying notes."
-msgstr ""
-
-#: ../data/org.gnome.bijiben.gschema.xml.h:3
+#: data/org.gnome.bijiben.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Ĉu uzi la sisteman egallarĝan tiparon"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:4
+#: data/org.gnome.bijiben.gschema.xml:19
 msgid "New notes color."
 msgstr "Koloro de novaj notoj."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:5
-msgid ""
-"The color name set here will be used as the color when creating new notes."
-msgstr ""
-
-#: ../data/org.gnome.bijiben.gschema.xml.h:6
-msgid "Primary notes provider to use for new notes."
-msgstr ""
-
-#: ../data/org.gnome.bijiben.gschema.xml.h:7
-msgid "The primary notebook is the place where new notes are created."
-msgstr ""
-
-#: ../data/org.gnome.bijiben.gschema.xml.h:8
+#: data/org.gnome.bijiben.gschema.xml:29
 msgid "Window maximized"
 msgstr "Maksimumigita fenestro"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:9
+#: data/org.gnome.bijiben.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Maksimumigita stato de fenestro."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:10
+#: data/org.gnome.bijiben.gschema.xml:34
 msgid "Window size"
 msgstr "Fenestra grando"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:11
+#: data/org.gnome.bijiben.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Fenestra grando (larĝeco kaj alteco)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:12
+#: data/org.gnome.bijiben.gschema.xml:39
 msgid "Window position"
 msgstr "Fenestra pozicio"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:13
+#: data/org.gnome.bijiben.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Fenestra pozicio (x kaj y)."
 
-#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "_Enporti notojn"
+
+#: data/resources/app-menu.ui:9
+msgid "_View Trash"
+msgstr "_Montri rubujon"
+
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr "_Tekstaj grandoj"
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr "_Granda"
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr "_Meza"
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr "M_algranda"
+
+#: data/resources/app-menu.ui:35
+msgid "_Preferences"
+msgstr "_Agordoj"
+
+#: data/resources/app-menu.ui:41
+msgid "_Help"
+msgstr "_Helpo"
+
+#: data/resources/app-menu.ui:45
+msgid "_Keyboard Shortcuts"
+msgstr "_Klavkombinoj"
+
+#: data/resources/app-menu.ui:49
+msgid "_About"
+msgstr "_Pri"
+
+#: data/resources/app-menu.ui:53
+msgid "_Quit"
+msgstr "Ĉ_esi"
+
+#: data/resources/editor-toolbar.ui:40
+msgid "Cut"
+msgstr "Eltondi"
+
+#: data/resources/editor-toolbar.ui:55
+msgid "Copy"
+msgstr "Kopii"
+
+#: data/resources/editor-toolbar.ui:70
+msgid "Paste"
+msgstr "Alglui"
+
+#: data/resources/editor-toolbar.ui:104
+msgid "Bold"
+msgstr "Grasa"
+
+#: data/resources/editor-toolbar.ui:120
+msgid "Italic"
+msgstr "Kursiva"
+
+#: data/resources/editor-toolbar.ui:136
+msgid "Strike"
+msgstr "Trastrekita"
+
+#: data/resources/editor-toolbar.ui:161
+msgid "* "
+msgstr "* "
+
+#: data/resources/editor-toolbar.ui:165
+msgid "Bullets"
+msgstr "Bulo"
+
+#: data/resources/editor-toolbar.ui:177
+msgid "1."
+msgstr "1."
+
+#: data/resources/editor-toolbar.ui:181
+msgid "List"
+msgstr "Listo"
+
+#: data/resources/editor-toolbar.ui:205
+msgid "Copy selection to a new note"
+msgstr "Kopii elekton al nova noto"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "Neniu noto"
+
+#: data/resources/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Ĝenerala"
+
+#: data/resources/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "Nova noto"
+
+#: data/resources/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Fermi fenestron"
+
+#: data/resources/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Reen"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Montri helpon"
+
+#: data/resources/help-overlay.ui:41
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Klavkombinoj"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "Elekta reĝimo"
+
+#: data/resources/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "Nuligi elektan reĝimon"
+
+#: data/resources/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Elekti ĉion"
+
+#: data/resources/help-overlay.ui:69
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "Not-redakta reĝimo"
+
+#: data/resources/help-overlay.ui:74
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Grasa"
+
+#: data/resources/help-overlay.ui:81
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Kursiva"
+
+#: data/resources/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "Trastrekita"
+
+#: data/resources/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Malfari"
+
+#: data/resources/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Refari"
+
+#: data/resources/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "Movi noton rubujen"
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+msgid "Import Notes"
+msgstr "Enporti notojn"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "_Nuligi"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_Enporti"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "Elekti enportan lokon"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "Gnote aplikaĵo"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "Tomboy aplikaĵo"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "Propra loko"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "Elekti dosieron"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "_Nova"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+msgid "Note color"
+msgstr "Nota koloro"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "Malpl_ena"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "Ĉesi la elektan reĝimon"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "Serĉi notajn titolojn, enhavojn kaj notlibrojn"
+
+#: data/resources/main-toolbar.ui:119
+msgid "View notes and notebooks in a grid"
+msgstr "Montri notojn kaj notlibrojn en krado"
+
+#: data/resources/main-toolbar.ui:137
+msgid "View notes and notebooks in a list"
+msgstr "Montri notojn kaj notlibrojn kiel listo"
+
+#: data/resources/main-toolbar.ui:161
+msgid "Selection mode"
+msgstr "Elekta reĝimo"
+
+#: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Malfermi menuon"
+
+#: data/resources/main-toolbar.ui:191
+msgid "More options…"
+msgstr "Pli agordoj…"
+
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "Montri rubujon"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Agordoj"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "Helpo"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Klavkominoj"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "Pri"
+
+#: data/resources/main-toolbar.ui:329
+msgid "Open in New Window"
+msgstr "Malfermi en nova fenestro"
+
+#: data/resources/main-toolbar.ui:343
+msgid "Undo"
+msgstr "Malfari"
+
+#: data/resources/main-toolbar.ui:351
+msgid "Redo"
+msgstr "Refari"
+
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:25
+msgid "Notebooks"
+msgstr "Notlibroj"
+
+#: data/resources/main-toolbar.ui:373
+msgid "Email this Note"
+msgstr "Retpoŝti tiun ĉi noton"
+
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+msgid "Move to Trash"
+msgstr "Movi en rubujon"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "Enigu nomon por krei notlibron"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "Nova notlibro"
+
+#: data/resources/selection-toolbar.ui:50
+msgid "Share note"
+msgstr "Kunhavigi noton"
+
+#: data/resources/selection-toolbar.ui:59
+msgid "Open in another window"
+msgstr "Malfermi en alia fenestro"
+
+#: data/resources/selection-toolbar.ui:92
+msgid "Restore"
+msgstr "Restaŭri"
+
+#: data/resources/selection-toolbar.ui:100
+msgid "Permanently Delete"
+msgstr "Daŭre forigi"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "Uzi sisteman tiparon"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "Nota tiparo"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "Implicita koloro"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr "Aspekto de noto"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "Elekti la implicitan konservejon:"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "Ĉefa libro"
+
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
 msgid "Untitled"
 msgstr "Netitolita"
 
-#: ../src/bjb-app-menu.c:46
-msgid "Simple notebook for GNOME"
-msgstr "Simpla notlibro por GNOME"
-
-#: ../src/bjb-app-menu.c:52
-msgid "translator-credits"
-msgstr "Ryan LORTIE, Daniel PUENTES, Kristjan SCHMIDT"
-
-#: ../src/bjb-bijiben.c:409
-msgid "Show the application's version"
+#: src/bjb-application.c:341
+msgid "Show the application’s version"
 msgstr "Montri aplikaĵan version"
 
-#: ../src/bjb-bijiben.c:411
+#: src/bjb-application.c:343
 msgid "Create a new note"
 msgstr "Krei novan noton"
 
-#: ../src/bjb-bijiben.c:413
-msgid "[FILE...]"
-msgstr "[DOSIERO...]"
+#: src/bjb-application.c:345
+msgid "[FILE…]"
+msgstr "[DOSIERO…]"
 
-#: ../src/bjb-bijiben.c:420
+#: src/bjb-application.c:353
 msgid "Take notes and export them everywhere."
 msgstr "Preni notojn kaj elporti ilin ĉien."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:431
+#: src/bjb-application.c:364
 msgid "Could not parse arguments"
 msgstr "Ne eblis sintakse analizi argumentojn"
 
-#: ../src/bjb-bijiben.c:440
+#: src/bjb-application.c:372
 msgid "GNOME Notes"
 msgstr "GNOME Notoj"
 
-#: ../src/bjb-bijiben.c:453
-#| msgid "Gnote application"
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:384
 msgid "Could not register the application"
 msgstr "Ne povis registri aplikaĵon"
 
-#: ../src/bjb-color-button.c:146
+#: src/bjb-application.c:518
+msgid "Simple notebook for GNOME"
+msgstr "Simpla notlibro por GNOME"
+
+#: src/bjb-application.c:524
+msgid "translator-credits"
+msgstr ""
+"Ryan LORTIE\n"
+"Daniel PUENTES\n"
+"Kristjan SCHMIDT\n"
+"Carmen Bianca BAKKER <carmen@carmenbianca.eu>"
+
+#: src/bjb-color-button.c:137
 msgid "Note Color"
 msgstr "Nota koloro"
 
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Eltondi"
-
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Kopii"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Alglui"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "* "
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Grasa"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Kursiva"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Trastrekita"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Kopii elekton al nova noto"
-
-#: ../src/bjb-empty-results-box.c:86
-msgid "No notes"
-msgstr "Neniu noto"
-
-#: ../src/bjb-empty-results-box.c:130
-#| msgid ""
-#| "Your notes notebook is empty.\n"
-#| "Click the New button to create your first note."
+#: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
 msgstr "Alklaku la \"Nova\"-butonon por krei noton."
 
-#: ../src/bjb-empty-results-box.c:152
+#: src/bjb-empty-results-box.c:85
 msgid "Oops"
 msgstr "Ups"
 
-#: ../src/bjb-empty-results-box.c:158
-msgid "Please install 'Tracker' then restart the application."
-msgstr "Bonvole instalu na 'Tracker' kaj restartigu la aplikaĵon."
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr "Bonvolu instali “Tracker” kaj restartigi la aplikaĵon."
 
-#: ../src/bjb-import-dialog.c:309
-msgid "Custom Location"
-msgstr "Propra loko"
-
-#: ../src/bjb-import-dialog.c:404
-msgid "Import Notes"
-msgstr "Enporti notojn"
-
-#: ../src/bjb-import-dialog.c:411
-msgid "Import"
-msgstr "Enporti"
-
-#: ../src/bjb-import-dialog.c:422
-msgid "Select import location"
-msgstr "Elekti enportan lokon"
-
-#: ../src/bjb-import-dialog.c:443
-msgid "Tomboy application"
-msgstr "Tomboy aplikaĵo"
-
-#: ../src/bjb-import-dialog.c:449
-msgid "Gnote application"
-msgstr "Gnote aplikaĵo"
-
-#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
+#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
 msgstr "Ŝargi pli"
 
-#: ../src/bjb-load-more-button.c:98
-msgid "Loading..."
-msgstr "Ŝarganta..."
+#: src/bjb-load-more-button.c:90
+msgid "Loading…"
+msgstr "Ŝargante…"
 
-#: ../src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "Alklaku erojn por elekti ilin"
 
-#: ../src/bjb-main-toolbar.c:144
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d elektita"
 msgstr[1] "%d elektitaj"
 
-#: ../src/bjb-main-toolbar.c:264
-msgid "Search note titles, content and notebooks"
-msgstr "Serĉi notajn titolojn, enhavojn kaj notlibrojn"
-
-#. Select
-#: ../src/bjb-main-toolbar.c:306
-msgid "Cancel"
-msgstr "Nuligi"
-
-#: ../src/bjb-main-toolbar.c:320
-msgid "Exit selection mode"
-msgstr "Ĉesi la elektan reĝimon"
-
-#: ../src/bjb-main-toolbar.c:350
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "Resultoj por %s"
 
-#: ../src/bjb-main-toolbar.c:353
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "Nova kaj lastatempa"
 
-#.
-#. * Translators : <_New> refers to new note creation.
-#. * User clicks new, which opens a new blank note.
-#.
-#: ../src/bjb-main-toolbar.c:441
-msgid "_New"
-msgstr "_Nova"
-
-#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
-msgid "Selection mode"
-msgstr "Elekta reĝimo"
-
-#: ../src/bjb-main-toolbar.c:495
-msgid "View notes and notebooks in a list"
-msgstr "Montri notojn kaj notlibrojn kiel listo"
-
-#: ../src/bjb-main-toolbar.c:519
-msgid "View notes and notebooks in a grid"
-msgstr "Montri notojn kaj notlibrojn en krado"
-
-#: ../src/bjb-main-toolbar.c:538
+#: src/bjb-main-toolbar.c:434
 msgid "Trash"
 msgstr "Rubujo"
-
-#. Add Empty-Bin
-#. * translators : Empty is the verb.
-#. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:577
-msgid "Empty"
-msgstr "Malplena"
-
-#.
-#. * Open the current note in a new window
-#. * in order to be able to see it and others at the same time
-#.
-#: ../src/bjb-main-toolbar.c:757
-msgid "Open in New Window"
-msgstr "Malfermi en nova fenestro"
-
-#. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:768
-msgid "Undo"
-msgstr "Malfari"
-
-#: ../src/bjb-main-toolbar.c:776
-msgid "Redo"
-msgstr "Refari"
-
-#. Notes tags
-#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:381
-msgid "Notebooks"
-msgstr "Notlibroj"
-
-#. Share
-#: ../src/bjb-main-toolbar.c:799
-msgid "Email this Note"
-msgstr "Retpoŝti tiun ĉi noton"
-
-#. Delete Note
-#. Trash notes
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
-msgid "Move to Trash"
-msgstr "Movi en rubujon"
-
-#: ../src/bjb-main-toolbar.c:872
-msgid "More options…"
-msgstr "Pli agordoj…"
-
-#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
-msgid "Note color"
-msgstr "Nota koloro"
-
-#: ../src/bjb-main-view.c:516
-msgid "Notebook"
-msgstr "Notlibro"
-
-#: ../src/bjb-main-view.c:519
-msgid "Note"
-msgstr "Noto"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: ../src/bjb-note-view.c:191
+#: src/bjb-main-toolbar.c:498
 #, c-format
-#| msgid "Last updated"
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Laste ŝangita</b> %s"
+msgid "Last updated %s"
+msgstr "Laste ĝisdatigita %s"
 
-#: ../src/bjb-organize-dialog.c:396
-msgid "Enter a name to create a notebook"
-msgstr "Enigu nomon por krei notlibron"
-
-#: ../src/bjb-organize-dialog.c:406
-msgid "New notebook"
-msgstr "Nova notlibro"
-
-#: ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "_Nuligi"
-
-#: ../src/bjb-rename-note.c:19
-msgid "_OK"
-msgstr "_Bone"
-
-#. Restore (do not show)
-#: ../src/bjb-selection-toolbar.c:386
-msgid "Restore"
-msgstr "Restaŭri"
-
-#: ../src/bjb-selection-toolbar.c:403
-msgid "Share note"
-msgstr "Kunhavigi noton"
-
-#. Detach
-#: ../src/bjb-selection-toolbar.c:409
-msgid "Open in another window"
-msgstr "Malfermi en alia fenestro"
-
-#. Permanently delete (do not show )
-#: ../src/bjb-selection-toolbar.c:423
-msgid "Permanently Delete"
-msgstr "Daŭre forigi"
-
-#. Use System Font
-#: ../src/bjb-settings-dialog.c:394
-msgid "Use System Font"
-msgstr "Uzi sisteman tiparon"
-
-#. Default font
-#: ../src/bjb-settings-dialog.c:408
-msgid "Note Font"
-msgstr "Nota tiparo"
-
-#. Default color
-#: ../src/bjb-settings-dialog.c:420
-msgid "Default Color"
-msgstr "Defaŭlta koloro"
-
-#: ../src/bjb-settings-dialog.c:466
-msgid "Preferences"
-msgstr "Agordoj"
-
-#: ../src/bjb-settings-dialog.c:498
-msgid "Note Edition"
-msgstr "Nota eldono"
-
-#: ../src/bjb-settings-dialog.c:505
-msgid "Primary Book"
-msgstr "Ĉefa libro"
-
-#: ../src/libbiji/biji-date-time.c:32
-msgid "Today"
-msgstr "Hodiaŭ"
-
-#: ../src/libbiji/biji-date-time.c:35
-msgid "Yesterday"
-msgstr "Hieraŭ"
-
-#: ../src/libbiji/biji-date-time.c:38
-msgid "This week"
-msgstr "Ĉi semajno"
-
-#: ../src/libbiji/biji-date-time.c:41
-msgid "This month"
-msgstr "Ĉi monato"
-
-#: ../src/libbiji/biji-date-time.c:44
-msgid "This year"
-msgstr "Ĉi jaro"
-
-#: ../src/libbiji/biji-date-time.c:46
+#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nesciata"
 
-#: ../src/libbiji/biji-notebook.c:264
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "Hodiaŭ"
+
+#: src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Hieraŭ"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "Ĉi semajno"
+
+#: src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Ĉi monato"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "Ĉi jaro"
+
+#: src/libbiji/biji-notebook.c:265
 msgid "Local"
 msgstr "Loka"
 
-#: ../src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Loka konservejo"
 
-#: ../src/resources/app-menu.ui.h:1
-msgid "_Import Notes"
-msgstr "_Enporti notojn"
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Notoj estas redaktilo kiu ebligas vin fari simplajn listojn por posta uzo."
 
-#: ../src/resources/app-menu.ui.h:2
-msgid "_View Trash"
-msgstr "_Montri rubujon"
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Ĝi ebligas vin uzi na ownCloud kiel konserva loko kaj reta redaktilo."
 
-#: ../src/resources/app-menu.ui.h:3
-msgid "_Preferences"
-msgstr "_Agordoj"
+#~ msgid "notes;reminder;"
+#~ msgstr "notoj;memorigo;"
 
-#: ../src/resources/app-menu.ui.h:4
-msgid "_Help"
-msgstr "_Helpo"
+#~ msgid "Cancel"
+#~ msgstr "Nuligi"
 
-#: ../src/resources/app-menu.ui.h:5
-msgid "_About"
-msgstr "_Pri"
+#~ msgid "Notebook"
+#~ msgstr "Notlibro"
 
-#: ../src/resources/app-menu.ui.h:6
-msgid "_Quit"
-msgstr "Ĉ_esi"
+#~ msgid "Note"
+#~ msgstr "Noto"
+
+#~ msgid "_OK"
+#~ msgstr "_Bone"
 
 #~ msgid "No Notes Found"
 #~ msgstr "Neniuj notoj trovitaj"
@@ -494,9 +626,6 @@ msgstr "Ĉ_esi"
 
 #~ msgid "New"
 #~ msgstr "Nova"
-
-#~ msgid "Bullets"
-#~ msgstr "Bulo"
 
 #~ msgid "Numbered List"
 #~ msgstr "Nombrita listo"

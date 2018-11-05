@@ -6,348 +6,664 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=bijiben&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-14 22:25+0000\n"
-"PO-Revision-Date: 2013-08-19 00:21+0530\n"
-"Last-Translator: Anish Sheela <aneesh.nl@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2018-10-29 09:18+0000\n"
+"PO-Revision-Date: 2018-11-05 23:47+0800\n"
+"Last-Translator: Sumithran <sumithranvaikom@gmail.com>\n"
 "Language-Team: Swatantra Malayalam Computing <discuss@lists.smc.org.in>\n"
 "Language: ml\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/bijiben.appdata.xml.in.h:1
-msgid "Notes is an editor allowing to make simple lists for later use."
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
+msgid "Bijiben"
+msgstr "ബിജിബെന്‍"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
+msgid "Quickly jot notes"
+msgstr "പെട്ടന്ന് കുറിപ്പ് എഴുതുക"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
 msgstr ""
 
-#: ../data/bijiben.appdata.xml.in.h:2
-msgid "It allows to use ownCloud as a storage location and online editor."
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
 msgstr ""
 
-#: ../data/bijiben.desktop.in.in.h:1 ../data/bijiben.xml.in.h:1
-#: ../src/bjb-app-menu.c:45 ../src/bjb-window-base.c:19
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+msgid "Edit view"
+msgstr "തിരുത്തൽ കാഴ്ച"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+msgid "Select view"
+msgstr "വീക്ഷണം തിരഞ്ഞെടുക്കുക"
+
+#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+msgid "List view"
+msgstr "പട്ടിക കാഴ്ച"
+
+#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
+#: src/bjb-application.c:517 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "കുറിപ്പുകള്‍"
 
-#: ../data/bijiben.desktop.in.in.h:2
-msgid "notes;reminder;"
-msgstr "notes;reminder;"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.bijiben.desktop.in.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "notes;reminder;notebook;sticky notes;"
 
-#: ../data/bijiben.desktop.in.in.h:3
+#: data/org.gnome.bijiben.desktop.in.in:6
 msgid "Post notes, tag files!"
 msgstr "കുറിപ്പ് തയ്യാറാക്കു, ഫയലുകള്‍ അടയാളപ്പെടുത്തു!"
 
-#: ../data/bijiben.desktop.in.in.h:4
+#: data/org.gnome.bijiben.desktop.in.in:7
 msgid "Note-taker"
 msgstr "കുറിപ്പെടുക്കല്‍"
 
-#: ../src/bjb-app-menu.c:46
-msgid "Simple notebook for GNOME"
-msgstr "ഗ്നോമിനായുള്ള ലളിതമായ കുറിപ്പ് പുസ്തകം"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.bijiben.desktop.in.in:10
+msgid "org.gnome.bijiben"
+msgstr "org.gnome.bijiben"
 
-#: ../src/bjb-app-menu.c:52
-msgid "translator-credits"
-msgstr "അനിഷ് <aneesh.nl@gmail.com>"
+#: data/org.gnome.bijiben.gschema.xml:10
+msgid "Custom Font"
+msgstr "ഇച്ഛാനുസൃത ഫോണ്ട്"
 
-#: ../src/bjb-color-button.c:146
-msgid "Note Color"
-msgstr "കുറിപ്പിന്റെ നിറം"
+#: data/org.gnome.bijiben.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
 
-#. Cut
-#: ../src/bjb-editor-toolbar.c:367
+#: data/org.gnome.bijiben.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:19
+msgid "New notes color."
+msgstr " പുതിയ കുറിപ്പിന്റെ നിറം."
+
+#: data/org.gnome.bijiben.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:29
+msgid "Window maximized"
+msgstr "ജാലകം വലുതാക്കി"
+
+#: data/org.gnome.bijiben.gschema.xml:30
+msgid "Window maximized state."
+msgstr "ജാലകം വലുതാക്കിയിരിയ്ക്കുന്ന അവസ്ഥ."
+
+#: data/org.gnome.bijiben.gschema.xml:34
+msgid "Window size"
+msgstr "ജാലകത്തിന്റെ വലുപ്പം"
+
+#: data/org.gnome.bijiben.gschema.xml:35
+msgid "Window size (width and height)."
+msgstr "ജാലകത്തിന്റെ വലുപ്പം (വീതിയും ഉയരവും)."
+
+#: data/org.gnome.bijiben.gschema.xml:39
+msgid "Window position"
+msgstr "ജാലകത്തിന്റെ സ്ഥാനം"
+
+#: data/org.gnome.bijiben.gschema.xml:40
+msgid "Window position (x and y)."
+msgstr "ജാലകത്തിന്റെ സ്ഥാനം (x ഉം y)."
+
+#: data/org.gnome.bijiben.gschema.xml:43
+msgid "How to show note items"
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:44
+msgid "Whether to show note items in icon view or list view."
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr ""
+
+#: data/org.gnome.bijiben.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+
+#: data/resources/app-menu.ui:5
+msgid "_Import Notes"
+msgstr "കുറിപ്പുകള്‍ ഇറക്കുമതി ചെയ്യുക (_I)"
+
+#: data/resources/app-menu.ui:9
+msgid "_View Trash"
+msgstr "ചവറ്റുകൊട്ട കാണുക (_V)"
+
+#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
+msgid "_Text Sizes"
+msgstr ""
+
+#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
+msgid "_Large"
+msgstr ""
+
+#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
+msgid "_Medium"
+msgstr ""
+
+#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
+msgid "_Small"
+msgstr ""
+
+#: data/resources/app-menu.ui:35
+msgid "_Preferences"
+msgstr "മുന്‍ഗണനകള്‍ (_P)"
+
+#: data/resources/app-menu.ui:41
+msgid "_Help"
+msgstr "സഹായം (_H)"
+
+#: data/resources/app-menu.ui:45
+msgid "_Keyboard Shortcuts"
+msgstr "കീ ബോര്‍ഡ്‌ എളുപ്പവഴികൾ (_K)"
+
+#: data/resources/app-menu.ui:49
+msgid "_About"
+msgstr "സംബന്ധിച്ചു് (_A)"
+
+#: data/resources/app-menu.ui:53
+msgid "_Quit"
+msgstr "പുറത്ത് കടക്കുക (_Q)"
+
+#: data/resources/editor-toolbar.ui:40
 msgid "Cut"
 msgstr "മുറിയ്ക്കുക"
 
-#. Copy
-#: ../src/bjb-editor-toolbar.c:374
+#: data/resources/editor-toolbar.ui:55
 msgid "Copy"
 msgstr "പകര്‍ത്തുക"
 
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:381
+#: data/resources/editor-toolbar.ui:70
 msgid "Paste"
 msgstr "ഒട്ടിക്കുക"
 
-#: ../src/bjb-editor-toolbar.c:396
+#: data/resources/editor-toolbar.ui:104
 msgid "Bold"
 msgstr "കട്ടികൂടിയത്"
 
-#: ../src/bjb-editor-toolbar.c:407
+#: data/resources/editor-toolbar.ui:120
 msgid "Italic"
 msgstr "ചരിഞ്ഞ"
 
-#: ../src/bjb-editor-toolbar.c:418
+#: data/resources/editor-toolbar.ui:136
 msgid "Strike"
 msgstr "വെട്ടിയത്"
 
-#: ../src/bjb-editor-toolbar.c:450
+#: data/resources/editor-toolbar.ui:161
+msgid "* "
+msgstr "* "
+
+#: data/resources/editor-toolbar.ui:165
+msgid "Bullets"
+msgstr "ബുള്ളറ്റുകള്‍"
+
+#: data/resources/editor-toolbar.ui:177
+msgid "1."
+msgstr "1."
+
+#: data/resources/editor-toolbar.ui:181
+msgid "List"
+msgstr "പട്ടിക"
+
+#: data/resources/editor-toolbar.ui:205
 msgid "Copy selection to a new note"
 msgstr "തെരഞ്ഞടുത്തത് ഒരു പുതിയ കുറിപ്പിലേക്ക് പകര്‍ത്തുക"
 
-#: ../src/bjb-empty-results-box.c:100
-msgid "No Notes Found"
-msgstr "കുറിപ്പുകളൊന്നും കണ്ടില്ല"
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "കുറിപ്പുകള്‍ ഒന്നും ഇല്ല"
 
-#: ../src/bjb-empty-results-box.c:144
-msgid ""
-"Your notes collection is empty.\n"
-"Click the New button to create your first note."
-msgstr ""
-"നിങ്ങളുടെ കുറിപ്പ് ശേഖരം ശൂന്യമാണ്.\n"
-"പുതിയത് ബട്ടണ്‍ ക്ലിക്ക് ചെയ്താല്‍ ആദ്യ കുറിപ്പ് ഉണ്ടാക്കാം"
+#: data/resources/help-overlay.ui:8
+msgctxt "shortcut window"
+msgid "General"
+msgstr "പൊതുവായ"
 
-#: ../src/bjb-empty-results-box.c:150
-msgid "No result found for this research."
-msgstr "ഈ തെരയലില്‍ ഫലങ്ങളൊന്നുമില്ല."
+#: data/resources/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "പുതിയ കുറിപ്പ്"
 
-#: ../src/bjb-empty-results-box.c:161
+#: data/resources/help-overlay.ui:20
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "ജാലകം അടയ്ക്കുക"
+
+#: data/resources/help-overlay.ui:27
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "മടങ്ങിപ്പോവുക"
+
+#: data/resources/help-overlay.ui:34
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "സഹായം കാണിക്കുക"
+
+#: data/resources/help-overlay.ui:41
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "കുറുക്കുവഴികൾ"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "തിരഞ്ഞെടുക്കുന്ന മോഡ്"
+
+#: data/resources/help-overlay.ui:54
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "തിരഞ്ഞെടുക്കുവാനുള്ള മോഡില്‍ നിന്ന് പുറത്ത് കടക്കുക"
+
+#: data/resources/help-overlay.ui:61
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "എല്ലാം തിരഞ്ഞെടുക്കുക"
+
+#: data/resources/help-overlay.ui:69
 #, fuzzy
-#| msgid "Oops, "
-msgid "Oops"
-msgstr "അയ്യോ,"
+#| msgid "Note Edition"
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "കുറിപ്പിന്റെ പതിപ്പ്"
 
-#: ../src/bjb-empty-results-box.c:167
-msgid "Please install 'Tracker' then restart the application."
-msgstr "'Tracker' സ്ഥാപിച്ചശേഷം പ്രയോഗം വീണ്ടും തുടങ്ങുക"
+#: data/resources/help-overlay.ui:74
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "കട്ടികൂടിയത്"
 
-#: ../src/bjb-import-dialog.c:309
-msgid "Custom Location"
-msgstr "ഇഷ്ടമുളള സ്ഥാനം "
+#: data/resources/help-overlay.ui:81
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "ചരിഞ്ഞ"
 
-#: ../src/bjb-import-dialog.c:404
+#: data/resources/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "വെട്ടിയത്"
+
+#: data/resources/help-overlay.ui:95
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "പഴയപടിയാക്കുക"
+
+#: data/resources/help-overlay.ui:102
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "വീണ്ടും"
+
+#: data/resources/help-overlay.ui:109
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "കുറിപ്പ് ചവറ്റുകൊട്ടയിലേക്ക് നീക്കുക"
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
 msgid "Import Notes"
 msgstr "കുറിപ്പുകള്‍ ഇറക്കുമതി ചെയ്യുക"
 
-#: ../src/bjb-import-dialog.c:407 ../src/bjb-rename-note.c:17
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
 msgid "_Cancel"
-msgstr "_റദ്ദാക്കുക"
+msgstr "റദ്ദാക്കുക (_C)"
 
-#: ../src/bjb-import-dialog.c:409
-msgid "Import"
-msgstr "ഇറക്കുമതി"
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "ഇറക്കുമതി (_I)"
 
-#: ../src/bjb-import-dialog.c:420
+#: data/resources/import-dialog.ui:41
 msgid "Select import location"
 msgstr "ഇറക്കുമതി സ്ഥലം തിരഞ്ഞെടുക്കുക"
 
-#: ../src/bjb-import-dialog.c:441
-msgid "Tomboy application"
-msgstr "ടോംബോയി പ്രയോഗം"
-
-#: ../src/bjb-import-dialog.c:447
+#: data/resources/import-dialog.ui:78
 msgid "Gnote application"
 msgstr "ജിനോട്ട് പ്രയോഗം"
 
-#: ../src/bjb-load-more-button.c:67 ../src/bjb-load-more-button.c:153
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "ടോംബോയി പ്രയോഗം"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "ഇഷ്ടമുളള സ്ഥാനം"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "പുതിയത് (_N)"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+msgid "Note color"
+msgstr "കുറിപ്പിന്റെ നിറം"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "കാലി (_E)"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "തിരഞ്ഞെടുക്കുവാനുള്ള മോഡില്‍ നിന്ന് പുറത്ത് കടക്കുക"
+
+#: data/resources/main-toolbar.ui:94
+#, fuzzy
+#| msgid "Search note titles, content and collections"
+msgid "Search note titles, content and notebooks"
+msgstr "കുറിപ്പിന്റെ തലകെട്ട്, ഉള്ളടക്കം, ശേഖരം തുടങ്ങിയവ തിരയുക"
+
+#: data/resources/main-toolbar.ui:119
+#, fuzzy
+#| msgid "View notes and collections in a grid"
+msgid "View notes and notebooks in a grid"
+msgstr "കുറിപ്പുകളും ശേഖരങ്ങളും കള്ളികളാക്കി കാണിക്കുക"
+
+#: data/resources/main-toolbar.ui:137
+#, fuzzy
+#| msgid "View notes and collections in a list"
+msgid "View notes and notebooks in a list"
+msgstr "കുറിപ്പുകളും ശേഖരങ്ങളും പട്ടികയാക്കി കാണിക്കുക"
+
+#: data/resources/main-toolbar.ui:161
+msgid "Selection mode"
+msgstr "തിരഞ്ഞെടുക്കുന്ന മോഡ്"
+
+#: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "മെനു തുറക്കുക"
+
+#: data/resources/main-toolbar.ui:191
+msgid "More options…"
+msgstr "കൂടുതല്‍ ഐച്ഛികങ്ങള്‍…"
+
+#: data/resources/main-toolbar.ui:226
+msgid "View Trash"
+msgstr "ചവറ്റുകൊട്ട കാണുക"
+
+#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "മുന്‍ഗണനകൾ"
+
+#: data/resources/main-toolbar.ui:300
+msgid "Help"
+msgstr "സഹായം"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "കീബോര്‍ഡിനുള്ള കുറുക്കുവഴികള്‍"
+
+#: data/resources/main-toolbar.ui:316
+msgid "About"
+msgstr "കുറിച്ച്"
+
+#: data/resources/main-toolbar.ui:329
+msgid "Open in New Window"
+msgstr "പുതിയ ജാലകത്തിൽ തുറക്കുക"
+
+#: data/resources/main-toolbar.ui:343
+msgid "Undo"
+msgstr "വേണ്ടെന്ന് വയ്ക്കുക"
+
+#: data/resources/main-toolbar.ui:351
+msgid "Redo"
+msgstr "വീണ്ടും"
+
+#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:25
+msgid "Notebooks"
+msgstr "ശേഖരം"
+
+#: data/resources/main-toolbar.ui:373
+msgid "Email this Note"
+msgstr "ഈ കുറിപ്പ് ഇമെയിൽ ചെയ്യുക"
+
+#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+msgid "Move to Trash"
+msgstr "ചവറ്റുകൂട്ടയിലേക്ക് നീക്കുക"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "ശേഖരം ഉണ്ടാക്കാനായി പേര് നല്‍കുക"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "പുതിയ കുറിപ്പുപുസ്‌തകം"
+
+#: data/resources/selection-toolbar.ui:50
+msgid "Share note"
+msgstr "കുറിപ്പ് പങ്കുവെയ്ക്കുക"
+
+#: data/resources/selection-toolbar.ui:59
+msgid "Open in another window"
+msgstr "മറ്റൊരു ജാലകത്തിൽ തുറക്കുക"
+
+#: data/resources/selection-toolbar.ui:92
+msgid "Restore"
+msgstr "വീണ്ടെടുക്കുക"
+
+#: data/resources/selection-toolbar.ui:100
+msgid "Permanently Delete"
+msgstr "എന്നെന്നേക്കുമായി ഇല്ലാതാക്കുക"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "സിസ്റ്റം ഫോണ്ട് ഉപയോഗിക്കുക"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "കുറിപ്പിന്റെ അക്ഷരരൂപം"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "സ്വതവേയുള്ള നിറം"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr "കുറിപ്പ് കെട്ടും മട്ടും"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "സൂക്ഷിക്കാനുള്ള സ്വതവേയുള്ള സ്ഥലം തിരഞ്ഞെടുക്കുക:"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "പ്രാഥമിക പുസ്തകം"
+
+#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+msgid "Untitled"
+msgstr "ശീർഷകമില്ലാത്തത്"
+
+#: src/bjb-application.c:341
+msgid "Show the application’s version"
+msgstr "അപ്ലിക്കേഷൻ പതിപ്പ് കാണിക്കുക"
+
+#: src/bjb-application.c:343
+msgid "Create a new note"
+msgstr "പുതിയ കുറിപ്പ് സൃഷ്ടിക്കുക"
+
+#: src/bjb-application.c:345
+msgid "[FILE…]"
+msgstr "[FILE…]"
+
+#: src/bjb-application.c:353
+msgid "Take notes and export them everywhere."
+msgstr ""
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:364
+msgid "Could not parse arguments"
+msgstr ""
+
+#: src/bjb-application.c:372
+msgid "GNOME Notes"
+msgstr "ഗ്നോം കുറിപ്പുകള്‍"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:384
+msgid "Could not register the application"
+msgstr "അപ്ലിക്കേഷൻ രജിസ്റ്റർ ചെയ്യാൻ സാധിച്ചില്ല"
+
+#: src/bjb-application.c:518
+msgid "Simple notebook for GNOME"
+msgstr "ഗ്നോമിനായുള്ള ലളിതമായ കുറിപ്പ് പുസ്തകം"
+
+#: src/bjb-application.c:524
+msgid "translator-credits"
+msgstr "സുമിത്രൻ <sumithranvaikom@gmail.com>"
+
+#: src/bjb-color-button.c:137
+msgid "Note Color"
+msgstr "കുറിപ്പിന്റെ നിറം"
+
+#: src/bjb-empty-results-box.c:63
+msgid "Press the New button to create a note."
+msgstr "പുതിയത് ബട്ടണ്‍ ക്ലിക്ക് ചെയ്താല്‍ ആദ്യ കുറിപ്പ് ഉണ്ടാക്കാം"
+
+#: src/bjb-empty-results-box.c:85
+msgid "Oops"
+msgstr "ക്ഷമിക്കണം"
+
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr "“Tracker” സ്ഥാപിച്ചശേഷം പ്രയോഗം വീണ്ടും തുടങ്ങുക."
+
+#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
 msgstr "കൂടുതല്‍ എടുക്കു"
 
-#: ../src/bjb-load-more-button.c:82
-msgid "Loading..."
-msgstr "കയറ്റുന്നു..."
+#: src/bjb-load-more-button.c:90
+msgid "Loading…"
+msgstr "കയറ്റുന്നു…"
 
-#: ../src/bjb-main-toolbar.c:138
+#: src/bjb-main-toolbar.c:208
 msgid "Click on items to select them"
 msgstr "ഇനം തിരഞ്ഞെടുക്കുവാനായി അതാത് ഇനത്തില്‍ ക്ലിക്ക് ചെയ്യുക"
 
-#: ../src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:210
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d തിരഞ്ഞെടുത്തിരിക്കുന്നു"
 msgstr[1] "%d തിരഞ്ഞെടുത്തിരിക്കുന്നു"
 
-#: ../src/bjb-main-toolbar.c:260
-msgid "Search note titles, content and collections"
-msgstr "കുറിപ്പിന്റെ തലകെട്ട്, ഉള്ളടക്കം, ശേഖരം തുടങ്ങിയവ തിരയുക"
-
-#. Select
-#: ../src/bjb-main-toolbar.c:302
-msgid "Cancel"
-msgstr "റദ്ദാക്കുക"
-
-#: ../src/bjb-main-toolbar.c:313
-msgid "Exit selection mode"
-msgstr "തിരഞ്ഞെടുക്കുവാനുള്ള മോഡില്‍ നിന്ന് പുറത്ത് കടക്കുക"
-
-#: ../src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:343
 #, c-format
 msgid "Results for %s"
 msgstr "%s-നുള്ള ഫലങ്ങള്‍"
 
-#: ../src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:346
 msgid "New and Recent"
 msgstr "പുതിയതും അടുത്തുപയോഗിച്ചതും"
 
-#: ../src/bjb-main-toolbar.c:411
-msgid "New"
-msgstr "പുതിയ"
+#: src/bjb-main-toolbar.c:434
+msgid "Trash"
+msgstr "ചവറ്റുകൊട്ട"
 
-#: ../src/bjb-main-toolbar.c:429
-msgid "Selection mode"
-msgstr "തിരഞ്ഞെടുക്കുന്ന മോഡ്"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-main-toolbar.c:498
+#, c-format
+msgid "Last updated %s"
+msgstr "ഏറ്റവും ഒടുവില്‍ പരിഷ്കരിച്ചത് %s"
 
-#: ../src/bjb-main-toolbar.c:463
-msgid "View notes and collections in a list"
-msgstr "കുറിപ്പുകളും ശേഖരങ്ങളും പട്ടികയാക്കി കാണിക്കുക"
-
-#: ../src/bjb-main-toolbar.c:487
-msgid "View notes and collections in a grid"
-msgstr "കുറിപ്പുകളും ശേഖരങ്ങളും കള്ളികളാക്കി കാണിക്കുക"
-
-#. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:615
-msgid "Undo"
-msgstr "വേണ്ടെന്ന് വയ്ക്കുക"
-
-#: ../src/bjb-main-toolbar.c:623
-msgid "Redo"
-msgstr "വീണ്ടും"
-
-#. Bullets, ordered list, separator
-#. Bullets : unordered list format
-#: ../src/bjb-main-toolbar.c:638
-msgid "Bullets"
-msgstr "ബുള്ളറ്റുകള്‍"
-
-#. Ordered list as 1.mouse 2.cats 3.dogs
-#: ../src/bjb-main-toolbar.c:645
-msgid "Numbered List"
-msgstr "അക്കമിട്ട പട്ടിക"
-
-#: ../src/bjb-main-toolbar.c:659 ../src/bjb-note-tag-dialog.c:370
-msgid "Collections"
-msgstr "ശേഖരം"
-
-#. Delete Note
-#: ../src/bjb-main-toolbar.c:667
-msgid "Delete this Note"
-msgstr "ഈ കുറിപ്പ് മായ്ക്കുക"
-
-#: ../src/bjb-main-toolbar.c:731 ../src/bjb-selection-toolbar.c:252
-msgid "Note color"
-msgstr "കുറിപ്പിന്റെ നിറം"
-
-#: ../src/bjb-main-toolbar.c:758
-msgid "Share note"
-msgstr "കുറിപ്പ് പങ്കുവെയ്ക്കുക"
-
-#: ../src/bjb-main-toolbar.c:779
-msgid "More options…"
-msgstr "കൂടുതല്‍ ഐച്ഛികങ്ങള്‍…"
-
-#: ../src/bjb-note-tag-dialog.c:399
-msgid "Enter a name to create a collection"
-msgstr "ശേഖരം ഉണ്ടാക്കാനായി പേര് നല്‍കുക"
-
-#: ../src/bjb-note-tag-dialog.c:409
-msgid "New collection"
-msgstr "പുതിയ ശേഖരം"
-
-#. Response
-#: ../src/bjb-note-tag-dialog.c:437 ../src/bjb-settings-dialog.c:463
-msgid "_Close"
-msgstr "_അടയ്ക്കുക"
-
-#. "Last updated" precedes the note last updated date
-#: ../src/bjb-note-view.c:229
-#, fuzzy
-#| msgid "Last updated "
-msgid "Last updated"
-msgstr "ഏറ്റവും ഒടുവില്‍ പരിഷ്കരിച്ചത്"
-
-#: ../src/bjb-rename-note.c:19
-msgid "_OK"
-msgstr "_ശരി"
-
-#. Trash notes
-#: ../src/bjb-selection-toolbar.c:244
-msgid "Delete"
-msgstr "നീക്കം ചെയ്യുക"
-
-#. Notes tags
-#: ../src/bjb-selection-toolbar.c:258
-msgid "Add to Collection"
-msgstr "ശേഖരത്തിലേക്ക് ചേര്‍ക്കുക"
-
-#. Use System Font
-#: ../src/bjb-settings-dialog.c:391
-msgid "Use System Font"
-msgstr ""
-
-#. Default font
-#: ../src/bjb-settings-dialog.c:405
-msgid "Note Font"
-msgstr "കുറിപ്പിന്റെ അക്ഷരരൂപം"
-
-#. Default color
-#: ../src/bjb-settings-dialog.c:417
-msgid "Default Color"
-msgstr "സ്വതവേയുള്ള നിറം"
-
-#: ../src/bjb-settings-dialog.c:493
-msgid "Note Edition"
-msgstr "കുറിപ്പിന്റെ പതിപ്പ്"
-
-#: ../src/bjb-settings-dialog.c:496
-msgid "Primary Book"
-msgstr "പ്രാഥമിക പുസ്തകം"
-
-#: ../src/libbiji/biji-date-time.c:32
-msgid "Today"
-msgstr "ഇന്ന്"
-
-#: ../src/libbiji/biji-date-time.c:35
-msgid "Yesterday"
-msgstr "ഇന്നലെ"
-
-#: ../src/libbiji/biji-date-time.c:38
-msgid "This week"
-msgstr "ഈ ആഴ്ച"
-
-#: ../src/libbiji/biji-date-time.c:41
-msgid "This month"
-msgstr "ഈ മാസം"
-
-#: ../src/libbiji/biji-date-time.c:44
-msgid "This year"
-msgstr "ഈ വര്‍ഷം"
-
-#: ../src/libbiji/biji-date-time.c:46
+#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "അറിയാത്ത"
 
-#: ../src/libbiji/provider/biji-local-provider.c:298
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "ഇന്ന്"
+
+#: src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "ഇന്നലെ"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "ഈ ആഴ്ച"
+
+#: src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "ഈ മാസം"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "ഈ വര്‍ഷം"
+
+#: src/libbiji/biji-notebook.c:265
+msgid "Local"
+msgstr "പ്രാദേശികം"
+
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "പ്രാദേശിക സംഭരണം"
 
-#: ../src/resources/app-menu.ui.h:1
-msgid "_New Window"
-msgstr "പുതിയ ജാലകം (_N)"
+#, fuzzy
+#~| msgid "Simple notebook for GNOME"
+#~ msgid "Notes for GNOME"
+#~ msgstr "ഗ്നോമിനായുള്ള ലളിതമായ കുറിപ്പ് പുസ്തകം"
 
-#: ../src/resources/app-menu.ui.h:2
-msgid "_Import Notes"
-msgstr "കുറിപ്പുകള്‍ ഇറക്കുമതി ചെയ്യുക (_I)"
+#~ msgid "notes;reminder;"
+#~ msgstr "notes;reminder;"
 
-#: ../src/resources/app-menu.ui.h:3
-msgid "_Preferences"
-msgstr "മുന്‍ഗണനകള്‍(_P)"
+#~ msgid "No Notes Found"
+#~ msgstr "കുറിപ്പുകളൊന്നും കണ്ടില്ല"
 
-#: ../src/resources/app-menu.ui.h:4
-msgid "_About Notes"
-msgstr "കുറിപ്പുകളെ കുറിച്ച് (_A)"
+#~ msgid "No result found for this research."
+#~ msgstr "ഈ തെരയലില്‍ ഫലങ്ങളൊന്നുമില്ല."
 
-#: ../src/resources/app-menu.ui.h:5
-msgid "_Help"
-msgstr "സഹായം (_H)"
+#~ msgid "Cancel"
+#~ msgstr "റദ്ദാക്കുക"
 
-#: ../src/resources/app-menu.ui.h:6
-msgid "_Quit"
-msgstr "പുറത്ത് കടക്കുക (_Q)"
+#~ msgid "New"
+#~ msgstr "പുതിയ"
+
+#~ msgid "Numbered List"
+#~ msgstr "അക്കമിട്ട പട്ടിക"
+
+#~ msgid "Collections"
+#~ msgstr "ശേഖരം"
+
+#~ msgid "New collection"
+#~ msgstr "പുതിയ ശേഖരം"
+
+#~ msgid "_Close"
+#~ msgstr "_അടയ്ക്കുക"
+
+#~ msgid "_OK"
+#~ msgstr "_ശരി"
+
+#~ msgid "Delete"
+#~ msgstr "നീക്കം ചെയ്യുക"
+
+#~ msgid "Add to Collection"
+#~ msgstr "ശേഖരത്തിലേക്ക് ചേര്‍ക്കുക"
 
 #~ msgid "Rename Note"
 #~ msgstr "കുറിപ്പിന്റെ പേരുമാറ്റുക"

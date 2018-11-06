@@ -423,6 +423,7 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
   char *storage_path;
   GFile *storage;
   GdkRGBA color = { 0, 0, 0, 0 };
+#ifdef TRACKER_PRIVATE_STORE
   g_autofree char *filename = NULL;
   g_autoptr (GFile) data_location = NULL;
 
@@ -436,6 +437,9 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
                                                           data_location,
                                                           NULL, NULL, NULL,
                                                           &error);
+#else
+  self->connection = tracker_sparql_connection_get (NULL, &error);
+#endif
 
   if (error)
   {

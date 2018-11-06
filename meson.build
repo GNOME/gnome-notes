@@ -40,6 +40,9 @@ foreach define: set_defines
   config_h.set_quoted(define[0], define[1])
 endforeach
 
+# Tracker
+config_h.set('TRACKER_PRIVATE_STORE', get_option('private_store'))
+
 # compiler flags
 common_flags = [
   '-DHAVE_CONFIG_H',
@@ -146,4 +149,5 @@ meson.add_install_script(
 
 output = '  Version:          ' + bijiben_version + '\n'
 output += '  Enable Zeitgeist  ' + enable_zeitgeist.to_string() + '\n'
+output += '  Use Private Store ' + get_option('private_store').to_string() + '\n'
 message(output)

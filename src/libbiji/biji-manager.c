@@ -17,7 +17,7 @@
 
 #include <gtk/gtk.h>
 
-
+#include "config.h"
 #include "libbiji.h"
 #include "biji-notebook.h"
 #include "biji-error.h"
@@ -218,6 +218,7 @@ biji_manager_initable_init (GInitable *initable,
   GError *local_error = NULL;
   GoaClient *client;
   ESourceRegistry *registry;
+#ifdef TRACKER_PRIVATE_STORE
   g_autofree char *filename = NULL;
   g_autoptr (GFile) data_location = NULL;
 
@@ -233,6 +234,9 @@ biji_manager_initable_init (GInitable *initable,
                                                           data_location,
                                                           NULL, NULL, NULL,
                                                           &local_error);
+#else
+  self->connection = tracker_sparql_connection_get (NULL, &local_error);
+#endif
 
   if (local_error)
   {

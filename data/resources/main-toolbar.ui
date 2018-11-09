@@ -302,10 +302,11 @@
         </child>
 
         <child>
-          <object class="GtkSeparator">
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
+          <object class="GtkModelButton">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">win.show-help-overlay</property>
           </object>
         </child>
 
@@ -315,15 +316,6 @@
             <property name="can_focus">False</property>
             <property name="text" translatable="yes">Help</property>
             <property name="action_name">app.help</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
-            <property name="action_name">win.show-help-overlay</property>
           </object>
         </child>
 

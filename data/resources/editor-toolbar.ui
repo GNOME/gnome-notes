@@ -6,22 +6,26 @@
     <property name="icon_name">format-text-bold-symbolic</property>
     <property name="icon_size">1</property>
   </object>
+  <object class="GtkImage" id="format-text-bullet">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-missing-image</property>
+  </object>
   <object class="GtkImage" id="format-text-italic">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">format-text-italic-symbolic</property>
     <property name="icon_size">1</property>
   </object>
+  <object class="GtkImage" id="format-text-list">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-missing-image</property>
+  </object>
   <object class="GtkImage" id="format-text-strikethrough">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">format-text-strikethrough-symbolic</property>
-    <property name="icon_size">1</property>
-  </object>
-  <object class="GtkImage" id="insert-link">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">insert-link-symbolic</property>
     <property name="icon_size">1</property>
   </object>
   <template class="BjbEditorToolbar" parent="GtkActionBar">
@@ -45,7 +49,7 @@
                 <property name="tooltip_text" translatable="yes">Bold</property>
                 <property name="image">format-text-bold</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_bold_clicked" object="BjbEditorToolbar" swapped="no" />
+                <signal name="clicked" handler="on_bold_clicked" object="BjbEditorToolbar" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -61,7 +65,7 @@
                 <property name="tooltip_text" translatable="yes">Italic</property>
                 <property name="image">format-text-italic</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_italic_clicked" object="BjbEditorToolbar" swapped="no" />
+                <signal name="clicked" handler="on_italic_clicked" object="BjbEditorToolbar" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -77,7 +81,7 @@
                 <property name="tooltip_text" translatable="yes">Strike</property>
                 <property name="image">format-text-strikethrough</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_strike_clicked" object="BjbEditorToolbar" swapped="no" />
+                <signal name="clicked" handler="on_strike_clicked" object="BjbEditorToolbar" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -88,7 +92,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">0</property>
           </packing>
         </child>
@@ -104,8 +108,9 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Bullets</property>
+                <property name="image">format-text-bullet</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_bullets_clicked" object="BjbEditorToolbar" swapped="no" />
+                <signal name="clicked" handler="on_bullets_clicked" object="BjbEditorToolbar" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -120,8 +125,9 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">List</property>
+                <property name="image">format-text-list</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_list_clicked" object="BjbEditorToolbar" swapped="no" />
+                <signal name="clicked" handler="on_list_clicked" object="BjbEditorToolbar" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -132,30 +138,60 @@
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <child>
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="homogeneous">True</property>
+            <property name="layout_style">expand</property>
+            <child>
+              <object class="GtkButton" id="link_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Copy selection to a new note</property>
+                <property name="image">insert-link</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_link_clicked" object="BjbEditorToolbar" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="pack_type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
       </object>
       <packing>
-        <property name="pack_type">start</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkButton" id="link_button">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Copy selection to a new note</property>
-        <property name="image">insert-link</property>
-        <property name="use_underline">True</property>
-        <signal name="clicked" handler="on_link_clicked" object="BjbEditorToolbar" swapped="no" />
-      </object>
-      <packing>
-        <property name="pack_type">end</property>
         <property name="position">1</property>
       </packing>
     </child>
   </template>
+  <object class="GtkImage" id="insert-link">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">insert-link-symbolic</property>
+    <property name="icon_size">1</property>
+  </object>
 </interface>

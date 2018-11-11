@@ -218,8 +218,6 @@ get_note_icon (BijibenShellSearchProviderApp *self,
       gicon = G_ICON (gdk_pixbuf_get_from_surface (surface, 0, 0,
                                                    cairo_image_surface_get_width (surface),
                                                    cairo_image_surface_get_height (surface)));
-
-      cairo_surface_destroy (surface);
     }
 
   if (gicon == NULL)

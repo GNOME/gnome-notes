@@ -39,6 +39,25 @@
   </screenshots>
 
   <releases>
+    <release date="2018-11-11" version="3.31.2">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added compiler option to choose between Tracker service or private store (Isaque Galdino)</li>
+          <li>Changed editor toolbar to be always visible (Isaque Galdino)</li>
+          <li>Changed menus to popover menus (Isaque Galdino)</li>
+          <li>Fixed shell search provider crash (Isaque Galdino)</li>
+          <li>Fixed some compilation warnings (Isaque Galdino)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>eo (Carmen Bianca BAKKER)</li>
+          <li>ml (Anish Sheela)</li>
+          <li>sl (Matej Urbančič)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-10-08" version="3.31.1.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

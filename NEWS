@@ -1,3 +1,17 @@
+Overview of changes in 3.31.2
+=============================
+
+* Added compiler option to choose between Tracker service or private store (Isaque Galdino)
+* Changed editor toolbar to be always visible (Isaque Galdino)
+* Changed menus to popover menus (Isaque Galdino)
+* Fixed shell search provider crash (Isaque Galdino)
+* Fixed some compilation warnings (Isaque Galdino)
+
+Translations
+* eo (Carmen Bianca BAKKER)
+* ml (Anish Sheela)
+* sl (Matej Urbančič)
+
 Overview of changes in 3.31.1.1
 ===============================
 

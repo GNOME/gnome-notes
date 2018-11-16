@@ -39,6 +39,15 @@
   </screenshots>
 
   <releases>
+    <release date="2018-11-16" version="3.28.4.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fixed libgd reference (Isaque Galdino)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-11-16" version="3.28.4">
       <description>
         <p>This release brings the following new features and improvements:</p>

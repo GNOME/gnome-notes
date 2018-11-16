@@ -39,6 +39,21 @@
   </screenshots>
 
   <releases>
+    <release date="2018-11-16" version="3.30.3">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fixed shell search provider crash (Isaque Galdino)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>eo (Carmen Bianca Bakker)</li>
+          <li>ml (Anish Sheela)</li>
+          <li>oc (Cédric Valmary)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-10-21" version="3.30.2">
       <description>
         <p>This release brings the following new features and improvements:</p>

@@ -1,3 +1,13 @@
+Overview of changes in 3.30.3
+=============================
+
+* Fixed shell search provider crash (Isaque Galdino)
+
+Translations
+* eo (Carmen Bianca Bakker)
+* ml (Anish Sheela)
+* oc (Cédric Valmary)
+
 Overview of changes in 3.30.2
 =============================
 

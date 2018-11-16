@@ -1,3 +1,11 @@
+Overview of changes in 3.28.4
+=============================
+
+* Fixed shell search provider crash (Isaque Galdino)
+
+Translations
+* fr (Alexandre Franke)
+
 Overview of changes in 3.28.3
 =============================
 

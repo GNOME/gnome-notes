@@ -18,6 +18,7 @@
 #include "biji-date-time.h"
 #include "biji-note-id.h"
 #include "biji-manager.h"
+#include "../bjb-utils.h"
 #include "biji-note-obj.h"
 #include "biji-timeout.h"
 #include "biji-tracker.h"
@@ -357,17 +358,16 @@ biji_note_obj_get_mtime (BijiItem *note)
   return biji_note_id_get_mtime (priv->id);
 }
 
-const gchar *
+gchar *
 biji_note_obj_get_last_change_date_string (BijiNoteObj *self)
 {
   BijiNoteObjPrivate *priv;
 
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), "");
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), g_strdup (""));
 
   priv = biji_note_obj_get_instance_private (self);
 
-  return biji_get_time_diff_with_time (
-             biji_note_id_get_mtime (priv->id));
+  return bjb_utils_get_human_time (biji_note_id_get_mtime (priv->id));
 }
 
 

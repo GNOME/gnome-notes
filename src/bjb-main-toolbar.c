@@ -420,14 +420,15 @@ on_last_updated_cb (BijiItem       *note,
                     BjbMainToolbar *self)
 {
   g_autofree gchar *label;
+  g_autofree gchar *time_str = NULL;
 
+  time_str = biji_note_obj_get_last_change_date_string (self->note);
   /* Translators: %s is the note last recency description.
    * Last updated is placed as in left to right language
    * right to left languages might move %s
    *         '%s Last Updated'
    */
-  label = g_strdup_printf (_("Last updated %s"),
-                           biji_note_obj_get_last_change_date_string (self->note));
+  label = g_strdup_printf (_("Last updated %s"), time_str);
   gtk_label_set_text (GTK_LABEL (self->last_update_item), label);
 }
 

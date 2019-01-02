@@ -23,7 +23,8 @@ sources = files(
   'biji-string.c',
   'biji-timeout.c',
   'biji-tracker.c',
-  'biji-zeitgeist.c'
+  'biji-zeitgeist.c',
+  '../gn-utils.c',
 )
 
 marshalers = 'biji-marshalers'

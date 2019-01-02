@@ -97,7 +97,7 @@ gboolean         biji_note_obj_set_mtime                     (BijiNoteObj* n,
                                                               gint64 time);
 
 
-const gchar     *biji_note_obj_get_last_change_date_string   (BijiNoteObj *self);
+gchar           *biji_note_obj_get_last_change_date_string   (BijiNoteObj *self);
 
 
 gint64           biji_note_obj_get_last_metadata_change_date (BijiNoteObj *note);

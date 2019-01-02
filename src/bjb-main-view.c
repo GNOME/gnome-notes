@@ -24,6 +24,7 @@
 #include "bjb-controller.h"
 #include "bjb-load-more-button.h"
 #include "bjb-main-toolbar.h"
+#include "gn-utils.h"
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
 #include "bjb-organize-dialog.h"
@@ -502,7 +503,7 @@ render_date     (GtkTreeViewColumn *tree_column,
                  gpointer data)
 {
   BijiItem *item;
-  const gchar *str;
+  g_autofree gchar *str = NULL;
   BjbMainView *self;
 
   self = data;
@@ -510,7 +511,7 @@ render_date     (GtkTreeViewColumn *tree_column,
 
   if (item != NULL)
   {
-    str = biji_get_time_diff_with_time (biji_item_get_mtime (item));
+    str = gn_utils_get_human_time (biji_item_get_mtime (item));
     g_object_set (cell, "text", str, NULL);
   }
 }

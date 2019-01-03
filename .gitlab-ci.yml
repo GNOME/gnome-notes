@@ -1,24 +1,20 @@
 stages:
-- test
+  - build
 
-flatpak:
-    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
-    stage: test
-
-    variables:
-        # Replace with your manifest path
-        MANIFEST_PATH: "build-aux/flatpak/org.gnome.Notes.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        # Replace with your application name, as written in the manifest
-        FLATPAK_MODULE: "bijiben"
-        # Make sure to keep this in sync with the Flatpak manifest, all arguments
-        # are passed except the config-args because we build it ourselves
-        # CONFIGURE_ARGS: "-Dtests=all"
-
-    script:
-        - git submodule update --init --recursive
-        - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
-        - flatpak build app meson --prefix=/app ${CONFIGURE_ARGS} _build
-        - flatpak build app ninja -C _build install
-        # Run tests inside the Flatpak env emulating a display
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak build app ninja -C _build test
+build:
+  image: pksadiq/gtk:fedora-bijiben
+  stage: build
+  variables:
+    CCACHE_BASEDIR: "${CI_PROJECT_DIR}"
+    CCACHE_DIR: "${CCACHE_BASEDIR}/_ccache"
+    MESON_ARGS: "--buildtype=debugoptimized"
+  script:
+    - git submodule update --init --recursive
+    - meson ${MESON_ARGS} _build
+    - ccache --zero-stats
+    - ninja -C _build
+    - ccache --show-stats
+  cache:
+    key: build
+    paths:
+      - _ccache/

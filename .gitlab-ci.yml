@@ -10,8 +10,11 @@ build:
     MESON_ARGS: "--buildtype=debugoptimized"
   script:
     - git submodule update --init --recursive
+    - ccache --show-stats
     - meson ${MESON_ARGS} _build
+    - ccache --show-stats
     - ccache --zero-stats
+    - ccache --show-stats
     - ninja -C _build
     - ccache --show-stats
   cache:

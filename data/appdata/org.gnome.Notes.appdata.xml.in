@@ -39,6 +39,18 @@
   </screenshots>
 
   <releases>
+    <release date="2019-01-07" version="3.31.4">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>fr (Charles Monzat)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>tr (Sabri Ünal)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-12-11" version="3.31.3">
       <description>
         <p>This release brings the following new features and improvements:</p>

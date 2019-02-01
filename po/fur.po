@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-08-01 22:19+0000\n"
-"PO-Revision-Date: 2018-08-02 06:48+0200\n"
+"POT-Creation-Date: 2018-12-20 22:53+0000\n"
+"PO-Revision-Date: 2019-02-01 08:29+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
-#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:510 src/bjb-window-base.c:17
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notis"
 
@@ -71,129 +71,116 @@ msgstr "Anotazions"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
 msgid "org.gnome.Notes"
 msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Caratar personalizât"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Il gjenar di caratar impuestât culì al vegnarà doprât come predefinît pe "
 "visualizazion des notis."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Indiche se doprâ il caratar a spaziadure fisse"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Colôr des gnovis notis."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Il colôr impuestât culì al vegnarà doprât come colôr predefinît cuant che a "
 "si crein gnovis notis."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Archivi principâl di doprâ par lis gnovis notis."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr ""
 "Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin creadis."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Barcon slargjât"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Stât dal barcon slargjât."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Dimension barcon"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Dimension barcon (largjece e altece)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Posizion barcon"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Posizion barcon (x e y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "How to show note items"
 msgstr "Ce mût mostrâ i elements des notis"
 
-#: data/org.gnome.bijiben.gschema.xml:44
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr ""
 "Indiche se mostrâ i elements des notis inte viodude a iconis o te viodude a "
 "liste."
 
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Dimension dal test doprade dal editôr di notis."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:49
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "A son trê dimensions di test disponibilis: piçul, medi (predefinît) e grant."
 
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Taie"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Copie"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Tache"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:49
 msgid "Bold"
 msgstr "Gruessut "
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:65
 msgid "Italic"
 msgstr "Corsîf"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:81
 msgid "Strike"
 msgstr "Stricât"
 
-#: data/resources/editor-toolbar.ui:161
+#: data/resources/editor-toolbar.ui:106
 msgid "* "
 msgstr "* "
 
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:110
 msgid "Bullets"
 msgstr "Liste pontade"
 
-#: data/resources/editor-toolbar.ui:177
+#: data/resources/editor-toolbar.ui:123
 msgid "1."
 msgstr "1."
 
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Liste"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Copie la selezion intune gnove note"
 
@@ -281,7 +268,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Sposte la note te scovacere"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
 msgstr "Impuarte notis"
 
@@ -350,68 +337,68 @@ msgstr "Modalitât selezion"
 msgid "Open menu"
 msgstr "Vierç menù"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Plui opzions..."
+#: data/resources/main-toolbar.ui:195
+msgid "More options"
+msgstr "Plui opzions"
 
-#: data/resources/main-toolbar.ui:226
+#: data/resources/main-toolbar.ui:234
 msgid "View Trash"
 msgstr "Mostre scovacere"
 
-#: data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "_Dimensions test"
+#: data/resources/main-toolbar.ui:251
+msgid "Text Sizes"
+msgstr "Dimensions test"
 
-#: data/resources/main-toolbar.ui:250
+#: data/resources/main-toolbar.ui:261
 msgid "_Large"
 msgstr "_Grant"
 
-#: data/resources/main-toolbar.ui:260
+#: data/resources/main-toolbar.ui:271
 msgid "_Medium"
 msgstr "_Medi"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:281
 msgid "_Small"
 msgstr "_Piçul"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferencis"
-
-#: data/resources/main-toolbar.ui:300
-msgid "Help"
-msgstr "Jutori"
 
 #: data/resources/main-toolbar.ui:308
 msgid "Keyboard Shortcuts"
 msgstr "Scurtis di tastiere"
 
-#: data/resources/main-toolbar.ui:316
-msgid "About"
-msgstr "Informazions"
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Jutori"
 
-#: data/resources/main-toolbar.ui:329
+#: data/resources/main-toolbar.ui:326
+msgid "About Notes"
+msgstr "Informazions su Notis"
+
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Vierç intun gnûf barcon"
 
-#: data/resources/main-toolbar.ui:343
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Anule"
 
-#: data/resources/main-toolbar.ui:351
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Torne fâ"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Tacuins"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Invie cheste note vie e-mail"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Sposte te scovacere"
 
@@ -463,47 +450,47 @@ msgstr "Selezione la posizion di archiviazion predefinide"
 msgid "Primary Book"
 msgstr "Libri principâl"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Cence titul"
 
-#: src/bjb-application.c:334
+#: src/bjb-application.c:450
 msgid "Show the application’s version"
 msgstr "Mostre la version de aplicazion"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:452
 msgid "Create a new note"
 msgstr "Cree une gnove note"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:454
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:346
+#: src/bjb-application.c:462
 msgid "Take notes and export them everywhere."
 msgstr "Cjape notis e espuartilis dapardut."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:357
+#: src/bjb-application.c:473
 msgid "Could not parse arguments"
 msgstr "Impussibil analizâ i argoments"
 
-#: src/bjb-application.c:365
+#: src/bjb-application.c:481
 msgid "GNOME Notes"
 msgstr "Notis GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:493
 msgid "Could not register the application"
 msgstr "Impussibil regjistrâ l'aplicazion"
 
-#: src/bjb-application.c:511
+#: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
 msgstr "Sempliç tacuin par GNOME"
 
-#: src/bjb-application.c:517
+#: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr "Fabio Tomat"
 
@@ -531,27 +518,27 @@ msgstr "Cjame ancjemò"
 msgid "Loading…"
 msgstr "Daûr a cjariâ…"
 
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Sclice sui elements par selezionaju"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d selezionât"
 msgstr[1] "%d selezionâts"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "Risultâts par %s"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Gnovis e resintis"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:365
 msgid "Trash"
 msgstr "Scovacere"
 
@@ -560,7 +547,7 @@ msgstr "Scovacere"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:429
 #, c-format
 msgid "Last updated %s"
 msgstr "Ultin inzornament %s"
@@ -596,6 +583,18 @@ msgstr "Locâl"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Archivi locâl"
+
+#~ msgid "Cut"
+#~ msgstr "Taie"
+
+#~ msgid "Copy"
+#~ msgstr "Copie"
+
+#~ msgid "Paste"
+#~ msgstr "Tache"
+
+#~ msgid "About"
+#~ msgstr "Informazions"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

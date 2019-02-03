@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-08-15 17:39+0000\n"
-"PO-Revision-Date: 2018-08-22 14:10+0700\n"
+"POT-Creation-Date: 2018-12-20 22:53+0000\n"
+"PO-Revision-Date: 2019-02-03 15:31+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural= n!=1;\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:510 src/bjb-window-base.c:17
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Catatan"
 
@@ -151,47 +151,35 @@ msgid ""
 msgstr ""
 "Terdapat tiga ukuran teks yang tersedia: kecil, sedang (bawaan) dan besar."
 
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Potong"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Salin"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Tempel"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:49
 msgid "Bold"
 msgstr "Tebal"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:65
 msgid "Italic"
 msgstr "Miring"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:81
 msgid "Strike"
 msgstr "Coret"
 
-#: data/resources/editor-toolbar.ui:161
+#: data/resources/editor-toolbar.ui:106
 msgid "* "
 msgstr "* "
 
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:110
 msgid "Bullets"
 msgstr "Bulet"
 
-#: data/resources/editor-toolbar.ui:177
+#: data/resources/editor-toolbar.ui:123
 msgid "1."
 msgstr "1."
 
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Daftar"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Salin pilihan ke catatan baru"
 
@@ -279,7 +267,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Pindahkan catatan ke tong sampah"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
 msgstr "Impro Catatan"
 
@@ -348,68 +336,68 @@ msgstr "Mode pemilihan"
 msgid "Open menu"
 msgstr "Buka menu"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Lebih banyak opsi..."
+#: data/resources/main-toolbar.ui:195
+msgid "More options"
+msgstr "Lebih banyak opsi"
 
-#: data/resources/main-toolbar.ui:226
+#: data/resources/main-toolbar.ui:234
 msgid "View Trash"
 msgstr "Tilik Tong Sampah"
 
-#: data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Ukuran _Teks"
+#: data/resources/main-toolbar.ui:251
+msgid "Text Sizes"
+msgstr "Ukuran Teks"
 
-#: data/resources/main-toolbar.ui:250
+#: data/resources/main-toolbar.ui:261
 msgid "_Large"
 msgstr "_Besar"
 
-#: data/resources/main-toolbar.ui:260
+#: data/resources/main-toolbar.ui:271
 msgid "_Medium"
 msgstr "_Sedang"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:281
 msgid "_Small"
 msgstr "_Kecil"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferensi"
-
-#: data/resources/main-toolbar.ui:300
-msgid "Help"
-msgstr "Bantuan"
 
 #: data/resources/main-toolbar.ui:308
 msgid "Keyboard Shortcuts"
 msgstr "Pintasan Papan Tik"
 
-#: data/resources/main-toolbar.ui:316
-msgid "About"
-msgstr "Tentang"
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Bantuan"
 
-#: data/resources/main-toolbar.ui:329
+#: data/resources/main-toolbar.ui:326
+msgid "About Notes"
+msgstr "Tentang Catatan"
+
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
-#: data/resources/main-toolbar.ui:343
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Batal"
 
-#: data/resources/main-toolbar.ui:351
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Jadi Lagi"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Buku Catatan"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Surelkan Catatan ini"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Pindahkan ke Tong Sampah"
 
@@ -461,51 +449,51 @@ msgstr "Pilih lokasi penyimpanan bawaan:"
 msgid "Primary Book"
 msgstr "Buku Primer"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Tanpa Judul"
 
-#: src/bjb-application.c:334
+#: src/bjb-application.c:450
 msgid "Show the application’s version"
 msgstr "Tampilkan versi aplikasi"
 
-#: src/bjb-application.c:336
+#: src/bjb-application.c:452
 msgid "Create a new note"
 msgstr "Buat catatan baru"
 
-#: src/bjb-application.c:338
+#: src/bjb-application.c:454
 msgid "[FILE…]"
 msgstr "[BERKAS...]"
 
-#: src/bjb-application.c:346
+#: src/bjb-application.c:462
 msgid "Take notes and export them everywhere."
 msgstr "Merekam catatan dan mengekspor mereka kemana-mana."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:357
+#: src/bjb-application.c:473
 msgid "Could not parse arguments"
 msgstr "Tak bisa mengurai argumen"
 
-#: src/bjb-application.c:365
+#: src/bjb-application.c:481
 msgid "GNOME Notes"
 msgstr "GNOME Catatan"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:377
+#: src/bjb-application.c:493
 msgid "Could not register the application"
 msgstr "Tak bisa mendaftarkan aplikasi"
 
-#: src/bjb-application.c:511
+#: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
 msgstr "Buku catatan sederhana bagi GNOME"
 
-#: src/bjb-application.c:517
+#: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2019."
 
 #: src/bjb-color-button.c:137
 msgid "Note Color"
@@ -529,28 +517,29 @@ msgstr "Muat Lebih Banyak"
 
 #: src/bjb-load-more-button.c:90
 msgid "Loading…"
-msgstr "Memuat..."
+msgstr "Memuat…"
 
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Klik pada butir untuk memilihnya"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d dipilih"
+msgstr[1] "%d dipilih"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "Hasil bagi %s"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Baru dan Terkini"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:365
 msgid "Trash"
 msgstr "Tong Sampah"
 
@@ -559,7 +548,7 @@ msgstr "Tong Sampah"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:429
 #, c-format
 msgid "Last updated %s"
 msgstr "Terakhir diperbarui %s"
@@ -595,6 +584,18 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
+
+#~ msgid "Cut"
+#~ msgstr "Potong"
+
+#~ msgid "Copy"
+#~ msgstr "Salin"
+
+#~ msgid "Paste"
+#~ msgstr "Tempel"
+
+#~ msgid "About"
+#~ msgstr "Tentang"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

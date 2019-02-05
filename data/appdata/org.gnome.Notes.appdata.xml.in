@@ -39,6 +39,22 @@
   </screenshots>
 
   <releases>
+    <release date="2019-02-04" version="3.31.90">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>af (Pieter Schalk Schoeman)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>gl (Fran Dieguez)</li>
+          <li>hu (Balázs Úr)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>ja (Ryuta Fujii)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>zh_TW (Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-01-07" version="3.31.4">
       <description>
         <p>This release updates the following translations:</p>

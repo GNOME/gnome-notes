@@ -815,28 +815,51 @@ biji_note_obj_set_create_date (BijiNoteObj *note, gint64 time)
 gchar *
 html_from_plain_text (const gchar *content)
 {
-  gchar *escaped, *retval;
+  g_auto(GStrv)  lines   = NULL;
+  char          *body    = NULL;
+  char          *retval  = NULL;
+  char          *aux     = NULL;
 
-  if (content == NULL)
-    content = "";
+  if (content)
+    {
+      aux = biji_str_mass_replace (content, "&", "&amp;", "<", "&lt;", ">", "&gt;", NULL);
+      lines = g_strsplit (aux, "\n", -1);
+      g_free (aux);
 
-  escaped = biji_str_mass_replace (content,
-                                "&", "&amp;",
-                                "<", "&lt;",
-                                ">", "&gt;",
-                                "\n", "<br/>",
-                                NULL);
+      if (lines)
+        {
+          body = g_strdup (lines[0]);
+          for (int i = 1; lines[i]; i++)
+            {
+              aux = body;
+              if (g_strcmp0 (lines[i], ""))
+                body = g_strconcat (aux, "<div>", lines[i], "</div>", NULL);
+              else
+                body = g_strconcat (aux, "<div><br/></div>", NULL);
+              g_free (aux);
+            }
+        }
+      else
+        {
+          body = g_strdup ("");
+        }
+    }
+  else
+    {
+      body = g_strdup ("");
+    }
 
   retval = g_strconcat ("<html xmlns=\"http://www.w3.org/1999/xhtml\">",
                         "<head>",
-                        "<link rel='stylesheet' href='Default.css' type='text/css'/>",
-                        "<script language='javascript' src='bijiben.js'></script>"
+                        "<link rel=\"stylesheet\" href=\"Default.css\" type=\"text/css\"/>",
+                        "<script language=\"javascript\" src=\"bijiben.js\"/>"
                         "</head>",
-                        "<body contenteditable='true' id='editable'>",
-                        escaped,
-                        "</body></html>", NULL);
+                        "<body contenteditable=\"true\" id=\"editable\">",
+                        body,
+                        "</body></html>",
+                        NULL);
 
-  g_free (escaped);
+  g_free (body);
   return retval;
 }
 

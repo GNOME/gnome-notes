@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-31 00:35+0000\n"
-"PO-Revision-Date: 2018-08-14 22:05+0500\n"
+"POT-Creation-Date: 2018-12-05 08:01+0000\n"
+"PO-Revision-Date: 2019-02-16 18:44+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -16,17 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "Естеліктер"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Естеліктерді жылдам жазыңыз"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "GNOME үшін естеліктер қолданбасы"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
@@ -35,7 +37,7 @@ msgstr ""
 "жылдам әрі ыңғайлы жолы. Өзіңіз қалайтын естеліктер санын сақтап, олармен "
 "эл. пошта арқылы бөлісіңіз."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
@@ -43,196 +45,136 @@ msgstr ""
 "Естеліктерді жергілікті компьютерде сақтауға, немесе ownCloud сияқты онлайн "
 "қызметтермен синхрондауға болады."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
 msgstr "Түзету көрінісі"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
 msgstr "Таңдау көрінісі"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
 msgstr "Тізім көрінісі"
 
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:517 src/bjb-window-base.c:17
-msgid "Notes"
-msgstr "Естеліктер"
-
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "естеліктер;еске түсіру;блокнот;жабысқақ естеліктер;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Естеліктерді жариялау, файлдарға тегтерді беру!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Естеліктерді сақтау"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:10
+#| msgid "org.gnome.bijiben"
+msgid "org.gnome.Notes"
+msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Таңдауыңызша қаріп"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Осында орнатылған қаріп естеліктерді көрсету кезінде қолданылады."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Жүйелік тең енді қаріп қолданыла ма"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Жаңа естеліктер түсі."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Осында орнатылған түс естеліктерді көрсету кезінде қолданылады."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Жаңа естеліктер үшін естеліктерді негізгі ұсынушы."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Бастапқы блокнот - бұл жаңа естеліктер сақталатын жер."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Терезе максималды етілген"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Терезенің максималды күйі."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Терезе өлшемі"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Терезе өлшемі (ені мен биіктігі)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Терезе орны"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Терезе орны (x және y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "How to show note items"
 msgstr "Естелік элементтерін қалайша көрсету"
 
-#: data/org.gnome.bijiben.gschema.xml:44
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Естелік элементтерін таңбашалар немесе тізім ретінде көрсету керек пе."
 
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Мәтіндік түзеткіші қолданатын қаріп өлшемі."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:49
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Мәтінің үш өлшемі қолжетерлік: кішкентай, орташа (негізгі) және үлкен."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "Естеліктерді _импорттау"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "Қоқыс шелегін қ_арау"
-
-#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Мә_тін өлшемдері"
-
-#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "Ү_лкен"
-
-#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "О_рташа"
-
-#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "_Кішкентай"
-
-#: data/resources/app-menu.ui:35
-msgid "_Preferences"
-msgstr "_Баптаулар"
-
-#: data/resources/app-menu.ui:41
-msgid "_Help"
-msgstr "_Көмек"
-
-#: data/resources/app-menu.ui:45
-msgid "_Keyboard Shortcuts"
-msgstr "_Пернетақта жарлықтары"
-
-#: data/resources/app-menu.ui:49
-msgid "_About"
-msgstr "О_сы туралы"
-
-#: data/resources/app-menu.ui:53
-msgid "_Quit"
-msgstr "_Шығу"
-
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Қиып алу"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Көшіріп алу"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Кірістіру"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:49
 msgid "Bold"
 msgstr "Жуан"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:65
 msgid "Italic"
 msgstr "Көлбеу"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:81
 msgid "Strike"
 msgstr "Сызылған"
 
-#: data/resources/editor-toolbar.ui:161
+#: data/resources/editor-toolbar.ui:106
 msgid "* "
 msgstr "* "
 
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:110
 msgid "Bullets"
 msgstr "Тізім маркерлері"
 
-#: data/resources/editor-toolbar.ui:177
+#: data/resources/editor-toolbar.ui:123
 msgid "1."
 msgstr "1."
 
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Тізім"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Таңдалғанды жаңа естелікке көшіріп алу"
 
@@ -320,7 +262,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Естелікті қоқыс шелегіне тастау"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
 msgstr "Естеліктерді импорттау"
 
@@ -389,52 +331,68 @@ msgstr "Таңдау режимі"
 msgid "Open menu"
 msgstr "Мәзірді ашу"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Көбірек опциялар…"
+#: data/resources/main-toolbar.ui:195
+msgid "More options"
+msgstr "Көбірек опциялар"
 
-#: data/resources/main-toolbar.ui:226
+#: data/resources/main-toolbar.ui:234
 msgid "View Trash"
 msgstr "Қоқыс шелегін қарау"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:251
+msgid "Text Sizes"
+msgstr "Мәтін өлшемдері"
+
+#: data/resources/main-toolbar.ui:261
+msgid "_Large"
+msgstr "Ү_лкен"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Medium"
+msgstr "О_рташа"
+
+#: data/resources/main-toolbar.ui:281
+msgid "_Small"
+msgstr "_Кішкентай"
+
+#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Баптаулар"
-
-#: data/resources/main-toolbar.ui:300
-msgid "Help"
-msgstr "Көмек"
 
 #: data/resources/main-toolbar.ui:308
 msgid "Keyboard Shortcuts"
 msgstr "Пернетақта жарлықтары"
 
-#: data/resources/main-toolbar.ui:316
-msgid "About"
-msgstr "Осы туралы"
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Көмек"
 
-#: data/resources/main-toolbar.ui:329
+#: data/resources/main-toolbar.ui:326
+msgid "About Notes"
+msgstr "Естеліктер қолданбасы туралы"
+
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Жаңа терезеде ашу"
 
-#: data/resources/main-toolbar.ui:343
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Болдырмау"
 
-#: data/resources/main-toolbar.ui:351
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Қайталау"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Блокноттар"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Бұл естелікті эл. поштамен жіберу"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Қоқыс шелегіне тастау"
 
@@ -486,47 +444,47 @@ msgstr "Үнсіз келісім бойынша сақтау орнын таң�
 msgid "Primary Book"
 msgstr "Басты кітап"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Атаусыз"
 
-#: src/bjb-application.c:341
+#: src/bjb-application.c:450
 msgid "Show the application’s version"
 msgstr "Қолданба нұсқасын көрсету"
 
-#: src/bjb-application.c:343
+#: src/bjb-application.c:452
 msgid "Create a new note"
 msgstr "Жаңа жазбаны жасау"
 
-#: src/bjb-application.c:345
+#: src/bjb-application.c:454
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:353
+#: src/bjb-application.c:462
 msgid "Take notes and export them everywhere."
 msgstr "Естеліктерді жасап, оларды экспорттаңыз."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:364
+#: src/bjb-application.c:473
 msgid "Could not parse arguments"
 msgstr "Аргументтерді талдау мүмкін емес"
 
-#: src/bjb-application.c:372
+#: src/bjb-application.c:481
 msgid "GNOME Notes"
 msgstr "GNOME естеліктері"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:384
+#: src/bjb-application.c:493
 msgid "Could not register the application"
 msgstr "Қолданбаны тіркеу мүмкін емес"
 
-#: src/bjb-application.c:518
+#: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
 msgstr "GNOME үшін қарапайым блокнот"
 
-#: src/bjb-application.c:524
+#: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
@@ -554,26 +512,26 @@ msgstr "Көбірек жүктеу"
 msgid "Loading…"
 msgstr "Жүктелуде…"
 
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Бірнәрсені таңдау үшін оның үстіне шертіңіз"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d таңдалды"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "%s үшін нәтижелер"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Жаңа және жуырдағы"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:365
 msgid "Trash"
 msgstr "Қоқыс шелегі"
 
@@ -582,7 +540,7 @@ msgstr "Қоқыс шелегі"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:429
 #, c-format
 msgid "Last updated %s"
 msgstr "Соңғы жаңартылған %s"
@@ -618,6 +576,45 @@ msgstr "Жергілікті"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Жергілікті сақтау қоймасы"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Естеліктерді жылдам жазыңыз"
+
+#~ msgid "_Import Notes"
+#~ msgstr "Естеліктерді _импорттау"
+
+#~ msgid "_View Trash"
+#~ msgstr "Қоқыс шелегін қ_арау"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Баптаулар"
+
+#~ msgid "_Help"
+#~ msgstr "_Көмек"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "_Пернетақта жарлықтары"
+
+#~ msgid "_About"
+#~ msgstr "О_сы туралы"
+
+#~ msgid "_Quit"
+#~ msgstr "_Шығу"
+
+#~ msgid "Cut"
+#~ msgstr "Қиып алу"
+
+#~ msgid "Copy"
+#~ msgstr "Көшіріп алу"
+
+#~ msgid "Paste"
+#~ msgstr "Кірістіру"
+
+#~ msgid "About"
+#~ msgstr "Осы туралы"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""

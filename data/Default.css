@@ -1,13 +1,19 @@
 body {
   max-width:        35.0em;
-  margin:           0 auto;
+  margin:           -1em auto;
   word-wrap:        break-word;
   color:            black;
-  background-size:  2.0em 2.0em;
   line-height:      1.5em;
   padding:          2.0em;
   font-size:        150%;
+}
+
+body::first-line {
   font-weight:      bold;
+}
+
+div {
+  margin:           0.75em 0;
 }
 
 ul {
@@ -24,8 +30,3 @@ ol {
   padding:          0 0 0 .75em;
 }
 
-body > div {
-  margin:           0.75em 0;
-  font-size:        100%;
-  font-weight:      normal;
-}

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-31 00:35+0000\n"
-"PO-Revision-Date: 2018-09-18 23:05+0300\n"
+"POT-Creation-Date: 2018-12-05 08:01+0000\n"
+"PO-Revision-Date: 2019-02-28 20:46+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -19,17 +19,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "Заметки"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Быстро записывайте заметки"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "Заметки для GNOME"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
@@ -38,7 +40,7 @@ msgstr ""
 "списки. Храните столько заметок, сколько хотите, и делитесь ими по "
 "электронной почте."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
@@ -46,198 +48,137 @@ msgstr ""
 "Вы можете хранить свои заметки локально на своем компьютере или "
 "синхронизировать с онлайн-сервисами, такими как ownCloud."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
 msgstr "Вид правки"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
 msgstr "Вид выбора"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
 msgstr "Вид списка"
 
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:517 src/bjb-window-base.c:17
-msgid "Notes"
-msgstr "Заметки"
-
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "заметки;напоминания;записная;книжка;записки;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Создавайте заметки, отмечайте файлы!"
 
 # судя по результатам поиска в гугле, note taker это что-то наподобие стилуса из samsung galaxy note
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Электронная ручка"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:10
+msgid "org.gnome.Notes"
+msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Другой шрифт"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Указанный здесь шрифт будет использоваться для отображения заметок."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Использовать ли системный моноширный шрифт"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Цвет новых заметок."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "Указанный здесь цвет будет использоваться при создании новых заметок."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Основной провайдер заметок, используемый для новых заметок."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Основная записная книжка — это место, где создаются новые заметки."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Окно развёрнуто"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Окно в развёрнутом состоянии."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Размеры окна"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Размеры окна (ширина и высота)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Положение окна"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Положение окна (x, y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "How to show note items"
 msgstr "Как отображать элементы заметок"
 
-#: data/org.gnome.bijiben.gschema.xml:44
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Отображать заметки в виде значков или в виде списка."
 
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Размер текста, используемый редактором заметок."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:49
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Доступны три формата текста: маленький, средний (по умолчанию) и большой."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Импортировать заметки"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Показать корзину"
-
-#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "_Размер текста"
-
-#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "_Большой"
-
-#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Средний"
-
-#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "_Маленький"
-
-#: data/resources/app-menu.ui:35
-msgid "_Preferences"
-msgstr "_Параметры"
-
-#: data/resources/app-menu.ui:41
-msgid "_Help"
-msgstr "_Справка"
-
-#: data/resources/app-menu.ui:45
-msgid "_Keyboard Shortcuts"
-msgstr "_Комбинации клавиш"
-
-#: data/resources/app-menu.ui:49
-msgid "_About"
-msgstr "_О приложении"
-
-#: data/resources/app-menu.ui:53
-msgid "_Quit"
-msgstr "_Завершить"
-
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Вырезать"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Копировать"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Вставить"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:49
 msgid "Bold"
 msgstr "Полужирный"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:65
 msgid "Italic"
 msgstr "Курсив"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:81
 msgid "Strike"
 msgstr "Перечёркнутый"
 
-#: data/resources/editor-toolbar.ui:161
+#: data/resources/editor-toolbar.ui:106
 msgid "* "
 msgstr "* "
 
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:110
 msgid "Bullets"
 msgstr "Тип сортировки"
 
-#: data/resources/editor-toolbar.ui:177
+#: data/resources/editor-toolbar.ui:123
 msgid "1."
 msgstr "1."
 
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Список"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Копировать выделение в новую заметку"
 
@@ -325,7 +266,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Переместить заметку в корзину"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
 msgstr "Импортировать заметки"
 
@@ -394,52 +335,68 @@ msgstr "Режим выделения"
 msgid "Open menu"
 msgstr "Открыть меню"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Дополнительные параметры…"
+#: data/resources/main-toolbar.ui:195
+msgid "More options"
+msgstr "Дополнительные параметры"
 
-#: data/resources/main-toolbar.ui:226
+#: data/resources/main-toolbar.ui:234
 msgid "View Trash"
 msgstr "Показать корзину"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:251
+msgid "Text Sizes"
+msgstr "Размер текста"
+
+#: data/resources/main-toolbar.ui:261
+msgid "_Large"
+msgstr "_Большой"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Medium"
+msgstr "_Средний"
+
+#: data/resources/main-toolbar.ui:281
+msgid "_Small"
+msgstr "_Маленький"
+
+#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Параметры"
-
-#: data/resources/main-toolbar.ui:300
-msgid "Help"
-msgstr "Справка"
 
 #: data/resources/main-toolbar.ui:308
 msgid "Keyboard Shortcuts"
 msgstr "Комбинации клавиш"
 
-#: data/resources/main-toolbar.ui:316
-msgid "About"
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Справка"
+
+#: data/resources/main-toolbar.ui:326
+msgid "About Notes"
 msgstr "О приложении"
 
-#: data/resources/main-toolbar.ui:329
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
-#: data/resources/main-toolbar.ui:343
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Вернуть"
 
-#: data/resources/main-toolbar.ui:351
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Повторить"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Записные книжки"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Отправить заметку по эл. почте"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Удалить в корзину"
 
@@ -491,51 +448,51 @@ msgstr "Выберите место хранения по умолчанию:"
 msgid "Primary Book"
 msgstr "Первичная книга"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Безымянная"
 
-#: src/bjb-application.c:341
+#: src/bjb-application.c:450
 msgid "Show the application’s version"
 msgstr "Показать версию приложения"
 
-#: src/bjb-application.c:343
+#: src/bjb-application.c:452
 msgid "Create a new note"
 msgstr "Создать новую заметку"
 
-#: src/bjb-application.c:345
+#: src/bjb-application.c:454
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:353
+#: src/bjb-application.c:462
 msgid "Take notes and export them everywhere."
 msgstr "Взять заметки и экспортировать их куда-либо."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:364
+#: src/bjb-application.c:473
 msgid "Could not parse arguments"
 msgstr "Не удалось разобрать аргументы"
 
-#: src/bjb-application.c:372
+#: src/bjb-application.c:481
 msgid "GNOME Notes"
 msgstr "Заметки GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:384
+#: src/bjb-application.c:493
 msgid "Could not register the application"
 msgstr "Не удалось зарегистрировать приложение"
 
-#: src/bjb-application.c:518
+#: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
 msgstr "Простая записная книжка среды рабочего стола GNOME"
 
-#: src/bjb-application.c:524
+#: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr ""
 "Yuri Myasoedov <ymyasoedov@yandex.ru>, 2013-2015.\n"
-"Stas Solovey <whats_up@tut.by>, 2013-2018."
+"Stas Solovey <whats_up@tut.by>, 2013-2019."
 
 #: src/bjb-color-button.c:137
 msgid "Note Color"
@@ -561,11 +518,11 @@ msgstr "Загрузить ещё"
 msgid "Loading…"
 msgstr "Загружается…"
 
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Нажмите на элементы, чтобы выбрать их"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -573,16 +530,16 @@ msgstr[0] "Выделен %d объект"
 msgstr[1] "Выделено %d объекта"
 msgstr[2] "Выделено %d объектов"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "Результаты для %s"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Новые и недавние"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:365
 msgid "Trash"
 msgstr "Корзина"
 
@@ -591,7 +548,7 @@ msgstr "Корзина"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:429
 #, c-format
 msgid "Last updated %s"
 msgstr "Обновлено: %s"
@@ -627,6 +584,45 @@ msgstr "Локальный"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Локальное хранилище"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Быстро записывайте заметки"
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Импортировать заметки"
+
+#~ msgid "_View Trash"
+#~ msgstr "_Показать корзину"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Параметры"
+
+#~ msgid "_Help"
+#~ msgstr "_Справка"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "_Комбинации клавиш"
+
+#~ msgid "_About"
+#~ msgstr "_О приложении"
+
+#~ msgid "_Quit"
+#~ msgstr "_Завершить"
+
+#~ msgid "Cut"
+#~ msgstr "Вырезать"
+
+#~ msgid "Copy"
+#~ msgstr "Копировать"
+
+#~ msgid "Paste"
+#~ msgstr "Вставить"
+
+#~ msgid "About"
+#~ msgstr "О приложении"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""

@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2013, 2014, 2015, 2018.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2013, 2014, 2015, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-31 00:35+0000\n"
-"PO-Revision-Date: 2018-09-01 16:52+0200\n"
+"POT-Creation-Date: 2019-03-02 10:21+0000\n"
+"PO-Revision-Date: 2019-03-03 13:30+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -18,222 +18,165 @@ msgstr ""
 " 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "Piezīmes"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Ātri pierakstiet piezīmes"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+#| msgid "Simple notebook for GNOME"
+msgid "Notes for GNOME"
+msgstr "GNOME piezīmes"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
-"Ātrs un vienkāršs veids, kā veidot brīvas formas piezīmes vai pierakstīt"
-" vienkāršus sarakstus. Varat saglabāt cik piezīmes vien vēlaties un dalāties"
-" ar tām caur e-pastu."
+"Ātrs un vienkāršs veids, kā veidot brīvas formas piezīmes vai pierakstīt "
+"vienkāršus sarakstus. Varat saglabāt cik piezīmes vien vēlaties un dalāties "
+"ar tām caur e-pastu."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
 msgstr ""
-"Varat saglabāt savas piezīmes lokāli uz sava datora vai sinhronizēt tās ar"
-" tādiem pakalpojumiem kā ownCloud."
+"Varat saglabāt savas piezīmes lokāli uz sava datora vai sinhronizēt tās ar "
+"tādiem pakalpojumiem kā ownCloud."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
 msgstr "Rediģēšanas skats"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
 msgstr "Atlases skats"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
 msgstr "Saraksta skats"
 
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:517 src/bjb-window-base.c:17
-msgid "Notes"
-msgstr "Piezīmes"
-
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "piezīmes;atgādinājums;piezīmju bloks;līmlapiņas;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Raksti zīmītes, marķē datnes!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Piezīmju blociņš"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:10
+#| msgid "org.gnome.bijiben"
+msgid "org.gnome.Notes"
+msgstr "org.gnome.Notes"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Pielāgots fonts"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "Šeit iestatītais fonts tiek izmantots, lai attēlotu piezīmes."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Vai izmantot sistēmas vienplatuma fontu"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Jauno piezīmju krāsa."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Šeit iestatītais krāsas nosaukums tiks izmantots kā jauno piezīmju krāsa."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Primārais piezīmju pakalpojuma sniedzējs, ko izmantot jaunām piezīmēm."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Primārā piezīmju grāmatiņā tiek veidotas jaunās piezīmes."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Logs maksimizēts"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Loga stāvoklis — maksimizēts."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Loga izmērs"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Loga izmērs (platums un augstums)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Loga novietojums"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Loga novietojums (x un y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "How to show note items"
 msgstr "Kā rādīt piezīmju vienumus"
 
-#: data/org.gnome.bijiben.gschema.xml:44
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Whether to show note items in icon view or list view."
 msgstr "Vai rādīt piezīmju vienumus ikonu skatā vai saraksta skatā."
 
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Teksta izmērs, kuru izmantos piezīmju redaktors."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:49
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Ir pieejami trīs teksta izmēri: mazs, vidējs (noklusējuma) un liels."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Importēt piezīmes"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Skatīt miskasti"
-
-#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "_Teksta izmēri"
-
-#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "Liels"
-
-#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "Vidējs"
-
-#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "Mazs"
-
-#: data/resources/app-menu.ui:35
-msgid "_Preferences"
-msgstr "_Iestatījumi"
-
-#: data/resources/app-menu.ui:41
-msgid "_Help"
-msgstr "_Palīdzība"
-
-#: data/resources/app-menu.ui:45
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastatūras īsinājumtaustiņi"
-
-#: data/resources/app-menu.ui:49
-msgid "_About"
-msgstr "P_ar"
-
-#: data/resources/app-menu.ui:53
-msgid "_Quit"
-msgstr "I_ziet"
-
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Izgriezt"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Kopēt"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Ielīmēt"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:49
 msgid "Bold"
 msgstr "Treknraksts"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:65
 msgid "Italic"
 msgstr "Slīpraksts"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:81
 msgid "Strike"
 msgstr "Pārsvītrots"
 
-#: data/resources/editor-toolbar.ui:161
+#: data/resources/editor-toolbar.ui:106
 msgid "* "
 msgstr "* "
 
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:110
 msgid "Bullets"
 msgstr "Aizzīmes"
 
-#: data/resources/editor-toolbar.ui:177
+#: data/resources/editor-toolbar.ui:123
 msgid "1."
 msgstr "1."
 
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Saraksts"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Kopēt izvēlēto uz jaunu piezīmi"
 
@@ -321,7 +264,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Pārvietot piezīmi uz miskasti"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
 msgstr "Importēt piezīmes"
 
@@ -390,56 +333,71 @@ msgstr "Izvēlēšanās režīms"
 msgid "Open menu"
 msgstr "Atvērt izvēlni"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Vairāk opciju…"
+#: data/resources/main-toolbar.ui:195
+#| msgid "More options…"
+msgid "More options"
+msgstr "Vairāk opciju"
 
-#: data/resources/main-toolbar.ui:226
-#| msgid "_View Trash"
+#: data/resources/main-toolbar.ui:234
 msgid "View Trash"
 msgstr "Skatīt miskasti"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:251
+#| msgid "_Text Sizes"
+msgid "Text Sizes"
+msgstr "Teksta izmēri"
+
+#: data/resources/main-toolbar.ui:261
+msgid "_Large"
+msgstr "Liels"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Medium"
+msgstr "Vidējs"
+
+#: data/resources/main-toolbar.ui:281
+msgid "_Small"
+msgstr "Mazs"
+
+#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Iestatījumi"
 
-#: data/resources/main-toolbar.ui:300
-#| msgid "_Help"
-msgid "Help"
-msgstr "Palīdzība"
-
 #: data/resources/main-toolbar.ui:308
-#| msgid "_Keyboard Shortcuts"
 msgid "Keyboard Shortcuts"
 msgstr "Tastatūras īsinājumtaustiņi"
 
-#: data/resources/main-toolbar.ui:316
-#| msgid "_About"
-msgid "About"
-msgstr "Par"
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Palīdzība"
 
-#: data/resources/main-toolbar.ui:329
+#: data/resources/main-toolbar.ui:326
+#| msgid "Import Notes"
+msgid "About Notes"
+msgstr "Par piezīmēm"
+
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Atvērt jaunā logā"
 
-#: data/resources/main-toolbar.ui:343
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Atsaukt"
 
-#: data/resources/main-toolbar.ui:351
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Atatsaukt"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Piezīmju grāmatiņas"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Sūtīt piezīmi pa e-pastu"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Pārvietot uz miskasti"
 
@@ -491,47 +449,47 @@ msgstr "Izvēlieties noklusējuma krātuves vietu:"
 msgid "Primary Book"
 msgstr "Galvenā grāmata"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Nenosaukts"
 
-#: src/bjb-application.c:341
+#: src/bjb-application.c:450
 msgid "Show the application’s version"
 msgstr "Rādīt lietotnes versiju"
 
-#: src/bjb-application.c:343
+#: src/bjb-application.c:452
 msgid "Create a new note"
 msgstr "Izveidot jaunu piezīmi"
 
-#: src/bjb-application.c:345
+#: src/bjb-application.c:454
 msgid "[FILE…]"
 msgstr "[DATNE…]"
 
-#: src/bjb-application.c:353
+#: src/bjb-application.c:462
 msgid "Take notes and export them everywhere."
 msgstr "Veikt piezīmes un eksportēt tās visur."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:364
+#: src/bjb-application.c:473
 msgid "Could not parse arguments"
 msgstr "Nevarēja parsēt parametrus"
 
-#: src/bjb-application.c:372
+#: src/bjb-application.c:481
 msgid "GNOME Notes"
 msgstr "GNOME piezīmes"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:384
+#: src/bjb-application.c:493
 msgid "Could not register the application"
 msgstr "Neizdevās reģistrēt lietotni"
 
-#: src/bjb-application.c:518
+#: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
 msgstr "Vienkārša GNOME piezīmju grāmatiņa"
 
-#: src/bjb-application.c:524
+#: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
@@ -559,11 +517,11 @@ msgstr "Ielādēt vairāk"
 msgid "Loading…"
 msgstr "Ielādē…"
 
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
 msgstr "Spiediet uz vienumiem, lai tos izvēlētos"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:141
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -571,16 +529,16 @@ msgstr[0] "%d izvēlēts"
 msgstr[1] "%d izvēlēti"
 msgstr[2] "%d izvēlētu"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:274
 #, c-format
 msgid "Results for %s"
 msgstr "“%s” rezultāti"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:277
 msgid "New and Recent"
 msgstr "Jaunas un nesenas"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:365
 msgid "Trash"
 msgstr "Miskaste"
 
@@ -589,9 +547,8 @@ msgstr "Miskaste"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:429
 #, c-format
-#| msgid "<b>Last updated</b> %s"
 msgid "Last updated %s"
 msgstr "Pēdējo reizi atjaunināts %s"
 
@@ -626,6 +583,46 @@ msgstr "Lokāla"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokālā glabātuve"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Ātri pierakstiet piezīmes"
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Importēt piezīmes"
+
+#~ msgid "_View Trash"
+#~ msgstr "_Skatīt miskasti"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Iestatījumi"
+
+#~ msgid "_Help"
+#~ msgstr "_Palīdzība"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "_Tastatūras īsinājumtaustiņi"
+
+#~ msgid "_About"
+#~ msgstr "P_ar"
+
+#~ msgid "_Quit"
+#~ msgstr "I_ziet"
+
+#~ msgid "Cut"
+#~ msgstr "Izgriezt"
+
+#~ msgid "Copy"
+#~ msgstr "Kopēt"
+
+#~ msgid "Paste"
+#~ msgstr "Ielīmēt"
+
+#~| msgid "_About"
+#~ msgid "About"
+#~ msgstr "Par"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""

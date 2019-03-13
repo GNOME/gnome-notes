@@ -39,6 +39,87 @@
   </screenshots>
 
   <releases>
+    <release date="2019-03-13" version="3.32.0">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added flatpak CI in Gitlab (Felipe Borges / Isaque Galdino)</li>
+          <li>Added new GNOME Notes icon (Sam Hewitt / Jakub Steiner)</li>
+          <li>Added option to choose between Tracker service or private store (Carlos Garnacho / Isaque Galdino)</li>
+          <li>Changed editor toolbar to be always visible (Isaque Galdino)</li>
+          <li>Changed flatpak to use desktop portal for email sharing (Günther Wagner)</li>
+          <li>Changed menus to popover menus (Isaque Galdino)</li>
+          <li>Fixed all text in bold (Isaque Galdino)</li>
+          <li>Updated javascript API to JSC (Isaque Galdino)</li>
+        </ul>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>ca (Jordi Mas)</li>
+          <li>eo (Kristjan SCHMIDT)</li>
+          <li>eu (Asier Sarasua Garmendia)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>is (Sveinn í Felli)</li>
+          <li>ko (Seong-ho Cho)</li>
+          <li>lv (Rūdolfs Mazurs)</li>
+          <li>nl (Nathan Follens)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>ru (Stas Solovey)</li>
+          <li>sr (Марко Костић)</li>
+          <li>cs (Marek Cernocky)</li>
+          <li>da (Alan Mortensen)</li>
+          <li>de (Tim Sabsch)</li>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>af (Pieter Schalk Schoeman)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>gl (Fran Dieguez)</li>
+          <li>hu (Balázs Úr)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>ja (Ryuta Fujii)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>zh_TW (Yi-Jyun Pan)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>fr (Charles Monzat)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>tr (Sabri Ünal)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>eo (Carmen Bianca BAKKER)</li>
+          <li>ml (Anish Sheela)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>be (Yuras Shumovich)</li>
+          <li>cs (Marek Cernocky)</li>
+          <li>da (Alan Mortensen)</li>
+          <li>de (Mario Blättermann / Tim Sabsch)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>en_GB (Bruce Cowan)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>fr (Alexandre Franke)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>hr (gogo)</li>
+          <li>hu (Balázs Meskó)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>it (Gianvito Cavasoli)</li>
+          <li>ko (Seong-ho Cho)</li>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>lv (Rūdolfs Mazurs)</li>
+          <li>nl (Hannie Dumoleyn)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>ru (Stas Solovey)</li>
+          <li>sk (Peter Vágner)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>tr (Emin Tufan Çetin)</li>
+          <li>zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-03-04" version="3.31.92">
       <description>
         <p>This release brings the following new features and improvements:</p>

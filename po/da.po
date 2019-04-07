@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
+"POT-Creation-Date: 2019-03-25 19:07+0000\n"
 "PO-Revision-Date: 2019-02-11 19:43+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -71,12 +71,6 @@ msgstr "Lav noter, mærk filer!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Noteprogram"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -497,8 +491,9 @@ msgstr ""
 "Kenneth Nielsen <k.nielsen81@gmail.com> 2014.\n"
 "Alan Mortensen, 2017, 2018.\n"
 "\n"
-"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Mere info: http://www.dansk-gruppen.dk"
+"Dansk-gruppen\n"
+"Websted <http://dansk-gruppen.dk>\n"
+"E-mail <dansk@dansk-gruppen.dk>"
 
 #: src/bjb-color-button.c:137
 msgid "Note Color"
@@ -591,6 +586,9 @@ msgstr "Lokal"
 msgid "Local storage"
 msgstr "Lokalt lager"
 
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
+
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"
 
@@ -632,8 +630,8 @@ msgstr "Lokalt lager"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""
-#~ "Noter er et redigeringsprogram som lader dig lave simple lister til "
-#~ "senere brug."
+#~ "Noter er et redigeringsprogram som lader dig lave simple lister til senere "
+#~ "brug."
 
 #~ msgid "It allows to use ownCloud as a storage location and online editor."
 #~ msgstr "Den tillader at bruge ownCloud som lagersted og online redigering."
@@ -655,3 +653,4 @@ msgstr "Lokalt lager"
 
 #~ msgid "_OK"
 #~ msgstr "_OK"
+

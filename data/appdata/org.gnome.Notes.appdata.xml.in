@@ -39,6 +39,16 @@
   </screenshots>
 
   <releases>
+    <release date="2019-04-09" version="3.32.1">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>da (Ask Hjorth Larsen)</li>
+          <li>hr (Goran Vidović)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-03-13" version="3.32.0">
       <description>
         <p>This release brings the following new features and improvements:</p>

@@ -37,11 +37,10 @@ BijiProvider   *biji_memo_provider_new          (BijiManager *manager,
 
 
 
-gboolean        icaltime_from_time_val          (glong          t,
-                                                 icaltimetype *out);
+ICalTime *      icaltime_from_time_val          (glong t);
 
 
-gboolean        time_val_from_icaltime          (icaltimetype *itt,
+gboolean        time_val_from_icaltime          (ICalTime *itt,
                                                  glong *result);
 
 

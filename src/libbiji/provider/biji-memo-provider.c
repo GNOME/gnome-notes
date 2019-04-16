@@ -72,7 +72,7 @@ static GParamSpec *properties[BIJI_MEMO_PROP] = { NULL, };
 
 
 gboolean
-time_val_from_icaltime (icaltimetype *itt, glong *result)
+time_val_from_icaltime (ICalTime *itt, glong *result)
 {
   GTimeVal t;
   gchar *iso;
@@ -83,7 +83,7 @@ time_val_from_icaltime (icaltimetype *itt, glong *result)
   t.tv_sec = 0;
   t.tv_usec = 0;
 
-  iso = isodate_from_time_t (icaltime_as_timet (*itt));
+  iso = isodate_from_time_t (i_cal_time_as_timet (itt));
 
   if (g_time_val_from_iso8601 (iso, &t))
   {
@@ -97,23 +97,24 @@ time_val_from_icaltime (icaltimetype *itt, glong *result)
 
 
 
-gboolean
-icaltime_from_time_val (glong t, icaltimetype *out)
+ICalTime *
+icaltime_from_time_val (glong t)
 {
   GTimeVal tv;
   GDate    *date;
+  ICalTime *out;
 
   tv.tv_sec = t;
   tv.tv_usec = 0;
 
   date = g_date_new ();
   g_date_set_time_val (date, &tv);
-  *out = icaltime_from_day_of_year (
+  out = i_cal_time_from_day_of_year (
     g_date_get_day_of_year (date),
     g_date_get_year (date));
 
   g_date_free (date);
-  return TRUE;
+  return out;
 }
 
 
@@ -259,12 +260,11 @@ on_object_list_got (GObject      *obj,
   for (l = self->memos; l != NULL; l = l->next)
   {
     ECalComponent      *co; /* Memo */
-    ECalComponentText   text;
-    const gchar        *uid;
+    ECalComponentText  *text;
     BijiMemoItem       *item;
-    icaltimetype       *t;
+    ICalTime           *t;
     glong               time, dtstart;
-    ECalComponentDateTime tz;
+    ECalComponentDateTime *tz;
 
 
     item = memo_item_new (self);
@@ -272,43 +272,43 @@ on_object_list_got (GObject      *obj,
     co = item->ecal = e_cal_component_new_from_icalcomponent (l->data);
 
     /* Summary, url */
-    e_cal_component_get_summary (co, &text);
-    item->set.title = g_strdup (text.value);
-    e_cal_component_get_uid (co, &uid);
-    item->set.url = g_strdup (uid);
+    text = e_cal_component_get_summary (co);
+    item->set.title = text ? g_strdup (e_cal_component_text_get_value (text)) : NULL;
+    e_cal_component_text_free (text);
+    item->set.url = g_strdup (e_cal_component_get_uid (co));
 
 
     /* Last modified, created */
-    e_cal_component_get_dtstart (co, &tz);
-    if (time_val_from_icaltime (tz.value, &time))
+    tz = e_cal_component_get_dtstart (co);
+    if (time_val_from_icaltime (tz ? e_cal_component_datetime_get_value (tz) : NULL, &time))
       dtstart = time;
     else
       dtstart = 0;
-    e_cal_component_free_datetime(&tz);
+    e_cal_component_datetime_free (tz);
 
-    e_cal_component_get_last_modified (co, &t); // or dtstart
+    t = e_cal_component_get_last_modified (co); /* or dtstart */
     if (time_val_from_icaltime (t, &time))
       item->set.mtime = time;
     else
       item->set.mtime = dtstart;
-    e_cal_component_free_icaltimetype (t);
+    g_clear_object (&t);
 
-    e_cal_component_get_created (co, &t); // or dtstart
+    t = e_cal_component_get_created (co); /* or dtstart */
     if (time_val_from_icaltime (t, &time))
       item->set.created = time;
     else
       item->set.created = dtstart;
-    e_cal_component_free_icaltimetype (t);
+    g_clear_object (&t);
 
     /* Description */
-    e_cal_component_get_description_list (co, &desc);
+    desc = e_cal_component_get_descriptions (co);
     for (ll=desc; ll!=NULL; ll=ll->next)
     {
       ECalComponentText *txt = ll->data;
 
-      if (txt->value != NULL)
+      if (txt && e_cal_component_text_get_value (txt) != NULL)
       {
-        item->set.content = g_strdup (txt->value);
+        item->set.content = g_strdup (e_cal_component_text_get_value (txt));
 	break;
       }
     }
@@ -317,7 +317,7 @@ on_object_list_got (GObject      *obj,
       g_warning ("note %s has no content", item->set.title);
 
 
-    e_cal_component_free_text_list (desc);
+    g_slist_free_full (desc, e_cal_component_text_free);
     g_queue_push_head (self->queue, item);
   }
 
@@ -537,13 +537,13 @@ memo_create_note (BijiProvider *provider,
   BijiMemoProvider *self = BIJI_MEMO_PROVIDER (provider);
   BijiInfoSet    info;
   BijiNoteObj   *note;
-  icalcomponent *icalcomp;
+  ICalComponent *icalcomp;
   ECalComponent *comp;
   gchar         *title, *html;
   time_t         dttime;
-  ECalComponentDateTime dt;
-  icaltimezone  *zone;
-  struct icaltimetype itt;
+  ECalComponentDateTime *dt;
+  ICalTimezone  *zone;
+  ICalTime      *itt;
 
 
   title = NULL;
@@ -564,12 +564,12 @@ memo_create_note (BijiProvider *provider,
     self->client, &icalcomp, NULL, NULL);
 
   if (icalcomp == NULL)
-    icalcomp = icalcomponent_new (ICAL_VJOURNAL_COMPONENT);
+    icalcomp = i_cal_component_new (I_CAL_VJOURNAL_COMPONENT);
 
   comp = e_cal_component_new ();
   if (!e_cal_component_set_icalcomponent (comp, icalcomp))
   {
-    icalcomponent_free (icalcomp);
+    g_object_unref (icalcomp);
     e_cal_component_set_new_vtype (comp, E_CAL_COMPONENT_JOURNAL);
   }
 
@@ -580,15 +580,16 @@ memo_create_note (BijiProvider *provider,
 
   if (dttime)
   {
-    itt = icaltime_from_timet_with_zone (
+    itt = i_cal_time_from_timet_with_zone (
       dttime, FALSE, zone);
-    dt.value = &itt;
-    dt.tzid = icaltimezone_get_tzid (zone);
+    dt = e_cal_component_datetime_new_take (itt, g_strdup (zone ? i_cal_timezone_get_tzid (zone) : NULL));
 
-    e_cal_component_set_dtstart (comp, &dt);
-    e_cal_component_set_dtend (comp, &dt);
-    e_cal_component_set_last_modified (comp, &itt);
-    e_cal_component_set_created (comp, &itt);
+    e_cal_component_set_dtstart (comp, dt);
+    e_cal_component_set_dtend (comp, dt);
+    e_cal_component_set_last_modified (comp, itt);
+    e_cal_component_set_created (comp, itt);
+
+    e_cal_component_datetime_free (dt);
   }
 
   if (dttime)
@@ -596,12 +597,12 @@ memo_create_note (BijiProvider *provider,
 
 
   /* make sure the component has an UID and info get it */
-  if (! (info.url = (gchar *) icalcomponent_get_uid (icalcomp)))
+  if (! (info.url = (gchar *) i_cal_component_get_uid (icalcomp)))
   {
     gchar *uid;
 
-    uid = e_cal_component_gen_uid ();
-    icalcomponent_set_uid (icalcomp, uid);
+    uid = e_util_generate_uid ();
+    i_cal_component_set_uid (icalcomp, uid);
     info.url = uid;
   }
 
@@ -625,6 +626,7 @@ memo_create_note (BijiProvider *provider,
 
   e_cal_client_create_object (self->client,
                               icalcomp,
+                              E_CAL_OPERATION_FLAG_NONE,
                               NULL, /* GCancellable */
                               on_object_created,
                               self);
@@ -651,7 +653,7 @@ biji_memo_provider_finalize (GObject *object)
 {
   BijiMemoProvider *self = BIJI_MEMO_PROVIDER (object);
 
-  e_cal_client_free_icalcomp_slist (self->memos);
+  g_slist_free_full (self->memos, g_object_unref);
 
   g_hash_table_unref (self->tracker);
   g_hash_table_unref (self->items);

@@ -114,7 +114,7 @@ bijiben_deps = [
   dependency('glib-2.0', version: '>= 2.53.4'),
   dependency('goa-1.0'),
   dependency('gtk+-3.0', version: '>= 3.19.3'),
-  dependency('libecal-1.2', version: '>= 3.13.90'),
+  dependency('libecal-2.0', version: '>= 3.33.1'),
   dependency('libedataserver-1.2', version: '>= 3.13.90'),
   dependency('libxml-2.0'),
   dependency('uuid'),

@@ -109,7 +109,7 @@ icaltime_from_time_val (glong t)
 
   date = g_date_new ();
   g_date_set_time_val (date, &tv);
-  out = i_cal_time_from_day_of_year (
+  out = i_cal_time_new_from_day_of_year (
     g_date_get_day_of_year (date),
     g_date_get_year (date));
 
@@ -580,7 +580,7 @@ memo_create_note (BijiProvider *provider,
 
   if (dttime)
   {
-    itt = i_cal_time_from_timet_with_zone (
+    itt = i_cal_time_new_from_timet_with_zone (
       dttime, FALSE, zone);
     dt = e_cal_component_datetime_new_take (itt, g_strdup (zone ? i_cal_timezone_get_tzid (zone) : NULL));
 

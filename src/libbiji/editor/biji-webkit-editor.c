@@ -306,34 +306,11 @@ biji_webkit_editor_content_changed (BijiWebkitEditor *self,
                                     const char *text)
 {
   BijiNoteObj *note = self->priv->note;
-  gchar **rows;
 
   biji_note_obj_set_html (note, (char *)html);
   biji_note_obj_set_raw_text (note, (char *)text);
 
   g_signal_emit (self, biji_editor_signals[CONTENT_CHANGED], 0, NULL);
-
-  /* Now tries to update title */
-
-  rows = g_strsplit (text, "\n", 2);
-
-  if (rows && rows[0])
-  {
-    gchar *title;
-    g_autofree gchar *unique_title = NULL;
-
-    title = rows[0];
-
-    if (g_strcmp0 (title, biji_item_get_title (BIJI_ITEM (note))) != 0)
-    {
-      unique_title = biji_manager_get_unique_title (biji_item_get_manager (BIJI_ITEM (note)),
-                                                      title);
-
-      biji_note_obj_set_title (note, unique_title);
-    }
-  }
-
-  g_strfreev (rows);
 
   biji_note_obj_set_mtime (note, g_get_real_time () / G_USEC_PER_SEC);
   biji_note_obj_save_note (note);

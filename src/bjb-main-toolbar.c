@@ -57,6 +57,7 @@ struct _BjbMainToolbar
   /* Main View */
   GtkWidget *new_button;
   GtkWidget *back_button;
+  GtkWidget *title_entry;
   GtkWidget *list_button;
   GtkWidget *grid_button;
   GtkWidget *select_button;
@@ -390,6 +391,8 @@ on_note_renamed (BijiItem *note,
 
   gtk_header_bar_set_title (GTK_HEADER_BAR (self), str);
   gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
+
+  gtk_entry_set_text (GTK_ENTRY (self->title_entry), str);
 }
 
 static void
@@ -447,6 +450,8 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 
   settings = bjb_app_get_settings (g_application_get_default());
 
+  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (self), self->title_entry);
+
   gtk_widget_hide (self->new_button);
   gtk_widget_hide (self->style_buttons);
   gtk_widget_hide (self->search_button);
@@ -495,6 +500,7 @@ populate_bar_for_note_view (BjbMainToolbar *self)
 static void
 bjb_main_toolbar_reset (BjbMainToolbar *self)
 {
+  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (self), NULL);
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
 
   gtk_widget_show (self->button_stack);
@@ -780,6 +786,7 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, button_stack);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, new_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, back_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, title_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, list_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, grid_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, search_button);

@@ -8,10 +8,6 @@ body {
   font-size:        150%;
 }
 
-body::first-line {
-  font-weight:      bold;
-}
-
 div {
   margin:           0.75em 0;
 }

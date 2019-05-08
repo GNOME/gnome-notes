@@ -432,4 +432,10 @@
     </child>
   </object>
 
+  <object class="GtkEntry" id="title_entry">
+    <property name="visible">True</property>
+    <property name="max-width-chars">60</property>
+  </object>
+
 </interface>
+

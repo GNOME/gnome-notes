@@ -100,8 +100,7 @@ bjb_color_button_clicked (GtkButton *b)
           if (GTK_WINDOW (parent) != gtk_window_get_transient_for (GTK_WINDOW (dialog)))
             gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent));
 
-          gtk_window_set_modal (GTK_WINDOW (dialog),
-                                gtk_window_get_modal (GTK_WINDOW (parent)));
+          gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
         }
 
       for (i=0 ; i< BJB_NUM_COLORS ; i++)

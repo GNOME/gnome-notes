@@ -54,7 +54,7 @@ cal_comp_is_on_server (ECalComponent *comp,
 {
   const gchar *uid;
   gchar *rid = NULL;
-  icalcomponent *icalcomp = NULL;
+  ICalComponent *icalcomp = NULL;
   GError *error = NULL;
 
   g_return_val_if_fail (comp != NULL, FALSE);
@@ -68,7 +68,7 @@ cal_comp_is_on_server (ECalComponent *comp,
    * confirm and we can just delete the event.  Otherwise, we ask
    * the user.
    */
-  e_cal_component_get_uid (comp, &uid);
+  uid = e_cal_component_get_uid (comp);
 
   /* TODO We should not be checking for this here. But since
    *	e_cal_util_construct_instance does not create the instances
@@ -83,7 +83,7 @@ cal_comp_is_on_server (ECalComponent *comp,
 
   if (icalcomp != NULL)
   {
-    icalcomponent_free (icalcomp);
+    g_clear_object (&icalcomp);
     g_free (rid);
 
     return TRUE;
@@ -113,26 +113,26 @@ fill_in_components (ECalComponent *comp,
                     ECalComponent *clone,
 		    BijiMemoNote  *self)
 {
-  ECalComponentText  text;
+  ECalComponentText *text;
   GSList             l;
   glong              mtime;
-  icaltimetype       t;
+  ICalTime          *t;
 
 
   /* ----------------- FIELDS FROM "memo_page_fill_components"------------------ */
 
 
   /* Set : title */
-  text.value = biji_item_get_title (BIJI_ITEM (self));
-  text.altrep = NULL;
-  e_cal_component_set_summary (clone, &text);
+  text = e_cal_component_text_new (biji_item_get_title (BIJI_ITEM (self)), NULL);
+  e_cal_component_set_summary (clone, text);
+  e_cal_component_text_free (text);
 
   /* Set : content */
-  text.value = biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (self));
-  text.altrep = NULL;
-  l.data = &text;
+  text = e_cal_component_text_new (biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (self)), NULL);
+  l.data = text;
   l.next = NULL;
-  e_cal_component_set_description_list (clone, &l);
+  e_cal_component_set_descriptions (clone, &l);
+  e_cal_component_text_free (text);
 
 
   /* dtstart : we'd rather use "created", "modified" */
@@ -167,8 +167,12 @@ fill_in_components (ECalComponent *comp,
   */
 
   mtime = biji_item_get_mtime (BIJI_ITEM (self));
-  if (icaltime_from_time_val (mtime, &t))
-    e_cal_component_set_last_modified (clone, &t);
+  t = icaltime_from_time_val (mtime);
+  if (t)
+  {
+    e_cal_component_set_last_modified (clone, t);
+    g_object_unref (t);
+  }
 }
 
 
@@ -181,12 +185,10 @@ memo_note_save (BijiNoteObj *note)
 {
   BijiMemoNote *self = BIJI_MEMO_NOTE (note);
   BijiMemoNotePrivate *priv = self->priv;
-  const gchar *orig_uid;
-  icalcomponent *icalcomp;
+  ICalComponent *icalcomp;
   gboolean result;
   GError *error;
   ECalComponent *clone;
-  //gchar *orig_uid_copy;
 
   clone = e_cal_component_clone (priv->ecal);
   fill_in_components (priv->ecal, clone, self);
@@ -196,11 +198,6 @@ memo_note_save (BijiNoteObj *note)
   g_object_unref (priv->ecal);
   priv->ecal = clone;
 
-  e_cal_component_get_uid (priv->ecal, &orig_uid);
-
-  /* Make a copy of it, because call of e_cal_create_object()
-   * rewrites the internal uid.
-   orig_uid_copy = g_strdup (orig_uid); */
   icalcomp = e_cal_component_get_icalcomponent (priv->ecal);
 
 
@@ -208,10 +205,10 @@ memo_note_save (BijiNoteObj *note)
   {
     gchar *uid = NULL;
     result = e_cal_client_create_object_sync (
-    priv->client, icalcomp, &uid, NULL, &error);
+    priv->client, icalcomp, E_CAL_OPERATION_FLAG_NONE, &uid, NULL, &error);
       if (result)
       {
-        icalcomponent_set_uid (icalcomp, uid);
+        i_cal_component_set_uid (icalcomp, uid);
 	g_free (uid);
         //g_signal_emit_by_name (editor, "object_created");
       }
@@ -220,7 +217,7 @@ memo_note_save (BijiNoteObj *note)
   else
   {
     result = e_cal_client_modify_object_sync (
-      priv->client, icalcomp, E_CAL_OBJ_MOD_THIS, NULL, &error);
+      priv->client, icalcomp, E_CAL_OBJ_MOD_THIS, E_CAL_OPERATION_FLAG_NONE, NULL, &error);
     e_cal_component_commit_sequence (clone);
   }
 }
@@ -349,11 +346,12 @@ memo_delete (BijiNoteObj *note)
   const gchar *uid;
 
   self = BIJI_MEMO_NOTE (note);
-  e_cal_component_get_uid (self->priv->ecal, &uid);
+  uid = e_cal_component_get_uid (self->priv->ecal);
   e_cal_client_remove_object (self->priv->client,
                               uid,
                               NULL,               /* rid : all occurences */
                               E_CAL_OBJ_MOD_ALL,  /*       all occurences */
+                              E_CAL_OPERATION_FLAG_NONE,
                               NULL,               /* Cancellable */
                               on_memo_deleted,
                               self);
@@ -377,8 +375,8 @@ memo_get_basename (BijiNoteObj *note)
 {
   const gchar *out;
 
-  e_cal_component_get_uid (
-    BIJI_MEMO_NOTE (note)->priv->ecal, &out);
+  out = e_cal_component_get_uid (
+    BIJI_MEMO_NOTE (note)->priv->ecal);
 
   return g_strdup (out);
 }

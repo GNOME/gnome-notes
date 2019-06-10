@@ -436,6 +436,7 @@
     <property name="visible">True</property>
     <property name="can_focus">True</property>
     <property name="max-width-chars">60</property>
+    <signal name="changed" handler="on_title_changed" swapped="yes"/>
   </object>
 
 </interface>

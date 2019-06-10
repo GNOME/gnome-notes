@@ -32,4 +32,6 @@ G_DECLARE_FINAL_TYPE (BjbMainToolbar, bjb_main_toolbar, BJB, MAIN_TOOLBAR, GtkHe
 BjbMainToolbar        *bjb_main_toolbar_new                       (BjbMainView *parent,
                                                                    BjbController *controller);
 
+void                   bjb_main_toolbar_title_focus               (BjbMainToolbar *self);
+
 G_END_DECLS

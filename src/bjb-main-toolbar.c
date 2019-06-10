@@ -435,6 +435,13 @@ on_last_updated_cb (BijiItem       *note,
 }
 
 static void
+on_title_changed (BjbMainToolbar *self,
+                  GtkEntry       *title)
+{
+  biji_note_obj_set_title (self->note, gtk_entry_get_text (title));
+}
+
+static void
 populate_bar_for_note_view (BjbMainToolbar *self)
 {
   BjbSettings *settings;
@@ -810,6 +817,8 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_view_mode_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_empty_clicked_callback);
   gtk_widget_class_bind_template_callback (widget_class, on_color_button_clicked);
+
+  gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
 }
 
 BjbMainToolbar *

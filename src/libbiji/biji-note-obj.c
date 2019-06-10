@@ -319,6 +319,7 @@ biji_note_obj_set_title (BijiNoteObj *note, const gchar *proposed_title)
 
   /* Emit signal even if initial title, just to let know */
   biji_note_id_set_title (priv->id, title);
+  biji_note_obj_save_note (note);
   g_signal_emit (G_OBJECT (note), biji_obj_signals[NOTE_RENAMED], 0);
   retval = TRUE;
 

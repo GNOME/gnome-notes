@@ -831,3 +831,9 @@ bjb_main_toolbar_new (BjbMainView *parent,
   populate_main_toolbar(self);
   return self;
 }
+
+void
+bjb_main_toolbar_title_focus (BjbMainToolbar *self)
+{
+  gtk_widget_grab_focus (self->title_entry);
+}

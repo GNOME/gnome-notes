@@ -327,6 +327,8 @@ process_bijiben_start_elem (BijiLazyDeserializer *self)
   if (g_strcmp0 (element_name, "script") == 0)
     is_node_script = TRUE;
 
+  if (g_strcmp0 (element_name, "body") == 0)
+    is_node_script = FALSE;
 
   /* Block level elements introduce a new line, except that blocks
      at the very beginning of their parent don't, and <br/> at the
@@ -363,13 +365,6 @@ static void
 process_bijiben_text_elem (BijiLazyDeserializer *self)
 {
   gchar *text;
-
-  /* in case this is js, skip this node */
-  if (is_node_script == TRUE)
-  {
-    is_node_script = FALSE;
-    return;
-  }
 
   text = (gchar *) xmlTextReaderConstValue (self->inner);
 

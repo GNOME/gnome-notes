@@ -1,7 +1,3 @@
-window.onload = function () {
-    document.getElementById('editable').focus();
-};
-
 var domModifiedTimerID = -1;
 document.addEventListener("DOMSubtreeModified", function () {
     if (domModifiedTimerID == -1) {

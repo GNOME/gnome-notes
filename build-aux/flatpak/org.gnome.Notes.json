@@ -69,7 +69,8 @@
             "buildsystem" : "cmake",
             "config-opts" : [
                 "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
-                "-DBUILD_SHARED_LIBS:BOOL=ON"
+                "-DBUILD_SHARED_LIBS:BOOL=ON",
+                "-DICAL_BUILD_DOCS=false"
             ],
             "sources" : [
                 {

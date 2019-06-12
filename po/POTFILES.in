@@ -22,6 +22,7 @@ src/bjb-main-view.c
 src/bjb-note-view.c
 src/bjb-settings.c
 src/bjb-settings-dialog.c
+src/bjb-utils.c
 src/bjb-window-base.c
 src/libbiji/biji-date-time.c
 src/libbiji/biji-notebook.c

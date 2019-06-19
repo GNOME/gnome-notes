@@ -2,14 +2,14 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012-2015, 2017-2018, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-11-09 23:33+0000\n"
-"PO-Revision-Date: 2018-12-04 15:51+0100\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-06-19 09:36+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.32.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -26,7 +26,6 @@ msgid "Notes"
 msgstr "Notas"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:7
-#| msgid "Simple notebook for GNOME"
 msgid "Notes for GNOME"
 msgstr "Notas para GNOME"
 
@@ -70,12 +69,6 @@ msgstr "Publique notas y etiquete archivos"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Para tomar notas"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -340,7 +333,6 @@ msgid "Open menu"
 msgstr "Abrir el menú"
 
 #: data/resources/main-toolbar.ui:195
-#| msgid "More options…"
 msgid "More options"
 msgstr "Más opciones"
 
@@ -349,7 +341,6 @@ msgid "View Trash"
 msgstr "Ver la papelera"
 
 #: data/resources/main-toolbar.ui:251
-#| msgid "_Text Sizes"
 msgid "Text Sizes"
 msgstr "Tamaños del texto"
 
@@ -369,41 +360,40 @@ msgstr "_Pequeño"
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: data/resources/main-toolbar.ui:316
-msgid "Help"
-msgstr "Ayuda"
-
-#: data/resources/main-toolbar.ui:325
+#: data/resources/main-toolbar.ui:308
 msgid "Keyboard Shortcuts"
 msgstr "Atajo del teclado"
 
-#: data/resources/main-toolbar.ui:334
-#| msgid "Import Notes"
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Ayuda"
+
+#: data/resources/main-toolbar.ui:326
 msgid "About Notes"
 msgstr "Acerca de notas"
 
-#: data/resources/main-toolbar.ui:356
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Abrir en una ventana nueva"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Deshacer"
 
-#: data/resources/main-toolbar.ui:382
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Rehacer"
 
-#: data/resources/main-toolbar.ui:399 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Cuadernos de notas"
 
-#: data/resources/main-toolbar.ui:408
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Enviar esta nota por correo-e"
 
-#: data/resources/main-toolbar.ui:417 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Mover a la papelera"
 
@@ -455,7 +445,7 @@ msgstr "Seleccionar la ubicación predeterminada del almacenamiento:"
 msgid "Primary Book"
 msgstr "Libro principal"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Sin título"
 
@@ -499,7 +489,7 @@ msgstr "Cuaderno de notas sencillo para GNOME"
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Color de la nota"
 
@@ -552,30 +542,32 @@ msgstr "Papelera"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
 msgstr "Última actualización %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Desconocida"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Ayer"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Este mes"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Hoy"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Ayer"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Esta semana"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Este mes"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -588,6 +580,10 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Almacenamiento local"
+
+#~| msgid "org.gnome.bijiben"
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

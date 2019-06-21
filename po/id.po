@@ -2,13 +2,14 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Andika Triwidada <andika@gmail.com>, 2013, 2014.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-20 22:53+0000\n"
-"PO-Revision-Date: 2019-02-03 15:31+0700\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-06-21 15:51+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural= n!=1;\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -69,11 +70,6 @@ msgstr "Kirim catatan, tag berkas!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Perekam catatan"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -495,7 +491,7 @@ msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2019."
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Warna Catatan"
 
@@ -548,30 +544,31 @@ msgstr "Tong Sampah"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Terakhir diperbarui %s"
+msgid "Last updated: %s"
+msgstr "Terakhir diperbarui: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Tak diketahui"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Kemarin"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Bulan ini"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Hari ini"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Kemarin"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Minggu ini"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Bulan ini"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -584,6 +581,9 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Cut"
 #~ msgstr "Potong"

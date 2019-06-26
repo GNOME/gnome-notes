@@ -1,17 +1,17 @@
 # Swedish translations for gnome-notes package
 # Svenska översättningar för paketet gnome-notes.
-# Copyright © 2014, 2015, 2017, 2018 gnome-notes's COPYRIGHT HOLDER
+# Copyright © 2014, 2015, 2017-2019 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-notes package.
 # Marcus Lundblad <ml@update.uu.se>, 2014.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2017, 2018.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2017, 2018, 2019.
 # Josef Andersson <josef.andersson@fripost.org>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
-"PO-Revision-Date: 2018-12-28 13:08+0100\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-06-26 20:59+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -72,12 +72,6 @@ msgstr "Gör anteckningar, tagga filer!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Anteckningsprogram"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -500,7 +494,7 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Anteckningsfärg"
 
@@ -553,30 +547,31 @@ msgstr "Papperskorg"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Senast uppdaterad %s"
+msgid "Last updated: %s"
+msgstr "Senast uppdaterad: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Okänd"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Igår"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Denna månad"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Idag"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Igår"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Denna vecka"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Denna månad"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -589,6 +584,10 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokal lagring"
+
+#~| msgid "org.gnome.bijiben"
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

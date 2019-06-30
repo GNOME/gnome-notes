@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-02-24 08:14+0000\n"
-"PO-Revision-Date: 2019-02-28 19:33+0100\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-06-30 16:23+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -68,11 +68,6 @@ msgstr "Publiche notis, etichete file"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Anotazions"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -494,7 +489,7 @@ msgstr "Sempliç tacuin par GNOME"
 msgid "translator-credits"
 msgstr "Fabio Tomat"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Colôr de note"
 
@@ -547,30 +542,31 @@ msgstr "Scovacere"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Ultin inzornament %s"
+msgid "Last updated: %s"
+msgstr "Ultin inzornament: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "No cognossût"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Îr"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Chest mês"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Vuê"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Îr"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Cheste setemane"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Chest mês"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -583,6 +579,9 @@ msgstr "Locâl"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Archivi locâl"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Cut"
 #~ msgstr "Taie"

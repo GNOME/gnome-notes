@@ -70,13 +70,18 @@ biji_note_id_finalize (GObject *object)
   G_OBJECT_CLASS (biji_note_id_parent_class)->finalize (object);
 }
 
-static void
-biji_note_id_set_path (BijiNoteID *self, const gchar *path)
+void
+biji_note_id_set_path (BijiNoteID *self,
+                       const char *path)
 {
   g_return_if_fail (BIJI_IS_NOTE_ID (self));
 
+  g_free (self->path);
+
   self->path = g_strdup (path);
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_PATH]);
 }
+
 
 
 static void

@@ -33,7 +33,6 @@ struct _BijiOwnCloudNote
 {
   BijiNoteObj           parent_instance;
   BijiOwnCloudProvider *prov;
-  BijiNoteID *id;
 
   GFile *location;
   gchar *basename;
@@ -153,7 +152,7 @@ ocloud_note_set_id (BijiOwnCloudNote *self)
   key = g_strdup_printf ("%s/%s",
                          biji_own_cloud_provider_get_readable_path (self->prov),
                          self->basename);
-  g_object_set (self->id, "path", key, NULL);
+  biji_note_obj_set_path (BIJI_NOTE_OBJ (self), key);
 }
 
 static void
@@ -295,7 +294,7 @@ on_title_change                     (BijiOwnCloudNote *self)
   g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (self));
 
   g_free (self->basename);
-  new_title = biji_note_id_get_title (self->id);
+  new_title = biji_note_obj_get_title (BIJI_NOTE_OBJ (self));
   self->basename = g_strdup_printf ("%s.txt", new_title);
   self->needs_rename = TRUE;
 }
@@ -441,7 +440,6 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
                          NULL);
 
   ocloud = BIJI_OWN_CLOUD_NOTE (retval);
-  ocloud->id = id;
   ocloud->prov = prov;
   biji_note_obj_set_create_date (retval, info->created);
   g_signal_connect_swapped (id, "notify::title",

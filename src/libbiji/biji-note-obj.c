@@ -268,28 +268,45 @@ biji_note_obj_is_trashed                    (BijiNoteObj *self)
 }
 
 
-static const gchar *
-biji_note_obj_get_path (BijiItem *item)
+const gchar *
+biji_note_obj_get_path (BijiNoteObj *self)
 {
-  BijiNoteObjPrivate *priv;
-
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
-
-  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (item));
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 
   return biji_note_id_get_path (priv->id);
 }
 
 static const gchar *
-biji_note_obj_get_title (BijiItem *item)
+biji_note_obj_get_path_from_item (BijiItem *item)
 {
-  BijiNoteObjPrivate *priv;
-
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
 
-  priv = biji_note_obj_get_instance_private (BIJI_NOTE_OBJ (item));
+  return biji_note_obj_get_path (BIJI_NOTE_OBJ (item));
+}
+
+void
+biji_note_obj_set_path (BijiNoteObj *self,
+                        const char  *path)
+{
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
+
+  biji_note_id_set_path (priv->id, path);
+}
+
+const char *
+biji_note_obj_get_title (BijiNoteObj *self)
+{
+  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 
   return biji_note_id_get_title (priv->id);
+}
+
+static const gchar *
+biji_note_obj_get_title_from_item (BijiItem *item)
+{
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), NULL);
+
+  return biji_note_obj_get_title (BIJI_NOTE_OBJ (item));
 }
 
 /* If already a title, then note is renamed */
@@ -1083,8 +1100,8 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
 
   /* Interface
    * is_collectable is implemented at higher level, eg local_note */
-  item_class->get_title = biji_note_obj_get_title;
-  item_class->get_uuid = biji_note_obj_get_path;
+  item_class->get_title = biji_note_obj_get_title_from_item;
+  item_class->get_uuid = biji_note_obj_get_path_from_item;
   item_class->get_icon = biji_note_obj_get_icon;
   item_class->get_emblem = biji_note_obj_get_emblem;
   item_class->get_pristine = biji_note_obj_get_pristine;

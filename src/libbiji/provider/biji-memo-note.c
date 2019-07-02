@@ -26,7 +26,6 @@ struct _BijiMemoNotePrivate
   ECalComponent *ecal;
   ECalClient    *client;
   const gchar   *description;
-  BijiNoteID    *id;
 };
 
 
@@ -222,28 +221,6 @@ memo_note_save (BijiNoteObj *note)
   }
 }
 
-
-/* Save title when saving note.
- * No need to do anything here */
-static void
-on_title_changed_cb (BijiMemoNote *self)
-{
-}
-
-
-
-static void
-biji_memo_note_constructed (GObject *obj)
-{
-  BijiMemoNote *self = BIJI_MEMO_NOTE (obj);
-
-  G_OBJECT_CLASS (biji_memo_note_parent_class)->constructed (obj);
-
-  g_signal_connect_swapped (self->priv->id, "notify::title",
-                            G_CALLBACK (on_title_changed_cb), self);
-}
-
-
 static void
 biji_memo_note_init (BijiMemoNote *biji_memo_note)
 {
@@ -423,7 +400,6 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   note_class = BIJI_NOTE_OBJ_CLASS (klass);
 
   object_class->finalize = biji_memo_note_finalize;
-  object_class->constructed = biji_memo_note_constructed;
   object_class->get_property = biji_memo_note_get_property;
   object_class->set_property = biji_memo_note_set_property;
 
@@ -476,10 +452,9 @@ biji_memo_note_new_from_info          (BijiMemoProvider *provider,
   ret = g_object_new (BIJI_TYPE_MEMO_NOTE,
                       "manager", manager,
                       "id", id,
-	              "ecal", component,
+                      "ecal", component,
                       NULL);
 
-  ret->priv->id = id;
   ret->priv->provider = BIJI_PROVIDER (provider);
   ret->priv->description = description;
   ret->priv->client = client;

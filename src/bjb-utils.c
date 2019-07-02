@@ -22,6 +22,7 @@
  */
 
 #include <glib/gi18n.h>
+#include "bjb-utils.h"
 
 /**
  * bjb_utils_get_human_time:

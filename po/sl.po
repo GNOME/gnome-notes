@@ -2,14 +2,14 @@
 # Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, + 2012–2018.
+# Matej Urbančič <mateju@svn.gnome.org>, + 2012–2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-10-25 02:06+0000\n"
-"PO-Revision-Date: 2018-10-25 19:22+0200\n"
+"POT-Creation-Date: 2019-06-30 14:24+0000\n"
+"PO-Revision-Date: 2019-07-02 17:45+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window-base.c:18
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Sporočilca"
 
@@ -71,12 +71,6 @@ msgstr "Objava sporočilc, označevanje datotek!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Zapisovalnik sporočilc"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -151,47 +145,35 @@ msgid ""
 msgstr ""
 "Na voljo so tri velikosti: majhna, srednja (uporabljena privzeto) in velika."
 
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Izreži"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Kopiraj"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Prilepi"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:49
 msgid "Bold"
 msgstr "Krepko"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:65
 msgid "Italic"
 msgstr "Ležeče"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:81
 msgid "Strike"
 msgstr "Prečrtano"
 
-#: data/resources/editor-toolbar.ui:161
+#: data/resources/editor-toolbar.ui:106
 msgid "* "
 msgstr "* "
 
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:110
 msgid "Bullets"
 msgstr "Vrstične oznake"
 
-#: data/resources/editor-toolbar.ui:177
+#: data/resources/editor-toolbar.ui:123
 msgid "1."
 msgstr "1."
 
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Seznam"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Kopiraj izbor v novo sporočilce"
 
@@ -376,40 +358,40 @@ msgstr "_Majhna"
 msgid "Preferences"
 msgstr "Možnosti"
 
-#: data/resources/main-toolbar.ui:316
-msgid "Help"
-msgstr "Pomoč"
-
-#: data/resources/main-toolbar.ui:325
+#: data/resources/main-toolbar.ui:308
 msgid "Keyboard Shortcuts"
 msgstr "Tipkovne bližnjice‫"
 
-#: data/resources/main-toolbar.ui:334
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Pomoč"
+
+#: data/resources/main-toolbar.ui:326
 msgid "About Notes"
 msgstr "O programu"
 
-#: data/resources/main-toolbar.ui:356
+#: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
 msgstr "Odpri v novem oknu"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:365
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: data/resources/main-toolbar.ui:382
+#: data/resources/main-toolbar.ui:374
 msgid "Redo"
 msgstr "Ponovi"
 
-#: data/resources/main-toolbar.ui:399 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:25
 msgid "Notebooks"
 msgstr "Beležnice"
 
-#: data/resources/main-toolbar.ui:408
+#: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
 msgstr "Pošlji to sporočilce"
 
-#: data/resources/main-toolbar.ui:417 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
 msgid "Move to Trash"
 msgstr "Premakni v smeti"
 
@@ -461,7 +443,7 @@ msgstr "Privzeto mesto za shranjevanje:"
 msgid "Primary Book"
 msgstr "Osnovni imenik stikov"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
 msgid "Untitled"
 msgstr "Neimenovano"
 
@@ -497,15 +479,15 @@ msgstr "Opombe GNOME"
 msgid "Could not register the application"
 msgstr "Ni mogoče vpisati programa"
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
 msgstr "Enostavna sporočilca za GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Barva sporočilca"
 
@@ -560,30 +542,31 @@ msgstr "Smeti"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Nazadnje posodobljeno %s"
+msgid "Last updated: %s"
+msgstr "Nazadnje posodobljeno: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Neznano"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Včeraj"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Ta mesec"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Danes"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Včeraj"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Ta teden"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Ta mesec"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -596,6 +579,19 @@ msgstr "Krajevno"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Krajevna shramba"
+
+#~| msgid "org.gnome.bijiben"
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
+
+#~ msgid "Cut"
+#~ msgstr "Izreži"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiraj"
+
+#~ msgid "Paste"
+#~ msgstr "Prilepi"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

@@ -154,6 +154,12 @@ const gchar     *biji_note_obj_get_raw_text                  (BijiNoteObj *note)
 void             biji_note_obj_set_raw_text                  (BijiNoteObj *note,
                                                               const gchar *plain_text);
 
+const char      *biji_note_obj_get_path                      (BijiNoteObj *self);
+
+void             biji_note_obj_set_path                      (BijiNoteObj *self,
+                                                              const char  *path);
+
+const char      *biji_note_obj_get_title                     (BijiNoteObj *self);
 
 gboolean         biji_note_obj_set_title                     (BijiNoteObj* note_obj_ptr,
                                                               const gchar* title);

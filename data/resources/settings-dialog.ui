@@ -95,7 +95,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkColorButton" id="color_button">
+                  <object class="BjbColorButton" id="color_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>

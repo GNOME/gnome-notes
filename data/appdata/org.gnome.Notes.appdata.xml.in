@@ -39,6 +39,16 @@
   </screenshots>
 
   <releases>
+    <release date="2019-07-19" version="3.32.2">
+      <description>
+        <p>This release brings the following improvements:</p>
+        <ul>
+          <li>Fixed appdata screenshots' URLs (Isaque Galdino)</li>
+          <li>Fixed flatpak using stable EDS and libical releases (Mohammed Sadiq)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-04-09" version="3.32.1">
       <description>
         <p>This release updates the following translations:</p>

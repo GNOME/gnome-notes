@@ -1,3 +1,9 @@
+Overview of changes in 3.32.2
+=============================
+
+* Fixed appdata screenshots' URLs (Isaque Galdino)
+* Fixed flatpak using stable EDS and libical releases (Mohammed Sadiq)
+
 Overview of changes in 3.32.1
 =============================
 

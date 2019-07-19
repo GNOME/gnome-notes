@@ -22,19 +22,19 @@
   </kudos>
   <screenshots>
     <screenshot type="default">
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdatadefault.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/default.png</image>
     </screenshot>
     <screenshot>
       <caption>Edit view</caption>
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdataedit.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/edit.png</image>
     </screenshot>
     <screenshot>
       <caption>Select view</caption>
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdataselect.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/select.png</image>
     </screenshot>
     <screenshot>
       <caption>List view</caption>
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdatalist.png</image>
+      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/list.png</image>
     </screenshot>
   </screenshots>
 

@@ -9,8 +9,8 @@
 msgid ""
 msgstr "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-11-09 23:33+0000\n"
-"PO-Revision-Date: 2019-02-24 06:00+0100\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-07-20 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -18,7 +18,6 @@ msgstr "Project-Id-Version: bijiben master\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: OmegaT 4.1.5\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -34,15 +33,13 @@ msgstr "GNOMEren oharrak"
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
-msgstr "Forma libreko oharrak edo zerrenda sinpleak sortzeko modu azkar eta "
-"erraza. Gorde itzazu nahi adina ohar eta partekatu itzazu posta elektroniko bidez."
+msgstr "Forma libreko oharrak edo zerrenda sinpleak sortzeko modu azkar eta erraza. Gorde itzazu nahi adina ohar eta partekatu itzazu posta elektroniko bidez."
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
-msgstr "Oharrak ordenagailuan bertan gorde ditzakezu edo lineako "
-"zerbitzuekin, esaterako ownCloud hodeiekin, sinkroniza ditzakezu."
+msgstr "Oharrak ordenagailuan bertan gorde ditzakezu edo lineako zerbitzuekin, esaterako ownCloud hodeiekin, sinkroniza ditzakezu."
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
@@ -69,11 +66,6 @@ msgstr "Editatu oharrak, etiketatu fitxategiak."
 msgid "Note-taker"
 msgstr "Ohar hartzailea"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
-
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Letra-tipo pertsonalizatua"
@@ -84,7 +76,7 @@ msgstr "Hemen ezarritako letra-tipoaren izena oharrak bistaratzean erabiliko da.
 
 #: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
-msgstr "Sistemaren tarte bakarreko letra-tipoa erabili edo ez."
+msgstr "Sistemaren tarte bakarreko letra-tipoa erabili edo ez"
 
 #: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
@@ -347,7 +339,7 @@ msgstr "_Handia"
 
 #: data/resources/main-toolbar.ui:271
 msgid "_Medium"
-msgstr "_Tartekoa"
+msgstr "Ta_rtekoa"
 
 #: data/resources/main-toolbar.ui:281
 msgid "_Small"
@@ -420,7 +412,7 @@ msgstr "Ezabatu betiko"
 
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"
-msgstr "Erabili sistemako letra-tipoa"
+msgstr "Erabili sistemaren letra-tipoa"
 
 #: data/resources/settings-dialog.ui:50
 msgid "Note Font"
@@ -486,13 +478,13 @@ msgstr "GNOMEren koaderno xumea"
 msgid "translator-credits"
 msgstr "Asier Sarasua Garmendia <asier.sarasua@gmail.com>"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Oharraren kolorea"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Sakatu Berria botoia oharra sortzeko."
+msgstr "Sakatu 'Berria' botoia oharra sortzeko."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
@@ -539,30 +531,31 @@ msgstr "Zakarrontzia"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
+msgid "Last updated: %s"
 msgstr "Azken eguneraketa: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Ezezaguna"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Atzo"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Hil honetan"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Gaur"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Atzo"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Aste honetan"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Hil honetan"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -575,3 +568,6 @@ msgstr "Lokala"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Biltegi lokala"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"

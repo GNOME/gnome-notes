@@ -386,7 +386,7 @@ on_note_renamed (BijiItem *note,
   const gchar *str;
 
   str = biji_item_get_title (note);
-  if (str == NULL)
+  if (str == NULL || strlen(str) == 0)
     str = _("Untitled");
 
   gtk_header_bar_set_title (GTK_HEADER_BAR (self), str);
@@ -439,7 +439,9 @@ static void
 on_title_changed (BjbMainToolbar *self,
                   GtkEntry       *title)
 {
-  biji_note_obj_set_title (self->note, gtk_entry_get_text (title));
+  const char *str = gtk_entry_get_text (title);
+  if (strlen (str) > 0)
+    biji_note_obj_set_title (self->note, str);
 }
 
 static void
@@ -844,5 +846,5 @@ bjb_main_toolbar_new (BjbMainView *parent,
 void
 bjb_main_toolbar_title_focus (BjbMainToolbar *self)
 {
-  gtk_widget_grab_focus (self->title_entry);
+  gtk_entry_grab_focus_without_selecting (GTK_ENTRY (self->title_entry));
 }

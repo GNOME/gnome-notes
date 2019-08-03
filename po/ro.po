@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-20 22:53+0000\n"
-"PO-Revision-Date: 2019-01-27 01:47+0200\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-07-04 08:43+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
@@ -73,11 +73,6 @@ msgstr "Publică notițe, etichetează fișiere!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Carnețel de notițe"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -496,7 +491,7 @@ msgstr ""
 "Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2018\n"
 "Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2019"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Culoare notiță"
 
@@ -550,30 +545,31 @@ msgstr "Gunoi"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Ultima actualizare %s"
+msgid "Last updated: %s"
+msgstr "Ultima actualizare: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Necunoscută"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Ieri"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Luna aceasta"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Astăzi"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Ieri"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Săptămâna aceasta"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Luna aceasta"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -586,6 +582,9 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Stocarea locală"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Cut"
 #~ msgstr "Taie"

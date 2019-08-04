@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-10\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
-"PO-Revision-Date: 2019-02-17 16:34+0100\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-08-04 18:25+0200\n"
 "Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -72,11 +72,6 @@ msgstr "Schreiben Sie Notizen, etikettieren Sie Dateien!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Notizanwendung"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -498,7 +493,7 @@ msgstr ""
 "Benjamin Steinwender <b@stbe.at>, 2013-2014\n"
 "Tim Sabsch <tim@sabsch.com, 2018-2019"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Farbe der Notizen"
 
@@ -552,30 +547,31 @@ msgstr "Papierkorb"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Zuletzt aktualisiert %s"
+msgid "Last updated: %s"
+msgstr "Zuletzt aktualisiert: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Unbekannt"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Gestern"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Dieser Monat"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Heute"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Gestern"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Diese Woche"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Dieser Monat"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -588,6 +584,9 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokaler Speicherplatz"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

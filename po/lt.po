@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
-"PO-Revision-Date: 2019-02-09 17:26+0200\n"
+"POT-Creation-Date: 2019-06-15 10:33+0000\n"
+"PO-Revision-Date: 2019-08-08 22:28+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 3.30.1\n"
+"%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 3.32.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -26,7 +26,6 @@ msgid "Notes"
 msgstr "Rašteliai"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:7
-#| msgid "Simple notebook for GNOME"
 msgid "Notes for GNOME"
 msgstr "Užrašinė GNOME aplinkai"
 
@@ -70,12 +69,6 @@ msgstr "Rašykite raštelius, žymėkite failus!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Užrašinė"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -333,7 +326,6 @@ msgid "Open menu"
 msgstr "Atverti meniu"
 
 #: data/resources/main-toolbar.ui:195
-#| msgid "More options…"
 msgid "More options"
 msgstr "Daugiau parinkčių"
 
@@ -342,7 +334,6 @@ msgid "View Trash"
 msgstr "Rodyti šiukšlinę"
 
 #: data/resources/main-toolbar.ui:251
-#| msgid "_Text Sizes"
 msgid "Text Sizes"
 msgstr "Tekstų dydžiai"
 
@@ -371,7 +362,6 @@ msgid "Help"
 msgstr "Žinynas"
 
 #: data/resources/main-toolbar.ui:326
-#| msgid "Import Notes"
 msgid "About Notes"
 msgstr "Apie raštelius"
 
@@ -494,7 +484,7 @@ msgstr ""
 "išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Raštelio spalva"
 
@@ -548,30 +538,32 @@ msgstr "Šiukšlinė"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Paskutinis atnaujinimas %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
+msgstr "Paskutinis atnaujinimas: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nežinoma"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Vakar"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Šį mėnesį"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Šiandien"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Vakar"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Šią savaitę"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Šį mėnesį"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -584,6 +576,10 @@ msgstr "Vietinė"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Vietinė saugykla"
+
+#~| msgid "org.gnome.bijiben"
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

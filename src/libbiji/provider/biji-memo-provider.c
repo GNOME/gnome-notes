@@ -556,9 +556,9 @@ memo_create_note (BijiProvider *provider,
 
   info.url = NULL;
   info.title = title;
-  info.mtime = g_get_real_time ();
+  info.mtime = g_get_real_time () / G_USEC_PER_SEC;
   info.content = title;
-  info.created = g_get_real_time ();
+  info.created = info.mtime;
 
   e_cal_client_get_default_object_sync (
     self->client, &icalcomp, NULL, NULL);

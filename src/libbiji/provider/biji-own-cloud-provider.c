@@ -922,9 +922,9 @@ own_cloud_create_note (BijiProvider *provider,
   self = BIJI_OWN_CLOUD_PROVIDER (provider);
   info.url = NULL;
   info.title = NULL;
-  info.mtime = g_get_real_time ();
+  info.mtime = g_get_real_time () / G_USEC_PER_SEC;
   info.content = (gchar *) "";
-  info.created = g_get_real_time ();
+  info.created = info.mtime;
 
   return biji_own_cloud_note_new_from_info (
 		   self,

@@ -9,7 +9,8 @@
   <object class="GtkImage" id="format-text-bullet">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
+    <property name="icon_name">view-list-bullet-symbolic</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="format-text-italic">
     <property name="visible">True</property>
@@ -20,7 +21,8 @@
   <object class="GtkImage" id="format-text-list">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
+    <property name="icon_name">view-list-ordered-symbolic</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkImage" id="format-text-strikethrough">
     <property name="visible">True</property>
@@ -103,7 +105,6 @@
             <property name="layout_style">expand</property>
             <child>
               <object class="GtkButton" id="bullets_button">
-                <property name="label" translatable="yes">* </property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -120,7 +121,6 @@
             </child>
             <child>
               <object class="GtkButton" id="list_button">
-                <property name="label" translatable="yes">1.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

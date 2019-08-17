@@ -35,6 +35,8 @@ gboolean          biji_note_id_equal                              (BijiNoteID *a
 
 const gchar      *biji_note_id_get_path                           (BijiNoteID *note);
 
+void              biji_note_id_set_path                           (BijiNoteID *self,
+                                                                   const char *path);
 
 void              biji_note_id_set_title                          (BijiNoteID* n, gchar* title);
 

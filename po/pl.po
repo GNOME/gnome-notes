@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
-"PO-Revision-Date: 2019-02-06 21:15+0100\n"
+"POT-Creation-Date: 2019-08-17 00:02+0000\n"
+"PO-Revision-Date: 2019-08-20 17:07+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -72,11 +72,6 @@ msgstr "Robienie notatek"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Notatnik"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -148,29 +143,21 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Dostępne są trzy rozmiary tekstu: mały, średni (domyślny) i duży."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Pogrubia"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Pochyla"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Przekreśla"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "• "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Wypunktowanie"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -493,7 +480,7 @@ msgstr ""
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
 "Aviary.pl <community-poland@mozilla.org>, 2012-2019"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Kolor notatki"
 
@@ -549,30 +536,31 @@ msgstr "Kosz"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
+msgid "Last updated: %s"
 msgstr "Ostatnia aktualizacja: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nieznany"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Wczoraj"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Ten miesiąc"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Dzisiaj"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Wczoraj"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Ten tydzień"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Ten miesiąc"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"

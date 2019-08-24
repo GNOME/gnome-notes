@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-03-02 10:21+0000\n"
-"PO-Revision-Date: 2019-03-03 13:30+0200\n"
+"POT-Creation-Date: 2019-08-17 00:02+0000\n"
+"PO-Revision-Date: 2019-08-24 16:37+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -25,7 +25,6 @@ msgid "Notes"
 msgstr "Piezīmes"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:7
-#| msgid "Simple notebook for GNOME"
 msgid "Notes for GNOME"
 msgstr "GNOME piezīmes"
 
@@ -70,12 +69,6 @@ msgstr "Raksti zīmītes, marķē datnes!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Piezīmju blociņš"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -148,29 +141,21 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Ir pieejami trīs teksta izmēri: mazs, vidējs (noklusējuma) un liels."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Treknraksts"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Slīpraksts"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Pārsvītrots"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Aizzīmes"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -334,7 +319,6 @@ msgid "Open menu"
 msgstr "Atvērt izvēlni"
 
 #: data/resources/main-toolbar.ui:195
-#| msgid "More options…"
 msgid "More options"
 msgstr "Vairāk opciju"
 
@@ -343,7 +327,6 @@ msgid "View Trash"
 msgstr "Skatīt miskasti"
 
 #: data/resources/main-toolbar.ui:251
-#| msgid "_Text Sizes"
 msgid "Text Sizes"
 msgstr "Teksta izmēri"
 
@@ -372,7 +355,6 @@ msgid "Help"
 msgstr "Palīdzība"
 
 #: data/resources/main-toolbar.ui:326
-#| msgid "Import Notes"
 msgid "About Notes"
 msgstr "Par piezīmēm"
 
@@ -493,7 +475,7 @@ msgstr "Vienkārša GNOME piezīmju grāmatiņa"
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Piezīmju krāsa"
 
@@ -547,30 +529,32 @@ msgstr "Miskaste"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Pēdējo reizi atjaunināts %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
+msgstr "Pēdējo reizi atjaunināts: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nezināms"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Vakar"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Šajā mēnesī"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Šodien"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Vakar"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Šonedēļ"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Šajā mēnesī"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -583,6 +567,16 @@ msgstr "Lokāla"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokālā glabātuve"
+
+#~| msgid "org.gnome.bijiben"
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

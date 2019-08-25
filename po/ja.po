@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
 "POT-Creation-Date: 2019-08-17 00:02+0000\n"
-"PO-Revision-Date: 2019-01-26 18:47+0900\n"
+"PO-Revision-Date: 2019-08-25 18:15+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -469,8 +469,8 @@ msgstr "GNOME 向けのシンプルメモ"
 #: src/bjb-application.c:632
 msgid "translator-credits"
 msgstr ""
-"Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
 "Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
 "sicklylife <translation@sicklylife.jp>"
 
 #: src/bjb-color-button.c:136
@@ -527,10 +527,9 @@ msgstr "ゴミ箱"
 #. *         '%s Last Updated'
 #.
 #: src/bjb-main-toolbar.c:431
-#, fuzzy, c-format
-#| msgid "Last updated %s"
+#, c-format
 msgid "Last updated: %s"
-msgstr "最終更新日 %s"
+msgstr "最終更新日: %s"
 
 #: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51

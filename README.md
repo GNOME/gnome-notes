@@ -1,6 +1,6 @@
 # GNOME Notes
 
-GNOME Notes, formerly "Bijiben", is a note editor designed to remain simple to use.
+GNOME Notes, formerly "Bijiben", is a note editor designed to remain simple to use.  
 (筆記本 / 笔记本 / bijiben means "notebook".)
 
 <a href='https://flathub.org/apps/details/org.gnome.Notes'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/></a>

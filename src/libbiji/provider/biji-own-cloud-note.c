@@ -37,9 +37,6 @@ struct _BijiOwnCloudNote
   GFile *location;
   gchar *basename;
   GCancellable *cancellable; //TODO cancel write to file
-
-  /* Ensure not to save while application quits & unneeded. */
-  gboolean needs_rename;
 };
 
 
@@ -147,12 +144,21 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
 static void
 ocloud_note_set_id (BijiOwnCloudNote *self)
 {
-  g_autofree gchar *key = NULL;
+  BijiItem         *item     = BIJI_ITEM (self);
+  BijiNoteObj      *note_obj = BIJI_NOTE_OBJ (self);
+  BijiManager      *manager  = NULL;
+  const char       *old_key  = NULL;
+  g_autofree gchar *key      = NULL;
 
+  manager = biji_item_get_manager (item);
+  old_key = biji_note_obj_get_path (note_obj);
   key = g_strdup_printf ("%s/%s",
                          biji_own_cloud_provider_get_readable_path (self->prov),
                          self->basename);
-  biji_note_obj_set_path (BIJI_NOTE_OBJ (self), key);
+
+  biji_manager_remove_item_at_path (manager, old_key);
+  biji_note_obj_set_path (note_obj, key);
+  biji_manager_add_item (manager, item, BIJI_LIVING_ITEMS, TRUE);
 }
 
 static void
@@ -206,7 +212,6 @@ on_file_renamed_cb (GObject *source_object,
     }
   g_clear_object (&tmp_file);
 
-  self->needs_rename = FALSE;
   ocloud_note_set_id (self);
   biji_own_cloud_note_file_update (self);
 }
@@ -239,7 +244,6 @@ on_file_created_cb (GObject *source_object,
     }
   g_clear_object (&new_file);
 
-  self->needs_rename = FALSE;
   ocloud_note_set_id (self);
   biji_own_cloud_note_file_update (self);
 }
@@ -264,10 +268,17 @@ biji_own_cloud_note_file_create (BijiOwnCloudNote *self)
 static void
 ocloud_note_save (BijiNoteObj *note)
 {
-  BijiOwnCloudNote *self;
+  BijiOwnCloudNote *self         = BIJI_OWN_CLOUD_NOTE (note);
+  g_autofree char  *new_basename = NULL;
+  gboolean          needs_rename = FALSE;
 
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (note));
-  self = BIJI_OWN_CLOUD_NOTE (note);
+  new_basename = g_strdup_printf ("%s.txt", biji_note_obj_get_title (BIJI_NOTE_OBJ (self)));
+  if (g_strcmp0 (new_basename, self->basename) != 0)
+    {
+      g_free (self->basename);
+      self->basename = g_strdup (new_basename);
+      needs_rename = TRUE;
+    }
 
   /* create note file if it doesn't exist */
   if (self->location == NULL || !g_file_query_exists (self->location, NULL))
@@ -275,7 +286,7 @@ ocloud_note_save (BijiNoteObj *note)
       biji_own_cloud_note_file_create (self);
     }
   /* if file exists and its title was changed */
-  else if (self->needs_rename)
+  else if (needs_rename)
     {
       biji_own_cloud_note_file_rename (self);
     }
@@ -285,22 +296,6 @@ ocloud_note_save (BijiNoteObj *note)
       biji_own_cloud_note_file_update (self);
     }
 }
-
-static void
-on_title_change                     (BijiOwnCloudNote *self)
-{
-  const gchar *new_title;
-
-  g_return_if_fail (BIJI_IS_OWN_CLOUD_NOTE (self));
-
-  g_free (self->basename);
-  new_title = biji_note_obj_get_title (BIJI_NOTE_OBJ (self));
-  self->basename = g_strdup_printf ("%s.txt", new_title);
-  self->needs_rename = TRUE;
-}
-
-
-
 
 static void
 biji_own_cloud_note_finalize (GObject *object)
@@ -442,9 +437,6 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
   ocloud = BIJI_OWN_CLOUD_NOTE (retval);
   ocloud->prov = prov;
   biji_note_obj_set_create_date (retval, info->created);
-  g_signal_connect_swapped (id, "notify::title",
-                            G_CALLBACK (on_title_change), retval);
-
 
   if (online)
     ocloud->location = g_file_new_for_commandline_arg (info->url);

@@ -96,6 +96,9 @@ void             biji_manager_notify_changed        (BijiManager           *mana
 BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
                                                      const gchar *path);
 
+void             biji_manager_remove_item_at_path   (BijiManager *manager,
+                                                     const char  *path);
+
 
 /* Get all items, either notes or notebooks
  * Free the GList, not its content */

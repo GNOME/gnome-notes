@@ -788,6 +788,17 @@ biji_manager_get_item_at_path (BijiManager *self, const gchar *path)
   return retval;
 }
 
+void
+biji_manager_remove_item_at_path (BijiManager *self,
+                                  const char  *path)
+{
+  BijiItem *item = NULL;
+
+  item = biji_manager_get_item_at_path (self, path);
+
+  if (item)
+    on_item_deleted_cb (item, self);
+}
 
 BijiManager *
 biji_manager_new (GFile *location, GdkRGBA *color, GError **error)

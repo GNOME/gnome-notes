@@ -4,22 +4,22 @@
 # Pierre-Yves Luyten <py@luyten.fr>, 2012.
 # Bruno Cauet <brunocauet@gmail.com>, 2014.
 # Alain Lojewski <allomervan@gmail.com>, 2018.
-# Charles Monzat <charles.monzat@numericable.fr>, 2018.
+# Charles Monzat <charles.monzat@free.fr>, 2018-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
-"PO-Revision-Date: 2018-12-05 22:30+0100\n"
-"Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
+"POT-Creation-Date: 2019-08-17 00:02+0000\n"
+"PO-Revision-Date: 2019-08-26 12:21+0200\n"
+"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 3.30.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 3.32.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -28,7 +28,6 @@ msgid "Notes"
 msgstr "Notes"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:7
-#| msgid "Simple notebook for GNOME"
 msgid "Notes for GNOME"
 msgstr "Notes pour GNOME"
 
@@ -74,12 +73,6 @@ msgstr "Publier des notes, étiqueter des fichiers !"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Éditeur de notes"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-#| msgid "org.gnome.bijiben"
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -155,29 +148,21 @@ msgstr ""
 "Trois tailles de texte sont disponibles : petite, moyenne (par défaut) et "
 "grande."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Gras"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Italique"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Barré"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "• "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Puces"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -341,7 +326,6 @@ msgid "Open menu"
 msgstr "Ouvrir le menu"
 
 #: data/resources/main-toolbar.ui:195
-#| msgid "More options…"
 msgid "More options"
 msgstr "Plus d’options"
 
@@ -350,7 +334,6 @@ msgid "View Trash"
 msgstr "Afficher la corbeille"
 
 #: data/resources/main-toolbar.ui:251
-#| msgid "_Text Sizes"
 msgid "Text Sizes"
 msgstr "Tailles du texte"
 
@@ -379,7 +362,6 @@ msgid "Help"
 msgstr "Aide"
 
 #: data/resources/main-toolbar.ui:326
-#| msgid "Import Notes"
 msgid "About Notes"
 msgstr "À propos de Notes"
 
@@ -502,7 +484,7 @@ msgstr ""
 "Pierre-Yves Luyten\n"
 "Bruno Cauet"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:136
 msgid "Note Color"
 msgstr "Couleur de la note"
 
@@ -555,30 +537,32 @@ msgstr "Corbeille"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:431
 #, c-format
-msgid "Last updated %s"
-msgstr "Dernière mise à jour %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
+msgstr "Dernière mise à jour : %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Inconnu"
+
+#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Hier"
+
+#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Ce mois"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Aujourd’hui"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Hier"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Cette semaine"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Ce mois"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -591,6 +575,16 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Stockage local"
+
+#~| msgid "org.gnome.bijiben"
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
+
+#~ msgid "* "
+#~ msgstr "• "
+
+#~ msgid "1."
+#~ msgstr "1."
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"

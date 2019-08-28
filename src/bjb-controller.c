@@ -379,9 +379,8 @@ sort_items (GList **to_show)
 void
 bjb_controller_update_view (BjbController *self)
 {
-  GList *items, *l;
+  GList *l;
   BjbWindowViewType type;
-
 
   /* Do not update if nothing to show */
   type = bjb_window_base_get_view_type (self->window);
@@ -389,12 +388,11 @@ bjb_controller_update_view (BjbController *self)
          || type == BJB_WINDOW_BASE_ARCHIVE_VIEW))
     return;
 
-  items = self->items_to_show;
   free_items_store (self);
 
-  sort_items (&items);
+  sort_items (&self->items_to_show);
 
-  for (l = items; l != NULL; l = l->next)
+  for (l = self->items_to_show; l != NULL; l = l->next)
   {
     bjb_controller_add_item (self, l->data, FALSE, NULL);
   }

@@ -25,4 +25,4 @@ const gchar      *biji_get_time_diff_with_time            (glong sec_since_epoch
 
 
 
-gint64            iso8601_to_gint64                       (gchar *iso8601);
+gint64            iso8601_to_gint64                       (const char *iso8601);

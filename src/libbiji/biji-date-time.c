@@ -69,10 +69,13 @@ biji_get_time_diff_with_time (glong sec_since_epoch)
 
 
 gint64
-iso8601_to_gint64 (gchar *iso8601)
+iso8601_to_gint64 (const char *iso8601)
 {
-  GTimeVal time = {0,0};
+  g_autoptr(GDateTime) dt = g_date_time_new_from_iso8601 (iso8601, NULL);
+  if (dt == NULL)
+    {
+      return 0;
+    }
 
-  g_time_val_from_iso8601 (iso8601, &time);
-  return (gint64) time.tv_sec;
+  return g_date_time_to_unix (dt);
 }

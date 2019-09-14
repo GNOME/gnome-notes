@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-08-17 00:02+0000\n"
-"PO-Revision-Date: 2019-09-03 11:01+0000\n"
+"POT-Creation-Date: 2019-09-03 11:03+0000\n"
+"PO-Revision-Date: 2019-09-14 18:35+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-DamnedLies-Scope: partial\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -123,6 +123,22 @@ msgstr "موقعیت پنجره"
 #: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "موقعیت پنجره (x و y)"
+
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "How to show note items"
+msgstr "چگونگی نمایش موردهای یادداشت"
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid "Whether to show note items in icon view or list view."
+msgstr "این که موردهای یادداشت در نمای نقشکی یا نمای فهرستی نشان داده شود یا نه."
+
+#: data/org.gnome.Notes.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "اندازهٔ متن استفاده شده به دست ویرایشگر یادداشت."
+
+#: data/org.gnome.Notes.gschema.xml:49
+msgid "There are three text sizes available: small, medium (default) and large."
+msgstr "سه اندازه متن موجود است: ریز، متوسّط(پیش‌گزیده) و درشت."
 
 #: data/resources/editor-toolbar.ui:51
 msgid "Bold"
@@ -486,7 +502,7 @@ msgstr "در حال بار کردن…"
 
 #: src/bjb-main-toolbar.c:139
 msgid "Click on items to select them"
-msgstr "برای گزینش موارد،‌رویشان کلیک کنید"
+msgstr "برای گزینش موارد، رویشان کلیک کنید"
 
 #: src/bjb-main-toolbar.c:141
 #, c-format
@@ -517,16 +533,16 @@ msgstr "زباله‌دان"
 msgid "Last updated: %s"
 msgstr "آخرین به‌روز رسانی: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "دیروز"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "این ماه"
 

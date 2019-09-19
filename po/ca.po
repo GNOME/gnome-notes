@@ -503,7 +503,7 @@ msgstr "Color de la nota"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Feu clic al botó «nova» per crear una nota nova."
+msgstr "Feu clic al botó «Nova» per crear una nota nova."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"

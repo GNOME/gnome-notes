@@ -39,6 +39,19 @@
   </screenshots>
 
   <releases>
+    <release date="2019-10-14" version="3.34.1">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>ca (Jordi Mas)</li>
+          <li>da (Ask Hjorth Larsen)</li>
+          <li>fa (Danial Behzadi)</li>
+          <li>sk (Dušan Kazik)</li>
+          <li>zh_TW (Yi-Jyun Pan)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-09-10" version="3.34.0">
       <description>
         <p>This release brings the following new features and improvements:</p>

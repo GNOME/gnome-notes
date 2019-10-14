@@ -8,6 +8,49 @@ Translations
 * sk (Dušan Kazik)
 * zh_TW (Yi-Jyun Pan)
 
+Overview of changes in 3.34.0
+==============================
+
+* Added intltool as a flatpak dependency (Javier Jardón)
+* Added missing icons in editor toolbar (Isaque Galdino)
+* Added new API to get human time (Mohammed Sadiq)
+* Changed settings window to use the same color chooser as editor window (Jonathan Kang)
+* Fixed missing notes from main view (Isaque Galdino)
+* Improved application model by removing duplicated note id objects (Isaque Galdino)
+* Improved Own/NextCloud notes management (Isaque Galdino)
+* Improved README to use markdown (Roger @rogersachan)
+* Ported to libecal-2.0 (Milan Crha)
+
+Translations
+* cs (Marek Černocký)
+* de (Tim Sabsch)
+* el (Efstathios Iosifidis)
+* en_GB (Philip Withnall)
+* es (Daniel Mustieles)
+* eu (Asier Sarasua Garmendia)
+* fa (Danial Behzadi)
+* fi (Jiri Grönroos)
+* fr (Charles Monzat)
+* fur (Fabio Tomat)
+* gl (Fran Dieguez)
+* hr (Goran Vidović)
+* hu (Balázs Úr)
+* id (Kukuh Syafaat)
+* it (Gianvito Cavasoli)
+* ja (Ryuta Fujii)
+* ko (Seong-ho Cho)
+* lt (Aurimas Černius)
+* lv (Rūdolfs Mazurs)
+* nb (Kjartan Maraas)
+* nl (Nathan Follens)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* ro (Florentina Mușat)
+* sl (Matej Urbančič)
+* sr (Марко Костић)
+* sv (Anders Jonsson)
+* tr (Emin Tufan Çetin)
+
 Overview of changes in 3.33.92
 ==============================
 

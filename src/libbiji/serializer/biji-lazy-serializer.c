@@ -161,10 +161,15 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 {
   GList                     *tags;
   GdkRGBA                    color;
-  gchar                     *date, *color_str;
+  gchar                     *color_str;
   gboolean                   retval;
   const gchar               *path;
-  GTimeVal                   time = {0, 0};
+  g_autoptr(GDateTime)       change_date = NULL;
+  g_autoptr(GDateTime)       metadata_date = NULL;
+  g_autoptr(GDateTime)       create_date = NULL;
+  g_autofree char           *change_date_str = NULL;
+  g_autofree char           *metadata_date_str = NULL;
+  g_autofree char           *create_date_str = NULL;
 
   self->writer = xmlNewTextWriterMemory(self->buf, 0);
 
@@ -199,30 +204,25 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   xmlTextWriterEndElement(self->writer);
 
   // <last-change-date>
-  time.tv_sec = biji_item_get_mtime (BIJI_ITEM (self->note));
-  date = g_time_val_to_iso8601 (&time);
-  if (date)
+  change_date = g_date_time_new_from_unix_utc (biji_item_get_mtime (BIJI_ITEM (self->note)));
+  change_date_str = g_date_time_format_iso8601 (change_date);
+  if (change_date_str)
   {
-    serialize_node (self->writer, "last-change-date", date);
-    g_free (date);
+    serialize_node (self->writer, "last-change-date", change_date_str);
   }
 
-
-  time.tv_sec = biji_note_obj_get_last_metadata_change_date (self->note);
-  date = g_time_val_to_iso8601 (&time);
-  if (date)
+  metadata_date = g_date_time_new_from_unix_utc (biji_note_obj_get_last_metadata_change_date (self->note));
+  metadata_date_str = g_date_time_format_iso8601 (metadata_date);
+  if (metadata_date_str)
   {
-    serialize_node (self->writer, "last-metadata-change-date", date);
-    g_free (date);
+    serialize_node (self->writer, "last-metadata-change-date", metadata_date_str);
   }
 
-
-  time.tv_sec = biji_note_obj_get_create_date (self->note);
-  date = g_time_val_to_iso8601 (&time);
-  if (date)
+  create_date = g_date_time_new_from_unix_utc (biji_note_obj_get_create_date (self->note));
+  create_date_str = g_date_time_format_iso8601 (create_date);
+  if (create_date_str)
   {
-    serialize_node (self->writer, "create-date", date);
-    g_free (date);
+    serialize_node (self->writer, "create-date", create_date_str);
   }
 
   serialize_node (self->writer, "cursor-position", "0");

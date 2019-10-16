@@ -74,25 +74,22 @@ static GParamSpec *properties[BIJI_MEMO_PROP] = { NULL, };
 gboolean
 time_val_from_icaltime (ICalTime *itt, glong *result)
 {
-  GTimeVal t;
-  gchar *iso;
+  g_autoptr(GDateTime) t = NULL;
+  g_autofree char *iso = NULL;
 
   if (!itt)
     return FALSE;
 
-  t.tv_sec = 0;
-  t.tv_usec = 0;
-
   iso = isodate_from_time_t (i_cal_time_as_timet (itt));
 
-  if (g_time_val_from_iso8601 (iso, &t))
-  {
-    *result = t.tv_sec;
-    g_free (iso);
-    return TRUE;
-  }
+  t = g_date_time_new_from_iso8601 (iso, NULL);
+  if (t == NULL)
+    {
+      return FALSE;
+    }
 
-  return FALSE;
+  *result = g_date_time_to_unix (t);
+  return TRUE;
 }
 
 
@@ -100,20 +97,13 @@ time_val_from_icaltime (ICalTime *itt, glong *result)
 ICalTime *
 icaltime_from_time_val (glong t)
 {
-  GTimeVal tv;
-  GDate    *date;
+  g_autoptr(GDateTime) tv = NULL;
   ICalTime *out;
 
-  tv.tv_sec = t;
-  tv.tv_usec = 0;
+  tv = g_date_time_new_from_unix_utc (t);
+  out = i_cal_time_new_from_day_of_year (g_date_time_get_day_of_year (tv),
+                                         g_date_time_get_year (tv));
 
-  date = g_date_new ();
-  g_date_set_time_val (date, &tv);
-  out = i_cal_time_new_from_day_of_year (
-    g_date_get_day_of_year (date),
-    g_date_get_year (date));
-
-  g_date_free (date);
   return out;
 }
 

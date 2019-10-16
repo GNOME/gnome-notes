@@ -365,7 +365,6 @@ enumerate_next_files_ready_cb (GObject *source,
   for (l = files; l != NULL; l = l->next)
   {
     GFileInfo *info;
-    GTimeVal time = {0,0};
     BijiOCloudItem *item;
 
     info = l->data;
@@ -375,9 +374,8 @@ enumerate_next_files_ready_cb (GObject *source,
       (g_file_get_parse_name (self->folder),
        "/", item->set.title, NULL);
 
-    g_file_info_get_modification_time (info, &time);
-    item->set.mtime = time.tv_sec;
-    item->set.created = g_file_info_get_attribute_uint64 (info, "time:created");
+    item->set.mtime = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
+    item->set.created = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_CREATED);
     item->set.datasource_urn = g_strdup (self->info.datasource);
 
     if (self->mount == NULL) /* offline (synced mode) */

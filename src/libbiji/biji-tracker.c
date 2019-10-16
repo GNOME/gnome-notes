@@ -211,16 +211,10 @@ biji_query_info_hash_finish (GObject      *source_object,
     while (tracker_sparql_cursor_next (cursor, NULL, NULL))
     {
       BijiInfoSet *set = biji_info_set_new ();
-      GTimeVal time = {0,0};
 
       set->tracker_urn = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_URN_COL, NULL));
       set->title = g_strdup (tracker_sparql_cursor_get_string (cursor, BIJI_TITLE_COL, NULL));
-
-      if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, BIJI_MTIME_COL, NULL), &time))
-        set->mtime = time.tv_sec;
-
-      else
-        set->mtime = 0;
+      set->mtime = iso8601_to_gint64 (tracker_sparql_cursor_get_string (cursor, BIJI_MTIME_COL, NULL));
 
       g_hash_table_replace (result, set->tracker_urn, set);
     }
@@ -487,15 +481,9 @@ biji_create_new_notebook_async (BijiManager     *manager,
                                 gpointer          user_data)
 {
   gchar *query;
-  GTimeVal tv;
-  gchar *time;
-  gint64 timestamp;
+  g_autoptr(GDateTime) dt = g_date_time_new_now_utc ();
+  g_autofree char *time = g_date_time_format_iso8601 (dt);
   BijiTrackerFinisher *finisher;
-
-  timestamp = g_get_real_time () / G_USEC_PER_SEC;
-  tv.tv_sec = timestamp;
-  tv.tv_usec = 0;
-  time = g_time_val_to_iso8601 (&tv);
 
   query = g_strdup_printf ("INSERT { _:res a nfo:DataContainer ; a nie:DataObject ; "
                             "nie:contentLastModified '%s' ; "
@@ -503,7 +491,6 @@ biji_create_new_notebook_async (BijiManager     *manager,
                             "nie:generator 'Bijiben' }",
                             time,
                             name);
-  g_free (time);
 
   /* The finisher has all the pointers we want.
    * And the callback will free it */
@@ -599,21 +586,13 @@ biji_tracker_trash_ressource (BijiManager *manager,
 static void
 update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
 {
-  BijiManager *manager;
-  BijiInfoSet *info;
-  gchar *query, *created, *mtime, *content;
-  GTimeVal t;
-
-  manager = finisher->manager;
-  info = finisher->info;
-
-  t.tv_usec = 0;
-  t.tv_sec = info->mtime;
-  mtime = g_time_val_to_iso8601 (&t);
-
-  t.tv_sec = info->created;
-  created =  g_time_val_to_iso8601 (&t);
-
+  BijiManager *manager = finisher->manager;
+  BijiInfoSet *info = finisher->info;
+  g_autoptr(GDateTime) dt_created = g_date_time_new_from_unix_utc (info->created);
+  g_autoptr(GDateTime) dt_mtime = g_date_time_new_from_unix_utc (info->mtime);
+  g_autofree char *created = g_date_time_format_iso8601 (dt_created);
+  g_autofree char *mtime = g_date_time_format_iso8601 (dt_mtime);
+  char *query, *content;
 
   content = tracker_str (info->content);
 
@@ -639,8 +618,6 @@ update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
   biji_perform_update_async_and_free (get_connection (manager), query, NULL, NULL);
 
   g_free (tracker_urn_uuid);
-  g_free (mtime);
-  g_free (created);
   g_free (content);
   biji_tracker_finisher_free (finisher);
 }
@@ -649,24 +626,17 @@ update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
 static void
 push_new_note (BijiTrackerFinisher *finisher)
 {
-  BijiManager *manager;
-  BijiInfoSet *info;
-  gchar *query, *content, *created_time, *mtime;
-  GTimeVal t;
+  BijiManager *manager = finisher->manager;
+  BijiInfoSet *info = finisher->info;
+  g_autoptr(GDateTime) dt_created = g_date_time_new_from_unix_utc (info->created);
+  g_autoptr(GDateTime) dt_mtime = g_date_time_new_from_unix_utc (info->mtime);
+  g_autofree char *created_time = g_date_time_format_iso8601 (dt_created);
+  g_autofree char *mtime = g_date_time_format_iso8601 (dt_mtime);
+  gchar *query, *content;
 
-  manager = finisher->manager;
-  info = finisher->info;
   g_message ("Creating ressource <%s> %s", info->title, info->url);
 
   content = tracker_str (info->content);
-  t.tv_usec = 0;
-  t.tv_sec = info->mtime;
-  mtime = g_time_val_to_iso8601 (&t);
-
-
-  t.tv_sec = info->created;
-  created_time =  g_time_val_to_iso8601 (&t);
-
 
   query = g_strconcat (
     "INSERT { _:res a nfo:Note ; ",
@@ -693,8 +663,6 @@ push_new_note (BijiTrackerFinisher *finisher)
 
   g_free (query);
   g_free (content);
-  g_clear_pointer (&mtime, g_free);
-  g_clear_pointer (&created_time, g_free);
   biji_tracker_finisher_free (finisher);
 }
 
@@ -819,8 +787,6 @@ on_info_queried (GObject *source_object,
   BijiTrackerFinisher     *finisher;
   GError                  *error;
   BijiInfoSet             *retval;
-  GTimeVal                 t;
-
 
   connection = TRACKER_SPARQL_CONNECTION (source_object);
   finisher = user_data;
@@ -850,15 +816,12 @@ on_info_queried (GObject *source_object,
 
       retval->url = g_strdup (tracker_sparql_cursor_get_string (cursor, 0, NULL));
       retval->title = g_strdup (tracker_sparql_cursor_get_string (cursor, 1, NULL));
-
-      if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, 2, NULL), &t))
-        retval->mtime = t.tv_sec;
+      retval->mtime = iso8601_to_gint64 (tracker_sparql_cursor_get_string (cursor, 2, NULL));
 
       retval->content = biji_str_replace (
         tracker_sparql_cursor_get_string (cursor, 3, NULL), "b&lt;br/&gt", "\n");
 
-      if (g_time_val_from_iso8601 (tracker_sparql_cursor_get_string (cursor, 4, NULL), &t))
-        retval->created = t.tv_sec;
+      retval->created = iso8601_to_gint64 (tracker_sparql_cursor_get_string (cursor, 4, NULL));
 
 
       /* Check if the ressource is up to date */

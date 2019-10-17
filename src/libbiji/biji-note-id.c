@@ -206,9 +206,8 @@ biji_note_id_get_path (BijiNoteID* n)
 void
 biji_note_id_set_title  (BijiNoteID *n, gchar* title)
 {
-  if (n->title)
-    g_free (n->title);
-
+  g_return_if_fail (BIJI_IS_NOTE_ID (n));
+  g_clear_pointer (&n->title, g_free);
   n->title = g_strdup (title);
   g_object_notify_by_pspec (G_OBJECT (n), properties[PROP_TITLE]);
 }
@@ -226,20 +225,10 @@ biji_note_id_set_content (BijiNoteID *id,
                           const gchar *content)
 {
   g_return_val_if_fail (BIJI_IS_NOTE_ID (id), FALSE);
-  g_return_val_if_fail ((content != NULL), FALSE);
+  g_clear_pointer (&id->content, g_free);
+  id->content = g_strdup (content);
 
-  if (id->content != NULL &&
-      g_strcmp0 (id->content, content) != 0)
-    g_clear_pointer (&id->content, g_free);
-
-
-  if (id->content == NULL)
-  {
-    id->content = g_strdup (content);
-    return TRUE;
-  }
-
-  return FALSE;
+  return TRUE;
 }
 
 

@@ -174,7 +174,7 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
 {
   self->entry = gtk_search_entry_new ();
   gtk_search_bar_connect_entry (GTK_SEARCH_BAR (self), GTK_ENTRY (self->entry));
-  g_object_set (self->entry, "width_request", 500, NULL);
+  g_object_set (self->entry, "width_request", 300, NULL);
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->entry));
   gtk_widget_show (GTK_WIDGET (self->entry));
 }

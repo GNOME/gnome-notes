@@ -18,24 +18,20 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#define HANDY_USE_UNSTABLE_API
+#include <handy.h>
 
 G_BEGIN_DECLS
 
 #define BJB_TYPE_SEARCH_TOOLBAR (bjb_search_toolbar_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbSearchToolbar, bjb_search_toolbar, BJB, SEARCH_TOOLBAR, GtkSearchBar)
-
+G_DECLARE_FINAL_TYPE (BjbSearchToolbar, bjb_search_toolbar, BJB, SEARCH_TOOLBAR, HdySearchBar)
 
 BjbSearchToolbar  *bjb_search_toolbar_new                   (GtkWidget *window,
                                                              BjbController *controller);
 
-
 void               bjb_search_toolbar_disconnect            (BjbSearchToolbar *self);
 
-
 void               bjb_search_toolbar_connect               (BjbSearchToolbar *self);
-
-
 
 G_END_DECLS

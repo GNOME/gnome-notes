@@ -47,7 +47,7 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 struct _BjbSearchToolbar
 {
-  GtkSearchBar       parent_instance;
+  HdySearchBar       parent_instance;
 
   GtkWidget         *entry;
   gchar             *needle;
@@ -61,14 +61,14 @@ struct _BjbSearchToolbar
   GtkWidget         *window;
 };
 
-G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, GTK_TYPE_SEARCH_BAR)
+G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, HDY_TYPE_SEARCH_BAR)
 
 static gboolean
 on_key_pressed (GtkWidget *widget,GdkEvent  *event,gpointer user_data)
 {
-  GtkSearchBar *search_bar = GTK_SEARCH_BAR (user_data);
+  HdySearchBar *search_bar = HDY_SEARCH_BAR (user_data);
 
-  return gtk_search_bar_handle_event (search_bar, event);
+  return hdy_search_bar_handle_event (search_bar, event);
 }
 
 
@@ -173,8 +173,7 @@ static void
 bjb_search_toolbar_init (BjbSearchToolbar *self)
 {
   self->entry = gtk_search_entry_new ();
-  gtk_search_bar_connect_entry (GTK_SEARCH_BAR (self), GTK_ENTRY (self->entry));
-  g_object_set (self->entry, "width_request", 500, NULL);
+  hdy_search_bar_connect_entry (HDY_SEARCH_BAR (self), GTK_ENTRY (self->entry));
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->entry));
   gtk_widget_show (GTK_WIDGET (self->entry));
 }

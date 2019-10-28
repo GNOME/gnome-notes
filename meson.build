@@ -116,6 +116,7 @@ bijiben_deps = [
   dependency('gtk+-3.0', version: '>= 3.19.3'),
   dependency('libecal-2.0', version: '>= 3.33.2'),
   dependency('libedataserver-1.2', version: '>= 3.13.90'),
+  dependency('libhandy-0.0', version: '>= 0.0.10'),
   dependency('libxml-2.0'),
   dependency('uuid'),
   dependency('webkit2gtk-4.0', version: '>= 2.10'),

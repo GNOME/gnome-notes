@@ -74,3 +74,19 @@ document.addEventListener('selectionchange', function () {
         }, 0);
     }
 }, false);
+
+var pasteTimerID = -1;
+document.addEventListener("paste", function () {
+    if (pasteTimerID == -1) {
+        pasteTimerID = setTimeout(function () {
+            pasteTimerID = -1;
+            doc = document.documentElement;
+            window.webkit.messageHandlers.bijiben.postMessage({
+                messageName: 'ContentsUpdate',
+                outerHTML: doc.outerHTML,
+                innerText: doc.innerText
+            });
+        }, 0);
+    }
+}, false);
+

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-08-17 00:02+0000\n"
-"PO-Revision-Date: 2019-08-26 00:40+0200\n"
+"POT-Creation-Date: 2019-09-26 06:45+0000\n"
+"PO-Revision-Date: 2019-12-25 13:36+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
@@ -270,11 +270,11 @@ msgstr "Seleccionar a localización para importar"
 
 #: data/resources/import-dialog.ui:78
 msgid "Gnote application"
-msgstr "Aplicativo Gnote"
+msgstr "Aplicación Gnote"
 
 #: data/resources/import-dialog.ui:136
 msgid "Tomboy application"
-msgstr "Aplicativo Tomboy"
+msgstr "Aplicación Tomboy"
 
 #: data/resources/import-dialog.ui:192
 msgid "Custom Location"
@@ -440,7 +440,7 @@ msgstr "Sen título"
 
 #: src/bjb-application.c:450
 msgid "Show the application’s version"
-msgstr "Mostrar a versión do aplicativo"
+msgstr "Mostrar a versión do aplicación"
 
 #: src/bjb-application.c:452
 msgid "Create a new note"
@@ -468,7 +468,7 @@ msgstr "Notas de GNOME"
 #. * printed on the command line
 #: src/bjb-application.c:493
 msgid "Could not register the application"
-msgstr "Non é posíbel rexistrar o aplicativo"
+msgstr "Non é posíbel rexistrar a aplicación"
 
 #: src/bjb-application.c:626
 msgid "Simple notebook for GNOME"
@@ -476,7 +476,7 @@ msgstr "Caderno de notas sinxelo para GNOME"
 
 #: src/bjb-application.c:632
 msgid "translator-credits"
-msgstr "Fran Dieguez <frandieguez@gnome.org>, 2013-2019"
+msgstr "Fran Diéguez <frandieguez@gnome.org>, 2013-2020"
 
 #: src/bjb-color-button.c:136
 msgid "Note Color"
@@ -492,7 +492,7 @@ msgstr "Ups"
 
 #: src/bjb-empty-results-box.c:91
 msgid "Please install “Tracker” then restart the application."
-msgstr "Instale «Tracker» e logo reinicie o aplicativo."
+msgstr "Instale «Tracker» e logo reinicie a aplicación."
 
 #: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
 msgid "Load More"
@@ -536,16 +536,16 @@ msgstr "Lixo"
 msgid "Last updated: %s"
 msgstr "Última actualización: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "Onte"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "Este mes"
 

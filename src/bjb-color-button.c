@@ -24,14 +24,18 @@
 
 #include "bjb-color-button.h"
 
-// Bijiben probably wants something like 6 light colors
-#define BJB_NUM_COLORS 4
+// GIMP Palette
+#define BJB_NUM_COLORS 8
 
-static const gchar *palette_str[BJB_NUM_COLORS] = {
-  "rgb(239, 242, 209)", // eff2d1 from the mockup
-  "rgb(210, 219, 230)", // d2dbe6 from the mockup
-  "rgb(229, 230, 210)", //
-  "rgb(235, 239, 244)", //
+static const char *palette_str[BJB_NUM_COLORS] = {
+  "rgb(153, 193, 241)", // Blue 1
+  "rgb(143, 240, 164)", // Green 1
+  "rgb(249, 240, 107)", // Yellow 1
+  "rgb(255, 190, 111)", // Orange 1
+  "rgb(246,  97,  81)", // Red 1
+  "rgb(220, 138, 221)", // Purple 1
+  "rgb(205, 171, 143)", // Brown 1
+  "rgb(255, 255, 255)", // Light 1
 };
 
 struct _BjbColorButton

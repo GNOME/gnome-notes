@@ -438,120 +438,6 @@ bjb_main_view_connect_signals (BjbMainView *self)
 }
 
 static void
-__destroy_n_notify__ (gpointer data)
-{
-}
-
-
-
-static BijiItem *
-_get_item_for_tree_path (GtkTreeModel *tree_model,
-                         GtkTreeIter *iter,
-                         BjbMainView *self)
-{
-  BijiItem *retval;
-  gchar *uuid;
-
-
-  retval = NULL;
-  uuid = NULL;
-  gtk_tree_model_get (tree_model,
-                      iter,
-                      GD_MAIN_COLUMN_ID,
-                      &uuid,
-                      -1);
-
-
-  if (uuid != NULL)
-  {
-    retval = biji_manager_get_item_at_path (
-               bjb_window_base_get_manager (self->window), uuid);
-    g_free (uuid);
-  }
-
-  return retval;
-}
-
-static void
-render_where    (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer *cell,
-                 GtkTreeModel *tree_model,
-                 GtkTreeIter *iter,
-                 gpointer data)
-{
-  BijiItem *item;
-  const gchar *str;
-  BjbMainView *self;
-
-  self = data;
-  item = _get_item_for_tree_path (tree_model, iter, self);
-
-  if (item != NULL)
-  {
-    str = biji_item_get_place (item);
-    g_object_set (cell, "text", str, NULL);
-  }
-}
-
-
-
-static void
-render_date     (GtkTreeViewColumn *tree_column,
-                 GtkCellRenderer *cell,
-                 GtkTreeModel *tree_model,
-                 GtkTreeIter *iter,
-                 gpointer data)
-{
-  BijiItem *item;
-  g_autofree gchar *str = NULL;
-  BjbMainView *self;
-
-  self = data;
-  item = _get_item_for_tree_path (tree_model, iter, self);
-
-  if (item != NULL)
-  {
-    str = bjb_utils_get_human_time (biji_item_get_mtime (item));
-    g_object_set (cell, "text", str, NULL);
-  }
-}
-
-
-static void
-add_list_renderers (BjbMainView *self)
-{
-  GtkWidget *generic;
-  GtkCellRenderer *cell;
-
-  generic =  gd_main_view_get_generic_view (self->view);
-
-  /* Where Renderer */
-  cell = gd_styled_text_renderer_new ();
-  gd_styled_text_renderer_add_class (GD_STYLED_TEXT_RENDERER (cell), "dim-label");
-  gtk_cell_renderer_set_padding (cell, 16, 0);
-
-  gd_main_list_view_add_renderer (GD_MAIN_LIST_VIEW (generic),
-                                  cell,
-                                  render_where,
-                                  self,
-                                  __destroy_n_notify__);
-
-
-  /* Date renderer */
-  cell = gtk_cell_renderer_text_new ();
-  gtk_cell_renderer_set_padding (cell, 32, 0);
-
-  gd_main_list_view_add_renderer (GD_MAIN_LIST_VIEW (generic),
-                                  cell,
-                                  render_date,
-                                  self,
-                                  __destroy_n_notify__);
-
-}
-
-
-
-static void
 bjb_main_view_view_changed (BjbMainView *self)
 {
   GtkAdjustment *vadjustment;
@@ -597,20 +483,13 @@ bjb_main_view_constructed(GObject *o)
   GtkAdjustment        *vadjustment;
   GtkWidget            *vscrollbar;
   GtkWidget            *button;
-  BjbSettings *settings;
-  GdMainViewType type;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed(G_OBJECT(o));
 
   self = BJB_MAIN_VIEW(o);
 
-  settings = bjb_app_get_settings (g_application_get_default ());
-  type = g_settings_get_enum (G_SETTINGS (settings), "view-type");
-
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
-  self->view = gd_main_view_new (type);
-  if (type == GD_MAIN_VIEW_LIST)
-    add_list_renderers (self);
+  self->view = gd_main_view_new (GD_MAIN_VIEW_ICON);
   g_object_add_weak_pointer (G_OBJECT (self->view), (gpointer*) &(self->view));
 
   /* Main view */
@@ -741,30 +620,5 @@ void
 bjb_main_view_set_selection_mode (BjbMainView *self, gboolean mode)
 {
   gd_main_view_set_selection_mode (self->view, mode);
-}
-
-GdMainViewType
-bjb_main_view_get_view_type (BjbMainView *self)
-{
-  /* if self->view is NULL, that means the view was destroyed
-   * because the windows is being closed by an exit action, so it
-   * doesn't matter which ViewType we return.
-   */
-  if (self->view == NULL) return GD_MAIN_VIEW_ICON;
-  return gd_main_view_get_view_type (self->view);
-}
-
-void
-bjb_main_view_set_view_type (BjbMainView *self, GdMainViewType type)
-{
-  BjbSettings *settings;
-
-  settings = bjb_app_get_settings(g_application_get_default());
-  g_settings_set_enum (G_SETTINGS (settings), "view-type", type);
-
-  gd_main_view_set_view_type (self->view, type);
-
-  if (type == GD_MAIN_VIEW_LIST)
-    add_list_renderers (self);
 }
 

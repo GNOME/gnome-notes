@@ -59,11 +59,6 @@ gboolean bjb_main_view_get_selection_mode (BjbMainView *view);
 
 void bjb_main_view_set_selection_mode (BjbMainView *view, gboolean mode);
 
-GdMainViewType bjb_main_view_get_view_type (BjbMainView *view);
-
-void bjb_main_view_set_view_type (BjbMainView *view, GdMainViewType type);
-
-
 void bjb_main_view_disconnect_scrolled_window (BjbMainView *self);
 
 

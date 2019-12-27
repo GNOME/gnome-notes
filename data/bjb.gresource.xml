@@ -3,7 +3,6 @@
   <gresource prefix="/org/gnome/Notes">
     <file alias="Adwaita.css">resources/Adwaita.css</file>
     <file alias="editor-toolbar.ui" compressed="true" preprocess="xml-stripblanks">resources/editor-toolbar.ui</file>
-    <file alias="thumbnail-frame.png">resources/thumbnail-frame.png</file>
   </gresource>
 
   <gresource prefix="/org/gnome/Notes/icons">

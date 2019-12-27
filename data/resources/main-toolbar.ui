@@ -96,55 +96,10 @@
         </child>
       </object>
       <packing>
-        <property name="position">3</property>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-
-    <child>
-      <object class="GtkStack" id="style_buttons">
-        <property name="visible">1</property>
-        <child>
-          <object class="GtkButton" id="grid_button">
-            <property name="visible">1</property>
-            <signal name="clicked" handler="on_view_mode_clicked" swapped="yes"/>
-            <style>
-             <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">1</property>
-                <property name="icon-name">view-grid-symbolic</property>
-                <property name="icon-size">1</property>
-                <property name="tooltip-text" translatable="yes">View notes and notebooks in a grid</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkButton" id="list_button">
-            <property name="visible" bind-source="grid_button" bind-property="visible" bind-flags="default|bidirectional|invert-boolean"/>
-            <signal name="clicked" handler="on_view_mode_clicked" swapped="yes"/>
-            <style>
-             <class name="image-button"/>
-            </style>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">1</property>
-                <property name="icon-name">view-list-symbolic</property>
-                <property name="icon-size">1</property>
-                <property name="tooltip-text" translatable="yes">View notes and notebooks in a list</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
         <property name="position">2</property>
         <property name="pack-type">end</property>
       </packing>
-    </child> <!-- /GtkStack style_buttons -->
+    </child>
 
     <child>
       <object class="GtkButton" id="select_button">

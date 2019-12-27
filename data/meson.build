@@ -48,8 +48,7 @@ resource_data = files(
   'resources/editor-toolbar.ui',
   'resources/empty-results-box.ui',
   'resources/note-symbolic.svg',
-  'resources/settings-dialog.ui',
-  'resources/thumbnail-frame.png'
+  'resources/settings-dialog.ui'
 )
 
 gresource = files('bjb.gresource.xml')

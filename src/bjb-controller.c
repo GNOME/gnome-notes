@@ -259,20 +259,9 @@ bjb_controller_add_item (BjbController *self,
   else
     gtk_list_store_append (store, &iter);
 
-
-  /* First , if there is a gd main view , and if gd main view
-   * is a list, then load the smaller emblem */
   win = self->window;
   scale = gtk_widget_get_scale_factor (GTK_WIDGET (win));
-
-  if (bjb_window_base_get_main_view (win)
-      && bjb_main_view_get_view_type
-                (bjb_window_base_get_main_view (win)) == GD_MAIN_VIEW_LIST)
-    surface = biji_item_get_emblem (item, scale);
-
-  /* Else, load the icon */
-  if (!surface)
-    surface = biji_item_get_icon (item, scale);
+  surface = biji_item_get_icon (item, scale);
 
   /* Appart from pixbuf, both icon & list view types
    * currently use the same model */

@@ -29,9 +29,6 @@
 
 #include "editor/biji-webkit-editor.h"
 
-
-#include <libgd/gd.h>
-
 typedef struct
 {
   /* Metadata */
@@ -641,15 +638,14 @@ static cairo_surface_t *
 biji_note_obj_get_icon (BijiItem *item,
                         gint scale)
 {
-  GdkRGBA               note_color;
+  GdkRGBA                note_color;
   const gchar           *text;
   cairo_t               *cr;
   PangoLayout           *layout;
   PangoFontDescription  *desc;
   cairo_surface_t       *surface = NULL;
-  GtkBorder              frame_slice = { 4, 3, 3, 6 };
-  BijiNoteObj *note = BIJI_NOTE_OBJ (item);
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (note);
+  BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
+  BijiNoteObjPrivate    *priv = biji_note_obj_get_instance_private (note);
 
   if (priv->icon)
     return priv->icon;
@@ -693,14 +689,19 @@ biji_note_obj_get_icon (BijiItem *item,
     pango_cairo_show_layout (cr, layout);
 
     g_object_unref (layout);
+
+    cairo_translate (cr, -10, -10);
   }
+
+  /* Border */
+  cairo_set_source_rgba (cr, 0.3, 0.3, 0.3, 1);
+  cairo_set_line_width (cr, 1 * scale);
+  cairo_rectangle (cr, 0, 0, BIJI_ICON_WIDTH, BIJI_ICON_HEIGHT);
+  cairo_stroke (cr);
 
   cairo_destroy (cr);
 
-  priv->icon = gd_embed_surface_in_frame (surface, "resource:///org/gnome/Notes/thumbnail-frame.png",
-                                                &frame_slice, &frame_slice);
-  cairo_surface_destroy (surface);
-
+  priv->icon = surface;
   return priv->icon;
 }
 

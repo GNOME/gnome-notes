@@ -39,6 +39,23 @@
   </screenshots>
 
   <releases>
+    <release date="2020-01-05" version="3.35.2">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Changed default colors to use GNOME palette</li>
+          <li>Fixed paste event handler so Notes knows when that happens</li>
+          <li>Reduced minimum window width</li>
+          <li>Changed note title to headerbar</li>
+          <li>GTimeVal Deprecation</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>gl (Fran Dieguez)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-10-14" version="3.35.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

@@ -1,3 +1,16 @@
+Overview of changes in 3.35.2
+==============================
+
+* Changed default colors to use GNOME palette
+* Fixed paste event handler so Notes knows when that happens
+* Reduced minimum window width
+* Changed note title to headerbar
+* GTimeVal Deprecation
+
+Translations
+
+* gl (Fran Dieguez)
+
 Overview of changes in 3.35.1
 ==============================
 

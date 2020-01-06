@@ -39,6 +39,15 @@
   </screenshots>
 
   <releases>
+    <release date="2020-01-05" version="3.34.2">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>ms (Umarzuki Bin Mochlis Moktar)</li>
+        </ul>
+        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2019-10-14" version="3.34.1">
       <description>
         <p>This release updates the following translations:</p>

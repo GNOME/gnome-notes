@@ -20,7 +20,6 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
-
 #include "bjb-controller.h"
 #include "bjb-search-toolbar.h"
 
@@ -30,36 +29,39 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbMainView, bjb_main_view, BJB, MAIN_VIEW, GtkGrid)
 
-BjbMainView * bjb_main_view_new(GtkWidget *win, BjbController *controller);
+BjbMainView *bjb_main_view_new                        (GtkWidget     *win,
+                                                       BjbController *controller);
 
-void bjb_main_view_connect_signals (BjbMainView *self);
+void         bjb_main_view_connect_signals            (BjbMainView   *self);
 
-GtkWidget *bjb_main_view_get_window(BjbMainView *view);
+GtkWidget   *bjb_main_view_get_window                 (BjbMainView   *view);
 
-void action_new_window_callback(GtkAction *action, gpointer bjb_main_view);
+void         action_new_window_callback               (GtkAction     *action,
+                                                       gpointer       bjb_main_view);
 
+GList       *bjb_main_view_get_selected_items         (BjbMainView   *view);
 
+gboolean     bjb_main_view_get_iter_at_note           (BjbMainView   *view,
+                                                       BijiNoteObj   *note,
+                                                       GtkTreeIter   *retval);
 
-GList *bjb_main_view_get_selected_items (BjbMainView *view);
+void         update_notes_with_tag_search             (BjbMainView   *view,
+                                                       gchar         *tag);
 
+void         update_notes_with_string_search          (BjbMainView   *view,
+                                                       gchar         *needle);
 
-gboolean bjb_main_view_get_iter_at_note (BjbMainView  *view,
-                                         BijiNoteObj  *note,
-                                         GtkTreeIter  *retval);
+void         switch_to_note_view                      (BjbMainView   *view,
+                                                       BijiNoteObj   *note);
 
-void update_notes_with_tag_search(BjbMainView *view, gchar *tag);
+void         bjb_main_view_update_model               (BjbMainView   *view);
 
-void update_notes_with_string_search(BjbMainView *view, gchar *needle);
+gboolean     bjb_main_view_get_selection_mode         (BjbMainView   *view);
 
-void switch_to_note_view(BjbMainView *view,BijiNoteObj *note) ;
+void         bjb_main_view_set_selection_mode         (BjbMainView   *view,
+                                                       gboolean       mode);
 
-void bjb_main_view_update_model (BjbMainView *view);
-
-gboolean bjb_main_view_get_selection_mode (BjbMainView *view);
-
-void bjb_main_view_set_selection_mode (BjbMainView *view, gboolean mode);
-
-void bjb_main_view_disconnect_scrolled_window (BjbMainView *self);
-
+void         bjb_main_view_disconnect_scrolled_window (BjbMainView   *self);
 
 G_END_DECLS
+

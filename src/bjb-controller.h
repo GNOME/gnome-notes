@@ -29,6 +29,18 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbController, bjb_controller, BJB, CONTROLLER, GObject)
 
+typedef enum {
+  BJB_MODEL_COLUMN_ID,
+  BJB_MODEL_COLUMN_URI,
+  BJB_MODEL_COLUMN_PRIMARY_TEXT,
+  BJB_MODEL_COLUMN_SECONDARY_TEXT,
+  BJB_MODEL_COLUMN_ICON,
+  BJB_MODEL_COLUMN_MTIME,
+  BJB_MODEL_COLUMN_SELECTED,
+  BJB_MODEL_COLUMN_PULSE,
+  BJB_MODEL_COLUMN_LAST
+} BjbModelColumnsType;
+
 BjbController * bjb_controller_new (BijiManager  *manager,
                                     GtkWindow     *bjb_window_base,
                                     gchar         *needle);

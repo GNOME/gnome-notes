@@ -21,13 +21,21 @@
 
 #include <glib-object.h>
 #include <libbiji/libbiji.h>
-#include <libgd/gd-main-view.h>
 
 G_BEGIN_DECLS
 
 #define BJB_TYPE_CONTROLLER (bjb_controller_get_type ())
 
 G_DECLARE_FINAL_TYPE (BjbController, bjb_controller, BJB, CONTROLLER, GObject)
+
+typedef enum {
+  BJB_MODEL_COLUMN_UUID,
+  BJB_MODEL_COLUMN_TITLE,
+  BJB_MODEL_COLUMN_TEXT,
+  BJB_MODEL_COLUMN_MTIME,
+  BJB_MODEL_COLUMN_SELECTED,
+  BJB_MODEL_COLUMN_LAST
+} BjbModelColumnsType;
 
 BjbController * bjb_controller_new (BijiManager  *manager,
                                     GtkWindow     *bjb_window_base,
@@ -65,5 +73,10 @@ void bjb_controller_show_more (BjbController *controller);
 
 gboolean bjb_controller_get_remaining_items (BjbController *self);
 
+GList *bjb_controller_get_selection (BjbController *self);
+
+void   bjb_controller_select_all    (BjbController *self);
+
+void   bjb_controller_unselect_all  (BjbController *self);
 
 G_END_DECLS

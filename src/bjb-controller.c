@@ -23,12 +23,9 @@
  * it controls the window behaviour.
  */
 
-#include <libgd/gd.h>
-
 #include "bjb-controller.h"
 #include "bjb-main-view.h"
 #include "bjb-window-base.h"
-
 
 /*
  * The start-up number of items to show,
@@ -91,15 +88,15 @@ bjb_controller_init (BjbController *self)
   GtkListStore *store;
 
   /* Create the columns */
-  store = gtk_list_store_new (GD_MAIN_COLUMN_LAST,
-                              G_TYPE_STRING,      // urn
-                              G_TYPE_STRING,      // uri
-                              G_TYPE_STRING,      // name
-                              G_TYPE_STRING,      // author
-                              CAIRO_GOBJECT_TYPE_SURFACE, // icon then note
-                              G_TYPE_INT64,       // mtime
-                              G_TYPE_BOOLEAN,     // state
-                              G_TYPE_UINT);       // pulse
+  store = gtk_list_store_new (BJB_MODEL_COLUMN_LAST,
+                              G_TYPE_STRING,              // urn / id
+                              G_TYPE_STRING,              // uri
+                              G_TYPE_STRING,              // name / primary text
+                              G_TYPE_STRING,              // author / seconday text / null
+                              CAIRO_GOBJECT_TYPE_SURFACE, // icon
+                              G_TYPE_INT64,               // mtime
+                              G_TYPE_BOOLEAN,             // state / selected
+                              G_TYPE_UINT);               // pulse ?
 
   self->model = GTK_TREE_MODEL (store);
   self->n_items_to_show = BJB_ITEMS_SLICE;
@@ -203,7 +200,7 @@ bjb_controller_get_iter (BjbController *self,
   while (try)
   {
     gchar *item_path;
-    gtk_tree_model_get (self->model, *iter, GD_MAIN_COLUMN_URI, &item_path, -1);
+    gtk_tree_model_get (self->model, *iter, BJB_MODEL_COLUMN_URI, &item_path, -1);
 
     /* If we look for the item, check by uid */
     if (needle && g_strcmp0 (item_path, needle) == 0)
@@ -267,14 +264,15 @@ bjb_controller_add_item (BjbController *self,
    * currently use the same model */
   uuid = biji_item_get_uuid (item);
 
-  gtk_list_store_set (store, &iter,
-       GD_MAIN_COLUMN_ID, uuid,
-       GD_MAIN_COLUMN_URI, uuid,
-       GD_MAIN_COLUMN_PRIMARY_TEXT, biji_item_get_title (item),
-       GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
-       GD_MAIN_COLUMN_ICON, surface,
-       GD_MAIN_COLUMN_MTIME, biji_item_get_mtime (item),
-       -1);
+  gtk_list_store_set (store,
+                      &iter,
+                      BJB_MODEL_COLUMN_ID,             uuid,
+                      BJB_MODEL_COLUMN_URI,            uuid,
+                      BJB_MODEL_COLUMN_PRIMARY_TEXT,   biji_item_get_title (item),
+                      BJB_MODEL_COLUMN_SECONDARY_TEXT, NULL,
+                      BJB_MODEL_COLUMN_ICON,           surface,
+                      BJB_MODEL_COLUMN_MTIME,          biji_item_get_mtime (item),
+                      -1);
 
 }
 

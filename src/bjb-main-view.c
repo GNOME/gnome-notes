@@ -246,7 +246,7 @@ get_note_url_from_tree_path(GtkTreePath *path,
 
   model = bjb_controller_get_model (self->controller);
   gtk_tree_model_get_iter (model, &iter, path);
-  gtk_tree_model_get (model, &iter, GD_MAIN_COLUMN_URI, &note_path, -1);
+  gtk_tree_model_get (model, &iter, BJB_MODEL_COLUMN_UUID, &note_path, -1);
 
   return note_path;
 }
@@ -341,7 +341,7 @@ on_item_activated (GdMainView        *gd,
   /* Get Item Path */
   model = gd_main_view_get_model (gd);
   gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) path);
-  gtk_tree_model_get (model, &iter, GD_MAIN_COLUMN_URI, &item_path,-1);
+  gtk_tree_model_get (model, &iter, BJB_MODEL_COLUMN_UUID, &item_path,-1);
 
   g_return_val_if_fail (item_path != NULL, FALSE); // #709197
 

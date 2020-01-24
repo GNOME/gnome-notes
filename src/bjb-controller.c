@@ -23,12 +23,9 @@
  * it controls the window behaviour.
  */
 
-#include <libgd/gd.h>
-
 #include "bjb-controller.h"
 #include "bjb-main-view.h"
 #include "bjb-window-base.h"
-
 
 /*
  * The start-up number of items to show,
@@ -91,15 +88,12 @@ bjb_controller_init (BjbController *self)
   GtkListStore *store;
 
   /* Create the columns */
-  store = gtk_list_store_new (GD_MAIN_COLUMN_LAST,
-                              G_TYPE_STRING,      // urn
-                              G_TYPE_STRING,      // uri
-                              G_TYPE_STRING,      // name
-                              G_TYPE_STRING,      // author
-                              CAIRO_GOBJECT_TYPE_SURFACE, // icon then note
-                              G_TYPE_INT64,       // mtime
-                              G_TYPE_BOOLEAN,     // state
-                              G_TYPE_UINT);       // pulse
+  store = gtk_list_store_new (BJB_MODEL_COLUMN_LAST,
+                              G_TYPE_STRING,   // BJB_MODEL_COLUMN_UUID
+                              G_TYPE_STRING,   // BJB_MODEL_COLUMN_TITLE
+                              G_TYPE_STRING,   // BJB_MODEL_COLUMN_TEXT
+                              G_TYPE_INT64,    // BJB_MODEL_COLUMN_MTIME
+                              G_TYPE_BOOLEAN); // BJB_MODEL_COLUMN_SELECTED
 
   self->model = GTK_TREE_MODEL (store);
   self->n_items_to_show = BJB_ITEMS_SLICE;
@@ -203,7 +197,7 @@ bjb_controller_get_iter (BjbController *self,
   while (try)
   {
     gchar *item_path;
-    gtk_tree_model_get (self->model, *iter, GD_MAIN_COLUMN_URI, &item_path, -1);
+    gtk_tree_model_get (self->model, *iter, BJB_MODEL_COLUMN_UUID, &item_path, -1);
 
     /* If we look for the item, check by uid */
     if (needle && g_strcmp0 (item_path, needle) == 0)
@@ -234,12 +228,8 @@ bjb_controller_add_item (BjbController *self,
                          gboolean       prepend,
                          GtkTreeIter   *sibling)
 {
-  GtkTreeIter    iter;
-  GtkListStore  *store;
-  cairo_surface_t *surface = NULL;
-  const gchar   *uuid;
-  BjbWindowBase  *win;
-  gint scale;
+  GtkTreeIter   iter;
+  GtkListStore *store;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->model);
@@ -259,23 +249,13 @@ bjb_controller_add_item (BjbController *self,
   else
     gtk_list_store_append (store, &iter);
 
-  win = self->window;
-  scale = gtk_widget_get_scale_factor (GTK_WIDGET (win));
-  surface = biji_item_get_icon (item, scale);
-
-  /* Appart from pixbuf, both icon & list view types
-   * currently use the same model */
-  uuid = biji_item_get_uuid (item);
-
-  gtk_list_store_set (store, &iter,
-       GD_MAIN_COLUMN_ID, uuid,
-       GD_MAIN_COLUMN_URI, uuid,
-       GD_MAIN_COLUMN_PRIMARY_TEXT, biji_item_get_title (item),
-       GD_MAIN_COLUMN_SECONDARY_TEXT, NULL,
-       GD_MAIN_COLUMN_ICON, surface,
-       GD_MAIN_COLUMN_MTIME, biji_item_get_mtime (item),
-       -1);
-
+  gtk_list_store_set (store,
+                      &iter,
+                      BJB_MODEL_COLUMN_UUID,  biji_item_get_uuid (item),
+                      BJB_MODEL_COLUMN_TITLE, biji_item_get_title (item),
+                      BJB_MODEL_COLUMN_TEXT,  biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (item)),
+                      BJB_MODEL_COLUMN_MTIME, biji_item_get_mtime (item),
+                      -1);
 }
 
 /* If the user searches for notes, is the note searched? */
@@ -890,3 +870,77 @@ bjb_controller_get_remaining_items (BjbController *self)
 {
   return self->remaining_items;
 }
+
+static gboolean
+bjb_controller_build_selection_list_foreach (GtkTreeModel *model,
+                                             GtkTreePath  *path,
+                                             GtkTreeIter  *iter,
+                                             gpointer      user_data)
+{
+  GList    **sel;
+  gboolean   is_selected;
+
+  sel = user_data;
+
+  gtk_tree_model_get (model,
+                      iter,
+                      BJB_MODEL_COLUMN_SELECTED, &is_selected,
+                      -1);
+
+  if (is_selected)
+    {
+      *sel = g_list_prepend (*sel, gtk_tree_path_copy (path));
+    }
+
+  return FALSE;
+}
+
+GList *
+bjb_controller_get_selection (BjbController *self)
+{
+  GList *retval = NULL;
+
+  gtk_tree_model_foreach (self->model,
+                          bjb_controller_build_selection_list_foreach,
+                          &retval);
+
+  return g_list_reverse (retval);
+}
+
+static gboolean
+bjb_controller_set_selection_foreach (GtkTreeModel *model,
+                                      GtkTreePath  *path,
+                                      GtkTreeIter  *iter,
+                                      gpointer      user_data)
+{
+  gboolean selection = GPOINTER_TO_INT (user_data);
+
+  gtk_list_store_set (GTK_LIST_STORE (model),
+                      iter,
+                      BJB_MODEL_COLUMN_SELECTED, selection,
+                      -1);
+  return FALSE;
+}
+
+static void
+bjb_controller_set_all_selection (BjbController *self,
+                                  gboolean       selection)
+{
+  gtk_tree_model_foreach (self->model,
+                          bjb_controller_set_selection_foreach,
+                          GINT_TO_POINTER (selection));
+}
+
+void
+bjb_controller_select_all (BjbController *self)
+{
+  bjb_controller_set_all_selection (self, TRUE);
+}
+
+void
+bjb_controller_unselect_all (BjbController *self)
+{
+  bjb_controller_set_all_selection (self, FALSE);
+}
+
+

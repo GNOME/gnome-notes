@@ -1,0 +1,573 @@
+# Malay translation for gnome-notes.
+# Copyright (C) 2020 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-notes package.
+# abuyop <abuyop@gmail.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-notes master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2020-01-23 14:22+0000\n"
+"PO-Revision-Date: 2020-01-24 08:48+0800\n"
+"Language-Team: Pasukan Terjemahan GNOME Malaysia\n"
+"Language: ms\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:625 src/bjb-window-base.c:18
+msgid "Notes"
+msgstr "Nota"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "Nota untuk GNOME"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"Cara pantas dan mudah menulis nota atau apa jua senarai ringkas. Dapat "
+"menyimpan banyak nota yang anda suka dan kongsikannya melalui emel."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"Anda boleh menyimpan nota anda secara setempat di dalam komputer anda atau "
+"segerak dengan perkhidmatan dalam talian seperti ownCloud."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "Pandangan sunting"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "Pandangan pilih"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "Pandangan senarai"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "nota;peringatan;buku nota;nota lekat;"
+
+#: data/org.gnome.Notes.desktop.in:6
+msgid "Post notes, tag files!"
+msgstr "Hantar nota, tag fail!"
+
+#: data/org.gnome.Notes.desktop.in:7
+msgid "Note-taker"
+msgstr "Pencatat-nota"
+
+#: data/org.gnome.Notes.gschema.xml:10
+msgid "Custom Font"
+msgstr "Fon Suai"
+
+#: data/org.gnome.Notes.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"Nama fon yang ditetapkan di sini akan digunakan sebagai fon ketika "
+"memaparkan nota."
+
+#: data/org.gnome.Notes.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr "Sama ada hendak guna fon monospace sistem"
+
+#: data/org.gnome.Notes.gschema.xml:19
+msgid "New notes color."
+msgstr "Warna nota baharu."
+
+#: data/org.gnome.Notes.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"Nama warna yang ditetapkan di sini akan digunakan sebagai warna ketika "
+"mencipta nota baharu."
+
+#: data/org.gnome.Notes.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr "Penyedia nota utama untuk kegunaan nota baharu."
+
+#: data/org.gnome.Notes.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr "Buku nota utama merupakan wadah nota baharu dihasilkan."
+
+#: data/org.gnome.Notes.gschema.xml:29
+msgid "Window maximized"
+msgstr "Tetingkap dimaksimumkan"
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid "Window maximized state."
+msgstr "Keadaan tetingkap dimaksimumkan."
+
+#: data/org.gnome.Notes.gschema.xml:34
+msgid "Window size"
+msgstr "Saiz tetingkap"
+
+#: data/org.gnome.Notes.gschema.xml:35
+msgid "Window size (width and height)."
+msgstr "Saiz tetingkap (lebar dan tinggi)."
+
+#: data/org.gnome.Notes.gschema.xml:39
+msgid "Window position"
+msgstr "Kedudukan tetingkap"
+
+#: data/org.gnome.Notes.gschema.xml:40
+msgid "Window position (x and y)."
+msgstr "Kedudukan tetingkap (x dan y)."
+
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "How to show note items"
+msgstr "Bila hendak menunjukkan item nota"
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid "Whether to show note items in icon view or list view."
+msgstr ""
+"Sama ada hendak tunjuk item nota dalam pandangan ikon atau pandangan "
+"senarai."
+
+#: data/org.gnome.Notes.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "Saiz teks yang digunakan oleh penyunting nota."
+
+#: data/org.gnome.Notes.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "Terdapat tiga saiz tersedia: kecil, sederhana (lalai) dan besar."
+
+#: data/resources/editor-toolbar.ui:51
+msgid "Bold"
+msgstr "Tebal"
+
+#: data/resources/editor-toolbar.ui:67
+msgid "Italic"
+msgstr "Condong"
+
+#: data/resources/editor-toolbar.ui:83
+msgid "Strike"
+msgstr "Coret"
+
+#: data/resources/editor-toolbar.ui:111
+msgid "Bullets"
+msgstr "Bullet"
+
+#: data/resources/editor-toolbar.ui:127
+msgid "List"
+msgstr "Senarai"
+
+#: data/resources/editor-toolbar.ui:166
+msgid "Copy selection to a new note"
+msgstr "Salin pemilihan pada satu nota baharu"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "Tiada nota"
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Am"
+
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "Nota baharu"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Tutup tetingkap"
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Kembali"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Tunjuk bantuan"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Pintasan"
+
+#: data/resources/help-overlay.ui:50
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "Mod pemilihan"
+
+#: data/resources/help-overlay.ui:55
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "Batal mod pemilihan"
+
+#: data/resources/help-overlay.ui:62
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Pilih semua"
+
+#: data/resources/help-overlay.ui:70
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "Mod sunting nota"
+
+#: data/resources/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Tebal"
+
+#: data/resources/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Condong"
+
+#: data/resources/help-overlay.ui:89
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "Coret tembus"
+
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Buat Asal"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Buat Semula"
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "Alih nota ke dalam tong sampah"
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+msgid "Import Notes"
+msgstr "Import Nota"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "_Batal"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_Import"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "Pilih lokasi import"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "Aplikasi Gnote"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "Aplikasi Tomboy"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "Lokasi Suai"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "Pilih satu Folder"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "Ba_haru"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "Warna nota"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "_Kosong"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "Keluar dari mod pemilihan"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "Gelintar tajuk nota, kandungan dan buku nota"
+
+#: data/resources/main-toolbar.ui:119
+msgid "View notes and notebooks in a grid"
+msgstr "Lihat nota dan buku nota dalam satu grid"
+
+#: data/resources/main-toolbar.ui:137
+msgid "View notes and notebooks in a list"
+msgstr "Lihat nota dan buku nota dalam satu senarai"
+
+#: data/resources/main-toolbar.ui:161
+msgid "Selection mode"
+msgstr "Mod pemilihan"
+
+#: data/resources/main-toolbar.ui:175
+msgid "Open menu"
+msgstr "Buka menu"
+
+#: data/resources/main-toolbar.ui:195
+msgid "More options"
+msgstr "Lagi pilihan"
+
+#: data/resources/main-toolbar.ui:234
+msgid "View Trash"
+msgstr "Lihat Tong Sampah"
+
+#: data/resources/main-toolbar.ui:251
+msgid "Text Sizes"
+msgstr "Saiz Teks"
+
+#: data/resources/main-toolbar.ui:261
+msgid "_Large"
+msgstr "B_esar"
+
+#: data/resources/main-toolbar.ui:271
+msgid "_Medium"
+msgstr "_Sederhana"
+
+#: data/resources/main-toolbar.ui:281
+msgid "_Small"
+msgstr "_Kecil"
+
+#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Keutamaan"
+
+#: data/resources/main-toolbar.ui:308
+msgid "Keyboard Shortcuts"
+msgstr "Pintasan Papan Kekunci"
+
+#: data/resources/main-toolbar.ui:317
+msgid "Help"
+msgstr "Bantuan"
+
+#: data/resources/main-toolbar.ui:326
+msgid "About Notes"
+msgstr "Perihal Nota"
+
+#: data/resources/main-toolbar.ui:348
+msgid "Open in New Window"
+msgstr "Buka dalam Tetingkap Baharu"
+
+#: data/resources/main-toolbar.ui:365
+msgid "Undo"
+msgstr "Buat Asal"
+
+#: data/resources/main-toolbar.ui:374
+msgid "Redo"
+msgstr "Buat Semula"
+
+#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Buku Nota"
+
+#: data/resources/main-toolbar.ui:400
+msgid "Email this Note"
+msgstr "Emel Nota ini"
+
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "Alih ke dalam Tong Sampah"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "Masukkan satu nama untuk cipta satu buku nota"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "Buku nota baharu"
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr "Kongsi nota"
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "Buka dalam tetingkap lain"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr "Pulih"
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr "Padam Secara Kekal"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "Guna Fon Sistem"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "Fon Nota"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "Warna Lalai"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr "Penampilan Nota"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "Pilih lokasi storan lalai:"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "Buku Utama"
+
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+msgid "Untitled"
+msgstr "Tiada Tajuk"
+
+#: src/bjb-application.c:450
+msgid "Show the application’s version"
+msgstr "Tunjuk versi aplikasi"
+
+#: src/bjb-application.c:452
+msgid "Create a new note"
+msgstr "Cipta satu nota baharu"
+
+#: src/bjb-application.c:454
+msgid "[FILE…]"
+msgstr "[FAIL…]"
+
+#: src/bjb-application.c:462
+msgid "Take notes and export them everywhere."
+msgstr "Catat nota dan eksport ia di mana-mana sahaja."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:473
+msgid "Could not parse arguments"
+msgstr "Tidak dapat menghurai argumen"
+
+#: src/bjb-application.c:481
+msgid "GNOME Notes"
+msgstr "Nota GNOME"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:493
+msgid "Could not register the application"
+msgstr "Tidak dapat mendaftar aplikasi"
+
+#: src/bjb-application.c:626
+msgid "Simple notebook for GNOME"
+msgstr "Buku nota ringkas untuk GNOME"
+
+#: src/bjb-application.c:632
+msgid "translator-credits"
+msgstr ""
+"abuyop\n"
+"dequan"
+
+#: src/bjb-color-button.c:140
+msgid "Note Color"
+msgstr "Warna Nota"
+
+#: src/bjb-empty-results-box.c:63
+msgid "Press the New button to create a note."
+msgstr "Tekan butang Baharu untuk mencipta satu nota."
+
+#: src/bjb-empty-results-box.c:85
+msgid "Oops"
+msgstr "Alamak"
+
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr "Sila pasang \"Tracker\" kemudian mulakan semula aplikasi."
+
+#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
+msgid "Load More"
+msgstr "Muat Lagi"
+
+#: src/bjb-load-more-button.c:90
+msgid "Loading…"
+msgstr "Memuatkan…"
+
+#: src/bjb-main-toolbar.c:140
+msgid "Click on items to select them"
+msgstr "Klik pada item untuk memilihnya"
+
+#: src/bjb-main-toolbar.c:142
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d terpilih"
+msgstr[1] "%d terpilih"
+
+#: src/bjb-main-toolbar.c:275
+#, c-format
+msgid "Results for %s"
+msgstr "Keputusan bagi %s"
+
+#: src/bjb-main-toolbar.c:278
+msgid "New and Recent"
+msgstr "Baharu dan Terkini"
+
+#: src/bjb-main-toolbar.c:366
+msgid "Trash"
+msgstr "Tong Sampah"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-main-toolbar.c:434
+#, c-format
+msgid "Last updated: %s"
+msgstr "Terakhir dikemas kini: %s"
+
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
+msgid "Unknown"
+msgstr "Tidak Diketahui"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Semalam"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Bulan ini"
+
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "Hari ini"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "Minggu ini"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "Tahun ini"
+
+#: src/libbiji/biji-notebook.c:265
+msgid "Local"
+msgstr "Setempat"
+
+#: src/libbiji/provider/biji-local-provider.c:366
+msgid "Local storage"
+msgstr "Storan setempat"

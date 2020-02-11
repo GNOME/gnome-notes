@@ -10,6 +10,13 @@
                         <property name="visible">True</property>
                         <child>
                             <object class="GtkShortcutsShortcut">
+                                <property name="accelerator">&lt;Primary&gt;f</property>
+                                <property name="title" translatable="yes" context="shortcut window">Search notes</property>
+                                <property name="visible">True</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkShortcutsShortcut">
                                 <property name="accelerator">&lt;Primary&gt;n</property>
                                 <property name="title" translatable="yes" context="shortcut window">New note</property>
                                 <property name="visible">True</property>

@@ -104,6 +104,13 @@
                                 <property name="visible">True</property>
                             </object>
                         </child>
+                        <child>
+                            <object class="GtkShortcutsShortcut">
+                                <property name="accelerator">&lt;Primary&gt;&lt;d</property>
+                                <property name="title" translatable="yes" context="shortcut window">Open in a new window</property>
+                                <property name="visible">True</property>
+                            </object>
+                        </child>
 <!--                        <child>
                             <object class="GtkShortcutsShortcut">
                                 <property name="accelerator">&lt;Primary&gt;Delete</property>

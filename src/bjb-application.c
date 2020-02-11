@@ -396,9 +396,11 @@ bijiben_startup (GApplication *application)
 
   bjb_apply_style ();
   
+  const gchar *vaccels_detach[] = {"<Primary>D", NULL};
   const gchar *vaccels_redo[] = {"<Primary><Shift>z", NULL};
   const gchar *vaccels_undo[] = {"<Primary>z", NULL};
 
+  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.detach-window", vaccels_detach);	
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.redo", vaccels_redo);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.undo", vaccels_undo);  
 

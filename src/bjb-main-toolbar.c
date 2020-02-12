@@ -665,9 +665,8 @@ bjb_main_toolbar_setup_menu (BjbMainToolbar *self)
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
   gtk_widget_add_accelerator (self->redo_item, "activate", self->accel, GDK_KEY_z,
                               GDK_CONTROL_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
-  gtk_widget_add_accelerator (self->trash_item, "activate", self->accel,
-                              GDK_KEY_Delete, GDK_CONTROL_MASK,
-                              GTK_ACCEL_VISIBLE);
+  gtk_widget_add_accelerator (self->search_button, "activate", self->accel, GDK_KEY_F,
+                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 }
 
 static void

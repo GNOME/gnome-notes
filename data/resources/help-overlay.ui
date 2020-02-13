@@ -71,6 +71,13 @@
                         <property name="visible">True</property>
                         <child>
                             <object class="GtkShortcutsShortcut">
+                                <property name="accelerator">&lt;Primary&gt;d</property>
+                                <property name="title" translatable="yes" context="shortcut window">Open in a new window</property>
+                                <property name="visible">True</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkShortcutsShortcut">
                                 <property name="accelerator">&lt;Primary&gt;b</property>
                                 <property name="title" translatable="yes" context="shortcut window">Bold</property>
                                 <property name="visible">True</property>

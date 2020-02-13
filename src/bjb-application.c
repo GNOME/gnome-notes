@@ -392,6 +392,7 @@ bijiben_startup (GApplication *application)
 
   const gchar *vaccels_redo[] = {"<Primary><Shift>z", NULL};
   const gchar *vaccels_undo[] = {"<Primary>z", NULL};
+  const gchar *vaccels_trash[] = {"<Primary>Delete", NULL};
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
@@ -400,6 +401,8 @@ bijiben_startup (GApplication *application)
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.redo", vaccels_redo);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.undo", vaccels_undo);
+  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.trash", vaccels_trash);
+
   g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries,
                                    G_N_ELEMENTS (app_entries),

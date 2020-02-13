@@ -390,6 +390,7 @@ bijiben_startup (GApplication *application)
   g_autoptr(GError) error = NULL;
   GdkRGBA         color = {0,0,0,0};
 
+  const gchar *vaccels_detach[] = {"<Primary>D", NULL};
   const gchar *vaccels_redo[] = {"<Primary><Shift>z", NULL};
   const gchar *vaccels_undo[] = {"<Primary>z", NULL};
   const gchar *vaccels_trash[] = {"<Primary>Delete", NULL};
@@ -399,6 +400,7 @@ bijiben_startup (GApplication *application)
 
   bjb_apply_style ();
 
+  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.detach-window", vaccels_detach);	
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.redo", vaccels_redo);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.undo", vaccels_undo);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.trash", vaccels_trash);

@@ -390,12 +390,16 @@ bijiben_startup (GApplication *application)
   g_autoptr(GError) error = NULL;
   GdkRGBA         color = {0,0,0,0};
 
+  const gchar *vaccels_redo[] = {"<Primary><Shift>z", NULL};
+  const gchar *vaccels_undo[] = {"<Primary>z", NULL};
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
 
   bjb_apply_style ();
 
+  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.redo", vaccels_redo);
+  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.undo", vaccels_undo);
   g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries,
                                    G_N_ELEMENTS (app_entries),

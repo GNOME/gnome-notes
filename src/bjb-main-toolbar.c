@@ -659,18 +659,6 @@ populate_main_toolbar(BjbMainToolbar *self)
 }
 
 static void
-bjb_main_toolbar_setup_menu (BjbMainToolbar *self)
-{
-  gtk_widget_add_accelerator (self->undo_item, "activate", self->accel, GDK_KEY_z,
-                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-  gtk_widget_add_accelerator (self->redo_item, "activate", self->accel, GDK_KEY_z,
-                              GDK_CONTROL_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
-  gtk_widget_add_accelerator (self->trash_item, "activate", self->accel,
-                              GDK_KEY_Delete, GDK_CONTROL_MASK,
-                              GTK_ACCEL_VISIBLE);
-}
-
-static void
 bjb_main_toolbar_constructed (GObject *obj)
 {
   BjbMainToolbar *self = BJB_MAIN_TOOLBAR (obj);
@@ -680,7 +668,6 @@ bjb_main_toolbar_constructed (GObject *obj)
   gtk_widget_add_accelerator (self->new_button, "clicked", self->accel, GDK_KEY_n,
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-  bjb_main_toolbar_setup_menu (self);
   g_signal_connect_swapped (self->window, "view-changed",
                             G_CALLBACK (populate_main_toolbar), self);
 

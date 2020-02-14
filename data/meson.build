@@ -45,10 +45,7 @@ install_data(
 
 resource_data = files(
   'resources/Adwaita.css',
-  'resources/editor-toolbar.ui',
-  'resources/empty-results-box.ui',
-  'resources/note-symbolic.svg',
-  'resources/settings-dialog.ui'
+  'resources/note-symbolic.svg'
 )
 
 gresource = files('bjb.gresource.xml')

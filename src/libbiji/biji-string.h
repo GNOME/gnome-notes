@@ -29,4 +29,8 @@ gchar * biji_str_replace (const gchar *string, const gchar *as_is, const gchar *
  * Returns a newly allocated string */
 gchar * biji_str_mass_replace (const gchar *string, ...) G_GNUC_NULL_TERMINATED ;
 
+char *bjb_strjoinv (const char  *separator,
+                    char       **str_array,
+                    gint         max_tokens);
+
 G_END_DECLS

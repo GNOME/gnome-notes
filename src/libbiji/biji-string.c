@@ -83,3 +83,28 @@ gchar * biji_str_mass_replace (const gchar *string,
   return result;
 }
 
+char *
+biji_str_clean (const char *text)
+{
+  char *result = biji_str_replace ((const char *) text, "\t", " ");
+  char *tmp    = biji_str_replace ((const char *) result, "\u00A0", " ");
+
+  if (tmp)
+    {
+      g_free (result);
+      result = tmp;
+    }
+
+  while (g_strstr_len (result, -1, "  "))
+    {
+      tmp = biji_str_replace ((const char *) result, "  ", " ");
+      if (tmp)
+        {
+          g_free (result);
+          result = tmp;
+        }
+    }
+  return result;
+}
+
+

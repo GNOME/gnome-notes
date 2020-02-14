@@ -83,3 +83,74 @@ gchar * biji_str_mass_replace (const gchar *string,
   return result;
 }
 
+/**
+ * bjb_strjoinv: based on g_strjoinv
+ * @separator: (nullable): a string to insert between each of the
+ *     strings, or %NULL
+ * @str_array: a %NULL-terminated array of strings to join
+ * @max_tokens: the maximum number of pieces to join from @str_array.
+ *     If this is less than 1, @str_array is joined completely.
+ *
+ * Joins a number of strings together to form one long string, with the
+ * optional @separator inserted between each of them. The returned string
+ * should be freed with g_free().
+ *
+ * If @str_array has no items, the return value will be an
+ * empty string. If @str_array contains a single item, @separator will not
+ * appear in the resulting string.
+ *
+ * Returns: a newly-allocated string containing the strings joined
+ *     together, with @separator between them.
+ */
+char *
+bjb_strjoinv (const char  *separator,
+              char       **str_array,
+              gint         max_tokens)
+{
+  char  *string;
+  char  *ptr;
+  gsize  i;
+  gsize  len;
+  gsize  separator_len;
+
+  g_return_val_if_fail (str_array != NULL, NULL);
+
+  if (*str_array)
+    {
+      if (max_tokens < 1)
+        {
+          max_tokens = g_strv_length (str_array);
+        }
+
+      if (separator == NULL)
+        {
+          separator = "";
+        }
+      separator_len = strlen (separator);
+
+      /* First part, getting length */
+      len = 1 + strlen (str_array[0]);
+      for (i = 1; str_array[i] != NULL && i < max_tokens; i++)
+        {
+          len += strlen (str_array[i]);
+        }
+      len += separator_len * (i - 1);
+
+      /* Second part, building string */
+      string = g_new (gchar, len);
+      ptr = g_stpcpy (string, *str_array);
+      for (i = 1; str_array[i] != NULL && i < max_tokens; i++)
+        {
+          ptr = g_stpcpy (ptr, separator);
+          ptr = g_stpcpy (ptr, str_array[i]);
+        }
+      }
+  else
+    {
+      string = g_strdup ("");
+    }
+
+  return string;
+}
+
+

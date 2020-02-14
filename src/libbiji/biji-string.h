@@ -29,4 +29,8 @@ gchar * biji_str_replace (const gchar *string, const gchar *as_is, const gchar *
  * Returns a newly allocated string */
 gchar * biji_str_mass_replace (const gchar *string, ...) G_GNUC_NULL_TERMINATED ;
 
+/* Cleans extra spaces, including tabs and no-break spaces from strings
+ * Returns a newly allocated string */
+char *biji_str_clean (const char *string);
+
 G_END_DECLS

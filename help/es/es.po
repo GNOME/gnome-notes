@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2020-02-10 00:10+0000\n"
-"PO-Revision-Date: 2020-02-10 13:14+0100\n"
+"POT-Creation-Date: 2020-02-12 18:48+0000\n"
+"PO-Revision-Date: 2020-02-14 08:58+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -538,13 +538,13 @@ msgstr ""
 #: C/introduction.page:44
 #| msgctxt "_"
 #| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
+#| "external ref='figures/notes-3-34.png' "
+#| "md5='12ed75d2ad996d6763e5128c65c1e596'"
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-3-34.png' md5='12ed75d2ad996d6763e5128c65c1e596'"
+"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
 msgstr ""
-"external ref='figures/notes-3-34.png' md5='12ed75d2ad996d6763e5128c65c1e596'"
+"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11

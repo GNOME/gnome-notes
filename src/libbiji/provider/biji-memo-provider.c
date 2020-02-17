@@ -26,8 +26,6 @@
 
 
 #include <libecal/libecal.h>        /* ECalClient      */
-#include <libgd/gd.h>               /* Embed in frame  */
-
 #include "biji-memo-provider.h"
 #include "biji-memo-note.h"
 

@@ -87,18 +87,6 @@ endif
 
 add_project_arguments(common_flags, language: 'c')
 
-libgd = subproject(
-  'libgd',
-  default_options: [
-    'static=true',
-    'with-view-common=true',
-    'with-gtk-hacks=true',
-    'with-main-view=true',
-    'with-tagged-entry=true'
-  ]
-)
-libgd_dep = libgd.get_variable('libgd_dep')
-
 tracker_sparql_dep = dependency('tracker-sparql-2.0', required: false)
 if not tracker_sparql_dep.found()
   tracker_sparql_dep = dependency('tracker-sparql-1.0', required: false)
@@ -108,7 +96,6 @@ if not tracker_sparql_dep.found()
 endif
 
 bijiben_deps = [
-  libgd_dep,
   tracker_sparql_dep,
   dependency('gio-unix-2.0'),
   dependency('glib-2.0', version: '>= 2.53.4'),

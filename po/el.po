@@ -9,21 +9,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-06-12 11:44+0000\n"
-"PO-Revision-Date: 2019-06-12 18:46+0300\n"
-"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
+"POT-Creation-Date: 2020-02-17 01:21+0000\n"
+"PO-Revision-Date: 2020-02-18 01:10+0200\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:634 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -59,500 +59,6 @@ msgstr "Προβολή επιλογής"
 #: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
 msgstr "Προβολή λίστας"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:44
-#: data/appdata/org.gnome.Notes.appdata.xml.in:159
-#: data/appdata/org.gnome.Notes.appdata.xml.in:173
-#: data/appdata/org.gnome.Notes.appdata.xml.in:189
-msgid "This release updates the following translations:"
-msgstr "Αυτή η έκδοση ενημερώνει τις ακόλουθες μεταφράσεις:"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:46
-msgid "da (Ask Hjorth Larsen)"
-msgstr "da (Ask Hjorth Larsen)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:47
-msgid "hr (Goran Vidović)"
-msgstr "hr (Goran Vidović)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:49
-#: data/appdata/org.gnome.Notes.appdata.xml.in:130
-#: data/appdata/org.gnome.Notes.appdata.xml.in:154
-#: data/appdata/org.gnome.Notes.appdata.xml.in:168
-#: data/appdata/org.gnome.Notes.appdata.xml.in:184
-#: data/appdata/org.gnome.Notes.appdata.xml.in:196
-#: data/appdata/org.gnome.Notes.appdata.xml.in:209
-#: data/appdata/org.gnome.Notes.appdata.xml.in:228
-#: data/appdata/org.gnome.Notes.appdata.xml.in:282
-#: data/appdata/org.gnome.Notes.appdata.xml.in:302
-#: data/appdata/org.gnome.Notes.appdata.xml.in:318
-#: data/appdata/org.gnome.Notes.appdata.xml.in:340
-#: data/appdata/org.gnome.Notes.appdata.xml.in:359
-#: data/appdata/org.gnome.Notes.appdata.xml.in:369
-msgid "Thanks to all the contributors that worked on GNOME Notes!"
-msgstr ""
-"Ευχαριστούμε όλους τους συνεισφέροντες που εργάστηκαν στις σημειώσεις του "
-"GNOME!"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:54
-#: data/appdata/org.gnome.Notes.appdata.xml.in:135
-#: data/appdata/org.gnome.Notes.appdata.xml.in:201
-#: data/appdata/org.gnome.Notes.appdata.xml.in:214
-#: data/appdata/org.gnome.Notes.appdata.xml.in:233
-#: data/appdata/org.gnome.Notes.appdata.xml.in:241
-#: data/appdata/org.gnome.Notes.appdata.xml.in:287
-#: data/appdata/org.gnome.Notes.appdata.xml.in:307
-#: data/appdata/org.gnome.Notes.appdata.xml.in:323
-#: data/appdata/org.gnome.Notes.appdata.xml.in:345
-#: data/appdata/org.gnome.Notes.appdata.xml.in:353
-#: data/appdata/org.gnome.Notes.appdata.xml.in:364
-msgid "This release brings the following new features and improvements:"
-msgstr "Αυτή η έκδοση φέρνει τις ακόλουθες νέες δυνατότητες και βελτιώσεις:"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:56
-#: data/appdata/org.gnome.Notes.appdata.xml.in:243
-msgid "Added flatpak CI in Gitlab (Felipe Borges / Isaque Galdino)"
-msgstr "Προστέθηκε flatpak CI στο Gitlab (Felipe Borges / Isaque Galdino)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:57
-msgid "Added new GNOME Notes icon (Sam Hewitt / Jakub Steiner)"
-msgstr ""
-"Προστέθηκε νέο εικονίδιο για τις Σημειώσεις του GNOME (Sam Hewitt / Jakub "
-"Steiner)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:58
-msgid ""
-"Added option to choose between Tracker service or private store (Carlos "
-"Garnacho / Isaque Galdino)"
-msgstr ""
-"Προστέθηκε η δυνατότητα επιλογής μεταξύ υπηρεσίας Tracker ή ιδιωτικής "
-"αποθήκευσης (Carlos Garnacho / Isaque Galdino)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:59
-#: data/appdata/org.gnome.Notes.appdata.xml.in:217
-msgid "Changed editor toolbar to be always visible (Isaque Galdino)"
-msgstr ""
-"Αλλαγή της γραμμής εργαλείων του επεξεργαστή ώστε να είναι πάντα ορατή "
-"(Isaque Galdino)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:60
-#: data/appdata/org.gnome.Notes.appdata.xml.in:247
-msgid ""
-"Changed flatpak to use desktop portal for email sharing (Günther Wagner)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:61
-#: data/appdata/org.gnome.Notes.appdata.xml.in:218
-msgid "Changed menus to popover menus (Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:62
-#: data/appdata/org.gnome.Notes.appdata.xml.in:137
-msgid "Fixed all text in bold (Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:63
-#: data/appdata/org.gnome.Notes.appdata.xml.in:250
-msgid "Updated javascript API to JSC (Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:65
-#: data/appdata/org.gnome.Notes.appdata.xml.in:139
-#: data/appdata/org.gnome.Notes.appdata.xml.in:205
-#: data/appdata/org.gnome.Notes.appdata.xml.in:222
-#: data/appdata/org.gnome.Notes.appdata.xml.in:252
-#: data/appdata/org.gnome.Notes.appdata.xml.in:293
-#: data/appdata/org.gnome.Notes.appdata.xml.in:311
-#: data/appdata/org.gnome.Notes.appdata.xml.in:331
-msgid "This release also updates the following translations:"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:67
-#: data/appdata/org.gnome.Notes.appdata.xml.in:141
-msgid "ca (Jordi Mas)"
-msgstr "ca (Jordi Mas)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:68
-#: data/appdata/org.gnome.Notes.appdata.xml.in:142
-msgid "eo (Kristjan SCHMIDT)"
-msgstr "eo (Kristjan SCHMIDT)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:69
-#: data/appdata/org.gnome.Notes.appdata.xml.in:143
-msgid "eu (Asier Sarasua Garmendia)"
-msgstr "eu (Asier Sarasua Garmendia)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:70
-#: data/appdata/org.gnome.Notes.appdata.xml.in:108
-#: data/appdata/org.gnome.Notes.appdata.xml.in:144
-#: data/appdata/org.gnome.Notes.appdata.xml.in:261
-msgid "fi (Jiri Grönroos)"
-msgstr "fi (Jiri Grönroos)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:71
-#: data/appdata/org.gnome.Notes.appdata.xml.in:86
-#: data/appdata/org.gnome.Notes.appdata.xml.in:110
-#: data/appdata/org.gnome.Notes.appdata.xml.in:145
-#: data/appdata/org.gnome.Notes.appdata.xml.in:176
-#: data/appdata/org.gnome.Notes.appdata.xml.in:263
-#: data/appdata/org.gnome.Notes.appdata.xml.in:297
-msgid "fur (Fabio Tomat)"
-msgstr "fur (Fabio Tomat)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:72
-#: data/appdata/org.gnome.Notes.appdata.xml.in:146
-msgid "is (Sveinn í Felli)"
-msgstr "is (Sveinn í Felli)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:73
-#: data/appdata/org.gnome.Notes.appdata.xml.in:115
-#: data/appdata/org.gnome.Notes.appdata.xml.in:147
-#: data/appdata/org.gnome.Notes.appdata.xml.in:267
-msgid "ko (Seong-ho Cho)"
-msgstr "ko (Seong-ho Cho)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:74
-#: data/appdata/org.gnome.Notes.appdata.xml.in:118
-#: data/appdata/org.gnome.Notes.appdata.xml.in:148
-#: data/appdata/org.gnome.Notes.appdata.xml.in:270
-msgid "lv (Rūdolfs Mazurs)"
-msgstr "lv (Rūdolfs Mazurs)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:75
-#: data/appdata/org.gnome.Notes.appdata.xml.in:149
-msgid "nl (Nathan Follens)"
-msgstr "nl (Nathan Follens)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:76
-#: data/appdata/org.gnome.Notes.appdata.xml.in:121
-#: data/appdata/org.gnome.Notes.appdata.xml.in:150
-#: data/appdata/org.gnome.Notes.appdata.xml.in:273
-msgid "pt_BR (Rafael Fontenelle)"
-msgstr "pt_BR (Rafael Fontenelle)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:77
-#: data/appdata/org.gnome.Notes.appdata.xml.in:123
-#: data/appdata/org.gnome.Notes.appdata.xml.in:151
-#: data/appdata/org.gnome.Notes.appdata.xml.in:275
-msgid "ru (Stas Solovey)"
-msgstr "ru (Stas Solovey)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:78
-#: data/appdata/org.gnome.Notes.appdata.xml.in:152
-msgid "sr (Марко Костић)"
-msgstr "sr (Марко Костић)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:79
-#: data/appdata/org.gnome.Notes.appdata.xml.in:102
-#: data/appdata/org.gnome.Notes.appdata.xml.in:161
-#: data/appdata/org.gnome.Notes.appdata.xml.in:255
-msgid "cs (Marek Cernocky)"
-msgstr "cs (Marek Cernocky)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:80
-#: data/appdata/org.gnome.Notes.appdata.xml.in:103
-#: data/appdata/org.gnome.Notes.appdata.xml.in:162
-#: data/appdata/org.gnome.Notes.appdata.xml.in:256
-msgid "da (Alan Mortensen)"
-msgstr "da (Alan Mortensen)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:81
-#: data/appdata/org.gnome.Notes.appdata.xml.in:163
-msgid "de (Tim Sabsch)"
-msgstr "de (Tim Sabsch)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:82
-#: data/appdata/org.gnome.Notes.appdata.xml.in:116
-#: data/appdata/org.gnome.Notes.appdata.xml.in:164
-#: data/appdata/org.gnome.Notes.appdata.xml.in:268
-msgid "kk (Baurzhan Muftakhidinov)"
-msgstr "kk (Baurzhan Muftakhidinov)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:83
-#: data/appdata/org.gnome.Notes.appdata.xml.in:117
-#: data/appdata/org.gnome.Notes.appdata.xml.in:165
-#: data/appdata/org.gnome.Notes.appdata.xml.in:269
-msgid "lt (Aurimas Černius)"
-msgstr "lt (Aurimas Černius)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:84
-#: data/appdata/org.gnome.Notes.appdata.xml.in:120
-#: data/appdata/org.gnome.Notes.appdata.xml.in:166
-#: data/appdata/org.gnome.Notes.appdata.xml.in:272
-msgid "pl (Piotr Drąg)"
-msgstr "pl (Piotr Drąg)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:85
-#: data/appdata/org.gnome.Notes.appdata.xml.in:175
-msgid "af (Pieter Schalk Schoeman)"
-msgstr "af (Pieter Schalk Schoeman)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:87
-#: data/appdata/org.gnome.Notes.appdata.xml.in:177
-msgid "gl (Fran Dieguez)"
-msgstr "gl (Fran Dieguez)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:88
-#: data/appdata/org.gnome.Notes.appdata.xml.in:178
-msgid "hu (Balázs Úr)"
-msgstr "hu (Balázs Úr)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:89
-#: data/appdata/org.gnome.Notes.appdata.xml.in:113
-#: data/appdata/org.gnome.Notes.appdata.xml.in:179
-#: data/appdata/org.gnome.Notes.appdata.xml.in:266
-#: data/appdata/org.gnome.Notes.appdata.xml.in:298
-msgid "id (Kukuh Syafaat)"
-msgstr "id (Kukuh Syafaat)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:90
-#: data/appdata/org.gnome.Notes.appdata.xml.in:180
-msgid "ja (Ryuta Fujii)"
-msgstr "ja (Ryuta Fujii)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:91
-#: data/appdata/org.gnome.Notes.appdata.xml.in:122
-#: data/appdata/org.gnome.Notes.appdata.xml.in:181
-#: data/appdata/org.gnome.Notes.appdata.xml.in:274
-#: data/appdata/org.gnome.Notes.appdata.xml.in:299
-#: data/appdata/org.gnome.Notes.appdata.xml.in:336
-msgid "ro (Daniel Șerbănescu)"
-msgstr "ro (Daniel Șerbănescu)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:92
-#: data/appdata/org.gnome.Notes.appdata.xml.in:182
-#: data/appdata/org.gnome.Notes.appdata.xml.in:316
-msgid "zh_TW (Yi-Jyun Pan)"
-msgstr "zh_TW (Yi-Jyun Pan)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:93
-#: data/appdata/org.gnome.Notes.appdata.xml.in:105
-#: data/appdata/org.gnome.Notes.appdata.xml.in:191
-#: data/appdata/org.gnome.Notes.appdata.xml.in:258
-#: data/appdata/org.gnome.Notes.appdata.xml.in:313
-msgid "el (Efstathios Iosifidis)"
-msgstr "el (Efstathios Iosifidis)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:94
-#: data/appdata/org.gnome.Notes.appdata.xml.in:192
-msgid "fr (Charles Monzat)"
-msgstr "fr (Charles Monzat)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:95
-#: data/appdata/org.gnome.Notes.appdata.xml.in:126
-#: data/appdata/org.gnome.Notes.appdata.xml.in:193
-#: data/appdata/org.gnome.Notes.appdata.xml.in:278
-msgid "sv (Anders Jonsson)"
-msgstr "sv (Anders Jonsson)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:96
-#: data/appdata/org.gnome.Notes.appdata.xml.in:194
-msgid "tr (Sabri Ünal)"
-msgstr "tr (Sabri Ünal)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:97
-#: data/appdata/org.gnome.Notes.appdata.xml.in:107
-#: data/appdata/org.gnome.Notes.appdata.xml.in:207
-#: data/appdata/org.gnome.Notes.appdata.xml.in:260
-#: data/appdata/org.gnome.Notes.appdata.xml.in:296
-#: data/appdata/org.gnome.Notes.appdata.xml.in:314
-#: data/appdata/org.gnome.Notes.appdata.xml.in:335
-msgid "es (Daniel Mustieles)"
-msgstr "es (Daniel Mustieles)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:98
-#: data/appdata/org.gnome.Notes.appdata.xml.in:224
-msgid "eo (Carmen Bianca BAKKER)"
-msgstr "eo (Carmen Bianca BAKKER)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:99
-#: data/appdata/org.gnome.Notes.appdata.xml.in:225
-msgid "ml (Anish Sheela)"
-msgstr "ml (Anish Sheela)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:100
-#: data/appdata/org.gnome.Notes.appdata.xml.in:125
-#: data/appdata/org.gnome.Notes.appdata.xml.in:226
-#: data/appdata/org.gnome.Notes.appdata.xml.in:277
-#: data/appdata/org.gnome.Notes.appdata.xml.in:337
-msgid "sl (Matej Urbančič)"
-msgstr "sl (Matej Urbančič)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:101
-#: data/appdata/org.gnome.Notes.appdata.xml.in:254
-#: data/appdata/org.gnome.Notes.appdata.xml.in:333
-msgid "be (Yuras Shumovich)"
-msgstr "be (Yuras Shumovich)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:104
-#: data/appdata/org.gnome.Notes.appdata.xml.in:257
-msgid "de (Mario Blättermann / Tim Sabsch)"
-msgstr "de (Mario Blättermann / Tim Sabsch)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:106
-#: data/appdata/org.gnome.Notes.appdata.xml.in:259
-msgid "en_GB (Bruce Cowan)"
-msgstr "en_GB (Bruce Cowan)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:109
-#: data/appdata/org.gnome.Notes.appdata.xml.in:262
-msgid "fr (Alexandre Franke)"
-msgstr "fr (Alexandre Franke)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:111
-#: data/appdata/org.gnome.Notes.appdata.xml.in:264
-msgid "hr (gogo)"
-msgstr "hr (gogo)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:112
-#: data/appdata/org.gnome.Notes.appdata.xml.in:265
-msgid "hu (Balázs Meskó)"
-msgstr "hu (Balázs Meskó)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:114
-msgid "it (Gianvito Cavasoli)"
-msgstr "it (Gianvito Cavasoli)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:119
-#: data/appdata/org.gnome.Notes.appdata.xml.in:271
-msgid "nl (Hannie Dumoleyn)"
-msgstr "nl (Hannie Dumoleyn)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:124
-#: data/appdata/org.gnome.Notes.appdata.xml.in:276
-msgid "sk (Peter Vágner)"
-msgstr "sk (Peter Vágner)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:127
-#: data/appdata/org.gnome.Notes.appdata.xml.in:279
-msgid "tr (Emin Tufan Çetin)"
-msgstr "tr (Emin Tufan Çetin)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:128
-#: data/appdata/org.gnome.Notes.appdata.xml.in:280
-msgid "zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)"
-msgstr "zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:203
-msgid "Improved GNOME Notes icon (Jakub Steiner)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:216
-msgid ""
-"Added compiler option to choose between Tracker service or private store "
-"(Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:219
-msgid "Fixed shell search provider crash (Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:220
-msgid "Fixed some compilation warnings (Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:235
-#: data/appdata/org.gnome.Notes.appdata.xml.in:347
-msgid "Fix typo in appdata release section"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:244
-msgid "Added new GNOME Notes icon (Sam Hewitt)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:245
-msgid ""
-"Added online account user and domain information to settings dialog (Julius "
-"Härtl)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:246
-msgid ""
-"Changed application name from org.gnome.bijiben to org.gnome.Notes (Mathieu "
-"Bridon / Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:248
-msgid "Changed Tracker setup to use a private store (Carlos Garnacho)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:249
-msgid "Increased notes view width and removed alignment (Isaque Galdino)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:289
-msgid "Removed application menu and added a new primary menu to the main view"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:290
-msgid ""
-"Added a \"Text Size\" option in primary menu to let users scale note view"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:291
-msgid "Add OARS metadata (Nick Richards)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:295
-msgid "de (Vinzenz Vietzke)"
-msgstr "de (Vinzenz Vietzke)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:300
-msgid "pt_BR (Bruno Lopes da Silva)"
-msgstr "pt_BR (Bruno Lopes da Silva)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:309
-msgid "Flatpak fixes"
-msgstr "Διορθώσεις Flatpak"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:315
-msgid "zh_CN (Dz Chen)"
-msgstr "zh_CN (Dz Chen)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:325
-msgid "Improve overall note styling"
-msgstr "Βελτίωση του συνολικού στυλ σημειώσεων"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:326
-msgid "Move \"Last updated\" info to window menu"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:327
-msgid "Fix UI freeze in text search (Mohammed Sadiq)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:328
-msgid "Fix memory leak and circular references in notes and providers"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:329
-msgid "Drop obsolete configure script (Jeremy Bicha)"
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:334
-msgid "cs (Marek Černocký)"
-msgstr "cs (Marek Černocký)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:338
-msgid "tr (Muhammet Kara)"
-msgstr "tr (Muhammet Kara)"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:355
-msgid "Fix memory leak in Settings"
-msgstr "Διόρθωση διαρροής μνήμης στις Ρυθμίσεις"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:356
-msgid "Make own/nextCloud notes saving async"
-msgstr "Αποθηκεύστε με το async τις σημειώσεις στο own/nextCloud"
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:358
-#: data/appdata/org.gnome.Notes.appdata.xml.in:368
-msgid "This release also updates many translations."
-msgstr ""
-
-#: data/appdata/org.gnome.Notes.appdata.xml.in:366
-msgid "Fix appdata and screenshots improving flatpak support."
-msgstr ""
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
@@ -648,29 +154,21 @@ msgstr ""
 "Υπάρχουν διαθέσιμα τρία μεγέθη κειμένου: μικρά, μεσαία (προεπιλογή) και "
 "μεγάλα."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Έντονα"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Πλάγια"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Επιγράμμιση"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Κουκκίδες"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -684,82 +182,87 @@ msgstr "Αντιγραφή επιλογής σε νέα σημείωση"
 msgid "No notes"
 msgstr "Δεν υπάρχουν σημειώσεις"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Γενικά"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Νέα σημείωση"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Κλείσιμο παραθύρου"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Μετακίνηση πίσω"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Εμφάνιση βοήθειας"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Συντομεύσεις"
+msgid "Keyboard shortcuts"
+msgstr "Συντομεύσεις πληκτρολογίου"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:50
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Λειτουργία επιλογής"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:55
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Έξοδος από την λειτουργία επιλογής"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Επιλογή όλων"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:70
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Λειτουργία επεξεργασίας σημείωσης"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Άνοιγμα σε νέο παράθυρο"
+
+#: data/resources/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Έντονα"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Πλάγια"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Επιγράμμιση"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Αναίρεση"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Μετακίνηση σημείωσης στα απορρίμματα"
@@ -800,7 +303,7 @@ msgstr "Επιλογή φακέλου"
 msgid "_New"
 msgstr "_Νέα"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Χρώμα σημείωσης"
 
@@ -886,7 +389,7 @@ msgid "Redo"
 msgstr "Ακύρωση αναίρεσης"
 
 #: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Σημειωματάρια"
 
@@ -894,7 +397,7 @@ msgstr "Σημειωματάρια"
 msgid "Email this Note"
 msgstr "Στείλτε αυτή τη σημείωση ηλεκτρονικά"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Μετακίνηση στα απορρίμματα"
 
@@ -906,19 +409,19 @@ msgstr "Εισαγωγή ονόματος για τη δημιουργία ση�
 msgid "New notebook"
 msgstr "Νέο σημειωματάριο"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Κοινόχρηστη σημείωση"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Άνοιγμα σε νέο παράθυρο"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Επαναφορά"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Μόνιμη διαγραφή"
 
@@ -946,47 +449,47 @@ msgstr "Επιλογή προεπιλεγμένης τοποθεσίας απο�
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:459
 msgid "Show the application’s version"
 msgstr "Εμφάνιση έκδοσης της εφαρμογής"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:461
 msgid "Create a new note"
 msgstr "Δημιουργία νέας σημείωσης"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:463
 msgid "[FILE…]"
 msgstr "[ΑΡΧΕΙΟ…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:471
 msgid "Take notes and export them everywhere."
 msgstr "Πάρτε σημειώσεις και κάντετες εξαγωγή παντού."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:482
 msgid "Could not parse arguments"
 msgstr "Δεν ήταν δυνατή η ανάλυση των ορισμάτων"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:490
 msgid "GNOME Notes"
 msgstr "Σημειώσεις"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:502
 msgid "Could not register the application"
 msgstr "Αδύνατη η καταγραφή της εφαμρογής"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:635
 msgid "Simple notebook for GNOME"
 msgstr "Απλό σημειωματάριο για το GNOME"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:641
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -998,7 +501,7 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Χρώμα σημείωσης"
 
@@ -1008,7 +511,7 @@ msgstr "Πατήστε το κουμπί Νέα για τη δημιουργία
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
-msgstr "Ώχ!"
+msgstr "Ώχ"
 
 #: src/bjb-empty-results-box.c:91
 msgid "Please install “Tracker” then restart the application."
@@ -1023,27 +526,27 @@ msgstr "Φόρτωση περισσοτέρων"
 msgid "Loading…"
 msgstr "Γίνεται φόρτωση…"
 
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Πατήστε στα αντικείμενα για να τα επιλέξετε"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d επιλεγμένο"
 msgstr[1] "%d επιλεγμένα"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:275
 #, c-format
 msgid "Results for %s"
 msgstr "Αποτελέσματα για %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:278
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:366
 msgid "Trash"
 msgstr "Απορρίμματα"
 
@@ -1052,30 +555,31 @@ msgstr "Απορρίμματα"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:434
 #, c-format
 msgid "Last updated: %s"
 msgstr "Τελευταία ενημέρωση: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Άγνωστο"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Χθές"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Αυτόν το μήνα"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Σήμερα"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Χθές"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Αυτή την εβδομάδα"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Αυτόν το μήνα"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -1088,6 +592,212 @@ msgstr "Τοπικά"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
+
+#~ msgid "This release updates the following translations:"
+#~ msgstr "Αυτή η έκδοση ενημερώνει τις ακόλουθες μεταφράσεις:"
+
+#~ msgid "da (Ask Hjorth Larsen)"
+#~ msgstr "da (Ask Hjorth Larsen)"
+
+#~ msgid "hr (Goran Vidović)"
+#~ msgstr "hr (Goran Vidović)"
+
+#~ msgid "Thanks to all the contributors that worked on GNOME Notes!"
+#~ msgstr ""
+#~ "Ευχαριστούμε όλους τους συνεισφέροντες που εργάστηκαν στις σημειώσεις του "
+#~ "GNOME!"
+
+#~ msgid "This release brings the following new features and improvements:"
+#~ msgstr "Αυτή η έκδοση φέρνει τις ακόλουθες νέες δυνατότητες και βελτιώσεις:"
+
+#~ msgid "Added flatpak CI in Gitlab (Felipe Borges / Isaque Galdino)"
+#~ msgstr "Προστέθηκε flatpak CI στο Gitlab (Felipe Borges / Isaque Galdino)"
+
+#~ msgid "Added new GNOME Notes icon (Sam Hewitt / Jakub Steiner)"
+#~ msgstr ""
+#~ "Προστέθηκε νέο εικονίδιο για τις Σημειώσεις του GNOME (Sam Hewitt / Jakub "
+#~ "Steiner)"
+
+#~ msgid ""
+#~ "Added option to choose between Tracker service or private store (Carlos "
+#~ "Garnacho / Isaque Galdino)"
+#~ msgstr ""
+#~ "Προστέθηκε η δυνατότητα επιλογής μεταξύ υπηρεσίας Tracker ή ιδιωτικής "
+#~ "αποθήκευσης (Carlos Garnacho / Isaque Galdino)"
+
+#~ msgid "Changed editor toolbar to be always visible (Isaque Galdino)"
+#~ msgstr ""
+#~ "Αλλαγή της γραμμής εργαλείων του επεξεργαστή ώστε να είναι πάντα ορατή "
+#~ "(Isaque Galdino)"
+
+#~ msgid "ca (Jordi Mas)"
+#~ msgstr "ca (Jordi Mas)"
+
+#~ msgid "eo (Kristjan SCHMIDT)"
+#~ msgstr "eo (Kristjan SCHMIDT)"
+
+#~ msgid "eu (Asier Sarasua Garmendia)"
+#~ msgstr "eu (Asier Sarasua Garmendia)"
+
+#~ msgid "fi (Jiri Grönroos)"
+#~ msgstr "fi (Jiri Grönroos)"
+
+#~ msgid "fur (Fabio Tomat)"
+#~ msgstr "fur (Fabio Tomat)"
+
+#~ msgid "is (Sveinn í Felli)"
+#~ msgstr "is (Sveinn í Felli)"
+
+#~ msgid "ko (Seong-ho Cho)"
+#~ msgstr "ko (Seong-ho Cho)"
+
+#~ msgid "lv (Rūdolfs Mazurs)"
+#~ msgstr "lv (Rūdolfs Mazurs)"
+
+#~ msgid "nl (Nathan Follens)"
+#~ msgstr "nl (Nathan Follens)"
+
+#~ msgid "pt_BR (Rafael Fontenelle)"
+#~ msgstr "pt_BR (Rafael Fontenelle)"
+
+#~ msgid "ru (Stas Solovey)"
+#~ msgstr "ru (Stas Solovey)"
+
+#~ msgid "sr (Марко Костић)"
+#~ msgstr "sr (Марко Костић)"
+
+#~ msgid "cs (Marek Cernocky)"
+#~ msgstr "cs (Marek Cernocky)"
+
+#~ msgid "da (Alan Mortensen)"
+#~ msgstr "da (Alan Mortensen)"
+
+#~ msgid "de (Tim Sabsch)"
+#~ msgstr "de (Tim Sabsch)"
+
+#~ msgid "kk (Baurzhan Muftakhidinov)"
+#~ msgstr "kk (Baurzhan Muftakhidinov)"
+
+#~ msgid "lt (Aurimas Černius)"
+#~ msgstr "lt (Aurimas Černius)"
+
+#~ msgid "pl (Piotr Drąg)"
+#~ msgstr "pl (Piotr Drąg)"
+
+#~ msgid "af (Pieter Schalk Schoeman)"
+#~ msgstr "af (Pieter Schalk Schoeman)"
+
+#~ msgid "gl (Fran Dieguez)"
+#~ msgstr "gl (Fran Dieguez)"
+
+#~ msgid "hu (Balázs Úr)"
+#~ msgstr "hu (Balázs Úr)"
+
+#~ msgid "id (Kukuh Syafaat)"
+#~ msgstr "id (Kukuh Syafaat)"
+
+#~ msgid "ja (Ryuta Fujii)"
+#~ msgstr "ja (Ryuta Fujii)"
+
+#~ msgid "ro (Daniel Șerbănescu)"
+#~ msgstr "ro (Daniel Șerbănescu)"
+
+#~ msgid "zh_TW (Yi-Jyun Pan)"
+#~ msgstr "zh_TW (Yi-Jyun Pan)"
+
+#~ msgid "el (Efstathios Iosifidis)"
+#~ msgstr "el (Efstathios Iosifidis)"
+
+#~ msgid "fr (Charles Monzat)"
+#~ msgstr "fr (Charles Monzat)"
+
+#~ msgid "sv (Anders Jonsson)"
+#~ msgstr "sv (Anders Jonsson)"
+
+#~ msgid "tr (Sabri Ünal)"
+#~ msgstr "tr (Sabri Ünal)"
+
+#~ msgid "es (Daniel Mustieles)"
+#~ msgstr "es (Daniel Mustieles)"
+
+#~ msgid "eo (Carmen Bianca BAKKER)"
+#~ msgstr "eo (Carmen Bianca BAKKER)"
+
+#~ msgid "ml (Anish Sheela)"
+#~ msgstr "ml (Anish Sheela)"
+
+#~ msgid "sl (Matej Urbančič)"
+#~ msgstr "sl (Matej Urbančič)"
+
+#~ msgid "be (Yuras Shumovich)"
+#~ msgstr "be (Yuras Shumovich)"
+
+#~ msgid "de (Mario Blättermann / Tim Sabsch)"
+#~ msgstr "de (Mario Blättermann / Tim Sabsch)"
+
+#~ msgid "en_GB (Bruce Cowan)"
+#~ msgstr "en_GB (Bruce Cowan)"
+
+#~ msgid "fr (Alexandre Franke)"
+#~ msgstr "fr (Alexandre Franke)"
+
+#~ msgid "hr (gogo)"
+#~ msgstr "hr (gogo)"
+
+#~ msgid "hu (Balázs Meskó)"
+#~ msgstr "hu (Balázs Meskó)"
+
+#~ msgid "it (Gianvito Cavasoli)"
+#~ msgstr "it (Gianvito Cavasoli)"
+
+#~ msgid "nl (Hannie Dumoleyn)"
+#~ msgstr "nl (Hannie Dumoleyn)"
+
+#~ msgid "sk (Peter Vágner)"
+#~ msgstr "sk (Peter Vágner)"
+
+#~ msgid "tr (Emin Tufan Çetin)"
+#~ msgstr "tr (Emin Tufan Çetin)"
+
+#~ msgid "zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)"
+#~ msgstr "zh_TW (Cheng-Chia Tseng / Yi-Jyun Pan)"
+
+#~ msgid "de (Vinzenz Vietzke)"
+#~ msgstr "de (Vinzenz Vietzke)"
+
+#~ msgid "pt_BR (Bruno Lopes da Silva)"
+#~ msgstr "pt_BR (Bruno Lopes da Silva)"
+
+#~ msgid "Flatpak fixes"
+#~ msgstr "Διορθώσεις Flatpak"
+
+#~ msgid "zh_CN (Dz Chen)"
+#~ msgstr "zh_CN (Dz Chen)"
+
+#~ msgid "Improve overall note styling"
+#~ msgstr "Βελτίωση του συνολικού στυλ σημειώσεων"
+
+#~ msgid "cs (Marek Černocký)"
+#~ msgstr "cs (Marek Černocký)"
+
+#~ msgid "tr (Muhammet Kara)"
+#~ msgstr "tr (Muhammet Kara)"
+
+#~ msgid "Fix memory leak in Settings"
+#~ msgstr "Διόρθωση διαρροής μνήμης στις Ρυθμίσεις"
+
+#~ msgid "Make own/nextCloud notes saving async"
+#~ msgstr "Αποθηκεύστε με το async τις σημειώσεις στο own/nextCloud"
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Συντομεύσεις"
 
 #~ msgid "org.gnome.Notes"
 #~ msgstr "org.gnome.Notes"

@@ -170,21 +170,11 @@ static void
 on_selection_mode_clicked (BjbMainToolbar *self,
                            GtkWidget      *button)
 {
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-  g_assert (GTK_IS_BUTTON (button));
-
   if (button == self->cancel_button)
-  {
     bjb_main_view_set_selection_mode (self->parent, FALSE);
-  }
-
-  /* Force refresh. We go to selection mode but nothing yet selected
-   * Thus no signal emited */
   else
-  {
     bjb_main_view_set_selection_mode (self->parent, TRUE);
-    on_view_selection_changed_cb (self);
-  }
+  on_view_selection_changed_cb (self);
 }
 
 static void

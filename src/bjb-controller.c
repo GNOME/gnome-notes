@@ -53,6 +53,8 @@ struct _BjbController
   gboolean        remaining_items;
   GMutex          mutex;
 
+  gboolean        selection_mode;
+
   gboolean        connected;
   gulong          manager_change;
 };
@@ -943,4 +945,15 @@ bjb_controller_unselect_all (BjbController *self)
   bjb_controller_set_all_selection (self, FALSE);
 }
 
+gboolean
+bjb_controller_get_selection_mode (BjbController *self)
+{
+  return self->selection_mode;
+}
 
+void
+bjb_controller_set_selection_mode (BjbController *self,
+                                   gboolean       selection_mode)
+{
+  self->selection_mode = selection_mode;
+}

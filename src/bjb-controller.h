@@ -73,10 +73,15 @@ void bjb_controller_show_more (BjbController *controller);
 
 gboolean bjb_controller_get_remaining_items (BjbController *self);
 
-GList *bjb_controller_get_selection (BjbController *self);
+gboolean  bjb_controller_get_selection_mode (BjbController *self);
 
-void   bjb_controller_select_all    (BjbController *self);
+void      bjb_controller_set_selection_mode (BjbController *self,
+                                             gboolean       selection_mode);
 
-void   bjb_controller_unselect_all  (BjbController *self);
+GList    *bjb_controller_get_selection      (BjbController *self);
+
+void      bjb_controller_select_all         (BjbController *self);
+
+void      bjb_controller_unselect_all       (BjbController *self);
 
 G_END_DECLS

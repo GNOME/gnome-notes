@@ -23,11 +23,11 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <libgd/gd.h>
 
 #include "bjb-application.h"
 #include "bjb-color-button.h"
-#include "bjb-main-view.h"
+#include <bjb-list-view.h>
+#include <bjb-main-view.h>
 #include "bjb-organize-dialog.h"
 #include "bjb-selection-toolbar.h"
 #include "bjb-share.h"
@@ -43,24 +43,21 @@ enum
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
-
-
 struct _BjbSelectionToolbar
 {
   GtkRevealer parent_instance;
 
   BjbMainView *view;
-  GdMainView *selection;
+  BjbListView *selection;
 
-  GtkWidget *button_stack;
-  GtkWidget *notebook_button;
-  GtkWidget *detach_button;
-  GtkWidget *color_button;
-  GtkWidget *share_button;
+  GtkWidget   *button_stack;
+  GtkWidget   *notebook_button;
+  GtkWidget   *detach_button;
+  GtkWidget   *color_button;
+  GtkWidget   *share_button;
 };
 
 G_DEFINE_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, GTK_TYPE_REVEALER)
-
 
 static void
 action_color_selected_items (GtkWidget           *w,
@@ -288,14 +285,14 @@ bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
 }
 
 static void
-bjb_selection_toolbar_selection_changed (GdMainView *view,
-                                         gpointer    user_data)
+on_selected_rows_changed_cb (BjbListView *view,
+                             gpointer     user_data)
 {
   BjbSelectionToolbar *self;
   GList *selection;
 
   self = BJB_SELECTION_TOOLBAR (user_data);
-  selection = gd_main_view_get_selection(view);
+  selection = bjb_main_view_get_selected_items (self->view);
 
   if (g_list_length (selection) > 0)
   {
@@ -365,9 +362,9 @@ bjb_selection_toolbar_constructed(GObject *obj)
 
   G_OBJECT_CLASS (bjb_selection_toolbar_parent_class)->constructed (obj);
 
-  g_signal_connect (self->selection,
-                    "view-selection-changed",
-                    G_CALLBACK (bjb_selection_toolbar_selection_changed),
+  g_signal_connect (bjb_list_view_get_list_box (self->selection),
+                    "selected-rows-changed",
+                    G_CALLBACK (on_selected_rows_changed_cb),
                     self);
 }
 
@@ -384,7 +381,7 @@ bjb_selection_toolbar_class_init (BjbSelectionToolbarClass *class)
   properties[PROP_BJB_SELECTION] = g_param_spec_object ("selection",
                                                         "Selection",
                                                         "SelectionController",
-                                                        GD_TYPE_MAIN_VIEW,
+                                                        BJB_TYPE_LIST_VIEW,
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_CONSTRUCT |
                                                         G_PARAM_STATIC_STRINGS);
@@ -420,7 +417,7 @@ bjb_selection_toolbar_class_init (BjbSelectionToolbarClass *class)
 
 
 BjbSelectionToolbar *
-bjb_selection_toolbar_new (GdMainView   *selection,
+bjb_selection_toolbar_new (BjbListView  *selection,
                            BjbMainView  *bjb_main_view)
 {
   return g_object_new (BJB_TYPE_SELECTION_TOOLBAR,

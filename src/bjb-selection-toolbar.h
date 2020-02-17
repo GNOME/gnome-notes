@@ -18,7 +18,8 @@
 
 #pragma once
 
-#include <libgd/gd.h>
+#include <bjb-list-view.h>
+#include <bjb-main-view.h>
 
 G_BEGIN_DECLS
 
@@ -26,7 +27,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbSelectionToolbar, bjb_selection_toolbar, BJB, SELECTION_TOOLBAR, GtkRevealer)
 
-BjbSelectionToolbar * bjb_selection_toolbar_new (GdMainView   *selection,
-                                                 BjbMainView  *bjb_main_view);
+BjbSelectionToolbar *bjb_selection_toolbar_new (BjbListView *selection,
+                                                BjbMainView *bjb_main_view);
 
 G_END_DECLS

@@ -1,16 +1,16 @@
 # Polish translation for gnome-notes.
-# Copyright © 2012-2019 the gnome-notes authors.
+# Copyright © 2012-2020 the gnome-notes authors.
 # This file is distributed under the same license as the gnome-notes package.
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2019.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2020.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015.
-# Aviary.pl <community-poland@mozilla.org>, 2012-2019.
+# Aviary.pl <community-poland@mozilla.org>, 2012-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-08-17 00:02+0000\n"
-"PO-Revision-Date: 2019-08-20 17:07+0200\n"
+"POT-Creation-Date: 2020-02-17 01:21+0000\n"
+"PO-Revision-Date: 2020-02-17 18:15+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:634 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notatki"
 
@@ -171,82 +171,87 @@ msgstr "Kopiuje zaznaczenie do nowej notatki"
 msgid "No notes"
 msgstr "Brak notatek"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Ogólne"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Nowa notatka"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Zamknięcie okna"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Wstecz"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Wyświetlenie pomocy"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Skróty"
+msgid "Keyboard shortcuts"
+msgstr "Skróty klawiszowe"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:50
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Tryb zaznaczania"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:55
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Anulowanie trybu zaznaczania"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Zaznaczenie wszystkiego"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:70
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Tryb redakcji notatki"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Otwarcie w nowym oknie"
+
+#: data/resources/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Pogrubienie"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Pochylenie"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Przekreślenie"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Cofnięcie"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Ponowienie"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Przeniesienie notatki do kosza"
@@ -287,7 +292,7 @@ msgstr "Wybór katalogu"
 msgid "_New"
 msgstr "_Nowa"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Kolor notatki"
 
@@ -373,7 +378,7 @@ msgid "Redo"
 msgstr "Ponów"
 
 #: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Notatniki"
 
@@ -381,7 +386,7 @@ msgstr "Notatniki"
 msgid "Email this Note"
 msgstr "Wyślij tę notatkę"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Przenieś do kosza"
 
@@ -393,19 +398,19 @@ msgstr "Proszę wprowadzić nazwę, aby utworzyć notatnik"
 msgid "New notebook"
 msgstr "Nowy notatnik"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Udostępnia notatkę"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Otwórz w osobnym oknie"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Przywróć"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Usuń trwale"
 
@@ -433,54 +438,54 @@ msgstr "Wybór domyślnego położenia notatek:"
 msgid "Primary Book"
 msgstr "Główna książka"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
 msgid "Untitled"
 msgstr "Bez tytułu"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:459
 msgid "Show the application’s version"
 msgstr "Wyświetla wersję programu"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:461
 msgid "Create a new note"
 msgstr "Tworzy nową notatkę"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:463
 msgid "[FILE…]"
 msgstr "[PLIK…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:471
 msgid "Take notes and export them everywhere."
 msgstr "Umożliwia robienie i eksportowanie notatek."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:482
 msgid "Could not parse arguments"
 msgstr "Nie można przetworzyć parametrów"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:490
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:502
 msgid "Could not register the application"
 msgstr "Nie można zarejestrować programu"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:635
 msgid "Simple notebook for GNOME"
 msgstr "Prosty notatnik dla środowiska GNOME"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:641
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2019\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2020\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
-"Aviary.pl <community-poland@mozilla.org>, 2012-2019"
+"Aviary.pl <community-poland@mozilla.org>, 2012-2020"
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Kolor notatki"
 
@@ -506,11 +511,11 @@ msgstr "Wczytaj więcej"
 msgid "Loading…"
 msgstr "Wczytywanie…"
 
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Kliknięcie elementów zaznacza je"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -518,16 +523,16 @@ msgstr[0] "Zaznaczono: %d"
 msgstr[1] "Zaznaczono: %d"
 msgstr[2] "Zaznaczono: %d"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:275
 #, c-format
 msgid "Results for %s"
 msgstr "Wyniki dla „%s”"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:278
 msgid "New and Recent"
 msgstr "Nowe i ostatnio używane"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:366
 msgid "Trash"
 msgstr "Kosz"
 
@@ -536,21 +541,21 @@ msgstr "Kosz"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:434
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ostatnia aktualizacja: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "Wczoraj"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "Ten miesiąc"
 

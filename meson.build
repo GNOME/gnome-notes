@@ -84,18 +84,6 @@ endif
 
 add_project_arguments(common_flags, language: 'c')
 
-libgd = subproject(
-  'libgd',
-  default_options: [
-    'static=true',
-    'with-view-common=true',
-    'with-gtk-hacks=true',
-    'with-main-view=true',
-    'with-tagged-entry=true'
-  ]
-)
-libgd_dep = libgd.get_variable('libgd_dep')
-
 tracker_sparql_dep = dependency('tracker-sparql-3.0', required: false)
 has_tracker3 = tracker_sparql_dep.found()
 config_h.set10('HAVE_TRACKER3', has_tracker3)
@@ -115,7 +103,6 @@ private_store = get_option('private_store') or has_tracker3
 config_h.set('TRACKER_PRIVATE_STORE', private_store)
 
 bijiben_deps = [
-  libgd_dep,
   tracker_sparql_dep,
   dependency('gio-unix-2.0'),
   dependency('glib-2.0', version: '>= 2.53.4'),

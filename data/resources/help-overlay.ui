@@ -39,8 +39,8 @@
                         <child>
                             <object class="GtkShortcutsShortcut">
                                 <property name="visible">True</property>
-                                <property name="title" translatable="yes" context="shortcut window">Shortcuts</property>
-                                <property name="accelerator">&lt;Primary&gt;question &lt;Primary&gt;F1</property>
+                                <property name="title" translatable="yes" context="shortcut window">Keyboard shortcuts</property>
+                                <property name="accelerator">&lt;Primary&gt;question</property>
                             </object>
                         </child>
                     </object>
@@ -69,6 +69,13 @@
                     <object class="GtkShortcutsGroup">
                         <property name="title" translatable="yes" context="shortcut window">Note edit mode</property>
                         <property name="visible">True</property>
+                        <child>
+                            <object class="GtkShortcutsShortcut">
+                                <property name="accelerator">&lt;Primary&gt;d</property>
+                                <property name="title" translatable="yes" context="shortcut window">Open in a new window</property>
+                                <property name="visible">True</property>
+                            </object>
+                        </child>
                         <child>
                             <object class="GtkShortcutsShortcut">
                                 <property name="accelerator">&lt;Primary&gt;b</property>

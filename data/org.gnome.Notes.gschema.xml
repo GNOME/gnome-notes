@@ -39,11 +39,6 @@
       <summary>Window position</summary>
       <description>Window position (x and y).</description>
     </key>
-    <key name="view-type" enum="org.gnome.bijiben.GdMainViewType">
-      <summary>How to show note items</summary>
-      <description>Whether to show note items in icon view or list view.</description>
-      <default>'icon'</default>
-    </key>
     <key name="text-size" enum="org.gnome.bijiben.BjbTextSizeType">
       <summary>Text size used by note editor.</summary>
       <description>There are three text sizes available: small, medium (default) and large.</description>

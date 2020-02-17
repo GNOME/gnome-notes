@@ -4,7 +4,6 @@
 #include <stdlib.h>
 
 #include <libbiji/libbiji.h>
-#include <libgd/gd.h>
 
 #include "bjb-application.h"
 #include "bjb-empty-results-box.h"

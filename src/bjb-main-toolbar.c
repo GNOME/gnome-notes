@@ -667,6 +667,8 @@ bjb_main_toolbar_constructed (GObject *obj)
   gtk_window_add_accel_group (self->window, self->accel);
   gtk_widget_add_accelerator (self->new_button, "clicked", self->accel, GDK_KEY_n,
                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+  gtk_widget_add_accelerator (self->search_button, "clicked", self->accel, GDK_KEY_F,
+                              GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
   g_signal_connect_swapped (self->window, "view-changed",
                             G_CALLBACK (populate_main_toolbar), self);

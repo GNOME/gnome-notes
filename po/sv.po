@@ -1,17 +1,17 @@
 # Swedish translations for gnome-notes package
 # Svenska översättningar för paketet gnome-notes.
-# Copyright © 2014, 2015, 2017-2019 gnome-notes's COPYRIGHT HOLDER
+# Copyright © 2014, 2015, 2017-2020 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-notes package.
 # Marcus Lundblad <ml@update.uu.se>, 2014.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2017, 2018, 2019.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2017, 2018, 2019, 2020.
 # Josef Andersson <josef.andersson@fripost.org>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-06-15 10:33+0000\n"
-"PO-Revision-Date: 2019-06-26 20:59+0200\n"
+"POT-Creation-Date: 2020-02-17 01:21+0000\n"
+"PO-Revision-Date: 2020-02-18 21:44+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:634 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Anteckningar"
 
@@ -148,29 +148,21 @@ msgid ""
 msgstr ""
 "Det finns tre textstorlekar tillgängliga: liten, mellan (standard) och stor."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Fet"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Kursiv"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Genomstruken"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Punkter"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -184,82 +176,87 @@ msgstr "Kopiera markering till en ny anteckning"
 msgid "No notes"
 msgstr "Inga anteckningar"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Allmänt"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Ny anteckning"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Stäng fönster"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Gå bakåt"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Visa hjälp"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Genvägar"
+msgid "Keyboard shortcuts"
+msgstr "Tangentbordsgenvägar"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:50
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Markeringsläge"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:55
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Avbryt markeringsläget"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Markera allt"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:70
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Anteckningsredigeringsläge"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:75
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Öppna i ett nytt fönster"
+
+#: data/resources/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Fet"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursiv"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Genomstruken"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Ångra"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Gör om"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Flytta anteckning till papperskorgen"
@@ -300,7 +297,7 @@ msgstr "Välj en mapp"
 msgid "_New"
 msgstr "_Ny"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Anteckningsfärg"
 
@@ -386,7 +383,7 @@ msgid "Redo"
 msgstr "Gör om"
 
 #: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Anteckningsböcker"
 
@@ -394,7 +391,7 @@ msgstr "Anteckningsböcker"
 msgid "Email this Note"
 msgstr "Skicka anteckning som e-post"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Flytta till papperskorgen"
 
@@ -406,19 +403,19 @@ msgstr "Ange ett namn för att skapa en anteckningsbok"
 msgid "New notebook"
 msgstr "Ny anteckningsbok"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Dela anteckning"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Öppna i ett annat fönster"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Återställ"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Ta bort permanent"
 
@@ -446,47 +443,47 @@ msgstr "Välj standardplatsen för lagring:"
 msgid "Primary Book"
 msgstr "Huvudbok"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
 msgid "Untitled"
 msgstr "Namnlös"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:459
 msgid "Show the application’s version"
 msgstr "Visa programversion"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:461
 msgid "Create a new note"
 msgstr "Skapa en ny anteckning"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:463
 msgid "[FILE…]"
 msgstr "[FIL…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:471
 msgid "Take notes and export them everywhere."
 msgstr "Ta anteckningar och exportera dem överallt."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:482
 msgid "Could not parse arguments"
 msgstr "Kunde inte tolka argument"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:490
 msgid "GNOME Notes"
 msgstr "GNOME Anteckningar"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:502
 msgid "Could not register the application"
 msgstr "Kunde inte registrera programmet"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:635
 msgid "Simple notebook for GNOME"
 msgstr "Enkel anteckningsbok för GNOME"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:641
 msgid "translator-credits"
 msgstr ""
 "Marcus Lundblad <ml@update.uu.se>\n"
@@ -494,7 +491,7 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Anteckningsfärg"
 
@@ -518,27 +515,27 @@ msgstr "Läs in fler"
 msgid "Loading…"
 msgstr "Läser in…"
 
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Klicka på listpunkter för att välja dem"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d vald"
 msgstr[1] "%d valda"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:275
 #, c-format
 msgid "Results for %s"
 msgstr "Resultat för %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:278
 msgid "New and Recent"
 msgstr "Nya och senaste"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:366
 msgid "Trash"
 msgstr "Papperskorg"
 
@@ -547,21 +544,21 @@ msgstr "Papperskorg"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:434
 #, c-format
 msgid "Last updated: %s"
 msgstr "Senast uppdaterad: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Okänd"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "Igår"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "Denna månad"
 
@@ -584,6 +581,16 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokal lagring"
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Genvägar"
 
 #~| msgid "org.gnome.bijiben"
 #~ msgid "org.gnome.Notes"

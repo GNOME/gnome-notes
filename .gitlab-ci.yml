@@ -14,11 +14,12 @@ flatpak:
         # Make sure to keep this in sync with the Flatpak manifest, all arguments
         # are passed except the config-args because we build it ourselves
         # CONFIGURE_ARGS: "-Dtests=all"
+        MESON_ARGS: "-Dflatpak=true -Dprofile=development"
 
     script:
         - git submodule update --init --recursive
-        - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
-        - flatpak build app meson --prefix=/app ${CONFIGURE_ARGS} _build
-        - flatpak build app ninja -C _build install
+        - flatpak-builder --user --disable-rofiles-fuse --stop-at=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
+        - flatpak-builder --run --disable-rofiles-fuse flatpak_app meson --prefix=/app ${CONFIGURE_ARGS} _build
+        - flatpak-builder --run --disable-rofiles-fuse flatpak_app ninja -C _build install
         # Run tests inside the Flatpak env emulating a display
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak build app ninja -C _build test
+        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run --disable-rofiles-fuse flatpak_app ninja -C _build test

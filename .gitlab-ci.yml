@@ -2,7 +2,7 @@ stages:
 - test
 
 flatpak:
-    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome
     stage: test
 
     variables:
@@ -17,8 +17,8 @@ flatpak:
 
     script:
         - git submodule update --init --recursive
-        - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
-        - flatpak build app meson --prefix=/app ${CONFIGURE_ARGS} _build
-        - flatpak build app ninja -C _build install
+        - flatpak-builder --user --disable-rofiles-fuse --stop-at=${FLATPAK_MODULE} flatpak_app ${MANIFEST_PATH}
+        - flatpak build flatpak_app meson --prefix=/app ${CONFIGURE_ARGS} _build
+        - flatpak build flatpak_app ninja -C _build install
         # Run tests inside the Flatpak env emulating a display
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak build app ninja -C _build test
+        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak build flatpak_app ninja -C _build test

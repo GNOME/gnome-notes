@@ -1,16 +1,16 @@
 # Japanese translation for bijiben.
-# Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
+# Copyright (C) 2013, 2016, 2018-2020 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013, 2016, 2018.
-# sicklylife <translation@sicklylife.jp>, 2019.
+# sicklylife <translation@sicklylife.jp>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
 "POT-Creation-Date: 2020-02-19 03:26+0000\n"
-"PO-Revision-Date: 2019-08-25 18:15+0900\n"
+"PO-Revision-Date: 2020-02-20 00:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -158,7 +158,7 @@ msgstr "リスト"
 
 #: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
-msgstr "選択範囲を新規メモにコピー"
+msgstr "選択範囲を新しいメモにコピーします"
 
 #: data/resources/empty-results-box.ui:33
 msgid "No notes"
@@ -167,14 +167,12 @@ msgstr "メモが見つかりません"
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
-msgstr "一般"
+msgstr "全般"
 
 #: data/resources/help-overlay.ui:14
-#, fuzzy
-#| msgid "Share note"
 msgctxt "shortcut window"
 msgid "Search notes"
-msgstr "メモを共有"
+msgstr "メモを検索する"
 
 #: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
@@ -197,11 +195,9 @@ msgid "Show help"
 msgstr "ヘルプを表示する"
 
 #: data/resources/help-overlay.ui:49
-#, fuzzy
-#| msgid "Keyboard Shortcuts"
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
-msgstr "キーボードショートカット"
+msgstr "キーボードショートカットを表示する"
 
 #: data/resources/help-overlay.ui:57
 msgctxt "shortcut window"
@@ -224,11 +220,9 @@ msgid "Note edit mode"
 msgstr "メモ編集モード"
 
 #: data/resources/help-overlay.ui:82
-#, fuzzy
-#| msgid "Open in another window"
 msgctxt "shortcut window"
 msgid "Open in a new window"
-msgstr "別のウィンドウで開く"
+msgstr "新しいウィンドウで開く"
 
 #: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
@@ -262,7 +256,7 @@ msgstr "ゴミ箱へ移動する"
 
 #: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
-msgstr "メモのインポート"
+msgstr "メモをインポート"
 
 #: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
 msgid "_Cancel"
@@ -367,7 +361,7 @@ msgstr "ヘルプ"
 
 #: data/resources/main-toolbar.ui:326
 msgid "About Notes"
-msgstr "このアプリケーションについて"
+msgstr "“メモ”について"
 
 #: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
@@ -404,11 +398,11 @@ msgstr "ノートを作成"
 
 #: data/resources/selection-toolbar.ui:60
 msgid "Share note"
-msgstr "メモを共有"
+msgstr "メモを共有します"
 
 #: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
-msgstr "別のウィンドウで開く"
+msgstr "別のウィンドウで開きます"
 
 #: data/resources/selection-toolbar.ui:119
 msgid "Restore"
@@ -466,7 +460,7 @@ msgstr "メモの作成、エクスポートを行います。"
 #. * printed on the command line
 #: src/bjb-application.c:482
 msgid "Could not parse arguments"
-msgstr "引数の解析に失敗しました"
+msgstr "引数を解析できませんでした"
 
 #: src/bjb-application.c:490
 msgid "GNOME Notes"
@@ -516,7 +510,7 @@ msgstr "読み込み中…"
 
 #: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
-msgstr "選択するアイテムをクリックします"
+msgstr "アイテムをクリックして選択してください"
 
 #: src/bjb-main-toolbar.c:142
 #, c-format
@@ -580,22 +574,6 @@ msgstr "ローカル"
 msgid "Local storage"
 msgstr "ローカルストレージ"
 
-#~ msgctxt "shortcut window"
-#~ msgid "Shortcuts"
-#~ msgstr "ショートカット"
-
-#~ msgid "org.gnome.Notes"
-#~ msgstr "org.gnome.Notes"
-
-#~ msgid "* "
-#~ msgstr "* "
-
-#~ msgid "1."
-#~ msgstr "1."
-
-#~ msgid "Bijiben"
-#~ msgstr "Bijiben"
-
 #~ msgid "Quickly jot notes"
 #~ msgstr "すばやくメモを書き込む"
 
@@ -606,41 +584,5 @@ msgstr "ローカルストレージ"
 #~ msgstr ""
 #~ "ownCloud をストレージの場所およびオンラインエディターとして利用できます。"
 
-#~ msgid "_Import Notes"
-#~ msgstr "メモのインポート(_I)"
-
-#~ msgid "_Preferences"
-#~ msgstr "設定(_P)"
-
-#~ msgid "_About"
-#~ msgstr "このアプリケーションについて(_A)"
-
-#~ msgid "_Quit"
-#~ msgstr "終了(_Q)"
-
-#~ msgid "Cut"
-#~ msgstr "切り取り"
-
-#~ msgid "Copy"
-#~ msgstr "コピー"
-
-#~ msgid "Paste"
-#~ msgstr "貼り付け"
-
-#~ msgid "Note Edition"
-#~ msgstr "メモの設定"
-
-#~ msgid "Notebook"
-#~ msgstr "ノート"
-
-#~ msgid "Note"
-#~ msgstr "メモ"
-
 #~ msgid "notes;reminder;"
 #~ msgstr "notes;reminder;メモ;ノート;覚え書き;覚書;備忘録;リマインダー;"
-
-#~ msgid "Cancel"
-#~ msgstr "キャンセル"
-
-#~ msgid "_OK"
-#~ msgstr "OK(_O)"

@@ -39,6 +39,34 @@
   </screenshots>
 
   <releases>
+    <release date="2020-02-19" version="3.35.91">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added Malay translation (Umarzuki Bin Mochlis Moktar)</li>
+          <li>Fixed and added many shortcuts (Sabri Ünal, João Vieira)</li>
+          <li>Updated help screenshots (Andre Klapper, scootergrisen, Piotr Drąg)</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>eu (Asier Sarasua Garmendia)</li>
+          <li>fa (Danial Behzadi)</li>
+          <li>hu (Balázs Úr)</li>
+          <li>gl (Fran Dieguez)</li>
+          <li>id (Andika Triwidada, Kukuh Syafaat)</li>
+          <li>ja (sicklylife)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>ms (Umarzuki Bin Mochlis Moktar)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>sr (Марко Костић)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>tr (Sabri Ünal, Emin Tufan Çetin)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-01-05" version="3.35.2">
       <description>
         <p>This release brings the following new features and improvements:</p>

@@ -1,5 +1,29 @@
-Overview of changes in 3.35.2
+Overview of changes in 3.35.91
 ==============================
+
+* Added Malay translation (Umarzuki Bin Mochlis Moktar)
+* Fixed and added many shortcuts (Sabri Ünal, João Vieira)
+* Updated help screenshots (Andre Klapper, scootergrisen, Piotr Drąg)
+
+Translations
+
+* el (Efstathios Iosifidis)
+* es (Daniel Mustieles)
+* eu (Asier Sarasua Garmendia)
+* fa (Danial Behzadi)
+* hu (Balázs Úr)
+* gl (Fran Dieguez)
+* id (Andika Triwidada, Kukuh Syafaat)
+* ja (sicklylife)
+* lt (Aurimas Černius)
+* ms (Umarzuki Bin Mochlis Moktar)
+* pl (Piotr Drąg)
+* sr (Марко Костић)
+* sv (Anders Jonsson)
+* tr (Sabri Ünal, Emin Tufan Çetin)
+
+Overview of changes in 3.35.2
+=============================
 
 * Changed default colors to use GNOME palette
 * Fixed paste event handler so Notes knows when that happens
@@ -12,7 +36,7 @@ Translations
 * gl (Fran Dieguez)
 
 Overview of changes in 3.35.1
-==============================
+=============================
 
 * Added new GNOME Notes Nightly icon (Jakub Steiner)
 
@@ -24,7 +48,7 @@ Translations
 * zh_TW (Yi-Jyun Pan)
 
 Overview of changes in 3.34.0
-==============================
+=============================
 
 * Added intltool as a flatpak dependency (Javier Jardón)
 * Added missing icons in editor toolbar (Isaque Galdino)

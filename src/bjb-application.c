@@ -126,6 +126,7 @@ static void
 bijiben_new_window_internal (BjbApplication *self,
                              BijiNoteObj    *note)
 {
+  const gchar * const close_accel[] = { "<Primary>w", NULL };
   BjbWindowBase *window;
   GList         *windows;
   gboolean       not_first_window;
@@ -138,6 +139,8 @@ bijiben_new_window_internal (BjbApplication *self,
                     G_CALLBACK (on_window_activated_cb), self);
 
   gtk_widget_show (GTK_WIDGET (window));
+
+  gtk_application_set_accels_for_action (GTK_APPLICATION (self), "win.close", close_accel);
 
   if (not_first_window)
     gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);

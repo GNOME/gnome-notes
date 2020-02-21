@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-17 01:21+0000\n"
-"PO-Revision-Date: 2020-02-17 20:54+0100\n"
+"POT-Creation-Date: 2020-02-19 03:26+0000\n"
+"PO-Revision-Date: 2020-02-21 16:45+0100\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
@@ -181,80 +181,85 @@ msgstr "Опште"
 
 #: data/resources/help-overlay.ui:14
 msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Претраживање белешки"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
 msgid "New note"
 msgstr "Прави нову белешку"
 
-#: data/resources/help-overlay.ui:21
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Затвара прозор"
 
-#: data/resources/help-overlay.ui:28
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Иди назад"
 
-#: data/resources/help-overlay.ui:35
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Приказује помоћ"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Пречице на тастатури"
 
-#: data/resources/help-overlay.ui:50
+#: data/resources/help-overlay.ui:57
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Режим бирања"
 
-#: data/resources/help-overlay.ui:55
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Укида режим бирања"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Бира све"
 
-#: data/resources/help-overlay.ui:70
+#: data/resources/help-overlay.ui:77
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Режим уређивања белешке"
 
-#: data/resources/help-overlay.ui:75
+#: data/resources/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Отвори у новом прозору"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Подебљано"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Искошено"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Прецртано"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Опозови"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Понови"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Помера белешку у смеће"

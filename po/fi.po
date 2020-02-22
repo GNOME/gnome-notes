@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-08-17 00:02+0000\n"
-"PO-Revision-Date: 2019-08-17 15:41+0300\n"
+"POT-Creation-Date: 2020-02-19 03:26+0000\n"
+"PO-Revision-Date: 2020-02-22 17:12+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:634 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Muistilaput"
 
@@ -171,82 +171,92 @@ msgstr "Kopioi valinta uuteen muistilappuun"
 msgid "No notes"
 msgstr "Ei muistilappuja"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Yleiset"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Etsi muistilappuja"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Uusi muistilappu"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Sulje ikkuna"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Siirry takaisin"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Näytä ohje"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
-msgid "Shortcuts"
+msgid "Keyboard shortcuts"
 msgstr "Pikanäppäimet"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:57
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Valintatila"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Poistu valintatilasta"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Valitse kaikki"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:77
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Muistilapun muokkaustila"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Avaa uudessa ikkunassa"
+
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Lihavoi"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursivoi"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Yliviivaa"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Kumoa"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Tee uudelleen"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Siirrä muistilappu roskakoriin"
@@ -287,7 +297,7 @@ msgstr "Valitse kansio"
 msgid "_New"
 msgstr "_Uusi"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Muistilapun väri"
 
@@ -373,7 +383,7 @@ msgid "Redo"
 msgstr "Tee uudelleen"
 
 #: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Muistikirjat"
 
@@ -381,7 +391,7 @@ msgstr "Muistikirjat"
 msgid "Email this Note"
 msgstr "Lähetä tämä muistilappu sähköpostilla"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
@@ -393,19 +403,19 @@ msgstr "Kirjoita nimi luodaksesi muistikirjan"
 msgid "New notebook"
 msgstr "Uusi muistikirja"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Jaa muistilappu"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Avaa toisessa ikkunassa"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Palauta"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Poista pysyvästi"
 
@@ -433,53 +443,53 @@ msgstr "Valitse tallennustilan oletussijainti:"
 msgid "Primary Book"
 msgstr "Ensisijainen kirja"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:459
 msgid "Show the application’s version"
 msgstr "Näytä sovelluksen versio"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:461
 msgid "Create a new note"
 msgstr "Luo uusi muistilappu"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:463
 msgid "[FILE…]"
 msgstr "[TIEDOSTO…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:471
 msgid "Take notes and export them everywhere."
 msgstr "Tee muistilappuja ja vie niitä muihin sovelluksiin."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:482
 msgid "Could not parse arguments"
 msgstr "Argumenttien jäsentäminen epäonnistui"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:490
 msgid "GNOME Notes"
 msgstr "Gnomen muistilaput"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:502
 msgid "Could not register the application"
 msgstr "Sovelluksen rekisteröiminen epäonnistui"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:635
 msgid "Simple notebook for GNOME"
 msgstr "Yksinkertainen muistio Gnomelle"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:641
 msgid "translator-credits"
 msgstr ""
-"Juhani Numminen, 2014\n"
-"Jiri Grönroos, 2013-2019"
+"Jiri Grönroos, 2013-2020\n"
+"Juhani Numminen, 2014"
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Muistilapun väri"
 
@@ -503,27 +513,27 @@ msgstr "Lataa lisää"
 msgid "Loading…"
 msgstr "Ladataan…"
 
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Napsauta kohteita valitaksesi ne"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valittu"
 msgstr[1] "%d valittu"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:275
 #, c-format
 msgid "Results for %s"
 msgstr "Tulokset haulle %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:278
 msgid "New and Recent"
 msgstr "Uudet ja viimeisimmät"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:366
 msgid "Trash"
 msgstr "Roskakori"
 
@@ -532,21 +542,21 @@ msgstr "Roskakori"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:434
 #, c-format
 msgid "Last updated: %s"
 msgstr "Viimeksi päivitetty: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "Eilen"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "Viime kuussa"
 
@@ -569,6 +579,10 @@ msgstr "Paikallinen"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Paikallinen tallennustila"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Pikanäppäimet"
 
 #~| msgid "org.gnome.bijiben"
 #~ msgid "org.gnome.Notes"

@@ -4,14 +4,14 @@
 # Erwin Poeze <donnut@outlook.com>, 2013.
 # Reinout van Schouwen <reinouts@gnome.org>, 2014.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016, 2018.
-# Nathan Follens <nthn@unseen.is>, 2016, 2018-2019.
+# Nathan Follens <nthn@unseen.is>, 2016, 2018-2020.
 # Justin van Steijn <jvs@fsfe.org>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-06-15 10:33+0000\n"
-"PO-Revision-Date: 2019-06-18 11:15+0200\n"
+"POT-Creation-Date: 2020-02-19 03:26+0000\n"
+"PO-Revision-Date: 2020-02-24 18:15+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:634 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notities"
 
@@ -150,29 +150,21 @@ msgid ""
 msgstr ""
 "Er zijn drie tekstgroottes beschikbaar: klein, medium (standaard) en groot."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Vet"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Cursief"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Doorhalen"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Aandachtspunten"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -186,82 +178,92 @@ msgstr "Selectie kopiëren naar een nieuwe notitie"
 msgid "No notes"
 msgstr "Geen notities"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Algemeen"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Notitie zoeken"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Nieuwe notitie"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Venster sluiten"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Ga terug"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Hulp tonen"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
-msgid "Shortcuts"
+msgid "Keyboard shortcuts"
 msgstr "Sneltoetsen"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:57
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Selectiemodus"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Selectiemodus annuleren"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Alles selecteren"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:77
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Notitiebewerkingsmodus"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:82
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Openen in een nieuw venster"
+
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Vet"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Cursief"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Doorhalen"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Opnieuw"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Notitie naar prullenbak verplaatsen"
@@ -302,7 +304,7 @@ msgstr "Selecteer een map"
 msgid "_New"
 msgstr "_Nieuw"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Achtergrondkleur notitie"
 
@@ -388,7 +390,7 @@ msgid "Redo"
 msgstr "Opnieuw"
 
 #: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Notitieboeken"
 
@@ -396,7 +398,7 @@ msgstr "Notitieboeken"
 msgid "Email this Note"
 msgstr "Deze notitie e-mailen"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Naar prullenbak verplaatsen"
 
@@ -408,19 +410,19 @@ msgstr "Voer een naam in om een notitieboek aan te maken"
 msgid "New notebook"
 msgstr "Nieuw notitieboek"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Notitie delen"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Openen in een nieuw venster"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Herstellen"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Permanent verwijderen"
 
@@ -448,47 +450,47 @@ msgstr "Selecteer de standaardopslaglocatie:"
 msgid "Primary Book"
 msgstr "Primaire notitieboek"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
 msgid "Untitled"
 msgstr "Naamloos"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:459
 msgid "Show the application’s version"
 msgstr "Versie van toepassing tonen"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:461
 msgid "Create a new note"
 msgstr "Nieuwe notitie maken"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:463
 msgid "[FILE…]"
 msgstr "[BESTAND…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:471
 msgid "Take notes and export them everywhere."
 msgstr "Maak notities en exporteer ze overal."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:482
 msgid "Could not parse arguments"
 msgstr "Argumenten ontleden is mislukt"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:490
 msgid "GNOME Notes"
 msgstr "Gnome Notities"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:502
 msgid "Could not register the application"
 msgstr "Toepassing registreren is mislukt"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:635
 msgid "Simple notebook for GNOME"
 msgstr "Eenvoudig notitieboekje voor Gnome"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:641
 msgid "translator-credits"
 msgstr ""
 "Erwin Poeze <donnut@outlook.com>\n"
@@ -498,7 +500,7 @@ msgstr ""
 "\n"
 "Meer info over Gnome-NL http://nl.gnome.org"
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Achtergrondkleur notities"
 
@@ -522,27 +524,27 @@ msgstr "Meer laden"
 msgid "Loading…"
 msgstr "Bezig met laden…"
 
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "Klik op notities om ze te selecteren"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d geselecteerd"
 msgstr[1] "%d geselecteerd"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:275
 #, c-format
 msgid "Results for %s"
 msgstr "Resultaten voor %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:278
 msgid "New and Recent"
 msgstr "Nieuw en recent"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:366
 msgid "Trash"
 msgstr "Prullenbak"
 
@@ -551,21 +553,21 @@ msgstr "Prullenbak"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:434
 #, c-format
 msgid "Last updated: %s"
 msgstr "Laatst bijgewerkt: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "Deze maand"
 
@@ -588,6 +590,16 @@ msgstr "Lokaal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokale opslag"
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Sneltoetsen"
 
 #~| msgid "org.gnome.bijiben"
 #~ msgid "org.gnome.Notes"

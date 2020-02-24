@@ -499,6 +499,11 @@ populate_bar_for_note_view (BjbMainToolbar *self)
                                G_CALLBACK (on_note_color_changed), self->color_button);
   }
 
+  if (biji_note_obj_is_trashed (self->note))
+  {
+    gtk_widget_hide (self->trash_item);
+  }
+
   /* Note Last Updated */
   on_last_updated_cb (BIJI_ITEM (self->note), self);
   self->last_updated = g_signal_connect (self->note,"changed",

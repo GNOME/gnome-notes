@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-17 01:21+0000\n"
-"PO-Revision-Date: 2020-02-17 22:00+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2020-02-19 03:26+0000\n"
+"PO-Revision-Date: 2020-02-26 21:51+0100\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
@@ -179,80 +179,85 @@ msgstr "Xeral"
 
 #: data/resources/help-overlay.ui:14
 msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Buscar notas"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
 msgid "New note"
 msgstr "Nova nota"
 
-#: data/resources/help-overlay.ui:21
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Pechar xanela"
 
-#: data/resources/help-overlay.ui:28
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Atrás"
 
-#: data/resources/help-overlay.ui:35
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Mostrar axuda"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Atallos de teclado"
 
-#: data/resources/help-overlay.ui:50
+#: data/resources/help-overlay.ui:57
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Modo de selección"
 
-#: data/resources/help-overlay.ui:55
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Cancelar o modo selección"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Mostrar todo"
 
-#: data/resources/help-overlay.ui:70
+#: data/resources/help-overlay.ui:77
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Modo de edición de notas"
 
-#: data/resources/help-overlay.ui:75
+#: data/resources/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Abrir unha nova xanela"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Negriña"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Cursiva"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Riscar"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Desfacer"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Refacer"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Mover nota ao lixo"

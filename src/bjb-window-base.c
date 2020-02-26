@@ -280,6 +280,18 @@ on_trash_cb (GSimpleAction *action,
 }
 
 static void
+on_close (GSimpleAction *action,
+          GVariant      *parameter,
+          gpointer       user_data)
+{
+  GtkApplicationWindow *window;
+
+  window = GTK_APPLICATION_WINDOW (user_data);
+
+  gtk_window_close (GTK_WINDOW (window));
+}
+
+static void
 bjb_window_base_save_geometry (BjbWindowBase *self)
 {
   GSettings *settings = G_SETTINGS (self->settings);
@@ -335,6 +347,7 @@ static GActionEntry win_entries[] = {
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
   { "trash", on_trash_cb, NULL, NULL, NULL },
+  { "close", on_close },
 };
 
 /* Gobj */

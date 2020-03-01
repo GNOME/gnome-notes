@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-17 01:21+0000\n"
-"PO-Revision-Date: 2020-02-17 22:31+0200\n"
+"POT-Creation-Date: 2020-02-19 03:26+0000\n"
+"PO-Revision-Date: 2020-03-01 14:55+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -174,83 +174,87 @@ msgid "General"
 msgstr "Bendra"
 
 #: data/resources/help-overlay.ui:14
+#| msgid "Share note"
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Ieškoti raštelių"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Naujas raštelis"
 
-#: data/resources/help-overlay.ui:21
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Užverti langą"
 
-#: data/resources/help-overlay.ui:28
+#: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Grįžti"
 
-#: data/resources/help-overlay.ui:35
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Rodyti žinyną"
 
-#: data/resources/help-overlay.ui:42
-#| msgid "Keyboard Shortcuts"
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Klaviatūros trumpiniai"
 
-#: data/resources/help-overlay.ui:50
+#: data/resources/help-overlay.ui:57
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Žymėjimo veiksena"
 
-#: data/resources/help-overlay.ui:55
+#: data/resources/help-overlay.ui:62
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Atsisakyti žymėjimo veiksenos"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:69
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Žymėti viską"
 
-#: data/resources/help-overlay.ui:70
+#: data/resources/help-overlay.ui:77
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Raštelio redagavimo veiksena"
 
-#: data/resources/help-overlay.ui:75
-#| msgid "Open in another window"
+#: data/resources/help-overlay.ui:82
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Atverti naujame lange"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:89
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Pusjuodis"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursyvas"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Perbrauktas"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Pakartoti"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Perkelti į šiukšlinę"

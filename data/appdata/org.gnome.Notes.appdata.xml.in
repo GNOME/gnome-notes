@@ -39,6 +39,33 @@
   </screenshots>
 
   <releases>
+    <release date="2020-03-04" version="3.35.92">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>cs (Marek Černocký)</li>
+          <li>da (Alan Mortensen)</li>
+          <li>de (Tim Sabsch)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>fr (Guillaume Bernard)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>gl (Fran Dieguez)</li>
+          <li>hr (Milo Ivir)</li>
+          <li>hu (Balázs Úr)</li>
+          <li>it (Gianvito Cavasoli)</li>
+          <li>ko (Seong-ho Cho)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>nl (Nathan Follens)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>sr (Марко Костић)</li>
+          <li>sv (Anders Jonsson)</li>
+          <li>uk (Daniel Korostil)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-02-19" version="3.35.91">
       <description>
         <p>This release brings the following new features and improvements:</p>

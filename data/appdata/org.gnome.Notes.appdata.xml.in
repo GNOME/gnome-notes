@@ -39,84 +39,65 @@
   </screenshots>
 
   <releases>
-    <release date="2020-03-04" version="3.35.92">
+    <release date="2020-03-06" version="3.36.0">
       <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added Malay translation (Umarzuki Bin Mochlis Moktar)</li>
+          <li>Changed default colors to use GNOME palette</li>
+          <li>Improved shortcuts (Sabri Ünal, João Vieira)</li>
+          <li>Fixed issue when pasting text to new notes</li>
+          <li>Moved note title to the HeaderBar</li>
+          <li>Reduced minimum window width</li>
+          <li>Updated help screenshots (Andre Klapper, scootergrisen, Piotr Drąg)</li>
+        </ul>
         <p>This release updates the following translations:</p>
         <ul>
+          <li>ca (Jordi Mas)</li>
           <li>cs (Marek Černocký)</li>
-          <li>da (Alan Mortensen)</li>
+          <li>da (Alan Mortensen, Ask Hjorth Larsen)</li>
           <li>de (Tim Sabsch)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>eu (Asier Sarasua Garmendia)</li>
+          <li>fa (Danial Behzadi)</li>
           <li>fi (Jiri Grönroos)</li>
           <li>fr (Guillaume Bernard)</li>
           <li>fur (Fabio Tomat)</li>
           <li>gl (Fran Dieguez)</li>
           <li>hr (Milo Ivir)</li>
           <li>hu (Balázs Úr)</li>
+          <li>id (Andika Triwidada, Kukuh Syafaat)</li>
           <li>it (Gianvito Cavasoli)</li>
+          <li>ja (sicklylife)</li>
           <li>ko (Seong-ho Cho)</li>
           <li>lt (Aurimas Černius)</li>
+          <li>ms (Umarzuki Bin Mochlis Moktar)</li>
           <li>nl (Nathan Follens)</li>
           <li>pl (Piotr Drąg)</li>
           <li>pt_BR (Rafael Fontenelle)</li>
+          <li>sk (Dušan Kazik)</li>
           <li>sl (Matej Urbančič)</li>
           <li>sr (Марко Костић)</li>
           <li>sv (Anders Jonsson)</li>
-          <li>uk (Daniel Korostil)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2020-02-19" version="3.35.91">
-      <description>
-        <p>This release brings the following new features and improvements:</p>
-        <ul>
-          <li>Added Malay translation (Umarzuki Bin Mochlis Moktar)</li>
-          <li>Fixed and added many shortcuts (Sabri Ünal, João Vieira)</li>
-          <li>Updated help screenshots (Andre Klapper, scootergrisen, Piotr Drąg)</li>
-        </ul>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>el (Efstathios Iosifidis)</li>
-          <li>es (Daniel Mustieles)</li>
-          <li>eu (Asier Sarasua Garmendia)</li>
-          <li>fa (Danial Behzadi)</li>
-          <li>hu (Balázs Úr)</li>
-          <li>gl (Fran Dieguez)</li>
-          <li>id (Andika Triwidada, Kukuh Syafaat)</li>
-          <li>ja (sicklylife)</li>
-          <li>lt (Aurimas Černius)</li>
-          <li>ms (Umarzuki Bin Mochlis Moktar)</li>
-          <li>pl (Piotr Drąg)</li>
-          <li>sr (Марко Костић)</li>
-          <li>sv (Anders Jonsson)</li>
           <li>tr (Sabri Ünal, Emin Tufan Çetin)</li>
+          <li>uk (Daniel Korostil)</li>
+          <li>zh_TW (Yi-Jyun Pan)</li>
         </ul>
         <p>Thanks to all the contributors who worked on GNOME Notes!</p>
       </description>
     </release>
-    <release date="2020-01-05" version="3.35.2">
+    <release date="2020-01-05" version="3.34.2">
       <description>
-        <p>This release brings the following new features and improvements:</p>
-        <ul>
-          <li>Changed default colors to use GNOME palette</li>
-          <li>Fixed paste event handler so Notes knows when that happens</li>
-          <li>Reduced minimum window width</li>
-          <li>Changed note title to headerbar</li>
-          <li>GTimeVal Deprecation</li>
-        </ul>
         <p>This release updates the following translations:</p>
         <ul>
-          <li>gl (Fran Dieguez)</li>
+          <li>ms (Umarzuki Bin Mochlis Moktar)</li>
         </ul>
-        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
       </description>
     </release>
-    <release date="2019-10-14" version="3.35.1">
+    <release date="2019-10-14" version="3.34.1">
       <description>
-        <p>This release brings the following new features and improvements:</p>
-        <ul>
-          <li>Added new GNOME Notes Nightly icon (Jakub Steiner)</li>
-        </ul>
         <p>This release updates the following translations:</p>
         <ul>
           <li>ca (Jordi Mas)</li>
@@ -125,7 +106,7 @@
           <li>sk (Dušan Kazik)</li>
           <li>zh_TW (Yi-Jyun Pan)</li>
         </ul>
-        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
       </description>
     </release>
     <release date="2019-09-10" version="3.34.0">
@@ -173,7 +154,7 @@
           <li>sv (Anders Jonsson)</li>
           <li>tr (Emin Tufan Çetin)</li>
         </ul>
-        <p>Thanks to all the contributors that worked on GNOME Notes!</p>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
       </description>
     </release>
   </releases>

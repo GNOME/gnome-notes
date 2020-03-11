@@ -1,13 +1,13 @@
 # Czech translation for bijiben.
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Marek Černocký <marek@manet.cz>, 2014, 2015, 2016.
+# Marek Černocký <marek@manet.cz>, 2014, 2015, 2016, 2020.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben\n"
-"POT-Creation-Date: 2016-05-19 15:03+0000\n"
-"PO-Revision-Date: 2016-09-04 23:14+0200\n"
+"Project-Id-Version: gnome-notes gnome-3.36\n"
+"POT-Creation-Date: 2020-03-07 05:06+0000\n"
+"PO-Revision-Date: 2020-03-11 09:19+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -44,24 +44,24 @@ msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #. (itstool) path: credit/years
-#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/search.page:17
-#: C/share.page:17
+#: C/colors.page:19 C/create.page:17 C/delete.page:22 C/notebooks.page:17
+#: C/search.page:17 C/search.page:22 C/share.page:17
 msgid "2013, 2014"
 msgstr "2013, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
-#: C/delete.page:30 C/delete-permanent.page:11 C/delete-restore.page:11
-#: C/format-list.page:20 C/format-text.page:20 C/index.page:20
-#: C/introduction.page:11 C/introduction.page:26 C/notebooks.page:20
-#: C/rename.page:11 C/search.page:20 C/search.page:30 C/share.page:20
+#: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
+#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
+#: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
+#: C/share.page:20
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
-#: C/colors.page:24 C/delete.page:17 C/delete.page:22 C/format-list.page:17
+#: C/colors.page:24 C/delete.page:17 C/format-list.page:17
 #: C/format-list.page:22 C/format-text.page:17 C/index.page:22
-#: C/introduction.page:13 C/rename.page:13 C/search.page:22
+#: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
 
@@ -79,7 +79,7 @@ msgstr "Michael Hill"
 #: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
 #: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
 #: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
-#: C/search.page:32 C/share.page:22 C/share.page:27
+#: C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
@@ -108,7 +108,7 @@ msgid "To change the color of an individual note:"
 msgstr "Abyste změnili barvu jedné poznámky:"
 
 #. (itstool) path: item/p
-#: C/colors.page:45 C/delete.page:45 C/notebooks.page:43 C/rename.page:31
+#: C/colors.page:45 C/delete.page:40 C/notebooks.page:43 C/rename.page:31
 #: C/share.page:43
 msgid "Click on the note to open it."
 msgstr "Kliknutím poznámku otevřete."
@@ -139,7 +139,7 @@ msgid "To change the color of multiple notes:"
 msgstr "Abyste změnili barvu více poznámek:"
 
 #. (itstool) path: item/p
-#: C/colors.page:62 C/delete.page:61 C/notebooks.page:61
+#: C/colors.page:62 C/delete.page:56 C/notebooks.page:61
 msgid ""
 "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
 "\">Selection mode</gui> button."
@@ -253,28 +253,23 @@ msgstr ""
 "Vyberte, kam chcete text vložit, a klikněte na tlačítko <gui style=\"button"
 "\">Vložit</gui>."
 
-#. (itstool) path: credit/years
-#: C/delete.page:32
-msgid "01 sep 2014"
-msgstr "1. srpen 2014"
-
 #. (itstool) path: info/desc
-#: C/delete.page:37
+#: C/delete.page:32
 msgid "Delete old and unwanted notes."
 msgstr "Jak smazat staré a nepotřebné poznámky."
 
 #. (itstool) path: page/title
-#: C/delete.page:40
+#: C/delete.page:35
 msgid "Delete a note"
 msgstr "Smazání poznámky"
 
 #. (itstool) path: steps/title
-#: C/delete.page:43
+#: C/delete.page:38
 msgid "To delete a note:"
 msgstr "Když chcete smazat poznámku:"
 
 #. (itstool) path: item/p
-#: C/delete.page:48
+#: C/delete.page:43
 msgid ""
 "Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Move to Trash</gui></guiseq>."
@@ -283,7 +278,7 @@ msgstr ""
 "\"menuitem\">Přesunout do koše</gui></guiseq>."
 
 #. (itstool) path: note/p
-#: C/delete.page:54
+#: C/delete.page:49
 msgid ""
 "Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
 "keyseq> to delete an open note."
@@ -292,17 +287,17 @@ msgstr ""
 "keyseq>, abyste smazali otevřenou poznámku."
 
 #. (itstool) path: steps/title
-#: C/delete.page:59
+#: C/delete.page:54
 msgid "To delete multiple notes and notebooks:"
 msgstr "Abyste smazali více poznámek a sešitů:"
 
 #. (itstool) path: item/p
-#: C/delete.page:65
+#: C/delete.page:60
 msgid "Select the notes and the notebooks you want to delete."
 msgstr "Vyberte poznámky a sešity, které chcete smazat."
 
 #. (itstool) path: item/p
-#: C/delete.page:68
+#: C/delete.page:63
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
 msgstr "Klikněte na tlačítko <gui style=\"button\">Přesunout do koše</gui>."
 
@@ -331,8 +326,9 @@ msgstr "Když chcete trvale smazat všechny poznámky v koši:"
 msgid ""
 "Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui>."
-msgstr "Klikněte na ikonu <gui>Poznámky</gui> vedle <gui href=\"help:gnome"
-"-help/shell-terminology\">Činnosti</gui>."
+msgstr ""
+"Klikněte na ikonu <gui>Poznámky</gui> vedle <gui href=\"help:gnome-help/"
+"shell-terminology\">Činnosti</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:34
@@ -508,18 +504,6 @@ msgstr "Úpravy a sdílení poznámek"
 msgid "Delete notes"
 msgstr "Mazání poznámek"
 
-#. (itstool) path: media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/introduction.page:44
-msgctxt "_"
-msgid ""
-"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
-msgstr ""
-"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
-
 #. (itstool) path: info/desc
 #: C/introduction.page:33
 msgid "A simple application for creating, editing and viewing notes."
@@ -539,9 +523,21 @@ msgid ""
 "easily with <app>Online Accounts</app>."
 msgstr ""
 "<app>Poznámky</app> jsou jednoduchá aplikace pro vytváření, úpravy a "
-"prohlížení poznámek. Poznámky můžete také vyhledávat v přehledu "
-"<gui href=\"help:gnome-help/shell-terminology\">Činností</gui>. <app>"
-"Poznámky</app> umí jednoduše spolupracovat s <app>Účty on-line</app>."
+"prohlížení poznámek. Poznámky můžete také vyhledávat v přehledu <gui href="
+"\"help:gnome-help/shell-terminology\">Činností</gui>. <app>Poznámky</app> "
+"umí jednoduše spolupracovat s <app>Účty on-line</app>."
+
+#. (itstool) path: page/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/introduction.page:44
+msgctxt "_"
+msgid ""
+"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+msgstr ""
+"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -678,17 +674,17 @@ msgid "Change the text in the first line of the note."
 msgstr "Změňte text na prvním řádku poznámky."
 
 #. (itstool) path: info/desc
-#: C/search.page:37
+#: C/search.page:32
 msgid "Search for an existing note, note content and notebooks."
 msgstr "Jak najít existující poznámku, obsah poznámky a sešit."
 
 #. (itstool) path: page/title
-#: C/search.page:40
+#: C/search.page:35
 msgid "Find a note"
 msgstr "Vyhledání poznámky"
 
 #. (itstool) path: page/p
-#: C/search.page:42
+#: C/search.page:37
 msgid ""
 "You can search your notes in the <gui>New and Recent</gui> view in "
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
@@ -699,24 +695,24 @@ msgstr ""
 "help/shell-terminology\">Činností</gui>."
 
 #. (itstool) path: steps/title
-#: C/search.page:47
+#: C/search.page:42
 msgid "To find notes while in <gui>New and Recent</gui>:"
 msgstr ""
 "Když máte zobrazeny <gui>Nové a nedávné</gui> a chcete vyhledat poznámku:"
 
 #. (itstool) path: item/p
-#: C/search.page:49
+#: C/search.page:44
 msgid "Click the <gui>Search</gui> button."
 msgstr "Klikněte na tlačítko <gui>Hledat</gui>."
 
 #. (itstool) path: item/p
-#: C/search.page:52
+#: C/search.page:47
 msgid "Type your search term. Search results will appear instantly."
 msgstr ""
 "Pište výraz, který chcete najít. Výsledky se budou zobrazovat průběžně."
 
 #. (itstool) path: note/p
-#: C/search.page:57
+#: C/search.page:52
 msgid ""
 "You can directly start typing the search string in the <gui>New and Recent</"
 "gui> view to search notes."

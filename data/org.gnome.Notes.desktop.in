@@ -12,3 +12,8 @@ StartupNotify=true
 Terminal=false
 Type=Application
 Categories=GNOME;GTK;Utility;
+Actions=new-note
+
+[Desktop Action new-note]
+Name=Create New Note
+Exec=bijiben --new-note

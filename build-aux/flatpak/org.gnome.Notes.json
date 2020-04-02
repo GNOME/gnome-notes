@@ -122,6 +122,7 @@
             ],
             "buildsystem" : "cmake",
             "config-opts" : [
+                "-DENABLE_CANBERRA=OFF",
                 "-DENABLE_GTK=ON",
                 "-DENABLE_GOOGLE_AUTH=OFF",
                 "-DENABLE_UOA=OFF",

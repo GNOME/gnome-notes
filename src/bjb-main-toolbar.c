@@ -314,9 +314,13 @@ on_back_button_clicked (BjbMainToolbar *self)
 
   if (self->note)
     {
+      if (biji_note_obj_is_trashed (self->note))
+        bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
+                                   BJB_WINDOW_BASE_ARCHIVE_VIEW);
+      else
+        bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
+                                   BJB_WINDOW_BASE_MAIN_VIEW);
       disconnect_note_handlers (self);
-      bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
-                                 BJB_WINDOW_BASE_MAIN_VIEW);
       bjb_main_view_update_model (self->parent);
       return;
     }
@@ -497,6 +501,11 @@ populate_bar_for_note_view (BjbMainToolbar *self)
     gtk_widget_show (self->color_button);
     self->note_color_changed = g_signal_connect (self->note, "color-changed",
                                G_CALLBACK (on_note_color_changed), self->color_button);
+  }
+
+  if (biji_note_obj_is_trashed (self->note))
+  {
+    gtk_widget_hide (self->trash_item);
   }
 
   /* Note Last Updated */

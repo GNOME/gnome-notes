@@ -205,7 +205,11 @@ on_detach_window_cb (GSimpleAction *action,
   if (!note)
     return;
 
-  bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+  if (biji_note_obj_is_trashed (note))
+    bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+  else
+    bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+
   bijiben_new_window_for_note (g_application_get_default (), note);
 }
 

@@ -39,6 +39,26 @@
   </screenshots>
 
   <releases>
+    <release date="2020-04-05" version="3.36.1">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>cs (Marek Černocký)</li>
+          <li>he (Yosef Or Boczko)</li>
+          <li>id (Andika Triwidada)</li>
+          <li>nb (Kjartan Maraas)</li>
+          <li>ro (Daniel Șerbănescu)</li>
+          <li>sk (Dušan Kazik)</li>
+          <li>uk (Daniel Korostil)</li>
+          <li>zh_TW (Cheng-Chia Tseng)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-03-06" version="3.36.0">
       <description>
         <p>This release brings the following new features and improvements:</p>
@@ -83,76 +103,6 @@
           <li>tr (Sabri Ünal, Emin Tufan Çetin)</li>
           <li>uk (Daniel Korostil)</li>
           <li>zh_TW (Yi-Jyun Pan)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2020-01-05" version="3.34.2">
-      <description>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>ms (Umarzuki Bin Mochlis Moktar)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2019-10-14" version="3.34.1">
-      <description>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>ca (Jordi Mas)</li>
-          <li>da (Ask Hjorth Larsen)</li>
-          <li>fa (Danial Behzadi)</li>
-          <li>sk (Dušan Kazik)</li>
-          <li>zh_TW (Yi-Jyun Pan)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2019-09-10" version="3.34.0">
-      <description>
-        <p>This release brings the following new features and improvements:</p>
-        <ul>
-          <li>Added intltool as a flatpak dependency (Javier Jardón)</li>
-          <li>Added missing icons in editor toolbar (Isaque Galdino)</li>
-          <li>Added new API to get human time (Mohammed Sadiq)</li>
-          <li>Changed settings window to use the same color chooser as editor window (Jonathan Kang)</li>
-          <li>Fixed missing notes from main view (Isaque Galdino)</li>
-          <li>Improved application model by removing duplicated note id objects (Isaque Galdino)</li>
-          <li>Improved Own/NextCloud notes management (Isaque Galdino)</li>
-          <li>Improved README to use markdown (Roger @rogersachan)</li>
-          <li>Ported to libecal-2.0 (Milan Crha)</li>
-        </ul>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>cs (Marek Černocký)</li>
-          <li>de (Tim Sabsch)</li>
-          <li>el (Efstathios Iosifidis)</li>
-          <li>en_GB (Philip Withnall)</li>
-          <li>es (Daniel Mustieles)</li>
-          <li>eu (Asier Sarasua Garmendia)</li>
-          <li>fa (Danial Behzadi)</li>
-          <li>fi (Jiri Grönroos)</li>
-          <li>fr (Charles Monzat)</li>
-          <li>fur (Fabio Tomat)</li>
-          <li>gl (Fran Dieguez)</li>
-          <li>hr (Goran Vidović)</li>
-          <li>hu (Balázs Úr)</li>
-          <li>id (Kukuh Syafaat)</li>
-          <li>it (Gianvito Cavasoli)</li>
-          <li>ja (Ryuta Fujii)</li>
-          <li>ko (Seong-ho Cho)</li>
-          <li>lt (Aurimas Černius)</li>
-          <li>lv (Rūdolfs Mazurs)</li>
-          <li>nb (Kjartan Maraas)</li>
-          <li>nl (Nathan Follens)</li>
-          <li>pl (Piotr Drąg)</li>
-          <li>pt_BR (Rafael Fontenelle)</li>
-          <li>ro (Florentina Mușat)</li>
-          <li>sl (Matej Urbančič)</li>
-          <li>sr (Марко Костић)</li>
-          <li>sv (Anders Jonsson)</li>
-          <li>tr (Emin Tufan Çetin)</li>
         </ul>
         <p>Thanks to all the contributors who worked on GNOME Notes!</p>
       </description>

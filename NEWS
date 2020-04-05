@@ -1,3 +1,18 @@
+Overview of changes in 3.36.1
+=============================
+
+* Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)
+
+Translations
+* cs (Marek Černocký)
+* he (Yosef Or Boczko)
+* id (Andika Triwidada)
+* nb (Kjartan Maraas)
+* ro (Daniel Șerbănescu)
+* sk (Dušan Kazik)
+* uk (Daniel Korostil)
+* zh_TW (Cheng-Chia Tseng)
+
 Overview of changes in 3.36.0
 =============================
 

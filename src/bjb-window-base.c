@@ -167,6 +167,14 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
         }
       break;
 
+    case GDK_KEY_F10:
+      if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
+        {
+          bjb_main_toolbar_open_menu (self->main_toolbar);
+          return TRUE;
+        }
+      break;
+
     case GDK_KEY_F2:
     case GDK_KEY_F3:
     case GDK_KEY_F4:
@@ -175,7 +183,6 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
     case GDK_KEY_F7:
     case GDK_KEY_F8:
     case GDK_KEY_F9:
-    case GDK_KEY_F10:
     case GDK_KEY_F11:
       return TRUE;
 

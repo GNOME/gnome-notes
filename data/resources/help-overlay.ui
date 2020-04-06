@@ -24,8 +24,15 @@
                         </child>
                         <child>
                             <object class="GtkShortcutsShortcut">
-                                <property name="accelerator">&lt;Primary&gt;q</property>
+                                <property name="accelerator">&lt;Primary&gt;w</property>
                                 <property name="title" translatable="yes" context="shortcut window">Close window</property>
+                                <property name="visible">True</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkShortcutsShortcut">
+                                <property name="accelerator">&lt;Primary&gt;q</property>
+                                <property name="title" translatable="yes" context="shortcut window">Quit</property>
                                 <property name="visible">True</property>
                             </object>
                         </child>

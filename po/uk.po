@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-23 16:51+0000\n"
-"PO-Revision-Date: 2020-03-14 20:43+0200\n"
+"POT-Creation-Date: 2020-04-02 03:09+0000\n"
+"PO-Revision-Date: 2020-04-06 16:18+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1: 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 20.07.70\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
@@ -77,6 +77,11 @@ msgstr "Створюйте нотатки, залишайте мітки на ф
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Електронна ручка"
+
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "Створити нотатку"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -184,7 +189,6 @@ msgid "General"
 msgstr "Загальне"
 
 #: data/resources/help-overlay.ui:14
-#| msgid "Share note"
 msgctxt "shortcut window"
 msgid "Search notes"
 msgstr "Шукати нотатки"
@@ -210,7 +214,6 @@ msgid "Show help"
 msgstr "Показати довідку"
 
 #: data/resources/help-overlay.ui:49
-#| msgid "Keyboard Shortcuts"
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Клавіатурні скорочення"
@@ -236,7 +239,6 @@ msgid "Note edit mode"
 msgstr "Режим редагування примітки"
 
 #: data/resources/help-overlay.ui:82
-#| msgid "Open in another window"
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Відкрити у новому вікні"

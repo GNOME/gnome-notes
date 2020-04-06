@@ -846,3 +846,12 @@ bjb_main_toolbar_title_focus (BjbMainToolbar *self)
 {
   gtk_entry_grab_focus_without_selecting (GTK_ENTRY (self->title_entry));
 }
+
+void
+bjb_main_toolbar_open_menu (BjbMainToolbar *self)
+{
+  if (gtk_widget_is_visible (self->main_button))
+    gtk_widget_activate (self->main_button);
+  else if (gtk_widget_is_visible (self->menu_button))
+    gtk_widget_activate (self->menu_button);
+}

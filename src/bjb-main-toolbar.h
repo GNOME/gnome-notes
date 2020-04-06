@@ -34,4 +34,6 @@ BjbMainToolbar        *bjb_main_toolbar_new                       (BjbMainView *
 
 void                   bjb_main_toolbar_title_focus               (BjbMainToolbar *self);
 
+void                   bjb_main_toolbar_open_menu                 (BjbMainToolbar *self);
+
 G_END_DECLS

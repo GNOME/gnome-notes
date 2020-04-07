@@ -366,13 +366,13 @@ enumerate_next_files_ready_cb (GObject *source,
   {
     GFileInfo *info;
     BijiOCloudItem *item;
+    g_autofree char *file_name = NULL;
 
     info = l->data;
     item = o_cloud_item_new (self);
     item->set.title = g_strdup (g_file_info_get_name (info));
-    item->set.url = g_build_filename
-      (g_file_get_parse_name (self->folder),
-       "/", item->set.title, NULL);
+    file_name = g_file_get_parse_name (self->folder);
+    item->set.url = g_build_filename (file_name, "/", item->set.title, NULL);
 
     item->set.mtime = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
     item->set.created = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_TIME_CREATED);

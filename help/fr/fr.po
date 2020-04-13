@@ -3,21 +3,21 @@
 # This file is distributed under the same license as the bijiben package.
 # naybnet <naybnet@gmail.com>, 2014.
 # Myriam Economou <myriam.economou@gmail.com>, 2015.
-# Charles Monzat <superboa@hotmail.fr>, 2016.
+# Charles Monzat <charles.monzat@free.fr>, 2016-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2017-02-25 22:29+0000\n"
-"PO-Revision-Date: 2016-10-29 16:53+0200\n"
-"Last-Translator: Charles Monzat <superboa@hotmail.fr>\n"
-"Language-Team: français <gnomefr@traduc.org>\n"
+"POT-Creation-Date: 2018-11-16 19:47+0000\n"
+"PO-Revision-Date: 2020-04-07 10:56+0200\n"
+"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -48,24 +48,24 @@ msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #. (itstool) path: credit/years
-#: C/colors.page:19 C/create.page:17 C/notebooks.page:17 C/search.page:17
-#: C/share.page:17
+#: C/colors.page:19 C/create.page:17 C/delete.page:22 C/notebooks.page:17
+#: C/search.page:17 C/search.page:22 C/share.page:17
 msgid "2013, 2014"
 msgstr "2013, 2014"
 
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
-#: C/delete.page:30 C/delete-permanent.page:11 C/delete-restore.page:11
-#: C/format-list.page:20 C/format-text.page:20 C/index.page:20
-#: C/introduction.page:11 C/introduction.page:26 C/notebooks.page:20
-#: C/rename.page:11 C/search.page:20 C/search.page:30 C/share.page:20
+#: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
+#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
+#: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
+#: C/share.page:20
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
-#: C/colors.page:24 C/delete.page:17 C/delete.page:22 C/format-list.page:17
+#: C/colors.page:24 C/delete.page:17 C/format-list.page:17
 #: C/format-list.page:22 C/format-text.page:17 C/index.page:22
-#: C/introduction.page:13 C/rename.page:13 C/search.page:22
+#: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
 
@@ -83,14 +83,14 @@ msgstr "Michael Hill"
 #: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
 #: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
 #: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
-#: C/search.page:32 C/share.page:22 C/share.page:27
+#: C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
 #. (itstool) path: info/desc
 #: C/colors.page:34
 msgid "Edit the note background color."
-msgstr "Modifier la couleur d'arrière plan de la note."
+msgstr "Modifier la couleur d’arrière-plan de la note."
 
 #. (itstool) path: page/title
 #: C/colors.page:37
@@ -109,13 +109,13 @@ msgstr ""
 #. (itstool) path: steps/title
 #: C/colors.page:43
 msgid "To change the color of an individual note:"
-msgstr "Changer la couleur d'une seule note :"
+msgstr "Changer la couleur d’une seule note :"
 
 #. (itstool) path: item/p
-#: C/colors.page:45 C/delete.page:45 C/notebooks.page:43 C/rename.page:31
+#: C/colors.page:45 C/delete.page:40 C/notebooks.page:43 C/rename.page:31
 #: C/share.page:43
 msgid "Click on the note to open it."
-msgstr "Cliquez sur la note pour l'ouvrir."
+msgstr "Cliquez sur la note pour l’ouvrir."
 
 #. (itstool) path: item/p
 #: C/colors.page:48 C/colors.page:69
@@ -136,8 +136,8 @@ msgid ""
 "You can also change the background colour in a group of notes at the same "
 "time."
 msgstr ""
-"Vous pouvez aussi changer la couleur de fond d'un groupe de notes en même "
-"temps."
+"Vous pouvez également changer la couleur de fond d’un groupe de notes "
+"simultanément."
 
 #. (itstool) path: steps/title
 #: C/colors.page:60
@@ -145,7 +145,7 @@ msgid "To change the color of multiple notes:"
 msgstr "Pour changer la couleur de plusieurs notes :"
 
 #. (itstool) path: item/p
-#: C/colors.page:62 C/delete.page:61 C/notebooks.page:61
+#: C/colors.page:62 C/delete.page:56 C/notebooks.page:61
 msgid ""
 "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
 "\">Selection mode</gui> button."
@@ -164,8 +164,8 @@ msgid ""
 "Create a new note from scratch, using some text from another application or "
 "from another note."
 msgstr ""
-"Créer une nouvelle note en utilisant du texte provenant d'une autre "
-"application ou d'une autre note."
+"Créer une nouvelle note en utilisant du texte provenant d’une autre "
+"application ou d’une autre note."
 
 #. (itstool) path: page/title
 #: C/create.page:36
@@ -191,8 +191,8 @@ msgid ""
 "Drag and drop text to the <gui>New and Recent</gui> view to create a note "
 "containing this text."
 msgstr ""
-"Glissez et déposez le texte dans la vue <gui>Nouveau et récent</gui> pour "
-"créer une note contenant ce texte."
+"Glissez-déposez le texte dans la vue <gui>Nouveau et récent</gui> pour créer "
+"une note contenant ce texte."
 
 #. (itstool) path: item/p
 #: C/create.page:49
@@ -229,8 +229,8 @@ msgid ""
 "You can move text inside a note or to another note by cutting or copying it "
 "and pasting it somewhere else."
 msgstr ""
-"Vous pouvez déplacer du texte au sein d'une note ou vers une autre note en "
-"la coupant ou copiant et collant ailleurs."
+"Vous pouvez déplacer du texte au sein d’une note ou vers une autre note en "
+"le coupant ou en le copiant et en le collant ailleurs "
 
 #. (itstool) path: steps/title
 #: C/cut-copy-paste.page:37
@@ -256,59 +256,55 @@ msgid ""
 "Select where you want to paste the text and press <gui style=\"button"
 "\">Paste</gui>."
 msgstr ""
-"Sélectionnez où vous voulez coller le texte et appuyez sur <gui style="
-"\"button\">Coller</gui>."
-
-#. (itstool) path: credit/years
-#: C/delete.page:32
-msgid "01 sep 2014"
-msgstr "01 sep 2014"
+"Sélectionnez l’emplacement où vous souhaitez coller le texte et appuyez sur "
+"<gui style=\"button\">Coller</gui>."
 
 #. (itstool) path: info/desc
-#: C/delete.page:37
+#: C/delete.page:32
 msgid "Delete old and unwanted notes."
 msgstr "Supprimer les notes anciennes et indésirables."
 
 #. (itstool) path: page/title
-#: C/delete.page:40
+#: C/delete.page:35
 msgid "Delete a note"
 msgstr "Supprimer une note"
 
 #. (itstool) path: steps/title
-#: C/delete.page:43
+#: C/delete.page:38
 msgid "To delete a note:"
 msgstr "Pour supprimer une note :"
 
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
-#: C/delete.page:48
+#: C/delete.page:43
 msgid ""
 "Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Move to Trash</gui></guiseq>."
 msgstr ""
-"Sélectionnez <guiseq><gui style=\"button\">Plus d'options…</gui><gui style="
+"Sélectionnez <guiseq><gui style=\"button\">Plus d’options</gui><gui style="
 "\"menuitem\">Déplacer dans la corbeille</gui></guiseq>."
 
 #. (itstool) path: note/p
-#: C/delete.page:54
+#: C/delete.page:49
 msgid ""
 "Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
 "keyseq> to delete an open note."
 msgstr ""
-"Appuyez sur le raccourci clavier <keyseq><key>Ctrl</key><key>Supprimer</"
-"key></keyseq> pour supprimer une note ouverte."
+"Appuyez sur le raccourci clavier <keyseq><key>Ctrl</key><key>Suppr</key></"
+"keyseq> pour supprimer une note ouverte."
 
 #. (itstool) path: steps/title
-#: C/delete.page:59
+#: C/delete.page:54
 msgid "To delete multiple notes and notebooks:"
 msgstr "Pour supprimer plusieurs notes et carnets :"
 
 #. (itstool) path: item/p
-#: C/delete.page:65
+#: C/delete.page:60
 msgid "Select the notes and the notebooks you want to delete."
 msgstr "Sélectionnez les notes et les carnets que vous souhaitez supprimer."
 
 #. (itstool) path: item/p
-#: C/delete.page:68
+#: C/delete.page:63
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
 msgstr ""
 "Cliquez sur le bouton <gui style=\"button\">Déplacer dans la corbeille</gui>."
@@ -342,20 +338,20 @@ msgid ""
 "Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui>."
 msgstr ""
-"Cliquez sur l'icône <gui>Notes</gui> à côté de <gui href=\"help:gnome-help/"
+"Cliquez sur l’icône <gui>Notes</gui> à côté de <gui href=\"help:gnome-help/"
 "shell-terminology\">Activités</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
-msgstr "Sélectionnez <gui>Voir la Corbeille</gui>."
+msgstr "Sélectionnez <gui>Afficher la Corbeille</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Cliquez sur le bouton <gui style=\"button\">Vider</gui> dans la barre "
-"d'outils."
+"d’outils."
 
 #. (itstool) path: steps/title
 #: C/delete-permanent.page:42
@@ -398,7 +394,7 @@ msgid ""
 "restore it from <gui>Trash</gui>."
 msgstr ""
 "Si vous pensez que vous avez accidentellement supprimé une note, vous pouvez "
-"la voir et la restaurer via <gui>Corbeille</gui>."
+"l’afficher et la restaurer via <gui>Corbeille</gui>."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
@@ -437,6 +433,7 @@ msgstr "Créer une liste"
 msgid "While the note is open:"
 msgstr "Pendant que la note est ouverte :"
 
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
 #: C/format-list.page:40
 msgid ""
@@ -444,8 +441,9 @@ msgid ""
 "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
 msgstr ""
 "Pour créer une liste non ordonnée, cliquez sur <guiseq><gui style=\"button"
-"\">Plus d'options…</gui> <gui style=\"menuitem\">Puces</gui></guiseq>."
+"\">Plus d’options</gui> <gui style=\"menuitem\">Puces</gui></guiseq>."
 
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
 #: C/format-list.page:45
 msgid ""
@@ -453,7 +451,7 @@ msgid ""
 "</gui> <gui>Numbered List</gui></guiseq>."
 msgstr ""
 "Pour créer une liste ordonnée, cliquez sur <guiseq><gui style=\"button"
-"\">Plus d'options…</gui> <gui>Liste numérotée</gui></guiseq>."
+"\">Plus d’options</gui> <gui>Liste numérotée</gui></guiseq>."
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -541,8 +539,8 @@ msgid ""
 msgstr ""
 "<app>Notes</app> est une application simple pour créer, modifier et "
 "visualiser des notes. Vous pouvez également rechercher une note dans la vue "
-"d'ensemble des <gui href=\"help:gnome-help/shell-terminology\">Activités</"
-"gui>. <app>Notes</app> s'intègre facilement dans l'application <app>Comptes "
+"d’ensemble des <gui href=\"help:gnome-help/shell-terminology\">Activités</"
+"gui>. <app>Notes</app> s’intègre facilement dans l’application <app>Comptes "
 "en ligne</app>."
 
 #. (itstool) path: page/media
@@ -577,6 +575,7 @@ msgstr "Ouvrir une note dans une autre fenêtre"
 msgid "To open a note in a new window:"
 msgstr "Pour ouvrir une note dans une nouvelle fenêtre :"
 
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
 #: C/new-window.page:27
 msgid ""
@@ -584,7 +583,7 @@ msgid ""
 "style=\"menuitem\">Open in New Window</gui></guiseq>."
 msgstr ""
 "Ouvrez une note et cliquez ensuite sur <guiseq><gui style=\"button\">Plus "
-"d'options…</gui><gui style=\"menuitem\">Ouvrir dans une nouvelle fenêtre</"
+"d’options</gui><gui style=\"menuitem\">Ouvrir dans une nouvelle fenêtre</"
 "gui></guiseq>."
 
 #. (itstool) path: item/p
@@ -598,7 +597,7 @@ msgstr ""
 "Dans la vue <gui>Nouveau et récent</gui>, cliquez sur le bouton <gui style="
 "\"button\">Mode de sélection</gui>, sélectionnez toutes les notes que vous "
 "souhaitez ouvrir dans une nouvelle fenêtre, cliquez ensuite sur le bouton "
-"<gui style=\"button\">Ouvrir dans une autre fenêtre</gui>."
+"<gui style=\"button\">Ouvrir dans une nouvelle fenêtre</gui>."
 
 #. (itstool) path: info/desc
 #: C/notebooks.page:32
@@ -618,7 +617,7 @@ msgid ""
 "You can use notebooks to group your notes together to make it easier to "
 "search and sort through your notes."
 msgstr ""
-"Vous pouvez utilisez des carnets pour grouper des notes ensemble afin de "
+"Vous pouvez utiliser des carnets pour grouper des notes ensemble afin de "
 "faciliter la recherche et le tri de vos notes."
 
 #. (itstool) path: steps/title
@@ -626,14 +625,15 @@ msgstr ""
 msgid "To create a notebook with a single note:"
 msgstr "Pour créer un carnet avec une seule note :"
 
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
 #: C/notebooks.page:46
 msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Notebooks</gui></guiseq>."
 msgstr ""
-"Cliquez sur le bouton <guiseq><gui style=\"button\">Plus d'options…</"
-"gui><gui style=\"menuitem\">Carnets</gui></guiseq>."
+"Cliquez sur le bouton <guiseq><gui style=\"button\">Plus d’options</gui><gui "
+"style=\"menuitem\">Carnets</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:50
@@ -642,7 +642,7 @@ msgid ""
 "\">New notebook</gui> button."
 msgstr ""
 "Saisissez un nom qui convient pour le carnet et cliquez sur le bouton <gui "
-"style=\"button\">Nouveau carnet</gui>."
+"style=\"button\">Nouveau carnet de notes</gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:54 C/notebooks.page:75
@@ -676,7 +676,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/rename.page:23
 msgid "Change the name of an existing note."
-msgstr "Changer le nom d'une note existante."
+msgstr "Changer le nom d’une note existante."
 
 #. (itstool) path: page/title
 #: C/rename.page:26
@@ -694,50 +694,50 @@ msgid "Change the text in the first line of the note."
 msgstr "Changez le texte de la première ligne de la note."
 
 #. (itstool) path: info/desc
-#: C/search.page:37
+#: C/search.page:32
 msgid "Search for an existing note, note content and notebooks."
-msgstr "Rechercher une note, un contenu d'une note et des carnets existants."
+msgstr "Rechercher une note, un contenu d’une note et des carnets existants."
 
 #. (itstool) path: page/title
-#: C/search.page:40
+#: C/search.page:35
 msgid "Find a note"
 msgstr "Trouver une note"
 
 #. (itstool) path: page/p
-#: C/search.page:42
+#: C/search.page:37
 msgid ""
 "You can search your notes in the <gui>New and Recent</gui> view in "
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
 "Vous pouvez rechercher vos notes dans la vue <gui>Nouveau et récent</gui> "
-"dans <app>Notes</app> ou les trouver à partir de la vue d'ensemble des <gui "
+"dans <app>Notes</app> ou les trouver à partir de la vue d’ensemble des <gui "
 "href=\"help:gnome-help/shell-terminology\">Activités</gui>"
 
 #. (itstool) path: steps/title
-#: C/search.page:47
+#: C/search.page:42
 msgid "To find notes while in <gui>New and Recent</gui>:"
 msgstr "Pour trouver des notes à partir de <gui>Nouveau et récent</gui> :"
 
 #. (itstool) path: item/p
-#: C/search.page:49
+#: C/search.page:44
 msgid "Click the <gui>Search</gui> button."
 msgstr "Cliquez sur le bouton <gui>Rechercher</gui>."
 
 #. (itstool) path: item/p
-#: C/search.page:52
+#: C/search.page:47
 msgid "Type your search term. Search results will appear instantly."
 msgstr ""
 "Saisissez votre recherche. Les résultats de la recherche apparaîtront "
 "instantanément."
 
 #. (itstool) path: note/p
-#: C/search.page:57
+#: C/search.page:52
 msgid ""
 "You can directly start typing the search string in the <gui>New and Recent</"
 "gui> view to search notes."
 msgstr ""
-"Vous pouvez directement commencer à écrire votre recherche dans la vue "
+"Vous pouvez directement commencer à taper votre recherche dans la vue "
 "<gui>Nouveau et récent</gui> pour rechercher des notes."
 
 #. (itstool) path: info/desc
@@ -755,7 +755,7 @@ msgstr "Partager une note"
 msgid ""
 "You can share a note with your friends or colleagues by emailing it to them."
 msgstr ""
-"Vous pouvez partager une note avec vos amis ou collègues en leur envoyant "
+"Vous pouvez partager une note avec vos proches ou collègues en leur envoyant "
 "par courriel."
 
 #. (itstool) path: steps/title
@@ -763,14 +763,15 @@ msgstr ""
 msgid "To share a note:"
 msgstr "Pour partager une note :"
 
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
 #: C/share.page:46
 msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Email this Note</gui></guiseq>."
 msgstr ""
-"Cliquez sur le bouton <guiseq><gui style=\"button\">Plus d'options…</"
-"gui><gui style=\"menuitem\">Envoyer cette note par courriel</gui></guiseq>."
+"Cliquez sur le bouton <guiseq><gui style=\"button\">Plus d’options</gui><gui "
+"style=\"menuitem\">Envoyer cette note par courriel</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/share.page:50
@@ -788,3 +789,6 @@ msgstr ""
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Cet ouvrage est sous licence <_:link-1/>."
+
+#~ msgid "01 sep 2014"
+#~ msgstr "01 sep 2014"

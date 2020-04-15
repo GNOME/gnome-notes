@@ -37,17 +37,18 @@
 
 struct _BjbApplication
 {
-  GtkApplication parent_instance;
+  GtkApplication  parent_instance;
 
-  BijiManager *manager;
-  BjbSettings *settings;
+  GtkCssProvider *css_provider;
+  BijiManager    *manager;
+  BjbSettings    *settings;
 
   /* Controls. to_open is for startup */
-  GAction     *text_size;
-  gboolean     first_run;
-  gboolean     is_loaded;
-  gboolean     new_note;
-  GQueue       files_to_open; // paths
+  GAction        *text_size;
+  gboolean        first_run;
+  gboolean        is_loaded;
+  gboolean        new_note;
+  GQueue          files_to_open; // paths
 };
 
 G_DEFINE_TYPE (BjbApplication, bjb_application, GTK_TYPE_APPLICATION)
@@ -287,50 +288,18 @@ text_size_mapping_set (const GValue       *value,
 }
 
 static void
-theme_changed (GtkSettings *settings)
+bjb_apply_style (BjbApplication *self)
 {
-  static GtkCssProvider *provider = NULL;
-  g_autofree gchar *theme = NULL;
-  GdkScreen *screen;
-
-  g_object_get (settings, "gtk-theme-name", &theme, NULL);
-  screen = gdk_screen_get_default ();
-
-  if (g_str_equal (theme, "Adwaita"))
-  {
-    if (provider == NULL)
+  if (self->css_provider == NULL)
     {
-        g_autoptr(GFile) file = NULL;
+      g_autoptr(GFile) file = g_file_new_for_uri ("resource:///org/gnome/Notes/style.css");
+      self->css_provider = gtk_css_provider_new ();
+      gtk_css_provider_load_from_file (self->css_provider, file, NULL);
 
-        provider = gtk_css_provider_new ();
-        file = g_file_new_for_uri ("resource:///org/gnome/Notes/Adwaita.css");
-        gtk_css_provider_load_from_file (provider, file, NULL);
+      gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+                                                 GTK_STYLE_PROVIDER (self->css_provider),
+                                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
-
-    gtk_style_context_add_provider_for_screen (screen,
-                                               GTK_STYLE_PROVIDER (provider),
-                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-  }
-  else if (provider != NULL)
-  {
-    gtk_style_context_remove_provider_for_screen (screen,
-                                                  GTK_STYLE_PROVIDER (provider));
-    g_clear_object (&provider);
-  }
-}
-
-static void
-bjb_apply_style (void)
-{
-  GtkSettings *settings;
-
-  /* Set up a handler to load our custom css for Adwaita.
-   * See https://bugzilla.gnome.org/show_bug.cgi?id=732959
-   * for a more automatic solution that is still under discussion.
-   */
-  settings = gtk_settings_get_default ();
-  g_signal_connect (settings, "notify::gtk-theme-name", G_CALLBACK (theme_changed), NULL);
-  theme_changed (settings);
 }
 
 static void
@@ -400,7 +369,7 @@ bijiben_startup (GApplication *application)
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
 
-  bjb_apply_style ();
+  bjb_apply_style (self);
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.detach-window", vaccels_detach);
@@ -533,6 +502,7 @@ bijiben_finalize (GObject *object)
 {
   BjbApplication *self = BJB_APPLICATION (object);
 
+  g_clear_object (&self->css_provider);
   g_clear_object (&self->manager);
   g_clear_object (&self->settings);
   g_queue_foreach (&self->files_to_open, (GFunc) g_free, NULL);

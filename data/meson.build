@@ -44,7 +44,7 @@ install_data(
 )
 
 resource_data = files(
-  'resources/Adwaita.css',
+  'resources/style.css',
   'resources/note-symbolic.svg'
 )
 

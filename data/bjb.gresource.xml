@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gnome/Notes">
-    <file alias="Adwaita.css">resources/Adwaita.css</file>
+    <file alias="style.css">resources/style.css</file>
     <file alias="editor-toolbar.ui" compressed="true" preprocess="xml-stripblanks">resources/editor-toolbar.ui</file>
   </gresource>
 

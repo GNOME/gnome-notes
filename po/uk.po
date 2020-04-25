@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-04-02 03:09+0000\n"
-"PO-Revision-Date: 2020-04-06 16:18+0300\n"
+"POT-Creation-Date: 2020-04-19 10:38+0000\n"
+"PO-Revision-Date: 2020-04-25 10:08+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:636 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Примітки"
 
@@ -79,7 +79,6 @@ msgid "Note-taker"
 msgstr "Електронна ручка"
 
 #: data/org.gnome.Notes.desktop.in:19
-#| msgid "Create a new note"
 msgid "Create New Note"
 msgstr "Створити нотатку"
 
@@ -204,71 +203,83 @@ msgid "Close window"
 msgstr "Закрити вікно"
 
 #: data/resources/help-overlay.ui:35
+#| msgid "_Quit"
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Вийти"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Назад"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Показати довідку"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Відкрити меню"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Клавіатурні скорочення"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Режим вибирання"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Відміна режиму вибирання"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Вибрати все"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Режим редагування примітки"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Відкрити у новому вікні"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Напівжирний"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Курсив"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Підкреслений"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Повернути"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Повторити"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Викинути примітку"
@@ -455,47 +466,47 @@ msgstr "Виберіть типову адресу сховища:"
 msgid "Primary Book"
 msgstr "Первинна книга"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
 msgid "Untitled"
 msgstr "Неназвано"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:461
 msgid "Show the application’s version"
 msgstr "Показати версію програми"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:463
 msgid "Create a new note"
 msgstr "Створити нову нотатку"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:465
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
 msgstr "Взяти нотатки і експортувати їх скрізь."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:484
 msgid "Could not parse arguments"
 msgstr "Неможливо розібрати аргументи"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:492
 msgid "GNOME Notes"
 msgstr "Нотатки GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:504
 msgid "Could not register the application"
 msgstr "Неможливо зареєструвати програму"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:637
 msgid "Simple notebook for GNOME"
 msgstr "Проста записна книжка середовища GNOME"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:643
 msgid "translator-credits"
 msgstr ""
 "Микола Ткач <Stuartlittle1970@gmail.com>, 2013.\n"
@@ -547,7 +558,7 @@ msgstr "Результати для %s"
 msgid "New and Recent"
 msgstr "Нові та нещодавні"
 
-#: src/bjb-main-toolbar.c:366
+#: src/bjb-main-toolbar.c:370
 msgid "Trash"
 msgstr "Смітник"
 
@@ -556,7 +567,7 @@ msgstr "Смітник"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:438
 #, c-format
 msgid "Last updated: %s"
 msgstr "Востаннє оновлено: %s"
@@ -643,9 +654,6 @@ msgstr "Локальне сховище"
 
 #~ msgid "_About"
 #~ msgstr "_Про програму"
-
-#~ msgid "_Quit"
-#~ msgstr "Ви_йти"
 
 #~ msgid "Numbered List"
 #~ msgstr "Пронумерований список"

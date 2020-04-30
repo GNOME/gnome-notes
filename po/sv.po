@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-19 03:26+0000\n"
-"PO-Revision-Date: 2020-02-20 12:29+0100\n"
+"POT-Creation-Date: 2020-04-19 10:38+0000\n"
+"PO-Revision-Date: 2020-04-30 23:48+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:636 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Anteckningar"
 
@@ -72,6 +72,10 @@ msgstr "Gör anteckningar, tagga filer!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Anteckningsprogram"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "Skapa ny anteckning"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -198,70 +202,80 @@ msgstr "Stäng fönster"
 
 #: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Avsluta"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Gå bakåt"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Visa hjälp"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Öppna meny"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Tangentbordsgenvägar"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Markeringsläge"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Avbryt markeringsläget"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Markera allt"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Anteckningsredigeringsläge"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Öppna i ett nytt fönster"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Fet"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Kursiv"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Genomstruken"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Ångra"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Gör om"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Flytta anteckning till papperskorgen"
@@ -448,47 +462,47 @@ msgstr "Välj standardplatsen för lagring:"
 msgid "Primary Book"
 msgstr "Huvudbok"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
 msgid "Untitled"
 msgstr "Namnlös"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:461
 msgid "Show the application’s version"
 msgstr "Visa programversion"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:463
 msgid "Create a new note"
 msgstr "Skapa en ny anteckning"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:465
 msgid "[FILE…]"
 msgstr "[FIL…]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
 msgstr "Ta anteckningar och exportera dem överallt."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:484
 msgid "Could not parse arguments"
 msgstr "Kunde inte tolka argument"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:492
 msgid "GNOME Notes"
 msgstr "GNOME Anteckningar"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:504
 msgid "Could not register the application"
 msgstr "Kunde inte registrera programmet"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:637
 msgid "Simple notebook for GNOME"
 msgstr "Enkel anteckningsbok för GNOME"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:643
 msgid "translator-credits"
 msgstr ""
 "Marcus Lundblad <ml@update.uu.se>\n"
@@ -540,7 +554,7 @@ msgstr "Resultat för %s"
 msgid "New and Recent"
 msgstr "Nya och senaste"
 
-#: src/bjb-main-toolbar.c:366
+#: src/bjb-main-toolbar.c:370
 msgid "Trash"
 msgstr "Papperskorg"
 
@@ -549,7 +563,7 @@ msgstr "Papperskorg"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:438
 #, c-format
 msgid "Last updated: %s"
 msgstr "Senast uppdaterad: %s"
@@ -624,9 +638,6 @@ msgstr "Lokal lagring"
 
 #~ msgid "_About"
 #~ msgstr "_Om"
-
-#~ msgid "_Quit"
-#~ msgstr "_Avsluta"
 
 #~ msgid "Cut"
 #~ msgstr "Klipp ut"

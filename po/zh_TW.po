@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-03-31 09:33+0000\n"
-"PO-Revision-Date: 2020-03-31 23:51+0800\n"
+"POT-Creation-Date: 2020-04-19 10:38+0000\n"
+"PO-Revision-Date: 2020-05-02 00:52+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:636 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "筆記"
 
@@ -67,6 +67,10 @@ msgstr "隨手貼筆記，為檔案上標籤！"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "做筆記"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "建立新筆記"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -188,70 +192,80 @@ msgstr "關閉視窗"
 
 #: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
+msgid "Quit"
+msgstr "退出"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
 msgid "Go back"
 msgstr "返回"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "顯示幫助說明"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "開啟選單"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "鍵盤快捷鍵"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "選擇模式"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "取消選擇模式"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "全部選取"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "筆記編輯模式"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "以新視窗開啟"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "粗體"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "斜體"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "删除線"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "取消動作"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "再次動作"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "將筆記移至垃圾桶"
@@ -363,7 +377,7 @@ msgstr "求助"
 
 #: data/resources/main-toolbar.ui:326
 msgid "About Notes"
-msgstr "關於筆記"
+msgstr "關於《筆記》"
 
 #: data/resources/main-toolbar.ui:348
 msgid "Open in New Window"
@@ -438,47 +452,47 @@ msgstr "選取預設儲存位置："
 msgid "Primary Book"
 msgstr "主要簿本"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
 msgid "Untitled"
 msgstr "無標題"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:461
 msgid "Show the application’s version"
 msgstr "顯示應用程式的版本"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:463
 msgid "Create a new note"
 msgstr "建立新筆記"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:465
 msgid "[FILE…]"
 msgstr "[檔案…]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
 msgstr "隨時隨地做筆記並把它們匯出。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:484
 msgid "Could not parse arguments"
 msgstr "無法分析引數"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:492
 msgid "GNOME Notes"
 msgstr "GNOME 筆記"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:504
 msgid "Could not register the application"
 msgstr "無法註冊應用程式"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:637
 msgid "Simple notebook for GNOME"
 msgstr "GNOME 的簡易筆記本"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:643
 msgid "translator-credits"
 msgstr "Chao-Hsiung Liao"
 
@@ -525,7 +539,7 @@ msgstr "「%s」的結果"
 msgid "New and Recent"
 msgstr "新增與最近使用"
 
-#: src/bjb-main-toolbar.c:366
+#: src/bjb-main-toolbar.c:370
 msgid "Trash"
 msgstr "垃圾桶"
 
@@ -534,7 +548,7 @@ msgstr "垃圾桶"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:438
 #, c-format
 msgid "Last updated: %s"
 msgstr "上次更新：%s"

@@ -1,3 +1,27 @@
+Overview of changes in 3.37.1
+=============================
+
+* Added "Create New Note" shortcut to Desktop Actions (Felipe Borges)
+* Added the last missing shortcuts (F10, CTRL+W, CTRL+Q) (Jonathan Kang, Isaque Galdino)
+* Fixed memory leak when parsing Own/NextCloud folder (Mohammed Sadiq)
+* Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)
+
+Translations
+* cs (Marek Černocký)
+* es (Daniel Mustieles)
+* fa (Danial Behzadi)
+* fr (Charles Monzat)
+* he (Yosef Or Boczko)
+* id (Andika Triwidada)
+* nb (Kjartan Maraas)
+* ro (Daniel Șerbănescu)
+* sk (Dušan Kazik)
+* sv (Anders Jonsson)
+* tr (Emin Tufan Çetin)
+* uk (Daniel Korostil, Yuri Chornoivan)
+* zh_CN (Dz Chen)
+* zh_TW (Cheng-Chia Tseng)
+
 Overview of changes in 3.35.92
 ==============================
 

@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes gnome-3-36\n"
-"POT-Creation-Date: 2020-05-05 03:24+0000\n"
-"PO-Revision-Date: 2020-05-12 22:52+0300\n"
+"POT-Creation-Date: 2020-05-12 19:55+0000\n"
+"PO-Revision-Date: 2020-05-12 23:03+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.07.70\n"
@@ -100,8 +100,8 @@ msgid ""
 "You can change the background colour of a note to emphasize it or to "
 "differentiate it from other notes."
 msgstr ""
-"Ви можете змінити колір тла примітки, щоб акцентувати її або зробити легко"
-" впізнаваною серед інших приміток."
+"Ви можете змінити колір тла примітки, щоб акцентувати її або зробити легко "
+"впізнаваною серед інших приміток."
 
 #. (itstool) path: steps/title
 #: C/colors.page:43
@@ -144,8 +144,8 @@ msgid ""
 "In the <gui>New and Recent</gui> view, click the <gui style=\"button"
 "\">Selection mode</gui> button."
 msgstr ""
-"На панелі <gui>Нові та нещодавні</gui> натисніть кнопку <gui style=\"button\""
-">Режим вибору</gui>."
+"На панелі <gui>Нові та нещодавні</gui> натисніть кнопку <gui style=\"button"
+"\">Режим вибору</gui>."
 
 #. (itstool) path: item/p
 #: C/colors.page:66
@@ -158,8 +158,8 @@ msgid ""
 "Create a new note from scratch, using some text from another application or "
 "from another note."
 msgstr ""
-"Створення нової примітки з нуля, на основі якогось тексту з іншої програми"
-" або на основі іншої примітки."
+"Створення нової примітки з нуля, на основі якогось тексту з іншої програми "
+"або на основі іншої примітки."
 
 #. (itstool) path: page/title
 #: C/create.page:36
@@ -176,8 +176,8 @@ msgstr "Примітку можна створити у три різних сп
 msgid ""
 "Click the <gui style=\"button\">New</gui> button to create a blank note."
 msgstr ""
-"Натисніть кнопку <gui style=\"button\">Створити</gui>, щоб створити порожню"
-" примітку."
+"Натисніть кнопку <gui style=\"button\">Створити</gui>, щоб створити порожню "
+"примітку."
 
 #. (itstool) path: item/p
 #: C/create.page:45
@@ -185,8 +185,8 @@ msgid ""
 "Drag and drop text to the <gui>New and Recent</gui> view to create a note "
 "containing this text."
 msgstr ""
-"Перетягніть текст на панель <gui>Нові та нещодавні</gui> і скиньте його, щоб"
-" створити примітку, яка міститиме цей текст."
+"Перетягніть текст на панель <gui>Нові та нещодавні</gui> і скиньте його, щоб "
+"створити примітку, яка міститиме цей текст."
 
 #. (itstool) path: item/p
 #: C/create.page:49
@@ -194,9 +194,9 @@ msgid ""
 "Open a note, select some text and click the <gui style=\"button\">Copy "
 "selection to a new note</gui> button to create a note containing this text."
 msgstr ""
-"Відкрийте примітку, позначте якийсь фрагмент тексту і натисніть кнопку <gui"
-" style=\"button\">Скопіювати вибране в нову нотатку</gui>, щоб створити"
-" примітку, яка міститиме цей текст."
+"Відкрийте примітку, позначте якийсь фрагмент тексту і натисніть кнопку <gui "
+"style=\"button\">Скопіювати вибране в нову нотатку</gui>, щоб створити "
+"примітку, яка міститиме цей текст."
 
 #. (itstool) path: note/p
 #: C/create.page:55
@@ -204,9 +204,8 @@ msgid ""
 "To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
 "key><key>N</key></keyseq>."
 msgstr ""
-"Щоб відкрити нову примітку за допомогою комбінації клавіш, натисніть <keyseq"
-"><key>Ctrl</"
-"key><key>N</key></keyseq>."
+"Щоб відкрити нову примітку за допомогою комбінації клавіш, натисніть "
+"<keyseq><key>Ctrl</key><key>N</key></keyseq>."
 
 #. (itstool) path: info/desc
 #: C/cut-copy-paste.page:28
@@ -224,8 +223,8 @@ msgid ""
 "You can move text inside a note or to another note by cutting or copying it "
 "and pasting it somewhere else."
 msgstr ""
-"Ви можете пересунути текст у межах примітки або до іншої примітки, вирізавши"
-" або скопіювавши фрагмент тексту і вставивши його деінде."
+"Ви можете пересунути текст у межах примітки або до іншої примітки, вирізавши "
+"або скопіювавши фрагмент тексту і вставивши його деінде."
 
 #. (itstool) path: steps/title
 #: C/cut-copy-paste.page:37
@@ -243,8 +242,8 @@ msgstr "Позначте фрагмент тексту."
 msgid ""
 "Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
 msgstr ""
-"Натисніть кнопку <gui style=\"button\">Вирізати</gui> або <gui"
-" style=\"button\">Скопіювати</gui>."
+"Натисніть кнопку <gui style=\"button\">Вирізати</gui> або <gui style=\"button"
+"\">Скопіювати</gui>."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:46
@@ -252,8 +251,8 @@ msgid ""
 "Select where you want to paste the text and press <gui style=\"button"
 "\">Paste</gui>."
 msgstr ""
-"Виберіть місце, до якого ви хочете вставити фрагмент тексту і натисніть"
-" кнопку <gui style=\"button\">Вставити</gui>."
+"Виберіть місце, до якого ви хочете вставити фрагмент тексту і натисніть "
+"кнопку <gui style=\"button\">Вставити</gui>."
 
 #. (itstool) path: info/desc
 #: C/delete.page:32
@@ -276,9 +275,8 @@ msgid ""
 "Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Move to Trash</gui></guiseq>."
 msgstr ""
-"Виберіть пункт меню <guiseq><gui style=\"button\">Більше параметрів…</gui><"
-"gui style=\"menuitem"
-"\">Пересунути у смітник</gui></guiseq>."
+"Виберіть пункт меню <guiseq><gui style=\"button\">Більше параметрів…</"
+"gui><gui style=\"menuitem\">Пересунути у смітник</gui></guiseq>."
 
 #. (itstool) path: note/p
 #: C/delete.page:49
@@ -286,8 +284,8 @@ msgid ""
 "Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
 "keyseq> to delete an open note."
 msgstr ""
-"Натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>Delete</key></keyseq"
-">, щоб вилучити відкриту примітку."
+"Натисніть комбінацію клавіш <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq>, щоб вилучити відкриту примітку."
 
 #. (itstool) path: steps/title
 #: C/delete.page:54
@@ -330,8 +328,8 @@ msgid ""
 "Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui>."
 msgstr ""
-"Натисніть піктограму <gui>Примітки</gui> поряд зі списком <gui"
-" href=\"help:gnome-help/shell-terminology\">Діяльність</gui>."
+"Натисніть піктограму <gui>Примітки</gui> поряд зі списком <gui href=\"help:"
+"gnome-help/shell-terminology\">Діяльність</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:34
@@ -342,8 +340,8 @@ msgstr "Виберіть пункт <gui>Переглянути смітник</
 #: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
-"Натисніть кнопку <gui style=\"button\">Спорожнити</gui> на панелі"
-" інструментів."
+"Натисніть кнопку <gui style=\"button\">Спорожнити</gui> на панелі "
+"інструментів."
 
 #. (itstool) path: steps/title
 #: C/delete-permanent.page:42
@@ -382,8 +380,8 @@ msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
 "restore it from <gui>Trash</gui>."
 msgstr ""
-"Якщо ви вважаєте, що вилучити примітку випадково, ви можете переглянути і"
-" відновити її зі <gui>Смітника</gui>."
+"Якщо ви вважаєте, що вилучити примітку випадково, ви можете переглянути і "
+"відновити її зі <gui>Смітника</gui>."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
@@ -427,8 +425,8 @@ msgid ""
 "To create an unordered list, click <guiseq><gui style=\"button\">More "
 "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
 msgstr ""
-"Щоб створити невпорядкований список, натисніть <guiseq><gui style=\"button\""
-">Більше параметрів…</gui> <gui style=\"menuitem\">Пункти</gui></guiseq>."
+"Щоб створити невпорядкований список, натисніть <guiseq><gui style=\"button"
+"\">Більше параметрів…</gui> <gui style=\"menuitem\">Пункти</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/format-list.page:45
@@ -436,8 +434,8 @@ msgid ""
 "To create an ordered list, click <guiseq><gui style=\"button\">More options…"
 "</gui> <gui>Numbered List</gui></guiseq>."
 msgstr ""
-"Щоб створити впорядкований список, натисніть <guiseq><gui style=\"button\""
-">Більше параметрів…</gui> <gui>Нумерований список</gui></guiseq>."
+"Щоб створити впорядкований список, натисніть <guiseq><gui style=\"button"
+"\">Більше параметрів…</gui> <gui>Нумерований список</gui></guiseq>."
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -453,8 +451,8 @@ msgstr "Зміна стилю тексту"
 #: C/format-text.page:38
 msgid "To change the formatting options of text in your note:"
 msgstr ""
-"Щоб змінити параметри форматування тексту у вашій примітці, виконайте такі"
-" дії:"
+"Щоб змінити параметри форматування тексту у вашій примітці, виконайте такі "
+"дії:"
 
 #. (itstool) path: item/p
 #: C/format-text.page:40
@@ -467,8 +465,8 @@ msgid ""
 "Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
 "or <gui style=\"button\">Strike</gui>."
 msgstr ""
-"Натисніть кнопку <gui style=\"button\">Жирний</gui>, <gui style=\"button\""
-">Курсив</gui> або <gui style=\"button\">Підкреслити</gui>."
+"Натисніть кнопку <gui style=\"button\">Жирний</gui>, <gui style=\"button"
+"\">Курсив</gui> або <gui style=\"button\">Підкреслити</gui>."
 
 #. (itstool) path: info/title
 #: C/index.page:8
@@ -526,11 +524,11 @@ msgid ""
 "shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
 "easily with <app>Online Accounts</app>."
 msgstr ""
-"<app>Примітки</app> — проста програма для створення, редагування та перегляду"
-" приміток. За її допомогою ви можете шукати примітки з панелі <gui"
-" href=\"help:gnome-help/"
-"shell-terminology\">Діяльність</gui>. <app>Примітки</app> без проблем"
-" інтегруються із програмою <app>Мережеві облікові записи</app>."
+"<app>Примітки</app> — проста програма для створення, редагування та "
+"перегляду приміток. За її допомогою ви можете шукати примітки з панелі <gui "
+"href=\"help:gnome-help/shell-terminology\">Діяльність</gui>. <app>Примітки</"
+"app> без проблем інтегруються із програмою <app>Мережеві облікові записи</"
+"app>."
 
 #. (itstool) path: page/media
 #. This is a reference to an external file such as an image or video. When
@@ -538,11 +536,15 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:44
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='figures/notes-3-34.png' "
+#| "md5='213e25dd29f5b447ea239014fe95feb9'"
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 msgstr ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -570,9 +572,9 @@ msgid ""
 "Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui "
 "style=\"menuitem\">Open in New Window</gui></guiseq>."
 msgstr ""
-"Відкрийте примітку, а потім виберіть <guiseq><gui style=\"button\">Більше"
-" параметрів…</gui><gui style=\"menuitem\">Відкрити у новому вікні</gui><"
-"/guiseq>."
+"Відкрийте примітку, а потім виберіть <guiseq><gui style=\"button\">Більше "
+"параметрів…</gui><gui style=\"menuitem\">Відкрити у новому вікні</gui></"
+"guiseq>."
 
 #. (itstool) path: item/p
 #: C/new-window.page:32
@@ -582,17 +584,17 @@ msgid ""
 "in new window, then click the <gui style=\"button\">Open in another window</"
 "gui> button."
 msgstr ""
-"На панелі <gui>Нові та нещодавні</gui> натисніть кнопку <gui style=\"button\""
-">Режим вибору</gui>, виберіть всі примітки, які ви хочете відкрити у новому"
-" вікні, а потім натисніть кнопку <gui style=\"button\">Відкрити в іншому"
-" вікні</gui>."
+"На панелі <gui>Нові та нещодавні</gui> натисніть кнопку <gui style=\"button"
+"\">Режим вибору</gui>, виберіть всі примітки, які ви хочете відкрити у "
+"новому вікні, а потім натисніть кнопку <gui style=\"button\">Відкрити в "
+"іншому вікні</gui>."
 
 #. (itstool) path: info/desc
 #: C/notebooks.page:32
 msgid "Add a note to a notebook to make sorting and searching notes easier."
 msgstr ""
-"Додавання примітки до записника з метою спрощення упорядкування та пошуку"
-" приміток."
+"Додавання примітки до записника з метою спрощення упорядкування та пошуку "
+"приміток."
 
 #. (itstool) path: page/title
 #: C/notebooks.page:35
@@ -605,8 +607,8 @@ msgid ""
 "You can use notebooks to group your notes together to make it easier to "
 "search and sort through your notes."
 msgstr ""
-"Для групування приміток і спрощення пошуку та впорядкування ваших приміток ви"
-" можете скористатися записниками."
+"Для групування приміток і спрощення пошуку та впорядкування ваших приміток "
+"ви можете скористатися записниками."
 
 #. (itstool) path: steps/title
 #: C/notebooks.page:41
@@ -619,8 +621,8 @@ msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Notebooks</gui></guiseq>."
 msgstr ""
-"Виберіть <guiseq><gui style=\"button\">Більше параметрів…</gui><gui"
-" style=\"menuitem\">Записники</gui></guiseq>."
+"Виберіть <guiseq><gui style=\"button\">Більше параметрів…</gui><gui style="
+"\"menuitem\">Записники</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:50
@@ -628,8 +630,8 @@ msgid ""
 "Type a suitable name for the notebook and click the <gui style=\"button"
 "\">New notebook</gui> button."
 msgstr ""
-"Введіть відповідну назву записника і натисніть кнопку <gui style=\"button\""
-">Створити записник</gui>."
+"Введіть відповідну назву записника і натисніть кнопку <gui style=\"button"
+"\">Створити записник</gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:54 C/notebooks.page:75
@@ -657,8 +659,8 @@ msgid ""
 "Type a suitable name for the notebook and click <gui style=\"button\">New "
 "notebook</gui> button."
 msgstr ""
-"Введіть відповідну назву записника і натисніть кнопку <gui style=\"button\""
-">Створити записник</gui>."
+"Введіть відповідну назву записника і натисніть кнопку <gui style=\"button"
+"\">Створити записник</gui>."
 
 #. (itstool) path: info/desc
 #: C/rename.page:23
@@ -697,17 +699,16 @@ msgid ""
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
-"Ви можете шукати ваші примітки на панелі <gui>Нові та нещодавні</gui> у вікні"
-" <app>Приміток</app> або знаходити примітки за допомогою вашої панелі <gui"
-" href=\"help:gnome-help/shell-"
-"terminology\">Діяльність</gui>."
+"Ви можете шукати ваші примітки на панелі <gui>Нові та нещодавні</gui> у "
+"вікні <app>Приміток</app> або знаходити примітки за допомогою вашої панелі "
+"<gui href=\"help:gnome-help/shell-terminology\">Діяльність</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:42
 msgid "To find notes while in <gui>New and Recent</gui>:"
 msgstr ""
-"Щоб знайти примітки на панелі <gui>Нові та нещодавні</gui>, виконайте такі"
-" дії:"
+"Щоб знайти примітки на панелі <gui>Нові та нещодавні</gui>, виконайте такі "
+"дії:"
 
 #. (itstool) path: item/p
 #: C/search.page:44
@@ -725,8 +726,8 @@ msgid ""
 "You can directly start typing the search string in the <gui>New and Recent</"
 "gui> view to search notes."
 msgstr ""
-"Ви можете почати безпосередньо вводити рядок для пошуку на панелі <gui>Нові"
-" та нещодавні</gui>, щоб знайти потрібні вам примітки."
+"Ви можете почати безпосередньо вводити рядок для пошуку на панелі <gui>Нові "
+"та нещодавні</gui>, щоб знайти потрібні вам примітки."
 
 #. (itstool) path: info/desc
 #: C/share.page:32
@@ -743,8 +744,8 @@ msgstr "Оприлюднення примітки"
 msgid ""
 "You can share a note with your friends or colleagues by emailing it to them."
 msgstr ""
-"Ви можете поділитися вашою приміткою із вашими друзями та колегами,"
-" надіславши примітку електронною поштою."
+"Ви можете поділитися вашою приміткою із вашими друзями та колегами, "
+"надіславши примітку електронною поштою."
 
 #. (itstool) path: steps/title
 #: C/share.page:41
@@ -757,9 +758,8 @@ msgid ""
 "Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
 "\">Email this Note</gui></guiseq>."
 msgstr ""
-"Виберіть <guiseq><gui style=\"button\">Більше параметрів…</gui><gui"
-" style=\"menuitem"
-"\">Надіслати цю примітку</gui></guiseq>."
+"Виберіть <guiseq><gui style=\"button\">Більше параметрів…</gui><gui style="
+"\"menuitem\">Надіслати цю примітку</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/share.page:50

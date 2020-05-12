@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
 "POT-Creation-Date: 2020-04-19 10:38+0000\n"
-"PO-Revision-Date: 2020-04-25 10:08+0300\n"
+"PO-Revision-Date: 2020-05-12 22:44+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -72,7 +72,7 @@ msgstr ""
 
 #: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
-msgstr "Створюйте нотатки, залишайте мітки на файлах!"
+msgstr "Створюйте примітки, залишайте мітки на файлах!"
 
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
@@ -80,7 +80,7 @@ msgstr "Електронна ручка"
 
 #: data/org.gnome.Notes.desktop.in:19
 msgid "Create New Note"
-msgstr "Створити нотатку"
+msgstr "Створити примітку"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -89,7 +89,7 @@ msgstr "Нетиповий шрифт"
 #: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
-"Назва шрифту, яка вказано тут, буде використовуватись у показі нотаток."
+"Назва шрифту, яка вказано тут, буде використовуватись у показі приміток."
 
 #: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
@@ -97,21 +97,21 @@ msgstr "Чи використовувати системний моношири�
 
 #: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
-msgstr "Новий колір нотатки"
+msgstr "Колір нових приміток."
 
 #: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
-"Назва шрифту, яка вказано тут, буде використовуватись у створені нотаток."
+"Назва шрифту, яка вказано тут, буде використовуватись у створені приміток."
 
 #: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
-msgstr "Основний постачальник нотаток для нових нотаток."
+msgstr "Основний постачальник приміток для нових приміток."
 
 #: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
-msgstr "Основний записник — місце, де створюються нові нотатки."
+msgstr "Основний записник — місце, де створюються нові примітки."
 
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
@@ -168,7 +168,7 @@ msgstr "Підкреслений"
 
 #: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
-msgstr "Тип сортування"
+msgstr "Пункти"
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -176,11 +176,11 @@ msgstr "Список"
 
 #: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
-msgstr "Скопіювати вибране в нову нотатку"
+msgstr "Скопіювати вибране в нову примітку"
 
 #: data/resources/empty-results-box.ui:33
 msgid "No notes"
-msgstr "Немає нотаток"
+msgstr "Немає приміток"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -190,7 +190,7 @@ msgstr "Загальне"
 #: data/resources/help-overlay.ui:14
 msgctxt "shortcut window"
 msgid "Search notes"
-msgstr "Шукати нотатки"
+msgstr "Шукати примітки"
 
 #: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
@@ -286,7 +286,7 @@ msgstr "Викинути примітку"
 
 #: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
 msgid "Import Notes"
-msgstr "Імпортувати нотатки"
+msgstr "Імпортувати примітки"
 
 #: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
 msgid "_Cancel"
@@ -322,7 +322,7 @@ msgstr "_Створити"
 
 #: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
-msgstr "Колір нотатки"
+msgstr "Колір примітки"
 
 #. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
@@ -335,15 +335,15 @@ msgstr "Вийти з режиму вибирання"
 
 #: data/resources/main-toolbar.ui:94
 msgid "Search note titles, content and notebooks"
-msgstr "Пошук заголовків, вмісту й записників нотатки"
+msgstr "Пошук заголовків, вмісту й записників примітки"
 
 #: data/resources/main-toolbar.ui:119
 msgid "View notes and notebooks in a grid"
-msgstr "Переглядати нотатки і записники у ґратках"
+msgstr "Переглядати примітки і записники у ґратках"
 
 #: data/resources/main-toolbar.ui:137
 msgid "View notes and notebooks in a list"
-msgstr "Переглядати нотатки і записники у списку"
+msgstr "Переглядати примітки і записники у списку"
 
 #: data/resources/main-toolbar.ui:161
 msgid "Selection mode"
@@ -412,7 +412,7 @@ msgstr "Записники"
 
 #: data/resources/main-toolbar.ui:400
 msgid "Email this Note"
-msgstr "Надіслати цю нотатку"
+msgstr "Надіслати цю примітку"
 
 #: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
@@ -428,7 +428,7 @@ msgstr "Створити записник"
 
 #: data/resources/selection-toolbar.ui:60
 msgid "Share note"
-msgstr "Оприлюднити нотатку"
+msgstr "Оприлюднити примітку"
 
 #: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
@@ -448,7 +448,7 @@ msgstr "Використовувати системний шрифт"
 
 #: data/resources/settings-dialog.ui:50
 msgid "Note Font"
-msgstr "Шрифт нотаток"
+msgstr "Шрифт приміток"
 
 #: data/resources/settings-dialog.ui:62
 msgid "Default Color"
@@ -476,7 +476,7 @@ msgstr "Показати версію програми"
 
 #: src/bjb-application.c:463
 msgid "Create a new note"
-msgstr "Створити нову нотатку"
+msgstr "Створити нову примітку"
 
 #: src/bjb-application.c:465
 msgid "[FILE…]"
@@ -484,7 +484,7 @@ msgstr "[ФАЙЛ…]"
 
 #: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
-msgstr "Взяти нотатки і експортувати їх скрізь."
+msgstr "Взяти примітки і експортувати їх скрізь."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
@@ -514,11 +514,11 @@ msgstr ""
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
-msgstr "Колір нотатки"
+msgstr "Колір примітки"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Натисніть кнопку «Створити», щоб створити нотатку."
+msgstr "Натисніть кнопку «Створити», щоб створити примітку."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"

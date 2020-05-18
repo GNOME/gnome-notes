@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-03-07 05:06+0000\n"
-"PO-Revision-Date: 2020-03-10 18:20+0100\n"
-"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"POT-Creation-Date: 2020-04-19 10:38+0000\n"
+"PO-Revision-Date: 2020-04-30 15:55+0300\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
+"com>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +23,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:636 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Notițe"
 
@@ -72,6 +73,10 @@ msgstr "Publică notițe, etichetează fișiere!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Carnețel de notițe"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "Creează o notiță nouă"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -195,70 +200,80 @@ msgstr "Închide fereastra"
 
 #: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Ieșire"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Navighează înapoi"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Arată ajutorul"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Deschide meniul"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Scurtături de tastatură"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Mod de selectare"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Anulează modul de selectare"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Selectează toate"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Mod de editare notiță"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Deschide într-o nouă fereastră"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Aldin"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Cursiv"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Tăiat"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Anulează"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Refă"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Mută notița la coșul de gunoi"
@@ -445,52 +460,52 @@ msgstr "Selectați locația de stocare implicită:"
 msgid "Primary Book"
 msgstr "Carte primară"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:461
 msgid "Show the application’s version"
 msgstr "Arată versiunea aplicației"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:463
 msgid "Create a new note"
 msgstr "Creează o notiță nouă"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:465
 msgid "[FILE…]"
 msgstr "[FIȘIER…]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
 msgstr "Luați notițe și exportați-le oriunde."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:484
 msgid "Could not parse arguments"
 msgstr "Nu au putut fi parsate argumentele"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:492
 msgid "GNOME Notes"
 msgstr "Notițe GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:504
 msgid "Could not register the application"
 msgstr "Nu s-a putut înregistra aplicația"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:637
 msgid "Simple notebook for GNOME"
 msgstr "Carnețel simplu pentru GNOME"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:643
 msgid "translator-credits"
 msgstr ""
 "Vasile,\n"
 "Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2018, 2020\n"
-"Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2019"
+"Florentina Mușat <emryslokadottir [at] gmail [dot] com>, 2019-2020"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
@@ -537,7 +552,7 @@ msgstr "Rezultate pentru %s"
 msgid "New and Recent"
 msgstr "Noi și recente"
 
-#: src/bjb-main-toolbar.c:366
+#: src/bjb-main-toolbar.c:370
 msgid "Trash"
 msgstr "Gunoi"
 
@@ -546,7 +561,7 @@ msgstr "Gunoi"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:438
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ultima actualizare: %s"
@@ -632,9 +647,6 @@ msgstr "Stocarea locală"
 
 #~ msgid "_About"
 #~ msgstr "_Despre"
-
-#~ msgid "_Quit"
-#~ msgstr "_Ieșire"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""

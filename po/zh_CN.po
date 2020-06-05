@@ -11,20 +11,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-08-17 00:47+0000\n"
-"PO-Revision-Date: 2019-09-13 00:28+0800\n"
+"POT-Creation-Date: 2020-05-18 17:28+0000\n"
+"PO-Revision-Date: 2020-05-23 13:41+0800\n"
 "Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:636 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "便笺"
 
@@ -70,6 +70,10 @@ msgstr "发布便笺，为文件做好标签哟！"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "便笺记录工具"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "创建新便笺"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -170,82 +174,102 @@ msgstr "将选中区域复制到新便笺"
 msgid "No notes"
 msgstr "无便笺"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "通用"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "搜索便笺"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "新建便笺本"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "关闭窗口"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "退出"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "返回"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "显示帮助"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:56
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "快捷键"
+msgid "Open menu"
+msgstr "打开菜单"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "键盘快捷键"
+
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "选择模式"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "取消选择模式"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "全选"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "便笺编辑模式"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "在新窗口中打开"
+
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "粗体"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "斜体"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "删除线"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "撤消"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "重做"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "移入废纸篓"
@@ -286,7 +310,7 @@ msgstr "选择文件夹"
 msgid "_New"
 msgstr "新建(_N)"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "便笺颜色"
 
@@ -372,7 +396,7 @@ msgid "Redo"
 msgstr "重做"
 
 #: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "便笺本"
 
@@ -380,7 +404,7 @@ msgstr "便笺本"
 msgid "Email this Note"
 msgstr "邮寄此便笺"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "移入废纸篓"
 
@@ -392,19 +416,19 @@ msgstr "输入名称以创建便笺本"
 msgid "New notebook"
 msgstr "新建便笺本"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "分享便笺"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "在独立窗口打开"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "还原"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "永久删除"
 
@@ -432,54 +456,54 @@ msgstr "选择默认存储位置："
 msgid "Primary Book"
 msgstr "主便笺本"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
 msgid "Untitled"
 msgstr "未命名"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:461
 msgid "Show the application’s version"
 msgstr "显示应用程序版本"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:463
 msgid "Create a new note"
 msgstr "创建新便笺"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:465
 msgid "[FILE…]"
 msgstr "[文件…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
 msgstr "写便笺，然后随意导出。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:484
 msgid "Could not parse arguments"
 msgstr "无法解析参数"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:492
 msgid "GNOME Notes"
 msgstr "GNOME 便笺"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:504
 msgid "Could not register the application"
 msgstr "无法注册应用程序"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:637
 msgid "Simple notebook for GNOME"
 msgstr "GNOME 下的简易便笺本"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:643
 msgid "translator-credits"
 msgstr ""
-"tuhaihe <1132321739qq@gmail.com>, 2013\n"
+"tuhaihe <1132321739qq@gmail.com>, 2013, 2020\n"
 "Tong Hui <tonghuix@gmail.com>, 2014\n"
 "Mingcong Bai <jeffbai@aosc.xyz>, 2018"
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "便笺颜色"
 
@@ -503,26 +527,26 @@ msgstr "加载更多"
 msgid "Loading…"
 msgstr "正在加载…"
 
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:140
 msgid "Click on items to select them"
 msgstr "点击条目以选中它们"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "已选中 %d 条"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:275
 #, c-format
 msgid "Results for %s"
 msgstr "%s 的结果"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:278
 msgid "New and Recent"
 msgstr "新建和最近打开的便笺"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:370
 msgid "Trash"
 msgstr "废纸篓"
 
@@ -532,7 +556,7 @@ msgstr "废纸篓"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:438
 #, c-format
 msgid "Last updated: %s"
 msgstr "最近更新：%s"
@@ -569,6 +593,10 @@ msgstr "本地"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "本地存储"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "快捷键"
 
 #~| msgid "org.gnome.bijiben"
 #~ msgid "org.gnome.Notes"
@@ -610,9 +638,6 @@ msgstr "本地存储"
 
 #~ msgid "_Preferences"
 #~ msgstr "首选项(_P)"
-
-#~ msgid "_Quit"
-#~ msgstr "退出(_Q)"
 
 #~ msgid "Note Edition"
 #~ msgstr "便笺版本"

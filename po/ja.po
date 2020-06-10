@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
 "POT-Creation-Date: 2020-06-01 20:08+0000\n"
-"PO-Revision-Date: 2020-02-20 00:00+0900\n"
+"PO-Revision-Date: 2020-06-10 18:45+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -67,10 +67,8 @@ msgid "Note-taker"
 msgstr "メモツール"
 
 #: data/org.gnome.Notes.desktop.in:19
-#, fuzzy
-#| msgid "Create a new note"
 msgid "Create New Note"
-msgstr "新しいメモを作成する"
+msgstr "新しいメモを作成"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -193,7 +191,7 @@ msgstr "ウィンドウを閉じる"
 #: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
 msgid "Quit"
-msgstr ""
+msgstr "終了する"
 
 #: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
@@ -206,8 +204,6 @@ msgid "Show help"
 msgstr "ヘルプを表示する"
 
 #: data/resources/help-overlay.ui:56
-#, fuzzy
-#| msgid "Open menu"
 msgctxt "shortcut window"
 msgid "Open menu"
 msgstr "メニューを開く"

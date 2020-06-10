@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-19 03:26+0000\n"
+"POT-Creation-Date: 2020-06-01 20:08+0000\n"
 "PO-Revision-Date: 2020-02-20 00:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:636 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "メモ"
 
@@ -65,6 +65,12 @@ msgstr "メモを取って整理しよう!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "メモツール"
+
+#: data/org.gnome.Notes.desktop.in:19
+#, fuzzy
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "新しいメモを作成する"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -186,70 +192,82 @@ msgstr "ウィンドウを閉じる"
 
 #: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
+msgid "Quit"
+msgstr ""
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
 msgid "Go back"
 msgstr "戻る"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "ヘルプを表示する"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+#, fuzzy
+#| msgid "Open menu"
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "メニューを開く"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "キーボードショートカットを表示する"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "選択モード"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "選択モードを終了する"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "すべて選択する"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "メモ編集モード"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "新しいウィンドウで開く"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "太字"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "斜体"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "取り消し線"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "元に戻す"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "やり直す"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "ゴミ箱へ移動する"
@@ -436,47 +454,47 @@ msgstr "デフォルトの保存場所を選択してください:"
 msgid "Primary Book"
 msgstr "プライマリーブック"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
 msgid "Untitled"
 msgstr "無題"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:461
 msgid "Show the application’s version"
 msgstr "アプリケーションのバージョンを表示する"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:463
 msgid "Create a new note"
 msgstr "新しいメモを作成する"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:465
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:473
 msgid "Take notes and export them everywhere."
 msgstr "メモの作成、エクスポートを行います。"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:484
 msgid "Could not parse arguments"
 msgstr "引数を解析できませんでした"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:492
 msgid "GNOME Notes"
 msgstr "GNOME メモ"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:504
 msgid "Could not register the application"
 msgstr "アプリケーションを登録できませんでした"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:637
 msgid "Simple notebook for GNOME"
 msgstr "GNOME 向けのシンプルメモ"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:643
 msgid "translator-credits"
 msgstr ""
 "Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
@@ -527,7 +545,7 @@ msgstr "%s の検索結果"
 msgid "New and Recent"
 msgstr "新規または最近使用したメモ"
 
-#: src/bjb-main-toolbar.c:366
+#: src/bjb-main-toolbar.c:370
 msgid "Trash"
 msgstr "ゴミ箱"
 
@@ -536,7 +554,7 @@ msgstr "ゴミ箱"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:438
 #, c-format
 msgid "Last updated: %s"
 msgstr "最終更新日: %s"

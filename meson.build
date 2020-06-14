@@ -40,9 +40,6 @@ foreach define: set_defines
   config_h.set_quoted(define[0], define[1])
 endforeach
 
-# Tracker
-config_h.set('TRACKER_PRIVATE_STORE', get_option('private_store'))
-
 # compiler flags
 common_flags = [
   '-DHAVE_CONFIG_H',
@@ -99,13 +96,23 @@ libgd = subproject(
 )
 libgd_dep = libgd.get_variable('libgd_dep')
 
-tracker_sparql_dep = dependency('tracker-sparql-2.0', required: false)
+tracker_sparql_dep = dependency('tracker-sparql-3.0', required: false)
+has_tracker3 = tracker_sparql_dep.found()
+config_h.set10('HAVE_TRACKER3', has_tracker3)
+
 if not tracker_sparql_dep.found()
-  tracker_sparql_dep = dependency('tracker-sparql-1.0', required: false)
+  tracker_sparql_dep = dependency('tracker-sparql-2.0', required: false)
   if not tracker_sparql_dep.found()
-    tracker_sparql_dep = dependency('tracker-sparql-0.18', required: true)
+    tracker_sparql_dep = dependency('tracker-sparql-1.0', required: false)
+    if not tracker_sparql_dep.found()
+      tracker_sparql_dep = dependency('tracker-sparql-0.18', required: true)
+    endif
   endif
 endif
+
+# Tracker
+private_store = get_option('private_store') or has_tracker3
+config_h.set('TRACKER_PRIVATE_STORE', private_store)
 
 bijiben_deps = [
   libgd_dep,
@@ -150,5 +157,5 @@ meson.add_install_script(
 
 output = '  Version:          ' + bijiben_version + '\n'
 output += '  Enable Zeitgeist  ' + enable_zeitgeist.to_string() + '\n'
-output += '  Use Private Store ' + get_option('private_store').to_string() + '\n'
+output += '  Use Private Store ' + private_store.to_string() + ' (Tracker3: ' + has_tracker3.to_string() + ')\n'
 message(output)

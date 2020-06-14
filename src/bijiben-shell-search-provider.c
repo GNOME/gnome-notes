@@ -427,17 +427,30 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
 
   filename = g_build_filename (g_get_user_cache_dir (),
                                g_get_application_name (),
+#if HAVE_TRACKER3
+                               "tracker3",
+#else
                                "tracker",
+#endif /* HAVE_TRACKER3 */
                                NULL);
   data_location = g_file_new_for_path (filename);
 
+#if HAVE_TRACKER3
+  self->connection = tracker_sparql_connection_new (TRACKER_SPARQL_CONNECTION_FLAGS_READONLY,
+                                                    data_location,
+                                                    tracker_sparql_get_ontology_nepomuk (),
+                                                    NULL,
+                                                    &error);
+#else
   self->connection = tracker_sparql_connection_local_new (TRACKER_SPARQL_CONNECTION_FLAGS_READONLY,
                                                           data_location,
                                                           NULL, NULL, NULL,
                                                           &error);
+#endif /* HAVE_TRACKER3 */
+
 #else
   self->connection = tracker_sparql_connection_get (NULL, &error);
-#endif
+#endif /* TRACKER_PRIVATE_STORE */
 
   if (error)
   {

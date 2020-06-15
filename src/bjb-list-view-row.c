@@ -27,6 +27,7 @@ struct _BjbListViewRow
 {
   GtkListBoxRow   parent_instance;
 
+  GtkCssProvider *css_provider;
   BjbListView    *view;
   GtkCheckButton *select_button;
   GtkLabel       *title;
@@ -70,10 +71,13 @@ bjb_list_view_row_setup (BjbListViewRow *self,
   char            *uuid;
   char            *title;
   char            *text;
+  char            *color;
   gint64           mtime;
-  g_autofree char *updated_time = NULL;
+  GdkRGBA          rgba;
   g_auto (GStrv)   lines        = NULL;
   g_autofree char *preview      = NULL;
+  g_autofree char *updated_time = NULL;
+  g_autofree char *css_style    = NULL;
 
   self->view = view;
 
@@ -88,6 +92,7 @@ bjb_list_view_row_setup (BjbListViewRow *self,
                       BJB_MODEL_COLUMN_TITLE, &title,
                       BJB_MODEL_COLUMN_TEXT,  &text,
                       BJB_MODEL_COLUMN_MTIME, &mtime,
+                      BJB_MODEL_COLUMN_COLOR, &color,
                       -1);
 
   updated_time = bjb_utils_get_human_time (mtime);
@@ -104,6 +109,17 @@ bjb_list_view_row_setup (BjbListViewRow *self,
     }
   if (updated_time)
     gtk_label_set_text (self->updated_time, updated_time);
+  if (color && gdk_rgba_parse (&rgba, color))
+    {
+      css_style = g_strdup_printf ("row {color: %s; background-color: %s} row:hover {background-color: darker(%s)}",
+                                   BJB_UTILS_COLOR_INTENSITY ((&rgba)) < 0.5 ? "white" : "black",
+                                   color, color);
+      self->css_provider = gtk_css_provider_new ();
+      gtk_css_provider_load_from_data (self->css_provider, css_style, -1, 0);
+      gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (self)),
+                                      GTK_STYLE_PROVIDER (self->css_provider),
+                                      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
 }
 
 void
@@ -137,6 +153,7 @@ bjb_list_view_row_finalize (GObject *object)
 {
   BjbListViewRow *self = BJB_LIST_VIEW_ROW (object);
 
+  g_clear_object (&self->css_provider);
   g_free (self->uuid);
   g_free (self->model_iter);
 

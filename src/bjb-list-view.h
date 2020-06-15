@@ -29,17 +29,19 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbListView, bjb_list_view, BJB, LIST_VIEW, GtkScrolledWindow)
 
-BjbListView *bjb_list_view_new                (void);
+BjbListView   *bjb_list_view_new                (void);
 
-void         bjb_list_view_setup              (BjbListView   *self,
-                                               BjbController *controller);
+void           bjb_list_view_setup              (BjbListView   *self,
+                                                 BjbController *controller);
 
-void         bjb_list_view_update             (BjbListView   *self);
+void           bjb_list_view_update             (BjbListView   *self);
 
-GtkListBox  *bjb_list_view_get_list_box       (BjbListView   *self);
+GtkListBox    *bjb_list_view_get_list_box       (BjbListView   *self);
 
-void         bjb_list_view_set_selection_mode (BjbListView   *self,
-                                               gboolean       mode);
+BjbController *bjb_list_view_get_controller     (BjbListView   *self);
+
+void           bjb_list_view_set_selection_mode (BjbListView   *self,
+                                                 gboolean       mode);
 
 G_END_DECLS
 

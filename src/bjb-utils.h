@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+#define BJB_UTILS_COLOR_INTENSITY(c) ((c->red) * 0.30 + (c->green) * 0.59 + (c->blue) * 0.11)
+
 G_BEGIN_DECLS
 
 gchar       *bjb_utils_get_human_time         (gint64      unix_time);

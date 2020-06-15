@@ -18,13 +18,13 @@
 #include <libxml/xmlwriter.h>
 
 #include "config.h"
+#include "../../bjb-utils.h"
 #include "../biji-string.h"
 #include "../biji-manager.h"
 #include "biji-webkit-editor.h"
 #include "biji-editor-selection.h"
 #include <jsc/jsc.h>
 
-#define INTENSITY(c) ((c->red) * 0.30 + (c->green) * 0.59 + (c->blue) * 0.11)
 #define ZOOM_LARGE  1.5f;
 #define ZOOM_MEDIUM 1.0f;
 #define ZOOM_SMALL  0.8f;
@@ -222,7 +222,7 @@ set_editor_color (WebKitWebView *w, GdkRGBA *col)
 
   webkit_web_view_set_background_color (w, col);
   script = g_strdup_printf ("document.getElementById('editable').style.color = '%s';",
-                            INTENSITY (col) < 0.5 ? "white" : "black");
+                            BJB_UTILS_COLOR_INTENSITY (col) < 0.5 ? "white" : "black");
   webkit_web_view_run_javascript (w, script, NULL, NULL, NULL);
 }
 

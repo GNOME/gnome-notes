@@ -80,6 +80,12 @@ void      bjb_controller_set_selection_mode (BjbController *self,
 
 GList    *bjb_controller_get_selection      (BjbController *self);
 
+void      bjb_controller_select_item        (BjbController *self,
+                                             const char    *iter_string);
+
+void      bjb_controller_unselect_item      (BjbController *self,
+                                             const char    *iter_string);
+
 void      bjb_controller_select_all         (BjbController *self);
 
 void      bjb_controller_unselect_all       (BjbController *self);

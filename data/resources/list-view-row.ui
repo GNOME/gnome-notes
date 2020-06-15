@@ -29,22 +29,6 @@
             <property name="spacing">6</property>
 
             <child>
-              <object class="GtkLabel" id="uuid">
-                <property name="visible">False</property>
-                <property name="justify">left</property>
-                <property name="halign">start</property>
-                <property name="hexpand">True</property>
-                <property name="valign">center</property>
-                <property name="ellipsize">end</property>
-                <property name="xalign">0.0</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-              </packing>
-            </child>
-
-            <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="orientation">horizontal</property>

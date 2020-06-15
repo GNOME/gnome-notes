@@ -47,28 +47,16 @@ bjb_list_view_create_row_cb (GtkTreeModel *model,
                              GtkTreeIter  *iter,
                              gpointer      data)
 {
-  BjbListView     *self         = NULL;
-  char            *uuid;
-  char            *title;
-  char            *text;
-  gint64           mtime;
+  BjbListView     *self;
   BjbListViewRow  *row;
-  g_autofree char *updated_time = NULL;
+  g_autofree char *model_iter = NULL;
 
   self = BJB_LIST_VIEW (data);
 
-  gtk_tree_model_get (model,
-                      iter,
-                      BJB_MODEL_COLUMN_UUID,  &uuid,
-                      BJB_MODEL_COLUMN_TITLE, &title,
-                      BJB_MODEL_COLUMN_TEXT,  &text,
-                      BJB_MODEL_COLUMN_MTIME, &mtime,
-                      -1);
-
-  updated_time = bjb_utils_get_human_time (mtime);
+  model_iter = gtk_tree_model_get_string_from_iter (model, iter);
 
   row = bjb_list_view_row_new ();
-  bjb_list_view_row_setup (row, uuid, title, text, updated_time);
+  bjb_list_view_row_setup (row, self, model_iter);
   gtk_widget_show (GTK_WIDGET (row));
   gtk_container_add (GTK_CONTAINER (self->list_box), GTK_WIDGET (row));
 
@@ -144,6 +132,12 @@ GtkListBox *
 bjb_list_view_get_list_box (BjbListView *self)
 {
   return self->list_box;
+}
+
+BjbController *
+bjb_list_view_get_controller (BjbListView *self)
+{
+  return self->controller;
 }
 
 static void

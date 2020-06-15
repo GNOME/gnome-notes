@@ -95,6 +95,7 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_STRING,   // BJB_MODEL_COLUMN_TITLE
                               G_TYPE_STRING,   // BJB_MODEL_COLUMN_TEXT
                               G_TYPE_INT64,    // BJB_MODEL_COLUMN_MTIME
+                              G_TYPE_STRING,   // BJB_MODEL_COLUMN_COLOR
                               G_TYPE_BOOLEAN); // BJB_MODEL_COLUMN_SELECTED
 
   self->model = GTK_TREE_MODEL (store);
@@ -230,8 +231,10 @@ bjb_controller_add_item (BjbController *self,
                          gboolean       prepend,
                          GtkTreeIter   *sibling)
 {
-  GtkTreeIter   iter;
-  GtkListStore *store;
+  GtkTreeIter      iter;
+  GtkListStore    *store;
+  GdkRGBA          note_color;
+  g_autofree char *color = NULL;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->model);
@@ -251,12 +254,16 @@ bjb_controller_add_item (BjbController *self,
   else
     gtk_list_store_append (store, &iter);
 
+  if (biji_note_obj_get_rgba (BIJI_NOTE_OBJ (item), &note_color))
+    color = gdk_rgba_to_string (&note_color);
+
   gtk_list_store_set (store,
                       &iter,
                       BJB_MODEL_COLUMN_UUID,  biji_item_get_uuid (item),
                       BJB_MODEL_COLUMN_TITLE, biji_item_get_title (item),
                       BJB_MODEL_COLUMN_TEXT,  biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (item)),
                       BJB_MODEL_COLUMN_MTIME, biji_item_get_mtime (item),
+                      BJB_MODEL_COLUMN_COLOR, color,
                       -1);
 }
 

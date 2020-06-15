@@ -909,6 +909,16 @@ bjb_controller_get_selection (BjbController *self)
   return g_list_reverse (retval);
 }
 
+static void
+bjb_controller_set_selection (GtkListStore *store,
+                              GtkTreeIter  *iter,
+                              gboolean      selection)
+{
+  gtk_list_store_set (store, iter,
+                      BJB_MODEL_COLUMN_SELECTED, selection,
+                      -1);
+}
+
 static gboolean
 bjb_controller_set_selection_foreach (GtkTreeModel *model,
                                       GtkTreePath  *path,
@@ -917,10 +927,8 @@ bjb_controller_set_selection_foreach (GtkTreeModel *model,
 {
   gboolean selection = GPOINTER_TO_INT (user_data);
 
-  gtk_list_store_set (GTK_LIST_STORE (model),
-                      iter,
-                      BJB_MODEL_COLUMN_SELECTED, selection,
-                      -1);
+  bjb_controller_set_selection (GTK_LIST_STORE (model), iter, selection);
+
   return FALSE;
 }
 
@@ -931,6 +939,26 @@ bjb_controller_set_all_selection (BjbController *self,
   gtk_tree_model_foreach (self->model,
                           bjb_controller_set_selection_foreach,
                           GINT_TO_POINTER (selection));
+}
+
+void
+bjb_controller_select_item (BjbController *self,
+                            const char    *iter_string)
+{
+  GtkTreeIter iter;
+  if (!gtk_tree_model_get_iter_from_string (self->model, &iter, iter_string))
+    return;
+  bjb_controller_set_selection (GTK_LIST_STORE (self->model), &iter, TRUE);
+}
+
+void
+bjb_controller_unselect_item (BjbController *self,
+                              const char    *iter_string)
+{
+  GtkTreeIter iter;
+  if (!gtk_tree_model_get_iter_from_string (self->model, &iter, iter_string))
+    return;
+  bjb_controller_set_selection (GTK_LIST_STORE (self->model), &iter, FALSE);
 }
 
 void
@@ -955,5 +983,9 @@ void
 bjb_controller_set_selection_mode (BjbController *self,
                                    gboolean       selection_mode)
 {
-  self->selection_mode = selection_mode;
+  if (self->selection_mode != selection_mode)
+    {
+      self->selection_mode = selection_mode;
+      bjb_controller_unselect_all (self);
+    }
 }

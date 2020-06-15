@@ -21,6 +21,7 @@
 #pragma once
 
 #include <gtk/gtk.h>
+#include "bjb-list-view.h"
 
 G_BEGIN_DECLS
 
@@ -31,14 +32,14 @@ G_DECLARE_FINAL_TYPE (BjbListViewRow, bjb_list_view_row, BJB, LIST_VIEW_ROW, Gtk
 BjbListViewRow *bjb_list_view_row_new                (void);
 
 void            bjb_list_view_row_setup              (BjbListViewRow *self,
-                                                      const char     *uuid,
-                                                      const char     *title,
-                                                      const char     *content,
-                                                      const char     *updated_time);
+                                                      BjbListView    *view,
+                                                      const char     *model_iter);
 
 void            bjb_list_view_row_show_select_button (BjbListViewRow *self,
                                                       gboolean        show);
 
 const char     *bjb_list_view_row_get_uuid           (BjbListViewRow *self);
+
+const char     *bjb_list_view_row_get_model_iter     (BjbListViewRow *self);
 
 G_END_DECLS

@@ -19,17 +19,22 @@
  */
 
 #include <biji-string.h>
+#include "bjb-list-view.h"
 #include "bjb-list-view-row.h"
+#include "bjb-utils.h"
 
 struct _BjbListViewRow
 {
   GtkListBoxRow   parent_instance;
 
+  BjbListView    *view;
   GtkCheckButton *select_button;
-  GtkLabel       *uuid;
   GtkLabel       *title;
   GtkLabel       *content;
   GtkLabel       *updated_time;
+
+  char           *uuid;
+  char           *model_iter;
 };
 
 G_DEFINE_TYPE (BjbListViewRow, bjb_list_view_row, GTK_TYPE_LIST_BOX_ROW);
@@ -38,32 +43,62 @@ static void
 on_toggled_cb (BjbListViewRow *self,
                gpointer        data)
 {
+  GtkListBox *list_box = bjb_list_view_get_list_box (self->view);
+  BjbController *controller = bjb_list_view_get_controller (self->view);
+
   if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (self->select_button)))
-    gtk_list_box_select_row (GTK_LIST_BOX (gtk_widget_get_parent (GTK_WIDGET (self))), GTK_LIST_BOX_ROW (self));
+    {
+      gtk_list_box_select_row (list_box, GTK_LIST_BOX_ROW (self));
+      bjb_controller_select_item (controller, self->model_iter);
+    }
   else
-    gtk_list_box_unselect_row (GTK_LIST_BOX (gtk_widget_get_parent (GTK_WIDGET (self))), GTK_LIST_BOX_ROW (self));
+    {
+      gtk_list_box_unselect_row (list_box, GTK_LIST_BOX_ROW (self));
+      bjb_controller_unselect_item (controller, self->model_iter);
+    }
 
   g_signal_emit_by_name (G_OBJECT (gtk_widget_get_parent (GTK_WIDGET (self))), "selected-rows-changed", 0);
-
 }
 
 void
 bjb_list_view_row_setup (BjbListViewRow *self,
-                         const char     *uuid,
-                         const char     *title,
-                         const char     *content,
-                         const char     *updated_time)
+                         BjbListView    *view,
+                         const char     *model_iter)
 {
-  g_auto (GStrv)   lines   = NULL;
-  g_autofree char *preview = NULL;
+  GtkTreeModel    *model;
+  GtkTreeIter      iter;
+  char            *uuid;
+  char            *title;
+  char            *text;
+  gint64           mtime;
+  g_autofree char *updated_time = NULL;
+  g_auto (GStrv)   lines        = NULL;
+  g_autofree char *preview      = NULL;
+
+  self->view = view;
+
+  model = bjb_controller_get_model (bjb_list_view_get_controller (self->view));
+  if (!gtk_tree_model_get_iter_from_string (model, &iter, model_iter))
+    return;
+  self->model_iter = g_strdup (model_iter);
+
+  gtk_tree_model_get (model,
+                      &iter,
+                      BJB_MODEL_COLUMN_UUID,  &uuid,
+                      BJB_MODEL_COLUMN_TITLE, &title,
+                      BJB_MODEL_COLUMN_TEXT,  &text,
+                      BJB_MODEL_COLUMN_MTIME, &mtime,
+                      -1);
+
+  updated_time = bjb_utils_get_human_time (mtime);
 
   if (uuid)
-    gtk_label_set_text (self->uuid, uuid);
+    self->uuid = g_strdup (uuid);
   if (title)
     gtk_label_set_text (self->title, title);
-  if (content)
+  if (text)
     {
-      lines = g_strsplit(content, "\n", 4);
+      lines = g_strsplit(text, "\n", 4);
       preview = bjb_strjoinv ("\n", lines, 3);
       gtk_label_set_text (self->content, preview);
     }
@@ -76,12 +111,19 @@ bjb_list_view_row_show_select_button (BjbListViewRow *self,
                                       gboolean        show)
 {
   gtk_widget_set_visible (GTK_WIDGET (self->select_button), show);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->select_button), FALSE);
 }
 
 const char *
 bjb_list_view_row_get_uuid (BjbListViewRow *self)
 {
-  return gtk_label_get_text (self->uuid);
+  return self->uuid;
+}
+
+const char *
+bjb_list_view_row_get_model_iter (BjbListViewRow *self)
+{
+  return self->model_iter;
 }
 
 static void
@@ -91,14 +133,27 @@ bjb_list_view_row_init (BjbListViewRow *self)
 }
 
 static void
+bjb_list_view_row_finalize (GObject *object)
+{
+  BjbListViewRow *self = BJB_LIST_VIEW_ROW (object);
+
+  g_free (self->uuid);
+  g_free (self->model_iter);
+
+  G_OBJECT_CLASS (bjb_list_view_row_parent_class)->finalize (object);
+}
+
+static void
 bjb_list_view_row_class_init (BjbListViewRowClass *klass)
 {
+  GObjectClass* object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  object_class->finalize = bjb_list_view_row_finalize;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/list-view-row.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, select_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, uuid);
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, title);
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, content);
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, updated_time);

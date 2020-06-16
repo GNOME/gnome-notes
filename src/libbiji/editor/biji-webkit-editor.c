@@ -200,7 +200,7 @@ biji_webkit_editor_copy (BijiWebkitEditor *self)
 void
 biji_webkit_editor_paste (BijiWebkitEditor *self)
 {
-  webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), WEBKIT_EDITING_COMMAND_PASTE);
+  webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "PasteAsPlainText");
 }
 
 void
@@ -390,6 +390,16 @@ on_load_change (WebKitWebView  *web_view,
   }
 }
 
+static gboolean
+on_context_menu (WebKitWebView       *web_view,
+                 WebKitContextMenu   *context_menu,
+                 GdkEvent            *event,
+                 WebKitHitTestResult *hit_test_result,
+                 gpointer             user_data)
+{
+  return TRUE;
+}
+
 static void
 biji_webkit_editor_handle_contents_update (BijiWebkitEditor *self,
                                            JSCValue         *js_value)
@@ -507,6 +517,8 @@ biji_webkit_editor_constructed (GObject *obj)
                     G_CALLBACK (on_navigation_request), NULL);
   g_signal_connect (view, "load-changed",
                     G_CALLBACK (on_load_change), NULL);
+  g_signal_connect (view, "context-menu",
+                    G_CALLBACK (on_context_menu), NULL);
 }
 
 static void

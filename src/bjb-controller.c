@@ -23,6 +23,7 @@
  * it controls the window behaviour.
  */
 
+#include "bjb-application.h"
 #include "bjb-controller.h"
 #include "bjb-main-view.h"
 #include "bjb-window-base.h"
@@ -47,6 +48,7 @@ struct _BjbController
   GtkTreeModel   *model;
 
   BjbWindowBase  *window;
+  BjbSettings    *settings;
 
   GList          *items_to_show;
   gint            n_items_to_show;
@@ -234,7 +236,8 @@ bjb_controller_add_item (BjbController *self,
   GtkTreeIter      iter;
   GtkListStore    *store;
   GdkRGBA          note_color;
-  g_autofree char *color = NULL;
+  const char      *text       = _("Notebook");
+  g_autofree char *color      = NULL;
 
   g_return_if_fail (BIJI_IS_ITEM (item));
   store = GTK_LIST_STORE (self->model);
@@ -254,14 +257,21 @@ bjb_controller_add_item (BjbController *self,
   else
     gtk_list_store_append (store, &iter);
 
-  if (biji_note_obj_get_rgba (BIJI_NOTE_OBJ (item), &note_color))
-    color = gdk_rgba_to_string (&note_color);
+  if (BIJI_IS_NOTE_OBJ (item))
+    {
+      text = biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (item));
+      if (biji_note_obj_get_rgba (BIJI_NOTE_OBJ (item), &note_color))
+        color = gdk_rgba_to_string (&note_color);
+    }
+
+  if (!color)
+    color = g_strdup (bjb_settings_get_default_color (self->settings));
 
   gtk_list_store_set (store,
                       &iter,
                       BJB_MODEL_COLUMN_UUID,  biji_item_get_uuid (item),
                       BJB_MODEL_COLUMN_TITLE, biji_item_get_title (item),
-                      BJB_MODEL_COLUMN_TEXT,  biji_note_obj_get_raw_text (BIJI_NOTE_OBJ (item)),
+                      BJB_MODEL_COLUMN_TEXT,  text,
                       BJB_MODEL_COLUMN_MTIME, biji_item_get_mtime (item),
                       BJB_MODEL_COLUMN_COLOR, color,
                       -1);
@@ -660,9 +670,12 @@ bjb_controller_disconnect (BjbController *self)
 static void
 bjb_controller_constructed (GObject *obj)
 {
+  BjbController *self = BJB_CONTROLLER (obj);
   G_OBJECT_CLASS(bjb_controller_parent_class)->constructed(obj);
 
-  bjb_controller_connect (BJB_CONTROLLER (obj));
+  self->settings = bjb_app_get_settings (g_application_get_default ());
+
+  bjb_controller_connect (self);
 }
 
 static void

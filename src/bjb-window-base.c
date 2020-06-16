@@ -221,6 +221,19 @@ on_detach_window_cb (GSimpleAction *action,
 }
 
 static void
+on_paste_cb (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+
+  if (!note)
+    return;
+
+  biji_webkit_editor_paste (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (note)));
+}
+
+static void
 on_undo_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
@@ -353,6 +366,7 @@ bjb_window_base_configure_event (GtkWidget         *widget,
 
 static GActionEntry win_entries[] = {
   { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
+  { "paste", on_paste_cb, NULL, NULL, NULL },
   { "undo", on_undo_cb, NULL, NULL, NULL },
   { "redo", on_redo_cb, NULL, NULL, NULL },
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },

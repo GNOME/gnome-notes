@@ -105,14 +105,16 @@ bjb_main_view_disconnect_scrolled_window (BjbMainView *self)
 static void
 bjb_main_view_disconnect_handlers (BjbMainView *self)
 {
+  GtkListBox *list_box = bjb_list_view_get_list_box (self->view);
+
   if (self->key)
     g_signal_handler_disconnect (self->window, self->key);
   if (self->activated)
-    g_signal_handler_disconnect (self->view, self->activated);
+    g_signal_handler_disconnect (list_box, self->activated);
   if (self->data)
     g_signal_handler_disconnect (self->view, self->data);
   if (self->view_selection_changed)
-    g_signal_handler_disconnect (self->view, self->view_selection_changed);
+    g_signal_handler_disconnect (list_box, self->view_selection_changed);
 
   self->key = 0;
   self->activated = 0;

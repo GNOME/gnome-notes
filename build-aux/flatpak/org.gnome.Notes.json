@@ -83,7 +83,7 @@
             "cleanup" : [
                 "/lib/cmake"
             ],
-            "buildsystem" : "cmake",
+            "buildsystem" : "cmake-ninja",
             "config-opts" : [
                 "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
                 "-DBUILD_SHARED_LIBS:BOOL=ON",
@@ -119,7 +119,7 @@
                 "/libexec",
                 "/share/dbus-1/services"
             ],
-            "buildsystem" : "cmake",
+            "buildsystem" : "cmake-ninja",
             "config-opts" : [
                 "-DENABLE_CANBERRA=OFF",
                 "-DENABLE_GTK=ON",

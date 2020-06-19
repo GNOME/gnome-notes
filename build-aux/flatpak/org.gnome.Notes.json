@@ -67,10 +67,9 @@
         },
         {
             "name" : "gnome-online-accounts",
+            "buildsystem" : "meson",
             "config-opts" : [
-                "--disable-Werror",
-                "--disable-documentation",
-                "--disable-backend"
+                "-Dgoabackend=false"
             ],
             "sources" : [
                 {

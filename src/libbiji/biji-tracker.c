@@ -15,6 +15,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
+
 #include "biji-item.h"
 #include "biji-tracker.h"
 
@@ -152,7 +154,9 @@ biji_perform_update_async_and_free (TrackerSparqlConnection *connection,
               (NULL, query, NULL, f, NULL, NULL, NULL, NULL, user_data);
   tracker_sparql_connection_update_async (connection,
                                           query,
+#if !HAVE_TRACKER3
                                           0,     // priority
+#endif
                                           NULL,
                                           biji_finish_update,
                                           finisher);
@@ -497,7 +501,9 @@ biji_create_new_notebook_async (BijiManager     *manager,
   finisher = biji_tracker_finisher_new (manager, g_strdup (name), NULL, NULL, NULL, item_cb, NULL, NULL, user_data);
   tracker_sparql_connection_update_blank_async (get_connection (manager),
                                                 query,
+#if !HAVE_TRACKER3
                                                 G_PRIORITY_DEFAULT,
+#endif
                                                 NULL,
                                                 on_new_notebook_query_executed,
                                                 finisher);
@@ -655,7 +661,9 @@ push_new_note (BijiTrackerFinisher *finisher)
 
   tracker_sparql_connection_update_blank_async (get_connection (manager),
                                                 query,
+#if !HAVE_TRACKER3
                                                 G_PRIORITY_DEFAULT,
+#endif
                                                 NULL,
                                                 NULL,  // callback,
                                                 NULL); // user_data);

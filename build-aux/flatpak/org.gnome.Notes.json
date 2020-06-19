@@ -170,7 +170,7 @@
             ]
         },
         {
-            "name" : "bijiben",
+            "name" : "gnome-notes",
             "buildsystem" : "meson",
             "builddir" : true,
             "config-opts" : [

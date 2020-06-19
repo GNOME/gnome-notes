@@ -12,7 +12,7 @@ flatpak:
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.Notes.json"
         RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
         # Replace with your application name, as written in the manifest
-        FLATPAK_MODULE: "bijiben"
+        FLATPAK_MODULE: "gnome-notes"
         # Make sure to keep this in sync with the Flatpak manifest, all arguments
         # are passed except the config-args because we build it ourselves
         # CONFIGURE_ARGS: "-Dtests=all"

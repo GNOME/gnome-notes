@@ -67,10 +67,9 @@
         },
         {
             "name" : "gnome-online-accounts",
+            "buildsystem" : "meson",
             "config-opts" : [
-                "--disable-Werror",
-                "--disable-documentation",
-                "--disable-backend"
+                "-Dgoabackend=false"
             ],
             "sources" : [
                 {
@@ -84,7 +83,7 @@
             "cleanup" : [
                 "/lib/cmake"
             ],
-            "buildsystem" : "cmake",
+            "buildsystem" : "cmake-ninja",
             "config-opts" : [
                 "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
                 "-DBUILD_SHARED_LIBS:BOOL=ON",
@@ -120,7 +119,7 @@
                 "/libexec",
                 "/share/dbus-1/services"
             ],
-            "buildsystem" : "cmake",
+            "buildsystem" : "cmake-ninja",
             "config-opts" : [
                 "-DENABLE_CANBERRA=OFF",
                 "-DENABLE_GTK=ON",
@@ -171,7 +170,7 @@
             ]
         },
         {
-            "name" : "bijiben",
+            "name" : "gnome-notes",
             "buildsystem" : "meson",
             "builddir" : true,
             "config-opts" : [

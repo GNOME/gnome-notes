@@ -50,12 +50,13 @@ biji_timeout_init (BijiTimeout *self)
 static void
 biji_timeout_finalize (GObject *object)
 {
-  BijiTimeout *self = BIJI_TIMEOUT (object);
+  BijiTimeout  *self = BIJI_TIMEOUT (object);
+  GApplication *app  = g_application_get_default ();
 
   biji_timeout_cancel (self);
 
-  if (self->quit !=0 )
-    g_signal_handler_disconnect (g_application_get_default(), self->quit);
+  if (self->quit != 0 && g_signal_handler_is_connected (app, self->quit))
+    g_signal_handler_disconnect (app, self->quit);
 
   G_OBJECT_CLASS (biji_timeout_parent_class)->finalize (object);
 }

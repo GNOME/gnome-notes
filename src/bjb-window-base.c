@@ -125,7 +125,6 @@ bjb_window_base_set_property (GObject  *object,
 }
 
 
-
 static gboolean
 on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
 {
@@ -137,25 +136,11 @@ on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
 
   /* First check for Alt <- to go back */
   if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
-      event->key.keyval == GDK_KEY_Left &&
-      (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
+      event->key.keyval == GDK_KEY_Left)
   {
-    BijiItemsGroup items;
-
-    items = bjb_controller_get_group (self->controller);
-
-    /* Back to main view from trash bin */
-    if (items == BIJI_ARCHIVED_ITEMS)
-      bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
-    /* Back to main view */
-    else
-      bjb_controller_set_notebook (self->controller, NULL);
-
+    bjb_window_base_go_back (self);
     return TRUE;
   }
-
 
   switch (event->key.keyval)
   {
@@ -566,6 +551,35 @@ destroy_note_if_needed (BjbWindowBase *self)
   self->note_view = NULL;
 }
 
+void
+bjb_window_base_go_back (BjbWindowBase *self)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (self);
+  BijiItemsGroup group;
+
+  if (! (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
+         self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW ||
+         self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
+    return;
+
+  if (self->note)
+    {
+      if (biji_note_obj_is_trashed (note))
+        bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+      else
+        bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+      return;
+    }
+
+  group = bjb_controller_get_group (self->controller);
+
+  /* Back to main view from trash bin */
+  if (group == BIJI_ARCHIVED_ITEMS)
+    bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+  /* Back to main view */
+  else
+    bjb_controller_set_notebook (self->controller, NULL);
+}
 
 void
 bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)

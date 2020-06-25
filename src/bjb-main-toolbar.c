@@ -310,34 +310,8 @@ disconnect_note_handlers (BjbMainToolbar *self)
 static void
 on_back_button_clicked (BjbMainToolbar *self)
 {
-  BijiItemsGroup group;
-
-  if (self->note)
-    {
-      if (biji_note_obj_is_trashed (self->note))
-        bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
-                                   BJB_WINDOW_BASE_ARCHIVE_VIEW);
-      else
-        bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window),
-                                   BJB_WINDOW_BASE_MAIN_VIEW);
-      disconnect_note_handlers (self);
-      bjb_main_view_update_model (self->parent);
-      return;
-    }
-
-  group = bjb_controller_get_group (self->controller);
-
-  /* Back to main view from trash bin */
-  if (group == BIJI_ARCHIVED_ITEMS)
-    bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
-
-
-  /* Back to main view */
-  else
-    bjb_controller_set_notebook (self->controller, NULL);
+  bjb_window_base_go_back (BJB_WINDOW_BASE (self->window));
 }
-
-
 
 static void
 on_empty_clicked_callback        (BjbMainToolbar *self)

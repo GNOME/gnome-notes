@@ -562,12 +562,19 @@ bjb_window_base_go_back (BjbWindowBase *self)
          self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
     return;
 
+  if (bjb_window_base_is_detached (self))
+    {
+      gtk_widget_destroy (self);
+      return;
+    }
+
   if (self->note)
     {
       if (biji_note_obj_is_trashed (note))
         bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
       else
         bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+      bjb_main_view_update_model (self->view);
       return;
     }
 

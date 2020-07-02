@@ -119,7 +119,7 @@ bijiben_deps = [
   dependency('libhandy-0.0', version: '>= 0.0.10'),
   dependency('libxml-2.0'),
   dependency('uuid'),
-  dependency('webkit2gtk-4.0', version: '>= 2.10'),
+  dependency('webkit2gtk-4.0', version: '>= 2.26'),
   cc.find_library('m')
 ]
 

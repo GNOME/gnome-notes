@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-05-05 03:24+0000\n"
-"PO-Revision-Date: 2020-06-26 09:19+0500\n"
+"POT-Creation-Date: 2020-06-26 04:21+0000\n"
+"PO-Revision-Date: 2020-07-02 09:26+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:638 src/bjb-window-base.c:18
 msgid "Notes"
 msgstr "Естеліктер"
 
@@ -71,6 +71,10 @@ msgstr "Естеліктерді жариялау, файлдарға тегте
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Естеліктерді сақтау"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "Жаңа естелікті жасау"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -192,70 +196,80 @@ msgstr "Терезені жабу"
 
 #: data/resources/help-overlay.ui:35
 msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Шығу"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Артқа өту"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Көмекті көрсету"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Мәзірді ашу"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Пернетақта жарлықтары"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Таңдау режимі"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Таңдау режимінен шығу"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Барлығын таңдау"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Естелікті түзету режимі"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Жаңа терезеде ашу"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Жуан"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Көлбеу"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Сызылған"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Болдырмау"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Қайталау"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Естелікті қоқыс шелегіне тастау"
@@ -446,43 +460,43 @@ msgstr "Басты кітап"
 msgid "Untitled"
 msgstr "Атаусыз"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:463
 msgid "Show the application’s version"
 msgstr "Қолданба нұсқасын көрсету"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:465
 msgid "Create a new note"
 msgstr "Жаңа жазбаны жасау"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:467
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:475
 msgid "Take notes and export them everywhere."
 msgstr "Естеліктерді жасап, оларды экспорттаңыз."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:486
 msgid "Could not parse arguments"
 msgstr "Аргументтерді талдау мүмкін емес"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:494
 msgid "GNOME Notes"
 msgstr "GNOME естеліктері"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:506
 msgid "Could not register the application"
 msgstr "Қолданбаны тіркеу мүмкін емес"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:639
 msgid "Simple notebook for GNOME"
 msgstr "GNOME үшін қарапайым блокнот"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:645
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
@@ -613,9 +627,6 @@ msgstr "Жергілікті сақтау қоймасы"
 
 #~ msgid "_About"
 #~ msgstr "О_сы туралы"
-
-#~ msgid "_Quit"
-#~ msgstr "_Шығу"
 
 #~ msgid "Cut"
 #~ msgstr "Қиып алу"

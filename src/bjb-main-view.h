@@ -32,8 +32,6 @@ G_DECLARE_FINAL_TYPE (BjbMainView, bjb_main_view, BJB, MAIN_VIEW, GtkGrid)
 BjbMainView *bjb_main_view_new                        (GtkWidget     *win,
                                                        BjbController *controller);
 
-void         bjb_main_view_connect_signals            (BjbMainView   *self);
-
 GtkWidget   *bjb_main_view_get_window                 (BjbMainView   *view);
 
 void         action_new_window_callback               (GtkAction     *action,
@@ -60,8 +58,6 @@ gboolean     bjb_main_view_get_selection_mode         (BjbMainView   *view);
 
 void         bjb_main_view_set_selection_mode         (BjbMainView   *view,
                                                        gboolean       mode);
-
-void         bjb_main_view_disconnect_scrolled_window (BjbMainView   *self);
 
 G_END_DECLS
 

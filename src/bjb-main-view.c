@@ -69,12 +69,6 @@ struct _BjbMainView
   BjbListView         *view;
   BjbController       *controller;
   GtkWidget           *load_more;
-
-  /* Signals */
-  gulong               key;
-  gulong               activated;
-  gulong               data;
-  gulong               view_selection_changed;
 };
 
 G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_GRID)
@@ -84,50 +78,6 @@ static void bjb_main_view_view_changed (BjbMainView *self);
 static void
 bjb_main_view_init (BjbMainView *self)
 {
-}
-
-void
-bjb_main_view_disconnect_scrolled_window (BjbMainView *self)
-{
-  GtkAdjustment *vadjustment;
-  GtkWidget     *vscrollbar;
-
-  if (self->view == NULL || !GTK_IS_SCROLLED_WINDOW (self->view))
-    return;
-
-  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->view));
-  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->view));
-
-  g_signal_handlers_disconnect_by_func (vadjustment, bjb_main_view_view_changed, self);
-  g_signal_handlers_disconnect_by_func (vscrollbar, bjb_main_view_view_changed, self);
-}
-
-static void
-bjb_main_view_disconnect_handlers (BjbMainView *self)
-{
-  GtkListBox *list_box = bjb_list_view_get_list_box (self->view);
-
-  if (self->key)
-    g_signal_handler_disconnect (self->window, self->key);
-  if (self->activated)
-    g_signal_handler_disconnect (list_box, self->activated);
-  if (self->data)
-    g_signal_handler_disconnect (self->view, self->data);
-  if (self->view_selection_changed)
-    g_signal_handler_disconnect (list_box, self->view_selection_changed);
-
-  self->key = 0;
-  self->activated = 0;
-  self->data = 0;
-  self->view_selection_changed =0;
-}
-
-static void
-bjb_main_view_dispose (GObject *object)
-{
-  bjb_main_view_disconnect_handlers (BJB_MAIN_VIEW (object));
-  bjb_main_view_disconnect_scrolled_window (BJB_MAIN_VIEW (object));
-  G_OBJECT_CLASS (bjb_main_view_parent_class)->dispose (object);
 }
 
 static void
@@ -187,7 +137,6 @@ void
 switch_to_note_view (BjbMainView *self,
                      BijiNoteObj *note)
 {
-  bjb_main_view_disconnect_handlers (self);
   bjb_window_base_switch_to_item (BJB_WINDOW_BASE (self->window),
                                   BIJI_ITEM (note));
 }
@@ -273,8 +222,7 @@ bjb_main_view_get_selected_items (BjbMainView *self)
 }
 
 static void
-on_selected_rows_changed_cb (GtkListBox  *box,
-                             BjbMainView *self)
+on_selected_rows_changed_cb (BjbMainView *self)
 {
   /* Workaround if items are selected
    * but selection mode not really active (?) */
@@ -293,12 +241,9 @@ on_selected_rows_changed_cb (GtkListBox  *box,
 
 /* Select all, escape */
 static gboolean
-on_key_press_event_cb (GtkWidget *widget,
-                       GdkEvent  *event,
-                       gpointer   user_data)
+on_key_press_event_cb (BjbMainView *self,
+                       GdkEvent    *event)
 {
-  BjbMainView *self = BJB_MAIN_VIEW (user_data);
-
   switch (event->key.keyval)
     {
       case GDK_KEY_a:
@@ -325,9 +270,8 @@ on_key_press_event_cb (GtkWidget *widget,
 }
 
 static void
-on_row_activated (GtkListBox     *view,
-                  BjbListViewRow *row,
-                  BjbMainView    *self)
+on_row_activated (BjbMainView    *self,
+                  BjbListViewRow *row)
 {
   BijiManager *manager;
   BijiItem    *to_open;
@@ -347,14 +291,13 @@ static GtkTargetEntry target_list[] = {
 };
 
 static void
-on_drag_data_received (GtkWidget        *widget,
+on_drag_data_received (BjbMainView      *self,
                        GdkDragContext   *context,
                        gint              x,
                        gint              y,
                        GtkSelectionData *data,
                        guint             info,
-                       guint             time,
-                       gpointer          user_data)
+                       guint             time)
 {
   gint length = gtk_selection_data_get_length (data);
 
@@ -366,7 +309,6 @@ on_drag_data_received (GtkWidget        *widget,
         {
           BijiManager *manager;
           BijiNoteObj *ret;
-          BjbMainView *self = BJB_MAIN_VIEW (user_data);
           BjbSettings *settings;
 
           /* FIXME Text is guchar utf 8, conversion to perform */
@@ -386,30 +328,34 @@ on_drag_data_received (GtkWidget        *widget,
   gtk_drag_finish (context, FALSE, FALSE, time);
 }
 
-void
+static void
 bjb_main_view_connect_signals (BjbMainView *self)
 {
   GtkListBox *list_box = bjb_list_view_get_list_box (self->view);
 
-  if (self->view_selection_changed == 0)
-    self->view_selection_changed = g_signal_connect (list_box,
-                                                     "selected-rows-changed",
-                                                     G_CALLBACK (on_selected_rows_changed_cb),
-                                                     self);
+  g_signal_connect_object (list_box,
+                           "selected-rows-changed",
+                           G_CALLBACK (on_selected_rows_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
-  if (self->key == 0)
-    self->key = g_signal_connect (self->window, "key-press-event",
-                                  G_CALLBACK (on_key_press_event_cb), self);
+  g_signal_connect_object (list_box,
+                           "row-activated",
+                           G_CALLBACK (on_row_activated),
+                           self,
+                           G_CONNECT_SWAPPED);
 
-  if (self->activated == 0)
-    self->activated = g_signal_connect (list_box,
-                                        "row-activated",
-                                        G_CALLBACK (on_row_activated),
-                                        self);
+  g_signal_connect_object (self->view,
+                           "drag-data-received",
+                           G_CALLBACK (on_drag_data_received),
+                           self,
+                           G_CONNECT_SWAPPED);
 
-  if (self->data == 0)
-    self->data = g_signal_connect (self->view, "drag-data-received",
-                                   G_CALLBACK (on_drag_data_received), self);
+  g_signal_connect_object (self->window,
+                           "key-press-event",
+                           G_CALLBACK (on_key_press_event_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 static void
@@ -457,11 +403,10 @@ bjb_main_view_constructed (GObject *o)
   BjbMainView   *self;
   GtkAdjustment *vadjustment;
   GtkWidget     *vscrollbar;
-  GtkWidget     *button;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed (G_OBJECT (o));
 
-  self = BJB_MAIN_VIEW(o);
+  self = BJB_MAIN_VIEW (o);
 
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self), GTK_ORIENTATION_VERTICAL);
   self->view = bjb_list_view_new ();
@@ -498,10 +443,8 @@ bjb_main_view_constructed (GObject *o)
 
   /* Load more */
   self->load_more = bjb_load_more_button_new (self->controller);
-  button = bjb_load_more_button_get_revealer (BJB_LOAD_MORE_BUTTON (self->load_more));
-  gtk_container_add (GTK_CONTAINER (self), button);
+  gtk_container_add (GTK_CONTAINER (self), self->load_more);
   bjb_main_view_view_changed (self);
-
 
   /* Selection Panel */
   self->select_bar = bjb_selection_toolbar_new (self->view, self);
@@ -520,7 +463,6 @@ bjb_main_view_class_init (BjbMainViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->dispose = bjb_main_view_dispose;
   object_class->get_property = bjb_main_view_get_property;
   object_class->set_property = bjb_main_view_set_property;
   object_class->constructed = bjb_main_view_constructed;

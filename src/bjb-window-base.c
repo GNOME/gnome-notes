@@ -4,7 +4,6 @@
 #include <stdlib.h>
 
 #include <libbiji/libbiji.h>
-#include <libgd/gd.h>
 
 #include "bjb-application.h"
 #include "bjb-empty-results-box.h"
@@ -340,7 +339,6 @@ bjb_window_base_load_geometry (BjbWindowBase *self)
 static void
 bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
 {
-  bjb_main_view_disconnect_scrolled_window (self->view);
   bjb_controller_disconnect (self->controller);
   bjb_window_base_save_geometry (self);
 }
@@ -585,14 +583,12 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
       bjb_search_toolbar_connect (self->search_bar);
-      bjb_main_view_connect_signals (self->view);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->stack, "main-view");
       break;
 
    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
       bjb_search_toolbar_connect (self->search_bar);
-      bjb_main_view_connect_signals (self->view);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->stack, "main-view");
       break;

@@ -19,7 +19,6 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
-#include <libgd/gd.h>
 
 #include "bjb-application.h"
 #include "bjb-color-button.h"
@@ -32,11 +31,9 @@
 typedef enum
 {
   BJB_TOOLBAR_0,
-  BJB_TOOLBAR_STD_LIST,
-  BJB_TOOLBAR_STD_ICON,
+  BJB_TOOLBAR_LIST,
   BJB_TOOLBAR_SELECT,
   BJB_TOOLBAR_TRASH_LIST,
-  BJB_TOOLBAR_TRASH_ICON,
   BJB_TOOLBAR_TRASH_SELECT,
   BJB_TOOLBAR_NOTE_VIEW
 } BjbToolbarType;
@@ -58,12 +55,9 @@ struct _BjbMainToolbar
   GtkWidget *new_button;
   GtkWidget *back_button;
   GtkWidget *title_entry;
-  GtkWidget *list_button;
-  GtkWidget *grid_button;
   GtkWidget *select_button;
   GtkWidget *cancel_button;
   GtkWidget *search_button;
-  GtkWidget *style_buttons;
   GtkWidget *empty_button;
   GtkWidget *color_button;
   GtkWidget *button_stack;
@@ -176,49 +170,11 @@ static void
 on_selection_mode_clicked (BjbMainToolbar *self,
                            GtkWidget      *button)
 {
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-  g_assert (GTK_IS_BUTTON (button));
-
   if (button == self->cancel_button)
-  {
     bjb_main_view_set_selection_mode (self->parent, FALSE);
-  }
-
-  /* Force refresh. We go to selection mode but nothing yet selected
-   * Thus no signal emited */
   else
-  {
     bjb_main_view_set_selection_mode (self->parent, TRUE);
-    on_view_selection_changed_cb (self);
-  }
-}
-
-static gboolean
-on_view_mode_clicked (BjbMainToolbar *self,
-                      GtkWidget      *button)
-{
-  GdMainViewType current;
-
-  g_assert (BJB_IS_MAIN_TOOLBAR (self));
-  g_assert (GTK_IS_BUTTON (button));
-
-  current = bjb_main_view_get_view_type (self->parent);
-
-  switch ( current )
-  {
-    case GD_MAIN_VIEW_ICON :
-      bjb_main_view_set_view_type (self->parent, GD_MAIN_VIEW_LIST);
-      break ;
-    case GD_MAIN_VIEW_LIST :
-      bjb_main_view_set_view_type (self->parent, GD_MAIN_VIEW_ICON);
-      break ;
-    default:
-      bjb_main_view_set_view_type (self->parent, GD_MAIN_VIEW_ICON);
-  }
-
-  bjb_main_view_update_model (self->parent);
-  gtk_widget_hide (button);
-  return TRUE;
+  on_view_selection_changed_cb (self);
 }
 
 static void
@@ -227,8 +183,6 @@ update_selection_buttons (BjbController *controller,
                           gboolean remaining,
                           BjbMainToolbar *self)
 {
-  gtk_widget_set_sensitive (self->grid_button, some_item_is_visible);
-  gtk_widget_set_sensitive (self->list_button, some_item_is_visible);
   gtk_widget_set_sensitive (self->empty_button, some_item_is_visible);
   gtk_widget_set_sensitive (self->search_button, some_item_is_visible);
   gtk_widget_set_sensitive (self->select_button, some_item_is_visible);
@@ -251,7 +205,6 @@ populate_bar_for_selection (BjbMainToolbar *self)
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), FALSE);
   gtk_widget_hide (self->select_button);
   gtk_widget_hide (self->button_stack);
-  gtk_widget_hide (self->style_buttons);
   gtk_widget_hide (self->main_button);
   gtk_widget_show (self->cancel_button);
 
@@ -466,7 +419,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   gtk_header_bar_set_custom_title (GTK_HEADER_BAR (self), self->title_entry);
 
   gtk_widget_hide (self->new_button);
-  gtk_widget_hide (self->style_buttons);
   gtk_widget_hide (self->search_button);
   gtk_widget_hide (self->select_button);
   gtk_widget_hide (self->main_button);
@@ -522,7 +474,6 @@ bjb_main_toolbar_reset (BjbMainToolbar *self)
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (self), TRUE);
 
   gtk_widget_show (self->button_stack);
-  gtk_widget_show (self->style_buttons);
   gtk_widget_show (self->select_button);
   gtk_widget_show (self->search_button);
   gtk_widget_show (self->new_button);
@@ -548,30 +499,17 @@ populate_bar_switch (BjbMainToolbar *self)
       populate_bar_for_selection (self);
       break;
 
-    case BJB_TOOLBAR_STD_ICON:
+    case BJB_TOOLBAR_LIST:
       populate_bar_for_standard(self);
-      gtk_widget_show (self->list_button);
       update_selection_buttons (self->controller,
                                 bjb_controller_shows_item (self->controller),
                                 TRUE,
                                 self);
       break;
 
-    case BJB_TOOLBAR_STD_LIST:
-      populate_bar_for_standard(self);
-      gtk_widget_show (self->grid_button);
-      update_selection_buttons (self->controller,
-                                bjb_controller_shows_item (self->controller),
-                                TRUE,
-                                self);
-      break;
-
-
-    case BJB_TOOLBAR_TRASH_ICON:
     case BJB_TOOLBAR_TRASH_LIST:
       populate_bar_for_trash (self);
       break;
-
 
     case BJB_TOOLBAR_NOTE_VIEW:
       populate_bar_for_note_view (self);
@@ -601,34 +539,18 @@ populate_main_toolbar(BjbMainToolbar *self)
     case BJB_WINDOW_BASE_NO_NOTE:
     case BJB_WINDOW_BASE_NO_RESULT:
     case BJB_WINDOW_BASE_MAIN_VIEW:
-
       if (bjb_main_view_get_selection_mode (self->parent) == TRUE)
         to_be = BJB_TOOLBAR_SELECT;
-
-      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_ICON)
-        to_be = BJB_TOOLBAR_STD_ICON;
-
-      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_LIST)
-        to_be = BJB_TOOLBAR_STD_LIST;
-
+      else
+        to_be = BJB_TOOLBAR_LIST;
       break;
-
 
     case BJB_WINDOW_BASE_ARCHIVE_VIEW:
-
       if (bjb_main_view_get_selection_mode (self->parent) == TRUE)
         to_be = BJB_TOOLBAR_TRASH_SELECT;
-
-      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_ICON)
-        to_be = BJB_TOOLBAR_TRASH_ICON;
-
-      else if (bjb_main_view_get_view_type (self->parent) == GD_MAIN_VIEW_LIST)
+      else
         to_be = BJB_TOOLBAR_TRASH_LIST;
-
-
       break;
-
-
 
     /* Not really a toolbar,
      * still used for Spinner */
@@ -794,11 +716,8 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, new_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, back_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, title_entry);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, list_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, grid_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, search_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, empty_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, style_buttons);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, cancel_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, select_button);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, color_button);
@@ -815,7 +734,6 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_selection_mode_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_view_mode_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_empty_clicked_callback);
   gtk_widget_class_bind_template_callback (widget_class, on_color_button_clicked);
 

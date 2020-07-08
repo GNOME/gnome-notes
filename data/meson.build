@@ -44,12 +44,8 @@ install_data(
 )
 
 resource_data = files(
-  'resources/Adwaita.css',
-  'resources/editor-toolbar.ui',
-  'resources/empty-results-box.ui',
-  'resources/note-symbolic.svg',
-  'resources/settings-dialog.ui',
-  'resources/thumbnail-frame.png'
+  'resources/style.css',
+  'resources/note-symbolic.svg'
 )
 
 gresource = files('bjb.gresource.xml')
@@ -66,23 +62,6 @@ install_data(
   install_dir: bijiben_pkgdatadir
 )
 
-# https://github.com/mesonbuild/meson/issues/1687
-custom_target('gsettings-enums',
-  input: '../subprojects/libgd/libgd/gd-main-view.h',
-  output: 'org.gnome.bijiben.enums.xml',
-  install: true,
-  install_dir: join_paths(bijiben_datadir, 'glib-2.0', 'schemas'),
-  capture: true,
-  command: ['glib-mkenums',
-    '--comments', '<!-- @comment@ -->',
-    '--fhead', '<schemalist>',
-    '--vhead', '  <@type@ id="org.gnome.bijiben.@EnumName@">',
-    '--vprod', '    <value nick="@valuenick@" value="@valuenum@"/>',
-    '--vtail', '  </@type@>',
-    '--ftail', '</schemalist>',
-    '@INPUT@'
-  ]
-)
 install_data(
   'org.gnome.Notes.gschema.xml',
   install_dir: join_paths(bijiben_datadir, 'glib-2.0', 'schemas')

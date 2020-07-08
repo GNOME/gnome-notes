@@ -1,3 +1,14 @@
+Overview of changes in 3.36.2
+=============================
+
+* Added Ukrainian translation to help (Yuri Chornoivan)
+* Fixed memory leak in OwnCloud provider (Mohammed Sadiq)
+* Fixed warnings about signal handler when exiting
+
+Translations
+* kk (Baurzhan Muftakhidinov)
+* uk (Yuri Chornoivan)
+
 Overview of changes in 3.36.1
 =============================
 

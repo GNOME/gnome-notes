@@ -39,6 +39,22 @@
   </screenshots>
 
   <releases>
+    <release date="2020-07-08" version="3.36.2">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added Ukrainian translation to help (Yuri Chornoivan)</li>
+          <li>Fixed memory leak in OwnCloud provider (Mohammed Sadiq)</li>
+          <li>Fixed warnings about signal handler when exiting</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>uk (Yuri Chornoivan)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-04-05" version="3.36.1">
       <description>
         <p>This release brings the following new features and improvements:</p>

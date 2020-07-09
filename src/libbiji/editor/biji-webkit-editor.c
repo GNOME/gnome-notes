@@ -93,6 +93,7 @@ biji_webkit_editor_get_web_context (void)
     webkit_web_context_set_cache_model (web_context, WEBKIT_CACHE_MODEL_DOCUMENT_VIEWER);
     webkit_web_context_set_process_model (web_context, WEBKIT_PROCESS_MODEL_SHARED_SECONDARY_PROCESS);
     webkit_web_context_set_spell_checking_enabled (web_context, TRUE);
+    webkit_web_context_set_sandbox_enabled (web_context, TRUE);
   }
 
   return web_context;

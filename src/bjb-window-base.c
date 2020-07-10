@@ -559,6 +559,7 @@ bjb_window_base_go_back (BjbWindowBase *self)
 
   if (! (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
          self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW ||
+         self->current_view == BJB_WINDOW_BASE_NO_RESULT ||
          self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
     return;
 

@@ -26,6 +26,11 @@
       <email its:translate="no">mdhillca@gmail.com</email>
       <years>2014</years>
     </credit>
+    <credit type="editor">
+      <name>Pranali Deshmukh</name>
+      <email its:translate="no">pranali21293@gmail.com</email>
+      <years>2020</years>
+    </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
@@ -37,14 +42,16 @@
   <list>
     <title>While the note is open:</title>
     <item>
-      <p>To create an unordered list, click
-      <guiseq><gui style="button">More options…</gui>
-      <gui style="menuitem">Bullets</gui></guiseq>.</p>
+      <p>To create an unordered list, select the
+      <guiseq><gui style="button">Bullets</gui>
+      </guiseq> button from the footer menu.</p>
+      <media type="image" src="figures/format-page-unordered-list.png"/>
     </item>
     <item>
-      <p>To create an ordered list, click
-      <guiseq><gui style="button">More options…</gui>
-      <gui>Numbered List</gui></guiseq>.</p>
+      <p>To create an ordered list, select the
+      <guiseq><gui style="button">Numberred List</gui>
+      </guiseq> button from the footer menu.</p>
+      <media type="image" src="figures/format-page-numbered-list.png"/>
     </item>
   </list>
 </page>

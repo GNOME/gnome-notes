@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes gnome-3-36\n"
-"POT-Creation-Date: 2020-05-12 19:55+0000\n"
-"PO-Revision-Date: 2020-05-12 23:03+0300\n"
+"POT-Creation-Date: 2020-07-14 17:43+0000\n"
+"PO-Revision-Date: 2020-07-14 21:16+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -404,38 +404,87 @@ msgstr "Позначте усі примітки, які ви хочете ві�
 msgid "Click on <gui style=\"button\">Restore</gui> button."
 msgstr "Натисніть кнопку <gui style=\"button\">Відновити</gui>."
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/format-list.page:30
+msgid "Pranali Deshmukh"
+msgstr "Pranali Deshmukh"
+
+#. (itstool) path: credit/years
 #: C/format-list.page:32
+msgid "2020"
+msgstr "2020"
+
+#. (itstool) path: info/desc
+#: C/format-list.page:37
 msgid "Format a note with ordered and unordered lists."
 msgstr "Форматування приміток у впорядковані і невпорядковані списки."
 
 #. (itstool) path: page/title
-#: C/format-list.page:35
+#: C/format-list.page:40
 msgid "Create a list"
 msgstr "Створити список"
 
 #. (itstool) path: list/title
-#: C/format-list.page:38
+#: C/format-list.page:43
 msgid "While the note is open:"
 msgstr "Коли відкрито примітку:"
 
 #. (itstool) path: item/p
-#: C/format-list.page:40
+#: C/format-list.page:45
+#| msgid ""
+#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
+#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
-"To create an unordered list, click <guiseq><gui style=\"button\">More "
-"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+"To create an unordered list, select the <guiseq><gui style=\"button"
+"\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
 "Щоб створити невпорядкований список, натисніть <guiseq><gui style=\"button"
-"\">Більше параметрів…</gui> <gui style=\"menuitem\">Пункти</gui></guiseq>."
+"\">Позначки</gui></guiseq> з меню нижньої панелі."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:48
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='figures/notes-3-36.png' "
+#| "md5='834032bed3915c474541bf14c23a3c9c'"
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+msgstr ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
 
 #. (itstool) path: item/p
-#: C/format-list.page:45
+#: C/format-list.page:51
+#| msgid ""
+#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
+#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
-"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
-"</gui> <gui>Numbered List</gui></guiseq>."
+"To create an ordered list, select the <guiseq><gui style=\"button"
+"\">Numberred List</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Щоб створити впорядкований список, натисніть <guiseq><gui style=\"button"
-"\">Більше параметрів…</gui> <gui>Нумерований список</gui></guiseq>."
+"Щоб створити впорядкований список, натисніть кнопку <guiseq><gui"
+" style=\"button"
+"\">Нумерований список</gui> </guiseq> з меню нижньої панелі."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:54
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+msgstr ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -536,10 +585,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:44
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-34.png' "
-#| "md5='213e25dd29f5b447ea239014fe95feb9'"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
@@ -775,3 +820,10 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Ця робота розповсюджується за умов дотримання <_:link-1/>."
+
+#~ msgid ""
+#~ "To create an unordered list, click <guiseq><gui style=\"button\">More "
+#~ "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+#~ msgstr ""
+#~ "Щоб створити невпорядкований список, натисніть <guiseq><gui style=\"button"
+#~ "\">Більше параметрів…</gui> <gui style=\"menuitem\">Пункти</gui></guiseq>."

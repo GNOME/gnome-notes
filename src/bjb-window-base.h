@@ -26,6 +26,7 @@ GtkWindow             *bjb_window_base_new                (BijiNoteObj *note);
 
 BjbController         *bjb_window_base_get_controller     (BjbWindowBase *window ) ;
 
+void                   bjb_window_base_go_back            (BjbWindowBase *self);
 
 void                   bjb_window_base_switch_to          (BjbWindowBase *bwb, BjbWindowViewType type);
 

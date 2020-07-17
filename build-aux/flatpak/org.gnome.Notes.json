@@ -69,7 +69,8 @@
             "name" : "gnome-online-accounts",
             "buildsystem" : "meson",
             "config-opts" : [
-                "-Dgoabackend=false"
+                "-Dgoabackend=false",
+                "-Dvapi=false"
             ],
             "sources" : [
                 {

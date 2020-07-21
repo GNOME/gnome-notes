@@ -465,7 +465,7 @@ update_controller_callback (GList *result,
   self = BJB_CONTROLLER (user_data);
   self->remaining_items = FALSE;
 
-  if (!result && self->group == BIJI_LIVING_ITEMS)
+  if (!result)
   {
     bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
     return;

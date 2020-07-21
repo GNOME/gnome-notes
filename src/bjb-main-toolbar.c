@@ -296,6 +296,7 @@ static void
 on_empty_clicked_callback        (BjbMainToolbar *self)
 {
   biji_manager_empty_bin (bjb_window_base_get_manager (GTK_WIDGET (self->window)));
+  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window), BJB_WINDOW_BASE_NO_RESULT);
 }
 
 
@@ -527,40 +528,32 @@ populate_main_toolbar(BjbMainToolbar *self)
 {
   BjbToolbarType to_be = BJB_TOOLBAR_0 ;
   BjbWindowViewType view_type;
+  BijiItemsGroup group;
+  gboolean selection_mode;
 
   view_type = bjb_window_base_get_view_type (BJB_WINDOW_BASE (self->window));
+  group = bjb_controller_get_group (self->controller);
+  selection_mode = bjb_main_view_get_selection_mode (self->parent);
 
-  switch (view_type)
-  {
-    case BJB_WINDOW_BASE_NOTE_VIEW:
-      to_be = BJB_TOOLBAR_NOTE_VIEW;
-      break;
+  /* Note view */
+  if (view_type == BJB_WINDOW_BASE_NOTE_VIEW)
+    to_be = BJB_TOOLBAR_NOTE_VIEW;
 
-    case BJB_WINDOW_BASE_NO_NOTE:
-    case BJB_WINDOW_BASE_NO_RESULT:
-    case BJB_WINDOW_BASE_MAIN_VIEW:
-      if (bjb_main_view_get_selection_mode (self->parent) == TRUE)
-        to_be = BJB_TOOLBAR_SELECT;
-      else
-        to_be = BJB_TOOLBAR_LIST;
-      break;
+  /* Main view in selection mode */
+  else if (group == BIJI_LIVING_ITEMS && selection_mode)
+    to_be = BJB_TOOLBAR_SELECT;
 
-    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
-      if (bjb_main_view_get_selection_mode (self->parent) == TRUE)
-        to_be = BJB_TOOLBAR_TRASH_SELECT;
-      else
-        to_be = BJB_TOOLBAR_TRASH_LIST;
-      break;
+  /* Trash view in selection mode */
+  else if (group == BIJI_ARCHIVED_ITEMS && selection_mode)
+    to_be = BJB_TOOLBAR_TRASH_SELECT;
 
-    /* Not really a toolbar,
-     * still used for Spinner */
-    case BJB_WINDOW_BASE_SPINNER_VIEW:
-    case BJB_WINDOW_BASE_ERROR_TRACKER:
-    case BJB_WINDOW_BASE_NO_VIEW:
-    default:
-      break;
-  }
+  /* Trash view */
+  else if (group == BIJI_ARCHIVED_ITEMS && !selection_mode)
+    to_be = BJB_TOOLBAR_TRASH_LIST;
 
+  /* Main view and everything else */
+  else
+    to_be = BJB_TOOLBAR_LIST;
 
   /* Simply clear then populate */
   if (to_be != self->type || view_type == BJB_WINDOW_BASE_ARCHIVE_VIEW)

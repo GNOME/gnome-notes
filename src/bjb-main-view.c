@@ -23,7 +23,6 @@
 #include "bjb-controller.h"
 #include "bjb-list-view.h"
 #include "bjb-list-view-row.h"
-#include "bjb-load-more-button.h"
 #include "bjb-main-toolbar.h"
 #include "bjb-main-view.h"
 #include "bjb-note-view.h"
@@ -68,12 +67,9 @@ struct _BjbMainView
   /* View Notes , model */
   BjbListView         *view;
   BjbController       *controller;
-  GtkWidget           *load_more;
 };
 
 G_DEFINE_TYPE (BjbMainView, bjb_main_view, GTK_TYPE_GRID)
-
-static void bjb_main_view_view_changed (BjbMainView *self);
 
 static void
 bjb_main_view_init (BjbMainView *self)
@@ -359,50 +355,17 @@ bjb_main_view_connect_signals (BjbMainView *self)
 }
 
 static void
-bjb_main_view_view_changed (BjbMainView *self)
+on_show_more_cb (BjbMainView     *self,
+                 GtkPositionType  pos)
 {
-  GtkAdjustment *vadjustment;
-  GtkWidget     *vscrollbar;
-  gboolean       end;
-  gdouble        page_size;
-  gdouble        upper;
-  gdouble        value;
-  gint           reveal_area_height;
-
-  reveal_area_height = 32;
-  end = FALSE;
-  if (self->view == NULL)
-    return;
-
-  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->view));
-
-  if (vscrollbar == NULL || !gtk_widget_get_visible (GTK_WIDGET (vscrollbar)))
-    {
-      bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (self->load_more), TRUE);
-      return;
-    }
-
-  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->view));
-  page_size = gtk_adjustment_get_page_size (vadjustment);
-  upper = gtk_adjustment_get_upper (vadjustment);
-  value = gtk_adjustment_get_value (vadjustment);
-
-  /* Special case these values which happen at construction */
-  if ((gint) value == 0 && (gint) upper == 1 && (gint) page_size == 1)
-    end = FALSE;
-  else
-    end = !(value < (upper - page_size - reveal_area_height));
-
-  bjb_load_more_button_set_block (BJB_LOAD_MORE_BUTTON (self->load_more), !end);
+  if (pos == GTK_POS_BOTTOM)
+    bjb_controller_show_more (self->controller);
 }
-
 
 static void
 bjb_main_view_constructed (GObject *o)
 {
-  BjbMainView   *self;
-  GtkAdjustment *vadjustment;
-  GtkWidget     *vscrollbar;
+  BjbMainView *self;
 
   G_OBJECT_CLASS (bjb_main_view_parent_class)->constructed (G_OBJECT (o));
 
@@ -420,37 +383,15 @@ bjb_main_view_constructed (GObject *o)
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->view));
   gtk_widget_show (GTK_WIDGET (self->view));
 
-  vadjustment = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (self->view));
-
-  g_signal_connect_object (vadjustment,
-                           "changed",
-                           G_CALLBACK (bjb_main_view_view_changed),
+  g_signal_connect_object (GTK_SCROLLED_WINDOW (self->view),
+                           "edge-overshot",
+                           G_CALLBACK (on_show_more_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
-  g_signal_connect_object (vadjustment,
-                           "value-changed",
-                           G_CALLBACK (bjb_main_view_view_changed),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  vscrollbar = gtk_scrolled_window_get_vscrollbar (GTK_SCROLLED_WINDOW (self->view));
-  g_signal_connect_object (vscrollbar,
-                           "notify::visible",
-                           G_CALLBACK (bjb_main_view_view_changed),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  /* Load more */
-  self->load_more = bjb_load_more_button_new (self->controller);
-  gtk_container_add (GTK_CONTAINER (self), self->load_more);
-  bjb_main_view_view_changed (self);
-
-  /* Selection Panel */
   self->select_bar = bjb_selection_toolbar_new (self->view, self);
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->select_bar));
 
-  /* Drag n drop */
   gtk_drag_dest_set (GTK_WIDGET (self->view), GTK_DEST_DEFAULT_ALL,
                      target_list, 1, GDK_ACTION_COPY);
 

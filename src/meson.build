@@ -9,7 +9,6 @@ sources = files(
   'bjb-import-dialog.c',
   'bjb-list-view.c',
   'bjb-list-view-row.c',
-  'bjb-load-more-button.c',
   'bjb-main.c',
   'bjb-main-toolbar.c',
   'bjb-main-view.c',

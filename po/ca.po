@@ -3,26 +3,26 @@
 # This file is distributed under the same license as the bijiben package.
 # Pau Iranzo <paugnu@gmail.com>, 2012.
 # Josep Sanchez Mesegue <papapep@gmx.com>, 2013.
-# Gil Forcada <gilforcada@guifi.net>, 2014, 2018.
+# Gil Forcada <gilforcada@guifi.net>, 2014-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-11-09 23:33+0000\n"
-"PO-Revision-Date: 2019-03-03 20:50+0100\n"
-"Last-Translator: Gil Forcada Codinachs <gil.gnome@gmail.com>\n"
+"POT-Creation-Date: 2020-07-22 13:04+0000\n"
+"PO-Revision-Date: 2020-07-22 23:39+0200\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:608 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notes"
 
@@ -71,10 +71,10 @@ msgstr "Publiqueu notes i etiqueteu fitxers"
 msgid "Note-taker"
 msgstr "Prendre notes"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "Crea una nota nova"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -134,46 +134,30 @@ msgid "Window position (x and y)."
 msgstr "Posició de la finestra (x i y)."
 
 #: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Com s'han de mostrar les notes"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Si s'han de mostrar les notes en una vista d'icones o de llista."
-
-#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Mida del text usat per l'editor de notes."
 
-#: data/org.gnome.Notes.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Hi ha tres mides de text disponibles: petita, mitjana (per defecte) i gran."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Negreta"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Cursiva"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Ratllat"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Pics"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -187,87 +171,112 @@ msgstr "Copia la selecció a una nota nova"
 msgid "No notes"
 msgstr "Cap nota"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "General"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+#| msgid "Share note"
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Cerca notes"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Nota nova"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Tanca la finestra"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
+#| msgid "_Quit"
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Surt"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Torna enrere"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Mostra l'ajuda"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Dreceres"
+msgid "Open menu"
+msgstr "Obre el menú"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:63
+#| msgid "Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Dreceres de teclat"
+
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Mode de selecció"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Cancel·la el mode de selecció"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Selecciona-ho tot"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Mode d'edició de notes"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:96
+#| msgid "Open in another window"
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Obre en una finestra nova"
+
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Negreta"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Cursiva"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Ratllat"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Desfés"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Refés"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Mou la nota a la paperera"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Importa les notes"
 
@@ -303,7 +312,7 @@ msgstr "Selecciona una carpeta"
 msgid "_New"
 msgstr "_Nova"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Color de la nota"
 
@@ -320,84 +329,76 @@ msgstr "Surt del mode de selecció"
 msgid "Search note titles, content and notebooks"
 msgstr "Cerca al títol o al contingut de les notes i als blocs de notes"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Mostra les notes i els blocs de notes en una graella"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Mostra les notes i els blocs de notes en una llista"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Mode de selecció"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Obre el menú"
 
-#: data/resources/main-toolbar.ui:195
+#: data/resources/main-toolbar.ui:150
 msgid "More options"
 msgstr "Més opcions"
 
-#: data/resources/main-toolbar.ui:234
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Visualitza la paperera"
 
-#: data/resources/main-toolbar.ui:251
+#: data/resources/main-toolbar.ui:206
 msgid "Text Sizes"
 msgstr "Mides de text"
 
-#: data/resources/main-toolbar.ui:261
+#: data/resources/main-toolbar.ui:216
 msgid "_Large"
 msgstr "_Gran"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:226
 msgid "_Medium"
 msgstr "_Mitjana"
 
-#: data/resources/main-toolbar.ui:281
+#: data/resources/main-toolbar.ui:236
 msgid "_Small"
 msgstr "_Petita"
 
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferències"
 
-#: data/resources/main-toolbar.ui:316
-msgid "Help"
-msgstr "Ajuda"
-
-#: data/resources/main-toolbar.ui:325
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Dreceres de teclat"
 
-#: data/resources/main-toolbar.ui:334
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "Ajuda"
+
+#: data/resources/main-toolbar.ui:281
 msgid "About Notes"
 msgstr "Quant al Notes"
 
-#: data/resources/main-toolbar.ui:356
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Obre a una finestra nova"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Desfés"
 
-#: data/resources/main-toolbar.ui:382
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Refés"
 
-#: data/resources/main-toolbar.ui:399 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Blocs de notes"
 
-#: data/resources/main-toolbar.ui:408
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Envia per correu aquesta nota"
 
-#: data/resources/main-toolbar.ui:417 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Mou a la paperera"
 
@@ -409,19 +410,19 @@ msgstr "Introduïu un nom per crear un bloc de notes"
 msgid "New notebook"
 msgstr "Bloc de notes nou"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Comparteix la nota"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Obre a una finestra nova"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Restaura"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Elimina permanentment"
 
@@ -449,47 +450,47 @@ msgstr "Seleccioneu la ubicació d'emmagatzematge predeterminada:"
 msgid "Primary Book"
 msgstr "Llibre principal"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
 msgid "Untitled"
 msgstr "Sense títol"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:432
 msgid "Show the application’s version"
 msgstr "Mostra la versió de l'aplicació"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:434
 msgid "Create a new note"
 msgstr "Crea una nota nova"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:436
 msgid "[FILE…]"
 msgstr "[FITXER…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:444
 msgid "Take notes and export them everywhere."
 msgstr "Preneu notes i exporteu-les allà on vulgueu."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:455
 msgid "Could not parse arguments"
 msgstr "No s'han pogut analitzar els arguments"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:463
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:475
 msgid "Could not register the application"
 msgstr "No s'ha pogut registrar l'aplicació"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:609
 msgid "Simple notebook for GNOME"
 msgstr "Un bloc de notes senzill pel GNOME"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:615
 msgid "translator-credits"
 msgstr ""
 "Softcatalà <tradgnome@softcatala.org>\n"
@@ -497,9 +498,13 @@ msgstr ""
 "Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Josep Sanchez Mesegue <papapep@gmx.com>"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Color de la nota"
+
+#: src/bjb-controller.c:239
+msgid "Notebook"
+msgstr "Bloc de notes"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -513,35 +518,27 @@ msgstr "Errada"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Instal·leu el «Tracker» i reinicieu el programa."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Carrega'n més"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "S'està carregant…"
-
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Feu clic als elements per seleccionar-los"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionades"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:228
 #, c-format
 msgid "Results for %s"
 msgstr "Resultats per %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:231
 msgid "New and Recent"
 msgstr "Recents i noves"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:324
 msgid "Trash"
 msgstr "Paperera"
 
@@ -550,30 +547,32 @@ msgstr "Paperera"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:392
 #, c-format
-msgid "Last updated %s"
-msgstr "Última actualització %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
+msgstr "Última actualitzacióÑ %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Desconegut"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Ahir"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Aquest mes"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Avui"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Ahir"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Aquesta setmana"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Aquest mes"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -586,6 +585,37 @@ msgstr "Local"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Emmagatzematge local"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
+
+#~ msgid "How to show note items"
+#~ msgstr "Com s'han de mostrar les notes"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr "Si s'han de mostrar les notes en una vista d'icones o de llista."
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Dreceres"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Mostra les notes i els blocs de notes en una graella"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Mostra les notes i els blocs de notes en una llista"
+
+#~ msgid "Load More"
+#~ msgstr "Carrega'n més"
+
+#~ msgid "Loading…"
+#~ msgstr "S'està carregant…"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"
@@ -611,9 +641,6 @@ msgstr "Emmagatzematge local"
 #~ msgid "_About"
 #~ msgstr "_Quant a"
 
-#~ msgid "_Quit"
-#~ msgstr "_Surt"
-
 #~ msgid "Cut"
 #~ msgstr "Retalla"
 
@@ -625,9 +652,6 @@ msgstr "Emmagatzematge local"
 
 #~ msgid "Note Edition"
 #~ msgstr "Edició de notes"
-
-#~ msgid "Notebook"
-#~ msgstr "Bloc de notes"
 
 #~ msgid "Note"
 #~ msgstr "Nota"

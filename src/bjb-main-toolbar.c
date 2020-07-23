@@ -82,6 +82,9 @@ struct _BjbMainToolbar
   gulong note_color_changed;
   gulong last_updated;
   GtkAccelGroup *accel;
+
+  /* When notebook view */
+  BijiNotebook *notebook;
 };
 
 /* GObject properties */
@@ -530,9 +533,11 @@ populate_main_toolbar(BjbMainToolbar *self)
   BjbWindowViewType view_type;
   BijiItemsGroup group;
   gboolean selection_mode;
+  BijiNotebook *new_notebook;
 
   view_type = bjb_window_base_get_view_type (BJB_WINDOW_BASE (self->window));
   group = bjb_controller_get_group (self->controller);
+  new_notebook = bjb_controller_get_notebook (self->controller);
   selection_mode = bjb_main_view_get_selection_mode (self->parent);
 
   /* Note view */
@@ -556,15 +561,14 @@ populate_main_toolbar(BjbMainToolbar *self)
     to_be = BJB_TOOLBAR_LIST;
 
   /* Simply clear then populate */
-  if (to_be != self->type || view_type == BJB_WINDOW_BASE_ARCHIVE_VIEW)
+  if (to_be != self->type || self->notebook != new_notebook)
   {
     /* If we leave a note view */
     if (self->type == BJB_TOOLBAR_NOTE_VIEW)
       disconnect_note_handlers (self);
 
     self->type = to_be;
-    /* bjb_main_toolbar_clear (self); */
-
+    self->notebook = new_notebook;
 
     if (self->search_handler != 0)
     {

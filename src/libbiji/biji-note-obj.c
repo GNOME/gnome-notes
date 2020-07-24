@@ -82,9 +82,6 @@ static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (BijiNoteObj, biji_note_obj, BIJI_TYPE_ITEM)
 
-gboolean is_webkit1 (const char *content);
-gchar * convert_webkit1_to_webkit2 (const gchar *content);
-
 static void
 on_save_timeout (BijiNoteObj *self)
 {
@@ -831,80 +828,91 @@ biji_note_obj_set_create_date (BijiNoteObj *note, gint64 time)
 
 /* Webkit */
 
-gchar *
-html_from_plain_text (const gchar *content)
+char *
+html_from_plain_text (const char *content)
 {
-  gchar *escaped, *retval;
+  g_autofree char *escaped = NULL;
 
   if (content == NULL)
-    content = "";
+    escaped = g_strdup ("");
+  else
+    escaped = biji_str_mass_replace (content,
+                                     "&", "&amp;",
+                                     "<", "&lt;",
+                                     ">", "&gt;",
+                                     "\n", "<br/>",
+                                     NULL);
 
-  escaped = biji_str_mass_replace (content,
-                                "&", "&amp;",
-                                "<", "&lt;",
-                                ">", "&gt;",
-                                "\n", "<br/>",
-                                NULL);
-
-  retval = g_strconcat ("<html xmlns=\"http://www.w3.org/1999/xhtml\">",
-                        "<head>",
-                        "<link rel='stylesheet' href='Default.css' type='text/css'/>",
-                        "<script language='javascript' src='bijiben.js'></script>"
-                        "</head>",
-                        "<body contenteditable='true' id='editable'>",
-                        escaped,
-                        "</body></html>", NULL);
-
-  g_free (escaped);
-  return retval;
+  return g_strconcat ("<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+                      "<head>",
+                      "<link rel=\"stylesheet\" href=\"Default.css\" type=\"text/css\"/>",
+                      "<script language=\"javascript\" src=\"bijiben.js\"></script>"
+                      "</head>",
+                      "<body id=\"editable\">",
+                      escaped,
+                      "</body></html>",
+                      NULL);
 }
 
-gboolean
+static gboolean
 is_webkit1 (const char *content)
 {
-	if (g_strstr_len (content, -1, "<script type=\"text/javascript\">    window.onload = function () {      document.getElementById('editable').focus();    };</script>") == NULL)
-		return FALSE;
-
-	return TRUE;
+  return g_strstr_len (content, -1, "<script type=\"text/javascript\">    window.onload = function () {      document.getElementById('editable').focus();    };</script>") != NULL;
 }
 
-gchar *
-convert_webkit1_to_webkit2 (const gchar *content)
+static char *
+convert_webkit1_to_webkit2 (const char *content)
 {
-	gchar *stripped = NULL;
-	gchar *webkit2 = NULL;
+  g_autofree char *stripped = NULL;
 
-	stripped = biji_str_mass_replace (content,
-																		"<html xmlns=\"http://www.w3.org/1999/xhtml\"><body contenteditable=\"true\" id=\"editable\">", "",
-																		"<script type=\"text/javascript\">    window.onload = function () {      document.getElementById('editable').focus();    };</script>", "\n",
-																		"<div><br/></div>", "\n",
-																		"<div>", "",
-																		"</div>", "\n",
-																		"<br/>", "\n",
-																		"</body></html>", "",
-																		NULL);
+  stripped = biji_str_mass_replace (content,
+                                    "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body contenteditable=\"true\" id=\"editable\">", "",
+                                    "<script type=\"text/javascript\">    window.onload = function () {      document.getElementById('editable').focus();    };</script>", "\n",
+                                    "<div><br/></div>", "\n",
+                                    "<div>", "",
+                                    "</div>", "\n",
+                                    "<br/>", "\n",
+                                    "</body></html>", "",
+                                    NULL);
 
-	webkit2 = html_from_plain_text (stripped);
+	return html_from_plain_text (stripped);
+}
 
-	g_free (stripped);
+static gboolean
+is_contenteditable_hardcoded (const char *content)
+{
+  return g_strstr_len (content, -1, "contenteditable=\"true\"") != NULL;
+}
 
-	return webkit2;
+static char *
+remove_hardcoded_contenteditable (const char *content)
+{
+  return biji_str_mass_replace (content,
+                                "contenteditable=\"true\"", "",
+                                NULL);
 }
 
 gchar *
 biji_note_obj_get_html (BijiNoteObj *note)
 {
-	gchar *content = BIJI_NOTE_OBJ_GET_CLASS (note)->get_html (note);
+  gchar *content = BIJI_NOTE_OBJ_GET_CLASS (note)->get_html (note);
 
-	if (content && is_webkit1 (content))
-		{
-			content = convert_webkit1_to_webkit2 (content);
-			biji_note_obj_set_html (note, content);
-			g_free (content);
-			content = BIJI_NOTE_OBJ_GET_CLASS (note)->get_html (note);
-		}
+  if (content && is_webkit1 (content))
+    {
+      content = convert_webkit1_to_webkit2 (content);
+      biji_note_obj_set_html (note, content);
+      g_free (content);
+      content = BIJI_NOTE_OBJ_GET_CLASS (note)->get_html (note);
+    }
+  else if (content && is_contenteditable_hardcoded (content))
+    {
+      content = remove_hardcoded_contenteditable (content);
+      biji_note_obj_set_html (note, content);
+      g_free (content);
+      content = BIJI_NOTE_OBJ_GET_CLASS (note)->get_html (note);
+    }
 
-	return content;
+  return content;
 }
 
 void

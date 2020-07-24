@@ -66,9 +66,6 @@ struct _BjbMainToolbar
 
   /* Menu items */
   GtkWidget *new_window_item;
-  GtkWidget *undo_item;
-  GtkWidget *redo_item;
-  GtkWidget *trash_item;
   GtkWidget *last_update_item;
 
   /* Signals */
@@ -408,9 +405,10 @@ on_title_changed (BjbMainToolbar *self,
 static void
 populate_bar_for_note_view (BjbMainToolbar *self)
 {
-  BjbSettings *settings;
-  GdkRGBA      color;
-  gboolean     detached;
+  BjbSettings     *settings;
+  GdkRGBA          color;
+  gboolean         detached;
+  g_autofree char *label = NULL;
 
   self->note = bjb_window_base_get_note (BJB_WINDOW_BASE (self->window));
   detached = bjb_window_base_is_detached (BJB_WINDOW_BASE (self->window));
@@ -418,16 +416,24 @@ populate_bar_for_note_view (BjbMainToolbar *self)
   if (!self->note) /* no reason this would happen */
     return;
 
-  settings = bjb_app_get_settings (g_application_get_default());
-
-  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (self), self->title_entry);
-
   gtk_widget_hide (self->new_button);
   gtk_widget_hide (self->search_button);
   gtk_widget_hide (self->select_button);
   gtk_widget_hide (self->main_button);
-
   gtk_widget_show (self->back_button);
+
+  if (biji_note_obj_is_trashed (self->note))
+    {
+      label = g_strdup_printf ("%s", biji_item_get_title (BIJI_ITEM (self->note)));
+      gtk_header_bar_set_title (GTK_HEADER_BAR (self), label);
+      gtk_header_bar_set_subtitle (GTK_HEADER_BAR (self), NULL);
+      return;
+    }
+
+  settings = bjb_app_get_settings (g_application_get_default());
+
+  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (self), self->title_entry);
+
   gtk_widget_show (self->menu_button);
 
   if (detached)
@@ -458,11 +464,6 @@ populate_bar_for_note_view (BjbMainToolbar *self)
     self->note_color_changed = g_signal_connect (self->note, "color-changed",
                                G_CALLBACK (on_note_color_changed), self->color_button);
   }
-
-  if (biji_note_obj_is_trashed (self->note))
-    gtk_widget_hide (self->trash_item);
-  else
-    gtk_widget_show (self->trash_item);
 
   /* Note Last Updated */
   on_last_updated_cb (BIJI_ITEM (self->note), self);
@@ -723,9 +724,6 @@ bjb_main_toolbar_class_init (BjbMainToolbarClass *klass)
 
   /* Menu items */
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, new_window_item);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, undo_item);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, redo_item);
-  gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, trash_item);
   gtk_widget_class_bind_template_child (widget_class, BjbMainToolbar, last_update_item);
 
   gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);

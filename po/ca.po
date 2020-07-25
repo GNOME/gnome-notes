@@ -98,7 +98,7 @@ msgstr "Color de les notes noves."
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
-"El nom del color que es defineixi aquí és el que s'utilitzarà per crear "
+"El nom del color que es defineixi aquí és el que s'utilitzarà per a crear "
 "notes noves."
 
 #: data/org.gnome.Notes.gschema.xml:24
@@ -404,7 +404,7 @@ msgstr "Mou a la paperera"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
-msgstr "Introduïu un nom per crear un bloc de notes"
+msgstr "Introduïu un nom per a crear un bloc de notes"
 
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
@@ -508,7 +508,7 @@ msgstr "Bloc de notes"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Feu clic al botó «Nova» per crear una nota nova."
+msgstr "Feu clic al botó «Nova» per a crear una nota nova."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
@@ -520,7 +520,7 @@ msgstr "Instal·leu el «Tracker» i reinicieu el programa."
 
 #: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
-msgstr "Feu clic als elements per seleccionar-los"
+msgstr "Feu clic als elements per a seleccionar-los"
 
 #: src/bjb-main-toolbar.c:136
 #, c-format
@@ -549,9 +549,8 @@ msgstr "Paperera"
 #.
 #: src/bjb-main-toolbar.c:392
 #, c-format
-#| msgid "Last updated %s"
 msgid "Last updated: %s"
-msgstr "Última actualitzacióÑ %s"
+msgstr "Última actualització %s"
 
 #: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
@@ -586,84 +585,3 @@ msgstr "Local"
 msgid "Local storage"
 msgstr "Emmagatzematge local"
 
-#~ msgid "org.gnome.Notes"
-#~ msgstr "org.gnome.Notes"
-
-#~ msgid "How to show note items"
-#~ msgstr "Com s'han de mostrar les notes"
-
-#~ msgid "Whether to show note items in icon view or list view."
-#~ msgstr "Si s'han de mostrar les notes en una vista d'icones o de llista."
-
-#~ msgid "* "
-#~ msgstr "* "
-
-#~ msgid "1."
-#~ msgstr "1."
-
-#~ msgctxt "shortcut window"
-#~ msgid "Shortcuts"
-#~ msgstr "Dreceres"
-
-#~ msgid "View notes and notebooks in a grid"
-#~ msgstr "Mostra les notes i els blocs de notes en una graella"
-
-#~ msgid "View notes and notebooks in a list"
-#~ msgstr "Mostra les notes i els blocs de notes en una llista"
-
-#~ msgid "Load More"
-#~ msgstr "Carrega'n més"
-
-#~ msgid "Loading…"
-#~ msgstr "S'està carregant…"
-
-#~ msgid "Bijiben"
-#~ msgstr "Bijiben"
-
-#~ msgid "Quickly jot notes"
-#~ msgstr "Apunteu notes ràpidament"
-
-#~ msgid "Notes is an editor allowing to make simple lists for later use."
-#~ msgstr ""
-#~ "El Notes és un editor que us permet crear llistes per al seu posterior ús."
-
-#~ msgid "It allows to use ownCloud as a storage location and online editor."
-#~ msgstr ""
-#~ "Permet utilitzar l'ownCloud per desar-hi les notes i com a editor en "
-#~ "línia."
-
-#~ msgid "_Import Notes"
-#~ msgstr "_Importa notes"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Preferències"
-
-#~ msgid "_About"
-#~ msgstr "_Quant a"
-
-#~ msgid "Cut"
-#~ msgstr "Retalla"
-
-#~ msgid "Copy"
-#~ msgstr "Copia"
-
-#~ msgid "Paste"
-#~ msgstr "Enganxa"
-
-#~ msgid "Note Edition"
-#~ msgstr "Edició de notes"
-
-#~ msgid "Note"
-#~ msgstr "Nota"
-
-#~ msgid "notes;reminder;"
-#~ msgstr "notes;recordatori;"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancel·la"
-
-#~ msgid "_OK"
-#~ msgstr "_D'acord"
-
-#~ msgid "Numbered List"
-#~ msgstr "Llista numerada"

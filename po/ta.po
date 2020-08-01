@@ -1,0 +1,565 @@
+# Tamil translation for gnome-notes.
+# Copyright (C) 2020 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-notes package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-notes master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2020-07-25 09:52+0000\n"
+"PO-Revision-Date: 2020-08-01 21:35+0530\n"
+"Language-Team: Tamil <ta@li.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 2.3\n"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:608 src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "குறிப்புகள்"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "காட்சியை திருத்து"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "காட்சியை தேர்ந்தெடு"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "காட்சிப்பட்டியல்"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "குறிப்புகள்;நினைவூட்டல்;குறிப்பேடு;ஒட்டும் குறிப்புகள்;"
+
+#: data/org.gnome.Notes.desktop.in:6
+msgid "Post notes, tag files!"
+msgstr ""
+
+#: data/org.gnome.Notes.desktop.in:7
+msgid "Note-taker"
+msgstr ""
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "புதிய குறிப்பை உருவாக்கு"
+
+#: data/org.gnome.Notes.gschema.xml:10
+msgid "Custom Font"
+msgstr "தனிப்பயன் எழுத்துரு"
+
+#: data/org.gnome.Notes.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr "கணினி  மோனோஸ்பேஸ் எழுத்துருவை பயன்படுத்த வேண்டுமா"
+
+#: data/org.gnome.Notes.gschema.xml:19
+msgid "New notes color."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:29
+msgid "Window maximized"
+msgstr "சாளரம் விரிவாக்கப்பட்டது"
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid "Window maximized state."
+msgstr "சாளரம் விரிவாக்கப்பட்ட நிலை."
+
+#: data/org.gnome.Notes.gschema.xml:34
+msgid "Window size"
+msgstr "சாளரத்தின் அளவு"
+
+#: data/org.gnome.Notes.gschema.xml:35
+msgid "Window size (width and height)."
+msgstr "சாளரத்தின் அளவு(அகலம் மற்றும் உயரம்)"
+
+#: data/org.gnome.Notes.gschema.xml:39
+msgid "Window position"
+msgstr "சாளர அமைவிடம்"
+
+#: data/org.gnome.Notes.gschema.xml:40
+msgid "Window position (x and y)."
+msgstr "சாளர அமைவிடம் (x மற்றும் y)"
+
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "Text size used by note editor."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:51
+msgid "Bold"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:67
+msgid "Italic"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:83
+msgid "Strike"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:111
+msgid "Bullets"
+msgstr "குண்டுகள்"
+
+#: data/resources/editor-toolbar.ui:127
+msgid "List"
+msgstr "பட்டியல்"
+
+#: data/resources/editor-toolbar.ui:166
+msgid "Copy selection to a new note"
+msgstr ""
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr ""
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "பொதுவானவை"
+
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "குறிப்புகளை தேடு"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "புதிய குறிப்பு"
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "சாளரத்தை மூடு"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "வெளியேறு"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "திரும்பிச் செல்"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "உதவியைக் காட்டு"
+
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr ""
+
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "விசைப்பலகை குறுக்கு வழிகள்"
+
+#: data/resources/help-overlay.ui:71
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "தேர்வு முறைமை"
+
+#: data/resources/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr ""
+
+#: data/resources/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "அனைத்தையும் தேர்ந்தெடு"
+
+#: data/resources/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr ""
+
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "புதிய சாளரத்தில் திற"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr ""
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr ""
+
+#: data/resources/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr ""
+
+#: data/resources/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "செயல்தவிர்"
+
+#: data/resources/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "மீண்டும் செய்"
+
+#: data/resources/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr ""
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
+msgid "Import Notes"
+msgstr ""
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "_ரத்துசெய்"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_இறக்குமதி செய்"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr ""
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr ""
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr ""
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr ""
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "அடைவை தேர்ந்தெடு"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "_புதிய"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "குறிப்பு நிறம்"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "_வெற்று"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:116
+msgid "Selection mode"
+msgstr "தேர்வு முறைமை"
+
+#: data/resources/main-toolbar.ui:130
+msgid "Open menu"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:150
+msgid "More options"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:189
+msgid "View Trash"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:206
+msgid "Text Sizes"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:216
+msgid "_Large"
+msgstr "_பெரியது"
+
+#: data/resources/main-toolbar.ui:226
+msgid "_Medium"
+msgstr "_நடுத்தரம்"
+
+#: data/resources/main-toolbar.ui:236
+msgid "_Small"
+msgstr "_சிறியது"
+
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "விருப்பங்கள்"
+
+#: data/resources/main-toolbar.ui:263
+msgid "Keyboard Shortcuts"
+msgstr "விசைப்பலகை குறுக்கு வழிகள்"
+
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "உதவி"
+
+#: data/resources/main-toolbar.ui:281
+msgid "About Notes"
+msgstr "குறிப்புகள் பற்றி"
+
+#: data/resources/main-toolbar.ui:303
+msgid "Open in New Window"
+msgstr "புதிய சாளரத்தில் திற"
+
+#: data/resources/main-toolbar.ui:320
+msgid "Undo"
+msgstr "செயல்தவிர்"
+
+#: data/resources/main-toolbar.ui:329
+msgid "Redo"
+msgstr "மீண்டும் செய்"
+
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "குறிப்பேடுகள்"
+
+#: data/resources/main-toolbar.ui:355
+msgid "Email this Note"
+msgstr ""
+
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "குப்பைக்கு நகர்த்து"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr ""
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr ""
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr ""
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "புதிய சாளரத்தில் திற"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr "மீட்டமை"
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr ""
+
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
+msgid "Untitled"
+msgstr "தலைப்பிடப்படாத"
+
+#: src/bjb-application.c:432
+msgid "Show the application’s version"
+msgstr "பயன்பாட்டின் பதிப்பைக் காட்டு"
+
+#: src/bjb-application.c:434
+msgid "Create a new note"
+msgstr "புதிய குறிப்பை உருவாக்கு"
+
+#: src/bjb-application.c:436
+msgid "[FILE…]"
+msgstr "[கோப்பு...]"
+
+#: src/bjb-application.c:444
+msgid "Take notes and export them everywhere."
+msgstr ""
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:455
+msgid "Could not parse arguments"
+msgstr ""
+
+#: src/bjb-application.c:463
+msgid "GNOME Notes"
+msgstr "GNOME குறிப்புகள்"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:475
+msgid "Could not register the application"
+msgstr ""
+
+#: src/bjb-application.c:609
+msgid "Simple notebook for GNOME"
+msgstr ""
+
+#: src/bjb-application.c:615
+msgid "translator-credits"
+msgstr ""
+
+#: src/bjb-color-button.c:140
+msgid "Note Color"
+msgstr "குறிப்பு நிறம்"
+
+#: src/bjb-controller.c:239
+msgid "Notebook"
+msgstr "குறிப்பேடு"
+
+#: src/bjb-empty-results-box.c:63
+msgid "Press the New button to create a note."
+msgstr ""
+
+#: src/bjb-empty-results-box.c:85
+msgid "Oops"
+msgstr "அச்சச்சோ"
+
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr ""
+
+#: src/bjb-main-toolbar.c:134
+msgid "Click on items to select them"
+msgstr "உருப்படிகளைத் தேர்ந்தெடுக்க அவற்றின் மீது சொடுக்கவும்"
+
+#: src/bjb-main-toolbar.c:136
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d தேர்ந்தெடுக்கப்பட்டது"
+msgstr[1] "%d தேர்ந்தெடுக்கப்பட்டன"
+
+#: src/bjb-main-toolbar.c:228
+#, c-format
+msgid "Results for %s"
+msgstr ""
+
+#: src/bjb-main-toolbar.c:231
+msgid "New and Recent"
+msgstr ""
+
+#: src/bjb-main-toolbar.c:324
+msgid "Trash"
+msgstr "குப்பை"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-main-toolbar.c:392
+#, c-format
+msgid "Last updated: %s"
+msgstr ""
+
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
+msgid "Unknown"
+msgstr "தெரியாத"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "நேற்று"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "இந்த மாதம்"
+
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "இன்று"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "இந்த வாரம்"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "இந்த வருடம்"
+
+#: src/libbiji/biji-notebook.c:265
+msgid "Local"
+msgstr ""
+
+#: src/libbiji/provider/biji-local-provider.c:366
+msgid "Local storage"
+msgstr ""

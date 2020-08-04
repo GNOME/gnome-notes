@@ -58,7 +58,7 @@ on_toggled_cb (BjbListViewRow *self,
       bjb_controller_unselect_item (controller, self->model_iter);
     }
 
-  g_signal_emit_by_name (G_OBJECT (gtk_widget_get_parent (GTK_WIDGET (self))), "selected-rows-changed", 0);
+  g_signal_emit_by_name (GTK_WIDGET (list_box), "selected-rows-changed", 0);
 }
 
 void

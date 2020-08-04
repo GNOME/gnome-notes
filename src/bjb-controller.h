@@ -91,4 +91,6 @@ void      bjb_controller_select_all         (BjbController *self);
 
 void      bjb_controller_unselect_all       (BjbController *self);
 
+gboolean  bjb_controller_is_all_selected    (BjbController *self);
+
 G_END_DECLS

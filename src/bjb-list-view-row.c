@@ -74,6 +74,9 @@ bjb_list_view_row_setup (BjbListViewRow *self,
   char            *color;
   gint64           mtime;
   GdkRGBA          rgba;
+  gboolean         selected;
+  BjbController   *controller;
+  GtkListBox      *list_box;
   g_auto (GStrv)   lines        = NULL;
   g_autofree char *one_line     = NULL;
   g_autofree char *preview      = NULL;
@@ -81,19 +84,22 @@ bjb_list_view_row_setup (BjbListViewRow *self,
   g_autofree char *css_style    = NULL;
 
   self->view = view;
+  list_box = bjb_list_view_get_list_box (view);
+  controller = bjb_list_view_get_controller (view);
 
-  model = bjb_controller_get_model (bjb_list_view_get_controller (self->view));
+  model = bjb_controller_get_model (controller);
   if (!gtk_tree_model_get_iter_from_string (model, &iter, model_iter))
     return;
   self->model_iter = g_strdup (model_iter);
 
   gtk_tree_model_get (model,
                       &iter,
-                      BJB_MODEL_COLUMN_UUID,  &uuid,
-                      BJB_MODEL_COLUMN_TITLE, &title,
-                      BJB_MODEL_COLUMN_TEXT,  &text,
-                      BJB_MODEL_COLUMN_MTIME, &mtime,
-                      BJB_MODEL_COLUMN_COLOR, &color,
+                      BJB_MODEL_COLUMN_UUID,     &uuid,
+                      BJB_MODEL_COLUMN_TITLE,    &title,
+                      BJB_MODEL_COLUMN_TEXT,     &text,
+                      BJB_MODEL_COLUMN_MTIME,    &mtime,
+                      BJB_MODEL_COLUMN_COLOR,    &color,
+                      BJB_MODEL_COLUMN_SELECTED, &selected,
                       -1);
 
   updated_time = bjb_utils_get_human_time (mtime);
@@ -122,6 +128,16 @@ bjb_list_view_row_setup (BjbListViewRow *self,
                                       GTK_STYLE_PROVIDER (self->css_provider),
                                       GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
+
+  gtk_widget_set_visible (GTK_WIDGET (self->select_button),
+                          bjb_controller_get_selection_mode (controller));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->select_button),
+                                selected);
+  if (selected)
+    gtk_list_box_select_row (list_box, GTK_LIST_BOX_ROW (self));
+  else
+    gtk_list_box_unselect_row (list_box, GTK_LIST_BOX_ROW (self));
+
 }
 
 void
@@ -129,7 +145,6 @@ bjb_list_view_row_show_select_button (BjbListViewRow *self,
                                       gboolean        show)
 {
   gtk_widget_set_visible (GTK_WIDGET (self->select_button), show);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->select_button), FALSE);
 }
 
 const char *

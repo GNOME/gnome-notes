@@ -959,6 +959,8 @@ bjb_controller_set_all_selection (BjbController *self,
   gtk_tree_model_foreach (self->model,
                           bjb_controller_set_selection_foreach,
                           GINT_TO_POINTER (selection));
+
+  notify_displayed_items_changed (self);
 }
 
 void
@@ -1009,3 +1011,11 @@ bjb_controller_set_selection_mode (BjbController *self,
       bjb_controller_unselect_all (self);
     }
 }
+
+gboolean
+bjb_controller_is_all_selected (BjbController *self)
+{
+  g_autoptr (GList) selection_list = bjb_controller_get_selection (self);
+  return g_list_length (selection_list) == g_list_length (self->items_to_show);
+}
+

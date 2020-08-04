@@ -246,7 +246,10 @@ on_key_press_event_cb (BjbMainView *self,
       case GDK_KEY_A:
         if (bjb_controller_get_selection_mode (self->controller) && event->key.state & GDK_CONTROL_MASK)
           {
-            bjb_controller_select_all (self->controller);
+            if (bjb_controller_is_all_selected (self->controller))
+              bjb_controller_unselect_all (self->controller);
+            else
+              bjb_controller_select_all (self->controller);
             return TRUE;
           }
         break;

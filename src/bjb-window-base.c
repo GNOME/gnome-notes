@@ -308,7 +308,6 @@ bjb_window_base_load_geometry (BjbWindowBase *self)
 static void
 bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
 {
-  bjb_main_view_disconnect_scrolled_window (self->view);
   bjb_controller_disconnect (self->controller);
   bjb_window_base_save_geometry (self);
 }

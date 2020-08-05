@@ -7,7 +7,6 @@ sources = files(
   'bjb-editor-toolbar.c',
   'bjb-empty-results-box.c',
   'bjb-import-dialog.c',
-  'bjb-load-more-button.c',
   'bjb-main.c',
   'bjb-main-toolbar.c',
   'bjb-main-view.c',

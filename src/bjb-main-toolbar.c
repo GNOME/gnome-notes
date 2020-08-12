@@ -186,6 +186,8 @@ update_selection_buttons (BjbController *controller,
   gtk_widget_set_sensitive (self->empty_button, some_item_is_visible);
   gtk_widget_set_sensitive (self->search_button, some_item_is_visible);
   gtk_widget_set_sensitive (self->select_button, some_item_is_visible);
+
+  on_view_selection_changed_cb (self);
 }
 
 static void
@@ -296,7 +298,6 @@ static void
 on_empty_clicked_callback        (BjbMainToolbar *self)
 {
   biji_manager_empty_bin (bjb_window_base_get_manager (GTK_WIDGET (self->window)));
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (self->window), BJB_WINDOW_BASE_NO_RESULT);
 }
 
 

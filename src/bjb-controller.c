@@ -508,8 +508,6 @@ update_controller_callback (GList *result,
   }
 }
 
-
-
 void
 bjb_controller_apply_needle (BjbController *self)
 {
@@ -525,9 +523,13 @@ bjb_controller_apply_needle (BjbController *self)
   {
     result = biji_manager_get_items (self->manager, self->group);
 
-    if (result == NULL && self->group == BIJI_LIVING_ITEMS)
-      bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
-
+    if (result == NULL)
+      {
+        if (!self->notebook && self->group == BIJI_LIVING_ITEMS)
+          bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
+        else
+          bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
+      }
     else
       update_controller_callback (result, self);
 
@@ -625,9 +627,13 @@ on_manager_changed (BijiManager            *manager,
         gtk_list_store_remove (GTK_LIST_STORE (self->model), p_iter);
 
       self->items_to_show = g_list_remove (self->items_to_show, item);
-      if (self->items_to_show == NULL && group == BIJI_LIVING_ITEMS)
-        bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
-
+      if (self->items_to_show == NULL)
+        {
+          if (!self->notebook && group == BIJI_LIVING_ITEMS)
+            bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
+          else
+            bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
+        }
       else
         notify_displayed_items_changed (self);
 
@@ -860,7 +866,7 @@ bjb_controller_set_group (BjbController   *self,
 
     else
       bjb_controller_apply_needle (self);
-    //bjb_window_base_switch_to (self->window, group);
+
     return;
   }
   else /* Archives */

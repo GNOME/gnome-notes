@@ -272,40 +272,29 @@ bjb_selection_toolbar_set_item_visibility (BjbSelectionToolbar *self)
 }
 
 static void
-bjb_selection_toolbar_fade_in (BjbSelectionToolbar *self)
+on_selected_rows_changed_cb (BjbSelectionToolbar *self)
 {
-  gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
-  //bjb_selection_toolbar_set_item_visibility
-}
-
-static void
-bjb_selection_toolbar_fade_out (BjbSelectionToolbar *self)
-{
-  gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
-}
-
-static void
-on_selected_rows_changed_cb (BjbListView *view,
-                             gpointer     user_data)
-{
-  BjbSelectionToolbar *self;
-  GList *selection;
-
-  self = BJB_SELECTION_TOOLBAR (user_data);
-  selection = bjb_main_view_get_selected_items (self->view);
+  GList *selection = bjb_main_view_get_selected_items (self->view);
 
   if (g_list_length (selection) > 0)
-  {
-    gtk_widget_show (GTK_WIDGET (self));
-    bjb_selection_toolbar_set_item_visibility (self);
-    bjb_selection_toolbar_fade_in (self);
-  }
-  else
     {
-      bjb_selection_toolbar_fade_out (self);
+      gtk_widget_show (GTK_WIDGET (self));
+      bjb_selection_toolbar_set_item_visibility (self);
+      gtk_revealer_set_reveal_child (GTK_REVEALER (self), TRUE);
     }
+  else
+    gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
 
   g_list_free (selection);
+}
+
+static void
+on_display_items_changed_cb (BjbSelectionToolbar *self)
+{
+  BjbController *controller = bjb_list_view_get_controller (self->selection);
+
+  if (!bjb_controller_get_selection_mode (controller))
+    gtk_revealer_set_reveal_child (GTK_REVEALER (self), FALSE);
 }
 
 static void
@@ -323,14 +312,17 @@ bjb_selection_toolbar_get_property (GObject    *object,
   BjbSelectionToolbar *self = BJB_SELECTION_TOOLBAR (object);
 
   switch (property_id)
-  {
+    {
     case PROP_BJB_SELECTION:
       g_value_set_object(value, self->selection);
+      break;
+    case PROP_BJB_MAIN_VIEW:
+      g_value_set_object(value, self->view);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
-  }
+    }
 }
 
 static void
@@ -342,7 +334,7 @@ bjb_selection_toolbar_set_property (GObject      *object,
   BjbSelectionToolbar *self = BJB_SELECTION_TOOLBAR (object);
 
   switch (property_id)
-  {
+    {
     case PROP_BJB_SELECTION:
       self->selection = g_value_get_object (value);
       break;
@@ -352,7 +344,7 @@ bjb_selection_toolbar_set_property (GObject      *object,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
-  }
+    }
 }
 
 static void
@@ -362,10 +354,17 @@ bjb_selection_toolbar_constructed(GObject *obj)
 
   G_OBJECT_CLASS (bjb_selection_toolbar_parent_class)->constructed (obj);
 
-  g_signal_connect (bjb_list_view_get_list_box (self->selection),
-                    "selected-rows-changed",
-                    G_CALLBACK (on_selected_rows_changed_cb),
-                    self);
+  g_signal_connect_object (bjb_list_view_get_list_box (self->selection),
+                           "selected-rows-changed",
+                           G_CALLBACK (on_selected_rows_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
+
+  g_signal_connect_object (bjb_list_view_get_controller (self->selection),
+                           "display-items-changed",
+                           G_CALLBACK (on_display_items_changed_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 }
 
 static void
@@ -417,11 +416,11 @@ bjb_selection_toolbar_class_init (BjbSelectionToolbarClass *class)
 
 
 BjbSelectionToolbar *
-bjb_selection_toolbar_new (BjbListView  *selection,
-                           BjbMainView  *bjb_main_view)
+bjb_selection_toolbar_new (BjbListView *selection,
+                           BjbMainView *bjb_main_view)
 {
   return g_object_new (BJB_TYPE_SELECTION_TOOLBAR,
                        "selection", selection,
-                       "bjbmainview",bjb_main_view,
+                       "bjbmainview", bjb_main_view,
                        NULL);
 }

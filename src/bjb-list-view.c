@@ -172,4 +172,9 @@ bjb_list_view_set_selection_mode (BjbListView *self,
   gtk_container_foreach (GTK_CONTAINER (self->list_box),
                          bjb_list_view_show_select_button_cb,
                          GINT_TO_POINTER (mode));
+
+  g_signal_emit_by_name (GTK_WIDGET (self->list_box),
+                         "selected-rows-changed",
+                         0);
+
 }

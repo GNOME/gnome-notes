@@ -565,12 +565,12 @@ on_item_trashed_cb (BijiItem *item, BijiManager *self)
 static void
 on_item_restored_cb (BijiItem *item, gchar *old_uuid, BijiManager *manager)
 {
+  const char *path = biji_item_get_uuid (item);
   if (BIJI_IS_NOTE_OBJ (item))
     biji_note_obj_save_note (BIJI_NOTE_OBJ (item));
 
-  g_hash_table_insert (manager->items,
-                       (gpointer) biji_item_get_uuid (item), item);
-  g_hash_table_remove (manager->archives, old_uuid);
+  g_hash_table_insert (manager->items, (gpointer) path, item);
+  g_hash_table_remove (manager->archives, path);
 
   biji_manager_notify_changed (manager,
                                BIJI_ARCHIVED_ITEMS,

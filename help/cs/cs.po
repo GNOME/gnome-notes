@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes\n"
-"POT-Creation-Date: 2020-02-12 18:48+0000\n"
-"PO-Revision-Date: 2020-03-11 09:19+0100\n"
+"POT-Creation-Date: 2020-08-10 07:06+0000\n"
+"PO-Revision-Date: 2020-08-13 20:05+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -403,40 +403,76 @@ msgstr "Vyberte všechny poznámky, které chcete obnovit."
 msgid "Click on <gui style=\"button\">Restore</gui> button."
 msgstr "Klikněte na tlačítko <gui style=\"button\">Obnovit</gui>."
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/format-list.page:30
+msgid "Pranali Deshmukh"
+msgstr "Pranali Deshmukh"
+
+#. (itstool) path: credit/years
 #: C/format-list.page:32
+msgid "2020"
+msgstr "2020"
+
+#. (itstool) path: info/desc
+#: C/format-list.page:37
 msgid "Format a note with ordered and unordered lists."
 msgstr "Jak formátovat poznámku jak číslovaný nebo odrážkový seznam."
 
 #. (itstool) path: page/title
-#: C/format-list.page:35
+#: C/format-list.page:40
 msgid "Create a list"
 msgstr "Vytvoření seznamu"
 
 #. (itstool) path: list/title
-#: C/format-list.page:38
+#: C/format-list.page:43
 msgid "While the note is open:"
 msgstr "Když je poznámka otevřená:"
 
 #. (itstool) path: item/p
-#: C/format-list.page:40
-msgid ""
-"To create an unordered list, click <guiseq><gui style=\"button\">More "
-"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
-msgstr ""
-"Klikněte na <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
-"\"menuitem\">Odrážky</gui></guiseq>, aby se vytvořil nečíslovaný seznam s "
-"odrážkami."
-
-#. (itstool) path: item/p
 #: C/format-list.page:45
 msgid ""
-"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
-"</gui> <gui>Numbered List</gui></guiseq>."
+"To create an unordered list, select the <guiseq><gui style=\"button"
+"\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Klikněte na <guiseq><gui style=\"button\">Další volby…</gui> <gui style="
-"\"menuitem\">Číslovaný seznam</gui></guiseq>, aby se vytvořil číslovaný "
-"seznam."
+"Klikněte na tlačítko <guiseq><gui style=\"button\">Odrážky</gui></guiseq>, "
+"aby se vytvořil nečíslovaný seznam s odrážkami."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:48
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+msgstr ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+
+#. (itstool) path: item/p
+#: C/format-list.page:51
+msgid ""
+"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
+"List</gui> </guiseq> button from the footer menu."
+msgstr ""
+"Klikněte na tlačítko <guiseq><gui style=\"button\">Číslovaný seznam</gui>"
+"</guiseq>, aby se vytvořil číslovaný seznam."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:54
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+msgstr ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -535,9 +571,9 @@ msgstr ""
 #: C/introduction.page:44
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 msgstr ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11

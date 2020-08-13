@@ -1,3 +1,39 @@
+Overview of changes in 3.37.90
+==============================
+
+* Added Central Kurdish translation (Jwtiyar Nariman)
+* Added Tamil translation (அருள்)
+* Changed paste behavior in note view to "text-only" mode
+* Enabled WebKit sandboxing (Diego Escalante Urrelo)
+* Fixed issue in main view paging that was preventing to load more than 48 notes
+* Implemented main view UI redesign (Allan Day, Tobias Bernard, Isaque Galdino)
+* Improved flatpak to meson when building GOA and EDS (Georges Basile Stavracas Neto)
+* Improved help pages (Pranali Deshmukh, scootergrisen, Yuri Chornoivan)
+* Ported to Tracker 3 (Carlos Garnacho)
+* Removed libgd dependancy
+* Removed option to change note in Trash bin
+
+Translations
+* ca (Gil Forcada, Jordi Mas)
+* ckb (Jwtiyar Nariman)
+* da (scootergrisen)
+* el (Efstathios Iosifidis)
+* eu (Asier Sarasua Garmendia)
+* eo (Carmen Bianca BAKKER)
+* fr (Alexandre Franke)
+* fur (Fabio Tomat)
+* gl (Fran Dieguez)
+* id (Kukuh Syafaat)
+* ja (sicklylife)
+* kk (Baurzhan Muftakhidinov)
+* lt (Aurimas Černius)
+* pt_BR (Rafael Fontenelle)
+* ro (Florentina Mușat)
+* sl (Matej Urbančič)
+* ta (அருள்)
+* uk (Yuri Chornoivan)
+* zh_CN (Boyuan Yang)
+
 Overview of changes in 3.37.1
 =============================
 

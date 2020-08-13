@@ -39,6 +39,47 @@
   </screenshots>
 
   <releases>
+    <release date="2020-03-04" version="3.37.90">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added Central Kurdish translation (Jwtiyar Nariman)</li>
+          <li>Added Tamil translation (அருள்)</li>
+          <li>Changed paste behavior in note view to "text-only" mode</li>
+          <li>Enabled WebKit sandboxing (Diego Escalante Urrelo)</li>
+          <li>Fixed issue in main view paging that was preventing to load more than 48 notes</li>
+          <li>Implemented main view UI redesign (Allan Day, Tobias Bernard, Isaque Galdino)</li>
+          <li>Improved flatpak to meson when building GOA and EDS (Georges Basile Stavracas Neto)</li>
+          <li>Improved help pages (Pranali Deshmukh, scootergrisen, Yuri Chornoivan)</li>
+          <li>Ported to Tracker 3 (Carlos Garnacho)</li>
+          <li>Removed libgd dependancy</li>
+          <li>Removed option to change note in Trash bin</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>ca (Gil Forcada, Jordi Mas)</li>
+          <li>ckb (Jwtiyar Nariman)</li>
+          <li>da (scootergrisen)</li>
+          <li>el (Efstathios Iosifidis)</li>
+          <li>eu (Asier Sarasua Garmendia)</li>
+          <li>eo (Carmen Bianca BAKKER)</li>
+          <li>fr (Alexandre Franke)</li>
+          <li>fur (Fabio Tomat)</li>
+          <li>gl (Fran Dieguez)</li>
+          <li>id (Kukuh Syafaat)</li>
+          <li>ja (sicklylife)</li>
+          <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>lt (Aurimas Černius)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>ro (Florentina Mușat)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>ta (அருள்)</li>
+          <li>uk (Yuri Chornoivan)</li>
+          <li>zh_CN (Boyuan Yang)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-05-05" version="3.37.1">
       <description>
         <p>This release brings the following new features and improvements:</p>
@@ -64,33 +105,6 @@
           <li>uk (Daniel Korostil, Yuri Chornoivan)</li>
           <li>zh_CN (Dz Chen)</li>
           <li>zh_TW (Cheng-Chia Tseng)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2020-03-04" version="3.35.92">
-      <description>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>cs (Marek Černocký)</li>
-          <li>da (Alan Mortensen)</li>
-          <li>de (Tim Sabsch)</li>
-          <li>fi (Jiri Grönroos)</li>
-          <li>fr (Guillaume Bernard)</li>
-          <li>fur (Fabio Tomat)</li>
-          <li>gl (Fran Dieguez)</li>
-          <li>hr (Milo Ivir)</li>
-          <li>hu (Balázs Úr)</li>
-          <li>it (Gianvito Cavasoli)</li>
-          <li>ko (Seong-ho Cho)</li>
-          <li>lt (Aurimas Černius)</li>
-          <li>nl (Nathan Follens)</li>
-          <li>pl (Piotr Drąg)</li>
-          <li>pt_BR (Rafael Fontenelle)</li>
-          <li>sl (Matej Urbančič)</li>
-          <li>sr (Марко Костић)</li>
-          <li>sv (Anders Jonsson)</li>
-          <li>uk (Daniel Korostil)</li>
         </ul>
         <p>Thanks to all the contributors who worked on GNOME Notes!</p>
       </description>

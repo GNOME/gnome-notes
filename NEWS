@@ -1,3 +1,12 @@
+Overview of changes in 3.36.3
+=============================
+
+* Added Central Kurdish translation (Jwtiyar Nariman)
+* Fixed issue in main view paging that was preventing to show more than 48 notes
+
+Translations
+* ckb (Jwtiyar Nariman)
+
 Overview of changes in 3.36.2
 =============================
 

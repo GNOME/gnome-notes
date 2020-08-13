@@ -39,6 +39,20 @@
   </screenshots>
 
   <releases>
+    <release date="2020-08-13" version="3.36.3">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Added Central Kurdish translation (Jwtiyar Nariman)</li>
+          <li>Fixed issue in main view paging that was preventing to show more than 48 notes</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>ckb (Jwtiyar Nariman)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-07-08" version="3.36.2">
       <description>
         <p>This release brings the following new features and improvements:</p>

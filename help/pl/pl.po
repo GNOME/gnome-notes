@@ -1,14 +1,14 @@
 # Polish translation for bijiben help.
-# Copyright © 2017 the bijiben authors.
+# Copyright © 2017-2020 the bijiben authors.
 # This file is distributed under the same license as the bijiben help.
-# Piotr Drąg <piotrdrag@gmail.com>, 2017.
-# Aviary.pl <community-poland@mozilla.org>, 2017.
+# Piotr Drąg <piotrdrag@gmail.com>, 2017-2020.
+# Aviary.pl <community-poland@mozilla.org>, 2017-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben-help\n"
-"POT-Creation-Date: 2020-02-12 18:48+0000\n"
-"PO-Revision-Date: 2017-08-18 19:48+0200\n"
+"POT-Creation-Date: 2020-07-15 01:33+0000\n"
+"PO-Revision-Date: 2020-08-15 11:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2017\n"
-"Aviary.pl <community-poland@mozilla.org>, 2017"
+"Piotr Drąg <piotrdrag@gmail.com>, 2017-2020\n"
+"Aviary.pl <community-poland@mozilla.org>, 2017-2020"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -402,38 +402,76 @@ msgstr "Zaznacz wszystkie notatki do przywrócenia."
 msgid "Click on <gui style=\"button\">Restore</gui> button."
 msgstr "Kliknij przycisk <gui style=\"button\">Przywróć</gui>."
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/format-list.page:30
+msgid "Pranali Deshmukh"
+msgstr "Pranali Deshmukh"
+
+#. (itstool) path: credit/years
 #: C/format-list.page:32
+msgid "2020"
+msgstr "2020"
+
+#. (itstool) path: info/desc
+#: C/format-list.page:37
 msgid "Format a note with ordered and unordered lists."
 msgstr "Formatowanie notatki za pomocą list."
 
 #. (itstool) path: page/title
-#: C/format-list.page:35
+#: C/format-list.page:40
 msgid "Create a list"
 msgstr "Tworzenie listy"
 
 #. (itstool) path: list/title
-#: C/format-list.page:38
+#: C/format-list.page:43
 msgid "While the note is open:"
 msgstr "Kiedy notatka jest otwarta:"
 
 #. (itstool) path: item/p
-#: C/format-list.page:40
-msgid ""
-"To create an unordered list, click <guiseq><gui style=\"button\">More "
-"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
-msgstr ""
-"Aby utworzyć listę, kliknij <guiseq><gui style=\"button\">Więcej opcji…</"
-"gui> <gui style=\"menuitem\">Wypunktowanie</gui></guiseq>."
-
-#. (itstool) path: item/p
 #: C/format-list.page:45
 msgid ""
-"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
-"</gui> <gui>Numbered List</gui></guiseq>."
+"To create an unordered list, select the <guiseq><gui style=\"button"
+"\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Aby utworzyć ponumerowaną listę, kliknij <guiseq><gui style=\"button"
-"\">Więcej opcji…</gui> <gui>Lista ponumerowana</gui></guiseq>."
+"Aby utworzyć listę, kliknij przycisk <guiseq><gui style=\"button"
+"\">Wypunktowanie</gui></guiseq> w dolnym menu."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:48
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+msgstr ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+
+#. (itstool) path: item/p
+#: C/format-list.page:51
+msgid ""
+"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
+"List</gui> </guiseq> button from the footer menu."
+msgstr ""
+"Aby utworzyć ponumerowaną listę, kliknij przycisk <guiseq><gui style=\"button"
+"\">Lista</gui></guiseq> w dolnym menu."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:54
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+msgstr ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -532,9 +570,9 @@ msgstr ""
 #: C/introduction.page:44
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 msgstr ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11

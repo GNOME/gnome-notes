@@ -2,26 +2,28 @@
 # Copyright © 2012 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012—2017.
+# Марко М. Костић <marko.m.kostic@gmail.com>, 2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-02-19 03:26+0000\n"
-"PO-Revision-Date: 2020-02-21 16:45+0100\n"
+"POT-Creation-Date: 2020-07-22 13:04+0000\n"
+"PO-Revision-Date: 2020-08-18 23:00+0200\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
-"Language-Team: српски <gnome-sr@googlegroups.org>\n"
+"Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:634 src/bjb-window-base.c:18
+#: src/bjb-application.c:608 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Белешке"
 
@@ -72,6 +74,11 @@ msgstr "Поставите белешке, назначите датотеке!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Хватач белешки"
+
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "Направи нову белешку"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -128,19 +135,10 @@ msgid "Window position (x and y)."
 msgstr "Положај прозора (положено и усправно)."
 
 #: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Како приакзати ставке у белешки"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr ""
-"Да ли треба приказивати ставке у белешки, у прегледу иконица или у списку."
-
-#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Величина текста коју користи уређивач белешки."
 
-#: data/org.gnome.Notes.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
@@ -168,7 +166,7 @@ msgstr "Списак"
 
 #: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
-msgstr "Умножи избор у нову белешку"
+msgstr "Копирај избор у нову белешку"
 
 #: data/resources/empty-results-box.ui:33
 msgid "No notes"
@@ -195,76 +193,88 @@ msgid "Close window"
 msgstr "Затвара прозор"
 
 #: data/resources/help-overlay.ui:35
+#| msgid "_Quit"
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Изађи"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Иди назад"
 
-#: data/resources/help-overlay.ui:42
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Приказује помоћ"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Отвори мени"
+
+#: data/resources/help-overlay.ui:63
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Пречице на тастатури"
 
-#: data/resources/help-overlay.ui:57
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Режим бирања"
 
-#: data/resources/help-overlay.ui:62
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Укида режим бирања"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Бира све"
 
-#: data/resources/help-overlay.ui:77
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Режим уређивања белешке"
 
-#: data/resources/help-overlay.ui:82
+#: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Отвори у новом прозору"
 
-#: data/resources/help-overlay.ui:89
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Подебљано"
 
-#: data/resources/help-overlay.ui:96
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Искошено"
 
-#: data/resources/help-overlay.ui:103
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Прецртано"
 
-#: data/resources/help-overlay.ui:110
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Опозови"
 
-#: data/resources/help-overlay.ui:117
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Понови"
 
-#: data/resources/help-overlay.ui:124
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Помера белешку у смеће"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Увезите белешке"
 
@@ -317,84 +327,76 @@ msgstr "Изађите из режима избора"
 msgid "Search note titles, content and notebooks"
 msgstr "Тражите наслове, садржај и бележнице"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Прикажи белешке и бележнице као иконице"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Прикажи белешке и бележнице као списак"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Режим избора"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Отвори изборник"
 
-#: data/resources/main-toolbar.ui:195
+#: data/resources/main-toolbar.ui:150
 msgid "More options"
 msgstr "Више опција"
 
-#: data/resources/main-toolbar.ui:234
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Погледај смеће"
 
-#: data/resources/main-toolbar.ui:251
+#: data/resources/main-toolbar.ui:206
 msgid "Text Sizes"
 msgstr "Величине текста"
 
-#: data/resources/main-toolbar.ui:261
+#: data/resources/main-toolbar.ui:216
 msgid "_Large"
 msgstr "Ве_лика"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:226
 msgid "_Medium"
 msgstr "_Средња"
 
-#: data/resources/main-toolbar.ui:281
+#: data/resources/main-toolbar.ui:236
 msgid "_Small"
 msgstr "_Мала"
 
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Поставке"
 
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Пречице на тастатури"
 
-#: data/resources/main-toolbar.ui:317
+#: data/resources/main-toolbar.ui:272
 msgid "Help"
 msgstr "Помоћ"
 
-#: data/resources/main-toolbar.ui:326
+#: data/resources/main-toolbar.ui:281
 msgid "About Notes"
 msgstr "О Белешкама"
 
-#: data/resources/main-toolbar.ui:348
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Отвори у новом прозору"
 
-#: data/resources/main-toolbar.ui:365
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Опозови"
 
-#: data/resources/main-toolbar.ui:374
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Поврати"
 
-#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Бележнице"
 
-#: data/resources/main-toolbar.ui:400
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Пошаљите ел. поштом ову белешку"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Премести у смеће"
 
@@ -446,47 +448,47 @@ msgstr "Изаберите основно место за чување:"
 msgid "Primary Book"
 msgstr "Основна књига"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:390
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
 msgid "Untitled"
 msgstr "Неименована"
 
-#: src/bjb-application.c:459
+#: src/bjb-application.c:432
 msgid "Show the application’s version"
 msgstr "Прикажи издање програма"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:434
 msgid "Create a new note"
 msgstr "Прави нову белешку"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:436
 msgid "[FILE…]"
 msgstr "[ДАТОТЕКА...]"
 
-#: src/bjb-application.c:471
+#: src/bjb-application.c:444
 msgid "Take notes and export them everywhere."
 msgstr "Хватајте белешке и извозите их свуда."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:482
+#: src/bjb-application.c:455
 msgid "Could not parse arguments"
 msgstr "Не могу да обрадим аргументе"
 
-#: src/bjb-application.c:490
+#: src/bjb-application.c:463
 msgid "GNOME Notes"
 msgstr "Гномове белешке"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:502
+#: src/bjb-application.c:475
 msgid "Could not register the application"
 msgstr "Не могу да забележим програм"
 
-#: src/bjb-application.c:635
+#: src/bjb-application.c:609
 msgid "Simple notebook for GNOME"
 msgstr "Једноставна бележница за Гном"
 
-#: src/bjb-application.c:641
+#: src/bjb-application.c:615
 msgid "translator-credits"
 msgstr ""
 "  Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
@@ -497,6 +499,10 @@ msgstr ""
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Боја белешке"
+
+#: src/bjb-controller.c:239
+msgid "Notebook"
+msgstr "Бележница"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -510,19 +516,11 @@ msgstr "Упс"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Инсталирајте „Трагача“ (енг. Tracker) и поново покрените програм."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Учитај још"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Учитавам…"
-
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Кликните на ставке да их изаберете"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -531,16 +529,16 @@ msgstr[1] "%d су изабране"
 msgstr[2] "%d је изабрано"
 msgstr[3] "Изабраних — %d"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:228
 #, c-format
 msgid "Results for %s"
 msgstr "Резултати за „%s“"
 
-#: src/bjb-main-toolbar.c:278
+#: src/bjb-main-toolbar.c:231
 msgid "New and Recent"
 msgstr "Нове и скорашње"
 
-#: src/bjb-main-toolbar.c:366
+#: src/bjb-main-toolbar.c:324
 msgid "Trash"
 msgstr "Смеће"
 
@@ -549,7 +547,7 @@ msgstr "Смеће"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:392
 #, c-format
 msgid "Last updated: %s"
 msgstr "Последња измена: %s"
@@ -586,6 +584,25 @@ msgstr "Месно"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Месно складиште"
+
+#~ msgid "How to show note items"
+#~ msgstr "Како приакзати ставке у белешки"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr ""
+#~ "Да ли треба приказивати ставке у белешки, у прегледу иконица или у списку."
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Прикажи белешке и бележнице као иконице"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Прикажи белешке и бележнице као списак"
+
+#~ msgid "Load More"
+#~ msgstr "Учитај још"
+
+#~ msgid "Loading…"
+#~ msgstr "Учитавам…"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Shortcuts"
@@ -625,9 +642,6 @@ msgstr "Месно складиште"
 #~ msgid "_About"
 #~ msgstr "_О програму"
 
-#~ msgid "_Quit"
-#~ msgstr "_Изађи"
-
 #~ msgid "Cut"
 #~ msgstr "Исеци"
 
@@ -645,9 +659,6 @@ msgstr "Месно складиште"
 
 #~ msgid "Cancel"
 #~ msgstr "Откажи"
-
-#~ msgid "Notebook"
-#~ msgstr "Бележница"
 
 #~ msgid "Note"
 #~ msgstr "Белешка"

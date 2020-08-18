@@ -30,29 +30,17 @@
 #include <gtk/gtk.h>
 
 #include "bjb-controller.h"
-#include "bjb-main-toolbar.h"
-#include "bjb-main-view.h"
 #include "bjb-search-toolbar.h"
 #include "bjb-window-base.h"
-
-enum
-{
-  PROP_0,
-  PROP_WINDOW,
-  PROP_CONTROLLER,
-  NUM_PROPERTIES
-};
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 struct _BjbSearchToolbar
 {
   HdySearchBar    parent_instance;
 
-  GtkEntry      *entry;
-  gchar         *needle;
-  BjbController *controller;
-  BjbWindowBase *window;
+  GtkEntry        *entry;
+  gchar           *needle;
+  BjbController   *controller;
+  GtkWidget       *window;
 };
 
 G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, HDY_TYPE_SEARCH_BAR)
@@ -75,55 +63,46 @@ on_search_changed_cb (BjbSearchToolbar *self)
 }
 
 static void
-bjb_search_toolbar_get_property (GObject    *object,
-                                 guint       property_id,
-                                 GValue     *value,
-                                 GParamSpec *pspec)
+action_entry_text_change_callback (GtkEntry         *entry,
+                                   BjbSearchToolbar *self)
 {
-  BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (object);
-
-  switch (property_id)
-  {
-    case PROP_WINDOW:
-      g_value_set_object (value, self->window);
-      break;
-    case PROP_CONTROLLER:
-      g_value_set_object(value, self->controller);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
-  }
+  bjb_controller_set_needle (BJB_CONTROLLER (self->controller),
+                             gtk_entry_get_text (entry));
 }
 
-static void
-bjb_search_toolbar_set_property (GObject      *object,
-                                 guint         property_id,
-                                 const GValue *value,
-                                 GParamSpec   *pspec)
+void
+bjb_search_toolbar_disconnect (BjbSearchToolbar *self)
 {
-  BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (object);
+  if (self->key_pressed)
+    g_signal_handler_disconnect (self->window, self->key_pressed);
+  if (self->text_id)
+    g_signal_handler_disconnect (self->entry, self->text_id);
 
-  switch (property_id)
-  {
-    case PROP_WINDOW:
-      self->window = g_value_get_object (value);
-      break;
-    case PROP_CONTROLLER:
-      self->controller = g_value_get_object (value);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
-  }
+  self->key_pressed = 0;
+  self->text_id = 0;
 }
 
-static void
-bjb_search_toolbar_constructed (GObject *obj)
+void
+bjb_search_toolbar_connect (BjbSearchToolbar *self)
 {
-  BjbSearchToolbar *self = BJB_SEARCH_TOOLBAR (obj);
+  /* Connect to set the text */
+  if (self->key_pressed == 0)
+    self->key_pressed = g_signal_connect(self->window,"key-press-event",
+                                         G_CALLBACK(on_key_pressed), self);
 
-  G_OBJECT_CLASS (bjb_search_toolbar_parent_class)->constructed (obj);
+
+  if (self->text_id == 0)
+    self->text_id = g_signal_connect (self->entry, "search-changed",
+                        G_CALLBACK (action_entry_text_change_callback), self);
+}
+
+void
+bjb_search_toolbar_setup (BjbSearchToolbar *self,
+                          GtkWidget        *window,
+                          BjbController    *controller)
+{
+  self->controller = controller;
+  self->window = window;
 
   self->needle = bjb_controller_get_needle (self->controller);
   if (self->needle && g_strcmp0 (self->needle, "") != 0)
@@ -156,38 +135,11 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
 static void
 bjb_search_toolbar_class_init (BjbSearchToolbarClass *class)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (class);
-
-  object_class->get_property = bjb_search_toolbar_get_property;
-  object_class->set_property = bjb_search_toolbar_set_property;
-  object_class->constructed = bjb_search_toolbar_constructed;
-
-  properties[PROP_WINDOW] = g_param_spec_object ("window",
-                                                 "Window",
-                                                 "Window",
-                                                 GTK_TYPE_WIDGET,
-                                                 G_PARAM_READWRITE |
-                                                 G_PARAM_CONSTRUCT |
-                                                 G_PARAM_STATIC_STRINGS);
-
-  properties[PROP_CONTROLLER] = g_param_spec_object ("controller",
-                                                     "Controller",
-                                                     "Controller",
-                                                     BJB_TYPE_CONTROLLER,
-                                                     G_PARAM_READWRITE |
-                                                     G_PARAM_CONSTRUCT |
-                                                     G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 }
 
 BjbSearchToolbar *
-bjb_search_toolbar_new (BjbWindowBase *window,
-                        BjbController *controller)
+bjb_search_toolbar_new (void)
 {
-  return g_object_new (BJB_TYPE_SEARCH_TOOLBAR,
-                       "window",     window,
-                       "controller", controller,
-                       NULL);
+  return g_object_new (BJB_TYPE_SEARCH_TOOLBAR, NULL);
 }
 

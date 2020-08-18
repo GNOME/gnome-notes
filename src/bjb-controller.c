@@ -25,7 +25,6 @@
 
 #include "bjb-application.h"
 #include "bjb-controller.h"
-#include "bjb-main-view.h"
 #include "bjb-window-base.h"
 
 /*

@@ -14,13 +14,12 @@
   </gresource>
     
   <gresource prefix="/org/gnome/Notes/ui">
+    <file alias="bjb-window-base.ui"   preprocess="xml-stripblanks">resources/bjb-window-base.ui</file>
     <file alias="empty-results-box.ui" preprocess="xml-stripblanks">resources/empty-results-box.ui</file>
     <file alias="import-dialog.ui"     preprocess="xml-stripblanks">resources/import-dialog.ui</file>
     <file alias="list-view.ui"         preprocess="xml-stripblanks">resources/list-view.ui</file>
     <file alias="list-view-row.ui"     preprocess="xml-stripblanks">resources/list-view-row.ui</file>
-    <file alias="main-toolbar.ui"      preprocess="xml-stripblanks">resources/main-toolbar.ui</file>
     <file alias="organize-dialog.ui"   preprocess="xml-stripblanks">resources/organize-dialog.ui</file>
-    <file alias="selection-toolbar.ui" preprocess="xml-stripblanks">resources/selection-toolbar.ui</file>
     <file alias="settings-dialog.ui"   preprocess="xml-stripblanks">resources/settings-dialog.ui</file>
   </gresource>
 </gresources>

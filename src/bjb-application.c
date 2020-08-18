@@ -28,6 +28,7 @@
 
 #include "bjb-application.h"
 #include "bjb-settings.h"
+#include "bjb-note-view.h"
 #include "bjb-window-base.h"
 #include "bjb-import-dialog.h"
 #include "bjb-log.h"

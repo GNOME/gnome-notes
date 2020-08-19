@@ -680,13 +680,11 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
      */
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
-      /* bjb_search_toolbar_connect (BJB_SEARCH_TOOLBAR (self->search_bar)); */
       /* gtk_widget_show (GTK_WIDGET (self->search_bar)); */
       /* gtk_stack_set_visible_child_name (self->stack, "main-view"); */
       break;
 
    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
-      /* bjb_search_toolbar_connect (BJB_SEARCH_TOOLBAR (self->search_bar)); */
       /* gtk_widget_show (GTK_WIDGET (self->search_bar)); */
       /* gtk_stack_set_visible_child_name (self->stack, "main-view"); */
       break;

@@ -45,55 +45,12 @@ struct _BjbSearchToolbar
 
 G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, HDY_TYPE_SEARCH_BAR)
 
-static gboolean
-on_key_press_event_cb (BjbSearchToolbar *self,
-                       GdkEvent         *event)
-{
-  if (bjb_window_base_get_view_type (self->window) == BJB_WINDOW_BASE_NOTE_VIEW)
-    return FALSE;
-
-  return hdy_search_bar_handle_event (HDY_SEARCH_BAR (self), event);
-}
-
 static void
-on_search_changed_cb (BjbSearchToolbar *self)
-{
-  bjb_controller_set_needle (BJB_CONTROLLER (self->controller),
-                             gtk_entry_get_text (self->entry));
-}
-
-static void
-action_entry_text_change_callback (GtkEntry         *entry,
-                                   BjbSearchToolbar *self)
+on_search_changed_cb (GtkEntry         *entry,
+                      BjbSearchToolbar *self)
 {
   bjb_controller_set_needle (BJB_CONTROLLER (self->controller),
                              gtk_entry_get_text (entry));
-}
-
-void
-bjb_search_toolbar_disconnect (BjbSearchToolbar *self)
-{
-  if (self->key_pressed)
-    g_signal_handler_disconnect (self->window, self->key_pressed);
-  if (self->text_id)
-    g_signal_handler_disconnect (self->entry, self->text_id);
-
-  self->key_pressed = 0;
-  self->text_id = 0;
-}
-
-void
-bjb_search_toolbar_connect (BjbSearchToolbar *self)
-{
-  /* Connect to set the text */
-  if (self->key_pressed == 0)
-    self->key_pressed = g_signal_connect(self->window,"key-press-event",
-                                         G_CALLBACK(on_key_pressed), self);
-
-
-  if (self->text_id == 0)
-    self->text_id = g_signal_connect (self->entry, "search-changed",
-                        G_CALLBACK (action_entry_text_change_callback), self);
 }
 
 void
@@ -110,17 +67,6 @@ bjb_search_toolbar_setup (BjbSearchToolbar *self,
     gtk_entry_set_text (self->entry, self->needle);
     gtk_editable_set_position (GTK_EDITABLE (self->entry), -1);
   }
-
-  g_signal_connect_object (self->window,
-                           "key-press-event",
-                            G_CALLBACK (on_key_press_event_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  g_signal_connect_swapped (self->entry,
-                            "search-changed",
-                            G_CALLBACK (on_search_changed_cb),
-                            self);
 }
 
 static void
@@ -128,6 +74,10 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
 {
   self->entry = GTK_ENTRY (gtk_search_entry_new ());
   hdy_search_bar_connect_entry (HDY_SEARCH_BAR (self), self->entry);
+  g_signal_connect (self->entry, "search-changed",
+                    G_CALLBACK (on_search_changed_cb), self);
+
+  hdy_search_bar_connect_entry (HDY_SEARCH_BAR (self), GTK_ENTRY (self->entry));
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->entry));
   gtk_widget_show (GTK_WIDGET (self->entry));
 }

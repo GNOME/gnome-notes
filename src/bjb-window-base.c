@@ -63,17 +63,35 @@ struct _BjbWindowBase
   gboolean              is_maximized;
 
   HdyLeaflet           *header_box;
+  HdyLeaflet           *main_leaflet;
   HdyHeaderGroup       *header_group;
   GtkRevealer          *back_revealer;
+  GtkWidget            *back_button;
+  GtkWidget            *headerbar;
   GtkWidget            *note_box;
   GtkWidget            *note_headerbar;
   GtkWidget            *note_list;
+  GtkWidget            *sidebar_box;
   GtkWidget            *search_bar;
   GtkWidget            *title_entry;
 };
 
 /* Gobject */
 G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, GTK_TYPE_APPLICATION_WINDOW)
+
+static void
+switch_to_sidebar (BjbWindowBase *self)
+{
+  hdy_leaflet_set_visible_child (self->header_box, self->headerbar);
+  hdy_leaflet_set_visible_child (self->main_leaflet, self->sidebar_box);
+}
+
+static void
+switch_to_note_view (BjbWindowBase *self)
+{
+  hdy_leaflet_set_visible_child (self->header_box, self->note_headerbar);
+  hdy_leaflet_set_visible_child (self->main_leaflet, self->note_box);
+}
 
 static void
 update_fold_state (BjbWindowBase *self)
@@ -132,10 +150,12 @@ on_note_list_row_activated (GtkListBox    *box,
 
   if (to_open && BIJI_IS_NOTE_OBJ (to_open))
     {
+      switch_to_note_view (self);
+
       /* Only open the note if it's not already opened. */
       if (!biji_note_obj_is_opened (BIJI_NOTE_OBJ (to_open)))
         {
-          bjb_window_base_switch_to_item (self, to_open);
+          bjb_window_base_load_note_item (self, to_open);
           on_note_renamed (to_open, self);
         }
     }
@@ -143,6 +163,12 @@ on_note_list_row_activated (GtkListBox    *box,
     {
       bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (to_open));
     }
+}
+
+static void
+on_back_button_clicked (BjbWindowBase *self)
+{
+  switch_to_sidebar (self);
 }
 
 static void
@@ -160,7 +186,8 @@ on_new_note_clicked (BjbWindowBase *self)
                                   bjb_settings_get_default_location (self->settings));
 
   /* Go to that note */
-  bjb_window_base_switch_to_item (self, BIJI_ITEM (result));
+  switch_to_note_view (self);
+  bjb_window_base_load_note_item (self, BIJI_ITEM (result));
   on_note_renamed (BIJI_ITEM (result), self);
 }
 
@@ -555,7 +582,7 @@ bjb_window_base_constructed (GObject *obj)
   if (self->note != NULL)
   {
     self->detached = TRUE;
-    bjb_window_base_switch_to_item (self, BIJI_ITEM (self->note));
+    bjb_window_base_load_note_item (self, BIJI_ITEM (self->note));
   }
 }
 
@@ -612,17 +639,22 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window-base.ui");
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_box);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_leaflet);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_group);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_revealer);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_list);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, sidebar_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, search_bar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, title_entry);
-  gtk_widget_class_bind_template_callback(widget_class, notify_header_visible_child_cb);
-  gtk_widget_class_bind_template_callback(widget_class, notify_fold_cb);
-  gtk_widget_class_bind_template_callback(widget_class, on_new_note_clicked);
-  gtk_widget_class_bind_template_callback(widget_class, on_title_changed);
+  gtk_widget_class_bind_template_callback (widget_class, notify_header_visible_child_cb);
+  gtk_widget_class_bind_template_callback (widget_class, notify_fold_cb);
+  gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
+  gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);
+  gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
 }
 
 
@@ -738,7 +770,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 }
 
 void
-bjb_window_base_switch_to_item (BjbWindowBase *self, BijiItem *item)
+bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
 {
   GtkWidget *w = GTK_WIDGET (self);
 

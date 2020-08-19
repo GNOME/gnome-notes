@@ -31,7 +31,7 @@ void                   bjb_window_base_go_back            (BjbWindowBase *self);
 void                   bjb_window_base_switch_to          (BjbWindowBase *bwb, BjbWindowViewType type);
 
 
-void                   bjb_window_base_switch_to_item     (BjbWindowBase *bwb, BijiItem *item);
+void                   bjb_window_base_load_note_item     (BjbWindowBase *bwb, BijiItem *item);
 
 
 BjbWindowViewType      bjb_window_base_get_view_type      (BjbWindowBase *win);

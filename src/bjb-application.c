@@ -176,7 +176,7 @@ bijiben_open_path (BjbApplication *self,
   if (BIJI_IS_NOTE_OBJ (item) || !window)
     bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
   else
-    bjb_window_base_switch_to_item (window, item);
+    bjb_window_base_load_note_item (window, item);
 
   return TRUE;
 }

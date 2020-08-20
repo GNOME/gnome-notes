@@ -712,7 +712,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
      */
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
-      /* gtk_widget_show (GTK_WIDGET (self->search_bar)); */
+      switch_to_sidebar (self);
       /* gtk_stack_set_visible_child_name (self->stack, "main-view"); */
       break;
 

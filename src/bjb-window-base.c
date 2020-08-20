@@ -123,79 +123,36 @@ bjb_window_base_set_property (GObject  *object,
   }
 }
 
-
-
 static gboolean
-on_key_pressed_cb (GtkWidget *w, GdkEvent *event, gpointer user_data)
+on_key_pressed_cb (BjbWindowBase *self, GdkEvent *event)
 {
   GApplication *app = g_application_get_default ();
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
-  GdkModifierType modifiers;
+  GdkModifierType modifiers = gtk_accelerator_get_default_mod_mask ();
 
-  modifiers = gtk_accelerator_get_default_mod_mask ();
-
-  /* First check for Alt <- to go back */
   if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
-      event->key.keyval == GDK_KEY_Left &&
-      (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
-  {
-    BijiItemsGroup items;
-
-    items = bjb_controller_get_group (self->controller);
-
-    /* Back to main view from trash bin */
-    if (items == BIJI_ARCHIVED_ITEMS)
-      bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
-    /* Back to main view */
-    else
-      bjb_controller_set_notebook (self->controller, NULL);
-
-    return TRUE;
-  }
-
-
-  switch (event->key.keyval)
-  {
-    case GDK_KEY_F1:
-      if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
-        {
-          bjb_app_help (BJB_APPLICATION (app));
-          return TRUE;
-        }
-      break;
-
-    case GDK_KEY_F10:
-      if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
-        {
-          bjb_main_toolbar_open_menu (self->main_toolbar);
-          return TRUE;
-        }
-      break;
-
-    case GDK_KEY_F2:
-    case GDK_KEY_F3:
-    case GDK_KEY_F4:
-    case GDK_KEY_F5:
-    case GDK_KEY_F6:
-    case GDK_KEY_F7:
-    case GDK_KEY_F8:
-    case GDK_KEY_F9:
-    case GDK_KEY_F11:
+      event->key.keyval == GDK_KEY_Left)
+    {
+      bjb_window_base_go_back (self);
       return TRUE;
-
-    case GDK_KEY_q:
-      if ((event->key.state & modifiers) == GDK_CONTROL_MASK)
-        {
-          g_application_quit (app);
-          return TRUE;
-        }
-      break;
-
-    default:
-      ;
-  }
+    }
+  else if ((event->key.state & modifiers) != GDK_CONTROL_MASK &&
+           event->key.keyval == GDK_KEY_F1)
+    {
+      bjb_app_help (BJB_APPLICATION (app));
+      return TRUE;
+    }
+  else if ((event->key.state & modifiers) != GDK_CONTROL_MASK &&
+           event->key.keyval == GDK_KEY_F10)
+    {
+      bjb_main_toolbar_open_menu (self->main_toolbar);
+      return TRUE;
+    }
+  else if ((event->key.state & modifiers) == GDK_CONTROL_MASK &&
+           event->key.keyval == GDK_KEY_q)
+    {
+      g_application_quit (app);
+      return TRUE;
+    }
 
   return FALSE;
 }
@@ -442,10 +399,10 @@ bjb_window_base_constructed (GObject *obj)
 
   /* Keys */
 
-  g_signal_connect (GTK_WIDGET (self),
-                    "key-press-event",
-                    G_CALLBACK(on_key_pressed_cb),
-		    self);
+  g_signal_connect_swapped (GTK_WIDGET (self),
+                            "key-press-event",
+                            G_CALLBACK(on_key_pressed_cb),
+                            self);
 
   /* If a note is requested at creation, show it
    * This is a specific type of window not associated with any view */
@@ -564,6 +521,38 @@ destroy_note_if_needed (BjbWindowBase *self)
   self->note_view = NULL;
 }
 
+void
+bjb_window_base_go_back (BjbWindowBase *self)
+{
+  BijiNoteObj *note = bjb_window_base_get_note (self);
+  BijiItemsGroup group = bjb_controller_get_group (self->controller);
+
+  if (!(group == BIJI_ARCHIVED_ITEMS ||
+        bjb_controller_get_notebook (self->controller) != NULL ||
+        self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
+    return;
+
+  if (bjb_window_base_is_detached (self))
+    {
+      gtk_widget_destroy (GTK_WIDGET (self));
+      return;
+    }
+
+  if (self->note)
+    {
+      if (biji_note_obj_is_trashed (note))
+        bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+      else
+        bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+      bjb_main_view_update_model (self->view);
+      return;
+    }
+
+  if (group == BIJI_ARCHIVED_ITEMS)
+    bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+  else
+    bjb_controller_set_notebook (self->controller, NULL);
+}
 
 void
 bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)

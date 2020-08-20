@@ -121,9 +121,6 @@ bjb_controller_finalize (GObject *object)
   g_free (self->needle);
   g_list_free (self->items_to_show);
 
-  if (self->notebook)
-    g_clear_object (&self->notebook);
-
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
 

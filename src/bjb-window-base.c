@@ -571,13 +571,11 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
      */
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
-      bjb_search_toolbar_connect (self->search_bar);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->stack, "main-view");
       break;
 
    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
-      bjb_search_toolbar_connect (self->search_bar);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->stack, "main-view");
       break;
@@ -636,7 +634,6 @@ bjb_window_base_switch_to_item (BjbWindowBase *self, BijiItem *item)
 {
   GtkWidget *w = GTK_WIDGET (self);
 
-  bjb_search_toolbar_disconnect (self->search_bar);
   destroy_note_if_needed (self);
 
   if (BIJI_IS_NOTE_OBJ (item))

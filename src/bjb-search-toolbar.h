@@ -21,17 +21,17 @@
 #define HANDY_USE_UNSTABLE_API
 #include <handy.h>
 
+#include "bjb-controller.h"
+#include "bjb-window-base.h"
+
 G_BEGIN_DECLS
 
 #define BJB_TYPE_SEARCH_TOOLBAR (bjb_search_toolbar_get_type ())
 
 G_DECLARE_FINAL_TYPE (BjbSearchToolbar, bjb_search_toolbar, BJB, SEARCH_TOOLBAR, HdySearchBar)
 
-BjbSearchToolbar  *bjb_search_toolbar_new                   (GtkWidget *window,
-                                                             BjbController *controller);
-
-void               bjb_search_toolbar_disconnect            (BjbSearchToolbar *self);
-
-void               bjb_search_toolbar_connect               (BjbSearchToolbar *self);
+BjbSearchToolbar *bjb_search_toolbar_new (BjbWindowBase *window,
+                                          BjbController *controller);
 
 G_END_DECLS
+

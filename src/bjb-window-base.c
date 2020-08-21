@@ -47,6 +47,7 @@ struct _BjbWindowBase
 
   GtkStack             *stack;
   BjbWindowViewType     current_view;
+  BjbListView          *note_list;
   BjbNoteView          *note_view;
   GtkWidget            *spinner;
   GtkWidget            *no_note;
@@ -66,11 +67,11 @@ struct _BjbWindowBase
   HdyLeaflet           *main_leaflet;
   HdyHeaderGroup       *header_group;
   GtkRevealer          *back_revealer;
+  GtkStack             *main_stack;
   GtkWidget            *back_button;
   GtkWidget            *headerbar;
   GtkWidget            *note_box;
   GtkWidget            *note_headerbar;
-  GtkWidget            *note_list;
   GtkWidget            *sidebar_box;
   GtkWidget            *search_bar;
   GtkWidget            *title_entry;
@@ -262,8 +263,7 @@ on_key_pressed_cb (BjbWindowBase *self, GdkEvent *event)
   if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
       event->key.keyval == GDK_KEY_Left &&
       (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_NOTE_VIEW))
+       self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW))
   {
     BijiItemsGroup items;
 
@@ -501,7 +501,6 @@ static GActionEntry win_entries[] = {
 static void
 bjb_window_base_constructed (GObject *obj)
 {
-  BjbListView *listview;
   BjbSearchToolbar *search_bar;
   BjbWindowBase *self = BJB_WINDOW_BASE (obj);
   GtkListBox *list_box;
@@ -534,10 +533,10 @@ bjb_window_base_constructed (GObject *obj)
      GTK_WINDOW (obj),
      self->entry );
 
-  listview = BJB_LIST_VIEW (self->note_list);
-  bjb_list_view_setup (listview, self->controller);
+  self->note_list = bjb_list_view_new ();
+  bjb_list_view_setup (self->note_list, self->controller);
 
-  list_box = bjb_list_view_get_list_box (listview);
+  list_box = bjb_list_view_get_list_box (self->note_list);
   g_signal_connect (list_box, "row-activated",
                     G_CALLBACK (on_note_list_row_activated), self);
 
@@ -545,22 +544,17 @@ bjb_window_base_constructed (GObject *obj)
   search_bar = BJB_SEARCH_TOOLBAR (self->search_bar);
   bjb_search_toolbar_setup (search_bar, GTK_WIDGET(obj), self->controller);
 
-  /* TODO: A stack in sidebar. */
-  /* UI : stack for different views */
-  /* self->stack = GTK_STACK (gtk_stack_new ()); */
-  /* gtk_box_pack_start (GTK_BOX (self->vbox), GTK_WIDGET (self->stack), TRUE, TRUE, 0); */
+  self->spinner = gtk_spinner_new ();
+  gtk_stack_add_named (self->main_stack, self->spinner, "spinner");
+  gtk_stack_set_visible_child_name (self->main_stack, "spinner");
+  gtk_widget_show (self->spinner);
+  gtk_spinner_start (GTK_SPINNER (self->spinner));
 
-  /* self->spinner = gtk_spinner_new (); */
-  /* gtk_stack_add_named (self->stack, self->spinner, "spinner"); */
-  /* gtk_stack_set_visible_child_name (self->stack, "spinner"); */
-  /* gtk_widget_show (self->spinner); */
-  /* gtk_spinner_start (GTK_SPINNER (self->spinner)); */
+  self->no_note = bjb_empty_results_box_new ();
+  gtk_stack_add_named (self->main_stack, self->no_note, "empty");
 
-  /* self->no_note = bjb_empty_results_box_new (); */
-  /* gtk_stack_add_named (self->stack, self->no_note, "empty"); */
-
-  /* gtk_stack_add_named (self->stack, GTK_WIDGET (self->view), "main-view"); */
-  /* gtk_widget_show (GTK_WIDGET (self->stack)); */
+  gtk_stack_add_named (self->main_stack, GTK_WIDGET (self->note_list), "main-view");
+  gtk_widget_show (GTK_WIDGET (self->main_stack));
 
 
   /* Connection to window signals */
@@ -642,11 +636,11 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_leaflet);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_group);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_revealer);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_stack);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_headerbar);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_list);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, sidebar_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, search_bar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, title_entry);
@@ -698,8 +692,7 @@ destroy_note_if_needed (BjbWindowBase *self)
 void
 bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 {
-  if (type != BJB_WINDOW_BASE_NOTE_VIEW)
-    destroy_note_if_needed (self);
+  destroy_note_if_needed (self);
 
   switch (type)
   {
@@ -713,49 +706,48 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
       switch_to_sidebar (self);
-      /* gtk_stack_set_visible_child_name (self->stack, "main-view"); */
+      gtk_widget_show (GTK_WIDGET (self->search_bar));
+      gtk_stack_set_visible_child_name (self->main_stack, "main-view");
       break;
 
    case BJB_WINDOW_BASE_ARCHIVE_VIEW:
-      /* gtk_widget_show (GTK_WIDGET (self->search_bar)); */
-      /* gtk_stack_set_visible_child_name (self->stack, "main-view"); */
+      gtk_widget_show (GTK_WIDGET (self->search_bar));
+      gtk_stack_set_visible_child_name (self->main_stack, "main-view");
       break;
 
     case BJB_WINDOW_BASE_SPINNER_VIEW:
-      /* gtk_stack_set_visible_child_name (self->stack, "spinner"); */
+      gtk_widget_hide (GTK_WIDGET (self->search_bar));
+      gtk_stack_set_visible_child_name (self->main_stack, "spinner");
       break;
 
 
     case BJB_WINDOW_BASE_NO_NOTE:
-      /* bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note), */
-      /*                                 BJB_EMPTY_RESULTS_NO_NOTE); */
-      /* gtk_widget_show (self->no_note); */
-      /* gtk_widget_hide (GTK_WIDGET (self->search_bar)); */
-      /* gtk_stack_set_visible_child_name (self->stack, "empty"); */
+      bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note),
+                                      BJB_EMPTY_RESULTS_NO_NOTE);
+      gtk_widget_show (self->no_note);
+      gtk_widget_hide (GTK_WIDGET (self->search_bar));
+      gtk_stack_set_visible_child_name (self->main_stack, "empty");
       break;
 
 
     case BJB_WINDOW_BASE_NO_RESULT:
-      /* bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note), */
-      /*                                 BJB_EMPTY_RESULTS_NO_RESULTS); */
-      /* gtk_widget_show (self->no_note); */
-      /* gtk_stack_set_visible_child_name (self->stack, "empty"); */
+      bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note),
+                                      BJB_EMPTY_RESULTS_NO_RESULTS);
+      gtk_widget_show (self->no_note);
+      gtk_stack_set_visible_child_name (self->main_stack, "empty");
       break;
 
 
     case BJB_WINDOW_BASE_ERROR_TRACKER:
-      /* bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note), */
-      /*                                 BJB_EMPTY_RESULTS_TRACKER); */
-      /* gtk_widget_show_all (self->no_note); */
-      /* gtk_widget_hide (GTK_WIDGET (self->search_bar)); */
-      /* gtk_stack_set_visible_child_name (self->stack, "empty"); */
+      bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note),
+                                      BJB_EMPTY_RESULTS_TRACKER);
+      gtk_widget_show_all (self->no_note);
+      gtk_widget_hide (GTK_WIDGET (self->search_bar));
+      gtk_stack_set_visible_child_name (self->stack, "empty");
       break;
 
 
     case BJB_WINDOW_BASE_NOTE_VIEW:
-      /* gtk_widget_show (GTK_WIDGET (self->note_view)); */
-      /* gtk_widget_hide (GTK_WIDGET (self->search_bar)); */
-      /* gtk_stack_set_visible_child_name (self->stack, "note-view"); */
       break;
 
 
@@ -784,8 +776,6 @@ bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
     self->note_view = bjb_note_view_new (w, note);
     gtk_container_add (GTK_CONTAINER (self->note_box), GTK_WIDGET (self->note_view));
     gtk_widget_show (GTK_WIDGET (self->note_view));
-
-    bjb_window_base_switch_to (self, BJB_WINDOW_BASE_NOTE_VIEW);
     bjb_note_view_grab_focus (self->note_view);
   }
 }

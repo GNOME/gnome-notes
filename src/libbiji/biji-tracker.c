@@ -579,7 +579,7 @@ biji_note_delete_from_tracker (BijiNoteObj *note)
 
 
 void
-biji_tracker_trash_ressource (BijiManager *manager,
+biji_tracker_trash_resource (BijiManager *manager,
                               gchar *tracker_urn)
 {
   gchar *query;
@@ -590,7 +590,7 @@ biji_tracker_trash_ressource (BijiManager *manager,
 
 
 static void
-update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
+update_resource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
 {
   BijiManager *manager = finisher->manager;
   BijiInfoSet *info = finisher->info;
@@ -602,7 +602,7 @@ update_ressource (BijiTrackerFinisher *finisher, gchar *tracker_urn_uuid )
 
   content = tracker_str (info->content);
 
-  g_message ("Updating ressource <%s> %s", info->title, tracker_urn_uuid);
+  g_message ("Updating resource <%s> %s", info->title, tracker_urn_uuid);
 
   query = g_strdup_printf (
       "INSERT OR REPLACE { <%s> a nfo:Note , nie:DataObject ; "
@@ -640,7 +640,7 @@ push_new_note (BijiTrackerFinisher *finisher)
   g_autofree char *mtime = g_date_time_format_iso8601 (dt_mtime);
   gchar *query, *content;
 
-  g_message ("Creating ressource <%s> %s", info->title, info->url);
+  g_message ("Creating resource <%s> %s", info->title, info->url);
 
   content = tracker_str (info->content);
 
@@ -676,7 +676,7 @@ push_new_note (BijiTrackerFinisher *finisher)
 
 
 static void
-ensure_ressource_callback (GObject *source_object,
+ensure_resource_callback (GObject *source_object,
                            GAsyncResult *res,
                            gpointer user_data)
 {
@@ -695,13 +695,13 @@ ensure_ressource_callback (GObject *source_object,
 
   if (error)
   {
-    g_warning ("ENSURE RESSOURCE : error %s", error->message);
+    g_warning ("ENSURE RESOURCE : error %s", error->message);
     g_error_free (error);
     biji_tracker_finisher_free (finisher);
     return;
   }
 
-  /* Queried ressource found into tracker */
+  /* Queried resource found into tracker */
 
   if (cursor)
   {
@@ -714,7 +714,7 @@ ensure_ressource_callback (GObject *source_object,
 
 
   if (urn_found != NULL)
-    update_ressource (finisher, urn_found);
+    update_resource (finisher, urn_found);
 
   else
     push_new_note (finisher);
@@ -723,7 +723,7 @@ ensure_ressource_callback (GObject *source_object,
 
 
 void
-biji_tracker_ensure_ressource_from_info (BijiManager *manager,
+biji_tracker_ensure_resource_from_info (BijiManager *manager,
                                          BijiInfoSet *info)
 {
   gchar *query;
@@ -753,7 +753,7 @@ biji_tracker_ensure_ressource_from_info (BijiManager *manager,
                NULL);  // user_data);
 
   tracker_sparql_connection_query_async (
-      get_connection (manager), query, NULL, ensure_ressource_callback, finisher);
+      get_connection (manager), query, NULL, ensure_resource_callback, finisher);
 
   g_free (query);
 }
@@ -815,7 +815,7 @@ on_info_queried (GObject *source_object,
     return;
   }
 
-  /* Queried ressource found into tracker */
+  /* Queried resource found into tracker */
   if (cursor)
   {
     if (tracker_sparql_cursor_next (cursor, NULL, NULL))
@@ -832,7 +832,7 @@ on_info_queried (GObject *source_object,
       retval->created = iso8601_to_gint64 (tracker_sparql_cursor_get_string (cursor, 4, NULL));
 
 
-      /* Check if the ressource is up to date */
+      /* Check if the resource is up to date */
 
       if (finisher->info->mtime != retval->mtime)
         g_clear_pointer (&retval, biji_info_set_free);

@@ -97,11 +97,11 @@ void        biji_remove_notebook_from_note           (BijiNoteObj      *note,
 void        biji_note_delete_from_tracker              (BijiNoteObj *note);
 
 
-void        biji_tracker_trash_ressource               (BijiManager *manager,
+void        biji_tracker_trash_resource               (BijiManager *manager,
                                                         gchar *tracker_urn);
 
 
-void        biji_tracker_ensure_ressource_from_info    (BijiManager     *manager,
+void        biji_tracker_ensure_resource_from_info    (BijiManager     *manager,
                                                         BijiInfoSet *info);
 
 

@@ -41,7 +41,7 @@ typedef struct
   gint64    created;
 
 
-  /* only when ensuring ressource */
+  /* only when ensuring resource */
   gchar    *datasource_urn;
 
 

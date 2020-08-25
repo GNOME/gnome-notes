@@ -101,7 +101,7 @@ local_note_save (BijiNoteObj *note)
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  biji_tracker_ensure_ressource_from_info  (biji_item_get_manager (item),
+  biji_tracker_ensure_resource_from_info  (biji_item_get_manager (item),
                                             info);
 }
 

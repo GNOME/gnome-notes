@@ -233,10 +233,10 @@ on_content (GObject *source,
   {
      item->set.content = contents;
      create_note_from_item (item);
-     biji_tracker_ensure_ressource_from_info (
+     biji_tracker_ensure_resource_from_info (
        biji_provider_get_manager (BIJI_PROVIDER (self)), &item->set);
 
-     // TODO --> ensure_ressource callback.... o_cloud_item_free (item);
+     // TODO --> ensure_resource callback.... o_cloud_item_free (item);
   }
 
   handle_next_item (self);
@@ -292,7 +292,7 @@ check_info_maybe_read_file (BijiInfoSet *info,
 static void
 trash (gpointer urn_uuid, gpointer self)
 {
-  biji_tracker_trash_ressource (
+  biji_tracker_trash_resource (
       biji_provider_get_manager (BIJI_PROVIDER (self)), (gchar*) urn_uuid);
 }
 

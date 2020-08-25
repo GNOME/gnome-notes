@@ -112,7 +112,7 @@ ocloud_note_set_html (BijiNoteObj *note,
  * the real fix is to set mtime when save happens.. */
 
 static void
-ocloud_note_ensure_ressource (BijiNoteObj *note)
+ocloud_note_ensure_resource (BijiNoteObj *note)
 {
   BijiInfoSet *info;
   BijiItem *item;
@@ -137,7 +137,7 @@ ocloud_note_ensure_ressource (BijiNoteObj *note)
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (provider->datasource);
 
-  biji_tracker_ensure_ressource_from_info  (biji_item_get_manager (item),
+  biji_tracker_ensure_resource_from_info  (biji_item_get_manager (item),
                                             info);
 }
 
@@ -175,7 +175,7 @@ on_file_updated_cb (GObject *source_object,
       return;
     }
 
-  ocloud_note_ensure_ressource (BIJI_NOTE_OBJ (self));
+  ocloud_note_ensure_resource (BIJI_NOTE_OBJ (self));
 }
 
 static void

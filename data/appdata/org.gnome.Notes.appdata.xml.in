@@ -39,7 +39,29 @@
   </screenshots>
 
   <releases>
-    <release date="2020-03-04" version="3.37.90">
+    <release date="2020-08-27" version="3.37.91">
+      <description>
+        <p>This release brings the following new features and improvements:</p>
+        <ul>
+          <li>Changed default note color to GNOME Blue</li>
+          <li>Improved help pages (Piotr Drąg)</li>
+          <li>Improved code quality (Alberto Fanjul, Stefano Facchini)</li>
+        </ul>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>cs (Marek Černocký)</li>
+          <li>de (Stephan Woidowski)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>hr (Goran Vidović)</li>
+          <li>ja (sicklylife)</li>
+          <li>nl (Nathan Follens)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>sr (Марко Костић)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
+    <release date="2020-08-12" version="3.37.90">
       <description>
         <p>This release brings the following new features and improvements:</p>
         <ul>

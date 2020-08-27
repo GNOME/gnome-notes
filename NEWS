@@ -1,3 +1,20 @@
+Overview of changes in 3.37.91
+==============================
+
+* Changed default note color to GNOME Blue
+* Improved help pages (Piotr Drąg)
+* Improved code quality (Alberto Fanjul, Stefano Facchini)
+
+Translations
+* cs (Marek Černocký)
+* de (Stephan Woidowski)
+* fi (Jiri Grönroos)
+* hr (Goran Vidović)
+* ja (sicklylife)
+* nl (Nathan Follens)
+* pl (Piotr Drąg)
+* sr (Марко Костић)
+
 Overview of changes in 3.37.90
 ==============================
 

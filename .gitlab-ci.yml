@@ -1,26 +1,25 @@
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+
+variables:
+  GIT_SUBMODULE_STRATEGY: 'normal'
+
 stages:
-- test
+  - 'flatpak'
+  - 'deploy'
 
-flatpak:
-    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
-    stage: test
-    tags:
-        - flatpak
-
+flatpak:master:
+    extends: '.flatpak'
+    image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
+    stage: 'flatpak'
     variables:
-        # Replace with your manifest path
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.Notes.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        # Replace with your application name, as written in the manifest
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "gnome-notes"
-        # Make sure to keep this in sync with the Flatpak manifest, all arguments
-        # are passed except the config-args because we build it ourselves
-        # CONFIGURE_ARGS: "-Dtests=all"
+        APP_ID: "org.gnome.Notes"
+        BUNDLE: "org.gnome.Notes.Devel.flatpak"
 
-    script:
-        - git submodule update --init --recursive
-        - flatpak-builder --user --disable-rofiles-fuse --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
-        - flatpak build app meson --prefix=/app ${CONFIGURE_ARGS} _build
-        - flatpak build app ninja -C _build install
-        # Run tests inside the Flatpak env emulating a display
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak build app ninja -C _build test
+
+flatpak:nightly:
+    extends: '.publish_nightly'
+    dependencies:
+        - 'flatpak:master'

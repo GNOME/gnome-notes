@@ -39,6 +39,17 @@
   </screenshots>
 
   <releases>
+    <release date="2020-09-04" version="3.30.4">
+      <description>
+        <p>This release also updates the following translations:</p>
+        <ul>
+          <li>fr (Charles Monzat)</li>
+          <li>is (Sveinn í Felli)</li>
+          <li>zh_CN (Mingcong Bai)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2018-11-16" version="3.30.3">
       <description>
         <p>This release brings the following new features and improvements:</p>

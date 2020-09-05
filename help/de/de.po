@@ -1,17 +1,17 @@
 # German translation for bijiben.
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
+#
 # Benjamin Steinwender <b@stbe.at>, 2014.
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2014.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2016.
-#
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2016, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-14\n"
-"POT-Creation-Date: 2020-07-15 01:33+0000\n"
-"PO-Revision-Date: 2020-08-27 14:07+0200\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-09-05 07:08+0000\n"
+"PO-Revision-Date: 2020-09-05 16:42+0200\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -442,17 +442,13 @@ msgstr "Während die Notiz geöffnet ist:"
 
 #. (itstool) path: item/p
 #: C/format-list.page:45
-#, fuzzy
-#| msgid ""
-#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
-#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
 "To create an unordered list, select the <guiseq><gui style=\"button"
 "\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Um eine nummerierte Liste zu erstellen, klicken Sie <guiseq><gui style="
-"\"button\">Mehr Optionen …</gui> <gui style=\"menuitem\">Nummerierte Liste</"
-"gui></guiseq>."
+"Um eine ungeordnete Liste zu erstellen, klicken Sie auf den Knopf "
+"<guiseq><gui style=\"button\">Aufzählungspunkte</gui></guiseq> im "
+"Fußleistenmenü."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -473,17 +469,13 @@ msgstr "ok"
 
 #. (itstool) path: item/p
 #: C/format-list.page:51
-#, fuzzy
-#| msgid ""
-#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
-#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
 "To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
 "List</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Um eine nummerierte Liste zu erstellen, klicken Sie <guiseq><gui style="
-"\"button\">Mehr Optionen …</gui> <gui style=\"menuitem\">Nummerierte Liste</"
-"gui></guiseq>."
+"Um eine nummerierte Liste zu erstellen, klicken Sie auf den Knopf "
+"<guiseq><gui style=\"button\">Nummerierte Liste</gui></guiseq> im "
+"Fußleistenmenü."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When

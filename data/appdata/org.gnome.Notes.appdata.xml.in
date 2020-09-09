@@ -39,6 +39,21 @@
   </screenshots>
 
   <releases>
+    <release date="2020-09-09" version="3.37.92">
+      <description>
+        <p>This release updates the following translations:</p>
+        <ul>
+          <li>da (Alan Mortensen)</li>
+          <li>de (Mario Blättermann)</li>
+          <li>hu (Balázs Meskó)</li>
+          <li>ko (Seong-ho Cho)</li>
+          <li>pt (Juliano Camargo)</li>
+          <li>sk (Dušan Kazik)</li>
+          <li>sv (Anders Jonsson)</li>
+        </ul>
+        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2020-08-27" version="3.37.91">
       <description>
         <p>This release brings the following new features and improvements:</p>

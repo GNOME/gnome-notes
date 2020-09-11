@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-14\n"
-"POT-Creation-Date: 2020-09-05 07:08+0000\n"
-"PO-Revision-Date: 2020-09-05 16:42+0200\n"
-"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"POT-Creation-Date: 2020-09-05 14:43+0000\n"
+"PO-Revision-Date: 2020-09-11 23:51+0200\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "Benjamin Steinwender <b@stbe.at>, 2014\n"
-"Christian Kirbach <christian.kirbach@gmail.com>, 2014, 2015\n"
+"Christian Kirbach <christian.kirbach@gmail.com>, 2014, 2015, 2020\n"
 "Mario Blättermann <mario.blaettermann@gmail.com>, 2016"
 
 #. (itstool) path: credit/name
@@ -456,11 +456,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:48
-#, fuzzy
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-unordered-list.png' "
@@ -483,11 +478,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:54
-#, fuzzy
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-numbered-list.png' "
@@ -591,11 +581,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:44
-#, fuzzy
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"

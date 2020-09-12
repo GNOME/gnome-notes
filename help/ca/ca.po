@@ -5,7 +5,7 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: gnome-notes-help\n"
 "POT-Creation-Date: 2020-08-10 10:48+0000\n"
 "PO-Revision-Date: 2020-08-11 05:52+0000\n"
 "Last-Translator: Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>, 2020\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "traductor-crèdits"
+msgstr "Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>, 2020"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -328,7 +328,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
-msgstr "Seleccioneu <gui>Paperera</gui>."
+msgstr "Seleccioneu <gui>Visualitza la paperera</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:37
@@ -785,7 +785,7 @@ msgid ""
 "style=\"menuitem\">Email this Note</gui></guiseq>."
 msgstr ""
 "Feu clic a <guiseq><gui style=\"button\">Més opcions</gui><gui "
-"style=\"menuitem\">Envieu per correu aquesta nota</gui></guiseq>."
+"style=\"menuitem\">Envia per correu aquesta nota</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/share.page:50

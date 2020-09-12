@@ -7,15 +7,16 @@
 # Sérgio Cardeira <cardeira dot sergio at gmail dot com>, 2016.
 # João Nuno Matos <joaonmatos@gmail.com>, 2019.
 # Juliano Camargo <julianosc@pm.me>, 2020.
+# Juliano de Souza Camargo <julianosc@protonmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-08-12 03:42+0000\n"
-"PO-Revision-Date: 2020-08-24 00:23+0100\n"
-"Last-Translator: Juliano Camargo <julianosc@pm.me>\n"
-"Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
+"POT-Creation-Date: 2020-09-08 19:30+0000\n"
+"PO-Revision-Date: 2020-09-12 08:47-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@protonmail.com>\n"
+"Language-Team: Portuguese <>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,6 @@ msgid "Note-taker"
 msgstr "Bloco de notas"
 
 #: data/org.gnome.Notes.desktop.in:19
-#| msgid "Create a new note"
 msgid "Create New Note"
 msgstr "Criar uma Nova Nota"
 
@@ -134,6 +134,17 @@ msgstr "Posição da janela"
 msgid "Window position (x and y)."
 msgstr "Posição da janela (x e y)."
 
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "Text size used by note editor."
+msgstr "Tamanho do texto usado pelo editor de notas."
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"Há três tamanhos de texto disponíveis: pequeno, médio (predefinição) e "
+"grande."
+
 #: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Negrito"
@@ -168,7 +179,6 @@ msgid "General"
 msgstr "Geral"
 
 #: data/resources/help-overlay.ui:14
-#| msgid "Share note"
 msgctxt "shortcut window"
 msgid "Search notes"
 msgstr "Procurar notas"
@@ -184,7 +194,6 @@ msgid "Close window"
 msgstr "Fechar janela"
 
 #: data/resources/help-overlay.ui:35
-#| msgid "_Quit"
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Sair"
@@ -200,13 +209,11 @@ msgid "Show help"
 msgstr "Mostrar a ajuda"
 
 #: data/resources/help-overlay.ui:56
-#| msgid "Open menu"
 msgctxt "shortcut window"
 msgid "Open menu"
 msgstr "Abrir o menu"
 
 #: data/resources/help-overlay.ui:63
-#| msgid "Keyboard Shortcuts"
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Atalhos de teclado"
@@ -232,7 +239,6 @@ msgid "Note edit mode"
 msgstr "Modo de edição da nota"
 
 #: data/resources/help-overlay.ui:96
-#| msgid "Open in another window"
 msgctxt "shortcut window"
 msgid "Open in a new window"
 msgstr "Abrir noutra janela"
@@ -441,7 +447,7 @@ msgstr "Selecione a localização padrão para guardar as notas:"
 msgid "Primary Book"
 msgstr "Livro principal"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:349
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Sem título"
 
@@ -485,13 +491,14 @@ msgstr "Bloco de notas simples para o GNOME"
 msgid "translator-credits"
 msgstr ""
 "António Lima <amrlima@gmail.com>\n"
-"Pedro Albuquerque <palbuquerque73@gmail.com>"
+"Pedro Albuquerque <palbuquerque73@gmail.com>\n"
+"Juliano de Souza Camargo <julianosc@pm.me>"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Cor da nota"
 
-#: src/bjb-controller.c:239
+#: src/bjb-controller.c:236
 msgid "Notebook"
 msgstr "Livro de notas"
 
@@ -527,7 +534,7 @@ msgstr "Resultados para %s"
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: src/bjb-main-toolbar.c:325
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Lixo"
 
@@ -536,7 +543,7 @@ msgstr "Lixo"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:393
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última atualização: %s"

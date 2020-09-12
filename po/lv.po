@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2013, 2014, 2015, 2018, 2019.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2013, 2014, 2015, 2018, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2019-08-17 00:02+0000\n"
-"PO-Revision-Date: 2019-08-24 16:37+0200\n"
+"POT-Creation-Date: 2020-09-05 07:08+0000\n"
+"PO-Revision-Date: 2020-09-12 13:27+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 19.12.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:608 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Piezīmes"
 
@@ -69,6 +69,11 @@ msgstr "Raksti zīmītes, marķē datnes!"
 #: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Piezīmju blociņš"
+
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "Izveidot jaunu piezīmi"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -125,18 +130,10 @@ msgid "Window position (x and y)."
 msgstr "Loga novietojums (x un y)."
 
 #: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Kā rādīt piezīmju vienumus"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Vai rādīt piezīmju vienumus ikonu skatā vai saraksta skatā."
-
-#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Teksta izmērs, kuru izmantos piezīmju redaktors."
 
-#: data/org.gnome.Notes.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Ir pieejami trīs teksta izmēri: mazs, vidējs (noklusējuma) un liels."
@@ -169,87 +166,112 @@ msgstr "Kopēt izvēlēto uz jaunu piezīmi"
 msgid "No notes"
 msgstr "Nav piezīmju"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Vispārīgi"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+#| msgid "Share note"
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Meklēt piezīmēs"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Jauna piezīme"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Aizvērt logu"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
+#| msgid "_Quit"
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Iziet"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Iet atpakaļ"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Rādīt palīdzību"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Īsinājumtaustiņi"
+msgid "Open menu"
+msgstr "Atvērt izvēlni"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:63
+#| msgid "Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Tastatūras īsinājumtaustiņi"
+
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Izvēlēšanās režīms"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Atcelt izvēles režīmu"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Izvēlēties visu"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Piezīmju rediģēšanas režīms"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:96
+#| msgid "Open in another window"
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Atvērt jaunā logā"
+
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Treknraksts"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Slīpraksts"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Pārsvītrojums"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Atsaukt"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Atatsaukt"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Pārvietot piezīmi uz miskasti"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Importēt piezīmes"
 
@@ -285,7 +307,7 @@ msgstr "Izvēlieties mapi"
 msgid "_New"
 msgstr "Jau_ns"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Piezīmju krāsa"
 
@@ -302,84 +324,76 @@ msgstr "Iziet no izvēles režīma"
 msgid "Search note titles, content and notebooks"
 msgstr "Meklēt piezīmju grāmatiņā, nosaukumos un saturā"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Piezīmes un piezīmju grāmatiņas skatīt režģī"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Piezīmes un piezīmju grāmatiņas skatīt sarakstā"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Izvēlēšanās režīms"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Atvērt izvēlni"
 
-#: data/resources/main-toolbar.ui:195
+#: data/resources/main-toolbar.ui:150
 msgid "More options"
 msgstr "Vairāk opciju"
 
-#: data/resources/main-toolbar.ui:234
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Skatīt miskasti"
 
-#: data/resources/main-toolbar.ui:251
+#: data/resources/main-toolbar.ui:206
 msgid "Text Sizes"
 msgstr "Teksta izmēri"
 
-#: data/resources/main-toolbar.ui:261
+#: data/resources/main-toolbar.ui:216
 msgid "_Large"
 msgstr "Liels"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:226
 msgid "_Medium"
 msgstr "Vidējs"
 
-#: data/resources/main-toolbar.ui:281
+#: data/resources/main-toolbar.ui:236
 msgid "_Small"
 msgstr "Mazs"
 
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Iestatījumi"
 
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Tastatūras īsinājumtaustiņi"
 
-#: data/resources/main-toolbar.ui:317
+#: data/resources/main-toolbar.ui:272
 msgid "Help"
 msgstr "Palīdzība"
 
-#: data/resources/main-toolbar.ui:326
+#: data/resources/main-toolbar.ui:281
 msgid "About Notes"
 msgstr "Par piezīmēm"
 
-#: data/resources/main-toolbar.ui:348
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Atvērt jaunā logā"
 
-#: data/resources/main-toolbar.ui:365
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Atsaukt"
 
-#: data/resources/main-toolbar.ui:374
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Atatsaukt"
 
-#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Piezīmju grāmatiņas"
 
-#: data/resources/main-toolbar.ui:400
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Sūtīt piezīmi pa e-pastu"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Pārvietot uz miskasti"
 
@@ -391,19 +405,19 @@ msgstr "Ievadiet nosaukumu, lai izveidotu piezīmju grāmatiņu"
 msgid "New notebook"
 msgstr "Jauna piezīmju grāmatiņa"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Koplietot piezīmi"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Atvērt citā logā"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Atjaunot"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Izdzēst pavisam"
 
@@ -431,53 +445,57 @@ msgstr "Izvēlieties noklusējuma krātuves vietu:"
 msgid "Primary Book"
 msgstr "Galvenā grāmata"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Nenosaukts"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:432
 msgid "Show the application’s version"
 msgstr "Rādīt lietotnes versiju"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:434
 msgid "Create a new note"
 msgstr "Izveidot jaunu piezīmi"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:436
 msgid "[FILE…]"
 msgstr "[DATNE…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:444
 msgid "Take notes and export them everywhere."
 msgstr "Veikt piezīmes un eksportēt tās visur."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:455
 msgid "Could not parse arguments"
 msgstr "Nevarēja parsēt parametrus"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:463
 msgid "GNOME Notes"
 msgstr "GNOME piezīmes"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:475
 msgid "Could not register the application"
 msgstr "Neizdevās reģistrēt lietotni"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:609
 msgid "Simple notebook for GNOME"
 msgstr "Vienkārša GNOME piezīmju grāmatiņa"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:615
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: src/bjb-color-button.c:136
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Piezīmju krāsa"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Piezīmju grāmatiņa"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -491,19 +509,11 @@ msgstr "Ak vai!"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Lūdzu, instalējiet “Tracker” un pārstartējiet lietotni."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Ielādēt vairāk"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Ielādē…"
-
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Spiediet uz vienumiem, lai tos izvēlētos"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -511,16 +521,16 @@ msgstr[0] "%d izvēlēts"
 msgstr[1] "%d izvēlēti"
 msgstr[2] "%d izvēlētu"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "“%s” rezultāti"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Jaunas un nesenas"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Miskaste"
 
@@ -529,22 +539,21 @@ msgstr "Miskaste"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:431
+#: src/bjb-main-toolbar.c:367
 #, c-format
-#| msgid "Last updated %s"
 msgid "Last updated: %s"
 msgstr "Pēdējo reizi atjaunināts: %s"
 
-#: src/bjb-utils.c:50 src/libbiji/biji-date-time.c:30
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
 #: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: src/bjb-utils.c:67 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
 msgid "Yesterday"
 msgstr "Vakar"
 
-#: src/bjb-utils.c:73 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
 msgstr "Šajā mēnesī"
 
@@ -567,6 +576,28 @@ msgstr "Lokāla"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokālā glabātuve"
+
+#~ msgid "How to show note items"
+#~ msgstr "Kā rādīt piezīmju vienumus"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr "Vai rādīt piezīmju vienumus ikonu skatā vai saraksta skatā."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Īsinājumtaustiņi"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Piezīmes un piezīmju grāmatiņas skatīt režģī"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Piezīmes un piezīmju grāmatiņas skatīt sarakstā"
+
+#~ msgid "Load More"
+#~ msgstr "Ielādēt vairāk"
+
+#~ msgid "Loading…"
+#~ msgstr "Ielādē…"
 
 #~| msgid "org.gnome.bijiben"
 #~ msgid "org.gnome.Notes"
@@ -602,9 +633,6 @@ msgstr "Lokālā glabātuve"
 #~ msgid "_About"
 #~ msgstr "P_ar"
 
-#~ msgid "_Quit"
-#~ msgstr "I_ziet"
-
 #~ msgid "Cut"
 #~ msgstr "Izgriezt"
 
@@ -635,9 +663,6 @@ msgstr "Lokālā glabātuve"
 
 #~ msgid "Cancel"
 #~ msgstr "Atcelt"
-
-#~ msgid "Notebook"
-#~ msgstr "Piezīmju grāmatiņa"
 
 #~ msgid "Note"
 #~ msgstr "Piezīme"

@@ -1,3 +1,67 @@
+Overview of changes in 3.38.0
+=============================
+
+* Added "Create New Note" shortcut to Desktop Actions (Felipe Borges)
+* Added support to Tracker 3 (Carlos Garnacho)
+* Added Tamil translation (அருள்)
+* Added the last missing shortcuts (F10, CTRL+W, CTRL+Q) (Jonathan Kang, Isaque Galdino)
+* Changed default note color to GNOME Blue
+* Changed paste behavior in note view to "text-only" mode
+* Enabled WebKit sandboxing (Diego Escalante Urrelo)
+* Improved code quality (Alberto Fanjul, Stefano Facchini)
+* Improved flatpak to meson when building GOA and EDS (Georges Basile Stavracas Neto)
+* Improved help pages (Piotr Drąg, Pranali Deshmukh, scootergrisen, Yuri Chornoivan)
+* Implemented main view UI redesign (Allan Day, Tobias Bernard, Isaque Galdino)
+* Removed libgd dependancy
+* Removed option to change note in Trash bin
+
+Backported to 3.36
+* Fixed issue in main view paging that was preventing to show more than 48 notes
+* Fixed memory leak in OwnCloud provider (Mohammed Sadiq)
+* Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)
+
+Translations
+* ca (Gil Forcada, Jordi Mas)
+* ckb (Jwtiyar Nariman)
+* cs (Marek Černocký)
+* da (Alan Mortensen, scootergrisen)
+* de (Christian Kirbach, Mario Blättermann, Stephan Woidowski)
+* el (Efstathios Iosifidis)
+* eo (Carmen Bianca BAKKER)
+* en_GB (Bruce Cowan)
+* es (Daniel Mustieles)
+* eu (Asier Sarasua Garmendia)
+* fa (Danial Behzadi)
+* fi (Jiri Grönroos)
+* fr (Alexandre Franke, Charles Monzat)
+* fur (Fabio Tomat)
+* gl (Fran Dieguez)
+* he (Yosef Or Boczko)
+* hr (Goran Vidović)
+* hu (Balázs Meskó)
+* id (Andika Triwidada, Kukuh Syafaat)
+* it (Gianvito Cavasoli)
+* ja (sicklylife)
+* kk (Baurzhan Muftakhidinov)
+* ko (Seong-ho Cho)
+* lt (Aurimas Černius)
+* lv (Rūdolfs Mazurs)
+* nb (Kjartan Maraas)
+* nl (Nathan Follens)
+* pl (Piotr Drąg)
+* pt_BR (Rafael Fontenelle)
+* pt (Juliano Camargo)
+* ro (Daniel Șerbănescu, Florentina Mușat)
+* sk (Dušan Kazik)
+* sl (Matej Urbančič)
+* sr (Марко Костић)
+* sv (Anders Jonsson)
+* ta (அருள்)
+* tr (Emin Tufan Çetin)
+* uk (Daniel Korostil, Yuri Chornoivan)
+* zh_CN (Boyuan Yang, Dz Chen)
+* zh_TW (Cheng-Chia Tseng)
+
 Overview of changes in 3.37.92
 ==============================
 

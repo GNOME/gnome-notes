@@ -39,108 +39,71 @@
   </screenshots>
 
   <releases>
-    <release date="2020-09-09" version="3.37.92">
-      <description>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>da (Alan Mortensen)</li>
-          <li>de (Mario Blättermann)</li>
-          <li>hu (Balázs Meskó)</li>
-          <li>ko (Seong-ho Cho)</li>
-          <li>pt (Juliano Camargo)</li>
-          <li>sk (Dušan Kazik)</li>
-          <li>sv (Anders Jonsson)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2020-08-27" version="3.37.91">
+    <release date="2020-09-20" version="3.38.0">
       <description>
         <p>This release brings the following new features and improvements:</p>
         <ul>
-          <li>Changed default note color to GNOME Blue</li>
-          <li>Improved help pages (Piotr Drąg)</li>
-          <li>Improved code quality (Alberto Fanjul, Stefano Facchini)</li>
-        </ul>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>cs (Marek Černocký)</li>
-          <li>de (Stephan Woidowski)</li>
-          <li>fi (Jiri Grönroos)</li>
-          <li>hr (Goran Vidović)</li>
-          <li>ja (sicklylife)</li>
-          <li>nl (Nathan Follens)</li>
-          <li>pl (Piotr Drąg)</li>
-          <li>sr (Марко Костић)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2020-08-12" version="3.37.90">
-      <description>
-        <p>This release brings the following new features and improvements:</p>
-        <ul>
-          <li>Added Central Kurdish translation (Jwtiyar Nariman)</li>
+          <li>Added "Create New Note" shortcut to Desktop Actions (Felipe Borges)</li>
+          <li>Added support to Tracker 3 (Carlos Garnacho)</li>
           <li>Added Tamil translation (அருள்)</li>
+          <li>Added the last missing shortcuts (F10, CTRL+W, CTRL+Q) (Jonathan Kang, Isaque Galdino)</li>
+          <li>Changed default note color to GNOME Blue</li>
           <li>Changed paste behavior in note view to "text-only" mode</li>
           <li>Enabled WebKit sandboxing (Diego Escalante Urrelo)</li>
-          <li>Fixed issue in main view paging that was preventing to load more than 48 notes</li>
-          <li>Implemented main view UI redesign (Allan Day, Tobias Bernard, Isaque Galdino)</li>
+          <li>Improved code quality (Alberto Fanjul, Stefano Facchini)</li>
           <li>Improved flatpak to meson when building GOA and EDS (Georges Basile Stavracas Neto)</li>
-          <li>Improved help pages (Pranali Deshmukh, scootergrisen, Yuri Chornoivan)</li>
-          <li>Ported to Tracker 3 (Carlos Garnacho)</li>
+          <li>Improved help pages (Piotr Drąg, Pranali Deshmukh, scootergrisen, Yuri Chornoivan)</li>
+          <li>Implemented main view UI redesign (Allan Day, Tobias Bernard, Isaque Galdino)</li>
           <li>Removed libgd dependancy</li>
           <li>Removed option to change note in Trash bin</li>
+        </ul>
+        <p>Backported to 3.36:</p>
+        <ul>
+          <li>Fixed issue in main view paging that was preventing to show more than 48 notes</li>
+          <li>Fixed memory leak in OwnCloud provider (Mohammed Sadiq)</li>
+          <li>Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)</li>
         </ul>
         <p>This release updates the following translations:</p>
         <ul>
           <li>ca (Gil Forcada, Jordi Mas)</li>
           <li>ckb (Jwtiyar Nariman)</li>
-          <li>da (scootergrisen)</li>
+          <li>cs (Marek Černocký)</li>
+          <li>da (Alan Mortensen, scootergrisen)</li>
+          <li>de (Christian Kirbach, Mario Blättermann, Stephan Woidowski)</li>
           <li>el (Efstathios Iosifidis)</li>
-          <li>eu (Asier Sarasua Garmendia)</li>
           <li>eo (Carmen Bianca BAKKER)</li>
-          <li>fr (Alexandre Franke)</li>
+          <li>en_GB (Bruce Cowan)</li>
+          <li>es (Daniel Mustieles)</li>
+          <li>eu (Asier Sarasua Garmendia)</li>
+          <li>fa (Danial Behzadi)</li>
+          <li>fi (Jiri Grönroos)</li>
+          <li>fr (Alexandre Franke, Charles Monzat)</li>
           <li>fur (Fabio Tomat)</li>
           <li>gl (Fran Dieguez)</li>
-          <li>id (Kukuh Syafaat)</li>
+          <li>he (Yosef Or Boczko)</li>
+          <li>hr (Goran Vidović)</li>
+          <li>hu (Balázs Meskó)</li>
+          <li>id (Andika Triwidada, Kukuh Syafaat)</li>
+          <li>it (Gianvito Cavasoli)</li>
           <li>ja (sicklylife)</li>
           <li>kk (Baurzhan Muftakhidinov)</li>
+          <li>ko (Seong-ho Cho)</li>
           <li>lt (Aurimas Černius)</li>
-          <li>pt_BR (Rafael Fontenelle)</li>
-          <li>ro (Florentina Mușat)</li>
-          <li>sl (Matej Urbančič)</li>
-          <li>ta (அருள்)</li>
-          <li>uk (Yuri Chornoivan)</li>
-          <li>zh_CN (Boyuan Yang)</li>
-        </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
-      </description>
-    </release>
-    <release date="2020-05-05" version="3.37.1">
-      <description>
-        <p>This release brings the following new features and improvements:</p>
-        <ul>
-          <li>Added "Create New Note" shortcut to Desktop Actions (Felipe Borges)</li>
-          <li>Added the last missing shortcuts (F10, CTRL+W, CTRL+Q) (Jonathan Kang, Isaque Galdino)</li>
-          <li>Fixed memory leak when parsing Own/NextCloud folder (Mohammed Sadiq)</li>
-          <li>Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)</li>
-        </ul>
-        <p>This release updates the following translations:</p>
-        <ul>
-          <li>cs (Marek Černocký)</li>
-          <li>es (Daniel Mustieles)</li>
-          <li>fa (Danial Behzadi)</li>
-          <li>fr (Charles Monzat)</li>
-          <li>he (Yosef Or Boczko)</li>
-          <li>id (Andika Triwidada)</li>
+          <li>lv (Rūdolfs Mazurs)</li>
           <li>nb (Kjartan Maraas)</li>
-          <li>ro (Daniel Șerbănescu)</li>
+          <li>nl (Nathan Follens)</li>
+          <li>pl (Piotr Drąg)</li>
+          <li>pt_BR (Rafael Fontenelle)</li>
+          <li>pt (Juliano Camargo)</li>
+          <li>ro (Daniel Șerbănescu, Florentina Mușat)</li>
           <li>sk (Dušan Kazik)</li>
+          <li>sl (Matej Urbančič)</li>
+          <li>sr (Марко Костић)</li>
           <li>sv (Anders Jonsson)</li>
+          <li>ta (அருள்)</li>
           <li>tr (Emin Tufan Çetin)</li>
           <li>uk (Daniel Korostil, Yuri Chornoivan)</li>
-          <li>zh_CN (Dz Chen)</li>
+          <li>zh_CN (Boyuan Yang, Dz Chen)</li>
           <li>zh_TW (Cheng-Chia Tseng)</li>
         </ul>
         <p>Thanks to all the contributors who worked on GNOME Notes!</p>

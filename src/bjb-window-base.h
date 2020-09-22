@@ -1,13 +1,14 @@
 #pragma once
 
 #include <gtk/gtk.h>
+#include <handy.h>
 #include <libbiji/libbiji.h>
 
 #include "bjb-controller.h"
 
 #define BJB_TYPE_WINDOW_BASE (bjb_window_base_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbWindowBase, bjb_window_base, BJB, WINDOW_BASE, GtkApplicationWindow)
+G_DECLARE_FINAL_TYPE (BjbWindowBase, bjb_window_base, BJB, WINDOW_BASE, HdyApplicationWindow)
 
 typedef enum {
   BJB_WINDOW_BASE_MAIN_VIEW,

@@ -38,7 +38,7 @@ static guint bjb_win_base_signals [BJB_WIN_BASE_SIGNALS] = { 0 };
 
 struct _BjbWindowBase
 {
-  GtkApplicationWindow  parent_instance;
+  HdyApplicationWindow  parent_instance;
 
   BjbSettings          *settings;
   BjbController        *controller;
@@ -63,7 +63,6 @@ struct _BjbWindowBase
   gint                  pos_y;
   gboolean              is_maximized;
 
-  HdyLeaflet           *header_box;
   HdyLeaflet           *main_leaflet;
   HdyHeaderGroup       *header_group;
   GtkRevealer          *back_revealer;
@@ -78,35 +77,29 @@ struct _BjbWindowBase
 };
 
 /* Gobject */
-G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, HDY_TYPE_APPLICATION_WINDOW)
 
 static void
 switch_to_sidebar (BjbWindowBase *self)
 {
-  hdy_leaflet_set_visible_child (self->header_box, self->headerbar);
   hdy_leaflet_set_visible_child (self->main_leaflet, self->sidebar_box);
 }
 
 static void
 switch_to_note_view (BjbWindowBase *self)
 {
-  hdy_leaflet_set_visible_child (self->header_box, self->note_headerbar);
   hdy_leaflet_set_visible_child (self->main_leaflet, self->note_box);
 }
 
 static void
 update_fold_state (BjbWindowBase *self)
 {
-  GtkWidget *header_child;
-  HdyFold fold;
+  gboolean folded;
 
-  header_child = hdy_leaflet_get_visible_child (self->header_box);
-  fold = hdy_leaflet_get_fold (self->header_box);
+  folded = hdy_leaflet_get_folded (self->main_leaflet);
 
-  hdy_header_group_set_focus (self->header_group, fold == HDY_FOLD_FOLDED ? GTK_HEADER_BAR(header_child) : NULL);
-
-  gtk_widget_set_visible (GTK_WIDGET(self->back_revealer), fold == HDY_FOLD_FOLDED);
-  gtk_revealer_set_reveal_child (self->back_revealer, fold == HDY_FOLD_FOLDED);
+  gtk_widget_set_visible (GTK_WIDGET(self->back_revealer), folded);
+  gtk_revealer_set_reveal_child (self->back_revealer, folded);
 }
 
 static void
@@ -131,8 +124,9 @@ on_note_renamed (BijiItem      *note,
   if (str == NULL || strlen(str) == 0)
     str = _("Untitled");
   gtk_entry_set_text (GTK_ENTRY (self->title_entry), str);
-  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (self->note_headerbar),
+  hdy_header_bar_set_custom_title (HDY_HEADER_BAR (self->note_headerbar),
                                    self->title_entry);
+  gtk_widget_show (self->title_entry);
 }
 
 static void
@@ -632,7 +626,6 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   g_object_class_install_properties (gobject_class, NUM_PROPERTIES, properties);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window-base.ui");
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_leaflet);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_group);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_revealer);
@@ -685,6 +678,8 @@ destroy_note_if_needed (BjbWindowBase *self)
 
   if (self->note_view && GTK_IS_WIDGET (self->note_view))
     gtk_widget_destroy (GTK_WIDGET (self->note_view));
+
+  gtk_widget_hide (self->title_entry);
 
   self->note_view = NULL;
 }
@@ -774,7 +769,7 @@ bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
 
     self->note = note;
     self->note_view = bjb_note_view_new (w, note);
-    gtk_container_add (GTK_CONTAINER (self->note_box), GTK_WIDGET (self->note_view));
+    gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
     gtk_widget_show (GTK_WIDGET (self->note_view));
     bjb_note_view_grab_focus (self->note_view);
   }

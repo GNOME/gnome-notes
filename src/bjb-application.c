@@ -423,6 +423,10 @@ bijiben_startup (GApplication *application)
   self->settings = bjb_settings_new ();
 
   gtk_window_set_default_icon_name ("org.gnome.Notes");
+
+  /* Initialize libhandy. */
+  hdy_init ();
+
   bjb_apply_style (self);
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);

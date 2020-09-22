@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="BjbWindowBase" parent="GtkApplicationWindow">
+  <template class="BjbWindowBase" parent="HdyApplicationWindow">
     <property name="can_focus">False</property>
     <child>
       <object class="HdyLeaflet" id="main_leaflet">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="transition-type">slide</property>
+        <signal name="notify::visible-child" handler="notify_header_visible_child_cb" swapped="yes"/>
+        <signal name="notify::fold" handler="notify_fold_cb" object="BjbWindowBase" after="yes" swapped="yes"/>
         <child>
           <object class="GtkBox" id="sidebar_box">
             <property name="visible">True</property>
@@ -14,78 +16,10 @@
             <property name="hexpand">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="BjbSearchToolbar" id="search_bar">
+              <object class="HdyHeaderBar" id="headerbar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="search-mode-enabled">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkScrolledWindow">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="vexpand">True</property>
-                <property name="width-request">300</property>
-                <property name="hscrollbar_policy">never</property>
-                <style>
-                  <class name="view" />
-                </style>
-                <child>
-                  <object class="GtkStack" id="main_stack">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator" id="main_leaflet_separator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <style>
-              <class name="sidebar"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="note_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="expand">True</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child type="titlebar">
-      <object class="HdyTitleBar">
-        <property name="visible">True</property>
-        <child>
-          <object class="HdyLeaflet" id="header_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">horizontal</property>
-            <property name="transition-type">slide</property>
-            <property name="mode-transition-duration" bind-source="main_leaflet" bind-property="mode-transition-duration" bind-flags="bidirectional|sync-create"/>
-            <property name="child-transition-duration" bind-source="main_leaflet" bind-property="child-transition-duration" bind-flags="bidirectional|sync-create"/>
-            <signal name="notify::visible-child" handler="notify_header_visible_child_cb" swapped="yes"/>
-            <signal name="notify::fold" handler="notify_fold_cb" object="BjbWindowBase" after="yes" swapped="yes"/>
-            <child>
-              <object class="GtkHeaderBar" id="headerbar">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="show-close-button">True</property>
                 <property name="title" translatable="yes">All Notes</property>
                 <child>
                   <object class="GtkButton" id="new_button">
@@ -114,19 +48,67 @@
                   </packing>
                 </child>
               </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
-              <object class="GtkSeparator" id="headerbar_separator">
+              <object class="BjbSearchToolbar" id="search_bar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
-                <style>
-                  <class name="sidebar"/>
-                </style>
+                <property name="search-mode-enabled">True</property>
               </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
             <child>
-              <object class="GtkHeaderBar" id="note_headerbar">
+              <object class="GtkScrolledWindow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="vexpand">True</property>
+                <property name="width-request">300</property>
+                <property name="hscrollbar_policy">never</property>
+                <style>
+                  <class name="view" />
+                </style>
+                <child>
+                  <object class="GtkStack" id="main_stack">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparator" id="main_leaflet_separator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <style>
+              <class name="sidebar"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="note_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="expand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="HdyHeaderBar" id="note_headerbar">
                 <property name="visible">True</property>
                 <property name="hexpand">True</property>
                 <property name="show-close-button">True</property>
@@ -400,6 +382,7 @@
   </object>
 
   <object class="HdyHeaderGroup" id="header_group">
+    <property name="decorate-all" bind-source="main_leaflet" bind-property="folded" bind-flags="sync-create"/>
     <headerbars>
       <headerbar name="headerbar"/>
       <headerbar name="note_headerbar"/>
@@ -411,29 +394,5 @@
     <property name="can_focus">True</property>
     <property name="max-width-chars">60</property>
     <signal name="changed" handler="on_title_changed" swapped="yes"/>
-  </object>
-
-  <object class="GtkSizeGroup">
-    <property name="mode">horizontal</property>
-    <widgets>
-      <widget name="headerbar" />
-      <widget name="sidebar_box" />
-    </widgets>
-  </object>
-
-  <object class="GtkSizeGroup">
-    <property name="mode">horizontal</property>
-    <widgets>
-      <widget name="headerbar_separator" />
-      <widget name="main_leaflet_separator" />
-    </widgets>
-  </object>
-
-  <object class="GtkSizeGroup">
-    <property name="mode">horizontal</property>
-    <widgets>
-      <widget name="note_headerbar" />
-      <widget name="note_box" />
-    </widgets>
   </object>
 </interface>

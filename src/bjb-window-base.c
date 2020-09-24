@@ -74,6 +74,7 @@ struct _BjbWindowBase
   GtkWidget            *sidebar_box;
   GtkWidget            *search_bar;
   GtkWidget            *title_entry;
+  GtkWidget            *last_update_item;
 };
 
 /* Gobject */
@@ -151,7 +152,6 @@ on_note_list_row_activated (GtkListBox    *box,
       if (!biji_note_obj_is_opened (BIJI_NOTE_OBJ (to_open)))
         {
           bjb_window_base_load_note_item (self, to_open);
-          on_note_renamed (to_open, self);
         }
     }
   else if (to_open && BIJI_IS_NOTEBOOK (to_open))
@@ -183,7 +183,6 @@ on_new_note_clicked (BjbWindowBase *self)
   /* Go to that note */
   switch_to_note_view (self);
   bjb_window_base_load_note_item (self, BIJI_ITEM (result));
-  on_note_renamed (BIJI_ITEM (result), self);
 }
 
 static void
@@ -637,6 +636,7 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, sidebar_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, search_bar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, title_entry);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, last_update_item);
   gtk_widget_class_bind_template_callback (widget_class, notify_header_visible_child_cb);
   gtk_widget_class_bind_template_callback (widget_class, notify_fold_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
@@ -756,6 +756,33 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
   g_signal_emit (G_OBJECT (self), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
 }
 
+static void
+on_last_updated_cb (BijiItem      *note,
+                    BjbWindowBase *self)
+{
+  g_autofree char *label = NULL;
+  g_autofree char *time_str = NULL;
+
+  time_str = biji_note_obj_get_last_change_date_string (self->note);
+  /* Translators: %s is the note last recency description.
+   * Last updated is placed as in left to right language
+   * right to left languages might move %s
+   *         '%s Last Updated'
+   */
+  label = g_strdup_printf (_("Last updated: %s"), time_str);
+  gtk_label_set_text (GTK_LABEL (self->last_update_item), label);
+}
+
+static void
+populate_headerbar_for_note_view (BjbWindowBase *self)
+{
+  on_note_renamed (BIJI_ITEM (self->note), self);
+  g_signal_connect (self->note, "renamed", G_CALLBACK (on_note_renamed), self);
+
+  on_last_updated_cb (BIJI_ITEM (self->note), self);
+  g_signal_connect (self->note, "changed", G_CALLBACK (on_last_updated_cb), self);
+}
+
 void
 bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
 {
@@ -772,6 +799,8 @@ bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
     gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
     gtk_widget_show (GTK_WIDGET (self->note_view));
     bjb_note_view_grab_focus (self->note_view);
+
+    populate_headerbar_for_note_view (self);
   }
 }
 

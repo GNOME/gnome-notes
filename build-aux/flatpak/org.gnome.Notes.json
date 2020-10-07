@@ -1,5 +1,5 @@
 {
-    "app-id" : "org.gnome.Notes",
+    "app-id" : "org.gnome.Notes.Devel",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "master",
     "sdk" : "org.gnome.Sdk",
@@ -175,7 +175,8 @@
             "buildsystem" : "meson",
             "builddir" : true,
             "config-opts" : [
-                "-Dprivate_store=true"
+                "-Dprivate_store=true",
+                "-Dprofile=development"
             ],
             "sources" : [
                 {

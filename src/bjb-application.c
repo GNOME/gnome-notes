@@ -529,7 +529,7 @@ BjbApplication *
 bjb_application_new (void)
 {
   return g_object_new (BJB_TYPE_APPLICATION,
-                       "application-id", "org.gnome.Notes",
+                       "application-id", BIJIBEN_APPLICATION_ID,
                        "flags", G_APPLICATION_HANDLES_OPEN,
                        NULL);
 }

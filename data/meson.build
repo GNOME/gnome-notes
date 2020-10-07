@@ -14,12 +14,18 @@ i18n.merge_file(
 )
 
 desktop = 'org.gnome.Notes.desktop'
+desktop_conf = configuration_data()
+desktop_conf.set ('icon', application_id)
 
 i18n.merge_file(
   desktop,
   type: 'desktop',
-  input: desktop + '.in',
-  output: desktop,
+  input: configure_file(
+    input: files (desktop + '.in'),
+    output: desktop + '.in',
+    configuration: desktop_conf
+  ),
+  output: '@0@.desktop'.format(application_id),
   po_dir: po_dir,
   install: true,
   install_dir: join_paths(bijiben_datadir, 'applications')

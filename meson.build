@@ -21,9 +21,18 @@ cc = meson.get_compiler('c')
 
 config_h = configuration_data()
 
+if get_option('profile') == 'development'
+    bijiben_profile = '.Devel'
+else
+    bijiben_profile = ''
+endif
+
+application_id = 'org.gnome.Notes@0@'.format(bijiben_profile)
+
 # defines
 set_defines = [
   # package
+  ['BIJIBEN_APPLICATION_ID', application_id],
   ['PACKAGE', bijiben_name],
   ['PACKAGE_BUGREPORT', 'https://gitlab.gnome.org/GNOME/gnome-notes/issues'],
   ['PACKAGE_NAME', bijiben_name],
@@ -31,6 +40,7 @@ set_defines = [
   ['PACKAGE_TARNAME', bijiben_name],
   ['PACKAGE_URL', 'https://wiki.gnome.org/Apps/Notes'],
   ['PACKAGE_VERSION', bijiben_version],
+  ['PROFILE', bijiben_profile],
   ['VERSION', bijiben_version],
   # i18n
   ['GETTEXT_PACKAGE', bijiben_name]

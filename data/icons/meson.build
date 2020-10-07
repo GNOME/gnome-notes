@@ -1,5 +1,5 @@
 apps_icons = [
-  ['scalable', 'org.gnome.Notes.svg'],
+  ['scalable', ('@0@.svg').format(application_id)],
   ['symbolic', 'org.gnome.Notes-symbolic.svg']
 ]
 

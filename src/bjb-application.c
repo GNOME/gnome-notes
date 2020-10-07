@@ -622,7 +622,7 @@ bjb_app_about (BjbApplication *self)
                          "artists", artists,
                          "translator-credits", _("translator-credits"),
                          "website", "https://wiki.gnome.org/Apps/Notes",
-                         "logo-icon-name", "org.gnome.Notes",
+                         "logo-icon-name", BIJIBEN_APPLICATION_ID,
                          NULL);
 }
 

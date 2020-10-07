@@ -142,6 +142,14 @@ bijiben_new_window_internal (BjbApplication *self,
 
   if (not_first_window)
     gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
+
+  if (g_strcmp0 (PROFILE, "") != 0)
+    {
+      GtkStyleContext *style_context;
+
+      style_context = gtk_widget_get_style_context (GTK_WIDGET (window));
+      gtk_style_context_add_class (style_context, "devel");
+    }
 }
 
 static gboolean

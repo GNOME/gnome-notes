@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnote\n"
-"POT-Creation-Date: 2020-09-19 18:47+0000\n"
+"POT-Creation-Date: 2020-07-06 19:18+0000\n"
 "PO-Revision-Date: 2019-09-15 09:42+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -150,8 +150,8 @@ msgid ""
 "note. The bug number is inserted as a link with a little bug icon next to it."
 msgstr ""
 "Tento zásuvný modul vám umožní si ze svého prohlížeče myší přetáhnout URL "
-"Bugzilla přímo do poznámky v aplikaci <app>Poznámky</app>. Jako odkaz se "
-"vloží číslo chyby s malou ikonou brouka po boku."
+"Bugzilla přímo do poznámky v plikaci <app>Poznámky</app>. Jako odkaz se vloží "
+"číslo chyby s malou ikonou brouka po boku."
 
 #. (itstool) path: page/p
 #: C/gnote-addin-bugzillalink.page:28
@@ -2767,3 +2767,6 @@ msgstr "Přizpůsobení"
 #: C/index.page:41
 msgid "Common Problems"
 msgstr "Obvyklé problémy"
+
+#~ msgid "Template note"
+#~ msgstr "Šablonová poznámka"

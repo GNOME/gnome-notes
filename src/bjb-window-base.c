@@ -6,6 +6,7 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
+#include "bjb-detached-window.h"
 #include "bjb-empty-results-box.h"
 #include "bjb-window-base.h"
 #include "bjb-list-view.h"
@@ -322,6 +323,7 @@ on_detach_window_cb (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       user_data)
 {
+  BjbDetachedWindow *detached_window;
   BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
   BijiNoteObj   *note = bjb_window_base_get_note (self);
 
@@ -333,7 +335,8 @@ on_detach_window_cb (GSimpleAction *action,
   else
     bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
 
-  bijiben_new_window_for_note (g_application_get_default (), note);
+  detached_window = bjb_detached_window_new (note);
+  gtk_widget_show_all (GTK_WIDGET (detached_window));
 }
 
 static void

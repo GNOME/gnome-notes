@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BjbDetachedWindow" parent="HdyApplicationWindow">
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="visible">True</property>
+        <property name="expand">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="HdyHeaderBar" id="headerbar">
+            <property name="visible">True</property>
+            <property name="hexpand">True</property>
+            <property name="show-close-button">True</property>
+            <child>
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip-text" translatable="yes">More options</property>
+                <property name="popover">menu</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">1</property>
+                    <property name="icon-name">view-more-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="position">0</property>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkPopoverMenu" id="menu">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin">12</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkModelButton" id="undo_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Undo</property>
+            <property name="action-name">win.undo</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="redo_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Redo</property>
+            <property name="action-name">win.redo</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="notebook_item">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Notebooks</property>
+            <property name="action-name">win.view-notebooks</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="email_item">
+            <property name="visible">1</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Email this Note</property>
+            <property name="action-name">win.email</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton" id="trash_item">
+            <property name="visible">1</property>
+            <property name="can_focus">False</property>
+            <property name="text" translatable="yes">Move to Trash</property>
+            <property name="action-name">win.trash</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="last_update_item">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="margin-left">6</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </object>
+
+  <object class="GtkEntry" id="title_entry">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="max-width-chars">60</property>
+    <signal name="changed" handler="on_title_changed" swapped="yes"/>
+  </object>
+</interface>

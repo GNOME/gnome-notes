@@ -11,6 +11,7 @@ sources = files(
   'bjb-application.c',
   'bjb-color-button.c',
   'bjb-controller.c',
+  'bjb-detached-window.c',
   'bjb-editor-toolbar.c',
   'bjb-empty-results-box.c',
   'bjb-import-dialog.c',

@@ -15,7 +15,7 @@ flatpak:master:
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.Notes.json"
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "gnome-notes"
-        APP_ID: "org.gnome.Notes"
+        APP_ID: "org.gnome.Notes.Devel"
         BUNDLE: "org.gnome.Notes.Devel.flatpak"
 
 

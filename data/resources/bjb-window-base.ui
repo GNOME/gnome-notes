@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="BjbWindowBase" parent="HdyApplicationWindow">
-    <property name="can_focus">False</property>
     <child>
       <object class="HdyLeaflet" id="main_leaflet">
+        <property name="can-swipe-back">True</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="transition-type">slide</property>
-        <signal name="notify::visible-child" handler="notify_header_visible_child_cb" swapped="yes"/>
-        <signal name="notify::fold" handler="notify_fold_cb" object="BjbWindowBase" after="yes" swapped="yes"/>
         <child>
           <object class="GtkBox" id="sidebar_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="hexpand">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="HdyHeaderBar" id="headerbar">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="show-close-button">True</property>
                 <property name="title" translatable="yes">All Notes</property>
                 <child>
@@ -30,14 +24,13 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkMenuButton" id="main_button">
+                  <object class="GtkMenuButton" id="main_menu_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="tooltip-text" translatable="yes">Open menu</property>
                     <property name="popover">main_menu</property>
                     <property name="receives_default">True</property>
                     <child>
-                      <object class="GtkImage" id="main_button_image">
+                      <object class="GtkImage" id="main_menu_button_image">
                         <property name="visible">True</property>
                         <property name="icon_name">open-menu-symbolic</property>
                       </object>
@@ -48,28 +41,16 @@
                   </packing>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="BjbSearchToolbar" id="search_bar">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="search-mode-enabled">True</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
             </child>
             <child>
               <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="vexpand">True</property>
                 <property name="width-request">300</property>
                 <property name="hscrollbar_policy">never</property>
@@ -79,32 +60,27 @@
                 <child>
                   <object class="GtkStack" id="main_stack">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkSeparator" id="main_leaflet_separator">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <style>
               <class name="sidebar"/>
             </style>
           </object>
+          <packing>
+            <property name="navigatable">False</property>
+          </packing>
         </child>
         <child>
           <object class="GtkBox" id="note_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="expand">True</property>
             <property name="orientation">vertical</property>
             <child>
@@ -114,13 +90,13 @@
                 <property name="show-close-button">True</property>
                 <child>
                   <object class="GtkRevealer" id="back_revealer">
-                    <property name="can_focus">False</property>
+                    <property name="visible">True</property>
+                    <property name="reveal-child" bind-source="main_leaflet" bind-property="folded" bind-flags="sync-create"/>
                     <property name="transition-type">crossfade</property>
                     <property name="transition-duration" bind-source="main_leaflet" bind-property="mode-transition-duration" bind-flags="bidirectional|sync-create"/>
                     <child>
                       <object class="GtkButton" id="back_button">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <signal name="clicked" handler="on_back_button_clicked" swapped="yes"/>
                         <child>
                           <object class="GtkImage">
@@ -135,7 +111,6 @@
                 <child>
                   <object class="GtkMenuButton" id="menu_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="tooltip-text" translatable="yes">More options</property>
                     <property name="popover">menu</property>
                     <child>
@@ -146,7 +121,6 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="position">0</property>
                     <property name="pack-type">end</property>
                   </packing>
                 </child>
@@ -159,18 +133,15 @@
   </template>
 
   <object class="GtkPopoverMenu" id="main_menu">
-    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="margin">12</property>
         <property name="orientation">vertical</property>
 
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Import Notes</property>
             <property name="action-name">app.import-notes</property>
           </object>
@@ -179,7 +150,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">View Trash</property>
             <property name="action-name">app.view-trash</property>
           </object>
@@ -206,7 +176,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">_Large</property>
             <property name="action-name">app.text-size</property>
             <property name="action-target">'large'</property>
@@ -216,7 +185,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">_Medium</property>
             <property name="action-name">app.text-size</property>
             <property name="action-target">'medium'</property>
@@ -226,7 +194,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">_Small</property>
             <property name="action-name">app.text-size</property>
             <property name="action-target">'small'</property>
@@ -244,7 +211,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Preferences</property>
             <property name="action-name">app.preferences</property>
           </object>
@@ -253,7 +219,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Keyboard Shortcuts</property>
             <property name="action_name">win.show-help-overlay</property>
           </object>
@@ -262,7 +227,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Help</property>
             <property name="action_name">app.help</property>
           </object>
@@ -271,7 +235,6 @@
         <child>
           <object class="GtkModelButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">About Notes</property>
             <property name="action-name">app.about</property>
           </object>
@@ -282,18 +245,15 @@
   </object>
 
   <object class="GtkPopoverMenu" id="menu">
-    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="margin">12</property>
         <property name="orientation">vertical</property>
 
         <child>
           <object class="GtkModelButton" id="new_window_item">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Open in New Window</property>
             <property name="action-name">win.detach-window</property>
           </object>
@@ -310,7 +270,6 @@
         <child>
           <object class="GtkModelButton" id="undo_item">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Undo</property>
             <property name="action-name">win.undo</property>
           </object>
@@ -319,7 +278,6 @@
         <child>
           <object class="GtkModelButton" id="redo_item">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Redo</property>
             <property name="action-name">win.redo</property>
           </object>
@@ -336,7 +294,6 @@
         <child>
           <object class="GtkModelButton" id="notebook_item">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Notebooks</property>
             <property name="action-name">win.view-notebooks</property>
           </object>
@@ -345,7 +302,6 @@
         <child>
           <object class="GtkModelButton" id="email_item">
             <property name="visible">1</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Email this Note</property>
             <property name="action-name">win.email</property>
           </object>
@@ -354,7 +310,6 @@
         <child>
           <object class="GtkModelButton" id="trash_item">
             <property name="visible">1</property>
-            <property name="can_focus">False</property>
             <property name="text" translatable="yes">Move to Trash</property>
             <property name="action-name">win.trash</property>
           </object>

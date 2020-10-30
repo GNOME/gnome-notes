@@ -66,7 +66,6 @@ struct _BjbWindowBase
 
   HdyLeaflet           *main_leaflet;
   HdyHeaderGroup       *header_group;
-  GtkRevealer          *back_revealer;
   GtkStack             *main_stack;
   GtkWidget            *back_button;
   GtkWidget            *headerbar;
@@ -80,41 +79,6 @@ struct _BjbWindowBase
 
 /* Gobject */
 G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, HDY_TYPE_APPLICATION_WINDOW)
-
-static void
-switch_to_sidebar (BjbWindowBase *self)
-{
-  hdy_leaflet_set_visible_child (self->main_leaflet, self->sidebar_box);
-}
-
-static void
-switch_to_note_view (BjbWindowBase *self)
-{
-  hdy_leaflet_set_visible_child (self->main_leaflet, self->note_box);
-}
-
-static void
-update_fold_state (BjbWindowBase *self)
-{
-  gboolean folded;
-
-  folded = hdy_leaflet_get_folded (self->main_leaflet);
-
-  gtk_widget_set_visible (GTK_WIDGET(self->back_revealer), folded);
-  gtk_revealer_set_reveal_child (self->back_revealer, folded);
-}
-
-static void
-notify_header_visible_child_cb (BjbWindowBase *self)
-{
-  update_fold_state (self);
-}
-
-static void
-notify_fold_cb (BjbWindowBase *self)
-{
-  update_fold_state (self);
-}
 
 static void
 on_note_renamed (BijiItem      *note,
@@ -147,7 +111,7 @@ on_note_list_row_activated (GtkListBox    *box,
 
   if (to_open && BIJI_IS_NOTE_OBJ (to_open))
     {
-      switch_to_note_view (self);
+      hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
 
       /* Only open the note if it's not already opened. */
       if (!biji_note_obj_is_opened (BIJI_NOTE_OBJ (to_open)))
@@ -164,7 +128,7 @@ on_note_list_row_activated (GtkListBox    *box,
 static void
 on_back_button_clicked (BjbWindowBase *self)
 {
-  switch_to_sidebar (self);
+  hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_BACK);
 }
 
 static void
@@ -182,7 +146,7 @@ on_new_note_clicked (BjbWindowBase *self)
                                   bjb_settings_get_default_location (self->settings));
 
   /* Go to that note */
-  switch_to_note_view (self);
+  hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
   bjb_window_base_load_note_item (self, BIJI_ITEM (result));
 }
 
@@ -630,7 +594,6 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window-base.ui");
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_leaflet);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_group);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_revealer);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_stack);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, headerbar);
@@ -640,8 +603,6 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, search_bar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, title_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, last_update_item);
-  gtk_widget_class_bind_template_callback (widget_class, notify_header_visible_child_cb);
-  gtk_widget_class_bind_template_callback (widget_class, notify_fold_cb);
   gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
@@ -703,7 +664,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
      */
 
     case BJB_WINDOW_BASE_MAIN_VIEW:
-      switch_to_sidebar (self);
+      hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_BACK);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "main-view");
       break;

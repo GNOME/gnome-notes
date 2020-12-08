@@ -20,11 +20,15 @@
 #include "bjb-note-view.h"
 #include "bjb-organize-dialog.h"
 #include "bjb-share.h"
+#include "bjb-window-base.h"
 
 enum
 {
   PROP_0,
   PROP_NOTE,
+  PROP_WIDTH,
+  PROP_HEIGHT,
+  PROP_MAIN_WIN,
   NUM_PROPERTIES
 };
 
@@ -32,7 +36,10 @@ struct _BjbDetachedWindow
 {
   HdyApplicationWindow parent_instance;
 
-  BijiNoteObj *note;
+  int            width;
+  int            height;
+  BijiNoteObj   *note;
+  BjbWindowBase *main_win;
 
   GtkWidget *headerbar;
   GtkWidget *main_box;
@@ -200,8 +207,8 @@ static void
 bjb_detached_window_constructed (GObject *object)
 {
   gboolean is_maximized;
-  int width, height;
-  int pos_x, pos_y;
+  int main_win_width, main_win_height;
+  int main_win_pos_x, main_win_pos_y;
   BjbNoteView *note_view;
   BjbDetachedWindow *self = BJB_DETACHED_WINDOW (object);
   g_autoptr(GSettings) settings;
@@ -213,17 +220,19 @@ bjb_detached_window_constructed (GObject *object)
                                    G_N_ELEMENTS (win_entries),
                                    self);
 
+  gtk_window_set_default_size (GTK_WINDOW (self), self->width, self->height);
+
+  gtk_window_get_size (GTK_WINDOW (self->main_win), &main_win_width, &main_win_height);
+  gtk_window_get_position (GTK_WINDOW (self->main_win), &main_win_pos_x, &main_win_pos_y);
+
   settings = g_settings_new ("org.gnome.Notes");
-
-  g_settings_get (settings, "window-size", "(ii)", &width, &height);
-  g_settings_get (settings, "window-position", "(ii)", &pos_x, &pos_y);
-  gtk_window_set_default_size (GTK_WINDOW (self), width, height);
-
   is_maximized = g_settings_get_boolean (settings, "window-maximized");
   if (is_maximized)
     gtk_window_maximize (GTK_WINDOW (self));
-  else if (pos_x >= 0)
-    gtk_window_move (GTK_WINDOW (self), pos_x, pos_y);
+  else if (main_win_pos_x >= 0)
+    gtk_window_move (GTK_WINDOW (self),
+                     main_win_pos_x + main_win_width - self->width,
+                     main_win_pos_y);
 
   on_note_renamed (BIJI_ITEM (self->note), self);
   g_signal_connect (self->note, "renamed", G_CALLBACK (on_note_renamed), self);
@@ -259,6 +268,15 @@ bjb_detached_window_get_property (GObject    *object,
   case PROP_NOTE:
     g_value_set_object (value, self->note);
     break;
+  case PROP_WIDTH:
+    g_value_set_int (value, self->width);
+    break;
+  case PROP_HEIGHT:
+    g_value_set_int (value, self->height);
+    break;
+  case PROP_MAIN_WIN:
+    g_value_set_object (value, self->main_win);
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
@@ -277,6 +295,15 @@ bjb_detached_window_set_property (GObject      *object,
   {
   case PROP_NOTE:
     self->note = g_value_dup_object (value);
+    break;
+  case PROP_WIDTH:
+    self->width = g_value_get_int (value);
+    break;
+  case PROP_HEIGHT:
+    self->height = g_value_get_int (value);
+    break;
+  case PROP_MAIN_WIN:
+    self->main_win = g_value_get_object (value);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -302,6 +329,29 @@ bjb_detached_window_class_init (BjbDetachedWindowClass *klass)
                                                G_PARAM_READWRITE |
                                                G_PARAM_CONSTRUCT |
                                                G_PARAM_STATIC_STRINGS);
+  properties[PROP_WIDTH] = g_param_spec_int ("width",
+                                             "Width",
+                                             "Initial width of the detached window",
+                                             0,
+                                             G_MAXINT,
+                                             0,
+                                             G_PARAM_READWRITE |
+                                             G_PARAM_CONSTRUCT_ONLY);
+  properties[PROP_HEIGHT] = g_param_spec_int ("height",
+                                              "Height",
+                                              "Initial height of the detached window",
+                                              0,
+                                              G_MAXINT,
+                                              0,
+                                              G_PARAM_READWRITE |
+                                              G_PARAM_CONSTRUCT_ONLY);
+  properties[PROP_MAIN_WIN] = g_param_spec_object ("window-base",
+                                                   "Main window",
+                                                   "The main note window",
+                                                   BJB_TYPE_WINDOW_BASE,
+                                                   G_PARAM_READWRITE |
+                                                   G_PARAM_CONSTRUCT |
+                                                   G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 
@@ -320,10 +370,16 @@ bjb_detached_window_init (BjbDetachedWindow *self)
 }
 
 BjbDetachedWindow *
-bjb_detached_window_new (BijiNoteObj *note)
+bjb_detached_window_new (BijiNoteObj   *note,
+                         int            width,
+                         int            height,
+                         BjbWindowBase *main_win)
 {
   return g_object_new (BJB_TYPE_DETACHED_WINDOW,
                        "application", g_application_get_default (),
                        "note", note,
+                       "width", width,
+                       "height", height,
+                       "window-base", main_win,
                        NULL);
 }

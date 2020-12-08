@@ -22,12 +22,17 @@
 #include <handy.h>
 #include <libbiji/libbiji.h>
 
+#include "bjb-window-base.h"
+
 G_BEGIN_DECLS
 
 #define BJB_TYPE_DETACHED_WINDOW (bjb_detached_window_get_type ())
 
 G_DECLARE_FINAL_TYPE (BjbDetachedWindow, bjb_detached_window, BJB, DETACHED_WINDOW, HdyApplicationWindow)
 
-BjbDetachedWindow *bjb_detached_window_new (BijiNoteObj *note);
+BjbDetachedWindow *bjb_detached_window_new (BijiNoteObj   *note,
+                                            int            width,
+                                            int            height,
+                                            BjbWindowBase *main_win);
 
 G_END_DECLS

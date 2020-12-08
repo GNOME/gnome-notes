@@ -287,6 +287,7 @@ on_detach_window_cb (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       user_data)
 {
+  int width, height;
   BjbDetachedWindow *detached_window;
   BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
   BijiNoteObj   *note = bjb_window_base_get_note (self);
@@ -294,12 +295,16 @@ on_detach_window_cb (GSimpleAction *action,
   if (!note)
     return;
 
+  /* Width and height of the detached window. */
+  width = gtk_widget_get_allocated_width (GTK_WIDGET (self->note_view));
+  gtk_window_get_size (GTK_WINDOW (self), NULL, &height);
+
   if (biji_note_obj_is_trashed (note))
     bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
   else
     bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
 
-  detached_window = bjb_detached_window_new (note);
+  detached_window = bjb_detached_window_new (note, width, height, self);
   gtk_widget_show_all (GTK_WIDGET (detached_window));
 }
 
@@ -474,7 +479,7 @@ bjb_window_base_constructed (GObject *obj)
 
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
-  gtk_window_set_position (GTK_WINDOW (self),GTK_WIN_POS_CENTER);
+  gtk_window_set_position (GTK_WINDOW (self), GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
   bjb_window_base_load_geometry (self);

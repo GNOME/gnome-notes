@@ -25,8 +25,6 @@
  */
 
 
-#include <uuid/uuid.h>
-
 #include "biji-local-note.h"
 #include "biji-local-provider.h"
 
@@ -382,12 +380,9 @@ biji_local_provider_init (BijiLocalProvider *self)
 static gchar *
 _get_uuid (void)
 {
-  uuid_t unique;
-  char out[40];
+  g_autofree char *uuid = g_uuid_string_random ();
 
-  uuid_generate (unique);
-  uuid_unparse_lower (unique, out);
-  return g_strdup_printf ("%s.note", out);
+  return g_strdup_printf ("%s.note", uuid);
 }
 
 

@@ -122,7 +122,6 @@ bijiben_deps = [
   dependency('libedataserver-1.2', version: '>= 3.13.90'),
   dependency('libhandy-0.0', version: '>= 0.0.10'),
   dependency('libxml-2.0'),
-  dependency('uuid'),
   dependency('webkit2gtk-4.0', version: '>= 2.26'),
   cc.find_library('m')
 ]

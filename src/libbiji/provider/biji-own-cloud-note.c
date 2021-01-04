@@ -21,8 +21,6 @@
  * Markdown is not implemented.
  */
 
-#include <uuid/uuid.h>
-
 #include "biji-info-set.h"
 #include "biji-item.h"
 #include "biji-own-cloud-note.h"
@@ -414,15 +412,11 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
 
   if (info->url == NULL)
   {
-    uuid_t unique;
-    char out[40];
-
-    uuid_generate (unique);
-    uuid_unparse_lower (unique, out);
+    g_autofree char *uuid = g_uuid_string_random ();
 
     info->url = g_strdup_printf ("%s/%s.txt",
                   biji_own_cloud_provider_get_readable_path (prov),
-                  out);
+                  uuid);
   }
 
   /* Now actually create the stuff */

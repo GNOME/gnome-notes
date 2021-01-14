@@ -24,7 +24,7 @@
 #include "provider/biji-import-provider.h"
 #include "provider/biji-local-provider.h"
 #include "provider/biji-memo-provider.h"
-#include "provider/biji-own-cloud-provider.h"
+#include "provider/biji-nextcloud-provider.h"
 
 
 struct _BijiManager
@@ -175,7 +175,7 @@ load_goa_client (BijiManager *self,
       if (g_strcmp0 (type, "owncloud") == 0)
       {
         g_message ("Loading account %s", goa_account_get_id (account));
-        provider = biji_own_cloud_provider_new (self, object);
+        provider = biji_nextcloud_provider_new (self, object);
         _add_provider (self, provider);
         g_object_unref (provider);
       }

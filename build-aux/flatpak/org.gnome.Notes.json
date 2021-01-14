@@ -47,6 +47,17 @@
     ],
     "modules" : [
         {
+            "name" : "curl",
+            "builddir" : true,
+            "buildsystem" : "cmake",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/curl/curl.git"
+                }
+            ]
+        },
+        {
             "name" : "libhandy",
             "buildsystem" : "meson",
             "config-opts" : [

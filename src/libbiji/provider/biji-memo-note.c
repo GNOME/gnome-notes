@@ -441,7 +441,7 @@ biji_memo_note_new_from_info (BijiMemoProvider *provider,
                               BijiManager      *manager,
                               BijiInfoSet      *info,
                               ECalComponent    *component,
-                              const gchar      *description,
+                              const char       *description,
                               ECalClient       *client)
 {
   BijiMemoNote *ret = g_object_new (BIJI_TYPE_MEMO_NOTE,

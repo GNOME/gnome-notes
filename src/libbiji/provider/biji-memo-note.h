@@ -58,8 +58,8 @@ GType                  biji_memo_note_get_type               (void) G_GNUC_CONST
 BijiNoteObj           *biji_memo_note_new_from_info          (BijiMemoProvider *provider,
                                                               BijiManager      *manager,
                                                               BijiInfoSet      *info,
-							      ECalComponent    *comp,
-							      const gchar      *description,
+                                                              ECalComponent    *comp,
+                                                              const char       *description,
                                                               ECalClient       *client);
 
 

@@ -26,6 +26,7 @@
 
 
 #include <libecal/libecal.h>        /* ECalClient      */
+#include "biji-tracker.h"
 #include "biji-memo-provider.h"
 #include "biji-memo-note.h"
 

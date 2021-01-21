@@ -16,6 +16,7 @@
  */
 
 #include "biji-local-note.h"
+#include "biji-tracker.h"
 #include "serializer/biji-lazy-serializer.h"
 
 
@@ -343,28 +344,24 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
 
 
 BijiNoteObj *
-biji_local_note_new_from_info   (BijiProvider *provider,
-                                 BijiManager *manager,
-                                 BijiInfoSet *set)
+biji_local_note_new_from_info (BijiProvider *provider,
+                               BijiManager  *manager,
+                               BijiInfoSet  *info)
 {
-  BijiNoteID *id;
-  BijiNoteObj *obj;
-  BijiLocalNote *local;
+  BijiLocalNote *local = g_object_new (BIJI_TYPE_LOCAL_NOTE,
+                                       "manager", manager,
+                                       "path",    info->url,
+                                       "title",   info->title,
+                                       "mtime",   info->mtime,
+                                       "content", info->content,
+                                       NULL);
 
-  id = biji_note_id_new_from_info (set);
-
-  obj = g_object_new (BIJI_TYPE_LOCAL_NOTE,
-                       "manager", manager,
-                       "id",        id,
-                       NULL);
-
-  local = BIJI_LOCAL_NOTE (obj);
-  local->priv->location = g_file_new_for_commandline_arg (set->url);
+  local->priv->location = g_file_new_for_commandline_arg (info->url);
   local->priv->basename = g_file_get_basename (local->priv->location);
   local->priv->provider = provider;
 
-  if (strstr (set->url, "Trash") != NULL)
+  if (strstr (info->url, "Trash") != NULL)
     local->priv->trashed = TRUE;
 
-  return obj;
+  return BIJI_NOTE_OBJ (local);
 }

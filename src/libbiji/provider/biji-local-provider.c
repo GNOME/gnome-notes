@@ -24,11 +24,11 @@
  * and read file only when really needed
  */
 
-
+#include "biji-notebook.h"
 #include "biji-local-note.h"
 #include "biji-local-provider.h"
-
-
+#include "biji-tracker.h"
+#include "deserializer/biji-lazy-deserializer.h"
 
 /*
  * Items are both notes and notebooks

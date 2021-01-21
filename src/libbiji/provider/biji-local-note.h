@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "biji-note-id.h"
 #include "biji-note-obj.h"
+#include "biji-local-provider.h"
 
 G_BEGIN_DECLS
 

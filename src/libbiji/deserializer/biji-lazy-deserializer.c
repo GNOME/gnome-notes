@@ -504,7 +504,7 @@ processNode (BijiLazyDeserializer *self)
 
     if (g_str_has_prefix (tag,"system:template"))
     {
-      note_obj_set_is_template(n,TRUE);
+      biji_note_obj_set_is_template (n, TRUE);
     }
 
     else if (g_str_has_prefix (tag,"system:notebook:"))

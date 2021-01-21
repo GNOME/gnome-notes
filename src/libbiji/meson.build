@@ -18,7 +18,6 @@ sources = files(
   'biji-item.c',
   'biji-manager.c',
   'biji-notebook.c',
-  'biji-note-id.c',
   'biji-note-obj.c',
   'biji-string.c',
   'biji-timeout.c',

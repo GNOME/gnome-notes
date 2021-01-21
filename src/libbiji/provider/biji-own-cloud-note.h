@@ -18,7 +18,6 @@
 #pragma once
 
 #include "biji-note-obj.h"
-#include "biji-note-id.h"
 #include "biji-own-cloud-provider.h"
 
 G_BEGIN_DECLS

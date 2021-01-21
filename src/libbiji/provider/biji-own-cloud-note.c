@@ -25,6 +25,7 @@
 #include "biji-item.h"
 #include "biji-own-cloud-note.h"
 #include "biji-own-cloud-provider.h"
+#include "biji-tracker.h"
 #include "../serializer/biji-lazy-serializer.h"
 
 struct _BijiOwnCloudNote
@@ -388,49 +389,46 @@ biji_own_cloud_note_class_init (BijiOwnCloudNoteClass *klass)
 }
 
 
-BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudProvider *prov,
-                                                                 BijiManager *manager,
-                                                                 BijiInfoSet *info,
-                                                                 gboolean online)
+BijiNoteObj *
+biji_own_cloud_note_new_from_info (BijiOwnCloudProvider *prov,
+                                   BijiManager          *manager,
+                                   BijiInfoSet          *info,
+                                   gboolean              online)
 {
-  BijiNoteID *id;
-  gchar *sane_title;
-  BijiNoteObj *retval;
+  char             *sane_title;
   BijiOwnCloudNote *ocloud;
 
   /* First, sanitize the title, assuming no other thread
    * mess up with the InfoSet */
   if (info->title != NULL)
-  {
-    sane_title = biji_str_replace (info->title, ".txt", "");
-    g_free (info->title);
-    info->title = sane_title;
-  }
-
+    {
+      sane_title = biji_str_replace (info->title, ".txt", "");
+      g_free (info->title);
+      info->title = sane_title;
+    }
 
   /* Hmm, even if the note starts blank we want some path...*/
 
   if (info->url == NULL)
-  {
-    g_autofree char *uuid = g_uuid_string_random ();
+    {
+      g_autofree char *uuid = g_uuid_string_random ();
 
-    info->url = g_strdup_printf ("%s/%s.txt",
-                  biji_own_cloud_provider_get_readable_path (prov),
-                  uuid);
-  }
+      info->url = g_strdup_printf ("%s/%s.txt",
+                                   biji_own_cloud_provider_get_readable_path (prov),
+                                   uuid);
+    }
 
   /* Now actually create the stuff */
-
-  id = biji_note_id_new_from_info (info);
-
-  retval = g_object_new (BIJI_TYPE_OWN_CLOUD_NOTE,
+  ocloud = g_object_new (BIJI_TYPE_OWN_CLOUD_NOTE,
                          "manager", manager,
-                         "id", id,
+                         "path",    info->url,
+                         "title",   info->title,
+                         "mtime",   info->mtime,
+                         "content", info->content,
                          NULL);
 
-  ocloud = BIJI_OWN_CLOUD_NOTE (retval);
   ocloud->prov = prov;
-  biji_note_obj_set_create_date (retval, info->created);
+  biji_note_obj_set_create_date (BIJI_NOTE_OBJ (ocloud), info->created);
 
   if (online)
     ocloud->location = g_file_new_for_commandline_arg (info->url);
@@ -439,5 +437,6 @@ BijiNoteObj        *biji_own_cloud_note_new_from_info           (BijiOwnCloudPro
 
   ocloud->basename = g_file_get_basename (ocloud->location);
 
-  return retval;
+  return BIJI_NOTE_OBJ (ocloud);
 }
+

@@ -20,6 +20,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
+#include "biji-info-set.h"
 #include "biji-item.h"
 
 G_BEGIN_DECLS
@@ -46,17 +47,18 @@ struct _BijiNoteObjClass
 {
   BijiItemClass parent_class;
 
-  gchar*        (*get_basename)      (BijiNoteObj *note);
+  char         *(*get_basename)      (BijiNoteObj *note);
 
   /*
    * Mandatory. Provide the latest note html.
    * Use html_from_plain_text if needed.
    * This sring must be allocated. use g_strdup if needed. */
-  gchar*        (*get_html)          (BijiNoteObj *note);
+  char         *(*get_html)          (BijiNoteObj *note);
 
   /*
    * Mandatory. When editor amends html, assign it */
-  void          (*set_html)          (BijiNoteObj *note, const gchar *html);
+  void          (*set_html)          (BijiNoteObj *note,
+                                      const char  *html);
 
   /*
    * Mandatory. Store the note. This might be async. */
@@ -88,71 +90,47 @@ struct _BijiNoteObjClass
   gboolean      (*can_format)        (BijiNoteObj *note);
 };
 
+gboolean         biji_note_obj_are_same                      (BijiNoteObj *note_a,
+                                                              BijiNoteObj *note_b);
 
-gboolean         biji_note_obj_are_same                      (BijiNoteObj *a,
-                                                              BijiNoteObj* b);
+gboolean         biji_note_obj_set_mtime                     (BijiNoteObj *self,
+                                                              gint64       time);
 
+char            *biji_note_obj_get_last_change_date_string   (BijiNoteObj *self);
 
-gboolean         biji_note_obj_set_mtime                     (BijiNoteObj* n,
-                                                              gint64 time);
+gint64           biji_note_obj_get_last_metadata_change_date (BijiNoteObj *self);
 
+gboolean         biji_note_obj_set_last_metadata_change_date (BijiNoteObj *self,
+                                                              gint64       time);
 
-gchar           *biji_note_obj_get_last_change_date_string   (BijiNoteObj *self);
+gint64           biji_note_obj_get_create_date               (BijiNoteObj *self);
 
+gboolean         biji_note_obj_set_create_date               (BijiNoteObj *self,
+                                                              gint64       time);
 
-gint64           biji_note_obj_get_last_metadata_change_date (BijiNoteObj *note);
+void             biji_note_obj_set_all_dates_now             (BijiNoteObj *self);
 
+gboolean         biji_note_obj_get_rgba                      (BijiNoteObj *self,
+                                                              GdkRGBA     *rgba);
 
-gboolean         biji_note_obj_set_last_metadata_change_date (BijiNoteObj* n,
-                                                              gint64 time);
+void             biji_note_obj_set_rgba                      (BijiNoteObj   *self,
+                                                              const GdkRGBA *rgba);
 
-
-gint64           biji_note_obj_get_create_date               (BijiNoteObj *note);
-
-
-gboolean         biji_note_obj_set_create_date               (BijiNoteObj* n ,
-                                                              gint64 time);
-
-
-void             biji_note_obj_set_all_dates_now             (BijiNoteObj *note);
-
-
-gboolean         biji_note_obj_get_rgba                      (BijiNoteObj *n,
-                                                              GdkRGBA *rgba) ;
-
-
-void             biji_note_obj_set_rgba                      (BijiNoteObj *n,
-                                                              const GdkRGBA *rgba) ;
-
-
-GList           *biji_note_obj_get_notebooks               (BijiNoteObj *n);
-
-
-gboolean         note_obj_is_template                        (BijiNoteObj *n) ;
-
-
-void             note_obj_set_is_template                    (BijiNoteObj *n,
-                                                              gboolean is_template);
-
+GList           *biji_note_obj_get_notebooks                 (BijiNoteObj *self);
 
 gboolean         biji_note_obj_is_trashed                    (BijiNoteObj *self);
 
-
 void             biji_note_obj_save_note                     (BijiNoteObj *self);
 
+void             biji_note_obj_set_icon                      (BijiNoteObj *self,
+                                                              GdkPixbuf   *pix);
 
-void             biji_note_obj_set_icon                      (BijiNoteObj *note,
-                                                              GdkPixbuf *pix);
+char            *biji_note_obj_get_icon_file                 (BijiNoteObj *self);
 
+const char      *biji_note_obj_get_raw_text                  (BijiNoteObj *self);
 
-gchar           *biji_note_obj_get_icon_file                 (BijiNoteObj *note);
-
-
-const gchar     *biji_note_obj_get_raw_text                  (BijiNoteObj *note);
-
-
-void             biji_note_obj_set_raw_text                  (BijiNoteObj *note,
-                                                              const gchar *plain_text);
+void             biji_note_obj_set_raw_text                  (BijiNoteObj *self,
+                                                              const char  *plain_text);
 
 const char      *biji_note_obj_get_path                      (BijiNoteObj *self);
 
@@ -161,53 +139,40 @@ void             biji_note_obj_set_path                      (BijiNoteObj *self,
 
 const char      *biji_note_obj_get_title                     (BijiNoteObj *self);
 
-gboolean         biji_note_obj_set_title                     (BijiNoteObj* note_obj_ptr,
-                                                              const gchar* title);
+gboolean         biji_note_obj_set_title                     (BijiNoteObj *self,
+                                                              const char  *title);
 
+gboolean         biji_note_obj_is_template                   (BijiNoteObj *self);
 
-gboolean         biji_note_obj_is_template                   (BijiNoteObj *note);
+void             biji_note_obj_set_is_template               (BijiNoteObj *self,
+                                                              gboolean     is_template);
 
+GtkWidget       *biji_note_obj_open                          (BijiNoteObj *self);
 
-GtkWidget       *biji_note_obj_open                          (BijiNoteObj *note);
+gboolean         biji_note_obj_is_opened                     (BijiNoteObj *self);
 
+GtkWidget       *biji_note_obj_get_editor                    (BijiNoteObj *self);
 
-gboolean         biji_note_obj_is_opened                     (BijiNoteObj *note);
+gboolean         biji_note_obj_can_format                    (BijiNoteObj *self);
 
+char            *html_from_plain_text                        (const char *content);
 
-GtkWidget       *biji_note_obj_get_editor                    (BijiNoteObj *note);
+void             biji_note_obj_set_html                      (BijiNoteObj *self,
+                                                              const char  *html);
 
+char            *biji_note_obj_get_html                      (BijiNoteObj *self);
 
-gboolean         biji_note_obj_can_format                    (BijiNoteObj *note);
+void             biji_note_obj_editor_apply_format           (BijiNoteObj *self,
+                                                              gint         format);
 
+gboolean         biji_note_obj_editor_has_selection          (BijiNoteObj *self);
 
-gchar           *html_from_plain_text                        (const gchar *content);
+const char      *biji_note_obj_editor_get_selection          (BijiNoteObj *self);
 
+void             biji_note_obj_editor_cut                    (BijiNoteObj *self);
 
-void             biji_note_obj_set_html                      (BijiNoteObj *note,
-                                                              const gchar *html);
+void             biji_note_obj_editor_copy                   (BijiNoteObj *self);
 
-
-gchar           *biji_note_obj_get_html                      (BijiNoteObj *note);
-
-
-void             biji_note_obj_editor_apply_format           (BijiNoteObj *note,
-                                                              gint format);
-
-
-gboolean         biji_note_obj_editor_has_selection          (BijiNoteObj *note);
-
-
-const gchar     *biji_note_obj_editor_get_selection          (BijiNoteObj *note);
-
-
-void             biji_note_obj_editor_cut                    (BijiNoteObj *note);
-
-
-void             biji_note_obj_editor_copy                   (BijiNoteObj *note);
-
-
-void             biji_note_obj_editor_paste                  (BijiNoteObj *note);
-
-
+void             biji_note_obj_editor_paste                  (BijiNoteObj *self);
 
 G_END_DECLS

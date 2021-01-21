@@ -19,9 +19,8 @@
 
 #include <libecal/libecal.h>               /* ECalClient      */
 
-#include "biji-tracker.h"
-#include "biji-note-id.h"
 #include "biji-note-obj.h"
+#include "biji-memo-provider.h"
 
 
 G_BEGIN_DECLS

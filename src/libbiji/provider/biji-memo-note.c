@@ -437,23 +437,21 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
  *
  */
 BijiNoteObj *
-biji_memo_note_new_from_info          (BijiMemoProvider *provider,
-                                       BijiManager      *manager,
-                                       BijiInfoSet      *info,
-				       ECalComponent    *component,
-                                       const gchar      *description,
-				       ECalClient       *client)
+biji_memo_note_new_from_info (BijiMemoProvider *provider,
+                              BijiManager      *manager,
+                              BijiInfoSet      *info,
+                              ECalComponent    *component,
+                              const gchar      *description,
+                              ECalClient       *client)
 {
-  BijiNoteID *id;
-  BijiMemoNote *ret;
-
-  id = biji_note_id_new_from_info (info);
-
-  ret = g_object_new (BIJI_TYPE_MEMO_NOTE,
-                      "manager", manager,
-                      "id", id,
-                      "ecal", component,
-                      NULL);
+  BijiMemoNote *ret = g_object_new (BIJI_TYPE_MEMO_NOTE,
+                                    "manager", manager,
+                                    "path",    info->url,
+                                    "title",   info->title,
+                                    "mtime",   info->mtime,
+                                    "content", info->content,
+                                    "ecal",    component,
+                                    NULL);
 
   ret->priv->provider = BIJI_PROVIDER (provider);
   ret->priv->description = description;

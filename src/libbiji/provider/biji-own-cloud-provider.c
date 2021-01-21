@@ -23,9 +23,7 @@
  * on web app
  */
 
-
-
-
+#include "biji-tracker.h"
 #include "biji-own-cloud-note.h"
 #include "biji-own-cloud-provider.h"
 

@@ -365,7 +365,7 @@ bjb_window_base_constructed (GObject *obj)
      self->entry );
 
   /* Search entry toolbar */
-  self->search_bar = bjb_search_toolbar_new (GTK_WIDGET (obj), self->controller);
+  self->search_bar = bjb_search_toolbar_new (self, self->controller);
   gtk_box_pack_start (GTK_BOX (self->vbox), GTK_WIDGET (self->search_bar), FALSE, FALSE, 0);
 
   /* Shared toolbar */

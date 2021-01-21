@@ -81,6 +81,19 @@ struct _BjbWindowBase
 G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, HDY_TYPE_APPLICATION_WINDOW)
 
 static void
+destroy_note_if_needed (BjbWindowBase *self)
+{
+  self->note = NULL;
+
+  if (self->note_view && GTK_IS_WIDGET (self->note_view))
+    gtk_widget_destroy (GTK_WIDGET (self->note_view));
+
+  gtk_widget_hide (self->title_entry);
+
+  self->note_view = NULL;
+}
+
+static void
 on_note_renamed (BijiItem      *note,
                  BjbWindowBase *self)
 {
@@ -381,7 +394,8 @@ on_trash_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BijiNoteObj *note = bjb_window_base_get_note (self);
 
   if (!note)
     return;
@@ -389,6 +403,8 @@ on_trash_cb (GSimpleAction *action,
   /* Delete the note from notebook
    * The deleted note will emit a signal. */
   biji_item_trash (BIJI_ITEM (note));
+
+  destroy_note_if_needed (self);
 }
 
 static void
@@ -638,26 +654,9 @@ bjb_window_base_get_note (BjbWindowBase *self)
   return self->note;
 }
 
-
-
-static void
-destroy_note_if_needed (BjbWindowBase *self)
-{
-  self->note = NULL;
-
-  if (self->note_view && GTK_IS_WIDGET (self->note_view))
-    gtk_widget_destroy (GTK_WIDGET (self->note_view));
-
-  gtk_widget_hide (self->title_entry);
-
-  self->note_view = NULL;
-}
-
 void
 bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
 {
-  destroy_note_if_needed (self);
-
   switch (type)
   {
 

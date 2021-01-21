@@ -163,7 +163,7 @@ void             biji_note_obj_set_html                      (BijiNoteObj *self,
 char            *biji_note_obj_get_html                      (BijiNoteObj *self);
 
 void             biji_note_obj_editor_apply_format           (BijiNoteObj *self,
-                                                              gint         format);
+                                                              int          format);
 
 gboolean         biji_note_obj_editor_has_selection          (BijiNoteObj *self);
 

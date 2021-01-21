@@ -606,7 +606,7 @@ biji_note_obj_get_icon_file (BijiNoteObj *self)
 
 static cairo_surface_t *
 get_icon (BijiItem *item,
-          gint      scale)
+          int       scale)
 {
   GdkRGBA                note_color;
   const char            *text;
@@ -677,7 +677,7 @@ get_icon (BijiItem *item,
 
 static cairo_surface_t *
 get_pristine (BijiItem *item,
-              gint      scale)
+              int       scale)
 {
   GdkRGBA                note_color;
   cairo_t               *cr;
@@ -709,7 +709,7 @@ get_pristine (BijiItem *item,
 
 static cairo_surface_t *
 get_emblem (BijiItem *item,
-            gint      scale)
+            int       scale)
 {
   GdkRGBA                note_color;
   cairo_t               *cr;
@@ -953,7 +953,7 @@ biji_note_obj_can_format (BijiNoteObj *self)
 
 void
 biji_note_obj_editor_apply_format (BijiNoteObj *self,
-                                   gint         format)
+                                   int          format)
 {
   BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 

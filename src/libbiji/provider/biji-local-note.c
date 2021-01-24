@@ -19,160 +19,124 @@
 #include "biji-tracker.h"
 #include "serializer/biji-lazy-serializer.h"
 
-
-struct BijiLocalNotePrivate_
+struct _BijiLocalNote
 {
+  BijiNoteObj   parent_instance;
   BijiProvider *provider;
-
   GFile *location;
-  gchar *basename;
-  gchar *html;
-
+  char *basename;
+  char *html;
   gboolean trashed;
 };
 
+G_DEFINE_TYPE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
 
-G_DEFINE_TYPE_WITH_PRIVATE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
-
-/* Iface */
-
-
-static const gchar *
-local_note_get_place (BijiItem *local)
+static const char *
+local_note_get_place (BijiItem *item)
 {
-  BijiLocalNote *self;
-  const BijiProviderInfo *info;
-
-  g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (local), NULL);
-
-  self = BIJI_LOCAL_NOTE (local);
-  info = biji_provider_get_info (self->priv->provider);
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
+  const BijiProviderInfo *info = biji_provider_get_info (self->provider);
 
   return info->name;
 }
 
-
-static gchar *
+static char *
 local_note_get_html (BijiNoteObj *note)
 {
-  if (BIJI_IS_LOCAL_NOTE (note))
-    return g_strdup (BIJI_LOCAL_NOTE (note)->priv->html);
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
 
-  else
-    return NULL;
+  return g_strdup (self->html);
 }
-
 
 static void
 local_note_set_html (BijiNoteObj *note,
-                     const gchar *html)
+                     const char  *html)
 {
-  if (BIJI_LOCAL_NOTE (note)->priv->html)
-    g_free (BIJI_LOCAL_NOTE (note)->priv->html);
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
+
+  g_free (self->html);
 
   if (html)
-    BIJI_LOCAL_NOTE (note)->priv->html = g_strdup (html);
+    self->html = g_strdup (html);
 }
-
 
 static void
 local_note_save (BijiNoteObj *note)
 {
-  const BijiProviderInfo *prov_info;
-  BijiInfoSet *info;
-  BijiItem *item;
-  BijiLocalNote *self;
-
-  g_return_if_fail (BIJI_IS_LOCAL_NOTE (note));
-
-  self = BIJI_LOCAL_NOTE (note);
-  item = BIJI_ITEM (note);
+  BijiItem *item = BIJI_ITEM (note);
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
+  const BijiProviderInfo *prov_info = biji_provider_get_info (self->provider);
+  BijiInfoSet *info = biji_info_set_new ();
 
   /* File save */
   biji_lazy_serialize (note);
 
   /* Tracker */
-  prov_info = biji_provider_get_info (self->priv->provider);
-  info = biji_info_set_new ();
-
-  info->url = (gchar*) biji_item_get_uuid (item);
-  info->title = (gchar*) biji_item_get_title (item);
-  info->content = (gchar*) biji_note_obj_get_raw_text (note);
+  info->url = (char *) biji_item_get_uuid (item);
+  info->title = (char *) biji_item_get_title (item);
+  info->content = (char *) biji_note_obj_get_raw_text (note);
   info->mtime = biji_item_get_mtime (item);
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  biji_tracker_ensure_resource_from_info  (biji_item_get_manager (item),
-                                            info);
+  biji_tracker_ensure_resource_from_info (biji_item_get_manager (item), info);
 }
-
-
-/* GObj */
 
 static void
 biji_local_note_finalize (GObject *object)
 {
-  BijiLocalNote *self;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (object);
 
-  g_return_if_fail (BIJI_IS_LOCAL_NOTE (object));
-
-  self = BIJI_LOCAL_NOTE (object);
-
-  if (self->priv->html)
-    g_free (self->priv->html);
+  g_clear_object (&self->location);
+  g_free (self->basename);
+  g_free (self->html);
 
   G_OBJECT_CLASS (biji_local_note_parent_class)->finalize (object);
 }
 
-
 static void
 biji_local_note_init (BijiLocalNote *self)
 {
-  self->priv = biji_local_note_get_instance_private (self);
-  self->priv->html = NULL;
-  self->priv->trashed = FALSE;
 }
 
-
 static gboolean
-item_yes         (BijiItem * item)
+item_yes (BijiItem *item)
 {
   return TRUE;
 }
 
-
 static gboolean
-note_yes         (BijiNoteObj *item)
+note_yes (BijiNoteObj *item)
 {
   return TRUE;
 }
-
 
 static gboolean
 local_note_archive (BijiNoteObj *note)
 {
-  BijiLocalNote *self;
-  GFile *parent, *trash, *archive;
-  gchar *parent_path, *trash_path, *backup_path;
-  GError *error = NULL;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
+  g_autoptr(GFile) parent = NULL;
+  g_autoptr(GFile) trash = NULL;
+  g_autoptr(GFile) archive = NULL;
+  g_autofree char *parent_path = NULL;
+  g_autofree char *trash_path = NULL;
+  g_autofree char *backup_path = NULL;
+  g_autoptr(GError) error = NULL;
   gboolean result = FALSE;
-
-  self = BIJI_LOCAL_NOTE (note);
 
   /* Create the trash directory
    * No matter if already exists */
-  parent = g_file_get_parent (self->priv->location);
+  parent = g_file_get_parent (self->location);
   parent_path = g_file_get_path (parent);
   trash_path = g_build_filename (parent_path, ".Trash", NULL);
   trash = g_file_new_for_path (trash_path);
   g_file_make_directory (trash, NULL, NULL);
 
   /* Move the note to trash */
-
-  backup_path = g_build_filename (trash_path, self->priv->basename, NULL);
+  backup_path = g_build_filename (trash_path, self->basename, NULL);
   archive = g_file_new_for_path (backup_path);
 
-  result = g_file_move (self->priv->location,
+  result = g_file_move (self->location,
                         archive,
                         G_FILE_COPY_OVERWRITE,
                         NULL, // cancellable
@@ -181,60 +145,44 @@ local_note_archive (BijiNoteObj *note)
                         &error);
 
   if (error)
-  {
     g_message ("%s", error->message);
-    g_error_free (error);
-    error = NULL;
-    g_object_unref (archive);
-  }
-
   else
-  {
-    self->priv->trashed = TRUE;
-    g_object_unref (self->priv->location);
-    self->priv->location = archive;
-  }
-
-
-  g_free (parent_path);
-  g_object_unref (parent);
-  g_free (trash_path);
-  g_object_unref (trash);
-  g_free (backup_path);
+    {
+      g_set_object (&self->location, archive);
+      self->trashed = TRUE;
+    }
 
   return result;
 }
 
-
 static gboolean
-local_note_is_trashed (BijiNoteObj *self)
+local_note_is_trashed (BijiNoteObj *note)
 {
-  return BIJI_LOCAL_NOTE (self)->priv->trashed;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
+  return self->trashed;
 }
 
-
 static gboolean
-local_note_restore (BijiItem *item, gchar **old_uuid)
+local_note_restore (BijiItem  *item,
+                    char     **old_uuid)
 {
-  BijiLocalNote *self;
-  gchar *root_path, *path;
-  GFile *trash, *root, *target;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
+  g_autofree char *root_path = NULL;
+  g_autofree char *path = NULL;
+  g_autoptr(GFile) trash = NULL;
+  g_autoptr(GFile) root = NULL;
+  g_autoptr(GFile) target = NULL;
   gboolean retval;
-  GError *error;
+  g_autoptr(GError) error = NULL;
 
-
-  g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
-  self = BIJI_LOCAL_NOTE (item);
-  error = NULL;
-
-  trash = g_file_get_parent (self->priv->location);
+  trash = g_file_get_parent (self->location);
   root = g_file_get_parent (trash);
 
   root_path = g_file_get_path (root);
-  path = g_build_filename (root_path, self->priv->basename, NULL);
+  path = g_build_filename (root_path, self->basename, NULL);
   target = g_file_new_for_path (path);
 
-  retval = g_file_move (self->priv->location,
+  retval = g_file_move (self->location,
                         target,
                         G_FILE_COPY_NONE,
                         NULL, // cancellable
@@ -243,61 +191,41 @@ local_note_restore (BijiItem *item, gchar **old_uuid)
                         &error);
 
   if (error != NULL)
-  {
     g_warning ("Could not restore file : %s", error->message);
-    g_error_free (error);
-  }
 
-  *old_uuid = g_file_get_path (self->priv->location);
-  g_object_unref (self->priv->location);
-  g_object_unref (trash);
-  g_object_unref (root);
-  g_free (path);
-  g_free (root_path);
+  *old_uuid = g_file_get_path (self->location);
+  g_set_object (&self->location, target);
+  self->trashed = FALSE;
 
-  self->priv->trashed = FALSE;
-  self->priv->location = target;
   return retval;
 }
 
-
 static void
-delete_file (GObject *note,
+delete_file (GObject      *note,
              GAsyncResult *res,
-             gpointer user_data)
+             gpointer      user_data)
 {
-  BijiLocalNote *self;
-  GError *error;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (user_data);
+  g_autoptr (GError) error = NULL;
 
-  self = BIJI_LOCAL_NOTE (user_data);
-  error = NULL;
-  g_file_delete_finish (self->priv->location, res, &error);
+  g_file_delete_finish (self->location, res, &error);
 
   if (error != NULL)
-  {
     g_warning ("local note delete failed, %s", error->message);
-    g_error_free (error);
-  }
 }
-
 
 /* Do not check if note is already trashed
  * eg, note is empty */
 static gboolean
 local_note_delete (BijiItem *item)
 {
-  BijiLocalNote *self;
-  gchar *file_path;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
+  g_autofree char *file_path = g_file_get_path (self->location);
 
-  g_return_val_if_fail (BIJI_IS_LOCAL_NOTE (item), FALSE);
-  self = BIJI_LOCAL_NOTE (item);
-
-  file_path = g_file_get_path (self->priv->location);
   g_debug ("local note delete : %s", file_path);
-  g_free (file_path);
 
   biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
-  g_file_delete_async (self->priv->location,
+  g_file_delete_async (self->location,
                        G_PRIORITY_LOW,
                        NULL,                  /* Cancellable */
                        delete_file,
@@ -306,24 +234,19 @@ local_note_delete (BijiItem *item)
   return TRUE;
 }
 
-
-static gchar*
+static char *
 local_note_get_basename (BijiNoteObj *note)
 {
-  return BIJI_LOCAL_NOTE (note)->priv->basename;
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
+  return self->basename;
 }
-
 
 static void
 biji_local_note_class_init (BijiLocalNoteClass *klass)
 {
-  GObjectClass *g_object_class;
-  BijiItemClass    *item_class;
-  BijiNoteObjClass *note_class;
-
-  g_object_class = G_OBJECT_CLASS (klass);
-  item_class = BIJI_ITEM_CLASS (klass);
-  note_class = BIJI_NOTE_OBJ_CLASS (klass);
+  GObjectClass *g_object_class = G_OBJECT_CLASS (klass);
+  BijiItemClass *item_class = BIJI_ITEM_CLASS (klass);
+  BijiNoteObjClass *note_class = BIJI_NOTE_OBJ_CLASS (klass);
 
   g_object_class->finalize = biji_local_note_finalize;
 
@@ -342,13 +265,12 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
   note_class->is_trashed = local_note_is_trashed;
 }
 
-
 BijiNoteObj *
 biji_local_note_new_from_info (BijiProvider *provider,
                                BijiManager  *manager,
                                BijiInfoSet  *info)
 {
-  BijiLocalNote *local = g_object_new (BIJI_TYPE_LOCAL_NOTE,
+  BijiLocalNote *self = g_object_new (BIJI_TYPE_LOCAL_NOTE,
                                        "manager", manager,
                                        "path",    info->url,
                                        "title",   info->title,
@@ -356,12 +278,12 @@ biji_local_note_new_from_info (BijiProvider *provider,
                                        "content", info->content,
                                        NULL);
 
-  local->priv->location = g_file_new_for_commandline_arg (info->url);
-  local->priv->basename = g_file_get_basename (local->priv->location);
-  local->priv->provider = provider;
+  self->location = g_file_new_for_commandline_arg (info->url);
+  self->basename = g_file_get_basename (self->location);
+  self->provider = provider;
 
   if (strstr (info->url, "Trash") != NULL)
-    local->priv->trashed = TRUE;
+    self->trashed = TRUE;
 
-  return BIJI_NOTE_OBJ (local);
+  return BIJI_NOTE_OBJ (self);
 }

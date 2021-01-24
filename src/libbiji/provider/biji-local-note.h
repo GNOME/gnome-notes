@@ -22,35 +22,12 @@
 
 G_BEGIN_DECLS
 
+#define BIJI_TYPE_LOCAL_NOTE (biji_local_note_get_type ())
 
-#define BIJI_TYPE_LOCAL_NOTE             (biji_local_note_get_type ())
-#define BIJI_LOCAL_NOTE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_LOCAL_NOTE, BijiLocalNote))
-#define BIJI_LOCAL_NOTE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_LOCAL_NOTE, BijiLocalNoteClass))
-#define BIJI_IS_LOCAL_NOTE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_LOCAL_NOTE))
-#define BIJI_IS_LOCAL_NOTE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_LOCAL_NOTE))
-#define BIJI_LOCAL_NOTE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_LOCAL_NOTE, BijiLocalNoteClass))
-
-typedef struct BijiLocalNote_         BijiLocalNote;
-typedef struct BijiLocalNoteClass_    BijiLocalNoteClass;
-typedef struct BijiLocalNotePrivate_  BijiLocalNotePrivate;
-
-struct BijiLocalNote_
-{
-  BijiNoteObj parent;
-  BijiLocalNotePrivate *priv;
-};
-
-struct BijiLocalNoteClass_
-{
-  BijiNoteObjClass parent_class;
-};
-
-
-GType                 biji_local_note_get_type        (void);
-
+G_DECLARE_FINAL_TYPE (BijiLocalNote, biji_local_note, BIJI, LOCAL_NOTE, BijiNoteObj)
 
 BijiNoteObj          *biji_local_note_new_from_info   (BijiProvider *provider,
-                                                       BijiManager *manager,
-                                                       BijiInfoSet *set);
+                                                       BijiManager  *manager,
+                                                       BijiInfoSet  *info);
 
 G_END_DECLS

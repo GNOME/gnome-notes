@@ -17,43 +17,15 @@
 
 #pragma once
 
-#include <libecal/libecal.h>               /* ECalClient      */
-
+#include <libecal/libecal.h>
 #include "biji-note-obj.h"
 #include "biji-memo-provider.h"
 
-
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_MEMO_NOTE             (biji_memo_note_get_type ())
-#define BIJI_MEMO_NOTE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_MEMO_NOTE, BijiMemoNote))
-#define BIJI_MEMO_NOTE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_MEMO_NOTE, BijiMemoNoteClass))
-#define BIJI_IS_MEMO_NOTE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_MEMO_NOTE))
-#define BIJI_IS_MEMO_NOTE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_MEMO_NOTE))
-#define BIJI_MEMO_NOTE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_MEMO_NOTE, BijiMemoNoteClass))
+#define BIJI_TYPE_MEMO_NOTE (biji_memo_note_get_type())
 
-typedef struct _BijiMemoNoteClass BijiMemoNoteClass;
-typedef struct _BijiMemoNote BijiMemoNote;
-typedef struct _BijiMemoNotePrivate BijiMemoNotePrivate;
-
-
-struct _BijiMemoNote
-{
-    BijiNoteObj parent_instance;
-
-    BijiMemoNotePrivate *priv;
-};
-
-
-struct _BijiMemoNoteClass
-{
-    BijiNoteObjClass parent_class;
-};
-
-
-
-GType                  biji_memo_note_get_type               (void) G_GNUC_CONST;
-
+G_DECLARE_FINAL_TYPE (BijiMemoNote, biji_memo_note, BIJI, MEMO_NOTE, BijiNoteObj)
 
 BijiNoteObj           *biji_memo_note_new_from_info          (BijiMemoProvider *provider,
                                                               BijiManager      *manager,
@@ -62,5 +34,5 @@ BijiNoteObj           *biji_memo_note_new_from_info          (BijiMemoProvider *
                                                               const char       *description,
                                                               ECalClient       *client);
 
-
 G_END_DECLS
+

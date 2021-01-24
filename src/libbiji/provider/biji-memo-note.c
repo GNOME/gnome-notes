@@ -15,22 +15,19 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 #include "biji-memo-provider.h"
 #include "biji-memo-note.h"
 
-struct _BijiMemoNotePrivate
+struct _BijiMemoNote
 {
+  BijiNoteObj    parent_instance;
   BijiProvider  *provider;
   ECalComponent *ecal;
   ECalClient    *client;
-  const gchar   *description;
+  const char    *description;
 };
 
-
-G_DEFINE_TYPE_WITH_PRIVATE (BijiMemoNote, biji_memo_note, BIJI_TYPE_NOTE_OBJ);
-
+G_DEFINE_TYPE (BijiMemoNote, biji_memo_note, BIJI_TYPE_NOTE_OBJ)
 
 /* Properties */
 enum {
@@ -39,10 +36,7 @@ enum {
   MEMO_NOTE_PROP
 };
 
-
 static GParamSpec *properties[MEMO_NOTE_PROP] = { NULL, };
-
-
 
 /* Function from evo calendar gui comp-util.c (LGPL)
  * to be removed if we depen on evo,
@@ -51,10 +45,10 @@ static gboolean
 cal_comp_is_on_server (ECalComponent *comp,
                        ECalClient *client)
 {
-  const gchar *uid;
-  gchar *rid = NULL;
+  const char *uid;
+  g_autofree char *rid = NULL;
   ICalComponent *icalcomp = NULL;
-  GError *error = NULL;
+  g_autoptr(GError) error = NULL;
 
   g_return_val_if_fail (comp != NULL, FALSE);
   g_return_val_if_fail (E_IS_CAL_COMPONENT (comp), FALSE);
@@ -73,31 +67,24 @@ cal_comp_is_on_server (ECalComponent *comp,
    *	e_cal_util_construct_instance does not create the instances
    *	of all day events, so we default to old behaviour. */
   if (e_cal_client_check_recurrences_no_master (client))
-  {
-    rid = e_cal_component_get_recurid_as_string (comp);
-  }
+    {
+      rid = e_cal_component_get_recurid_as_string (comp);
+    }
 
-  e_cal_client_get_object_sync (
-   	client, uid, rid, &icalcomp, NULL, &error);
+  e_cal_client_get_object_sync (client, uid, rid, &icalcomp, NULL, &error);
 
   if (icalcomp != NULL)
-  {
-    g_clear_object (&icalcomp);
-    g_free (rid);
+    {
+      g_clear_object (&icalcomp);
 
-    return TRUE;
-  }
+      return TRUE;
+    }
 
   if (!g_error_matches (error, E_CAL_CLIENT_ERROR, E_CAL_CLIENT_ERROR_OBJECT_NOT_FOUND))
     g_warning (G_STRLOC ": %s", error->message);
 
-  g_clear_error (&error);
-  g_free (rid);
-
   return FALSE;
 }
-
-
 
 /*
  * Parse current note content to update ECalComponent
@@ -110,7 +97,7 @@ cal_comp_is_on_server (ECalComponent *comp,
 static void
 fill_in_components (ECalComponent *comp,
                     ECalComponent *clone,
-		    BijiMemoNote  *self)
+                    BijiMemoNote  *self)
 {
   ECalComponentText *text;
   GSList             l;
@@ -168,13 +155,11 @@ fill_in_components (ECalComponent *comp,
   mtime = biji_item_get_mtime (BIJI_ITEM (self));
   t = icaltime_from_time_val (mtime);
   if (t)
-  {
-    e_cal_component_set_last_modified (clone, t);
-    g_object_unref (t);
-  }
+    {
+      e_cal_component_set_last_modified (clone, t);
+      g_object_unref (t);
+    }
 }
-
-
 
 /*
  * https://git.gnome.org/browse/evolution/tree/calendar/gui/dialogs/comp-editor.c#n471
@@ -183,52 +168,50 @@ static void
 memo_note_save (BijiNoteObj *note)
 {
   BijiMemoNote *self = BIJI_MEMO_NOTE (note);
-  BijiMemoNotePrivate *priv = self->priv;
   ICalComponent *icalcomp;
   gboolean result;
-  GError *error;
+  g_autoptr(GError) error;
   ECalComponent *clone;
 
-  clone = e_cal_component_clone (priv->ecal);
-  fill_in_components (priv->ecal, clone, self);
+  clone = e_cal_component_clone (self->ecal);
+  fill_in_components (self->ecal, clone, self);
 
   /* Save */
   e_cal_component_commit_sequence (clone);
-  g_object_unref (priv->ecal);
-  priv->ecal = clone;
+  g_object_unref (self->ecal);
+  self->ecal = clone;
 
-  icalcomp = e_cal_component_get_icalcomponent (priv->ecal);
+  icalcomp = e_cal_component_get_icalcomponent (self->ecal);
 
 
-  if (!cal_comp_is_on_server (priv->ecal, priv->client))
-  {
-    gchar *uid = NULL;
-    result = e_cal_client_create_object_sync (
-    priv->client, icalcomp, E_CAL_OPERATION_FLAG_NONE, &uid, NULL, &error);
+  if (!cal_comp_is_on_server (self->ecal, self->client))
+    {
+      g_autofree char *uid = NULL;
+      result = e_cal_client_create_object_sync (self->client,
+                                                icalcomp,
+                                                E_CAL_OPERATION_FLAG_NONE,
+                                                &uid,
+                                                NULL,
+                                                &error);
       if (result)
-      {
         i_cal_component_set_uid (icalcomp, uid);
-	g_free (uid);
-        //g_signal_emit_by_name (editor, "object_created");
-      }
-   }
-
+    }
   else
-  {
-    result = e_cal_client_modify_object_sync (
-      priv->client, icalcomp, E_CAL_OBJ_MOD_THIS, E_CAL_OPERATION_FLAG_NONE, NULL, &error);
-    e_cal_component_commit_sequence (clone);
-  }
+    {
+      result = e_cal_client_modify_object_sync (self->client,
+                                                icalcomp,
+                                                E_CAL_OBJ_MOD_THIS,
+                                                E_CAL_OPERATION_FLAG_NONE,
+                                                NULL,
+                                                &error);
+      e_cal_component_commit_sequence (clone);
+    }
 }
 
 static void
 biji_memo_note_init (BijiMemoNote *biji_memo_note)
 {
-  biji_memo_note->priv = biji_memo_note_get_instance_private (biji_memo_note);
-
 }
-
-
 
 /* Let the provider finalize the ECalComponent. */
 static void
@@ -236,9 +219,6 @@ biji_memo_note_finalize (GObject *object)
 {
   G_OBJECT_CLASS (biji_memo_note_parent_class)->finalize (object);
 }
-
-
-
 
 static void
 biji_memo_note_set_property (GObject      *object,
@@ -248,18 +228,16 @@ biji_memo_note_set_property (GObject      *object,
 {
   BijiMemoNote *self = BIJI_MEMO_NOTE (object);
 
-
   switch (property_id)
     {
     case PROP_ECAL:
-      self->priv->ecal = g_value_dup_object (value);
+      self->ecal = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
     }
 }
-
 
 static void
 biji_memo_note_get_property (GObject    *object,
@@ -272,7 +250,7 @@ biji_memo_note_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_ECAL:
-      g_value_set_object (value, self->priv->ecal);
+      g_value_set_object (value, self->ecal);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -280,15 +258,12 @@ biji_memo_note_get_property (GObject    *object,
     }
 }
 
-
-
 static void
 memo_set_html (BijiNoteObj *note,
-               const gchar *html)
+               const char  *html)
 {
   /* NULL */
 }
-
 
 static gboolean
 memo_item_delete (BijiItem *item)
@@ -300,31 +275,25 @@ memo_item_delete (BijiItem *item)
 }
 
 static void
-on_memo_deleted (GObject *ecal,
+on_memo_deleted (GObject      *ecal,
                  GAsyncResult *res,
-                 gpointer user_data)
+                 gpointer      user_data)
 {
-  GError *error = NULL;
+  g_autoptr(GError) error = NULL;
 
-  e_cal_client_remove_object_finish (E_CAL_CLIENT (ecal),
-                                     res, &error);
+  e_cal_client_remove_object_finish (E_CAL_CLIENT (ecal), res, &error);
 
   if (error)
-  {
     g_warning ("Could not delete memo:%s", error->message);
-  }
 }
-
 
 static gboolean
 memo_delete (BijiNoteObj *note)
 {
-  BijiMemoNote *self;
-  const gchar *uid;
+  BijiMemoNote *self = BIJI_MEMO_NOTE (note);
+  const char *uid = e_cal_component_get_uid (self->ecal);
 
-  self = BIJI_MEMO_NOTE (note);
-  uid = e_cal_component_get_uid (self->priv->ecal);
-  e_cal_client_remove_object (self->priv->client,
+  e_cal_client_remove_object (self->client,
                               uid,
                               NULL,               /* rid : all occurences */
                               E_CAL_OBJ_MOD_ALL,  /*       all occurences */
@@ -333,61 +302,45 @@ memo_delete (BijiNoteObj *note)
                               on_memo_deleted,
                               self);
 
-
   return TRUE;
 }
 
-
-static gchar *
+static char *
 memo_get_html (BijiNoteObj *note)
 {
-  // we cast but the func should expect a const gchar, really
-  return html_from_plain_text ((gchar*) biji_note_obj_get_raw_text (note));
+  // we cast but the func should expect a const char, really
+  return html_from_plain_text ((char*) biji_note_obj_get_raw_text (note));
 }
 
-
-
-static gchar *
+static char *
 memo_get_basename (BijiNoteObj *note)
 {
-  const gchar *out;
-
-  out = e_cal_component_get_uid (
-    BIJI_MEMO_NOTE (note)->priv->ecal);
+  BijiMemoNote *self = BIJI_MEMO_NOTE (note);
+  const char *out = e_cal_component_get_uid (self->ecal);
 
   return g_strdup (out);
 }
 
-
-
-
-static const gchar *
+static const char *
 memo_get_place (BijiItem *item)
 {
-  BijiMemoNote *self;
-  const BijiProviderInfo *info;
-
-  self = BIJI_MEMO_NOTE (item);
-  info = biji_provider_get_info (BIJI_PROVIDER (self->priv->provider));
+  BijiMemoNote *self = BIJI_MEMO_NOTE (item);
+  const BijiProviderInfo *info = biji_provider_get_info (BIJI_PROVIDER (self->provider));
 
   return info->name;
 }
 
-
-
 static gboolean
-item_no         (BijiItem * item)
+item_no (BijiItem *item)
 {
   return FALSE;
 }
 
-
 static gboolean
-note_no         (BijiNoteObj *item)
+note_no (BijiNoteObj *note)
 {
   return FALSE;
 }
-
 
 static void
 biji_memo_note_class_init (BijiMemoNoteClass *klass)
@@ -426,11 +379,6 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   g_object_class_install_properties (object_class, MEMO_NOTE_PROP, properties);
 }
 
-
-
-
-
-
 /*
  * The provider looks for a content ("description")
  * in order to push to tracker.
@@ -453,8 +401,9 @@ biji_memo_note_new_from_info (BijiMemoProvider *provider,
                                     "ecal",    component,
                                     NULL);
 
-  ret->priv->provider = BIJI_PROVIDER (provider);
-  ret->priv->description = description;
-  ret->priv->client = client;
+  ret->provider = BIJI_PROVIDER (provider);
+  ret->description = description;
+  ret->client = client;
   return BIJI_NOTE_OBJ (ret);
 }
+

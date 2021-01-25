@@ -39,7 +39,6 @@ struct _BjbApplication
 {
   GtkApplication  parent_instance;
 
-  GtkCssProvider *css_provider;
   BijiManager    *manager;
   BjbSettings    *settings;
 
@@ -298,16 +297,15 @@ text_size_mapping_set (const GValue       *value,
 static void
 bjb_apply_style (BjbApplication *self)
 {
-  if (self->css_provider == NULL)
-    {
-      g_autoptr(GFile) file = g_file_new_for_uri ("resource:///org/gnome/Notes/style.css");
-      self->css_provider = gtk_css_provider_new ();
-      gtk_css_provider_load_from_file (self->css_provider, file, NULL);
+  g_autoptr(GtkCssProvider) css_provider = NULL;
 
-      gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
-                                                 GTK_STYLE_PROVIDER (self->css_provider),
-                                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    }
+  css_provider = gtk_css_provider_new ();
+  gtk_css_provider_load_from_resource (css_provider,
+                                       "/org/gnome/Notes/style.css");
+
+  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+                                             GTK_STYLE_PROVIDER (css_provider),
+                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 }
 
 static void
@@ -510,7 +508,6 @@ bijiben_finalize (GObject *object)
 {
   BjbApplication *self = BJB_APPLICATION (object);
 
-  g_clear_object (&self->css_provider);
   g_clear_object (&self->manager);
   g_clear_object (&self->settings);
   g_queue_foreach (&self->files_to_open, (GFunc) g_free, NULL);

@@ -171,13 +171,33 @@ bijiben_new_window_for_note (GApplication *app,
   bijiben_new_window_internal (BJB_APPLICATION (app), note);
 }
 
+static int
+bijiben_handle_local_options (GApplication *application,
+                              GVariantDict *options)
+{
+  if (g_variant_dict_contains (options, "version"))
+    {
+      g_print ("%s %s\n", _("GNOME Notes"), VERSION);
+      return 0;
+    }
+
+  return -1;
+}
+
 static void
 bijiben_activate (GApplication *app)
 {
-  GList *windows = gtk_application_get_windows (GTK_APPLICATION (app));
+  BjbApplication *self = BJB_APPLICATION (app);
+  GtkWindow *window;
 
-  // ensure the last used window is raised
-  gtk_window_present (g_list_nth_data (windows, 0));
+  if (!self->is_loaded)
+    return;
+
+  window = gtk_application_get_active_window (GTK_APPLICATION (app));
+
+  /* We don't create new window here, it's handled elsewhere */
+  if (window)
+    gtk_window_present (window);
 }
 
 
@@ -209,7 +229,21 @@ bijiben_open (GApplication  *application,
 static void
 bjb_application_init (BjbApplication *self)
 {
+  GApplication *app = G_APPLICATION (self);
+  const GOptionEntry cmd_options[] = {
+    { "version", 0, 0, G_OPTION_ARG_NONE, NULL,
+      N_("Show the application’s version"), NULL},
+    { "new-note", 0, 0, G_OPTION_ARG_NONE, &self->new_note,
+      N_("Create a new note"), NULL},
+    { NULL }
+  };
+
   g_queue_init (&self->files_to_open);
+
+  gtk_window_set_default_icon_name ("org.gnome.Notes");
+  g_application_add_main_option_entries (app, cmd_options);
+  g_application_set_option_context_parameter_string (app, _("[FILE…]"));
+  g_application_set_option_context_summary (app, _("Take notes and export them everywhere."));
 }
 
 
@@ -417,89 +451,6 @@ bijiben_startup (GApplication *application)
   biji_manager_load_providers_async (self->manager, manager_ready_cb, self);
 }
 
-static gboolean
-bijiben_application_local_command_line (GApplication *application,
-                                        gchar ***arguments,
-                                        gint *exit_status)
-{
-  BjbApplication *self;
-  gboolean version = FALSE;
-  gchar **remaining = NULL;
-  GOptionContext *context;
-  g_autoptr(GError) error = NULL;
-  gint argc = 0;
-  gchar **argv = NULL;
-
-  const GOptionEntry options[] = {
-    { "version", 0, 0, G_OPTION_ARG_NONE, &version,
-      N_("Show the application’s version"), NULL},
-    { "new-note", 0, 0, G_OPTION_ARG_NONE, &BJB_APPLICATION(application)->new_note,
-      N_("Create a new note"), NULL},
-    { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY, &remaining,
-      NULL,  N_("[FILE…]") },
-    { NULL }
-  };
-
-  *exit_status = EXIT_SUCCESS;
-
-  context = g_option_context_new (NULL);
-  g_option_context_set_summary (context,
-                                _("Take notes and export them everywhere."));
-  g_option_context_add_main_entries (context, options, NULL);
-  g_option_context_add_group (context, gtk_get_option_group (FALSE));
-
-  argv = *arguments;
-  argc = g_strv_length (argv);
-
-  if (!g_option_context_parse (context, &argc, &argv, &error))
-  {
-    /* Translators: this is a fatal error quit message
-     * printed on the command line */
-    g_printerr ("%s: %s\n", _("Could not parse arguments"), error->message);
-
-    *exit_status = EXIT_FAILURE;
-    goto out;
-  }
-
-  if (version)
-  {
-    g_print ("%s %s\n", _("GNOME Notes"), VERSION);
-    goto out;
-  }
-
-  /* bijiben_startup */
-  g_application_register (application, NULL, &error);
-
-  if (error != NULL)
-  {
-    g_printerr ("%s: %s\n",
-                /* Translators: this is a fatal error quit message
-                 * printed on the command line */
-                _("Could not register the application"),
-                error->message);
-
-    *exit_status = EXIT_FAILURE;
-    goto out;
-  }
-
-  self = BJB_APPLICATION (application);
-
-  if (!self->new_note && remaining != NULL)
-  {
-    gchar **args;
-
-    for (args = remaining; *args; args++)
-      if (!bijiben_open_path (self, *args, NULL))
-        g_queue_push_head (&self->files_to_open, g_strdup (*args));
-  }
-
- out:
-  g_strfreev (remaining);
-  g_option_context_free (context);
-
-  return TRUE;
-}
-
 static void
 bijiben_finalize (GObject *object)
 {
@@ -519,10 +470,10 @@ bjb_application_class_init (BjbApplicationClass *klass)
   GApplicationClass *aclass = G_APPLICATION_CLASS (klass);
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
+  aclass->handle_local_options = bijiben_handle_local_options;
   aclass->activate = bijiben_activate;
   aclass->open = bijiben_open;
   aclass->startup = bijiben_startup;
-  aclass->local_command_line = bijiben_application_local_command_line;
 
   oclass->finalize = bijiben_finalize;
 }

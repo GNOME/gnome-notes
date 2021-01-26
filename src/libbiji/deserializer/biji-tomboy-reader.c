@@ -20,10 +20,10 @@
 
 /* TODO escape strings to have sane html */
 
+#include <gio/gio.h>
 #include <libxml/xmlreader.h>
 #include <string.h>
 
-#include "../biji-error.h"
 #include "../biji-date-time.h"
 #include "../biji-info-set.h"
 #include "../biji-string.h"
@@ -296,8 +296,8 @@ processNode (BijiTomboyReader *self)
 
     if (g_str_has_prefix (tag,"system:template"))
     {
-      self->error = biji_error_new (BIJI_ERROR_SOURCE,
-                                    "Aborting import for template note.");
+      self->error = g_error_new (G_IO_ERROR, G_IO_ERROR_FAILED,
+                                 "Aborting import for template note");
     }
 
     else if (g_str_has_prefix (tag,"system:notebook:"))
@@ -330,8 +330,8 @@ biji_tomboy_reader_constructed (GObject *obj)
 
   if (doc == NULL )
   {
-    self->error = biji_error_new (BIJI_ERROR_SOURCE,
-                                  "File not parsed successfully");
+    self->error = g_error_new (G_IO_ERROR, G_IO_ERROR_FAILED,
+                               "File not parsed successfully");
     return;
   }
 
@@ -340,8 +340,8 @@ biji_tomboy_reader_constructed (GObject *obj)
 
   if (cur == NULL)
   {
-    self->error = biji_error_new (BIJI_ERROR_SOURCE,
-                                  "File empty");
+    self->error = g_error_new (G_IO_ERROR, G_IO_ERROR_FAILED,
+                               "File empty");
     xmlFreeDoc(doc);
     return;
   }
@@ -349,8 +349,8 @@ biji_tomboy_reader_constructed (GObject *obj)
 
   if (xmlStrcmp(cur->name, (const xmlChar *) "note"))
   {
-    self->error = biji_error_new (BIJI_ERROR_SOURCE,
-                                  "Root node != note");
+    self->error = g_error_new (G_IO_ERROR, G_IO_ERROR_FAILED,
+                               "Root node != note");
     xmlFreeDoc(doc);
     return;
   }

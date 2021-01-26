@@ -13,7 +13,6 @@ sources = files(
   'provider/biji-provider.c',
   'serializer/biji-lazy-serializer.c',
   'biji-date-time.c',
-  'biji-error.c',
   'biji-info-set.c',
   'biji-item.c',
   'biji-manager.c',

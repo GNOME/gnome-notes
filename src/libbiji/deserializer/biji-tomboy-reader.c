@@ -436,7 +436,7 @@ biji_tomboy_reader_finalize (GObject *object)
 
   g_string_free (self->raw_text, TRUE);
   g_string_free (self->html, TRUE);
-
+  g_clear_error (&self->error);
 
   xmlFreeTextReader (self->r);
   xmlFreeTextReader (self->inner);

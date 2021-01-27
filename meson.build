@@ -3,7 +3,7 @@ project(
   version: '3.38.0',
   license: 'GPL3',
   default_options: 'buildtype=debugoptimized',
-  meson_version: '>= 0.43.0'
+  meson_version: '>= 0.50.0'
 )
 
 bijiben_name = meson.project_name()

@@ -31,41 +31,17 @@
 
 #pragma once
 
-#include "../biji-manager.h"
 #include "biji-provider.h"
 
 G_BEGIN_DECLS
 
+#define BIJI_TYPE_IMPORT_PROVIDER (biji_import_provider_get_type ())
 
-#define BIJI_TYPE_IMPORT_PROVIDER             (biji_import_provider_get_type ())
-#define BIJI_IMPORT_PROVIDER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_IMPORT_PROVIDER, BijiImportProvider))
-#define BIJI_IMPORT_PROVIDER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_IMPORT_PROVIDER, BijiImportProviderClass))
-#define BIJI_IS_IMPORT_PROVIDER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_IMPORT_PROVIDER))
-#define BIJI_IS_IMPORT_PROVIDER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_IMPORT_PROVIDER))
-#define BIJI_IMPORT_PROVIDER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_IMPORT_PROVIDER, BijiImportProviderClass))
-
-typedef struct BijiImportProvider_         BijiImportProvider;
-typedef struct BijiImportProviderClass_    BijiImportProviderClass;
-typedef struct BijiImportProviderPrivate_  BijiImportProviderPrivate;
-
-struct BijiImportProvider_
-{
-  BijiProvider parent;
-  BijiImportProviderPrivate *priv;
-};
-
-struct BijiImportProviderClass_
-{
-  BijiProviderClass parent_class;
-};
-
-
-GType                   biji_import_provider_get_type             (void);
-
+G_DECLARE_FINAL_TYPE (BijiImportProvider, biji_import_provider, BIJI, IMPORT_PROVIDER, BijiProvider)
 
 BijiProvider           *biji_import_provider_new                  (BijiManager *manager,
-                                                                   const gchar *target_provider,
-                                                                   const gchar *uri);
-
+                                                                   const char  *target_provider,
+                                                                   const char  *uri);
 
 G_END_DECLS
+

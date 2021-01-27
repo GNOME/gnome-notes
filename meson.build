@@ -54,7 +54,8 @@ endforeach
 common_flags = [
   '-DHAVE_CONFIG_H',
   '-DDATADIR="@0@"'.format(bijiben_datadir),
-  '-DPACKAGE_LOCALE_DIR="@0@"'.format(bijiben_localedir)
+  '-DPACKAGE_LOCALE_DIR="@0@"'.format(bijiben_localedir),
+  '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_54',
 ]
 
 if get_option('buildtype').contains('debug')

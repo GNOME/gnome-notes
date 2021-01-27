@@ -1,4 +1,3 @@
-option('zeitgeist', type: 'boolean', value: false, description: 'Enable Zeitgeist')
 option('update_mimedb', type: 'boolean', value: true, description: 'update-mime-database after install')
 option('private_store', type: 'boolean', value: false, description: 'Use Tracker private store instead of Tracker service')
 option('profile', type: 'combo', choices: [ 'default', 'development'], value: 'default')

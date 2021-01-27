@@ -152,6 +152,5 @@ meson.add_install_script(
 )
 
 output = '  Version:          ' + bijiben_version + '\n'
-output += '  Enable Zeitgeist  ' + enable_zeitgeist.to_string() + '\n'
 output += '  Use Private Store ' + private_store.to_string() + ' (Tracker3: ' + has_tracker3.to_string() + ')\n'
 message(output)

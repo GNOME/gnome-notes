@@ -3,10 +3,6 @@
 #include <glib-object.h>
 #include <tracker-sparql.h>
 
-#ifdef BUILD_ZEITGEIST
-#include <zeitgeist.h>
-#endif /* BUILD_ZEIGEIST */
-
 #include "biji-info-set.h"
 #include "biji-note-obj.h"
 
@@ -62,12 +58,6 @@ void             biji_manager_import_uri            (BijiManager *manager,
                                                      const gchar *uri);
 
 GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
-
-
-#ifdef BUILD_ZEITGEIST
-ZeitgeistLog    *biji_manager_get_zg_log            (BijiManager *manager);
-#endif /* BUILD_ZEITGEIST */
-
 TrackerSparqlConnection
                 *biji_manager_get_tracker_connection (BijiManager *manager);
 

@@ -21,7 +21,6 @@ sources = files(
   'biji-string.c',
   'biji-timeout.c',
   'biji-tracker.c',
-  'biji-zeitgeist.c',
   '../bjb-utils.c',
 )
 
@@ -36,13 +35,6 @@ sources += gnome.genmarshal(
 deps = bijiben_deps
 
 cflags = []
-
-enable_zeitgeist = get_option('zeitgeist')
-if enable_zeitgeist
-  deps += [dependency('zeitgeist-2.0')]
-
-  cflags += '-DBUILD_ZEITGEIST'
-endif
 
 libbiji = static_library(
   'biji',

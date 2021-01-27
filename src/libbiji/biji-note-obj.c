@@ -22,10 +22,6 @@
 #include "biji-timeout.h"
 #include "biji-tracker.h"
 
-#ifdef BUILD_ZEITGEIST
-#include "biji-zeitgeist.h"
-#endif /* BUILD_ZEITGEIST */
-
 #include "editor/biji-webkit-editor.h"
 
 typedef struct
@@ -103,10 +99,6 @@ on_save_timeout (BijiNoteObj *self)
    * FIXME: common tracker would make sense */
 
   BIJI_NOTE_OBJ_GET_CLASS (self)->save_note (self);
-
-#ifdef BUILD_ZEITGEIST
-  insert_zeitgeist (self, ZEITGEIST_ZG_MODIFY_EVENT);
-#endif /* BUILD_ZEITGEIST */
 
   priv->needs_save = FALSE;
   g_object_unref (self);
@@ -246,11 +238,6 @@ trash (BijiItem *item)
   GFile              *icon      = NULL;
   char               *icon_path = NULL;
   gboolean            result    = FALSE;
-
-  /* The event has to be logged before the note is actually deleted */
-#ifdef BUILD_ZEITGEIST
-  insert_zeitgeist (note_to_kill, ZEITGEIST_ZG_DELETE_EVENT);
-#endif /* BUILD_ZEITGEIST */
 
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
@@ -895,10 +882,6 @@ on_biji_note_obj_closed_cb (BijiNoteObj *self)
   priv->editor = NULL;
   title = biji_item_get_title (item);
 
-#ifdef BUILD_ZEITGEIST
-  insert_zeitgeist (note, ZEITGEIST_ZG_LEAVE_EVENT);
-#endif /* BUILD_ZEITGEIST */
-
   /*
    * Delete (not _trash_ if note is totaly blank
    * A Cancellable would be better than needs->save
@@ -926,10 +909,6 @@ biji_note_obj_open (BijiNoteObj *self)
 
   g_signal_connect_swapped (priv->editor, "destroy",
                             G_CALLBACK (on_biji_note_obj_closed_cb), self);
-
-#ifdef BUILD_ZEITGEIST
-  insert_zeitgeist (note, ZEITGEIST_ZG_ACCESS_EVENT);
-#endif /* BUILD_ZEITGEIST */
 
   return GTK_WIDGET (priv->editor);
 }

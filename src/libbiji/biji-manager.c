@@ -49,11 +49,6 @@ struct _BijiManager
   GFile *location;
   TrackerSparqlConnection *connection;
 
-
-#ifdef BUILD_ZEITGEIST
-  ZeitgeistLog *log;
-#endif /* BUILD_ZEITGEIST */
-
   GdkRGBA color;
 };
 
@@ -321,16 +316,6 @@ biji_manager_init (BijiManager *self)
   self->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
                                            g_free, g_object_unref);
 }
-
-
-#ifdef BUILD_ZEITGEIST
-ZeitgeistLog *
-biji_manager_get_zg_log (BijiManager *self)
-{
-  return self->log;
-}
-#endif /* BUILD_ZEITGEIST */
-
 
 TrackerSparqlConnection *
 biji_manager_get_tracker_connection (BijiManager *self)
@@ -673,10 +658,6 @@ biji_manager_constructed (GObject *object)
   GFile *cache;
 
   G_OBJECT_CLASS (biji_manager_parent_class)->constructed (object);
-
-#ifdef BUILD_ZEITGEIST
-  BIJI_MANAGER (object)->log = biji_zeitgeist_init ();
-#endif /* BUILD_ZEITGEIST */
 
   /* Ensure cache directory for icons */
   filename = g_build_filename (g_get_user_cache_dir (),

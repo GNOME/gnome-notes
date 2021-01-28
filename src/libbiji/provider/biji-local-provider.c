@@ -237,7 +237,7 @@ enumerate_next_files_ready_cb (GObject *source,
   /* Now we have all notes,
    * load the notebooks and we're good to notify loading done */
   biji_get_all_notebooks_async (biji_provider_get_manager (BIJI_PROVIDER (self)),
-                                local_provider_finish,
+                                local_provider_finish, NULL,
                                 helper);
 }
 

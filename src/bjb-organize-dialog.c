@@ -190,7 +190,8 @@ update_notebooks_model_async (BjbOrganizeDialog *self)
 
   manager = bjb_window_base_get_manager (GTK_WIDGET (self->window));
   gtk_list_store_clear (self->notebook_store);
-  biji_get_all_notebooks_async (manager, bjb_organize_dialog_handle_tags, self);
+  biji_get_all_notebooks_async (manager,
+                                bjb_organize_dialog_handle_tags, NULL, self);
 }
 
 /* Libbiji handles tracker & saving */

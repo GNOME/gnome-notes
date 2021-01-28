@@ -61,9 +61,10 @@ void        biji_get_items_matching_async              (BijiManager *manager,
 
 
 
-void        biji_get_all_notebooks_async             (BijiManager *manager,
-                                                        BijiInfoSetsHCallback cb,
-                                                        gpointer user_data);
+void        biji_get_all_notebooks_async             (BijiManager          *manager,
+                                                      BijiInfoSetsHCallback cb,
+                                                      BijiItemsListCallback list_cb,
+                                                      gpointer              user_data);
 
 
 

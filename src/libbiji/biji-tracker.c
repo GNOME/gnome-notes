@@ -326,9 +326,10 @@ bjb_query_async (BijiManager           *manager,
 
 
 void
-biji_get_all_notebooks_async (BijiManager *manager,
-                                BijiInfoSetsHCallback cb,
-                                gpointer user_data)
+biji_get_all_notebooks_async (BijiManager          *manager,
+                              BijiInfoSetsHCallback hash_cb,
+                              BijiItemsListCallback list_cb,
+                              gpointer              user_data)
 {
   gchar *query = g_strconcat (
     "SELECT ?c ?title ?mtime ",
@@ -338,7 +339,7 @@ biji_get_all_notebooks_async (BijiManager *manager,
     "nie:generator 'Bijiben'}",
     NULL);
 
-  bjb_query_async (manager, query, cb, NULL, user_data);
+  bjb_query_async (manager, query, hash_cb, list_cb, user_data);
 
   g_free (query);
 }

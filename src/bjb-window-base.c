@@ -68,9 +68,12 @@ struct _BjbWindowBase
   HdyHeaderGroup       *header_group;
   GtkStack             *main_stack;
   GtkWidget            *back_button;
+  GtkWidget            *filter_label;
+  GtkWidget            *filter_menu_button;
   GtkWidget            *headerbar;
   GtkWidget            *note_box;
   GtkWidget            *note_headerbar;
+  GtkWidget            *notebooks_box;
   GtkWidget            *sidebar_box;
   GtkWidget            *search_bar;
   GtkWidget            *title_entry;
@@ -223,6 +226,16 @@ bjb_window_base_set_property (GObject  *object,
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
+}
+
+static void
+clear_text_in_search_entry (BjbWindowBase *self)
+{
+  GtkEntry *search_entry;
+
+  /* Clear the content in search bar if there is any in it. */
+  search_entry = bjb_search_toolbar_get_entry_widget (BJB_SEARCH_TOOLBAR (self->search_bar));
+  gtk_entry_set_text (search_entry, "");
 }
 
 static gboolean
@@ -390,6 +403,59 @@ on_email_cb (GSimpleAction *action,
 }
 
 static void
+on_show_all_notes_cb (GSimpleAction *action,
+                      GVariant      *parameter,
+                      gpointer       user_data)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+
+  clear_text_in_search_entry (self);
+
+  /* Going back from a notebook. */
+  if (bjb_controller_get_notebook (self->controller) != NULL)
+    bjb_controller_set_notebook (self->controller, NULL);
+
+  bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+  gtk_label_set_text (GTK_LABEL (self->filter_label), _("All Notes"));
+}
+
+static void
+on_show_notebook_cb (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       user_data)
+{
+  const char *note_uuid;
+  const char *title;
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BijiItem *notebook;
+  BijiManager *manager;
+
+  clear_text_in_search_entry (self);
+
+  note_uuid = g_variant_get_string (parameter, NULL);
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  notebook = biji_manager_get_item_at_path (manager, note_uuid);
+  bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (notebook));
+
+  /* Update headerbar title. */
+  title = biji_item_get_title (notebook);
+  gtk_label_set_text (GTK_LABEL (self->filter_label), title);
+}
+
+static void
+on_show_trash_cb (GSimpleAction *action,
+                  GVariant      *parameter,
+                  gpointer       user_data)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+
+  clear_text_in_search_entry (self);
+
+  bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+  gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
+}
+
+static void
 on_trash_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
@@ -467,6 +533,59 @@ bjb_window_base_configure_event (GtkWidget         *widget,
                                                                            event);
 }
 
+static void
+append_notebook (BijiItem      *notebook,
+                 BjbWindowBase *self)
+{
+  const char *note_uuid;
+  const char *title;
+  GVariant *variant;
+  GtkWidget *button;
+  GtkWidget *label;
+
+  note_uuid = biji_item_get_uuid (notebook);
+  variant = g_variant_new_string (note_uuid);
+
+  button = gtk_model_button_new ();
+  g_object_set (button,
+                "action-name", "win.show-notebook",
+                "action-target", variant,
+                NULL);
+
+  title = biji_item_get_title (notebook);
+  gtk_button_set_label (GTK_BUTTON (button), title);
+  label = gtk_bin_get_child (GTK_BIN (button));
+  gtk_label_set_xalign (GTK_LABEL (label), 0);
+
+  gtk_widget_show (button);
+  gtk_box_pack_end (GTK_BOX (self->notebooks_box), button, TRUE, TRUE, 0);
+}
+
+static int
+compare_notebook (gconstpointer a,
+                  gconstpointer b)
+{
+  g_autofree char *up_a = NULL;
+  g_autofree char *up_b = NULL;
+  BijiItem *item_a = (BijiItem *) a;
+  BijiItem *item_b = (BijiItem *) b;
+
+  up_a = g_utf8_casefold (biji_item_get_title (item_a), -1);
+  up_b = g_utf8_casefold (biji_item_get_title (item_b), -1);
+
+  return g_strcmp0 (up_a, up_b);
+}
+
+static void
+get_all_notebooks_cb (GList   *notebooks,
+                      gpointer user_data)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+
+  notebooks = g_list_sort (notebooks, compare_notebook);
+  g_list_foreach (notebooks, (GFunc) append_notebook, self);
+}
+
 static GActionEntry win_entries[] = {
   { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
   { "paste", on_paste_cb, NULL, NULL, NULL },
@@ -474,6 +593,9 @@ static GActionEntry win_entries[] = {
   { "redo", on_redo_cb, NULL, NULL, NULL },
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
+  { "show-all-notes", on_show_all_notes_cb, NULL, NULL, NULL },
+  { "show-notebook", on_show_notebook_cb, "s", NULL, NULL },
+  { "show-trash", on_show_trash_cb, NULL, NULL, NULL },
   { "trash", on_trash_cb, NULL, NULL, NULL },
   { "close", on_close },
 };
@@ -482,6 +604,7 @@ static GActionEntry win_entries[] = {
 static void
 bjb_window_base_constructed (GObject *obj)
 {
+  BijiManager *manager;
   BjbSearchToolbar *search_bar;
   BjbWindowBase *self = BJB_WINDOW_BASE (obj);
   GtkListBox *list_box;
@@ -537,6 +660,9 @@ bjb_window_base_constructed (GObject *obj)
   gtk_stack_add_named (self->main_stack, GTK_WIDGET (self->note_list), "main-view");
   gtk_widget_show (GTK_WIDGET (self->main_stack));
 
+  /* Populate the filter menu model. */
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
 
   /* Connection to window signals */
 
@@ -618,8 +744,11 @@ bjb_window_base_class_init (BjbWindowBaseClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_stack);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, headerbar);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, filter_label);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, filter_menu_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_headerbar);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, notebooks_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, sidebar_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, search_bar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, title_entry);

@@ -13,14 +13,42 @@
             <child>
               <object class="HdyHeaderBar" id="headerbar">
                 <property name="visible">True</property>
+                <property name="custom-title">filter_menu_button</property>
                 <property name="show-close-button">True</property>
-                <property name="title" translatable="yes">All Notes</property>
                 <child>
                   <object class="GtkButton" id="new_button">
                     <property name="visible">True</property>
                     <property name="label" translatable="yes">_New</property>
                     <property name="use-underline">True</property>
                     <signal name="clicked" handler="on_new_note_clicked" swapped="yes"/>
+                  </object>
+                </child>
+                <child type="title">
+                  <object class="GtkMenuButton" id="filter_menu_button">
+                    <property name="visible">True</property>
+                    <property name="popover">filter_menu</property>
+                    <property name="relief">GTK_RELIEF_NONE</property>
+                    <property name="valign">center</property>
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="orientation">horizontal</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel" id="filter_label">
+                            <property name="visible">True</property>
+                            <property name="label" translatable="yes">All Notes</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="icon-name">pan-down-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child>
@@ -112,7 +140,7 @@
                   <object class="GtkMenuButton" id="menu_button">
                     <property name="visible">True</property>
                     <property name="tooltip-text" translatable="yes">More options</property>
-                    <property name="popover">menu</property>
+                    <property name="popover">note-menu</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">1</property>
@@ -144,14 +172,6 @@
             <property name="visible">True</property>
             <property name="text" translatable="yes">Import Notes</property>
             <property name="action-name">app.import-notes</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="text" translatable="yes">View Trash</property>
-            <property name="action-name">app.view-trash</property>
           </object>
         </child>
 
@@ -244,7 +264,68 @@
     </child>
   </object>
 
-  <object class="GtkPopoverMenu" id="menu">
+  <object class="GtkPopover" id="filter_menu">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">12</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">All Notes</property>
+            <property name="action-name">win.show-all-notes</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="label" translatable="yes">Notebooks</property>
+            <property name="margin-left">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="notebooks_box">
+            <property name="visible">True</property>
+            <property name="expand">True</property>
+            <property name="orientation">vertical</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Trash</property>
+            <property name="action-name">win.show-trash</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+
+  <object class="GtkPopoverMenu" id="note-menu">
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>

@@ -45,6 +45,14 @@ struct _BjbSearchToolbar
 
 G_DEFINE_TYPE (BjbSearchToolbar, bjb_search_toolbar, HDY_TYPE_SEARCH_BAR)
 
+GtkEntry *
+bjb_search_toolbar_get_entry_widget (BjbSearchToolbar *self)
+{
+  g_return_val_if_fail (BJB_IS_SEARCH_TOOLBAR (self), NULL);
+
+  return self->entry;
+}
+
 static void
 on_search_changed_cb (GtkEntry         *entry,
                       BjbSearchToolbar *self)

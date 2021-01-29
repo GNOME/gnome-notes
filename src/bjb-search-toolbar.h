@@ -39,5 +39,7 @@ void               bjb_search_toolbar_setup                 (BjbSearchToolbar *s
                                                              GtkWidget        *window,
                                                              BjbController    *controller);
 
+GtkEntry          *bjb_search_toolbar_get_entry_widget      (BjbSearchToolbar *self);
+
 G_END_DECLS
 

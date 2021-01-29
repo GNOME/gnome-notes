@@ -61,10 +61,6 @@ void            on_import_notes_cb          (GSimpleAction      *action,
                                              GVariant           *parameter,
                                              gpointer            user_data);
 
-void            on_view_trash_cb            (GSimpleAction      *action,
-                                             GVariant           *parameter,
-                                             gpointer            user_data);
-
 void            on_preferences_cb           (GSimpleAction      *action,
                                              GVariant           *parameter,
                                              gpointer            user_data);
@@ -285,17 +281,6 @@ on_import_notes_cb (GSimpleAction *action,
 }
 
 void
-on_view_trash_cb (GSimpleAction *action,
-                  GVariant      *parameter,
-                  gpointer       user_data)
-{
-  GList *windows = gtk_application_get_windows (GTK_APPLICATION (user_data));
-  BjbController *controller = bjb_window_base_get_controller (BJB_WINDOW_BASE (windows->data));
-
-  bjb_controller_set_group (controller, BIJI_ARCHIVED_ITEMS);
-}
-
-void
 on_preferences_cb (GSimpleAction *action,
                    GVariant      *parameter,
                    gpointer       user_data)
@@ -393,7 +378,6 @@ manager_ready_cb (GObject *source,
 
 static GActionEntry app_entries[] = {
   { "import-notes", on_import_notes_cb, NULL, NULL, NULL },
-  { "view-trash", on_view_trash_cb, NULL, NULL, NULL },
   { "text-size", NULL, "s", "'medium'", NULL },
   { "preferences", on_preferences_cb, NULL, NULL, NULL },
   { "help", on_help_cb, NULL, NULL, NULL },

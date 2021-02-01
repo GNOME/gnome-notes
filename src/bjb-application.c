@@ -199,15 +199,17 @@ bijiben_open (GApplication  *application,
 {
   BjbApplication *self;
   gint i;
-  g_autofree gchar *path = NULL;
 
   self = BJB_APPLICATION (application);
 
   for (i = 0; i < n_files; i++)
   {
+    g_autofree char *path = NULL;
+
     path = g_file_get_parse_name (files[i]);
     if (!bijiben_open_path (self, path, NULL))
-      g_queue_push_head (&self->files_to_open, path);
+      g_queue_push_head (&self->files_to_open,
+                         g_steal_pointer (&path));
   }
 }
 

@@ -45,6 +45,7 @@ struct _BjbWindowBase
   BjbController        *controller;
   gchar                *entry; // FIXME, remove this
 
+  gulong                display_notebooks_changed;
 
   GtkStack             *stack;
   BjbWindowViewType     current_view;
@@ -82,6 +83,9 @@ struct _BjbWindowBase
 
 /* Gobject */
 G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, HDY_TYPE_APPLICATION_WINDOW)
+
+static void get_all_notebooks_cb (GList   *notebooks,
+                                  gpointer user_data);
 
 static void
 destroy_note_if_needed (BjbWindowBase *self)
@@ -177,9 +181,27 @@ on_title_changed (BjbWindowBase *self,
 }
 
 static void
+on_display_notebooks_changed (BjbController *controller,
+                              gboolean       items_to_show,
+                              gboolean       remaining_items,
+                              BjbWindowBase *self)
+{
+  BijiManager *manager;
+
+  gtk_container_foreach (GTK_CONTAINER (self->notebooks_box),
+                         (GtkCallback) gtk_widget_destroy, NULL);
+
+  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
+}
+
+static void
 bjb_window_base_finalize (GObject *object)
 {
   BjbWindowBase *self = BJB_WINDOW_BASE (object);
+
+  if (self->display_notebooks_changed != 0)
+    g_signal_handler_disconnect (self->controller, self->display_notebooks_changed);
 
   g_clear_object (&self->controller);
 
@@ -558,7 +580,7 @@ append_notebook (BijiItem      *notebook,
   gtk_label_set_xalign (GTK_LABEL (label), 0);
 
   gtk_widget_show (button);
-  gtk_box_pack_end (GTK_BOX (self->notebooks_box), button, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (self->notebooks_box), button, TRUE, TRUE, 0);
 }
 
 static int
@@ -664,8 +686,14 @@ bjb_window_base_constructed (GObject *obj)
   manager = bjb_window_base_get_manager (GTK_WIDGET (self));
   biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
 
-  /* Connection to window signals */
+  if (self->display_notebooks_changed != 0)
+    g_signal_handler_disconnect (self->controller, self->display_notebooks_changed);
+  self->display_notebooks_changed = g_signal_connect (self->controller,
+                                                      "display-notebooks-changed",
+                                                      G_CALLBACK (on_display_notebooks_changed),
+                                                      self);
 
+  /* Connection to window signals */
   g_signal_connect (GTK_WIDGET (self),
                     "destroy",
                     G_CALLBACK (bjb_window_base_destroy),

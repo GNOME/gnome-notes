@@ -244,6 +244,9 @@ bjb_controller_add_item (BjbController *self,
       && biji_note_obj_is_template (BIJI_NOTE_OBJ (item)))
     return;
 
+  /* Exclude notebooks. */
+  if (BIJI_IS_NOTEBOOK (item))
+    return;
 
   if (sibling)
     gtk_list_store_insert_before (store, &iter, sibling);

@@ -76,6 +76,7 @@ static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 enum {
   SEARCH_CHANGED,
   DISPLAY_NOTES_CHANGED, // either search or manager change
+  DISPLAY_NOTEBOOKS_CHANGED,
   BJB_CONTROLLER_SIGNALS
 };
 
@@ -382,12 +383,21 @@ bjb_controller_update_view (BjbController *self)
   }
 }
 
-
 static void
-notify_displayed_items_changed (BjbController *self)
+notify_displayed_notes_changed (BjbController *self)
 {
   g_signal_emit (G_OBJECT (self),
                  bjb_controller_signals[DISPLAY_NOTES_CHANGED],
+                 0,
+                 (self->items_to_show != NULL),
+                 self->remaining_items);
+}
+
+static void
+notify_displayed_notebooks_changed (BjbController *self)
+{
+  g_signal_emit (G_OBJECT (self),
+                 bjb_controller_signals[DISPLAY_NOTEBOOKS_CHANGED],
                  0,
                  (self->items_to_show != NULL),
                  self->remaining_items);
@@ -412,7 +422,7 @@ update (BjbController *self)
 
 
   bjb_controller_update_view (self);
-  notify_displayed_items_changed (self);
+  notify_displayed_notes_changed (self);
 }
 
 
@@ -596,7 +606,11 @@ on_manager_changed (BijiManager            *manager,
           bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
           self->n_items_to_show++;
           self->items_to_show = g_list_prepend (self->items_to_show, item);
-          notify_displayed_items_changed (self);
+
+          if (BIJI_IS_NOTE_OBJ (item))
+            notify_displayed_notes_changed (self);
+          else if (BIJI_IS_NOTEBOOK (item))
+            notify_displayed_notebooks_changed (self);
       break;
 
     /* Same comment, prepend but notebook before note */
@@ -631,7 +645,12 @@ on_manager_changed (BijiManager            *manager,
             bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
         }
       else
-        notify_displayed_items_changed (self);
+      {
+        if (BIJI_IS_NOTE_OBJ (item))
+          notify_displayed_notes_changed (self);
+        else if (BIJI_IS_NOTEBOOK (item))
+          notify_displayed_notebooks_changed (self);
+      }
 
       break;
 
@@ -700,7 +719,7 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                   G_TYPE_NONE,
                                                   0);
 
-  bjb_controller_signals[DISPLAY_NOTES_CHANGED] = g_signal_new ( "display-items-changed" ,
+  bjb_controller_signals[DISPLAY_NOTES_CHANGED] = g_signal_new ( "display-notes-changed" ,
                                                   G_OBJECT_CLASS_TYPE (klass),
                                                   G_SIGNAL_RUN_LAST,
                                                   0,
@@ -711,6 +730,18 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                   2,
                                                   G_TYPE_BOOLEAN,
                                                   G_TYPE_BOOLEAN);
+
+  bjb_controller_signals[DISPLAY_NOTEBOOKS_CHANGED] = g_signal_new ("display-notebooks-changed",
+                                                      G_OBJECT_CLASS_TYPE (klass),
+                                                      G_SIGNAL_RUN_LAST,
+                                                      0,
+                                                      NULL,
+                                                      NULL,
+                                                      _biji_marshal_VOID__BOOLEAN_BOOLEAN,
+                                                      G_TYPE_NONE,
+                                                      2,
+                                                      G_TYPE_BOOLEAN,
+                                                      G_TYPE_BOOLEAN);
 
   properties[PROP_BOOK] = g_param_spec_object ("manager",
                                                "Book",
@@ -962,7 +993,7 @@ bjb_controller_set_all_selection (BjbController *self,
                           bjb_controller_set_selection_foreach,
                           GINT_TO_POINTER (selection));
 
-  notify_displayed_items_changed (self);
+  notify_displayed_notes_changed (self);
 }
 
 void

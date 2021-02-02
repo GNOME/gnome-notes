@@ -109,7 +109,7 @@ bjb_list_view_setup (BjbListView   *self,
   self->controller = controller;
 
   self->display_items_changed = g_signal_connect (self->controller,
-                                                  "display-items-changed",
+                                                  "display-notes-changed",
                                                   G_CALLBACK (bjb_list_view_on_display_items_changed),
                                                   self);
 

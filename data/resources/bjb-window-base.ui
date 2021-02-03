@@ -18,9 +18,14 @@
                 <child>
                   <object class="GtkButton" id="new_button">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">_New</property>
                     <property name="use-underline">True</property>
                     <signal name="clicked" handler="on_new_note_clicked" swapped="yes"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">list-add-symbolic</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
                 <child type="title">

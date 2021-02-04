@@ -280,7 +280,11 @@
           <object class="GtkModelButton">
             <property name="visible">True</property>
             <property name="text" translatable="yes">All Notes</property>
-            <property name="action-name">win.show-all-notes</property>
+            <property name="action-name">win.show-notebook</property>
+            <property name="action-target">'ALL NOTES'</property>
+            <style>
+              <class name="modelbutton"/>
+            </style>
           </object>
         </child>
 
@@ -323,7 +327,11 @@
           <object class="GtkModelButton">
             <property name="visible">True</property>
             <property name="text" translatable="yes">Trash</property>
-            <property name="action-name">win.show-trash</property>
+            <property name="action-name">win.show-notebook</property>
+            <property name="action-target">'TRASH'</property>
+            <style>
+              <class name="modelbutton"/>
+            </style>
           </object>
         </child>
       </object>

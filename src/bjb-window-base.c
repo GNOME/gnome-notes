@@ -425,12 +425,8 @@ on_email_cb (GSimpleAction *action,
 }
 
 static void
-on_show_all_notes_cb (GSimpleAction *action,
-                      GVariant      *parameter,
-                      gpointer       user_data)
+show_all_notes (BjbWindowBase *self)
 {
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
-
   clear_text_in_search_entry (self);
 
   /* Going back from a notebook. */
@@ -442,8 +438,17 @@ on_show_all_notes_cb (GSimpleAction *action,
 }
 
 static void
+show_trash (BjbWindowBase *self)
+{
+  clear_text_in_search_entry (self);
+
+  bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+  gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
+}
+
+static void
 on_show_notebook_cb (GSimpleAction *action,
-                     GVariant      *parameter,
+                     GVariant      *variant,
                      gpointer       user_data)
 {
   const char *note_uuid;
@@ -454,27 +459,23 @@ on_show_notebook_cb (GSimpleAction *action,
 
   clear_text_in_search_entry (self);
 
-  note_uuid = g_variant_get_string (parameter, NULL);
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
-  notebook = biji_manager_get_item_at_path (manager, note_uuid);
-  bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (notebook));
+  note_uuid = g_variant_get_string (variant, NULL);
+  if (g_strcmp0 (note_uuid, "ALL NOTES") == 0)
+    show_all_notes (self);
+  else if (g_strcmp0 (note_uuid, "TRASH") == 0)
+    show_trash (self);
+  else
+  {
+    manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+    notebook = biji_manager_get_item_at_path (manager, note_uuid);
+    bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (notebook));
 
-  /* Update headerbar title. */
-  title = biji_item_get_title (notebook);
-  gtk_label_set_text (GTK_LABEL (self->filter_label), title);
-}
+    /* Update headerbar title. */
+    title = biji_item_get_title (notebook);
+    gtk_label_set_text (GTK_LABEL (self->filter_label), title);
+  }
 
-static void
-on_show_trash_cb (GSimpleAction *action,
-                  GVariant      *parameter,
-                  gpointer       user_data)
-{
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
-
-  clear_text_in_search_entry (self);
-
-  bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
-  gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
+  g_simple_action_set_state (action, variant);
 }
 
 static void
@@ -505,6 +506,14 @@ on_close (GSimpleAction *action,
   window = GTK_APPLICATION_WINDOW (user_data);
 
   gtk_window_close (GTK_WINDOW (window));
+}
+
+static void
+on_action_radio (GSimpleAction *action,
+                 GVariant      *variant,
+                 gpointer       user_data)
+{
+  g_action_change_state (G_ACTION (action), variant);
 }
 
 static void
@@ -562,22 +571,22 @@ append_notebook (BijiItem      *notebook,
   const char *note_uuid;
   const char *title;
   GVariant *variant;
+  GtkStyleContext *context;
   GtkWidget *button;
-  GtkWidget *label;
 
   note_uuid = biji_item_get_uuid (notebook);
   variant = g_variant_new_string (note_uuid);
 
+  title = biji_item_get_title (notebook);
   button = gtk_model_button_new ();
   g_object_set (button,
                 "action-name", "win.show-notebook",
                 "action-target", variant,
+                "text", title,
                 NULL);
 
-  title = biji_item_get_title (notebook);
-  gtk_button_set_label (GTK_BUTTON (button), title);
-  label = gtk_bin_get_child (GTK_BIN (button));
-  gtk_label_set_xalign (GTK_LABEL (label), 0);
+  context = gtk_widget_get_style_context (button);
+  gtk_style_context_add_class (context, "modelbutton");
 
   gtk_widget_show (button);
   gtk_box_pack_start (GTK_BOX (self->notebooks_box), button, TRUE, TRUE, 0);
@@ -615,9 +624,7 @@ static GActionEntry win_entries[] = {
   { "redo", on_redo_cb, NULL, NULL, NULL },
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
-  { "show-all-notes", on_show_all_notes_cb, NULL, NULL, NULL },
-  { "show-notebook", on_show_notebook_cb, "s", NULL, NULL },
-  { "show-trash", on_show_trash_cb, NULL, NULL, NULL },
+  { "show-notebook", on_action_radio, "s", "'ALL NOTES'", on_show_notebook_cb },
   { "trash", on_trash_cb, NULL, NULL, NULL },
   { "close", on_close },
 };

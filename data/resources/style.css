@@ -10,3 +10,20 @@ row:last-child {
 	border-bottom: none;
 }
 
+.modelbutton radio:checked {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+    color: @theme_selected_bg_color;
+    -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+
+.modelbutton radio:not(checked) {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+}

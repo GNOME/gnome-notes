@@ -49,7 +49,7 @@
     </item>
     <item>
       <p>To create an ordered list, select the
-      <guiseq><gui style="button">Numbered List</gui>
+      <guiseq><gui style="button">List</gui>
       </guiseq> button from the footer menu.</p>
       <media type="image" src="figures/format-page-numbered-list.png"/>
     </item>

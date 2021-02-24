@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-07-22 13:04+0000\n"
+"POT-Creation-Date: 2020-09-05 07:08+0000\n"
 "PO-Revision-Date: 2020-08-13 00:55+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language-Team: Proxecto Trasno <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +72,6 @@ msgid "Note-taker"
 msgstr "Caderno de notas"
 
 #: data/org.gnome.Notes.desktop.in:19
-#| msgid "Create a new note"
 msgid "Create New Note"
 msgstr "Crear unha nova nota"
 
@@ -188,7 +187,6 @@ msgid "Close window"
 msgstr "Pechar xanela"
 
 #: data/resources/help-overlay.ui:35
-#| msgid "_Quit"
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Saír"
@@ -204,7 +202,6 @@ msgid "Show help"
 msgstr "Mostrar axuda"
 
 #: data/resources/help-overlay.ui:56
-#| msgid "Open menu"
 msgctxt "shortcut window"
 msgid "Open menu"
 msgstr "Abrir menú"
@@ -443,7 +440,7 @@ msgstr "Seleccionar a localización de almacenamento por omisión:"
 msgid "Primary Book"
 msgstr "Caderno primario"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Sen título"
 
@@ -491,7 +488,7 @@ msgstr "Fran Diéguez <frandieguez@gnome.org>, 2013-2020"
 msgid "Note Color"
 msgstr "Cor da nota"
 
-#: src/bjb-controller.c:239
+#: src/bjb-controller.c:236
 msgid "Notebook"
 msgstr "Caderno"
 
@@ -518,16 +515,16 @@ msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: src/bjb-main-toolbar.c:228
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Resultados para %s"
 
-#: src/bjb-main-toolbar.c:231
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: src/bjb-main-toolbar.c:324
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Lixo"
 
@@ -536,7 +533,7 @@ msgstr "Lixo"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:392
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última actualización: %s"

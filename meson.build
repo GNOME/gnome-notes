@@ -122,7 +122,7 @@ bijiben_deps = [
   dependency('json-glib-1.0'),
   dependency('libecal-2.0', version: '>= 3.33.2'),
   dependency('libedataserver-1.2', version: '>= 3.13.90'),
-  dependency('libhandy-0.0', version: '>= 0.0.10'),
+  dependency('libhandy-1', version: '>= 1.0.0'),
   dependency('libxml-2.0'),
   dependency('libcurl'),
   dependency('uuid'),

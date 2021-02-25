@@ -1,14 +1,14 @@
 # Swedish translation for gnome-notes.
-# Copyright © 2016-2020 gnome-notes's COPYRIGHT HOLDER
+# Copyright © 2016-2021 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-notes package.
 # Sebastian Rasmussen <sebras@gmail.com>, 2016.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
-"POT-Creation-Date: 2020-07-15 01:33+0000\n"
-"PO-Revision-Date: 2020-09-08 20:19+0200\n"
+"POT-Creation-Date: 2021-02-25 11:20+0000\n"
+"PO-Revision-Date: 2021-02-25 17:37+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Bookmarks: -1,-1,47,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
@@ -447,10 +447,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:48
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-unordered-list.png' "
@@ -462,11 +458,11 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/format-list.page:51
 msgid ""
-"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
-"List</gui> </guiseq> button from the footer menu."
+"To create an ordered list, select the <guiseq><gui style=\"button\">List</"
+"gui> </guiseq> button from the footer menu."
 msgstr ""
 "För att skapa en sorterad lista, välj knappen <guiseq><gui style=\"button"
-"\">Numrerad lista</gui> </guiseq> från sidfotsmenyn."
+"\">Lista</gui> </guiseq> från sidfotsmenyn."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -474,10 +470,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:54
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-numbered-list.png' "
@@ -581,10 +573,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:44
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
@@ -820,14 +808,3 @@ msgstr "Creative Commons Erkännande-DelaLika 3.0 Unported"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Detta verk är licensierat under licensen <_:link-1/>."
-
-#~ msgid "01 sep 2014"
-#~ msgstr "01 sep 2014"
-
-# sebras: https://bugzilla.gnome.org/show_bug.cgi?id=766195
-#~ msgid ""
-#~ "To create an unordered list, click <guiseq><gui style=\"button\">More "
-#~ "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
-#~ msgstr ""
-#~ "För att skapa en osorterad lista, klicka på <guiseq><gui style=\"button"
-#~ "\">Fler val…</gui> <gui style=\"menuitem\">Punkter</gui></guiseq>."

@@ -153,36 +153,33 @@ biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
 {
   BijiWebkitEditorPrivate *priv = self->priv;
 
-  if (priv->has_text)
+  switch (format)
   {
-    switch (format)
-    {
-      case BIJI_BOLD:
-        biji_toggle_format (priv->sel, e_editor_selection_get_bold,
-                                       e_editor_selection_set_bold);
-        break;
+    case BIJI_BOLD:
+      biji_toggle_format (priv->sel, e_editor_selection_get_bold,
+                                      e_editor_selection_set_bold);
+      break;
 
-      case BIJI_ITALIC:
-        biji_toggle_format (priv->sel, e_editor_selection_get_italic,
-                                       e_editor_selection_set_italic);
-        break;
+    case BIJI_ITALIC:
+      biji_toggle_format (priv->sel, e_editor_selection_get_italic,
+                                      e_editor_selection_set_italic);
+      break;
 
-      case BIJI_STRIKE:
-        biji_toggle_format (priv->sel, e_editor_selection_get_strike_through,
-                                       e_editor_selection_set_strike_through);
-        break;
+    case BIJI_STRIKE:
+      biji_toggle_format (priv->sel, e_editor_selection_get_strike_through,
+                                      e_editor_selection_set_strike_through);
+      break;
 
-      case BIJI_BULLET_LIST:
-        biji_toggle_block_format (self, BLOCK_FORMAT_UNORDERED_LIST);
-        break;
+    case BIJI_BULLET_LIST:
+      biji_toggle_block_format (self, BLOCK_FORMAT_UNORDERED_LIST);
+      break;
 
-      case BIJI_ORDER_LIST:
-        biji_toggle_block_format (self, BLOCK_FORMAT_ORDERED_LIST);
-        break;
+    case BIJI_ORDER_LIST:
+      biji_toggle_block_format (self, BLOCK_FORMAT_ORDERED_LIST);
+      break;
 
-      default:
-        g_warning ("biji_webkit_editor_apply_format : Invalid format");
-    }
+    default:
+      g_warning ("biji_webkit_editor_apply_format : Invalid format");
   }
 }
 

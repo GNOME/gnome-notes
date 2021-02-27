@@ -47,7 +47,9 @@ enum {
 typedef enum {
   BLOCK_FORMAT_NONE,
   BLOCK_FORMAT_UNORDERED_LIST,
-  BLOCK_FORMAT_ORDERED_LIST
+  BLOCK_FORMAT_ORDERED_LIST,
+  BLOCK_FORMAT_INDENT,
+  BLOCK_FORMAT_OUTDENT
 } BlockFormat;
 
 static guint biji_editor_signals [EDITOR_SIGNALS] = { 0 };
@@ -143,6 +145,12 @@ biji_toggle_block_format (BijiWebkitEditor *self,
     case BLOCK_FORMAT_ORDERED_LIST:
       webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "insertOrderedList");
       break;
+    case BLOCK_FORMAT_INDENT:
+      webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "indent");
+      break;
+    case BLOCK_FORMAT_OUTDENT:
+      webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "outdent");
+      break;
     default:
       g_assert_not_reached ();
   }
@@ -152,6 +160,8 @@ void
 biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
 {
   BijiWebkitEditorPrivate *priv = self->priv;
+  gboolean has_list = priv->block_format == BLOCK_FORMAT_UNORDERED_LIST
+                      || priv-> block_format == BLOCK_FORMAT_ORDERED_LIST;
 
   if (priv->has_text)
   {
@@ -178,6 +188,16 @@ biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
 
       case BIJI_ORDER_LIST:
         biji_toggle_block_format (self, BLOCK_FORMAT_ORDERED_LIST);
+        break;
+
+      case BIJI_INDENT:
+        if (has_list)
+          biji_toggle_block_format (self, BLOCK_FORMAT_INDENT);
+        break;
+
+      case BIJI_OUTDENT:
+        if (has_list)
+          biji_toggle_block_format (self, BLOCK_FORMAT_OUTDENT);
         break;
 
       default:

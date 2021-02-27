@@ -30,6 +30,18 @@
     <property name="icon_name">format-text-strikethrough-symbolic</property>
     <property name="icon_size">1</property>
   </object>
+  <object class="GtkImage" id="format-indent-more">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">format-indent-more-symbolic</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="format-indent-less">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">format-indent-less-symbolic</property>
+    <property name="icon_size">1</property>
+  </object>
   <template class="BjbEditorToolbar" parent="GtkActionBar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -140,6 +152,50 @@
             <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">expand</property>
+            <child>
+              <object class="GtkButton" id="indent_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Indent</property>
+                <property name="image">format-indent-more</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_indent_clicked" object="BjbEditorToolbar" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="outdent_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Outdent</property>
+                <property name="image">format-indent-less</property>
+                <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_outdent_clicked" object="BjbEditorToolbar" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>

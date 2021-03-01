@@ -1,8 +1,8 @@
-var domModifiedTimerID = -1;
-document.addEventListener("DOMSubtreeModified", function () {
-    if (domModifiedTimerID == -1) {
-        domModifiedTimerID = setTimeout(function () {
-            domModifiedTimerID = -1;
+var mutationTimerID = -1;
+const mutationObserver = new MutationObserver(function() {
+    if (mutationTimerID == -1) {
+        mutationTimerID = setTimeout(function () {
+            mutationTimerID = -1;
             doc = document.documentElement;
             window.webkit.messageHandlers.bijiben.postMessage({
                 messageName: 'ContentsUpdate',
@@ -11,7 +11,8 @@ document.addEventListener("DOMSubtreeModified", function () {
             });
         }, 0);
     }
-}, false);
+});
+mutationObserver.observe(document, { childList: true, characterData: true, subtree: true });
 
 function rangeHasText(range) {
     if (range.startContainer.nodeType == Node.TEXT_NODE)
@@ -74,19 +75,3 @@ document.addEventListener('selectionchange', function () {
         }, 0);
     }
 }, false);
-
-var pasteTimerID = -1;
-document.addEventListener("paste", function () {
-    if (pasteTimerID == -1) {
-        pasteTimerID = setTimeout(function () {
-            pasteTimerID = -1;
-            doc = document.documentElement;
-            window.webkit.messageHandlers.bijiben.postMessage({
-                messageName: 'ContentsUpdate',
-                outerHTML: doc.outerHTML,
-                innerText: doc.innerText
-            });
-        }, 0);
-    }
-}, false);
-

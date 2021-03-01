@@ -6,10 +6,12 @@ body {
   line-height:      1.5em;
   padding:          2.0em;
   font-size:        150%;
+  unicode-bidi:     plaintext;
 }
 
 div {
   margin:           0.75em 0;
+  unicode-bidi:     plaintext;
 }
 
 ul {

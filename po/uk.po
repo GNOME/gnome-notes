@@ -5,28 +5,27 @@
 # Mykola Tkach <Stuartlittle1970@gmail.com>, 2013.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2013-2019.
 # Danylo Korostil <ted.korostiled@gmail.com>, 2020.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-04-19 10:38+0000\n"
-"PO-Revision-Date: 2020-05-12 22:44+0300\n"
+"POT-Creation-Date: 2021-03-05 11:45+0000\n"
+"PO-Revision-Date: 2021-03-05 13:46+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1: 2);\n"
-"X-Generator: Lokalize 20.07.70\n"
+"X-Generator: Lokalize 20.11.70\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:636 src/bjb-window-base.c:18
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Примітки"
 
@@ -138,43 +137,45 @@ msgid "Window position (x and y)."
 msgstr "Розташування вікна (x та y)."
 
 #: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Як показувати примітки"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Показувати елементи списком чи піктограмою."
-
-#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Розмір тексту, що використовується редактором приміток."
 
-#: data/org.gnome.Notes.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Доступні три розміри тексту: малий, середній (типово) та великий."
 
-#: data/resources/editor-toolbar.ui:51
+#: data/resources/editor-toolbar.ui:63
 msgid "Bold"
 msgstr "Напівжирний"
 
-#: data/resources/editor-toolbar.ui:67
+#: data/resources/editor-toolbar.ui:79
 msgid "Italic"
 msgstr "Курсив"
 
-#: data/resources/editor-toolbar.ui:83
+#: data/resources/editor-toolbar.ui:95
 msgid "Strike"
 msgstr "Підкреслений"
 
-#: data/resources/editor-toolbar.ui:111
+#: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
 msgstr "Пункти"
 
-#: data/resources/editor-toolbar.ui:127
+#: data/resources/editor-toolbar.ui:139
 msgid "List"
 msgstr "Список"
 
-#: data/resources/editor-toolbar.ui:166
+#: data/resources/editor-toolbar.ui:167
+msgid "Indent"
+msgstr ""
+"Збільшити відступ"
+
+#: data/resources/editor-toolbar.ui:183
+msgid "Outdent"
+msgstr ""
+"Зменшити відступ"
+
+#: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Скопіювати вибране в нову примітку"
 
@@ -203,7 +204,6 @@ msgid "Close window"
 msgstr "Закрити вікно"
 
 #: data/resources/help-overlay.ui:35
-#| msgid "_Quit"
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Вийти"
@@ -219,7 +219,6 @@ msgid "Show help"
 msgstr "Показати довідку"
 
 #: data/resources/help-overlay.ui:56
-#| msgid "Open menu"
 msgctxt "shortcut window"
 msgid "Open menu"
 msgstr "Відкрити меню"
@@ -284,7 +283,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Викинути примітку"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Імпортувати примітки"
 
@@ -337,84 +336,76 @@ msgstr "Вийти з режиму вибирання"
 msgid "Search note titles, content and notebooks"
 msgstr "Пошук заголовків, вмісту й записників примітки"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Переглядати примітки і записники у ґратках"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Переглядати примітки і записники у списку"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Режим вибирання"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Відкрити меню"
 
-#: data/resources/main-toolbar.ui:195
+#: data/resources/main-toolbar.ui:150
 msgid "More options"
 msgstr "Більше параметрів"
 
-#: data/resources/main-toolbar.ui:234
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "П_ереглянути смітник"
 
-#: data/resources/main-toolbar.ui:251
+#: data/resources/main-toolbar.ui:206
 msgid "Text Sizes"
 msgstr "Розмір тексту"
 
-#: data/resources/main-toolbar.ui:261
+#: data/resources/main-toolbar.ui:216
 msgid "_Large"
 msgstr "_Великий"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:226
 msgid "_Medium"
 msgstr "_Середній"
 
-#: data/resources/main-toolbar.ui:281
+#: data/resources/main-toolbar.ui:236
 msgid "_Small"
 msgstr "_Малий"
 
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Параметри"
 
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Клавіатурні скорочення"
 
-#: data/resources/main-toolbar.ui:317
+#: data/resources/main-toolbar.ui:272
 msgid "Help"
 msgstr "_Довідка"
 
-#: data/resources/main-toolbar.ui:326
+#: data/resources/main-toolbar.ui:281
 msgid "About Notes"
 msgstr "Про Примітки"
 
-#: data/resources/main-toolbar.ui:348
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Відкрити у новому вікні"
 
-#: data/resources/main-toolbar.ui:365
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Повернути"
 
-#: data/resources/main-toolbar.ui:374
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Повторити"
 
-#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Записники"
 
-#: data/resources/main-toolbar.ui:400
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Надіслати цю примітку"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Пересунути у смітник"
 
@@ -466,47 +457,47 @@ msgstr "Виберіть типову адресу сховища:"
 msgid "Primary Book"
 msgstr "Первинна книга"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Неназвано"
 
-#: src/bjb-application.c:461
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
 msgstr "Показати версію програми"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Створити нову примітку"
 
-#: src/bjb-application.c:465
+#: src/bjb-application.c:444
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:473
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Взяти примітки і експортувати їх скрізь."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:484
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
 msgstr "Неможливо розібрати аргументи"
 
-#: src/bjb-application.c:492
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "Нотатки GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:504
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Неможливо зареєструвати програму"
 
-#: src/bjb-application.c:637
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Проста записна книжка середовища GNOME"
 
-#: src/bjb-application.c:643
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr ""
 "Микола Ткач <Stuartlittle1970@gmail.com>, 2013.\n"
@@ -515,6 +506,10 @@ msgstr ""
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Колір примітки"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Записник"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -528,19 +523,11 @@ msgstr "Отакої"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Установіть «Tracker» і перезапустіть програму."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Завантажити ще"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Завантаження…"
-
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Щоб вибрати елементи, натисніть на них"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -549,16 +536,16 @@ msgstr[1] "%d вибрано"
 msgstr[2] "%d вибрано"
 msgstr[3] "%d вибрано"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Результати для %s"
 
-#: src/bjb-main-toolbar.c:278
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Нові та нещодавні"
 
-#: src/bjb-main-toolbar.c:370
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Смітник"
 
@@ -567,7 +554,7 @@ msgstr "Смітник"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:438
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Востаннє оновлено: %s"
@@ -601,9 +588,27 @@ msgstr "У цьому році"
 msgid "Local"
 msgstr "Локальне"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Локальне сховище"
+
+#~ msgid "How to show note items"
+#~ msgstr "Як показувати примітки"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr "Показувати елементи списком чи піктограмою."
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Переглядати примітки і записники у ґратках"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Переглядати примітки і записники у списку"
+
+#~ msgid "Load More"
+#~ msgstr "Завантажити ще"
+
+#~ msgid "Loading…"
+#~ msgstr "Завантаження…"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Shortcuts"
@@ -636,9 +641,6 @@ msgstr "Локальне сховище"
 
 #~ msgid "Cancel"
 #~ msgstr "Скасувати"
-
-#~ msgid "Notebook"
-#~ msgstr "Записник"
 
 #~ msgid "Note"
 #~ msgstr "Примітка"

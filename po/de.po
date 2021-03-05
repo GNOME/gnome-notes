@@ -1,17 +1,17 @@
-# German translation for bijiben.
+# German translation for gnome-notes.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
-# This file is distributed under the same license as the bijiben package.
+# This file is distributed under the same license as the gnome-notes package.
 #
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2013.
 # Benjamin Steinwender <b@stbe.at>, 2013-2014.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2017-2018, 2020.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2017-2018, 2020-2021.
 # Tim Sabsch <tim@sabsch.com>, 2018-2019.
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben gnome-3-10\n"
+"Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-07-22 13:04+0000\n"
-"PO-Revision-Date: 2020-09-05 09:07+0200\n"
+"POT-Creation-Date: 2021-03-05 11:45+0000\n"
+"PO-Revision-Date: 2021-03-05 13:22+0100\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.08.0\n"
+"X-Generator: Lokalize 20.12.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:608 src/bjb-window-base.c:17
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notizen"
 
@@ -74,7 +74,6 @@ msgid "Note-taker"
 msgstr "Notizanwendung"
 
 #: data/org.gnome.Notes.desktop.in:19
-#| msgid "Create a new note"
 msgid "Create New Note"
 msgstr "Eine neue Notiz erstellen"
 
@@ -143,27 +142,35 @@ msgid ""
 msgstr ""
 "Drei Schriftgrößen sind verfügbar: klein, mittel (vorgegeben) und groß."
 
-#: data/resources/editor-toolbar.ui:51
+#: data/resources/editor-toolbar.ui:63
 msgid "Bold"
 msgstr "Fett"
 
-#: data/resources/editor-toolbar.ui:67
+#: data/resources/editor-toolbar.ui:79
 msgid "Italic"
 msgstr "Kursiv"
 
-#: data/resources/editor-toolbar.ui:83
+#: data/resources/editor-toolbar.ui:95
 msgid "Strike"
 msgstr "Durchstreichen"
 
-#: data/resources/editor-toolbar.ui:111
+#: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
 msgstr "Aufzählungspunkte"
 
-#: data/resources/editor-toolbar.ui:127
+#: data/resources/editor-toolbar.ui:139
 msgid "List"
 msgstr "Liste"
 
-#: data/resources/editor-toolbar.ui:166
+#: data/resources/editor-toolbar.ui:167
+msgid "Indent"
+msgstr "Einrücken"
+
+#: data/resources/editor-toolbar.ui:183
+msgid "Outdent"
+msgstr "Ausrücken"
+
+#: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Auswahl in eine neue Notiz kopieren"
 
@@ -192,7 +199,6 @@ msgid "Close window"
 msgstr "Fenster schließen"
 
 #: data/resources/help-overlay.ui:35
-#| msgid "_Quit"
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "Beenden"
@@ -208,7 +214,6 @@ msgid "Show help"
 msgstr "Hilfe anzeigen"
 
 #: data/resources/help-overlay.ui:56
-#| msgid "Open menu"
 msgctxt "shortcut window"
 msgid "Open menu"
 msgstr "Menü öffnen"
@@ -447,47 +452,47 @@ msgstr "Wählen Sie den vorgegebenen Ort zum Speichern:"
 msgid "Primary Book"
 msgstr "Hauptbuch"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: src/bjb-application.c:432
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
 msgstr "Die Version der Anwendung zeigen"
 
-#: src/bjb-application.c:434
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Eine neue Notiz erstellen"
 
-#: src/bjb-application.c:436
-msgid "[FILE…]"
-msgstr "[DATEI…]"
-
 #: src/bjb-application.c:444
+msgid "[FILE…]"
+msgstr "[DATEI …]"
+
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Speichern Sie Notizen und exportieren Sie sie überall."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:455
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
 msgstr "Argumente konnten nicht analysiert werden"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "GNOME-Notizen"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:475
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Anwendung konnte nicht registriert werden"
 
-#: src/bjb-application.c:609
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Ein einfaches Notizbuch für GNOME"
 
-#: src/bjb-application.c:615
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr ""
 "Christian Kirbach <Christian.Kirbach@gmail.com>, 2013\n"
@@ -498,8 +503,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Farbe der Notizen"
 
-#: src/bjb-controller.c:239
-#| msgid "Notebooks"
+#: src/bjb-controller.c:236
 msgid "Notebook"
 msgstr "Notizsammlung"
 
@@ -527,16 +531,16 @@ msgid_plural "%d selected"
 msgstr[0] "%d ausgewählt"
 msgstr[1] "%d ausgewählt"
 
-#: src/bjb-main-toolbar.c:228
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Ergebnisse für %s"
 
-#: src/bjb-main-toolbar.c:231
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Neu und kürzlich verwendet"
 
-#: src/bjb-main-toolbar.c:324
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Papierkorb"
 
@@ -545,7 +549,7 @@ msgstr "Papierkorb"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:392
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Zuletzt aktualisiert: %s"
@@ -561,7 +565,7 @@ msgstr "Gestern"
 
 #: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
 msgid "This month"
-msgstr "Dieser Monat"
+msgstr "Diesen Monat"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
@@ -579,7 +583,7 @@ msgstr "Dieses Jahr"
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Lokaler Speicherplatz"
 

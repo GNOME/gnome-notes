@@ -36,9 +36,7 @@ typedef enum
   BIJI_ITALIC,
   BIJI_STRIKE,
   BIJI_BULLET_LIST,
-  BIJI_ORDER_LIST,
-  BIJI_INDENT,
-  BIJI_OUTDENT
+  BIJI_ORDER_LIST
 } BijiEditorFormat;
 
 #define BIJI_TYPE_NOTE_OBJ (biji_note_obj_get_type ())

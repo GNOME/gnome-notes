@@ -52,9 +52,6 @@ struct _BjbEditorToolbar
 
   GtkWidget     *bullets_button;
   GtkWidget     *list_button;
-
-  GtkWidget     *indent_button;
-  GtkWidget     *outdent_button;
 };
 
 G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
@@ -92,20 +89,6 @@ on_list_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
   biji_note_obj_editor_apply_format (self->note, BIJI_ORDER_LIST);
-}
-
-static void
-on_indent_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_INDENT);
-}
-
-static void
-on_outdent_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_OUTDENT);
 }
 
 static void
@@ -206,9 +189,6 @@ bjb_editor_toolbar_constructed (GObject *object)
 
   gtk_widget_set_sensitive (self->bullets_button, can_format);
   gtk_widget_set_sensitive (self->list_button, can_format);
-
-  gtk_widget_set_sensitive (self->indent_button, can_format);
-  gtk_widget_set_sensitive (self->outdent_button, can_format);
 }
 
 static void
@@ -264,16 +244,12 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, strike_button);
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bullets_button);
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, list_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, indent_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, outdent_button);
 
   gtk_widget_class_bind_template_callback (widget_class, on_bold_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_italic_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_strike_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_bullets_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_list_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_indent_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_outdent_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_link_clicked);
 }
 

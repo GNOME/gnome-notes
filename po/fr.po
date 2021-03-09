@@ -10,20 +10,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-07-22 13:04+0000\n"
-"PO-Revision-Date: 2020-08-10 12:47+0200\n"
-"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
+"POT-Creation-Date: 2021-03-05 17:24+0000\n"
+"PO-Revision-Date: 2021-03-07 10:14+0100\n"
+"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:608 src/bjb-window-base.c:17
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notes"
 
@@ -444,47 +444,47 @@ msgstr "Sélectionner l’emplacement de stockage par défaut :"
 msgid "Primary Book"
 msgstr "Carnet principal"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: src/bjb-application.c:432
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
 msgstr "Afficher la version de l’application"
 
-#: src/bjb-application.c:434
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Créer une nouvelle note"
 
-#: src/bjb-application.c:436
+#: src/bjb-application.c:444
 msgid "[FILE…]"
 msgstr "[FICHIER…]"
 
-#: src/bjb-application.c:444
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Prenez des notes et exportez-les partout."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:455
-msgid "Could not parse arguments"
-msgstr "Impossible d’analyser les arguments"
-
 #: src/bjb-application.c:463
+msgid "Could not parse arguments"
+msgstr "Impossible d’analyser les paramètres"
+
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "Notes GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:475
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Impossible d’enregistrer l’application"
 
-#: src/bjb-application.c:609
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Carnet de notes pour GNOME"
 
-#: src/bjb-application.c:615
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr ""
 "Pierre-Yves Luyten\n"
@@ -494,7 +494,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Couleur de la note"
 
-#: src/bjb-controller.c:239
+#: src/bjb-controller.c:236
 msgid "Notebook"
 msgstr "Carnet"
 
@@ -521,16 +521,16 @@ msgid_plural "%d selected"
 msgstr[0] "%d sélectionnée"
 msgstr[1] "%d sélectionnées"
 
-#: src/bjb-main-toolbar.c:228
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Résultats pour %s"
 
-#: src/bjb-main-toolbar.c:231
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Nouveau et récent"
 
-#: src/bjb-main-toolbar.c:324
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Corbeille"
 
@@ -539,7 +539,7 @@ msgstr "Corbeille"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:392
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Dernière mise à jour : %s"
@@ -573,7 +573,7 @@ msgstr "Cette année"
 msgid "Local"
 msgstr "Local"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Stockage local"
 

@@ -1,13 +1,13 @@
 # Czech translation for bijiben.
 # Copyright (C) 2014 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Marek Černocký <marek@manet.cz>, 2014, 2015, 2016, 2020.
+# Marek Černocký <marek@manet.cz>, 2014, 2015, 2016, 2020, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes\n"
-"POT-Creation-Date: 2020-08-10 07:06+0000\n"
-"PO-Revision-Date: 2020-08-13 20:05+0200\n"
+"POT-Creation-Date: 2021-02-25 11:20+0000\n"
+"PO-Revision-Date: 2021-03-09 07:43+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -454,11 +454,11 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/format-list.page:51
 msgid ""
-"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
-"List</gui> </guiseq> button from the footer menu."
+"To create an ordered list, select the <guiseq><gui style=\"button\">List</"
+"gui> </guiseq> button from the footer menu."
 msgstr ""
-"Klikněte na tlačítko <guiseq><gui style=\"button\">Číslovaný seznam</gui>"
-"</guiseq>, aby se vytvořil číslovaný seznam."
+"Klikněte na tlačítko <guiseq><gui style=\"button\">Seznam</gui></"
+"guiseq>, aby se vytvořil řazený seznam."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -802,3 +802,4 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Tato práce je licencována pod <_:link-1/>"
+

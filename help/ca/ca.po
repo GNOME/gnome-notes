@@ -91,7 +91,7 @@ msgstr "Editeu el color de fons de la nota."
 #. (itstool) path: page/title
 #: C/colors.page:37
 msgid "Change note color"
-msgstr "Canvi de color de la nota"
+msgstr "Canviar de color la nota"
 
 #. (itstool) path: page/p
 #: C/colors.page:39
@@ -480,7 +480,7 @@ msgstr "Apliqueu diferents opcions de format al text."
 #. (itstool) path: page/title
 #: C/format-text.page:35
 msgid "Change the text style"
-msgstr "Canvi d'estil del text"
+msgstr "Canviar d'estil el text"
 
 #. (itstool) path: steps/title
 #: C/format-text.page:38
@@ -695,7 +695,7 @@ msgstr "Canvieu el nom d'una nota existent."
 #. (itstool) path: page/title
 #: C/rename.page:26
 msgid "Rename a note"
-msgstr "Canvi de nom d'una nota"
+msgstr "Canviar de nom una nota"
 
 #. (itstool) path: steps/title
 #: C/rename.page:29
@@ -715,7 +715,7 @@ msgstr "Cerqueu una nota existent, el contingut d'una nota i blocs de notes."
 #. (itstool) path: page/title
 #: C/search.page:35
 msgid "Find a note"
-msgstr "Cerca d'una nota"
+msgstr "Cercar una nota"
 
 #. (itstool) path: page/p
 #: C/search.page:37

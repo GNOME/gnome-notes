@@ -18,9 +18,9 @@ sources = [
 ]
 
 media = [
-  'figures/hicolor_apps_48x48_bijiben.png',
   'figures/hicolor_apps_16x16_bijiben.png',
-  'figures/notes-3-36.png'
+  'figures/notes-3-36.png',
+  'figures/org.gnome.Notes.svg'
 ]
 
 gnome.yelp(

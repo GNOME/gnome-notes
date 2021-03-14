@@ -18,7 +18,6 @@ sources = [
 ]
 
 media = [
-  'figures/hicolor_apps_16x16_bijiben.png',
   'figures/notes-3-36.png',
   'figures/org.gnome.Notes.svg'
 ]

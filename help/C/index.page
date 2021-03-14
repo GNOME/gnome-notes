@@ -3,8 +3,7 @@
       type="guide" id="index">
 
   <info>
-    <title type="link" role="trail"><media type="image" its:translate="no"
-    src="figures/hicolor_apps_16x16_bijiben.png"/></title>
+    <title type="link" role="trail">Notes</title>
     <title type="link">Notes</title>
     <title type="text">Notes</title>
     <revision pkgversion="3.8" date="2013-04-29" status="outdated"/>

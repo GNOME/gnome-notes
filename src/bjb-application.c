@@ -216,10 +216,7 @@ bijiben_open (GApplication  *application,
 static void
 bjb_application_init (BjbApplication *self)
 {
-  self->settings = bjb_settings_new ();
   g_queue_init (&self->files_to_open);
-
-  gtk_window_set_default_icon_name ("org.gnome.Notes");
 }
 
 
@@ -377,6 +374,9 @@ bijiben_startup (GApplication *application)
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
 
+  self->settings = bjb_settings_new ();
+
+  gtk_window_set_default_icon_name ("org.gnome.Notes");
   bjb_apply_style (self);
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);

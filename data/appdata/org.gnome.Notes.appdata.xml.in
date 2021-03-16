@@ -39,74 +39,26 @@
   </screenshots>
 
   <releases>
-    <release date="2020-09-20" version="3.38.0">
+    <release date="2021-30-20" version="40.0">
       <description>
-        <p>This release brings the following new features and improvements:</p>
+        <p>This release brings the following improvements:</p>
         <ul>
-          <li>Added "Create New Note" shortcut to Desktop Actions (Felipe Borges)</li>
-          <li>Added support to Tracker 3 (Carlos Garnacho)</li>
-          <li>Added Tamil translation (அருள்)</li>
-          <li>Added the last missing shortcuts (F10, CTRL+W, CTRL+Q) (Jonathan Kang, Isaque Galdino)</li>
-          <li>Changed default note color to GNOME Blue</li>
-          <li>Changed paste behavior in note view to "text-only" mode</li>
-          <li>Enabled WebKit sandboxing (Diego Escalante Urrelo)</li>
-          <li>Improved code quality (Alberto Fanjul, Stefano Facchini)</li>
-          <li>Improved flatpak to meson when building GOA and EDS (Georges Basile Stavracas Neto)</li>
-          <li>Improved help pages (Piotr Drąg, Pranali Deshmukh, scootergrisen, Yuri Chornoivan)</li>
-          <li>Implemented main view UI redesign (Allan Day, Tobias Bernard, Isaque Galdino)</li>
-          <li>Removed libgd dependancy</li>
-          <li>Removed option to change note in Trash bin</li>
+          <li>Added bidirectional text support to notes view</li>
+          <li>Dropped Zeitgeist support</li>
+          <li>Enabled formatting without dependency on selected text</li>
+          <li>Improved Help</li>
+          <li>Improved Nextcloud support by using Nextcloud Notes API</li>
+          <li>Fixed many bugs and improved application code overall</li>
         </ul>
-        <p>Backported to 3.36:</p>
+        <p>Translations:</p>
         <ul>
-          <li>Fixed issue in main view paging that was preventing to show more than 48 notes</li>
-          <li>Fixed memory leak in OwnCloud provider (Mohammed Sadiq)</li>
-          <li>Fixed notes behavior when in Trash (Jonathan Kang, Isaque Galdino)</li>
+          <li>Brazilian Portuguese, Catalan, Czech, French, Galician, German, Hebrew, Hungarian, Indonesian, Korean, Norwegian Bokmål, Polish, Slovenian, Swedish and Ukrainian</li>
         </ul>
-        <p>This release updates the following translations:</p>
+        <p>Contributors:</p>
         <ul>
-          <li>ca (Gil Forcada, Jordi Mas)</li>
-          <li>ckb (Jwtiyar Nariman)</li>
-          <li>cs (Marek Černocký)</li>
-          <li>da (Alan Mortensen, scootergrisen)</li>
-          <li>de (Christian Kirbach, Mario Blättermann, Stephan Woidowski)</li>
-          <li>el (Efstathios Iosifidis)</li>
-          <li>eo (Carmen Bianca BAKKER)</li>
-          <li>en_GB (Bruce Cowan)</li>
-          <li>es (Daniel Mustieles)</li>
-          <li>eu (Asier Sarasua Garmendia)</li>
-          <li>fa (Danial Behzadi)</li>
-          <li>fi (Jiri Grönroos)</li>
-          <li>fr (Alexandre Franke, Charles Monzat)</li>
-          <li>fur (Fabio Tomat)</li>
-          <li>gl (Fran Dieguez)</li>
-          <li>he (Yosef Or Boczko)</li>
-          <li>hr (Goran Vidović)</li>
-          <li>hu (Balázs Meskó)</li>
-          <li>id (Andika Triwidada, Kukuh Syafaat)</li>
-          <li>it (Gianvito Cavasoli)</li>
-          <li>ja (sicklylife)</li>
-          <li>kk (Baurzhan Muftakhidinov)</li>
-          <li>ko (Seong-ho Cho)</li>
-          <li>lt (Aurimas Černius)</li>
-          <li>lv (Rūdolfs Mazurs)</li>
-          <li>nb (Kjartan Maraas)</li>
-          <li>nl (Nathan Follens)</li>
-          <li>pl (Piotr Drąg)</li>
-          <li>pt_BR (Rafael Fontenelle)</li>
-          <li>pt (Juliano Camargo)</li>
-          <li>ro (Daniel Șerbănescu, Florentina Mușat)</li>
-          <li>sk (Dušan Kazik)</li>
-          <li>sl (Matej Urbančič)</li>
-          <li>sr (Марко Костић)</li>
-          <li>sv (Anders Jonsson)</li>
-          <li>ta (அருள்)</li>
-          <li>tr (Emin Tufan Çetin)</li>
-          <li>uk (Daniel Korostil, Yuri Chornoivan)</li>
-          <li>zh_CN (Boyuan Yang, Dz Chen)</li>
-          <li>zh_TW (Cheng-Chia Tseng)</li>
+          <li>Anders Jonsson, Balázs Úr, Felipe Borges, Fran Dieguez, Guillaume Bernard, Isaque Galdino, Jonathan Kang, Jordi Mas, Kévin Commaille, Kjartan Maraas, Kukuh Syafaat, Marek Černocký, Mario Blättermann, Matej Urbančič, Mohammed Sadiq, Piotr Drąg, Rafael Fontenelle, Sabri Ünal, Seong-ho Cho, Yosef Or Boczko and Yuri Chornoivan</li>
         </ul>
-        <p>Thanks to all the contributors who worked on GNOME Notes!</p>
+        <p>Thanks to all the contributors and supporters of GNOME Notes!</p>
       </description>
     </release>
   </releases>

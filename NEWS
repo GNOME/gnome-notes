@@ -1,3 +1,19 @@
+Overview of changes in 40.0
+===========================
+
+* Added bidirectional text support to notes view
+* Dropped Zeitgeist support
+* Enabled formatting without dependency on selected text
+* Improved Help
+* Improved Nextcloud support by using Nextcloud Notes API
+* Fixed many bugs and improved application code overall
+
+Translations
+* Brazilian Portuguese, Catalan, Czech, French, Galician, German, Hebrew, Hungarian, Indonesian, Korean, Norwegian Bokmål, Polish, Slovenian, Swedish and Ukrainian
+
+Contributors
+* Anders Jonsson, Balázs Úr, Felipe Borges, Fran Dieguez, Guillaume Bernard, Isaque Galdino, Jonathan Kang, Jordi Mas, Kévin Commaille, Kjartan Maraas, Kukuh Syafaat, Marek Černocký, Mario Blättermann, Matej Urbančič, Mohammed Sadiq, Piotr Drąg, Rafael Fontenelle, Sabri Ünal, Seong-ho Cho, Yosef Or Boczko and Yuri Chornoivan
+
 Overview of changes in 3.38.0
 =============================
 

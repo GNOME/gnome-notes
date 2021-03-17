@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
-"POT-Creation-Date: 2020-07-15 01:33+0000\n"
-"PO-Revision-Date: 2021-02-21 22:16-0300\n"
+"POT-Creation-Date: 2021-02-25 11:20+0000\n"
+"PO-Revision-Date: 2021-03-17 03:48-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -459,12 +459,15 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/format-list.page:51
+#| msgid ""
+#| "To create an ordered list, select the <guiseq><gui style=\"button"
+#| "\">Numbered List</gui> </guiseq> button from the footer menu."
 msgid ""
-"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
-"List</gui> </guiseq> button from the footer menu."
+"To create an ordered list, select the <guiseq><gui style=\"button\">List</"
+"gui> </guiseq> button from the footer menu."
 msgstr ""
 "Para criar uma lista ordenada, selecione o botão <guiseq><gui style=\"button"
-"\">Lista numerada</gui> </guiseq> do menu de rodapé."
+"\">Lista</gui> </guiseq> do menu de rodapé."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When

@@ -40,18 +40,14 @@ typedef enum
 
 G_DECLARE_FINAL_TYPE (BijiManager, biji_manager, BIJI, MANAGER, GObject)
 
-BijiManager     *biji_manager_new                   (GFile *location,
-                                                    GdkRGBA *color,
-                                                    GError **error);
-
-void             biji_manager_new_async             (GFile *location,
-                                                     GdkRGBA *color,
+BijiManager     *biji_manager_new                   (GFile         *location,
+                                                     GdkRGBA       *color);
+void            biji_manager_load_providers_async   (BijiManager   *self,
                                                      GAsyncReadyCallback callback,
-                                                     gpointer user_data);
-
-BijiManager     *biji_manager_new_finish            (GAsyncResult *res,
-                                                     GError **error);
-
+                                                     gpointer       user_data);
+gboolean        biji_manager_load_providers_finish  (BijiManager   *self,
+                                                     GAsyncResult  *result,
+                                                     GError       **error);
 
 void             biji_manager_import_uri            (BijiManager *manager,
                                                      const gchar *target_provider_id,

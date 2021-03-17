@@ -70,12 +70,8 @@ enum {
 
 static guint biji_manager_signals[BIJI_MANAGER_SIGNALS] = { 0 };
 static GParamSpec *properties[BIJI_MANAGER_PROPERTIES] = { NULL, };
-static void biji_manager_initable_iface_init (GInitableIface *iface);
-static void biji_manager_async_initable_iface_init (GAsyncInitableIface *iface);
 
-G_DEFINE_TYPE_WITH_CODE (BijiManager, biji_manager, G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, biji_manager_initable_iface_init)
-                         G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE, biji_manager_async_initable_iface_init))
+G_DEFINE_TYPE (BijiManager, biji_manager, G_TYPE_OBJECT)
 
 static void
 on_provider_loaded_cb (BijiProvider *provider,
@@ -201,96 +197,6 @@ load_eds_registry (BijiManager *self,
   }
 
   g_list_free_full (list, g_object_unref);
-}
-
-static gboolean
-biji_manager_initable_init (GInitable *initable,
-                            GCancellable *cancellable,
-                            GError **error)
-{
-  BijiManager *self = BIJI_MANAGER (initable);
-  GError *local_error = NULL;
-  GoaClient *client;
-  ESourceRegistry *registry;
-#ifdef TRACKER_PRIVATE_STORE
-  g_autofree char *filename = NULL;
-  g_autoptr (GFile) data_location = NULL;
-
-  filename = g_build_filename (g_get_user_cache_dir (),
-                               g_get_application_name (),
-#if HAVE_TRACKER3
-                               "tracker3",
-#else
-                               "tracker",
-#endif /* HAVE_TRACKER3 */
-                               NULL);
-  data_location = g_file_new_for_path (filename);
-
-  /* If tracker fails for some reason,
-   * do not attempt anything */
-#if HAVE_TRACKER3
-  self->connection = tracker_sparql_connection_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
-                                                    data_location,
-                                                    tracker_sparql_get_ontology_nepomuk (),
-                                                    NULL,
-                                                    &local_error);
-#else
-  self->connection = tracker_sparql_connection_local_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
-                                                          data_location,
-                                                          NULL, NULL, NULL,
-                                                          &local_error);
-#endif /* HAVE_TRACKER3 */
-
-#else
-  self->connection = tracker_sparql_connection_get (NULL, &local_error);
-#endif /* TRACKER_PRIVATE_STORE */
-
-  if (local_error)
-  {
-    g_warning ("Unable to connect to Tracker: %s", local_error->message);
-    g_propagate_error (error, local_error);
-    return FALSE;
-  }
-
-  client = goa_client_new_sync (NULL, &local_error);
-  if (local_error)
-  {
-    g_warning ("Unable to connect to GOA: %s", local_error->message);
-    g_propagate_error (error, local_error);
-    return FALSE;
-  }
-
-  registry = e_source_registry_new_sync (NULL, &local_error);
-  if (local_error)
-  {
-    g_object_unref (client);
-    g_warning ("Unable to connect to EDS: %s", local_error->message);
-    g_propagate_error (error, local_error);
-    return FALSE;
-  }
-
-  self->local_provider = biji_local_provider_new (self, self->location);
-  _add_provider (self, self->local_provider);
-
-  load_goa_client (self, client);
-  load_eds_registry (self, registry);
-
-  g_object_unref (client);
-  g_object_unref (registry);
-
-  return TRUE;
-}
-
-static void
-biji_manager_initable_iface_init (GInitableIface *iface)
-{
-  iface->init = biji_manager_initable_init;
-}
-
-static void
-biji_manager_async_initable_iface_init (GAsyncInitableIface *iface)
-{
-  /* Use default */
 }
 
 static void
@@ -794,42 +700,155 @@ biji_manager_remove_item_at_path (BijiManager *self,
 }
 
 BijiManager *
-biji_manager_new (GFile *location, GdkRGBA *color, GError **error)
+biji_manager_new (GFile   *location,
+                  GdkRGBA *color)
 {
-  BijiManager *retval;
+  return g_object_new (BIJI_TYPE_MANAGER,
+                       "location", location,
+                       "color", color,
+                       NULL);
+}
 
-  retval = g_initable_new (BIJI_TYPE_MANAGER, NULL, error,
-                           "location", location,
-                           "color", color,
-                           NULL);
+static void
+thread_run_cb (GObject      *object,
+               GAsyncResult *result,
+               gpointer      user_data)
+{
+  BijiManager *self = user_data;
+  g_autoptr(GTask) task = NULL;
+  ESourceRegistry *registry;
+  GoaClient *client;
+  GError *error = NULL;
 
-  return retval;
+  g_assert (BIJI_IS_MANAGER (self));
+  g_assert (G_IS_TASK (result));
+
+  task = g_task_get_task_data (G_TASK (result));
+  g_object_ref (task);
+
+  g_task_propagate_boolean (G_TASK (result), &error);
+
+  if (error)
+    {
+      g_task_return_error (task, error);
+      return;
+    }
+
+  client = g_object_get_data (G_OBJECT (result), "goa");
+  registry = g_object_get_data (G_OBJECT (result), "eds");
+  g_assert (client);
+  g_assert (registry);
+
+  load_goa_client (self, client);
+  load_eds_registry (self, registry);
+
+  g_task_return_boolean (task, TRUE);
+}
+
+static void
+load_providers (GTask        *task,
+                gpointer      source_object,
+                gpointer      task_data,
+                GCancellable *cancellable)
+{
+  BijiManager *self = source_object;
+  g_autoptr(GoaClient) client = NULL;
+  GError *error = NULL;
+  ESourceRegistry *registry;
+#ifdef TRACKER_PRIVATE_STORE
+  g_autofree char *filename = NULL;
+  g_autoptr(GFile) data_location = NULL;
+
+  filename = g_build_filename (g_get_user_cache_dir (),
+                               g_get_application_name (),
+#if HAVE_TRACKER3
+                               "tracker3",
+#else
+                               "tracker",
+#endif /* HAVE_TRACKER3 */
+                               NULL);
+  data_location = g_file_new_for_path (filename);
+
+  g_assert (BIJI_IS_MANAGER (self));
+  g_assert (G_IS_TASK (task));
+
+  /* If tracker fails for some reason,
+   * do not attempt anything */
+#if HAVE_TRACKER3
+  self->connection = tracker_sparql_connection_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
+                                                    data_location,
+                                                    tracker_sparql_get_ontology_nepomuk (),
+                                                    NULL,
+                                                    &error);
+#else
+  self->connection = tracker_sparql_connection_local_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
+                                                          data_location,
+                                                          NULL, NULL, NULL,
+                                                          &error);
+#endif /* HAVE_TRACKER3 */
+
+#else
+  self->connection = tracker_sparql_connection_get (NULL, &error);
+#endif /* TRACKER_PRIVATE_STORE */
+
+  if (error)
+    {
+      g_task_return_error (task, error);
+      return;
+    }
+
+  client = goa_client_new_sync (NULL, &error);
+  if (error)
+    {
+      g_task_return_error (task, error);
+      return;
+    }
+
+  registry = e_source_registry_new_sync (NULL, &error);
+  if (error)
+    {
+      g_task_return_error (task, error);
+      return;
+    }
+
+  self->local_provider = biji_local_provider_new (self, self->location);
+  _add_provider (self, self->local_provider);
+
+  g_object_ref (client);
+  g_object_set_data_full (G_OBJECT (task), "goa", client, g_object_unref);
+  g_object_set_data_full (G_OBJECT (task), "eds", registry, g_object_unref);
+
+  g_task_return_boolean (task, TRUE);
+
+  return;
 }
 
 void
-biji_manager_new_async (GFile *location, GdkRGBA *color,
-                        GAsyncReadyCallback callback, gpointer user_data)
+biji_manager_load_providers_async (BijiManager         *self,
+                                   GAsyncReadyCallback  callback,
+                                   gpointer             user_data)
 {
-  g_async_initable_new_async (BIJI_TYPE_MANAGER, G_PRIORITY_DEFAULT,
-                              NULL,
-                              callback, user_data,
-                              "location", location,
-                              "color", color,
-                              NULL);
+  g_autoptr(GTask) thread_task = NULL;
+  GTask *task;
+
+  g_return_if_fail (BIJI_IS_MANAGER (self));
+
+  task = g_task_new (self, NULL, callback, user_data);
+  thread_task = g_task_new (self, NULL, thread_run_cb, self);
+  g_task_set_task_data (thread_task, task, g_object_unref);
+
+  g_task_run_in_thread (thread_task, load_providers);
 }
 
-BijiManager *
-biji_manager_new_finish (GAsyncResult *res,
-                         GError **error)
+gboolean
+biji_manager_load_providers_finish (BijiManager   *self,
+                                    GAsyncResult  *result,
+                                    GError       **error)
 {
-  GObject *source_obj;
-  GObject *object;
+  g_return_val_if_fail (BIJI_IS_MANAGER (self), FALSE);
+  g_return_val_if_fail (G_IS_ASYNC_RESULT (result), FALSE);
 
-  source_obj = g_async_result_get_source_object (res);
-  object = g_async_initable_new_finish (G_ASYNC_INITABLE (source_obj), res, error);
-  g_object_unref (source_obj);
-
-  return object != NULL ? BIJI_MANAGER (object) : NULL;
+  return g_task_propagate_boolean (G_TASK (result), error);
 }
 
 /* Create the importer == switch depending on the uri.

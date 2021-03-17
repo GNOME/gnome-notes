@@ -317,7 +317,7 @@ manager_ready_cb (GObject *source,
   g_autofree gchar *path = NULL;
   g_autofree gchar *uri = NULL;
 
-  self->manager = biji_manager_new_finish (res, &error);
+  biji_manager_load_providers_finish (self->manager, res, &error);
   g_application_release (G_APPLICATION (self));
 
   if (error != NULL)
@@ -419,7 +419,9 @@ bijiben_startup (GApplication *application)
                                 NULL);
 
   g_application_hold (application);
-  biji_manager_new_async (storage, &color, manager_ready_cb, self);
+
+  self->manager = biji_manager_new (storage, &color);
+  biji_manager_load_providers_async (self->manager, manager_ready_cb, self);
 }
 
 static gboolean

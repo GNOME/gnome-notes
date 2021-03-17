@@ -119,6 +119,7 @@ biji_timeout_reset (BijiTimeout *self, guint millis)
        millis, (GSourceFunc) biji_timeout_callback, self);
 
   /* Ensure to perform timeout if main loop ends */
-  self->quit = g_signal_connect_swapped (g_application_get_default(), "shutdown",
-                                         G_CALLBACK (biji_timeout_expired), self);
+  if (!self->quit)
+    self->quit = g_signal_connect_swapped (g_application_get_default(), "shutdown",
+                                           G_CALLBACK (biji_timeout_expired), self);
 }

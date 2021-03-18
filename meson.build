@@ -1,6 +1,6 @@
 project(
   'bijiben', 'c',
-  version: '40.0',
+  version: '41.alpha',
   license: 'GPL3',
   default_options: 'buildtype=debugoptimized',
   meson_version: '>= 0.50.0'

@@ -169,7 +169,7 @@ bijiben_open_path (BjbApplication *self,
 
   item = biji_manager_get_item_at_path (self->manager, path);
 
-  if (BIJI_IS_NOTE_OBJ (item) || !window)
+  if (!window)
     bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
   else
     bjb_window_base_load_note_item (window, item);
@@ -388,6 +388,7 @@ static void
 bijiben_startup (GApplication *application)
 {
   BjbApplication *self;
+  char *path;
   g_autofree gchar *storage_path = NULL;
   g_autofree gchar *default_color = NULL;
   g_autoptr(GFile) storage = NULL;
@@ -456,6 +457,11 @@ bijiben_startup (GApplication *application)
 
   self->manager = biji_manager_new (storage, &color);
   biji_manager_load_providers_async (self->manager, manager_ready_cb, self);
+
+  /* Load last opened note item. */
+  path = g_settings_get_string (G_SETTINGS (self->settings), "last-opened-item");
+  if (!bijiben_open_path (self, path, NULL))
+    g_queue_push_head (&self->files_to_open, path);
 }
 
 static void

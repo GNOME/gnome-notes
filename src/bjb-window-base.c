@@ -199,6 +199,10 @@ static void
 bjb_window_base_finalize (GObject *object)
 {
   BjbWindowBase *self = BJB_WINDOW_BASE (object);
+  GSettings *settings = G_SETTINGS (self->settings);
+
+  if (self->note != NULL)
+    g_settings_set_string (settings, "last-opened-item", biji_note_obj_get_path (self->note));
 
   if (self->display_notebooks_changed != 0)
     g_signal_handler_disconnect (self->controller, self->display_notebooks_changed);
@@ -991,7 +995,7 @@ bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
 {
   gboolean available;
 
-  available = (self->current_view != BJB_WINDOW_BASE_NOTE_VIEW);
+  available = (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW);
 
   if (active == TRUE)
   {

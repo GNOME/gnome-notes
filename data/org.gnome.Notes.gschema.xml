@@ -24,6 +24,11 @@
       <summary>Primary notes provider to use for new notes.</summary>
       <description>The primary notebook is the place where new notes are created.</description>
     </key>
+    <key type="s" name="last-opened-item">
+      <default>''</default>
+      <summary>Note path of the notes opened when Notes quits last time.</summary>
+      <description>This stores the note path of the last opened item, so that we can open it on startup.</description>
+    </key>
     <key name="window-maximized" type="b">
       <default>false</default>
       <summary>Window maximized</summary>

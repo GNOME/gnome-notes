@@ -356,7 +356,9 @@ on_detach_window_cb (GSimpleAction *action,
   else
     bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
 
-  detached_window = bjb_detached_window_new (note, width, height, self);
+  bjb_note_view_set_detached (self->note_view, TRUE);
+
+  detached_window = bjb_detached_window_new (self->note_view, note, width, height, self);
   gtk_widget_show_all (GTK_WIDGET (detached_window));
 }
 

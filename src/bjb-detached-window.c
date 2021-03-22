@@ -25,6 +25,7 @@
 enum
 {
   PROP_0,
+  PROP_NOTE_VIEW,
   PROP_NOTE,
   PROP_WIDTH,
   PROP_HEIGHT,
@@ -39,6 +40,7 @@ struct _BjbDetachedWindow
   int            width;
   int            height;
   BijiNoteObj   *note;
+  BjbNoteView   *note_view;
   BjbWindowBase *main_win;
 
   GtkWidget *headerbar;
@@ -250,6 +252,11 @@ bjb_detached_window_finalize (GObject *object)
 {
   BjbDetachedWindow *self = BJB_DETACHED_WINDOW (object);
 
+  if (BJB_IS_NOTE_VIEW (self->note_view))
+  {
+    bjb_note_view_set_detached (self->note_view, FALSE);
+  }
+
   g_object_unref (self->note);
 
   G_OBJECT_CLASS (bjb_detached_window_parent_class)->finalize (object);
@@ -265,6 +272,9 @@ bjb_detached_window_get_property (GObject    *object,
 
   switch (property_id)
   {
+  case PROP_NOTE_VIEW:
+    g_value_set_object (value, self->note_view);
+    break;
   case PROP_NOTE:
     g_value_set_object (value, self->note);
     break;
@@ -293,6 +303,9 @@ bjb_detached_window_set_property (GObject      *object,
 
   switch (property_id)
   {
+  case PROP_NOTE_VIEW:
+    self->note_view = g_value_get_object (value);
+    break;
   case PROP_NOTE:
     self->note = g_value_dup_object (value);
     break;
@@ -322,6 +335,13 @@ bjb_detached_window_class_init (BjbDetachedWindowClass *klass)
   object_class->get_property = bjb_detached_window_get_property;
   object_class->set_property = bjb_detached_window_set_property;
 
+  properties[PROP_NOTE_VIEW] = g_param_spec_object ("note-view",
+                                                    "NoteView",
+                                                    "Note widget detached from",
+                                                    BJB_TYPE_NOTE_VIEW,
+                                                    G_PARAM_READWRITE |
+                                                    G_PARAM_CONSTRUCT |
+                                                    G_PARAM_STATIC_STRINGS);
   properties[PROP_NOTE] = g_param_spec_object ("note",
                                                "NoteObj",
                                                "Currently opened note",
@@ -370,13 +390,15 @@ bjb_detached_window_init (BjbDetachedWindow *self)
 }
 
 BjbDetachedWindow *
-bjb_detached_window_new (BijiNoteObj   *note,
+bjb_detached_window_new (BjbNoteView   *note_view,
+                         BijiNoteObj   *note,
                          int            width,
                          int            height,
                          BjbWindowBase *main_win)
 {
   return g_object_new (BJB_TYPE_DETACHED_WINDOW,
                        "application", g_application_get_default (),
+                       "note-view", note_view,
                        "note", note,
                        "width", width,
                        "height", height,

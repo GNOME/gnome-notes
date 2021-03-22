@@ -28,8 +28,11 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbNoteView, bjb_note_view, BJB, NOTE_VIEW, GtkOverlay)
 
-BjbNoteView        *bjb_note_view_new                (GtkWidget *win,
-						      BijiNoteObj* note);
+void                bjb_note_view_set_detached       (BjbNoteView *self,
+                                                      gboolean     detached);
+
+BjbNoteView        *bjb_note_view_new                (GtkWidget   *win,
+                                                      BijiNoteObj *note);
 
 
 GtkWidget          *bjb_note_view_get_base_window    (BjbNoteView *v);

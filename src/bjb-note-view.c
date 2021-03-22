@@ -48,6 +48,8 @@ struct _BjbNoteView
   BijiWebkitEditor  *editor;
   GtkWidget         *box;
   GtkWidget         *edit_bar;
+  GtkWidget         *label;
+  GtkWidget         *stack;
 };
 
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
@@ -55,6 +57,20 @@ G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
 static void on_window_closed(GtkWidget *window,gpointer note);
 static gboolean on_note_trashed (BijiNoteObj *note, BjbNoteView *view);
 static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
+
+void
+bjb_note_view_set_detached (BjbNoteView *self,
+                            gboolean     detached)
+{
+  if (detached)
+  {
+    gtk_stack_set_visible_child (GTK_STACK (self->stack), self->label);
+  }
+  else
+  {
+    gtk_stack_set_visible_child (GTK_STACK (self->stack), self->box);
+  }
+}
 
 static void
 bjb_note_view_disconnect (BjbNoteView *self)
@@ -193,9 +209,19 @@ bjb_note_view_constructed (GObject *obj)
   g_signal_connect(self->window,"destroy",
                    G_CALLBACK(on_window_closed), self->note);
 
+  self->stack = gtk_stack_new ();
+  gtk_widget_show (self->stack);
+  gtk_container_add (GTK_CONTAINER (self), self->stack);
+
+  /* Label used to indicate that note is opened in another window. */
+  self->label = gtk_label_new (_("This note is being viewed in another window."));
+  gtk_widget_show (self->label);
+  gtk_stack_add_named (GTK_STACK (self->stack), self->label, "label");
+
   self->box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-  gtk_container_add (GTK_CONTAINER (self), self->box);
   gtk_widget_show (self->box);
+  gtk_stack_add_named (GTK_STACK (self->stack), self->box, "note-box");
+  gtk_stack_set_visible_child (GTK_STACK (self->stack), self->box);
 
   /* Text Editor (WebKitMainView) */
   gtk_box_pack_start (GTK_BOX (self->box), GTK_WIDGET(self->view), TRUE, TRUE, 0);

@@ -51,6 +51,17 @@ static void biji_item_finalize (GObject *object);
 
 G_DEFINE_TYPE_WITH_PRIVATE (BijiItem, biji_item, G_TYPE_OBJECT)
 
+static gboolean
+biji_item_real_has_color (BijiItem *self)
+{
+  return FALSE;
+}
+
+static gboolean
+biji_item_real_is_collectable (BijiItem *self)
+{
+  return FALSE;
+}
 
 static void
 biji_item_set_property (GObject      *object,
@@ -101,6 +112,9 @@ biji_item_class_init (BijiItemClass *klass)
   g_object_class->get_property = biji_item_get_property;
   g_object_class->set_property = biji_item_set_property;
   g_object_class->finalize = biji_item_finalize;
+
+  klass->has_color = biji_item_real_has_color;
+  klass->is_collectable = biji_item_real_is_collectable;
 
   properties[PROP_BOOK] =
     g_param_spec_object("manager",

@@ -331,12 +331,6 @@ memo_get_place (BijiItem *item)
 }
 
 static gboolean
-item_no (BijiItem *item)
-{
-  return FALSE;
-}
-
-static gboolean
 note_no (BijiNoteObj *note)
 {
   return FALSE;
@@ -356,8 +350,6 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   object_class->get_property = biji_memo_note_get_property;
   object_class->set_property = biji_memo_note_set_property;
 
-  item_class->is_collectable = item_no;
-  item_class->has_color = item_no;
   item_class->get_place = memo_get_place;
   item_class->delete = memo_item_delete;
 

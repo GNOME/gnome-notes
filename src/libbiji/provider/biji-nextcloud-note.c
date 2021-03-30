@@ -48,12 +48,6 @@ struct _BijiNextcloudNote
 G_DEFINE_TYPE (BijiNextcloudNote, biji_nextcloud_note, BIJI_TYPE_NOTE_OBJ)
 
 static gboolean
-item_no (BijiItem *item)
-{
-  return FALSE;
-}
-
-static gboolean
 note_no (BijiNoteObj *note)
 {
   return FALSE;
@@ -315,8 +309,6 @@ biji_nextcloud_note_class_init (BijiNextcloudNoteClass *klass)
 
   object_class->finalize = finalize;
 
-  item_class->is_collectable = item_no;
-  item_class->has_color = item_no;
   item_class->get_place = get_place;
 
   note_class->get_basename = get_basename;

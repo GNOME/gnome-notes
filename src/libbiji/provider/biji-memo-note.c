@@ -170,7 +170,7 @@ memo_note_save (BijiNoteObj *note)
   BijiMemoNote *self = BIJI_MEMO_NOTE (note);
   ICalComponent *icalcomp;
   gboolean result;
-  g_autoptr(GError) error;
+  g_autoptr(GError) error = NULL;
   ECalComponent *clone;
 
   clone = e_cal_component_clone (self->ecal);

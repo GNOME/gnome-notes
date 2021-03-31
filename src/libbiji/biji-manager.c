@@ -74,12 +74,20 @@ static GParamSpec *properties[BIJI_MANAGER_PROPERTIES] = { NULL, };
 G_DEFINE_TYPE (BijiManager, biji_manager, G_TYPE_OBJECT)
 
 static void
-on_provider_loaded_cb (BijiProvider *provider,
-                       GList *items,
+on_provider_loaded_cb (BijiProvider   *provider,
+                       GList          *items,
                        BijiItemsGroup  group,
-                       BijiManager *manager)
+                       BijiManager    *manager)
 {
   GList *l;
+  const BijiProviderInfo *info;
+
+  info = biji_provider_get_info (provider);
+  /* TODO: This is a workaround related to the local provider, which
+   *        emits the signal twice but it should emit it only once */
+  if (!g_hash_table_contains (manager->providers, info->unique_id))
+    g_hash_table_insert (manager->providers,
+                         (gpointer) info->unique_id, provider);
 
   switch (group)
   {
@@ -110,16 +118,6 @@ on_provider_loaded_cb (BijiProvider *provider,
   biji_manager_notify_changed (manager, group, BIJI_MANAGER_MASS_CHANGE, NULL);
 }
 
-static void
-on_provider_abort_cb (BijiProvider *provider,
-                      BijiManager  *self)
-{
-  const BijiProviderInfo *info;
-
-  info = biji_provider_get_info (provider);
-  g_hash_table_remove (self->providers, info->unique_id);
-}
-
 /*
  * It should be the right place
  * to stock somehow providers list
@@ -127,33 +125,41 @@ on_provider_abort_cb (BijiProvider *provider,
  *
  */
 static void
-_add_provider (BijiManager *self,
+_add_provider (BijiManager  *self,
                BijiProvider *provider)
 {
-  /* we can safely cast get_id from const to gpointer
-   * since there is no key free func */
-
-  const BijiProviderInfo *info;
-
-  info = biji_provider_get_info (provider);
-  g_hash_table_insert (self->providers,
-                       g_strdup (info->unique_id), g_object_ref (provider));
-
   g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);
   g_signal_connect (provider, "abort",
-                    G_CALLBACK (on_provider_abort_cb), self);
+                    G_CALLBACK (g_object_unref), self);
 }
 
 static void
-load_goa_client (BijiManager *self,
-                 GoaClient *client)
+load_local_provider (BijiManager *self)
 {
+  self->local_provider = biji_local_provider_new (self, self->location);
+  _add_provider (self, self->local_provider);
+}
+
+static gboolean
+load_goa_provider (BijiManager *self,
+                   GError     **error)
+{
+  g_autoptr(GoaClient) client;
   GList *accounts, *l;
   GoaObject *object;
   GoaAccount *account;
   const gchar *type;
   BijiProvider *provider;
+  g_autoptr(GError) local_error = NULL;
+
+  client = goa_client_new_sync (NULL, &local_error);
+  if (local_error)
+  {
+    g_warning ("Unable to connect to GOA: %s", local_error->message);
+    g_propagate_error (error, local_error);
+    return FALSE;
+  }
 
   accounts = goa_client_get_accounts (client);
 
@@ -173,30 +179,42 @@ load_goa_client (BijiManager *self,
         g_message ("Loading account %s", goa_account_get_id (account));
         provider = biji_nextcloud_provider_new (self, object);
         _add_provider (self, provider);
-        g_object_unref (provider);
       }
     }
   }
 
   g_list_free_full (accounts, g_object_unref);
+
+  return TRUE;
 }
 
-static void
-load_eds_registry (BijiManager *self,
-                   ESourceRegistry *registry)
+static gboolean
+load_eds_provider (BijiManager *self,
+                   GError     **error)
 {
+  g_autoptr(ESourceRegistry) registry;
   GList *list, *l;
   BijiProvider *provider;
+  g_autoptr(GError) local_error = NULL;
+
+  registry = e_source_registry_new_sync (NULL, &local_error);
+  if (local_error)
+  {
+    g_warning ("Unable to connect to EDS: %s", local_error->message);
+    g_propagate_error (error, local_error);
+    return FALSE;
+  }
 
   list = e_source_registry_list_sources (registry, E_SOURCE_EXTENSION_MEMO_LIST);
   for (l = list; l != NULL; l = l->next)
   {
     provider = biji_memo_provider_new (self, l->data);
     _add_provider (self, provider);
-    g_object_unref (provider);
   }
 
   g_list_free_full (list, g_object_unref);
+
+  return TRUE;
 }
 
 static void
@@ -220,7 +238,7 @@ biji_manager_init (BijiManager *self)
    * - own cloud notes = account_get_id
    */
   self->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                           g_free, g_object_unref);
+                                           NULL, g_object_unref);
 }
 
 TrackerSparqlConnection *
@@ -716,8 +734,6 @@ thread_run_cb (GObject      *object,
 {
   BijiManager *self = user_data;
   g_autoptr(GTask) task = NULL;
-  ESourceRegistry *registry;
-  GoaClient *client;
   GError *error = NULL;
 
   g_assert (BIJI_IS_MANAGER (self));
@@ -734,14 +750,6 @@ thread_run_cb (GObject      *object,
       return;
     }
 
-  client = g_object_get_data (G_OBJECT (result), "goa");
-  registry = g_object_get_data (G_OBJECT (result), "eds");
-  g_assert (client);
-  g_assert (registry);
-
-  load_goa_client (self, client);
-  load_eds_registry (self, registry);
-
   g_task_return_boolean (task, TRUE);
 }
 
@@ -752,9 +760,7 @@ load_providers (GTask        *task,
                 GCancellable *cancellable)
 {
   BijiManager *self = source_object;
-  g_autoptr(GoaClient) client = NULL;
   GError *error = NULL;
-  ESourceRegistry *registry;
 #ifdef TRACKER_PRIVATE_STORE
   g_autofree char *filename = NULL;
   g_autoptr(GFile) data_location = NULL;
@@ -797,26 +803,21 @@ load_providers (GTask        *task,
       return;
     }
 
-  client = goa_client_new_sync (NULL, &error);
+  load_local_provider(self);
+
+  load_goa_provider (self, &error);
   if (error)
     {
       g_task_return_error (task, error);
       return;
     }
-
-  registry = e_source_registry_new_sync (NULL, &error);
+  
+  load_eds_provider (self, &error);
   if (error)
     {
       g_task_return_error (task, error);
       return;
     }
-
-  self->local_provider = biji_local_provider_new (self, self->location);
-  _add_provider (self, self->local_provider);
-
-  g_object_ref (client);
-  g_object_set_data_full (G_OBJECT (task), "goa", client, g_object_unref);
-  g_object_set_data_full (G_OBJECT (task), "eds", registry, g_object_unref);
 
   g_task_return_boolean (task, TRUE);
 

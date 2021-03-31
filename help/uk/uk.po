@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes gnome-3-36\n"
-"POT-Creation-Date: 2021-02-25 11:20+0000\n"
-"PO-Revision-Date: 2021-02-25 14:45+0200\n"
+"POT-Creation-Date: 2021-03-26 12:04+0000\n"
+"PO-Revision-Date: 2021-03-31 21:24+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -24,14 +24,14 @@ msgstr "Юрій Чорноіван <yurchor@ukr.net>, 2020"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -52,7 +52,7 @@ msgstr "2013, 2014"
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
-#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
+#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
 #: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
 #: C/share.page:20
 msgid "Shobha Tyagi"
@@ -60,7 +60,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
 #: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
@@ -323,43 +323,40 @@ msgstr "Щоб остаточно вилучити усі примітки зі 
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid ""
-"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
-"terminology\">Activities</gui>."
-msgstr ""
-"Натисніть піктограму <gui>Примітки</gui> поряд зі списком <gui href=\"help:"
-"gnome-help/shell-terminology\">Діяльність</gui>."
+#| msgid "Change the text in the first line of the note."
+msgid "Press the menu button in the top-right corner of the window."
+msgstr "Натисніть кнопку меню у верхньому правому куті вікна програми."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:34
+#: C/delete-permanent.page:33
 msgid "Select <gui>View Trash</gui>."
 msgstr "Виберіть пункт <gui>Переглянути смітник</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:37
+#: C/delete-permanent.page:36
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr ""
 "Натисніть кнопку <gui style=\"button\">Спорожнити</gui> на панелі "
 "інструментів."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:42
+#: C/delete-permanent.page:41
 msgid "To delete selected notes from Trash:"
 msgstr "Щоб вилучити позначені примітки зі смітника, виконайте такі дії:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:44
+#: C/delete-permanent.page:43
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "На панелі <gui>Смітник</gui> натисніть кнопку <gui>Режим вибирання</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:48
+#: C/delete-permanent.page:47
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Позначте усі примітки, які ви хочете остаточно вилучити."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:51
+#: C/delete-permanent.page:50
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Натисніть кнопку <gui style=\"button\">Остаточно вилучити</gui>."
 
@@ -453,9 +450,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/format-list.page:51
-#| msgid ""
-#| "To create an ordered list, select the <guiseq><gui style=\"button"
-#| "\">Numbered List</gui> </guiseq> button from the footer menu."
 msgid ""
 "To create an ordered list, select the <guiseq><gui style=\"button\">List</"
 "gui> </guiseq> button from the footer menu."
@@ -509,40 +503,48 @@ msgstr ""
 "\">Курсив</gui> або <gui style=\"button\">Підкреслити</gui>."
 
 #. (itstool) path: info/title
-#: C/index.page:8
+#: C/index.page:6
+#| msgctxt "link"
+#| msgid "Notes"
+msgctxt "link:trail"
+msgid "Notes"
+msgstr "Примітки"
+
+#. (itstool) path: info/title
+#: C/index.page:7
 msgctxt "link"
 msgid "Notes"
 msgstr "Примітки"
 
 #. (itstool) path: info/title
-#: C/index.page:9
+#: C/index.page:8
 msgctxt "text"
 msgid "Notes"
 msgstr "Примітки"
 
 #. (itstool) path: info/desc
-#: C/index.page:27
+#: C/index.page:26
 msgid "Learn how to use and manage your notes."
 msgstr ""
 "Дізнайтеся про те, як користуватися вашими примітками та керувати ними."
 
 #. (itstool) path: page/title
-#: C/index.page:30
+#: C/index.page:29
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Примітки"
 
 #. (itstool) path: section/title
-#: C/index.page:37
+#: C/index.page:36
 msgid "Create notes"
 msgstr "Створення приміток"
 
 #. (itstool) path: section/title
-#: C/index.page:40
+#: C/index.page:39
 msgid "Edit and share notes"
 msgstr "Редагування та оприлюднення приміток"
 
 #. (itstool) path: section/title
-#: C/index.page:43
+#: C/index.page:42
 msgid "Delete notes"
 msgstr "Вилучення приміток"
 
@@ -811,3 +813,10 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0 Unported License"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Ця робота розповсюджується за умов дотримання <_:link-1/>."
+
+#~ msgid ""
+#~ "Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+#~ "terminology\">Activities</gui>."
+#~ msgstr ""
+#~ "Натисніть піктограму <gui>Примітки</gui> поряд зі списком <gui href="
+#~ "\"help:gnome-help/shell-terminology\">Діяльність</gui>."

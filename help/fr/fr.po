@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the bijiben package.
 # naybnet <naybnet@gmail.com>, 2014.
 # Myriam Economou <myriam.economou@gmail.com>, 2015.
-# Charles Monzat <charles.monzat@free.fr>, 2016-2020.
+# Charles Monzat <charles.monzat@free.fr>, 2016-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2018-11-16 19:47+0000\n"
-"PO-Revision-Date: 2020-04-07 10:56+0200\n"
+"POT-Creation-Date: 2021-03-18 17:43+0000\n"
+"PO-Revision-Date: 2021-03-10 15:07+0100\n"
 "Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -17,14 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "naybnet <naybnet@gmail.com>, 2014\n"
-"Myriam Economou <myriam.economou@gmail.com>, 2015"
+"Myriam Economou <myriam.economou@gmail.com>, 2015\n"
+"Charles Monzat <charles.monzat@free.fr>, 2020-2021"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
@@ -95,7 +96,7 @@ msgstr "Modifier la couleur d’arrière-plan de la note."
 #. (itstool) path: page/title
 #: C/colors.page:37
 msgid "Change note color"
-msgstr "Changer la couleur de la note"
+msgstr "Modification de la couleur de la note"
 
 #. (itstool) path: page/p
 #: C/colors.page:39
@@ -103,13 +104,13 @@ msgid ""
 "You can change the background colour of a note to emphasize it or to "
 "differentiate it from other notes."
 msgstr ""
-"Vous pouvez changer la couleur de fond de la note pour la mettre en valeur "
-"ou pour la différencier des autres notes."
+"Vous pouvez modifier la couleur d’arrière-plan de la note pour la mettre en "
+"valeur ou pour la différencier des autres notes."
 
 #. (itstool) path: steps/title
 #: C/colors.page:43
 msgid "To change the color of an individual note:"
-msgstr "Changer la couleur d’une seule note :"
+msgstr "Pour modifier la couleur d’une seule note :"
 
 #. (itstool) path: item/p
 #: C/colors.page:45 C/delete.page:40 C/notebooks.page:43 C/rename.page:31
@@ -136,13 +137,13 @@ msgid ""
 "You can also change the background colour in a group of notes at the same "
 "time."
 msgstr ""
-"Vous pouvez également changer la couleur de fond d’un groupe de notes "
-"simultanément."
+"Vous pouvez également modifier la couleur d’arrière-plan d’un groupe de "
+"notes simultanément."
 
 #. (itstool) path: steps/title
 #: C/colors.page:60
 msgid "To change the color of multiple notes:"
-msgstr "Pour changer la couleur de plusieurs notes :"
+msgstr "Pour modifier la couleur de plusieurs notes :"
 
 #. (itstool) path: item/p
 #: C/colors.page:62 C/delete.page:56 C/notebooks.page:61
@@ -170,7 +171,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/create.page:36
 msgid "Create a note"
-msgstr "Créer une note"
+msgstr "Création d’une note"
 
 #. (itstool) path: page/p
 #: C/create.page:38
@@ -210,7 +211,7 @@ msgid ""
 "To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
 "key><key>N</key></keyseq>."
 msgstr ""
-"Pour ouvrir une nouvelle note en utilisant le clavier, appuyer sur "
+"Pour ouvrir une nouvelle note en utilisant le clavier, appuyez sur "
 "<keyseq><key>Ctrl</key><key>N</key></keyseq>."
 
 #. (itstool) path: info/desc
@@ -267,7 +268,7 @@ msgstr "Supprimer les notes anciennes et indésirables."
 #. (itstool) path: page/title
 #: C/delete.page:35
 msgid "Delete a note"
-msgstr "Supprimer une note"
+msgstr "Suppression d’une note"
 
 #. (itstool) path: steps/title
 #: C/delete.page:38
@@ -313,12 +314,12 @@ msgstr ""
 #: C/delete-permanent.page:18
 msgid "Permanently delete notes from the <gui>Trash</gui> view."
 msgstr ""
-"Supprimez définitivement des notes à partir de la vue <gui>Corbeille</gui>"
+"Supprimer définitivement des notes à partir de la vue <gui>Corbeille</gui>."
 
 #. (itstool) path: page/title
 #: C/delete-permanent.page:21
 msgid "Empty the Trash"
-msgstr "Vider la Corbeille"
+msgstr "Vidage de la Corbeille"
 
 #. (itstool) path: page/p
 #: C/delete-permanent.page:23
@@ -385,7 +386,7 @@ msgstr "Restaurer une note supprimée."
 #. (itstool) path: page/title
 #: C/delete-restore.page:26
 msgid "Restore notes"
-msgstr "Restaurer des notes"
+msgstr "Restauration de notes"
 
 #. (itstool) path: page/p
 #: C/delete-restore.page:28
@@ -418,40 +419,76 @@ msgstr "Sélectionnez toutes les notes que vous souhaitez restaurer."
 msgid "Click on <gui style=\"button\">Restore</gui> button."
 msgstr "Cliquez sur le bouton <gui style=\"button\">Restaurer</gui>."
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/format-list.page:30
+msgid "Pranali Deshmukh"
+msgstr "Pranali Deshmukh"
+
+#. (itstool) path: credit/years
 #: C/format-list.page:32
+msgid "2020"
+msgstr "2020"
+
+#. (itstool) path: info/desc
+#: C/format-list.page:37
 msgid "Format a note with ordered and unordered lists."
 msgstr "Formater une note avec des listes ordonnées et non ordonnées."
 
 #. (itstool) path: page/title
-#: C/format-list.page:35
+#: C/format-list.page:40
 msgid "Create a list"
-msgstr "Créer une liste"
+msgstr "Création d’une liste"
 
 #. (itstool) path: list/title
-#: C/format-list.page:38
+#: C/format-list.page:43
 msgid "While the note is open:"
 msgstr "Pendant que la note est ouverte :"
 
-# ATTENTION : pas de points de suspension dans la traduction (Charles).
-#. (itstool) path: item/p
-#: C/format-list.page:40
-msgid ""
-"To create an unordered list, click <guiseq><gui style=\"button\">More "
-"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
-msgstr ""
-"Pour créer une liste non ordonnée, cliquez sur <guiseq><gui style=\"button"
-"\">Plus d’options</gui> <gui style=\"menuitem\">Puces</gui></guiseq>."
-
-# ATTENTION : pas de points de suspension dans la traduction (Charles).
 #. (itstool) path: item/p
 #: C/format-list.page:45
 msgid ""
-"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
-"</gui> <gui>Numbered List</gui></guiseq>."
+"To create an unordered list, select the <guiseq><gui style=\"button"
+"\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Pour créer une liste ordonnée, cliquez sur <guiseq><gui style=\"button"
-"\">Plus d’options</gui> <gui>Liste numérotée</gui></guiseq>."
+"Pour créer une liste non ordonnée, sélectionnez le bouton <guiseq><gui style="
+"\"button\">Puces</gui></guiseq> situé dans le menu du pied de page."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:48
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+msgstr ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='fd779c4286061b32f00259d87c214ef9'"
+
+#. (itstool) path: item/p
+#: C/format-list.page:51
+msgid ""
+"To create an ordered list, select the <guiseq><gui style=\"button\">List</"
+"gui> </guiseq> button from the footer menu."
+msgstr ""
+"Pour créer une liste ordonnée, sélectionnez le bouton <guiseq><gui style="
+"\"button\">Liste</gui></guiseq> situé dans le menu du pied de page."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:54
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+msgstr ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='760635574e7dcfd16402e9addb230026'"
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -461,12 +498,12 @@ msgstr "Appliquer différentes options de formatage au texte."
 #. (itstool) path: page/title
 #: C/format-text.page:35
 msgid "Change the text style"
-msgstr "Changer le style du texte"
+msgstr "Modification du style du texte"
 
 #. (itstool) path: steps/title
 #: C/format-text.page:38
 msgid "To change the formatting options of text in your note:"
-msgstr "Pour changer les options de formatage du texte dans une note :"
+msgstr "Pour modifier les options de formatage du texte dans une note :"
 
 #. (itstool) path: item/p
 #: C/format-text.page:40
@@ -507,17 +544,17 @@ msgstr "<_:media-1/> Notes"
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Create notes"
-msgstr "Créer des notes"
+msgstr "Création de notes"
 
 #. (itstool) path: section/title
 #: C/index.page:40
 msgid "Edit and share notes"
-msgstr "Modifier et partager des notes"
+msgstr "Modification et partage de notes"
 
 #. (itstool) path: section/title
 #: C/index.page:43
 msgid "Delete notes"
-msgstr "Supprimer des notes"
+msgstr "Suppression de notes"
 
 #. (itstool) path: info/desc
 #: C/introduction.page:33
@@ -551,9 +588,9 @@ msgstr ""
 #: C/introduction.page:44
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 msgstr ""
-"external ref='figures/notes-3-12.png' md5='94bd08317f7087f4012b2efd954e3b66'"
+"external ref='figures/notes-40.png' md5='67e1cf11e4b5c79509c030975c2445f1'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -568,7 +605,7 @@ msgstr "Ouvrir une note dans une nouvelle fenêtre."
 #. (itstool) path: page/title
 #: C/new-window.page:21
 msgid "Open a note in another window"
-msgstr "Ouvrir une note dans une autre fenêtre"
+msgstr "Ouverture d’une note dans une autre fenêtre"
 
 #. (itstool) path: page/p
 #: C/new-window.page:23
@@ -676,12 +713,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/rename.page:23
 msgid "Change the name of an existing note."
-msgstr "Changer le nom d’une note existante."
+msgstr "Modifier le nom d’une note existante."
 
 #. (itstool) path: page/title
 #: C/rename.page:26
 msgid "Rename a note"
-msgstr "Renommer une note"
+msgstr "Renommage d’une note"
 
 #. (itstool) path: steps/title
 #: C/rename.page:29
@@ -691,7 +728,7 @@ msgstr "Pour renommer une note :"
 #. (itstool) path: item/p
 #: C/rename.page:34
 msgid "Change the text in the first line of the note."
-msgstr "Changez le texte de la première ligne de la note."
+msgstr "Modifiez le texte de la première ligne de la note."
 
 #. (itstool) path: info/desc
 #: C/search.page:32
@@ -701,7 +738,7 @@ msgstr "Rechercher une note, un contenu d’une note et des carnets existants."
 #. (itstool) path: page/title
 #: C/search.page:35
 msgid "Find a note"
-msgstr "Trouver une note"
+msgstr "Recherche d’une note"
 
 #. (itstool) path: page/p
 #: C/search.page:37
@@ -748,7 +785,7 @@ msgstr "Envoyer une note par courriel à vos contacts."
 #. (itstool) path: page/title
 #: C/share.page:35
 msgid "Share a note"
-msgstr "Partager une note"
+msgstr "Partage d’une note"
 
 #. (itstool) path: page/p
 #: C/share.page:37
@@ -776,7 +813,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/share.page:50
 msgid "Send the note by email."
-msgstr "Envoyer la note par courriel."
+msgstr "Envoyez la note par courriel."
 
 #. (itstool) path: p/link
 #: C/legal.xml:5
@@ -789,6 +826,26 @@ msgstr ""
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Cet ouvrage est sous licence <_:link-1/>."
+
+#, fuzzy
+#~| msgid "Change the text in the first line of the note."
+#~ msgid "Press the menu button in the top-right corner of the window."
+#~ msgstr "Modifiez le texte de la première ligne de la note."
+
+#, fuzzy
+#~| msgctxt "link"
+#~| msgid "Notes"
+#~ msgctxt "link:trail"
+#~ msgid "Notes"
+#~ msgstr "Notes"
+
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
+#~ msgid ""
+#~ "To create an unordered list, click <guiseq><gui style=\"button\">More "
+#~ "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+#~ msgstr ""
+#~ "Pour créer une liste non ordonnée, cliquez sur <guiseq><gui style=\"button"
+#~ "\">Plus d’options</gui> <gui style=\"menuitem\">Puces</gui></guiseq>."
 
 #~ msgid "01 sep 2014"
 #~ msgstr "01 sep 2014"

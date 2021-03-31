@@ -21,17 +21,10 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
-#include <stdlib.h>
-#include <libedataserver/libedataserver.h> /* ESourceRegistry */
-#include <libecal/libecal.h>               /* ECalClient      */
-
-
 #include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
 #include "bjb-settings.h"
-#include "bjb-main-view.h"
-#include "bjb-note-view.h"
 #include "bjb-window-base.h"
 #include "bjb-import-dialog.h"
 
@@ -547,12 +540,6 @@ BijiManager *
 bijiben_get_manager(BjbApplication *self)
 {
   return self->manager;
-}
-
-const gchar *
-bijiben_get_bijiben_dir (void)
-{
-  return DATADIR;
 }
 
 BjbSettings * bjb_app_get_settings(gpointer application)

@@ -34,7 +34,6 @@ BjbApplication *bjb_application_new (void);
 
 // Accessors
 
-const gchar *bijiben_get_bijiben_dir (void);
 BijiManager * bijiben_get_manager(BjbApplication *self);
 BjbSettings * bjb_app_get_settings(gpointer application);
 

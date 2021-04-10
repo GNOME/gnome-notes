@@ -24,11 +24,9 @@ sources = files(
   '../bjb-utils.c',
 )
 
-marshalers = 'biji-marshalers'
-
-sources += gnome.genmarshal(
-  marshalers,
-  sources: marshalers + '.list',
+marshalers = gnome.genmarshal(
+  'biji-marshalers',
+  sources: 'biji-marshalers.list',
   prefix: '_biji_marshal'
 )
 
@@ -38,7 +36,7 @@ cflags = []
 
 libbiji = static_library(
   'biji',
-  sources: sources,
+  sources: sources + marshalers,
   include_directories: top_inc,
   dependencies: deps,
   c_args: cflags
@@ -47,5 +45,6 @@ libbiji = static_library(
 libbiji_dep = declare_dependency(
   link_with: libbiji,
   include_directories: include_directories('.'),
-  dependencies: deps
+  dependencies: deps,
+  sources: marshalers[1],
 )

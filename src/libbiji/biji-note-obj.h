@@ -124,11 +124,6 @@ gboolean         biji_note_obj_is_trashed                    (BijiNoteObj *self)
 
 void             biji_note_obj_save_note                     (BijiNoteObj *self);
 
-void             biji_note_obj_set_icon                      (BijiNoteObj *self,
-                                                              GdkPixbuf   *pix);
-
-char            *biji_note_obj_get_icon_file                 (BijiNoteObj *self);
-
 const char      *biji_note_obj_get_raw_text                  (BijiNoteObj *self);
 
 void             biji_note_obj_set_raw_text                  (BijiNoteObj *self,

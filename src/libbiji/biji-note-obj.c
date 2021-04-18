@@ -235,28 +235,11 @@ trash (BijiItem *item)
 {
   BijiNoteObj        *self      = BIJI_NOTE_OBJ (item);
   BijiNoteObjPrivate *priv      = biji_note_obj_get_instance_private (self);
-  GFile              *icon      = NULL;
-  char               *icon_path = NULL;
-  gboolean            result    = FALSE;
 
   priv->needs_save = FALSE;
   biji_timeout_cancel (priv->timeout);
-  result = BIJI_NOTE_OBJ_GET_CLASS (self)->archive (self);
 
-  if (result == TRUE)
-    {
-      /* Delete icon file */
-      icon_path = biji_note_obj_get_icon_file (self);
-      icon = g_file_new_for_path (icon_path);
-      g_file_delete (icon, NULL, NULL);
-    }
-
-  g_free (icon_path);
-
-  if (icon != NULL)
-    g_object_unref (icon);
-
-  return result;
+  return BIJI_NOTE_OBJ_GET_CLASS (self)->archive (self);
 }
 
 gboolean
@@ -569,26 +552,6 @@ biji_note_obj_save_note (BijiNoteObj *self)
 
   priv->needs_save = TRUE;
   biji_timeout_reset (priv->timeout, 3000);
-}
-
-char *
-biji_note_obj_get_icon_file (BijiNoteObj *self)
-{
-  const char *uuid;
-  char *basename, *filename;
-
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), NULL);
-
-  uuid = BIJI_NOTE_OBJ_GET_CLASS (self)->get_basename (self);
-  basename = biji_str_mass_replace (uuid, ".note", ".png", ".txt", ".png", NULL);
-
-  filename = g_build_filename (g_get_user_cache_dir (),
-                               g_get_application_name (),
-                               basename,
-                               NULL);
-
-  g_free (basename);
-  return filename;
 }
 
 static cairo_surface_t *

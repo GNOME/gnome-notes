@@ -198,46 +198,6 @@ handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
   g_application_release (user_data);
 }
 
-static GVariant *
-get_note_icon (BijibenShellSearchProviderApp *self,
-               const gchar *note__nie_url)
-{
-  GVariant *variant;
-  GIcon *gicon;
-  gint scale_factor;
-  BijiItem *item;
-
-  scale_factor = gdk_monitor_get_scale_factor (gdk_display_get_primary_monitor (gdk_display_get_default ()));
-
-  gicon = NULL;
-  item = biji_manager_get_item_at_path (self->manager, note__nie_url);
-  if (item != NULL && BIJI_IS_ITEM(item))
-    {
-      /* Load the icon from the note */
-      cairo_surface_t *surface = biji_item_get_icon (item, scale_factor);
-      gicon = G_ICON (gdk_pixbuf_get_from_surface (surface, 0, 0,
-                                                   cairo_image_surface_get_width (surface),
-                                                   cairo_image_surface_get_height (surface)));
-    }
-
-  if (gicon == NULL)
-    {
-      /* Fallback to generic icon */
-      char *path = g_build_filename (DATADIR, "bijiben", "icons", "hicolor",
-                                     "48x48", "actions", "note.png", NULL);
-      GFile *file = g_file_new_for_path (path);
-      gicon = g_file_icon_new (file);
-
-      g_free (path);
-      g_object_unref (file);
-    }
-
-  variant = g_icon_serialize (gicon);
-  g_object_unref (gicon);
-
-  return variant;
-}
-
 static void
 add_single_note_meta (BijibenShellSearchProviderApp *self,
                       gchar *note__id,
@@ -247,7 +207,6 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
   const gchar *url;
   const gchar *result;
   TrackerSparqlCursor *cursor;
-  GVariant *icon;
 
   query = g_strdup_printf ("SELECT nie:url(<%s>) nie:title(<%s>) WHERE { }",
                            note__id, note__id);
@@ -269,13 +228,6 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
     if (result == NULL || result[0] == '\0')
       result = _("Untitled");
     g_variant_builder_add (results, "{sv}", "name", g_variant_new_string (result));
-
-   /* ICON is currently generic icon,        *
-    * TODO serialize icons in libbiji        *
-    *      or deserialize note here )        */
-    icon = get_note_icon (self, url);
-    g_variant_builder_add (results, "{sv}", "icon", icon);
-
     g_variant_builder_close (results);
   }
 

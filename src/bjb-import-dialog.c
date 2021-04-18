@@ -20,7 +20,7 @@
 /* TODO
  *
  * - better label for dialog (pango for head label)
- * - maybe align diffrently
+ * - maybe align differently
  * - we might also trigger spinner view when import runs
  */
 

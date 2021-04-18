@@ -145,7 +145,7 @@ fill_in_components (ECalComponent *comp,
   /* X-EVOLUTION-OPTIONS-DELAY */
 
 
-  /* -------------- OHER FILEDS (from specification) -------
+  /* -------------- OTHER FIELDS (from specification) -------
    *    FIXME: some of theme belong somewhere above....
    *
    * Unique: created / description / dtstamp / recurid / status / url /
@@ -295,8 +295,8 @@ memo_delete (BijiNoteObj *note)
 
   e_cal_client_remove_object (self->client,
                               uid,
-                              NULL,               /* rid : all occurences */
-                              E_CAL_OBJ_MOD_ALL,  /*       all occurences */
+                              NULL,               /* rid : all occurrences */
+                              E_CAL_OBJ_MOD_ALL,  /*       all occurrences */
                               E_CAL_OPERATION_FLAG_NONE,
                               NULL,               /* Cancellable */
                               on_memo_deleted,

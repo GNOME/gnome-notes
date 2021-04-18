@@ -43,7 +43,7 @@ typedef struct
   BijiTimeout           *timeout;
   gboolean               needs_save;
 
-  /* Icon might be null untill usefull
+  /* Icon might be null until useful
    * Emblem is smaller & just shows the color */
   cairo_surface_t       *icon;
   cairo_surface_t       *emblem;

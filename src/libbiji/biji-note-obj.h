@@ -25,7 +25,7 @@
 
 G_BEGIN_DECLS
 
-/* Available formating for biji_note_obj_editor_apply_format
+/* Available formatting for biji_note_obj_editor_apply_format
  * If note is opened, and if text is opened
  * This toggle the format
  * eg bold text will become normal and normal text becomes bold */
@@ -54,7 +54,7 @@ struct _BijiNoteObjClass
   /*
    * Mandatory. Provide the latest note html.
    * Use html_from_plain_text if needed.
-   * This sring must be allocated. use g_strdup if needed. */
+   * This string must be allocated. use g_strdup if needed. */
   char         *(*get_html)          (BijiNoteObj *note);
 
   /*
@@ -81,7 +81,7 @@ struct _BijiNoteObjClass
    *
    * Return FALSE if the note is note trashed.
    *
-   * If the provider does not suport this, return FALSE */
+   * If the provider does not support this, return FALSE */
   gboolean      (*is_trashed)        (BijiNoteObj *note);
 
   /*

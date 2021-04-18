@@ -381,7 +381,7 @@ on_collected_item_change (BijiNotebook *self)
 
   manager = biji_item_get_manager (BIJI_ITEM (self));
 
-  /* Diconnected any handler */
+  /* Disconnected any handler */
   for (l = self->collected_items; l != NULL; l = l->next)
   {
     g_signal_handlers_disconnect_by_func (l->data, on_collected_item_change, self);

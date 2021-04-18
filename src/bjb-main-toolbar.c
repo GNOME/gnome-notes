@@ -161,7 +161,7 @@ on_view_selection_changed_cb (BjbMainToolbar *self)
   populate_main_toolbar (self);
 
   /* If we were already on selection mode,
-   * the bar is not totaly refreshed. just udpate label */
+   * the bar is not totally refreshed. just update label */
   if (self->type == BJB_TOOLBAR_SELECT)
     update_selection_label (self);
 }

@@ -43,7 +43,7 @@ struct _BijiLazySerializer
   xmlBufferPtr     buf;
   xmlTextWriterPtr writer;
 
-  /* To get accross the html tree */
+  /* To get across the html tree */
   xmlTextReaderPtr inner;
 };
 

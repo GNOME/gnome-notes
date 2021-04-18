@@ -296,7 +296,7 @@ bjb_controller_add_item_if_needed (BjbController *self,
       need_to_add_item = TRUE;
 
     /* To do : we might have a notebook
-     * but have to udpate the view */
+     * but have to update the view */
   }
 
   /* a search.. we test...*/

@@ -18,11 +18,11 @@
 
 /*
  * TODO: the generic provider should at least
- * be the one emiting the signals
+ * be the one emitting the signals
  * 
  * So 1. for each provider, the manager connects to the same
  * & provider does not reinvent anything
- * 2. it might be a right place for running the approriate
+ * 2. it might be the right place for running the appropriate
  * threads - or even processes.
  * 
  */

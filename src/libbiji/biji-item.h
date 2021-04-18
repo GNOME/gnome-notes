@@ -124,7 +124,7 @@ gboolean         biji_item_has_notebook        (BijiItem *item,
 /* Add Collection:
  * either provide an existing notebook object
  * or a title, in which case it's considered not on user action
- * and no notifiy happens */
+ * and no notify happens */
 
 gboolean         biji_item_add_notebook  (BijiItem *item, BijiItem *collection, gchar *title);
 

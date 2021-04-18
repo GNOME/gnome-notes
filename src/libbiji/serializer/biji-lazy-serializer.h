@@ -16,7 +16,7 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* This serializer is used for developement at first.
+/* This serializer is used for development at first.
  * It combines XML format for metadata
  * and HTML format for note body.
  *

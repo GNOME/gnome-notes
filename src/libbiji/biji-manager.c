@@ -854,7 +854,7 @@ biji_manager_load_providers_finish (BijiManager   *self,
 
 /* Create the importer == switch depending on the uri.
  * That's all, the importer is responsible
- * for emiting the signal transfering the notes
+ * for emitting the signal transferring the notes
  * And no need to _add_provider, it's a tmp provider. */
 void
 biji_manager_import_uri (BijiManager *manager,

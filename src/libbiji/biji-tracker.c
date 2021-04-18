@@ -36,7 +36,7 @@ typedef enum
 
 
 /* To perform something after async tracker query
- * TODO : implemet this with GObject */
+ * TODO : implement this with GObject */
 typedef struct {
 
   BijiManager *manager;

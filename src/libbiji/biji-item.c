@@ -47,8 +47,6 @@ typedef struct
   BijiManager *manager;
 } BijiItemPrivate;
 
-static void biji_item_finalize (GObject *object);
-
 G_DEFINE_TYPE_WITH_PRIVATE (BijiItem, biji_item, G_TYPE_OBJECT)
 
 static gboolean
@@ -111,7 +109,6 @@ biji_item_class_init (BijiItemClass *klass)
 
   g_object_class->get_property = biji_item_get_property;
   g_object_class->set_property = biji_item_set_property;
-  g_object_class->finalize = biji_item_finalize;
 
   klass->has_color = biji_item_real_has_color;
   klass->is_collectable = biji_item_real_is_collectable;
@@ -160,14 +157,6 @@ biji_item_class_init (BijiItemClass *klass)
                   1,
                   G_TYPE_STRING);
 }
-
-
-static void
-biji_item_finalize (GObject *object)
-{
-  G_OBJECT_CLASS (biji_item_parent_class)->finalize (object);
-}
-
 
 static void
 biji_item_init (BijiItem *self)

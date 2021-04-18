@@ -152,13 +152,6 @@ biji_note_obj_finalize (GObject *object)
   G_OBJECT_CLASS (biji_note_obj_parent_class)->finalize (object);
 }
 
-/* we do NOT deserialize here. it might be a brand new note
- * it's up the manager to ask .note to be read*/
-static void
-biji_note_obj_constructed (GObject *obj)
-{
-}
-
 static void
 biji_note_obj_set_property (GObject      *object,
                             guint         property_id,
@@ -925,7 +918,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   GObjectClass  *object_class = G_OBJECT_CLASS  (klass);
   BijiItemClass *item_class   = BIJI_ITEM_CLASS (klass);
 
-  object_class->constructed  = biji_note_obj_constructed;
   object_class->finalize     = biji_note_obj_finalize;
   object_class->get_property = biji_note_obj_get_property;
   object_class->set_property = biji_note_obj_set_property;

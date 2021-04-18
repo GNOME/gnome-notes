@@ -166,7 +166,7 @@ load_goa_provider (BijiManager *self,
   for (l = accounts; l != NULL; l = l->next)
   {
     object = GOA_OBJECT (l->data);
-    account =  goa_object_peek_account (object);
+    account = goa_object_peek_account (object);
 
     if (GOA_IS_ACCOUNT (account))
     {
@@ -273,13 +273,10 @@ biji_manager_finalize (GObject *object)
 {
   BijiManager *self = BIJI_MANAGER (object);
 
-
   g_clear_object (&self->location);
   g_hash_table_destroy (self->items);
   g_hash_table_destroy (self->archives);
-
   g_hash_table_unref (self->providers);
-  g_clear_object (&self->local_provider);
 
   G_OBJECT_CLASS (biji_manager_parent_class)->finalize (object);
 }

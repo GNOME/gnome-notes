@@ -18,6 +18,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define G_LOG_DOMAIN "bjb-application"
+
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -27,6 +29,8 @@
 #include "bjb-settings.h"
 #include "bjb-window-base.h"
 #include "bjb-import-dialog.h"
+#include "bjb-log.h"
+
 
 struct _BjbApplication
 {
@@ -78,6 +82,17 @@ gboolean        text_size_mapping_get       (GValue             *value,
 GVariant       *text_size_mapping_set       (const GValue       *value,
                                              const GVariantType *expected_type,
                                              gpointer            user_data);
+
+static gboolean
+cmd_verbose_cb (const char  *option_name,
+                const char  *value,
+                gpointer     data,
+                GError     **error)
+{
+  bjb_log_increase_verbosity ();
+
+  return TRUE;
+}
 
 static void
 on_window_activated_cb (BjbWindowBase  *window,
@@ -231,6 +246,8 @@ bjb_application_init (BjbApplication *self)
 {
   GApplication *app = G_APPLICATION (self);
   const GOptionEntry cmd_options[] = {
+    { "verbose", 'v', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, cmd_verbose_cb,
+      N_("Show verbose logs"), NULL},
     { "version", 0, 0, G_OPTION_ARG_NONE, NULL,
       N_("Show the application’s version"), NULL},
     { "new-note", 0, 0, G_OPTION_ARG_NONE, &self->new_note,

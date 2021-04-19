@@ -1,6 +1,7 @@
 subdir('libbiji')
 
 sources = files(
+  'bjb-log.c',
   'bjb-application.c',
   'bjb-color-button.c',
   'bjb-controller.c',

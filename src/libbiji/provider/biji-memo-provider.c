@@ -24,6 +24,7 @@
  * TODO: check this
  */
 
+#define G_LOG_DOMAIN "bjb-memo-provider"
 
 #include <libecal/libecal.h>        /* ECalClient      */
 #include "biji-tracker.h"

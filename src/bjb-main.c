@@ -22,6 +22,7 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
+#include "bjb-log.h"
 
 int
 main (int argc, char *argv[])
@@ -32,6 +33,7 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  bjb_log_init ();
   app = bjb_application_new ();
   return g_application_run (G_APPLICATION (app), argc, argv);
 }

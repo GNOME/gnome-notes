@@ -18,6 +18,8 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+#define G_LOG_DOMAIN "bjb-nextcloud-provider"
+
 #include <curl/curl.h>
 #include <json-glib/json-glib.h>
 

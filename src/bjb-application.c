@@ -21,6 +21,7 @@
 #define G_LOG_DOMAIN "bjb-application"
 
 #include "config.h"
+#include "version.h"
 
 #include <glib/gi18n.h>
 #include <libbiji/libbiji.h>
@@ -192,7 +193,7 @@ bijiben_handle_local_options (GApplication *application,
 {
   if (g_variant_dict_contains (options, "version"))
     {
-      g_print ("%s %s\n", _("GNOME Notes"), VERSION);
+      g_print ("%s %s\n", _("GNOME Notes"), PACKAGE_VCS_VERSION);
       return 0;
     }
 

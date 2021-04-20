@@ -1,3 +1,9 @@
+revision_tag = vcs_tag(
+  input: 'version.h.in',
+  output: 'version.h',
+)
+bijiben_deps += declare_dependency(sources: revision_tag)
+
 subdir('libbiji')
 
 sources = files(

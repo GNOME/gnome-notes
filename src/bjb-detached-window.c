@@ -47,11 +47,22 @@ struct _BjbDetachedWindow
   GtkWidget *main_box;
   GtkWidget *title_entry;
   GtkWidget *last_update_item;
+
+  gulong     parent_note_view_destroyed;
 };
 
 G_DEFINE_TYPE (BjbDetachedWindow, bjb_detached_window, HDY_TYPE_APPLICATION_WINDOW)
 
 static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
+
+static void
+on_parent_note_view_destroyed_cb (GtkWidget *widget,
+                                  gpointer   user_data)
+{
+  BjbDetachedWindow *self = BJB_DETACHED_WINDOW (user_data);
+
+  self->parent_note_view_destroyed = 0;
+}
 
 static void
 on_note_renamed (BijiItem          *note,
@@ -245,6 +256,10 @@ bjb_detached_window_constructed (GObject *object)
   note_view = bjb_note_view_new (GTK_WIDGET (self), self->note);
   gtk_box_pack_end (GTK_BOX (self->main_box), GTK_WIDGET (note_view), TRUE, TRUE, 0);
   gtk_widget_show (GTK_WIDGET (note_view));
+
+  self->parent_note_view_destroyed = g_signal_connect (self->note_view, "destroy",
+                                                       G_CALLBACK (on_parent_note_view_destroyed_cb),
+                                                       self);
 }
 
 static void
@@ -252,9 +267,11 @@ bjb_detached_window_finalize (GObject *object)
 {
   BjbDetachedWindow *self = BJB_DETACHED_WINDOW (object);
 
-  if (BJB_IS_NOTE_VIEW (self->note_view))
+  if (self->parent_note_view_destroyed != 0)
   {
     bjb_note_view_set_detached (self->note_view, FALSE);
+    g_signal_handler_disconnect (self->note_view,
+                                 self->parent_note_view_destroyed);
   }
 
   g_object_unref (self->note);

@@ -57,6 +57,7 @@ on_email_note_callback (BijiNoteObj *note)
     }
 
   arraybuilder = g_variant_builder_new (G_VARIANT_TYPE ("a{sv}"));
+  g_variant_builder_add (arraybuilder, "{sv}", "address", g_variant_new_string ("to@email.com"));
   g_variant_builder_add (arraybuilder, "{sv}", "subject", g_variant_new_string (title_mail));
   g_variant_builder_add (arraybuilder, "{sv}", "body", g_variant_new_string (text_mail));
 

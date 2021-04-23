@@ -4,8 +4,15 @@ variables:
   GIT_SUBMODULE_STRATEGY: 'normal'
 
 stages:
+  - 'source_check'
   - 'flatpak'
   - 'deploy'
+
+codespell:
+  when: on_success
+  stage: 'source_check'
+  image: "docker.io/bilelmoussaoui/codespell"
+  script: codespell -S "*.png,*.po,*.svg,.git,NEWS,AUTHORS,LINGUAS" -f --builtin "code,clear" --ignore-words-list="stdio"
 
 flatpak:master:
     extends: '.flatpak'

@@ -161,7 +161,7 @@ bjb_log_handler (GLogLevelFlags   log_level,
   const char *log_domain = NULL;
   const char *log_message = NULL;
 
-  /* If domain is “all” show logs upto debug regardless of the verbosity */
+  /* If domain is “all” show logs up to debug regardless of the verbosity */
   switch ((int)log_level)
     {
     case G_LOG_LEVEL_MESSAGE:

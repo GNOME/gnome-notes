@@ -192,6 +192,8 @@ on_trash_cb (GSimpleAction *action,
   /* Delete the note from notebook
    * The deleted note will emit a signal. */
   biji_item_trash (BIJI_ITEM (note));
+
+  gtk_widget_destroy (GTK_WIDGET (self));
 }
 
 static void

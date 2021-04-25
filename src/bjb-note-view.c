@@ -55,7 +55,6 @@ struct _BjbNoteView
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
 
 static void on_window_closed(GtkWidget *window,gpointer note);
-static gboolean on_note_trashed (BijiNoteObj *note, BjbNoteView *view);
 static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
 
 void
@@ -76,7 +75,6 @@ static void
 bjb_note_view_disconnect (BjbNoteView *self)
 {
   g_signal_handlers_disconnect_by_func (self->window, on_window_closed, self->note);
-  g_signal_handlers_disconnect_by_func (self->note, on_note_trashed, self);
   g_signal_handlers_disconnect_by_func (self->note, on_note_color_changed_cb, self);
 }
 
@@ -154,27 +152,6 @@ on_window_closed(GtkWidget *window,gpointer note)
 /* Callbacks */
 
 static void
-just_switch_to_main_view(BjbNoteView *self)
-{
-  GtkWindow     *window;
-
-  /* Avoid stupid crash */
-  bjb_note_view_disconnect (self);
-
-  window = GTK_WINDOW(self->window);
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (window),
-                             BJB_WINDOW_BASE_MAIN_VIEW);
-}
-
-static gboolean
-on_note_trashed (BijiNoteObj *note, BjbNoteView *view)
-{
-  just_switch_to_main_view (view);
-  return TRUE;
-}
-
-
-static void
 on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
   GdkRGBA color;
@@ -200,11 +177,6 @@ bjb_note_view_constructed (GObject *obj)
 
   /* view new from note deserializes the note-content. */
   self->view = biji_note_obj_open (self->note);
-
-  g_signal_connect(self->note,"deleted",
-                   G_CALLBACK(on_note_trashed),self);
-  g_signal_connect(self->note,"trashed",
-                   G_CALLBACK(on_note_trashed),self);
 
   g_signal_connect(self->window,"destroy",
                    G_CALLBACK(on_window_closed), self->note);

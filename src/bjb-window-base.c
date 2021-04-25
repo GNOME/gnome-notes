@@ -46,6 +46,8 @@ struct _BjbWindowBase
   gchar                *entry; // FIXME, remove this
 
   gulong                display_notebooks_changed;
+  gulong                note_deleted;
+  gulong                note_trashed;
 
   GtkStack             *stack;
   BjbWindowViewType     current_view;
@@ -202,7 +204,14 @@ bjb_window_base_finalize (GObject *object)
   GSettings *settings = G_SETTINGS (self->settings);
 
   if (self->note != NULL)
+  {
     g_settings_set_string (settings, "last-opened-item", biji_note_obj_get_path (self->note));
+
+    if (self->note_deleted != 0)
+      g_signal_handler_disconnect (self->note, self->note_deleted);
+    if (self->note_trashed != 0)
+      g_signal_handler_disconnect (self->note, self->note_trashed);
+  }
 
   if (self->display_notebooks_changed != 0)
     g_signal_handler_disconnect (self->controller, self->display_notebooks_changed);
@@ -500,6 +509,7 @@ on_trash_cb (GSimpleAction *action,
   biji_item_trash (BIJI_ITEM (note));
 
   destroy_note_if_needed (self);
+  bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
 }
 
 static void
@@ -921,10 +931,34 @@ populate_headerbar_for_note_view (BjbWindowBase *self)
   g_signal_connect (self->note, "changed", G_CALLBACK (on_last_updated_cb), self);
 }
 
+static gboolean
+on_note_trashed (BijiNoteObj *note,
+                 gpointer     user_data)
+{
+  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+
+  destroy_note_if_needed (self);
+  bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+
+  return TRUE;
+}
+
 void
 bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
 {
   GtkWidget *w = GTK_WIDGET (self);
+
+  /* Disconnect these two callbacks for previously opened note item. */
+  if (self->note_deleted != 0)
+  {
+    g_signal_handler_disconnect (self->note, self->note_deleted);
+    self->note_deleted = 0;
+  }
+  if (self->note_trashed != 0)
+  {
+    g_signal_handler_disconnect (self->note, self->note_trashed);
+    self->note_trashed = 0;
+  }
 
   destroy_note_if_needed (self);
 
@@ -937,6 +971,11 @@ bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
     gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
     gtk_widget_show (GTK_WIDGET (self->note_view));
     bjb_note_view_grab_focus (self->note_view);
+
+    self->note_deleted = g_signal_connect (self->note, "deleted",
+                                           G_CALLBACK (on_note_trashed), self);
+    self->note_trashed = g_signal_connect (self->note, "trashed",
+                                           G_CALLBACK (on_note_trashed), self);
 
     populate_headerbar_for_note_view (self);
   }

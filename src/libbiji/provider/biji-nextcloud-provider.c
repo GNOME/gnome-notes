@@ -183,6 +183,17 @@ create_note_full (BijiProvider  *provider,
 }
 
 static void
+load_items (BijiProvider *provider)
+{
+  BijiNextcloudProvider *self;
+
+  g_return_if_fail (BIJI_IS_NEXTCLOUD_PROVIDER (provider));
+
+  self = BIJI_NEXTCLOUD_PROVIDER (provider);
+  load_all_notes_async (self);
+}
+
+static void
 load_archives (BijiProvider *provider)
 {
   return;
@@ -301,8 +312,6 @@ constructed (GObject *object)
                                    self->info.domain);
 
   curl_global_init (CURL_GLOBAL_DEFAULT);
-
-  load_all_notes_async (self);
 }
 
 static void
@@ -378,6 +387,7 @@ biji_nextcloud_provider_class_init (BijiNextcloudProviderClass *klass)
   provider_class->get_info = get_info;
   provider_class->create_new_note = create_new_note;
   provider_class->create_note_full = create_note_full;
+  provider_class->load_items = load_items;
   provider_class->load_archives = load_archives;
 
   properties[PROP_GOA_OBJECT] =

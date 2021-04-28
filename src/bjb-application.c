@@ -357,6 +357,9 @@ manager_ready_cb (GObject *source,
       return;
     }
 
+  biji_manager_set_provider (self->manager,
+                            bjb_settings_get_default_location(self->settings));
+
   /* Automatic imports on startup */
   if (self->first_run == TRUE)
     {

@@ -319,7 +319,6 @@ biji_local_provider_constructed (GObject *object)
 
 
   self->trash_file = g_file_get_child (self->location, ".Trash");
-  load_from_location (self->living_helper);
 }
 
 
@@ -486,6 +485,17 @@ local_prov_create_note_full (BijiProvider  *provider,
   return retval;
 }
 
+static void
+local_prov_load_items (BijiProvider *prov)
+{
+  BijiLocalProvider *self;
+
+  g_return_if_fail (BIJI_IS_LOCAL_PROVIDER (prov));
+
+  self = BIJI_LOCAL_PROVIDER (prov);
+  load_from_location (self->living_helper);
+}
+
 
 static void
 local_prov_load_archives (BijiProvider *prov)
@@ -566,6 +576,7 @@ biji_local_provider_class_init (BijiLocalProviderClass *klass)
   provider_class->get_info = local_provider_get_info;
   provider_class->create_new_note = local_prov_create_new_note;
   provider_class->create_note_full = local_prov_create_note_full;
+  provider_class->load_items = local_prov_load_items;
   provider_class->load_archives = local_prov_load_archives;
 
   properties[PROP_LOCATION] =

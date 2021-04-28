@@ -22,6 +22,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#include "biji-manager.h"
 #include "bjb-application.h"
 #include "bjb-color-button.h"
 #include "bjb-settings.h"
@@ -203,6 +204,7 @@ on_row_activated_cb    (GtkListBox    *list_box,
     return;
 
   g_object_set (self->settings, "default-location", child->id, NULL);
+  biji_manager_set_provider (self->manager, child->id);
 
   /* Toggle everything : unselect all but this one */
   g_list_foreach (self->children, unselect_child, NULL);

@@ -484,13 +484,6 @@ biji_memo_provider_constructed (GObject *obj)
 
   gtk_image_set_pixel_size (GTK_IMAGE (self->info.icon), 48);
   g_object_ref (self->info.icon);
-
-  e_cal_client_connect (self->source,
-                        E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
-			10, /* wait up to 10 seconds until the memo list is connected */
-                        NULL, /* cancel */
-                        on_client_connected,
-                        self);
 }
 
 
@@ -695,6 +688,22 @@ biji_memo_provider_get_property (GObject    *object,
 }
 
 
+static void
+memo_provider_load_items (BijiProvider *provider)
+{
+  BijiMemoProvider *self;
+
+  g_return_if_fail (BIJI_IS_MEMO_PROVIDER (provider));
+
+  self = BIJI_MEMO_PROVIDER (provider);
+  e_cal_client_connect (self->source,
+                        E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
+			10, /* wait up to 10 seconds until the memo list is connected */
+                        NULL, /* cancel */
+                        on_client_connected,
+                        self);
+}
+
 
 static const BijiProviderInfo *
 memo_provider_get_info (BijiProvider *provider)
@@ -717,6 +726,7 @@ biji_memo_provider_class_init (BijiMemoProviderClass *klass)
   provider_class->get_info = memo_provider_get_info;
   provider_class->create_new_note = memo_create_note;
   provider_class->create_note_full = NULL;
+  provider_class->load_items = memo_provider_load_items;
 
   properties[PROP_SOURCE] =
     g_param_spec_object ("source",

@@ -27,6 +27,7 @@
 #include "provider/biji-local-provider.h"
 #include "provider/biji-memo-provider.h"
 #include "provider/biji-nextcloud-provider.h"
+#include "provider/biji-provider.h"
 
 
 struct _BijiManager
@@ -44,6 +45,9 @@ struct _BijiManager
   GHashTable *archives;
   GHashTable *providers;
   BijiProvider *local_provider;
+
+  /* The active provider */
+  BijiProvider *provider;
 
   /* Signals */
   gulong note_renamed ;
@@ -82,14 +86,6 @@ on_provider_loaded_cb (BijiProvider   *provider,
                        BijiManager    *manager)
 {
   GList *l;
-  const BijiProviderInfo *info;
-
-  info = biji_provider_get_info (provider);
-  /* TODO: This is a workaround related to the local provider, which
-   *        emits the signal twice but it should emit it only once */
-  if (!g_hash_table_contains (manager->providers, info->unique_id))
-    g_hash_table_insert (manager->providers,
-                         (gpointer) info->unique_id, provider);
 
   switch (group)
   {
@@ -130,6 +126,15 @@ static void
 _add_provider (BijiManager  *self,
                BijiProvider *provider)
 {
+  const BijiProviderInfo *info;
+
+  info = biji_provider_get_info (provider);
+  /* TODO: This is a workaround related to the local provider, which
+   *        emits the signal twice but it should emit it only once */
+  if (!g_hash_table_contains (self->providers, info->unique_id))
+    g_hash_table_insert (self->providers,
+                         (gpointer) info->unique_id, provider);
+
   g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);
   g_signal_connect (provider, "abort",
@@ -251,6 +256,19 @@ biji_manager_get_tracker_connection (BijiManager *self)
 }
 
 
+void
+biji_manager_set_provider (BijiManager *self,
+                           const gchar *provider_id)
+{
+  g_hash_table_remove_all (self->items);
+  g_hash_table_remove_all (self->archives);
+
+  self->provider = g_hash_table_lookup (self->providers, provider_id);
+  if (self->provider)
+    biji_provider_load_items (self->provider);
+  else
+    g_warning ("Could not find provider with ID: %s", provider_id);
+}
 
 GList *
 biji_manager_get_providers (BijiManager *self)

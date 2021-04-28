@@ -102,6 +102,13 @@ biji_provider_get_info                (BijiProvider *provider)
 
 
 void
+biji_provider_load_items        (BijiProvider *provider)
+{
+  return BIJI_PROVIDER_GET_CLASS (provider)->load_items (provider);
+}
+
+
+void
 biji_provider_load_archives        (BijiProvider *provider)
 {
   return BIJI_PROVIDER_GET_CLASS (provider)->load_archives (provider);

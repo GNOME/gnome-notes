@@ -53,6 +53,9 @@ void             biji_manager_import_uri            (BijiManager *manager,
                                                      const gchar *target_provider_id,
                                                      const gchar *uri);
 
+void             biji_manager_set_provider          (BijiManager *manager,
+                                                     const gchar *provider_id);
+
 GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
 TrackerSparqlConnection
                 *biji_manager_get_tracker_connection (BijiManager *manager);

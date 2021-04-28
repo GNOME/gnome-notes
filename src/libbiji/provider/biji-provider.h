@@ -56,16 +56,20 @@ struct _BijiProviderClass
   const BijiProviderInfo*    (*get_info)              (BijiProvider *provider);
 
 
-  /* When a provider is loaded, notify the manager to transmit the items */
+  /* When a provider's items are loaded, notify the manager to transmit the items */
 
   void                       (*notify_loaded)         (BijiProvider *provider,
                                                        GList *loaded_items,
                                                        BijiItemsGroup group);
 
 
-  /* When created, the provider is supposed to load the items.
-   * Loading archives might or might not happen at creation time.
-   * This function ensures the provider loads its archived items.
+  /* This function ensures the provider loads its items.
+   * The provider will notify when done. */
+
+  void                       (*load_items)        (BijiProvider *provider);
+
+
+  /* This function ensures the provider loads its archived items.
    * The provider will notify when done */
 
   void                       (*load_archives)        (BijiProvider *provider);
@@ -128,6 +132,8 @@ BijiProviderHelper*        biji_provider_helper_new           (BijiProvider *pro
 
 void                       biji_provider_helper_free          (BijiProviderHelper *helper);
 
+
+void                       biji_provider_load_items           (BijiProvider *provider);
 
 
 void                       biji_provider_load_archives        (BijiProvider *provider);

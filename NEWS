@@ -1,3 +1,16 @@
+Overview of changes in 40.1
+===========================
+
+* Fixed e-mail sharing feature
+* Fixed issue preventing compiling single source files
+* Fixed 40's release date in appdata
+
+Translations
+* French, Nepali
+
+Contributors
+* Charles Monzat, Felix Riemann, Isaque Galdino, Michael Forney, Pawan Chitrakar
+
 Overview of changes in 40.0
 ===========================
 

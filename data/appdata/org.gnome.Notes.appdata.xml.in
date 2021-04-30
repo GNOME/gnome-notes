@@ -39,6 +39,25 @@
   </screenshots>
 
   <releases>
+    <release date="2021-05-01" version="40.1">
+      <description>
+        <p>This release brings the following improvements:</p>
+        <ul>
+          <li>Fixed e-mail sharing feature</li>
+          <li>Fixed issue preventing compiling single source files</li>
+          <li>Fixed 40's release date in appdata</li>
+        </ul>
+        <p>Translations:</p>
+        <ul>
+          <li>French, Nepali</li>
+        </ul>
+        <p>Contributors:</p>
+        <ul>
+          <li>Charles Monzat, Felix Riemann, Isaque Galdino, Michael Forney, Pawan Chitrakar</li>
+        </ul>
+        <p>Thanks to all the contributors and supporters of GNOME Notes!</p>
+      </description>
+    </release>
     <release date="2021-03-20" version="40.0">
       <description>
         <p>This release brings the following improvements:</p>

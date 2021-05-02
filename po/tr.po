@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-04-19 10:38+0000\n"
-"PO-Revision-Date: 2020-04-28 23:36+0300\n"
+"POT-Creation-Date: 2021-04-20 11:11+0000\n"
+"PO-Revision-Date: 2021-05-02 17:24+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:636 src/bjb-window-base.c:18
+#: src/bjb-application.c:572 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Notlar"
 
@@ -131,44 +131,44 @@ msgid "Window position (x and y)."
 msgstr "Pencere konumu (x ve y)."
 
 #: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Not ögelerinin nasıl gösterileceği"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Not ögelerinin simge görünümünde veya liste görünümünde gösterilmesi."
-
-#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Not düzenleyici tarafından kullanılan metin boyutu."
 
-#: data/org.gnome.Notes.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Kullanılabilir üç metin boyutu vardır: küçük, orta (öntanımlı) ve büyük."
 
-#: data/resources/editor-toolbar.ui:51
+#: data/resources/editor-toolbar.ui:63
 msgid "Bold"
 msgstr "Kalın"
 
-#: data/resources/editor-toolbar.ui:67
+#: data/resources/editor-toolbar.ui:79
 msgid "Italic"
 msgstr "Eğik"
 
-#: data/resources/editor-toolbar.ui:83
+#: data/resources/editor-toolbar.ui:95
 msgid "Strike"
 msgstr "Üstü Çizili"
 
-#: data/resources/editor-toolbar.ui:111
+#: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
 msgstr "İşaretler"
 
-#: data/resources/editor-toolbar.ui:127
+#: data/resources/editor-toolbar.ui:139
 msgid "List"
 msgstr "Liste"
 
-#: data/resources/editor-toolbar.ui:166
+#: data/resources/editor-toolbar.ui:167
+msgid "Indent"
+msgstr "Girinti"
+
+#: data/resources/editor-toolbar.ui:183
+msgid "Outdent"
+msgstr "Ters girinti"
+
+#: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Seçimi yeni nota kopyala"
 
@@ -276,7 +276,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Notu çöpe taşı"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Notları İçe Aktar"
 
@@ -329,90 +329,82 @@ msgstr "Seçim kipinden çık"
 msgid "Search note titles, content and notebooks"
 msgstr "Not başlığı, içerik ve not defterlerinde ara"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Notları ve not defterlerini tablo olarak göster"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Notları ve not defterlerini liste olarak göster"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Seçim kipi"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: data/resources/main-toolbar.ui:195
+#: data/resources/main-toolbar.ui:150
 msgid "More options"
 msgstr "Daha çok seçenek"
 
-#: data/resources/main-toolbar.ui:234
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Çöpü Gör"
 
-#: data/resources/main-toolbar.ui:251
+#: data/resources/main-toolbar.ui:206
 msgid "Text Sizes"
 msgstr "Metin Boyutları"
 
-#: data/resources/main-toolbar.ui:261
+#: data/resources/main-toolbar.ui:216
 msgid "_Large"
 msgstr "_Büyük"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:226
 msgid "_Medium"
 msgstr "_Orta"
 
-#: data/resources/main-toolbar.ui:281
+#: data/resources/main-toolbar.ui:236
 msgid "_Small"
 msgstr "_Küçük"
 
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: data/resources/main-toolbar.ui:317
+#: data/resources/main-toolbar.ui:272
 msgid "Help"
 msgstr "Yardım"
 
-#: data/resources/main-toolbar.ui:326
+#: data/resources/main-toolbar.ui:281
 msgid "About Notes"
 msgstr "Notlar Hakkında"
 
-#: data/resources/main-toolbar.ui:348
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Yeni Pencerede Aç"
 
-#: data/resources/main-toolbar.ui:365
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Geri Al"
 
-#: data/resources/main-toolbar.ui:374
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Yinele"
 
-#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
 #: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Not Defterleri"
 
-#: data/resources/main-toolbar.ui:400
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Bu Notu E-postala"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Çöpe Taşı"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
-msgstr "Not defteri oluşturmak için ad girin"
+msgstr "Not defteri oluşturmak için ad gir"
 
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
@@ -452,53 +444,45 @@ msgstr "Not Görünümü"
 
 #: data/resources/settings-dialog.ui:126
 msgid "Select the default storage location:"
-msgstr "Öntanımlı depolama konumunu seçin:"
+msgstr "Öntanımlı depolama konumunu seç:"
 
 #: data/resources/settings-dialog.ui:157
 msgid "Primary Book"
 msgstr "Birincil Defter"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Başlıksız"
 
-#: src/bjb-application.c:461
-msgid "Show the application’s version"
-msgstr "Uygulamanın sürümünü göster"
-
-#: src/bjb-application.c:463
-msgid "Create a new note"
-msgstr "Yeni not oluştur"
-
-#: src/bjb-application.c:465
-msgid "[FILE…]"
-msgstr "[DOSYA…]"
-
-#: src/bjb-application.c:473
-msgid "Take notes and export them everywhere."
-msgstr "Not alın ve notları her yerde dışa aktarın."
-
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:484
-msgid "Could not parse arguments"
-msgstr "Argümanlar ayrıştırılamadı"
-
-#: src/bjb-application.c:492
+#: src/bjb-application.c:195
 msgid "GNOME Notes"
 msgstr "GNOME Notlar"
 
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:504
-msgid "Could not register the application"
-msgstr "Uygulama kaydedilemedi"
+#: src/bjb-application.c:250
+msgid "Show verbose logs"
+msgstr "Ayrıntılı günlükleri göster"
 
-#: src/bjb-application.c:637
+#: src/bjb-application.c:252
+msgid "Show the application’s version"
+msgstr "Uygulamanın sürümünü göster"
+
+#: src/bjb-application.c:254
+msgid "Create a new note"
+msgstr "Yeni not oluştur"
+
+#: src/bjb-application.c:262
+msgid "[FILE…]"
+msgstr "[DOSYA…]"
+
+#: src/bjb-application.c:263
+msgid "Take notes and export them everywhere."
+msgstr "Not al ve notları her yerde dışa aktar."
+
+#: src/bjb-application.c:573
 msgid "Simple notebook for GNOME"
 msgstr "GNOME için basit not defteri"
 
-#: src/bjb-application.c:643
+#: src/bjb-application.c:579
 msgid "translator-credits"
 msgstr ""
 "Osman Karagöz <osmank3@gmail.com>\n"
@@ -508,6 +492,10 @@ msgstr ""
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Not Rengi"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Not Defteri"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -521,34 +509,26 @@ msgstr "Aman"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Lütfen “Tracker”i kurup uygulamayı yeniden başlatın."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Daha Çok"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Yükleniyor…"
-
-#: src/bjb-main-toolbar.c:140
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Ögeleri seçmek için tıkla"
 
-#: src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d adet seçildi"
 
-#: src/bjb-main-toolbar.c:275
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "%s için sonuçlar"
 
-#: src/bjb-main-toolbar.c:278
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Yeni ve En Son"
 
-#: src/bjb-main-toolbar.c:370
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Çöp"
 
@@ -557,7 +537,7 @@ msgstr "Çöp"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:438
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Son güncelleme: %s"
@@ -591,9 +571,34 @@ msgstr "Bu yıl"
 msgid "Local"
 msgstr "Yerel"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Yerel depolama"
+
+#~ msgid "How to show note items"
+#~ msgstr "Not ögelerinin nasıl gösterileceği"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr ""
+#~ "Not ögelerinin simge görünümünde veya liste görünümünde gösterilmesi."
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Notları ve not defterlerini tablo olarak göster"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Notları ve not defterlerini liste olarak göster"
+
+#~ msgid "Could not parse arguments"
+#~ msgstr "Argümanlar ayrıştırılamadı"
+
+#~ msgid "Could not register the application"
+#~ msgstr "Uygulama kaydedilemedi"
+
+#~ msgid "Load More"
+#~ msgstr "Daha Çok"
+
+#~ msgid "Loading…"
+#~ msgstr "Yükleniyor…"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Shortcuts"
@@ -662,9 +667,6 @@ msgstr "Yerel depolama"
 
 #~ msgid "Cancel"
 #~ msgstr "İptal"
-
-#~ msgid "Notebook"
-#~ msgstr "Not Defteri"
 
 #~ msgid "Note"
 #~ msgstr "Not"

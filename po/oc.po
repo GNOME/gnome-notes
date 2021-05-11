@@ -6,486 +6,627 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=bijiben"
-"&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-19 15:03+0000\n"
-"PO-Revision-Date: 2016-05-29 20:30+0200\n"
-"Last-Translator: Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2021-03-18 17:43+0000\n"
+"PO-Revision-Date: 2021-05-11 21:10+0200\n"
+"Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/org.gnome.bijiben.appdata.xml.in.h:1
-msgid "Notes is an editor allowing to make simple lists for later use."
-msgstr ""
-"Nòtas es un editor que permet de crear de listas simplas per un usatge "
-"ulterior."
-
-#: ../data/org.gnome.bijiben.appdata.xml.in.h:2
-msgid "It allows to use ownCloud as a storage location and online editor."
-msgstr ""
-"Permet d'utilizar ownCloud coma emplaçament d'emmagazinatge e editor en "
-"linha."
-
-#: ../data/org.gnome.bijiben.desktop.in.in.h:1
-#: ../data/org.gnome.bijiben.xml.in.h:1 ../src/bjb-app-menu.c:45
-#: ../src/bjb-window-base.c:18
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Nòtas"
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:2
-msgid "notes;reminder;"
-msgstr "nòtas;bremba-te;"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "Quasernet de nòtas per GNOME"
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:3
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"Un biais rapid e facil per notar o listar causas. Gardatz tantas de nòtas "
+"que volgatz e partejatz-las per email."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"Podetz gardar vòstras nòtas localament sus vòstre ordenador o las "
+"sincronizar amb de servicis en linha coma ownCloud."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "Vista modificacion"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "Seleccion de la vista"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "Vista en lista"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "notes;reminder;notebook;sticky notes;nòtas; nòta;rapèl;"
+
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Publicar de nòtas, etiquetar de fichièrs !"
 
-#: ../data/org.gnome.bijiben.desktop.in.in.h:4
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Editor de nòtas"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:1
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "Crear una novèla nòta"
+
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Poliça personalizada"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:2
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr "La poliça causida aicí serà utilizada per l'afichatge de las nòtas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:3
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Indica se cal utilizar la poliça de chassa fixa del sistèma"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:4
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Novèla color de nòtas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:5
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr "La color causida aicí serà utilizada per las nòtas novèlas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:6
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Provesidor de nòtas principala d'utilizar per las nòtas novèlas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:7
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Lo quasernet principal es l'endreit ont las nòtas novèlas son creadas."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:8
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Fenèstra maximizada"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:9
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Estat maximizat de la fenèstra principala."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:10
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Talha de la fenèstra"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:11
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Talha de la fenèstra (largor e nautor)."
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:12
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Posicion de la fenèstra"
 
-#: ../data/org.gnome.bijiben.gschema.xml.h:13
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Posicion de la fenèstra (x e y)."
 
-#: ../src/bijiben-shell-search-provider.c:275 ../src/bjb-main-toolbar.c:659
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "Text size used by note editor."
+msgstr "Talha de tèxt utilizada per l'editor de nòta."
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"I a tres talhas de tèxt disponiblas : pichona, mejana (per defaut) e granda."
+
+#: data/resources/editor-toolbar.ui:51
+msgid "Bold"
+msgstr "Gras"
+
+#: data/resources/editor-toolbar.ui:67
+msgid "Italic"
+msgstr "Italica"
+
+#: data/resources/editor-toolbar.ui:83
+msgid "Strike"
+msgstr "Raiat"
+
+#: data/resources/editor-toolbar.ui:111
+msgid "Bullets"
+msgstr "Piuses"
+
+#: data/resources/editor-toolbar.ui:127
+msgid "List"
+msgstr "Lista"
+
+#: data/resources/editor-toolbar.ui:166
+msgid "Copy selection to a new note"
+msgstr "Copiar la seleccion cap a una nòta novèla"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "Cap de nòta"
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "General"
+
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Partejar las nòtas"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "Novèl quasernet de nòtas"
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Tampar la fenèstra"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Quitar"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Retorn"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Afichar l'ajuda"
+
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Dobrir lo menú"
+
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Acorchis clavièr"
+
+#: data/resources/help-overlay.ui:71
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "Seleccion del mòde"
+
+#: data/resources/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "Anullar la seleccion de mòde"
+
+#: data/resources/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Tot seleccionar"
+
+#: data/resources/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "Mòde de modificacion de nòta"
+
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Dobrir dins una fenèstra novèla"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Gras"
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Italica"
+
+#: data/resources/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "Raiat"
+
+#: data/resources/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Anullar"
+
+#: data/resources/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Restablir"
+
+#: data/resources/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "Desplaçar dins l'escobilhièr"
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
+msgid "Import Notes"
+msgstr "Importar de nòtas"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "A_nullar"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_Importar"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "Seleccionar l'emplaçament d'importar"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "Aplicacion Gnote"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "Aplicacion Tomboy"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "Emplaçament personalizat"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "Seleccionar un dorsièr"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "_Novèl"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "Color de la nòta"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "_Voidar"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "Sortir del mòde de seleccion"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "Recercar dins los títols, lo contengut e los quasernets"
+
+#: data/resources/main-toolbar.ui:116
+msgid "Selection mode"
+msgstr "Mòde de seleccion"
+
+#: data/resources/main-toolbar.ui:130
+msgid "Open menu"
+msgstr "Dobrir lo menú"
+
+#: data/resources/main-toolbar.ui:150
+msgid "More options"
+msgstr "Mai d'opcions"
+
+#: data/resources/main-toolbar.ui:189
+msgid "View Trash"
+msgstr "Afichar l'escobilhièr"
+
+#: data/resources/main-toolbar.ui:206
+msgid "Text Sizes"
+msgstr "Talhas de tèxt"
+
+#: data/resources/main-toolbar.ui:216
+msgid "_Large"
+msgstr "_Granda"
+
+#: data/resources/main-toolbar.ui:226
+msgid "_Medium"
+msgstr "_Mejana"
+
+#: data/resources/main-toolbar.ui:236
+msgid "_Small"
+msgstr "_Pichona"
+
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Preferéncias"
+
+#: data/resources/main-toolbar.ui:263
+msgid "Keyboard Shortcuts"
+msgstr "Acorchis clavièr"
+
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "Ajuda"
+
+#: data/resources/main-toolbar.ui:281
+msgid "About Notes"
+msgstr "A prepaus de nòtas"
+
+#: data/resources/main-toolbar.ui:303
+msgid "Open in New Window"
+msgstr "Dobrir dins una fenèstra novèla"
+
+#: data/resources/main-toolbar.ui:320
+msgid "Undo"
+msgstr "Anullar"
+
+#: data/resources/main-toolbar.ui:329
+msgid "Redo"
+msgstr "Restablir"
+
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Quasernets"
+
+#: data/resources/main-toolbar.ui:355
+msgid "Email this Note"
+msgstr "Mandar aquesta nòta per corrièl"
+
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "Desplaçar dins l'escobilhièr"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "Picar un nom per crear un quasernet"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "Novèl quasernet de nòtas"
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr "Partejar la nòta"
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "Dobrir dins una fenèstra novèla"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr "Restablir"
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr "Suprimir definitivament"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "Utilizar la poliça del sistèma"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "Poliça de caractèrs de la nòta"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "Color per defaut"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr "Aparéncia de la nòta"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "Seleccionar l'emplaçament per defaut"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "Quasernet principal"
+
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Sens títol"
 
-#: ../src/bjb-app-menu.c:46
-msgid "Simple notebook for GNOME"
-msgstr "Quasernet de nòtas per GNOME"
-
-#: ../src/bjb-app-menu.c:52
-msgid "translator-credits"
-msgstr "Cédric Valmary (totenoc.eu)"
-
-#: ../src/bjb-bijiben.c:395
-msgid "Show the application's version"
+#: src/bjb-application.c:440
+msgid "Show the application’s version"
 msgstr "Afichar la version de l'aplicacion"
 
-#: ../src/bjb-bijiben.c:397
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Crear una novèla nòta"
 
-#: ../src/bjb-bijiben.c:399
-msgid "[FILE...]"
+#: src/bjb-application.c:444
+msgid "[FILE…]"
 msgstr "[FICHIÈR...]"
 
-#: ../src/bjb-bijiben.c:406
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Prenètz de nòtas e exportatz-las pertot."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: ../src/bjb-bijiben.c:417
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
 msgstr "Impossible d'analisar los arguments"
 
-#: ../src/bjb-bijiben.c:426
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "Nòtas GNOME"
 
-#: ../src/bjb-bijiben.c:439
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Impossible d'enregistrar l'aplicacion"
 
-#: ../src/bjb-color-button.c:146
+#: src/bjb-application.c:616
+msgid "Simple notebook for GNOME"
+msgstr "Quasernet de nòtas per GNOME"
+
+#: src/bjb-application.c:622
+msgid "translator-credits"
+msgstr "Cédric Valmary (totenoc.eu)"
+
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Color de la nòta"
 
-#. Cut
-#: ../src/bjb-editor-toolbar.c:381
-msgid "Cut"
-msgstr "Talhar"
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Quasernet"
 
-#. Copy
-#: ../src/bjb-editor-toolbar.c:388
-msgid "Copy"
-msgstr "Copiar"
-
-#. 'n paste
-#: ../src/bjb-editor-toolbar.c:394
-msgid "Paste"
-msgstr "Pegar"
-
-#. Bullet
-#. * Translator : "* " stands for a bullet list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:405
-msgid "* "
-msgstr "• "
-
-#. List
-#. * Translator : this "1." temporarilly stands for ordered list.
-#. * This is displayed inside a button.
-#: ../src/bjb-editor-toolbar.c:413
-msgid "1."
-msgstr "1."
-
-#: ../src/bjb-editor-toolbar.c:426
-msgid "Bold"
-msgstr "Gras"
-
-#: ../src/bjb-editor-toolbar.c:436
-msgid "Italic"
-msgstr "Italica"
-
-#: ../src/bjb-editor-toolbar.c:446
-msgid "Strike"
-msgstr "Raiat"
-
-#: ../src/bjb-editor-toolbar.c:474
-msgid "Copy selection to a new note"
-msgstr "Copiar la seleccion cap a una nòta novèla"
-
-#: ../src/bjb-empty-results-box.c:86
-msgid "No notes"
-msgstr "Cap de nòta"
-
-#: ../src/bjb-empty-results-box.c:130
+#: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
 msgstr "Quichar sul boton Novèl per crear una nòta."
 
-#: ../src/bjb-empty-results-box.c:152
+#: src/bjb-empty-results-box.c:85
 msgid "Oops"
 msgstr "Ops"
 
-#: ../src/bjb-empty-results-box.c:158
-msgid "Please install 'Tracker' then restart the application."
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
 msgstr "Installatz « Tracker » puèi reaviar l'aplicacion."
 
-#: ../src/bjb-import-dialog.c:309
-msgid "Custom Location"
-msgstr "Emplaçament personalizat"
-
-#: ../src/bjb-import-dialog.c:404
-msgid "Import Notes"
-msgstr "Importar de nòtas"
-
-#: ../src/bjb-import-dialog.c:411
-msgid "Import"
-msgstr "Importar"
-
-#: ../src/bjb-import-dialog.c:422
-msgid "Select import location"
-msgstr "Seleccionar l'emplaçament d'importar"
-
-#: ../src/bjb-import-dialog.c:443
-msgid "Tomboy application"
-msgstr "Aplicacion Tomboy"
-
-#: ../src/bjb-import-dialog.c:449
-msgid "Gnote application"
-msgstr "Aplicacion Gnote"
-
-#: ../src/bjb-load-more-button.c:72 ../src/bjb-load-more-button.c:171
-msgid "Load More"
-msgstr "Cargar mai"
-
-#: ../src/bjb-load-more-button.c:98
-msgid "Loading..."
-msgstr "Cargament..."
-
-#: ../src/bjb-main-toolbar.c:142
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Clicar sus d'elements per los seleccionar"
 
-#: ../src/bjb-main-toolbar.c:144
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/bjb-main-toolbar.c:264
-msgid "Search note titles, content and notebooks"
-msgstr "Recercar dins los títols, lo contengut e los quasernets"
-
-#. Select
-#: ../src/bjb-main-toolbar.c:306
-msgid "Cancel"
-msgstr "Anullar"
-
-#: ../src/bjb-main-toolbar.c:320
-msgid "Exit selection mode"
-msgstr "Sortir del mòde de seleccion"
-
-#: ../src/bjb-main-toolbar.c:350
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Resultats per %s"
 
-#: ../src/bjb-main-toolbar.c:353
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Novèl e recent"
 
-#.
-#. * Translators : <_New> refers to new note creation.
-#. * User clicks new, which opens a new blank note.
-#.
-#: ../src/bjb-main-toolbar.c:441
-msgid "_New"
-msgstr "_Novèl"
-
-#: ../src/bjb-main-toolbar.c:460 ../src/bjb-main-toolbar.c:558
-msgid "Selection mode"
-msgstr "Mòde de seleccion"
-
-#: ../src/bjb-main-toolbar.c:495
-msgid "View notes and notebooks in a list"
-msgstr "Afichar las nòtas e los quasernets dins una lista"
-
-#: ../src/bjb-main-toolbar.c:519
-msgid "View notes and notebooks in a grid"
-msgstr "Afichar las nòtas e los quasernets dins una grasilha"
-
-#: ../src/bjb-main-toolbar.c:538
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Escobilhièr"
-
-#. Add Empty-Bin
-#. * translators : Empty is the verb.
-#. * This action permanently deletes notes
-#: ../src/bjb-main-toolbar.c:577
-msgid "Empty"
-msgstr "Voidar"
-
-#.
-#. * Open the current note in a new window
-#. * in order to be able to see it and others at the same time
-#.
-#: ../src/bjb-main-toolbar.c:757
-msgid "Open in New Window"
-msgstr "Dobrir dins una fenèstra novèla"
-
-#. Undo Redo separator
-#: ../src/bjb-main-toolbar.c:768
-msgid "Undo"
-msgstr "Anullar"
-
-#: ../src/bjb-main-toolbar.c:776
-msgid "Redo"
-msgstr "Restablir"
-
-#. Notes tags
-#: ../src/bjb-main-toolbar.c:791 ../src/bjb-organize-dialog.c:370
-#: ../src/bjb-selection-toolbar.c:381
-msgid "Notebooks"
-msgstr "Quasernets"
-
-#. Share
-#: ../src/bjb-main-toolbar.c:799
-msgid "Email this Note"
-msgstr "Mandar aquesta nòta per corrièl"
-
-#. Delete Note
-#. Trash notes
-#: ../src/bjb-main-toolbar.c:812 ../src/bjb-selection-toolbar.c:415
-msgid "Move to Trash"
-msgstr "Desplaçar dins l'escobilhièr"
-
-#: ../src/bjb-main-toolbar.c:872
-msgid "More options…"
-msgstr "Mai d'opcions…"
-
-#: ../src/bjb-main-toolbar.c:895 ../src/bjb-selection-toolbar.c:392
-msgid "Note color"
-msgstr "Color de la nòta"
-
-#: ../src/bjb-main-view.c:516
-msgid "Notebook"
-msgstr "Quasernet"
-
-#: ../src/bjb-main-view.c:519
-msgid "Note"
-msgstr "Nòta"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
-#. *         '%s <b>Last Updated</b>'
+#. *         '%s Last Updated'
 #.
-#: ../src/bjb-note-view.c:191
+#: src/bjb-main-toolbar.c:367
 #, c-format
-msgid "<b>Last updated</b> %s"
-msgstr "<b>Darrièra mesa a jorn</b> %s"
+msgid "Last updated: %s"
+msgstr "Darrièra mesa a jorn : %s"
 
-#: ../src/bjb-organize-dialog.c:396
-msgid "Enter a name to create a notebook"
-msgstr "Picar un nom per crear un quasernet"
-
-#: ../src/bjb-organize-dialog.c:406
-msgid "New notebook"
-msgstr "Novèl quasernet de nòtas"
-
-#: ../src/bjb-rename-note.c:17
-msgid "_Cancel"
-msgstr "A_nullar"
-
-#: ../src/bjb-rename-note.c:19
-msgid "_OK"
-msgstr "_Validar"
-
-#. Restore (do not show)
-#: ../src/bjb-selection-toolbar.c:386
-msgid "Restore"
-msgstr "Restablir"
-
-#: ../src/bjb-selection-toolbar.c:403
-msgid "Share note"
-msgstr "Partejar la nòta"
-
-#. Detach
-#: ../src/bjb-selection-toolbar.c:409
-msgid "Open in another window"
-msgstr "Dobrir dins una fenèstra novèla"
-
-#. Permanently delete (do not show )
-#: ../src/bjb-selection-toolbar.c:423
-msgid "Permanently Delete"
-msgstr "Suprimir definitivament"
-
-#. Use System Font
-#: ../src/bjb-settings-dialog.c:394
-msgid "Use System Font"
-msgstr "Utilizar la poliça del sistèma"
-
-#. Default font
-#: ../src/bjb-settings-dialog.c:408
-msgid "Note Font"
-msgstr "Poliça de caractèrs de la nòta"
-
-#. Default color
-#: ../src/bjb-settings-dialog.c:420
-msgid "Default Color"
-msgstr "Color per defaut"
-
-#: ../src/bjb-settings-dialog.c:466
-msgid "Preferences"
-msgstr "Preferéncias"
-
-#: ../src/bjb-settings-dialog.c:498
-msgid "Note Edition"
-msgstr "Modificacion de la nòta"
-
-#: ../src/bjb-settings-dialog.c:506
-msgid "Primary Book"
-msgstr "Quasernet principal"
-
-#: ../src/libbiji/biji-date-time.c:32
-msgid "Today"
-msgstr "Uèi"
-
-#: ../src/libbiji/biji-date-time.c:35
-msgid "Yesterday"
-msgstr "Ièr"
-
-#: ../src/libbiji/biji-date-time.c:38
-msgid "This week"
-msgstr "Aquesta setmana"
-
-#: ../src/libbiji/biji-date-time.c:41
-msgid "This month"
-msgstr "Aqueste mes"
-
-#: ../src/libbiji/biji-date-time.c:44
-msgid "This year"
-msgstr "Ongan"
-
-#: ../src/libbiji/biji-date-time.c:46
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../src/libbiji/biji-notebook.c:264
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Ièr"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Aqueste mes"
+
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "Uèi"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "Aquesta setmana"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "Ongan"
+
+#: src/libbiji/biji-notebook.c:265
 msgid "Local"
 msgstr "Local"
 
-#: ../src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Emmagazinatge local"
 
-#: ../src/resources/app-menu.ui.h:1
-msgid "_Import Notes"
-msgstr "_Importar de nòtas"
+#~ msgid "Notes is an editor allowing to make simple lists for later use."
+#~ msgstr ""
+#~ "Nòtas es un editor que permet de crear de listas simplas per un usatge "
+#~ "ulterior."
 
-#: ../src/resources/app-menu.ui.h:2
-msgid "_View Trash"
-msgstr "_Afichar l'escobilhièr"
+#~ msgid "It allows to use ownCloud as a storage location and online editor."
+#~ msgstr ""
+#~ "Permet d'utilizar ownCloud coma emplaçament d'emmagazinatge e editor en "
+#~ "linha."
 
-#: ../src/resources/app-menu.ui.h:3
-msgid "_Preferences"
-msgstr "_Preferéncias"
+#~ msgid "notes;reminder;"
+#~ msgstr "nòtas;bremba-te;"
 
-#: ../src/resources/app-menu.ui.h:4
-msgid "_Help"
-msgstr "_Ajuda"
+#~ msgid "Cut"
+#~ msgstr "Talhar"
 
-#: ../src/resources/app-menu.ui.h:5
-msgid "_About"
-msgstr "A _prepaus"
+#~ msgid "Copy"
+#~ msgstr "Copiar"
 
-#: ../src/resources/app-menu.ui.h:6
-msgid "_Quit"
-msgstr "_Quitar"
+#~ msgid "Paste"
+#~ msgstr "Pegar"
 
-#~ msgid "Bullets"
-#~ msgstr "Piuses"
+#~ msgid "* "
+#~ msgstr "• "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgid "Load More"
+#~ msgstr "Cargar mai"
+
+#~ msgid "Loading..."
+#~ msgstr "Cargament..."
+
+#~ msgid "Cancel"
+#~ msgstr "Anullar"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Afichar las nòtas e los quasernets dins una lista"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Afichar las nòtas e los quasernets dins una grasilha"
+
+#~ msgid "Note"
+#~ msgstr "Nòta"
+
+#~ msgid "_OK"
+#~ msgstr "_Validar"
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Importar de nòtas"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferéncias"
+
+#~ msgid "_About"
+#~ msgstr "A _prepaus"
 
 #~ msgid "Numbered List"
 #~ msgstr "Lista numerotada"

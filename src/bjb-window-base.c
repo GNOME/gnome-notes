@@ -43,7 +43,6 @@ struct _BjbWindowBase
 
   BjbSettings          *settings;
   BjbController        *controller;
-  gchar                *entry; // FIXME, remove this
 
   gulong                display_notebooks_changed;
   gulong                note_deleted;
@@ -58,7 +57,6 @@ struct _BjbWindowBase
 
   /* when a note is opened */
   BijiNoteObj          *note;
-  gboolean              detached; // detached note
 
   /* window geometry */
   gint                  width;
@@ -674,13 +672,10 @@ bjb_window_base_constructed (GObject *obj)
   else if (self->pos_x >= 0)
     gtk_window_move (GTK_WINDOW (self), self->pos_x, self->pos_y);
 
-  /*  We probably want to offer a no entry window at first (startup) */
-  self->entry = NULL;
-
   self->controller = bjb_controller_new
     (bijiben_get_manager (BJB_APPLICATION(g_application_get_default())),
      GTK_WINDOW (obj),
-     self->entry );
+     NULL);
 
   self->note_list = bjb_list_view_new ();
   bjb_list_view_setup (self->note_list, self->controller);
@@ -733,7 +728,6 @@ bjb_window_base_constructed (GObject *obj)
    * This is a specific type of window not associated with any view */
   if (self->note != NULL)
   {
-    self->detached = TRUE;
     bjb_window_base_load_note_item (self, BIJI_ITEM (self->note));
   }
 }
@@ -817,13 +811,6 @@ bjb_window_base_new                    (BijiNoteObj *note)
                        "application", g_application_get_default(),
                        "note", note,
                        NULL);
-}
-
-
-BjbController *
-bjb_window_base_get_controller (BjbWindowBase *self)
-{
-  return self->controller;
 }
 
 BijiNoteObj *
@@ -994,44 +981,6 @@ bjb_window_base_get_manager(GtkWidget * win)
 }
 
 void
-bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry)
-{
-  BjbWindowBase *self;
-
-  g_return_if_fail (BJB_IS_WINDOW_BASE (win));
-
-  self = BJB_WINDOW_BASE (win);
-  self->entry = search_entry;
-}
-
-
-gchar *
-bjb_window_base_get_entry(GtkWidget *win)
-{
-  BjbWindowBase *self = BJB_WINDOW_BASE(win);
-  return self->entry;
-}
-
-GtkWidget *
-bjb_window_base_get_search_bar (BjbWindowBase *self)
-{
-  return GTK_WIDGET (self->search_bar);
-}
-
-gboolean
-bjb_window_base_get_show_search_bar (BjbWindowBase *self)
-{
-
-  /* There is no search bar at startup,
-   * when main toolbar is first built... */
-  if (!self->search_bar)
-    return FALSE;
-
-  return gtk_search_bar_get_search_mode (
-            GTK_SEARCH_BAR (self->search_bar));
-}
-
-void
 bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
 {
   gboolean available;
@@ -1045,11 +994,4 @@ bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
                    0,
                    available);
   }
-}
-
-
-gboolean
-bjb_window_base_is_detached (BjbWindowBase *self)
-{
-  return self->detached;
 }

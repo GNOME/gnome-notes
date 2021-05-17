@@ -23,12 +23,6 @@ typedef enum {
 
 
 GtkWindow             *bjb_window_base_new                (BijiNoteObj *note);
-
-
-BjbController         *bjb_window_base_get_controller     (BjbWindowBase *window ) ;
-
-void                   bjb_window_base_go_back            (BjbWindowBase *self);
-
 void                   bjb_window_base_switch_to          (BjbWindowBase *bwb, BjbWindowViewType type);
 
 
@@ -39,31 +33,5 @@ BjbWindowViewType      bjb_window_base_get_view_type      (BjbWindowBase *win);
 
 
 BijiManager           *bjb_window_base_get_manager        (GtkWidget * win);
-
-
-void                   bjb_window_base_set_entry(GtkWidget *win, gchar *search_entry) ;
-
-
-gchar                 *bjb_window_base_get_entry(GtkWidget *win) ;
-
-
-gpointer               bjb_window_base_get_main_view (BjbWindowBase *self);
-
-
 BijiNoteObj           *bjb_window_base_get_note (BjbWindowBase *self);
-
-
-gboolean               switch_window_fullscreen (void);
-
-
-GtkWidget             *bjb_window_base_get_search_bar (BjbWindowBase *self);
-
-
-gboolean               bjb_window_base_get_show_search_bar (BjbWindowBase *self);
-
-
 void                   bjb_window_base_set_active (BjbWindowBase *self, gboolean active);
-
-
-
-gboolean               bjb_window_base_is_detached (BjbWindowBase *self);

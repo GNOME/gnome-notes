@@ -170,7 +170,8 @@ load_goa_provider (BijiManager *self,
     object = GOA_OBJECT (l->data);
     account = goa_object_peek_account (object);
 
-    if (GOA_IS_ACCOUNT (account))
+    if (GOA_IS_ACCOUNT (account) &&
+        !goa_account_get_documents_disabled (account))
     {
       type = goa_account_get_provider_type (account);
 

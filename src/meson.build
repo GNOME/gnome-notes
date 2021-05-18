@@ -24,7 +24,7 @@ sources = files(
   'bjb-settings.c',
   'bjb-settings-dialog.c',
   'bjb-share.c',
-  'bjb-window-base.c'
+  'bjb-window.c'
 )
 
 sources += gnome.compile_resources(

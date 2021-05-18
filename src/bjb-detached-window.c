@@ -20,7 +20,6 @@
 #include "bjb-note-view.h"
 #include "bjb-organize-dialog.h"
 #include "bjb-share.h"
-#include "bjb-window-base.h"
 
 enum
 {
@@ -41,7 +40,7 @@ struct _BjbDetachedWindow
   int            height;
   BijiNoteObj   *note;
   BjbNoteView   *note_view;
-  BjbWindowBase *main_win;
+  BjbWindow     *main_win;
 
   GtkWidget *headerbar;
   GtkWidget *main_box;
@@ -387,7 +386,7 @@ bjb_detached_window_class_init (BjbDetachedWindowClass *klass)
   properties[PROP_MAIN_WIN] = g_param_spec_object ("window-base",
                                                    "Main window",
                                                    "The main note window",
-                                                   BJB_TYPE_WINDOW_BASE,
+                                                   BJB_TYPE_WINDOW,
                                                    G_PARAM_READWRITE |
                                                    G_PARAM_CONSTRUCT |
                                                    G_PARAM_STATIC_STRINGS);
@@ -409,11 +408,11 @@ bjb_detached_window_init (BjbDetachedWindow *self)
 }
 
 BjbDetachedWindow *
-bjb_detached_window_new (BjbNoteView   *note_view,
-                         BijiNoteObj   *note,
-                         int            width,
-                         int            height,
-                         BjbWindowBase *main_win)
+bjb_detached_window_new (BjbNoteView *note_view,
+                         BijiNoteObj *note,
+                         int          width,
+                         int          height,
+                         BjbWindow   *main_win)
 {
   return g_object_new (BJB_TYPE_DETACHED_WINDOW,
                        "application", g_application_get_default (),

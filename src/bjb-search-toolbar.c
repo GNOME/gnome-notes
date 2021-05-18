@@ -31,7 +31,7 @@
 
 #include "bjb-controller.h"
 #include "bjb-search-toolbar.h"
-#include "bjb-window-base.h"
+#include "bjb-window.h"
 
 struct _BjbSearchToolbar
 {

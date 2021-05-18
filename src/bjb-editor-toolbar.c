@@ -26,7 +26,7 @@
 
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
-#include "bjb-window-base.h"
+#include "bjb-window.h"
 
 enum
 {
@@ -125,7 +125,7 @@ on_link_clicked (GtkButton        *button,
     return;
 
   window = bjb_note_view_get_base_window (self->view);
-  manager = bjb_window_base_get_manager(window);
+  manager = bjb_window_get_manager (window);
 
   settings = bjb_app_get_settings (g_application_get_default ());
   result = biji_manager_note_new (manager,

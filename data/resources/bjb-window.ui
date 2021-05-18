@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="BjbWindowBase" parent="HdyApplicationWindow">
+  <template class="BjbWindow" parent="HdyApplicationWindow">
     <child>
       <object class="HdyLeaflet" id="main_leaflet">
         <property name="can-swipe-back">True</property>
@@ -9,6 +9,7 @@
           <object class="GtkBox" id="sidebar_box">
             <property name="visible">True</property>
             <property name="hexpand">False</property>
+            <property name="no-show-all">True</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="HdyHeaderBar" id="headerbar">

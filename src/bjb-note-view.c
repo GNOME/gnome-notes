@@ -23,7 +23,6 @@
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
 #include "bjb-note-view.h"
-#include "bjb-window-base.h"
 
 enum
 {

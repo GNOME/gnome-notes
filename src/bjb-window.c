@@ -1,3 +1,31 @@
+/* bjb-window.c
+ *
+ * Copyright 2012, 2013 Pierre-Yves Luyten <py@luyten.fr>
+ * Copyright 2020 Jonathan Kang <jonathankang@gnome.org>
+ * Copyright 2021 Mohammed Sadiq <sadiq@sadiqpk.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+
+#define G_LOG_DOMAIN "bjb-window"
+
+#ifdef HAVE_CONFIG_H
+# include "config.h"
+#endif
 
 #include <glib/gi18n.h>
 #include <glib/gprintf.h>
@@ -6,38 +34,18 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
-#include "bjb-detached-window.h"
 #include "bjb-empty-results-box.h"
-#include "bjb-window-base.h"
 #include "bjb-list-view.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
 #include "bjb-organize-dialog.h"
 #include "bjb-search-toolbar.h"
 #include "bjb-share.h"
+#include "bjb-window.h"
 
 #define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
-#define SAVE_GEOMETRY_ID_TIMEOUT 100 /* ms */
 
-enum {
-  PROP_0,
-  PROP_NOTE,
-  NUM_PROPERTIES
-};
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
-
-
-enum {
-  BJB_WIN_BASE_VIEW_CHANGED,
-  BJB_WIN_BASE_ACTIVATED,
-  BJB_WIN_BASE_SIGNALS
-};
-
-static guint bjb_win_base_signals [BJB_WIN_BASE_SIGNALS] = { 0 };
-
-
-struct _BjbWindowBase
+struct _BjbWindow
 {
   HdyApplicationWindow  parent_instance;
 
@@ -49,7 +57,7 @@ struct _BjbWindowBase
   gulong                note_trashed;
 
   GtkStack             *stack;
-  BjbWindowViewType     current_view;
+  BjbWindowView         current_view;
   BjbListView          *note_list;
   BjbNoteView          *note_view;
   GtkWidget            *spinner;
@@ -78,19 +86,29 @@ struct _BjbWindowBase
   GtkWidget            *sidebar_box;
   GtkWidget            *search_bar;
   GtkWidget            *title_entry;
+  GtkWidget            *new_window_item;
   GtkWidget            *last_update_item;
+
+  gboolean              is_main;
 };
 
-/* Gobject */
-G_DEFINE_TYPE (BjbWindowBase, bjb_window_base, HDY_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (BjbWindow, bjb_window, HDY_TYPE_APPLICATION_WINDOW)
+
+enum {
+  VIEW_CHANGED,
+  ACTIVATED,
+  N_SIGNALS
+};
+
+static guint signals[N_SIGNALS];
 
 static void get_all_notebooks_cb (GList   *notebooks,
                                   gpointer user_data);
 
 static void
-destroy_note_if_needed (BjbWindowBase *self)
+destroy_note_if_needed (BjbWindow *self)
 {
-  self->note = NULL;
+  g_clear_object (&self->note);
 
   if (self->note_view && GTK_IS_WIDGET (self->note_view))
     gtk_widget_destroy (GTK_WIDGET (self->note_view));
@@ -102,7 +120,7 @@ destroy_note_if_needed (BjbWindowBase *self)
 
 static void
 on_note_renamed (BijiItem      *note,
-                 BjbWindowBase *self)
+                 BjbWindow *self)
 {
   const char *str;
 
@@ -123,11 +141,24 @@ on_note_list_row_activated (GtkListBox    *box,
   const char *note_uuid;
   BijiItem *to_open;
   BijiManager *manager;
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BjbWindow *self = BJB_WINDOW (user_data);
+  GList *windows;
 
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  windows = gtk_application_get_windows (gtk_window_get_application (GTK_WINDOW (self)));
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
   note_uuid = bjb_list_view_row_get_uuid (BJB_LIST_VIEW_ROW (row));
   to_open = biji_manager_get_item_at_path (manager, note_uuid);
+
+  for (GList *node = windows; BIJI_IS_NOTE_OBJ (to_open) && node; node = node->next)
+    {
+      if (BJB_IS_WINDOW (node->data) &&
+          self != node->data &&
+          bjb_window_get_note (node->data) == BIJI_NOTE_OBJ (to_open))
+        {
+          gtk_window_present (node->data);
+          return;
+        }
+    }
 
   if (to_open && BIJI_IS_NOTE_OBJ (to_open))
     {
@@ -136,7 +167,7 @@ on_note_list_row_activated (GtkListBox    *box,
       /* Only open the note if it's not already opened. */
       if (!biji_note_obj_is_opened (BIJI_NOTE_OBJ (to_open)))
         {
-          bjb_window_base_load_note_item (self, to_open);
+          bjb_window_set_note (self, BIJI_NOTE_OBJ (to_open));
         }
     }
   else if (to_open && BIJI_IS_NOTEBOOK (to_open))
@@ -146,32 +177,32 @@ on_note_list_row_activated (GtkListBox    *box,
 }
 
 static void
-on_back_button_clicked (BjbWindowBase *self)
+on_back_button_clicked (BjbWindow *self)
 {
   hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_BACK);
 }
 
 static void
-on_new_note_clicked (BjbWindowBase *self)
+on_new_note_clicked (BjbWindow *self)
 {
   BijiNoteObj *result;
   BijiManager *manager;
 
-  g_assert (BJB_IS_WINDOW_BASE (self));
+  g_assert (BJB_IS_WINDOW (self));
 
   /* append note to notebook */
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
   result = biji_manager_note_new (manager,
                                   NULL,
                                   bjb_settings_get_default_location (self->settings));
 
   /* Go to that note */
   hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
-  bjb_window_base_load_note_item (self, BIJI_ITEM (result));
+  bjb_window_set_note (self, result);
 }
 
 static void
-on_title_changed (BjbWindowBase *self,
+on_title_changed (BjbWindow *self,
                   GtkEntry      *title)
 {
   const char *str = gtk_entry_get_text (title);
@@ -184,85 +215,45 @@ static void
 on_display_notebooks_changed (BjbController *controller,
                               gboolean       items_to_show,
                               gboolean       remaining_items,
-                              BjbWindowBase *self)
+                              BjbWindow     *self)
 {
   BijiManager *manager;
 
   gtk_container_foreach (GTK_CONTAINER (self->notebooks_box),
                          (GtkCallback) gtk_widget_destroy, NULL);
 
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
   biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
 }
 
 static void
-bjb_window_base_finalize (GObject *object)
+bjb_window_finalize (GObject *object)
 {
-  BjbWindowBase *self = BJB_WINDOW_BASE (object);
+  BjbWindow *self = BJB_WINDOW (object);
   GSettings *settings = G_SETTINGS (self->settings);
+  BjbNoteView *note_view;
 
   if (self->note != NULL)
   {
     g_settings_set_string (settings, "last-opened-item", biji_note_obj_get_path (self->note));
 
-    if (self->note_deleted != 0)
-      g_signal_handler_disconnect (self->note, self->note_deleted);
-    if (self->note_trashed != 0)
-      g_signal_handler_disconnect (self->note, self->note_trashed);
+    g_clear_signal_handler (&self->note_deleted, self->note);
+    g_clear_signal_handler (&self->note_trashed, self->note);
   }
 
-  if (self->display_notebooks_changed != 0)
-    g_signal_handler_disconnect (self->controller, self->display_notebooks_changed);
+  note_view = g_object_get_data (object, "note-view");
+  if (note_view)
+    bjb_note_view_set_detached (note_view, FALSE);
 
+  g_clear_signal_handler (&self->display_notebooks_changed, self->controller);
   g_clear_object (&self->controller);
+  g_clear_object (&self->note);
 
-  G_OBJECT_CLASS (bjb_window_base_parent_class)->finalize (object);
-}
-
-
-
-
-static void
-bjb_window_base_get_property (GObject  *object,
-                              guint     property_id,
-                              GValue   *value,
-                              GParamSpec *pspec)
-{
-  BjbWindowBase *self = BJB_WINDOW_BASE (object);
-
-  switch (property_id)
-  {
-  case PROP_NOTE:
-    g_value_set_object (value, self->note);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
-}
-
-
-static void
-bjb_window_base_set_property (GObject  *object,
-                              guint     property_id,
-                              const GValue *value,
-                              GParamSpec *pspec)
-{
-  BjbWindowBase *self = BJB_WINDOW_BASE (object);
-
-  switch (property_id)
-  {
-  case PROP_NOTE:
-    self->note = g_value_get_object (value);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
+  G_OBJECT_CLASS (bjb_window_parent_class)->finalize (object);
 }
 
 static void
-clear_text_in_search_entry (BjbWindowBase *self)
+clear_text_in_search_entry (BjbWindow *self)
 {
   GtkEntry *search_entry;
 
@@ -272,15 +263,15 @@ clear_text_in_search_entry (BjbWindowBase *self)
 }
 
 static gboolean
-on_key_pressed_cb (BjbWindowBase *self, GdkEvent *event)
+on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
 {
   GApplication *app = g_application_get_default ();
   GdkModifierType modifiers = gtk_accelerator_get_default_mod_mask ();
 
   if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
       event->key.keyval == GDK_KEY_Left &&
-      (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW ||
-       self->current_view == BJB_WINDOW_BASE_ARCHIVE_VIEW))
+      (self->current_view == BJB_WINDOW_MAIN_VIEW ||
+       self->current_view == BJB_WINDOW_ARCHIVE_VIEW))
   {
     BijiItemsGroup items;
 
@@ -309,7 +300,7 @@ on_key_pressed_cb (BjbWindowBase *self, GdkEvent *event)
     case GDK_KEY_F10:
       if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
         {
-          /* FIXME: Port this to BjbWindowBase. */
+          /* FIXME: Port this to BjbWindow. */
           /* bjb_main_toolbar_open_menu (self->main_toolbar); */
           return TRUE;
         }
@@ -342,14 +333,22 @@ on_key_pressed_cb (BjbWindowBase *self, GdkEvent *event)
 }
 
 static void
+note_view_destroyed (BjbWindow *self)
+{
+  g_assert (BJB_IS_WINDOW (self));
+
+  g_object_set_data (G_OBJECT (self), "note-view", NULL);
+}
+
+static void
 on_detach_window_cb (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       user_data)
 {
   int width, height;
-  BjbDetachedWindow *detached_window;
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
-  BijiNoteObj   *note = bjb_window_base_get_note (self);
+  BjbWindow *detached_window;
+  BjbWindow *self = BJB_WINDOW (user_data);
+  BijiNoteObj *note = self->note;
 
   if (!note)
     return;
@@ -359,14 +358,26 @@ on_detach_window_cb (GSimpleAction *action,
   gtk_window_get_size (GTK_WINDOW (self), NULL, &height);
 
   if (biji_note_obj_is_trashed (note))
-    bjb_window_base_switch_to (self, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+    bjb_window_set_view (self, BJB_WINDOW_ARCHIVE_VIEW);
   else
-    bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+    bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
 
   bjb_note_view_set_detached (self->note_view, TRUE);
 
-  detached_window = bjb_detached_window_new (self->note_view, note, width, height, self);
-  gtk_widget_show_all (GTK_WIDGET (detached_window));
+  detached_window = BJB_WINDOW (bjb_window_new ());
+  gtk_window_set_default_size (GTK_WINDOW (detached_window), width, height);
+  g_object_set_data_full (G_OBJECT (detached_window), "note-view",
+                          g_object_ref (self->note_view), g_object_unref);
+  g_signal_connect_object (self->note_view, "destroy",
+                           G_CALLBACK (note_view_destroyed), detached_window,
+                           G_CONNECT_SWAPPED);
+
+  detached_window->controller = g_object_ref (self->controller);
+
+  bjb_window_set_view (detached_window, self->current_view);
+  bjb_window_set_is_main (detached_window, FALSE);
+  bjb_window_set_note (detached_window, note);
+  gtk_window_present (GTK_WINDOW (detached_window));
 }
 
 static void
@@ -374,12 +385,10 @@ on_paste_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+  BjbWindow *self = user_data;
 
-  if (!note)
-    return;
-
-  biji_webkit_editor_paste (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (note)));
+  if (self->note)
+    biji_webkit_editor_paste (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note)));
 }
 
 static void
@@ -387,12 +396,10 @@ on_undo_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+  BjbWindow *self = user_data;
 
-  if (!note)
-    return;
-
-  biji_webkit_editor_undo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (note)));
+  if (self->note)
+    biji_webkit_editor_undo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note)));
 }
 
 static void
@@ -400,12 +407,10 @@ on_redo_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
 {
-  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+  BjbWindow *self = user_data;
 
-  if (!note)
-    return;
-
-  biji_webkit_editor_redo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (note)));
+  if (self->note)
+    biji_webkit_editor_redo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note)));
 }
 
 static void
@@ -413,8 +418,8 @@ on_view_notebooks_cb (GSimpleAction *action,
                       GVariant      *parameter,
                       gpointer       user_data)
 {
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
-  BijiNoteObj *note = bjb_window_base_get_note (self);
+  BjbWindow *self = BJB_WINDOW (user_data);
+  BijiNoteObj *note = self->note;
   g_autoptr (GList) list = NULL;
 
   if (!note)
@@ -429,16 +434,14 @@ on_email_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-  BijiNoteObj *note = bjb_window_base_get_note (BJB_WINDOW_BASE (user_data));
+  BjbWindow *self = user_data;
 
-  if (!note)
-    return;
-
-  on_email_note_callback (note);
+  if (self->note)
+    on_email_note_callback (self->note);
 }
 
 static void
-show_all_notes (BjbWindowBase *self)
+show_all_notes (BjbWindow *self)
 {
   clear_text_in_search_entry (self);
 
@@ -451,7 +454,7 @@ show_all_notes (BjbWindowBase *self)
 }
 
 static void
-show_trash (BjbWindowBase *self)
+show_trash (BjbWindow *self)
 {
   clear_text_in_search_entry (self);
 
@@ -466,7 +469,7 @@ on_show_notebook_cb (GSimpleAction *action,
 {
   const char *note_uuid;
   const char *title;
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BjbWindow *self = BJB_WINDOW (user_data);
   BijiItem *notebook;
   BijiManager *manager;
 
@@ -479,7 +482,7 @@ on_show_notebook_cb (GSimpleAction *action,
     show_trash (self);
   else
   {
-    manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+    manager = bjb_window_get_manager (GTK_WIDGET (self));
     notebook = biji_manager_get_item_at_path (manager, note_uuid);
     bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (notebook));
 
@@ -496,8 +499,8 @@ on_trash_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
 {
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
-  BijiNoteObj *note = bjb_window_base_get_note (self);
+  BjbWindow *self = BJB_WINDOW (user_data);
+  BijiNoteObj *note = self->note;
 
   if (!note)
     return;
@@ -507,7 +510,10 @@ on_trash_cb (GSimpleAction *action,
   biji_item_trash (BIJI_ITEM (note));
 
   destroy_note_if_needed (self);
-  bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+  bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
+
+  if (!bjb_window_get_is_main (self))
+    gtk_window_close (GTK_WINDOW (self));
 }
 
 static void
@@ -531,7 +537,7 @@ on_action_radio (GSimpleAction *action,
 }
 
 static void
-bjb_window_base_save_geometry (BjbWindowBase *self)
+bjb_window_save_geometry (BjbWindow *self)
 {
   GSettings *settings = G_SETTINGS (self->settings);
 
@@ -541,7 +547,7 @@ bjb_window_base_save_geometry (BjbWindowBase *self)
 }
 
 static void
-bjb_window_base_load_geometry (BjbWindowBase *self)
+bjb_window_load_geometry (BjbWindow *self)
 {
   GSettings *settings = G_SETTINGS (self->settings);
 
@@ -553,19 +559,19 @@ bjb_window_base_load_geometry (BjbWindowBase *self)
 /* Just disconnect to avoid crash, the finalize does the real
  * job */
 static void
-bjb_window_base_destroy (gpointer a, BjbWindowBase * self)
+bjb_window_destroy (gpointer a, BjbWindow * self)
 {
   bjb_controller_disconnect (self->controller);
-  bjb_window_base_save_geometry (self);
+  bjb_window_save_geometry (self);
 }
 
 static gboolean
-bjb_window_base_configure_event (GtkWidget         *widget,
-                                 GdkEventConfigure *event)
+bjb_window_configure_event (GtkWidget         *widget,
+                            GdkEventConfigure *event)
 {
-  BjbWindowBase *self;
+  BjbWindow *self;
 
-  self = BJB_WINDOW_BASE (widget);
+  self = BJB_WINDOW (widget);
 
   self->is_maximized = gtk_window_is_maximized (GTK_WINDOW (self));
   if (!self->is_maximized)
@@ -574,13 +580,13 @@ bjb_window_base_configure_event (GtkWidget         *widget,
       gtk_window_get_position (GTK_WINDOW (self), &self->pos_x, &self->pos_y);
     }
 
-  return GTK_WIDGET_CLASS (bjb_window_base_parent_class)->configure_event (widget,
+  return GTK_WIDGET_CLASS (bjb_window_parent_class)->configure_event (widget,
                                                                            event);
 }
 
 static void
 append_notebook (BijiItem      *notebook,
-                 BjbWindowBase *self)
+                 BjbWindow *self)
 {
   const char *note_uuid;
   const char *title;
@@ -625,7 +631,7 @@ static void
 get_all_notebooks_cb (GList   *notebooks,
                       gpointer user_data)
 {
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BjbWindow *self = BJB_WINDOW (user_data);
 
   notebooks = g_list_sort (notebooks, compare_notebook);
   g_list_foreach (notebooks, (GFunc) append_notebook, self);
@@ -643,16 +649,14 @@ static GActionEntry win_entries[] = {
   { "close", on_close },
 };
 
-/* Gobj */
 static void
-bjb_window_base_constructed (GObject *obj)
+bjb_window_constructed (GObject *obj)
 {
   BijiManager *manager;
-  BjbSearchToolbar *search_bar;
-  BjbWindowBase *self = BJB_WINDOW_BASE (obj);
+  BjbWindow *self = BJB_WINDOW (obj);
   GtkListBox *list_box;
 
-  G_OBJECT_CLASS (bjb_window_base_parent_class)->constructed (obj);
+  G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
 
   g_action_map_add_action_entries (G_ACTION_MAP (self),
                                    win_entries,
@@ -664,7 +668,7 @@ bjb_window_base_constructed (GObject *obj)
   gtk_window_set_position (GTK_WINDOW (self), GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
-  bjb_window_base_load_geometry (self);
+  bjb_window_load_geometry (self);
   gtk_window_set_default_size (GTK_WINDOW (self), self->width, self->height);
 
   if (self->is_maximized)
@@ -672,21 +676,11 @@ bjb_window_base_constructed (GObject *obj)
   else if (self->pos_x >= 0)
     gtk_window_move (GTK_WINDOW (self), self->pos_x, self->pos_y);
 
-  self->controller = bjb_controller_new
-    (bijiben_get_manager (BJB_APPLICATION(g_application_get_default())),
-     GTK_WINDOW (obj),
-     NULL);
-
   self->note_list = bjb_list_view_new ();
-  bjb_list_view_setup (self->note_list, self->controller);
 
   list_box = bjb_list_view_get_list_box (self->note_list);
   g_signal_connect (list_box, "row-activated",
                     G_CALLBACK (on_note_list_row_activated), self);
-
-  /* Search entry toolbar */
-  search_bar = BJB_SEARCH_TOOLBAR (self->search_bar);
-  bjb_search_toolbar_setup (search_bar, GTK_WIDGET(obj), self->controller);
 
   self->spinner = gtk_spinner_new ();
   gtk_stack_add_named (self->main_stack, self->spinner, "spinner");
@@ -701,20 +695,13 @@ bjb_window_base_constructed (GObject *obj)
   gtk_widget_show (GTK_WIDGET (self->main_stack));
 
   /* Populate the filter menu model. */
-  manager = bjb_window_base_get_manager (GTK_WIDGET (self));
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
   biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
-
-  if (self->display_notebooks_changed != 0)
-    g_signal_handler_disconnect (self->controller, self->display_notebooks_changed);
-  self->display_notebooks_changed = g_signal_connect (self->controller,
-                                                      "display-notebooks-changed",
-                                                      G_CALLBACK (on_display_notebooks_changed),
-                                                      self);
 
   /* Connection to window signals */
   g_signal_connect (GTK_WIDGET (self),
                     "destroy",
-                    G_CALLBACK (bjb_window_base_destroy),
+                    G_CALLBACK (bjb_window_destroy),
                     self);
 
   /* Keys */
@@ -728,103 +715,138 @@ bjb_window_base_constructed (GObject *obj)
    * This is a specific type of window not associated with any view */
   if (self->note != NULL)
   {
-    bjb_window_base_load_note_item (self, BIJI_ITEM (self->note));
+    bjb_window_set_note (self, self->note);
   }
 }
 
 
 static void
-bjb_window_base_init (BjbWindowBase *self)
+bjb_window_init (BjbWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 }
 
 static void
-bjb_window_base_class_init (BjbWindowBaseClass *klass)
+bjb_window_class_init (BjbWindowClass *klass)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  GObjectClass   *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  gobject_class->constructed = bjb_window_base_constructed;
-  gobject_class->finalize = bjb_window_base_finalize ;
-  gobject_class->get_property = bjb_window_base_get_property;
-  gobject_class->set_property = bjb_window_base_set_property;
+  object_class->constructed = bjb_window_constructed;
+  object_class->finalize = bjb_window_finalize;
 
-  widget_class->configure_event = bjb_window_base_configure_event;
+  widget_class->configure_event = bjb_window_configure_event;
 
-  bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED] = g_signal_new ("view-changed" ,
-                                                    G_OBJECT_CLASS_TYPE (klass),
-                                                    G_SIGNAL_RUN_LAST,
-                                                    0,
-                                                    NULL,
-                                                    NULL,
-                                                    g_cclosure_marshal_VOID__VOID,
-                                                    G_TYPE_NONE,
-                                                    0);
+  signals[VIEW_CHANGED] = g_signal_new ("view-changed",
+                                        G_OBJECT_CLASS_TYPE (klass),
+                                        G_SIGNAL_RUN_LAST,
+                                        0,
+                                        NULL,
+                                        NULL,
+                                        g_cclosure_marshal_VOID__VOID,
+                                        G_TYPE_NONE,
+                                        0);
 
-  bjb_win_base_signals[BJB_WIN_BASE_ACTIVATED] =    g_signal_new ("activated" ,
-                                                    G_OBJECT_CLASS_TYPE (klass),
-                                                    G_SIGNAL_RUN_LAST,
-                                                    0,
-                                                    NULL,
-                                                    NULL,
-                                                    g_cclosure_marshal_VOID__BOOLEAN,
-                                                    G_TYPE_NONE,
-                                                    1,
-                                                    G_TYPE_BOOLEAN);
+  signals[ACTIVATED] = g_signal_new ("activated",
+                                     G_OBJECT_CLASS_TYPE (klass),
+                                     G_SIGNAL_RUN_LAST,
+                                     0,
+                                     NULL,
+                                     NULL,
+                                     g_cclosure_marshal_VOID__BOOLEAN,
+                                     G_TYPE_NONE,
+                                     1,
+                                     G_TYPE_BOOLEAN);
 
-  properties[PROP_NOTE] = g_param_spec_object ("note",
-                                               "NoteObj",
-                                               "Currently opened note",
-                                               BIJI_TYPE_NOTE_OBJ,
-                                               G_PARAM_READWRITE |
-                                               G_PARAM_CONSTRUCT |
-                                               G_PARAM_STATIC_STRINGS);
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window.ui");
 
-  g_object_class_install_properties (gobject_class, NUM_PROPERTIES, properties);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_leaflet);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, header_group);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_stack);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, back_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, headerbar);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, filter_label);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, filter_menu_button);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_box);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_headerbar);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, notebooks_box);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, sidebar_box);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, search_bar);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, new_window_item);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, last_update_item);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window-base.ui");
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_leaflet);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, header_group);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, main_stack);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, back_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, headerbar);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, filter_label);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, filter_menu_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_box);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, note_headerbar);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, notebooks_box);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, sidebar_box);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, search_bar);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, title_entry);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindowBase, last_update_item);
   gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
 }
 
-
-GtkWindow *
-bjb_window_base_new                    (BijiNoteObj *note)
+GtkWidget *
+bjb_window_new (void)
 {
-  return g_object_new (BJB_TYPE_WINDOW_BASE,
+  return g_object_new (BJB_TYPE_WINDOW,
                        "application", g_application_get_default(),
-                       "note", note,
                        NULL);
 }
 
-BijiNoteObj *
-bjb_window_base_get_note (BjbWindowBase *self)
+gboolean
+bjb_window_get_is_main (BjbWindow *self)
 {
-  g_return_val_if_fail (BJB_IS_WINDOW_BASE (self), NULL);
+  g_return_val_if_fail (BJB_IS_WINDOW (self), FALSE);
 
-  return self->note;
+  return self->is_main;
 }
 
 void
-bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
+bjb_window_set_is_main (BjbWindow *self,
+                        gboolean   is_main)
 {
-  switch (type)
+  g_return_if_fail (BJB_IS_WINDOW (self));
+
+  if (is_main)
+    {
+      if (!self->controller)
+        self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default())),
+                                               GTK_WINDOW (self), NULL);
+      if (!self->display_notebooks_changed)
+        {
+          BjbSearchToolbar *search_bar;
+
+          search_bar = BJB_SEARCH_TOOLBAR (self->search_bar);
+          bjb_list_view_setup (self->note_list, self->controller);
+          bjb_search_toolbar_setup (search_bar, GTK_WIDGET (self), self->controller);
+        }
+
+      g_clear_signal_handler (&self->display_notebooks_changed, self->controller);
+      self->display_notebooks_changed = g_signal_connect (self->controller,
+                                                          "display-notebooks-changed",
+                                                          G_CALLBACK (on_display_notebooks_changed),
+                                                          self);
+    }
+
+  if (!is_main)
+    hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
+  gtk_widget_set_visible (self->sidebar_box, is_main);
+  gtk_widget_set_visible (self->new_window_item, is_main);
+  gtk_widget_set_visible (self->back_button, is_main);
+  self->is_main = !!is_main;
+}
+
+BjbWindowView
+bjb_window_get_view (BjbWindow *self)
+{
+  g_return_val_if_fail (BJB_IS_WINDOW (self), BJB_WINDOW_MAIN_VIEW);
+
+  return self->current_view;
+}
+
+void
+bjb_window_set_view (BjbWindow     *self,
+                     BjbWindowView  view)
+{
+  g_return_if_fail (BJB_IS_WINDOW (self));
+
+  switch (view)
   {
 
     /* Precise the window does not display any specific note
@@ -834,24 +856,24 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
      * main view & archive view are the same widget
      */
 
-    case BJB_WINDOW_BASE_MAIN_VIEW:
+    case BJB_WINDOW_MAIN_VIEW:
       hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_BACK);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "main-view");
       break;
 
-   case BJB_WINDOW_BASE_ARCHIVE_VIEW:
+   case BJB_WINDOW_ARCHIVE_VIEW:
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "main-view");
       break;
 
-    case BJB_WINDOW_BASE_SPINNER_VIEW:
+    case BJB_WINDOW_SPINNER_VIEW:
       gtk_widget_hide (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "spinner");
       break;
 
 
-    case BJB_WINDOW_BASE_NO_NOTE:
+    case BJB_WINDOW_NO_NOTE:
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note),
                                       BJB_EMPTY_RESULTS_NO_NOTE);
       gtk_widget_show (self->no_note);
@@ -860,7 +882,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
       break;
 
 
-    case BJB_WINDOW_BASE_NO_RESULT:
+    case BJB_WINDOW_NO_RESULT:
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note),
                                       BJB_EMPTY_RESULTS_NO_RESULTS);
       gtk_widget_show (self->no_note);
@@ -868,7 +890,7 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
       break;
 
 
-    case BJB_WINDOW_BASE_ERROR_TRACKER:
+    case BJB_WINDOW_ERROR_TRACKER:
       bjb_empty_results_box_set_type (BJB_EMPTY_RESULTS_BOX (self->no_note),
                                       BJB_EMPTY_RESULTS_TRACKER);
       gtk_widget_show_all (self->no_note);
@@ -877,23 +899,23 @@ bjb_window_base_switch_to (BjbWindowBase *self, BjbWindowViewType type)
       break;
 
 
-    case BJB_WINDOW_BASE_NOTE_VIEW:
+    case BJB_WINDOW_NOTE_VIEW:
       break;
 
 
-    case BJB_WINDOW_BASE_NO_VIEW:
+    case BJB_WINDOW_NO_VIEW:
     default:
       return;
   }
 
-  self->current_view = type;
+  self->current_view = view;
 
-  g_signal_emit (G_OBJECT (self), bjb_win_base_signals[BJB_WIN_BASE_VIEW_CHANGED],0);
+  g_signal_emit (G_OBJECT (self), signals[VIEW_CHANGED], 0);
 }
 
 static void
-on_last_updated_cb (BijiItem      *note,
-                    BjbWindowBase *self)
+on_last_updated_cb (BijiItem  *note,
+                    BjbWindow *self)
 {
   g_autofree char *label = NULL;
   g_autofree char *time_str = NULL;
@@ -909,7 +931,7 @@ on_last_updated_cb (BijiItem      *note,
 }
 
 static void
-populate_headerbar_for_note_view (BjbWindowBase *self)
+populate_headerbar_for_note_view (BjbWindow *self)
 {
   on_note_renamed (BIJI_ITEM (self->note), self);
   g_signal_connect (self->note, "renamed", G_CALLBACK (on_note_renamed), self);
@@ -922,76 +944,73 @@ static gboolean
 on_note_trashed (BijiNoteObj *note,
                  gpointer     user_data)
 {
-  BjbWindowBase *self = BJB_WINDOW_BASE (user_data);
+  BjbWindow *self = BJB_WINDOW (user_data);
 
   destroy_note_if_needed (self);
-  bjb_window_base_switch_to (self, BJB_WINDOW_BASE_MAIN_VIEW);
+  bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
 
   return TRUE;
 }
 
+BijiNoteObj *
+bjb_window_get_note (BjbWindow *self)
+{
+  g_return_val_if_fail (BJB_IS_WINDOW (self), NULL);
+
+  return self->note;
+}
+
 void
-bjb_window_base_load_note_item (BjbWindowBase *self, BijiItem *item)
+bjb_window_set_note (BjbWindow   *self,
+                     BijiNoteObj *note)
 {
   GtkWidget *w = GTK_WIDGET (self);
 
+  g_return_if_fail (BJB_IS_WINDOW (self));
+  g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
+
   /* Disconnect these two callbacks for previously opened note item. */
-  if (self->note_deleted != 0)
-  {
-    g_signal_handler_disconnect (self->note, self->note_deleted);
-    self->note_deleted = 0;
-  }
-  if (self->note_trashed != 0)
-  {
-    g_signal_handler_disconnect (self->note, self->note_trashed);
-    self->note_trashed = 0;
-  }
+  if (self->note)
+    {
+      g_clear_signal_handler (&self->note_deleted, self->note);
+      g_clear_signal_handler (&self->note_trashed, self->note);
+    }
 
   destroy_note_if_needed (self);
 
-  if (BIJI_IS_NOTE_OBJ (item))
-  {
-    BijiNoteObj *note = BIJI_NOTE_OBJ (item);
+  if (!note)
+    return;
 
-    self->note = note;
-    self->note_view = bjb_note_view_new (w, note);
-    gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
-    gtk_widget_show (GTK_WIDGET (self->note_view));
-    bjb_note_view_grab_focus (self->note_view);
+  self->note = g_object_ref (note);
+  self->note_view = bjb_note_view_new (w, note);
+  gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
+  gtk_widget_show (GTK_WIDGET (self->note_view));
+  bjb_note_view_grab_focus (self->note_view);
 
-    self->note_deleted = g_signal_connect (self->note, "deleted",
-                                           G_CALLBACK (on_note_trashed), self);
-    self->note_trashed = g_signal_connect (self->note, "trashed",
-                                           G_CALLBACK (on_note_trashed), self);
+  self->note_deleted = g_signal_connect (self->note, "deleted",
+                                         G_CALLBACK (on_note_trashed), self);
+  self->note_trashed = g_signal_connect (self->note, "trashed",
+                                         G_CALLBACK (on_note_trashed), self);
 
-    populate_headerbar_for_note_view (self);
-  }
-}
-
-BjbWindowViewType
-bjb_window_base_get_view_type (BjbWindowBase *self)
-{
-  return self->current_view;
+  populate_headerbar_for_note_view (self);
 }
 
 BijiManager *
-bjb_window_base_get_manager(GtkWidget * win)
+bjb_window_get_manager (GtkWidget *win)
 {
   return bijiben_get_manager (BJB_APPLICATION (g_application_get_default()));
 }
 
 void
-bjb_window_base_set_active (BjbWindowBase *self, gboolean active)
+bjb_window_set_active (BjbWindow *self,
+                       gboolean   active)
 {
   gboolean available;
 
-  available = (self->current_view == BJB_WINDOW_BASE_MAIN_VIEW);
+  g_return_if_fail (BJB_IS_WINDOW (self));
+
+  available = (self->current_view == BJB_WINDOW_MAIN_VIEW);
 
   if (active == TRUE)
-  {
-    g_signal_emit (self,
-                   bjb_win_base_signals[BJB_WIN_BASE_ACTIVATED],
-                   0,
-                   available);
-  }
+    g_signal_emit (self, signals[ACTIVATED], 0, available);
 }

@@ -25,7 +25,7 @@
 
 #include "bjb-application.h"
 #include "bjb-controller.h"
-#include "bjb-window-base.h"
+#include "bjb-window.h"
 
 /*
  * The start-up number of items to show,
@@ -46,7 +46,7 @@ struct _BjbController
   BijiItemsGroup  group;
   GtkTreeModel   *model;
 
-  BjbWindowBase  *window;
+  BjbWindow      *window;
   BjbSettings    *settings;
 
   GList          *items_to_show;
@@ -368,12 +368,12 @@ void
 bjb_controller_update_view (BjbController *self)
 {
   GList *l;
-  BjbWindowViewType type;
+  BjbWindowView view;
 
   /* Do not update if nothing to show */
-  type = bjb_window_base_get_view_type (self->window);
-  if (! (type == BJB_WINDOW_BASE_MAIN_VIEW
-         || type == BJB_WINDOW_BASE_ARCHIVE_VIEW))
+  view = bjb_window_get_view (self->window);
+  if (!(view == BJB_WINDOW_MAIN_VIEW ||
+        view == BJB_WINDOW_ARCHIVE_VIEW))
     return;
 
   free_items_store (self);
@@ -409,18 +409,18 @@ notify_displayed_notebooks_changed (BjbController *self)
 static void
 update (BjbController *self)
 {
-  BjbWindowViewType type;
+  BjbWindowView view;
 
   /* If the user already edits a note, he does not want the view
    * to go back */
-  if (bjb_window_base_get_view_type (self->window) != BJB_WINDOW_BASE_NOTE_VIEW)
+  if (bjb_window_get_view (self->window) != BJB_WINDOW_NOTE_VIEW)
   {
     if (self->group == BIJI_LIVING_ITEMS)
-      type = BJB_WINDOW_BASE_MAIN_VIEW;
+      view = BJB_WINDOW_MAIN_VIEW;
     else
-      type = BJB_WINDOW_BASE_ARCHIVE_VIEW;
+      view = BJB_WINDOW_ARCHIVE_VIEW;
 
-    bjb_window_base_switch_to (self->window, type);
+    bjb_window_set_view (self->window, view);
   }
 
 
@@ -476,7 +476,7 @@ update_controller_callback (GList *result,
 
   if (!result)
   {
-    bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
+    bjb_window_set_view (self->window, BJB_WINDOW_NO_RESULT);
     return;
   }
 
@@ -509,7 +509,7 @@ update_controller_callback (GList *result,
   switch (self->group)
   {
     case BIJI_ARCHIVED_ITEMS:
-      bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_ARCHIVE_VIEW);
+      bjb_window_set_view (self->window, BJB_WINDOW_ARCHIVE_VIEW);
       break;
     case BIJI_LIVING_ITEMS:
     default:
@@ -535,9 +535,9 @@ bjb_controller_apply_needle (BjbController *self)
     if (result == NULL)
       {
         if (!self->notebook && self->group == BIJI_LIVING_ITEMS)
-          bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
+          bjb_window_set_view (self->window, BJB_WINDOW_NO_NOTE);
         else
-          bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
+          bjb_window_set_view (self->window, BJB_WINDOW_NO_RESULT);
       }
     else
       update_controller_callback (result, self);
@@ -563,7 +563,7 @@ on_needle_changed (BjbController *self)
 static gboolean
 bjb_controller_set_window_active (BjbController *self)
 {
-  bjb_window_base_set_active (self->window, TRUE);
+  bjb_window_set_active (self->window, TRUE);
   return FALSE;
 }
 
@@ -596,7 +596,7 @@ on_manager_changed (BijiManager            *manager,
     case BIJI_MANAGER_MASS_CHANGE:
       bjb_controller_apply_needle (self);
       /* This flag is only used when the provider changes so we should close the note. */
-      bjb_window_base_load_note_item (self->window, NULL);
+      bjb_window_set_note (self->window, NULL);
       g_timeout_add (1, (GSourceFunc) bjb_controller_set_window_active, self);
       break;
 
@@ -645,9 +645,9 @@ on_manager_changed (BijiManager            *manager,
       if (self->items_to_show == NULL)
         {
           if (!self->notebook && group == BIJI_LIVING_ITEMS)
-            bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_NOTE);
+            bjb_window_set_view (self->window, BJB_WINDOW_NO_NOTE);
           else
-            bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_NO_RESULT);
+            bjb_window_set_view (self->window, BJB_WINDOW_NO_RESULT);
         }
       else
       {
@@ -758,8 +758,8 @@ bjb_controller_class_init (BjbControllerClass *klass)
 
   properties[PROP_WINDOW] = g_param_spec_object ("window",
                                                  "GtkWindow",
-                                                 "BjbWindowBase",
-                                                 BJB_TYPE_WINDOW_BASE,
+                                                 "BjbWindow",
+                                                 BJB_TYPE_WINDOW,
                                                  G_PARAM_READWRITE |
                                                  G_PARAM_CONSTRUCT |
                                                  G_PARAM_STATIC_STRINGS);
@@ -851,14 +851,14 @@ bjb_controller_set_notebook (BjbController *self,
     if (!self->notebook)
       return;
 
-    bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_SPINNER_VIEW);
+    bjb_window_set_view (self->window, BJB_WINDOW_SPINNER_VIEW);
     self->notebook = NULL;
     bjb_controller_apply_needle (self);
     return;
   }
 
   /* Opening an __existing__ notebook */
-  bjb_window_base_switch_to (self->window, BJB_WINDOW_BASE_SPINNER_VIEW);
+  bjb_window_set_view (self->window, BJB_WINDOW_SPINNER_VIEW);
   g_clear_pointer (&self->items_to_show, g_list_free);
   g_clear_pointer (&self->needle, g_free);
 

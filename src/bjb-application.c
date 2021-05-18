@@ -29,7 +29,7 @@
 #include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-note-view.h"
-#include "bjb-window-base.h"
+#include "bjb-window.h"
 #include "bjb-import-dialog.h"
 #include "bjb-log.h"
 
@@ -55,7 +55,7 @@ static void     bijiben_new_window_internal (BjbApplication *self,
                                              BijiNoteObj   *note);
 static gboolean bijiben_open_path           (BjbApplication *self,
                                              gchar          *path,
-                                             BjbWindowBase *window);
+                                             BjbWindow      *window);
 
 void            on_import_notes_cb          (GSimpleAction      *action,
                                              GVariant           *parameter,
@@ -93,7 +93,7 @@ cmd_verbose_cb (const char  *option_name,
 }
 
 static void
-on_window_activated_cb (BjbWindowBase  *window,
+on_window_activated_cb (BjbWindow      *window,
                         gboolean        available,
                         BjbApplication *self)
 {
@@ -132,16 +132,20 @@ static void
 bijiben_new_window_internal (BjbApplication *self,
                              BijiNoteObj    *note)
 {
-  BjbWindowBase *window;
-  GList         *windows;
-  gboolean       not_first_window;
+  BjbWindow *window;
+  GList *windows;
+  gboolean not_first_window;
 
   windows = gtk_application_get_windows (GTK_APPLICATION (self));
   not_first_window = (gboolean) g_list_length (windows);
 
-  window = BJB_WINDOW_BASE (bjb_window_base_new (note));
+  window = BJB_WINDOW (bjb_window_new ());
+  if (!note)
+    bjb_window_set_is_main (window, TRUE);
+
   g_signal_connect (window, "activated",
                     G_CALLBACK (on_window_activated_cb), self);
+  bjb_window_set_note (window, note);
 
   gtk_widget_show (GTK_WIDGET (window));
 
@@ -160,7 +164,7 @@ bijiben_new_window_internal (BjbApplication *self,
 static gboolean
 bijiben_open_path (BjbApplication *self,
                    gchar          *path,
-                   BjbWindowBase  *window)
+                   BjbWindow      *window)
 {
   BijiItem *item;
 
@@ -172,7 +176,7 @@ bijiben_open_path (BjbApplication *self,
   if (!window)
     bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
   else
-    bjb_window_base_load_note_item (window, item);
+    bjb_window_set_note (window, BIJI_NOTE_OBJ (item));
 
   return TRUE;
 }
@@ -182,6 +186,32 @@ bijiben_new_window_for_note (GApplication *app,
                              BijiNoteObj *note)
 {
   bijiben_new_window_internal (BJB_APPLICATION (app), note);
+}
+
+static void
+bjb_application_window_removed (GtkApplication *app,
+                                GtkWindow      *window)
+{
+  if (BJB_IS_WINDOW (window) &&
+      bjb_window_get_is_main (BJB_WINDOW (window)))
+    {
+      GList *windows;
+
+      windows = gtk_application_get_windows (app);
+
+      for (GList *node = windows; node; node = node->next)
+        {
+          if (BJB_IS_WINDOW (node->data) &&
+              window != node->data)
+            {
+              bjb_window_set_is_main (node->data, TRUE);
+              gtk_window_present (node->data);
+              break;
+            }
+        }
+    }
+
+  GTK_APPLICATION_CLASS (bjb_application_parent_class)->window_removed (app, window);
 }
 
 static int
@@ -483,8 +513,11 @@ bijiben_finalize (GObject *object)
 static void
 bjb_application_class_init (BjbApplicationClass *klass)
 {
+  GtkApplicationClass *app_class = GTK_APPLICATION_CLASS (klass);
   GApplicationClass *aclass = G_APPLICATION_CLASS (klass);
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
+
+  app_class->window_removed = bjb_application_window_removed;
 
   aclass->handle_local_options = bijiben_handle_local_options;
   aclass->activate = bijiben_activate;

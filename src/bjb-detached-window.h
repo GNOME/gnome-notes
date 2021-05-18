@@ -23,7 +23,7 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-note-view.h"
-#include "bjb-window-base.h"
+#include "bjb-window.h"
 
 G_BEGIN_DECLS
 
@@ -31,10 +31,10 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbDetachedWindow, bjb_detached_window, BJB, DETACHED_WINDOW, HdyApplicationWindow)
 
-BjbDetachedWindow *bjb_detached_window_new (BjbNoteView   *note_view,
-                                            BijiNoteObj   *note,
-                                            int            width,
-                                            int            height,
-                                            BjbWindowBase *main_win);
+BjbDetachedWindow *bjb_detached_window_new (BjbNoteView *note_view,
+                                            BijiNoteObj *note,
+                                            int          width,
+                                            int          height,
+                                            BjbWindow   *main_win);
 
 G_END_DECLS

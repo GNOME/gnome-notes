@@ -641,6 +641,7 @@ biji_memo_provider_finalize (GObject *object)
   g_hash_table_unref (self->tracker);
   g_hash_table_unref (self->items);
   g_queue_free_full (self->queue, (GDestroyNotify) memo_item_free);
+  g_object_unref(self->source);
 
   G_OBJECT_CLASS (biji_memo_provider_parent_class)->finalize (object);
 }
@@ -660,6 +661,7 @@ biji_memo_provider_set_property (GObject      *object,
     {
     case PROP_SOURCE:
       self->source = g_value_get_object (value);
+      g_object_ref(self->source);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

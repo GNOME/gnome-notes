@@ -595,6 +595,8 @@ on_manager_changed (BijiManager            *manager,
   {
     case BIJI_MANAGER_MASS_CHANGE:
       bjb_controller_apply_needle (self);
+      /* This flag is only used when the provider changes so we should close the note. */
+      bjb_window_base_load_note_item(self->window, NULL);
       g_timeout_add (1, (GSourceFunc) bjb_controller_set_window_active, self);
       break;
 

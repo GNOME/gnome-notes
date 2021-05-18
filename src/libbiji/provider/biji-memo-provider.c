@@ -700,7 +700,7 @@ memo_provider_load_items (BijiProvider *provider)
   self = BIJI_MEMO_PROVIDER (provider);
   e_cal_client_connect (self->source,
                         E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
-			10, /* wait up to 10 seconds until the memo list is connected */
+                        10, /* wait up to 10 seconds until the memo list is connected */
                         NULL, /* cancel */
                         on_client_connected,
                         self);

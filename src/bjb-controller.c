@@ -689,8 +689,7 @@ bjb_controller_connect (BjbController *self)
 void
 bjb_controller_disconnect (BjbController *self)
 {
-  g_signal_handler_disconnect (self->manager, self->manager_change);
-  self->manager_change = 0;
+  g_clear_signal_handler (&self->manager_change, self->manager);
 }
 
 static void

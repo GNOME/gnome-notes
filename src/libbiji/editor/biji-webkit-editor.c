@@ -56,32 +56,31 @@ static guint biji_editor_signals [EDITOR_SIGNALS] = { 0 };
 
 static GParamSpec *properties[NUM_PROP] = { NULL, };
 
-struct _BijiWebkitEditorPrivate
+struct _BijiWebkitEditor
 {
-  BijiNoteObj *note;
-  gulong content_changed;
-  gulong color_changed;
-  gboolean has_text;
-  gchar *selected_text;
-  BlockFormat block_format;
-  gboolean first_load;
+  WebKitWebView     parent_instance;
+  BijiNoteObj      *note;
+  gulong            content_changed;
+  gulong            color_changed;
+  gboolean          has_text;
+  char             *selected_text;
+  BlockFormat       block_format;
+  gboolean          first_load;
   EEditorSelection *sel;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW);
+G_DEFINE_TYPE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW)
 
 gboolean
 biji_webkit_editor_has_selection (BijiWebkitEditor *self)
 {
-  BijiWebkitEditorPrivate *priv = self->priv;
-
-  return priv->has_text && priv->selected_text && *priv->selected_text;
+  return self->has_text && self->selected_text && *self->selected_text;
 }
 
 const gchar *
 biji_webkit_editor_get_selection (BijiWebkitEditor *self)
 {
-  return self->priv->selected_text;
+  return self->selected_text;
 }
 
 static WebKitWebContext *
@@ -158,24 +157,23 @@ biji_toggle_block_format (BijiWebkitEditor *self,
 void
 biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
 {
-  BijiWebkitEditorPrivate *priv = self->priv;
-  gboolean has_list = priv->block_format == BLOCK_FORMAT_UNORDERED_LIST
-                      || priv-> block_format == BLOCK_FORMAT_ORDERED_LIST;
+  gboolean has_list = self->block_format == BLOCK_FORMAT_UNORDERED_LIST
+                      || self-> block_format == BLOCK_FORMAT_ORDERED_LIST;
 
   switch (format)
   {
     case BIJI_BOLD:
-      biji_toggle_format (priv->sel, e_editor_selection_get_bold,
+      biji_toggle_format (self->sel, e_editor_selection_get_bold,
                                       e_editor_selection_set_bold);
       break;
 
     case BIJI_ITALIC:
-      biji_toggle_format (priv->sel, e_editor_selection_get_italic,
+      biji_toggle_format (self->sel, e_editor_selection_get_italic,
                                       e_editor_selection_set_italic);
       break;
 
     case BIJI_STRIKE:
-      biji_toggle_format (priv->sel, e_editor_selection_get_strike_through,
+      biji_toggle_format (self->sel, e_editor_selection_get_strike_through,
                                       e_editor_selection_set_strike_through);
       break;
 
@@ -298,20 +296,18 @@ biji_webkit_editor_set_text_size (BijiWebkitEditor *self,
 static void
 biji_webkit_editor_init (BijiWebkitEditor *self)
 {
-  self->priv = biji_webkit_editor_get_instance_private (self);
 }
 
 static void
 biji_webkit_editor_finalize (GObject *object)
 {
   BijiWebkitEditor *self = BIJI_WEBKIT_EDITOR (object);
-  BijiWebkitEditorPrivate *priv = self->priv;
 
-  g_free (priv->selected_text);
+  g_free (self->selected_text);
 
-  if (priv->note != NULL) {
-    g_object_remove_weak_pointer (G_OBJECT (priv->note), (gpointer*) &priv->note);
-    g_signal_handler_disconnect (priv->note, priv->color_changed);
+  if (self->note != NULL) {
+    g_object_remove_weak_pointer (G_OBJECT (self->note), (gpointer*) &self->note);
+    g_signal_handler_disconnect (self->note, self->color_changed);
   }
 
   G_OBJECT_CLASS (biji_webkit_editor_parent_class)->finalize (object);
@@ -322,7 +318,7 @@ biji_webkit_editor_content_changed (BijiWebkitEditor *self,
                                     const char *html,
                                     const char *text)
 {
-  BijiNoteObj *note = self->priv->note;
+  BijiNoteObj *note = self->note;
 
   biji_note_obj_set_html (note, (char *)html);
   biji_note_obj_set_raw_text (note, (char *)text);
@@ -386,21 +382,19 @@ static void
 on_load_change (WebKitWebView  *web_view,
                 WebKitLoadEvent event)
 {
-  BijiWebkitEditorPrivate *priv;
+  BijiWebkitEditor *self = BIJI_WEBKIT_EDITOR (web_view);
   GdkRGBA color;
 
   if (event != WEBKIT_LOAD_FINISHED)
     return;
 
-  priv = BIJI_WEBKIT_EDITOR (web_view)->priv;
-
   /* Apply color */
-  if (biji_note_obj_get_rgba (priv->note, &color))
+  if (biji_note_obj_get_rgba (self->note, &color))
     set_editor_color (web_view, &color);
 
-  if (!priv->color_changed)
+  if (!self->color_changed)
   {
-    priv->color_changed = g_signal_connect (priv->note,
+    self->color_changed = g_signal_connect (self->note,
                                             "color-changed",
                                             G_CALLBACK (on_note_color_changed),
                                             web_view);
@@ -449,20 +443,20 @@ biji_webkit_editor_handle_selection_change (BijiWebkitEditor *self,
   g_autofree char *block_format_str = NULL;
 
   js_has_text = jsc_value_object_get_property (js_value, "hasText");
-  self->priv->has_text = jsc_value_to_boolean (js_has_text);
+  self->has_text = jsc_value_to_boolean (js_has_text);
 
   js_text = jsc_value_object_get_property (js_value, "text");
-  g_free (self->priv->selected_text);
-  self->priv->selected_text = jsc_value_to_string (js_text);
+  g_free (self->selected_text);
+  self->selected_text = jsc_value_to_string (js_text);
 
   js_block_format = jsc_value_object_get_property (js_value, "blockFormat");
   block_format_str = jsc_value_to_string (js_block_format);
   if (g_strcmp0 (block_format_str, "UL") == 0)
-    self->priv->block_format = BLOCK_FORMAT_UNORDERED_LIST;
+    self->block_format = BLOCK_FORMAT_UNORDERED_LIST;
   else if (g_strcmp0 (block_format_str, "OL") == 0)
-    self->priv->block_format = BLOCK_FORMAT_ORDERED_LIST;
+    self->block_format = BLOCK_FORMAT_ORDERED_LIST;
   else
-    self->priv->block_format = BLOCK_FORMAT_NONE;
+    self->block_format = BLOCK_FORMAT_NONE;
 }
 
 static void
@@ -481,8 +475,8 @@ on_script_message (WebKitUserContentManager *user_content,
   message_name = jsc_value_to_string (js_message_name);
   if (g_strcmp0 (message_name, "ContentsUpdate") == 0)
     {
-      if (self->priv->first_load)
-        self->priv->first_load = FALSE;
+      if (self->first_load)
+        self->first_load = FALSE;
       else
         biji_webkit_editor_handle_contents_update (self, js_value);
     }
@@ -494,7 +488,6 @@ static void
 biji_webkit_editor_constructed (GObject *obj)
 {
   BijiWebkitEditor *self;
-  BijiWebkitEditorPrivate *priv;
   WebKitWebView *view;
   WebKitUserContentManager *user_content;
   g_autoptr(GBytes) html_data = NULL;
@@ -502,8 +495,7 @@ biji_webkit_editor_constructed (GObject *obj)
 
   self = BIJI_WEBKIT_EDITOR (obj);
   view = WEBKIT_WEB_VIEW (self);
-  priv = self->priv;
-  priv->first_load = TRUE;
+  self->first_load = TRUE;
 
   G_OBJECT_CLASS (biji_webkit_editor_parent_class)->constructed (obj);
 
@@ -512,15 +504,15 @@ biji_webkit_editor_constructed (GObject *obj)
   g_signal_connect (user_content, "script-message-received::bijiben",
                     G_CALLBACK (on_script_message), self);
 
-  priv->sel = e_editor_selection_new (view);
+  self->sel = e_editor_selection_new (view);
 
-  webkit_web_view_set_editable (view, !biji_note_obj_is_trashed (BIJI_NOTE_OBJ (priv->note)));
+  webkit_web_view_set_editable (view, !biji_note_obj_is_trashed (BIJI_NOTE_OBJ (self->note)));
 
   /* Do not segfault at finalize
    * if the note died */
-  g_object_add_weak_pointer (G_OBJECT (priv->note), (gpointer*) &priv->note);
+  g_object_add_weak_pointer (G_OBJECT (self->note), (gpointer*) &self->note);
 
-  body = biji_note_obj_get_html (priv->note);
+  body = biji_note_obj_get_html (self->note);
 
   if (!body)
     body = html_from_plain_text ("");
@@ -549,7 +541,7 @@ biji_webkit_editor_get_property (GObject  *object,
   switch (property_id)
   {
     case PROP_NOTE:
-      g_value_set_object (value, self->priv->note);
+      g_value_set_object (value, self->note);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -567,7 +559,7 @@ biji_webkit_editor_set_property (GObject  *object,
   switch (property_id)
   {
     case PROP_NOTE:
-      self->priv->note = g_value_get_object (value);
+      self->note = g_value_get_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

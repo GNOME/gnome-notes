@@ -25,29 +25,10 @@
 
 G_BEGIN_DECLS
 
-#define BIJI_TYPE_WEBKIT_EDITOR             (biji_webkit_editor_get_type ())
-#define BIJI_WEBKIT_EDITOR(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditor))
-#define BIJI_WEBKIT_EDITOR_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorClass))
-#define BIJI_IS_WEBKIT_EDITOR(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BIJI_TYPE_WEBKIT_EDITOR))
-#define BIJI_IS_WEBKIT_EDITOR_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BIJI_TYPE_WEBKIT_EDITOR))
-#define BIJI_WEBKIT_EDITOR_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), BIJI_TYPE_WEBKIT_EDITOR, BijiWebkitEditorClass))
+#define BIJI_TYPE_WEBKIT_EDITOR (biji_webkit_editor_get_type ())
 
-typedef struct _BijiWebkitEditorClass BijiWebkitEditorClass;
-typedef struct _BijiWebkitEditor BijiWebkitEditor;
-typedef struct _BijiWebkitEditorPrivate BijiWebkitEditorPrivate;
+G_DECLARE_FINAL_TYPE (BijiWebkitEditor, biji_webkit_editor, BIJI, WEBKIT_EDITOR, WebKitWebView)
 
-struct _BijiWebkitEditorClass
-{
-  WebKitWebViewClass parent_class;
-};
-
-struct _BijiWebkitEditor
-{
-  WebKitWebView parent_instance;
-  BijiWebkitEditorPrivate * priv;
-};
-
-GType biji_webkit_editor_get_type (void) G_GNUC_CONST;
 
 BijiWebkitEditor * biji_webkit_editor_new (BijiNoteObj *note);
 

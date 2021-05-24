@@ -1,0 +1,766 @@
+# Slovenian translation for bijiben.
+# Copyright (C) 2012 bijiben's COPYRIGHT HOLDER
+# This file is distributed under the same license as the bijiben package.
+#
+# Matej Urbančič <mateju@src.gnome.org>, + 2012–2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bijiben master\n"
+"POT-Creation-Date: 2021-04-15 16:59+0000\n"
+"PO-Revision-Date: 2021-05-24 18:19+0200\n"
+"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Matej Urbančič <mateju@svn.gnome.org>"
+
+#. (itstool) path: credit/name
+#: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
+#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
+#: C/notebooks.page:11 C/search.page:11 C/share.page:11
+msgid "Pierre-Yves Luyten"
+msgstr "Pierre-Yves Luyten"
+
+#. (itstool) path: credit/years
+#: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
+#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
+#: C/notebooks.page:12 C/search.page:12 C/share.page:12
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: credit/name
+#: C/colors.page:17 C/create.page:15 C/cut-copy-paste.page:21 C/delete.page:15
+#: C/delete-restore.page:16 C/format-list.page:15 C/format-text.page:15
+#: C/notebooks.page:15 C/search.page:15 C/share.page:15
+msgid "Ekaterina Gerasimova"
+msgstr "Ekaterina Gerasimova"
+
+#. (itstool) path: credit/years
+#: C/colors.page:19 C/create.page:17 C/delete.page:22 C/notebooks.page:17
+#: C/search.page:17 C/search.page:22 C/share.page:17
+msgid "2013, 2014"
+msgstr "2013, 2014"
+
+#. (itstool) path: credit/name
+#: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
+#: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
+#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
+#: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
+#: C/share.page:20
+msgid "Shobha Tyagi"
+msgstr "Shobha Tyagi"
+
+#. (itstool) path: credit/years
+#: C/colors.page:24 C/delete.page:17 C/format-list.page:17
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
+#: C/introduction.page:13 C/rename.page:13
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: credit/name
+#: C/colors.page:27 C/create.page:20 C/cut-copy-paste.page:16 C/delete.page:25
+#: C/format-list.page:25 C/format-text.page:25 C/introduction.page:21
+#: C/notebooks.page:25 C/rename.page:16 C/search.page:25 C/share.page:25
+msgid "Michael Hill"
+msgstr "Michael Hill"
+
+#. (itstool) path: credit/years
+#: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
+#: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
+#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
+#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
+#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
+#: C/share.page:22 C/share.page:27
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/colors.page:34
+msgid "Edit the note background color."
+msgstr "Uredite barvo ozadja sporočilca."
+
+#. (itstool) path: page/title
+#: C/colors.page:37
+msgid "Change note color"
+msgstr "Spreminjanje barve sporočilca"
+
+#. (itstool) path: page/p
+#: C/colors.page:39
+msgid ""
+"You can change the background colour of a note to emphasize it or to "
+"differentiate it from other notes."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/colors.page:43
+msgid "To change the color of an individual note:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/colors.page:45 C/delete.page:40 C/notebooks.page:43 C/rename.page:31
+#: C/share.page:43
+msgid "Click on the note to open it."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/colors.page:48 C/colors.page:69
+msgid "Click the <gui style=\"button\">Note color</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/colors.page:51 C/colors.page:72
+msgid ""
+"Select a new color and click the <gui style=\"button\">Select</gui> button."
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/colors.page:56
+msgid ""
+"You can also change the background colour in a group of notes at the same "
+"time."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/colors.page:60
+msgid "To change the color of multiple notes:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/colors.page:62 C/delete.page:56 C/notebooks.page:61
+msgid ""
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/colors.page:66
+msgid "Select the notes you want to change."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/create.page:32
+msgid ""
+"Create a new note from scratch, using some text from another application or "
+"from another note."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/create.page:36
+msgid "Create a note"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/create.page:38
+msgid "You can create a new note in three different ways:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/create.page:41
+msgid ""
+"Click the <gui style=\"button\">New</gui> button to create a blank note."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/create.page:45
+msgid ""
+"Drag and drop text to the <gui>New and Recent</gui> view to create a note "
+"containing this text."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/create.page:49
+msgid ""
+"Open a note, select some text and click the <gui style=\"button\">Copy "
+"selection to a new note</gui> button to create a note containing this text."
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/create.page:55
+msgid ""
+"To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
+"key><key>N</key></keyseq>."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/cut-copy-paste.page:28
+msgid "Move text inside a note or to a different note."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/cut-copy-paste.page:31
+msgid "Cut, copy and paste"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/cut-copy-paste.page:33
+msgid ""
+"You can move text inside a note or to another note by cutting or copying it "
+"and pasting it somewhere else."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/cut-copy-paste.page:37
+msgid "To cut, copy or paste in a note:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:39
+msgid "Select the text."
+msgstr "Izberite besedilo."
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:42
+msgid ""
+"Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
+msgstr ""
+"Pritisnite na gumb <gui style=\"button\">Kopiraj</gui> oziroma <gui style="
+"\"button\">Izreži</gui>."
+
+#. (itstool) path: item/p
+#: C/cut-copy-paste.page:46
+msgid ""
+"Select where you want to paste the text and press <gui style=\"button"
+"\">Paste</gui>."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/delete.page:32
+msgid "Delete old and unwanted notes."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/delete.page:35
+msgid "Delete a note"
+msgstr "Brisanje sporočilca"
+
+#. (itstool) path: steps/title
+#: C/delete.page:38
+msgid "To delete a note:"
+msgstr "Za brisanje sporočilca:"
+
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
+#. (itstool) path: item/p
+#: C/delete.page:43
+msgid ""
+"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Move to Trash</gui></guiseq>."
+msgstr ""
+"Izberite gumb <guiseq><gui style=\"button\">Več možnosti …</gui><gui style="
+"\"menuitem\">Premakni v smeti</gui></guiseq>."
+
+#. (itstool) path: note/p
+#: C/delete.page:49
+msgid ""
+"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
+"keyseq> to delete an open note."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/delete.page:54
+msgid "To delete multiple notes and notebooks:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete.page:60
+msgid "Select the notes and the notebooks you want to delete."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete.page:63
+msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/delete-permanent.page:18
+msgid "Permanently delete notes from the <gui>Trash</gui> view."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/delete-permanent.page:21
+msgid "Empty the Trash"
+msgstr "Praznjenje smeti"
+
+#. (itstool) path: page/p
+#: C/delete-permanent.page:23
+msgid "You can permanently delete notes from the <gui>Trash</gui>."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/delete-permanent.page:28
+msgid "To permanently delete all the notes in Trash:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:30
+msgid "Press the menu button in the top-right corner of the window."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:33
+msgid "Select <gui>View Trash</gui>."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:36
+msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/delete-permanent.page:41
+msgid "To delete selected notes from Trash:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:43
+msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:47
+msgid "Select all the notes that you want to delete permanently."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-permanent.page:50
+msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/delete-restore.page:23
+msgid "Restore a deleted note."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/delete-restore.page:26
+msgid "Restore notes"
+msgstr "Obnavljanje sporočilc"
+
+#. (itstool) path: page/p
+#: C/delete-restore.page:28
+msgid ""
+"If you think that you have accidentally deleted a note, you can view and "
+"restore it from <gui>Trash</gui>."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/delete-restore.page:32
+msgid "To restore trashed notes:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-restore.page:34
+msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-restore.page:38
+msgid "Select all the notes that you want to restore."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/delete-restore.page:41
+msgid "Click on <gui style=\"button\">Restore</gui> button."
+msgstr ""
+
+#. (itstool) path: credit/name
+#: C/format-list.page:30
+msgid "Pranali Deshmukh"
+msgstr "Pranali Deshmukh"
+
+#. (itstool) path: credit/years
+#: C/format-list.page:32
+msgid "2020"
+msgstr "2020"
+
+#. (itstool) path: info/desc
+#: C/format-list.page:37
+msgid "Format a note with ordered and unordered lists."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/format-list.page:40
+msgid "Create a list"
+msgstr ""
+
+#. (itstool) path: list/title
+#: C/format-list.page:43
+msgid "While the note is open:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/format-list.page:45
+msgid ""
+"To create an unordered list, select the <guiseq><gui style=\"button"
+"\">Bullets</gui> </guiseq> button from the footer menu."
+msgstr ""
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:48
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+msgstr ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+
+#. (itstool) path: item/p
+#: C/format-list.page:51
+msgid ""
+"To create an ordered list, select the <guiseq><gui style=\"button\">List</"
+"gui> </guiseq> button from the footer menu."
+msgstr ""
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:54
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+msgstr ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+
+#. (itstool) path: info/desc
+#: C/format-text.page:32
+msgid "Apply different formatting options to the text."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/format-text.page:35
+msgid "Change the text style"
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/format-text.page:38
+msgid "To change the formatting options of text in your note:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/format-text.page:40
+msgid "Select the text that you want to format."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/format-text.page:43
+msgid ""
+"Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
+"or <gui style=\"button\">Strike</gui>."
+msgstr ""
+
+#. (itstool) path: info/title
+#: C/index.page:6
+msgctxt "link:trail"
+msgid "Notes"
+msgstr "Sporočilca"
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "link"
+msgid "Notes"
+msgstr "Sporočilca"
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "text"
+msgid "Notes"
+msgstr "Sporočilca"
+
+#. (itstool) path: info/desc
+#: C/index.page:26
+msgid "Learn how to use and manage your notes."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid "<_:media-1/> Notes"
+msgstr "<_:media-1/> Sporočilca"
+
+#. (itstool) path: section/title
+#: C/index.page:36
+msgid "Create notes"
+msgstr "Ustvarjanje sporočilc"
+
+#. (itstool) path: section/title
+#: C/index.page:39
+msgid "Edit and share notes"
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/index.page:42
+msgid "Delete notes"
+msgstr "Brisanje sporočilc"
+
+#. (itstool) path: info/desc
+#: C/introduction.page:33
+msgid "A simple application for creating, editing and viewing notes."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/introduction.page:36
+msgid "Introduction to Notes"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/introduction.page:38
+msgid ""
+"<app>Notes</app> is a simple application for creating, editing, and viewing "
+"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
+"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
+"easily with <app>Online Accounts</app>."
+msgstr ""
+
+#. (itstool) path: page/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/introduction.page:44
+msgctxt "_"
+msgid ""
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
+msgstr ""
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
+
+#. (itstool) path: credit/name
+#: C/new-window.page:11
+msgid "Lisa Hui"
+msgstr "Lisa Hui"
+
+#. (itstool) path: info/desc
+#: C/new-window.page:18
+msgid "Open a note in a new window."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/new-window.page:21
+msgid "Open a note in another window"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/new-window.page:23
+msgid "To open a note in a new window:"
+msgstr ""
+
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
+#. (itstool) path: item/p
+#: C/new-window.page:27
+msgid ""
+"Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Open in New Window</gui></guiseq>."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/new-window.page:32
+msgid ""
+"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
+"\">Selection mode</gui> button, select all the notes which you want to open "
+"in new window, then click the <gui style=\"button\">Open in another window</"
+"gui> button."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/notebooks.page:32
+msgid "Add a note to a notebook to make sorting and searching notes easier."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/notebooks.page:35
+msgid "Notebooks"
+msgstr "Beležnice"
+
+#. (itstool) path: page/p
+#: C/notebooks.page:37
+msgid ""
+"You can use notebooks to group your notes together to make it easier to "
+"search and sort through your notes."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:41
+msgid "To create a notebook with a single note:"
+msgstr ""
+
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
+#. (itstool) path: item/p
+#: C/notebooks.page:46
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Notebooks</gui></guiseq>."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/notebooks.page:50
+msgid ""
+"Type a suitable name for the notebook and click the <gui style=\"button"
+"\">New notebook</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/notebooks.page:54 C/notebooks.page:75
+msgid "Click the <gui style=\"button\">Close</gui> button."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/notebooks.page:59
+msgid "To create a notebook with multiple notes:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/notebooks.page:65
+msgid "Select all the notes which you want to add to the notebook."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/notebooks.page:68
+msgid "Click the <gui style=\"button\">Notebooks</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/notebooks.page:71
+msgid ""
+"Type a suitable name for the notebook and click <gui style=\"button\">New "
+"notebook</gui> button."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/rename.page:23
+msgid "Change the name of an existing note."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/rename.page:26
+msgid "Rename a note"
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/rename.page:29
+msgid "To rename a note:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/rename.page:34
+msgid "Change the text in the first line of the note."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/search.page:32
+msgid "Search for an existing note, note content and notebooks."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/search.page:35
+msgid "Find a note"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/search.page:37
+msgid ""
+"You can search your notes in the <gui>New and Recent</gui> view in "
+"<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui> overview."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/search.page:42
+msgid "To find notes while in <gui>New and Recent</gui>:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/search.page:44
+msgid "Click the <gui>Search</gui> button."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/search.page:47
+msgid "Type your search term. Search results will appear instantly."
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/search.page:52
+msgid ""
+"You can directly start typing the search string in the <gui>New and Recent</"
+"gui> view to search notes."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/share.page:32
+msgid "Email a note to your contacts."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/share.page:35
+msgid "Share a note"
+msgstr "Objava sporočilca"
+
+#. (itstool) path: page/p
+#: C/share.page:37
+msgid ""
+"You can share a note with your friends or colleagues by emailing it to them."
+msgstr ""
+
+#. (itstool) path: steps/title
+#: C/share.page:41
+msgid "To share a note:"
+msgstr ""
+
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
+#. (itstool) path: item/p
+#: C/share.page:46
+msgid ""
+"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
+"\">Email this Note</gui></guiseq>."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/share.page:50
+msgid "Send the note by email."
+msgstr ""
+
+#. (itstool) path: p/link
+#: C/legal.xml:5
+msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
+msgstr ""
+
+#. (itstool) path: license/p
+#: C/legal.xml:4
+msgid "This work is licensed under a <_:link-1/>."
+msgstr ""
+
+#~ msgid ""
+#~ "Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+#~ "terminology\">Activities</gui>."
+#~ msgstr ""
+#~ "Cliquez sur l’icône <gui>Notes</gui> à côté de <gui href=\"help:gnome-"
+#~ "help/shell-terminology\">Activités</gui>."
+
+# ATTENTION : pas de points de suspension dans la traduction (Charles).
+#~ msgid ""
+#~ "To create an unordered list, click <guiseq><gui style=\"button\">More "
+#~ "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+#~ msgstr ""
+#~ "Pour créer une liste non ordonnée, cliquez sur <guiseq><gui style=\"button"
+#~ "\">Plus d’options</gui> <gui style=\"menuitem\">Puces</gui></guiseq>."
+
+#~ msgid "01 sep 2014"
+#~ msgstr "01 sep 2014"

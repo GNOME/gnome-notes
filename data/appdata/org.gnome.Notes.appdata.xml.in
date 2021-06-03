@@ -69,7 +69,7 @@
   <url type="help">https://help.gnome.org/users/bijiben/stable/</url>
   <update_contact>py_at_luyten.fr</update_contact>
   <project_group>GNOME</project_group>
-  <translation type="gettext">gnome-notes</translation>
+  <translation type="gettext">bijiben</translation>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
     <content_attribute id="violence-fantasy">none</content_attribute>

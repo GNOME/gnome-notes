@@ -4,20 +4,21 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2014-2020.
+# germe <FOSSgerme.deb@tuta.io>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2020-02-12 18:48+0000\n"
-"PO-Revision-Date: 2020-02-14 08:58+0100\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"POT-Creation-Date: 2021-03-18 18:19+0000\n"
+"PO-Revision-Date: 2021-06-03 23:44-0300\n"
+"Last-Translator: germe <FOSSgerme.deb@tuta.io>\n"
+"Language-Team: Spanish - Argentina <gnome-es-list@gnome.org>\n"
+"Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -408,38 +409,86 @@ msgstr "Seleccione todas las notas que quiere restaurar."
 msgid "Click on <gui style=\"button\">Restore</gui> button."
 msgstr "Pulse el botón <gui style=\"button\">Restaurar</gui>."
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/format-list.page:30
+msgid "Pranali Deshmukh"
+msgstr "Pranali Deshmukh"
+
+#. (itstool) path: credit/years
 #: C/format-list.page:32
+msgid "2020"
+msgstr "2020"
+
+#. (itstool) path: info/desc
+#: C/format-list.page:37
 msgid "Format a note with ordered and unordered lists."
 msgstr "Formatear una nota con listas ordenadas y sin ordenar."
 
 #. (itstool) path: page/title
-#: C/format-list.page:35
+#: C/format-list.page:40
 msgid "Create a list"
 msgstr "Crear una lista"
 
 #. (itstool) path: list/title
-#: C/format-list.page:38
+#: C/format-list.page:43
 msgid "While the note is open:"
 msgstr "Cuando la nota está abierta:"
 
 #. (itstool) path: item/p
-#: C/format-list.page:40
+#: C/format-list.page:45
+#| msgid ""
+#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
+#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
-"To create an unordered list, click <guiseq><gui style=\"button\">More "
-"options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+"To create an unordered list, select the <guiseq><gui style=\"button"
+"\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Para crear una lista sin ordenar, pulse en <guiseq><gui style=\"button\">Más "
+"Para crear una lista sin orden, pulse en <guiseq><gui style=\"button\">Más "
 "opciones…</gui> <gui style=\"menuitem\">Topos</gui></guiseq>."
 
-#. (itstool) path: item/p
-#: C/format-list.page:45
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:48
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='figures/notes-3-34.png' "
+#| "md5='213e25dd29f5b447ea239014fe95feb9'"
+msgctxt "_"
 msgid ""
-"To create an ordered list, click <guiseq><gui style=\"button\">More options…"
-"</gui> <gui>Numbered List</gui></guiseq>."
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+msgstr ""
+"external ref='figures/format-page-unordered-list.png' "
+"md5='b01422f25a34e6d5efde84732454310c'"
+
+#. (itstool) path: item/p
+#: C/format-list.page:51
+#| msgid ""
+#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
+#| "options…</gui> <gui>Numbered List</gui></guiseq>."
+msgid ""
+"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
+"List</gui> </guiseq> button from the footer menu."
 msgstr ""
 "Para crear una lista ordenada, pulse en <guiseq><gui style=\"button\">Más "
 "opciones…</gui> <gui style=\"menuitem\">Lista numerada</gui></guiseq>."
+
+#. (itstool) path: item/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/format-list.page:54
+msgctxt "_"
+msgid ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
+msgstr ""
+"external ref='figures/format-page-numbered-list.png' "
+"md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
@@ -539,12 +588,12 @@ msgstr ""
 #| msgctxt "_"
 #| msgid ""
 #| "external ref='figures/notes-3-34.png' "
-#| "md5='12ed75d2ad996d6763e5128c65c1e596'"
+#| "md5='213e25dd29f5b447ea239014fe95feb9'"
 msgctxt "_"
 msgid ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 msgstr ""
-"external ref='figures/notes-3-34.png' md5='213e25dd29f5b447ea239014fe95feb9'"
+"external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -773,6 +822,13 @@ msgstr "Creative Commons de Atribución-Compartir Igual 3.0 sin soporte"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Este trabajo está licenciado bajo la <_:link-1/>."
+
+#~ msgid ""
+#~ "To create an unordered list, click <guiseq><gui style=\"button\">More "
+#~ "options…</gui> <gui style=\"menuitem\">Bullets</gui></guiseq>."
+#~ msgstr ""
+#~ "Para crear una lista sin ordenar, pulse en <guiseq><gui style=\"button"
+#~ "\">Más opciones…</gui> <gui style=\"menuitem\">Topos</gui></guiseq>."
 
 #~ msgid "01 sep 2014"
 #~ msgstr "01 de septiembre de 2014"

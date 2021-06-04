@@ -67,10 +67,7 @@ struct _BjbWindow
   BijiNoteObj          *note;
 
   /* window geometry */
-  gint                  width;
-  gint                  height;
-  gint                  pos_x;
-  gint                  pos_y;
+  GdkRectangle          window_geometry;
   gboolean              is_maximized;
 
   HdyLeaflet           *main_leaflet;
@@ -230,16 +227,15 @@ static void
 bjb_window_finalize (GObject *object)
 {
   BjbWindow *self = BJB_WINDOW (object);
-  GSettings *settings = G_SETTINGS (self->settings);
   BjbNoteView *note_view;
 
   if (self->note != NULL)
-  {
-    g_settings_set_string (settings, "last-opened-item", biji_note_obj_get_path (self->note));
+    {
+      bjb_settings_set_last_opened_item (self->settings, biji_note_obj_get_path (self->note));
 
-    g_clear_signal_handler (&self->note_deleted, self->note);
-    g_clear_signal_handler (&self->note_trashed, self->note);
-  }
+      g_clear_signal_handler (&self->note_deleted, self->note);
+      g_clear_signal_handler (&self->note_trashed, self->note);
+    }
 
   note_view = g_object_get_data (object, "note-view");
   if (note_view)
@@ -539,21 +535,15 @@ on_action_radio (GSimpleAction *action,
 static void
 bjb_window_save_geometry (BjbWindow *self)
 {
-  GSettings *settings = G_SETTINGS (self->settings);
-
-  g_settings_set_boolean (settings, "window-maximized", self->is_maximized);
-  g_settings_set (settings, "window-size", "(ii)", self->width, self->height);
-  g_settings_set (settings, "window-position", "(ii)", self->pos_x, self->pos_y);
+  bjb_settings_set_window_maximized (self->settings, self->is_maximized);
+  bjb_settings_set_window_geometry (self->settings, &self->window_geometry);
 }
 
 static void
 bjb_window_load_geometry (BjbWindow *self)
 {
-  GSettings *settings = G_SETTINGS (self->settings);
-
-  self->is_maximized = g_settings_get_boolean (settings, "window-maximized");
-  g_settings_get (settings, "window-size", "(ii)", &self->width, &self->height);
-  g_settings_get (settings, "window-position", "(ii)", &self->pos_x, &self->pos_y);
+  self->is_maximized = bjb_settings_get_window_maximized (self->settings);
+  bjb_settings_get_window_geometry (self->settings, &self->window_geometry);
 }
 
 /* Just disconnect to avoid crash, the finalize does the real
@@ -576,8 +566,9 @@ bjb_window_configure_event (GtkWidget         *widget,
   self->is_maximized = gtk_window_is_maximized (GTK_WINDOW (self));
   if (!self->is_maximized)
     {
-      gtk_window_get_size (GTK_WINDOW (self), &self->width, &self->height);
-      gtk_window_get_position (GTK_WINDOW (self), &self->pos_x, &self->pos_y);
+      GdkRectangle *geometry = &self->window_geometry;
+      gtk_window_get_size (GTK_WINDOW (self), &geometry->width, &geometry->height);
+      gtk_window_get_position (GTK_WINDOW (self), &geometry->x, &geometry->y);
     }
 
   return GTK_WIDGET_CLASS (bjb_window_parent_class)->configure_event (widget,
@@ -655,6 +646,7 @@ bjb_window_constructed (GObject *obj)
   BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (obj);
   GtkListBox *list_box;
+  GdkRectangle geometry;
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
 
@@ -669,12 +661,13 @@ bjb_window_constructed (GObject *obj)
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
   bjb_window_load_geometry (self);
-  gtk_window_set_default_size (GTK_WINDOW (self), self->width, self->height);
+  geometry = self->window_geometry;
+  gtk_window_set_default_size (GTK_WINDOW (self), geometry.width, geometry.height);
 
   if (self->is_maximized)
     gtk_window_maximize (GTK_WINDOW (self));
-  else if (self->pos_x >= 0)
-    gtk_window_move (GTK_WINDOW (self), self->pos_x, self->pos_y);
+  else if (geometry.x >= 0)
+    gtk_window_move (GTK_WINDOW (self), geometry.x, geometry.y);
 
   self->note_list = bjb_list_view_new ();
 
@@ -714,9 +707,9 @@ bjb_window_constructed (GObject *obj)
   /* If a note is requested at creation, show it
    * This is a specific type of window not associated with any view */
   if (self->note != NULL)
-  {
-    bjb_window_set_note (self, self->note);
-  }
+    {
+      bjb_window_set_note (self, self->note);
+    }
 }
 
 

@@ -316,7 +316,7 @@ bjb_settings_dialog_constructed (GObject *object)
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
   gtk_font_chooser_set_font (GTK_FONT_CHOOSER (self->font_button),
-                             bjb_settings_get_default_font (self->settings));
+                             bjb_settings_get_custom_font (self->settings));
 
   gdk_rgba_parse (&color, bjb_settings_get_default_color (self->settings));
   gtk_color_chooser_set_rgba (self->color_button, &color);

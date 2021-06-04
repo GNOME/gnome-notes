@@ -1,5 +1,7 @@
 /* bjb-settings.h
+ *
  * Copyright © 2012, 2013 Pierre-Yves LUYTEN <py@luyten.fr>
+ * Copyright 2021 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -13,19 +15,21 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #pragma once
 
 #include <glib-object.h>
-
-
+#include <gdk/gdk.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
 #define BJB_TYPE_SETTINGS (bjb_settings_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbSettings, bjb_settings, BJB, SETTINGS, GSettings)
+G_DECLARE_FINAL_TYPE (BjbSettings, bjb_settings, BJB, SETTINGS, GObject)
 
 typedef enum {
   BJB_TEXT_SIZE_LARGE,
@@ -33,29 +37,22 @@ typedef enum {
   BJB_TEXT_SIZE_SMALL
 } BjbTextSizeType;
 
-BjbSettings      *bjb_settings_new                        (void);
-
-
-gboolean          bjb_settings_use_system_font            (BjbSettings *self);
-
-
-void              bjb_settings_set_use_system_font        (BjbSettings *self,
-                                                           gboolean value);
-
-
-const gchar      *bjb_settings_get_default_font           (BjbSettings *self);
-
-
-const gchar      *bjb_settings_get_default_color          (BjbSettings *self);
-
-
-const gchar      *bjb_settings_get_default_location       (BjbSettings *self);
-
-
-gchar            *bjb_settings_get_system_font            (BjbSettings *self);
-
-BjbTextSizeType   bjb_settings_get_text_size              (BjbSettings *self);
-
-void              show_bijiben_settings_window            (GtkWidget *parent_window);
+BjbSettings     *bjb_settings_new                    (void);
+char            *bjb_settings_get_font               (BjbSettings  *self);
+const char      *bjb_settings_get_custom_font        (BjbSettings  *self);
+const char      *bjb_settings_get_default_color      (BjbSettings  *self);
+const char      *bjb_settings_get_default_location   (BjbSettings  *self);
+BjbTextSizeType  bjb_settings_get_text_size          (BjbSettings  *self);
+void             bjb_settings_set_last_opened_item   (BjbSettings  *self,
+                                                      const char   *note_path);
+char            *bjb_settings_get_last_opened_item   (BjbSettings  *self);
+gboolean         bjb_settings_get_window_maximized   (BjbSettings  *self);
+void             bjb_settings_set_window_maximized   (BjbSettings  *self,
+                                                      gboolean      maximized);
+void             bjb_settings_get_window_geometry    (BjbSettings  *self,
+                                                      GdkRectangle *geometry);
+void             bjb_settings_set_window_geometry    (BjbSettings  *self,
+                                                      GdkRectangle *geometry);
+void             show_bijiben_settings_window        (GtkWidget    *parent_window);
 
 G_END_DECLS

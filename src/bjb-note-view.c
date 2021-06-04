@@ -199,12 +199,7 @@ bjb_note_view_constructed (GObject *obj)
   gtk_widget_show (self->view);
 
   /* Apply the gsettings font */
-
-  if (bjb_settings_use_system_font (settings))
-     default_font = bjb_settings_get_system_font (settings);
-
-  else
-     default_font = g_strdup (bjb_settings_get_default_font (settings));
+  default_font = bjb_settings_get_font (settings);
 
   if (default_font != NULL)
     biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (self->view), default_font);

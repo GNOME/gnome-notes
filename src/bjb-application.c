@@ -409,6 +409,34 @@ manager_ready_cb (GObject *source,
   bijiben_new_window_internal (self, NULL);
 }
 
+static gboolean
+transform_to (GBinding     *binding,
+              const GValue *from_value,
+              GValue       *to_value,
+              gpointer      user_data)
+{
+  const char *value;
+
+  value = g_value_get_string (from_value);
+  g_value_set_variant (to_value, g_variant_new_string (value));
+
+  return TRUE;
+}
+
+static gboolean
+transform_from (GBinding     *binding,
+                const GValue *from_value,
+                GValue       *to_value,
+                gpointer      user_data)
+{
+  GVariant *value;
+
+  value = g_value_get_variant (from_value);
+  g_value_set_string (to_value, g_variant_get_string (value, NULL));
+
+  return TRUE;
+}
+
 static GActionEntry app_entries[] = {
   { "import-notes", on_import_notes_cb, NULL, NULL, NULL },
   { "text-size", NULL, "s", "'medium'", NULL },
@@ -476,15 +504,10 @@ bijiben_startup (GApplication *application)
   gdk_rgba_parse (&color, default_color);
 
   self->text_size = g_action_map_lookup_action (G_ACTION_MAP (application), "text-size");
-  g_settings_bind_with_mapping (G_SETTINGS (self->settings),
-                                "text-size",
-                                self->text_size,
-                                "state",
-                                G_SETTINGS_BIND_DEFAULT,
-                                text_size_mapping_get,
-                                text_size_mapping_set,
-                                NULL,
-                                NULL);
+  g_object_bind_property_full (BJB_SETTINGS (self->settings), "text-size",
+                               self->text_size, "state",
+                               G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
+                               transform_to, transform_from, NULL, NULL);
 
   g_application_hold (application);
 
@@ -492,7 +515,7 @@ bijiben_startup (GApplication *application)
   biji_manager_load_providers_async (self->manager, manager_ready_cb, self);
 
   /* Load last opened note item. */
-  path = g_settings_get_string (G_SETTINGS (self->settings), "last-opened-item");
+  path = bjb_settings_get_last_opened_item (self->settings);
   if (!bijiben_open_path (self, path, NULL))
     g_queue_push_head (&self->files_to_open, path);
 }

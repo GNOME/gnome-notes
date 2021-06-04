@@ -1,5 +1,7 @@
 /* bjb-settings.c
+ *
  * Copyright (C) Pierre-Yves LUYTEN 2011 <py@luyten.fr>
+ * Copyright 2021 Mohammed Sadiq <sadiq@sadiqpk.org>
  *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -12,62 +14,65 @@
  * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.*/
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+*/
 
-#include "config.h"
+#define G_LOG_DOMAIN "bjb-settings"
+
+#ifdef HAVE_CONFIG_H
+# include "config.h"
+#endif
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-settings-dialog.h"
 
 
 struct _BjbSettings
 {
-  GSettings parent_instance;
+  GObject    parent_instance;
 
   /* Note Appearance settings */
-  gboolean use_system_font;
-  gchar *font;
-  gchar *color;
+  gboolean   use_system_font;
+  char      *font;
+  char      *color;
 
   /* Default Provider */
-  gchar *primary;
+  char      *primary;
 
   /* org.gnome.desktop */
   GSettings *system;
+  /* org.gnome.Notes */
+  GSettings *app_settings;
 };
 
 
-enum
-{
+enum {
   PROP_0,
   PROP_USE_SYSTEM_FONT,
   PROP_FONT,
   PROP_COLOR,
   PROP_PRIMARY,
-  N_PROPERTIES
+  PROP_TEXT_SIZE,
+  N_PROPS
 };
 
 
-static GParamSpec *properties[N_PROPERTIES] = { NULL, };
+static GParamSpec *properties[N_PROPS];
 
-G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_SETTINGS)
-
-static void
-bjb_settings_init (BjbSettings *self)
-{
-}
+G_DEFINE_TYPE (BjbSettings, bjb_settings, G_TYPE_OBJECT)
 
 static void
 bjb_settings_finalize (GObject *object)
 {
-  BjbSettings *self;
+  BjbSettings *self = BJB_SETTINGS (object);
 
-  self = BJB_SETTINGS (object);
   g_object_unref (self->system);
+  g_object_unref (self->app_settings);
 
   g_free (self->font);
   g_free (self->color);
@@ -85,7 +90,7 @@ bjb_settings_get_property (GObject    *object,
   BjbSettings *self = BJB_SETTINGS (object);
 
   switch (prop_id)
-  {
+    {
     case PROP_USE_SYSTEM_FONT:
       g_value_set_boolean (value, self->use_system_font);
       break;
@@ -102,10 +107,14 @@ bjb_settings_get_property (GObject    *object,
       g_value_set_string (value, self->primary);
       break;
 
+    case PROP_TEXT_SIZE:
+      g_value_take_string (value, g_settings_get_string (self->app_settings, "text-size"));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-  }
+    }
 }
 
 static void
@@ -115,13 +124,13 @@ bjb_settings_set_property (GObject      *object,
                            GParamSpec   *pspec)
 {
   BjbSettings *self = BJB_SETTINGS (object);
-  GSettings   *settings = G_SETTINGS (object);
+  GSettings *settings = self->app_settings;
 
   switch (prop_id)
-  {
+    {
     case PROP_USE_SYSTEM_FONT:
-      self->use_system_font = g_value_get_boolean (value);
-      g_settings_set_boolean (settings, "use-system-font", self->use_system_font);
+      g_settings_set_boolean (settings, "use-system-font",
+                              g_value_get_boolean (value));
       break;
 
     case PROP_FONT:
@@ -142,137 +151,232 @@ bjb_settings_set_property (GObject      *object,
       g_settings_set_string (settings, "default-location", self->primary);
       break;
 
+    case PROP_TEXT_SIZE:
+      g_settings_set_string (settings, "text-size", g_value_get_string (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-  }
+    }
 }
-
-
-static void
-bjb_settings_constructed (GObject *object)
-{
-  BjbSettings *self;
-  GSettings   *settings;
-
-  G_OBJECT_CLASS (bjb_settings_parent_class)->constructed (object);
-
-  self = BJB_SETTINGS (object);
-  settings = G_SETTINGS (object);
-  self->system = g_settings_new ("org.gnome.desktop.interface");
-
-  self->use_system_font = g_settings_get_boolean (settings, "use-system-font");
-  self->font = g_settings_get_string (settings, "font");
-  self->color = g_settings_get_string (settings, "color");
-  self->primary = g_settings_get_string (settings, "default-location");
-}
-
 
 static void
 bjb_settings_class_init (BjbSettingsClass *klass)
 {
-  GObjectClass* object_class = G_OBJECT_CLASS (klass);
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->constructed = bjb_settings_constructed;
   object_class->finalize = bjb_settings_finalize;
   object_class->get_property = bjb_settings_get_property;
   object_class->set_property = bjb_settings_set_property;
 
-  properties[PROP_USE_SYSTEM_FONT] = g_param_spec_boolean (
-                                   "use-system-font",
-                                   "Use system font",
-                                   "Default System Font for Notes",
-                                   TRUE,
-                                   G_PARAM_READWRITE |
-                                   G_PARAM_STATIC_STRINGS);
+  properties[PROP_USE_SYSTEM_FONT] =
+    g_param_spec_boolean ("use-system-font",
+                          "Use system font",
+                          "Default System Font for Notes",
+                          TRUE,
+                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
+  properties[PROP_FONT] =
+    g_param_spec_string ("font",
+                         "Notes Font",
+                         "Font for Notes",
+                         NULL,
+                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-  properties[PROP_FONT] = g_param_spec_string (
-                                   "font",
-                                   "Notes Font",
-                                   "Font for Notes",
-                                   NULL,
-                                   G_PARAM_READWRITE |
-                                   G_PARAM_STATIC_STRINGS);
+  properties[PROP_COLOR] =
+    g_param_spec_string ("color",
+                         "New Notes Color",
+                         "Default Color for New Notes",
+                         NULL,
+                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
+  properties[PROP_PRIMARY] =
+    g_param_spec_string ("default-location",
+                         "Primary Location",
+                         "Default Provider for New Notes",
+                         NULL,
+                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-  properties[PROP_COLOR] = g_param_spec_string (
-                                   "color",
-                                   "New Notes Color",
-                                   "Default Color for New Notes",
-                                   NULL,
-                                   G_PARAM_READWRITE |
-                                   G_PARAM_STATIC_STRINGS);
+  properties[PROP_TEXT_SIZE] =
+    g_param_spec_string ("text-size",
+                         "Text size",
+                         "Text size for notes",
+                         NULL,
+                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-
-  properties[PROP_PRIMARY] = g_param_spec_string (
-                                   "default-location",
-                                   "Primary Location",
-                                   "Default Provider for New Notes",
-                                   NULL,
-                                   G_PARAM_READWRITE |
-                                   G_PARAM_STATIC_STRINGS);
-
-
-  g_object_class_install_properties (object_class, N_PROPERTIES, properties);
+  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
+static void
+bjb_settings_init (BjbSettings *self)
+{
+  self->system = g_settings_new ("org.gnome.desktop.interface");
+  self->app_settings = g_settings_new ("org.gnome.Notes");
 
-
+  self->font = g_settings_get_string (self->app_settings, "font");
+  self->color = g_settings_get_string (self->app_settings, "color");
+  self->primary = g_settings_get_string (self->app_settings, "default-location");
+}
 
 BjbSettings *
 bjb_settings_new (void)
 {
-  return g_object_new (BJB_TYPE_SETTINGS, "schema-id", "org.gnome.Notes", NULL);
+  return g_object_new (BJB_TYPE_SETTINGS, NULL);
 }
 
-
-gboolean
-bjb_settings_use_system_font            (BjbSettings *self)
+/**
+ * bjb_settings_get_font:
+ * @self: A #BjbSettings
+ *
+ * Get the font that should be used for notes.
+ * If :use-system-font is set, the name of system wide
+ * document font is returned.
+ *
+ * Returns: (transfer full): The font string
+ */
+char *
+bjb_settings_get_font (BjbSettings *self)
 {
-  return self->use_system_font;
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), NULL);
+
+  if (g_settings_get_boolean (self->app_settings, "use-system-font"))
+    return g_settings_get_string (self->system, "document-font-name");
+
+  return g_strdup (self->font);
 }
 
-
-void
-bjb_settings_set_use_system_font        (BjbSettings *self, gboolean value)
+/**
+ * bjb_settings_get_custom_font:
+ * @self: A #BjbSettings
+ *
+ * Get the custom font if set.  Use this function
+ * if you want to get the custom font name
+ * regardless of whether :use-system-font is set
+ * or not.
+ * Also see bjb_settings_get_font()
+ *
+ * Returns: (transfer none): The font string
+ */
+const char *
+bjb_settings_get_custom_font (BjbSettings *self)
 {
-  self->use_system_font = value;
-}
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), NULL);
 
-
-const gchar *
-bjb_settings_get_default_font           (BjbSettings *self)
-{
   return self->font;
 }
 
-
-const gchar *
-bjb_settings_get_default_color          (BjbSettings *self)
+const char *
+bjb_settings_get_default_color (BjbSettings *self)
 {
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), NULL);
+
   return self->color;
 }
 
-
-const gchar *
-bjb_settings_get_default_location       (BjbSettings *self)
+const char *
+bjb_settings_get_default_location (BjbSettings *self)
 {
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), NULL);
+
   return self->primary;
 }
 
-
-gchar *
-bjb_settings_get_system_font            (BjbSettings *self)
+BjbTextSizeType
+bjb_settings_get_text_size (BjbSettings *self)
 {
-  return g_settings_get_string (self->system,
-                                "document-font-name");
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), BJB_TEXT_SIZE_MEDIUM);
+
+  return g_settings_get_enum (self->app_settings, "text-size");
 }
 
-BjbTextSizeType
-bjb_settings_get_text_size              (BjbSettings *self)
+void
+bjb_settings_set_last_opened_item (BjbSettings *self,
+                                   const char  *note_path)
 {
-  return g_settings_get_enum (G_SETTINGS (self), "text-size");
+  g_return_if_fail (BJB_IS_SETTINGS (self));
+
+  g_settings_set_string (self->app_settings, "last-opened-item", note_path);
+}
+
+char *
+bjb_settings_get_last_opened_item (BjbSettings *self)
+{
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), NULL);
+
+  return g_settings_get_string (self->app_settings, "last-opened-item");
+}
+
+/**
+ * bjb_settings_get_window_maximized:
+ * @self: A #BjbSettings
+ *
+ * Get the window maximized state as saved in @self.
+ *
+ * Returns: %TRUE if maximized.  %FALSE otherwise.
+ */
+gboolean
+bjb_settings_get_window_maximized (BjbSettings *self)
+{
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), FALSE);
+
+  return g_settings_get_boolean (self->app_settings, "window-maximized");
+}
+
+/**
+ * bjb_settings_set_window_maximized:
+ * @self: A #BjbSettings
+ * @maximized: The window state to save
+ *
+ * Set the window maximized state in @self.
+ */
+void
+bjb_settings_set_window_maximized (BjbSettings *self,
+                                   gboolean     maximized)
+{
+  g_return_if_fail (BJB_IS_SETTINGS (self));
+
+  g_settings_set_boolean (self->app_settings, "window-maximized", !!maximized);
+}
+
+/**
+ * bjb_settings_get_window_geometry:
+ * @self: A #BjbSettings
+ * @geometry: (out): A #GdkRectangle
+ *
+ * Get the window geometry as saved in @self.
+ */
+void
+bjb_settings_get_window_geometry (BjbSettings  *self,
+                                  GdkRectangle *geometry)
+{
+  g_return_if_fail (BJB_IS_SETTINGS (self));
+  g_return_if_fail (geometry != NULL);
+
+  g_settings_get (self->app_settings, "window-size", "(ii)",
+                  &geometry->width, &geometry->height);
+  g_settings_get (self->app_settings, "window-position", "(ii)",
+                  &geometry->x, &geometry->y);
+}
+
+/**
+ * bjb_settings_set_window_geometry:
+ * @self: A #BjbSettings
+ * @geometry: A #GdkRectangle
+ *
+ * Set the window geometry in @self.
+ */
+void
+bjb_settings_set_window_geometry (BjbSettings  *self,
+                                  GdkRectangle *geometry)
+{
+  g_return_if_fail (BJB_IS_SETTINGS (self));
+  g_return_if_fail (geometry != NULL);
+
+  g_settings_set (self->app_settings, "window-size", "(ii)",
+                  geometry->width, geometry->height);
+  g_settings_set (self->app_settings, "window-position", "(ii)",
+                  geometry->x, geometry->y);
 }
 
 void

@@ -34,13 +34,7 @@ BijiWebkitEditor * biji_webkit_editor_new (BijiNoteObj *note);
 
 void biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format);
 
-gboolean biji_webkit_editor_has_selection (BijiWebkitEditor *self);
-
 const gchar * biji_webkit_editor_get_selection (BijiWebkitEditor *self);
-
-void biji_webkit_editor_cut (BijiWebkitEditor *self);
-
-void biji_webkit_editor_copy (BijiWebkitEditor *self);
 
 void biji_webkit_editor_paste (BijiWebkitEditor *self);
 

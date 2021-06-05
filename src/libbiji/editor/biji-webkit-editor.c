@@ -71,12 +71,6 @@ struct _BijiWebkitEditor
 
 G_DEFINE_TYPE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW)
 
-gboolean
-biji_webkit_editor_has_selection (BijiWebkitEditor *self)
-{
-  return self->has_text && self->selected_text && *self->selected_text;
-}
-
 const gchar *
 biji_webkit_editor_get_selection (BijiWebkitEditor *self)
 {
@@ -198,18 +192,6 @@ biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
     default:
       g_warning ("biji_webkit_editor_apply_format : Invalid format");
   }
-}
-
-void
-biji_webkit_editor_cut (BijiWebkitEditor *self)
-{
-  webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), WEBKIT_EDITING_COMMAND_CUT);
-}
-
-void
-biji_webkit_editor_copy (BijiWebkitEditor *self)
-{
-  webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), WEBKIT_EDITING_COMMAND_COPY);
 }
 
 void

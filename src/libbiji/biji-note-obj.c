@@ -216,18 +216,6 @@ biji_note_obj_get_property (GObject    *object,
     }
 }
 
-gboolean
-biji_note_obj_are_same (BijiNoteObj *note_a,
-                        BijiNoteObj *note_b)
-{
-  BijiNoteObjPrivate *a_priv = biji_note_obj_get_instance_private (note_a);
-  BijiNoteObjPrivate *b_priv = biji_note_obj_get_instance_private (note_b);
-
-  return (g_strcmp0 (a_priv->path,    b_priv->path)    == 0 &&
-          g_strcmp0 (a_priv->content, b_priv->content) == 0);
-
-}
-
 /* First cancel timeout
  * this func is most probably stupid it might exists (move file) */
 static gboolean
@@ -903,17 +891,6 @@ biji_note_obj_editor_apply_format (BijiNoteObj *self,
     biji_webkit_editor_apply_format (priv->editor, format);
 }
 
-gboolean
-biji_note_obj_editor_has_selection (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (biji_note_obj_is_opened (self))
-    return biji_webkit_editor_has_selection (priv->editor);
-
-  return FALSE;
-}
-
 const char *
 biji_note_obj_editor_get_selection (BijiNoteObj *self)
 {
@@ -923,33 +900,6 @@ biji_note_obj_editor_get_selection (BijiNoteObj *self)
     return biji_webkit_editor_get_selection (priv->editor);
 
   return NULL;
-}
-
-void
-biji_note_obj_editor_cut (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (biji_note_obj_is_opened (self))
-    biji_webkit_editor_cut (priv->editor);
-}
-
-void
-biji_note_obj_editor_copy (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (biji_note_obj_is_opened (self))
-    biji_webkit_editor_copy (priv->editor);
-}
-
-void
-biji_note_obj_editor_paste (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (biji_note_obj_is_opened (self))
-    biji_webkit_editor_paste (priv->editor);
 }
 
 static void

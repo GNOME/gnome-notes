@@ -92,9 +92,6 @@ struct _BijiNoteObjClass
   gboolean      (*can_format)        (BijiNoteObj *note);
 };
 
-gboolean         biji_note_obj_are_same                      (BijiNoteObj *note_a,
-                                                              BijiNoteObj *note_b);
-
 gboolean         biji_note_obj_set_mtime                     (BijiNoteObj *self,
                                                               gint64       time);
 
@@ -162,14 +159,6 @@ char            *biji_note_obj_get_html                      (BijiNoteObj *self)
 void             biji_note_obj_editor_apply_format           (BijiNoteObj *self,
                                                               int          format);
 
-gboolean         biji_note_obj_editor_has_selection          (BijiNoteObj *self);
-
 const char      *biji_note_obj_editor_get_selection          (BijiNoteObj *self);
-
-void             biji_note_obj_editor_cut                    (BijiNoteObj *self);
-
-void             biji_note_obj_editor_copy                   (BijiNoteObj *self);
-
-void             biji_note_obj_editor_paste                  (BijiNoteObj *self);
 
 G_END_DECLS

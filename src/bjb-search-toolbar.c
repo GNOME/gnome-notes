@@ -61,6 +61,22 @@ on_search_changed_cb (GtkEntry         *entry,
                              gtk_entry_get_text (entry));
 }
 
+static void
+stop_search_emitted_cb (BjbSearchToolbar *self,
+                        GtkEntry         *entry)
+{
+  const char *needle;
+
+  g_assert (GTK_IS_ENTRY (entry));
+
+  needle = gtk_entry_get_text (entry);
+
+  if (needle && *needle)
+    gtk_entry_set_text (entry, "");
+
+  g_signal_stop_emission_by_name (entry, "stop-search");
+}
+
 void
 bjb_search_toolbar_setup (BjbSearchToolbar *self,
                           GtkWidget        *window,
@@ -84,6 +100,8 @@ bjb_search_toolbar_init (BjbSearchToolbar *self)
   hdy_search_bar_connect_entry (HDY_SEARCH_BAR (self), self->entry);
   g_signal_connect (self->entry, "search-changed",
                     G_CALLBACK (on_search_changed_cb), self);
+  g_signal_connect_swapped (self->entry, "stop-search",
+                            G_CALLBACK (stop_search_emitted_cb), self);
 
   hdy_search_bar_connect_entry (HDY_SEARCH_BAR (self), GTK_ENTRY (self->entry));
   gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->entry));

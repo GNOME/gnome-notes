@@ -14,7 +14,6 @@
   </gresource>
     
   <gresource prefix="/org/gnome/Notes/ui">
-    <file alias="bjb-detached-window.ui" preprocess="xml-stripblanks">resources/bjb-detached-window.ui</file>
     <file alias="bjb-window.ui"          preprocess="xml-stripblanks">resources/bjb-window.ui</file>
     <file alias="empty-results-box.ui"   preprocess="xml-stripblanks">resources/empty-results-box.ui</file>
     <file alias="import-dialog.ui"       preprocess="xml-stripblanks">resources/import-dialog.ui</file>

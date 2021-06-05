@@ -19,55 +19,6 @@
 
 #include "libbiji.h"
 
-const gchar *
-biji_get_time_diff_with_time (glong sec_since_epoch)
-{
-  GDate *now = g_date_new ();
-  GDate *date = g_date_new ();
-  gchar *str;
-  gint   diff;
-
-  g_return_val_if_fail (sec_since_epoch >= 0, _("Unknown"));
-
-  g_date_set_time_t (date, sec_since_epoch);
-  g_date_set_time_t (now, time (NULL));
-  diff = g_date_days_between (date, now);
-
-  if (diff == 0)
-    {
-      str = _("Today");
-    }
-  else if (diff == 1)
-    {
-      str = _("Yesterday");
-    }
-  else if (diff < 7 &&
-           g_date_get_weekday (date) < g_date_get_weekday (now))
-    {
-      str = _("This week");
-    }
-  else if (diff < 0 || g_date_get_year (date) != g_date_get_year (now))
-    {
-      str = _("Unknown");
-    }
-  else if (diff < 31 &&
-           g_date_get_month (date) == g_date_get_month (now))
-    {
-      str = _("This month");
-    }
-  else
-    {
-      str = _("This year");
-    }
-
-  g_date_free (date);
-  g_date_free (now);
-
-  return str;
-}
-
-
-
 gint64
 iso8601_to_gint64 (const char *iso8601)
 {

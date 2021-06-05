@@ -104,17 +104,3 @@ void        biji_tracker_trash_resource               (BijiManager *manager,
 
 void        biji_tracker_ensure_resource_from_info    (BijiManager     *manager,
                                                         BijiInfoSet *info);
-
-
-void        biji_tracker_ensure_datasource             (BijiManager *manager, 
-                                                        const gchar *datasource_id,
-                                                        const gchar *identifier,
-                                                        BijiBoolCallback cb,
-                                                        gpointer user_data);
-
-
-void        biji_tracker_check_for_info                (BijiManager *manager, 
-                                                        gchar *url,
-                                                        gint64 mtime,
-                                                        BijiInfoCallback callback,
-                                                        gpointer user_data);

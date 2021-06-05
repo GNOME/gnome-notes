@@ -684,28 +684,6 @@ biji_manager_get_items (BijiManager    *self,
   return list;
 }
 
-
-static void
-_delete_item (gpointer data,
-              gpointer user_data)
-{
-  biji_item_delete (BIJI_ITEM (data));
-}
-
-
-/* Do not g_list_free_full here.
- * We only unref items where deletion works */
-void
-biji_manager_empty_bin              (BijiManager        *self)
-{
-  GList *items;
-
-  items = g_hash_table_get_values (self->archives);
-  g_list_foreach (items, _delete_item, NULL);
-  g_list_free (items);
-}
-
-
 BijiItem *
 biji_manager_get_item_at_path (BijiManager *self, const gchar *path)
 {
@@ -721,18 +699,6 @@ biji_manager_get_item_at_path (BijiManager *self, const gchar *path)
     retval = g_hash_table_lookup (self->archives, (gconstpointer) path);
 
   return retval;
-}
-
-void
-biji_manager_remove_item_at_path (BijiManager *self,
-                                  const char  *path)
-{
-  BijiItem *item = NULL;
-
-  item = biji_manager_get_item_at_path (self, path);
-
-  if (item)
-    on_item_deleted_cb (item, self);
 }
 
 BijiManager *

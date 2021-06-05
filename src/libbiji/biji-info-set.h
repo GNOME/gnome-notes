@@ -47,11 +47,6 @@ typedef struct
 
   /* only infoset H callback when retrieving urn */
   gchar    *tracker_urn;
-
-
-  /* deprecated */
-  gpointer  user_data;
-
 } BijiInfoSet;
 
 

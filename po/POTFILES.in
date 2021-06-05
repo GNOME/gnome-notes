@@ -4,7 +4,7 @@ data/org.gnome.Notes.desktop.in
 data/org.gnome.Notes.gschema.xml
 data/org.gnome.Notes.xml.in
 data/resources/bjb-detached-window.ui
-data/resources/bjb-window-base.ui
+data/resources/bjb-window.ui
 data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui
 data/resources/help-overlay.ui
@@ -16,14 +16,13 @@ src/bijiben-shell-search-provider.c
 src/bjb-application.c
 src/bjb-color-button.c
 src/bjb-controller.c
-src/bjb-detached-window.c
 src/bjb-editor-toolbar.c
 src/bjb-empty-results-box.c
 src/bjb-note-view.c
 src/bjb-settings.c
 src/bjb-settings-dialog.c
 src/bjb-utils.c
-src/bjb-window-base.c
+src/bjb-window.c
 src/libbiji/biji-date-time.c
 src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c

@@ -53,7 +53,6 @@ struct _BjbNoteView
 
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
 
-static void on_window_closed(GtkWidget *window,gpointer note);
 static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
 
 void
@@ -73,7 +72,6 @@ bjb_note_view_set_detached (BjbNoteView *self,
 static void
 bjb_note_view_disconnect (BjbNoteView *self)
 {
-  g_signal_handlers_disconnect_by_func (self->window, on_window_closed, self->note);
   g_signal_handlers_disconnect_by_func (self->note, on_note_color_changed_cb, self);
 }
 
@@ -140,17 +138,6 @@ bjb_note_view_init (BjbNoteView *self)
 }
 
 static void
-on_window_closed(GtkWidget *window,gpointer note)
-{
-  if ( window == NULL )
-  {
-    /* Note is deleted */
-  }
-}
-
-/* Callbacks */
-
-static void
 on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
   GdkRGBA color;
@@ -199,9 +186,6 @@ bjb_note_view_constructed (GObject *obj)
 
   /* view new from note deserializes the note-content. */
   self->view = biji_note_obj_open (self->note);
-
-  g_signal_connect(self->window,"destroy",
-                   G_CALLBACK(on_window_closed), self->note);
 
   self->stack = gtk_stack_new ();
   gtk_widget_show (self->stack);

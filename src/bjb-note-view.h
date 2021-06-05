@@ -37,7 +37,4 @@ BjbNoteView        *bjb_note_view_new                (GtkWidget   *win,
 
 GtkWidget          *bjb_note_view_get_base_window    (BjbNoteView *v);
 
-
-void                bjb_note_view_grab_focus         (BjbNoteView *view);
-
 G_END_DECLS

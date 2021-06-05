@@ -280,12 +280,3 @@ bjb_note_view_get_base_window (BjbNoteView *self)
 {
   return self->window;
 }
-
-
-
-void
-bjb_note_view_grab_focus     (BjbNoteView *self)
-{
-  gtk_widget_set_can_focus (self->view, TRUE);
-  gtk_widget_grab_focus (self->view);
-}

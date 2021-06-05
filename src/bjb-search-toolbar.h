@@ -31,10 +31,6 @@ G_DECLARE_FINAL_TYPE (BjbSearchToolbar, bjb_search_toolbar, BJB, SEARCH_TOOLBAR,
 
 BjbSearchToolbar  *bjb_search_toolbar_new                   (void);
 
-void               bjb_search_toolbar_disconnect            (BjbSearchToolbar *self);
-
-void               bjb_search_toolbar_connect               (BjbSearchToolbar *self);
-
 void               bjb_search_toolbar_setup                 (BjbSearchToolbar *self,
                                                              GtkWidget        *window,
                                                              BjbController    *controller);

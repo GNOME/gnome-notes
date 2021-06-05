@@ -64,16 +64,6 @@ bjb_list_view_create_row_cb (GtkTreeModel *model,
 }
 
 static void
-bjb_list_view_show_select_button_cb (GtkWidget *widget,
-                                     gpointer   data)
-{
-  BjbListViewRow *row  = BJB_LIST_VIEW_ROW (widget);
-  gboolean        mode = GPOINTER_TO_INT (data);
-
-  bjb_list_view_row_show_select_button (row, mode);
-}
-
-static void
 bjb_list_view_on_display_items_changed (BjbController *controller,
                                         gboolean       items_to_show,
                                         gboolean       remaining_items,
@@ -163,18 +153,4 @@ BjbListView *
 bjb_list_view_new (void)
 {
   return g_object_new (BJB_TYPE_LIST_VIEW, NULL);
-}
-
-void
-bjb_list_view_set_selection_mode (BjbListView *self,
-                                  gboolean     mode)
-{
-  gtk_container_foreach (GTK_CONTAINER (self->list_box),
-                         bjb_list_view_show_select_button_cb,
-                         GINT_TO_POINTER (mode));
-
-  g_signal_emit_by_name (GTK_WIDGET (self->list_box),
-                         "selected-rows-changed",
-                         0);
-
 }

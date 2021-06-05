@@ -40,8 +40,5 @@ GtkListBox    *bjb_list_view_get_list_box       (BjbListView   *self);
 
 BjbController *bjb_list_view_get_controller     (BjbListView   *self);
 
-void           bjb_list_view_set_selection_mode (BjbListView   *self,
-                                                 gboolean       mode);
-
 G_END_DECLS
 

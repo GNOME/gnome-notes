@@ -35,11 +35,6 @@ void            bjb_list_view_row_setup              (BjbListViewRow *self,
                                                       BjbListView    *view,
                                                       const char     *model_iter);
 
-void            bjb_list_view_row_show_select_button (BjbListViewRow *self,
-                                                      gboolean        show);
-
 const char     *bjb_list_view_row_get_uuid           (BjbListViewRow *self);
-
-const char     *bjb_list_view_row_get_model_iter     (BjbListViewRow *self);
 
 G_END_DECLS

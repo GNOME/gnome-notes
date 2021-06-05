@@ -140,23 +140,10 @@ bjb_list_view_row_setup (BjbListViewRow *self,
 
 }
 
-void
-bjb_list_view_row_show_select_button (BjbListViewRow *self,
-                                      gboolean        show)
-{
-  gtk_widget_set_visible (GTK_WIDGET (self->select_button), show);
-}
-
 const char *
 bjb_list_view_row_get_uuid (BjbListViewRow *self)
 {
   return self->uuid;
-}
-
-const char *
-bjb_list_view_row_get_model_iter (BjbListViewRow *self)
-{
-  return self->model_iter;
 }
 
 static void

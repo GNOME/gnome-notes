@@ -826,13 +826,6 @@ bjb_controller_get_model  (BjbController *self)
   return self->model;
 }
 
-
-gboolean
-bjb_controller_shows_item (BjbController *self)
-{
-  return (self->items_to_show != NULL);
-}
-
 BijiNotebook *
 bjb_controller_get_notebook (BjbController *self)
 {
@@ -906,66 +899,6 @@ bjb_controller_set_group (BjbController   *self,
   }
 }
 
-
-
-void
-bjb_controller_show_more (BjbController *self)
-{
-  self->n_items_to_show += BJB_ITEMS_SLICE;
-
-  /* FIXME: this method to refresh is just non sense */
-
-  if (self->notebook != NULL)
-    bjb_controller_set_notebook (self, self->notebook);
-
-  else
-    on_needle_changed (self);
-}
-
-
-
-gboolean
-bjb_controller_get_remaining_items (BjbController *self)
-{
-  return self->remaining_items;
-}
-
-static gboolean
-bjb_controller_build_selection_list_foreach (GtkTreeModel *model,
-                                             GtkTreePath  *path,
-                                             GtkTreeIter  *iter,
-                                             gpointer      user_data)
-{
-  GList    **sel;
-  gboolean   is_selected;
-
-  sel = user_data;
-
-  gtk_tree_model_get (model,
-                      iter,
-                      BJB_MODEL_COLUMN_SELECTED, &is_selected,
-                      -1);
-
-  if (is_selected)
-    {
-      *sel = g_list_prepend (*sel, gtk_tree_path_copy (path));
-    }
-
-  return FALSE;
-}
-
-GList *
-bjb_controller_get_selection (BjbController *self)
-{
-  GList *retval = NULL;
-
-  gtk_tree_model_foreach (self->model,
-                          bjb_controller_build_selection_list_foreach,
-                          &retval);
-
-  return g_list_reverse (retval);
-}
-
 static void
 bjb_controller_set_selection (GtkListStore *store,
                               GtkTreeIter  *iter,
@@ -974,30 +907,6 @@ bjb_controller_set_selection (GtkListStore *store,
   gtk_list_store_set (store, iter,
                       BJB_MODEL_COLUMN_SELECTED, selection,
                       -1);
-}
-
-static gboolean
-bjb_controller_set_selection_foreach (GtkTreeModel *model,
-                                      GtkTreePath  *path,
-                                      GtkTreeIter  *iter,
-                                      gpointer      user_data)
-{
-  gboolean selection = GPOINTER_TO_INT (user_data);
-
-  bjb_controller_set_selection (GTK_LIST_STORE (model), iter, selection);
-
-  return FALSE;
-}
-
-static void
-bjb_controller_set_all_selection (BjbController *self,
-                                  gboolean       selection)
-{
-  gtk_tree_model_foreach (self->model,
-                          bjb_controller_set_selection_foreach,
-                          GINT_TO_POINTER (selection));
-
-  notify_displayed_notes_changed (self);
 }
 
 void
@@ -1020,39 +929,8 @@ bjb_controller_unselect_item (BjbController *self,
   bjb_controller_set_selection (GTK_LIST_STORE (self->model), &iter, FALSE);
 }
 
-void
-bjb_controller_select_all (BjbController *self)
-{
-  bjb_controller_set_all_selection (self, TRUE);
-}
-
-void
-bjb_controller_unselect_all (BjbController *self)
-{
-  bjb_controller_set_all_selection (self, FALSE);
-}
-
 gboolean
 bjb_controller_get_selection_mode (BjbController *self)
 {
   return self->selection_mode;
 }
-
-void
-bjb_controller_set_selection_mode (BjbController *self,
-                                   gboolean       selection_mode)
-{
-  if (self->selection_mode != selection_mode)
-    {
-      self->selection_mode = selection_mode;
-      bjb_controller_unselect_all (self);
-    }
-}
-
-gboolean
-bjb_controller_is_all_selected (BjbController *self)
-{
-  g_autoptr (GList) selection_list = bjb_controller_get_selection (self);
-  return g_list_length (selection_list) == g_list_length (self->items_to_show);
-}
-

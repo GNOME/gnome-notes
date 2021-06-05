@@ -56,8 +56,6 @@ GtkTreeModel * bjb_controller_get_model  (BjbController *self) ;
 
 void bjb_controller_disconnect (BjbController *self);
 
-gboolean bjb_controller_shows_item (BjbController *self);
-
 BijiNotebook * bjb_controller_get_notebook (BjbController *self);
 
 void bjb_controller_set_notebook (BjbController *self, BijiNotebook *coll);
@@ -69,28 +67,12 @@ BijiItemsGroup bjb_controller_get_group (BjbController *controller);
 void bjb_controller_set_group (BjbController   *self,
                                BijiItemsGroup   group);
 
-void bjb_controller_show_more (BjbController *controller);
-
-
-gboolean bjb_controller_get_remaining_items (BjbController *self);
-
 gboolean  bjb_controller_get_selection_mode (BjbController *self);
-
-void      bjb_controller_set_selection_mode (BjbController *self,
-                                             gboolean       selection_mode);
-
-GList    *bjb_controller_get_selection      (BjbController *self);
 
 void      bjb_controller_select_item        (BjbController *self,
                                              const char    *iter_string);
 
 void      bjb_controller_unselect_item      (BjbController *self,
                                              const char    *iter_string);
-
-void      bjb_controller_select_all         (BjbController *self);
-
-void      bjb_controller_unselect_all       (BjbController *self);
-
-gboolean  bjb_controller_is_all_selected    (BjbController *self);
 
 G_END_DECLS

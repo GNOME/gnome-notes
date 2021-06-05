@@ -978,7 +978,6 @@ bjb_window_set_note (BjbWindow   *self,
   self->note_view = bjb_note_view_new (w, note);
   gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
   gtk_widget_show (GTK_WIDGET (self->note_view));
-  bjb_note_view_grab_focus (self->note_view);
 
   self->note_deleted = g_signal_connect (self->note, "deleted",
                                          G_CALLBACK (on_note_trashed), self);

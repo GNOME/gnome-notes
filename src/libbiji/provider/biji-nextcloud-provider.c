@@ -220,7 +220,6 @@ constructed (GObject *object)
   BijiNextcloudProvider *self = (BijiNextcloudProvider *)object;
   GoaAccount *account = NULL;
   const char *goa_id;
-  g_auto(GStrv) bjb_id = NULL;
   GoaPasswordBased *goa_pass = NULL;
   g_autoptr (GIcon) icon = NULL;
   g_autoptr (GError) error = NULL;
@@ -245,27 +244,14 @@ constructed (GObject *object)
   self->info.unique_id = goa_account_get_id (account);
   self->info.datasource = g_strdup_printf ("gn:goa-account:%s", self->info.unique_id);
   self->info.name = g_strdup (goa_account_get_provider_name (account));
+  self->info.user = goa_account_dup_identity (account);
 
   goa_id = goa_account_get_presentation_identity (account);
   if (goa_id)
-    {
-      bjb_id = g_strsplit (goa_id, "@", 2);
-      if (bjb_id[0])
-        {
-          self->info.user = g_strdup (bjb_id[0]);
-          if (bjb_id[1])
-            self->info.domain = g_strdup (bjb_id[1]);
-        }
-    }
+    self->info.domain = g_strdup (g_strrstr (goa_id, "@") + 1);
+
   if (!self->info.user || !self->info.domain)
     {
-      biji_provider_abort (BIJI_PROVIDER (self));
-      return;
-    }
-
-  if (!goa_account_call_ensure_credentials_sync (account, NULL, NULL, NULL))
-    {
-      g_debug ("FAILED: goa_account_call_ensure_credentials_sync");
       biji_provider_abort (BIJI_PROVIDER (self));
       return;
     }

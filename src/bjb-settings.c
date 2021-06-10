@@ -131,6 +131,7 @@ bjb_settings_set_property (GObject      *object,
     case PROP_USE_SYSTEM_FONT:
       g_settings_set_boolean (settings, "use-system-font",
                               g_value_get_boolean (value));
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_FONT]);
       break;
 
     case PROP_FONT:
@@ -153,6 +154,7 @@ bjb_settings_set_property (GObject      *object,
 
     case PROP_TEXT_SIZE:
       g_settings_set_string (settings, "text-size", g_value_get_string (value));
+      g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_FONT]);
       break;
 
     default:

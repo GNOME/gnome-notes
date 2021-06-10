@@ -163,6 +163,25 @@ on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 }
 
 static void
+view_font_changed_cb (BjbNoteView *self,
+                      GParamSpec  *pspec,
+                      BjbSettings *settings)
+{
+  g_autofree char *default_font = NULL;
+
+  g_assert (BJB_IS_NOTE_VIEW (self));
+  g_assert (BJB_IS_SETTINGS (settings));
+
+  default_font = bjb_settings_get_font (settings);
+
+  if (default_font != NULL)
+    biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (self->view), default_font);
+
+  biji_webkit_editor_set_text_size (BIJI_WEBKIT_EDITOR (self->view),
+                                    bjb_settings_get_text_size (settings));
+}
+
+static void
 bjb_note_view_constructed (GObject *obj)
 {
   BjbNoteView            *self = BJB_NOTE_VIEW (obj);
@@ -172,6 +191,10 @@ bjb_note_view_constructed (GObject *obj)
   BjbTextSizeType         text_size;
 
   settings = bjb_app_get_settings(g_application_get_default());
+
+  g_signal_connect_object (settings, "notify::font",
+                           G_CALLBACK (view_font_changed_cb),
+                           self, G_CONNECT_SWAPPED);
 
 
   /* view new from note deserializes the note-content. */

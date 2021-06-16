@@ -54,7 +54,7 @@ struct _BijiManager
   gulong note_renamed ;
 
   GFile *location;
-  TrackerSparqlConnection *connection;
+  BijiTracker *tracker;
 
   GdkRGBA color;
 };
@@ -250,14 +250,22 @@ biji_manager_init (BijiManager *self)
    */
   self->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
                                            NULL, g_object_unref);
+  self->tracker = biji_tracker_new (self);
 }
 
 TrackerSparqlConnection *
 biji_manager_get_tracker_connection (BijiManager *self)
 {
-  return self->connection;
+  return biji_tracker_get_connection (self->tracker);
 }
 
+gpointer
+biji_manager_get_tracker (BijiManager *self)
+{
+  g_return_val_if_fail (BIJI_IS_MANAGER (self), NULL);
+
+  return self->tracker;
+}
 
 void
 biji_manager_set_provider (BijiManager *self,
@@ -299,6 +307,7 @@ biji_manager_finalize (GObject *object)
 
   g_clear_object (&self->notebooks);
   g_clear_object (&self->location);
+  g_clear_object (&self->tracker);
   g_hash_table_destroy (self->items);
   g_hash_table_destroy (self->archives);
   g_hash_table_unref (self->providers);
@@ -715,6 +724,35 @@ biji_manager_get_notebooks (BijiManager *self)
 }
 
 BijiItem *
+biji_manager_find_notebook (BijiManager *self,
+                            const char  *uuid)
+{
+  GListModel *notebooks;
+  guint n_items;
+
+  g_return_val_if_fail (BIJI_IS_MANAGER (self), NULL);
+  g_return_val_if_fail (uuid && *uuid, NULL);
+
+  notebooks = biji_manager_get_notebooks (self);
+  n_items = g_list_model_get_n_items (notebooks);
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(BijiItem) notebook = NULL;
+      const char *item_uuid;
+
+      notebook = g_list_model_get_item (notebooks, i);
+
+      item_uuid = biji_item_get_uuid (notebook);
+
+      if (g_strcmp0 (uuid, item_uuid) == 0)
+        return notebook;
+    }
+
+  return NULL;
+}
+
+BijiItem *
 biji_manager_get_item_at_path (BijiManager *self, const gchar *path)
 {
   BijiItem *retval;
@@ -775,45 +813,11 @@ load_providers (GTask        *task,
 {
   BijiManager *self = source_object;
   GError *error = NULL;
-#ifdef TRACKER_PRIVATE_STORE
-  g_autofree char *filename = NULL;
-  g_autoptr(GFile) data_location = NULL;
 
-  filename = g_build_filename (g_get_user_cache_dir (),
-                               g_get_application_name (),
-#if HAVE_TRACKER3
-                               "tracker3",
-#else
-                               "tracker",
-#endif /* HAVE_TRACKER3 */
-                               NULL);
-  data_location = g_file_new_for_path (filename);
-
-  g_assert (BIJI_IS_MANAGER (self));
-  g_assert (G_IS_TASK (task));
-
-  /* If tracker fails for some reason,
-   * do not attempt anything */
-#if HAVE_TRACKER3
-  self->connection = tracker_sparql_connection_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
-                                                    data_location,
-                                                    tracker_sparql_get_ontology_nepomuk (),
-                                                    NULL,
-                                                    &error);
-#else
-  self->connection = tracker_sparql_connection_local_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
-                                                          data_location,
-                                                          NULL, NULL, NULL,
-                                                          &error);
-#endif /* HAVE_TRACKER3 */
-
-#else
-  self->connection = tracker_sparql_connection_get (NULL, &error);
-#endif /* TRACKER_PRIVATE_STORE */
-
-  if (error)
+  if (!biji_tracker_is_available (self->tracker))
     {
-      g_task_return_error (task, error);
+      g_task_return_new_error (task, G_IO_ERROR, G_IO_ERROR_FAILED,
+                               "Connecting to tracker failed");
       return;
     }
 
@@ -838,6 +842,36 @@ load_providers (GTask        *task,
   return;
 }
 
+static void
+on_tracker_get_notebooks_cb (GObject      *object,
+                             GAsyncResult *result,
+                             gpointer      user_data)
+{
+  g_autoptr(BijiManager) self = user_data;
+  g_autoptr(GHashTable) notebooks = NULL;
+  g_autoptr(GList) values = NULL;
+
+  g_assert (BIJI_IS_MANAGER (self));
+
+  notebooks = biji_tracker_get_notebooks_finish (BIJI_TRACKER (object), result, NULL);
+
+  if (!notebooks)
+    return;
+
+  values = g_hash_table_get_values (notebooks);
+
+  for (GList *value = values; value; value = value->next)
+    {
+      g_autoptr(BijiNotebook) notebook = NULL;
+      BijiInfoSet *set = value->data;
+
+      notebook = biji_notebook_new (G_OBJECT (self), set->tracker_urn,
+                                    set->title, set->mtime);
+      g_list_store_insert_sorted (self->notebooks, notebook,
+                                  compare_notebook, NULL);
+    }
+}
+
 void
 biji_manager_load_providers_async (BijiManager         *self,
                                    GAsyncReadyCallback  callback,
@@ -853,6 +887,9 @@ biji_manager_load_providers_async (BijiManager         *self,
   g_task_set_task_data (thread_task, task, g_object_unref);
 
   g_task_run_in_thread (thread_task, load_providers);
+  biji_tracker_get_notebooks_async (self->tracker,
+                                    on_tracker_get_notebooks_cb,
+                                    g_object_ref (self));
 }
 
 gboolean

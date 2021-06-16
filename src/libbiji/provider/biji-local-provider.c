@@ -134,15 +134,17 @@ create_notebook_if_needed (gpointer key,
 
 
 static void
-local_provider_finish (GHashTable *notebooks,
-                       gpointer user_data)
+on_get_local_notebooks_cb (GObject      *object,
+                           GAsyncResult *result,
+                           gpointer      user_data)
 {
   BijiLocalProvider *self;
-  BijiProviderHelper *helper;
+  BijiProviderHelper *helper = user_data;
+  GHashTable *notebooks;
   GList *list;
 
-  helper = user_data;
   self = BIJI_LOCAL_PROVIDER (helper->provider);
+  notebooks = biji_tracker_get_notebooks_finish (BIJI_TRACKER (object), result, NULL);
 
   if (helper->group == BIJI_LIVING_ITEMS)
     g_hash_table_foreach (notebooks, create_notebook_if_needed, user_data);
@@ -172,6 +174,7 @@ enumerate_next_files_ready_cb (GObject *source,
   GFileEnumerator *enumerator;
   BijiLocalProvider *self;
   BijiProviderHelper *helper;
+  BijiManager *manager;
   GList *files, *l;
   GError *error;
   gchar *base_path;
@@ -182,6 +185,7 @@ enumerate_next_files_ready_cb (GObject *source,
   self = BIJI_LOCAL_PROVIDER (helper->provider);
   error = NULL;
   files = g_file_enumerator_next_files_finish (enumerator, res, &error);
+  manager = biji_provider_get_manager (BIJI_PROVIDER (self));
   g_file_enumerator_close_async (enumerator, G_PRIORITY_DEFAULT, NULL,
                                  release_enum_cb, NULL);
 
@@ -236,9 +240,8 @@ enumerate_next_files_ready_cb (GObject *source,
 
   /* Now we have all notes,
    * load the notebooks and we're good to notify loading done */
-  biji_get_all_notebooks_async (biji_provider_get_manager (BIJI_PROVIDER (self)),
-                                local_provider_finish, NULL,
-                                helper);
+  biji_tracker_get_notebooks_async (biji_manager_get_tracker (manager),
+                                    on_get_local_notebooks_cb, helper);
 }
 
 static void

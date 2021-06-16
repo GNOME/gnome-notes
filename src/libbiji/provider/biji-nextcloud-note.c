@@ -23,6 +23,7 @@
 #include <curl/curl.h>
 #include <json-glib/json-glib.h>
 
+#include "libbiji.h"
 #include "biji-nextcloud-note.h"
 #include "biji-nextcloud-provider.h"
 #include "biji-tracker.h"
@@ -93,6 +94,7 @@ save_note_finish (GObject      *source_object,
   BijiNextcloudNote *self = BIJI_NEXTCLOUD_NOTE (source_object);
   const BijiProviderInfo *prov_info = biji_provider_get_info (BIJI_PROVIDER (self->provider));
   BijiInfoSet *info = biji_info_set_new ();
+  BijiManager *manager;
 
   info->url = (char *) biji_note_obj_get_path (note);
   info->title = (char *) biji_note_obj_get_title (note);
@@ -101,7 +103,8 @@ save_note_finish (GObject      *source_object,
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  biji_tracker_ensure_resource_from_info (biji_item_get_manager (item), info);
+  manager = biji_item_get_manager (item);
+  biji_tracker_save_note (biji_manager_get_tracker (manager), info);
 }
 
 static size_t
@@ -228,6 +231,7 @@ static gboolean
 archive (BijiNoteObj *note)
 {
   BijiNextcloudNote *self = BIJI_NEXTCLOUD_NOTE (note);
+  BijiTracker *tracker;
   CURL *curl = curl_easy_init ();
   CURLcode res = 0;
 
@@ -246,7 +250,10 @@ archive (BijiNoteObj *note)
       if (res == CURLE_OK)
         {
           curl_easy_cleanup (curl);
-          biji_note_delete_from_tracker (note);
+
+          tracker = biji_manager_get_tracker (biji_item_get_manager (BIJI_ITEM (note)));
+          biji_tracker_delete_note (tracker, note);
+
           return TRUE;
         }
 

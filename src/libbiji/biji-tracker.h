@@ -1,16 +1,19 @@
+/* -*- mode: c; c-basic-offset: 2; indent-tabs-mode: nil; -*- */
 /* biji-tracker.h
- * Copyright (C) Pierre-Yves LUYTEN 2012,2013 <py@luyten.fr>
- * 
+ *
+ * Copyright (C) Pierre-Yves LUYTEN 2012, 2013 <py@luyten.fr>
+ * Copyright 2021 Mohammed Sadiq <sadiq@sadiqpk.org>
+ *
  * bijiben is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * bijiben is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -18,89 +21,72 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <glib-object.h>
 #include <tracker-sparql.h>
 
-#include "libbiji.h"
-#include "biji-info-set.h"
+#include "biji-manager.h"
 
+G_BEGIN_DECLS
 
-/* All possible query return
- * Free the containers for list & hash<BijiInfoSets> */
+#define BIJI_TYPE_TRACKER (biji_tracker_get_type ())
 
+G_DECLARE_FINAL_TYPE (BijiTracker, biji_tracker, BIJI, TRACKER, GObject)
 
-typedef void       (*BijiBoolCallback)          (gboolean result, gpointer user_data);
+BijiTracker *biji_tracker_new                            (BijiManager         *manager);
+gboolean    biji_tracker_is_available                    (BijiTracker         *self);
+TrackerSparqlConnection *
+            biji_tracker_get_connection                  (BijiTracker         *self);
+void        biji_tracker_add_notebook_async              (BijiTracker         *self,
+                                                          const char          *notebook,
+                                                          GAsyncReadyCallback  callback,
+                                                          gpointer             user_data);
+BijiItem   *biji_tracker_add_notebook_finish             (BijiTracker         *self,
+                                                          GAsyncResult        *result,
+                                                          GError             **error);
+void        biji_tracker_remove_notebook                 (BijiTracker         *self,
+                                                          const char          *notebook_urn);
+void        biji_tracker_get_notes_async                 (BijiTracker         *self,
+                                                          BijiItemsGroup       group,
+                                                          const char          *needle,
+                                                          GAsyncReadyCallback  callback,
+                                                          gpointer             user_data);
+GList      *biji_tracker_get_notes_finish                (BijiTracker         *self,
+                                                          GAsyncResult        *result,
+                                                          GError             **error);
+void        biji_tracker_get_notebooks_async             (BijiTracker         *self,
+                                                          GAsyncReadyCallback  callback,
+                                                          gpointer             user_data);
+GHashTable *biji_tracker_get_notebooks_finish            (BijiTracker         *self,
+                                                          GAsyncResult        *result,
+                                                          GError             **error);
+void        biji_tracker_remove_note_notebook_async      (BijiTracker         *self,
+                                                          BijiNoteObj         *note,
+                                                          BijiItem            *notebook,
+                                                          GAsyncReadyCallback  callback,
+                                                          gpointer             user_data);
+gboolean    biji_tracker_remove_note_notebook_finish     (BijiTracker         *self,
+                                                          GAsyncResult        *result,
+                                                          GError             **error);
+void        biji_tracker_add_note_to_notebook_async      (BijiTracker         *self,
+                                                          BijiNoteObj         *note,
+                                                          const char          *notebook,
+                                                          GAsyncReadyCallback  callback,
+                                                          gpointer             user_data);
+gboolean    biji_tracker_add_note_to_notebook_finish     (BijiTracker         *self,
+                                                          GAsyncResult        *result,
+                                                          GError             **error);
+void        biji_tracker_get_notes_with_notebook_async   (BijiTracker         *self,
+                                                          const char          *notebooks,
+                                                          GAsyncReadyCallback  callback,
+                                                          gpointer             user_data);
+GList      *biji_tracker_get_notes_with_notebook_finish  (BijiTracker         *self,
+                                                          GAsyncResult        *result,
+                                                          GError             **error);
+void        biji_tracker_delete_note                     (BijiTracker         *self,
+                                                          BijiNoteObj         *note);
+void        biji_tracker_trash_resource                  (BijiTracker          *self,
+                                                          const char          *tracker_urn);
+void        biji_tracker_save_note                       (BijiTracker         *self,
+                                                          BijiInfoSet         *info);
 
-
-typedef void       (*BijiItemCallback)          (BijiItem *item, gpointer user_data);
-
-
-typedef void       (*BijiItemsListCallback)     (GList *items, gpointer user_data);
-
-
-typedef void       (*BijiInfoSetsHCallback)     (GHashTable *info_sets, gpointer user_data);
-
-
-/* CALLER IS RESPONSIBLE FOR FREEING INFO SET */
-
-typedef void       (*BijiInfoCallback)          (BijiInfoSet *info, gpointer user_data);
-
-
-
-void        biji_get_items_with_notebook_async       (BijiManager *manager,
-                                                        const gchar *needle,
-                                                        BijiItemsListCallback cb,
-                                                        gpointer user_data);
-
-
-void        biji_get_items_matching_async              (BijiManager *manager,
-                                                        BijiItemsGroup group,
-                                                        gchar *needle,
-                                                        BijiItemsListCallback cb,
-                                                        gpointer user_data);
-
-
-
-void        biji_get_all_notebooks_async             (BijiManager          *manager,
-                                                      BijiInfoSetsHCallback cb,
-                                                      BijiItemsListCallback list_cb,
-                                                      gpointer              user_data);
-
-
-
-void        biji_create_new_notebook_async           (BijiManager *manager,
-                                                        const gchar *tag,
-                                                        BijiItemCallback afterward,
-                                                        gpointer user_data);
-
-
-
-void        biji_remove_notebook_from_tracker        (BijiManager *manager,
-                                                        const gchar *urn);
-
-
-
-
-void        biji_push_existing_notebook_to_note      (BijiNoteObj      *note,
-                                                        gchar            *title,
-                                                        BijiBoolCallback  bool_cb,
-                                                        gpointer          user_data);
-
-
-
-void        biji_remove_notebook_from_note           (BijiNoteObj      *note,
-                                                        BijiItem         *coll,
-                                                        BijiBoolCallback  bool_cb,
-                                                        gpointer          user_data);
-
-
-
-void        biji_note_delete_from_tracker              (BijiNoteObj *note);
-
-
-void        biji_tracker_trash_resource               (BijiManager *manager,
-                                                        gchar *tracker_urn);
-
-
-void        biji_tracker_ensure_resource_from_info    (BijiManager     *manager,
-                                                        BijiInfoSet *info);
+G_END_DECLS

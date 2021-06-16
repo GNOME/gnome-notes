@@ -24,6 +24,7 @@
  */
 
 #include "bjb-application.h"
+#include "biji-tracker.h"
 #include "bjb-controller.h"
 #include "bjb-window.h"
 
@@ -517,6 +518,18 @@ update_controller_callback (GList *result,
   }
 }
 
+static void
+on_controller_get_notes_cb (GObject      *object,
+                            GAsyncResult *result,
+                            gpointer      user_data)
+{
+  g_autoptr(BjbController) self = user_data;
+  g_autoptr(GList) notes = NULL;
+
+  notes = biji_tracker_get_notes_finish (BIJI_TRACKER (object), result, NULL);
+  update_controller_callback (notes, user_data);
+}
+
 void
 bjb_controller_apply_needle (BjbController *self)
 {
@@ -548,7 +561,10 @@ bjb_controller_apply_needle (BjbController *self)
   }
 
   /* There is a research, apply lookup */
-  biji_get_items_matching_async (self->manager, self->group, needle, update_controller_callback, self);
+  biji_tracker_get_notes_async (biji_manager_get_tracker (self->manager),
+                                self->group, needle,
+                                on_controller_get_notes_cb,
+                                g_object_ref (self));
 }
 
 static void
@@ -856,10 +872,11 @@ bjb_controller_set_notebook (BjbController *self,
 
   self->needle = g_strdup ("");
   self->notebook = coll;
-  biji_get_items_with_notebook_async (self->manager,
-                                      biji_item_get_title (BIJI_ITEM (coll)),
-                                      update_controller_callback,
-                                      self);
+
+  biji_tracker_get_notes_with_notebook_async (biji_manager_get_tracker (self->manager),
+                                              biji_item_get_title (BIJI_ITEM (coll)),
+                                              on_controller_get_notes_cb,
+                                              g_object_ref (self));
 }
 
 

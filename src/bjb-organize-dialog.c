@@ -18,6 +18,7 @@
 
 #include <glib/gi18n.h>
 
+#include "biji-tracker.h"
 #include "bjb-organize-dialog.h"
 #include "bjb-window.h"
 
@@ -152,15 +153,21 @@ bjb_get_path_for_str (GtkTreeModel  *model,
 }
 
 static void
-bjb_organize_dialog_handle_tags (GHashTable *result, gpointer user_data)
+on_get_notebooks_cb (GObject      *object,
+                     GAsyncResult *result,
+                     gpointer      user_data)
 {
-  BjbOrganizeDialog *self = BJB_ORGANIZE_DIALOG (user_data);
+  g_autoptr(BjbOrganizeDialog) self = user_data;
+  GHashTable *notebooks;
   GList *tracker_info;
+
+  g_assert (BJB_IS_ORGANIZE_DIALOG (self));
 
   if (self->notebooks)
     g_hash_table_destroy (self->notebooks);
 
-  self->notebooks = result;
+  notebooks = biji_tracker_get_notebooks_finish (BIJI_TRACKER (object), result, NULL);
+  self->notebooks = notebooks;
 
   tracker_info = g_hash_table_get_values (self->notebooks);
   tracker_info = g_list_sort (tracker_info, bjb_compare_notebook);
@@ -190,8 +197,8 @@ update_notebooks_model_async (BjbOrganizeDialog *self)
 
   manager = bjb_window_get_manager (GTK_WIDGET (self->window));
   gtk_list_store_clear (self->notebook_store);
-  biji_get_all_notebooks_async (manager,
-                                bjb_organize_dialog_handle_tags, NULL, self);
+  biji_tracker_get_notebooks_async (biji_manager_get_tracker (manager),
+                                    on_get_notebooks_cb, g_object_ref (self));
 }
 
 /* Libbiji handles tracker & saving */
@@ -258,12 +265,18 @@ on_tag_toggled (GtkCellRendererToggle *cell,
  * libbiji has to avoid creating a new one
  * and also check before tagging items */
 static void
-on_new_notebook_created_cb (BijiItem *coll, gpointer user_data)
+on_notebook_added_cb (GObject      *object,
+                      GAsyncResult *result,
+                      gpointer      user_data)
 {
-  BjbOrganizeDialog *self = user_data;
+  g_autoptr(BjbOrganizeDialog) self = user_data;
+  BijiItem *tag;
 
+  g_assert (BJB_IS_ORGANIZE_DIALOG (self));
+
+  tag = biji_tracker_add_notebook_finish (BIJI_TRACKER (object), result, NULL);
   self->tag_to_scroll_to = g_strdup (gtk_entry_get_text (GTK_ENTRY (self->entry)));
-  g_list_foreach (self->items, note_dialog_add_notebook, coll);
+  g_list_foreach (self->items, note_dialog_add_notebook, tag);
 
   update_notebooks_model_async (self);
   gtk_entry_set_text (GTK_ENTRY (self->entry), "");
@@ -278,8 +291,11 @@ add_new_tag (BjbOrganizeDialog *self)
   BijiManager *manager = bjb_window_get_manager (GTK_WIDGET (self->window));
   const gchar *title = gtk_entry_get_text (GTK_ENTRY (self->entry));
 
-  if (title && title[0])
-    biji_create_new_notebook_async (manager, title, on_new_notebook_created_cb, self);
+  if (title && *title)
+    biji_tracker_add_notebook_async (biji_manager_get_tracker (manager),
+                                     title,
+                                     on_notebook_added_cb,
+                                     g_object_ref (self));
 }
 
 static void

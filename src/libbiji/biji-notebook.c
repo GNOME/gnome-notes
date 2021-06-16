@@ -32,11 +32,11 @@
 
 #include <math.h>
 
+#include "libbiji.h"
 #include "biji-notebook.h"
-#include "biji-tracker.h"
 
 
-static void biji_notebook_update_collected (GList *result, gpointer user_data);
+static void on_collected_item_change (BijiNotebook *self);
 
 
 struct _BijiNotebook
@@ -270,10 +270,14 @@ static gboolean
 biji_notebook_trash (BijiItem *item)
 {
   BijiNotebook *self;
+  BijiManager *manager;
+
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
 
   self = BIJI_NOTEBOOK (item);
-  biji_remove_notebook_from_tracker (biji_item_get_manager (item), self->urn);
+  manager = biji_item_get_manager (item);
+
+  biji_tracker_remove_notebook (biji_manager_get_tracker (manager), self->urn);
 
   return TRUE;
 }
@@ -374,6 +378,34 @@ biji_notebook_get_property (GObject    *object,
 
 
 static void
+on_notebook_get_notes_cb (GObject      *object,
+                          GAsyncResult *result,
+                          gpointer      user_data)
+{
+  g_autoptr(BijiNotebook) self = user_data;
+  GList *notes;
+
+  g_clear_pointer (&self->collected_items, g_list_free);
+  g_clear_pointer (&self->icon, cairo_surface_destroy);
+  g_clear_pointer (&self->emblem, cairo_surface_destroy);
+
+  notes = biji_tracker_get_notes_with_notebook_finish (BIJI_TRACKER (object), result, NULL);
+  self->collected_items = notes;
+
+  /* Connect */
+  for (GList *l = self->collected_items; l != NULL; l = l->next)
+    {
+      g_signal_connect_swapped (l->data, "color-changed",
+                                G_CALLBACK (on_collected_item_change), self);
+
+      g_signal_connect_swapped (l->data, "trashed",
+                                G_CALLBACK (on_collected_item_change), self);
+    }
+
+  g_signal_emit (self, biji_notebooks_signals[NOTEBOOK_ICON_UPDATED], 0);
+}
+
+static void
 on_collected_item_change (BijiNotebook *self)
 {
   BijiManager *manager;
@@ -388,38 +420,10 @@ on_collected_item_change (BijiNotebook *self)
   }
 
   /* Then re-process the whole stuff */
-  biji_get_items_with_notebook_async (manager,
-                                      self->name,
-                                      biji_notebook_update_collected,
-                                      self);
-}
-
-/* For convenience, items are retrieved async.
- * Thus use a signal once icon & emblem updated.*/
-static void
-biji_notebook_update_collected (GList *result,
-                                  gpointer user_data)
-{
-  BijiNotebook *self = user_data;
-  GList *l;
-
-  g_clear_pointer (&self->collected_items, g_list_free);
-  g_clear_pointer (&self->icon, cairo_surface_destroy);
-  g_clear_pointer (&self->emblem, cairo_surface_destroy);
-
-  self->collected_items = result;
-
-  /* Connect */
-  for (l = self->collected_items; l != NULL; l = l->next)
-  {
-    g_signal_connect_swapped (l->data, "color-changed",
-                              G_CALLBACK (on_collected_item_change), self);
-
-    g_signal_connect_swapped (l->data, "trashed",
-                              G_CALLBACK (on_collected_item_change), self);
-  }
-
-  g_signal_emit (self, biji_notebooks_signals[NOTEBOOK_ICON_UPDATED], 0);
+  biji_tracker_get_notes_with_notebook_async (biji_manager_get_tracker (manager),
+                                              self->name,
+                                              on_notebook_get_notes_cb,
+                                              g_object_ref (self));
 }
 
 void
@@ -437,10 +441,10 @@ biji_notebook_constructed (GObject *obj)
 
   manager = biji_item_get_manager (BIJI_ITEM (obj));
 
-  biji_get_items_with_notebook_async (manager,
-                                      self->name,
-                                      biji_notebook_update_collected,
-                                      self);
+  biji_tracker_get_notes_with_notebook_async (biji_manager_get_tracker (manager),
+                                              self->name,
+                                              on_notebook_get_notes_cb,
+                                              g_object_ref (self));
 }
 
 static gboolean

@@ -18,9 +18,9 @@
 #include "biji-date-time.h"
 #include "biji-manager.h"
 #include "../bjb-utils.h"
+#include "libbiji.h"
 #include "biji-note-obj.h"
 #include "biji-timeout.h"
-#include "biji-tracker.h"
 
 #include "editor/biji-webkit-editor.h"
 
@@ -452,13 +452,15 @@ has_notebook (BijiItem *item,
 }
 
 static void
-_biji_notebook_refresh (gboolean query_result,
-                        gpointer coll)
+on_note_obj_add_notebook_cb (GObject      *object,
+                             GAsyncResult *result,
+                             gpointer      user_data)
 {
-  g_return_if_fail (BIJI_IS_NOTEBOOK (coll));
+  g_autoptr(BijiNotebook) notebook = user_data;
 
-  if (query_result)
-    biji_notebook_refresh (BIJI_NOTEBOOK (coll));
+  g_assert (BIJI_IS_NOTEBOOK (notebook));
+
+  biji_notebook_refresh (notebook);
 }
 
 static gboolean
@@ -484,7 +486,13 @@ add_notebook (BijiItem *item,
 
   if (BIJI_IS_NOTEBOOK (notebook))
     {
-      biji_push_existing_notebook_to_note (self, label, _biji_notebook_refresh, notebook); // Tracker
+      BijiManager *manager;
+
+      manager = biji_item_get_manager (item);
+      biji_tracker_add_note_to_notebook_async (biji_manager_get_tracker (manager),
+                                               self, label, on_note_obj_add_notebook_cb,
+                                               g_object_ref (notebook));
+
       biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
       biji_note_obj_save_note (self);
     }
@@ -507,7 +515,13 @@ remove_notebook (BijiItem *item,
 
   if (g_hash_table_remove (priv->labels, biji_item_get_title (notebook)))
     {
-      biji_remove_notebook_from_note (self, notebook, _biji_notebook_refresh, notebook); // tracker.
+      BijiManager *manager;
+
+      manager = biji_item_get_manager (item);
+      biji_tracker_remove_note_notebook_async (biji_manager_get_tracker (manager),
+                                               self, notebook, on_note_obj_add_notebook_cb,
+                                               g_object_ref (notebook));
+
       biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
       biji_note_obj_save_note (self);
       return TRUE;

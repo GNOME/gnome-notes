@@ -461,7 +461,7 @@ on_show_notebook_cb (GSimpleAction *action,
   else
   {
     manager = bjb_window_get_manager (GTK_WIDGET (self));
-    notebook = biji_manager_get_item_at_path (manager, note_uuid);
+    notebook = biji_manager_find_notebook (manager, note_uuid);
     bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (notebook));
 
     /* Update headerbar title. */
@@ -588,21 +588,19 @@ append_notebook (BijiItem      *notebook,
 static void
 on_display_notebooks_changed (BjbWindow *self)
 {
-  g_autoptr(GList) children = NULL;
   BijiManager *manager;
   GListModel *notebooks;
-  GtkContainer *list;
   guint n_items;
 
   g_assert (BJB_IS_WINDOW (self));
 
   manager = bjb_window_get_manager (GTK_WIDGET (self));
   notebooks = biji_manager_get_notebooks (manager);
-  list = GTK_CONTAINER (self->notebooks_box);
-  children = gtk_container_get_children (list);
 
-  for (GList *child = children; child; child = child->next)
-    gtk_container_remove (list, child->data);
+  gtk_container_foreach (GTK_CONTAINER (self->notebooks_box),
+                         (GtkCallback) gtk_widget_destroy, NULL);
+
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
 
   n_items = g_list_model_get_n_items (notebooks);
 
@@ -668,6 +666,7 @@ bjb_window_constructed (GObject *obj)
   gtk_stack_set_visible_child_name (self->main_stack, "spinner");
   gtk_widget_show (self->spinner);
   gtk_spinner_start (GTK_SPINNER (self->spinner));
+  gtk_widget_set_sensitive (self->notebooks_box, FALSE);
 
   self->no_note = bjb_empty_results_box_new ();
   gtk_stack_add_named (self->main_stack, self->no_note, "empty");
@@ -832,6 +831,8 @@ bjb_window_set_view (BjbWindow     *self,
 {
   g_return_if_fail (BJB_IS_WINDOW (self));
 
+  gtk_widget_set_sensitive (self->notebooks_box, FALSE);
+
   switch (view)
   {
 
@@ -846,11 +847,13 @@ bjb_window_set_view (BjbWindow     *self,
       hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_BACK);
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "main-view");
+      gtk_widget_set_sensitive (self->notebooks_box, TRUE);
       break;
 
    case BJB_WINDOW_ARCHIVE_VIEW:
       gtk_widget_show (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "main-view");
+      gtk_widget_set_sensitive (self->notebooks_box, TRUE);
       break;
 
     case BJB_WINDOW_SPINNER_VIEW:
@@ -865,6 +868,7 @@ bjb_window_set_view (BjbWindow     *self,
       gtk_widget_show (self->no_note);
       gtk_widget_hide (GTK_WIDGET (self->search_bar));
       gtk_stack_set_visible_child_name (self->main_stack, "empty");
+      gtk_widget_set_sensitive (self->notebooks_box, TRUE);
       break;
 
 
@@ -873,6 +877,7 @@ bjb_window_set_view (BjbWindow     *self,
                                       BJB_EMPTY_RESULTS_NO_RESULTS);
       gtk_widget_show (self->no_note);
       gtk_stack_set_visible_child_name (self->main_stack, "empty");
+      gtk_widget_set_sensitive (self->notebooks_box, TRUE);
       break;
 
 

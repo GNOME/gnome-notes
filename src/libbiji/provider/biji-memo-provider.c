@@ -176,8 +176,10 @@ create_note_from_item (BijiMemoItem *item)
 static void
 trash (gpointer urn_uuid, gpointer self)
 {
-  biji_tracker_trash_resource (
-      biji_provider_get_manager (BIJI_PROVIDER (self)), (gchar*) urn_uuid);
+  BijiManager *manager;
+
+  manager = biji_provider_get_manager (BIJI_PROVIDER (self));
+  biji_tracker_trash_resource (biji_manager_get_tracker (manager), (gchar*) urn_uuid);
 }
 
 
@@ -185,6 +187,7 @@ static void
 handle_next_item (BijiMemoProvider *self)
 {
   BijiMemoItem *item;
+  BijiManager  *manager;
   GList        *list;
 
   item = g_queue_pop_head (self->queue);
@@ -200,8 +203,8 @@ handle_next_item (BijiMemoProvider *self)
     g_debug ("url=%s", item->set.url);
     g_debug ("content=%s\n================\n\n\n", item->set.content);
 
-    biji_tracker_ensure_resource_from_info (
-    biji_provider_get_manager (BIJI_PROVIDER (self)), &item->set);
+    manager = biji_provider_get_manager (BIJI_PROVIDER (self));
+    biji_tracker_save_note (biji_manager_get_tracker (manager), &item->set);
 
     //memo_item_free (item);
     handle_next_item (self);

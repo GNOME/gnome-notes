@@ -69,6 +69,7 @@ local_note_save (BijiNoteObj *note)
   BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
   const BijiProviderInfo *prov_info = biji_provider_get_info (self->provider);
   BijiInfoSet *info = biji_info_set_new ();
+  BijiManager *manager;
 
   /* File save */
   biji_lazy_serialize (note);
@@ -81,7 +82,8 @@ local_note_save (BijiNoteObj *note)
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  biji_tracker_ensure_resource_from_info (biji_item_get_manager (item), info);
+  manager = biji_item_get_manager (item);
+  biji_tracker_save_note (biji_manager_get_tracker (manager), info);
 }
 
 static void
@@ -223,10 +225,12 @@ local_note_delete (BijiItem *item)
 {
   BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
   g_autofree char *file_path = g_file_get_path (self->location);
+  BijiTracker *tracker;
 
   g_debug ("local note delete : %s", file_path);
 
-  biji_note_delete_from_tracker (BIJI_NOTE_OBJ (self));
+  tracker = biji_manager_get_tracker (biji_item_get_manager (item));
+  biji_tracker_delete_note (tracker, BIJI_NOTE_OBJ (item));
   g_file_delete_async (self->location,
                        G_PRIORITY_LOW,
                        NULL,                  /* Cancellable */

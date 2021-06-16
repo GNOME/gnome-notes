@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-03-18 17:43+0000\n"
-"PO-Revision-Date: 2021-04-19 21:40+0545\n"
+"POT-Creation-Date: 2021-06-03 11:49+0000\n"
+"PO-Revision-Date: 2021-06-16 18:52+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -16,11 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 1.8.4\n"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:6
-#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:615 src/bjb-window-base.c:17
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6 data/org.gnome.Notes.desktop.in:3
+#: data/org.gnome.Notes.xml.in:4 src/bjb-application.c:571 src/bjb-window-base.c:19
 msgid "Notes"
 msgstr "द्रष्टव्यहरू"
 
@@ -30,19 +29,18 @@ msgstr "जीनोम नोट"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
-"A quick and easy way to make freeform notes or jot down simple lists. Store "
-"as many notes as you like and share them by email."
+"A quick and easy way to make freeform notes or jot down simple lists. Store as many notes as "
+"you like and share them by email."
 msgstr ""
-"फ्रिफर्म नोट हरू बनाउन वा साधारण सूचीहरू तल झार्न छिटो र सजिलो तरिका। तपाईँले मन "
-"पराए जति द्रष्टव्यहरू भण्डारण गर्नुहोस् र इमेलद्वारा साझेदारी गर्नुहोस् ।"
+"फ्रिफर्म नोट हरू बनाउन वा साधारण सूचीहरू तल झार्न छिटो र सजिलो तरिका। तपाईँले मन पराए जति द्रष्टव्यहरू "
+"भण्डारण गर्नुहोस् र इमेलद्वारा साझेदारी गर्नुहोस् ।"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
-"You can store your notes locally on your computer or sync with online "
-"services like ownCloud."
+"You can store your notes locally on your computer or sync with online services like ownCloud."
 msgstr ""
-"तपाईँले आफ्नो द्रष्टव्यहरू स्थानीय रूपमा आफ्नो कम्प्युटरमा भण्डारण गर्न सक्नुहुन्छ वा ownCloud "
-"जस्ता अनलाइन सेवाहरूसँग समक्रमण गर्न सक्नुहुन्छ ।"
+"तपाईँले आफ्नो द्रष्टव्यहरू स्थानीय रूपमा आफ्नो कम्प्युटरमा भण्डारण गर्न सक्नुहुन्छ वा ownCloud जस्ता अनलाइन "
+"सेवाहरूसँग समक्रमण गर्न सक्नुहुन्छ ।"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
@@ -82,17 +80,15 @@ msgid "The font name set here will be used as the font when displaying notes."
 msgstr "यहाँ सेट गरिएको फन्ट नाम द्रष्टव्यहरू प्रदर्शन गर्दा फन्टको रूपमा प्रयोग गरिनेछ ।"
 
 #: data/org.gnome.Notes.gschema.xml:15
-#, fuzzy
 msgid "Whether to use the system monospace font"
-msgstr "पूर्व निर्धारित प्रणाली फन्ट प्रयोग गर्नु पर्दछ वा पर्दैन"
+msgstr "प्रणाली मोनोस्पेस फन्ट प्रयोग गर्ने या नगर्ने"
 
 #: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "नयाँ नोटहरू रङ्ग"
 
 #: data/org.gnome.Notes.gschema.xml:20
-msgid ""
-"The color name set here will be used as the color when creating new notes."
+msgid "The color name set here will be used as the color when creating new notes."
 msgstr "यहाँ सेट गरिएको रङ नाम नयाँ द्रष्टव्यहरू सिर्जना गर्दा रङको रूपमा प्रयोग गरिनेछ ।"
 
 #: data/org.gnome.Notes.gschema.xml:24
@@ -104,63 +100,156 @@ msgid "The primary notebook is the place where new notes are created."
 msgstr "प्राथमिक द्रष्टव्य नयाँ द्रष्टव्यहरू सिर्जना हुने स्थान हो ।"
 
 #: data/org.gnome.Notes.gschema.xml:29
+msgid "Note path of the notes opened when Notes quits last time."
+msgstr "द्रष्टव्यहरू अन्तिम पटक बन्द हुँदा द्रष्टव्यहरूको द्रष्टव्य मार्ग खोलिएको छ ।"
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid "This stores the note path of the last opened item, so that we can open it on startup."
+msgstr "यसले अन्तिममा खोलिएको वस्तुको द्रष्टव्य मार्ग भण्डारण गर्दछ, ताकि हामी यसलाई सुरुआतमा खोल्न सक्छौं ।"
+
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window maximized"
 msgstr "सञ्झ्यालको अधिकतम स्थिति"
 
-#: data/org.gnome.Notes.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window maximized state."
 msgstr "सञ्झ्यालको अधिकतम स्थिति."
 
-#: data/org.gnome.Notes.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window size"
 msgstr "सञ्झ्याल साइज"
 
-#: data/org.gnome.Notes.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window size (width and height)."
 msgstr "सञ्झ्यालको आकार (उचाइ र चौडाई)."
 
-#: data/org.gnome.Notes.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Window position"
 msgstr "संझ्यालको स्थिति"
 
-#: data/org.gnome.Notes.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:45
 msgid "Window position (x and y)."
 msgstr "सञ्झ्यालको  स्थान(X र Y)."
 
-#: data/org.gnome.Notes.gschema.xml:43
-#, fuzzy
+#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
-msgstr "केट पाठ सम्पादकमा प्रयोग गरिने रङ योजना"
+msgstr "द्रष्टव्य सम्पादकद्वारा प्रयोग गरिएको पाठ साइज ।"
 
-#: data/org.gnome.Notes.gschema.xml:44
-msgid ""
-"There are three text sizes available: small, medium (default) and large."
+#: data/org.gnome.Notes.gschema.xml:49
+msgid "There are three text sizes available: small, medium (default) and large."
 msgstr "त्यहाँ तीन पाठ साइजहरू उपलब्ध छन्: सानो, मध्यम (पूर्वनिर्धारित) र ठूलो ।"
 
-#: data/resources/editor-toolbar.ui:51
+#: data/resources/bjb-detached-window.ui:18 data/resources/bjb-window-base.ui:147
+msgid "More options"
+msgstr "अरू विकल्पहरू"
+
+#: data/resources/bjb-detached-window.ui:50 data/resources/bjb-window-base.ui:367
+msgid "Undo"
+msgstr "पूर्वस्थितिमा फर्काउनुहोस्"
+
+#: data/resources/bjb-detached-window.ui:59 data/resources/bjb-window-base.ui:375
+msgid "Redo"
+msgstr "फेरि गर्नुहोस्"
+
+#: data/resources/bjb-detached-window.ui:76 data/resources/bjb-window-base.ui:303
+#: data/resources/bjb-window-base.ui:391 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "नोटबुकहरू"
+
+#: data/resources/bjb-detached-window.ui:85 data/resources/bjb-window-base.ui:399
+msgid "Email this Note"
+msgstr "यो नोट इमेल गर्नुहोस्"
+
+#: data/resources/bjb-detached-window.ui:94 data/resources/bjb-window-base.ui:407
+#: data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "रद्दीटोकरीमा सार्नुहोस्"
+
+#: data/resources/bjb-window-base.ui:46 data/resources/bjb-window-base.ui:282
+#: src/bjb-window-base.c:450
+msgid "All Notes"
+msgstr "सबै द्रष्टव्यहरू"
+
+#: data/resources/bjb-window-base.ui:62
+msgid "Open menu"
+msgstr "मेनु खोल्नुहोस्"
+
+#: data/resources/bjb-window-base.ui:178 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "नोटहरू आयात गर्नुहोस्"
+
+#: data/resources/bjb-window-base.ui:195
+msgid "Text Sizes"
+msgstr "पाठको आकार"
+
+#: data/resources/bjb-window-base.ui:204
+msgid "_Large"
+msgstr "ठूलो"
+
+#: data/resources/bjb-window-base.ui:213
+msgid "_Medium"
+msgstr "मध्यम"
+
+#: data/resources/bjb-window-base.ui:222
+msgid "_Small"
+msgstr "सानो"
+
+#: data/resources/bjb-window-base.ui:239 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "प्राथमिकताहरू"
+
+#: data/resources/bjb-window-base.ui:247
+msgid "Keyboard Shortcuts"
+msgstr "कुञ्जीपाटी सर्टकटहरू"
+
+#: data/resources/bjb-window-base.ui:255
+msgid "Help"
+msgstr "मद्दत गर्नुहोस्"
+
+#: data/resources/bjb-window-base.ui:263
+msgid "About Notes"
+msgstr "नोटहरू बारेमा"
+
+#: data/resources/bjb-window-base.ui:329 src/bjb-window-base.c:459
+msgid "Trash"
+msgstr "रद्दीटोकरी"
+
+#: data/resources/bjb-window-base.ui:351
+msgid "Open in New Window"
+msgstr "नयाँ सञ्झ्यालमा खोल्नुहोस्"
+
+#: data/resources/editor-toolbar.ui:63
 msgid "Bold"
 msgstr "बाक्लो"
 
-#: data/resources/editor-toolbar.ui:67
+#: data/resources/editor-toolbar.ui:79
 msgid "Italic"
 msgstr "छड्के"
 
-#: data/resources/editor-toolbar.ui:83
+#: data/resources/editor-toolbar.ui:95
 msgid "Strike"
 msgstr "काटिएको"
 
-#: data/resources/editor-toolbar.ui:111
+#: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
 msgstr "गोली चिन्हहरू"
 
-#: data/resources/editor-toolbar.ui:127
+#: data/resources/editor-toolbar.ui:139
 msgid "List"
 msgstr "सूची"
 
-#: data/resources/editor-toolbar.ui:166
-#, fuzzy
+#: data/resources/editor-toolbar.ui:167
+msgid "Indent"
+msgstr "इन्डेन्ट"
+
+#: data/resources/editor-toolbar.ui:183
+msgid "Outdent"
+msgstr "आउटडेण्ट"
+
+#: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
-msgstr "नयाँ द्रष्टव्य"
+msgstr "चयनलाई नयाँ द्रष्टव्यमा प्रतिलिपि बनाउनुहोस्"
 
 #: data/resources/empty-results-box.ui:33
 msgid "No notes"
@@ -217,10 +306,9 @@ msgid "Selection mode"
 msgstr "चयन गर्ने अबस्था"
 
 #: data/resources/help-overlay.ui:76
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
-msgstr "चयन गर्ने अबस्था"
+msgstr "चयन मोड रद्द गर्नुहोस्"
 
 #: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
@@ -248,8 +336,6 @@ msgid "Italic"
 msgstr "छड्के"
 
 #: data/resources/help-overlay.ui:117
-#, fuzzy
-#| msgid "Strike"
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "काटिएको"
@@ -269,11 +355,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "नोट रद्दीटोकरीमा सार्नुहोस्"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
-msgid "Import Notes"
-msgstr "नोटहरू आयात गर्नुहोस्"
-
-#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+#: data/resources/import-dialog.ui:12
 msgid "_Cancel"
 msgstr "रद्द गर्नुहोस्"
 
@@ -301,100 +383,6 @@ msgstr "अनुकूल स्थान"
 msgid "Select a Folder"
 msgstr "फोल्डर चयन गर्नुहोस्"
 
-#: data/resources/main-toolbar.ui:14
-msgid "_New"
-msgstr "नयाँ"
-
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
-msgid "Note color"
-msgstr "नोट रङ्ग"
-
-#. Translators: “Empty” is a verb.
-#: data/resources/main-toolbar.ui:55
-msgid "_Empty"
-msgstr "खाली"
-
-#: data/resources/main-toolbar.ui:74
-msgid "Exit selection mode"
-msgstr "चयन शैलीबाट बाहिर जानुहोस्"
-
-#: data/resources/main-toolbar.ui:94
-msgid "Search note titles, content and notebooks"
-msgstr "द्रष्टव्य शीर्षक, सामाग्री र नोटबुकहरू खोजी गर्नुहोस्"
-
-#: data/resources/main-toolbar.ui:116
-msgid "Selection mode"
-msgstr "चयन गर्ने अबस्था"
-
-#: data/resources/main-toolbar.ui:130
-msgid "Open menu"
-msgstr "मेनु खोल्नुहोस्"
-
-#: data/resources/main-toolbar.ui:150
-msgid "More options"
-msgstr "अरू विकल्पहरू"
-
-#: data/resources/main-toolbar.ui:189
-msgid "View Trash"
-msgstr "रद्दीटोकरी दृष्य"
-
-#: data/resources/main-toolbar.ui:206
-msgid "Text Sizes"
-msgstr "पाठको आकार"
-
-#: data/resources/main-toolbar.ui:216
-msgid "_Large"
-msgstr "ठूलो"
-
-#: data/resources/main-toolbar.ui:226
-msgid "_Medium"
-msgstr "मध्यम"
-
-#: data/resources/main-toolbar.ui:236
-msgid "_Small"
-msgstr "सानो"
-
-#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "प्राथमिकताहरू"
-
-#: data/resources/main-toolbar.ui:263
-msgid "Keyboard Shortcuts"
-msgstr "कुञ्जीपाटी सर्टकटहरू"
-
-#: data/resources/main-toolbar.ui:272
-msgid "Help"
-msgstr "मद्दत गर्नुहोस्"
-
-#: data/resources/main-toolbar.ui:281
-msgid "About Notes"
-msgstr "नोटहरू बारेमा"
-
-#: data/resources/main-toolbar.ui:303
-msgid "Open in New Window"
-msgstr "नयाँ सञ्झ्यालमा खोल्नुहोस्"
-
-#: data/resources/main-toolbar.ui:320
-msgid "Undo"
-msgstr "पूर्वस्थितिमा फर्काउनुहोस्"
-
-#: data/resources/main-toolbar.ui:329
-msgid "Redo"
-msgstr "फेरि गर्नुहोस्"
-
-#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "नोटबुकहरू"
-
-#: data/resources/main-toolbar.ui:355
-msgid "Email this Note"
-msgstr "यो नोट इमेल गर्नुहोस्"
-
-#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
-msgid "Move to Trash"
-msgstr "रद्दीटोकरीमा सार्नुहोस्"
-
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
 msgstr "नोट सिर्जना गर्न नाम प्रविष्ट गर्नुहोस्"
@@ -402,6 +390,10 @@ msgstr "नोट सिर्जना गर्न नाम प्रवि�
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
 msgstr "नयाँ टिपोट"
+
+#: data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "नोट रङ्ग"
 
 #: data/resources/selection-toolbar.ui:60
 msgid "Share note"
@@ -436,55 +428,46 @@ msgid "Note Appearance"
 msgstr "नोट देखावट"
 
 #: data/resources/settings-dialog.ui:126
-#, fuzzy
 msgid "Select the default storage location:"
-msgstr "एउटा स्थान चयन गर्नुहोस्:"
+msgstr "पूर्वनिर्धारित भण्डारण स्थान चयन गर्नुहोस्:"
 
 #: data/resources/settings-dialog.ui:157
 msgid "Primary Book"
 msgstr "प्राथमिक पुस्तिका"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
+#: src/bijiben-shell-search-provider.c:229 src/bjb-detached-window.c:75 src/bjb-window-base.c:111
 msgid "Untitled"
 msgstr "शीर्षक विहिन"
 
-#: src/bjb-application.c:440
-msgid "Show the application’s version"
-msgstr "अनुप्रयोगको संसकरण देखाउनुहोस्"
-
-#: src/bjb-application.c:442
-msgid "Create a new note"
-msgstr "एउटा नयाँ द्रष्टव्य सिर्जना गर्नुहोस्"
-
-#: src/bjb-application.c:444
-msgid "[FILE…]"
-msgstr "[FILE…]"
-
-#: src/bjb-application.c:452
-msgid "Take notes and export them everywhere."
-msgstr "टिपोट लिनुहोस् र जताततै निर्यात गर्नुहोस् ।"
-
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:463
-msgid "Could not parse arguments"
-msgstr "तर्क पदवर्णन गर्न सकेन"
-
-#: src/bjb-application.c:471
+#: src/bjb-application.c:193
 msgid "GNOME Notes"
 msgstr "जिनोम द्रष्टव्यहरू"
 
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:483
-msgid "Could not register the application"
-msgstr "अनुप्रयोग दर्ता सकेन"
+#: src/bjb-application.c:248
+msgid "Show verbose logs"
+msgstr "भर्बोज लग देखाउनुहोस्"
 
-#: src/bjb-application.c:616
+#: src/bjb-application.c:250
+msgid "Show the application’s version"
+msgstr "अनुप्रयोगको संसकरण देखाउनुहोस्"
+
+#: src/bjb-application.c:252
+msgid "Create a new note"
+msgstr "एउटा नयाँ द्रष्टव्य सिर्जना गर्नुहोस्"
+
+#: src/bjb-application.c:260
+msgid "[FILE…]"
+msgstr "[FILE…]"
+
+#: src/bjb-application.c:261
+msgid "Take notes and export them everywhere."
+msgstr "टिपोट लिनुहोस् र जताततै निर्यात गर्नुहोस् ।"
+
+#: src/bjb-application.c:572
 msgid "Simple notebook for GNOME"
 msgstr "जिनोम सामान्य नोटबुक"
 
-#: src/bjb-application.c:622
+#: src/bjb-application.c:578
 msgid "translator-credits"
 msgstr "pawan chitrakar < chautari@gmail.com >"
 
@@ -496,10 +479,19 @@ msgstr "नोट रङ्ग"
 msgid "Notebook"
 msgstr "नोटबुक"
 
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-detached-window.c:95 src/bjb-window-base.c:907
+#, c-format
+msgid "Last updated: %s"
+msgstr "अन्तिम अद्यावधिक: %s"
+
 #: src/bjb-empty-results-box.c:63
-#, fuzzy
 msgid "Press the New button to create a note."
-msgstr "एउटा नयाँ द्रष्टव्य सिर्जना गर्नुहोस्"
+msgstr "द्रष्टव्य सिर्जना गर्न नयाँ बटन थिच्नुहोस् ।"
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
@@ -509,42 +501,12 @@ msgstr "ओहो"
 msgid "Please install “Tracker” then restart the application."
 msgstr "कृपया \"ट्र्याकर\" स्थापना गर्नुहोस् त्यसपछि अनुप्रयोग पुन: सुरु गर्नुहोस् ।"
 
-#: src/bjb-main-toolbar.c:134
-msgid "Click on items to select them"
-msgstr "वस्तुहरू चयनका लागि क्लिक गर्नुहोस्"
+#. Label used to indicate that note is opened in another window.
+#: src/bjb-note-view.c:189
+msgid "This note is being viewed in another window."
+msgstr "यो द्रष्टव्य अर्को सञ्झ्यालमा हेरिएको छ ।"
 
-#: src/bjb-main-toolbar.c:136
-#, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "%d चयन गरियो"
-msgstr[1] "%d चयन गरियो"
-
-#: src/bjb-main-toolbar.c:230
-#, c-format
-msgid "Results for %s"
-msgstr "\"%s\" का लागि नतिजा"
-
-#: src/bjb-main-toolbar.c:233
-msgid "New and Recent"
-msgstr "हालैका नया फाइल"
-
-#: src/bjb-main-toolbar.c:299
-msgid "Trash"
-msgstr "रद्दीटोकरी"
-
-#. Translators: %s is the note last recency description.
-#. * Last updated is placed as in left to right language
-#. * right to left languages might move %s
-#. *         '%s Last Updated'
-#.
-#: src/bjb-main-toolbar.c:367
-#, c-format
-msgid "Last updated: %s"
-msgstr "अन्तिम अद्यावधिक: %s"
-
-#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
-#: src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "अज्ञात"
 
@@ -572,9 +534,47 @@ msgstr "यो वर्ष"
 msgid "Local"
 msgstr "स्थानीय"
 
-#: src/libbiji/provider/biji-local-provider.c:364
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "सन्देश भण्डारण"
+
+#~ msgid "_New"
+#~ msgstr "नयाँ"
+
+#~ msgid "_Empty"
+#~ msgstr "खाली"
+
+#~ msgid "Exit selection mode"
+#~ msgstr "चयन शैलीबाट बाहिर जानुहोस्"
+
+#~ msgid "Search note titles, content and notebooks"
+#~ msgstr "द्रष्टव्य शीर्षक, सामाग्री र नोटबुकहरू खोजी गर्नुहोस्"
+
+#~ msgid "Selection mode"
+#~ msgstr "चयन गर्ने अबस्था"
+
+#~ msgid "View Trash"
+#~ msgstr "रद्दीटोकरी दृष्य"
+
+#~ msgid "Could not parse arguments"
+#~ msgstr "तर्क पदवर्णन गर्न सकेन"
+
+#~ msgid "Could not register the application"
+#~ msgstr "अनुप्रयोग दर्ता सकेन"
+
+#~ msgid "Click on items to select them"
+#~ msgstr "वस्तुहरू चयनका लागि क्लिक गर्नुहोस्"
+
+#~ msgid "%d selected"
+#~ msgid_plural "%d selected"
+#~ msgstr[0] "%d चयन गरियो"
+#~ msgstr[1] "%d चयन गरियो"
+
+#~ msgid "Results for %s"
+#~ msgstr "\"%s\" का लागि नतिजा"
+
+#~ msgid "New and Recent"
+#~ msgstr "हालैका नया फाइल"
 
 #~ msgid "notes;reminder;"
 #~ msgstr "द्रष्टव्यहरू;रिमाइन्डर;"

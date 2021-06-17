@@ -91,6 +91,7 @@ BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
 
 GList           *biji_manager_get_items             (BijiManager         *manager,
                                                      BijiItemsGroup       group);
+GListModel      *biji_manager_get_notebooks         (BijiManager         *self);
 
 BijiNoteObj     *biji_manager_note_new              (BijiManager *manager,
                                                      const gchar *str,

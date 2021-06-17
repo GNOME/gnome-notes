@@ -116,7 +116,7 @@ config_h.set('TRACKER_PRIVATE_STORE', private_store)
 bijiben_deps = [
   tracker_sparql_dep,
   dependency('gio-unix-2.0'),
-  dependency('glib-2.0', version: '>= 2.53.4'),
+  dependency('glib-2.0', version: '>= 2.64'),
   dependency('goa-1.0'),
   dependency('gtk+-3.0', version: '>= 3.19.3'),
   dependency('json-glib-1.0'),

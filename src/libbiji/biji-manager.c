@@ -41,6 +41,7 @@ struct _BijiManager
    * rather than one big central db here
    */
 
+  GListStore *notebooks;
   GHashTable *items;
   GHashTable *archives;
   GHashTable *providers;
@@ -228,6 +229,8 @@ load_eds_provider (BijiManager *self,
 static void
 biji_manager_init (BijiManager *self)
 {
+  self->notebooks = g_list_store_new (BIJI_TYPE_NOTEBOOK);
+
   /* Item path is key for table */
   self->items = g_hash_table_new_full (g_str_hash,
                                        g_str_equal,
@@ -294,6 +297,7 @@ biji_manager_finalize (GObject *object)
 {
   BijiManager *self = BIJI_MANAGER (object);
 
+  g_clear_object (&self->notebooks);
   g_clear_object (&self->location);
   g_hash_table_destroy (self->items);
   g_hash_table_destroy (self->archives);
@@ -523,6 +527,21 @@ manager_on_item_icon_changed_cb (BijiNoteObj *note, BijiManager *manager)
                                BIJI_ITEM (note));
 }
 
+static int
+compare_notebook (gconstpointer a,
+                  gconstpointer b,
+                  gpointer      user_data)
+{
+  g_autofree char *up_a = NULL;
+  g_autofree char *up_b = NULL;
+  BijiItem *item_a = (BijiItem *) a;
+  BijiItem *item_b = (BijiItem *) b;
+
+  up_a = g_utf8_casefold (biji_item_get_title (item_a), -1);
+  up_b = g_utf8_casefold (biji_item_get_title (item_b), -1);
+
+  return g_strcmp0 (up_a, up_b);
+}
 
 gboolean
 biji_manager_add_item (BijiManager *manager,
@@ -583,6 +602,9 @@ biji_manager_add_item (BijiManager *manager,
 
     else if (BIJI_IS_NOTEBOOK (item))
     {
+      if (!g_list_store_find (manager->notebooks, item, NULL))
+        g_list_store_insert_sorted (manager->notebooks, item,
+                                    compare_notebook, NULL);
       g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
     }
   }
@@ -682,6 +704,14 @@ biji_manager_get_items (BijiManager    *self,
   }
 
   return list;
+}
+
+GListModel *
+biji_manager_get_notebooks (BijiManager *self)
+{
+  g_return_val_if_fail (BIJI_IS_MANAGER (self), NULL);
+
+  return G_LIST_MODEL (self->notebooks);
 }
 
 BijiItem *

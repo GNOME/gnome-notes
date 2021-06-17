@@ -99,9 +99,6 @@ enum {
 
 static guint signals[N_SIGNALS];
 
-static void get_all_notebooks_cb (GList   *notebooks,
-                                  gpointer user_data);
-
 static void
 destroy_note_if_needed (BjbWindow *self)
 {
@@ -206,21 +203,6 @@ on_title_changed (BjbWindow *self,
 
   if (strlen (str) > 0)
     biji_note_obj_set_title (self->note, str);
-}
-
-static void
-on_display_notebooks_changed (BjbController *controller,
-                              gboolean       items_to_show,
-                              gboolean       remaining_items,
-                              BjbWindow     *self)
-{
-  BijiManager *manager;
-
-  gtk_container_foreach (GTK_CONTAINER (self->notebooks_box),
-                         (GtkCallback) gtk_widget_destroy, NULL);
-
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-  biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
 }
 
 static void
@@ -603,29 +585,34 @@ append_notebook (BijiItem      *notebook,
   gtk_box_pack_start (GTK_BOX (self->notebooks_box), button, TRUE, TRUE, 0);
 }
 
-static int
-compare_notebook (gconstpointer a,
-                  gconstpointer b)
-{
-  g_autofree char *up_a = NULL;
-  g_autofree char *up_b = NULL;
-  BijiItem *item_a = (BijiItem *) a;
-  BijiItem *item_b = (BijiItem *) b;
-
-  up_a = g_utf8_casefold (biji_item_get_title (item_a), -1);
-  up_b = g_utf8_casefold (biji_item_get_title (item_b), -1);
-
-  return g_strcmp0 (up_a, up_b);
-}
-
 static void
-get_all_notebooks_cb (GList   *notebooks,
-                      gpointer user_data)
+on_display_notebooks_changed (BjbWindow *self)
 {
-  BjbWindow *self = BJB_WINDOW (user_data);
+  g_autoptr(GList) children = NULL;
+  BijiManager *manager;
+  GListModel *notebooks;
+  GtkContainer *list;
+  guint n_items;
 
-  notebooks = g_list_sort (notebooks, compare_notebook);
-  g_list_foreach (notebooks, (GFunc) append_notebook, self);
+  g_assert (BJB_IS_WINDOW (self));
+
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
+  notebooks = biji_manager_get_notebooks (manager);
+  list = GTK_CONTAINER (self->notebooks_box);
+  children = gtk_container_get_children (list);
+
+  for (GList *child = children; child; child = child->next)
+    gtk_container_remove (list, child->data);
+
+  n_items = g_list_model_get_n_items (notebooks);
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(BijiItem) item = NULL;
+
+      item = g_list_model_get_item (notebooks, i);
+      append_notebook (item, self);
+    }
 }
 
 static GActionEntry win_entries[] = {
@@ -646,6 +633,7 @@ bjb_window_constructed (GObject *obj)
   BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (obj);
   GtkListBox *list_box;
+  GListModel *notebooks;
   GdkRectangle geometry;
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
@@ -689,7 +677,12 @@ bjb_window_constructed (GObject *obj)
 
   /* Populate the filter menu model. */
   manager = bjb_window_get_manager (GTK_WIDGET (self));
-  biji_get_all_notebooks_async (manager, NULL, get_all_notebooks_cb, self);
+  notebooks = biji_manager_get_notebooks (manager);
+
+  g_signal_connect_object (notebooks, "items-changed",
+                           G_CALLBACK (on_display_notebooks_changed), self,
+                           G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+  on_display_notebooks_changed (self);
 
   /* Connection to window signals */
   g_signal_connect (GTK_WIDGET (self),
@@ -811,10 +804,10 @@ bjb_window_set_is_main (BjbWindow *self,
         }
 
       g_clear_signal_handler (&self->display_notebooks_changed, self->controller);
-      self->display_notebooks_changed = g_signal_connect (self->controller,
-                                                          "display-notebooks-changed",
-                                                          G_CALLBACK (on_display_notebooks_changed),
-                                                          self);
+      self->display_notebooks_changed = g_signal_connect_swapped (self->controller,
+                                                                  "display-notebooks-changed",
+                                                                  G_CALLBACK (on_display_notebooks_changed),
+                                                                  self);
     }
 
   if (!is_main)

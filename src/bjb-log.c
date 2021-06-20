@@ -215,8 +215,10 @@ bjb_log_handler (GLogLevelFlags   log_level,
     return G_LOG_WRITER_HANDLED;
 
   /* GdkPixbuf logs are too much verbose, skip unless asked not to. */
-  if (g_strcmp0 (log_domain, "GdkPixbuf") == 0 &&
-      !strstr (domains, log_domain))
+  if (log_level >= G_LOG_LEVEL_MESSAGE &&
+      verbosity < 7 &&
+      g_strcmp0 (log_domain, "GdkPixbuf") == 0 &&
+      (!domains || !strstr (domains, log_domain)))
     return G_LOG_WRITER_HANDLED;
 
   if (!log_message)

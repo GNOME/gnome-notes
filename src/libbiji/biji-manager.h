@@ -56,7 +56,7 @@ void             biji_manager_import_uri            (BijiManager *manager,
 void             biji_manager_set_provider          (BijiManager *manager,
                                                      const gchar *provider_id);
 
-GList           *biji_manager_get_providers         (BijiManager *manager); /* <ProviderInfo*> */
+GListModel      *biji_manager_get_providers         (BijiManager *manager);
 TrackerSparqlConnection
                 *biji_manager_get_tracker_connection (BijiManager *manager);
 gpointer         biji_manager_get_tracker            (BijiManager *self);

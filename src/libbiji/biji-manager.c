@@ -44,7 +44,7 @@ struct _BijiManager
   GListStore *notebooks;
   GHashTable *items;
   GHashTable *archives;
-  GHashTable *providers;
+  GListStore *providers;
   BijiProvider *local_provider;
 
   /* The active provider */
@@ -117,6 +117,32 @@ on_provider_loaded_cb (BijiProvider   *provider,
   biji_manager_notify_changed (manager, group, BIJI_MANAGER_MASS_CHANGE, NULL);
 }
 
+static BijiProvider *
+find_provider_with_id (GListModel *providers,
+                       const char *provider_id)
+{
+  guint n_items;
+
+  if (!providers || !provider_id)
+    return NULL;
+
+  n_items = g_list_model_get_n_items (providers);
+
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(BijiProvider) provider = NULL;
+      const BijiProviderInfo *info;
+
+      provider = g_list_model_get_item (providers, i);
+      info = biji_provider_get_info (provider);
+
+      if (g_strcmp0 (info->unique_id, provider_id) == 0)
+        return provider;
+    }
+
+  return NULL;
+}
+
 /*
  * It should be the right place
  * to stock somehow providers list
@@ -127,14 +153,7 @@ static void
 _add_provider (BijiManager  *self,
                BijiProvider *provider)
 {
-  const BijiProviderInfo *info;
-
-  info = biji_provider_get_info (provider);
-  /* TODO: This is a workaround related to the local provider, which
-   *        emits the signal twice but it should emit it only once */
-  if (!g_hash_table_contains (self->providers, info->unique_id))
-    g_hash_table_insert (self->providers,
-                         (gpointer) info->unique_id, provider);
+  g_list_store_append (self->providers, provider);
 
   g_signal_connect (provider, "loaded",
                     G_CALLBACK (on_provider_loaded_cb), self);
@@ -230,6 +249,7 @@ static void
 biji_manager_init (BijiManager *self)
 {
   self->notebooks = g_list_store_new (BIJI_TYPE_NOTEBOOK);
+  self->providers = g_list_store_new (BIJI_TYPE_PROVIDER);
 
   /* Item path is key for table */
   self->items = g_hash_table_new_full (g_str_hash,
@@ -241,15 +261,6 @@ biji_manager_init (BijiManager *self)
                                           g_str_equal,
                                           NULL,
                                           NULL);
-  /*
-   * Providers are the different notes storage
-   * the hash table use an id
-   *
-   * - local files stored notes = "local"
-   * - own cloud notes = account_get_id
-   */
-  self->providers = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                           NULL, g_object_unref);
   self->tracker = biji_tracker_new (self);
 }
 
@@ -274,31 +285,20 @@ biji_manager_set_provider (BijiManager *self,
   g_hash_table_remove_all (self->items);
   g_hash_table_remove_all (self->archives);
 
-  self->provider = g_hash_table_lookup (self->providers, provider_id);
+  self->provider = find_provider_with_id (G_LIST_MODEL (self->providers), provider_id);
   if (self->provider)
     biji_provider_load_items (self->provider);
   else
     g_warning ("Could not find provider with ID: %s", provider_id);
 }
 
-GList *
+GListModel *
 biji_manager_get_providers (BijiManager *self)
 {
-  GList *providers, *l, *retval;
+  g_return_val_if_fail (BIJI_IS_MANAGER (self), NULL);
 
-  retval = NULL;
-  providers = g_hash_table_get_values (self->providers);
-
-  for (l = providers; l != NULL; l = l->next)
-  {
-    retval = g_list_prepend (
-               retval, (gpointer) biji_provider_get_info (BIJI_PROVIDER (l->data)));
-  }
-
-  g_list_free (providers);
-  return retval;
+  return G_LIST_MODEL (self->providers);
 }
-
 
 static void
 biji_manager_finalize (GObject *object)
@@ -310,7 +310,7 @@ biji_manager_finalize (GObject *object)
   g_clear_object (&self->tracker);
   g_hash_table_destroy (self->items);
   g_hash_table_destroy (self->archives);
-  g_hash_table_unref (self->providers);
+  g_clear_object (&self->providers);
 
   G_OBJECT_CLASS (biji_manager_parent_class)->finalize (object);
 }
@@ -932,10 +932,7 @@ biji_manager_note_new            (BijiManager  *self,
   BijiProvider *provider = NULL;
   BijiNoteObj *retval;
 
-
-  if (provider_id != NULL)
-    provider = g_hash_table_lookup (self->providers,
-                                    provider_id);
+  provider = find_provider_with_id (G_LIST_MODEL (self->providers), provider_id);
 
   if (provider == NULL)
     provider = self->local_provider;
@@ -962,8 +959,7 @@ biji_manager_note_new_full (BijiManager   *self,
   BijiProvider *provider;
   BijiNoteObj *retval;
 
-  provider = g_hash_table_lookup (self->providers,
-                                  provider_id);
+  provider = find_provider_with_id (G_LIST_MODEL (self->providers), provider_id);
 
   retval = BIJI_PROVIDER_GET_CLASS (provider)->create_note_full (provider,
                                                                  suggested_path,

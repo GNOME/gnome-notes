@@ -40,7 +40,6 @@ struct _BjbSettingsDialog
 
   /* Primary NoteBook page */
   GtkListBox       *listbox;
-  GList            *children;
 
   /* Note Appearance page */
   GtkColorChooser *color_button;
@@ -77,59 +76,6 @@ on_color_set (GtkColorButton    *button,
   g_object_set (self->settings, "color", color_str, NULL);
 }
 
-/* Primary Provider page */
-
-typedef struct
-{
-  GtkWidget      *widget;
-  GtkWidget      *toggle;
-
-  const gchar    *id;
-  const char     *name;
-  const char     *user;
-  const char     *domain;
-  GtkWidget      *icon;
-
-  gboolean       selected;
-
-} ProviderChild;
-
-
-static ProviderChild *
-provider_child_new (void)
-{
-  ProviderChild *retval;
-
-  retval = g_slice_new (ProviderChild);
-  retval->widget = NULL;
-  retval->toggle = NULL;
-  retval->selected = FALSE;
-  retval->id = NULL;
-  retval->icon = NULL;
-
-  return retval;
-}
-
-
-static void
-provider_child_free (gpointer child)
-{
-  g_slice_free (ProviderChild, child);
-}
-
-
-static inline GQuark
-application_quark (void)
-{
-  static GQuark quark;
-
-  if (G_UNLIKELY (quark == 0))
-    quark = g_quark_from_static_string ("bjb-application");
-
-  return quark;
-}
-
-
 static GtkWidget *
 child_toggle_new (void)
 {
@@ -142,47 +88,20 @@ child_toggle_new (void)
   return w;
 }
 
-
 static void
-toggle_child (gpointer iter,
-              gpointer user_data)
+toggle_child (GtkWidget *row,
+              gboolean   active)
 {
-  ProviderChild *child;
+  GtkWidget *widget, *toggle;
 
-  child = (ProviderChild*) iter;
+  g_assert (GTK_IS_LIST_BOX_ROW (row));
 
-  if (child->selected)
-    {
-      child->toggle = child_toggle_new ();
-      gtk_container_add (GTK_CONTAINER (child->widget), child->toggle);
-    }
-  else
-    {
-      if (child->toggle && GTK_IS_WIDGET (child->toggle))
-        gtk_widget_destroy (child->toggle);
+  widget = gtk_bin_get_child (GTK_BIN (row));
+  toggle = g_object_get_data (G_OBJECT (widget), "toggle");
+  g_assert (toggle);
 
-      child->toggle = NULL;
-    }
+  gtk_widget_set_opacity (toggle, active ? 1.0 : 0.0);
 }
-
-
-
-static void
-update_providers (BjbSettingsDialog *self)
-{
-  g_list_foreach (self->children, toggle_child, self);
-}
-
-
-static void
-unselect_child (gpointer data, gpointer user_data)
-{
-  ProviderChild *child;
-
-  child = (ProviderChild*) data;
-  child->selected = FALSE;
-}
-
 
 static void
 on_row_activated_cb    (GtkListBox    *list_box,
@@ -190,26 +109,36 @@ on_row_activated_cb    (GtkListBox    *list_box,
                         gpointer       user_data)
 {
   BjbSettingsDialog *self;
-  GtkWidget     *widget;
-  ProviderChild *child;
-
+  BijiProvider *provider;
+  GtkWidget *widget, *toggle;
+  g_autoptr(GList) children = NULL;
+  const BijiProviderInfo *info;
 
   self = BJB_SETTINGS_DIALOG (user_data);
 
-  /* Write GSettings if the provider was not the primary one */
   widget = gtk_bin_get_child (GTK_BIN (row));
-  child = g_object_get_qdata (G_OBJECT (widget), application_quark ());
+  provider = g_object_get_data (G_OBJECT (widget), "provider");
+  g_assert (provider);
 
-  if (child->selected == TRUE)
+  info = biji_provider_get_info (provider);
+  toggle = g_object_get_data (G_OBJECT (widget), "toggle");
+  g_assert (toggle);
+
+  /* If the row is already selected, simply return */
+  if (G_APPROX_VALUE (1.0, gtk_widget_get_opacity (toggle), DBL_EPSILON))
     return;
 
-  g_object_set (self->settings, "default-location", child->id, NULL);
-  biji_manager_set_provider (self->manager, child->id);
+  children = gtk_container_get_children (GTK_CONTAINER (list_box));
 
-  /* Toggle everything : unselect all but this one */
-  g_list_foreach (self->children, unselect_child, NULL);
-  child->selected = TRUE;
-  update_providers (self);
+  /* Deselect all rows first */
+  for (GList *child = children; child; child = child->next)
+    toggle_child (child->data, FALSE);
+
+  /* Now select the current one */
+  toggle_child (GTK_WIDGET (row), TRUE);
+
+  g_object_set (self->settings, "default-location", info->unique_id, NULL);
+  biji_manager_set_provider (self->manager, info->unique_id);
 }
 
 
@@ -225,52 +154,32 @@ header_func (GtkListBoxRow *row,
     gtk_list_box_row_set_header (row, NULL);
 }
 
-
-static void
-add_child (gpointer provider_info, gpointer user_data)
+static GtkWidget *
+provider_row_new (BjbSettingsDialog *self,
+                  BijiProvider      *provider)
 {
-  BjbSettingsDialog           *self;
-  const BijiProviderInfo      *info;
-  ProviderChild               *child;
-  GtkWidget                   *box, *w, *hbox;
-  g_autofree char             *identity = NULL;
+  const BijiProviderInfo *info;
+  GtkWidget *row, *w, *hbox;
+  g_autofree char *identity = NULL;
 
-  self = BJB_SETTINGS_DIALOG (user_data);
-  info = (const BijiProviderInfo*) provider_info;
+  g_assert (BJB_IS_SETTINGS_DIALOG (self));
+  g_assert (BIJI_IS_PROVIDER (provider));
 
-  child = provider_child_new ();
-  child->id = info->unique_id;
-  child->icon = info->icon;
-  child->name = info->name;
-  child->user = info->user;
-  child->domain = info->domain;
+  info = biji_provider_get_info (provider);
 
-  if (child->user && info->domain)
-    identity = g_strconcat(child->user, "@", child->domain, NULL);
+  if (info->user && info->domain)
+    identity = g_strconcat (info->user, "@", info->domain, NULL);
 
-  /* Is the provider the primary ? */
-  if (g_strcmp0 (child->id, bjb_settings_get_default_location (self->settings)) ==0)
-    child->selected = TRUE;
-
-  /* Create the widget */
-
-  child->widget = box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 24);
-  gtk_widget_set_margin_start (box, 12);
-  gtk_widget_set_margin_end (box, 12);
-  gtk_container_add (GTK_CONTAINER (self->listbox), child->widget);
-
-
-  g_object_set_qdata_full (G_OBJECT (child->widget), application_quark (),
-                           child, provider_child_free);
-
-
-  w = child->icon;
-  gtk_container_add (GTK_CONTAINER (box), w);
+  row = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 24);
+  gtk_widget_set_margin_start (row, 12);
+  gtk_widget_set_margin_end (row, 12);
+  gtk_container_add (GTK_CONTAINER (row), info->icon);
+  g_object_set_data (G_OBJECT (row), "provider", provider);
 
   hbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 2);
-  gtk_container_add (GTK_CONTAINER (box), hbox);
+  gtk_container_add (GTK_CONTAINER (row), hbox);
 
-  w = gtk_label_new (child->name);
+  w = gtk_label_new (info->name);
   gtk_widget_set_halign (w, GTK_ALIGN_START);
   gtk_widget_set_valign (w, GTK_ALIGN_CENTER);
   gtk_widget_set_hexpand (w, TRUE);
@@ -287,8 +196,45 @@ add_child (gpointer provider_info, gpointer user_data)
       gtk_container_add (GTK_CONTAINER (hbox), w);
     }
 
-  self->children = g_list_prepend (self->children, child);
-  gtk_widget_show_all (box);
+  w = child_toggle_new ();
+  gtk_container_add (GTK_CONTAINER (row), w);
+  g_object_set_data (G_OBJECT (row), "toggle", w);
+
+  if (g_strcmp0 (info->unique_id, bjb_settings_get_default_location (self->settings)) == 0)
+    gtk_widget_set_opacity (w, 1.0);
+  else
+    gtk_widget_set_opacity (w, 0.0);
+
+  gtk_widget_show_all (row);
+
+  return row;
+}
+
+static void
+on_provider_items_changed_cb (BjbSettingsDialog *self)
+{
+  GListModel *providers;
+  guint n_items;
+
+  g_assert (BJB_IS_SETTINGS_DIALOG (self));
+
+  providers = biji_manager_get_providers (self->manager);
+  n_items = g_list_model_get_n_items (providers);
+
+  /* First remove every row */
+  gtk_container_foreach (GTK_CONTAINER (self->listbox),
+                         (GtkCallback)gtk_widget_destroy, NULL);
+
+  /* Now add a row for each provider */
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(BijiProvider) provider = NULL;
+      GtkWidget *child;
+
+      provider = g_list_model_get_item (providers, i);
+      child = provider_row_new (self, provider);
+      gtk_container_add (GTK_CONTAINER (self->listbox), child);
+    }
 }
 
 static void
@@ -296,7 +242,7 @@ bjb_settings_dialog_constructed (GObject *object)
 {
   BjbSettingsDialog *self;
   GApplication      *app;
-  GList             *providers;
+  GListModel *providers;
   GdkRGBA            color;
 
   G_OBJECT_CLASS (bjb_settings_dialog_parent_class)->constructed (object);
@@ -324,25 +270,10 @@ bjb_settings_dialog_constructed (GObject *object)
 
   /* Add providers */
   providers = biji_manager_get_providers (self->manager);
-  g_list_foreach (providers, add_child, self);
-  g_list_free (providers);
-
-  /* Check GSettings : toggle the actual default provider */
-  update_providers (self);
-}
-
-static void
-bjb_settings_dialog_finalize (GObject *object)
-{
-  BjbSettingsDialog *self;
-
-  g_return_if_fail (BJB_IS_SETTINGS_DIALOG (object));
-
-  self = BJB_SETTINGS_DIALOG (object);
-
-  g_list_free (self->children);
-
-  G_OBJECT_CLASS (bjb_settings_dialog_parent_class)->finalize (object);
+  g_signal_connect_object (providers, "items-changed",
+                           G_CALLBACK (on_provider_items_changed_cb),
+                           self, G_CONNECT_SWAPPED);
+  on_provider_items_changed_cb (self);
 }
 
 static void
@@ -360,7 +291,6 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
   g_object_class = G_OBJECT_CLASS (klass);
   gtk_widget_class = GTK_WIDGET_CLASS (klass);
 
-  g_object_class->finalize = bjb_settings_dialog_finalize;
   g_object_class->constructed = bjb_settings_dialog_constructed;
 
   gtk_widget_class_set_template_from_resource (gtk_widget_class, "/org/gnome/Notes/ui/settings-dialog.ui");

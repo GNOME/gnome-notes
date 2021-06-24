@@ -32,7 +32,6 @@ enum
 {
   PROP_0,
   PROP_NOTE,
-  PROP_NOTE_VIEW,
   NUM_PROPERTIES
 };
 
@@ -41,7 +40,6 @@ struct _BjbEditorToolbar
   GtkActionBar   parent_instance;
 
   /* Note provide us the WebKitWebView editor */
-  BjbNoteView   *view;
   BijiNoteObj   *note;
 
   GtkAccelGroup *accel;
@@ -55,6 +53,8 @@ struct _BjbEditorToolbar
 
   GtkWidget     *indent_button;
   GtkWidget     *outdent_button;
+
+  GtkWidget     *window;
 };
 
 G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
@@ -114,7 +114,6 @@ on_link_clicked (GtkButton        *button,
 {
   BjbSettings             *settings;
   const gchar             *link;
-  GtkWidget               *window;
   BijiNoteObj             *result;
   GdkRGBA                  color;
   BijiManager             *manager;
@@ -124,8 +123,7 @@ on_link_clicked (GtkButton        *button,
   if (link == NULL || strlen (link) == 0)
     return;
 
-  window = bjb_note_view_get_base_window (self->view);
-  manager = bjb_window_get_manager (window);
+  manager = bjb_window_get_manager (self->window);
 
   settings = bjb_app_get_settings (g_application_get_default ());
   result = biji_manager_note_new (manager,
@@ -137,6 +135,22 @@ on_link_clicked (GtkButton        *button,
     biji_note_obj_set_rgba (result, &color);
 
   bijiben_new_window_for_note (g_application_get_default (), result);
+}
+
+static void
+bjb_editor_toolbar_map (GtkWidget *widget)
+{
+  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (widget);
+
+  GTK_WIDGET_CLASS (bjb_editor_toolbar_parent_class)->map (widget);
+
+  if (self->window)
+    return;
+
+  self->window = gtk_widget_get_toplevel (GTK_WIDGET (self));
+  g_object_ref (self->window);
+
+  gtk_window_add_accel_group (GTK_WINDOW (self->window), self->accel);
 }
 
 static void
@@ -166,9 +180,6 @@ bjb_editor_toolbar_set_property (GObject      *object,
     case PROP_NOTE:
       self->note = g_value_get_object (value);
       break;
-    case PROP_NOTE_VIEW:
-      self->view = g_value_get_object (value);
-      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -179,15 +190,11 @@ static void
 bjb_editor_toolbar_constructed (GObject *object)
 {
   BjbEditorToolbar *self;
-  GtkWidget        *window;
   gboolean          can_format;
 
   G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->constructed (object);
 
   self = BJB_EDITOR_TOOLBAR (object);
-
-  window = bjb_note_view_get_base_window (self->view);
-  gtk_window_add_accel_group (GTK_WINDOW (window), self->accel);
 
   gtk_widget_add_accelerator (self->bold_button, "clicked", self->accel,
                               GDK_KEY_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
@@ -215,11 +222,12 @@ static void
 bjb_editor_toolbar_finalize (GObject *object)
 {
   BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (object);
-  GtkWidget *window;
 
-  window = bjb_note_view_get_base_window (self->view);
-  gtk_window_remove_accel_group (GTK_WINDOW (window), self->accel);
+  if (self->window)
+    gtk_window_remove_accel_group (GTK_WINDOW (self->window), self->accel);
+
   g_object_unref (self->accel);
+  g_clear_object (&self->window);
 
   G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->finalize (object);
 }
@@ -231,10 +239,14 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   GtkWidgetClass *widget_class;
 
   object_class = G_OBJECT_CLASS (klass);
+  widget_class = GTK_WIDGET_CLASS (klass);
+
   object_class->get_property = bjb_editor_toolbar_get_property;
   object_class->set_property = bjb_editor_toolbar_set_property;
   object_class->constructed = bjb_editor_toolbar_constructed;
   object_class->finalize = bjb_editor_toolbar_finalize;
+
+  widget_class->map = bjb_editor_toolbar_map;
 
   g_object_class_install_property (object_class,
                                    PROP_NOTE,
@@ -246,17 +258,6 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
                                                         G_PARAM_CONSTRUCT |
                                                         G_PARAM_STATIC_STRINGS));
 
-  g_object_class_install_property (object_class,
-                                   PROP_NOTE_VIEW,
-                                   g_param_spec_object ("note-view",
-                                                        "Note View",
-                                                        "Note View",
-                                                        BJB_TYPE_NOTE_VIEW,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_CONSTRUCT |
-                                                        G_PARAM_STATIC_STRINGS));
-
-  widget_class = GTK_WIDGET_CLASS (klass);
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/editor-toolbar.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bold_button);
@@ -286,11 +287,9 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
 }
 
 GtkWidget *
-bjb_editor_toolbar_new (BjbNoteView *bjb_note_view,
-                        BijiNoteObj *biji_note_obj)
+bjb_editor_toolbar_new (BijiNoteObj *note)
 {
   return g_object_new (BJB_TYPE_EDITOR_TOOLBAR,
-                       "note"     , biji_note_obj,
-                       "note-view", bjb_note_view,
+                       "note", note,
                        NULL);
 }

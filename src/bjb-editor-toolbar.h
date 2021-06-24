@@ -27,7 +27,6 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkActionBar)
 
-GtkWidget *bjb_editor_toolbar_new (BjbNoteView *bjb_note_view,
-                                   BijiNoteObj *biji_note_obj);
+GtkWidget *bjb_editor_toolbar_new (BijiNoteObj *note);
 
 G_END_DECLS

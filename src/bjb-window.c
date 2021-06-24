@@ -957,8 +957,6 @@ void
 bjb_window_set_note (BjbWindow   *self,
                      BijiNoteObj *note)
 {
-  GtkWidget *w = GTK_WIDGET (self);
-
   g_return_if_fail (BJB_IS_WINDOW (self));
   g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
 
@@ -975,7 +973,7 @@ bjb_window_set_note (BjbWindow   *self,
     return;
 
   self->note = g_object_ref (note);
-  self->note_view = bjb_note_view_new (w, note);
+  self->note_view = bjb_note_view_new (note);
   gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
   gtk_widget_show (GTK_WIDGET (self->note_view));
 

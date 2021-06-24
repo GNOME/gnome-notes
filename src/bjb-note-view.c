@@ -27,7 +27,6 @@
 enum
 {
   PROP_0,
-  PROP_WINDOW,
   PROP_NOTE,
   NUM_PROPERTIES
 };
@@ -39,7 +38,6 @@ struct _BjbNoteView
   GtkOverlay         parent_instance;
 
   /* Data */
-  GtkWidget         *window ;
   GtkWidget         *view;
   BijiNoteObj       *note ;
 
@@ -98,9 +96,6 @@ bjb_note_view_get_property (GObject      *object,
 
   switch (prop_id)
   {
-    case PROP_WINDOW:
-      g_value_set_object (value, self->window);
-      break;
     case PROP_NOTE:
       g_value_set_object (value, self->note);
       break;
@@ -120,9 +115,6 @@ bjb_note_view_set_property ( GObject        *object,
 
   switch (prop_id)
   {
-    case PROP_WINDOW:
-      self->window = g_value_get_object(value);
-      break;
     case PROP_NOTE:
       self->note = g_value_get_object(value);
       break;
@@ -236,11 +228,10 @@ bjb_note_view_constructed (GObject *obj)
 }
 
 BjbNoteView *
-bjb_note_view_new (GtkWidget *win, BijiNoteObj* note)
+bjb_note_view_new (BijiNoteObj *note)
 {
   return g_object_new (BJB_TYPE_NOTE_VIEW,
-                       "window",win,
-                       "note",note,
+                       "note", note,
                        NULL);
 }
 
@@ -254,16 +245,6 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
   object_class->get_property = bjb_note_view_get_property;
   object_class->set_property = bjb_note_view_set_property;
 
-  properties[PROP_WINDOW] = g_param_spec_object ("window",
-                                                 "Window",
-                                                 "Parent Window",
-                                                 GTK_TYPE_WIDGET,
-                                                 G_PARAM_READWRITE |
-                                                 G_PARAM_CONSTRUCT |
-                                                 G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_property (object_class,PROP_WINDOW,properties[PROP_WINDOW]);
-
   properties[PROP_NOTE] = g_param_spec_object ("note",
                                                "Note",
                                                "Note",
@@ -273,10 +254,4 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
                                                G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_property (object_class,PROP_NOTE,properties[PROP_NOTE]);
-}
-
-GtkWidget *
-bjb_note_view_get_base_window (BjbNoteView *self)
-{
-  return self->window;
 }

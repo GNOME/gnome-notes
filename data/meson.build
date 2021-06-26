@@ -70,3 +70,5 @@ install_data(
   'org.gnome.Notes.gschema.xml',
   install_dir: join_paths(bijiben_datadir, 'glib-2.0', 'schemas')
 )
+
+gnome.compile_schemas(build_by_default: true)

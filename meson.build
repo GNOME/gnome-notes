@@ -148,6 +148,14 @@ configure_file(
   configuration: config_h
 )
 
+run_conf = configuration_data()
+run_conf.set('BUILD_DIR', meson.current_build_dir())
+configure_file(
+  input: 'run.in',
+  output: 'run',
+  configuration: run_conf,
+)
+
 meson.add_install_script(
   'build-aux/meson_post_install.py',
   bijiben_datadir,

@@ -111,6 +111,7 @@ biji_note_obj_init (BijiNoteObj *self)
 
   priv->timeout = biji_timeout_new ();
   priv->save = g_signal_connect_swapped (priv->timeout, "timeout", G_CALLBACK (on_save_timeout), self);
+  g_object_set_data_full (G_OBJECT (priv->timeout), "note", g_object_ref (self), g_object_unref);
   priv->labels = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 }
 
@@ -129,6 +130,8 @@ biji_note_obj_finalize (GObject *object)
 {
   BijiNoteObj        *self = BIJI_NOTE_OBJ(object);
   BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
+
+  g_clear_signal_handler (&priv->save, priv->timeout);
 
   if (priv->timeout)
     g_object_unref (priv->timeout);

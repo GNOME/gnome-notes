@@ -611,10 +611,12 @@ biji_manager_add_item (BijiManager *manager,
 
     else if (BIJI_IS_NOTEBOOK (item))
     {
-      if (!g_list_store_find (manager->notebooks, item, NULL))
-        g_list_store_insert_sorted (manager->notebooks, item,
-                                    compare_notebook, NULL);
-      g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
+      if (uid && !biji_manager_find_notebook (manager, uid))
+        {
+          g_list_store_insert_sorted (manager->notebooks, item,
+                                      compare_notebook, NULL);
+          g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
+        }
     }
   }
 

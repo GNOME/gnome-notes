@@ -19,6 +19,7 @@ sources = files(
   'bjb-main.c',
   'bjb-note-view.c',
   'bjb-organize-dialog.c',
+  'bjb-notebook-row.c',
   'bjb-search-toolbar.c',
   'bjb-settings.c',
   'bjb-settings-dialog.c',

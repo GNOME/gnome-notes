@@ -38,6 +38,7 @@
 #include "bjb-list-view.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
+#include "bjb-notebooks-dialog.h"
 #include "bjb-organize-dialog.h"
 #include "bjb-search-toolbar.h"
 #include "bjb-share.h"
@@ -397,14 +398,16 @@ on_view_notebooks_cb (GSimpleAction *action,
                       gpointer       user_data)
 {
   BjbWindow *self = BJB_WINDOW (user_data);
-  BijiNoteObj *note = self->note;
-  g_autoptr (GList) list = NULL;
+  GtkWidget *notebooks_dialog;
 
-  if (!note)
+  if (!self->note)
     return;
 
-  list = g_list_append (list, note);
-  bjb_organize_dialog_new (GTK_WINDOW (self), list);
+  notebooks_dialog = bjb_notebooks_dialog_new (GTK_WINDOW (self));
+  bjb_notebooks_dialog_set_item (BJB_NOTEBOOKS_DIALOG (notebooks_dialog), self->note);
+
+  gtk_dialog_run (GTK_DIALOG (notebooks_dialog));
+  gtk_widget_destroy (notebooks_dialog);
 }
 
 static void

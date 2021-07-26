@@ -39,7 +39,6 @@
 #include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
 #include "bjb-notebooks-dialog.h"
-#include "bjb-organize-dialog.h"
 #include "bjb-search-toolbar.h"
 #include "bjb-share.h"
 #include "bjb-window.h"

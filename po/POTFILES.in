@@ -9,7 +9,6 @@ data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui
 data/resources/help-overlay.ui
 data/resources/import-dialog.ui
-data/resources/organize-dialog.ui
 data/resources/selection-toolbar.ui
 data/resources/settings-dialog.ui
 src/bijiben-shell-search-provider.c

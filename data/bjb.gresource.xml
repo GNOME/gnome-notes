@@ -21,7 +21,6 @@
     <file alias="list-view-row.ui"       preprocess="xml-stripblanks">resources/list-view-row.ui</file>
     <file alias="bjb-notebook-row.ui"    preprocess="xml-stripblanks">resources/bjb-notebook-row.ui</file>
     <file alias="bjb-notebooks-dialog.ui" preprocess="xml-stripblanks">resources/bjb-notebooks-dialog.ui</file>
-    <file alias="organize-dialog.ui"     preprocess="xml-stripblanks">resources/organize-dialog.ui</file>
     <file alias="settings-dialog.ui"     preprocess="xml-stripblanks">resources/settings-dialog.ui</file>
   </gresource>
 </gresources>

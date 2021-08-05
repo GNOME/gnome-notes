@@ -229,6 +229,10 @@ bjb_window_finalize (GObject *object)
       g_clear_signal_handler (&self->note_deleted, self->note);
       g_clear_signal_handler (&self->note_trashed, self->note);
     }
+  else
+    {
+      g_settings_set_string (self->settings, "last-opened-item", ""); 
+    }
 
   note_view = g_object_get_data (object, "note-view");
   if (note_view)

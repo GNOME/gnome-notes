@@ -102,6 +102,17 @@ static guint signals[N_SIGNALS];
 static void
 destroy_note_if_needed (BjbWindow *self)
 {
+  if (self->note_deleted != 0)
+    {
+      g_signal_handler_disconnect (self->note, self->note_deleted);
+      self->note_deleted = 0;
+    }
+  if (self->note_trashed != 0)
+    {
+      g_signal_handler_disconnect (self->note, self->note_trashed);
+      self->note_trashed = 0;
+    }
+
   g_clear_object (&self->note);
 
   if (self->note_view && GTK_IS_WIDGET (self->note_view))
@@ -424,6 +435,7 @@ static void
 show_all_notes (BjbWindow *self)
 {
   clear_text_in_search_entry (self);
+  destroy_note_if_needed (self);
 
   /* Going back from a notebook. */
   if (bjb_controller_get_notebook (self->controller) != NULL)
@@ -437,6 +449,7 @@ static void
 show_trash (BjbWindow *self)
 {
   clear_text_in_search_entry (self);
+  destroy_note_if_needed (self);
 
   bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
   gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
@@ -454,6 +467,7 @@ on_show_notebook_cb (GSimpleAction *action,
   BijiManager *manager;
 
   clear_text_in_search_entry (self);
+  destroy_note_if_needed (self);
 
   note_uuid = g_variant_get_string (variant, NULL);
   if (g_strcmp0 (note_uuid, "ALL NOTES") == 0)

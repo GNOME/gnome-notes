@@ -19,6 +19,7 @@
  */
 
 #include <biji-string.h>
+#include "bjb-application.h"
 #include "bjb-list-view.h"
 #include "bjb-list-view-row.h"
 #include "bjb-utils.h"
@@ -36,9 +37,49 @@ struct _BjbListViewRow
 
   char           *uuid;
   char           *model_iter;
+
+  gulong          display_note_amended;
 };
 
 G_DEFINE_TYPE (BjbListViewRow, bjb_list_view_row, GTK_TYPE_LIST_BOX_ROW);
+
+static void
+on_manager_changed (BijiManager            *manager,
+                    BijiItemsGroup          group,
+                    BijiManagerChangeFlag   flag,
+                    gpointer               *biji_item,
+                    BjbListViewRow         *self)
+{
+  BijiItem *item = BIJI_ITEM (biji_item);
+  BijiNoteObj *note_obj = BIJI_NOTE_OBJ (item);
+
+  /* Note title/content amended. */
+  if (flag == BIJI_MANAGER_NOTE_AMENDED)
+    {
+      if (g_strcmp0 (self->uuid, biji_item_get_uuid (item)) == 0)
+        {
+          if (biji_note_obj_get_title (note_obj) != NULL &&
+              g_strcmp0 (gtk_label_get_text (self->title),
+                         biji_note_obj_get_title (note_obj)) != 0)
+            {
+              gtk_label_set_text (self->title, biji_note_obj_get_title (note_obj));
+            }
+          if (biji_note_obj_get_raw_text (note_obj) != NULL &&
+              g_strcmp0 (gtk_label_get_text (self->content),
+                         biji_note_obj_get_raw_text (note_obj)) != 0)
+            {
+              g_auto(GStrv)   lines         = NULL;
+              g_autofree char *one_line     = NULL;
+              g_autofree char *preview      = NULL;
+
+              lines = g_strsplit (biji_note_obj_get_raw_text (note_obj), "\n", -1);
+              one_line = g_strjoinv (" ", lines);
+              preview = biji_str_clean (one_line);
+              gtk_label_set_text (self->content, preview);
+            }
+        }
+    }
+}
 
 static void
 on_toggled_cb (BjbListViewRow *self,
@@ -76,6 +117,7 @@ bjb_list_view_row_setup (BjbListViewRow *self,
   GdkRGBA          rgba;
   gboolean         selected;
   BjbController   *controller;
+  BijiManager     *manager;
   GtkListBox      *list_box;
   g_auto (GStrv)   lines        = NULL;
   g_autofree char *one_line     = NULL;
@@ -138,6 +180,14 @@ bjb_list_view_row_setup (BjbListViewRow *self,
   else
     gtk_list_box_unselect_row (list_box, GTK_LIST_BOX_ROW (self));
 
+  if (self->display_note_amended != 0)
+    {
+      g_signal_handler_disconnect (controller, self->display_note_amended);
+    }
+
+  manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ()));
+  self->display_note_amended = g_signal_connect (manager, "changed",
+                                                 G_CALLBACK (on_manager_changed), self);
 }
 
 const char *
@@ -160,6 +210,14 @@ bjb_list_view_row_finalize (GObject *object)
   g_clear_object (&self->css_provider);
   g_free (self->uuid);
   g_free (self->model_iter);
+
+  if (self->display_note_amended != 0)
+    {
+      BijiManager *manager;
+
+      manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ()));
+      g_signal_handler_disconnect (manager, self->display_note_amended);
+    }
 
   G_OBJECT_CLASS (bjb_list_view_row_parent_class)->finalize (object);
 }

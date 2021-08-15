@@ -1,17 +1,17 @@
 # Swedish translations for gnome-notes package
 # Svenska översättningar för paketet gnome-notes.
-# Copyright © 2014, 2015, 2017-2020 gnome-notes's COPYRIGHT HOLDER
+# Copyright © 2014, 2015, 2017-2021 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-notes package.
 # Marcus Lundblad <ml@update.uu.se>, 2014.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2017, 2018, 2019, 2020.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2017, 2018, 2019, 2020, 2021.
 # Josef Andersson <josef.andersson@fripost.org>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-04-19 10:38+0000\n"
-"PO-Revision-Date: 2020-04-30 23:48+0200\n"
+"POT-Creation-Date: 2021-06-16 15:18+0000\n"
+"PO-Revision-Date: 2021-08-16 00:41+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:636 src/bjb-window-base.c:18
+#: src/bjb-application.c:627 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Anteckningar"
 
@@ -110,37 +110,44 @@ msgstr "Primär anteckningsleverantör att använda för nya anteckningar."
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Den primära anteckningsboken är den plats där nya anteckningar skapas."
 
+# TODO: weird source sentence grammarwise.
 #: data/org.gnome.Notes.gschema.xml:29
+msgid "Note path of the notes opened when Notes quits last time."
+msgstr ""
+"Anteckna sökvägen för anteckningarna som var öppna när Anteckningar "
+"avslutades senast."
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid ""
+"This stores the note path of the last opened item, so that we can open it on "
+"startup."
+msgstr ""
+"Detta lagrar anteckningssökvägen för det senast öppnade objektet, så att vi "
+"kan öppna det vid uppstart."
+
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window maximized"
 msgstr "Fönster maximerat"
 
-#: data/org.gnome.Notes.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window maximized state."
 msgstr "Tillstånd för maximerat fönster."
 
-#: data/org.gnome.Notes.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window size"
 msgstr "Fönsterstorlek"
 
-#: data/org.gnome.Notes.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window size (width and height)."
 msgstr "Fönsterstorlek (bredd och höjd)."
 
-#: data/org.gnome.Notes.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Window position"
 msgstr "Fönsterposition"
 
-#: data/org.gnome.Notes.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:45
 msgid "Window position (x and y)."
 msgstr "Fönsterposition (x och y)."
-
-#: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Hur anteckningsposter ska visas"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Huruvida anteckningsposter ska visas i ikonvy eller listvy."
 
 #: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
@@ -152,27 +159,113 @@ msgid ""
 msgstr ""
 "Det finns tre textstorlekar tillgängliga: liten, mellan (standard) och stor."
 
-#: data/resources/editor-toolbar.ui:51
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
+#: src/bjb-window.c:449
+msgid "All Notes"
+msgstr "Alla anteckningar"
+
+#: data/resources/bjb-window.ui:63
+msgid "Open menu"
+msgstr "Öppna meny"
+
+#: data/resources/bjb-window.ui:148
+msgid "More options"
+msgstr "Fler val"
+
+#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "Importera anteckningar"
+
+#: data/resources/bjb-window.ui:196
+msgid "Text Sizes"
+msgstr "Textstorlekar"
+
+#: data/resources/bjb-window.ui:205
+msgid "_Large"
+msgstr "_Stor"
+
+#: data/resources/bjb-window.ui:214
+msgid "_Medium"
+msgstr "_Mellan"
+
+#: data/resources/bjb-window.ui:223
+msgid "_Small"
+msgstr "_Liten"
+
+#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: data/resources/bjb-window.ui:248
+msgid "Keyboard Shortcuts"
+msgstr "Tangentbordsgenvägar"
+
+#: data/resources/bjb-window.ui:256
+msgid "Help"
+msgstr "Hjälp"
+
+#: data/resources/bjb-window.ui:264
+msgid "About Notes"
+msgstr "Om Anteckningar"
+
+#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
+#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Anteckningsböcker"
+
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+msgid "Trash"
+msgstr "Papperskorg"
+
+#: data/resources/bjb-window.ui:352
+msgid "Open in New Window"
+msgstr "Öppna i nytt fönster"
+
+#: data/resources/bjb-window.ui:368
+msgid "Undo"
+msgstr "Ångra"
+
+#: data/resources/bjb-window.ui:376
+msgid "Redo"
+msgstr "Gör om"
+
+#: data/resources/bjb-window.ui:400
+msgid "Email this Note"
+msgstr "Skicka anteckning som e-post"
+
+#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "Flytta till papperskorgen"
+
+#: data/resources/editor-toolbar.ui:63
 msgid "Bold"
 msgstr "Fet"
 
-#: data/resources/editor-toolbar.ui:67
+#: data/resources/editor-toolbar.ui:79
 msgid "Italic"
 msgstr "Kursiv"
 
-#: data/resources/editor-toolbar.ui:83
+#: data/resources/editor-toolbar.ui:95
 msgid "Strike"
 msgstr "Genomstruken"
 
-#: data/resources/editor-toolbar.ui:111
+#: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
 msgstr "Punkter"
 
-#: data/resources/editor-toolbar.ui:127
+#: data/resources/editor-toolbar.ui:139
 msgid "List"
 msgstr "Lista"
 
-#: data/resources/editor-toolbar.ui:166
+#: data/resources/editor-toolbar.ui:167
+msgid "Indent"
+msgstr "Gör indrag"
+
+#: data/resources/editor-toolbar.ui:183
+msgid "Outdent"
+msgstr "Minska indrag"
+
+#: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Kopiera markering till en ny anteckning"
 
@@ -280,11 +373,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Flytta anteckning till papperskorgen"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
-msgid "Import Notes"
-msgstr "Importera anteckningar"
-
-#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+#: data/resources/import-dialog.ui:12
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -312,108 +401,6 @@ msgstr "Användarspecificerad plats"
 msgid "Select a Folder"
 msgstr "Välj en mapp"
 
-#: data/resources/main-toolbar.ui:14
-msgid "_New"
-msgstr "_Ny"
-
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
-msgid "Note color"
-msgstr "Anteckningsfärg"
-
-#. Translators: “Empty” is a verb.
-#: data/resources/main-toolbar.ui:55
-msgid "_Empty"
-msgstr "_Töm"
-
-#: data/resources/main-toolbar.ui:74
-msgid "Exit selection mode"
-msgstr "Lämna markeringsläget"
-
-#: data/resources/main-toolbar.ui:94
-msgid "Search note titles, content and notebooks"
-msgstr "Sök på anteckningstitel, innehåll och anteckningsböcker"
-
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Visa anteckningar och anteckningsböcker i ett rutnät"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Visa anteckningar och anteckningsböcker i en lista"
-
-#: data/resources/main-toolbar.ui:161
-msgid "Selection mode"
-msgstr "Markeringsläge"
-
-#: data/resources/main-toolbar.ui:175
-msgid "Open menu"
-msgstr "Öppna meny"
-
-#: data/resources/main-toolbar.ui:195
-msgid "More options"
-msgstr "Fler val"
-
-#: data/resources/main-toolbar.ui:234
-msgid "View Trash"
-msgstr "Visa papperskorgen"
-
-#: data/resources/main-toolbar.ui:251
-msgid "Text Sizes"
-msgstr "Textstorlekar"
-
-#: data/resources/main-toolbar.ui:261
-msgid "_Large"
-msgstr "_Stor"
-
-#: data/resources/main-toolbar.ui:271
-msgid "_Medium"
-msgstr "_Mellan"
-
-#: data/resources/main-toolbar.ui:281
-msgid "_Small"
-msgstr "_Liten"
-
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: data/resources/main-toolbar.ui:308
-msgid "Keyboard Shortcuts"
-msgstr "Tangentbordsgenvägar"
-
-#: data/resources/main-toolbar.ui:317
-msgid "Help"
-msgstr "Hjälp"
-
-#: data/resources/main-toolbar.ui:326
-msgid "About Notes"
-msgstr "Om Anteckningar"
-
-#: data/resources/main-toolbar.ui:348
-msgid "Open in New Window"
-msgstr "Öppna i nytt fönster"
-
-#: data/resources/main-toolbar.ui:365
-msgid "Undo"
-msgstr "Ångra"
-
-#: data/resources/main-toolbar.ui:374
-msgid "Redo"
-msgstr "Gör om"
-
-#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Anteckningsböcker"
-
-#: data/resources/main-toolbar.ui:400
-msgid "Email this Note"
-msgstr "Skicka anteckning som e-post"
-
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:96
-msgid "Move to Trash"
-msgstr "Flytta till papperskorgen"
-
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
 msgstr "Ange ett namn för att skapa en anteckningsbok"
@@ -421,6 +408,10 @@ msgstr "Ange ett namn för att skapa en anteckningsbok"
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
 msgstr "Ny anteckningsbok"
+
+#: data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "Anteckningsfärg"
 
 #: data/resources/selection-toolbar.ui:60
 msgid "Share note"
@@ -462,47 +453,39 @@ msgstr "Välj standardplatsen för lagring:"
 msgid "Primary Book"
 msgstr "Huvudbok"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:394
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
 msgid "Untitled"
 msgstr "Namnlös"
 
-#: src/bjb-application.c:461
-msgid "Show the application’s version"
-msgstr "Visa programversion"
-
-#: src/bjb-application.c:463
-msgid "Create a new note"
-msgstr "Skapa en ny anteckning"
-
-#: src/bjb-application.c:465
-msgid "[FILE…]"
-msgstr "[FIL…]"
-
-#: src/bjb-application.c:473
-msgid "Take notes and export them everywhere."
-msgstr "Ta anteckningar och exportera dem överallt."
-
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:484
-msgid "Could not parse arguments"
-msgstr "Kunde inte tolka argument"
-
-#: src/bjb-application.c:492
+#: src/bjb-application.c:223
 msgid "GNOME Notes"
 msgstr "GNOME Anteckningar"
 
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:504
-msgid "Could not register the application"
-msgstr "Kunde inte registrera programmet"
+#: src/bjb-application.c:278
+msgid "Show verbose logs"
+msgstr "Visa utförliga loggar"
 
-#: src/bjb-application.c:637
+#: src/bjb-application.c:280
+msgid "Show the application’s version"
+msgstr "Visa programversion"
+
+#: src/bjb-application.c:282
+msgid "Create a new note"
+msgstr "Skapa en ny anteckning"
+
+#: src/bjb-application.c:290
+msgid "[FILE…]"
+msgstr "[FIL…]"
+
+#: src/bjb-application.c:291
+msgid "Take notes and export them everywhere."
+msgstr "Ta anteckningar och exportera dem överallt."
+
+#: src/bjb-application.c:628
 msgid "Simple notebook for GNOME"
 msgstr "Enkel anteckningsbok för GNOME"
 
-#: src/bjb-application.c:643
+#: src/bjb-application.c:634
 msgid "translator-credits"
 msgstr ""
 "Marcus Lundblad <ml@update.uu.se>\n"
@@ -513,6 +496,10 @@ msgstr ""
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Anteckningsfärg"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Anteckningsbok"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -526,154 +513,37 @@ msgstr "Hoppsan"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Var vänlig installera ”Tracker” och starta sedan om programmet."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Läs in fler"
+#. Label used to indicate that note is opened in another window.
+#: src/bjb-note-view.c:195
+msgid "This note is being viewed in another window."
+msgstr "Denna anteckning visas i ett annat fönster"
 
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Läser in…"
+#: src/bjb-utils.c:51
+msgid "Unknown"
+msgstr "Okänd"
 
-#: src/bjb-main-toolbar.c:140
-msgid "Click on items to select them"
-msgstr "Klicka på listpunkter för att välja dem"
+#: src/bjb-utils.c:68
+msgid "Yesterday"
+msgstr "Igår"
 
-#: src/bjb-main-toolbar.c:142
-#, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "%d vald"
-msgstr[1] "%d valda"
-
-#: src/bjb-main-toolbar.c:275
-#, c-format
-msgid "Results for %s"
-msgstr "Resultat för %s"
-
-#: src/bjb-main-toolbar.c:278
-msgid "New and Recent"
-msgstr "Nya och senaste"
-
-#: src/bjb-main-toolbar.c:370
-msgid "Trash"
-msgstr "Papperskorg"
+#: src/bjb-utils.c:74
+msgid "This month"
+msgstr "Denna månad"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:438
+#: src/bjb-window.c:922
 #, c-format
 msgid "Last updated: %s"
 msgstr "Senast uppdaterad: %s"
-
-#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
-#: src/libbiji/biji-date-time.c:51
-msgid "Unknown"
-msgstr "Okänd"
-
-#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Igår"
-
-#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Denna månad"
-
-#: src/libbiji/biji-date-time.c:38
-msgid "Today"
-msgstr "Idag"
-
-#: src/libbiji/biji-date-time.c:47
-msgid "This week"
-msgstr "Denna vecka"
-
-#: src/libbiji/biji-date-time.c:60
-msgid "This year"
-msgstr "I år"
 
 #: src/libbiji/biji-notebook.c:265
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Lokal lagring"
-
-#~ msgid "* "
-#~ msgstr "* "
-
-#~ msgid "1."
-#~ msgstr "1."
-
-#~ msgctxt "shortcut window"
-#~ msgid "Shortcuts"
-#~ msgstr "Genvägar"
-
-#~| msgid "org.gnome.bijiben"
-#~ msgid "org.gnome.Notes"
-#~ msgstr "org.gnome.Notes"
-
-#~ msgid "Bijiben"
-#~ msgstr "Bijiben"
-
-#~ msgid "Quickly jot notes"
-#~ msgstr "Snabbskriv anteckningar"
-
-#~ msgid "_Import Notes"
-#~ msgstr "I_mportera anteckningar"
-
-#~ msgid "_View Trash"
-#~ msgstr "_Visa papperskorgen"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Inställningar"
-
-#~ msgid "_Help"
-#~ msgstr "_Hjälp"
-
-#~ msgid "_Keyboard Shortcuts"
-#~ msgstr "_Tangentbordsgenvägar"
-
-#~ msgid "_About"
-#~ msgstr "_Om"
-
-#~ msgid "Cut"
-#~ msgstr "Klipp ut"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiera"
-
-#~ msgid "Paste"
-#~ msgstr "Klistra in"
-
-#~ msgid "About"
-#~ msgstr "Om"
-
-#~ msgid "Notes is an editor allowing to make simple lists for later use."
-#~ msgstr ""
-#~ "Anteckningar är en redigerare som låter dig göra enkla listor för senare "
-#~ "bruk."
-
-#~ msgid "It allows to use ownCloud as a storage location and online editor."
-#~ msgstr ""
-#~ "Den låter dig använda ownCloud för online-lagring och webbredigering."
-
-#~ msgid "Note Edition"
-#~ msgstr "Anteckningsversion"
-
-#~ msgid "Notebook"
-#~ msgstr "Anteckningsbok"
-
-#~ msgid "Note"
-#~ msgstr "Anteckning"
-
-#~ msgid "notes;reminder;"
-#~ msgstr "anteckningar;påminnelse;"
-
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"
-
-#~ msgid "_OK"
-#~ msgstr "_OK"

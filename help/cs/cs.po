@@ -502,9 +502,6 @@ msgstr ""
 
 #. (itstool) path: info/title
 #: C/index.page:6
-#, fuzzy
-#| msgctxt "link"
-#| msgid "Notes"
 msgctxt "link:trail"
 msgid "Notes"
 msgstr "Poznámky"

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes gnome-40\n"
-"POT-Creation-Date: 2021-04-19 15:56+0000\n"
-"PO-Revision-Date: 2021-05-18 12:34+0700\n"
+"POT-Creation-Date: 2021-06-04 06:50+0000\n"
+"PO-Revision-Date: 2021-08-31 18:50+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -23,14 +23,14 @@ msgstr "Andika Triwidada <andika@gmail.com>, 2020, 2021."
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -51,7 +51,7 @@ msgstr "2013, 2014"
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
-#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
+#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
 #: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
 #: C/share.page:20
 msgid "Shobha Tyagi"
@@ -59,7 +59,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
 #: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
@@ -323,41 +323,37 @@ msgstr "Untuk menghapus semua catatan di Tong Sampah secara permanen:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid ""
-"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
-"terminology\">Activities</gui>."
-msgstr ""
-"Klik ikon <gui>Catatan</gui> di dekat <gui href=\"help:gnome-help/shell-"
-"terminology\">Aktivitas</gui>."
+msgid "Press the menu button in the top-right corner of the window."
+msgstr "Tekan tombol menu di sudut kanan atas jendela."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:34
+#: C/delete-permanent.page:33
 msgid "Select <gui>View Trash</gui>."
 msgstr "Pilih <gui>Lihat Tong Sampah</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:37
+#: C/delete-permanent.page:36
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr "Klik tombol <gui style=\"button\">Kosongkan</gui> di bilah alat."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:42
+#: C/delete-permanent.page:41
 msgid "To delete selected notes from Trash:"
 msgstr "Untuk menghapus catatan yang dipilih dari Tong Sampah:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:44
+#: C/delete-permanent.page:43
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "Di tampilan <gui>Tong Sampah</gui> klik tombol <gui>Mode pilihan</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:48
+#: C/delete-permanent.page:47
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Pilih semua catatan yang ingin Anda hapus secara permanen."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:51
+#: C/delete-permanent.page:50
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Klik tombol <gui style=\"button\">Hapus Secara Permanen</gui>."
 
@@ -502,39 +498,45 @@ msgstr ""
 "atau <gui style=\"button\">Coret</gui>."
 
 #. (itstool) path: info/title
-#: C/index.page:8
+#: C/index.page:6
+msgctxt "link:trail"
+msgid "Notes"
+msgstr "Catatan"
+
+#. (itstool) path: info/title
+#: C/index.page:7
 msgctxt "link"
 msgid "Notes"
 msgstr "Catatan"
 
 #. (itstool) path: info/title
-#: C/index.page:9
+#: C/index.page:8
 msgctxt "text"
 msgid "Notes"
 msgstr "Catatan"
 
 #. (itstool) path: info/desc
-#: C/index.page:27
+#: C/index.page:26
 msgid "Learn how to use and manage your notes."
 msgstr "Belajar cara menggunakan dan mengelola catatan Anda."
 
 #. (itstool) path: page/title
-#: C/index.page:30
+#: C/index.page:29
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Catatan"
 
 #. (itstool) path: section/title
-#: C/index.page:37
+#: C/index.page:36
 msgid "Create notes"
 msgstr "Membuat catatan"
 
 #. (itstool) path: section/title
-#: C/index.page:40
+#: C/index.page:39
 msgid "Edit and share notes"
 msgstr "Menyunting dan berbagi catatan"
 
 #. (itstool) path: section/title
-#: C/index.page:43
+#: C/index.page:42
 msgid "Delete notes"
 msgstr "Menghapus catatan"
 

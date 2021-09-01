@@ -1,20 +1,20 @@
-# Korean translation for bijiben.
+# Korean translation for gnome-notes-help (formal name was bijiben).
 # This file is distributed under the same license as the bijiben package.
 # Seong-ho Cho <shcho@gnome.org>, 2016, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2021-02-25 11:20+0000\n"
-"PO-Revision-Date: 2021-03-12 10:48+0900\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"Project-Id-Version: gnome-notes-help master\n"
+"POT-Creation-Date: 2021-06-04 06:50+0000\n"
+"PO-Revision-Date: 2021-08-31 16:55+0900\n"
+"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,14 +23,14 @@ msgstr "조성호 <shcho@gnome.org>, 2016, 2021."
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -51,7 +51,7 @@ msgstr "2013, 2014"
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
-#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
+#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
 #: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
 #: C/share.page:20
 msgid "Shobha Tyagi"
@@ -59,7 +59,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
 #: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
@@ -315,40 +315,36 @@ msgstr "휴지통에 있는 모든 메모를 완전히 삭제하려면:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid ""
-"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
-"terminology\">Activities</gui>."
-msgstr ""
-"<gui href=\"help:gnome-help/shell-terminology\">현재 활동</gui>에 있는 <gui>"
-"메모</gui>를 누르십시오."
+msgid "Press the menu button in the top-right corner of the window."
+msgstr "창 우측 상단의 메뉴 단추를 누르십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:34
+#: C/delete-permanent.page:33
 msgid "Select <gui>View Trash</gui>."
 msgstr "<gui>휴지통 보기</gui>를 선택하십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:37
+#: C/delete-permanent.page:36
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr "도구 모음에서 <gui style=\"button\">비우기</gui> 단추를 누르십시오."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:42
+#: C/delete-permanent.page:41
 msgid "To delete selected notes from Trash:"
 msgstr "선택한 메모를 휴지통에서 삭제하려면:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:44
+#: C/delete-permanent.page:43
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr "<gui>휴지통</gui> 보기에서 <gui>선택 모드</gui> 단추를 누르십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:48
+#: C/delete-permanent.page:47
 msgid "Select all the notes that you want to delete permanently."
 msgstr "완전히 삭제할 모든 메모를 선택하십시오."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:51
+#: C/delete-permanent.page:50
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "<gui style=\"button\">완전히 삭제</gui> 단추를 누르십시오."
 
@@ -431,10 +427,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:48
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-unordered-list.png' "
@@ -456,10 +448,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:54
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-numbered-list.png' "
@@ -496,39 +484,45 @@ msgstr ""
 "style=\"button\">취소선</gui> 중 하나를 누르십시오."
 
 #. (itstool) path: info/title
-#: C/index.page:8
+#: C/index.page:6
+msgctxt "link:trail"
+msgid "Notes"
+msgstr "메모"
+
+#. (itstool) path: info/title
+#: C/index.page:7
 msgctxt "link"
 msgid "Notes"
 msgstr "메모"
 
 #. (itstool) path: info/title
-#: C/index.page:9
+#: C/index.page:8
 msgctxt "text"
 msgid "Notes"
 msgstr "메모"
 
 #. (itstool) path: info/desc
-#: C/index.page:27
+#: C/index.page:26
 msgid "Learn how to use and manage your notes."
 msgstr "메모 활용 관리법을 알아봅니다."
 
 #. (itstool) path: page/title
-#: C/index.page:30
+#: C/index.page:29
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> 메모"
 
 #. (itstool) path: section/title
-#: C/index.page:37
+#: C/index.page:36
 msgid "Create notes"
 msgstr "메모 만들기"
 
 #. (itstool) path: section/title
-#: C/index.page:40
+#: C/index.page:39
 msgid "Edit and share notes"
 msgstr "메모 편집하고 공유하기"
 
 #. (itstool) path: section/title
-#: C/index.page:43
+#: C/index.page:42
 msgid "Delete notes"
 msgstr "메모 삭제"
 
@@ -561,10 +555,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:44
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-12.png' "
-#| "md5='94bd08317f7087f4012b2efd954e3b66'"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
@@ -791,6 +781,13 @@ msgstr "크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "이 문서는 <_:link-1/>에 따른 활용을 허가합니다."
+
+#~ msgid ""
+#~ "Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+#~ "terminology\">Activities</gui>."
+#~ msgstr ""
+#~ "<gui href=\"help:gnome-help/shell-terminology\">현재 활동</gui>에 있는 "
+#~ "<gui>메모</gui>를 누르십시오."
 
 #~ msgid "01 sep 2014"
 #~ msgstr "2014년 9월 1일"

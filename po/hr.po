@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
 "POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-09-07 14:27+0200\n"
+"PO-Revision-Date: 2021-09-07 14:31+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -109,9 +109,7 @@ msgstr "Glava bilježnica je mjesto gdje su nove bilješke stvorene."
 
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
-msgstr ""
-"Putanja bilješke bilješki otvorenih kada su Bilješke zatvorene posljednji "
-"puta."
+msgstr "Putanja bilješki otvorenih kada su Bilješke zatvorene posljednji puta."
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""

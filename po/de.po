@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-05-24 16:21+0000\n"
-"PO-Revision-Date: 2021-06-03 20:37+0200\n"
+"POT-Creation-Date: 2021-07-13 21:16+0000\n"
+"PO-Revision-Date: 2021-09-01 18:10+0200\n"
 "Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -21,11 +21,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:568 src/bjb-window-base.c:19
+#: src/bjb-application.c:627 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Notizen"
 
@@ -112,13 +112,15 @@ msgstr ""
 
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
-msgstr ""
+msgstr "Notizpfad der beim letzten Schließen von »Notizen« geöffneten Notizen."
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""
 "This stores the note path of the last opened item, so that we can open it on "
 "startup."
 msgstr ""
+"Speichert die Notizpfade des zuletzt geöffneten Elements, sodass es bei "
+"Programmstart geöffnet werden kann."
 
 #: data/org.gnome.Notes.gschema.xml:34
 msgid "Window maximized"
@@ -154,89 +156,83 @@ msgid ""
 msgstr ""
 "Drei Schriftgrößen sind verfügbar: klein, mittel (vorgegeben) und groß."
 
-#: data/resources/bjb-detached-window.ui:18
-#: data/resources/bjb-window-base.ui:147
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
+#: src/bjb-window.c:431
+msgid "All Notes"
+msgstr "Alle Notizen"
+
+#: data/resources/bjb-window.ui:63
+msgid "Open menu"
+msgstr "Menü öffnen"
+
+#: data/resources/bjb-window.ui:148
 msgid "More options"
 msgstr "Mehr Optionen"
 
-#: data/resources/bjb-detached-window.ui:50
-#: data/resources/bjb-window-base.ui:367
-msgid "Undo"
-msgstr "Rückgängig"
+#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "Notizen importieren"
 
-#: data/resources/bjb-detached-window.ui:59
-#: data/resources/bjb-window-base.ui:375
-msgid "Redo"
-msgstr "Wiederholen"
+#: data/resources/bjb-window.ui:196
+msgid "Text Sizes"
+msgstr "Schriftgrößen"
 
-#: data/resources/bjb-detached-window.ui:76
-#: data/resources/bjb-window-base.ui:303 data/resources/bjb-window-base.ui:391
+#: data/resources/bjb-window.ui:205
+msgid "_Large"
+msgstr "_Groß"
+
+#: data/resources/bjb-window.ui:214
+msgid "_Medium"
+msgstr "_Mittel"
+
+#: data/resources/bjb-window.ui:223
+msgid "_Small"
+msgstr "_Klein"
+
+#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: data/resources/bjb-window.ui:248
+msgid "Keyboard Shortcuts"
+msgstr "Tastaturkürzel"
+
+#: data/resources/bjb-window.ui:256
+msgid "Help"
+msgstr "Hilfe"
+
+#: data/resources/bjb-window.ui:264
+msgid "About Notes"
+msgstr "Info zu Notizen"
+
+#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
 #: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Notizsammlungen"
 
-#: data/resources/bjb-detached-window.ui:85
-#: data/resources/bjb-window-base.ui:399
-msgid "Email this Note"
-msgstr "Diese Notiz per E-Mail versenden"
-
-#: data/resources/bjb-detached-window.ui:94
-#: data/resources/bjb-window-base.ui:407 data/resources/selection-toolbar.ui:96
-msgid "Move to Trash"
-msgstr "In den Papierkorb verschieben"
-
-#: data/resources/bjb-window-base.ui:46 data/resources/bjb-window-base.ui:282
-#: src/bjb-window-base.c:450
-msgid "All Notes"
-msgstr "Alle Notizen"
-
-#: data/resources/bjb-window-base.ui:62
-msgid "Open menu"
-msgstr "Menü öffnen"
-
-#: data/resources/bjb-window-base.ui:178 data/resources/import-dialog.ui:5
-msgid "Import Notes"
-msgstr "Notizen importieren"
-
-#: data/resources/bjb-window-base.ui:195
-msgid "Text Sizes"
-msgstr "Schriftgrößen"
-
-#: data/resources/bjb-window-base.ui:204
-msgid "_Large"
-msgstr "_Groß"
-
-#: data/resources/bjb-window-base.ui:213
-msgid "_Medium"
-msgstr "_Mittel"
-
-#: data/resources/bjb-window-base.ui:222
-msgid "_Small"
-msgstr "_Klein"
-
-#: data/resources/bjb-window-base.ui:239 data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Einstellungen"
-
-#: data/resources/bjb-window-base.ui:247
-msgid "Keyboard Shortcuts"
-msgstr "Tastaturkürzel"
-
-#: data/resources/bjb-window-base.ui:255
-msgid "Help"
-msgstr "Hilfe"
-
-#: data/resources/bjb-window-base.ui:263
-msgid "About Notes"
-msgstr "Info zu Notizen"
-
-#: data/resources/bjb-window-base.ui:329 src/bjb-window-base.c:459
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:440
 msgid "Trash"
 msgstr "Papierkorb"
 
-#: data/resources/bjb-window-base.ui:351
+#: data/resources/bjb-window.ui:352
 msgid "Open in New Window"
 msgstr "In neuem Fenster öffnen"
+
+#: data/resources/bjb-window.ui:368
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: data/resources/bjb-window.ui:376
+msgid "Redo"
+msgstr "Wiederholen"
+
+#: data/resources/bjb-window.ui:400
+msgid "Email this Note"
+msgstr "Diese Notiz per E-Mail versenden"
+
+#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "In den Papierkorb verschieben"
 
 #: data/resources/editor-toolbar.ui:63
 msgid "Bold"
@@ -454,64 +450,53 @@ msgstr "Wählen Sie den vorgegebenen Ort zum Speichern:"
 msgid "Primary Book"
 msgstr "Hauptbuch"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-detached-window.c:75
-#: src/bjb-window-base.c:111
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
 msgid "Untitled"
 msgstr "Unbenannt"
 
-#: src/bjb-application.c:193
+#: src/bjb-application.c:223
 msgid "GNOME Notes"
-msgstr "GNOME-Notizen"
+msgstr "GNOME Notizen"
 
-#: src/bjb-application.c:248
+#: src/bjb-application.c:278
 msgid "Show verbose logs"
 msgstr "Ausführliche Meldungen anzeigen"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:280
 msgid "Show the application’s version"
 msgstr "Die Version der Anwendung zeigen"
 
-#: src/bjb-application.c:252
+#: src/bjb-application.c:282
 msgid "Create a new note"
 msgstr "Eine neue Notiz erstellen"
 
-#: src/bjb-application.c:260
+#: src/bjb-application.c:290
 msgid "[FILE…]"
 msgstr "[DATEI …]"
 
-#: src/bjb-application.c:261
+#: src/bjb-application.c:291
 msgid "Take notes and export them everywhere."
 msgstr "Speichern Sie Notizen und exportieren Sie sie überall."
 
-#: src/bjb-application.c:569
+#: src/bjb-application.c:628
 msgid "Simple notebook for GNOME"
 msgstr "Ein einfaches Notizbuch für GNOME"
 
-#: src/bjb-application.c:575
+#: src/bjb-application.c:634
 msgid "translator-credits"
 msgstr ""
-"Christian Kirbach <Christian.Kirbach@gmail.com>, 2013\n"
-"Benjamin Steinwender <b@stbe.at>, 2013-2014\n"
-"Tim Sabsch <tim@sabsch.com, 2018-2019\n"
-"Philipp Kiemle <philipp.kiemle@gmail.com>, 2021"
+"Christian Kirbach <Christian.Kirbach@gmail.com>\n"
+"Benjamin Steinwender <b@stbe.at>\n"
+"Tim Sabsch <tim@sabsch.com>\n"
+"Philipp Kiemle <philipp.kiemle@gmail.com>"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Farbe der Notizen"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Notizsammlung"
-
-#. Translators: %s is the note last recency description.
-#. * Last updated is placed as in left to right language
-#. * right to left languages might move %s
-#. *         '%s Last Updated'
-#.
-#: src/bjb-detached-window.c:95 src/bjb-window-base.c:907
-#, c-format
-msgid "Last updated: %s"
-msgstr "Zuletzt aktualisiert: %s"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -527,42 +512,48 @@ msgstr ""
 "Bitte installieren Sie »Tracker« und starten Sie die Anwendung danach neu."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:189
+#: src/bjb-note-view.c:195
 msgid "This note is being viewed in another window."
 msgstr "Diese Notiz wird in einem anderen Fenster betrachtet."
 
-#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
-#: src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74
 msgid "This month"
 msgstr "Diesen Monat"
 
-#: src/libbiji/biji-date-time.c:38
-msgid "Today"
-msgstr "Heute"
-
-#: src/libbiji/biji-date-time.c:47
-msgid "This week"
-msgstr "Diese Woche"
-
-#: src/libbiji/biji-date-time.c:60
-msgid "This year"
-msgstr "Dieses Jahr"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-window.c:920
+#, c-format
+msgid "Last updated: %s"
+msgstr "Zuletzt aktualisiert: %s"
 
 #: src/libbiji/biji-notebook.c:265
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:364
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokaler Speicherplatz"
+
+#~ msgid "Today"
+#~ msgstr "Heute"
+
+#~ msgid "This week"
+#~ msgstr "Diese Woche"
+
+#~ msgid "This year"
+#~ msgstr "Dieses Jahr"
 
 #~ msgid "_New"
 #~ msgstr "_Neu"

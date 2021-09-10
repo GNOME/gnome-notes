@@ -4,26 +4,27 @@
 # Yuri Myasoedov <ymyasoedov@yandex.ru>, 2014.
 # Stas Solovey <whats_up@tut.by>, 2013, 2015.
 # Ivan Komaritsyn <vantu5z@mail.ru>, 2015.
+# Konstantin Nezhbert <zhbert@yandex.ru>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-12-05 08:01+0000\n"
-"PO-Revision-Date: 2019-02-28 20:46+0300\n"
-"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
-"Language-Team: Русский <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2021-06-29 01:55+0000\n"
+"PO-Revision-Date: 2021-09-07 11:57+0300\n"
+"Last-Translator: Konstantin Nezhbert <zhbert@yandex.ru>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.1\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:625 src/bjb-window-base.c:18
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Заметки"
 
@@ -74,10 +75,10 @@ msgstr "Создавайте заметки, отмечайте файлы!"
 msgid "Note-taker"
 msgstr "Электронная ручка"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Notes.desktop.in:10
-msgid "org.gnome.Notes"
-msgstr "org.gnome.Notes"
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "Создать новую заметку"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
@@ -133,46 +134,30 @@ msgid "Window position (x and y)."
 msgstr "Положение окна (x, y)."
 
 #: data/org.gnome.Notes.gschema.xml:43
-msgid "How to show note items"
-msgstr "Как отображать элементы заметок"
-
-#: data/org.gnome.Notes.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Отображать заметки в виде значков или в виде списка."
-
-#: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
 msgstr "Размер текста, используемый редактором заметок."
 
-#: data/org.gnome.Notes.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Доступны три формата текста: маленький, средний (по умолчанию) и большой."
 
-#: data/resources/editor-toolbar.ui:49
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Полужирный"
 
-#: data/resources/editor-toolbar.ui:65
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Курсив"
 
-#: data/resources/editor-toolbar.ui:81
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Перечёркнутый"
 
-#: data/resources/editor-toolbar.ui:106
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:110
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Тип сортировки"
-
-#: data/resources/editor-toolbar.ui:123
-msgid "1."
-msgstr "1."
 
 #: data/resources/editor-toolbar.ui:127
 msgid "List"
@@ -186,87 +171,112 @@ msgstr "Копировать выделение в новую заметку"
 msgid "No notes"
 msgstr "Нет заметок"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Основное"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+#| msgid "Share note"
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Поиск заметок"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Создать заметку"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Закрыть окно"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
+#| msgid "_Quit"
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Выход"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Перейти назад"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Показать справку"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
 msgctxt "shortcut window"
-msgid "Shortcuts"
+msgid "Open menu"
+msgstr "Открыть меню"
+
+#: data/resources/help-overlay.ui:63
+#| msgid "Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
 msgstr "Комбинации клавиш"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Режим выделения"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Отменить режим выделения"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Выбрать все"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Режим изменения заметки"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:96
+#| msgid "Open in another window"
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Открыть в новом окне"
+
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Полужирный"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Курсив"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Перечёркнутый"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Отменить"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Повторить"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Переместить заметку в корзину"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:225
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Импортировать заметки"
 
@@ -302,7 +312,7 @@ msgstr "Выберите папку"
 msgid "_New"
 msgstr "_Создать"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Цвет заметки"
 
@@ -319,84 +329,76 @@ msgstr "Выйти из режима выделения"
 msgid "Search note titles, content and notebooks"
 msgstr "Поиск по заголовкам, содержимому и записным книжкам"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Показывать заметки и записные книжки в виде таблицы"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Показывать заметки и записные книжки в виде списка"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Режим выделения"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Открыть меню"
 
-#: data/resources/main-toolbar.ui:195
+#: data/resources/main-toolbar.ui:150
 msgid "More options"
 msgstr "Дополнительные параметры"
 
-#: data/resources/main-toolbar.ui:234
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Показать корзину"
 
-#: data/resources/main-toolbar.ui:251
+#: data/resources/main-toolbar.ui:206
 msgid "Text Sizes"
 msgstr "Размер текста"
 
-#: data/resources/main-toolbar.ui:261
+#: data/resources/main-toolbar.ui:216
 msgid "_Large"
 msgstr "_Большой"
 
-#: data/resources/main-toolbar.ui:271
+#: data/resources/main-toolbar.ui:226
 msgid "_Medium"
 msgstr "_Средний"
 
-#: data/resources/main-toolbar.ui:281
+#: data/resources/main-toolbar.ui:236
 msgid "_Small"
 msgstr "_Маленький"
 
-#: data/resources/main-toolbar.ui:299 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Параметры"
 
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Комбинации клавиш"
 
-#: data/resources/main-toolbar.ui:317
+#: data/resources/main-toolbar.ui:272
 msgid "Help"
 msgstr "Справка"
 
-#: data/resources/main-toolbar.ui:326
+#: data/resources/main-toolbar.ui:281
 msgid "About Notes"
 msgstr "О приложении"
 
-#: data/resources/main-toolbar.ui:348
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
-#: data/resources/main-toolbar.ui:365
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Вернуть"
 
-#: data/resources/main-toolbar.ui:374
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Повторить"
 
-#: data/resources/main-toolbar.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Записные книжки"
 
-#: data/resources/main-toolbar.ui:400
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Отправить заметку по эл. почте"
 
-#: data/resources/main-toolbar.ui:409 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Удалить в корзину"
 
@@ -408,19 +410,19 @@ msgstr "Введите имя для создания записной книж�
 msgid "New notebook"
 msgstr "Создать записную книжку"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Поделиться заметкой"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Открыть в другом окне"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Восстановить"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Удалить навсегда"
 
@@ -448,55 +450,59 @@ msgstr "Выберите место хранения по умолчанию:"
 msgid "Primary Book"
 msgstr "Первичная книга"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:389
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Безымянная"
 
-#: src/bjb-application.c:450
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
 msgstr "Показать версию приложения"
 
-#: src/bjb-application.c:452
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Создать новую заметку"
 
-#: src/bjb-application.c:454
+#: src/bjb-application.c:444
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:462
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Взять заметки и экспортировать их куда-либо."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:473
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
 msgstr "Не удалось разобрать аргументы"
 
-#: src/bjb-application.c:481
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "Заметки GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:493
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Не удалось зарегистрировать приложение"
 
-#: src/bjb-application.c:626
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Простая записная книжка среды рабочего стола GNOME"
 
-#: src/bjb-application.c:632
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr ""
 "Yuri Myasoedov <ymyasoedov@yandex.ru>, 2013-2015.\n"
 "Stas Solovey <whats_up@tut.by>, 2013-2019."
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Цвет заметки"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Записная книжка"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -510,19 +516,11 @@ msgstr "Ой"
 msgid "Please install “Tracker” then restart the application."
 msgstr "Установите «Tracker» и перезапустите приложение."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Загрузить ещё"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Загружается…"
-
-#: src/bjb-main-toolbar.c:139
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Нажмите на элементы, чтобы выбрать их"
 
-#: src/bjb-main-toolbar.c:141
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -530,16 +528,16 @@ msgstr[0] "Выделен %d объект"
 msgstr[1] "Выделено %d объекта"
 msgstr[2] "Выделено %d объектов"
 
-#: src/bjb-main-toolbar.c:274
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Результаты для %s"
 
-#: src/bjb-main-toolbar.c:277
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Новые и недавние"
 
-#: src/bjb-main-toolbar.c:365
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Корзина"
 
@@ -548,30 +546,32 @@ msgstr "Корзина"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:429
+#: src/bjb-main-toolbar.c:367
 #, c-format
-msgid "Last updated %s"
-msgstr "Обновлено: %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
+msgstr "Последнее обновление: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Неизвестно"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Вчера"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "В этом месяце"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Сегодня"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Вчера"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "На этой неделе"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "В этом месяце"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -581,9 +581,40 @@ msgstr "В этом году"
 msgid "Local"
 msgstr "Локальный"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Локальное хранилище"
+
+#~ msgid "org.gnome.Notes"
+#~ msgstr "org.gnome.Notes"
+
+#~ msgid "How to show note items"
+#~ msgstr "Как отображать элементы заметок"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr "Отображать заметки в виде значков или в виде списка."
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Комбинации клавиш"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Показывать заметки и записные книжки в виде таблицы"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Показывать заметки и записные книжки в виде списка"
+
+#~ msgid "Load More"
+#~ msgstr "Загрузить ещё"
+
+#~ msgid "Loading…"
+#~ msgstr "Загружается…"
 
 #~ msgid "Bijiben"
 #~ msgstr "Bijiben"
@@ -608,9 +639,6 @@ msgstr "Локальное хранилище"
 
 #~ msgid "_About"
 #~ msgstr "_О приложении"
-
-#~ msgid "_Quit"
-#~ msgstr "_Завершить"
 
 #~ msgid "Cut"
 #~ msgstr "Вырезать"
@@ -638,9 +666,6 @@ msgstr "Локальное хранилище"
 
 #~ msgid "Cancel"
 #~ msgstr "Отмена"
-
-#~ msgid "Notebook"
-#~ msgstr "Записная книжка"
 
 #~ msgid "Note"
 #~ msgstr "Заметка"

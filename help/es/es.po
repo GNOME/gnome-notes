@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
-"POT-Creation-Date: 2021-06-29 02:03+0000\n"
+"POT-Creation-Date: 2021-09-09 12:01+0000\n"
 "PO-Revision-Date: 2021-09-09 13:59+0200\n"
 "Last-Translator: germe <FOSSgerme.deb@tuta.io>\n"
 "Language-Team: Spanish - Argentina <gnome-es-list@gnome.org>\n"
@@ -804,7 +804,7 @@ msgstr "Enviar la nota por correo-e."
 #. (itstool) path: p/link
 #: C/legal.xml:5
 msgid "Creative Commons Attribution-ShareAlike 3.0 Unported License"
-msgstr "Creative Commons de Atribución-Compartir Igual 3.0 sin soporte"
+msgstr "Creative Commons de Atribución-Compartir Igual 3.0 no portada"
 
 #. (itstool) path: license/p
 #: C/legal.xml:4

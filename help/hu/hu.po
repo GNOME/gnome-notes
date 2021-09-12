@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome_notes master\n"
-"POT-Creation-Date: 2021-02-25 11:20+0000\n"
-"PO-Revision-Date: 2021-02-26 01:02+0100\n"
+"POT-Creation-Date: 2021-06-04 06:50+0000\n"
+"PO-Revision-Date: 2021-09-12 21:25+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -29,14 +29,14 @@ msgstr ""
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -57,7 +57,7 @@ msgstr "2013, 2014"
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
-#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
+#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
 #: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
 #: C/share.page:20
 msgid "Shobha Tyagi"
@@ -65,7 +65,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
 #: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
@@ -328,41 +328,38 @@ msgstr "A Kukában lévő összes jegyzet végleges törléséhez:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid ""
-"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
-"terminology\">Activities</gui>."
-msgstr ""
-"Kattintson a <gui href=\"help:gnome-help/shell-terminology\">Tevékenységek</"
-"gui> közelében lévő <gui>Jegyzetek</gui> ikonra."
+#| msgid "Change the text in the first line of the note."
+msgid "Press the menu button in the top-right corner of the window."
+msgstr "Nyomja meg az ablak jobb felső sarkában lévő menügombot."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:34
+#: C/delete-permanent.page:33
 msgid "Select <gui>View Trash</gui>."
 msgstr "Válassza a <gui>Kuka megtekintése</gui> menüpontot."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:37
+#: C/delete-permanent.page:36
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
 msgstr "Kattintson a <gui style=\"button\">Ürítés</gui> gombra az eszköztáron."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:42
+#: C/delete-permanent.page:41
 msgid "To delete selected notes from Trash:"
 msgstr "A kijelölt jegyzetek törléséhez a Kukából:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:44
+#: C/delete-permanent.page:43
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
 "A <gui>Kuka</gui> nézetben kattintson a <gui>Kijelölési mód</gui> gombra."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:48
+#: C/delete-permanent.page:47
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Jelölje ki az összes jegyzetet, amelyeket véglegesen törölni szeretne."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:51
+#: C/delete-permanent.page:50
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Kattintson a <gui style=\"button\">Végleges törlés</gui> gombra."
 
@@ -433,15 +430,12 @@ msgstr "Amikor a jegyzet nyitva van:"
 
 #. (itstool) path: item/p
 #: C/format-list.page:45
-#| msgid ""
-#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
-#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
 "To create an unordered list, select the <guiseq><gui style=\"button"
 "\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Rendezetlen lista létrehozásához válassza a <guiseq><gui style=\"button\""
-">Felsorolás</gui></guiseq> gombot a láblécmenüből."
+"Rendezetlen lista létrehozásához válassza a <guiseq><gui style=\"button"
+"\">Felsorolás</gui></guiseq> gombot a láblécmenüből."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -449,10 +443,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/format-list.page:48
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-34.png' "
-#| "md5='213e25dd29f5b447ea239014fe95feb9'"
 msgctxt "_"
 msgid ""
 "external ref='figures/format-page-unordered-list.png' "
@@ -463,15 +453,12 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/format-list.page:51
-#| msgid ""
-#| "To create an ordered list, click <guiseq><gui style=\"button\">More "
-#| "options…</gui> <gui>Numbered List</gui></guiseq>."
 msgid ""
 "To create an ordered list, select the <guiseq><gui style=\"button\">List</"
 "gui> </guiseq> button from the footer menu."
 msgstr ""
-"Rendezett lista létrehozásához válassza a <guiseq><gui style=\"button\""
-">Lista</gui> </guiseq> gombot a láblécmenüből."
+"Rendezett lista létrehozásához válassza a <guiseq><gui style=\"button"
+"\">Lista</gui> </guiseq> gombot a láblécmenüből."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -517,39 +504,47 @@ msgstr ""
 "\">Dőlt</gui> vagy <gui style=\"button\">Áthúzott</gui> egyikére."
 
 #. (itstool) path: info/title
-#: C/index.page:8
+#: C/index.page:6
+#| msgctxt "link"
+#| msgid "Notes"
+msgctxt "link:trail"
+msgid "Notes"
+msgstr "Jegyzetek"
+
+#. (itstool) path: info/title
+#: C/index.page:7
 msgctxt "link"
 msgid "Notes"
 msgstr "Jegyzetek"
 
 #. (itstool) path: info/title
-#: C/index.page:9
+#: C/index.page:8
 msgctxt "text"
 msgid "Notes"
 msgstr "Jegyzetek"
 
 #. (itstool) path: info/desc
-#: C/index.page:27
+#: C/index.page:26
 msgid "Learn how to use and manage your notes."
 msgstr "Ismerje meg a jegyzetek használatát és kezelését."
 
 #. (itstool) path: page/title
-#: C/index.page:30
+#: C/index.page:29
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Jegyzetek"
 
 #. (itstool) path: section/title
-#: C/index.page:37
+#: C/index.page:36
 msgid "Create notes"
 msgstr "Jegyzetek létrehozása"
 
 #. (itstool) path: section/title
-#: C/index.page:40
+#: C/index.page:39
 msgid "Edit and share notes"
 msgstr "Jegyzetek szerkesztése és megosztása"
 
 #. (itstool) path: section/title
-#: C/index.page:43
+#: C/index.page:42
 msgid "Delete notes"
 msgstr "Jegyzetek törlése"
 
@@ -585,10 +580,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/introduction.page:44
-#| msgctxt "_"
-#| msgid ""
-#| "external ref='figures/notes-3-34.png' "
-#| "md5='213e25dd29f5b447ea239014fe95feb9'"
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"

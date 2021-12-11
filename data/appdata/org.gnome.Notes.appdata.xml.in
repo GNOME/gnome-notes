@@ -22,19 +22,19 @@
   </kudos>
   <screenshots>
     <screenshot type="default">
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/default.png</image>
+      <image width="960" height="540">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/default.png</image>
     </screenshot>
     <screenshot>
       <caption>Edit view</caption>
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/edit.png</image>
+      <image width="960" height="540">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/edit.png</image>
     </screenshot>
     <screenshot>
       <caption>Select view</caption>
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/select.png</image>
+      <image width="960" height="540">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/select.png</image>
     </screenshot>
     <screenshot>
       <caption>List view</caption>
-      <image width="800" height="647">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/list.png</image>
+      <image width="960" height="540">https://gitlab.gnome.org/GNOME/gnome-notes/raw/master/data/appdata/list.png</image>
     </screenshot>
   </screenshots>
 
@@ -70,33 +70,5 @@
   <update_contact>py_at_luyten.fr</update_contact>
   <project_group>GNOME</project_group>
   <translation type="gettext">bijiben</translation>
-  <content_rating type="oars-1.1">
-    <content_attribute id="violence-cartoon">none</content_attribute>
-    <content_attribute id="violence-fantasy">none</content_attribute>
-    <content_attribute id="violence-realistic">none</content_attribute>
-    <content_attribute id="violence-bloodshed">none</content_attribute>
-    <content_attribute id="violence-sexual">none</content_attribute>
-    <content_attribute id="violence-desecration">none</content_attribute>
-    <content_attribute id="violence-slavery">none</content_attribute>
-    <content_attribute id="violence-worship">none</content_attribute>
-    <content_attribute id="drugs-alcohol">none</content_attribute>
-    <content_attribute id="drugs-narcotics">none</content_attribute>
-    <content_attribute id="drugs-tobacco">none</content_attribute>
-    <content_attribute id="sex-nudity">none</content_attribute>
-    <content_attribute id="sex-themes">none</content_attribute>
-    <content_attribute id="sex-homosexuality">none</content_attribute>
-    <content_attribute id="sex-prostitution">none</content_attribute>
-    <content_attribute id="sex-adultery">none</content_attribute>
-    <content_attribute id="sex-appearance">none</content_attribute>
-    <content_attribute id="language-profanity">none</content_attribute>
-    <content_attribute id="language-humor">none</content_attribute>
-    <content_attribute id="language-discrimination">none</content_attribute>
-    <content_attribute id="social-chat">none</content_attribute>
-    <content_attribute id="social-info">none</content_attribute>
-    <content_attribute id="social-audio">none</content_attribute>
-    <content_attribute id="social-location">none</content_attribute>
-    <content_attribute id="social-contacts">none</content_attribute>
-    <content_attribute id="money-purchasing">none</content_attribute>
-    <content_attribute id="money-gambling">none</content_attribute>
-  </content_rating>
+  <content_rating type="oars-1.1" />
 </component>

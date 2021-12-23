@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-07-20 20:45+0700\n"
+"POT-Creation-Date: 2021-09-13 23:27+0000\n"
+"PO-Revision-Date: 2021-12-23 10:59+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural= n!=1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
@@ -155,7 +155,7 @@ msgstr ""
 "Terdapat tiga ukuran teks yang tersedia: kecil, sedang (bawaan) dan besar."
 
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: src/bjb-window.c:431
 msgid "All Notes"
 msgstr "Semua Catatan"
 
@@ -208,7 +208,7 @@ msgstr "Tentang Catatan"
 msgid "Notebooks"
 msgstr "Buku Catatan"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:440
 msgid "Trash"
 msgstr "Tong Sampah"
 
@@ -448,7 +448,7 @@ msgstr "Pilih lokasi penyimpanan bawaan:"
 msgid "Primary Book"
 msgstr "Buku Primer"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
 msgid "Untitled"
 msgstr "Tanpa Judul"
 
@@ -490,7 +490,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Warna Catatan"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Buku Catatan"
 
@@ -528,7 +528,7 @@ msgstr "Bulan ini"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:910
 #, c-format
 msgid "Last updated: %s"
 msgstr "Terakhir diperbarui: %s"
@@ -537,7 +537,7 @@ msgstr "Terakhir diperbarui: %s"
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
 

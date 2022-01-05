@@ -602,6 +602,8 @@ on_display_notebooks_changed (BjbWindow *self)
   gtk_container_foreach (GTK_CONTAINER (self->notebooks_box),
                          (GtkCallback) gtk_widget_destroy, NULL);
 
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
+
   n_items = g_list_model_get_n_items (notebooks);
 
   for (guint i = 0; i < n_items; i++)
@@ -628,8 +630,10 @@ static GActionEntry win_entries[] = {
 static void
 bjb_window_constructed (GObject *obj)
 {
+  BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (obj);
   GtkListBox *list_box;
+  GListModel *notebooks;
   GdkRectangle geometry;
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
@@ -673,6 +677,12 @@ bjb_window_constructed (GObject *obj)
   gtk_widget_show (GTK_WIDGET (self->main_stack));
 
   /* Populate the filter menu model. */
+  manager = bjb_window_get_manager (GTK_WIDGET (self));
+  notebooks = biji_manager_get_notebooks (manager);
+
+  g_signal_connect_object (notebooks, "items-changed",
+                           G_CALLBACK (on_display_notebooks_changed), self,
+                           G_CONNECT_SWAPPED | G_CONNECT_AFTER);
   on_display_notebooks_changed (self);
 
   /* Connection to window signals */

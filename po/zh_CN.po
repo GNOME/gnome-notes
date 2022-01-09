@@ -6,21 +6,22 @@
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015, 2018.
 # sh29791383 <sh29791383@gmail.com>, 2018.
 # Dingzhong Chen <wsxy162@gmail.com>, 2018, 2019.
+# lumingzh <lumingzh@qq.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-08-02 16:13-0400\n"
-"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
-"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2022-01-05 04:05+0000\n"
+"PO-Revision-Date: 2022-01-07 10:59+0800\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
+"Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 41.0\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -61,7 +62,7 @@ msgstr "列表视图"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
-msgstr "notes;reminder;notebook;sticky notes;便笺;提醒;便笺本;笔记;"
+msgstr "notes;reminder;notebook;sticky notes;便笺;提醒;便笺本;笔记;备忘录;"
 
 #: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
@@ -147,8 +148,22 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "有三种文本大小可供选择：小、中（默认）和大。"
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "便笺本"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+#| msgid "New notebook"
+msgid "New Notebook…"
+msgstr "新建便笺本…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "添加"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: src/bjb-window.c:433
 msgid "All Notes"
 msgstr "全部便笺"
 
@@ -196,12 +211,7 @@ msgstr "帮助"
 msgid "About Notes"
 msgstr "关于便笺"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "便笺本"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
 msgid "Trash"
 msgstr "废纸篓"
 
@@ -390,14 +400,6 @@ msgstr "自定义位置"
 msgid "Select a Folder"
 msgstr "选择文件夹"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "输入名称以创建便笺本"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "新建便笺本"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "便笺颜色"
@@ -442,7 +444,7 @@ msgstr "选择默认存储位置："
 msgid "Primary Book"
 msgstr "主便笺本"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
 msgid "Untitled"
 msgstr "未命名"
 
@@ -485,7 +487,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "便笺颜色"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "便笺本"
 
@@ -524,7 +526,7 @@ msgstr "本月"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:912
 #, c-format
 msgid "Last updated: %s"
 msgstr "最近更新：%s"
@@ -533,9 +535,12 @@ msgstr "最近更新：%s"
 msgid "Local"
 msgstr "本地"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "本地存储"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "输入名称以创建便笺本"
 
 #~ msgid "How to show note items"
 #~ msgstr "如何显示笔记本条目"

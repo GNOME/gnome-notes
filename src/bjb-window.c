@@ -231,7 +231,7 @@ bjb_window_finalize (GObject *object)
     }
   else
     {
-      g_settings_set_string (self->settings, "last-opened-item", ""); 
+      bjb_settings_set_last_opened_item (self->settings, "");
     }
 
   note_view = g_object_get_data (object, "note-view");

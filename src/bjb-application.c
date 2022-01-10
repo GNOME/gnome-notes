@@ -516,7 +516,7 @@ bijiben_startup (GApplication *application)
 
   /* Load last opened note item. */
   path = bjb_settings_get_last_opened_item (self->settings);
-  if (!bijiben_open_path (self, path, NULL))
+  if (g_strcmp0 (path, "") != 0)
     g_queue_push_head (&self->files_to_open, path);
 }
 

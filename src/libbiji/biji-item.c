@@ -49,18 +49,6 @@ typedef struct
 
 G_DEFINE_TYPE_WITH_PRIVATE (BijiItem, biji_item, G_TYPE_OBJECT)
 
-static gboolean
-biji_item_real_has_color (BijiItem *self)
-{
-  return FALSE;
-}
-
-static gboolean
-biji_item_real_is_collectable (BijiItem *self)
-{
-  return FALSE;
-}
-
 static void
 biji_item_set_property (GObject      *object,
                         guint         property_id,
@@ -109,9 +97,6 @@ biji_item_class_init (BijiItemClass *klass)
 
   g_object_class->get_property = biji_item_get_property;
   g_object_class->set_property = biji_item_set_property;
-
-  klass->has_color = biji_item_real_has_color;
-  klass->is_collectable = biji_item_real_is_collectable;
 
   properties[PROP_BOOK] =
     g_param_spec_object("manager",
@@ -190,59 +175,12 @@ biji_item_get_manager     (BijiItem *item)
   return priv->manager;
 }
 
-
-cairo_surface_t *
-biji_item_get_icon          (BijiItem *item,
-                             gint scale)
-{
-  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
-
-  return BIJI_ITEM_GET_CLASS (item)->get_icon (item, scale);
-}
-
-cairo_surface_t *
-biji_item_get_emblem        (BijiItem *item,
-                             gint scale)
-{
-  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
-
-  return BIJI_ITEM_GET_CLASS (item)->get_emblem (item, scale);
-}
-
-cairo_surface_t *
-biji_item_get_pristine        (BijiItem *item,
-                               gint scale)
-{
-  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
-
-  return BIJI_ITEM_GET_CLASS (item)->get_pristine (item, scale);
-}
-
-
-const gchar *
-biji_item_get_place           (BijiItem *item)
-{
-  g_return_val_if_fail (BIJI_IS_ITEM (item), NULL);
-
-  return BIJI_ITEM_GET_CLASS (item)->get_place (item);
-}
-
-
 gint64
 biji_item_get_mtime           (BijiItem *item)
 {
   g_return_val_if_fail (BIJI_IS_ITEM (item), 0);
 
   return BIJI_ITEM_GET_CLASS (item)->get_mtime (item);
-}
-
-
-gboolean
-biji_item_has_color           (BijiItem *item)
-{
-  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
-
-  return BIJI_ITEM_GET_CLASS (item)->has_color (item);
 }
 
 gboolean
@@ -295,16 +233,6 @@ biji_item_delete               (BijiItem *item)
     g_signal_emit_by_name (item, "deleted", NULL);
 
   return retval;
-}
-
-
-
-gboolean
-biji_item_is_collectable       (BijiItem *item)
-{
-  g_return_val_if_fail (BIJI_IS_ITEM (item), FALSE);
-
-  return BIJI_ITEM_GET_CLASS (item)->is_collectable (item);
 }
 
 gboolean

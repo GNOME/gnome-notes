@@ -56,15 +56,6 @@ note_no (BijiNoteObj *note)
   return FALSE;
 }
 
-static const char *
-get_place (BijiItem *item)
-{
-  BijiNextcloudNote *self = BIJI_NEXTCLOUD_NOTE (item);
-  const BijiProviderInfo *info = biji_provider_get_info (BIJI_PROVIDER (self->provider));
-
-  return info->name;
-}
-
 static char *
 get_basename (BijiNoteObj *note)
 {
@@ -313,12 +304,9 @@ static void
 biji_nextcloud_note_class_init (BijiNextcloudNoteClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  BijiItemClass *item_class = BIJI_ITEM_CLASS (klass);
   BijiNoteObjClass *note_class = BIJI_NOTE_OBJ_CLASS (klass);
 
   object_class->finalize = finalize;
-
-  item_class->get_place = get_place;
 
   note_class->get_basename = get_basename;
   note_class->get_html = get_html;

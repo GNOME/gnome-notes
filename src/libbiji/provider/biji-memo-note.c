@@ -321,15 +321,6 @@ memo_get_basename (BijiNoteObj *note)
   return g_strdup (out);
 }
 
-static const char *
-memo_get_place (BijiItem *item)
-{
-  BijiMemoNote *self = BIJI_MEMO_NOTE (item);
-  const BijiProviderInfo *info = biji_provider_get_info (BIJI_PROVIDER (self->provider));
-
-  return info->name;
-}
-
 static gboolean
 note_no (BijiNoteObj *note)
 {
@@ -350,7 +341,6 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   object_class->get_property = biji_memo_note_get_property;
   object_class->set_property = biji_memo_note_set_property;
 
-  item_class->get_place = memo_get_place;
   item_class->delete = memo_item_delete;
 
   note_class->get_basename = memo_get_basename;

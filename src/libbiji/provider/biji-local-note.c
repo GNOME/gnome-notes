@@ -33,15 +33,6 @@ struct _BijiLocalNote
 
 G_DEFINE_TYPE (BijiLocalNote, biji_local_note, BIJI_TYPE_NOTE_OBJ)
 
-static const char *
-local_note_get_place (BijiItem *item)
-{
-  BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
-  const BijiProviderInfo *info = biji_provider_get_info (self->provider);
-
-  return info->name;
-}
-
 static char *
 local_note_get_html (BijiNoteObj *note)
 {
@@ -101,12 +92,6 @@ biji_local_note_finalize (GObject *object)
 static void
 biji_local_note_init (BijiLocalNote *self)
 {
-}
-
-static gboolean
-item_yes (BijiItem *item)
-{
-  return TRUE;
 }
 
 static gboolean
@@ -256,9 +241,6 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
 
   g_object_class->finalize = biji_local_note_finalize;
 
-  item_class->is_collectable = item_yes;
-  item_class->has_color = item_yes;
-  item_class->get_place = local_note_get_place;
   item_class->restore = local_note_restore;
   item_class->delete = local_note_delete;
 

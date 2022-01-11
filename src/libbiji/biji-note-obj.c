@@ -43,12 +43,6 @@ typedef struct
   BijiTimeout           *timeout;
   gboolean               needs_save;
 
-  /* Icon might be null until useful
-   * Emblem is smaller & just shows the color */
-  cairo_surface_t       *icon;
-  cairo_surface_t       *emblem;
-  cairo_surface_t       *pristine;
-
   /* Tags
    * In Tomboy, templates are 'system:notebook:%s' tags.*/
   GHashTable            *labels;
@@ -116,16 +110,6 @@ biji_note_obj_init (BijiNoteObj *self)
 }
 
 static void
-biji_note_obj_clear_icons (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  g_clear_pointer (&priv->icon, cairo_surface_destroy);
-  g_clear_pointer (&priv->emblem, cairo_surface_destroy);
-  g_clear_pointer (&priv->pristine, cairo_surface_destroy);
-}
-
-static void
 biji_note_obj_finalize (GObject *object)
 {
   BijiNoteObj        *self = BIJI_NOTE_OBJ(object);
@@ -144,8 +128,6 @@ biji_note_obj_finalize (GObject *object)
   g_free (priv->content);
 
   g_hash_table_destroy (priv->labels);
-
-  biji_note_obj_clear_icons (self);
 
   gdk_rgba_free (priv->color);
 
@@ -376,7 +358,6 @@ biji_note_obj_set_rgba (BijiNoteObj   *self,
   else if (!gdk_rgba_equal (priv->color,rgba))
     {
       gdk_rgba_free (priv->color);
-      biji_note_obj_clear_icons (self);
       biji_note_obj_set_rgba_internal (self, rgba);
       biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
       biji_note_obj_save_note (self);
@@ -419,7 +400,6 @@ biji_note_obj_set_raw_text (BijiNoteObj *self,
 
   g_free (priv->content);
   priv->content = g_strdup (plain_text);
-  biji_note_obj_clear_icons (self);
   g_signal_emit (self, biji_obj_signals[NOTE_CHANGED],0);
 }
 
@@ -552,147 +532,6 @@ biji_note_obj_save_note (BijiNoteObj *self)
   biji_timeout_reset (priv->timeout, 3000);
 }
 
-static cairo_surface_t *
-get_icon (BijiItem *item,
-          int       scale)
-{
-  GdkRGBA                note_color;
-  const char            *text;
-  cairo_t               *cr;
-  PangoLayout           *layout;
-  PangoFontDescription  *desc;
-  cairo_surface_t       *surface = NULL;
-  BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
-  BijiNoteObjPrivate    *priv = biji_note_obj_get_instance_private (note);
-
-  if (priv->icon)
-    return priv->icon;
-
-  /* Create & Draw surface */
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        BIJI_ICON_WIDTH * scale,
-                                        BIJI_ICON_HEIGHT * scale);
-  cairo_surface_set_device_scale (surface, scale, scale);
-  cr = cairo_create (surface);
-
-  /* Background */
-  cairo_rectangle (cr, 0, 0, BIJI_ICON_WIDTH, BIJI_ICON_HEIGHT);
-  if (biji_note_obj_get_rgba (note, &note_color))
-    gdk_cairo_set_source_rgba (cr, &note_color);
-
-  cairo_fill (cr);
-
-  /* Text */
-  text = biji_note_obj_get_raw_text (note);
-  if (text != NULL)
-    {
-      cairo_translate (cr, 10, 10);
-      layout = pango_cairo_create_layout (cr);
-
-      pango_layout_set_width (layout, 180000 );
-      pango_layout_set_wrap (layout, PANGO_WRAP_WORD_CHAR);
-      pango_layout_set_height (layout, 180000 ) ;
-
-      pango_layout_set_text (layout, text, -1);
-      desc = pango_font_description_from_string (BIJI_ICON_FONT);
-      pango_layout_set_font_description (layout, desc);
-      pango_font_description_free (desc);
-
-      if(note_color.red < 0.5)
-        cairo_set_source_rgb (cr, 1.0, 1.0, 1.0);
-      else
-        cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-
-      pango_cairo_update_layout (cr, layout);
-      pango_cairo_show_layout (cr, layout);
-
-      g_object_unref (layout);
-
-      cairo_translate (cr, -10, -10);
-    }
-
-  /* Border */
-  cairo_set_source_rgba (cr, 0.3, 0.3, 0.3, 1);
-  cairo_set_line_width (cr, 1 * scale);
-  cairo_rectangle (cr, 0, 0, BIJI_ICON_WIDTH, BIJI_ICON_HEIGHT);
-  cairo_stroke (cr);
-
-  cairo_destroy (cr);
-
-  priv->icon = surface;
-  return priv->icon;
-}
-
-static cairo_surface_t *
-get_pristine (BijiItem *item,
-              int       scale)
-{
-  GdkRGBA                note_color;
-  cairo_t               *cr;
-  cairo_surface_t       *surface = NULL;
-  BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
-  BijiNoteObjPrivate    *priv = biji_note_obj_get_instance_private (note);
-
-  if (priv->pristine)
-    return priv->pristine;
-
-  /* Create & Draw surface */
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        BIJI_EMBLEM_WIDTH * scale,
-                                        BIJI_EMBLEM_HEIGHT * scale) ;
-  cairo_surface_set_device_scale (surface, scale, scale);
-  cr = cairo_create (surface);
-
-  /* Background */
-  cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
-  if (biji_note_obj_get_rgba (note, &note_color))
-    gdk_cairo_set_source_rgba (cr, &note_color);
-
-  cairo_fill (cr);
-  cairo_destroy (cr);
-
-  priv->pristine = surface;
-  return priv->pristine;
-}
-
-static cairo_surface_t *
-get_emblem (BijiItem *item,
-            int       scale)
-{
-  GdkRGBA                note_color;
-  cairo_t               *cr;
-  cairo_surface_t       *surface = NULL;
-  BijiNoteObj           *note = BIJI_NOTE_OBJ (item);
-  BijiNoteObjPrivate    *priv = biji_note_obj_get_instance_private (note);
-
-  if (priv->emblem)
-    return priv->emblem;
-
-  /* Create & Draw surface */
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
-                                        BIJI_EMBLEM_WIDTH * scale,
-                                        BIJI_EMBLEM_HEIGHT * scale) ;
-  cairo_surface_set_device_scale (surface, scale, scale);
-  cr = cairo_create (surface);
-
-  /* Background */
-  cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
-  if (biji_note_obj_get_rgba (note, &note_color))
-    gdk_cairo_set_source_rgba (cr, &note_color);
-
-  cairo_fill (cr);
-
-  /* Border */
-  cairo_set_source_rgba (cr, 0.3, 0.3, 0.3, 1);
-  cairo_set_line_width (cr, 1 * scale);
-  cairo_rectangle (cr, 0, 0, BIJI_EMBLEM_WIDTH, BIJI_EMBLEM_HEIGHT);
-  cairo_stroke (cr);
-
-  cairo_destroy (cr);
-
-  priv->emblem = surface;
-  return priv->emblem;
-}
 
 /* Single Note */
 
@@ -990,9 +829,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
    * is_collectable is implemented at higher level, eg local_note */
   item_class->get_title       = get_title;
   item_class->get_uuid        = get_path;
-  item_class->get_icon        = get_icon;
-  item_class->get_emblem      = get_emblem;
-  item_class->get_pristine    = get_pristine;
   item_class->get_mtime       = get_mtime;
   item_class->trash           = trash;
   item_class->has_notebook    = has_notebook;

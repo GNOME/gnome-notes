@@ -47,9 +47,6 @@ struct _BijiNotebook
   gchar           *name;
   gint64           mtime;
 
-  cairo_surface_t *icon;
-  cairo_surface_t *emblem;
-
   GList           *collected_items;
 };
 
@@ -101,149 +98,6 @@ biji_notebook_get_uuid (BijiItem *coll)
   return self->urn;
 }
 
-
-static cairo_surface_t *
-biji_create_notebook_icon (gint base_size, gint scale, GList *surfaces)
-{
-  cairo_surface_t *surface, *pix;
-  cairo_t *cr;
-  GList *l;
-  GtkStyleContext *context;
-  GtkWidgetPath *path;
-  gint cur_x;
-  gint cur_y;
-  gint idx;
-  gint padding;
-  gint pix_height;
-  gint pix_width;
-  gdouble pix_scale_x;
-  gdouble pix_scale_y;
-  gint scale_size;
-  gint tile_size;
-
-  /* TODO: use notes thumbs */
-
-  padding = MAX (floor (base_size / 10), 4);
-  tile_size = (base_size - (3 * padding)) / 2;
-
-  context = gtk_style_context_new ();
-  gtk_style_context_add_class (context, "biji-notebook-icon");
-
-  path = gtk_widget_path_new ();
-  gtk_widget_path_append_type (path, GTK_TYPE_ICON_VIEW);
-  gtk_style_context_set_path (context, path);
-  gtk_widget_path_unref (path);
-
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, base_size * scale, base_size * scale);
-  cairo_surface_set_device_scale (surface, scale, scale);
-  cr = cairo_create (surface);
-
-  gtk_render_background (context, cr, 0, 0, base_size, base_size);
-  gtk_render_frame (context, cr, 0, 0, base_size, base_size);
-
-  l = surfaces;
-  idx = 0;
-  cur_x = padding;
-  cur_y = padding;
-
-
-  while (l != NULL && idx < 4)
-    {
-      pix = l->data;
-      cairo_surface_get_device_scale (pix, &pix_scale_x, &pix_scale_y);
-      pix_width = cairo_image_surface_get_width (pix) / (gint) pix_scale_x;
-      pix_height = cairo_image_surface_get_height (pix) / (gint) pix_scale_y;
-
-      scale_size = MIN (pix_width, pix_height);
-
-      cairo_save (cr);
-
-      cairo_translate (cr, cur_x, cur_y);
-
-      cairo_rectangle (cr, 0, 0,
-                       tile_size, tile_size);
-      cairo_clip (cr);
-
-      cairo_scale (cr, (gdouble) tile_size / (gdouble) scale_size, (gdouble) tile_size / (gdouble) scale_size);
-      cairo_set_source_surface (cr, pix, 0, 0);
-
-      cairo_paint (cr);
-      cairo_restore (cr);
-
-      if ((idx % 2) == 0)
-        {
-          cur_x += tile_size + padding;
-        }
-      else
-        {
-          cur_x = padding;
-          cur_y += tile_size + padding;
-        }
-
-      idx++;
-      l = l->next;
-    }
-
-  cairo_destroy (cr);
-  g_object_unref (context);
-
-  return surface;
-}
-
-static GList *
-get_collected_pix (BijiNotebook *self,
-                   gint scale)
-{
-  GList *result = NULL, *l;
-
-  for (l = self->collected_items ; l != NULL; l = l->next)
-  {
-    if (BIJI_IS_ITEM (l->data))
-      result = g_list_prepend (
-                        result,
-                        biji_item_get_pristine (BIJI_ITEM (l->data), scale));
-  }
-
-  return result;
-}
-
-static cairo_surface_t *
-biji_notebook_get_icon (BijiItem *coll,
-                        gint scale)
-{
-  BijiNotebook *self = BIJI_NOTEBOOK (coll);
-  GList *pix;
-
-  if (!self->icon)
-  {
-    pix = get_collected_pix (self, scale);
-    self->icon = biji_create_notebook_icon (BIJI_ICON_WIDTH, scale, pix);
-    g_list_free (pix);
-  }
-
-  return self->icon;
-}
-
-
-static cairo_surface_t *
-biji_notebook_get_emblem (BijiItem *coll,
-                          gint scale)
-{
-  BijiNotebook *self = BIJI_NOTEBOOK (coll);
-  GList *pix;
-
-  if (!self->emblem)
-  {
-    pix = get_collected_pix (self, scale);
-    self->emblem = biji_create_notebook_icon (BIJI_EMBLEM_WIDTH, scale, pix);
-    g_list_free (pix);
-  }
-
-  return self->emblem;
-}
-
-
-
 static gint64
 biji_notebook_get_mtime (BijiItem *coll)
 {
@@ -254,17 +108,6 @@ biji_notebook_get_mtime (BijiItem *coll)
 
   return self->mtime;
 }
-
-
-/* As of today, notebooks are only local
- * We'll need to override this */
-
-static const gchar *
-biji_notebook_get_place (BijiItem *coll)
-{
-  return _("Local");
-}
-
 
 static gboolean
 biji_notebook_trash (BijiItem *item)
@@ -386,8 +229,6 @@ on_notebook_get_notes_cb (GObject      *object,
   GList *notes;
 
   g_clear_pointer (&self->collected_items, g_list_free);
-  g_clear_pointer (&self->icon, cairo_surface_destroy);
-  g_clear_pointer (&self->emblem, cairo_surface_destroy);
 
   notes = biji_tracker_get_notes_with_notebook_finish (BIJI_TRACKER (object), result, NULL);
   self->collected_items = notes;
@@ -447,13 +288,6 @@ biji_notebook_constructed (GObject *obj)
                                               g_object_ref (self));
 }
 
-static gboolean
-say_no (BijiItem *item)
-{
-  return FALSE;
-}
-
-
 static void
 biji_notebook_class_init (BijiNotebookClass *klass)
 {
@@ -505,16 +339,10 @@ biji_notebook_class_init (BijiNotebookClass *klass)
   /* Interface */
   item_class->get_title = biji_notebook_get_title;
   item_class->get_uuid = biji_notebook_get_uuid;
-  item_class->get_icon = biji_notebook_get_icon;
-  item_class->get_emblem = biji_notebook_get_emblem;
-  item_class->get_pristine = biji_notebook_get_emblem;
   item_class->get_mtime = biji_notebook_get_mtime;
-  item_class->get_place = biji_notebook_get_place;
-  item_class->has_color = say_no;
   item_class->trash = biji_notebook_trash;
   item_class->delete = biji_notebook_delete;
   item_class->restore = biji_notebook_restore;
-  item_class->is_collectable = say_no;
   item_class->has_notebook = biji_notebook_has_notebook;
   item_class->add_notebook = biji_notebook_add_notebook;
   item_class->remove_notebook = biji_notebook_remove_notebook;

@@ -30,7 +30,6 @@ struct _BjbListViewRow
 
   GtkCssProvider *css_provider;
   BjbListView    *view;
-  GtkCheckButton *select_button;
   GtkLabel       *title;
   GtkLabel       *content;
   GtkLabel       *updated_time;
@@ -79,27 +78,6 @@ on_manager_changed (BijiManager            *manager,
             }
         }
     }
-}
-
-static void
-on_toggled_cb (BjbListViewRow *self,
-               gpointer        data)
-{
-  GtkListBox *list_box = bjb_list_view_get_list_box (self->view);
-  BjbController *controller = bjb_list_view_get_controller (self->view);
-
-  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (self->select_button)))
-    {
-      gtk_list_box_select_row (list_box, GTK_LIST_BOX_ROW (self));
-      bjb_controller_select_item (controller, self->model_iter);
-    }
-  else
-    {
-      gtk_list_box_unselect_row (list_box, GTK_LIST_BOX_ROW (self));
-      bjb_controller_unselect_item (controller, self->model_iter);
-    }
-
-  g_signal_emit_by_name (GTK_WIDGET (list_box), "selected-rows-changed", 0);
 }
 
 void
@@ -171,10 +149,6 @@ bjb_list_view_row_setup (BjbListViewRow *self,
                                       GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 
-  gtk_widget_set_visible (GTK_WIDGET (self->select_button),
-                          bjb_controller_get_selection_mode (controller));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (self->select_button),
-                                selected);
   if (selected)
     gtk_list_box_select_row (list_box, GTK_LIST_BOX_ROW (self));
   else
@@ -232,11 +206,9 @@ bjb_list_view_row_class_init (BjbListViewRowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/list-view-row.ui");
 
-  gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, select_button);
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, title);
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, content);
   gtk_widget_class_bind_template_child (widget_class, BjbListViewRow, updated_time);
-  gtk_widget_class_bind_template_callback (widget_class, on_toggled_cb);
 }
 
 BjbListViewRow *

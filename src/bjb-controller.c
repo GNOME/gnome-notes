@@ -55,8 +55,6 @@ struct _BjbController
   gboolean        remaining_items;
   GMutex          mutex;
 
-  gboolean        selection_mode;
-
   gboolean        connected;
   gulong          manager_change;
 };
@@ -914,40 +912,4 @@ bjb_controller_set_group (BjbController   *self,
   {
     bjb_controller_apply_needle (self);
   }
-}
-
-static void
-bjb_controller_set_selection (GtkListStore *store,
-                              GtkTreeIter  *iter,
-                              gboolean      selection)
-{
-  gtk_list_store_set (store, iter,
-                      BJB_MODEL_COLUMN_SELECTED, selection,
-                      -1);
-}
-
-void
-bjb_controller_select_item (BjbController *self,
-                            const char    *iter_string)
-{
-  GtkTreeIter iter;
-  if (!gtk_tree_model_get_iter_from_string (self->model, &iter, iter_string))
-    return;
-  bjb_controller_set_selection (GTK_LIST_STORE (self->model), &iter, TRUE);
-}
-
-void
-bjb_controller_unselect_item (BjbController *self,
-                              const char    *iter_string)
-{
-  GtkTreeIter iter;
-  if (!gtk_tree_model_get_iter_from_string (self->model, &iter, iter_string))
-    return;
-  bjb_controller_set_selection (GTK_LIST_STORE (self->model), &iter, FALSE);
-}
-
-gboolean
-bjb_controller_get_selection_mode (BjbController *self)
-{
-  return self->selection_mode;
 }

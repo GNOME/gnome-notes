@@ -67,12 +67,4 @@ BijiItemsGroup bjb_controller_get_group (BjbController *controller);
 void bjb_controller_set_group (BjbController   *self,
                                BijiItemsGroup   group);
 
-gboolean  bjb_controller_get_selection_mode (BjbController *self);
-
-void      bjb_controller_select_item        (BjbController *self,
-                                             const char    *iter_string);
-
-void      bjb_controller_unselect_item      (BjbController *self,
-                                             const char    *iter_string);
-
 G_END_DECLS

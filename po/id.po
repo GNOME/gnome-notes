@@ -2,14 +2,14 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Andika Triwidada <andika@gmail.com>, 2013, 2014.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2021.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-09-13 23:27+0000\n"
-"PO-Revision-Date: 2021-12-23 10:59+0700\n"
+"POT-Creation-Date: 2022-01-05 04:05+0000\n"
+"PO-Revision-Date: 2022-01-12 11:47+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -154,8 +154,21 @@ msgid ""
 msgstr ""
 "Terdapat tiga ukuran teks yang tersedia: kecil, sedang (bawaan) dan besar."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Buku Catatan"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Buku Catatan Baru…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Tambah"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:431
+#: src/bjb-window.c:433
 msgid "All Notes"
 msgstr "Semua Catatan"
 
@@ -203,12 +216,7 @@ msgstr "Bantuan"
 msgid "About Notes"
 msgstr "Tentang Catatan"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Buku Catatan"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:440
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
 msgid "Trash"
 msgstr "Tong Sampah"
 
@@ -396,14 +404,6 @@ msgstr "Lokasi Ubahan"
 msgid "Select a Folder"
 msgstr "Pilih Folder"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Masukkan suatu nama untuk membuat sebuah buku catatan"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Buku catatan baru"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Warna catatan"
@@ -484,7 +484,7 @@ msgstr "Buku catatan sederhana bagi GNOME"
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2021."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022."
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
@@ -528,7 +528,7 @@ msgstr "Bulan ini"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:910
+#: src/bjb-window.c:912
 #, c-format
 msgid "Last updated: %s"
 msgstr "Terakhir diperbarui: %s"
@@ -540,6 +540,9 @@ msgstr "Lokal"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Masukkan suatu nama untuk membuat sebuah buku catatan"
 
 #~ msgid "_New"
 #~ msgstr "_Baru"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-06-18 18:22+0300\n"
+"POT-Creation-Date: 2022-01-05 04:05+0000\n"
+"PO-Revision-Date: 2022-01-12 14:38+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Project-Style: gnome\n"
 
@@ -152,8 +152,21 @@ msgstr ""
 "שלושה גדלי טקסט זמינים: small,‏ medium (בררת מחדל) ו־large שהם קטן, בינוני "
 "וגדול בהתאמה."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "מחברות"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "מחברת חדשה…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "הוספה"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: src/bjb-window.c:433
 msgid "All Notes"
 msgstr "כל הפתקיות"
 
@@ -201,12 +214,7 @@ msgstr "עזרה"
 msgid "About Notes"
 msgstr "על פתקיות"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "מחברות"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
 msgid "Trash"
 msgstr "אשפה"
 
@@ -394,14 +402,6 @@ msgstr "מיקום מותאם אישית"
 msgid "Select a Folder"
 msgstr "בחירת תיקייה"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "נא למלא שם כדי ליצור מחברת"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "מחברת חדשה"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "צבע הפתקית"
@@ -446,7 +446,7 @@ msgstr "בחירת מיקום אחסון בררת מחדל:"
 msgid "Primary Book"
 msgstr "ספר ראשי"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
 msgid "Untitled"
 msgstr "ללא כותרת"
 
@@ -489,7 +489,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "צבע הפתקית"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "מחברת"
 
@@ -527,7 +527,7 @@ msgstr "החודש"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:912
 #, c-format
 msgid "Last updated: %s"
 msgstr "עדכון אחרון: %s"
@@ -536,9 +536,12 @@ msgstr "עדכון אחרון: %s"
 msgid "Local"
 msgstr "מקומי"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "אחסון מקומי"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "נא למלא שם כדי ליצור מחברת"
 
 #~ msgid "_New"
 #~ msgstr "_חדש"

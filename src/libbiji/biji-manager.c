@@ -615,7 +615,6 @@ biji_manager_add_item (BijiManager *manager,
         {
           g_list_store_insert_sorted (manager->notebooks, item,
                                       compare_notebook, NULL);
-          g_signal_connect (item , "icon-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
         }
     }
   }

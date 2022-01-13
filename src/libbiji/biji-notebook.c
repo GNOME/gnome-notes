@@ -64,16 +64,7 @@ enum {
 };
 
 
-/* Signals */
-enum {
-  NOTEBOOK_ICON_UPDATED,
-  BIJI_NOTEBOOKS_SIGNALS
-};
-
 static GParamSpec *properties[BIJI_NOTEBOOK_PROPERTIES] = { NULL, };
-
-static guint biji_notebooks_signals [BIJI_NOTEBOOKS_SIGNALS] = { 0 };
-
 
 static const gchar *
 biji_notebook_get_title (BijiItem *coll)
@@ -242,8 +233,6 @@ on_notebook_get_notes_cb (GObject      *object,
       g_signal_connect_swapped (l->data, "trashed",
                                 G_CALLBACK (on_collected_item_change), self);
     }
-
-  g_signal_emit (self, biji_notebooks_signals[NOTEBOOK_ICON_UPDATED], 0);
 }
 
 static void
@@ -324,17 +313,6 @@ biji_notebook_class_init (BijiNotebookClass *klass)
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (g_object_class, BIJI_NOTEBOOK_PROPERTIES, properties);
-
-  biji_notebooks_signals[NOTEBOOK_ICON_UPDATED] =
-    g_signal_new ("icon-changed",
-                  G_OBJECT_CLASS_TYPE (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL,
-                  NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
 
   /* Interface */
   item_class->get_title = biji_notebook_get_title;

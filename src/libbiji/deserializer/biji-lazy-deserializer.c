@@ -511,7 +511,7 @@ processNode (BijiLazyDeserializer *self)
     {
       norm = g_string_new (tag);
       g_string_erase (norm,0,16);
-      biji_item_add_notebook (BIJI_ITEM (n), NULL, norm->str);
+      biji_note_obj_add_notebook (n, NULL, norm->str);
       g_string_free (norm, TRUE);
     }
 
@@ -542,7 +542,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
   xmlNodePtr cur;
   xmlChar     *version;
 
-  path = biji_item_get_uuid (BIJI_ITEM (n));
+  path = biji_note_obj_get_uuid (n);
   doc = xmlParseFile (path);
 
   if (doc == NULL )
@@ -599,7 +599,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 
   xmlFree (version);
 
-  path = biji_item_get_uuid (BIJI_ITEM (n));
+  path = biji_note_obj_get_uuid (n);
   self->r = xmlNewTextReaderFilename (path);
 
   biji_parse_file (self);

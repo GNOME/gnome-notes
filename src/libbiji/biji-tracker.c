@@ -115,7 +115,7 @@ on_add_notebook_cb (GObject      *object,
       notebook = biji_notebook_new (G_OBJECT (self->manager),
                                     urn, notebook_str,
                                     g_get_real_time () / G_USEC_PER_SEC);
-      biji_manager_add_item (self->manager, BIJI_ITEM (notebook), BIJI_LIVING_ITEMS, true);
+      biji_manager_add_item (self->manager, notebook, BIJI_LIVING_ITEMS, true);
     }
 
   g_task_return_pointer (task, notebook, NULL);
@@ -249,7 +249,7 @@ on_get_list_async_cb (GObject      *object,
 
   if (cursor)
     {
-      BijiItem *item = NULL;
+      gpointer item = NULL;
       const char *full_path;
       char *path;
 
@@ -475,7 +475,7 @@ biji_tracker_add_notebook_async (BijiTracker         *self,
                                                 on_add_notebook_cb, task);
 }
 
-BijiItem *
+BijiNotebook *
 biji_tracker_add_notebook_finish (BijiTracker  *self,
                                   GAsyncResult *result,
                                   GError       **error)
@@ -591,7 +591,7 @@ biji_tracker_get_notebooks_finish (BijiTracker   *self,
 void
 biji_tracker_remove_note_notebook_async (BijiTracker         *self,
                                          BijiNoteObj         *note,
-                                         BijiItem            *notebook,
+                                         BijiNotebook        *notebook,
                                          GAsyncReadyCallback  callback,
                                          gpointer             user_data)
 {
@@ -604,9 +604,9 @@ biji_tracker_remove_note_notebook_async (BijiTracker         *self,
   g_return_if_fail (BIJI_IS_NOTEBOOK (notebook));
   g_return_if_fail (callback);
 
-  url = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
+  url = g_strdup_printf ("file://%s", biji_note_obj_get_uuid (note));
   query = g_strdup_printf ("DELETE {'%s' nie:isPartOf '%s'}",
-                           biji_item_get_uuid (notebook), url);
+                           biji_notebook_get_uuid (notebook), url);
 
   task = g_task_new (self, NULL, callback, user_data);
 
@@ -645,7 +645,7 @@ biji_tracker_add_note_to_notebook_async (BijiTracker         *self,
   g_return_if_fail (notebook && *notebook);
   g_return_if_fail (callback);
 
-  url = g_strdup_printf ("file://%s", biji_item_get_uuid (BIJI_ITEM (note)));
+  url = g_strdup_printf ("file://%s", biji_note_obj_get_uuid (note));
   query = g_strdup_printf ("INSERT {?urn nie:isPartOf '%s'} "
                            "WHERE {?urn a nfo:DataContainer; nie:title '%s'; nie:generator 'Bijiben'}",
                            url, notebook);
@@ -711,7 +711,7 @@ biji_tracker_delete_note (BijiTracker *self,
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
-                           biji_item_get_uuid (BIJI_ITEM (note)));
+                           biji_note_obj_get_uuid (note));
 
   tracker_sparql_connection_update_async (self->connection, query,
 #if !HAVE_TRACKER3

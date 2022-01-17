@@ -49,13 +49,12 @@ on_manager_changed (BijiManager            *manager,
                     gpointer               *biji_item,
                     BjbListViewRow         *self)
 {
-  BijiItem *item = BIJI_ITEM (biji_item);
-  BijiNoteObj *note_obj = BIJI_NOTE_OBJ (item);
+  BijiNoteObj *note_obj = BIJI_NOTE_OBJ (biji_item);
 
   /* Note title/content amended. */
   if (flag == BIJI_MANAGER_NOTE_AMENDED)
     {
-      if (g_strcmp0 (self->uuid, biji_item_get_uuid (item)) == 0)
+      if (g_strcmp0 (self->uuid, biji_note_obj_get_uuid (note_obj)) == 0)
         {
           if (biji_note_obj_get_title (note_obj) != NULL &&
               g_strcmp0 (gtk_label_get_text (self->title),

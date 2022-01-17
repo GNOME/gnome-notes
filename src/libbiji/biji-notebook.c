@@ -41,18 +41,19 @@ static void on_collected_item_change (BijiNotebook *self);
 
 struct _BijiNotebook
 {
-  BijiItem         parent_instance;
+  GObject          parent_instance;
 
   gchar           *urn;
   gchar           *name;
   gint64           mtime;
 
+  BijiManager     *manager;
   GList           *collected_items;
 };
 
 static void biji_notebook_finalize (GObject *object);
 
-G_DEFINE_TYPE (BijiNotebook, biji_notebook, BIJI_TYPE_ITEM)
+G_DEFINE_TYPE (BijiNotebook, biji_notebook, G_TYPE_OBJECT)
 
 /* Properties */
 enum {
@@ -60,103 +61,12 @@ enum {
   PROP_URN,
   PROP_NAME,
   PROP_MTIME,
+  PROP_MANAGER,
   BIJI_NOTEBOOK_PROPERTIES
 };
 
 
 static GParamSpec *properties[BIJI_NOTEBOOK_PROPERTIES] = { NULL, };
-
-static const gchar *
-biji_notebook_get_title (BijiItem *coll)
-{
-  BijiNotebook *self;
-
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), NULL);
-  self = BIJI_NOTEBOOK (coll);
-
-  return self->name;
-}
-
-
-static const gchar *
-biji_notebook_get_uuid (BijiItem *coll)
-{
-  BijiNotebook *self;
-
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), NULL);
-  self = BIJI_NOTEBOOK (coll);
-
-  return self->urn;
-}
-
-static gint64
-biji_notebook_get_mtime (BijiItem *coll)
-{
-  BijiNotebook *self;
-
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (coll), 0);
-  self = BIJI_NOTEBOOK (coll);
-
-  return self->mtime;
-}
-
-static gboolean
-biji_notebook_trash (BijiItem *item)
-{
-  BijiNotebook *self;
-  BijiManager *manager;
-
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
-
-  self = BIJI_NOTEBOOK (item);
-  manager = biji_item_get_manager (item);
-
-  biji_tracker_remove_notebook (biji_manager_get_tracker (manager), self->urn);
-
-  return TRUE;
-}
-
-static gboolean
-biji_notebook_delete (BijiItem *item)
-{
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (item), FALSE);
-
-  g_warning ("Notebooks delete is not yet implemented");
-  return FALSE;
-}
-
-static gboolean
-biji_notebook_restore (BijiItem  *item,
-                       gchar    **old_uuid)
-{
-  g_warning ("Notebooks restore is not yet implemented");
-  return FALSE;
-}
-
-
-static gboolean
-biji_notebook_has_notebook (BijiItem *item, gchar *notebook)
-{
-  //todo
-  return FALSE;
-}
-
-
-static gboolean
-biji_notebook_add_notebook (BijiItem *item, BijiItem *coll, gchar *title)
-{
-  g_warning ("biji notebook add notebook is not implemented.");
-  return FALSE;
-}
-
-
-static gboolean
-biji_notebook_remove_notebook (BijiItem *item, BijiItem *notebook)
-{
-  g_warning ("biji notebook remove notebook is not implemented.");
-  return FALSE;
-}
-
 
 static void
 biji_notebook_set_property (GObject      *object,
@@ -177,6 +87,9 @@ biji_notebook_set_property (GObject      *object,
         break;
       case PROP_MTIME:
         self->mtime = g_value_get_int64 (value);
+        break;
+      case PROP_MANAGER:
+        self->manager = g_value_get_object (value);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -241,7 +154,7 @@ on_collected_item_change (BijiNotebook *self)
   BijiManager *manager;
   GList *l;
 
-  manager = biji_item_get_manager (BIJI_ITEM (self));
+  manager = self->manager;
 
   /* Disconnected any handler */
   for (l = self->collected_items; l != NULL; l = l->next)
@@ -269,7 +182,7 @@ biji_notebook_constructed (GObject *obj)
   BijiManager *manager;
 
 
-  manager = biji_item_get_manager (BIJI_ITEM (obj));
+  manager = self->manager;
 
   biji_tracker_get_notes_with_notebook_async (biji_manager_get_tracker (manager),
                                               self->name,
@@ -281,10 +194,8 @@ static void
 biji_notebook_class_init (BijiNotebookClass *klass)
 {
   GObjectClass *g_object_class;
-  BijiItemClass*  item_class;
 
   g_object_class = G_OBJECT_CLASS (klass);
-  item_class = BIJI_ITEM_CLASS (klass);
 
   g_object_class->constructed = biji_notebook_constructed;
   g_object_class->finalize = biji_notebook_finalize;
@@ -312,18 +223,14 @@ biji_notebook_class_init (BijiNotebookClass *klass)
                          G_MININT64, G_MAXINT64, 0,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
-  g_object_class_install_properties (g_object_class, BIJI_NOTEBOOK_PROPERTIES, properties);
+  properties[PROP_MANAGER] =
+    g_param_spec_object("manager",
+                        "Note Manager",
+                        "The Note Manager controlling this item",
+                        BIJI_TYPE_MANAGER,
+                        G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY);
 
-  /* Interface */
-  item_class->get_title = biji_notebook_get_title;
-  item_class->get_uuid = biji_notebook_get_uuid;
-  item_class->get_mtime = biji_notebook_get_mtime;
-  item_class->trash = biji_notebook_trash;
-  item_class->delete = biji_notebook_delete;
-  item_class->restore = biji_notebook_restore;
-  item_class->has_notebook = biji_notebook_has_notebook;
-  item_class->add_notebook = biji_notebook_add_notebook;
-  item_class->remove_notebook = biji_notebook_remove_notebook;
+  g_object_class_install_properties (g_object_class, BIJI_NOTEBOOK_PROPERTIES, properties);
 }
 
 
@@ -356,4 +263,46 @@ biji_notebook_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime)
                        "urn",       urn,
                        "mtime",     mtime,
                        NULL);
+}
+
+gint64
+biji_notebook_get_mtime (BijiNotebook *self)
+{
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), 0);
+
+  return self->mtime;
+}
+
+gpointer
+biji_notebook_manager (BijiNotebook *self)
+{
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), NULL);
+
+  return self->manager;
+}
+
+const char *
+biji_notebook_get_title (BijiNotebook *self)
+{
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), NULL);
+
+  return self->name;
+}
+
+const char *
+biji_notebook_get_uuid (BijiNotebook *self)
+{
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), NULL);
+
+  return self->urn;
+}
+
+gboolean
+biji_notebook_trash (BijiNotebook *self)
+{
+  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), FALSE);
+
+  biji_tracker_remove_notebook (biji_manager_get_tracker (self->manager), self->urn);
+
+  return TRUE;
 }

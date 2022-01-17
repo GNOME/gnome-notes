@@ -117,14 +117,13 @@ on_window_activated_cb (BjbWindow      *window,
    * but not the default one - more work is needed here */
   if (self->new_note && g_queue_is_empty (&self->files_to_open))
   {
-    BijiItem *item;
+    BijiNoteObj *note;
 
     self->new_note = FALSE;
-    item = BIJI_ITEM (biji_manager_note_new (
-                        self->manager,
-                        NULL,
-                        bjb_settings_get_default_location (self->settings)));
-    bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
+    note = biji_manager_note_new (self->manager,
+                                  NULL,
+                                  bjb_settings_get_default_location (self->settings));
+    bijiben_new_window_internal (self, note);
   }
 }
 
@@ -166,7 +165,7 @@ bijiben_open_path (BjbApplication *self,
                    gchar          *path,
                    BjbWindow      *window)
 {
-  BijiItem *item;
+  gpointer item;
 
   if (!self->is_loaded)
     return FALSE;
@@ -174,9 +173,9 @@ bijiben_open_path (BjbApplication *self,
   item = biji_manager_get_item_at_path (self->manager, path);
 
   if (!window)
-    bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
+    bijiben_new_window_internal (self, item);
   else
-    bjb_window_set_note (window, BIJI_NOTE_OBJ (item));
+    bjb_window_set_note (window, item);
 
   return TRUE;
 }

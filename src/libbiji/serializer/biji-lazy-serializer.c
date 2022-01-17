@@ -21,7 +21,6 @@
 #include <string.h>
 
 #include "biji-lazy-serializer.h"
-#include "../biji-item.h"
 #include "../biji-note-obj.h"
 #include "../biji-string.h"
 
@@ -191,7 +190,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   // <Title>
   serialize_node (self->writer,
                   "title",
-                  (gchar*) biji_item_get_title (BIJI_ITEM (self->note)));
+                  (char *)biji_note_obj_get_title (self->note));
 
   // <text>
   xmlTextWriterWriteRaw(self->writer, BAD_CAST "\n  ");
@@ -204,7 +203,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   xmlTextWriterEndElement(self->writer);
 
   // <last-change-date>
-  change_date = g_date_time_new_from_unix_utc (biji_item_get_mtime (BIJI_ITEM (self->note)));
+  change_date = g_date_time_new_from_unix_utc (biji_note_obj_get_mtime (self->note));
   change_date_str = g_date_time_format_iso8601 (change_date);
   if (change_date_str)
   {
@@ -256,7 +255,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 
   xmlFreeTextWriter(self->writer);
 
-  path = biji_item_get_uuid (BIJI_ITEM (self->note));
+  path = biji_note_obj_get_uuid (self->note);
   retval = g_file_set_contents (path, (gchar*) self->buf->content, -1, NULL);
 
   return retval;

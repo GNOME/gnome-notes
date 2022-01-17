@@ -5,6 +5,7 @@
 
 #include "biji-info-set.h"
 #include "biji-note-obj.h"
+#include "biji-notebook.h"
 
 
 #include <libedataserver/libedataserver.h> /* ESourceRegistry */
@@ -72,7 +73,7 @@ gchar           *biji_manager_get_unique_title      (BijiManager *manager,
 
 
 gboolean         biji_manager_add_item                (BijiManager *manager,
-                                                       BijiItem *item,
+                                                       gpointer     item,
                                                        BijiItemsGroup group,
                                                        gboolean notify);
 
@@ -80,10 +81,10 @@ gboolean         biji_manager_add_item                (BijiManager *manager,
 void             biji_manager_notify_changed        (BijiManager           *manager,
                                                      BijiItemsGroup         group,
                                                      BijiManagerChangeFlag  flag,
-                                                     BijiItem              *item);
+                                                     gpointer               item);
 
 
-BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
+gpointer         biji_manager_get_item_at_path      (BijiManager *manager,
                                                      const gchar *path);
 
 /* Get all items, either notes or notebooks
@@ -93,7 +94,7 @@ BijiItem        *biji_manager_get_item_at_path      (BijiManager *manager,
 GList           *biji_manager_get_items             (BijiManager         *manager,
                                                      BijiItemsGroup       group);
 GListModel      *biji_manager_get_notebooks         (BijiManager         *self);
-BijiItem        *biji_manager_find_notebook         (BijiManager         *self,
+BijiNotebook    *biji_manager_find_notebook         (BijiManager         *self,
                                                      const char          *uuid);
 
 BijiNoteObj     *biji_manager_note_new              (BijiManager *manager,

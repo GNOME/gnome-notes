@@ -125,7 +125,7 @@ go_through_notes_cb (GObject      *object,
       if (iter != NULL)
         {
           g_hash_table_insert (self->items,
-                               (gpointer) biji_item_get_uuid (BIJI_ITEM (iter)),
+                               (gpointer) biji_note_obj_get_uuid (iter),
                                (gpointer) iter);
         }
     }

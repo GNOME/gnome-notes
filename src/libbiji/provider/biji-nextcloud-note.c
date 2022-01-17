@@ -59,8 +59,7 @@ note_no (BijiNoteObj *note)
 static char *
 get_basename (BijiNoteObj *note)
 {
-  BijiItem *item = BIJI_ITEM (note);
-  return (char *) biji_item_get_uuid (item);
+  return (char *) biji_note_obj_get_uuid (note);
 }
 
 static char *
@@ -80,7 +79,6 @@ save_note_finish (GObject      *source_object,
                   GAsyncResult *res,
                   gpointer      user_data)
 {
-  BijiItem *item = BIJI_ITEM (source_object);
   BijiNoteObj *note = BIJI_NOTE_OBJ (source_object);
   BijiNextcloudNote *self = BIJI_NEXTCLOUD_NOTE (source_object);
   const BijiProviderInfo *prov_info = biji_provider_get_info (BIJI_PROVIDER (self->provider));
@@ -90,11 +88,11 @@ save_note_finish (GObject      *source_object,
   info->url = (char *) biji_note_obj_get_path (note);
   info->title = (char *) biji_note_obj_get_title (note);
   info->content = (char *) biji_note_obj_get_raw_text (note);
-  info->mtime = biji_item_get_mtime (item);
+  info->mtime = biji_note_obj_get_mtime (note);
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  manager = biji_item_get_manager (item);
+  manager = biji_note_obj_get_manager (note);
   biji_tracker_save_note (biji_manager_get_tracker (manager), info);
 }
 
@@ -168,7 +166,7 @@ save_note_thread (GTask        *task,
       json_text = g_strdup_printf ("{\"title\": \"%s\", \"content\": \"%s\", \"modified\": %ld}",
                                    biji_note_obj_get_title (note),
                                    content,
-                                   biji_item_get_mtime (BIJI_ITEM (source_object)));
+                                   biji_note_obj_get_mtime (note));
 
       curl_easy_setopt (curl, CURLOPT_HTTPHEADER, headers);
       curl_easy_setopt (curl, CURLOPT_POSTFIELDS, json_text);
@@ -206,8 +204,7 @@ save_note_async (BijiNextcloudNote *self)
 static void
 save_note (BijiNoteObj *note)
 {
-  BijiItem *item = BIJI_ITEM (note);
-  const char *title = biji_item_get_title (item);
+  const char *title = biji_note_obj_get_title (note);
   const char *content = biji_note_obj_get_raw_text (note);
 
   if (title && strlen (title) > 0 && content && strlen (content) > 0)
@@ -242,7 +239,7 @@ archive (BijiNoteObj *note)
         {
           curl_easy_cleanup (curl);
 
-          tracker = biji_manager_get_tracker (biji_item_get_manager (BIJI_ITEM (note)));
+          tracker = biji_manager_get_tracker (biji_note_obj_get_manager (note));
           biji_tracker_delete_note (tracker, note);
 
           return TRUE;

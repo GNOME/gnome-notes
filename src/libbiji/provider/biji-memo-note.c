@@ -109,7 +109,7 @@ fill_in_components (ECalComponent *comp,
 
 
   /* Set : title */
-  text = e_cal_component_text_new (biji_item_get_title (BIJI_ITEM (self)), NULL);
+  text = e_cal_component_text_new (biji_note_obj_get_title (BIJI_NOTE_OBJ (self)), NULL);
   e_cal_component_set_summary (clone, text);
   e_cal_component_text_free (text);
 
@@ -152,7 +152,7 @@ fill_in_components (ECalComponent *comp,
    * Several: attach / attendee / comment / contact / related / rstatus / x-prop
   */
 
-  mtime = biji_item_get_mtime (BIJI_ITEM (self));
+  mtime = biji_note_obj_get_mtime (BIJI_NOTE_OBJ (self));
   t = icaltime_from_time_val (mtime);
   if (t)
     {
@@ -265,15 +265,6 @@ memo_set_html (BijiNoteObj *note,
   /* NULL */
 }
 
-static gboolean
-memo_item_delete (BijiItem *item)
-{
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (item), FALSE);
-
-  g_warning ("Memo note delete is not yet implemented");
-  return FALSE;
-}
-
 static void
 on_memo_deleted (GObject      *ecal,
                  GAsyncResult *res,
@@ -331,17 +322,13 @@ static void
 biji_memo_note_class_init (BijiMemoNoteClass *klass)
 {
   GObjectClass     *object_class = G_OBJECT_CLASS (klass);
-  BijiItemClass    *item_class;
   BijiNoteObjClass *note_class;
 
-  item_class = BIJI_ITEM_CLASS (klass);
   note_class = BIJI_NOTE_OBJ_CLASS (klass);
 
   object_class->finalize = biji_memo_note_finalize;
   object_class->get_property = biji_memo_note_get_property;
   object_class->set_property = biji_memo_note_set_property;
-
-  item_class->delete = memo_item_delete;
 
   note_class->get_basename = memo_get_basename;
   note_class->get_html = memo_get_html;

@@ -56,7 +56,6 @@ local_note_set_html (BijiNoteObj *note,
 static void
 local_note_save (BijiNoteObj *note)
 {
-  BijiItem *item = BIJI_ITEM (note);
   BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
   const BijiProviderInfo *prov_info = biji_provider_get_info (self->provider);
   BijiInfoSet *info = biji_info_set_new ();
@@ -66,14 +65,14 @@ local_note_save (BijiNoteObj *note)
   biji_lazy_serialize (note);
 
   /* Tracker */
-  info->url = (char *) biji_item_get_uuid (item);
-  info->title = (char *) biji_item_get_title (item);
+  info->url = (char *) biji_note_obj_get_uuid (note);
+  info->title = (char *) biji_note_obj_get_title (note);
   info->content = (char *) biji_note_obj_get_raw_text (note);
-  info->mtime = biji_item_get_mtime (item);
+  info->mtime = biji_note_obj_get_mtime (note);
   info->created = biji_note_obj_get_create_date (note);
   info->datasource_urn = g_strdup (prov_info->datasource);
 
-  manager = biji_item_get_manager (item);
+  manager = biji_note_obj_get_manager (note);
   biji_tracker_save_note (biji_manager_get_tracker (manager), info);
 }
 
@@ -152,8 +151,8 @@ local_note_is_trashed (BijiNoteObj *note)
 }
 
 static gboolean
-local_note_restore (BijiItem  *item,
-                    char     **old_uuid)
+local_note_restore (BijiNoteObj  *item,
+                    char        **old_uuid)
 {
   BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
   g_autofree char *root_path = NULL;
@@ -206,16 +205,16 @@ delete_file (GObject      *note,
 /* Do not check if note is already trashed
  * eg, note is empty */
 static gboolean
-local_note_delete (BijiItem *item)
+local_note_delete (BijiNoteObj *note)
 {
-  BijiLocalNote *self = BIJI_LOCAL_NOTE (item);
+  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
   g_autofree char *file_path = g_file_get_path (self->location);
   BijiTracker *tracker;
 
   g_debug ("local note delete : %s", file_path);
 
-  tracker = biji_manager_get_tracker (biji_item_get_manager (item));
-  biji_tracker_delete_note (tracker, BIJI_NOTE_OBJ (item));
+  tracker = biji_manager_get_tracker (biji_note_obj_get_manager (note));
+  biji_tracker_delete_note (tracker, note);
   g_file_delete_async (self->location,
                        G_PRIORITY_LOW,
                        NULL,                  /* Cancellable */
@@ -236,13 +235,9 @@ static void
 biji_local_note_class_init (BijiLocalNoteClass *klass)
 {
   GObjectClass *g_object_class = G_OBJECT_CLASS (klass);
-  BijiItemClass *item_class = BIJI_ITEM_CLASS (klass);
   BijiNoteObjClass *note_class = BIJI_NOTE_OBJ_CLASS (klass);
 
   g_object_class->finalize = biji_local_note_finalize;
-
-  item_class->restore = local_note_restore;
-  item_class->delete = local_note_delete;
 
   note_class->get_basename = local_note_get_basename;
   note_class->get_html = local_note_get_html;
@@ -251,6 +246,8 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
   note_class->can_format = note_yes;
   note_class->archive = local_note_archive;
   note_class->is_trashed = local_note_is_trashed;
+  note_class->restore = local_note_restore;
+  note_class->delete = local_note_delete;
 }
 
 BijiNoteObj *

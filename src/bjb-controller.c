@@ -179,16 +179,18 @@ bjb_controller_set_property (GObject  *object,
 /* get iter at this item
  * or get iter at first note if item == NULL*/
 static gboolean
-bjb_controller_get_iter (BjbController *self,
-                         BijiItem *item,
-                         GtkTreeIter **iter)
+bjb_controller_get_iter (BjbController  *self,
+                         gpointer        item,
+                         GtkTreeIter   **iter)
 {
   gboolean retval = FALSE;
   gboolean try;
   const gchar *needle = NULL;
 
-  if (item && BIJI_IS_ITEM (item))
-      needle = biji_item_get_uuid (item);
+  if (BIJI_IS_NOTEBOOK (item))
+    needle = biji_notebook_get_uuid (BIJI_NOTEBOOK (item));
+  else if (BIJI_IS_NOTE_OBJ (item))
+    needle = biji_note_obj_get_uuid (BIJI_NOTE_OBJ (item));
 
   try = gtk_tree_model_get_iter_first (self->model, *iter);
 
@@ -225,7 +227,7 @@ bjb_controller_get_iter (BjbController *self,
  * prepend just before this iter */
 static void
 bjb_controller_add_item (BjbController *self,
-                         BijiItem      *item,
+                         gpointer       item,
                          gboolean       prepend,
                          GtkTreeIter   *sibling)
 {
@@ -235,7 +237,7 @@ bjb_controller_add_item (BjbController *self,
   const char      *text       = _("Notebook");
   g_autofree char *color      = NULL;
 
-  g_return_if_fail (BIJI_IS_ITEM (item));
+  g_return_if_fail (BIJI_IS_NOTE_OBJ (item) || BIJI_IS_NOTEBOOK (item));
   store = GTK_LIST_STORE (self->model);
 
   /* Only append notes which are not templates. Currently useless */
@@ -268,10 +270,10 @@ bjb_controller_add_item (BjbController *self,
 
   gtk_list_store_set (store,
                       &iter,
-                      BJB_MODEL_COLUMN_UUID,  biji_item_get_uuid (item),
-                      BJB_MODEL_COLUMN_TITLE, biji_item_get_title (item),
+                      BJB_MODEL_COLUMN_UUID,  biji_note_obj_get_uuid (BIJI_NOTE_OBJ (item)),
+                      BJB_MODEL_COLUMN_TITLE, biji_note_obj_get_title (BIJI_NOTE_OBJ (item)),
                       BJB_MODEL_COLUMN_TEXT,  text,
-                      BJB_MODEL_COLUMN_MTIME, biji_item_get_mtime (item),
+                      BJB_MODEL_COLUMN_MTIME, biji_note_obj_get_mtime (BIJI_NOTE_OBJ (item)),
                       BJB_MODEL_COLUMN_COLOR, color,
                       -1);
 }
@@ -279,7 +281,7 @@ bjb_controller_add_item (BjbController *self,
 /* If the user searches for notes, is the note searched? */
 static void
 bjb_controller_add_item_if_needed (BjbController *self,
-                                   BijiItem      *item,
+                                   gpointer       item,
                                    gboolean       prepend,
                                    GtkTreeIter   *sibling)
 {
@@ -288,7 +290,7 @@ bjb_controller_add_item_if_needed (BjbController *self,
   const gchar *title;
 
   /* No note... */
-  if (!item || !BIJI_IS_ITEM (item))
+  if (!BIJI_IS_NOTEBOOK (item) && !BIJI_IS_NOTE_OBJ (item))
     return;
 
   /* No search - we add the note */
@@ -304,7 +306,10 @@ bjb_controller_add_item_if_needed (BjbController *self,
   /* a search.. we test...*/
   else
   {
-    title = biji_item_get_title (item);
+    if (BIJI_IS_NOTEBOOK (item))
+      title = biji_notebook_get_title (item);
+    else
+      title = biji_note_obj_get_title (item);
 
     /* matching title... */
     if (g_strrstr (title, self->needle) != NULL)
@@ -327,8 +332,8 @@ bjb_controller_add_item_if_needed (BjbController *self,
 static gint
 most_recent_item_first (gconstpointer a, gconstpointer b)
 {
-  const BijiItem *one = a;
-  const BijiItem *other = b;
+  const BijiNoteObj *one = a;
+  const BijiNoteObj *other = b;
   glong result = 0;
 
   /* Always sort notebooks before notes */
@@ -347,8 +352,8 @@ most_recent_item_first (gconstpointer a, gconstpointer b)
    * two notebooks, use the most recent cookbook */
   else
   {
-    result = biji_item_get_mtime ((gpointer) other)
-      - biji_item_get_mtime ((gpointer) one);
+    result = biji_note_obj_get_mtime ((gpointer) other)
+      - biji_note_obj_get_mtime ((gpointer) one);
   }
 
   return result;
@@ -588,10 +593,9 @@ static void
 on_manager_changed (BijiManager            *manager,
                     BijiItemsGroup          group,
                     BijiManagerChangeFlag   flag,
-                    gpointer               *biji_item,
+                    gpointer               *item,
                     BjbController          *self)
 {
-  BijiItem    *item = BIJI_ITEM (biji_item);
   GtkTreeIter iter;
   GtkTreeIter *p_iter = &iter;
 
@@ -872,7 +876,7 @@ bjb_controller_set_notebook (BjbController *self,
   self->notebook = coll;
 
   biji_tracker_get_notes_with_notebook_async (biji_manager_get_tracker (self->manager),
-                                              biji_item_get_title (BIJI_ITEM (coll)),
+                                              biji_notebook_get_title (coll),
                                               on_controller_get_notes_cb,
                                               g_object_ref (self));
 }

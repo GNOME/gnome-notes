@@ -21,7 +21,6 @@
 #include <gtk/gtk.h>
 
 #include "biji-info-set.h"
-#include "biji-item.h"
 
 G_BEGIN_DECLS
 
@@ -43,11 +42,11 @@ typedef enum
 
 #define BIJI_TYPE_NOTE_OBJ (biji_note_obj_get_type ())
 
-G_DECLARE_DERIVABLE_TYPE (BijiNoteObj, biji_note_obj, BIJI, NOTE_OBJ, BijiItem)
+G_DECLARE_DERIVABLE_TYPE (BijiNoteObj, biji_note_obj, BIJI, NOTE_OBJ, GObject)
 
 struct _BijiNoteObjClass
 {
-  BijiItemClass parent_class;
+  GObjectClass  parent_class;
 
   char         *(*get_basename)      (BijiNoteObj *note);
 
@@ -90,10 +89,26 @@ struct _BijiNoteObjClass
    * - bold, italic, srike
    */
   gboolean      (*can_format)        (BijiNoteObj *note);
+  gboolean      (*restore)           (BijiNoteObj *note,
+                                      char       **old_uuid);
+  gboolean      (*delete)            (BijiNoteObj *note);
 };
 
+const char      *biji_note_obj_get_uuid                      (BijiNoteObj *self);
+gint64           biji_note_obj_get_mtime                     (BijiNoteObj *self);
 gboolean         biji_note_obj_set_mtime                     (BijiNoteObj *self,
                                                               gint64       time);
+gpointer         biji_note_obj_get_manager                   (BijiNoteObj *self);
+gboolean         biji_note_obj_trash                         (BijiNoteObj *self);
+gboolean         biji_note_obj_restore                       (BijiNoteObj *self);
+gboolean         biji_note_obj_delete                        (BijiNoteObj *self);
+gboolean         biji_note_obj_has_notebook                  (BijiNoteObj *self,
+                                                              const char  *label);
+gboolean         biji_note_obj_add_notebook                  (BijiNoteObj  *self,
+                                                              gpointer      notebook,
+                                                              const char   *title);
+gboolean         biji_note_obj_remove_notebook               (BijiNoteObj  *self,
+                                                              gpointer      notebook);
 
 char            *biji_note_obj_get_last_change_date_string   (BijiNoteObj *self);
 

@@ -14,7 +14,6 @@ sources = files(
   'serializer/biji-lazy-serializer.c',
   'biji-date-time.c',
   'biji-info-set.c',
-  'biji-item.c',
   'biji-manager.c',
   'biji-notebook.c',
   'biji-note-obj.c',

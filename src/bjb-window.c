@@ -124,12 +124,12 @@ destroy_note_if_needed (BjbWindow *self)
 }
 
 static void
-on_note_renamed (BijiItem      *note,
-                 BjbWindow *self)
+on_note_renamed (BijiNoteObj *note,
+                 BjbWindow   *self)
 {
   const char *str;
 
-  str = biji_item_get_title (note);
+  str = biji_note_obj_get_title (note);
   if (str == NULL || strlen(str) == 0)
     str = _("Untitled");
   gtk_entry_set_text (GTK_ENTRY (self->title_entry), str);
@@ -144,7 +144,7 @@ on_note_list_row_activated (GtkListBox    *box,
                             gpointer       user_data)
 {
   const char *note_uuid;
-  BijiItem *to_open;
+  gpointer to_open;
   BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (user_data);
   GList *windows;
@@ -170,14 +170,14 @@ on_note_list_row_activated (GtkListBox    *box,
       hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
 
       /* Only open the note if it's not already opened. */
-      if (!biji_note_obj_is_opened (BIJI_NOTE_OBJ (to_open)))
+      if (!biji_note_obj_is_opened (to_open))
         {
-          bjb_window_set_note (self, BIJI_NOTE_OBJ (to_open));
+          bjb_window_set_note (self, to_open);
         }
     }
   else if (to_open && BIJI_IS_NOTEBOOK (to_open))
     {
-      bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (to_open));
+      bjb_controller_set_notebook (self->controller, to_open);
     }
 }
 
@@ -467,7 +467,7 @@ on_show_notebook_cb (GSimpleAction *action,
   const char *note_uuid;
   const char *title;
   BjbWindow *self = BJB_WINDOW (user_data);
-  BijiItem *notebook;
+  BijiNotebook *notebook;
   BijiManager *manager;
 
   clear_text_in_search_entry (self);
@@ -482,10 +482,10 @@ on_show_notebook_cb (GSimpleAction *action,
   {
     manager = bjb_window_get_manager (GTK_WIDGET (self));
     notebook = biji_manager_find_notebook (manager, note_uuid);
-    bjb_controller_set_notebook (self->controller, BIJI_NOTEBOOK (notebook));
+    bjb_controller_set_notebook (self->controller, notebook);
 
     /* Update headerbar title. */
-    title = biji_item_get_title (notebook);
+    title = biji_notebook_get_title (notebook);
     gtk_label_set_text (GTK_LABEL (self->filter_label), title);
   }
 
@@ -505,7 +505,7 @@ on_trash_cb (GSimpleAction *action,
 
   /* Delete the note from notebook
    * The deleted note will emit a signal. */
-  biji_item_trash (BIJI_ITEM (note));
+  biji_note_obj_trash (note);
 
   destroy_note_if_needed (self);
   bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
@@ -578,8 +578,8 @@ bjb_window_configure_event (GtkWidget         *widget,
 }
 
 static void
-append_notebook (BijiItem      *notebook,
-                 BjbWindow *self)
+append_notebook (BijiNotebook *notebook,
+                 BjbWindow    *self)
 {
   const char *note_uuid;
   const char *title;
@@ -587,10 +587,10 @@ append_notebook (BijiItem      *notebook,
   GtkStyleContext *context;
   GtkWidget *button;
 
-  note_uuid = biji_item_get_uuid (notebook);
+  note_uuid = biji_notebook_get_uuid (notebook);
   variant = g_variant_new_string (note_uuid);
 
-  title = biji_item_get_title (notebook);
+  title = biji_notebook_get_title (notebook);
   button = gtk_model_button_new ();
   g_object_set (button,
                 "action-name", "win.show-notebook",
@@ -626,7 +626,7 @@ on_display_notebooks_changed (BjbWindow *self)
 
   for (guint i = 0; i < n_items; i++)
     {
-      g_autoptr(BijiItem) item = NULL;
+      g_autoptr(BijiNotebook) item = NULL;
 
       item = g_list_model_get_item (notebooks, i);
       append_notebook (item, self);
@@ -925,8 +925,8 @@ bjb_window_set_view (BjbWindow     *self,
 }
 
 static void
-on_last_updated_cb (BijiItem  *note,
-                    BjbWindow *self)
+on_last_updated_cb (BijiNoteObj *note,
+                    BjbWindow   *self)
 {
   g_autofree char *label = NULL;
   g_autofree char *time_str = NULL;
@@ -944,10 +944,10 @@ on_last_updated_cb (BijiItem  *note,
 static void
 populate_headerbar_for_note_view (BjbWindow *self)
 {
-  on_note_renamed (BIJI_ITEM (self->note), self);
+  on_note_renamed (self->note, self);
   g_signal_connect (self->note, "renamed", G_CALLBACK (on_note_renamed), self);
 
-  on_last_updated_cb (BIJI_ITEM (self->note), self);
+  on_last_updated_cb (self->note, self);
   g_signal_connect (self->note, "changed", G_CALLBACK (on_last_updated_cb), self);
 }
 

@@ -20,18 +20,23 @@
 
 #pragma once
 
-#include "biji-item.h"
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
 #define BIJI_TYPE_NOTEBOOK (biji_notebook_get_type ())
 
-G_DECLARE_FINAL_TYPE (BijiNotebook, biji_notebook, BIJI, NOTEBOOK, BijiItem)
+G_DECLARE_FINAL_TYPE (BijiNotebook, biji_notebook, BIJI, NOTEBOOK, GObject)
 
 /* Exiting coll in tracker : provide urn & iso8601 date
  * To create a brand new notebook in tracker rather gobjectize existing one,
  * see biji_create_new_notebook_async */
 BijiNotebook * biji_notebook_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime);
+gint64         biji_notebook_get_mtime  (BijiNotebook *self);
+gpointer       biji_notebook_manager    (BijiNotebook *self);
+const char    *biji_notebook_get_title  (BijiNotebook *self);
+const char    *biji_notebook_get_uuid   (BijiNotebook *self);
+gboolean       biji_notebook_trash      (BijiNotebook *self);
 
 
 /* Watching for tracker would be best. Right now manually called. */

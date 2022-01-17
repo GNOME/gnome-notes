@@ -38,7 +38,7 @@ struct _BjbNotebookRow
 {
   GtkListBoxRow   parent_instance;
 
-  BijiItem       *item;
+  BijiNotebook   *item;
 
   GtkWidget      *select_image;
   GtkWidget      *tag_label;
@@ -82,7 +82,7 @@ bjb_notebook_row_init (BjbNotebookRow *self)
 }
 
 GtkWidget *
-bjb_notebook_row_new (BijiItem *notebook)
+bjb_notebook_row_new (BijiNotebook *notebook)
 {
   BjbNotebookRow *self;
 
@@ -92,12 +92,12 @@ bjb_notebook_row_new (BijiItem *notebook)
   self->item = g_object_ref (notebook);
 
   gtk_label_set_text (GTK_LABEL (self->tag_label),
-                      biji_item_get_title (notebook));
+                      biji_notebook_get_title (notebook));
 
   return GTK_WIDGET (self);
 }
 
-BijiItem *
+BijiNotebook *
 bjb_notebook_row_get_item (BjbNotebookRow *self)
 {
   g_return_val_if_fail (BJB_IS_NOTEBOOK_ROW (self), NULL);

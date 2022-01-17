@@ -60,16 +60,16 @@ on_notebook_entry_changed_cb (BjbNotebooksDialog *self)
       return;
     }
 
-  notebooks = biji_manager_get_notebooks (biji_item_get_manager (BIJI_ITEM (self->item)));
+  notebooks = biji_manager_get_notebooks (biji_note_obj_get_manager (self->item));
   n_items = g_list_model_get_n_items (notebooks);
 
   for (guint i = 0; i < n_items; i++)
     {
-      g_autoptr(BijiItem) item = NULL;
+      g_autoptr(BijiNotebook) item = NULL;
 
       item = g_list_model_get_item (notebooks, i);
 
-      if (g_strcmp0 (biji_item_get_title (item), notebook) == 0)
+      if (g_strcmp0 (biji_notebook_get_title (item), notebook) == 0)
         {
           gtk_widget_set_sensitive (self->add_notebook_button, FALSE);
           return;
@@ -85,17 +85,17 @@ on_new_notebook_created_cb (GObject      *object,
                             gpointer      user_data)
 {
   BjbNotebooksDialog *self = user_data;
-  g_autoptr(BijiItem) notebook = NULL;
+  g_autoptr(BijiNotebook) notebook = NULL;
   g_autoptr(GList) rows = NULL;
 
   notebook = biji_tracker_add_notebook_finish (BIJI_TRACKER (object), result, NULL);
-  biji_item_add_notebook (BIJI_ITEM (self->item), notebook, NULL);
+  biji_note_obj_add_notebook (self->item, notebook, NULL);
   gtk_entry_set_text (GTK_ENTRY (self->notebook_entry), "");
 
   rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
 
   for (GList *row = rows; row; row = row->next)
-    if (notebook == bjb_notebook_row_get_item (row->data))
+    if ((gpointer)notebook == bjb_notebook_row_get_item (row->data))
       {
         bjb_notebook_row_set_active (row->data, TRUE);
         break;
@@ -110,7 +110,7 @@ on_add_notebook_button_clicked_cb (BjbNotebooksDialog *self)
 
   notebook = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
 
-  manager = biji_item_get_manager (BIJI_ITEM (self->item));
+  manager = biji_note_obj_get_manager (self->item);
   biji_tracker_add_notebook_async (biji_manager_get_tracker (manager),
                                    notebook, on_new_notebook_created_cb, self);
 }
@@ -120,7 +120,7 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
                                BjbNotebookRow     *row,
                                GtkListBox         *box)
 {
-  BijiItem *notebook;
+  BijiNotebook *notebook;
 
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_assert (GTK_IS_LIST_BOX (box));
@@ -131,13 +131,13 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
   notebook = bjb_notebook_row_get_item (row);
 
   BJB_TRACE_MSG ("Notebook '%s' %s",
-                 biji_item_get_title (notebook),
+                 biji_notebook_get_title (notebook),
                  bjb_notebook_row_get_active (row) ? "selected" : "deselected");
 
   if (bjb_notebook_row_get_active (row))
-    biji_item_add_notebook (BIJI_ITEM (self->item), notebook, NULL);
+    biji_note_obj_add_notebook (self->item, notebook, NULL);
   else
-    biji_item_remove_notebook (BIJI_ITEM (self->item), notebook);
+    biji_note_obj_remove_notebook (self->item, notebook);
 }
 
 static GtkWidget *
@@ -149,7 +149,7 @@ notebooks_row_new (BijiNotebook       *notebook,
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_assert (BIJI_IS_NOTEBOOK (notebook));
 
-  row = bjb_notebook_row_new (BIJI_ITEM (notebook));
+  row = bjb_notebook_row_new (notebook);
 
   return row;
 }
@@ -225,7 +225,7 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
   if (!g_set_object (&self->item, note))
     return;
 
-  BJB_DEBUG_MSG ("Setting note '%s'", biji_item_get_title (BIJI_ITEM (note)));
+  BJB_DEBUG_MSG ("Setting note '%s'", biji_note_obj_get_title (note));
 
   notebooks = biji_note_obj_get_notebooks (self->item);
   rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
@@ -236,12 +236,11 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
 
   for (GList *row = rows; row; row = row->next)
     {
-      BijiItem *notebook;
+      BijiNotebook *notebook;
       gboolean selected;
 
       notebook = bjb_notebook_row_get_item (row->data);
-      selected = biji_item_has_notebook (BIJI_ITEM (self->item),
-                                         (char *)biji_item_get_title (notebook));
+      selected = biji_note_obj_has_notebook (self->item, biji_notebook_get_title (notebook));
       bjb_notebook_row_set_active (row->data, selected);
     }
 }

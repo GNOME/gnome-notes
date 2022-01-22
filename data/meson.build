@@ -4,7 +4,6 @@ subdir('appdata')
 mime = 'org.gnome.Notes.xml'
 
 i18n.merge_file(
-  mime,
   input: mime + '.in',
   output: mime,
   po_dir: po_dir,
@@ -18,7 +17,6 @@ desktop_conf = configuration_data()
 desktop_conf.set ('icon', application_id)
 
 i18n.merge_file(
-  desktop,
   type: 'desktop',
   input: configure_file(
     input: files (desktop + '.in'),

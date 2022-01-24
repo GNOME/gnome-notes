@@ -1,19 +1,20 @@
 # Brazilian Portuguese translation for gnome-notes.
-# Copyright (C) 2021 gnome-notes's COPYRIGHT HOLDER
+# Copyright (C) 2022 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-notes package.
 # Georges Basile Stavracas Neto <georges.stavracas@gmail.com>, 2013.
 # Fábio Nogueira <fnogueira@gnome.org>, 2013, 2020.
 # Enrico Nicoletto <liverig@gmail.com>, 2013, 2014.
 # Bruno Lopes da Silva <brunolopesbldsb@gmail.com>, 2018.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2012-2021.
+# Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-07-10 16:12-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2022-01-09 19:32+0000\n"
+"PO-Revision-Date: 2022-01-09 15:28-0500\n"
+"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +23,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 40.0\n"
 "X-Project-Style: gnome\n"
+"X-DL-Team: pt_BR\n"
+"X-DL-Module: gnome-notes\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -64,7 +70,7 @@ msgstr "Visão de lista"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
-msgstr "notes;lembrete;notebook;notas adesivas;"
+msgstr "notes;reminder;notebook;sticky notes;notas;lembrete;caderno;notas adesivas;"
 
 #: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
@@ -157,9 +163,21 @@ msgid ""
 msgstr ""
 "Há três tamanhos de texto disponíveis: pequeno, médio (padrão) e grande."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Catálogos de notas"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Novo caderno de notas…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Adicionar"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
-#| msgid "Notes"
 msgid "All Notes"
 msgstr "Todas as notas"
 
@@ -207,12 +225,7 @@ msgstr "Ajuda"
 msgid "About Notes"
 msgstr "Sobre o Notas"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Catálogos de notas"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Lixeira"
 
@@ -400,14 +413,6 @@ msgstr "Local personalizado"
 msgid "Select a Folder"
 msgstr "Selecionar uma pasta"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Digite um nome para criar um catálogo de notas"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Novo catálogo de notas"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Cor da nota"
@@ -452,7 +457,7 @@ msgstr "Selecione a localização de armazenamento padrão:"
 msgid "Primary Book"
 msgstr "Livro primário"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Sem título"
 
@@ -495,7 +500,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Cor da nota"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Catálogo de notas"
 
@@ -512,8 +517,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Por favor, instale “Tracker” e então, reinicie o aplicativo."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
-#| msgid "Open in another window"
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Esta nota está sendo visualizada em outra janela."
 
@@ -534,7 +538,7 @@ msgstr "Este mês"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última atualização: %s"
@@ -543,9 +547,12 @@ msgstr "Última atualização: %s"
 msgid "Local"
 msgstr "Local"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Armazenamento local"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Digite um nome para criar um catálogo de notas"
 
 #~ msgid "_New"
 #~ msgstr "_Nova"

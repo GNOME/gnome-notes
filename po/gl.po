@@ -2,16 +2,16 @@
 # Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Fran Diéguez <frandieguez@gnome.org>, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012-2021.
+# Fran Dieguez <fran.dieguez@gnome.org>, 2012-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-08-25 20:16+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <Proxecto Trasno <proxecto@trasno.gal>>\n"
+"POT-Creation-Date: 2022-01-05 04:05+0000\n"
+"PO-Revision-Date: 2022-01-26 00:40+0100\n"
+"Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,9 +155,22 @@ msgid ""
 msgstr ""
 "Hay tres tamaños de texto dispoñíbeis: pequeno, medio (por omisión) e grande."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Cadernos"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+#| msgid "New notebook"
+msgid "New Notebook…"
+msgstr "Novo caderno…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Engadir"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
-#| msgid "Notes"
+#: src/bjb-window.c:433
 msgid "All Notes"
 msgstr "Todas as notas"
 
@@ -205,12 +218,7 @@ msgstr "Axuda"
 msgid "About Notes"
 msgstr "Sobre Notas"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Cadernos"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
 msgid "Trash"
 msgstr "Lixo"
 
@@ -398,14 +406,6 @@ msgstr "Localización personalizada"
 msgid "Select a Folder"
 msgstr "Seleccionar un cartafol"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Escriba un nome para crear un caderno"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Novo caderno"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Cor da nota"
@@ -450,7 +450,7 @@ msgstr "Seleccionar a localización de almacenamento por omisión:"
 msgid "Primary Book"
 msgstr "Caderno primario"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
 msgid "Untitled"
 msgstr "Sen título"
 
@@ -490,7 +490,7 @@ msgstr "Fran Diéguez <frandieguez@gnome.org>, 2013-2021"
 msgid "Note Color"
 msgstr "Cor da nota"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Caderno"
 
@@ -508,7 +508,6 @@ msgstr "Instale «Tracker» e logo reinicie a aplicación."
 
 #. Label used to indicate that note is opened in another window.
 #: src/bjb-note-view.c:195
-#| msgid "Open in another window"
 msgid "This note is being viewed in another window."
 msgstr "Esta nota está mostrándose noutra xanela."
 
@@ -529,7 +528,7 @@ msgstr "Este mes"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:912
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última actualización: %s"
@@ -538,9 +537,12 @@ msgstr "Última actualización: %s"
 msgid "Local"
 msgstr "Local"
 
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Almacenamento local"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Escriba un nome para crear un caderno"
 
 #~ msgid "_New"
 #~ msgstr "_Nova"

@@ -1,241 +1,166 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2016, 2019.
+# Sveinn í Felli <sv1@fellsnet.is>, 2016, 2019, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-31 00:35+0000\n"
-"PO-Revision-Date: 2019-02-22 08:55+0000\n"
+"POT-Creation-Date: 2021-03-18 17:43+0000\n"
+"PO-Revision-Date: 2022-01-29 09:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 19.12.3\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "Minnispunktar"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Fljótlegt að punkta niður til minnis"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+#| msgid "Simple notebook for GNOME"
+msgid "Notes for GNOME"
+msgstr "Notes-minnispunktar fyrir GNOME"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
-"Fljótleg og auðveld leið til að taka niður minnispunkta eða útbúa einfalda"
-" lista. Geymdu eins marga lista og þér sýnist og deildu þeim í tölvupósti."
+"Fljótleg og auðveld leið til að taka niður minnispunkta eða útbúa einfalda "
+"lista. Geymdu eins marga lista og þér sýnist og deildu þeim í tölvupósti."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
 msgstr ""
-"Þú getur geymt minnispunktana þína á tölvunni þinni eða samstillt þá við"
-" þjónustur á netinu eins og til dæmis ownCloud."
+"Þú getur geymt minnispunktana þína á tölvunni þinni eða samstillt þá við "
+"þjónustur á netinu eins og til dæmis ownCloud."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
 msgstr "Breyta sýn"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
-#| msgid "Selection mode"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
 msgstr "Veldu sýn"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
 msgstr "Listasýn"
 
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:517 src/bjb-window-base.c:17
-msgid "Notes"
-msgstr "Minnispunktar"
-
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "minnismiðar;minnispunktar;áminning;glósa;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Birta minnismiða, merkja skrár!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
 msgstr "Glósuforrit"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "Búa til nýjan minnispunkt"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
 msgstr "Sérsniðið letur"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
 "Leturheitið hér er það letur sem verður notað þegar minnismiðar eru birtir."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
 msgstr "Hvort nota eigi jafnbreytt kerfisletur"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
 msgstr "Litur nýrra minnismiða."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
 msgstr ""
 "Nafnið hér verður notað sem nafn á lit sem notaður er þegar nýjir "
 "minnismiðar eru búnir til."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
 msgstr "Aðal-minnismiðaþjónusta sem á að nota fyrir nýja minnismiða."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr "Aðal-minnisbókin er staðurinn þar sem nýjir minnismiðar eru búnir til."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
 msgstr "Gluggi hámarkaður"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
 msgstr "Gluggi í hámarkaðri stöðu."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
 msgstr "Gluggastærð"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
 msgstr "Gluggastærð (breidd og hæð)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
 msgstr "Staðsetning glugga"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "Staðsetning glugga (x og y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
-msgid "How to show note items"
-msgstr "Hvernig á að birta atriði af minnismiðum"
-
-#: data/org.gnome.bijiben.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Hvort eigi að sýna atriði af minnismiðum í táknmyndasýn eða sem lista."
-
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "Text size used by note editor."
 msgstr "Stærð texta sem notuð er í minnispunktaritlinum."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Það eru þrjár textastærðir tiltækar: lítil, miðlungs (sjálfgefið) og stór."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "Flytja _inn minnispunkta"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "Skoða r_uslið"
-
-#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Stærð _texta"
-
-#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "S_tór"
-
-#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Miðlungs"
-
-#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "_Lítill"
-
-#: data/resources/app-menu.ui:35
-msgid "_Preferences"
-msgstr "_Stillingar"
-
-#: data/resources/app-menu.ui:41
-msgid "_Help"
-msgstr "_Hjálp"
-
-#: data/resources/app-menu.ui:45
-msgid "_Keyboard Shortcuts"
-msgstr "Flýtily_klar"
-
-#: data/resources/app-menu.ui:49
-msgid "_About"
-msgstr "_Um hugbúnaðinn"
-
-#: data/resources/app-menu.ui:53
-msgid "_Quit"
-msgstr "_Hætta"
-
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Klippa"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Afrita"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Líma"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Feitletrað"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Skáletrað"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Yfirstrikað"
 
-#: data/resources/editor-toolbar.ui:161
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Áherslumerki"
 
-#: data/resources/editor-toolbar.ui:177
-msgid "1."
-msgstr "1."
-
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Listi"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
 msgstr "Afrita valið í nýjan minnismiða"
 
@@ -243,97 +168,112 @@ msgstr "Afrita valið í nýjan minnismiða"
 msgid "No notes"
 msgstr "Engir minnismiðar"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Almennt"
 
-#: data/resources/help-overlay.ui:13
-#| msgid "New notebook"
+#: data/resources/help-overlay.ui:14
+#| msgid "Share note"
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Leita í minnispunktum"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Nýr minnismiði"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Loka glugga"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
+#| msgid "_Quit"
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Hætta"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Fara til baka"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "Birta hjálp"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Flýtilyklar"
+msgid "Open menu"
+msgstr "Opna valmynd"
 
-#: data/resources/help-overlay.ui:49
-#| msgid "Selection mode"
+#: data/resources/help-overlay.ui:63
+#| msgid "Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Flýtivísanir á lyklaborði"
+
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Valhamur"
 
-#: data/resources/help-overlay.ui:54
-#| msgid "Exit selection mode"
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Hætta við valham"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Velja allt"
 
-#: data/resources/help-overlay.ui:69
-#| msgid "Note Edition"
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Breytingahamur minnismiða"
 
-#: data/resources/help-overlay.ui:74
-#| msgid "Bold"
+#: data/resources/help-overlay.ui:96
+#| msgid "Open in another window"
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Opna í nýjum glugga"
+
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Feitletrað"
 
-#: data/resources/help-overlay.ui:81
-#| msgid "Italic"
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Skáletrað"
 
-#: data/resources/help-overlay.ui:88
-#| msgid "Strike"
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
 msgstr "Gegnumstrikað"
 
-#: data/resources/help-overlay.ui:95
-#| msgid "Undo"
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
 msgstr "Afturkalla"
 
-#: data/resources/help-overlay.ui:102
-#| msgid "Redo"
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
 msgstr "Endurtaka"
 
-#: data/resources/help-overlay.ui:109
-#| msgid "Move to Trash"
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Henda í ruslið"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Flytja inn minnispunkta"
 
@@ -342,7 +282,6 @@ msgid "_Cancel"
 msgstr "_Hætta við"
 
 #: data/resources/import-dialog.ui:22
-#| msgid "Import"
 msgid "_Import"
 msgstr "Flytja _inn"
 
@@ -363,7 +302,6 @@ msgid "Custom Location"
 msgstr "Sérsniðin staðsetning"
 
 #: data/resources/import-dialog.ui:224
-#| msgid "Selection mode"
 msgid "Select a Folder"
 msgstr "Veldu möppu"
 
@@ -371,13 +309,12 @@ msgstr "Veldu möppu"
 msgid "_New"
 msgstr "_Nýtt"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Litur minnismiða"
 
 #. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
-#| msgid "Empty"
 msgid "_Empty"
 msgstr "_Tómt"
 
@@ -389,71 +326,79 @@ msgstr "Hætta í valham"
 msgid "Search note titles, content and notebooks"
 msgstr "Leita í titlum minnismiða, efni og í minnisbókum"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Skoða minnismiða og minnisbækur sem töflu"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Skoða minnismiða og minnisbækur sem lista"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Valhamur"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Opna valmynd"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Fleiri valkostir…"
+#: data/resources/main-toolbar.ui:150
+#| msgid "More options…"
+msgid "More options"
+msgstr "Fleiri valkostir"
 
-#: data/resources/main-toolbar.ui:226
-#| msgid "_View Trash"
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Skoða rusl"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:206
+#| msgid "_Text Sizes"
+msgid "Text Sizes"
+msgstr "Stærðir texta"
+
+#: data/resources/main-toolbar.ui:216
+msgid "_Large"
+msgstr "S_tór"
+
+#: data/resources/main-toolbar.ui:226
+msgid "_Medium"
+msgstr "_Miðlungs"
+
+#: data/resources/main-toolbar.ui:236
+msgid "_Small"
+msgstr "_Lítill"
+
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Kjörstillingar"
 
-#: data/resources/main-toolbar.ui:300
-#| msgid "_Help"
-msgid "Help"
-msgstr "Hjálp"
-
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
 msgstr "Flýtilyklar"
 
-#: data/resources/main-toolbar.ui:316
-#| msgid "_About"
-msgid "About"
-msgstr "Um hugbúnaðinn"
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "Hjálp"
 
-#: data/resources/main-toolbar.ui:329
+#: data/resources/main-toolbar.ui:281
+#| msgid "Import Notes"
+msgid "About Notes"
+msgstr "Um Notes-minnispunkta"
+
+#: data/resources/main-toolbar.ui:303
 msgid "Open in New Window"
 msgstr "Opna í nýjum glugga"
 
-#: data/resources/main-toolbar.ui:343
+#: data/resources/main-toolbar.ui:320
 msgid "Undo"
 msgstr "Afturkalla"
 
-#: data/resources/main-toolbar.ui:351
+#: data/resources/main-toolbar.ui:329
 msgid "Redo"
 msgstr "Endurtaka"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Minnisbækur"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
 msgstr "Senda þennan minnismiða í tölvupósti"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Flytja í ruslið"
 
@@ -465,19 +410,19 @@ msgstr "Settu inn nafn til að búa til nýja minnisbók"
 msgid "New notebook"
 msgstr "Ný minnisbók"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Deila minnispunkti"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
 msgstr "Opna í öðrum glugga"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Endurheimta"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Eyða endanlega"
 
@@ -498,7 +443,6 @@ msgid "Note Appearance"
 msgstr "Útlit minnismiða"
 
 #: data/resources/settings-dialog.ui:126
-#| msgid "Select import location"
 msgid "Select the default storage location:"
 msgstr "Veldu sjálfgefna geymslustaðsetningu"
 
@@ -506,55 +450,57 @@ msgstr "Veldu sjálfgefna geymslustaðsetningu"
 msgid "Primary Book"
 msgstr "Aðalbók"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Ónefnt"
 
-#: src/bjb-application.c:341
-#| msgid "Show the application's version"
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
 msgstr "Birta útgáfuupplýsingar forrits"
 
-#: src/bjb-application.c:343
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Búa til nýjan minnispunkt"
 
-#: src/bjb-application.c:345
-#| msgid "[FILE...]"
+#: src/bjb-application.c:444
 msgid "[FILE…]"
 msgstr "[SKRÁ…]"
 
-#: src/bjb-application.c:353
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Taka niður minnispunkta og flytja þá hvert sem er."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:364
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
 msgstr "Ekki tókst að þátta viðföng"
 
-#: src/bjb-application.c:372
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "GNOME minnispunktar"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:384
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Gat ekki kerfisskráð forritið"
 
-#: src/bjb-application.c:518
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Einföld minnisbók fyrir GNOME"
 
-#: src/bjb-application.c:524
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr "Sveinn í Felli, sv1@fellsnet.is"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Litur minnismiða"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Minnisbók"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -565,40 +511,30 @@ msgid "Oops"
 msgstr "Úbbs"
 
 #: src/bjb-empty-results-box.c:91
-#| msgid "Please install 'Tracker' then restart the application."
 msgid "Please install “Tracker” then restart the application."
 msgstr "Settu upp 'Tracker' og endurræstu forritið."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Hlaða inn fleiri"
-
-#: src/bjb-load-more-button.c:90
-#| msgid "Loading..."
-msgid "Loading…"
-msgstr "Hleð inn..."
-
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
 msgstr "Smelltu á atriði til að velja þau"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valið"
 msgstr[1] "%d valið"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Niðurstöður fyrir %s"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Nýtt og nýlegt"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Rusl"
 
@@ -607,31 +543,32 @@ msgstr "Rusl"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:367
 #, c-format
-#| msgid "<b>Last updated</b> %s"
-msgid "Last updated %s"
-msgstr "Síðast uppfært %s"
+#| msgid "Last updated %s"
+msgid "Last updated: %s"
+msgstr "Síðast uppfært: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
 msgstr "Óþekkt"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Í gær"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "Í þessum mánuði"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Í dag"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Í gær"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "Í þessari viku"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "Í þessum mánuði"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -641,9 +578,79 @@ msgstr "Á þessu ári"
 msgid "Local"
 msgstr "Staðvært"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Geymt staðvært"
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Fljótlegt að punkta niður til minnis"
+
+#~ msgid "org.gnome.bijiben"
+#~ msgstr "org.gnome.bijiben"
+
+#~ msgid "How to show note items"
+#~ msgstr "Hvernig á að birta atriði af minnismiðum"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr ""
+#~ "Hvort eigi að sýna atriði af minnismiðum í táknmyndasýn eða sem lista."
+
+#~ msgid "_Import Notes"
+#~ msgstr "Flytja _inn minnispunkta"
+
+#~ msgid "_View Trash"
+#~ msgstr "Skoða r_uslið"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Stillingar"
+
+#~ msgid "_Help"
+#~ msgstr "_Hjálp"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "Flýtily_klar"
+
+#~ msgid "_About"
+#~ msgstr "_Um hugbúnaðinn"
+
+#~ msgid "Cut"
+#~ msgstr "Klippa"
+
+#~ msgid "Copy"
+#~ msgstr "Afrita"
+
+#~ msgid "Paste"
+#~ msgstr "Líma"
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Flýtilyklar"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Skoða minnismiða og minnisbækur sem töflu"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Skoða minnismiða og minnisbækur sem lista"
+
+#~| msgid "_About"
+#~ msgid "About"
+#~ msgstr "Um hugbúnaðinn"
+
+#~ msgid "Load More"
+#~ msgstr "Hlaða inn fleiri"
+
+#~| msgid "Loading..."
+#~ msgid "Loading…"
+#~ msgstr "Hleð inn..."
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""
@@ -658,9 +665,6 @@ msgstr "Geymt staðvært"
 
 #~ msgid "Cancel"
 #~ msgstr "Hætta við"
-
-#~ msgid "Notebook"
-#~ msgstr "Minnisbók"
 
 #~ msgid "Note"
 #~ msgstr "Minnispunktur"

@@ -47,34 +47,6 @@
     ],
     "modules" : [
         {
-            "name" : "curl",
-            "builddir" : true,
-            "buildsystem" : "cmake",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://github.com/curl/curl.git"
-                }
-            ]
-        },
-        {
-            "name" : "libhandy",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "-Dexamples=false",
-                "-Dglade_catalog=disabled",
-                "-Dintrospection=disabled",
-                "-Dtests=false",
-                "-Dvapi=false"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libhandy.git"
-                }
-            ]
-        },
-        {
             "name" : "gnome-online-accounts",
             "buildsystem" : "meson",
             "config-opts" : [

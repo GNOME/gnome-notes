@@ -4,13 +4,13 @@
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015.
 # Edurne Labaka <elabaka@uzei.com>, 2015.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2019, 2020, 2021.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2019, 2020, 2021, 2022.
 #
 msgid ""
 msgstr "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-08-18 10:00+0100\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"PO-Revision-Date: 2022-02-05 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -21,7 +21,7 @@ msgstr "Project-Id-Version: bijiben master\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Oharrak"
 
@@ -142,6 +142,19 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Hiru testu-tamaina daude erabilgarri: txikia, tartekoa (lehenetsia) eta handia."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Koadernoak"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Koaderno berria…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Gehitu"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
 msgid "All Notes"
@@ -191,12 +204,7 @@ msgstr "Laguntza"
 msgid "About Notes"
 msgstr "Notes aplikazioari buruz"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Koadernoak"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Zakarrontzia"
 
@@ -384,14 +392,6 @@ msgstr "Kokaleku pertsonalizatua"
 msgid "Select a Folder"
 msgstr "Hautatu karpeta"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Sartu izena koadernoa sortzeko"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Koaderno berria"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Oharraren kolorea"
@@ -436,39 +436,39 @@ msgstr "Hautatu biltegiratze-kokaleku lehenetsia"
 msgid "Primary Book"
 msgstr "Liburu nagusia"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Izengabea"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Erakutsi egunkari xehea"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Erakutsi aplikazioaren bertsioa"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Sortu ohar berri bat"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[FITXATEGIA…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Hartu oharrak eta esportatu edonora."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "GNOMEren koaderno xumea"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr "translator-credits"
 
@@ -476,7 +476,7 @@ msgstr "translator-credits"
 msgid "Note Color"
 msgstr "Oharraren kolorea"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Koadernoa"
 
@@ -493,7 +493,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Instalatu Tracker eta berrabiarazi aplikazioa."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Ohar hau beste leiho batean ari da bistaratzen."
 
@@ -514,18 +514,20 @@ msgstr "Hil honetan"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "Azken eguneraketa: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Lokala"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Biltegi lokala"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Sartu izena koadernoa sortzeko"
+
+#~ msgid "Local"
+#~ msgstr "Lokala"
 
 #~ msgid "_New"
 #~ msgstr "_Berria"

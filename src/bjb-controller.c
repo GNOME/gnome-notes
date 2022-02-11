@@ -546,7 +546,7 @@ bjb_controller_apply_needle (BjbController *self)
    * If no items, tell it - unless trash is visited */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    result = biji_manager_get_items (self->manager, self->group);
+    result = biji_manager_get_notes (self->manager, self->group);
 
     if (result == NULL)
       {

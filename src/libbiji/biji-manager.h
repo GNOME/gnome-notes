@@ -87,11 +87,11 @@ void             biji_manager_notify_changed        (BijiManager           *mana
 gpointer         biji_manager_get_item_at_path      (BijiManager *manager,
                                                      const gchar *path);
 
-/* Get all items, either notes or notebooks
+/* Get all notes.
  * Free the GList, not its content */
 
 
-GList           *biji_manager_get_items             (BijiManager         *manager,
+GList           *biji_manager_get_notes             (BijiManager         *manager,
                                                      BijiItemsGroup       group);
 GListModel      *biji_manager_get_notebooks         (BijiManager         *self);
 BijiNotebook    *biji_manager_find_notebook         (BijiManager         *self,

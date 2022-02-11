@@ -42,7 +42,7 @@ struct _BijiManager
    */
 
   GListStore *notebooks;
-  GHashTable *items;
+  GHashTable *notes;
   GHashTable *archives;
   GListStore *providers;
   BijiProvider *local_provider;
@@ -252,7 +252,7 @@ biji_manager_init (BijiManager *self)
   self->providers = g_list_store_new (BIJI_TYPE_PROVIDER);
 
   /* Item path is key for table */
-  self->items = g_hash_table_new_full (g_str_hash,
+  self->notes = g_hash_table_new_full (g_str_hash,
                                        g_str_equal,
                                        NULL,
                                        NULL);
@@ -282,7 +282,7 @@ void
 biji_manager_set_provider (BijiManager *self,
                            const gchar *provider_id)
 {
-  g_hash_table_remove_all (self->items);
+  g_hash_table_remove_all (self->notes);
   g_hash_table_remove_all (self->archives);
 
   self->provider = find_provider_with_id (G_LIST_MODEL (self->providers), provider_id);
@@ -308,7 +308,7 @@ biji_manager_finalize (GObject *object)
   g_clear_object (&self->notebooks);
   g_clear_object (&self->location);
   g_clear_object (&self->tracker);
-  g_hash_table_destroy (self->items);
+  g_hash_table_destroy (self->notes);
   g_hash_table_destroy (self->archives);
   g_clear_object (&self->providers);
 
@@ -370,9 +370,10 @@ static gboolean
 title_is_unique (BijiManager *self, gchar *title)
 {
   gboolean is_unique = TRUE;
+  guint i, n_notebooks;
   GList *items, *l;
 
-  items = g_hash_table_get_values (self->items);
+  items = g_hash_table_get_values (self->notes);
 
   for ( l=items ; l != NULL ; l = l->next)
   {
@@ -380,8 +381,6 @@ title_is_unique (BijiManager *self, gchar *title)
 
     if (BIJI_IS_NOTE_OBJ (l->data))
       item_title = biji_note_obj_get_title (l->data);
-    else if (BIJI_IS_NOTEBOOK (l->data))
-      item_title = biji_notebook_get_title (l->data);
 
     if (g_strcmp0 (item_title, title) == 0)
     {
@@ -389,6 +388,19 @@ title_is_unique (BijiManager *self, gchar *title)
      break;
     }
   }
+
+  n_notebooks = g_list_model_get_n_items (G_LIST_MODEL (self->notebooks));
+  for (i = 0; i < n_notebooks; i++)
+    {
+      g_autoptr(BijiNotebook) item = NULL;
+
+      item = g_list_model_get_item (G_LIST_MODEL (self->notebooks), i);
+      if (g_strcmp0 (biji_notebook_get_title (item), title) == 0)
+        {
+          is_unique = FALSE;
+          break;
+        }
+    }
 
   g_list_free (items);
   return is_unique;
@@ -456,9 +468,9 @@ on_item_deleted_cb (BijiNoteObj *item,
     store = self->archives;
     group = BIJI_ARCHIVED_ITEMS;
   }
-  else if ((to_delete = g_hash_table_lookup (self->items, path)))
+  else if ((to_delete = g_hash_table_lookup (self->notes, path)))
   {
-    store = self->items;
+    store = self->notes;
     group = BIJI_LIVING_ITEMS;
   }
 
@@ -479,14 +491,14 @@ on_item_trashed_cb (BijiNoteObj *item,
   const gchar *path;
 
   path = biji_note_obj_get_uuid (item);
-  item = g_hash_table_lookup (self->items, path);
+  item = g_hash_table_lookup (self->notes, path);
 
   if (item == NULL)
     return;
 
   biji_manager_notify_changed (self, BIJI_LIVING_ITEMS, BIJI_MANAGER_ITEM_TRASHED, item);
   g_hash_table_insert (self->archives, (gpointer) path, item);
-  g_hash_table_remove (self->items, path);
+  g_hash_table_remove (self->notes, path);
 }
 
 
@@ -546,7 +558,8 @@ biji_manager_add_item (BijiManager    *manager,
   if (uid != NULL)
   {
     if (group == BIJI_LIVING_ITEMS &&
-        g_hash_table_lookup (manager->items, uid))
+        (g_hash_table_lookup (manager->notes, uid) ||
+         biji_manager_find_notebook (manager, uid)))
       retval = FALSE;
 
     if (group == BIJI_ARCHIVED_ITEMS &&
@@ -563,7 +576,14 @@ biji_manager_add_item (BijiManager    *manager,
   {
     /* Add the item*/
     if (group == BIJI_LIVING_ITEMS)
-      g_hash_table_insert (manager->items, (gpointer) uid, item);
+      {
+        if (BIJI_IS_NOTE_OBJ (item))
+          g_hash_table_insert (manager->notes, (gpointer) uid, item);
+        else if (BIJI_IS_NOTEBOOK (item))
+          if (uid && !biji_manager_find_notebook (manager, uid))
+            g_list_store_insert_sorted (manager->notebooks, item,
+                                        compare_notebook, NULL);
+      }
     else if (group == BIJI_ARCHIVED_ITEMS)
       g_hash_table_insert (manager->archives, (gpointer) uid, item);
 
@@ -575,15 +595,6 @@ biji_manager_add_item (BijiManager    *manager,
       g_signal_connect (item, "changed", G_CALLBACK (manager_on_note_changed_cb), manager);
       g_signal_connect (item, "renamed", G_CALLBACK (manager_on_note_changed_cb), manager);
       g_signal_connect (item, "color-changed", G_CALLBACK (manager_on_item_icon_changed_cb), manager);
-    }
-
-    else if (BIJI_IS_NOTEBOOK (item))
-    {
-      if (uid && !biji_manager_find_notebook (manager, uid))
-        {
-          g_list_store_insert_sorted (manager->notebooks, item,
-                                      compare_notebook, NULL);
-        }
     }
   }
 
@@ -660,7 +671,7 @@ biji_manager_get_default_color (BijiManager *self, GdkRGBA *color)
 
 
 GList *
-biji_manager_get_items (BijiManager    *self,
+biji_manager_get_notes (BijiManager    *self,
                         BijiItemsGroup  group)
 {
   GList *list;
@@ -669,7 +680,7 @@ biji_manager_get_items (BijiManager    *self,
   switch (group)
   {
     case BIJI_LIVING_ITEMS:
-      list = g_hash_table_get_values (self->items);
+      list = g_hash_table_get_values (self->notes);
       break;
 
     case BIJI_ARCHIVED_ITEMS:
@@ -731,7 +742,7 @@ biji_manager_get_item_at_path (BijiManager *self, const gchar *path)
   if (path == NULL)
     return NULL;
 
-  retval = g_hash_table_lookup (self->items, (gconstpointer) path);
+  retval = g_hash_table_lookup (self->notes, (gconstpointer) path);
 
   if (retval == NULL)
     retval = g_hash_table_lookup (self->archives, (gconstpointer) path);

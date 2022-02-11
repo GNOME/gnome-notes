@@ -50,8 +50,8 @@ struct _BjbController
   BjbWindow      *window;
   BjbSettings    *settings;
 
-  GList          *items_to_show;
-  gint            n_items_to_show;
+  GList          *notes_to_show;
+  gint            n_notes_to_show;
   gboolean        remaining_items;
   GMutex          mutex;
 
@@ -100,7 +100,7 @@ bjb_controller_init (BjbController *self)
                               G_TYPE_BOOLEAN); // BJB_MODEL_COLUMN_SELECTED
 
   self->model = GTK_TREE_MODEL (store);
-  self->n_items_to_show = BJB_ITEMS_SLICE;
+  self->n_notes_to_show = BJB_ITEMS_SLICE;
   self->group = BIJI_LIVING_ITEMS;
 }
 
@@ -118,7 +118,7 @@ bjb_controller_finalize (GObject *object)
   g_object_unref (self->model);
 
   g_free (self->needle);
-  g_list_free (self->items_to_show);
+  g_list_free (self->notes_to_show);
 
   G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
@@ -382,9 +382,9 @@ bjb_controller_update_view (BjbController *self)
 
   free_items_store (self);
 
-  sort_items (&self->items_to_show);
+  sort_items (&self->notes_to_show);
 
-  for (l = self->items_to_show; l != NULL; l = l->next)
+  for (l = self->notes_to_show; l != NULL; l = l->next)
   {
     bjb_controller_add_item (self, l->data, FALSE, NULL);
   }
@@ -396,7 +396,7 @@ notify_displayed_notes_changed (BjbController *self)
   g_signal_emit (G_OBJECT (self),
                  bjb_controller_signals[DISPLAY_NOTES_CHANGED],
                  0,
-                 (self->items_to_show != NULL),
+                 (self->notes_to_show != NULL),
                  self->remaining_items);
 }
 
@@ -406,7 +406,7 @@ notify_displayed_notebooks_changed (BjbController *self)
   g_signal_emit (G_OBJECT (self),
                  bjb_controller_signals[DISPLAY_NOTEBOOKS_CHANGED],
                  0,
-                 (self->items_to_show != NULL),
+                 (self->notes_to_show != NULL),
                  self->remaining_items);
 }
 
@@ -492,10 +492,10 @@ update_controller_callback (GList *result,
 
   for (l=result ; l!= NULL ; l=l->next)
   {
-    if (i < self->n_items_to_show)
+    if (i < self->n_notes_to_show)
     {
       _add_if_group_match (self,
-                           &self->items_to_show,
+                           &self->notes_to_show,
                            &l->data,
 			   &i);
     }
@@ -507,7 +507,7 @@ update_controller_callback (GList *result,
     }
   }
 
-  self->items_to_show = g_list_reverse (self->items_to_show);
+  self->notes_to_show = g_list_reverse (self->notes_to_show);
   update (self);
 
   switch (self->group)
@@ -540,7 +540,7 @@ bjb_controller_apply_needle (BjbController *self)
   gchar *needle;
 
   needle = self->needle;
-  g_clear_pointer (&self->items_to_show, g_list_free);
+  g_clear_pointer (&self->notes_to_show, g_list_free);
 
   /* Show all items
    * If no items, tell it - unless trash is visited */
@@ -621,19 +621,27 @@ on_manager_changed (BijiManager            *manager,
     /* If this is a *new* item, per def prepend */
     case BIJI_MANAGER_ITEM_ADDED:
           if (BIJI_IS_NOTE_OBJ (item))
-            bjb_controller_get_iter (self, NULL, &p_iter);
+            {
+              /* Coming from an empty list of notes. */
+              if (g_list_length (self->notes_to_show) == 0)
+                bjb_window_set_view (self->window, BJB_WINDOW_MAIN_VIEW);
+
+              bjb_controller_get_iter (self, NULL, &p_iter);
+              bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
+              self->n_notes_to_show++;
+              self->notes_to_show = g_list_prepend (self->notes_to_show, item);
+
+              notify_displayed_notes_changed (self);
+            }
 
           else if (BIJI_IS_NOTEBOOK (item))
-            p_iter = NULL;
+            {
+              p_iter = NULL;
 
-          bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
-          self->n_items_to_show++;
-          self->items_to_show = g_list_prepend (self->items_to_show, item);
+              bjb_controller_add_item_if_needed (self, item, TRUE, p_iter);
 
-          if (BIJI_IS_NOTE_OBJ (item))
-            notify_displayed_notes_changed (self);
-          else if (BIJI_IS_NOTEBOOK (item))
-            notify_displayed_notebooks_changed (self);
+              notify_displayed_notebooks_changed (self);
+            }
       break;
 
     /* Same comment, prepend but notebook before note */
@@ -659,8 +667,8 @@ on_manager_changed (BijiManager            *manager,
       if (bjb_controller_get_iter (self, item, &p_iter))
         gtk_list_store_remove (GTK_LIST_STORE (self->model), p_iter);
 
-      self->items_to_show = g_list_remove (self->items_to_show, item);
-      if (self->items_to_show == NULL)
+      self->notes_to_show = g_list_remove (self->notes_to_show, item);
+      if (self->notes_to_show == NULL)
         {
           if (!self->notebook && group == BIJI_LIVING_ITEMS)
             bjb_window_set_view (self->window, BJB_WINDOW_NO_NOTE);
@@ -869,7 +877,7 @@ bjb_controller_set_notebook (BjbController *self,
 
   /* Opening an __existing__ notebook */
   bjb_window_set_view (self->window, BJB_WINDOW_SPINNER_VIEW);
-  g_clear_pointer (&self->items_to_show, g_list_free);
+  g_clear_pointer (&self->notes_to_show, g_list_free);
   g_clear_pointer (&self->needle, g_free);
 
   self->needle = g_strdup ("");
@@ -898,7 +906,7 @@ bjb_controller_set_group (BjbController   *self,
   if (self->group == group)
     return;
 
-  g_clear_pointer (&self->items_to_show, g_list_free);
+  g_clear_pointer (&self->notes_to_show, g_list_free);
   self->group = group;
 
   /* Living group : refresh the ui */

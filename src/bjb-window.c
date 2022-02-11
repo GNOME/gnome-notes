@@ -508,7 +508,6 @@ on_trash_cb (GSimpleAction *action,
   biji_note_obj_trash (note);
 
   destroy_note_if_needed (self);
-  bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
 
   if (!bjb_window_get_is_main (self))
     gtk_window_close (GTK_WINDOW (self));
@@ -958,7 +957,6 @@ on_note_trashed (BijiNoteObj *note,
   BjbWindow *self = BJB_WINDOW (user_data);
 
   destroy_note_if_needed (self);
-  bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
 
   return TRUE;
 }

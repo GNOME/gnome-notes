@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Arash Mousavi <mousavi.arash@gmail.com>, 2016.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2017, 2018, 2019, 2020.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2017-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-05-24 16:21+0000\n"
-"PO-Revision-Date: 2021-06-08 10:18+0430\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"PO-Revision-Date: 2022-02-21 19:20+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-DamnedLies-Scope: partial\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:6 data/org.gnome.Notes.desktop.in:3
-#: data/org.gnome.Notes.xml.in:4 src/bjb-application.c:568
-#: src/bjb-window-base.c:19
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "یادداشت‌ها"
 
@@ -43,8 +43,8 @@ msgid ""
 "You can store your notes locally on your computer or sync with online services "
 "like ownCloud."
 msgstr ""
-"می‌توانید یادداشت‌هایتان را به صورت محلّی روی رایانه‌تان نگه داشته یا با خدمات برخط "
-"مثل نکست‌کلود همگام کنید."
+"می‌توانید یادداشت‌هایتان را به صورت محلّی روی رایانه‌تان نگه داشته یا با خدمات "
+"برخط مثل نکست‌کلود همگام کنید."
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
@@ -92,7 +92,8 @@ msgid "New notes color."
 msgstr "رنگ یادداشت‌های جدید."
 
 #: data/org.gnome.Notes.gschema.xml:20
-msgid "The color name set here will be used as the color when creating new notes."
+msgid ""
+"The color name set here will be used as the color when creating new notes."
 msgstr "رنگ تنظیم‌شده در این‌جا برای یادداشت‌هایی جدید استفاده خواهد شد."
 
 #: data/org.gnome.Notes.gschema.xml:24
@@ -147,85 +148,91 @@ msgstr "اندازهٔ متن استفاده شده به دست ویرایشگر
 msgid "There are three text sizes available: small, medium (default) and large."
 msgstr "سه اندازه متن موجود است: ریز، متوسّط(پیش‌گزیده) و درشت."
 
-#: data/resources/bjb-detached-window.ui:18 data/resources/bjb-window-base.ui:147
-msgid "More options"
-msgstr "گزینه‌های بیش‌تر"
-
-#: data/resources/bjb-detached-window.ui:50 data/resources/bjb-window-base.ui:367
-msgid "Undo"
-msgstr "برگردان"
-
-#: data/resources/bjb-detached-window.ui:59 data/resources/bjb-window-base.ui:375
-msgid "Redo"
-msgstr "انجام دوباره"
-
-#: data/resources/bjb-detached-window.ui:76 data/resources/bjb-window-base.ui:303
-#: data/resources/bjb-window-base.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "دفترچه‌ها"
 
-#: data/resources/bjb-detached-window.ui:85 data/resources/bjb-window-base.ui:399
-msgid "Email this Note"
-msgstr "رایانامهٔ این یادداشت"
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "دفترچهٔ جدید…"
 
-#: data/resources/bjb-detached-window.ui:94 data/resources/bjb-window-base.ui:407
-#: data/resources/selection-toolbar.ui:96
-msgid "Move to Trash"
-msgstr "انداختن در زباله‌دان"
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "افزودن"
 
-#: data/resources/bjb-window-base.ui:46 data/resources/bjb-window-base.ui:282
-#: src/bjb-window-base.c:450
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
+#: src/bjb-window.c:449
 msgid "All Notes"
 msgstr "یادداشت‌ها"
 
-#: data/resources/bjb-window-base.ui:62
+#: data/resources/bjb-window.ui:63
 msgid "Open menu"
 msgstr "گشودن فهرست"
 
-#: data/resources/bjb-window-base.ui:178 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:148
+msgid "More options"
+msgstr "گزینه‌های بیش‌تر"
+
+#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "درون‌ریزی یادداشت‌ها"
 
-#: data/resources/bjb-window-base.ui:195
+#: data/resources/bjb-window.ui:196
 msgid "Text Sizes"
 msgstr "اندازه‌های متن"
 
-#: data/resources/bjb-window-base.ui:204
+#: data/resources/bjb-window.ui:205
 msgid "_Large"
 msgstr "_درشت"
 
-#: data/resources/bjb-window-base.ui:213
+#: data/resources/bjb-window.ui:214
 msgid "_Medium"
 msgstr "_متوسط"
 
-#: data/resources/bjb-window-base.ui:222
+#: data/resources/bjb-window.ui:223
 msgid "_Small"
 msgstr "_ریز"
 
-#: data/resources/bjb-window-base.ui:239 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "ترجیحات"
 
-#: data/resources/bjb-window-base.ui:247
+#: data/resources/bjb-window.ui:248
 msgid "Keyboard Shortcuts"
 msgstr "میان‌برهای صفحه‌کلید"
 
-#: data/resources/bjb-window-base.ui:255
+#: data/resources/bjb-window.ui:256
 msgid "Help"
 msgstr "راهنما"
 
-#: data/resources/bjb-window-base.ui:263
+#: data/resources/bjb-window.ui:264
 msgid "About Notes"
 msgstr "دربارهٔ یادداشت‌ها"
 
-#: data/resources/bjb-window-base.ui:329 src/bjb-window-base.c:459
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "زباله‌دان"
 
-#: data/resources/bjb-window-base.ui:351
+#: data/resources/bjb-window.ui:352
 msgid "Open in New Window"
 msgstr "گشودن در پنجرهٔ _جدید"
+
+#: data/resources/bjb-window.ui:368
+msgid "Undo"
+msgstr "برگردان"
+
+#: data/resources/bjb-window.ui:376
+msgid "Redo"
+msgstr "انجام دوباره"
+
+#: data/resources/bjb-window.ui:400
+msgid "Email this Note"
+msgstr "رایانامهٔ این یادداشت"
+
+#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "انداختن در زباله‌دان"
 
 #: data/resources/editor-toolbar.ui:63
 msgid "Bold"
@@ -391,14 +398,6 @@ msgstr "مکان‌های سفارشی"
 msgid "Select a Folder"
 msgstr "گزینش یک شاخه"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "برای ایجاد یادداشت، نامی وارد کنید"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "دفترچهٔ جدید"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "رنگ یادداشت"
@@ -443,40 +442,39 @@ msgstr "گزینش مکان ذخیرهٔ پیش‌گزیده:"
 msgid "Primary Book"
 msgstr "کتاب اصلی"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-detached-window.c:75
-#: src/bjb-window-base.c:111
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "بی‌عنوان"
 
-#: src/bjb-application.c:193
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "یادداشت‌های گنوم"
 
-#: src/bjb-application.c:248
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "نمایش سیاهه‌ها"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "نمایش نگارش برنامه‌ها"
 
-#: src/bjb-application.c:252
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "ایجاد یادداشت جدید"
 
-#: src/bjb-application.c:260
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:261
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "یادداشت کرده و هرجا می‌خواهید برون‌ریزی کنید."
 
-#: src/bjb-application.c:569
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "دفترچه یادداشت ساده برای گنوم"
 
-#: src/bjb-application.c:575
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr ""
 "آرش موسوی <mousavi.arash@gmail.com>\n"
@@ -487,19 +485,9 @@ msgstr ""
 msgid "Note Color"
 msgstr "رنگ یادداشت"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "دفترچه"
-
-#. Translators: %s is the note last recency description.
-#. * Last updated is placed as in left to right language
-#. * right to left languages might move %s
-#. *         '%s Last Updated'
-#.
-#: src/bjb-detached-window.c:95 src/bjb-window-base.c:907
-#, c-format
-msgid "Last updated: %s"
-msgstr "آخرین به‌روزرسانی: %s"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -514,42 +502,50 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "لطفاً «ردیاب» را نصب کرده، سپس برنامه را دوباره باز کنید."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:189
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "این یادداشت در پنجرهٔ دیگری در حال نمایش است."
 
-#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
-#: src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68
 msgid "Yesterday"
 msgstr "دیروز"
 
-#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74
 msgid "This month"
 msgstr "این ماه"
 
-#: src/libbiji/biji-date-time.c:38
-msgid "Today"
-msgstr "امروز"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-window.c:940
+#, c-format
+msgid "Last updated: %s"
+msgstr "آخرین به‌روزرسانی: %s"
 
-#: src/libbiji/biji-date-time.c:47
-msgid "This week"
-msgstr "این هفته"
-
-#: src/libbiji/biji-date-time.c:60
-msgid "This year"
-msgstr "امسال"
-
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "محلّی"
-
-#: src/libbiji/provider/biji-local-provider.c:364
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "ذخیره‌سازی محلّی"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "برای ایجاد یادداشت، نامی وارد کنید"
+
+#~ msgid "Today"
+#~ msgstr "امروز"
+
+#~ msgid "This week"
+#~ msgstr "این هفته"
+
+#~ msgid "This year"
+#~ msgstr "امسال"
+
+#~ msgid "Local"
+#~ msgstr "محلّی"
 
 #~ msgid "How to show note items"
 #~ msgstr "چگونگی نمایش موردهای یادداشت"
@@ -613,8 +609,8 @@ msgstr "ذخیره‌سازی محلّی"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""
-#~ "«یادداشت‌ها» یک ویرایشگر است که به شما اجازه ذخیره فهرست‌های ساده برای استفاده "
-#~ "در آینده را می‌دهد."
+#~ "«یادداشت‌ها» یک ویرایشگر است که به شما اجازه ذخیره فهرست‌های ساده برای "
+#~ "استفاده در آینده را می‌دهد."
 
 #~ msgid "It allows to use ownCloud as a storage location and online editor."
 #~ msgstr ""

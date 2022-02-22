@@ -35,7 +35,7 @@ msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
-"Una forma ràpida i senzilla de prendre notes o llistes simples. Emmagatzemeu "
+"Una forma ràpida i senzilla de crear notes o llistes simples. Emmagatzemeu "
 "tantes notes com vulgueu i compartiu-les per correu electrònic."
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:12
@@ -82,7 +82,7 @@ msgstr "Tipus de lletra personalitzat"
 #: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
-"El nom del tipus de lletra que es defineixi aquí és el que s'utilitzarà per "
+"El nom del tipus de lletra que es defineixi aquí és el que s'utilitzarà per a "
 "visualitzar les notes."
 
 #: data/org.gnome.Notes.gschema.xml:15
@@ -539,9 +539,3 @@ msgstr "Última actualització %s"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Emmagatzematge local"
-
-#~ msgid "Enter a name to create a notebook"
-#~ msgstr "Introduïu un nom per a crear un bloc de notes"
-
-#~ msgid "Local"
-#~ msgstr "Local"

@@ -7,20 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-07-23 21:50+0200\n"
-"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"PO-Revision-Date: 2022-02-26 07:54+0000\n"
+"Last-Translator: Fabio Tomat\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Editor: HaiPO 0.9 beta\n"
 "X-Generator: Poedit 3.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Notis"
 
@@ -56,7 +57,8 @@ msgstr "Viodude de selezion"
 msgid "List view"
 msgstr "Viodude de liste"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "notis;promemorie;tacuin;notis adesivis;"
@@ -105,7 +107,8 @@ msgstr "Archivi principâl di doprâ par lis gnovis notis."
 #: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr ""
-"Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin creadis."
+"Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin "
+"creadis."
 
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
@@ -114,8 +117,8 @@ msgstr ""
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""
-"This stores the note path of the last opened item, so that we can open it on "
-"startup."
+"This stores the note path of the last opened item, so that we can open it on"
+" startup."
 msgstr ""
 "Chest al archivie il percors de note dal ultin element viert, in mût di "
 "podêle vierzi al inviament."
@@ -153,6 +156,19 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "A son trê dimensions di test disponibilis: piçul, medi (predefinît) e grant."
+
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Tacuins"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Gnûf tacuin…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Zonte"
 
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
@@ -203,12 +219,7 @@ msgstr "Jutori"
 msgid "About Notes"
 msgstr "Informazions su Notis"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Tacuins"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Scovacere"
 
@@ -396,14 +407,6 @@ msgstr "Posizion personalizade"
 msgid "Select a Folder"
 msgstr "Selezione une cartele"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Scrîf un non par creâ un tacuin"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Gnûf tacuin"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Colôr de note"
@@ -448,39 +451,39 @@ msgstr "Selezione la posizion di archiviazion predefinide:"
 msgid "Primary Book"
 msgstr "Libri principâl"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Cence titul"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Notis GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Mostre regjistris detaiâts"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Mostre la version de aplicazion"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Cree une gnove note"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Cjape notis e espuartilis dapardut."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "Sempliç tacuin par GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>, 2021"
 
@@ -488,7 +491,7 @@ msgstr "Fabio Tomat <f.t.public@gmail.com>, 2021"
 msgid "Note Color"
 msgstr "Colôr de note"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Tacuin"
 
@@ -505,7 +508,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Par plasê instale “Tracker” e dopo torne invie la aplicazion."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Cheste note e je visualizade intun altri barcon."
 
@@ -525,19 +528,20 @@ msgstr "Chest mês"
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
-#.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ultin inzornament: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Locâl"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Archivi locâl"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Scrîf un non par creâ un tacuin"
+
+#~ msgid "Local"
+#~ msgstr "Locâl"
 
 #~ msgid "_New"
 #~ msgstr "_Gnove"
@@ -591,8 +595,8 @@ msgstr "Archivi locâl"
 
 #~ msgid "Whether to show note items in icon view or list view."
 #~ msgstr ""
-#~ "Indiche se mostrâ i elements des notis inte viodude a iconis o te viodude "
-#~ "a liste."
+#~ "Indiche se mostrâ i elements des notis inte viodude a iconis o te viodude a "
+#~ "liste."
 
 #~ msgid "View notes and notebooks in a grid"
 #~ msgstr "Mostre notis e tacuins intune gridele"

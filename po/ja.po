@@ -1,16 +1,16 @@
 # Japanese translation for bijiben.
-# Copyright (C) 2013, 2016, 2018-2020 bijiben's COPYRIGHT HOLDER
+# Copyright (C) 2013, 2016, 2018-2020, 2022 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013, 2016, 2018.
-# sicklylife <translation@sicklylife.jp>, 2019-2020.
+# sicklylife <translation@sicklylife.jp>, 2019-2020, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
 "POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2020-08-17 06:10+0900\n"
+"PO-Revision-Date: 2022-03-12 18:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -116,7 +116,7 @@ msgstr "ウィンドウ最大化"
 
 #: data/org.gnome.Notes.gschema.xml:35
 msgid "Window maximized state."
-msgstr "ウィンドウの最大化状態。"
+msgstr "ウィンドウを最大化状態にします。"
 
 #: data/org.gnome.Notes.gschema.xml:39
 msgid "Window size"
@@ -124,7 +124,7 @@ msgstr "ウィンドウサイズ"
 
 #: data/org.gnome.Notes.gschema.xml:40
 msgid "Window size (width and height)."
-msgstr "ウィンドウサイズ (幅と高さ)。"
+msgstr "ウィンドウのサイズ (幅と高さ) です。"
 
 #: data/org.gnome.Notes.gschema.xml:44
 msgid "Window position"
@@ -132,7 +132,7 @@ msgstr "ウィンドウの位置"
 
 #: data/org.gnome.Notes.gschema.xml:45
 msgid "Window position (x and y)."
-msgstr "ウィンドウの位置 (x および y)"
+msgstr "ウィンドウの位置 (X 軸と Y 軸) です。"
 
 #: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
@@ -149,21 +149,17 @@ msgid "Notebooks"
 msgstr "ノート"
 
 #: data/resources/bjb-notebooks-dialog.ui:33
-#, fuzzy
-#| msgid "New notebook"
 msgid "New Notebook…"
-msgstr "ノートを作成"
+msgstr "ノートを作成…"
 
 #: data/resources/bjb-notebooks-dialog.ui:43
 msgid "Add"
-msgstr ""
+msgstr "追加"
 
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
-#, fuzzy
-#| msgid "Notes"
 msgid "All Notes"
-msgstr "メモ"
+msgstr "すべてのメモ"
 
 #: data/resources/bjb-window.ui:63
 msgid "Open menu"
@@ -255,11 +251,11 @@ msgstr "リスト"
 
 #: data/resources/editor-toolbar.ui:167
 msgid "Indent"
-msgstr ""
+msgstr "インデント"
 
 #: data/resources/editor-toolbar.ui:183
 msgid "Outdent"
-msgstr ""
+msgstr "アウトデント"
 
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
@@ -451,7 +447,7 @@ msgstr "GNOME メモ"
 
 #: src/bjb-application.c:277
 msgid "Show verbose logs"
-msgstr ""
+msgstr "詳細なログを表示する"
 
 #: src/bjb-application.c:279
 msgid "Show the application’s version"
@@ -503,10 +499,8 @@ msgstr ""
 
 #. Label used to indicate that note is opened in another window.
 #: src/bjb-note-view.c:187
-#, fuzzy
-#| msgid "Open in another window"
 msgid "This note is being viewed in another window."
-msgstr "別のウィンドウで開きます"
+msgstr "このメモは別のウィンドウで表示されています。"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"

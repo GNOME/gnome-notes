@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-08-14 12:16+0000\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
 "PO-Revision-Date: 2020-08-17 06:10+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:608 src/bjb-window-base.c:17
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "メモ"
 
@@ -101,50 +101,167 @@ msgid "The primary notebook is the place where new notes are created."
 msgstr "このプライマリーブックに指定した場所に新規メモが作成されます。"
 
 #: data/org.gnome.Notes.gschema.xml:29
+msgid "Note path of the notes opened when Notes quits last time."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid ""
+"This stores the note path of the last opened item, so that we can open it on "
+"startup."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window maximized"
 msgstr "ウィンドウ最大化"
 
-#: data/org.gnome.Notes.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window maximized state."
 msgstr "ウィンドウの最大化状態。"
 
-#: data/org.gnome.Notes.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window size"
 msgstr "ウィンドウサイズ"
 
-#: data/org.gnome.Notes.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window size (width and height)."
 msgstr "ウィンドウサイズ (幅と高さ)。"
 
-#: data/org.gnome.Notes.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:44
 msgid "Window position"
 msgstr "ウィンドウの位置"
 
-#: data/org.gnome.Notes.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:45
 msgid "Window position (x and y)."
 msgstr "ウィンドウの位置 (x および y)"
 
-#: data/resources/editor-toolbar.ui:51
+#: data/org.gnome.Notes.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "ノート"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+#, fuzzy
+#| msgid "New notebook"
+msgid "New Notebook…"
+msgstr "ノートを作成"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr ""
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
+#: src/bjb-window.c:449
+#, fuzzy
+#| msgid "Notes"
+msgid "All Notes"
+msgstr "メモ"
+
+#: data/resources/bjb-window.ui:63
+msgid "Open menu"
+msgstr "メニューを開く"
+
+#: data/resources/bjb-window.ui:148
+msgid "More options"
+msgstr "追加オプション"
+
+#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "メモをインポート"
+
+#: data/resources/bjb-window.ui:196
+msgid "Text Sizes"
+msgstr "文字サイズ"
+
+#: data/resources/bjb-window.ui:205
+msgid "_Large"
+msgstr "大(_L)"
+
+#: data/resources/bjb-window.ui:214
+msgid "_Medium"
+msgstr "中(_M)"
+
+#: data/resources/bjb-window.ui:223
+msgid "_Small"
+msgstr "小(_S)"
+
+#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "設定"
+
+#: data/resources/bjb-window.ui:248
+msgid "Keyboard Shortcuts"
+msgstr "キーボードショートカット"
+
+#: data/resources/bjb-window.ui:256
+msgid "Help"
+msgstr "ヘルプ"
+
+#: data/resources/bjb-window.ui:264
+msgid "About Notes"
+msgstr "“メモ”について"
+
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+msgid "Trash"
+msgstr "ゴミ箱"
+
+#: data/resources/bjb-window.ui:352
+msgid "Open in New Window"
+msgstr "新しいウィンドウで開く"
+
+#: data/resources/bjb-window.ui:368
+msgid "Undo"
+msgstr "元に戻す"
+
+#: data/resources/bjb-window.ui:376
+msgid "Redo"
+msgstr "やり直す"
+
+#: data/resources/bjb-window.ui:400
+msgid "Email this Note"
+msgstr "このメモをメールで送る"
+
+#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "ゴミ箱へ移動する"
+
+#: data/resources/editor-toolbar.ui:63
 msgid "Bold"
 msgstr "太字"
 
-#: data/resources/editor-toolbar.ui:67
+#: data/resources/editor-toolbar.ui:79
 msgid "Italic"
 msgstr "斜体"
 
-#: data/resources/editor-toolbar.ui:83
+#: data/resources/editor-toolbar.ui:95
 msgid "Strike"
 msgstr "取り消し線"
 
-#: data/resources/editor-toolbar.ui:111
+#: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
 msgstr "箇条書き"
 
-#: data/resources/editor-toolbar.ui:127
+#: data/resources/editor-toolbar.ui:139
 msgid "List"
 msgstr "リスト"
 
-#: data/resources/editor-toolbar.ui:166
+#: data/resources/editor-toolbar.ui:167
+msgid "Indent"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:183
+msgid "Outdent"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "選択範囲を新しいメモにコピーします"
 
@@ -252,11 +369,7 @@ msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "ゴミ箱へ移動する"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
-msgid "Import Notes"
-msgstr "メモをインポート"
-
-#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+#: data/resources/import-dialog.ui:12
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
@@ -284,107 +397,9 @@ msgstr "場所を指定する"
 msgid "Select a Folder"
 msgstr "フォルダーを選択"
 
-#: data/resources/main-toolbar.ui:14
-msgid "_New"
-msgstr "新規(_N)"
-
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
+#: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "メモの色"
-
-#. Translators: “Empty” is a verb.
-#: data/resources/main-toolbar.ui:55
-msgid "_Empty"
-msgstr "空にする(_E)"
-
-#: data/resources/main-toolbar.ui:74
-msgid "Exit selection mode"
-msgstr "選択モードを終了します"
-
-#: data/resources/main-toolbar.ui:94
-msgid "Search note titles, content and notebooks"
-msgstr "メモのタイトルや内容、ノートを検索します"
-
-#: data/resources/main-toolbar.ui:116
-msgid "Selection mode"
-msgstr "選択モード"
-
-#: data/resources/main-toolbar.ui:130
-msgid "Open menu"
-msgstr "メニューを開く"
-
-#: data/resources/main-toolbar.ui:150
-msgid "More options"
-msgstr "追加オプション"
-
-#: data/resources/main-toolbar.ui:189
-msgid "View Trash"
-msgstr "ゴミ箱を表示する"
-
-#: data/resources/main-toolbar.ui:206
-msgid "Text Sizes"
-msgstr "文字サイズ"
-
-#: data/resources/main-toolbar.ui:216
-msgid "_Large"
-msgstr "大(_L)"
-
-#: data/resources/main-toolbar.ui:226
-msgid "_Medium"
-msgstr "中(_M)"
-
-#: data/resources/main-toolbar.ui:236
-msgid "_Small"
-msgstr "小(_S)"
-
-#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "設定"
-
-#: data/resources/main-toolbar.ui:263
-msgid "Keyboard Shortcuts"
-msgstr "キーボードショートカット"
-
-#: data/resources/main-toolbar.ui:272
-msgid "Help"
-msgstr "ヘルプ"
-
-#: data/resources/main-toolbar.ui:281
-msgid "About Notes"
-msgstr "“メモ”について"
-
-#: data/resources/main-toolbar.ui:303
-msgid "Open in New Window"
-msgstr "新しいウィンドウで開く"
-
-#: data/resources/main-toolbar.ui:320
-msgid "Undo"
-msgstr "元に戻す"
-
-#: data/resources/main-toolbar.ui:329
-msgid "Redo"
-msgstr "やり直す"
-
-#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "ノート"
-
-#: data/resources/main-toolbar.ui:355
-msgid "Email this Note"
-msgstr "このメモをメールで送る"
-
-#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
-msgid "Move to Trash"
-msgstr "ゴミ箱へ移動する"
-
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "作成するノートの名前を入力"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "ノートを作成"
 
 #: data/resources/selection-toolbar.ui:60
 msgid "Share note"
@@ -426,47 +441,39 @@ msgstr "デフォルトの保存場所を選択してください:"
 msgid "Primary Book"
 msgstr "プライマリーブック"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:349
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "無題"
 
-#: src/bjb-application.c:432
-msgid "Show the application’s version"
-msgstr "アプリケーションのバージョンを表示する"
-
-#: src/bjb-application.c:434
-msgid "Create a new note"
-msgstr "新しいメモを作成する"
-
-#: src/bjb-application.c:436
-msgid "[FILE…]"
-msgstr "[FILE…]"
-
-#: src/bjb-application.c:444
-msgid "Take notes and export them everywhere."
-msgstr "メモの作成、エクスポートを行います。"
-
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:455
-msgid "Could not parse arguments"
-msgstr "引数を解析できませんでした"
-
-#: src/bjb-application.c:463
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "GNOME メモ"
 
-#. Translators: this is a fatal error quit message
-#. * printed on the command line
-#: src/bjb-application.c:475
-msgid "Could not register the application"
-msgstr "アプリケーションを登録できませんでした"
+#: src/bjb-application.c:277
+msgid "Show verbose logs"
+msgstr ""
 
-#: src/bjb-application.c:609
+#: src/bjb-application.c:279
+msgid "Show the application’s version"
+msgstr "アプリケーションのバージョンを表示する"
+
+#: src/bjb-application.c:281
+msgid "Create a new note"
+msgstr "新しいメモを作成する"
+
+#: src/bjb-application.c:289
+msgid "[FILE…]"
+msgstr "[FILE…]"
+
+#: src/bjb-application.c:290
+msgid "Take notes and export them everywhere."
+msgstr "メモの作成、エクスポートを行います。"
+
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "GNOME 向けのシンプルメモ"
 
-#: src/bjb-application.c:615
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr ""
 "Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
@@ -477,7 +484,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "メモの色"
 
-#: src/bjb-controller.c:239
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "ノート"
 
@@ -494,71 +501,90 @@ msgid "Please install “Tracker” then restart the application."
 msgstr ""
 "“Tracker”をインストールして、このアプリケーションを再起動してください。"
 
-#: src/bjb-main-toolbar.c:134
-msgid "Click on items to select them"
-msgstr "アイテムをクリックして選択してください"
+#. Label used to indicate that note is opened in another window.
+#: src/bjb-note-view.c:187
+#, fuzzy
+#| msgid "Open in another window"
+msgid "This note is being viewed in another window."
+msgstr "別のウィンドウで開きます"
 
-#: src/bjb-main-toolbar.c:136
-#, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "%d 件選択"
+#: src/bjb-utils.c:51
+msgid "Unknown"
+msgstr "不明"
 
-#: src/bjb-main-toolbar.c:230
-#, c-format
-msgid "Results for %s"
-msgstr "%s の検索結果"
+#: src/bjb-utils.c:68
+msgid "Yesterday"
+msgstr "昨日"
 
-#: src/bjb-main-toolbar.c:233
-msgid "New and Recent"
-msgstr "新規または最近使用したメモ"
-
-#: src/bjb-main-toolbar.c:325
-msgid "Trash"
-msgstr "ゴミ箱"
+#: src/bjb-utils.c:74
+msgid "This month"
+msgstr "今月"
 
 #. Translators: %s is the note last recency description.
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:393
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "最終更新日: %s"
 
-#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
-#: src/libbiji/biji-date-time.c:51
-msgid "Unknown"
-msgstr "不明"
-
-#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "昨日"
-
-#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "今月"
-
-#: src/libbiji/biji-date-time.c:38
-msgid "Today"
-msgstr "今日"
-
-#: src/libbiji/biji-date-time.c:47
-msgid "This week"
-msgstr "今週"
-
-#: src/libbiji/biji-date-time.c:60
-msgid "This year"
-msgstr "今年"
-
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "ローカル"
-
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "ローカルストレージ"
+
+#~ msgid "_New"
+#~ msgstr "新規(_N)"
+
+#~ msgid "_Empty"
+#~ msgstr "空にする(_E)"
+
+#~ msgid "Exit selection mode"
+#~ msgstr "選択モードを終了します"
+
+#~ msgid "Search note titles, content and notebooks"
+#~ msgstr "メモのタイトルや内容、ノートを検索します"
+
+#~ msgid "Selection mode"
+#~ msgstr "選択モード"
+
+#~ msgid "View Trash"
+#~ msgstr "ゴミ箱を表示する"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "作成するノートの名前を入力"
+
+#~ msgid "Could not parse arguments"
+#~ msgstr "引数を解析できませんでした"
+
+#~ msgid "Could not register the application"
+#~ msgstr "アプリケーションを登録できませんでした"
+
+#~ msgid "Click on items to select them"
+#~ msgstr "アイテムをクリックして選択してください"
+
+#~ msgid "%d selected"
+#~ msgid_plural "%d selected"
+#~ msgstr[0] "%d 件選択"
+
+#~ msgid "Results for %s"
+#~ msgstr "%s の検索結果"
+
+#~ msgid "New and Recent"
+#~ msgstr "新規または最近使用したメモ"
+
+#~ msgid "Today"
+#~ msgstr "今日"
+
+#~ msgid "This week"
+#~ msgstr "今週"
+
+#~ msgid "This year"
+#~ msgstr "今年"
+
+#~ msgid "Local"
+#~ msgstr "ローカル"
 
 #~ msgid "How to show note items"
 #~ msgstr "メモの一覧を表示する方法"

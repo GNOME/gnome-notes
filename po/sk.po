@@ -1,27 +1,27 @@
 # Slovak translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Dušan Kazik <prescott66@gmail.com>, 2013.
 # Peter Vágner <pvagner@pvagner.tk>, 2018.
+# Dušan Kazik <prescott66@gmail.com>, 2013-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-09-03 21:56+0200\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"PO-Revision-Date: 2022-03-12 12:22+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
-"Language-Team: slovenčina <>\n"
+"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Poznámky"
 
@@ -156,6 +156,20 @@ msgstr ""
 "K dispozícii sú tri veľkosti textu: malý text, stredný text (predvolené) a "
 "veľký text."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Zápisníky"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+#| msgid "New notebook"
+msgid "New Notebook…"
+msgstr "Nový zápisník…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Pridať"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
 msgid "All Notes"
@@ -207,12 +221,7 @@ msgstr "Pomocník"
 msgid "About Notes"
 msgstr "O aplikácii Poznámky"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Zápisníky"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Kôš"
 
@@ -416,15 +425,6 @@ msgid "Select a Folder"
 msgstr "Výber priečinka"
 
 # label
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Zadajte názov pre vytvorený zápisník"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Nový zápisník"
-
-# label
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Farba poznámok"
@@ -473,42 +473,42 @@ msgstr "Vyberte predvolené umiestnenie úložiska:"
 msgid "Primary Book"
 msgstr "Hlavná kniha"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Bez názvu"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Poznámky prostredia GNOME"
 
 # cmdline desc
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Zobrazí podrobné záznamy"
 
 # cmd desc
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Vypíše verziu aplikácie"
 
 # cmd desc
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Vytvorí novú poznámku"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[SÚBOR…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Umožňuje zápis poznámok a ich export."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "Jednoduchý zápisník pre prostredie GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
@@ -519,7 +519,7 @@ msgid "Note Color"
 msgstr "Farba poznámky"
 
 # label
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Zápisník"
 
@@ -539,7 +539,7 @@ msgstr ""
 "Prosím, nainštalujte program „Tracker“, a potom znovu spustite aplikáciu."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Táto poznámka je prezeraná v inom okne."
 
@@ -560,18 +560,21 @@ msgstr "V tomto mesiaci"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "Naposledy aktualizované %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Miestny"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Miestne úložisko"
+
+# label
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Zadajte názov pre vytvorený zápisník"
+
+#~ msgid "Local"
+#~ msgstr "Miestny"
 
 #~ msgid "_New"
 #~ msgstr "_Nová"

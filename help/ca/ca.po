@@ -1,16 +1,14 @@
 # Translators:
-# Jordi Mas <jmas@softcatala.org>, 2020
+# Jordi Mas i Hernàndez <jmas@softcatala.org>, 2020, 2022
 # Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>, 2020
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes-help\n"
-"POT-Creation-Date: 2020-08-10 10:48+0000\n"
-"PO-Revision-Date: 2020-08-11 05:52+0000\n"
-"Last-Translator: Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail."
-"com>, 2020\n"
-"Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/"
-"ca/)\n"
+"POT-Creation-Date: 2021-09-13 23:27+0000\n"
+"PO-Revision-Date: 2022-03-15 05:52+0000\n"
+"Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
+"Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,14 +22,14 @@ msgstr "Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>, 2020"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -52,15 +50,15 @@ msgstr "2013 2014"
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
-#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
-#: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
-#: C/share.page:20
+#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
+#: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11
+#: C/search.page:20 C/share.page:20
 msgid "Shobha Tyagi"
 msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
 #: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
@@ -75,11 +73,11 @@ msgstr "Michael Hill"
 #. (itstool) path: credit/years
 #: C/colors.page:29 C/create.page:22 C/create.page:27 C/cut-copy-paste.page:13
 #: C/cut-copy-paste.page:18 C/cut-copy-paste.page:23 C/delete.page:27
-#: C/delete-permanent.page:13 C/delete-restore.page:13 C/delete-restore.page:18
-#: C/format-list.page:27 C/format-text.page:22 C/format-text.page:27
-#: C/introduction.page:23 C/introduction.page:28 C/new-window.page:13
-#: C/notebooks.page:22 C/notebooks.page:27 C/rename.page:18 C/search.page:27
-#: C/share.page:22 C/share.page:27
+#: C/delete-permanent.page:13 C/delete-restore.page:13
+#: C/delete-restore.page:18 C/format-list.page:27 C/format-text.page:22
+#: C/format-text.page:27 C/introduction.page:23 C/introduction.page:28
+#: C/new-window.page:13 C/notebooks.page:22 C/notebooks.page:27
+#: C/rename.page:18 C/search.page:27 C/share.page:22 C/share.page:27
 msgid "2014"
 msgstr "2014"
 
@@ -123,8 +121,8 @@ msgstr "Feu clic al botó <gui style=\"button\">Color de la nota</gui>."
 msgid ""
 "Select a new color and click the <gui style=\"button\">Select</gui> button."
 msgstr ""
-"Seleccioneu un color nou i feu clic al botó <gui style=\"button"
-"\">Selecciona</gui>."
+"Seleccioneu un color nou i feu clic al botó <gui "
+"style=\"button\">Selecciona</gui>."
 
 #. (itstool) path: page/p
 #: C/colors.page:56
@@ -141,11 +139,11 @@ msgstr "Per a canviar el color de diverses notes:"
 #. (itstool) path: item/p
 #: C/colors.page:62 C/delete.page:56 C/notebooks.page:61
 msgid ""
-"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
-"\">Selection mode</gui> button."
+"In the <gui>New and Recent</gui> view, click the <gui "
+"style=\"button\">Selection mode</gui> button."
 msgstr ""
-"A la vista <gui>Recents i noves</gui>, feu clic al botó <gui style=\"button"
-"\">Mode de selecció</gui>."
+"A la vista <gui>Recents i noves</gui>, feu clic al botó <gui "
+"style=\"button\">Mode de selecció</gui>."
 
 #. (itstool) path: item/p
 #: C/colors.page:66
@@ -173,8 +171,7 @@ msgstr "Podeu crear una nota nova de tres maneres diferents:"
 
 #. (itstool) path: item/p
 #: C/create.page:41
-msgid ""
-"Click the <gui style=\"button\">New</gui> button to create a blank note."
+msgid "Click the <gui style=\"button\">New</gui> button to create a blank note."
 msgstr ""
 "Feu clic al botó <gui style=\"button\">Nova</gui> per a crear una nota en "
 "blanc."
@@ -194,15 +191,15 @@ msgid ""
 "Open a note, select some text and click the <gui style=\"button\">Copy "
 "selection to a new note</gui> button to create a note containing this text."
 msgstr ""
-"Obriu una nota, seleccioneu un text i feu clic al botó <gui style=\"button"
-"\">Copia la selecció a una nota nova</gui> per a crear una nota que "
-"contingui el text."
+"Obriu una nota, seleccioneu un text i feu clic al botó <gui "
+"style=\"button\">Copia la selecció a una nota nova</gui> per a crear una "
+"nota que contingui el text."
 
 #. (itstool) path: note/p
 #: C/create.page:55
 msgid ""
-"To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
-"key><key>N</key></keyseq>."
+"To open a new note using the keyboard shortcut, press "
+"<keyseq><key>Ctrl</key><key>N</key></keyseq>."
 msgstr ""
 "Per a obrir una nota nova utilitzant la drecera de teclat, premeu "
 "<keyseq><key>Ctrl</key><key>N</key></keyseq>."
@@ -223,8 +220,8 @@ msgid ""
 "You can move text inside a note or to another note by cutting or copying it "
 "and pasting it somewhere else."
 msgstr ""
-"Podeu moure un fragment de text dins d'una nota o a una altra nota retallant-"
-"la o copiant-la i enganxant-la en un altre lloc."
+"Podeu moure un fragment de text dins d'una nota o a una altra nota "
+"retallant-la o copiant-la i enganxant-la en un altre lloc."
 
 #. (itstool) path: steps/title
 #: C/cut-copy-paste.page:37
@@ -238,19 +235,17 @@ msgstr "Seleccioneu el text."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:42
-msgid ""
-"Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
-msgstr ""
-"Premeu <gui style=\"button\">Cut</gui> o <gui style=\"button\">Copy</gui>."
+msgid "Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
+msgstr "Premeu <gui style=\"button\">Cut</gui> o <gui style=\"button\">Copy</gui>."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:46
 msgid ""
-"Select where you want to paste the text and press <gui style=\"button"
-"\">Paste</gui>."
+"Select where you want to paste the text and press <gui "
+"style=\"button\">Paste</gui>."
 msgstr ""
-"Seleccioneu on voleu enganxar el text i premeu <gui style=\"button\">Paste</"
-"gui>."
+"Seleccioneu on voleu enganxar el text i premeu <gui "
+"style=\"button\">Paste</gui>."
 
 #. (itstool) path: info/desc
 #: C/delete.page:32
@@ -270,17 +265,17 @@ msgstr "Per a suprimir una nota:"
 #. (itstool) path: item/p
 #: C/delete.page:43
 msgid ""
-"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
-"\">Move to Trash</gui></guiseq>."
+"Select <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Move to Trash</gui></guiseq>."
 msgstr ""
-"Seleccioneu <guiseq><gui style=\"button\">Més opcions</gui><gui style="
-"\"menuitem\">Mou a la paperera</gui></guiseq>."
+"Seleccioneu <guiseq><gui style=\"button\">Més opcions</gui><gui "
+"style=\"menuitem\">Mou a la paperera</gui></guiseq>."
 
 #. (itstool) path: note/p
 #: C/delete.page:49
 msgid ""
-"Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
-"keyseq> to delete an open note."
+"Press the keyboard shortcut "
+"<keyseq><key>Ctrl</key><key>Delete</key></keyseq> to delete an open note."
 msgstr ""
 "Premeu la drecera de teclat <keyseq><key>Ctrl</key><key>Supr</key></keyseq> "
 "per a suprimir una nota oberta."
@@ -322,42 +317,38 @@ msgstr "Per a suprimir definitivament totes les notes de la paperera:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-msgid ""
-"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
-"terminology\">Activities</gui>."
-msgstr ""
-"Feu clic a la icona <gui>Notes</gui> al costat d'<gui href=\"help:gnome-help/"
-"shell-terminology\">Activitats</gui>."
+msgid "Press the menu button in the top-right corner of the window."
+msgstr "Premeu el botó de menú a la cantonada superior dreta de la finestra."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:34
+#: C/delete-permanent.page:33
 msgid "Select <gui>View Trash</gui>."
 msgstr "Seleccioneu <gui>Visualitza la paperera</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:37
+#: C/delete-permanent.page:36
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
-msgstr ""
-"Feu clic al botó <gui style=\"button\">Buida</gui> de la barra d'eines."
+msgstr "Feu clic al botó <gui style=\"button\">Buida</gui> de la barra d'eines."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:42
+#: C/delete-permanent.page:41
 msgid "To delete selected notes from Trash:"
 msgstr "Per a suprimir una selecció de notes de la paperera:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:44
+#: C/delete-permanent.page:43
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
 msgstr ""
-"A la vista <gui>Paperera</gui>, feu clic al botó <gui>Mode de selecció</gui>."
+"A la vista <gui>Paperera</gui>, feu clic al botó <gui>Mode de "
+"selecció</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:48
+#: C/delete-permanent.page:47
 msgid "Select all the notes that you want to delete permanently."
 msgstr "Seleccioneu totes les notes que voleu suprimir definitivament."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:51
+#: C/delete-permanent.page:50
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
 msgstr "Feu clic al botó <gui style=\"button\">Elimina permanentment</gui>."
 
@@ -389,7 +380,8 @@ msgstr "Per a restaurar notes de la paperera:"
 #: C/delete-restore.page:34
 msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
 msgstr ""
-"A la vista <gui>Paperera</gui>, feu clic al botó <gui>Mode de selecció</gui>."
+"A la vista <gui>Paperera</gui>, feu clic al botó <gui>Mode de "
+"selecció</gui>."
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:38
@@ -429,11 +421,11 @@ msgstr "Mentre la nota és oberta:"
 #. (itstool) path: item/p
 #: C/format-list.page:45
 msgid ""
-"To create an unordered list, select the <guiseq><gui style=\"button"
-"\">Bullets</gui> </guiseq> button from the footer menu."
+"To create an unordered list, select the <guiseq><gui "
+"style=\"button\">Bullets</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Per a crear una llista desordenada, seleccioneu el botó <guiseq><gui style="
-"\"button\">Pics</gui></guiseq> del menú del peu de pàgina."
+"Per a crear una llista desordenada, seleccioneu el botó <guiseq><gui "
+"style=\"button\">Pics</gui></guiseq> del menú del peu de pàgina."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -452,11 +444,11 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/format-list.page:51
 msgid ""
-"To create an ordered list, select the <guiseq><gui style=\"button\">Numbered "
-"List</gui> </guiseq> button from the footer menu."
+"To create an ordered list, select the <guiseq><gui "
+"style=\"button\">List</gui> </guiseq> button from the footer menu."
 msgstr ""
-"Per a crear una llista ordenada, seleccioneu el botó <guiseq><gui style="
-"\"button\">Llista</gui></guiseq> del menú del peu de pàgina."
+"Per a crear una llista ordenada, seleccioneu el botó <guiseq><gui "
+"style=\"button\">Llista</gui></guiseq> del menú del peu de pàgina."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -498,43 +490,49 @@ msgid ""
 "Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
 "or <gui style=\"button\">Strike</gui>."
 msgstr ""
-"Feu clic a <gui style=\"button\">Negreta</gui>, <gui style=\"button"
-"\">Cursiva</gui> o <gui style=\"button\">Ratllat</gui>."
+"Feu clic a <gui style=\"button\">Negreta</gui>, <gui "
+"style=\"button\">Cursiva</gui> o <gui style=\"button\">Ratllat</gui>."
 
 #. (itstool) path: info/title
-#: C/index.page:8
+#: C/index.page:6
+msgctxt "link:trail"
+msgid "Notes"
+msgstr "Notes"
+
+#. (itstool) path: info/title
+#: C/index.page:7
 msgctxt "link"
 msgid "Notes"
 msgstr "Notes"
 
 #. (itstool) path: info/title
-#: C/index.page:9
+#: C/index.page:8
 msgctxt "text"
 msgid "Notes"
 msgstr "Notes"
 
 #. (itstool) path: info/desc
-#: C/index.page:27
+#: C/index.page:26
 msgid "Learn how to use and manage your notes."
 msgstr "Apreneu a utilitzar i gestionar notes."
 
 #. (itstool) path: page/title
-#: C/index.page:30
+#: C/index.page:29
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Notes"
 
 #. (itstool) path: section/title
-#: C/index.page:37
+#: C/index.page:36
 msgid "Create notes"
 msgstr "Creació de notes"
 
 #. (itstool) path: section/title
-#: C/index.page:40
+#: C/index.page:39
 msgid "Edit and share notes"
 msgstr "Edició i compartició de notes"
 
 #. (itstool) path: section/title
-#: C/index.page:43
+#: C/index.page:42
 msgid "Delete notes"
 msgstr "Supressió de notes"
 
@@ -552,14 +550,14 @@ msgstr "Introducció al Notes"
 #: C/introduction.page:38
 msgid ""
 "<app>Notes</app> is a simple application for creating, editing, and viewing "
-"notes. You can also search for a note from the <gui href=\"help:gnome-help/"
-"shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
-"easily with <app>Online Accounts</app>."
+"notes. You can also search for a note from the <gui href=\"help:gnome-"
+"help/shell-terminology\">Activities</gui> overview. <app>Notes</app> "
+"integrates easily with <app>Online Accounts</app>."
 msgstr ""
 "El <app>Notes</app> és una aplicació senzilla per a crear, editar i "
-"visualitzar notes. També podeu cercar una nota des de la vista <gui href="
-"\"help:gnome-help/shell-terminology\">Activitats</gui>. El <app>Notes</app> "
-"s'integra fàcilment amb els <app>comptes en línia</app>."
+"visualitzar notes. També podeu cercar una nota des de la vista <gui "
+"href=\"help:gnome-help/shell-terminology\">Activitats</gui>. El "
+"<app>Notes</app> s'integra fàcilment amb els <app>comptes en línia</app>."
 
 #. (itstool) path: page/media
 #. This is a reference to an external file such as an image or video. When
@@ -596,30 +594,32 @@ msgstr "Per a obrir una nota en una finestra nova:"
 #. (itstool) path: item/p
 #: C/new-window.page:27
 msgid ""
-"Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui "
-"style=\"menuitem\">Open in New Window</gui></guiseq>."
+"Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui"
+" style=\"menuitem\">Open in New Window</gui></guiseq>."
 msgstr ""
-"Obriu una nota i feu clic a <guiseq><gui style=\"button\">Més opcions</"
-"gui><gui style=\"menuitem\">Obre a una finestra nova</gui></guiseq>."
+"Obriu una nota i feu clic a <guiseq><gui style=\"button\">Més "
+"opcions</gui><gui style=\"menuitem\">Obre a una finestra "
+"nova</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/new-window.page:32
 msgid ""
-"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
-"\">Selection mode</gui> button, select all the notes which you want to open "
-"in new window, then click the <gui style=\"button\">Open in another window</"
-"gui> button."
+"In the <gui>New and Recent</gui> view, click the <gui "
+"style=\"button\">Selection mode</gui> button, select all the notes which you"
+" want to open in new window, then click the <gui style=\"button\">Open in "
+"another window</gui> button."
 msgstr ""
-"A la vista <gui>Recents i noves</gui>, feu clic al botó <gui style=\"button"
-"\">Mode de selecció</gui>, seleccioneu totes les notes que voleu obrir en "
-"una finestra nova i feu clic al botó <gui style=\"button\">Obre a una "
-"finestra nova</gui>."
+"A la vista <gui>Recents i noves</gui>, feu clic al botó <gui "
+"style=\"button\">Mode de selecció</gui>, seleccioneu totes les notes que "
+"voleu obrir en una finestra nova i feu clic al botó <gui "
+"style=\"button\">Obre a una finestra nova</gui>."
 
 #. (itstool) path: info/desc
 #: C/notebooks.page:32
 msgid "Add a note to a notebook to make sorting and searching notes easier."
 msgstr ""
-"Afegiu una nota a un bloc de notes per a facilitar-ne l'ordenació i la cerca."
+"Afegiu una nota a un bloc de notes per a facilitar-ne l'ordenació i la "
+"cerca."
 
 #. (itstool) path: page/title
 #: C/notebooks.page:35
@@ -632,8 +632,8 @@ msgid ""
 "You can use notebooks to group your notes together to make it easier to "
 "search and sort through your notes."
 msgstr ""
-"Podeu utilitzar blocs de notes per a agrupar notes i facilitar-ne la cerca i "
-"l'ordenació."
+"Podeu utilitzar blocs de notes per a agrupar notes i facilitar-ne la cerca i"
+" l'ordenació."
 
 #. (itstool) path: steps/title
 #: C/notebooks.page:41
@@ -643,20 +643,20 @@ msgstr "Per a crear un bloc de notes amb una sola nota:"
 #. (itstool) path: item/p
 #: C/notebooks.page:46
 msgid ""
-"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
-"\">Notebooks</gui></guiseq>."
+"Click <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Notebooks</gui></guiseq>."
 msgstr ""
-"Feu clic a <guiseq><gui style=\"button\">Més opcions</gui><gui style="
-"\"menuitem\">Blocs de notes</gui></guiseq>."
+"Feu clic a <guiseq><gui style=\"button\">Més opcions</gui><gui "
+"style=\"menuitem\">Blocs de notes</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:50
 msgid ""
-"Type a suitable name for the notebook and click the <gui style=\"button"
-"\">New notebook</gui> button."
+"Type a suitable name for the notebook and click the <gui "
+"style=\"button\">New notebook</gui> button."
 msgstr ""
-"Escriviu un nom adequat per al bloc de notes i feu clic al botó <gui style="
-"\"button\">Bloc de notes nou</gui>."
+"Escriviu un nom adequat per al bloc de notes i feu clic al botó <gui "
+"style=\"button\">Bloc de notes nou</gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:54 C/notebooks.page:75
@@ -684,8 +684,8 @@ msgid ""
 "Type a suitable name for the notebook and click <gui style=\"button\">New "
 "notebook</gui> button."
 msgstr ""
-"Escriviu un nom adequat per al bloc de notes i feu clic al botó <gui style="
-"\"button\">Bloc de notes nou</gui>."
+"Escriviu un nom adequat per al bloc de notes i feu clic al botó <gui "
+"style=\"button\">Bloc de notes nou</gui>."
 
 #. (itstool) path: info/desc
 #: C/rename.page:23
@@ -724,9 +724,9 @@ msgid ""
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
-"Podeu cercar notes a la vista <gui>Recents i noves</gui> del <app>Notes</"
-"app> o trobar notes des de la vista <gui href=\"help:gnome-help/shell-"
-"terminology\">Activitats</gui>."
+"Podeu cercar notes a la vista <gui>Recents i noves</gui> del "
+"<app>Notes</app> o trobar notes des de la vista <gui href=\"help:gnome-"
+"help/shell-terminology\">Activitats</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:42
@@ -737,8 +737,8 @@ msgstr "Per a trobar notes des de <gui>Recents i noves</gui>:"
 #: C/search.page:44
 msgid "Click the <gui>Search</gui> button."
 msgstr ""
-"Feu clic al botó <gui>Cerca al títol o al contingut de les notes i als blocs "
-"de notes</gui>."
+"Feu clic al botó <gui>Cerca al títol o al contingut de les notes i als blocs"
+" de notes</gui>."
 
 #. (itstool) path: item/p
 #: C/search.page:47
@@ -750,8 +750,8 @@ msgstr ""
 #. (itstool) path: note/p
 #: C/search.page:52
 msgid ""
-"You can directly start typing the search string in the <gui>New and Recent</"
-"gui> view to search notes."
+"You can directly start typing the search string in the <gui>New and "
+"Recent</gui> view to search notes."
 msgstr ""
 "Podeu començar a escriure directament la cadena a cercar a la vista "
 "<gui>Recents i noves</gui> per a cercar notes."
@@ -782,11 +782,11 @@ msgstr "Per a compartir una nota:"
 #. (itstool) path: item/p
 #: C/share.page:46
 msgid ""
-"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
-"\">Email this Note</gui></guiseq>."
+"Click <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Email this Note</gui></guiseq>."
 msgstr ""
-"Feu clic a <guiseq><gui style=\"button\">Més opcions</gui><gui style="
-"\"menuitem\">Envia per correu aquesta nota</gui></guiseq>."
+"Feu clic a <guiseq><gui style=\"button\">Més opcions</gui><gui "
+"style=\"menuitem\">Envia per correu aquesta nota</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/share.page:50
@@ -802,3 +802,4 @@ msgstr "Llicència Reconeixement-CompartirIgual 3.0 No adaptada (CC BY-SA 3.0)"
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Aquesta obra es troba sota una <_:link-1/>."
+

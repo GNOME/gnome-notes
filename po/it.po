@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Bijiben package.
 # Claudio Arseni <claudio.arseni@ubuntu.com>, 2013, 2014.
 # Milo Casagrande <milo@milo.name>, 2015.
-# Gianvito Cavasoli <gianvito@gmx.it>, 2018-2021.
+# Gianvito Cavasoli <gianvito@gmx.it>, 2018-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-09-06 12:29+0200\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"PO-Revision-Date: 2022-03-12 11:29+0100\n"
 "Last-Translator: Gianvito Cavasoli <gianvito@gmx.it>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Note"
 
@@ -156,9 +156,22 @@ msgstr ""
 "Sono disponibili tre dimensioni del testo: small, medium (predefinita) e "
 "large."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Taccuini"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+#| msgid "New notebook"
+msgid "New Notebook…"
+msgstr "Nuovo taccuino…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Aggiungi"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
-#| msgid "Notes"
 msgid "All Notes"
 msgstr "Tutte le note"
 
@@ -206,12 +219,7 @@ msgstr "Aiuto"
 msgid "About Notes"
 msgstr "Informazioni su Note"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Taccuini"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Cestino"
 
@@ -399,14 +407,6 @@ msgstr "Posizione personalizzata"
 msgid "Select a Folder"
 msgstr "Seleziona una cartella"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Inserire un nome per creare un taccuino"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Nuovo taccuino"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Colore della nota"
@@ -451,39 +451,39 @@ msgstr "Selezionare la posizione di archiviazione predefinita:"
 msgid "Primary Book"
 msgstr "Blocco principale"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Senza titolo"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Note GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Mostra i registri in modo verboso"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Mostra la versione dell'applicazione"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Crea una nuova nota"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Prendi appunti ed esportali ovunque."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "Semplice taccuino per GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr ""
 "Gianvito Cavasoli <gianvcito@gmx.it>\n"
@@ -495,7 +495,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Colore della nota"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Taccuino"
 
@@ -512,8 +512,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Installare «Tracker» e riavviare l'applicazione."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
-#| msgid "Open in another window"
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Questa nota è visualizzata in un'altra finestra."
 
@@ -534,15 +533,11 @@ msgstr "Questo mese"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ultimo aggiornamento: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Locale"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Archivio locale"

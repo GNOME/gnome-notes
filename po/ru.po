@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-01-05 04:05+0000\n"
-"PO-Revision-Date: 2022-01-05 16:56+0300\n"
-"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
+"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"PO-Revision-Date: 2022-03-17 20:41+1000\n"
+"Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: Russian <kde-i18n-doc@kde.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Заметки"
 
@@ -64,7 +64,9 @@ msgstr "Вид списка"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
-msgstr "заметки;напоминания;записная;книжка;записки;"
+msgstr ""
+"notes;reminder;notebook;sticky notes;заметки;напоминания;записная;книжка;"
+"записки;"
 
 #: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
@@ -168,7 +170,7 @@ msgid "Add"
 msgstr "Добавить"
 
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:433
+#: src/bjb-window.c:449
 msgid "All Notes"
 msgstr "Все заметки"
 
@@ -216,7 +218,7 @@ msgstr "Справка"
 msgid "About Notes"
 msgstr "О приложении"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Корзина"
 
@@ -226,7 +228,7 @@ msgstr "Открыть в новом окне"
 
 #: data/resources/bjb-window.ui:368
 msgid "Undo"
-msgstr "Вернуть"
+msgstr "Отменить"
 
 #: data/resources/bjb-window.ui:376
 msgid "Redo"
@@ -254,11 +256,11 @@ msgstr "Перечёркнутый"
 
 #: data/resources/editor-toolbar.ui:123
 msgid "Bullets"
-msgstr "Тип сортировки"
+msgstr "Маркированный список"
 
 #: data/resources/editor-toolbar.ui:139
 msgid "List"
-msgstr "Список"
+msgstr "Нумерованный список"
 
 #: data/resources/editor-toolbar.ui:167
 msgid "Indent"
@@ -324,12 +326,12 @@ msgstr "Комбинации клавиш"
 #: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
-msgstr "Режим выделения"
+msgstr "Режим выбора"
 
 #: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
-msgstr "Отменить режим выделения"
+msgstr "Отменить режим выбора"
 
 #: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
@@ -339,7 +341,7 @@ msgstr "Выбрать все"
 #: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
-msgstr "Режим изменения заметки"
+msgstr "Режим редактирования заметки"
 
 #: data/resources/help-overlay.ui:96
 msgctxt "shortcut window"
@@ -448,42 +450,42 @@ msgstr "Выберите место хранения по умолчанию:"
 msgid "Primary Book"
 msgstr "Первичная книга"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Безымянная"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Заметки GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Показывать подробный журнал"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Показать версию приложения"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Создать новую заметку"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Взять заметки и экспортировать их куда-либо."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "Простая записная книжка среды рабочего стола GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr ""
-"Yuri Myasoedov <ymyasoedov@yandex.ru>, 2013-2015.\n"
+"Yuri Myasoedov <ymyasoedov@yandex.ru>, 2013-2015\n"
 "Stas Solovey <whats_up@tut.by>, 2013-2019"
 
 #: src/bjb-color-button.c:140
@@ -507,7 +509,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Установите «Tracker» и перезапустите приложение."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Эта заметка открыта в другом окне."
 
@@ -528,16 +530,14 @@ msgstr "В этом месяце"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:912
+#: src/bjb-window.c:940
 #, c-format
 msgid "Last updated: %s"
 msgstr "Обновлено: %s"
-
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Локальный"
 
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Локальное хранилище"
 
+#~ msgid "Local"
+#~ msgstr "Локальный"

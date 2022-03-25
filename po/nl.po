@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-09-02 17:12+0200\n"
+"POT-Creation-Date: 2022-03-18 21:36+0000\n"
+"PO-Revision-Date: 2022-03-25 10:50+0100\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Notities"
 
@@ -160,6 +160,19 @@ msgid ""
 msgstr ""
 "Er zijn drie tekstgroottes beschikbaar: klein, medium (standaard) en groot."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Notitieboeken"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Nieuw notitieboek…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Toevoegen"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
 msgid "All Notes"
@@ -209,12 +222,7 @@ msgstr "Hulp"
 msgid "About Notes"
 msgstr "Over Notities"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Notitieboeken"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Prullenbak"
 
@@ -402,14 +410,6 @@ msgstr "Eigen locatie"
 msgid "Select a Folder"
 msgstr "Selecteer een map"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Voer een naam in om een notitieboek aan te maken"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Nieuw notitieboek"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Achtergrondkleur notitie"
@@ -454,39 +454,39 @@ msgstr "Selecteer de standaardopslaglocatie:"
 msgid "Primary Book"
 msgstr "Primaire notitieboek"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Naamloos"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Gnome Notities"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Gedetailleerde logboeken weergeven"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Versie van toepassing tonen"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Nieuwe notitie maken"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[BESTAND…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Maak notities en exporteer ze overal."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "Eenvoudig notitieboekje voor Gnome"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr ""
 "Erwin Poeze <donnut@outlook.com>\n"
@@ -500,7 +500,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Achtergrondkleur notities"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Notitieboek"
 
@@ -517,7 +517,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Installeer ‘Tracker’ en herstart de toepassing."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Deze notitie is al geopend in een ander venster."
 
@@ -538,18 +538,20 @@ msgstr "Deze maand"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:939
 #, c-format
 msgid "Last updated: %s"
 msgstr "Laatst bijgewerkt: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Lokaal"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Lokale opslag"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Voer een naam in om een notitieboek aan te maken"
+
+#~ msgid "Local"
+#~ msgstr "Lokaal"
 
 #~ msgid "_New"
 #~ msgstr "_Nieuw"

@@ -91,11 +91,14 @@ gpointer         biji_manager_get_item_at_path      (BijiManager *manager,
  * Free the GList, not its content */
 
 
-GList           *biji_manager_get_notes             (BijiManager         *manager,
+GListModel      *biji_manager_get_notes             (BijiManager         *manager,
                                                      BijiItemsGroup       group);
 GListModel      *biji_manager_get_notebooks         (BijiManager         *self);
 BijiNotebook    *biji_manager_find_notebook         (BijiManager         *self,
                                                      const char          *uuid);
+BijiNoteObj     *biji_manager_find_note             (BijiManager         *self,
+                                                     const char          *uuid,
+                                                     BijiItemsGroup       group);
 
 BijiNoteObj     *biji_manager_note_new              (BijiManager *manager,
                                                      const gchar *str,

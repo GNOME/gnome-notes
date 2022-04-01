@@ -536,7 +536,8 @@ on_controller_get_notes_cb (GObject      *object,
 void
 bjb_controller_apply_needle (BjbController *self)
 {
-  GList *result;
+  GListModel *notes;
+  GList *result = NULL;
   gchar *needle;
 
   needle = self->needle;
@@ -546,7 +547,21 @@ bjb_controller_apply_needle (BjbController *self)
    * If no items, tell it - unless trash is visited */
   if (needle == NULL || g_strcmp0 (needle,"") == 0)
   {
-    result = biji_manager_get_notes (self->manager, self->group);
+    guint i, n_items = 0;
+
+    notes = biji_manager_get_notes (self->manager, self->group);
+    if (notes)
+      n_items = g_list_model_get_n_items (notes);
+
+    for (i = 0; i < n_items; i++)
+      {
+        g_autoptr(BijiNoteObj) note = NULL;
+
+        note = g_list_model_get_item (notes, i);
+        result = g_list_prepend (result, note);
+      }
+
+    result = g_list_reverse (result);
 
     if (result == NULL)
       {

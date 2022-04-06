@@ -2,15 +2,15 @@
 # Copyright (C) 2016 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Trong Nguyen <nguyetro95@gmail.com>, 2016.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2016, 2021.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2016, 2021-2022.
 # Minh-Thuyen Thi <tmthuyen@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-25 16:18+0000\n"
-"PO-Revision-Date: 2021-06-29 08:59+0700\n"
+"POT-Creation-Date: 2022-03-27 12:13+0000\n"
+"PO-Revision-Date: 2022-04-03 08:05+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
-msgstr "Trình ghi chú"
+msgstr "Ghi chú"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:7
 msgid "Notes for GNOME"
-msgstr "Trình ghi chú cho GNOME"
+msgstr "Phần mềm ghi chú dành cho GNOME"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
@@ -81,11 +81,11 @@ msgstr "Tạo một ghi chú mới"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
-msgstr "Font riêng"
+msgstr "Phông chữ tự chọn"
 
 #: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr "Font chữ được đặt ở đây sẽ được sử dụng khi hiển thị ghi chú."
+msgstr "Phông chữ được đặt ở đây sẽ được sử dụng khi hiển thị ghi chú."
 
 #: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
@@ -153,8 +153,21 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Có ba cỡ chữ: nhỏ, trung bình (mặc định) và lớn."
 
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Các sổ ghi chú"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Thêm Sổ ghi chú mới…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Thêm"
+
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:431
+#: src/bjb-window.c:449
 msgid "All Notes"
 msgstr "Mọi ghi chú"
 
@@ -202,12 +215,7 @@ msgstr "Trợ _giúp"
 msgid "About Notes"
 msgstr "Về trình Ghi chú"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Các sổ ghi chú"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:440
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Thùng rác"
 
@@ -249,7 +257,7 @@ msgstr "Gạch đầu dòng"
 
 #: data/resources/editor-toolbar.ui:139
 msgid "List"
-msgstr "Danh sách"
+msgstr "Liệt kê"
 
 #: data/resources/editor-toolbar.ui:167
 msgid "Indent"
@@ -389,19 +397,11 @@ msgstr "Ứng dụng Tomboy"
 
 #: data/resources/import-dialog.ui:192
 msgid "Custom Location"
-msgstr "Thư mục tự chọn"
+msgstr "Vị trí tự chọn"
 
 #: data/resources/import-dialog.ui:224
 msgid "Select a Folder"
 msgstr "Chọn một thư mục"
-
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Gõ tên vào để tạo sổ ghi chú"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Sổ ghi chú mới"
 
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
@@ -429,7 +429,7 @@ msgstr "Sử dụng font chữ của hệ thống"
 
 #: data/resources/settings-dialog.ui:50
 msgid "Note Font"
-msgstr "Font chữ của bản ghi chú"
+msgstr "Phông chữ của bản ghi chú"
 
 #: data/resources/settings-dialog.ui:62
 msgid "Default Color"
@@ -447,39 +447,39 @@ msgstr "Chọn thư mục lưu mặc định:"
 msgid "Primary Book"
 msgstr "Quyển chính"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Không tiêu đề"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Trình Ghi chú GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Hiển thị nhật ký chi tiết"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Hiển thị phiên bản của ứng dụng"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Tạo một ghi chú mới"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[TẬP TIN…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Ghi chú và xuất ra khắp mọi nơi."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
-msgstr "Trình ghi chú đơn giản cho GNOME"
+msgstr "Ứng dụng ghi chú đơn giản cho GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa Gnome <gnome-vi-list@gnome.org>"
 
@@ -487,7 +487,7 @@ msgstr "Nhóm Việt hóa Gnome <gnome-vi-list@gnome.org>"
 msgid "Note Color"
 msgstr "Màu sắc của bản ghi chú"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Sổ ghi chú"
 
@@ -504,7 +504,7 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "Xin vui lòng cài đặt “Tracker” và sau đó khởi động lại ứng dụng này."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Ghi chú này đang được xem trong một cửa sổ khác."
 
@@ -525,18 +525,20 @@ msgstr "Tháng này"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:915
+#: src/bjb-window.c:939
 #, c-format
 msgid "Last updated: %s"
 msgstr "Cập nhật lần cuối: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Nội bộ"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Kho lưu trữ nội bộ"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Gõ tên vào để tạo sổ ghi chú"
+
+#~ msgid "Local"
+#~ msgstr "Nội bộ"
 
 #~ msgid "_New"
 #~ msgstr "_Tạo Mới"

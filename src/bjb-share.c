@@ -31,9 +31,9 @@ gboolean
 on_email_note_callback (BijiNoteObj *note)
 {
   GError *error = NULL;
-  g_autofree gchar *title_mail;
-  g_autofree gchar *text_mail;
-  g_autoptr(GDBusProxy) proxy;
+  g_autofree gchar *title_mail = NULL;
+  g_autofree gchar *text_mail = NULL;
+  g_autoptr(GDBusProxy) proxy = NULL;
   GVariantBuilder *arraybuilder;
   GVariant *dict;
 

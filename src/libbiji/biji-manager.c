@@ -172,7 +172,7 @@ static gboolean
 load_goa_provider (BijiManager *self,
                    GError     **error)
 {
-  g_autoptr(GoaClient) client;
+  g_autoptr(GoaClient) client = NULL;
   GList *accounts, *l;
   GoaObject *object;
   GoaAccount *account;
@@ -220,7 +220,7 @@ static gboolean
 load_eds_provider (BijiManager *self,
                    GError     **error)
 {
-  g_autoptr(ESourceRegistry) registry;
+  g_autoptr(ESourceRegistry) registry = NULL;
   GList *list, *l;
   BijiProvider *provider;
   g_autoptr(GError) local_error = NULL;

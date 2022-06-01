@@ -28,13 +28,6 @@
 #include "bjb-editor-toolbar.h"
 #include "bjb-window.h"
 
-enum
-{
-  PROP_0,
-  PROP_NOTE,
-  NUM_PROPERTIES
-};
-
 struct _BjbEditorToolbar
 {
   GtkActionBar   parent_instance;
@@ -154,43 +147,9 @@ bjb_editor_toolbar_map (GtkWidget *widget)
 }
 
 static void
-bjb_editor_toolbar_get_property (GObject    *object,
-                                 guint       property_id,
-                                 GValue     *value,
-                                 GParamSpec *pspec)
-{
-  switch (property_id)
-  {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
-  }
-}
-
-static void
-bjb_editor_toolbar_set_property (GObject      *object,
-                                 guint         property_id,
-                                 const GValue *value,
-                                 GParamSpec   *pspec)
-{
-  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (object);
-
-  switch (property_id)
-  {
-    case PROP_NOTE:
-      self->note = g_value_get_object (value);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-      break;
-  }
-}
-
-static void
 bjb_editor_toolbar_constructed (GObject *object)
 {
   BjbEditorToolbar *self;
-  gboolean          can_format;
 
   G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->constructed (object);
 
@@ -204,18 +163,6 @@ bjb_editor_toolbar_constructed (GObject *object)
 
   gtk_widget_add_accelerator (self->strike_button, "clicked", self->accel,
                               GDK_KEY_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  can_format = biji_note_obj_can_format (self->note);
-
-  gtk_widget_set_sensitive (self->bold_button, can_format);
-  gtk_widget_set_sensitive (self->italic_button, can_format);
-  gtk_widget_set_sensitive (self->strike_button, can_format);
-
-  gtk_widget_set_sensitive (self->bullets_button, can_format);
-  gtk_widget_set_sensitive (self->list_button, can_format);
-
-  gtk_widget_set_sensitive (self->indent_button, can_format);
-  gtk_widget_set_sensitive (self->outdent_button, can_format);
 }
 
 static void
@@ -241,22 +188,10 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   object_class = G_OBJECT_CLASS (klass);
   widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->get_property = bjb_editor_toolbar_get_property;
-  object_class->set_property = bjb_editor_toolbar_set_property;
   object_class->constructed = bjb_editor_toolbar_constructed;
   object_class->finalize = bjb_editor_toolbar_finalize;
 
   widget_class->map = bjb_editor_toolbar_map;
-
-  g_object_class_install_property (object_class,
-                                   PROP_NOTE,
-                                   g_param_spec_object ("note",
-                                                        "Note",
-                                                        "Biji Note Obj",
-                                                        BIJI_TYPE_NOTE_OBJ,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_CONSTRUCT |
-                                                        G_PARAM_STATIC_STRINGS));
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/editor-toolbar.ui");
 
@@ -286,10 +221,27 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
   self->accel = gtk_accel_group_new ();
 }
 
-GtkWidget *
-bjb_editor_toolbar_new (BijiNoteObj *note)
+void
+bjb_editor_toolbar_set_note (BjbEditorToolbar *self,
+                             BijiNoteObj      *note)
 {
-  return g_object_new (BJB_TYPE_EDITOR_TOOLBAR,
-                       "note", note,
-                       NULL);
+  gboolean can_format = FALSE;
+
+  g_return_if_fail (BJB_IS_EDITOR_TOOLBAR (self));
+  g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
+
+  self->note = note;
+
+  if (note && biji_note_obj_can_format (note))
+    can_format = TRUE;
+
+  gtk_widget_set_sensitive (self->bold_button, can_format);
+  gtk_widget_set_sensitive (self->italic_button, can_format);
+  gtk_widget_set_sensitive (self->strike_button, can_format);
+
+  gtk_widget_set_sensitive (self->bullets_button, can_format);
+  gtk_widget_set_sensitive (self->list_button, can_format);
+
+  gtk_widget_set_sensitive (self->indent_button, can_format);
+  gtk_widget_set_sensitive (self->outdent_button, can_format);
 }

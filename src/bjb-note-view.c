@@ -24,15 +24,6 @@
 #include "bjb-editor-toolbar.h"
 #include "bjb-note-view.h"
 
-enum
-{
-  PROP_0,
-  PROP_NOTE,
-  NUM_PROPERTIES
-};
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
-
 struct _BjbNoteView
 {
   GtkOverlay         parent_instance;
@@ -70,7 +61,8 @@ bjb_note_view_set_detached (BjbNoteView *self,
 static void
 bjb_note_view_disconnect (BjbNoteView *self)
 {
-  g_signal_handlers_disconnect_by_func (self->note, on_note_color_changed_cb, self);
+  if (self->note)
+    g_signal_handlers_disconnect_by_func (self->note, on_note_color_changed_cb, self);
 }
 
 
@@ -84,44 +76,6 @@ bjb_note_view_finalize(GObject *object)
   g_clear_object (&self->view);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
-}
-
-static void
-bjb_note_view_get_property (GObject      *object,
-                            guint        prop_id,
-                            GValue       *value,
-                            GParamSpec   *pspec)
-{
-  BjbNoteView *self = BJB_NOTE_VIEW (object);
-
-  switch (prop_id)
-  {
-    case PROP_NOTE:
-      g_value_set_object (value, self->note);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-static void
-bjb_note_view_set_property ( GObject        *object,
-                             guint          prop_id,
-                             const GValue   *value,
-                             GParamSpec     *pspec)
-{
-  BjbNoteView *self = BJB_NOTE_VIEW (object);
-
-  switch (prop_id)
-  {
-    case PROP_NOTE:
-      self->note = g_value_get_object(value);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
 }
 
 static void
@@ -151,6 +105,9 @@ view_font_changed_cb (BjbNoteView *self,
   g_assert (BJB_IS_NOTE_VIEW (self));
   g_assert (BJB_IS_SETTINGS (settings));
 
+  if (!self->view)
+    return;
+
   default_font = bjb_settings_get_font (settings);
 
   if (default_font != NULL)
@@ -165,19 +122,13 @@ bjb_note_view_constructed (GObject *obj)
 {
   BjbNoteView            *self = BJB_NOTE_VIEW (obj);
   BjbSettings            *settings;
-  g_autofree gchar       *default_font = NULL;
-  GdkRGBA                 color;
-  BjbTextSizeType         text_size;
 
   settings = bjb_app_get_settings(g_application_get_default());
 
   g_signal_connect_object (settings, "notify::font",
                            G_CALLBACK (view_font_changed_cb),
                            self, G_CONNECT_SWAPPED);
-
-
-  /* view new from note deserializes the note-content. */
-  self->view = biji_note_obj_open (self->note);
+  view_font_changed_cb (self, NULL, settings);
 
   self->stack = gtk_stack_new ();
   gtk_widget_show (self->stack);
@@ -193,48 +144,9 @@ bjb_note_view_constructed (GObject *obj)
   gtk_stack_add_named (GTK_STACK (self->stack), self->box, "note-box");
   gtk_stack_set_visible_child (GTK_STACK (self->stack), self->box);
 
-  /* Text Editor (WebKitMainView) */
-  gtk_box_pack_start (GTK_BOX (self->box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
-  gtk_widget_show (self->view);
-
-  /* Apply the gsettings font */
-  default_font = bjb_settings_get_font (settings);
-
-  if (default_font != NULL)
-    biji_webkit_editor_set_font (BIJI_WEBKIT_EDITOR (self->view), default_font);
-
-  /* Apply the gsettings text size */
-  text_size = bjb_settings_get_text_size (settings);
-  biji_webkit_editor_set_text_size (BIJI_WEBKIT_EDITOR (self->view), text_size);
-
-  /* User defined color */
-
-  if (!biji_note_obj_get_rgba(self->note, &color))
-  {
-    if (gdk_rgba_parse (&color, bjb_settings_get_default_color (settings)))
-      biji_note_obj_set_rgba (self->note, &color);
-  }
-
-  g_signal_connect (self->note, "color-changed",
-                    G_CALLBACK (on_note_color_changed_cb), self);
-
-
   /* Edition Toolbar for text selection */
-  if (!biji_note_obj_is_trashed (BIJI_NOTE_OBJ (self->note)))
-    {
-      self->edit_bar = g_object_new (BJB_TYPE_EDITOR_TOOLBAR, NULL);
-      bjb_editor_toolbar_set_note (BJB_EDITOR_TOOLBAR (self->edit_bar), self->note);
-
-      gtk_box_pack_start (GTK_BOX (self->box), self->edit_bar, FALSE, TRUE, 0);
-    }
-}
-
-BjbNoteView *
-bjb_note_view_new (BijiNoteObj *note)
-{
-  return g_object_new (BJB_TYPE_NOTE_VIEW,
-                       "note", note,
-                       NULL);
+  self->edit_bar = g_object_new (BJB_TYPE_EDITOR_TOOLBAR, NULL);
+  gtk_box_pack_end (GTK_BOX (self->box), self->edit_bar, FALSE, TRUE, 0);
 }
 
 static void
@@ -244,16 +156,50 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
 
   object_class->finalize = bjb_note_view_finalize;
   object_class->constructed = bjb_note_view_constructed;
-  object_class->get_property = bjb_note_view_get_property;
-  object_class->set_property = bjb_note_view_set_property;
+}
 
-  properties[PROP_NOTE] = g_param_spec_object ("note",
-                                               "Note",
-                                               "Note",
-                                               BIJI_TYPE_NOTE_OBJ,
-                                               G_PARAM_READWRITE |
-                                               G_PARAM_CONSTRUCT |
-                                               G_PARAM_STATIC_STRINGS);
+void
+bjb_note_view_set_note (BjbNoteView *self,
+                        BijiNoteObj *note)
+{
+  g_return_if_fail (BJB_IS_NOTE_VIEW (self));
+  g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
 
-  g_object_class_install_property (object_class,PROP_NOTE,properties[PROP_NOTE]);
+  if (self->note == note)
+    return;
+
+  bjb_editor_toolbar_set_note (BJB_EDITOR_TOOLBAR (self->edit_bar), note);
+  if (note)
+    gtk_widget_set_visible (self->edit_bar, !biji_note_obj_is_trashed (note));
+  bjb_note_view_disconnect (self);
+
+  self->note = note;
+  if (self->view)
+    gtk_widget_destroy (self->view);
+  g_clear_object (&self->view);
+
+  if (note)
+    {
+      GdkRGBA color;
+
+      /* Text Editor (WebKitMainView) */
+      self->view = biji_note_obj_open (note);
+      gtk_widget_show (self->view);
+      gtk_box_pack_start (GTK_BOX (self->box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
+
+      if (!biji_note_obj_get_rgba (self->note, &color))
+        {
+          BjbSettings *settings;
+
+          settings = bjb_app_get_settings (g_application_get_default ());
+
+          if (gdk_rgba_parse (&color, bjb_settings_get_default_color (settings)))
+            biji_note_obj_set_rgba (self->note, &color);
+        }
+
+      g_signal_connect (self->note, "color-changed",
+                        G_CALLBACK (on_note_color_changed_cb), self);
+
+      gtk_widget_show (self->view);
+    }
 }

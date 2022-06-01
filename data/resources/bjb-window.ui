@@ -160,6 +160,15 @@
                 </child>
               </object>
             </child>
+            <child>
+              <object class="BjbNoteView" id="note_view">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="fill">True</property>
+                <property name="expand">True</property>
+              </packing>
+            </child>
           </object>
         </child>
       </object>

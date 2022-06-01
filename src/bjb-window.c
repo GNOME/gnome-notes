@@ -59,7 +59,6 @@ struct _BjbWindow
   GtkStack             *stack;
   BjbWindowView         current_view;
   BjbListView          *note_list;
-  BjbNoteView          *note_view;
   GtkWidget            *spinner;
   GtkWidget            *no_note;
 
@@ -79,6 +78,7 @@ struct _BjbWindow
   GtkWidget            *headerbar;
   GtkWidget            *note_box;
   GtkWidget            *note_headerbar;
+  GtkWidget            *note_view;
   GtkWidget            *notebooks_box;
   GtkWidget            *sidebar_box;
   GtkWidget            *search_bar;
@@ -102,25 +102,13 @@ static guint signals[N_SIGNALS];
 static void
 destroy_note_if_needed (BjbWindow *self)
 {
-  if (self->note_deleted != 0)
-    {
-      g_signal_handler_disconnect (self->note, self->note_deleted);
-      self->note_deleted = 0;
-    }
-  if (self->note_trashed != 0)
-    {
-      g_signal_handler_disconnect (self->note, self->note_trashed);
-      self->note_trashed = 0;
-    }
+  g_clear_signal_handler (&self->note_deleted, self->note);
+  g_clear_signal_handler (&self->note_trashed, self->note);
 
   g_clear_object (&self->note);
-
-  if (self->note_view && GTK_IS_WIDGET (self->note_view))
-    gtk_widget_destroy (GTK_WIDGET (self->note_view));
+  bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), NULL);
 
   gtk_widget_hide (self->title_entry);
-
-  self->note_view = NULL;
 }
 
 static void
@@ -355,7 +343,7 @@ on_detach_window_cb (GSimpleAction *action,
   else
     bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
 
-  bjb_note_view_set_detached (self->note_view, TRUE);
+  bjb_note_view_set_detached (BJB_NOTE_VIEW (self->note_view), TRUE);
 
   detached_window = BJB_WINDOW (bjb_window_new ());
   gtk_window_set_default_size (GTK_WINDOW (detached_window), width, height);
@@ -773,6 +761,7 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, filter_menu_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_headerbar);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_view);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, notebooks_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, sidebar_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, search_bar);
@@ -989,9 +978,7 @@ bjb_window_set_note (BjbWindow   *self,
     return;
 
   self->note = g_object_ref (note);
-  self->note_view = bjb_note_view_new (note);
-  gtk_box_pack_end (GTK_BOX (self->note_box), GTK_WIDGET (self->note_view), TRUE, TRUE, 0);
-  gtk_widget_show (GTK_WIDGET (self->note_view));
+  bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), self->note);
 
   self->note_deleted = g_signal_connect (self->note, "deleted",
                                          G_CALLBACK (on_note_trashed), self);

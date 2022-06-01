@@ -19,6 +19,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <libbiji/libbiji.h>
+#include <handy.h>
 
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
@@ -28,16 +29,15 @@ struct _BjbNoteView
 {
   GtkOverlay         parent_instance;
 
+  /* UI */
+  GtkWidget *main_stack;
+  GtkWidget *status_page;
+  GtkWidget *editor_box;
+  GtkWidget *editor_toolbar;
+
   /* Data */
   GtkWidget         *view;
   BijiNoteObj       *note ;
-
-  /* UI */
-  BijiWebkitEditor  *editor;
-  GtkWidget         *box;
-  GtkWidget         *edit_bar;
-  GtkWidget         *label;
-  GtkWidget         *stack;
 };
 
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
@@ -50,11 +50,13 @@ bjb_note_view_set_detached (BjbNoteView *self,
 {
   if (detached)
   {
-    gtk_stack_set_visible_child (GTK_STACK (self->stack), self->label);
+    gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->status_page);
+    hdy_status_page_set_title (HDY_STATUS_PAGE (self->status_page),
+                               _("This note is being viewed in another window"));
   }
   else
   {
-    gtk_stack_set_visible_child (GTK_STACK (self->stack), self->box);
+    gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->editor_box);
   }
 }
 
@@ -76,11 +78,6 @@ bjb_note_view_finalize(GObject *object)
   g_clear_object (&self->view);
 
   G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
-}
-
-static void
-bjb_note_view_init (BjbNoteView *self)
-{
 }
 
 static void
@@ -118,44 +115,35 @@ view_font_changed_cb (BjbNoteView *self,
 }
 
 static void
-bjb_note_view_constructed (GObject *obj)
+bjb_note_view_class_init (BjbNoteViewClass *klass)
 {
-  BjbNoteView            *self = BJB_NOTE_VIEW (obj);
-  BjbSettings            *settings;
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  settings = bjb_app_get_settings(g_application_get_default());
+  object_class->finalize = bjb_note_view_finalize;
 
+  gtk_widget_class_set_template_from_resource (widget_class,
+                                               "/org/gnome/Notes"
+                                               "/ui/bjb-note-view.ui");
+
+  gtk_widget_class_bind_template_child (widget_class, BjbNoteView, main_stack);
+  gtk_widget_class_bind_template_child (widget_class, BjbNoteView, status_page);
+  gtk_widget_class_bind_template_child (widget_class, BjbNoteView, editor_box);
+  gtk_widget_class_bind_template_child (widget_class, BjbNoteView, editor_toolbar);
+}
+
+static void
+bjb_note_view_init (BjbNoteView *self)
+{
+  BjbSettings *settings;
+
+  gtk_widget_init_template (GTK_WIDGET (self));
+
+  settings = bjb_app_get_settings (g_application_get_default ());
   g_signal_connect_object (settings, "notify::font",
                            G_CALLBACK (view_font_changed_cb),
                            self, G_CONNECT_SWAPPED);
   view_font_changed_cb (self, NULL, settings);
-
-  self->stack = gtk_stack_new ();
-  gtk_widget_show (self->stack);
-  gtk_container_add (GTK_CONTAINER (self), self->stack);
-
-  /* Label used to indicate that note is opened in another window. */
-  self->label = gtk_label_new (_("This note is being viewed in another window."));
-  gtk_widget_show (self->label);
-  gtk_stack_add_named (GTK_STACK (self->stack), self->label, "label");
-
-  self->box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-  gtk_widget_show (self->box);
-  gtk_stack_add_named (GTK_STACK (self->stack), self->box, "note-box");
-  gtk_stack_set_visible_child (GTK_STACK (self->stack), self->box);
-
-  /* Edition Toolbar for text selection */
-  self->edit_bar = g_object_new (BJB_TYPE_EDITOR_TOOLBAR, NULL);
-  gtk_box_pack_end (GTK_BOX (self->box), self->edit_bar, FALSE, TRUE, 0);
-}
-
-static void
-bjb_note_view_class_init (BjbNoteViewClass *klass)
-{
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  object_class->finalize = bjb_note_view_finalize;
-  object_class->constructed = bjb_note_view_constructed;
 }
 
 void
@@ -168,9 +156,9 @@ bjb_note_view_set_note (BjbNoteView *self,
   if (self->note == note)
     return;
 
-  bjb_editor_toolbar_set_note (BJB_EDITOR_TOOLBAR (self->edit_bar), note);
+  bjb_editor_toolbar_set_note (BJB_EDITOR_TOOLBAR (self->editor_toolbar), note);
   if (note)
-    gtk_widget_set_visible (self->edit_bar, !biji_note_obj_is_trashed (note));
+    gtk_widget_set_visible (self->editor_toolbar, !biji_note_obj_is_trashed (note));
   bjb_note_view_disconnect (self);
 
   self->note = note;
@@ -185,7 +173,7 @@ bjb_note_view_set_note (BjbNoteView *self,
       /* Text Editor (WebKitMainView) */
       self->view = biji_note_obj_open (note);
       gtk_widget_show (self->view);
-      gtk_box_pack_start (GTK_BOX (self->box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (self->editor_box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
 
       if (!biji_note_obj_get_rgba (self->note, &color))
         {
@@ -201,5 +189,13 @@ bjb_note_view_set_note (BjbNoteView *self,
                         G_CALLBACK (on_note_color_changed_cb), self);
 
       gtk_widget_show (self->view);
+
+      gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->editor_box);
+    }
+  else
+    {
+      gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->status_page);
+      hdy_status_page_set_title (HDY_STATUS_PAGE (self->status_page),
+                                 _("No note selected"));
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BjbNoteView" parent="GtkOverlay">
+    <child>
+      <object class="GtkStack" id="main_stack">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="HdyStatusPage" id="status_page">
+            <property name="visible">True</property>
+            <property name="icon-name">org.gnome.Notes-symbolic</property>
+            <property name="title" translatable="yes">No note selected</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="editor_box">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="BjbEditorToolbar" id="editor_toolbar">
+                <property name="visible">False</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object> <!-- GtkBox ./editor_box -->
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>

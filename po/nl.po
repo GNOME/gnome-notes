@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-03-18 21:36+0000\n"
-"PO-Revision-Date: 2022-03-25 10:50+0100\n"
+"POT-Creation-Date: 2022-05-20 21:32+0000\n"
+"PO-Revision-Date: 2022-06-28 18:26+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -244,7 +244,7 @@ msgstr "Deze notitie e-mailen"
 
 #: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
-msgstr "Naar prullenbak verplaatsen"
+msgstr "Verplaatsen naar prullenbak"
 
 #: data/resources/editor-toolbar.ui:63
 msgid "Bold"
@@ -380,7 +380,7 @@ msgstr "Opnieuw"
 #: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
-msgstr "Notitie naar prullenbak verplaatsen"
+msgstr "Notitie verplaatsen naar prullenbak"
 
 #: data/resources/import-dialog.ui:12
 msgid "_Cancel"
@@ -428,7 +428,7 @@ msgstr "Herstellen"
 
 #: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
-msgstr "Permanent verwijderen"
+msgstr "Voorgoed verwijderen"
 
 #: data/resources/settings-dialog.ui:37
 msgid "Use System Font"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "POT-Creation-Date: 2022-06-26 17:47+0000\n"
-"PO-Revision-Date: 2022-06-28 18:27+0200\n"
+"PO-Revision-Date: 2022-06-29 21:06+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -20,10 +20,7 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
-"Nathan Follens <nfollens@gnome.org>\n"
-"\n"
-"Meer info over Gnome-NL http://nl.gnome.org"
+msgstr "Nathan Follens <nfollens@gnome.org>, 2022."
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11

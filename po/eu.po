@@ -9,8 +9,8 @@
 msgid ""
 msgstr "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-02-05 10:00+0100\n"
+"POT-Creation-Date: 2022-05-20 21:32+0000\n"
+"PO-Revision-Date: 2022-07-05 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -202,7 +202,7 @@ msgstr "Laguntza"
 
 #: data/resources/bjb-window.ui:264
 msgid "About Notes"
-msgstr "Notes aplikazioari buruz"
+msgstr "Oharrak aplikazioari buruz"
 
 #: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
@@ -222,7 +222,7 @@ msgstr "Berregin"
 
 #: data/resources/bjb-window.ui:400
 msgid "Email this Note"
-msgstr "Bidali ohar hau mezu elektronikoz"
+msgstr "Bidali ohar hau posta elektronikoz"
 
 #: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
@@ -402,7 +402,7 @@ msgstr "Partekatu oharra"
 
 #: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
-msgstr "Ireki beste leihoan"
+msgstr "Ireki beste leiho batean"
 
 #: data/resources/selection-toolbar.ui:119
 msgid "Restore"
@@ -442,7 +442,7 @@ msgstr "Izengabea"
 
 #: src/bjb-application.c:222
 msgid "GNOME Notes"
-msgstr "GNOME Notes"
+msgstr "GNOME Oharrak"
 
 #: src/bjb-application.c:277
 msgid "Show verbose logs"
@@ -514,7 +514,7 @@ msgstr "Hil honetan"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:939
 #, c-format
 msgid "Last updated: %s"
 msgstr "Azken eguneraketa: %s"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-8\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-07-02 01:43+0300\n"
+"POT-Creation-Date: 2022-05-20 21:32+0000\n"
+"PO-Revision-Date: 2022-07-14 00:55+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Ελληνικά <>\n"
 "Language: el\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.1\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Σημειώσεις"
 
@@ -117,12 +117,16 @@ msgstr ""
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
 msgstr ""
+"Η διαδρομή σημειώσεων των σημειώσεων άνοιξε όταν το Notes τερματίστηκε την "
+"τελευταία φορά."
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""
 "This stores the note path of the last opened item, so that we can open it on "
 "startup."
 msgstr ""
+"Αυτό αποθηκεύει τη διαδρομή σημειώσεων του τελευταίου ανοιγμένου στοιχείου, "
+"ώστε να μπορούμε να το ανοίξουμε κατά την εκκίνηση."
 
 #: data/org.gnome.Notes.gschema.xml:34
 msgid "Window maximized"
@@ -158,6 +162,19 @@ msgid ""
 msgstr ""
 "Υπάρχουν διαθέσιμα τρία μεγέθη κειμένου: μικρά, μεσαία (προεπιλογή) και "
 "μεγάλα."
+
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "Σημειωματάρια"
+
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "Νέο σημειωματάριο…"
+
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "Προσθήκη"
 
 #: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
 #: src/bjb-window.c:449
@@ -208,12 +225,7 @@ msgstr "Βοήθεια"
 msgid "About Notes"
 msgstr "Περί του Σημειώσεις"
 
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
-msgid "Notebooks"
-msgstr "Σημειωματάρια"
-
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "Απορρίμματα"
 
@@ -259,7 +271,7 @@ msgstr "Λίστα"
 
 #: data/resources/editor-toolbar.ui:167
 msgid "Indent"
-msgstr ""
+msgstr "Εσοχή"
 
 #: data/resources/editor-toolbar.ui:183
 msgid "Outdent"
@@ -401,14 +413,6 @@ msgstr "Προσαρμοσμένη τοποθεσία"
 msgid "Select a Folder"
 msgstr "Επιλογή φακέλου"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Εισαγωγή ονόματος για τη δημιουργία σημειωματαρίου"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Νέο σημειωματάριο"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Χρώμα σημείωσης"
@@ -453,39 +457,39 @@ msgstr "Επιλογή προεπιλεγμένης τοποθεσίας απο�
 msgid "Primary Book"
 msgstr "Κύριο σημειωματάριο"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "Χωρίς τίτλο"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "Σημειώσεις"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "Εμφάνιση λεπτομερειών καταγραφής"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "Εμφάνιση έκδοσης της εφαρμογής"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "Δημιουργία νέας σημείωσης"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[ΑΡΧΕΙΟ…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "Πάρτε σημειώσεις και κάντετες εξαγωγή παντού."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "Απλό σημειωματάριο για το GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -501,7 +505,7 @@ msgstr ""
 msgid "Note Color"
 msgstr "Χρώμα σημείωσης"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "Σημειωματάριο"
 
@@ -519,7 +523,7 @@ msgstr ""
 "Παρακαλούμε, εγκαταστήστε το «Tracker» και μετά επανεκκινήστε την εφαρμογή."
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "Αυτή η σημείωση προβάλλεται σε άλλο παράθυρο."
 
@@ -540,18 +544,20 @@ msgstr "Αυτόν το μήνα"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:939
 #, c-format
 msgid "Last updated: %s"
 msgstr "Τελευταία ενημέρωση: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Τοπικά"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Τοπική αποθήκευση"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Εισαγωγή ονόματος για τη δημιουργία σημειωματαρίου"
+
+#~ msgid "Local"
+#~ msgstr "Τοπικά"
 
 #~ msgid "How to show note items"
 #~ msgstr "Τρόπος εμφάνισης σημειώσεων"

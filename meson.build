@@ -120,12 +120,12 @@ bijiben_deps = [
   dependency('goa-1.0'),
   dependency('gtk+-3.0', version: '>= 3.19.3'),
   dependency('json-glib-1.0'),
-  dependency('libecal-2.0', version: '>= 3.33.2'),
-  dependency('libedataserver-1.2', version: '>= 3.13.90'),
+  dependency('libecal-2.0', version: '>= 3.45.1'),
+  dependency('libedataserver-1.2', version: '>= 3.45.1'),
   dependency('libhandy-1', version: '>= 1.0.0'),
   dependency('libxml-2.0'),
   dependency('libcurl'),
-  dependency('webkit2gtk-4.1', version: '>= 2.26'),
+  dependency('webkit2gtk-4.1', version: '>= 2.36'),
   cc.find_library('m')
 ]
 

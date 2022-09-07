@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-03 11:49+0000\n"
-"PO-Revision-Date: 2021-06-16 18:52+0545\n"
+"POT-Creation-Date: 2022-07-13 21:57+0000\n"
+"PO-Revision-Date: 2022-09-08 01:52+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -16,10 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6 data/org.gnome.Notes.desktop.in:3
-#: data/org.gnome.Notes.xml.in:4 src/bjb-application.c:571 src/bjb-window-base.c:19
+#: data/org.gnome.Notes.xml.in:4 src/bjb-application.c:626 src/bjb-window.c:46
 msgid "Notes"
 msgstr "द्रष्टव्यहरू"
 
@@ -139,85 +139,90 @@ msgstr "द्रष्टव्य सम्पादकद्वारा प�
 msgid "There are three text sizes available: small, medium (default) and large."
 msgstr "त्यहाँ तीन पाठ साइजहरू उपलब्ध छन्: सानो, मध्यम (पूर्वनिर्धारित) र ठूलो ।"
 
-#: data/resources/bjb-detached-window.ui:18 data/resources/bjb-window-base.ui:147
-msgid "More options"
-msgstr "अरू विकल्पहरू"
-
-#: data/resources/bjb-detached-window.ui:50 data/resources/bjb-window-base.ui:367
-msgid "Undo"
-msgstr "पूर्वस्थितिमा फर्काउनुहोस्"
-
-#: data/resources/bjb-detached-window.ui:59 data/resources/bjb-window-base.ui:375
-msgid "Redo"
-msgstr "फेरि गर्नुहोस्"
-
-#: data/resources/bjb-detached-window.ui:76 data/resources/bjb-window-base.ui:303
-#: data/resources/bjb-window-base.ui:391 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
+#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "नोटबुकहरू"
 
-#: data/resources/bjb-detached-window.ui:85 data/resources/bjb-window-base.ui:399
-msgid "Email this Note"
-msgstr "यो नोट इमेल गर्नुहोस्"
+#: data/resources/bjb-notebooks-dialog.ui:33
+msgid "New Notebook…"
+msgstr "नयाँ नोटबुक…"
 
-#: data/resources/bjb-detached-window.ui:94 data/resources/bjb-window-base.ui:407
-#: data/resources/selection-toolbar.ui:96
-msgid "Move to Trash"
-msgstr "रद्दीटोकरीमा सार्नुहोस्"
+#: data/resources/bjb-notebooks-dialog.ui:43
+msgid "Add"
+msgstr "थप्नुहोस्"
 
-#: data/resources/bjb-window-base.ui:46 data/resources/bjb-window-base.ui:282
-#: src/bjb-window-base.c:450
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283 src/bjb-window.c:449
 msgid "All Notes"
 msgstr "सबै द्रष्टव्यहरू"
 
-#: data/resources/bjb-window-base.ui:62
+#: data/resources/bjb-window.ui:63
 msgid "Open menu"
 msgstr "मेनु खोल्नुहोस्"
 
-#: data/resources/bjb-window-base.ui:178 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:148
+msgid "More options"
+msgstr "अरू विकल्पहरू"
+
+#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "नोटहरू आयात गर्नुहोस्"
 
-#: data/resources/bjb-window-base.ui:195
+#: data/resources/bjb-window.ui:196
 msgid "Text Sizes"
 msgstr "पाठको आकार"
 
-#: data/resources/bjb-window-base.ui:204
+#: data/resources/bjb-window.ui:205
 msgid "_Large"
 msgstr "ठूलो"
 
-#: data/resources/bjb-window-base.ui:213
+#: data/resources/bjb-window.ui:214
 msgid "_Medium"
 msgstr "मध्यम"
 
-#: data/resources/bjb-window-base.ui:222
+#: data/resources/bjb-window.ui:223
 msgid "_Small"
 msgstr "सानो"
 
-#: data/resources/bjb-window-base.ui:239 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "प्राथमिकताहरू"
 
-#: data/resources/bjb-window-base.ui:247
+#: data/resources/bjb-window.ui:248
 msgid "Keyboard Shortcuts"
 msgstr "कुञ्जीपाटी सर्टकटहरू"
 
-#: data/resources/bjb-window-base.ui:255
+#: data/resources/bjb-window.ui:256
 msgid "Help"
 msgstr "मद्दत गर्नुहोस्"
 
-#: data/resources/bjb-window-base.ui:263
+#: data/resources/bjb-window.ui:264
 msgid "About Notes"
 msgstr "नोटहरू बारेमा"
 
-#: data/resources/bjb-window-base.ui:329 src/bjb-window-base.c:459
+#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
 msgid "Trash"
 msgstr "रद्दीटोकरी"
 
-#: data/resources/bjb-window-base.ui:351
+#: data/resources/bjb-window.ui:352
 msgid "Open in New Window"
 msgstr "नयाँ सञ्झ्यालमा खोल्नुहोस्"
+
+#: data/resources/bjb-window.ui:368
+msgid "Undo"
+msgstr "पूर्वस्थितिमा फर्काउनुहोस्"
+
+#: data/resources/bjb-window.ui:376
+msgid "Redo"
+msgstr "फेरि गर्नुहोस्"
+
+#: data/resources/bjb-window.ui:400
+msgid "Email this Note"
+msgstr "यो नोट इमेल गर्नुहोस्"
+
+#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "रद्दीटोकरीमा सार्नुहोस्"
 
 #: data/resources/editor-toolbar.ui:63
 msgid "Bold"
@@ -383,14 +388,6 @@ msgstr "अनुकूल स्थान"
 msgid "Select a Folder"
 msgstr "फोल्डर चयन गर्नुहोस्"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "नोट सिर्जना गर्न नाम प्रविष्ट गर्नुहोस्"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "नयाँ टिपोट"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "नोट रङ्ग"
@@ -435,39 +432,39 @@ msgstr "पूर्वनिर्धारित भण्डारण स्�
 msgid "Primary Book"
 msgstr "प्राथमिक पुस्तिका"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-detached-window.c:75 src/bjb-window-base.c:111
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
 msgid "Untitled"
 msgstr "शीर्षक विहिन"
 
-#: src/bjb-application.c:193
+#: src/bjb-application.c:222
 msgid "GNOME Notes"
 msgstr "जिनोम द्रष्टव्यहरू"
 
-#: src/bjb-application.c:248
+#: src/bjb-application.c:277
 msgid "Show verbose logs"
 msgstr "भर्बोज लग देखाउनुहोस्"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:279
 msgid "Show the application’s version"
 msgstr "अनुप्रयोगको संसकरण देखाउनुहोस्"
 
-#: src/bjb-application.c:252
+#: src/bjb-application.c:281
 msgid "Create a new note"
 msgstr "एउटा नयाँ द्रष्टव्य सिर्जना गर्नुहोस्"
 
-#: src/bjb-application.c:260
+#: src/bjb-application.c:289
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:261
+#: src/bjb-application.c:290
 msgid "Take notes and export them everywhere."
 msgstr "टिपोट लिनुहोस् र जताततै निर्यात गर्नुहोस् ।"
 
-#: src/bjb-application.c:572
+#: src/bjb-application.c:627
 msgid "Simple notebook for GNOME"
 msgstr "जिनोम सामान्य नोटबुक"
 
-#: src/bjb-application.c:578
+#: src/bjb-application.c:633
 msgid "translator-credits"
 msgstr "pawan chitrakar < chautari@gmail.com >"
 
@@ -475,19 +472,9 @@ msgstr "pawan chitrakar < chautari@gmail.com >"
 msgid "Note Color"
 msgstr "नोट रङ्ग"
 
-#: src/bjb-controller.c:236
+#: src/bjb-controller.c:237
 msgid "Notebook"
 msgstr "नोटबुक"
-
-#. Translators: %s is the note last recency description.
-#. * Last updated is placed as in left to right language
-#. * right to left languages might move %s
-#. *         '%s Last Updated'
-#.
-#: src/bjb-detached-window.c:95 src/bjb-window-base.c:907
-#, c-format
-msgid "Last updated: %s"
-msgstr "अन्तिम अद्यावधिक: %s"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
@@ -502,41 +489,50 @@ msgid "Please install “Tracker” then restart the application."
 msgstr "कृपया \"ट्र्याकर\" स्थापना गर्नुहोस् त्यसपछि अनुप्रयोग पुन: सुरु गर्नुहोस् ।"
 
 #. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:189
+#: src/bjb-note-view.c:187
 msgid "This note is being viewed in another window."
 msgstr "यो द्रष्टव्य अर्को सञ्झ्यालमा हेरिएको छ ।"
 
-#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51
 msgid "Unknown"
 msgstr "अज्ञात"
 
-#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+#: src/bjb-utils.c:68
 msgid "Yesterday"
 msgstr "हिजो"
 
-#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+#: src/bjb-utils.c:74
 msgid "This month"
 msgstr "यो महिना"
 
-#: src/libbiji/biji-date-time.c:38
-msgid "Today"
-msgstr "आज"
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-window.c:939
+#, c-format
+msgid "Last updated: %s"
+msgstr "अन्तिम अद्यावधिक: %s"
 
-#: src/libbiji/biji-date-time.c:47
-msgid "This week"
-msgstr "यो हप्ता"
-
-#: src/libbiji/biji-date-time.c:60
-msgid "This year"
-msgstr "यो वर्ष"
-
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "स्थानीय"
-
-#: src/libbiji/provider/biji-local-provider.c:363
+#: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "सन्देश भण्डारण"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "नोट सिर्जना गर्न नाम प्रविष्ट गर्नुहोस्"
+
+#~ msgid "Today"
+#~ msgstr "आज"
+
+#~ msgid "This week"
+#~ msgstr "यो हप्ता"
+
+#~ msgid "This year"
+#~ msgstr "यो वर्ष"
+
+#~ msgid "Local"
+#~ msgstr "स्थानीय"
 
 #~ msgid "_New"
 #~ msgstr "नयाँ"

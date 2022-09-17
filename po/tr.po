@@ -1,6 +1,9 @@
-# Turkish translation for bijiben.
+# Turkish translation for gnome-notes.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
+# Copyright (C) 2014-2022 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same licence as the gnome-notes package.
+#
 # adamc <ceviriadam@gmail.com>, 2013.
 # Osman Karagöz <osmank3@gmail.com>, 2013, 2014.
 # Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2013, 2014.
@@ -9,9 +12,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bijiben master\n"
+"Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"POT-Creation-Date: 2022-07-13 21:57+0000\n"
 "PO-Revision-Date: 2022-02-23 13:30+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -527,7 +530,7 @@ msgstr "Bu ay"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:939
 #, c-format
 msgid "Last updated: %s"
 msgstr "Son güncelleme: %s"
@@ -535,148 +538,3 @@ msgstr "Son güncelleme: %s"
 #: src/libbiji/provider/biji-local-provider.c:366
 msgid "Local storage"
 msgstr "Yerel depolama"
-
-#~ msgid "Enter a name to create a notebook"
-#~ msgstr "Not defteri oluşturmak için ad gir"
-
-#~ msgid "Local"
-#~ msgstr "Yerel"
-
-#~ msgid "_New"
-#~ msgstr "_Yeni"
-
-#~ msgid "_Empty"
-#~ msgstr "_Boşalt"
-
-#~ msgid "Exit selection mode"
-#~ msgstr "Seçim kipinden çık"
-
-#~ msgid "Search note titles, content and notebooks"
-#~ msgstr "Not başlığı, içerik ve not defterlerinde ara"
-
-#~ msgid "Selection mode"
-#~ msgstr "Seçim kipi"
-
-#~ msgid "View Trash"
-#~ msgstr "Çöpü Gör"
-
-#~ msgid "Click on items to select them"
-#~ msgstr "Ögeleri seçmek için tıkla"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d adet seçildi"
-
-#~ msgid "Results for %s"
-#~ msgstr "%s için sonuçlar"
-
-#~ msgid "New and Recent"
-#~ msgstr "Yeni ve En Son"
-
-#~ msgid "Today"
-#~ msgstr "Bugün"
-
-#~ msgid "This week"
-#~ msgstr "Bu hafta"
-
-#~ msgid "This year"
-#~ msgstr "Bu yıl"
-
-#~ msgid "How to show note items"
-#~ msgstr "Not ögelerinin nasıl gösterileceği"
-
-#~ msgid "Whether to show note items in icon view or list view."
-#~ msgstr ""
-#~ "Not ögelerinin simge görünümünde veya liste görünümünde gösterilmesi."
-
-#~ msgid "View notes and notebooks in a grid"
-#~ msgstr "Notları ve not defterlerini tablo olarak göster"
-
-#~ msgid "View notes and notebooks in a list"
-#~ msgstr "Notları ve not defterlerini liste olarak göster"
-
-#~ msgid "Could not parse arguments"
-#~ msgstr "Argümanlar ayrıştırılamadı"
-
-#~ msgid "Could not register the application"
-#~ msgstr "Uygulama kaydedilemedi"
-
-#~ msgid "Load More"
-#~ msgstr "Daha Çok"
-
-#~ msgid "Loading…"
-#~ msgstr "Yükleniyor…"
-
-#~ msgctxt "shortcut window"
-#~ msgid "Shortcuts"
-#~ msgstr "Kısayollar"
-
-#~ msgid "org.gnome.Notes"
-#~ msgstr "org.gnome.Notes"
-
-#~ msgid "* "
-#~ msgstr "* "
-
-#~ msgid "1."
-#~ msgstr "1."
-
-#~ msgid "Cut"
-#~ msgstr "Kes"
-
-#~ msgid "Copy"
-#~ msgstr "Kopyala"
-
-#~ msgid "Paste"
-#~ msgstr "Yapıştır"
-
-#~ msgid "About"
-#~ msgstr "Hakkında"
-
-#~ msgid "Bijiben"
-#~ msgstr "Bijiben"
-
-#~ msgid "Quickly jot notes"
-#~ msgstr "Hızlıca not alın"
-
-#~ msgid "_Import Notes"
-#~ msgstr "Notları _İçe Aktar"
-
-#~ msgid "_View Trash"
-#~ msgstr "_Çöpü Görüntüle"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Tercihler"
-
-#~ msgid "_Help"
-#~ msgstr "_Yardım"
-
-#~ msgid "_Keyboard Shortcuts"
-#~ msgstr "_Klavye Kısayolları"
-
-#~ msgid "_About"
-#~ msgstr "_Hakkında"
-
-#~ msgid "Notes is an editor allowing to make simple lists for later use."
-#~ msgstr ""
-#~ "Notlar, sonradan kullanmak üzere basit listeler oluşturmaya yarayan bir "
-#~ "düzenleyicidir."
-
-#~ msgid "It allows to use ownCloud as a storage location and online editor."
-#~ msgstr ""
-#~ "ownCloudʼu bir depolama konumu ve çevrim içi düzenleyici olarak "
-#~ "kullanmaya izin verir."
-
-#~ msgid "Note Edition"
-#~ msgstr "Not Sürümü"
-
-#~ msgid "notes;reminder;"
-#~ msgstr "notlar;hatırlatma;"
-
-#~ msgid "Cancel"
-#~ msgstr "İptal"
-
-#~ msgid "Note"
-#~ msgstr "Not"
-
-#~ msgid "_OK"
-#~ msgstr "_Tamam"

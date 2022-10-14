@@ -4,6 +4,7 @@ data/org.gnome.Notes.desktop.in
 data/org.gnome.Notes.gschema.xml
 data/org.gnome.Notes.xml.in
 data/resources/bjb-notebooks-dialog.ui
+data/resources/bjb-note-view.ui
 data/resources/bjb-window.ui
 data/resources/editor-toolbar.ui
 data/resources/empty-results-box.ui

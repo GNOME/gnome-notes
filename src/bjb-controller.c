@@ -23,6 +23,8 @@
  * it controls the window behaviour.
  */
 
+#include <contrib/gtk.h>
+
 #include "bjb-application.h"
 #include "biji-tracker.h"
 #include "bjb-controller.h"
@@ -49,6 +51,11 @@ struct _BjbController
 
   BjbWindow      *window;
   BjbSettings    *settings;
+
+  GListStore          *list_of_notes;
+  GtkFlattenListModel *flatten_notes;
+  GtkSortListModel    *sorted_notes;
+  GtkFilterListModel  *filter_notes;
 
   GList          *notes_to_show;
   gint            n_notes_to_show;
@@ -84,6 +91,64 @@ static guint bjb_controller_signals [BJB_CONTROLLER_SIGNALS] = { 0 };
 G_DEFINE_TYPE (BjbController, bjb_controller, G_TYPE_OBJECT)
 
 /* GObject */
+
+static int
+controller_sort_notes (gconstpointer a,
+                       gconstpointer b,
+                       gpointer     user_data)
+{
+  gint64 time_a, time_b;
+
+  time_a = biji_note_obj_get_mtime ((gpointer) a);
+  time_b = biji_note_obj_get_mtime ((gpointer) b);
+
+  return time_b - time_a;
+}
+
+static gboolean
+controller_filter_notes (gpointer note,
+                         gpointer user_data)
+{
+  BjbController *self = user_data;
+  const char *title, *content;
+
+  if (self->notebook)
+    {
+      GList *notebooks;
+      const char *notebook;
+      gboolean match = FALSE;
+
+      notebook = biji_notebook_get_title (self->notebook);
+      notebooks = biji_note_obj_get_notebooks (note);
+
+      for (GList *item = notebooks; item; item = item->next)
+        {
+          if (g_strcmp0 (notebook, item->data) != 0)
+            continue;
+
+          match = TRUE;
+          break;
+        }
+
+      if (!match)
+        return FALSE;
+    }
+
+  if (!self->needle || !*self->needle)
+    return TRUE;
+
+  title = biji_note_obj_get_title (note);
+
+  if (title && strstr (title, self->needle))
+    return TRUE;
+
+  content = biji_note_obj_get_raw_text (note);
+
+  if (content && strstr (content, self->needle))
+    return TRUE;
+
+  return FALSE;
+}
 
 static void
 bjb_controller_init (BjbController *self)
@@ -536,12 +601,16 @@ on_controller_get_notes_cb (GObject      *object,
 void
 bjb_controller_apply_needle (BjbController *self)
 {
+  GtkFilter *filter;
   GListModel *notes;
   GList *result = NULL;
   gchar *needle;
 
   needle = self->needle;
   g_clear_pointer (&self->notes_to_show, g_list_free);
+
+  filter = gtk_filter_list_model_get_filter (self->filter_notes);
+  gtk_filter_changed (filter, GTK_FILTER_CHANGE_DIFFERENT);
 
   /* Show all items
    * If no items, tell it - unless trash is visited */
@@ -737,9 +806,29 @@ static void
 bjb_controller_constructed (GObject *obj)
 {
   BjbController *self = BJB_CONTROLLER (obj);
+  GListModel *notes;
+  GtkSorter *sorter;
+  GtkFilter *filter;
+
   G_OBJECT_CLASS(bjb_controller_parent_class)->constructed(obj);
 
   self->settings = bjb_app_get_settings (g_application_get_default ());
+
+  self->list_of_notes = g_list_store_new (G_TYPE_LIST_MODEL);
+  self->flatten_notes = gtk_flatten_list_model_new (BIJI_TYPE_NOTE_OBJ, G_LIST_MODEL (self->list_of_notes));
+
+  sorter = gtk_custom_sorter_new (controller_sort_notes, NULL, NULL);
+  self->sorted_notes = gtk_sort_list_model_new (G_LIST_MODEL (self->flatten_notes), sorter);
+
+  filter = gtk_custom_filter_new (controller_filter_notes, self, NULL);
+  self->filter_notes = gtk_filter_list_model_new (G_LIST_MODEL (self->sorted_notes), filter);
+
+  /*
+  * Add only active notes, which is the default.  Archived
+   * notes shall be added when the user filters notes
+   */
+  notes = biji_manager_get_notes (self->manager, BIJI_LIVING_ITEMS);
+  g_list_store_append (self->list_of_notes, notes);
 
   bjb_controller_connect (self);
 }
@@ -867,6 +956,14 @@ bjb_controller_get_model  (BjbController *self)
   return self->model;
 }
 
+GListModel *
+bjb_controller_get_notes (BjbController *self)
+{
+  g_return_val_if_fail (BJB_IS_CONTROLLER (self), NULL);
+
+  return G_LIST_MODEL (self->filter_notes);
+}
+
 BijiNotebook *
 bjb_controller_get_notebook (BjbController *self)
 {
@@ -878,6 +975,18 @@ void
 bjb_controller_set_notebook (BjbController *self,
                              BijiNotebook *coll)
 {
+  if (g_set_object (&self->notebook, coll))
+    {
+      GtkFilter *filter;
+
+      g_free (self->needle);
+      self->needle = g_strdup ("");
+      self->notebook = coll;
+
+      filter = gtk_filter_list_model_get_filter (self->filter_notes);
+      gtk_filter_changed (filter, GTK_FILTER_CHANGE_DIFFERENT);
+    }
+
   /* Going back from a notebook */
   if (!coll)
   {
@@ -918,11 +1027,19 @@ void
 bjb_controller_set_group (BjbController   *self,
                           BijiItemsGroup   group)
 {
+  GListModel *notes;
+
   if (self->group == group)
     return;
 
   g_clear_pointer (&self->notes_to_show, g_list_free);
   self->group = group;
+
+  g_list_store_remove_all (self->list_of_notes);
+  g_clear_object (&self->notebook);
+
+  notes = biji_manager_get_notes (self->manager, group);
+  g_list_store_append (self->list_of_notes, notes);
 
   /* Living group : refresh the ui */
   if (group == BIJI_LIVING_ITEMS)

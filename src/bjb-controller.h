@@ -54,6 +54,8 @@ gchar * bjb_controller_get_needle (BjbController *self ) ;
 
 GtkTreeModel * bjb_controller_get_model  (BjbController *self) ;
 
+GListModel   *bjb_controller_get_notes (BjbController *self);
+
 void bjb_controller_disconnect (BjbController *self);
 
 BijiNotebook * bjb_controller_get_notebook (BjbController *self);

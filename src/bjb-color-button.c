@@ -95,11 +95,11 @@ bjb_color_button_clicked (GtkButton *b)
       /* Create the dialog and connects its buttons */
       GtkWidget *parent;
 
-      parent = gtk_widget_get_toplevel (GTK_WIDGET (self));
+      parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_WINDOW);
 
       self->dialog = dialog = gtk_color_chooser_dialog_new (self->title, NULL);
 
-      if (gtk_widget_is_toplevel (parent) && GTK_IS_WINDOW (parent))
+      if (GTK_IS_WINDOW (parent))
         {
           if (GTK_WINDOW (parent) != gtk_window_get_transient_for (GTK_WINDOW (dialog)))
             gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent));

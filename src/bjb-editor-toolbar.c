@@ -52,6 +52,7 @@ struct _BjbEditorToolbar
 
 enum {
   FORMAT_APPLIED,
+  COPY_CLICKED,
   N_SIGNALS
 };
 
@@ -92,29 +93,7 @@ static void
 on_link_clicked (GtkButton        *button,
                  BjbEditorToolbar *self)
 {
-  BjbSettings             *settings;
-  const gchar             *link;
-  BijiNoteObj             *result;
-  GdkRGBA                  color;
-  BijiManager             *manager;
-
-  link = biji_note_obj_editor_get_selection (self->note);
-
-  if (link == NULL || strlen (link) == 0)
-    return;
-
-  manager = bjb_window_get_manager (self->window);
-
-  settings = bjb_app_get_settings (g_application_get_default ());
-  result = biji_manager_note_new (manager,
-                                    link,
-                                    bjb_settings_get_default_location (settings));
-
-  /* Change result color. */
-  if (biji_note_obj_get_rgba (self->note, &color))
-    biji_note_obj_set_rgba (result, &color);
-
-  bijiben_new_window_for_note (g_application_get_default (), result);
+  g_signal_emit (self, signals[COPY_CLICKED], 0);
 }
 
 static void
@@ -186,6 +165,13 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
                   G_SIGNAL_RUN_LAST,
                   0, NULL, NULL, NULL,
                   G_TYPE_NONE, 1, G_TYPE_INT);
+
+  signals[COPY_CLICKED] =
+    g_signal_new ("copy-clicked",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL, NULL,
+                  G_TYPE_NONE, 0);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/editor-toolbar.ui");
 

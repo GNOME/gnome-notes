@@ -54,6 +54,36 @@ note_view_format_applied_cb (BjbNoteView      *self,
     biji_note_obj_editor_apply_format (self->note, format);
 }
 
+static void
+note_view_copy_clicked_cb (BjbNoteView *self)
+{
+  GApplication *app;
+  BjbSettings *settings;
+  BijiManager *manager;
+  BijiNoteObj *new_note;
+  const char *content;
+  GdkRGBA color;
+
+  g_assert (BJB_IS_NOTE_VIEW (self));
+
+  content = biji_note_obj_editor_get_selection (self->note);
+
+  if (!content || !*content)
+    return;
+
+  app = g_application_get_default ();
+  manager = bijiben_get_manager (BJB_APPLICATION (app));
+
+  settings = bjb_app_get_settings (app);
+  new_note = biji_manager_note_new (manager, content,
+                                    bjb_settings_get_default_location (settings));
+
+  if (biji_note_obj_get_rgba (self->note, &color))
+    biji_note_obj_set_rgba (new_note, &color);
+
+  bijiben_new_window_for_note (app, new_note);
+}
+
 void
 bjb_note_view_set_detached (BjbNoteView *self,
                             gboolean     detached)
@@ -142,6 +172,7 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbNoteView, editor_toolbar);
 
   gtk_widget_class_bind_template_callback (widget_class, note_view_format_applied_cb);
+  gtk_widget_class_bind_template_callback (widget_class, note_view_copy_clicked_cb);
 }
 
 static void

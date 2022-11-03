@@ -21,6 +21,7 @@
               <object class="BjbEditorToolbar" id="editor_toolbar">
                 <property name="visible">False</property>
                 <signal name="format-applied" handler="note_view_format_applied_cb" swapped="yes"/>
+                <signal name="copy-clicked" handler="note_view_copy_clicked_cb" swapped="yes"/>
               </object>
               <packing>
                 <property name="pack-type">end</property>

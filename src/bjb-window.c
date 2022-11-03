@@ -263,7 +263,7 @@ on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
       bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
     /* Back to main view */
     else
-      bjb_controller_set_notebook (self->controller, NULL);
+      bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
 
     return TRUE;
   }

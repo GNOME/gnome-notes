@@ -131,15 +131,16 @@ static void
 bijiben_new_window_internal (BjbApplication *self,
                              BijiNoteObj    *note)
 {
+  GtkWindow *active_window;
   BjbWindow *window;
-  GList *windows;
-  gboolean not_first_window;
 
-  windows = gtk_application_get_windows (GTK_APPLICATION (self));
-  not_first_window = (gboolean) g_list_length (windows);
+  active_window = gtk_application_get_active_window (GTK_APPLICATION (self));
 
   window = BJB_WINDOW (bjb_window_new ());
-  if (!note)
+
+  if (active_window)
+    bjb_window_set_is_main (window, FALSE);
+  else
     bjb_window_set_is_main (window, TRUE);
 
   g_signal_connect (window, "activated",
@@ -147,9 +148,6 @@ bijiben_new_window_internal (BjbApplication *self,
   bjb_window_set_note (window, note);
 
   gtk_widget_show (GTK_WIDGET (window));
-
-  if (not_first_window)
-    gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 
   if (g_strcmp0 (PROFILE, "") != 0)
     {

@@ -289,7 +289,8 @@ constructed (GObject *object)
     }
   else
     {
-      self->info.icon = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_INVALID);
+      self->info.icon = gtk_image_new ();
+      g_object_set (self->info.icon, "gicon", icon, NULL);
       gtk_image_set_pixel_size (GTK_IMAGE (self->info.icon), 48);
       g_object_ref_sink (self->info.icon);
     }

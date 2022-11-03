@@ -27,6 +27,8 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkActionBar)
 
+void     bjb_editor_toolbar_set_can_format (BjbEditorToolbar *self,
+                                            gboolean          can_format);
 void     bjb_editor_toolbar_set_note    (BjbEditorToolbar *self,
                                          BijiNoteObj      *note);
 

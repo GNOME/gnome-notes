@@ -219,3 +219,18 @@ bjb_editor_toolbar_set_note (BjbEditorToolbar *self,
   gtk_widget_set_sensitive (self->indent_button, can_format);
   gtk_widget_set_sensitive (self->outdent_button, can_format);
 }
+
+void
+bjb_editor_toolbar_set_can_format (BjbEditorToolbar *self,
+                                   gboolean          can_format)
+{
+  gtk_widget_set_sensitive (self->bold_button, can_format);
+  gtk_widget_set_sensitive (self->italic_button, can_format);
+  gtk_widget_set_sensitive (self->strike_button, can_format);
+
+  gtk_widget_set_sensitive (self->bullets_button, can_format);
+  gtk_widget_set_sensitive (self->list_button, can_format);
+
+  gtk_widget_set_sensitive (self->indent_button, can_format);
+  gtk_widget_set_sensitive (self->outdent_button, can_format);
+}

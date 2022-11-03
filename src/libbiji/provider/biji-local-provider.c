@@ -364,8 +364,8 @@ biji_local_provider_init (BijiLocalProvider *self)
   self->info.datasource = g_strdup_printf ("local:%s",
                                            self->info.unique_id);
   self->info.name = _("Local storage");
-  self->info.icon =
-    gtk_image_new_from_icon_name ("user-home", GTK_ICON_SIZE_INVALID);
+  self->info.icon = gtk_image_new ();
+  g_object_set (self->info.icon, "icon-name", "user-home", NULL);
   gtk_image_set_pixel_size (GTK_IMAGE (self->info.icon), 48);
   g_object_ref (self->info.icon);
 

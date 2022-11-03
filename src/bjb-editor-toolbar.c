@@ -32,9 +32,6 @@ struct _BjbEditorToolbar
 {
   GtkActionBar   parent_instance;
 
-  /* Note provide us the WebKitWebView editor */
-  BijiNoteObj   *note;
-
   GtkAccelGroup *accel;
 
   GtkWidget     *bold_button;
@@ -193,31 +190,6 @@ bjb_editor_toolbar_init (BjbEditorToolbar *self)
   gtk_widget_init_template (GTK_WIDGET (self));
 
   self->accel = gtk_accel_group_new ();
-}
-
-void
-bjb_editor_toolbar_set_note (BjbEditorToolbar *self,
-                             BijiNoteObj      *note)
-{
-  gboolean can_format = FALSE;
-
-  g_return_if_fail (BJB_IS_EDITOR_TOOLBAR (self));
-  g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
-
-  self->note = note;
-
-  if (note && biji_note_obj_can_format (note))
-    can_format = TRUE;
-
-  gtk_widget_set_sensitive (self->bold_button, can_format);
-  gtk_widget_set_sensitive (self->italic_button, can_format);
-  gtk_widget_set_sensitive (self->strike_button, can_format);
-
-  gtk_widget_set_sensitive (self->bullets_button, can_format);
-  gtk_widget_set_sensitive (self->list_button, can_format);
-
-  gtk_widget_set_sensitive (self->indent_button, can_format);
-  gtk_widget_set_sensitive (self->outdent_button, can_format);
 }
 
 void

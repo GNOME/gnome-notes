@@ -91,19 +91,22 @@ void
 bjb_list_view_setup (BjbListView   *self,
                      BjbController *controller)
 {
+  GListModel *notes;
+
   g_return_if_fail (controller);
 
   if (self->display_items_changed != 0)
     g_signal_handler_disconnect (self->controller, self->display_items_changed);
 
+  if (self->controller)
+    return;
+
   self->controller = controller;
 
-  self->display_items_changed = g_signal_connect (self->controller,
-                                                  "display-notes-changed",
-                                                  G_CALLBACK (bjb_list_view_on_display_items_changed),
-                                                  self);
-
-  bjb_list_view_update (self);
+  notes = bjb_controller_get_notes (controller);
+  gtk_list_box_bind_model (self->list_box, notes,
+                           (GtkListBoxCreateWidgetFunc)bjb_list_view_row_new_with_note,
+                           self, NULL);
 }
 
 void

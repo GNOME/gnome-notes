@@ -34,8 +34,6 @@ BjbListView   *bjb_list_view_new                (void);
 void           bjb_list_view_setup              (BjbListView   *self,
                                                  BjbController *controller);
 
-void           bjb_list_view_update             (BjbListView   *self);
-
 GtkListBox    *bjb_list_view_get_list_box       (BjbListView   *self);
 
 BjbController *bjb_list_view_get_controller     (BjbListView   *self);

@@ -28,64 +28,9 @@ struct _BjbListView
 
   GtkListBox        *list_box;
   BjbController     *controller;
-
-  gulong             display_items_changed;
 };
 
 G_DEFINE_TYPE (BjbListView, bjb_list_view, GTK_TYPE_SCROLLED_WINDOW);
-
-static void
-bjb_list_view_destroy_row_cb (GtkWidget *widget,
-                              gpointer   data)
-{
-  gtk_widget_destroy (widget);
-}
-
-static gboolean
-bjb_list_view_create_row_cb (GtkTreeModel *model,
-                             GtkTreePath  *path,
-                             GtkTreeIter  *iter,
-                             gpointer      data)
-{
-  BjbListView     *self;
-  BjbListViewRow  *row;
-  g_autofree char *model_iter = NULL;
-
-  self = BJB_LIST_VIEW (data);
-
-  model_iter = gtk_tree_model_get_string_from_iter (model, iter);
-
-  row = bjb_list_view_row_new ();
-  bjb_list_view_row_setup (row, self, model_iter);
-  gtk_widget_show (GTK_WIDGET (row));
-  gtk_container_add (GTK_CONTAINER (self->list_box), GTK_WIDGET (row));
-
-  return FALSE;
-}
-
-static void
-bjb_list_view_on_display_items_changed (BjbController *controller,
-                                        gboolean       items_to_show,
-                                        gboolean       remaining_items,
-                                        BjbListView   *self)
-{
-  g_return_if_fail (self);
-
-  bjb_list_view_update (self);
-}
-
-static void
-bjb_list_view_finalize (GObject *object)
-{
-  BjbListView *self = BJB_LIST_VIEW (object);
-
-  if (self->display_items_changed != 0)
-    {
-      g_signal_handler_disconnect (self->controller, self->display_items_changed);
-    }
-
-  G_OBJECT_CLASS (bjb_list_view_parent_class)->finalize (object);
-}
 
 void
 bjb_list_view_setup (BjbListView   *self,
@@ -94,9 +39,6 @@ bjb_list_view_setup (BjbListView   *self,
   GListModel *notes;
 
   g_return_if_fail (controller);
-
-  if (self->display_items_changed != 0)
-    g_signal_handler_disconnect (self->controller, self->display_items_changed);
 
   if (self->controller)
     return;
@@ -107,18 +49,6 @@ bjb_list_view_setup (BjbListView   *self,
   gtk_list_box_bind_model (self->list_box, notes,
                            (GtkListBoxCreateWidgetFunc)bjb_list_view_row_new_with_note,
                            self, NULL);
-}
-
-void
-bjb_list_view_update (BjbListView *self)
-{
-  gtk_container_foreach (GTK_CONTAINER (self->list_box),
-                         bjb_list_view_destroy_row_cb,
-                         NULL);
-
-  gtk_tree_model_foreach (bjb_controller_get_model (self->controller),
-                          bjb_list_view_create_row_cb,
-                          self);
 }
 
 GtkListBox *
@@ -142,10 +72,7 @@ bjb_list_view_init (BjbListView *self)
 static void
 bjb_list_view_class_init (BjbListViewClass *klass)
 {
-  GObjectClass   *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-  object_class->finalize = bjb_list_view_finalize;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/list-view.ui");
 

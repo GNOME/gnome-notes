@@ -36,9 +36,6 @@ struct _BjbListViewRow
 
   BijiNoteObj    *note;
   char           *uuid;
-  char           *model_iter;
-
-  gulong          display_note_amended;
 };
 
 G_DEFINE_TYPE (BjbListViewRow, bjb_list_view_row, GTK_TYPE_LIST_BOX_ROW);
@@ -94,126 +91,6 @@ note_content_changed_cb (BjbListViewRow *self)
   gtk_label_set_text (self->content, preview);
 }
 
-static void
-on_manager_changed (BijiManager            *manager,
-                    BijiItemsGroup          group,
-                    BijiManagerChangeFlag   flag,
-                    gpointer               *biji_item,
-                    BjbListViewRow         *self)
-{
-  BijiNoteObj *note_obj = BIJI_NOTE_OBJ (biji_item);
-
-  /* Note title/content amended. */
-  if (flag == BIJI_MANAGER_NOTE_AMENDED)
-    {
-      if (g_strcmp0 (self->uuid, biji_note_obj_get_uuid (note_obj)) == 0)
-        {
-          if (biji_note_obj_get_title (note_obj) != NULL &&
-              g_strcmp0 (gtk_label_get_text (self->title),
-                         biji_note_obj_get_title (note_obj)) != 0)
-            {
-              gtk_label_set_text (self->title, biji_note_obj_get_title (note_obj));
-            }
-          if (biji_note_obj_get_raw_text (note_obj) != NULL &&
-              g_strcmp0 (gtk_label_get_text (self->content),
-                         biji_note_obj_get_raw_text (note_obj)) != 0)
-            {
-              g_auto(GStrv)   lines         = NULL;
-              g_autofree char *one_line     = NULL;
-              g_autofree char *preview      = NULL;
-
-              lines = g_strsplit (biji_note_obj_get_raw_text (note_obj), "\n", -1);
-              one_line = g_strjoinv (" ", lines);
-              preview = biji_str_clean (one_line);
-              gtk_label_set_text (self->content, preview);
-            }
-        }
-    }
-}
-
-void
-bjb_list_view_row_setup (BjbListViewRow *self,
-                         BjbListView    *view,
-                         const char     *model_iter)
-{
-  GtkTreeModel    *model;
-  GtkTreeIter      iter;
-  char            *uuid;
-  char            *title;
-  char            *text;
-  char            *color;
-  gint64           mtime;
-  GdkRGBA          rgba;
-  gboolean         selected;
-  BjbController   *controller;
-  BijiManager     *manager;
-  GtkListBox      *list_box;
-  g_auto (GStrv)   lines        = NULL;
-  g_autofree char *one_line     = NULL;
-  g_autofree char *preview      = NULL;
-  g_autofree char *updated_time = NULL;
-  g_autofree char *css_style    = NULL;
-
-  self->view = view;
-  list_box = bjb_list_view_get_list_box (view);
-  controller = bjb_list_view_get_controller (view);
-
-  model = bjb_controller_get_model (controller);
-  if (!gtk_tree_model_get_iter_from_string (model, &iter, model_iter))
-    return;
-  self->model_iter = g_strdup (model_iter);
-
-  gtk_tree_model_get (model,
-                      &iter,
-                      BJB_MODEL_COLUMN_UUID,     &uuid,
-                      BJB_MODEL_COLUMN_TITLE,    &title,
-                      BJB_MODEL_COLUMN_TEXT,     &text,
-                      BJB_MODEL_COLUMN_MTIME,    &mtime,
-                      BJB_MODEL_COLUMN_COLOR,    &color,
-                      BJB_MODEL_COLUMN_SELECTED, &selected,
-                      -1);
-
-  updated_time = bjb_utils_get_human_time (mtime);
-
-  if (uuid)
-    self->uuid = g_strdup (uuid);
-  if (title)
-    gtk_label_set_text (self->title, title);
-  if (text)
-    {
-      lines = g_strsplit (text, "\n", -1);
-      one_line = g_strjoinv (" ", lines);
-      preview = biji_str_clean (one_line);
-      gtk_label_set_text (self->content, preview);
-    }
-  if (updated_time)
-    gtk_label_set_text (self->updated_time, updated_time);
-  if (color && gdk_rgba_parse (&rgba, color))
-    {
-      css_style = g_strdup_printf ("row {color: %s; background-color: %s} row:hover {background-color: darker(%s)}",
-                                   BJB_UTILS_COLOR_INTENSITY ((&rgba)) < 0.5 ? "white" : "black",
-                                   color, color);
-      gtk_css_provider_load_from_data (self->css_provider, css_style, -1, 0);
-      gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (self)),
-                                      GTK_STYLE_PROVIDER (self->css_provider),
-                                      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    }
-
-  if (selected)
-    gtk_list_box_select_row (list_box, GTK_LIST_BOX_ROW (self));
-  else
-    gtk_list_box_unselect_row (list_box, GTK_LIST_BOX_ROW (self));
-
-  if (self->display_note_amended != 0)
-    {
-      g_signal_handler_disconnect (controller, self->display_note_amended);
-    }
-
-  manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ()));
-  self->display_note_amended = g_signal_connect (manager, "changed",
-                                                 G_CALLBACK (on_manager_changed), self);
-}
-
 const char *
 bjb_list_view_row_get_uuid (BjbListViewRow *self)
 {
@@ -236,15 +113,6 @@ bjb_list_view_row_finalize (GObject *object)
   g_clear_object (&self->note);
   g_clear_object (&self->css_provider);
   g_free (self->uuid);
-  g_free (self->model_iter);
-
-  if (self->display_note_amended != 0)
-    {
-      BijiManager *manager;
-
-      manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ()));
-      g_signal_handler_disconnect (manager, self->display_note_amended);
-    }
 
   G_OBJECT_CLASS (bjb_list_view_row_parent_class)->finalize (object);
 }

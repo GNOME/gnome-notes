@@ -193,13 +193,18 @@ void
 bjb_note_view_set_note (BjbNoteView *self,
                         BijiNoteObj *note)
 {
+  gboolean can_format = FALSE;
+
   g_return_if_fail (BJB_IS_NOTE_VIEW (self));
   g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
 
   if (self->note == note)
     return;
 
-  bjb_editor_toolbar_set_note (BJB_EDITOR_TOOLBAR (self->editor_toolbar), note);
+  if (note)
+    can_format = biji_note_obj_can_format (note);
+  bjb_editor_toolbar_set_can_format (BJB_EDITOR_TOOLBAR (self->editor_toolbar), can_format);
+
   if (note)
     gtk_widget_set_visible (self->editor_toolbar, !biji_note_obj_is_trashed (note));
   bjb_note_view_disconnect (self);

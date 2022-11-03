@@ -50,55 +50,42 @@ struct _BjbEditorToolbar
   GtkWidget     *window;
 };
 
+enum {
+  FORMAT_APPLIED,
+  N_SIGNALS
+};
+
+static guint signals[N_SIGNALS];
+
 G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
 
 static void
-on_bold_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
+on_format_clicked (BjbEditorToolbar *self,
+                   GtkWidget        *button)
 {
-  biji_note_obj_editor_apply_format (self->note, BIJI_BOLD);
-}
+  BijiEditorFormat format = BIJI_NO_FORMAT;
 
-static void
-on_italic_clicked (GtkButton        *button,
-                   BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_ITALIC);
-}
+  g_assert (BJB_IS_EDITOR_TOOLBAR (self));
+  g_assert (GTK_IS_BUTTON (button));
 
-static void
-on_strike_clicked (GtkButton        *button,
-                   BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_STRIKE);
-}
+  if (button == self->bold_button)
+    format = BIJI_BOLD;
+  else if (button == self->italic_button)
+    format = BIJI_ITALIC;
+  else if (button == self->strike_button)
+    format = BIJI_STRIKE;
+  else if (button == self->bullets_button)
+    format = BIJI_BULLET_LIST;
+  else if (button == self->list_button)
+    format = BIJI_ORDER_LIST;
+  else if (button == self->indent_button)
+    format = BIJI_INDENT;
+  else if (button == self->outdent_button)
+    format = BIJI_OUTDENT;
+  else
+    g_return_if_reached ();
 
-static void
-on_bullets_clicked (GtkButton        *button,
-                    BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_BULLET_LIST);
-}
-
-static void
-on_list_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_ORDER_LIST);
-}
-
-static void
-on_indent_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_INDENT);
-}
-
-static void
-on_outdent_clicked (GtkButton        *button,
-                 BjbEditorToolbar *self)
-{
-  biji_note_obj_editor_apply_format (self->note, BIJI_OUTDENT);
+  g_signal_emit (self, signals[FORMAT_APPLIED], 0, format);
 }
 
 static void
@@ -193,6 +180,13 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
 
   widget_class->map = bjb_editor_toolbar_map;
 
+  signals[FORMAT_APPLIED] =
+    g_signal_new ("format-applied",
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL, NULL,
+                  G_TYPE_NONE, 1, G_TYPE_INT);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/editor-toolbar.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, bold_button);
@@ -203,13 +197,7 @@ bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, indent_button);
   gtk_widget_class_bind_template_child (widget_class, BjbEditorToolbar, outdent_button);
 
-  gtk_widget_class_bind_template_callback (widget_class, on_bold_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_italic_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_strike_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_bullets_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_list_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_indent_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_outdent_clicked);
+  gtk_widget_class_bind_template_callback (widget_class, on_format_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_link_clicked);
 }
 

@@ -44,6 +44,16 @@ G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
 
 static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
 
+static void
+note_view_format_applied_cb (BjbNoteView      *self,
+                             BijiEditorFormat  format)
+{
+  g_assert (BJB_IS_NOTE_VIEW (self));
+
+  if (self->note)
+    biji_note_obj_editor_apply_format (self->note, format);
+}
+
 void
 bjb_note_view_set_detached (BjbNoteView *self,
                             gboolean     detached)
@@ -130,6 +140,8 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbNoteView, status_page);
   gtk_widget_class_bind_template_child (widget_class, BjbNoteView, editor_box);
   gtk_widget_class_bind_template_child (widget_class, BjbNoteView, editor_toolbar);
+
+  gtk_widget_class_bind_template_callback (widget_class, note_view_format_applied_cb);
 }
 
 static void

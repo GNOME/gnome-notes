@@ -63,7 +63,7 @@
                 <property name="tooltip_text" translatable="yes">Bold</property>
                 <property name="image">format-text-bold</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_bold_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -79,7 +79,7 @@
                 <property name="tooltip_text" translatable="yes">Italic</property>
                 <property name="image">format-text-italic</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_italic_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -95,7 +95,7 @@
                 <property name="tooltip_text" translatable="yes">Strike</property>
                 <property name="image">format-text-strikethrough</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_strike_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -123,7 +123,7 @@
                 <property name="tooltip_text" translatable="yes">Bullets</property>
                 <property name="image">format-text-bullet</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_bullets_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -139,7 +139,7 @@
                 <property name="tooltip_text" translatable="yes">List</property>
                 <property name="image">format-text-list</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_list_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -167,7 +167,7 @@
                 <property name="tooltip_text" translatable="yes">Indent</property>
                 <property name="image">format-indent-more</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_indent_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -183,7 +183,7 @@
                 <property name="tooltip_text" translatable="yes">Outdent</property>
                 <property name="image">format-indent-less</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_outdent_clicked" object="BjbEditorToolbar" swapped="no"/>
+                <signal name="clicked" handler="on_format_clicked" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">True</property>

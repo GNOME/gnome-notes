@@ -52,7 +52,6 @@ struct _BjbWindow
   BjbSettings          *settings;
   BjbController        *controller;
 
-  gulong                display_notebooks_changed;
   gulong                note_deleted;
   gulong                note_trashed;
 
@@ -163,10 +162,6 @@ on_note_list_row_activated (GtkListBox    *box,
           bjb_window_set_note (self, to_open);
         }
     }
-  else if (to_open && BIJI_IS_NOTEBOOK (to_open))
-    {
-      bjb_controller_set_notebook (self->controller, to_open);
-    }
 }
 
 static void
@@ -226,7 +221,6 @@ bjb_window_finalize (GObject *object)
   if (note_view)
     bjb_note_view_set_detached (note_view, FALSE);
 
-  g_clear_signal_handler (&self->display_notebooks_changed, self->controller);
   g_clear_object (&self->controller);
   g_clear_object (&self->note);
 
@@ -430,8 +424,7 @@ show_all_notes (BjbWindow *self)
   destroy_note_if_needed (self);
 
   /* Going back from a notebook. */
-  if (bjb_controller_get_notebook (self->controller) != NULL)
-    bjb_controller_set_notebook (self->controller, NULL);
+  bjb_controller_set_notebook (self->controller, NULL);
 
   bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
   gtk_label_set_text (GTK_LABEL (self->filter_label), _("All Notes"));
@@ -798,23 +791,14 @@ bjb_window_set_is_main (BjbWindow *self,
 
   if (is_main)
     {
+      BjbSearchToolbar *search_bar;
+
       if (!self->controller)
         self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default())),
                                                GTK_WINDOW (self), NULL);
-      if (!self->display_notebooks_changed)
-        {
-          BjbSearchToolbar *search_bar;
-
-          search_bar = BJB_SEARCH_TOOLBAR (self->search_bar);
-          bjb_list_view_setup (self->note_list, self->controller);
-          bjb_search_toolbar_setup (search_bar, GTK_WIDGET (self), self->controller);
-        }
-
-      g_clear_signal_handler (&self->display_notebooks_changed, self->controller);
-      self->display_notebooks_changed = g_signal_connect_swapped (self->controller,
-                                                                  "display-notebooks-changed",
-                                                                  G_CALLBACK (on_display_notebooks_changed),
-                                                                  self);
+      search_bar = BJB_SEARCH_TOOLBAR (self->search_bar);
+      bjb_list_view_setup (self->note_list, self->controller);
+      bjb_search_toolbar_setup (search_bar, GTK_WIDGET (self), self->controller);
     }
 
   if (!is_main)

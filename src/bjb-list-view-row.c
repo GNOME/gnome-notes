@@ -34,6 +34,7 @@ struct _BjbListViewRow
   GtkLabel       *content;
   GtkLabel       *updated_time;
 
+  BijiNoteObj    *note;
   char           *uuid;
   char           *model_iter;
 
@@ -41,6 +42,57 @@ struct _BjbListViewRow
 };
 
 G_DEFINE_TYPE (BjbListViewRow, bjb_list_view_row, GTK_TYPE_LIST_BOX_ROW);
+
+static void
+note_mtime_changed_cb (BjbListViewRow *self)
+{
+  g_autofree char *time_label = NULL;
+
+  g_assert (BJB_IS_LIST_VIEW_ROW (self));
+
+  time_label = bjb_utils_get_human_time (biji_note_obj_get_mtime (self->note));
+  gtk_label_set_text (self->updated_time, time_label);
+}
+
+static void
+note_color_changed_cb (BjbListViewRow *self)
+{
+  g_autofree char *css_style = NULL;
+  g_autofree char *color = NULL;
+  GdkRGBA rgba;
+
+  g_assert (BJB_IS_LIST_VIEW_ROW (self));
+
+  if (!biji_note_obj_get_rgba (self->note, &rgba))
+    return;
+
+  color = gdk_rgba_to_string (&rgba);
+  css_style = g_strdup_printf ("row {color: %s; background-color: %s} row:hover {background-color: darker(%s)}",
+                               BJB_UTILS_COLOR_INTENSITY ((&rgba)) < 0.5 ? "white" : "black",
+                               color, color);
+  gtk_css_provider_load_from_data (self->css_provider, css_style, -1, 0);
+  gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (self)),
+                                  GTK_STYLE_PROVIDER (self->css_provider),
+                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+}
+
+static void
+note_content_changed_cb (BjbListViewRow *self)
+{
+  g_autofree char *one_line = NULL;
+  g_autofree char *preview = NULL;
+  g_auto(GStrv) lines = NULL;
+
+  g_assert (BJB_IS_LIST_VIEW_ROW (self));
+
+  if (!biji_note_obj_get_raw_text (self->note))
+    return;
+
+  lines = g_strsplit (biji_note_obj_get_raw_text (self->note), "\n", -1);
+  one_line = g_strjoinv (" ", lines);
+  preview = biji_str_clean (one_line);
+  gtk_label_set_text (self->content, preview);
+}
 
 static void
 on_manager_changed (BijiManager            *manager,
@@ -141,7 +193,6 @@ bjb_list_view_row_setup (BjbListViewRow *self,
       css_style = g_strdup_printf ("row {color: %s; background-color: %s} row:hover {background-color: darker(%s)}",
                                    BJB_UTILS_COLOR_INTENSITY ((&rgba)) < 0.5 ? "white" : "black",
                                    color, color);
-      self->css_provider = gtk_css_provider_new ();
       gtk_css_provider_load_from_data (self->css_provider, css_style, -1, 0);
       gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (self)),
                                       GTK_STYLE_PROVIDER (self->css_provider),
@@ -173,6 +224,8 @@ static void
 bjb_list_view_row_init (BjbListViewRow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  self->css_provider = gtk_css_provider_new ();
 }
 
 static void
@@ -180,6 +233,7 @@ bjb_list_view_row_finalize (GObject *object)
 {
   BjbListViewRow *self = BJB_LIST_VIEW_ROW (object);
 
+  g_clear_object (&self->note);
   g_clear_object (&self->css_provider);
   g_free (self->uuid);
   g_free (self->model_iter);
@@ -216,3 +270,33 @@ bjb_list_view_row_new (void)
   return g_object_new (BJB_TYPE_LIST_VIEW_ROW, NULL);
 }
 
+GtkWidget *
+bjb_list_view_row_new_with_note (BijiNoteObj *note)
+{
+  BjbListViewRow *self;
+
+  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+
+  self = g_object_new (BJB_TYPE_LIST_VIEW_ROW, NULL);
+  self->note = g_object_ref (note);
+  self->uuid = g_strdup (biji_note_obj_get_uuid (note));
+
+  g_object_bind_property (note, "title",
+                          self->title, "label",
+                          G_BINDING_SYNC_CREATE);
+  g_signal_connect_object (note, "notify::mtime",
+                           G_CALLBACK (note_mtime_changed_cb),
+                           self, G_CONNECT_SWAPPED);
+  g_signal_connect_object (note, "color-changed",
+                           G_CALLBACK (note_color_changed_cb),
+                           self, G_CONNECT_SWAPPED);
+  g_signal_connect_object (note, "changed",
+                           G_CALLBACK (note_content_changed_cb),
+                           self, G_CONNECT_SWAPPED);
+
+  note_mtime_changed_cb (self);
+  note_color_changed_cb (self);
+  note_content_changed_cb (self);
+
+  return GTK_WIDGET (self);
+}

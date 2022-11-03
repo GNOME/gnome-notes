@@ -12,7 +12,7 @@ codespell:
   when: on_success
   stage: 'source_check'
   image: "docker.io/bilelmoussaoui/codespell"
-  script: codespell -S "*.png,*.po,*.svg,.git,NEWS,AUTHORS,LINGUAS" -f --builtin "code,clear" --ignore-words-list="stdio"
+  script: codespell -S "*.png,*.po,*.svg,.git,NEWS,AUTHORS,LINGUAS" -f --builtin "code,clear" --ignore-words-list="stdio" --skip="./src/contrib"
 
 flatpak:master:
     extends: '.flatpak'

@@ -342,8 +342,8 @@ on_navigation_request (WebKitWebView           *web_view,
   if (g_strcmp0 (webkit_web_view_get_uri (web_view), requested_uri) == 0)
     return FALSE;
 
-  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (web_view));
-  g_return_val_if_fail (gtk_widget_is_toplevel (toplevel), FALSE);
+  toplevel = gtk_widget_get_ancestor (GTK_WIDGET (web_view), GTK_TYPE_WINDOW);
+  g_return_val_if_fail (GTK_IS_WINDOW (toplevel), FALSE);
 
   gtk_show_uri_on_window (GTK_WINDOW (toplevel),
                           requested_uri,

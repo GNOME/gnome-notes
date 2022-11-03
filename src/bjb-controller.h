@@ -28,23 +28,11 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbController, bjb_controller, BJB, CONTROLLER, GObject)
 
-typedef enum {
-  BJB_MODEL_COLUMN_UUID,
-  BJB_MODEL_COLUMN_TITLE,
-  BJB_MODEL_COLUMN_TEXT,
-  BJB_MODEL_COLUMN_MTIME,
-  BJB_MODEL_COLUMN_COLOR,
-  BJB_MODEL_COLUMN_SELECTED,
-  BJB_MODEL_COLUMN_LAST
-} BjbModelColumnsType;
-
 BjbController * bjb_controller_new (BijiManager  *manager,
                                     GtkWindow     *bjb_window_base,
                                     gchar         *needle);
 
 void bjb_controller_apply_needle (BjbController *self);
-
-void bjb_controller_update_view (BjbController *self);
 
 void bjb_controller_set_manager (BjbController * self, BijiManager * manager ) ;
 
@@ -52,13 +40,7 @@ void bjb_controller_set_needle (BjbController *self, const gchar *needle ) ;
 
 gchar * bjb_controller_get_needle (BjbController *self ) ;
 
-GtkTreeModel * bjb_controller_get_model  (BjbController *self) ;
-
 GListModel   *bjb_controller_get_notes (BjbController *self);
-
-void bjb_controller_disconnect (BjbController *self);
-
-BijiNotebook * bjb_controller_get_notebook (BjbController *self);
 
 void bjb_controller_set_notebook (BjbController *self, BijiNotebook *coll);
 

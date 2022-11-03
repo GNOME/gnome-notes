@@ -533,7 +533,6 @@ bjb_window_load_geometry (BjbWindow *self)
 static void
 bjb_window_destroy (gpointer a, BjbWindow * self)
 {
-  bjb_controller_disconnect (self->controller);
   bjb_window_save_geometry (self);
 }
 

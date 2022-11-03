@@ -471,6 +471,8 @@ bijiben_startup (GApplication *application)
 
   /* Initialize libhandy. */
   hdy_init ();
+  hdy_style_manager_set_color_scheme (hdy_style_manager_get_default (),
+                                      HDY_COLOR_SCHEME_PREFER_LIGHT);
 
   bjb_apply_style (self);
 

@@ -1,0 +1,571 @@
+# Georgian translation for gnome-notes.
+# Copyright (C) 2022 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-notes package.
+# NorwayFun <temuri.doghonadze@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-notes gnome-40-0\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2022-11-06 14:14+0000\n"
+"PO-Revision-Date: 2022-11-26 15:02+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <ka@li.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.2\n"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "შენიშვნები"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "შენიშვნები GNOME-სთვის"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"ადვილი და სწრაფი გზა, შექმნათ სერვისები, ან უბრალოდ სწრაფად ჩამოწეროთ რამე. "
+"ჩაიწერეთ, რამდენი შენიშვნაც გნებავთ და გააზიარეთ ისინი ელფოსტით."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"შენიშვნები შეგიძლიათ ლოკალურად, თქვენს კომპიუტერში შეინახოთ, ან "
+"დაასინქრონოთ ის ონლაინ სერვისთან, როგორიცაა, მაგალითად, OwnCloud."
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "ხედის ჩასწორება"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "აირჩიეთ ხედი"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "სიის ხედი"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "notes;reminder;notebook;sticky notes;"
+
+#: data/org.gnome.Notes.desktop.in:6
+msgid "Post notes, tag files!"
+msgstr "დაპოსტეთ შენიშვნები, დაუსვით ჭდეები ფაილებს!"
+
+#: data/org.gnome.Notes.desktop.in:7
+msgid "Note-taker"
+msgstr "შენიშვნების ამღები"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "ახალი შენიშვნის შექმნა"
+
+#: data/org.gnome.Notes.gschema.xml:10
+msgid "Custom Font"
+msgstr "ხელით მითითებული ფონტი"
+
+#: data/org.gnome.Notes.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "აქ მითითებული ფონტი გამოყენებული იქნება შენიშვნების ჩვენებისას."
+
+#: data/org.gnome.Notes.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr "სისტემური ფონტის გამოყენება"
+
+#: data/org.gnome.Notes.gschema.xml:19
+msgid "New notes color."
+msgstr "ახალი შენიშვნის ფერი."
+
+#: data/org.gnome.Notes.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"აქ მითითებული ფერი გამოყენებული იქნება, როგორც ფერი ახალი შენიშვნის "
+"შექმნისას."
+
+#: data/org.gnome.Notes.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr "ძირითადი შენიშვნების მომწოდებელი ახალი შენიშვნებისთვის."
+
+#: data/org.gnome.Notes.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr "ძირითადი წიგნაკი, სადაც ახალი შენიშვნები იქნება."
+
+#: data/org.gnome.Notes.gschema.xml:29
+msgid "Window maximized"
+msgstr "გადიდებული ფანჯარა"
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid "Window maximized state."
+msgstr "ფანჯრის სრულად გაშლილი მდგომარეობა."
+
+#: data/org.gnome.Notes.gschema.xml:34
+msgid "Window size"
+msgstr "ფანჯრის ზომა"
+
+#: data/org.gnome.Notes.gschema.xml:35
+msgid "Window size (width and height)."
+msgstr "ფანჯრის ზომა (სიგანე, სიმაღლე)"
+
+#: data/org.gnome.Notes.gschema.xml:39
+msgid "Window position"
+msgstr "ფანჯრის მდებარეობა"
+
+#: data/org.gnome.Notes.gschema.xml:40
+msgid "Window position (x and y)."
+msgstr "ფანჯრის მდებარეობა (x და y)"
+
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "Text size used by note editor."
+msgstr "შენიშვნების რედაქტორის ფონტის ზომა."
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"ხელმისაწვდომია ტექსტის სამი ზომა: პატარა, საშუალო(ნაგულისხმები) და დიდი."
+
+#: data/resources/editor-toolbar.ui:51
+msgid "Bold"
+msgstr "მუქი"
+
+#: data/resources/editor-toolbar.ui:67
+msgid "Italic"
+msgstr "დახრილი"
+
+#: data/resources/editor-toolbar.ui:83
+msgid "Strike"
+msgstr "Strike"
+
+#: data/resources/editor-toolbar.ui:111
+msgid "Bullets"
+msgstr "ტყვიები"
+
+#: data/resources/editor-toolbar.ui:127
+msgid "List"
+msgstr "სია"
+
+#: data/resources/editor-toolbar.ui:166
+msgid "Copy selection to a new note"
+msgstr "მონიშნულის ახალ შენიშვნაში კოპირება"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "შენიშვნების გარეშე"
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "საერთო"
+
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "შენიშვნების ძებნა"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "ახალი შენიშვნა"
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "ფანჯრის დახურვა"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "&გასვლა"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "უკან გადასვლა"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "დახმარების ჩვენება"
+
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "მენიუს გახსნა"
+
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "კლავიატურის მალსახმობები"
+
+#: data/resources/help-overlay.ui:71
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "მონიშვნის რეჟიმი"
+
+#: data/resources/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "მონიშვნის რეჟიმის გაუქმება"
+
+#: data/resources/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "ყველას მონიშვნა"
+
+#: data/resources/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "შენიშვნის ჩასწორების რეჟიმი"
+
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "ახალ ფანჯარაში გახსნა"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "მუქი"
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "დახრილი"
+
+#: data/resources/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "ხაზის გადასმა"
+
+#: data/resources/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "დაბრუნება"
+
+#: data/resources/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "თავიდან"
+
+#: data/resources/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "შენიშვნის სანაგვე ყუთში გადატანა"
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
+msgid "Import Notes"
+msgstr "შენიშვნების შემოტანა"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "&გაუქმება"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_იმპორტირება"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "აირჩიეთ შემოტანის მდებარეობა"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "აპლიკაცია Gnote"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "აპლიკაცია Tomboy"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "მდებარეობის ხელით მითითება"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "აირჩიეთ საქაღალდე"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "ახალი"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "შენიშვნის ფერი"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "_დაცარიელება"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "მონიშვნის რეჟიმიდან გასვლა"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "შენიშვნის სათაურებში, შემცველობაში და წიგნაკებში ძებნა"
+
+#: data/resources/main-toolbar.ui:116
+msgid "Selection mode"
+msgstr "მონიშვნის რეჟიმი"
+
+#: data/resources/main-toolbar.ui:130
+msgid "Open menu"
+msgstr "მენიუს გახსნა"
+
+#: data/resources/main-toolbar.ui:150
+msgid "More options"
+msgstr "მეტი პარამეტრი"
+
+#: data/resources/main-toolbar.ui:189
+msgid "View Trash"
+msgstr "სანაგვე ყუთის ნახვა"
+
+#: data/resources/main-toolbar.ui:206
+msgid "Text Sizes"
+msgstr "ტექსტის ზომები"
+
+#: data/resources/main-toolbar.ui:216
+msgid "_Large"
+msgstr "_დიდი"
+
+#: data/resources/main-toolbar.ui:226
+msgid "_Medium"
+msgstr "_საშუალო"
+
+#: data/resources/main-toolbar.ui:236
+msgid "_Small"
+msgstr "_პატარა"
+
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "მორგება"
+
+#: data/resources/main-toolbar.ui:263
+msgid "Keyboard Shortcuts"
+msgstr "კლავიატურის ბმულები"
+
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "დახმარება"
+
+#: data/resources/main-toolbar.ui:281
+msgid "About Notes"
+msgstr "შენიშვნების შესახებ"
+
+#: data/resources/main-toolbar.ui:303
+msgid "Open in New Window"
+msgstr "ახალ ფანჯარაში გახსნა"
+
+#: data/resources/main-toolbar.ui:320
+msgid "Undo"
+msgstr "დაბრუნება"
+
+#: data/resources/main-toolbar.ui:329
+msgid "Redo"
+msgstr "თავიდან"
+
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "წიგნაკები"
+
+#: data/resources/main-toolbar.ui:355
+msgid "Email this Note"
+msgstr "ამ შენიშვნის ელფოსტით გაგზავნა"
+
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "ფაილის ნაგავში გადატანა"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "შეიყვანეთ ახალი წიგნაკის სახელი"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "ახალი წიგნაკი"
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr "შენიშვნის გაზიარება"
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "სხვა ფანჯარაში გახსნა"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr "აღდგენა"
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr "სამუდამოდ წაშლა"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "სისტემური ფონტის გამოყენება"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "შენიშვნის ფონტი"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "ნაგულისხმები ფერი"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr "შენიშვნის გარეგნობა"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "აირჩიეთ ნაგულისხმები საცავის მდებარეობა:"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "ძირითადი წიგნაკი"
+
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
+msgid "Untitled"
+msgstr "უსახელო"
+
+#: src/bjb-application.c:440
+msgid "Show the application’s version"
+msgstr "აპლიკაციის ვერსიის ჩვენება"
+
+#: src/bjb-application.c:442
+msgid "Create a new note"
+msgstr "ახალი შენიშვნის შექმნა"
+
+#: src/bjb-application.c:444
+msgid "[FILE…]"
+msgstr "[ფაილი...]"
+
+#: src/bjb-application.c:452
+msgid "Take notes and export them everywhere."
+msgstr "ჩაიწერეთ შენიშვნები და წაიღეთ ის, სადაც გნებავთ."
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:463
+msgid "Could not parse arguments"
+msgstr "არგუმენტების დამუშავების შეცდომა"
+
+#: src/bjb-application.c:471
+msgid "GNOME Notes"
+msgstr "შენიშვნები GNOME-სთვის"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:483
+msgid "Could not register the application"
+msgstr "აპლიკაციის რეგისტრაციის შეცდომა"
+
+#: src/bjb-application.c:616
+msgid "Simple notebook for GNOME"
+msgstr "მარტივი წიგნაკი GNOME-სთვის"
+
+#: src/bjb-application.c:622
+msgid "translator-credits"
+msgstr "მთარგმნელის შესახებ"
+
+#: src/bjb-color-button.c:140
+msgid "Note Color"
+msgstr "შენიშვნის ფერი"
+
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "ნოუთბუქი"
+
+#: src/bjb-empty-results-box.c:63
+msgid "Press the New button to create a note."
+msgstr "შენიშვნის შესაქმნელად დააწექით ღილაკს ახალი."
+
+#: src/bjb-empty-results-box.c:85
+msgid "Oops"
+msgstr "უიჰ"
+
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr "დააყენეთ \"Tracker\" და პროგრამა თავიდან გაუშვით."
+
+#: src/bjb-main-toolbar.c:134
+msgid "Click on items to select them"
+msgstr "მოსანიშნად დააწკაპუნეთ ელემენტებზე"
+
+#: src/bjb-main-toolbar.c:136
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d მონიშნულია"
+
+#: src/bjb-main-toolbar.c:230
+#, c-format
+msgid "Results for %s"
+msgstr "ძებნის შედეგები %s-სთვის"
+
+#: src/bjb-main-toolbar.c:233
+msgid "New and Recent"
+msgstr "ახალი და უახლესი"
+
+#: src/bjb-main-toolbar.c:299
+msgid "Trash"
+msgstr "ნაგავი"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-main-toolbar.c:367
+#, c-format
+msgid "Last updated: %s"
+msgstr "ბოლო განახლება: %s"
+
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
+msgid "Unknown"
+msgstr "უცნობი"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "გუშინ"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "ამ თვეში"
+
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "დღეს"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "ამ კვირაში"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "წელს"
+
+#: src/libbiji/biji-notebook.c:265
+msgid "Local"
+msgstr "ლოკალური"
+
+#: src/libbiji/provider/biji-local-provider.c:364
+msgid "Local storage"
+msgstr "ლოკალური საცავი"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2018-07-31 00:35+0000\n"
-"PO-Revision-Date: 2018-08-12 21:11+0300\n"
-"Last-Translator: Uladzimir Manulenka <vlma@tut.by>\n"
+"POT-Creation-Date: 2022-03-27 12:04+0000\n"
+"PO-Revision-Date: 2022-10-23 19:19+0300\n"
+"Last-Translator: Launchpad translators\n"
 "Language-Team: \n"
 "Language: be_BY\n"
 "MIME-Version: 1.0\n"
@@ -17,315 +17,257 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 3.0\n"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:6
-msgid "Bijiben"
-msgstr "Bijiben"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "Нататкі"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:7
-msgid "Quickly jot notes"
-msgstr "Хуткае стварэнне нататак"
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "Нататкі для GNOME"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
-"Хутка і проста рабіце нататкі ў вольнай форме ці стварайце спісы. "
-"Захоўвайце столькі нататак, колікі жадаеце, і дзяліцеся імі праз "
-"электронную пошту."
+"Хутка і проста рабіце нататкі ў вольнай форме або стварайце спісы. "
+"Захоўвайце столькі нататак, колькі жадаеце, і дзяліцеся імі праз электронную "
+"пошту."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
 msgstr ""
 "Вы можаце захоўваць нататкі на вашым камп'ютары ці сінхранізаваць іх з "
-"сеціўнымі службамі кшталту ownCloud."
+"сеціўнымі службамі накшталт ownCloud."
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
-msgstr "Выгляд рэдагавання"
+msgstr "Рэдагаванне"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:32
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
-msgstr "Выбраць выгляд"
+msgstr "Вылучэнне"
 
-#: data/appdata/org.gnome.bijiben.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
-msgstr "Выгляд спісу"
-
-#: data/org.gnome.bijiben.desktop.in.in:3 data/org.gnome.bijiben.xml.in:4
-#: src/bjb-application.c:517 src/bjb-window-base.c:17
-msgid "Notes"
-msgstr "Запісы"
+msgstr "Спіс"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.bijiben.desktop.in.in:5
+#: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "запісы;напамін;нататнік;ліпкія нататкі;"
 
-#: data/org.gnome.bijiben.desktop.in.in:6
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
 msgstr "Размяшчайце запісы, адзначайце файлы!"
 
-#: data/org.gnome.bijiben.desktop.in.in:7
+#: data/org.gnome.Notes.desktop.in:7
 msgid "Note-taker"
-msgstr "Нататнік"
+msgstr "Сродак занатоўвання"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.bijiben.desktop.in.in:10
-msgid "org.gnome.bijiben"
-msgstr "org.gnome.bijiben"
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "Стварыць новую нататку"
 
-#: data/org.gnome.bijiben.gschema.xml:10
+#: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
-msgstr "Іншы шрыфт"
+msgstr "Уласны шрыфт"
 
-#: data/org.gnome.bijiben.gschema.xml:11
+#: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
-msgstr ""
-"Пазначаны тут шрыфт будзе выкарыстоўвацца як шрыфт пад час паказу нататак"
+msgstr "Указаны тут шрыфт будзе выкарыстоўвацца для паказу нататак."
 
-#: data/org.gnome.bijiben.gschema.xml:15
+#: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
-msgstr "Ці выкарыстоўваць сістэмны роўнашырокі шрыфт"
+msgstr "Ці выкарыстоўваць сістэмны монашырынны шрыфт"
 
-#: data/org.gnome.bijiben.gschema.xml:19
+#: data/org.gnome.Notes.gschema.xml:19
 msgid "New notes color."
-msgstr "Колер новых нататак"
+msgstr "Колер новых нататак."
 
-#: data/org.gnome.bijiben.gschema.xml:20
+#: data/org.gnome.Notes.gschema.xml:20
 msgid ""
 "The color name set here will be used as the color when creating new notes."
-msgstr ""
-"Пазначаны тут колер будзе выкарыстоўвацца пад час стварэння новых нататак."
+msgstr "Пазначаны тут колер будзе выкарыстоўвацца пры стварэнні новых нататак."
 
-#: data/org.gnome.bijiben.gschema.xml:24
+#: data/org.gnome.Notes.gschema.xml:24
 msgid "Primary notes provider to use for new notes."
-msgstr "Асноўны правайдар для новых нататак."
+msgstr "Асноўная крыніца нататак, якая выкарыстоўваецца для новых нататак."
 
-#: data/org.gnome.bijiben.gschema.xml:25
+#: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
-msgstr "Асноўны нататнік гэта месца дзе ствараюцца новыя нататкі."
+msgstr "Асноўны нататнік – гэта месца, дзе ствараюцца новыя нататкі."
 
-#: data/org.gnome.bijiben.gschema.xml:29
+#: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
-msgstr "Акно разгорнута"
+msgstr "Разгортванне акна"
 
-#: data/org.gnome.bijiben.gschema.xml:30
+#: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."
-msgstr "Стан разгорнутага вакна."
+msgstr "Стан акна – разгорнута."
 
-#: data/org.gnome.bijiben.gschema.xml:34
+#: data/org.gnome.Notes.gschema.xml:34
 msgid "Window size"
-msgstr "Памер вакна"
+msgstr "Памер акна"
 
-#: data/org.gnome.bijiben.gschema.xml:35
+#: data/org.gnome.Notes.gschema.xml:35
 msgid "Window size (width and height)."
-msgstr "Памер вакна (шырыня і вышыня)."
+msgstr "Памер акна (шырыня і вышыня)."
 
-#: data/org.gnome.bijiben.gschema.xml:39
+#: data/org.gnome.Notes.gschema.xml:39
 msgid "Window position"
-msgstr "Знаходжанне акна"
+msgstr "Становішча акна"
 
-#: data/org.gnome.bijiben.gschema.xml:40
+#: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
-msgstr "Знаходжанне акна (x і y)."
+msgstr "Становішча акна (x, y)."
 
-#: data/org.gnome.bijiben.gschema.xml:43
-msgid "How to show note items"
-msgstr "Як паказаць элементы нататкі"
-
-#: data/org.gnome.bijiben.gschema.xml:44
-msgid "Whether to show note items in icon view or list view."
-msgstr "Адлюстроўваць элементы нататак у выглядзе значкоў ці спісу."
-
-#: data/org.gnome.bijiben.gschema.xml:48
+#: data/org.gnome.Notes.gschema.xml:43
 msgid "Text size used by note editor."
 msgstr "Памер тэксту ў рэдактары нататак."
 
-#: data/org.gnome.bijiben.gschema.xml:49
+#: data/org.gnome.Notes.gschema.xml:44
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
 "Даступна тры памеры тэксту: small (малы), medium (сярэдні, прадвызначаны) і "
 "large (вялікі)."
 
-#: data/resources/app-menu.ui:5
-msgid "_Import Notes"
-msgstr "_Імпарт нататак"
-
-#: data/resources/app-menu.ui:9
-msgid "_View Trash"
-msgstr "_Прагляд сметніцы"
-
-#: data/resources/app-menu.ui:15 data/resources/main-toolbar.ui:240
-msgid "_Text Sizes"
-msgstr "Памеры _тэксту"
-
-#: data/resources/app-menu.ui:18 data/resources/main-toolbar.ui:250
-msgid "_Large"
-msgstr "_Вялікі"
-
-#: data/resources/app-menu.ui:23 data/resources/main-toolbar.ui:260
-msgid "_Medium"
-msgstr "_Сярэдні"
-
-#: data/resources/app-menu.ui:28 data/resources/main-toolbar.ui:271
-msgid "_Small"
-msgstr "_Малы"
-
-#: data/resources/app-menu.ui:35
-msgid "_Preferences"
-msgstr "_Налады"
-
-#: data/resources/app-menu.ui:41
-msgid "_Help"
-msgstr "_Дапамога"
-
-#: data/resources/app-menu.ui:45
-msgid "_Keyboard Shortcuts"
-msgstr "_Гарачыя кнопкі"
-
-#: data/resources/app-menu.ui:49
-msgid "_About"
-msgstr "_Пра"
-
-#: data/resources/app-menu.ui:53
-msgid "_Quit"
-msgstr "_Выхад"
-
-#: data/resources/editor-toolbar.ui:40
-msgid "Cut"
-msgstr "Выразаць"
-
-#: data/resources/editor-toolbar.ui:55
-msgid "Copy"
-msgstr "Капіраваць"
-
-#: data/resources/editor-toolbar.ui:70
-msgid "Paste"
-msgstr "Уставіць"
-
-#: data/resources/editor-toolbar.ui:104
+#: data/resources/editor-toolbar.ui:51
 msgid "Bold"
 msgstr "Паўтлусты"
 
-#: data/resources/editor-toolbar.ui:120
+#: data/resources/editor-toolbar.ui:67
 msgid "Italic"
 msgstr "Курсіў"
 
-#: data/resources/editor-toolbar.ui:136
+#: data/resources/editor-toolbar.ui:83
 msgid "Strike"
 msgstr "Закрэслены"
 
-#: data/resources/editor-toolbar.ui:161
-msgid "* "
-msgstr "* "
-
-#: data/resources/editor-toolbar.ui:165
+#: data/resources/editor-toolbar.ui:111
 msgid "Bullets"
 msgstr "Маркеры"
 
-#: data/resources/editor-toolbar.ui:177
-msgid "1."
-msgstr "1."
-
-#: data/resources/editor-toolbar.ui:181
+#: data/resources/editor-toolbar.ui:127
 msgid "List"
 msgstr "Спіс"
 
-#: data/resources/editor-toolbar.ui:205
+#: data/resources/editor-toolbar.ui:166
 msgid "Copy selection to a new note"
-msgstr "Скапіраваць выбранае ў новую нататку"
+msgstr "Скапіраваць вылучанае ў новую нататку"
 
 #: data/resources/empty-results-box.ui:33
 msgid "No notes"
 msgstr "Няма нататак"
 
-#: data/resources/help-overlay.ui:8
+#: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
 msgid "General"
 msgstr "Агульныя"
 
-#: data/resources/help-overlay.ui:13
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "Пошук нататак"
+
+#: data/resources/help-overlay.ui:21
 msgctxt "shortcut window"
 msgid "New note"
 msgstr "Новая нататка"
 
-#: data/resources/help-overlay.ui:20
+#: data/resources/help-overlay.ui:28
 msgctxt "shortcut window"
 msgid "Close window"
 msgstr "Закрыць акно"
 
-#: data/resources/help-overlay.ui:27
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Выйсці"
+
+#: data/resources/help-overlay.ui:42
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "Вярнуцца"
 
-#: data/resources/help-overlay.ui:34
+#: data/resources/help-overlay.ui:49
 msgctxt "shortcut window"
 msgid "Show help"
-msgstr "Паказаць дапамогу"
+msgstr "Паказаць даведку"
 
-#: data/resources/help-overlay.ui:41
+#: data/resources/help-overlay.ui:56
 msgctxt "shortcut window"
-msgid "Shortcuts"
-msgstr "Скарачэнні"
+msgid "Open menu"
+msgstr "Адкрыць меню"
 
-#: data/resources/help-overlay.ui:49
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Спалучэнні клавіш"
+
+#: data/resources/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Selection mode"
 msgstr "Рэжым вылучэння"
 
-#: data/resources/help-overlay.ui:54
+#: data/resources/help-overlay.ui:76
 msgctxt "shortcut window"
 msgid "Cancel selection mode"
 msgstr "Адключыць рэжым вылучэння"
 
-#: data/resources/help-overlay.ui:61
+#: data/resources/help-overlay.ui:83
 msgctxt "shortcut window"
 msgid "Select all"
 msgstr "Вылучыць усё"
 
-#: data/resources/help-overlay.ui:69
+#: data/resources/help-overlay.ui:91
 msgctxt "shortcut window"
 msgid "Note edit mode"
 msgstr "Рэжым рэдагавання нататак"
 
-#: data/resources/help-overlay.ui:74
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Адкрыць у новым акне"
+
+#: data/resources/help-overlay.ui:103
 msgctxt "shortcut window"
 msgid "Bold"
 msgstr "Паўтлусты"
 
-#: data/resources/help-overlay.ui:81
+#: data/resources/help-overlay.ui:110
 msgctxt "shortcut window"
 msgid "Italic"
 msgstr "Курсіў"
 
-#: data/resources/help-overlay.ui:88
+#: data/resources/help-overlay.ui:117
 msgctxt "shortcut window"
 msgid "Strike through"
-msgstr "Закрэсліць"
+msgstr "Закрэслены"
 
-#: data/resources/help-overlay.ui:95
+#: data/resources/help-overlay.ui:124
 msgctxt "shortcut window"
 msgid "Undo"
-msgstr "Адмяніць апошняе дзеянне"
+msgstr "Адрабіць"
 
-#: data/resources/help-overlay.ui:102
+#: data/resources/help-overlay.ui:131
 msgctxt "shortcut window"
 msgid "Redo"
-msgstr "Перарабіць"
+msgstr "Паўтарыць дзеянне"
 
-#: data/resources/help-overlay.ui:109
+#: data/resources/help-overlay.ui:138
 msgctxt "shortcut window"
 msgid "Move note to trash"
 msgstr "Перанесці нататку ў сметніцу"
 
-#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:218
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
 msgid "Import Notes"
 msgstr "Імпарт нататак"
 
@@ -335,135 +277,143 @@ msgstr "_Скасаваць"
 
 #: data/resources/import-dialog.ui:22
 msgid "_Import"
-msgstr "_Імпарт"
+msgstr "_Імпартаваць"
 
 #: data/resources/import-dialog.ui:41
 msgid "Select import location"
-msgstr "Выберыце месца імпартавання"
+msgstr "Выберыце месца для імпартавання"
 
 #: data/resources/import-dialog.ui:78
 msgid "Gnote application"
-msgstr "Дастасаванне Gnote"
+msgstr "Праграма Gnote"
 
 #: data/resources/import-dialog.ui:136
 msgid "Tomboy application"
-msgstr "Дастасаванне Tomboy"
+msgstr "Праграма Tomboy"
 
 #: data/resources/import-dialog.ui:192
 msgid "Custom Location"
-msgstr "Выбранае знаходжанне"
+msgstr "Выбранае месца"
 
 #: data/resources/import-dialog.ui:224
 msgid "Select a Folder"
-msgstr "Выбраць папку"
+msgstr "Выберыце папку"
 
 #: data/resources/main-toolbar.ui:14
 msgid "_New"
-msgstr "_Стварыць"
+msgstr "_Новая"
 
-#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:33
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Колер нататкі"
 
 #. Translators: “Empty” is a verb.
 #: data/resources/main-toolbar.ui:55
 msgid "_Empty"
-msgstr "_Пусты"
+msgstr "_Ачысціць"
 
 #: data/resources/main-toolbar.ui:74
 msgid "Exit selection mode"
-msgstr "Выхад з рэжыму вылучэння"
+msgstr "Выйсці з рэжыму вылучэння"
 
 #: data/resources/main-toolbar.ui:94
 msgid "Search note titles, content and notebooks"
-msgstr "Пошук на назве нататкі, зместу і нататнікам"
+msgstr "Пошук па назве нататкі, зместу і нататнікам"
 
-#: data/resources/main-toolbar.ui:119
-msgid "View notes and notebooks in a grid"
-msgstr "Паказаць нататкі і нататнікі ў выглядзе табліцы"
-
-#: data/resources/main-toolbar.ui:137
-msgid "View notes and notebooks in a list"
-msgstr "Паказаць нататкі і нататнікі ў выглядзе спісу"
-
-#: data/resources/main-toolbar.ui:161
+#: data/resources/main-toolbar.ui:116
 msgid "Selection mode"
 msgstr "Рэжым вылучэння"
 
-#: data/resources/main-toolbar.ui:175
+#: data/resources/main-toolbar.ui:130
 msgid "Open menu"
 msgstr "Адкрыць меню"
 
-#: data/resources/main-toolbar.ui:191
-msgid "More options…"
-msgstr "Болей параметраў…"
+#: data/resources/main-toolbar.ui:150
+msgid "More options"
+msgstr "Больш параметраў"
 
-#: data/resources/main-toolbar.ui:226
+#: data/resources/main-toolbar.ui:189
 msgid "View Trash"
 msgstr "Прагляд сметніцы"
 
-#: data/resources/main-toolbar.ui:286 data/resources/settings-dialog.ui:10
+#: data/resources/main-toolbar.ui:206
+msgid "Text Sizes"
+msgstr "Памер тэксту"
+
+#: data/resources/main-toolbar.ui:216
+msgid "_Large"
+msgstr "_Вялікі"
+
+#: data/resources/main-toolbar.ui:226
+msgid "_Medium"
+msgstr "_Сярэдні"
+
+#: data/resources/main-toolbar.ui:236
+msgid "_Small"
+msgstr "_Малы"
+
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
 msgid "Preferences"
-msgstr "Налады"
+msgstr "Параметры"
 
-#: data/resources/main-toolbar.ui:300
-msgid "Help"
-msgstr "Дапамога"
-
-#: data/resources/main-toolbar.ui:308
+#: data/resources/main-toolbar.ui:263
 msgid "Keyboard Shortcuts"
-msgstr "Клавіятурныя скароты"
+msgstr "Спалучэнні клавіш"
 
-#: data/resources/main-toolbar.ui:316
-msgid "About"
-msgstr "Пра праграму"
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "Даведка"
+
+#: data/resources/main-toolbar.ui:281
+msgid "About Notes"
+msgstr "Пра Нататкі"
+
+#: data/resources/main-toolbar.ui:303
+msgid "Open in New Window"
+msgstr "Адкрыць у новым акне"
+
+#: data/resources/main-toolbar.ui:320
+msgid "Undo"
+msgstr "Адрабіць"
 
 #: data/resources/main-toolbar.ui:329
-msgid "Open in New Window"
-msgstr "Адчыніць у новым акне"
-
-#: data/resources/main-toolbar.ui:343
-msgid "Undo"
-msgstr "Адмяніць апошняе дзеянне"
-
-#: data/resources/main-toolbar.ui:351
 msgid "Redo"
-msgstr "Перарабіць"
+msgstr "Паўтарыць дзеянне"
 
-#: data/resources/main-toolbar.ui:365 data/resources/organize-dialog.ui:4
-#: data/resources/selection-toolbar.ui:25
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Нататнікі"
 
-#: data/resources/main-toolbar.ui:373
+#: data/resources/main-toolbar.ui:355
 msgid "Email this Note"
-msgstr "Даслаць гэтую нататку па электроннай пошце"
+msgstr "Даслаць гэтую нататку па эл. пошце"
 
-#: data/resources/main-toolbar.ui:381 data/resources/selection-toolbar.ui:67
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
-msgstr "Перанесці ў сметніцу"
+msgstr "Перамясціць у сметніцу"
 
 #: data/resources/organize-dialog.ui:16
 msgid "Enter a name to create a notebook"
-msgstr "Увядзіце назву каб стварыць нататнік"
+msgstr "Увядзіце назву, каб стварыць нататнік"
 
 #: data/resources/organize-dialog.ui:37
 msgid "New notebook"
 msgstr "Новы нататнік"
 
-#: data/resources/selection-toolbar.ui:50
+#: data/resources/selection-toolbar.ui:60
 msgid "Share note"
 msgstr "Падзяліцца нататкай"
 
-#: data/resources/selection-toolbar.ui:59
+#: data/resources/selection-toolbar.ui:78
 msgid "Open in another window"
-msgstr "Адчыніць у іншым акне"
+msgstr "Адкрыць у іншым акне"
 
-#: data/resources/selection-toolbar.ui:92
+#: data/resources/selection-toolbar.ui:119
 msgid "Restore"
 msgstr "Аднавіць"
 
-#: data/resources/selection-toolbar.ui:100
+#: data/resources/selection-toolbar.ui:127
 msgid "Permanently Delete"
 msgstr "Выдаліць назаўсёды"
 
@@ -473,7 +423,7 @@ msgstr "Выкарыстоўваць сістэмны шрыфт"
 
 #: data/resources/settings-dialog.ui:50
 msgid "Note Font"
-msgstr "Новы шрыфт"
+msgstr "Шрыфт нататкі"
 
 #: data/resources/settings-dialog.ui:62
 msgid "Default Color"
@@ -489,61 +439,65 @@ msgstr "Выберыце прадвызначанае месца захоўва�
 
 #: data/resources/settings-dialog.ui:157
 msgid "Primary Book"
-msgstr "Асноўная кніга"
+msgstr "Асноўны нататнік"
 
-#: src/bijiben-shell-search-provider.c:272 src/bjb-main-toolbar.c:458
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Без назвы"
 
-#: src/bjb-application.c:341
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
-msgstr "Паказаць версію дастасавання"
+msgstr "Паказаць версію праграмы"
 
-#: src/bjb-application.c:343
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Стварыць новую нататку"
 
-#: src/bjb-application.c:345
+#: src/bjb-application.c:444
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:353
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Узяць нататкі і экспартаваць іх куды-небудзь."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:364
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
-msgstr "Не атрымалася разабраць аргумэнты"
+msgstr "Не ўдалося разабраць аргументы"
 
-#: src/bjb-application.c:372
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "Нататкі GNOME"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:384
+#: src/bjb-application.c:483
 msgid "Could not register the application"
-msgstr "Не магчыма зарэгістраваць дастасаванне"
+msgstr "Не ўдалося зарэгістраваць праграму"
 
-#: src/bjb-application.c:518
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Просты нататнік для GNOME"
 
-#: src/bjb-application.c:524
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr ""
 "Uladzimir Manulenka <vlma@tut.by>\n"
 "Юрась Шумовіч <shumovichy@gmail.com>"
 
-#: src/bjb-color-button.c:137
+#: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Колер нататкі"
 
+#: src/bjb-controller.c:236
+msgid "Notebook"
+msgstr "Нататнік"
+
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Націсніце кнопку \"Новая\" каб старыць нататку."
+msgstr "Націсніце кнопку «Новая», каб старыць нататку."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
@@ -551,38 +505,30 @@ msgstr "Вой"
 
 #: src/bjb-empty-results-box.c:91
 msgid "Please install “Tracker” then restart the application."
-msgstr "Калі ласка ўсталюйце \"Tracker\" і перазапусціце дастасаванне."
+msgstr "Усталюйце «Tracker» і перазапусціце праграму."
 
-#: src/bjb-load-more-button.c:69 src/bjb-load-more-button.c:147
-msgid "Load More"
-msgstr "Загрузіць болей"
-
-#: src/bjb-load-more-button.c:90
-msgid "Loading…"
-msgstr "Загрузка…"
-
-#: src/bjb-main-toolbar.c:208
+#: src/bjb-main-toolbar.c:134
 msgid "Click on items to select them"
-msgstr "Націсніце на элемент каб яго выбраць"
+msgstr "Націсніце на элемент, каб яго вылучыць"
 
-#: src/bjb-main-toolbar.c:210
+#: src/bjb-main-toolbar.c:136
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
-msgstr[0] "%d выбраны"
-msgstr[1] "%d выбрана"
-msgstr[2] "%d выбраных"
+msgstr[0] "Вылучана: %d"
+msgstr[1] "Вылучана: %d"
+msgstr[2] "Вылучана: %d"
 
-#: src/bjb-main-toolbar.c:343
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Вынікі для %s"
 
-#: src/bjb-main-toolbar.c:346
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Новыя і апошнія"
 
-#: src/bjb-main-toolbar.c:434
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Сметніца"
 
@@ -591,30 +537,31 @@ msgstr "Сметніца"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:498
+#: src/bjb-main-toolbar.c:367
 #, c-format
-msgid "Last updated %s"
-msgstr "Апошнія абноўленыя %s"
+msgid "Last updated: %s"
+msgstr "Апошняе абнаўленне: %s"
 
-#: src/libbiji/biji-date-time.c:30 src/libbiji/biji-date-time.c:51
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
 msgid "Unknown"
-msgstr "Невядомы"
+msgstr "Невядома"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "Учора"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "У гэтым месяцы"
 
 #: src/libbiji/biji-date-time.c:38
 msgid "Today"
 msgstr "Сёння"
 
-#: src/libbiji/biji-date-time.c:42
-msgid "Yesterday"
-msgstr "Учора"
-
 #: src/libbiji/biji-date-time.c:47
 msgid "This week"
 msgstr "На гэтым тыдні"
-
-#: src/libbiji/biji-date-time.c:56
-msgid "This month"
-msgstr "У гэтым месяцы"
 
 #: src/libbiji/biji-date-time.c:60
 msgid "This year"
@@ -624,9 +571,107 @@ msgstr "У гэтым годзе"
 msgid "Local"
 msgstr "Лакальны"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Лакальнае сховішча"
+
+#~ msgid "Note path of the notes opened when Notes quits last time."
+#~ msgstr "Шлях да нататак, якія былі адкрытыя перад выхадам з праграмы."
+
+#~ msgid ""
+#~ "This stores the note path of the last opened item, so that we can open it "
+#~ "on startup."
+#~ msgstr ""
+#~ "Тут захоўваецца шлях да апошніх адкрытых нататак, каб мець магчымасць "
+#~ "адкрыць іх пры запуску."
+
+#~ msgid "New Notebook…"
+#~ msgstr "Новы нататнік…"
+
+#~ msgid "Add"
+#~ msgstr "Дадаць"
+
+#~ msgid "All Notes"
+#~ msgstr "Усе нататкі"
+
+#~ msgid "Indent"
+#~ msgstr "Водступ"
+
+#~ msgid "Outdent"
+#~ msgstr "Выступ"
+
+#~ msgid "Show verbose logs"
+#~ msgstr "Паказаць падрабязны журнал"
+
+#~ msgid "This note is being viewed in another window."
+#~ msgstr "Гэтая нататка адкрыта ў іншым акне."
+
+#~ msgid "Bijiben"
+#~ msgstr "Bijiben"
+
+#~ msgid "Quickly jot notes"
+#~ msgstr "Хуткае стварэнне нататак"
+
+#~ msgid "org.gnome.bijiben"
+#~ msgstr "org.gnome.bijiben"
+
+#~ msgid "How to show note items"
+#~ msgstr "Як паказаць элементы нататкі"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr "Адлюстроўваць элементы нататак у выглядзе значкоў ці спісу."
+
+#~ msgid "_Import Notes"
+#~ msgstr "_Імпарт нататак"
+
+#~ msgid "_View Trash"
+#~ msgstr "_Прагляд сметніцы"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Налады"
+
+#~ msgid "_Help"
+#~ msgstr "_Дапамога"
+
+#~ msgid "_Keyboard Shortcuts"
+#~ msgstr "_Гарачыя кнопкі"
+
+#~ msgid "_About"
+#~ msgstr "_Пра"
+
+#~ msgid "Cut"
+#~ msgstr "Выразаць"
+
+#~ msgid "Copy"
+#~ msgstr "Капіраваць"
+
+#~ msgid "Paste"
+#~ msgstr "Уставіць"
+
+#~ msgid "* "
+#~ msgstr "* "
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "Скарачэнні"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "Паказаць нататкі і нататнікі ў выглядзе табліцы"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "Паказаць нататкі і нататнікі ў выглядзе спісу"
+
+#~ msgid "About"
+#~ msgstr "Пра праграму"
+
+#~ msgid "Load More"
+#~ msgstr "Загрузіць болей"
+
+#~ msgid "Loading…"
+#~ msgstr "Загрузка…"
 
 #~ msgid "Notes is an editor allowing to make simple lists for later use."
 #~ msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-03-27 12:04+0000\n"
+"POT-Creation-Date: 2022-11-06 14:14+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <daniel.abzakh@gmail.com>\n"
 "Language: ab\n"
@@ -68,7 +68,7 @@ msgstr "Азгәаҭа ҿыц аҧҵара"
 
 #: data/org.gnome.Notes.gschema.xml:10
 msgid "Custom Font"
-msgstr ""
+msgstr "Асистемтә шрифт ахархәара"
 
 #: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
@@ -97,7 +97,7 @@ msgstr ""
 
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Window maximized"
-msgstr ""
+msgstr "Аԥенџьыр иамоуп иреиҳау ашәагаа"
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid "Window maximized state."

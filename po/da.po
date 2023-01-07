@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-07-22 13:04+0000\n"
+"POT-Creation-Date: 2022-11-06 14:14+0000\n"
 "PO-Revision-Date: 2020-08-24 19:19+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:608 src/bjb-window-base.c:17
+#: src/bjb-application.c:615 src/bjb-window-base.c:17
 msgid "Notes"
 msgstr "Noter"
 
@@ -444,47 +444,47 @@ msgstr "Vælg standardplacering til lagring:"
 msgid "Primary Book"
 msgstr "Primær bog"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "Unavngivet"
 
-#: src/bjb-application.c:432
+#: src/bjb-application.c:440
 msgid "Show the application’s version"
 msgstr "Vis programmets version"
 
-#: src/bjb-application.c:434
+#: src/bjb-application.c:442
 msgid "Create a new note"
 msgstr "Opret en ny note"
 
-#: src/bjb-application.c:436
+#: src/bjb-application.c:444
 msgid "[FILE…]"
 msgstr "[FIL …]"
 
-#: src/bjb-application.c:444
+#: src/bjb-application.c:452
 msgid "Take notes and export them everywhere."
 msgstr "Opret noter og eksportér dem hvor som helst."
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:455
+#: src/bjb-application.c:463
 msgid "Could not parse arguments"
 msgstr "Kunne ikke fortolke argumenter"
 
-#: src/bjb-application.c:463
+#: src/bjb-application.c:471
 msgid "GNOME Notes"
 msgstr "GNOME Noter"
 
 #. Translators: this is a fatal error quit message
 #. * printed on the command line
-#: src/bjb-application.c:475
+#: src/bjb-application.c:483
 msgid "Could not register the application"
 msgstr "Kunne ikke registrere programmet"
 
-#: src/bjb-application.c:609
+#: src/bjb-application.c:616
 msgid "Simple notebook for GNOME"
 msgstr "Simpelt noteprogram for GNOME"
 
-#: src/bjb-application.c:615
+#: src/bjb-application.c:622
 msgid "translator-credits"
 msgstr ""
 "Joe Hansen, 2013\n"
@@ -499,13 +499,13 @@ msgstr ""
 msgid "Note Color"
 msgstr "Notefarve"
 
-#: src/bjb-controller.c:239
+#: src/bjb-controller.c:236
 msgid "Notebook"
 msgstr "Notesbog"
 
 #: src/bjb-empty-results-box.c:63
 msgid "Press the New button to create a note."
-msgstr "Tryk på “Ny”-tasten for at oprette en ny note."
+msgstr "Tryk på knappen “Ny” for at oprette en ny note."
 
 #: src/bjb-empty-results-box.c:85
 msgid "Oops"
@@ -526,16 +526,16 @@ msgid_plural "%d selected"
 msgstr[0] "%d valgt"
 msgstr[1] "%d valgte"
 
-#: src/bjb-main-toolbar.c:228
+#: src/bjb-main-toolbar.c:230
 #, c-format
 msgid "Results for %s"
 msgstr "Resultater for %s"
 
-#: src/bjb-main-toolbar.c:231
+#: src/bjb-main-toolbar.c:233
 msgid "New and Recent"
 msgstr "Nye og seneste"
 
-#: src/bjb-main-toolbar.c:324
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "Papirkurv"
 
@@ -544,7 +544,7 @@ msgstr "Papirkurv"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:392
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "Senest opdateret: %s"
@@ -579,7 +579,7 @@ msgstr "Dette år"
 msgid "Local"
 msgstr "Lokal"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:364
 msgid "Local storage"
 msgstr "Lokalt lager"
 

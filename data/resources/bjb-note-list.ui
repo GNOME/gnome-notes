@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BjbNoteList" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
+    <style>
+      <class name="view"/>
+    </style>
+
+    <child>
+      <object class="GtkSearchEntry" id="search_entry">
+        <property name="visible">True</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <signal name="search-changed" handler="note_list_search_changed_cb" swapped="yes" />
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkSeparator">
+        <property name="visible">True</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkStack" id="main_stack">
+        <property name="visible">True</property>
+        <property name="vexpand">True</property>
+        <property name="hhomogeneous">False</property>
+        <property name="vhomogeneous">False</property>
+
+        <child>
+          <object class="GtkBox" id="notes_box">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkListBox" id="notes_list_box">
+                <property name="visible">True</property>
+                <property name="valign">start</property>
+                <property name="selection-mode">none</property>
+                <property name="activate-on-single-click">True</property>
+                <signal name="row-activated" handler="note_list_row_activated_cb" swapped="yes" />
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyStatusPage" id="status_page">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+      </object> <!-- ./GtkStack main_stack -->
+    </child>
+  </template>
+</interface>

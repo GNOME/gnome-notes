@@ -21,7 +21,7 @@
 #pragma once
 
 #include <gtk/gtk.h>
-#include "bjb-list-view.h"
+#include <libbiji/libbiji.h>
 
 G_BEGIN_DECLS
 

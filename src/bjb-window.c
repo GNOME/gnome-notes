@@ -35,12 +35,10 @@
 
 #include "bjb-application.h"
 #include "bjb-empty-results-box.h"
-#include "bjb-list-view.h"
 #include "bjb-note-list.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
 #include "bjb-notebooks-dialog.h"
-#include "bjb-search-toolbar.h"
 #include "bjb-share.h"
 #include "bjb-window.h"
 
@@ -56,7 +54,6 @@ struct _BjbWindow
   gulong                note_deleted;
   gulong                note_trashed;
 
-  GtkStack             *stack;
   BjbWindowView         current_view;
   BjbNoteList          *note_list;
 
@@ -69,7 +66,6 @@ struct _BjbWindow
 
   HdyLeaflet           *main_leaflet;
   HdyHeaderGroup       *header_group;
-  GtkStack             *main_stack;
   GtkWidget            *back_button;
   GtkWidget            *filter_label;
   GtkWidget            *filter_menu_button;
@@ -79,7 +75,6 @@ struct _BjbWindow
   GtkWidget            *note_view;
   GtkWidget            *notebooks_box;
   GtkWidget            *sidebar_box;
-  GtkWidget            *search_bar;
   GtkWidget            *title_entry;
   GtkWidget            *new_window_item;
   GtkWidget            *last_update_item;
@@ -122,45 +117,6 @@ on_note_renamed (BijiNoteObj *note,
   hdy_header_bar_set_custom_title (HDY_HEADER_BAR (self->note_headerbar),
                                    self->title_entry);
   gtk_widget_show (self->title_entry);
-}
-
-static void
-on_note_list_row_activated (GtkListBox    *box,
-                            GtkListBoxRow *row,
-                            gpointer       user_data)
-{
-  const char *note_uuid;
-  gpointer to_open;
-  BijiManager *manager;
-  BjbWindow *self = BJB_WINDOW (user_data);
-  GList *windows;
-
-  windows = gtk_application_get_windows (gtk_window_get_application (GTK_WINDOW (self)));
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-  note_uuid = bjb_list_view_row_get_uuid (BJB_LIST_VIEW_ROW (row));
-  to_open = biji_manager_get_item_at_path (manager, note_uuid);
-
-  for (GList *node = windows; BIJI_IS_NOTE_OBJ (to_open) && node; node = node->next)
-    {
-      if (BJB_IS_WINDOW (node->data) &&
-          self != node->data &&
-          bjb_window_get_note (node->data) == BIJI_NOTE_OBJ (to_open))
-        {
-          gtk_window_present (node->data);
-          return;
-        }
-    }
-
-  if (to_open && BIJI_IS_NOTE_OBJ (to_open))
-    {
-      hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
-
-      /* Only open the note if it's not already opened. */
-      if (!biji_note_obj_is_opened (to_open))
-        {
-          bjb_window_set_note (self, to_open);
-        }
-    }
 }
 
 static void
@@ -264,16 +220,6 @@ bjb_window_finalize (GObject *object)
   G_OBJECT_CLASS (bjb_window_parent_class)->finalize (object);
 }
 
-static void
-clear_text_in_search_entry (BjbWindow *self)
-{
-  GtkEntry *search_entry;
-
-  /* Clear the content in search bar if there is any in it. */
-  search_entry = bjb_search_toolbar_get_entry_widget (BJB_SEARCH_TOOLBAR (self->search_bar));
-  gtk_entry_set_text (search_entry, "");
-}
-
 static gboolean
 on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
 {
@@ -369,11 +315,6 @@ on_detach_window_cb (GSimpleAction *action,
   width = gtk_widget_get_allocated_width (GTK_WIDGET (self->note_view));
   gtk_window_get_size (GTK_WINDOW (self), NULL, &height);
 
-  if (biji_note_obj_is_trashed (note))
-    bjb_window_set_view (self, BJB_WINDOW_ARCHIVE_VIEW);
-  else
-    bjb_window_set_view (self, BJB_WINDOW_MAIN_VIEW);
-
   bjb_note_view_set_detached (BJB_NOTE_VIEW (self->note_view), TRUE);
 
   detached_window = BJB_WINDOW (bjb_window_new ());
@@ -386,7 +327,6 @@ on_detach_window_cb (GSimpleAction *action,
 
   detached_window->controller = g_object_ref (self->controller);
 
-  bjb_window_set_view (detached_window, self->current_view);
   bjb_window_set_is_main (detached_window, FALSE);
   bjb_window_set_note (detached_window, note);
   gtk_window_present (GTK_WINDOW (detached_window));
@@ -457,12 +397,10 @@ on_email_cb (GSimpleAction *action,
 static void
 show_all_notes (BjbWindow *self)
 {
-  clear_text_in_search_entry (self);
   destroy_note_if_needed (self);
 
   /* Going back from a notebook. */
   bjb_note_list_set_notebook (self->note_list, NULL);
-  bjb_controller_set_notebook (self->controller, NULL);
 
   bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
   gtk_label_set_text (GTK_LABEL (self->filter_label), _("All Notes"));
@@ -471,7 +409,6 @@ show_all_notes (BjbWindow *self)
 static void
 show_trash (BjbWindow *self)
 {
-  clear_text_in_search_entry (self);
   destroy_note_if_needed (self);
 
   bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
@@ -489,7 +426,6 @@ on_show_notebook_cb (GSimpleAction *action,
   BijiNotebook *notebook;
   BijiManager *manager;
 
-  clear_text_in_search_entry (self);
   destroy_note_if_needed (self);
 
   note_uuid = g_variant_get_string (variant, NULL);
@@ -501,7 +437,6 @@ on_show_notebook_cb (GSimpleAction *action,
   {
     manager = bjb_window_get_manager (GTK_WIDGET (self));
     notebook = biji_manager_find_notebook (manager, note_uuid);
-    bjb_controller_set_notebook (self->controller, notebook);
     bjb_note_list_set_notebook (self->note_list, notebook);
 
     /* Update headerbar title. */
@@ -668,7 +603,6 @@ bjb_window_constructed (GObject *obj)
 {
   BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (obj);
-  GtkListBox *list_box;
   GListModel *notebooks;
   GdkRectangle geometry;
 
@@ -816,7 +750,7 @@ bjb_window_set_is_main (BjbWindow *self,
 
       if (!self->controller)
         self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default())),
-                                               GTK_WINDOW (self), NULL);
+                                               GTK_WINDOW (self));
       notes = bjb_controller_get_notes (self->controller);
       bjb_note_list_set_model (self->note_list, notes);
     }

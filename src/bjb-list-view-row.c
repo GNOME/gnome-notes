@@ -20,7 +20,6 @@
 
 #include <biji-string.h>
 #include "bjb-application.h"
-#include "bjb-list-view.h"
 #include "bjb-list-view-row.h"
 #include "bjb-utils.h"
 
@@ -29,7 +28,6 @@ struct _BjbListViewRow
   GtkListBoxRow   parent_instance;
 
   GtkCssProvider *css_provider;
-  BjbListView    *view;
   GtkLabel       *title;
   GtkLabel       *content;
   GtkLabel       *updated_time;

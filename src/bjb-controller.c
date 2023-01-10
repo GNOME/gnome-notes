@@ -43,8 +43,6 @@ struct _BjbController
 
   /* needle, notebook and group define what the controller shows */
   BijiManager    *manager;
-  gchar          *needle;
-  BijiNotebook   *notebook;
   BijiItemsGroup  group;
 
   BjbWindow      *window;
@@ -53,7 +51,6 @@ struct _BjbController
   GListStore          *list_of_notes;
   GtkFlattenListModel *flatten_notes;
   GtkSortListModel    *sorted_notes;
-  GtkFilterListModel  *filter_notes;
 };
 
 
@@ -61,7 +58,6 @@ enum {
   PROP_0,
   PROP_BOOK,
   PROP_WINDOW,
-  PROP_NEEDLE,
   NUM_PROPERTIES
 };
 
@@ -84,65 +80,10 @@ controller_sort_notes (gconstpointer a,
   return time_b - time_a;
 }
 
-static gboolean
-controller_filter_notes (gpointer note,
-                         gpointer user_data)
-{
-  BjbController *self = user_data;
-  const char *title, *content;
-
-  if (self->notebook)
-    {
-      GList *notebooks;
-      const char *notebook;
-      gboolean match = FALSE;
-
-      notebook = biji_notebook_get_title (self->notebook);
-      notebooks = biji_note_obj_get_notebooks (note);
-
-      for (GList *item = notebooks; item; item = item->next)
-        {
-          if (g_strcmp0 (notebook, item->data) != 0)
-            continue;
-
-          match = TRUE;
-          break;
-        }
-
-      if (!match)
-        return FALSE;
-    }
-
-  if (!self->needle || !*self->needle)
-    return TRUE;
-
-  title = biji_note_obj_get_title (note);
-
-  if (title && strstr (title, self->needle))
-    return TRUE;
-
-  content = biji_note_obj_get_raw_text (note);
-
-  if (content && strstr (content, self->needle))
-    return TRUE;
-
-  return FALSE;
-}
-
 static void
 bjb_controller_init (BjbController *self)
 {
   self->group = BIJI_LIVING_ITEMS;
-}
-
-static void
-bjb_controller_finalize (GObject *object)
-{
-  BjbController *self = BJB_CONTROLLER(object);
-
-  g_free (self->needle);
-
-  G_OBJECT_CLASS (bjb_controller_parent_class)->finalize (object);
 }
 
 static void
@@ -160,9 +101,6 @@ bjb_controller_get_property (GObject  *object,
     break;
   case PROP_WINDOW:
     g_value_set_object (value, self->window);
-    break;
-  case PROP_NEEDLE:
-    g_value_set_string (value, self->needle);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -186,27 +124,10 @@ bjb_controller_set_property (GObject  *object,
   case PROP_WINDOW:
     self->window = g_value_get_object (value);
     break;
-  case PROP_NEEDLE:
-    self->needle = g_strdup (g_value_get_string (value));
-    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     break;
   }
-}
-
-void
-bjb_controller_apply_needle (BjbController *self)
-{
-  GtkFilter *filter;
-
-  filter = gtk_filter_list_model_get_filter (self->filter_notes);
-  gtk_filter_changed (filter, GTK_FILTER_CHANGE_DIFFERENT);
-
-  if (self->group == BIJI_LIVING_ITEMS)
-    bjb_window_set_view (self->window, BJB_WINDOW_MAIN_VIEW);
-  else
-    bjb_window_set_view (self->window, BJB_WINDOW_ARCHIVE_VIEW);
 }
 
 static void
@@ -215,7 +136,6 @@ bjb_controller_constructed (GObject *obj)
   BjbController *self = BJB_CONTROLLER (obj);
   GListModel *notes;
   GtkSorter *sorter;
-  GtkFilter *filter;
 
   G_OBJECT_CLASS(bjb_controller_parent_class)->constructed(obj);
 
@@ -227,16 +147,12 @@ bjb_controller_constructed (GObject *obj)
   sorter = gtk_custom_sorter_new (controller_sort_notes, NULL, NULL);
   self->sorted_notes = gtk_sort_list_model_new (G_LIST_MODEL (self->flatten_notes), sorter);
 
-  filter = gtk_custom_filter_new (controller_filter_notes, self, NULL);
-  self->filter_notes = gtk_filter_list_model_new (G_LIST_MODEL (self->sorted_notes), filter);
-
   /*
   * Add only active notes, which is the default.  Archived
    * notes shall be added when the user filters notes
    */
   notes = biji_manager_get_notes (self->manager, BIJI_LIVING_ITEMS);
   g_list_store_append (self->list_of_notes, notes);
-  bjb_controller_apply_needle (self);
 }
 
 static void
@@ -246,7 +162,6 @@ bjb_controller_class_init (BjbControllerClass *klass)
 
   object_class->get_property = bjb_controller_get_property;
   object_class->set_property = bjb_controller_set_property;
-  object_class->finalize = bjb_controller_finalize;
   object_class->constructed = bjb_controller_constructed;
 
   properties[PROP_BOOK] = g_param_spec_object ("manager",
@@ -265,28 +180,17 @@ bjb_controller_class_init (BjbControllerClass *klass)
                                                  G_PARAM_CONSTRUCT |
                                                  G_PARAM_STATIC_STRINGS);
 
-  properties[PROP_NEEDLE] = g_param_spec_string ("needle",
-                                                 "Needle",
-                                                 "String to search notes",
-                                                 NULL,
-                                                 G_PARAM_READWRITE |
-                                                 G_PARAM_CONSTRUCT |
-                                                 G_PARAM_STATIC_STRINGS);
-
-
   g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
 
 }
 
 BjbController *
 bjb_controller_new (BijiManager  *manager,
-                    GtkWindow     *window,
-                    gchar         *needle)
+                    GtkWindow     *window)
 {
   return g_object_new ( BJB_TYPE_CONTROLLER,
               "manager", manager,
               "window", window,
-              "needle", needle,
               NULL);
 }
 
@@ -296,51 +200,13 @@ bjb_controller_set_manager (BjbController *self, BijiManager  *manager )
   self->manager = manager;
 }
 
-void
-bjb_controller_set_needle (BjbController *self, const gchar *needle )
-{
-  if (self->needle)
-    g_free (self->needle);
-
-  self->needle = g_strdup (needle);
-  bjb_controller_apply_needle (self);
-}
-
-gchar *
-bjb_controller_get_needle (BjbController *self)
-{
-  if (!self->needle)
-    return NULL;
-
-  return self->needle;
-}
-
 GListModel *
 bjb_controller_get_notes (BjbController *self)
 {
   g_return_val_if_fail (BJB_IS_CONTROLLER (self), NULL);
 
-  return G_LIST_MODEL (self->filter_notes);
+  return G_LIST_MODEL (self->sorted_notes);
 }
-
-void
-bjb_controller_set_notebook (BjbController *self,
-                             BijiNotebook *coll)
-{
-  if (g_set_object (&self->notebook, coll))
-    {
-      GtkFilter *filter;
-
-      g_free (self->needle);
-      self->needle = g_strdup ("");
-      self->notebook = coll;
-
-      filter = gtk_filter_list_model_get_filter (self->filter_notes);
-      gtk_filter_changed (filter, GTK_FILTER_CHANGE_DIFFERENT);
-    }
-}
-
-
 
 BijiItemsGroup
 bjb_controller_get_group (BjbController *self)
@@ -362,7 +228,6 @@ bjb_controller_set_group (BjbController   *self,
   self->group = group;
 
   g_list_store_remove_all (self->list_of_notes);
-  g_clear_object (&self->notebook);
 
   notes = biji_manager_get_notes (self->manager, group);
   g_list_store_append (self->list_of_notes, notes);

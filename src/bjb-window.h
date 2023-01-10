@@ -48,9 +48,6 @@ GtkWidget       *bjb_window_new            (void);
 gboolean         bjb_window_get_is_main    (BjbWindow     *self);
 void             bjb_window_set_is_main    (BjbWindow     *self,
                                             gboolean       is_main);
-BjbWindowView    bjb_window_get_view       (BjbWindow     *self);
-void             bjb_window_set_view       (BjbWindow     *self,
-                                            BjbWindowView  view);
 BijiNoteObj     *bjb_window_get_note       (BjbWindow     *self);
 void             bjb_window_set_note       (BjbWindow     *self,
                                             BijiNoteObj   *note);

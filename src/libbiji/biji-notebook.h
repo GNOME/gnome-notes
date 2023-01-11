@@ -32,12 +32,8 @@ G_DECLARE_FINAL_TYPE (BijiNotebook, biji_notebook, BIJI, NOTEBOOK, GObject)
  * To create a brand new notebook in tracker rather gobjectize existing one,
  * see biji_create_new_notebook_async */
 BijiNotebook * biji_notebook_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime);
-gint64         biji_notebook_get_mtime  (BijiNotebook *self);
-gpointer       biji_notebook_manager    (BijiNotebook *self);
 const char    *biji_notebook_get_title  (BijiNotebook *self);
 const char    *biji_notebook_get_uuid   (BijiNotebook *self);
-gboolean       biji_notebook_trash      (BijiNotebook *self);
-
 
 /* Watching for tracker would be best. Right now manually called. */
 void             biji_notebook_refresh (BijiNotebook *collection);

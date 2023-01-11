@@ -52,5 +52,3 @@ BijiNoteObj     *bjb_window_get_note       (BjbWindow     *self);
 void             bjb_window_set_note       (BjbWindow     *self,
                                             BijiNoteObj   *note);
 BijiManager     *bjb_window_get_manager    (GtkWidget     *win);
-void             bjb_window_set_active     (BjbWindow     *self,
-                                            gboolean      active);

@@ -93,41 +93,6 @@ cmd_verbose_cb (const char  *option_name,
 }
 
 static void
-on_window_activated_cb (BjbWindow      *window,
-                        gboolean        available,
-                        BjbApplication *self)
-{
-  GList *l, *next;
-
-  self->is_loaded = TRUE;
-
-  for (l = self->files_to_open.head; l != NULL; l = next)
-  {
-    next = l->next;
-    if (bijiben_open_path (self, l->data, (available ? window : NULL)))
-    {
-      g_free (l->data);
-      g_queue_delete_link (&self->files_to_open, l);
-    }
-  }
-
-  /* All requested notes are loaded, but we have a new one to create...
-   * This implementation is not really safe,
-   * we might have loaded SOME provider(s)
-   * but not the default one - more work is needed here */
-  if (self->new_note && g_queue_is_empty (&self->files_to_open))
-  {
-    BijiNoteObj *note;
-
-    self->new_note = FALSE;
-    note = biji_manager_note_new (self->manager,
-                                  NULL,
-                                  bjb_settings_get_default_location (self->settings));
-    bijiben_new_window_internal (self, note);
-  }
-}
-
-static void
 bijiben_new_window_internal (BjbApplication *self,
                              BijiNoteObj    *note)
 {
@@ -143,8 +108,6 @@ bijiben_new_window_internal (BjbApplication *self,
   else
     bjb_window_set_is_main (window, TRUE);
 
-  g_signal_connect (window, "activated",
-                    G_CALLBACK (on_window_activated_cb), self);
   bjb_window_set_note (window, note);
 
   gtk_widget_show (GTK_WIDGET (window));

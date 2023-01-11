@@ -12,7 +12,6 @@ sources = files(
   'bjb-color-button.c',
   'bjb-controller.c',
   'bjb-editor-toolbar.c',
-  'bjb-empty-results-box.c',
   'bjb-import-dialog.c',
   'bjb-list-view-row.c',
   'bjb-main.c',

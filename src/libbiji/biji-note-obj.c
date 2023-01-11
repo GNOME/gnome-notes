@@ -50,7 +50,6 @@ typedef struct
   gboolean               is_template;
 
   /* Signals */
-  gulong                 note_renamed;
   gulong                 save;
 } BijiNoteObjPrivate;
 
@@ -69,7 +68,6 @@ static GParamSpec *properties[BIJI_OBJ_PROPERTIES] = { NULL, };
 
 /* Signals. Do not interfere with biji-item parent class. */
 enum {
-  NOTE_RESTORED,
   NOTE_DELETED,
   NOTE_TRASHED,
   NOTE_RENAMED,
@@ -328,21 +326,6 @@ biji_note_obj_trash (BijiNoteObj *self)
 }
 
 gboolean
-biji_note_obj_restore (BijiNoteObj *self)
-{
-  g_autofree char *old_uuid = NULL;
-  gboolean retval;
-
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
-
-  retval = BIJI_NOTE_OBJ_GET_CLASS (self)->restore (self, &old_uuid);
-  if (retval)
-    g_signal_emit_by_name (self, "restored", old_uuid, NULL);
-
-  return retval;
-}
-
-gboolean
 biji_note_obj_delete (BijiNoteObj *self)
 {
   gboolean retval;
@@ -526,14 +509,6 @@ biji_note_obj_get_notebooks (BijiNoteObj *self)
   priv = biji_note_obj_get_instance_private (self);
 
   return g_hash_table_get_values (priv->labels);
-}
-
-gboolean
-biji_note_obj_is_template (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return priv->is_template;
 }
 
 void
@@ -831,17 +806,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
 
   biji_obj_signals[NOTE_TRASHED] =
     g_signal_new ("trashed",
-                  G_OBJECT_CLASS_TYPE (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL,
-                  NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
-
-  biji_obj_signals[NOTE_RESTORED] =
-    g_signal_new ("restored",
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
                   0,

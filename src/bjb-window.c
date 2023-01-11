@@ -34,7 +34,6 @@
 #include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
-#include "bjb-empty-results-box.h"
 #include "bjb-note-list.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
@@ -83,14 +82,6 @@ struct _BjbWindow
 };
 
 G_DEFINE_TYPE (BjbWindow, bjb_window, HDY_TYPE_APPLICATION_WINDOW)
-
-enum {
-  VIEW_CHANGED,
-  ACTIVATED,
-  N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
 
 static void
 destroy_note_if_needed (BjbWindow *self)
@@ -677,27 +668,6 @@ bjb_window_class_init (BjbWindowClass *klass)
 
   widget_class->configure_event = bjb_window_configure_event;
 
-  signals[VIEW_CHANGED] = g_signal_new ("view-changed",
-                                        G_OBJECT_CLASS_TYPE (klass),
-                                        G_SIGNAL_RUN_LAST,
-                                        0,
-                                        NULL,
-                                        NULL,
-                                        g_cclosure_marshal_VOID__VOID,
-                                        G_TYPE_NONE,
-                                        0);
-
-  signals[ACTIVATED] = g_signal_new ("activated",
-                                     G_OBJECT_CLASS_TYPE (klass),
-                                     G_SIGNAL_RUN_LAST,
-                                     0,
-                                     NULL,
-                                     NULL,
-                                     g_cclosure_marshal_VOID__BOOLEAN,
-                                     G_TYPE_NONE,
-                                     1,
-                                     G_TYPE_BOOLEAN);
-
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_leaflet);
@@ -843,18 +813,4 @@ BijiManager *
 bjb_window_get_manager (GtkWidget *win)
 {
   return bijiben_get_manager (BJB_APPLICATION (g_application_get_default()));
-}
-
-void
-bjb_window_set_active (BjbWindow *self,
-                       gboolean   active)
-{
-  gboolean available;
-
-  g_return_if_fail (BJB_IS_WINDOW (self));
-
-  available = (self->current_view == BJB_WINDOW_MAIN_VIEW);
-
-  if (active == TRUE)
-    g_signal_emit (self, signals[ACTIVATED], 0, available);
 }

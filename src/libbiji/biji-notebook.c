@@ -265,22 +265,6 @@ biji_notebook_new (GObject *manager, gchar *urn, gchar *name, gint64 mtime)
                        NULL);
 }
 
-gint64
-biji_notebook_get_mtime (BijiNotebook *self)
-{
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), 0);
-
-  return self->mtime;
-}
-
-gpointer
-biji_notebook_manager (BijiNotebook *self)
-{
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), NULL);
-
-  return self->manager;
-}
-
 const char *
 biji_notebook_get_title (BijiNotebook *self)
 {
@@ -295,14 +279,4 @@ biji_notebook_get_uuid (BijiNotebook *self)
   g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), NULL);
 
   return self->urn;
-}
-
-gboolean
-biji_notebook_trash (BijiNotebook *self)
-{
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (self), FALSE);
-
-  biji_tracker_remove_notebook (biji_manager_get_tracker (self->manager), self->urn);
-
-  return TRUE;
 }

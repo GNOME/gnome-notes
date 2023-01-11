@@ -100,7 +100,6 @@ gboolean         biji_note_obj_set_mtime                     (BijiNoteObj *self,
                                                               gint64       time);
 gpointer         biji_note_obj_get_manager                   (BijiNoteObj *self);
 gboolean         biji_note_obj_trash                         (BijiNoteObj *self);
-gboolean         biji_note_obj_restore                       (BijiNoteObj *self);
 gboolean         biji_note_obj_delete                        (BijiNoteObj *self);
 gboolean         biji_note_obj_has_notebook                  (BijiNoteObj *self,
                                                               const char  *label);
@@ -150,8 +149,6 @@ const char      *biji_note_obj_get_title                     (BijiNoteObj *self)
 
 gboolean         biji_note_obj_set_title                     (BijiNoteObj *self,
                                                               const char  *title);
-
-gboolean         biji_note_obj_is_template                   (BijiNoteObj *self);
 
 void             biji_note_obj_set_is_template               (BijiNoteObj *self,
                                                               gboolean     is_template);

@@ -396,6 +396,7 @@ _get_note_skeleton (BijiLocalProvider *self)
   BijiManager *manager;
   gchar * folder, *name, *path;
   BijiInfoSet set;
+  gint64 time;
 
   manager = biji_provider_get_manager (BIJI_PROVIDER (self));
   set.title = NULL;
@@ -418,7 +419,11 @@ _get_note_skeleton (BijiLocalProvider *self)
 
   g_free (folder);
 
-  biji_note_obj_set_all_dates_now (ret);
+  time = g_get_real_time () / G_USEC_PER_SEC;
+  bjb_item_set_create_time (BJB_ITEM (ret), time);
+  bjb_item_set_meta_mtime (BJB_ITEM (ret), time);
+  bjb_item_set_mtime (BJB_ITEM (ret), time);
+
   return ret;
 }
 
@@ -440,7 +445,7 @@ local_prov_create_new_note (BijiProvider *self,
     unique = biji_manager_get_unique_title (manager, str);
     html = html_from_plain_text (str);
 
-    biji_note_obj_set_title (ret, unique);
+    bjb_item_set_title (BJB_ITEM (ret), unique);
     biji_note_obj_set_raw_text (ret, str);
     biji_note_obj_set_html (ret, html);
 

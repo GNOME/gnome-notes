@@ -37,7 +37,7 @@ on_email_note_callback (BijiNoteObj *note)
   GVariantBuilder *arraybuilder;
   GVariant *dict;
 
-  title_mail = mail_str (biji_note_obj_get_title (note));
+  title_mail = mail_str (bjb_item_get_title (BJB_ITEM (note)));
   text_mail = mail_str (biji_note_obj_get_raw_text (note));
 
   proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,

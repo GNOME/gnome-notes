@@ -59,7 +59,7 @@ note_no (BijiNoteObj *note)
 static char *
 get_basename (BijiNoteObj *note)
 {
-  return (char *) biji_note_obj_get_uuid (note);
+  return (char *)bjb_item_get_uid (BJB_ITEM (note));
 }
 
 static char *
@@ -86,10 +86,10 @@ save_note_finish (GObject      *source_object,
   BijiManager *manager;
 
   info->url = (char *) biji_note_obj_get_path (note);
-  info->title = (char *) biji_note_obj_get_title (note);
+  info->title = (char *) bjb_item_get_title (BJB_ITEM (note));
   info->content = (char *) biji_note_obj_get_raw_text (note);
-  info->mtime = biji_note_obj_get_mtime (note);
-  info->created = biji_note_obj_get_create_date (note);
+  info->mtime = bjb_item_get_mtime (BJB_ITEM (note));
+  info->created = bjb_item_get_create_time (BJB_ITEM (note));
   info->datasource_urn = g_strdup (prov_info->datasource);
 
   manager = biji_note_obj_get_manager (note);
@@ -137,7 +137,7 @@ parse_save_results_cb (void   *contents,
                                            self->id);
         }
 
-      biji_note_obj_set_mtime (note, json_object_get_int_member (json, "modified"));
+      bjb_item_set_mtime (BJB_ITEM (note), json_object_get_int_member (json, "modified"));
     }
   else
     return 0;
@@ -164,9 +164,9 @@ save_note_thread (GTask        *task,
       headers = curl_slist_append (headers, "Content-Type: application/json");
       content = biji_str_mass_replace (biji_note_obj_get_raw_text (note), "\n", "\\n", NULL);
       json_text = g_strdup_printf ("{\"title\": \"%s\", \"content\": \"%s\", \"modified\": %ld}",
-                                   biji_note_obj_get_title (note),
+                                   bjb_item_get_title (BJB_ITEM (note)),
                                    content,
-                                   biji_note_obj_get_mtime (note));
+                                   bjb_item_get_mtime (BJB_ITEM (note)));
 
       curl_easy_setopt (curl, CURLOPT_HTTPHEADER, headers);
       curl_easy_setopt (curl, CURLOPT_POSTFIELDS, json_text);
@@ -204,7 +204,7 @@ save_note_async (BijiNextcloudNote *self)
 static void
 save_note (BijiNoteObj *note)
 {
-  const char *title = biji_note_obj_get_title (note);
+  const char *title = bjb_item_get_title (BJB_ITEM (note));
   const char *content = biji_note_obj_get_raw_text (note);
 
   if (title && strlen (title) > 0 && content && strlen (content) > 0)

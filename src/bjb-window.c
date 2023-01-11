@@ -102,7 +102,7 @@ on_note_renamed (BijiNoteObj *note,
 {
   const char *str;
 
-  str = biji_note_obj_get_title (note);
+  str = bjb_item_get_title (BJB_ITEM (note));
   if (str == NULL || strlen(str) == 0)
     str = _("Untitled");
   gtk_entry_set_text (GTK_ENTRY (self->title_entry), str);
@@ -142,8 +142,7 @@ on_title_changed (BjbWindow *self,
 {
   const char *str = gtk_entry_get_text (title);
 
-  if (strlen (str) > 0)
-    biji_note_obj_set_title (self->note, str);
+  bjb_item_set_title (BJB_ITEM (self->note), str);
 }
 
 static void
@@ -741,7 +740,7 @@ on_last_updated_cb (BijiNoteObj *note,
   g_autofree char *label = NULL;
   g_autofree char *time_str = NULL;
 
-  time_str = bjb_utils_get_human_time (biji_note_obj_get_mtime (self->note));
+  time_str = bjb_utils_get_human_time (bjb_item_get_mtime (BJB_ITEM (self->note)));
   /* Translators: %s is the note last recency description.
    * Last updated is placed as in left to right language
    * right to left languages might move %s

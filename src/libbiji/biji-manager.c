@@ -120,8 +120,8 @@ compare_note (gconstpointer a,
   BijiNoteObj *item_a = (BijiNoteObj *) a;
   BijiNoteObj *item_b = (BijiNoteObj *) b;
 
-  up_a = g_utf8_casefold (biji_note_obj_get_title (item_a), -1);
-  up_b = g_utf8_casefold (biji_note_obj_get_title (item_b), -1);
+  up_a = g_utf8_casefold (bjb_item_get_title (BJB_ITEM (item_a)), -1);
+  up_b = g_utf8_casefold (bjb_item_get_title (BJB_ITEM (item_b)), -1);
 
   return g_strcmp0 (up_a, up_b);
 }
@@ -415,7 +415,7 @@ title_is_unique (BijiManager *self, gchar *title)
       g_autoptr(BijiNoteObj) item = NULL;
 
       item = g_list_model_get_item (G_LIST_MODEL (self->notes), i);
-      if (g_strcmp0 (biji_note_obj_get_title (item), title) == 0)
+      if (g_strcmp0 (bjb_item_get_title (BJB_ITEM (item)), title) == 0)
         {
           is_unique = FALSE;
           break;
@@ -563,7 +563,7 @@ biji_manager_add_item (BijiManager    *manager,
   if (BIJI_IS_NOTEBOOK (item))
     uid = biji_notebook_get_uuid (BIJI_NOTEBOOK (item));
   else
-    uid = biji_note_obj_get_uuid (BIJI_NOTE_OBJ (item));
+    uid = bjb_item_get_uid (item);
 
   /* Check if item is not already there */
   if (uid != NULL)
@@ -753,7 +753,7 @@ manager_find_note (GListModel *model,
       const char *item_uuid;
 
       note = g_list_model_get_item (model, i);
-      item_uuid = biji_note_obj_get_uuid (note);
+      item_uuid = bjb_item_get_uid (BJB_ITEM (note));
 
       if (g_strcmp0 (uuid, item_uuid) == 0)
         return note;

@@ -446,7 +446,7 @@ processNode (BijiLazyDeserializer *self)
   name = xmlTextReaderName (r);
 
   if ( g_strcmp0((gchar*)name,"title") == 0 )
-    biji_process_string (r, (BijiReaderFunc*) biji_note_obj_set_title, n);
+    biji_process_string (r, (BijiReaderFunc*) bjb_item_set_title, n);
 
   if ( g_strcmp0((gchar*)name,"text") == 0 )
   {
@@ -467,21 +467,21 @@ processNode (BijiLazyDeserializer *self)
   if (g_strcmp0 ((gchar*) name, "last-change-date") == 0)
   {
     gchar *result = (gchar*) xmlTextReaderReadString (r);
-    biji_note_obj_set_mtime (n, iso8601_to_gint64 (result));
+    bjb_item_set_mtime (BJB_ITEM (n), iso8601_to_gint64 (result));
     free (result);
   }
 
   if (g_strcmp0 ((gchar*) name, "last-metadata-change-date") == 0)
   {
     gchar *result = (gchar*) xmlTextReaderReadString (r);
-    biji_note_obj_set_last_metadata_change_date (n, iso8601_to_gint64 (result));
+    bjb_item_set_meta_mtime (BJB_ITEM (n), iso8601_to_gint64 (result));
     free (result);
   }
 
   if (g_strcmp0 ((gchar*) name, "create-date") == 0)
   {
     gchar *result = (gchar*) xmlTextReaderReadString (r);
-    biji_note_obj_set_create_date (n, iso8601_to_gint64 (result));
+    bjb_item_set_create_time (BJB_ITEM (n), iso8601_to_gint64 (result));
     free (result);
   }
 
@@ -542,7 +542,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
   xmlNodePtr cur;
   xmlChar     *version;
 
-  path = biji_note_obj_get_uuid (n);
+  path = bjb_item_get_uid (BJB_ITEM (n));
   doc = xmlParseFile (path);
 
   if (doc == NULL )
@@ -599,7 +599,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 
   xmlFree (version);
 
-  path = biji_note_obj_get_uuid (n);
+  path = bjb_item_get_uid (BJB_ITEM (n));
   self->r = xmlNewTextReaderFilename (path);
 
   biji_parse_file (self);

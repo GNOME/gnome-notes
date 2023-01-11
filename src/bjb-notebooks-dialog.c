@@ -225,7 +225,7 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
   if (!g_set_object (&self->item, note))
     return;
 
-  BJB_DEBUG_MSG ("Setting note '%s'", biji_note_obj_get_title (note));
+  BJB_DEBUG_MSG ("Setting note '%s'", bjb_item_get_title (BJB_ITEM (note)));
 
   notebooks = biji_note_obj_get_notebooks (self->item);
   rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));

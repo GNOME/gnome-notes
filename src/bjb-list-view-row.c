@@ -45,7 +45,7 @@ note_mtime_changed_cb (BjbListViewRow *self)
 
   g_assert (BJB_IS_LIST_VIEW_ROW (self));
 
-  time_label = bjb_utils_get_human_time (biji_note_obj_get_mtime (self->note));
+  time_label = bjb_utils_get_human_time (bjb_item_get_mtime (BJB_ITEM (self->note)));
   gtk_label_set_text (self->updated_time, time_label);
 }
 
@@ -145,7 +145,7 @@ bjb_list_view_row_new_with_note (BijiNoteObj *note)
 
   self = g_object_new (BJB_TYPE_LIST_VIEW_ROW, NULL);
   self->note = g_object_ref (note);
-  self->uuid = g_strdup (biji_note_obj_get_uuid (note));
+  self->uuid = g_strdup (bjb_item_get_uid (BJB_ITEM (note)));
 
   g_object_bind_property (note, "title",
                           self->title, "label",

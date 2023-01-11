@@ -3,6 +3,7 @@ sources = files(
   'deserializer/biji-tomboy-reader.c',
   'editor/biji-editor-selection.c',
   'editor/biji-webkit-editor.c',
+  '../items/bjb-item.c',
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',

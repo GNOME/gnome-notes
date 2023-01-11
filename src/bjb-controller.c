@@ -74,8 +74,8 @@ controller_sort_notes (gconstpointer a,
 {
   gint64 time_a, time_b;
 
-  time_a = biji_note_obj_get_mtime ((gpointer) a);
-  time_b = biji_note_obj_get_mtime ((gpointer) b);
+  time_a = bjb_item_get_mtime ((gpointer) a);
+  time_b = bjb_item_get_mtime ((gpointer) b);
 
   return time_b - time_a;
 }

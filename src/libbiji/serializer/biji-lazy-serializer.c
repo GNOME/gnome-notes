@@ -190,7 +190,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   // <Title>
   serialize_node (self->writer,
                   "title",
-                  (char *)biji_note_obj_get_title (self->note));
+                  (char *)bjb_item_get_title (BJB_ITEM (self->note)));
 
   // <text>
   xmlTextWriterWriteRaw(self->writer, BAD_CAST "\n  ");
@@ -203,21 +203,21 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   xmlTextWriterEndElement(self->writer);
 
   // <last-change-date>
-  change_date = g_date_time_new_from_unix_utc (biji_note_obj_get_mtime (self->note));
+  change_date = g_date_time_new_from_unix_utc (bjb_item_get_mtime (BJB_ITEM (self->note)));
   change_date_str = g_date_time_format_iso8601 (change_date);
   if (change_date_str)
   {
     serialize_node (self->writer, "last-change-date", change_date_str);
   }
 
-  metadata_date = g_date_time_new_from_unix_utc (biji_note_obj_get_last_metadata_change_date (self->note));
+  metadata_date = g_date_time_new_from_unix_utc (bjb_item_get_meta_mtime (BJB_ITEM (self->note)));
   metadata_date_str = g_date_time_format_iso8601 (metadata_date);
   if (metadata_date_str)
   {
     serialize_node (self->writer, "last-metadata-change-date", metadata_date_str);
   }
 
-  create_date = g_date_time_new_from_unix_utc (biji_note_obj_get_create_date (self->note));
+  create_date = g_date_time_new_from_unix_utc (bjb_item_get_create_time (BJB_ITEM (self->note)));
   create_date_str = g_date_time_format_iso8601 (create_date);
   if (create_date_str)
   {
@@ -255,7 +255,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 
   xmlFreeTextWriter(self->writer);
 
-  path = biji_note_obj_get_uuid (self->note);
+  path = bjb_item_get_uid (BJB_ITEM (self->note));
   retval = g_file_set_contents (path, (gchar*) self->buf->content, -1, NULL);
 
   return retval;

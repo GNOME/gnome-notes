@@ -604,7 +604,7 @@ biji_tracker_remove_note_notebook_async (BijiTracker         *self,
   g_return_if_fail (BIJI_IS_NOTEBOOK (notebook));
   g_return_if_fail (callback);
 
-  url = g_strdup_printf ("file://%s", biji_note_obj_get_uuid (note));
+  url = g_strdup_printf ("file://%s", bjb_item_get_uid (BJB_ITEM (note)));
   query = g_strdup_printf ("DELETE {'%s' nie:isPartOf '%s'}",
                            biji_notebook_get_uuid (notebook), url);
 
@@ -645,7 +645,7 @@ biji_tracker_add_note_to_notebook_async (BijiTracker         *self,
   g_return_if_fail (notebook && *notebook);
   g_return_if_fail (callback);
 
-  url = g_strdup_printf ("file://%s", biji_note_obj_get_uuid (note));
+  url = g_strdup_printf ("file://%s", bjb_item_get_uid (BJB_ITEM (note)));
   query = g_strdup_printf ("INSERT {?urn nie:isPartOf '%s'} "
                            "WHERE {?urn a nfo:DataContainer; nie:title '%s'; nie:generator 'Bijiben'}",
                            url, notebook);
@@ -711,7 +711,7 @@ biji_tracker_delete_note (BijiTracker *self,
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
 
   query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }",
-                           biji_note_obj_get_uuid (note));
+                           bjb_item_get_uid (BJB_ITEM (note)));
 
   tracker_sparql_connection_update_async (self->connection, query,
 #if !HAVE_TRACKER3

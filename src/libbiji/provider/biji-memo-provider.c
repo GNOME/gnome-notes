@@ -606,7 +606,7 @@ memo_create_note (BijiProvider *provider,
     self->client);
 
 
-  biji_note_obj_set_title (note, title);
+  bjb_item_set_title (BJB_ITEM (note), title);
   biji_note_obj_set_raw_text (note, title);
   html = html_from_plain_text (title);
   biji_note_obj_set_html (note, html);

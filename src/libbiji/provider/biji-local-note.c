@@ -65,11 +65,11 @@ local_note_save (BijiNoteObj *note)
   biji_lazy_serialize (note);
 
   /* Tracker */
-  info->url = (char *) biji_note_obj_get_uuid (note);
-  info->title = (char *) biji_note_obj_get_title (note);
+  info->url = (char *) bjb_item_get_uid (BJB_ITEM (note));
+  info->title = (char *) bjb_item_get_title (BJB_ITEM (note));
   info->content = (char *) biji_note_obj_get_raw_text (note);
-  info->mtime = biji_note_obj_get_mtime (note);
-  info->created = biji_note_obj_get_create_date (note);
+  info->mtime = bjb_item_get_mtime (BJB_ITEM (note));
+  info->created = bjb_item_get_create_time (BJB_ITEM (note));
   info->datasource_urn = g_strdup (prov_info->datasource);
 
   manager = biji_note_obj_get_manager (note);

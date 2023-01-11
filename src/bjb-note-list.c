@@ -72,7 +72,7 @@ note_list_filter_notes (gpointer note,
   if (!self->search_term || !*self->search_term)
     return TRUE;
 
-  title = biji_note_obj_get_title (note);
+  title = bjb_item_get_title (BJB_ITEM (note));
 
   if (title && strcasestr (title, self->search_term))
     return TRUE;

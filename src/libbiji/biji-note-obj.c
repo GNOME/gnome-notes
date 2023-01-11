@@ -28,11 +28,7 @@ typedef struct
 {
   /* Metadata */
   char                  *path;
-  char                  *title;
   char                  *content;
-  gint64                 mtime;
-  gint64                 create_date;
-  gint64                 last_metadata_change_date;
   GdkRGBA               *color; // Not yet in Tracker
 
   BijiManager           *manager;
@@ -57,8 +53,6 @@ typedef struct
 enum {
   PROP_0,
   PROP_PATH,
-  PROP_TITLE,
-  PROP_MTIME,
   PROP_CONTENT,
   PROP_MANAGER,
   BIJI_OBJ_PROPERTIES
@@ -70,7 +64,6 @@ static GParamSpec *properties[BIJI_OBJ_PROPERTIES] = { NULL, };
 enum {
   NOTE_DELETED,
   NOTE_TRASHED,
-  NOTE_RENAMED,
   NOTE_CHANGED,
   NOTE_COLOR_CHANGED,
   BIJI_OBJ_SIGNALS
@@ -78,7 +71,7 @@ enum {
 
 static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (BijiNoteObj, biji_note_obj, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (BijiNoteObj, biji_note_obj, BJB_TYPE_ITEM)
 
 static void
 on_save_timeout (BijiNoteObj *self)
@@ -139,7 +132,6 @@ biji_note_obj_finalize (GObject *object)
     on_save_timeout (self);
 
   g_free (priv->path);
-  g_free (priv->title);
   g_free (priv->content);
 
   g_hash_table_destroy (priv->labels);
@@ -162,13 +154,6 @@ biji_note_obj_set_property (GObject      *object,
     {
     case PROP_PATH:
       biji_note_obj_set_path (self, g_value_get_string (value));
-      break;
-    case PROP_TITLE:
-      biji_note_obj_set_title (self, (char *) g_value_get_string (value));
-      g_object_notify_by_pspec (object, properties[PROP_TITLE]);
-      break;
-    case PROP_MTIME:
-      priv->mtime = g_value_get_int64 (value);
       break;
     case PROP_CONTENT:
       biji_note_obj_set_raw_text (self, g_value_get_string (value));
@@ -196,12 +181,6 @@ biji_note_obj_get_property (GObject    *object,
     {
     case PROP_PATH:
       g_value_set_object (value, priv->path);
-      break;
-    case PROP_TITLE:
-      g_value_set_string (value, priv->title);
-      break;
-    case PROP_MTIME:
-      g_value_set_int64 (value, priv->mtime);
       break;
     case PROP_CONTENT:
       g_value_set_string (value, priv->content);
@@ -237,67 +216,8 @@ biji_note_obj_set_path (BijiNoteObj *self,
 
   g_free (priv->path);
   priv->path = g_strdup (path);
+  bjb_item_set_uid (BJB_ITEM (self), path);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_PATH]);
-}
-
-const char *
-biji_note_obj_get_title (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return priv->title;
-}
-
-/* If already a title, then note is renamed */
-gboolean
-biji_note_obj_set_title (BijiNoteObj *self,
-                         const char  *proposed_title)
-{
-  BijiNoteObjPrivate *priv    = biji_note_obj_get_instance_private (self);
-  BijiManager        *manager = priv->manager;
-  g_autofree char    *title   = NULL;
-
-  if (g_strcmp0 (proposed_title, priv->title) == 0)
-    return FALSE;
-
-  title = biji_manager_get_unique_title (manager, proposed_title);
-  biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
-
-  /* Emit signal even if initial title, just to let know */
-  g_free (priv->title);
-  priv->title = g_strdup (title);
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
-  biji_note_obj_save_note (self);
-  g_signal_emit (G_OBJECT (self), biji_obj_signals[NOTE_RENAMED], 0);
-
-  return TRUE;
-}
-
-const char *
-biji_note_obj_get_uuid (BijiNoteObj *self)
-{
-  return biji_note_obj_get_path (self);
-}
-
-gint64
-biji_note_obj_get_mtime (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return priv->mtime;
-}
-
-gboolean
-biji_note_obj_set_mtime (BijiNoteObj *self,
-                         gint64       time)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (priv->mtime == time)
-    return FALSE;
-
-  priv->mtime = time;
-  return TRUE;
 }
 
 gpointer
@@ -375,7 +295,7 @@ biji_note_obj_add_notebook (BijiNoteObj *self,
                                                self, label, on_note_obj_add_notebook_cb,
                                                g_object_ref (notebook));
 
-      biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
+      bjb_item_set_meta_mtime (BJB_ITEM (self), g_get_real_time () / G_USEC_PER_SEC);
       biji_note_obj_save_note (self);
     }
 
@@ -397,39 +317,12 @@ biji_note_obj_remove_notebook (BijiNoteObj *self,
                                                self, notebook, on_note_obj_add_notebook_cb,
                                                g_object_ref (notebook));
 
-      biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
+      bjb_item_set_meta_mtime (BJB_ITEM (self), g_get_real_time () / G_USEC_PER_SEC);
       biji_note_obj_save_note (self);
       return TRUE;
     }
 
   return FALSE;
-}
-
-char *
-biji_note_obj_get_last_change_date_string (BijiNoteObj *self)
-{
-  return bjb_utils_get_human_time (biji_note_obj_get_mtime (self));
-}
-
-gint64
-biji_note_obj_get_last_metadata_change_date (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return priv->last_metadata_change_date;
-}
-
-gboolean
-biji_note_obj_set_last_metadata_change_date (BijiNoteObj *self,
-                                             gint64       time)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (priv->last_metadata_change_date == time)
-    return FALSE;
-
-  priv->last_metadata_change_date = time;
-  return TRUE;
 }
 
 static void
@@ -455,7 +348,7 @@ biji_note_obj_set_rgba (BijiNoteObj   *self,
     {
       gdk_rgba_free (priv->color);
       biji_note_obj_set_rgba_internal (self, rgba);
-      biji_note_obj_set_last_metadata_change_date (self, g_get_real_time () / G_USEC_PER_SEC);
+      bjb_item_set_meta_mtime (BJB_ITEM (self), g_get_real_time () / G_USEC_PER_SEC);
       biji_note_obj_save_note (self);
     }
 }
@@ -527,40 +420,6 @@ biji_note_obj_save_note (BijiNoteObj *self)
 
   priv->needs_save = TRUE;
   biji_timeout_reset (priv->timeout, 3000);
-}
-
-
-/* Single Note */
-
-void
-biji_note_obj_set_all_dates_now (BijiNoteObj *self)
-{
-  gint64 time = g_get_real_time () / G_USEC_PER_SEC;
-
-  biji_note_obj_set_create_date (self, time);
-  biji_note_obj_set_last_metadata_change_date (self, time);
-  biji_note_obj_set_mtime (self, time);
-}
-
-gint64
-biji_note_obj_get_create_date (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return priv->create_date;
-}
-
-gboolean
-biji_note_obj_set_create_date (BijiNoteObj *self,
-                               gint64       time)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (priv->create_date == time)
-    return FALSE;
-
-  priv->create_date = time;
-  return TRUE;
 }
 
 /* Webkit */
@@ -675,7 +534,7 @@ on_biji_note_obj_closed_cb (BijiNoteObj *self)
 
   priv = biji_note_obj_get_instance_private (self);
   priv->editor = NULL;
-  title = biji_note_obj_get_title (self);
+  title = bjb_item_get_title (BJB_ITEM (self));
 
   /*
    * Delete (not _trash_ if note is totaly blank
@@ -691,7 +550,7 @@ on_biji_note_obj_closed_cb (BijiNoteObj *self)
   else if (title == NULL)
     {
       title = biji_note_obj_get_raw_text (self);
-      biji_note_obj_set_title (self, title);
+      bjb_item_set_title (BJB_ITEM (self), title);
     }
 }
 
@@ -762,21 +621,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
                         NULL,
                         G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
 
-  properties[PROP_TITLE] =
-    g_param_spec_string("title",
-                        "The note title",
-                        "Note current title",
-                        NULL,
-                        G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-
-  properties[PROP_MTIME] =
-    g_param_spec_int64 ("mtime",
-                        "Msec since epoch",
-                        "The note last modification time",
-                        G_MININT64, G_MAXINT64, 0,
-                        G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-
-
   properties[PROP_CONTENT] =
     g_param_spec_string("content",
                         "The note content",
@@ -806,17 +650,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
 
   biji_obj_signals[NOTE_TRASHED] =
     g_signal_new ("trashed",
-                  G_OBJECT_CLASS_TYPE (klass),
-                  G_SIGNAL_RUN_LAST,
-                  0,
-                  NULL,
-                  NULL,
-                  g_cclosure_marshal_VOID__VOID,
-                  G_TYPE_NONE,
-                  0);
-
-  biji_obj_signals[NOTE_RENAMED] =
-    g_signal_new ("renamed",
                   G_OBJECT_CLASS_TYPE (klass),
                   G_SIGNAL_RUN_LAST,
                   0,

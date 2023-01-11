@@ -109,7 +109,7 @@ fill_in_components (ECalComponent *comp,
 
 
   /* Set : title */
-  text = e_cal_component_text_new (biji_note_obj_get_title (BIJI_NOTE_OBJ (self)), NULL);
+  text = e_cal_component_text_new (bjb_item_get_title (BJB_ITEM (self)), NULL);
   e_cal_component_set_summary (clone, text);
   e_cal_component_text_free (text);
 
@@ -152,7 +152,7 @@ fill_in_components (ECalComponent *comp,
    * Several: attach / attendee / comment / contact / related / rstatus / x-prop
   */
 
-  mtime = biji_note_obj_get_mtime (BIJI_NOTE_OBJ (self));
+  mtime = bjb_item_get_mtime (BJB_ITEM (self));
   t = icaltime_from_time_val (mtime);
   if (t)
     {

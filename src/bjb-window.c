@@ -39,6 +39,7 @@
 #include "bjb-note-view.h"
 #include "bjb-notebooks-dialog.h"
 #include "bjb-share.h"
+#include "bjb-utils.h"
 #include "bjb-window.h"
 
 #define BIJIBEN_MAIN_WIN_TITLE N_("Notes")
@@ -740,7 +741,7 @@ on_last_updated_cb (BijiNoteObj *note,
   g_autofree char *label = NULL;
   g_autofree char *time_str = NULL;
 
-  time_str = biji_note_obj_get_last_change_date_string (self->note);
+  time_str = bjb_utils_get_human_time (biji_note_obj_get_mtime (self->note));
   /* Translators: %s is the note last recency description.
    * Last updated is placed as in left to right language
    * right to left languages might move %s

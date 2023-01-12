@@ -4,6 +4,7 @@ sources = files(
   'editor/biji-editor-selection.c',
   'editor/biji-webkit-editor.c',
   '../items/bjb-item.c',
+  '../items/bjb-tag.c',
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',

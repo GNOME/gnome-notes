@@ -27,6 +27,7 @@
 
 #include <gtk/gtk.h>
 
+#include "items/bjb-tag.h"
 #include "libbiji.h"
 
 G_BEGIN_DECLS
@@ -35,8 +36,8 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbNotebookRow, bjb_notebook_row, BJB, NOTEBOOK_ROW, GtkListBoxRow)
 
-GtkWidget    *bjb_notebook_row_new        (BijiNotebook   *notebook);
-BijiNotebook *bjb_notebook_row_get_item   (BjbNotebookRow *self);
+GtkWidget    *bjb_notebook_row_new        (BjbItem        *notebook);
+BjbItem      *bjb_notebook_row_get_item   (BjbNotebookRow *self);
 gboolean      bjb_notebook_row_get_active (BjbNotebookRow *self);
 void          bjb_notebook_row_set_active (BjbNotebookRow *self,
                                            gboolean        is_active);

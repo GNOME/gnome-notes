@@ -25,7 +25,7 @@ struct _BjbNoteList
   GListModel         *notes_list;
   GtkFilterListModel *filtered_notes;
   GtkFilter          *filter;
-  BijiNotebook       *current_notebook;
+  BjbItem            *current_notebook;
   char               *search_term;
   char               *selected_note;
   gboolean            show_trash;
@@ -53,7 +53,7 @@ note_list_filter_notes (gpointer note,
       const char *notebook;
       gboolean match = FALSE;
 
-      notebook = biji_notebook_get_title (self->current_notebook);
+      notebook = bjb_item_get_title (self->current_notebook);
       notebooks = biji_note_obj_get_notebooks (note);
 
       for (GList *item = notebooks; item; item = item->next)
@@ -227,11 +227,11 @@ bjb_note_list_get_selected_note (BjbNoteList *self)
 }
 
 void
-bjb_note_list_set_notebook (BjbNoteList  *self,
-                            BijiNotebook *notebook)
+bjb_note_list_set_notebook (BjbNoteList *self,
+                            BjbItem     *notebook)
 {
   g_return_if_fail (BJB_IS_NOTE_LIST (self));
-  g_return_if_fail (!notebook || BIJI_IS_NOTEBOOK (notebook));
+  g_return_if_fail (!notebook || BJB_IS_NOTEBOOK (notebook));
 
   if (g_set_object (&self->current_notebook, notebook))
     gtk_filter_changed (self->filter, GTK_FILTER_CHANGE_DIFFERENT);

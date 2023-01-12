@@ -414,7 +414,7 @@ on_show_notebook_cb (GSimpleAction *action,
   const char *note_uuid;
   const char *title;
   BjbWindow *self = BJB_WINDOW (user_data);
-  BijiNotebook *notebook;
+  BjbItem *notebook;
   BijiManager *manager;
 
   destroy_note_if_needed (self);
@@ -431,7 +431,7 @@ on_show_notebook_cb (GSimpleAction *action,
     bjb_note_list_set_notebook (self->note_list, notebook);
 
     /* Update headerbar title. */
-    title = biji_notebook_get_title (notebook);
+    title = bjb_item_get_title (notebook);
     gtk_label_set_text (GTK_LABEL (self->filter_label), title);
   }
 
@@ -522,8 +522,8 @@ bjb_window_configure_event (GtkWidget         *widget,
 }
 
 static void
-append_notebook (BijiNotebook *notebook,
-                 BjbWindow    *self)
+append_notebook (BjbItem   *notebook,
+                 BjbWindow *self)
 {
   const char *note_uuid;
   const char *title;
@@ -531,10 +531,12 @@ append_notebook (BijiNotebook *notebook,
   GtkStyleContext *context;
   GtkWidget *button;
 
-  note_uuid = biji_notebook_get_uuid (notebook);
+  g_return_if_fail (BJB_IS_NOTEBOOK (notebook));
+
+  note_uuid = bjb_item_get_uid (notebook);
   variant = g_variant_new_string (note_uuid);
 
-  title = biji_notebook_get_title (notebook);
+  title = bjb_item_get_title (notebook);
   button = gtk_model_button_new ();
   g_object_set (button,
                 "action-name", "win.show-notebook",
@@ -570,7 +572,7 @@ on_display_notebooks_changed (BjbWindow *self)
 
   for (guint i = 0; i < n_items; i++)
     {
-      g_autoptr(BijiNotebook) item = NULL;
+      g_autoptr(BjbItem) item = NULL;
 
       item = g_list_model_get_item (notebooks, i);
       append_notebook (item, self);

@@ -99,11 +99,9 @@ on_note_obj_add_notebook_cb (GObject      *object,
                              GAsyncResult *result,
                              gpointer      user_data)
 {
-  g_autoptr(BijiNotebook) notebook = user_data;
+  g_autoptr(BjbNotebook) notebook = user_data;
 
-  g_assert (BIJI_IS_NOTEBOOK (notebook));
-
-  biji_notebook_refresh (notebook);
+  g_assert (BJB_IS_NOTEBOOK (notebook));
 }
 
 static void
@@ -281,15 +279,15 @@ biji_note_obj_add_notebook (BijiNoteObj *self,
 
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
 
-  if (BIJI_IS_NOTEBOOK (notebook))
-    label = biji_notebook_get_title (notebook);
+  if (BJB_IS_NOTEBOOK (notebook))
+    label = bjb_item_get_title (notebook);
 
   if (biji_note_obj_has_notebook (self, label))
     return FALSE;
 
   g_hash_table_add (priv->labels, g_strdup (label));
 
-  if (BIJI_IS_NOTEBOOK (notebook))
+  if (BJB_IS_NOTEBOOK (notebook))
     {
       biji_tracker_add_note_to_notebook_async (biji_manager_get_tracker (priv->manager),
                                                self, label, on_note_obj_add_notebook_cb,
@@ -309,9 +307,9 @@ biji_note_obj_remove_notebook (BijiNoteObj *self,
   BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
 
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (notebook), FALSE);
+  g_return_val_if_fail (BJB_IS_NOTEBOOK (notebook), FALSE);
 
-  if (g_hash_table_remove (priv->labels, biji_notebook_get_title (notebook)))
+  if (g_hash_table_remove (priv->labels, bjb_item_get_title (notebook)))
     {
       biji_tracker_remove_note_notebook_async (biji_manager_get_tracker (priv->manager),
                                                self, notebook, on_note_obj_add_notebook_cb,

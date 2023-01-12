@@ -40,7 +40,7 @@ void        biji_tracker_add_notebook_async              (BijiTracker         *s
                                                           const char          *notebook,
                                                           GAsyncReadyCallback  callback,
                                                           gpointer             user_data);
-BijiNotebook *biji_tracker_add_notebook_finish           (BijiTracker         *self,
+BjbItem    *biji_tracker_add_notebook_finish             (BijiTracker         *self,
                                                           GAsyncResult        *result,
                                                           GError             **error);
 void        biji_tracker_remove_notebook                 (BijiTracker         *self,
@@ -61,7 +61,7 @@ GHashTable *biji_tracker_get_notebooks_finish            (BijiTracker         *s
                                                           GError             **error);
 void        biji_tracker_remove_note_notebook_async      (BijiTracker         *self,
                                                           BijiNoteObj         *note,
-                                                          BijiNotebook        *notebook,
+                                                          BjbItem             *notebook,
                                                           GAsyncReadyCallback  callback,
                                                           gpointer             user_data);
 gboolean    biji_tracker_remove_note_notebook_finish     (BijiTracker         *self,

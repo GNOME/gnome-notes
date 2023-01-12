@@ -139,7 +139,7 @@ on_provider_loaded_cb (BijiProvider   *provider,
     case BIJI_LIVING_ITEMS:
       for (l=items; l!=NULL; l=l->next)
       {
-        if (BIJI_IS_NOTEBOOK (l->data) || BIJI_IS_NOTE_OBJ (l->data))
+        if (BJB_IS_NOTEBOOK (l->data) || BIJI_IS_NOTE_OBJ (l->data))
           biji_manager_add_item (manager, l->data, BIJI_LIVING_ITEMS, FALSE);
       }
       break;
@@ -147,7 +147,7 @@ on_provider_loaded_cb (BijiProvider   *provider,
     case BIJI_ARCHIVED_ITEMS:
       for (l=items; l!= NULL; l=l->next)
       {
-        if (BIJI_IS_NOTEBOOK (l->data) || BIJI_IS_NOTE_OBJ (l->data))
+        if (BJB_IS_NOTEBOOK (l->data) || BIJI_IS_NOTE_OBJ (l->data))
           biji_manager_add_item (manager, l->data, BIJI_ARCHIVED_ITEMS, FALSE);
       }
       break;
@@ -294,7 +294,7 @@ load_eds_provider (BijiManager *self,
 static void
 biji_manager_init (BijiManager *self)
 {
-  self->notebooks = g_list_store_new (BIJI_TYPE_NOTEBOOK);
+  self->notebooks = g_list_store_new (BJB_TYPE_NOTEBOOK);
   self->providers = g_list_store_new (BIJI_TYPE_PROVIDER);
   self->notes = g_list_store_new (BIJI_TYPE_NOTE_OBJ);
   self->archives = g_list_store_new (BIJI_TYPE_NOTE_OBJ);
@@ -425,10 +425,10 @@ title_is_unique (BijiManager *self, gchar *title)
   n_notebooks = g_list_model_get_n_items (G_LIST_MODEL (self->notebooks));
   for (i = 0; i < n_notebooks; i++)
     {
-      g_autoptr(BijiNotebook) item = NULL;
+      g_autoptr(BjbItem) item = NULL;
 
       item = g_list_model_get_item (G_LIST_MODEL (self->notebooks), i);
-      if (g_strcmp0 (biji_notebook_get_title (item), title) == 0)
+      if (g_strcmp0 (bjb_item_get_title (item), title) == 0)
         {
           is_unique = FALSE;
           break;
@@ -538,11 +538,11 @@ compare_notebook (gconstpointer a,
 {
   g_autofree char *up_a = NULL;
   g_autofree char *up_b = NULL;
-  BijiNotebook *item_a = (BijiNotebook *) a;
-  BijiNotebook *item_b = (BijiNotebook *) b;
+  BjbItem *item_a = (BjbItem *) a;
+  BjbItem *item_b = (BjbItem *) b;
 
-  up_a = g_utf8_casefold (biji_notebook_get_title (item_a), -1);
-  up_b = g_utf8_casefold (biji_notebook_get_title (item_b), -1);
+  up_a = g_utf8_casefold (bjb_item_get_title (item_a), -1);
+  up_b = g_utf8_casefold (bjb_item_get_title (item_b), -1);
 
   return g_strcmp0 (up_a, up_b);
 }
@@ -557,13 +557,10 @@ biji_manager_add_item (BijiManager    *manager,
   gboolean retval;
 
   g_return_val_if_fail (BIJI_IS_MANAGER (manager), FALSE);
-  g_return_val_if_fail (BIJI_IS_NOTEBOOK (item) || BIJI_IS_NOTE_OBJ (item), FALSE);
+  g_return_val_if_fail (BJB_IS_NOTEBOOK (item) || BIJI_IS_NOTE_OBJ (item), FALSE);
 
   retval = TRUE;
-  if (BIJI_IS_NOTEBOOK (item))
-    uid = biji_notebook_get_uuid (BIJI_NOTEBOOK (item));
-  else
-    uid = bjb_item_get_uid (item);
+  uid = bjb_item_get_uid (item);
 
   /* Check if item is not already there */
   if (uid != NULL)
@@ -590,7 +587,7 @@ biji_manager_add_item (BijiManager    *manager,
       {
         if (BIJI_IS_NOTE_OBJ (item))
           g_list_store_insert_sorted (manager->notes, item, compare_note, NULL);
-        else if (BIJI_IS_NOTEBOOK (item))
+        else if (BJB_IS_NOTEBOOK (item))
           if (uid && !biji_manager_find_notebook (manager, uid))
             g_list_store_insert_sorted (manager->notebooks, item,
                                         compare_notebook, NULL);
@@ -707,7 +704,7 @@ biji_manager_get_notebooks (BijiManager *self)
   return G_LIST_MODEL (self->notebooks);
 }
 
-BijiNotebook *
+BjbItem *
 biji_manager_find_notebook (BijiManager *self,
                             const char  *uuid)
 {
@@ -722,12 +719,11 @@ biji_manager_find_notebook (BijiManager *self,
 
   for (guint i = 0; i < n_items; i++)
     {
-      g_autoptr(BijiNotebook) notebook = NULL;
+      g_autoptr(BjbItem) notebook = NULL;
       const char *item_uuid;
 
       notebook = g_list_model_get_item (notebooks, i);
-
-      item_uuid = biji_notebook_get_uuid (notebook);
+      item_uuid = bjb_item_get_uid (notebook);
 
       if (g_strcmp0 (uuid, item_uuid) == 0)
         return notebook;
@@ -887,11 +883,10 @@ on_tracker_get_notebooks_cb (GObject      *object,
 
   for (GList *value = values; value; value = value->next)
     {
-      g_autoptr(BijiNotebook) notebook = NULL;
+      g_autoptr(BjbItem) notebook = NULL;
       BijiInfoSet *set = value->data;
 
-      notebook = biji_notebook_new (G_OBJECT (self), set->tracker_urn,
-                                    set->title, set->mtime);
+      notebook = bjb_notebook_new (set->tracker_urn, set->title, set->mtime);
       g_list_store_insert_sorted (self->notebooks, notebook,
                                   compare_notebook, NULL);
     }

@@ -104,8 +104,7 @@ create_notebook_if_needed (gpointer key,
   BijiLocalProvider *self;
   BijiProviderHelper *helper;
   BijiInfoSet *set;
-  BijiNotebook *notebook;
-  BijiManager *manager;
+  BjbItem *notebook;
 
   helper = user_data;
 
@@ -118,11 +117,10 @@ create_notebook_if_needed (gpointer key,
   set = value;
   self = BIJI_LOCAL_PROVIDER (helper->provider);
   notebook = g_hash_table_lookup (self->items, key);
-  manager = biji_provider_get_manager (BIJI_PROVIDER (self));
 
   if (!notebook)
   {
-    notebook = biji_notebook_new (G_OBJECT (manager), key, set->title, set->mtime);
+    notebook = bjb_notebook_new (key, set->title, set->mtime);
 
     g_hash_table_insert (self->items,
                          g_strdup (key),

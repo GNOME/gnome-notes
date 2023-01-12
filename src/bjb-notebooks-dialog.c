@@ -65,11 +65,11 @@ on_notebook_entry_changed_cb (BjbNotebooksDialog *self)
 
   for (guint i = 0; i < n_items; i++)
     {
-      g_autoptr(BijiNotebook) item = NULL;
+      g_autoptr(BjbItem) item = NULL;
 
       item = g_list_model_get_item (notebooks, i);
 
-      if (g_strcmp0 (biji_notebook_get_title (item), notebook) == 0)
+      if (g_strcmp0 (bjb_item_get_title (item), notebook) == 0)
         {
           gtk_widget_set_sensitive (self->add_notebook_button, FALSE);
           return;
@@ -85,7 +85,7 @@ on_new_notebook_created_cb (GObject      *object,
                             gpointer      user_data)
 {
   BjbNotebooksDialog *self = user_data;
-  g_autoptr(BijiNotebook) notebook = NULL;
+  g_autoptr(BjbItem) notebook = NULL;
   g_autoptr(GList) rows = NULL;
 
   notebook = biji_tracker_add_notebook_finish (BIJI_TRACKER (object), result, NULL);
@@ -120,7 +120,7 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
                                BjbNotebookRow     *row,
                                GtkListBox         *box)
 {
-  BijiNotebook *notebook;
+  BjbItem *notebook;
 
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_assert (GTK_IS_LIST_BOX (box));
@@ -131,7 +131,7 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
   notebook = bjb_notebook_row_get_item (row);
 
   BJB_TRACE_MSG ("Notebook '%s' %s",
-                 biji_notebook_get_title (notebook),
+                 bjb_item_get_title (notebook),
                  bjb_notebook_row_get_active (row) ? "selected" : "deselected");
 
   if (bjb_notebook_row_get_active (row))
@@ -141,13 +141,13 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
 }
 
 static GtkWidget *
-notebooks_row_new (BijiNotebook       *notebook,
+notebooks_row_new (BjbItem            *notebook,
                    BjbNotebooksDialog *self)
 {
   GtkWidget *row;
 
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
-  g_assert (BIJI_IS_NOTEBOOK (notebook));
+  g_assert (BJB_IS_NOTEBOOK (notebook));
 
   row = bjb_notebook_row_new (notebook);
 
@@ -236,11 +236,11 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
 
   for (GList *row = rows; row; row = row->next)
     {
-      BijiNotebook *notebook;
+      BjbItem *notebook;
       gboolean selected;
 
       notebook = bjb_notebook_row_get_item (row->data);
-      selected = biji_note_obj_has_notebook (self->item, biji_notebook_get_title (notebook));
+      selected = biji_note_obj_has_notebook (self->item, bjb_item_get_title (notebook));
       bjb_notebook_row_set_active (row->data, selected);
     }
 }

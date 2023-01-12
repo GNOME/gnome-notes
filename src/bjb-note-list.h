@@ -37,6 +37,6 @@ void         bjb_note_list_set_model           (BjbNoteList  *self,
                                                 GListModel   *model);
 const char  *bjb_note_list_get_selected_note   (BjbNoteList  *self);
 void         bjb_note_list_set_notebook        (BjbNoteList  *self,
-                                                BijiNotebook *notebook);
+                                                BjbItem      *notebook);
 
 G_END_DECLS

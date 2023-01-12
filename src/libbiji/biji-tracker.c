@@ -64,7 +64,7 @@ on_add_notebook_cb (GObject      *object,
   g_autofree char *key = NULL;
   g_autofree char *val = NULL;
   GVariant *variant, *child;
-  BijiNotebook *notebook = NULL;
+  BjbItem *notebook = NULL;
   char *notebook_str, *urn = NULL;
   GError *error = NULL;
 
@@ -112,9 +112,8 @@ on_add_notebook_cb (GObject      *object,
   if (urn)
     {
       notebook_str = g_task_get_task_data (task);
-      notebook = biji_notebook_new (G_OBJECT (self->manager),
-                                    urn, notebook_str,
-                                    g_get_real_time () / G_USEC_PER_SEC);
+      notebook = bjb_notebook_new (urn, notebook_str,
+                                   g_get_real_time () / G_USEC_PER_SEC);
       biji_manager_add_item (self->manager, notebook, BIJI_LIVING_ITEMS, true);
     }
 
@@ -475,7 +474,7 @@ biji_tracker_add_notebook_async (BijiTracker         *self,
                                                 on_add_notebook_cb, task);
 }
 
-BijiNotebook *
+BjbItem *
 biji_tracker_add_notebook_finish (BijiTracker  *self,
                                   GAsyncResult *result,
                                   GError       **error)
@@ -591,7 +590,7 @@ biji_tracker_get_notebooks_finish (BijiTracker   *self,
 void
 biji_tracker_remove_note_notebook_async (BijiTracker         *self,
                                          BijiNoteObj         *note,
-                                         BijiNotebook        *notebook,
+                                         BjbItem             *notebook,
                                          GAsyncReadyCallback  callback,
                                          gpointer             user_data)
 {
@@ -601,12 +600,12 @@ biji_tracker_remove_note_notebook_async (BijiTracker         *self,
 
   g_return_if_fail (BIJI_IS_TRACKER (self));
   g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
-  g_return_if_fail (BIJI_IS_NOTEBOOK (notebook));
+  g_return_if_fail (BJB_IS_NOTEBOOK (notebook));
   g_return_if_fail (callback);
 
   url = g_strdup_printf ("file://%s", bjb_item_get_uid (BJB_ITEM (note)));
   query = g_strdup_printf ("DELETE {'%s' nie:isPartOf '%s'}",
-                           biji_notebook_get_uuid (notebook), url);
+                           bjb_item_get_uid (notebook), url);
 
   task = g_task_new (self, NULL, callback, user_data);
 

@@ -10,6 +10,7 @@ sources = files(
   '../items/bjb-plain-note.c',
   '../items/bjb-xml-note.c',
   '../providers/bjb-provider.c',
+  '../providers/bjb-memo-provider.c',
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',

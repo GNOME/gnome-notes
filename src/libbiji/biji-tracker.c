@@ -29,7 +29,6 @@
 #include <tracker-sparql.h>
 
 #include "biji-date-time.h"
-#include "biji-notebook.h"
 #include "biji-tracker.h"
 
 typedef enum

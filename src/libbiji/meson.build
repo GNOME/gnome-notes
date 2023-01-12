@@ -17,7 +17,6 @@ sources = files(
   'biji-date-time.c',
   'biji-info-set.c',
   'biji-manager.c',
-  'biji-notebook.c',
   'biji-note-obj.c',
   'biji-string.c',
   'biji-timeout.c',

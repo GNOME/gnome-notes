@@ -6,7 +6,6 @@
 #include "biji-info-set.h"
 #include "biji-note-obj.h"
 #include "../items/bjb-tag.h"
-#include "biji-notebook.h"
 
 
 #include <libedataserver/libedataserver.h> /* ESourceRegistry */

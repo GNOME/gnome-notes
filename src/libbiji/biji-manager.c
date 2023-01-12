@@ -21,7 +21,6 @@
 
 #include "config.h"
 #include "libbiji.h"
-#include "biji-notebook.h"
 
 #include "provider/biji-import-provider.h"
 #include "provider/biji-local-provider.h"

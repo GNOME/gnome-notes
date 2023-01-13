@@ -190,17 +190,14 @@ bijiben_handle_local_options (GApplication *application,
 static void
 bijiben_activate (GApplication *app)
 {
-  BjbApplication *self = BJB_APPLICATION (app);
   GtkWindow *window;
-
-  if (!self->is_loaded)
-    return;
 
   window = gtk_application_get_active_window (GTK_APPLICATION (app));
 
-  /* We don't create new window here, it's handled elsewhere */
   if (window)
     gtk_window_present (window);
+  else
+    bijiben_new_window_internal (BJB_APPLICATION (app), NULL);
 }
 
 
@@ -328,47 +325,6 @@ bjb_apply_style (BjbApplication *self)
                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 }
 
-static void
-manager_ready_cb (GObject *source,
-                  GAsyncResult *res,
-                  gpointer user_data)
-{
-  BjbApplication *self = user_data;
-  g_autoptr(GError) error = NULL;
-  g_autofree gchar *path = NULL;
-  g_autofree gchar *uri = NULL;
-
-  biji_manager_load_providers_finish (self->manager, res, &error);
-  g_application_release (G_APPLICATION (self));
-
-  if (error != NULL)
-    {
-      g_warning ("Cannot initialize BijiManager: %s\n", error->message);
-      return;
-    }
-
-  biji_manager_set_provider (self->manager,
-                             bjb_settings_get_default_location (self->settings));
-
-  /* Automatic imports on startup */
-  if (self->first_run == TRUE)
-    {
-      path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
-      uri = g_filename_to_uri (path, NULL, NULL);
-      if (g_file_test (path, G_FILE_TEST_EXISTS))
-        bijiben_import_notes (self, uri);
-      g_free (path);
-      g_free (uri);
-
-      path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
-      uri = g_filename_to_uri (path, NULL, NULL);
-      if (g_file_test (path, G_FILE_TEST_EXISTS))
-        bijiben_import_notes (self, uri);
-    }
-
-  bijiben_new_window_internal (self, NULL);
-}
-
 static gboolean
 transform_to (GBinding     *binding,
               const GValue *from_value,
@@ -472,9 +428,6 @@ bijiben_startup (GApplication *application)
                                transform_to, transform_from, NULL, NULL);
 
   g_application_hold (application);
-
-  self->manager = biji_manager_new (storage, &color);
-  biji_manager_load_providers_async (self->manager, manager_ready_cb, self);
 
   /* Load last opened note item. */
   path = bjb_settings_get_last_opened_item (self->settings);

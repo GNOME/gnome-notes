@@ -36,6 +36,7 @@
 #include "items/bjb-plain-note.h"
 #include "providers/bjb-provider.h"
 #include "bjb-application.h"
+#include "bjb-manager.h"
 #include "bjb-note-list.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
@@ -324,7 +325,8 @@ show_all_notes (BjbWindow *self)
   /* Going back from a notebook. */
   bjb_note_list_set_notebook (self->note_list, NULL);
 
-  bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+  bjb_note_list_show_trash (self->note_list, FALSE);
+  /* bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS); */
   gtk_label_set_text (GTK_LABEL (self->filter_label), _("All Notes"));
 }
 
@@ -333,7 +335,9 @@ show_trash (BjbWindow *self)
 {
   destroy_note_if_needed (self);
 
-  bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+  g_warning ("Trash");
+  bjb_note_list_show_trash (self->note_list, TRUE);
+  /* bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS); */
   gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
 }
 
@@ -461,64 +465,6 @@ bjb_window_configure_event (GtkWidget         *widget,
                                                                            event);
 }
 
-static void
-append_notebook (BjbItem   *notebook,
-                 BjbWindow *self)
-{
-  const char *note_uuid;
-  const char *title;
-  GVariant *variant;
-  GtkStyleContext *context;
-  GtkWidget *button;
-
-  g_return_if_fail (BJB_IS_NOTEBOOK (notebook));
-
-  note_uuid = bjb_item_get_uid (notebook);
-  variant = g_variant_new_string (note_uuid);
-
-  title = bjb_item_get_title (notebook);
-  button = gtk_model_button_new ();
-  g_object_set (button,
-                "action-name", "win.show-notebook",
-                "action-target", variant,
-                "text", title,
-                NULL);
-
-  context = gtk_widget_get_style_context (button);
-  gtk_style_context_add_class (context, "modelbutton");
-
-  gtk_widget_show (button);
-  gtk_box_pack_start (GTK_BOX (self->notebooks_box), button, TRUE, TRUE, 0);
-}
-
-static void
-on_display_notebooks_changed (BjbWindow *self)
-{
-  BijiManager *manager;
-  GListModel *notebooks;
-  guint n_items;
-
-  g_assert (BJB_IS_WINDOW (self));
-
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-  notebooks = biji_manager_get_notebooks (manager);
-
-  gtk_container_foreach (GTK_CONTAINER (self->notebooks_box),
-                         (GtkCallback) gtk_widget_destroy, NULL);
-
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-
-  n_items = g_list_model_get_n_items (notebooks);
-
-  for (guint i = 0; i < n_items; i++)
-    {
-      g_autoptr(BjbItem) item = NULL;
-
-      item = g_list_model_get_item (notebooks, i);
-      append_notebook (item, self);
-    }
-}
-
 static GActionEntry win_entries[] = {
   { "paste", on_paste_cb, NULL, NULL, NULL },
   { "undo", on_undo_cb, NULL, NULL, NULL },
@@ -573,9 +519,7 @@ provider_row_new (gpointer item,
 static void
 bjb_window_constructed (GObject *obj)
 {
-  BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (obj);
-  GListModel *notebooks;
   GListModel *providers;
   GdkRectangle geometry;
 
@@ -605,15 +549,6 @@ bjb_window_constructed (GObject *obj)
 
   gtk_widget_set_sensitive (self->notebooks_box, FALSE);
 
-  /* Populate the filter menu model. */
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-  notebooks = biji_manager_get_notebooks (manager);
-
-  g_signal_connect_object (notebooks, "items-changed",
-                           G_CALLBACK (on_display_notebooks_changed), self,
-                           G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-  on_display_notebooks_changed (self);
-
   /* Connection to window signals */
   g_signal_connect (GTK_WIDGET (self),
                     "destroy",
@@ -639,7 +574,12 @@ bjb_window_constructed (GObject *obj)
 static void
 bjb_window_init (BjbWindow *self)
 {
+  BjbManager *manager;
+
   gtk_widget_init_template (GTK_WIDGET (self));
+
+  manager = bjb_manager_get_default ();
+  bjb_manager_load (manager);
 }
 
 static void
@@ -703,11 +643,15 @@ bjb_window_set_is_main (BjbWindow *self,
 
   if (is_main)
     {
+      BjbManager *manager;
       GListModel *notes;
 
-      if (!self->controller)
-        self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default())));
-      notes = bjb_controller_get_notes (self->controller);
+      /* if (!self->controller) */
+      /*   self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default()))); */
+
+      manager = bjb_manager_get_default ();
+      notes = bjb_manager_get_notes (manager);
+      /* notes = bjb_controller_get_notes (self->controller); */
       bjb_note_list_set_model (self->note_list, notes);
     }
 
@@ -752,17 +696,6 @@ populate_headerbar_for_note_view (BjbWindow *self)
 
   on_note_renamed (self);
   on_last_updated_cb (self);
-}
-
-static gboolean
-on_note_trashed (BijiNoteObj *note,
-                 gpointer     user_data)
-{
-  BjbWindow *self = BJB_WINDOW (user_data);
-
-  destroy_note_if_needed (self);
-
-  return TRUE;
 }
 
 BjbNote *

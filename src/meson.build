@@ -15,6 +15,7 @@ sources = files(
   'bjb-import-dialog.c',
   'bjb-list-view-row.c',
   'bjb-main.c',
+  'bjb-manager.c',
   'bjb-note-list.c',
   'bjb-note-view.c',
   'bjb-notebook-row.c',

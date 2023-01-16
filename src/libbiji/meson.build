@@ -12,6 +12,7 @@ sources = files(
   '../providers/bjb-provider.c',
   '../providers/bjb-memo-provider.c',
   '../providers/bjb-local-provider.c',
+  '../providers/bjb-nc-provider.c',
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',

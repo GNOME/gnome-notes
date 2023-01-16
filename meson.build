@@ -114,6 +114,7 @@ bijiben_deps = [
   dependency('libhandy-1', version: '>= 1.5.0'),
   dependency('libxml-2.0'),
   dependency('libcurl'),
+  dependency('libsoup-3.0'),
   dependency('webkit2gtk-4.1', version: '>= 2.36'),
   cc.find_library('m')
 ]

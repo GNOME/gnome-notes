@@ -32,13 +32,18 @@ msgstr "Бележки за GNOME"
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
-msgstr "Бърз и лесен начин за водене на бележки в свободна форма или записване на прости списъци. Съхранявайте колкото бележки искате и ги споделяйте по е-поща."
+msgstr ""
+"Бърз и лесен начин за водене на бележки в свободна форма или записване на "
+"прости списъци. Съхранявайте колкото бележки искате и ги споделяйте по е-"
+"поща."
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
-msgstr "Може да съхранявате бележките локално на компютъра си или да ги синхронизирате онлайн с услуги като ownCloud."
+msgstr ""
+"Може да съхранявате бележките локално на компютъра си или да ги "
+"синхронизирате онлайн с услуги като ownCloud."
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
@@ -55,7 +60,9 @@ msgstr "Изглед като списък"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
-msgstr "бележки;напомняне;бележник;лепящи;лепливи;бележки;notes;reminder;notebook;sticky notes;"
+msgstr ""
+"бележки;напомняне;бележник;лепящи;лепливи;бележки;notes;reminder;notebook;"
+"sticky notes;"
 
 #: data/org.gnome.Notes.desktop.in:6
 msgid "Post notes, tag files!"
@@ -480,7 +487,9 @@ msgstr "Обикновен бележник за GNOME"
 
 #: src/bjb-application.c:622
 msgid "translator-credits"
-msgstr "Минчо Кондарев &lt;<a href='mailto:mkondarev@yahoo.de'>mkondarev@yahoo.de</a>&gt;"
+msgstr ""
+"Минчо Кондарев &lt;<a href='mailto:mkondarev@yahoo.de'>mkondarev@yahoo.de</"
+"a>&gt;"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"

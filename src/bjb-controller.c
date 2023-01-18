@@ -83,7 +83,16 @@ controller_sort_notes (gconstpointer a,
 static void
 bjb_controller_init (BjbController *self)
 {
+  GtkSorter *sorter;
+
   self->group = BIJI_LIVING_ITEMS;
+  self->settings = bjb_app_get_settings (g_application_get_default ());
+
+  self->list_of_notes = g_list_store_new (G_TYPE_LIST_MODEL);
+  self->flatten_notes = gtk_flatten_list_model_new (BIJI_TYPE_NOTE_OBJ, G_LIST_MODEL (self->list_of_notes));
+
+  sorter = gtk_custom_sorter_new (controller_sort_notes, NULL, NULL);
+  self->sorted_notes = gtk_sort_list_model_new (G_LIST_MODEL (self->flatten_notes), sorter);
 }
 
 static void
@@ -131,38 +140,12 @@ bjb_controller_set_property (GObject  *object,
 }
 
 static void
-bjb_controller_constructed (GObject *obj)
-{
-  BjbController *self = BJB_CONTROLLER (obj);
-  GListModel *notes;
-  GtkSorter *sorter;
-
-  G_OBJECT_CLASS(bjb_controller_parent_class)->constructed(obj);
-
-  self->settings = bjb_app_get_settings (g_application_get_default ());
-
-  self->list_of_notes = g_list_store_new (G_TYPE_LIST_MODEL);
-  self->flatten_notes = gtk_flatten_list_model_new (BIJI_TYPE_NOTE_OBJ, G_LIST_MODEL (self->list_of_notes));
-
-  sorter = gtk_custom_sorter_new (controller_sort_notes, NULL, NULL);
-  self->sorted_notes = gtk_sort_list_model_new (G_LIST_MODEL (self->flatten_notes), sorter);
-
-  /*
-  * Add only active notes, which is the default.  Archived
-   * notes shall be added when the user filters notes
-   */
-  notes = biji_manager_get_notes (self->manager, BIJI_LIVING_ITEMS);
-  g_list_store_append (self->list_of_notes, notes);
-}
-
-static void
 bjb_controller_class_init (BjbControllerClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
 
   object_class->get_property = bjb_controller_get_property;
   object_class->set_property = bjb_controller_set_property;
-  object_class->constructed = bjb_controller_constructed;
 
   properties[PROP_BOOK] = g_param_spec_object ("manager",
                                                "Book",
@@ -188,10 +171,22 @@ BjbController *
 bjb_controller_new (BijiManager  *manager,
                     GtkWindow     *window)
 {
-  return g_object_new ( BJB_TYPE_CONTROLLER,
-              "manager", manager,
-              "window", window,
-              NULL);
+  BjbController *self;
+  GListModel *notes;
+
+  self = g_object_new ( BJB_TYPE_CONTROLLER,
+                       "manager", manager,
+                       "window", window,
+                       NULL);
+
+  /*
+   * Add only active notes, which is the default.  Archived
+   * notes shall be added when the user filters notes
+   */
+  notes = biji_manager_get_notes (manager, BIJI_LIVING_ITEMS);
+  g_list_store_append (self->list_of_notes, notes);
+
+  return self;
 }
 
 void

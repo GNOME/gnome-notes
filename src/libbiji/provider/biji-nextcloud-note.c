@@ -260,18 +260,18 @@ biji_nextcloud_note_new (BijiNextcloudProvider *provider,
                          gint64                 mtime,
                          const char            *content)
 {
-  const char *baseurl = biji_nextcloud_provider_get_baseurl (provider);
+  /* const char *baseurl = biji_nextcloud_provider_get_baseurl (provider); */
   g_autofree char *url = NULL;
   g_autofree char *uuid = NULL;
   BijiNextcloudNote *self = NULL;
 
-  if (id > 0)
-    url = g_strdup_printf ("%s/%ld", baseurl, id);
-  else
-    {
-      uuid = g_uuid_string_random ();
-      url = g_strdup_printf ("%s/temp_%s", baseurl, uuid);
-    }
+  /* if (id > 0) */
+  /*   url = g_strdup_printf ("%s/%ld", baseurl, id); */
+  /* else */
+  /*   { */
+  /*     uuid = g_uuid_string_random (); */
+  /*     url = g_strdup_printf ("%s/temp_%s", baseurl, uuid); */
+  /*   } */
 
   self = g_object_new (BIJI_TYPE_NEXTCLOUD_NOTE,
                        "manager", manager,

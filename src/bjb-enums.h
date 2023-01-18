@@ -30,6 +30,14 @@ G_BEGIN_DECLS
 
 typedef enum
 {
+  BJB_STATUS_UNKNOWN,
+  BJB_STATUS_DISCONNECTED,
+  BJB_STATUS_CONNECTING,
+  BJB_STATUS_CONNECTED
+} BjbStatus;
+
+typedef enum
+{
   BJB_FEATURE_NONE           = 0,
   BJB_FEATURE_COLOR          = 1 <<  0,
   /* If note supports bold, italic, underline, strikethrough */

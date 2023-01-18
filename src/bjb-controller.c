@@ -27,15 +27,6 @@
 
 #include "bjb-application.h"
 #include "bjb-controller.h"
-#include "bjb-window.h"
-
-/*
- * The start-up number of items to show,
- * and its incrementation
- */
-
-#define BJB_ITEMS_SLICE 48
-
 
 struct _BjbController
 {
@@ -45,23 +36,11 @@ struct _BjbController
   BijiManager    *manager;
   BijiItemsGroup  group;
 
-  BjbWindow      *window;
-  BjbSettings    *settings;
-
   GListStore          *list_of_notes;
   GtkFlattenListModel *flatten_notes;
   GtkSortListModel    *sorted_notes;
 };
 
-
-enum {
-  PROP_0,
-  PROP_BOOK,
-  PROP_WINDOW,
-  NUM_PROPERTIES
-};
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 G_DEFINE_TYPE (BjbController, bjb_controller, G_TYPE_OBJECT)
 
@@ -86,7 +65,6 @@ bjb_controller_init (BjbController *self)
   GtkSorter *sorter;
 
   self->group = BIJI_LIVING_ITEMS;
-  self->settings = bjb_app_get_settings (g_application_get_default ());
 
   self->list_of_notes = g_list_store_new (G_TYPE_LIST_MODEL);
   self->flatten_notes = gtk_flatten_list_model_new (BIJI_TYPE_NOTE_OBJ, G_LIST_MODEL (self->list_of_notes));
@@ -96,103 +74,28 @@ bjb_controller_init (BjbController *self)
 }
 
 static void
-bjb_controller_get_property (GObject  *object,
-               guint     property_id,
-               GValue   *value,
-               GParamSpec *pspec)
-{
-  BjbController *self = BJB_CONTROLLER (object);
-
-  switch (property_id)
-  {
-  case PROP_BOOK:
-    g_value_set_object (value, self->manager);
-    break;
-  case PROP_WINDOW:
-    g_value_set_object (value, self->window);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
-}
-
-static void
-bjb_controller_set_property (GObject  *object,
-               guint     property_id,
-               const GValue *value,
-               GParamSpec *pspec)
-{
-  BjbController *self = BJB_CONTROLLER (object);
-
-  switch (property_id)
-  {
-  case PROP_BOOK:
-    bjb_controller_set_manager(self,g_value_get_object(value));
-    break;
-  case PROP_WINDOW:
-    self->window = g_value_get_object (value);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
-  }
-}
-
-static void
 bjb_controller_class_init (BjbControllerClass *klass)
 {
-  GObjectClass* object_class = G_OBJECT_CLASS (klass);
-
-  object_class->get_property = bjb_controller_get_property;
-  object_class->set_property = bjb_controller_set_property;
-
-  properties[PROP_BOOK] = g_param_spec_object ("manager",
-                                               "Book",
-                                               "The BijiManager",
-                                               BIJI_TYPE_MANAGER,
-                                               G_PARAM_READWRITE |
-                                               G_PARAM_CONSTRUCT |
-                                               G_PARAM_STATIC_STRINGS);
-
-  properties[PROP_WINDOW] = g_param_spec_object ("window",
-                                                 "GtkWindow",
-                                                 "BjbWindow",
-                                                 BJB_TYPE_WINDOW,
-                                                 G_PARAM_READWRITE |
-                                                 G_PARAM_CONSTRUCT |
-                                                 G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_properties (object_class, NUM_PROPERTIES, properties);
-
 }
 
 BjbController *
-bjb_controller_new (BijiManager  *manager,
-                    GtkWindow     *window)
+bjb_controller_new (BijiManager *manager)
 {
   BjbController *self;
   GListModel *notes;
 
   self = g_object_new ( BJB_TYPE_CONTROLLER,
-                       "manager", manager,
-                       "window", window,
                        NULL);
 
   /*
    * Add only active notes, which is the default.  Archived
    * notes shall be added when the user filters notes
    */
+  self->manager = manager;
   notes = biji_manager_get_notes (manager, BIJI_LIVING_ITEMS);
   g_list_store_append (self->list_of_notes, notes);
 
   return self;
-}
-
-void
-bjb_controller_set_manager (BjbController *self, BijiManager  *manager )
-{
-  self->manager = manager;
 }
 
 GListModel *

@@ -721,8 +721,7 @@ bjb_window_set_is_main (BjbWindow *self,
       GListModel *notes;
 
       if (!self->controller)
-        self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default())),
-                                               GTK_WINDOW (self));
+        self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default())));
       notes = bjb_controller_get_notes (self->controller);
       bjb_note_list_set_model (self->note_list, notes);
     }

@@ -28,9 +28,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbController, bjb_controller, BJB, CONTROLLER, GObject)
 
-BjbController * bjb_controller_new (BijiManager  *manager,
-                                    GtkWindow     *bjb_window_base);
-void bjb_controller_set_manager (BjbController * self, BijiManager * manager ) ;
+BjbController *bjb_controller_new (BijiManager  *manager);
 GListModel   *bjb_controller_get_notes (BjbController *self);
 BijiItemsGroup bjb_controller_get_group (BjbController *controller);
 void bjb_controller_set_group (BjbController   *self,

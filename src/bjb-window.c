@@ -282,48 +282,6 @@ on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
 }
 
 static void
-note_view_destroyed (BjbWindow *self)
-{
-  g_assert (BJB_IS_WINDOW (self));
-
-  g_object_set_data (G_OBJECT (self), "note-view", NULL);
-}
-
-static void
-on_detach_window_cb (GSimpleAction *action,
-                     GVariant      *parameter,
-                     gpointer       user_data)
-{
-  int width, height;
-  BjbWindow *detached_window;
-  BjbWindow *self = BJB_WINDOW (user_data);
-  BijiNoteObj *note = self->note;
-
-  if (!note)
-    return;
-
-  /* Width and height of the detached window. */
-  width = gtk_widget_get_allocated_width (GTK_WIDGET (self->note_view));
-  gtk_window_get_size (GTK_WINDOW (self), NULL, &height);
-
-  bjb_note_view_set_detached (BJB_NOTE_VIEW (self->note_view), TRUE);
-
-  detached_window = BJB_WINDOW (bjb_window_new ());
-  gtk_window_set_default_size (GTK_WINDOW (detached_window), width, height);
-  g_object_set_data_full (G_OBJECT (detached_window), "note-view",
-                          g_object_ref (self->note_view), g_object_unref);
-  g_signal_connect_object (self->note_view, "destroy",
-                           G_CALLBACK (note_view_destroyed), detached_window,
-                           G_CONNECT_SWAPPED);
-
-  detached_window->controller = g_object_ref (self->controller);
-
-  bjb_window_set_is_main (detached_window, FALSE);
-  bjb_window_set_note (detached_window, note);
-  gtk_window_present (GTK_WINDOW (detached_window));
-}
-
-static void
 on_paste_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
@@ -580,7 +538,6 @@ on_display_notebooks_changed (BjbWindow *self)
 }
 
 static GActionEntry win_entries[] = {
-  { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
   { "paste", on_paste_cb, NULL, NULL, NULL },
   { "undo", on_undo_cb, NULL, NULL, NULL },
   { "redo", on_redo_cb, NULL, NULL, NULL },

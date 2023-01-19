@@ -342,7 +342,7 @@
 
         <child>
           <object class="GtkModelButton" id="new_window_item">
-            <property name="visible">True</property>
+            <property name="visible">False</property>
             <property name="text" translatable="yes">Open in New Window</property>
             <property name="action-name">win.detach-window</property>
           </object>

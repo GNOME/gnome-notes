@@ -208,25 +208,6 @@ on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
   GApplication *app = g_application_get_default ();
   GdkModifierType modifiers = gtk_accelerator_get_default_mod_mask ();
 
-  if ((event->key.state & modifiers) == GDK_MOD1_MASK &&
-      event->key.keyval == GDK_KEY_Left &&
-      (self->current_view == BJB_WINDOW_MAIN_VIEW ||
-       self->current_view == BJB_WINDOW_ARCHIVE_VIEW))
-  {
-    BijiItemsGroup items;
-
-    items = bjb_controller_get_group (self->controller);
-
-    /* Back to main view from trash bin */
-    if (items == BIJI_ARCHIVED_ITEMS)
-      bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
-    /* Back to main view */
-    else
-      bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
-
-    return TRUE;
-  }
-
   switch (event->key.keyval)
   {
     case GDK_KEY_F1:

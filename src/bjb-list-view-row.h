@@ -31,6 +31,7 @@ G_DECLARE_FINAL_TYPE (BjbListViewRow, bjb_list_view_row, BJB, LIST_VIEW_ROW, Gtk
 
 BjbListViewRow *bjb_list_view_row_new                (void);
 GtkWidget      *bjb_list_view_row_new_with_note      (BijiNoteObj *note);
+BjbItem        *bjb_list_view_row_get_note           (BjbListViewRow *self);
 
 const char     *bjb_list_view_row_get_uuid           (BjbListViewRow *self);
 

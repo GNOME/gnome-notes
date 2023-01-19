@@ -166,3 +166,11 @@ bjb_list_view_row_new_with_note (BijiNoteObj *note)
 
   return GTK_WIDGET (self);
 }
+
+BjbItem *
+bjb_list_view_row_get_note (BjbListViewRow *self)
+{
+  g_return_val_if_fail (BJB_IS_LIST_VIEW_ROW (self), NULL);
+
+  return BJB_ITEM (self->note);
+}

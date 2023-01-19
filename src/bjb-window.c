@@ -148,17 +148,13 @@ on_title_changed (BjbWindow *self,
 static void
 window_selected_note_changed_cb (BjbWindow *self)
 {
-  const char *note_uuid;
   gpointer to_open;
-  BijiManager *manager;
   GList *windows;
 
   g_assert (BJB_IS_WINDOW (self));
 
   windows = gtk_application_get_windows (gtk_window_get_application (GTK_WINDOW (self)));
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-  note_uuid = bjb_note_list_get_selected_note (self->note_list);
-  to_open = biji_manager_get_item_at_path (manager, note_uuid);
+  to_open = bjb_note_list_get_selected_note (self->note_list);
 
   for (GList *node = windows; BIJI_IS_NOTE_OBJ (to_open) && node; node = node->next)
     {

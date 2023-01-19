@@ -26,8 +26,8 @@ struct _BjbNoteList
   GtkFilterListModel *filtered_notes;
   GtkFilter          *filter;
   BjbItem            *current_notebook;
+  BjbItem            *selected_note;
   char               *search_term;
-  char               *selected_note;
   gboolean            show_trash;
 };
 
@@ -134,14 +134,13 @@ static void
 note_list_row_activated_cb (BjbNoteList    *self,
                             BjbListViewRow *row)
 {
-  const char *selected_note;
+  BjbItem *selected_note;
 
   g_assert (BJB_IS_NOTE_LIST (self));
   g_assert (BJB_IS_LIST_VIEW_ROW (row));
 
-  selected_note = bjb_list_view_row_get_uuid (row);
-  g_free (self->selected_note);
-  self->selected_note = g_strdup (selected_note);
+  selected_note = bjb_list_view_row_get_note (row);
+  g_set_object (&self->selected_note, selected_note);
 
   g_signal_emit (self, signals[SELECTION_CHANGED], 0);
 }
@@ -154,8 +153,8 @@ bjb_note_list_finalize (GObject *object)
   g_clear_object (&self->notes_list);
   g_clear_object (&self->filtered_notes);
   g_clear_pointer (&self->search_term, g_free);
-  g_clear_pointer (&self->selected_note, g_free);
   g_clear_object (&self->current_notebook);
+  g_clear_object (&self->selected_note);
 
   G_OBJECT_CLASS (bjb_note_list_parent_class)->finalize (object);
 }
@@ -218,7 +217,7 @@ bjb_note_list_set_model (BjbNoteList *self,
                            self, NULL);
 }
 
-const char *
+BjbItem *
 bjb_note_list_get_selected_note (BjbNoteList *self)
 {
   g_return_val_if_fail (BJB_IS_NOTE_LIST (self), NULL);

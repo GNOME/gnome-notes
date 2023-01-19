@@ -35,7 +35,7 @@ G_DECLARE_FINAL_TYPE (BjbNoteList, bjb_note_list, BJB, NOTE_LIST, GtkBox)
 
 void         bjb_note_list_set_model           (BjbNoteList  *self,
                                                 GListModel   *model);
-const char  *bjb_note_list_get_selected_note   (BjbNoteList  *self);
+BjbItem     *bjb_note_list_get_selected_note   (BjbNoteList  *self);
 void         bjb_note_list_set_notebook        (BjbNoteList  *self,
                                                 BjbItem      *notebook);
 

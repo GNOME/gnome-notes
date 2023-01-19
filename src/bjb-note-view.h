@@ -32,5 +32,7 @@ void                bjb_note_view_set_detached       (BjbNoteView *self,
                                                       gboolean     detached);
 void                bjb_note_view_set_note           (BjbNoteView *self,
                                                       BijiNoteObj *note);
+BijiWebkitEditor   *bjb_note_view_get_editor         (BjbNoteView *self);
+
 
 G_END_DECLS

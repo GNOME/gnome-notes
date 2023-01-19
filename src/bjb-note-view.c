@@ -50,8 +50,8 @@ note_view_format_applied_cb (BjbNoteView      *self,
 {
   g_assert (BJB_IS_NOTE_VIEW (self));
 
-  if (self->note)
-    biji_note_obj_editor_apply_format (self->note, format);
+  if (self->view)
+    biji_webkit_editor_apply_format (BIJI_WEBKIT_EDITOR (self->view), format);
 }
 
 static void
@@ -66,7 +66,7 @@ note_view_copy_clicked_cb (BjbNoteView *self)
 
   g_assert (BJB_IS_NOTE_VIEW (self));
 
-  content = biji_note_obj_editor_get_selection (self->note);
+  content = biji_webkit_editor_get_selection (BIJI_WEBKIT_EDITOR (self->view));
 
   if (!content || !*content)
     return;
@@ -219,7 +219,7 @@ bjb_note_view_set_note (BjbNoteView *self,
       GdkRGBA color;
 
       /* Text Editor (WebKitMainView) */
-      self->view = biji_note_obj_open (note);
+      self->view = (GtkWidget *)biji_webkit_editor_new (note);
       gtk_widget_show (self->view);
       gtk_box_pack_start (GTK_BOX (self->editor_box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
 
@@ -246,4 +246,12 @@ bjb_note_view_set_note (BjbNoteView *self,
       hdy_status_page_set_title (HDY_STATUS_PAGE (self->status_page),
                                  _("No note selected"));
     }
+}
+
+BijiWebkitEditor *
+bjb_note_view_get_editor (BjbNoteView *self)
+{
+  g_return_val_if_fail (BJB_IS_NOTE_VIEW (self), NULL);
+
+  return (BijiWebkitEditor *)self->view;
 }

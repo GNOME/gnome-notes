@@ -174,12 +174,7 @@ window_selected_note_changed_cb (BjbWindow *self)
   if (to_open && BIJI_IS_NOTE_OBJ (to_open))
     {
       hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
-
-      /* Only open the note if it's not already opened. */
-      if (!biji_note_obj_is_opened (to_open))
-        {
-          bjb_window_set_note (self, to_open);
-        }
+      bjb_window_set_note (self, to_open);
     }
 }
 

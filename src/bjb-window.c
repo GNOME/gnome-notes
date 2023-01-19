@@ -289,7 +289,7 @@ on_paste_cb (GSimpleAction *action,
   BjbWindow *self = user_data;
 
   if (self->note)
-    biji_webkit_editor_paste (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note)));
+    biji_webkit_editor_paste (bjb_note_view_get_editor (BJB_NOTE_VIEW (self->note_view)));
 }
 
 static void
@@ -300,7 +300,7 @@ on_undo_cb (GSimpleAction *action,
   BjbWindow *self = user_data;
 
   if (self->note)
-    biji_webkit_editor_undo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note)));
+    biji_webkit_editor_undo (bjb_note_view_get_editor (BJB_NOTE_VIEW (self->note_view)));
 }
 
 static void
@@ -311,7 +311,7 @@ on_redo_cb (GSimpleAction *action,
   BjbWindow *self = user_data;
 
   if (self->note)
-    biji_webkit_editor_redo (BIJI_WEBKIT_EDITOR (biji_note_obj_get_editor (self->note)));
+    biji_webkit_editor_redo (bjb_note_view_get_editor (BJB_NOTE_VIEW (self->note_view)));
 }
 
 static void

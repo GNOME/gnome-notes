@@ -28,7 +28,7 @@ struct _BjbNoteList
   BjbItem            *current_notebook;
   BjbItem            *selected_note;
   char               *search_term;
-  gboolean            show_trash;
+  gboolean            is_trash;
 };
 
 
@@ -46,6 +46,9 @@ note_list_filter_notes (gpointer note,
 {
   BjbNoteList *self = user_data;
   const char *title, *content;
+
+  if (bjb_item_is_trashed (note) != self->is_trash)
+    return FALSE;
 
   if (self->current_notebook)
     {
@@ -77,7 +80,7 @@ note_list_filter_notes (gpointer note,
   if (title && strcasestr (title, self->search_term))
     return TRUE;
 
-  content = biji_note_obj_get_raw_text (note);
+  content = bjb_note_get_text_content (note);
 
   if (content && strcasestr (content, self->search_term))
     return TRUE;
@@ -234,4 +237,21 @@ bjb_note_list_set_notebook (BjbNoteList *self,
 
   if (g_set_object (&self->current_notebook, notebook))
     gtk_filter_changed (self->filter, GTK_FILTER_CHANGE_DIFFERENT);
+}
+
+void
+bjb_note_list_show_trash (BjbNoteList *self,
+                          gboolean     show_trash)
+{
+  g_return_if_fail (BJB_IS_NOTE_LIST (self));
+
+  if (self->is_trash == !!show_trash)
+    return;
+
+  /* Remove existing filters */
+  g_clear_object (&self->current_notebook);
+  g_clear_pointer (&self->search_term, g_free);
+
+  self->is_trash = !!show_trash;
+  gtk_filter_changed (self->filter, GTK_FILTER_CHANGE_DIFFERENT);
 }

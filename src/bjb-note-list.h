@@ -38,5 +38,7 @@ void         bjb_note_list_set_model           (BjbNoteList  *self,
 BjbItem     *bjb_note_list_get_selected_note   (BjbNoteList  *self);
 void         bjb_note_list_set_notebook        (BjbNoteList  *self,
                                                 BjbItem      *notebook);
+void         bjb_note_list_show_trash          (BjbNoteList  *self,
+                                                gboolean      show_trash);
 
 G_END_DECLS

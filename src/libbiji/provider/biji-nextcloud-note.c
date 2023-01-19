@@ -311,7 +311,6 @@ biji_nextcloud_note_class_init (BijiNextcloudNoteClass *klass)
   note_class->save_note = save_note;
   note_class->can_format = note_no;
   note_class->archive = archive;
-  note_class->is_trashed = note_no;
 }
 
 static void

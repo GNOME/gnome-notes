@@ -76,16 +76,6 @@ struct _BijiNoteObjClass
 
   /*
    * Mandatory
-   * Return TRUE if the note is marked as trashed in any way
-   * (depending on the provider)
-   *
-   * Return FALSE if the note is note trashed.
-   *
-   * If the provider does not support this, return FALSE */
-  gboolean      (*is_trashed)        (BijiNoteObj *note);
-
-  /*
-   * Mandatory
    * Return TRUE if the note can store rich text:
    * - bold, italic, srike
    */
@@ -114,8 +104,6 @@ void             biji_note_obj_set_rgba                      (BijiNoteObj   *sel
 
 GList           *biji_note_obj_get_notebooks                 (BijiNoteObj *self);
 
-gboolean         biji_note_obj_is_trashed                    (BijiNoteObj *self);
-
 void             biji_note_obj_save_note                     (BijiNoteObj *self);
 
 const char      *biji_note_obj_get_raw_text                  (BijiNoteObj *self);
@@ -131,12 +119,6 @@ void             biji_note_obj_set_path                      (BijiNoteObj *self,
 void             biji_note_obj_set_is_template               (BijiNoteObj *self,
                                                               gboolean     is_template);
 
-GtkWidget       *biji_note_obj_open                          (BijiNoteObj *self);
-
-gboolean         biji_note_obj_is_opened                     (BijiNoteObj *self);
-
-GtkWidget       *biji_note_obj_get_editor                    (BijiNoteObj *self);
-
 gboolean         biji_note_obj_can_format                    (BijiNoteObj *self);
 
 char            *html_from_plain_text                        (const char *content);
@@ -145,10 +127,5 @@ void             biji_note_obj_set_html                      (BijiNoteObj *self,
                                                               const char  *html);
 
 char            *biji_note_obj_get_html                      (BijiNoteObj *self);
-
-void             biji_note_obj_editor_apply_format           (BijiNoteObj *self,
-                                                              int          format);
-
-const char      *biji_note_obj_editor_get_selection          (BijiNoteObj *self);
 
 G_END_DECLS

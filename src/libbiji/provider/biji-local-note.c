@@ -144,13 +144,6 @@ local_note_archive (BijiNoteObj *note)
 }
 
 static gboolean
-local_note_is_trashed (BijiNoteObj *note)
-{
-  BijiLocalNote *self = BIJI_LOCAL_NOTE (note);
-  return self->trashed;
-}
-
-static gboolean
 local_note_restore (BijiNoteObj  *item,
                     char        **old_uuid)
 {
@@ -245,7 +238,6 @@ biji_local_note_class_init (BijiLocalNoteClass *klass)
   note_class->save_note = local_note_save;
   note_class->can_format = note_yes;
   note_class->archive = local_note_archive;
-  note_class->is_trashed = local_note_is_trashed;
   note_class->restore = local_note_restore;
   note_class->delete = local_note_delete;
 }

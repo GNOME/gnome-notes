@@ -32,9 +32,6 @@ typedef struct
   GdkRGBA               *color; // Not yet in Tracker
 
   BijiManager           *manager;
-  /* Editing use the same widget
-   * for all notes provider. */
-  BijiWebkitEditor      *editor;
 
   /* Save */
   BijiTimeout           *timeout;
@@ -187,12 +184,6 @@ biji_note_obj_get_property (GObject    *object,
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
     }
-}
-
-gboolean
-biji_note_obj_is_trashed (BijiNoteObj *self)
-{
-  return BIJI_NOTE_OBJ_GET_CLASS (self)->is_trashed (self);
 }
 
 const char *
@@ -519,90 +510,9 @@ biji_note_obj_set_html (BijiNoteObj *self,
 }
 
 gboolean
-biji_note_obj_is_opened (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return BIJI_IS_WEBKIT_EDITOR (priv->editor);
-}
-
-static void
-on_biji_note_obj_closed_cb (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv;
-  const char *title;
-
-  priv = biji_note_obj_get_instance_private (self);
-  priv->editor = NULL;
-  title = bjb_item_get_title (BJB_ITEM (self));
-
-  /*
-   * Delete (not _trash_ if note is totaly blank
-   * A Cancellable would be better than needs->save
-   */
-  if (biji_note_obj_get_raw_text (self) == NULL)
-    {
-      priv->needs_save = FALSE;
-      biji_note_obj_delete (self);
-    }
-
-  /* If the note has no title */
-  else if (title == NULL)
-    {
-      title = biji_note_obj_get_raw_text (self);
-      bjb_item_set_title (BJB_ITEM (self), title);
-    }
-}
-
-GtkWidget *
-biji_note_obj_open (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  priv->editor = biji_webkit_editor_new (self);
-
-  g_signal_connect_swapped (priv->editor, "destroy",
-                            G_CALLBACK (on_biji_note_obj_closed_cb), self);
-
-  return GTK_WIDGET (priv->editor);
-}
-
-GtkWidget *
-biji_note_obj_get_editor (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (!biji_note_obj_is_opened (self))
-    return NULL;
-
-  return GTK_WIDGET (priv->editor);
-}
-
-gboolean
 biji_note_obj_can_format (BijiNoteObj *self)
 {
   return BIJI_NOTE_OBJ_GET_CLASS (self)->can_format (self);
-}
-
-void
-biji_note_obj_editor_apply_format (BijiNoteObj *self,
-                                   int          format)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (biji_note_obj_is_opened (self))
-    biji_webkit_editor_apply_format (priv->editor, format);
-}
-
-const char *
-biji_note_obj_editor_get_selection (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (biji_note_obj_is_opened (self))
-    return biji_webkit_editor_get_selection (priv->editor);
-
-  return NULL;
 }
 
 static void

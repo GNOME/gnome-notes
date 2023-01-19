@@ -336,7 +336,6 @@ biji_memo_note_class_init (BijiMemoNoteClass *klass)
   note_class->save_note = memo_note_save;
   note_class->can_format = note_no;
   note_class->archive = memo_delete;
-  note_class->is_trashed = note_no;
 
   properties[PROP_ECAL] =
     g_param_spec_object("ecal",

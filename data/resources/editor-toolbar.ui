@@ -216,7 +216,7 @@
             <property name="layout_style">expand</property>
             <child>
               <object class="GtkButton" id="link_button">
-                <property name="visible">True</property>
+                <property name="visible">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Copy selection to a new note</property>

@@ -59,6 +59,9 @@ void           bjb_item_set_mtime            (BjbItem        *self,
 gint64         bjb_item_get_meta_mtime       (BjbItem        *self);
 void           bjb_item_set_meta_mtime       (BjbItem        *self,
                                               gint64          time);
+gboolean       bjb_item_is_trashed           (BjbItem        *self);
+void           bjb_item_set_is_trashed       (BjbItem        *self,
+                                              gboolean        is_trashed);
 gboolean       bjb_item_is_modified          (BjbItem        *self);
 void           bjb_item_unset_modified       (BjbItem        *self);
 gboolean       bjb_item_is_new               (BjbItem        *self);

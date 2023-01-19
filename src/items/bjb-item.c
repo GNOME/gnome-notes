@@ -43,6 +43,7 @@ typedef struct
   /* The creation time of the item */
   gint64    creation_time;
   gboolean  modified;
+  gboolean  trashed;
 } BjbItemPrivate;
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (BjbItem, bjb_item, G_TYPE_OBJECT)
@@ -486,6 +487,27 @@ bjb_item_set_meta_mtime (BjbItem *self,
   g_return_if_fail (BJB_IS_ITEM (self));
 
   priv->meta_mtime = time;
+}
+
+gboolean
+bjb_item_is_trashed (BjbItem *self)
+{
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
+  g_return_val_if_fail (BJB_IS_ITEM (self), FALSE);
+
+  return priv->trashed;
+}
+
+void
+bjb_item_set_is_trashed (BjbItem  *self,
+                         gboolean  is_trashed)
+{
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
+  g_return_if_fail (BJB_IS_ITEM (self));
+
+  priv->trashed = !!is_trashed;
 }
 
 /**

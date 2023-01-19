@@ -33,7 +33,6 @@ struct _BjbListViewRow
   GtkLabel       *updated_time;
 
   BijiNoteObj    *note;
-  char           *uuid;
 };
 
 G_DEFINE_TYPE (BjbListViewRow, bjb_list_view_row, GTK_TYPE_LIST_BOX_ROW);
@@ -89,12 +88,6 @@ note_content_changed_cb (BjbListViewRow *self)
   gtk_label_set_text (self->content, preview);
 }
 
-const char *
-bjb_list_view_row_get_uuid (BjbListViewRow *self)
-{
-  return self->uuid;
-}
-
 static void
 bjb_list_view_row_init (BjbListViewRow *self)
 {
@@ -110,7 +103,6 @@ bjb_list_view_row_finalize (GObject *object)
 
   g_clear_object (&self->note);
   g_clear_object (&self->css_provider);
-  g_free (self->uuid);
 
   G_OBJECT_CLASS (bjb_list_view_row_parent_class)->finalize (object);
 }
@@ -145,7 +137,6 @@ bjb_list_view_row_new_with_note (BijiNoteObj *note)
 
   self = g_object_new (BJB_TYPE_LIST_VIEW_ROW, NULL);
   self->note = g_object_ref (note);
-  self->uuid = g_strdup (bjb_item_get_uid (BJB_ITEM (note)));
 
   g_object_bind_property (note, "title",
                           self->title, "label",

@@ -33,6 +33,4 @@ BjbListViewRow *bjb_list_view_row_new                (void);
 GtkWidget      *bjb_list_view_row_new_with_note      (BijiNoteObj *note);
 BjbItem        *bjb_list_view_row_get_note           (BjbListViewRow *self);
 
-const char     *bjb_list_view_row_get_uuid           (BjbListViewRow *self);
-
 G_END_DECLS

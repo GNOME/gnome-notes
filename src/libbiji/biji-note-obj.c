@@ -387,6 +387,8 @@ biji_note_obj_set_raw_text (BijiNoteObj *self,
 
   g_free (priv->content);
   priv->content = g_strdup (plain_text);
+
+  bjb_item_set_modified (BJB_ITEM (self));
   g_signal_emit (self, biji_obj_signals[NOTE_CHANGED],0);
 }
 

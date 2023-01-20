@@ -23,6 +23,7 @@
 
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
+#include "providers/bjb-provider.h"
 #include "bjb-note-view.h"
 
 struct _BjbNoteView
@@ -38,11 +39,61 @@ struct _BjbNoteView
   /* Data */
   GtkWidget         *view;
   BijiNoteObj       *note ;
+
+  gulong             modified_id;
+  guint              save_id;
 };
+
+typedef struct _NoteData
+{
+  BjbNoteView *self;
+  BjbItem     *note;
+} NoteData;
 
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
 
 static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
+
+static void
+note_data_free (gpointer user_data)
+{
+  NoteData *data = user_data;
+
+  if (!data)
+    return;
+
+  g_set_weak_pointer (&data->self, NULL);
+  g_clear_object (&data->note);
+  g_free (data);
+}
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (NoteData, note_data_free)
+
+static gboolean
+note_view_save_item (gpointer user_data)
+{
+  g_autoptr(NoteData) data = user_data;
+  BjbNoteView *self;
+  BjbProvider *provider;
+  BjbItem *note;
+
+  g_assert (data);
+
+  self = data->self;
+  note = data->note;
+  g_assert (!self || BJB_IS_NOTE_VIEW (self));
+  g_assert (BIJI_IS_NOTE_OBJ (note));
+
+  provider = g_object_get_data (G_OBJECT (note), "provider");
+  g_assert (BJB_IS_PROVIDER (provider));
+
+  if (self)
+    self->save_id = 0;
+
+  bjb_provider_save_item_async (provider, note, NULL, NULL, NULL);
+
+  return G_SOURCE_REMOVE;
+}
 
 static void
 note_view_format_applied_cb (BjbNoteView      *self,
@@ -109,18 +160,6 @@ bjb_note_view_disconnect (BjbNoteView *self)
 
 
 static void
-bjb_note_view_finalize(GObject *object)
-{
-  BjbNoteView *self = BJB_NOTE_VIEW (object) ;
-
-  bjb_note_view_disconnect (self);
-
-  g_clear_object (&self->view);
-
-  G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
-}
-
-static void
 on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
 {
   GdkRGBA color;
@@ -152,6 +191,30 @@ view_font_changed_cb (BjbNoteView *self,
 
   biji_webkit_editor_set_text_size (BIJI_WEBKIT_EDITOR (self->view),
                                     bjb_settings_get_text_size (settings));
+}
+
+static void
+bjb_note_view_finalize (GObject *object)
+{
+  BjbNoteView *self = (BjbNoteView *)object;
+
+  if (self->save_id && self->note &&
+      bjb_item_is_modified (BJB_ITEM (self->note)))
+    {
+      NoteData *data;
+
+      data = g_new0 (NoteData, 1);
+      g_set_object (&data->note, (BjbItem *)self->note);
+      note_view_save_item (data);
+    }
+
+  g_clear_handle_id (&self->save_id, g_source_remove);
+  bjb_note_view_disconnect (self);
+
+  g_clear_object (&self->note);
+  g_clear_object (&self->view);
+
+  G_OBJECT_CLASS (bjb_note_view_parent_class)->finalize (object);
 }
 
 static void
@@ -189,6 +252,24 @@ bjb_note_view_init (BjbNoteView *self)
   view_font_changed_cb (self, NULL, settings);
 }
 
+static void
+note_view_note_modified_cb (BjbNoteView *self)
+{
+  NoteData *data;
+
+  g_assert (BJB_IS_NOTE_VIEW (self));
+
+  if (!self->note || !bjb_item_is_modified (BJB_ITEM (self->note)) ||
+      self->save_id)
+    return;
+
+  data = g_new0 (NoteData, 1);
+  g_set_weak_pointer (&data->self, self);
+  g_set_object (&data->note, (BjbItem *)self->note);
+
+  self->save_id = g_timeout_add_seconds (10, note_view_save_item, data);
+}
+
 void
 bjb_note_view_set_note (BjbNoteView *self,
                         BijiNoteObj *note)
@@ -201,6 +282,20 @@ bjb_note_view_set_note (BjbNoteView *self,
   if (self->note == note)
     return;
 
+  if (self->save_id && self->note &&
+      bjb_item_is_modified (BJB_ITEM (self->note)))
+    {
+      NoteData *data;
+
+      data = g_new0 (NoteData, 1);
+      g_set_weak_pointer (&data->self, self);
+      g_set_object (&data->note, (BjbItem *)self->note);
+      note_view_save_item (data);
+    }
+
+  g_clear_signal_handler (&self->modified_id, self->note);
+  g_clear_handle_id (&self->save_id, g_source_remove);
+
   if (note)
     can_format = biji_note_obj_can_format (note);
   bjb_editor_toolbar_set_can_format (BJB_EDITOR_TOOLBAR (self->editor_toolbar), can_format);
@@ -209,7 +304,7 @@ bjb_note_view_set_note (BjbNoteView *self,
     gtk_widget_set_visible (self->editor_toolbar, !bjb_item_is_trashed (BJB_ITEM (note)));
   bjb_note_view_disconnect (self);
 
-  self->note = note;
+  self->note = g_object_ref (note);
   if (self->view)
     gtk_widget_destroy (self->view);
   g_clear_object (&self->view);
@@ -223,6 +318,9 @@ bjb_note_view_set_note (BjbNoteView *self,
       gtk_widget_show (self->view);
       gtk_box_pack_start (GTK_BOX (self->editor_box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
 
+      self->modified_id = g_signal_connect_object (self->note, "notify::modified",
+                                                   G_CALLBACK (note_view_note_modified_cb),
+                                                   self, G_CONNECT_SWAPPED);
       if (!biji_note_obj_get_rgba (self->note, &color))
         {
           BjbSettings *settings;

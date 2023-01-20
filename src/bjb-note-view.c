@@ -206,7 +206,7 @@ bjb_note_view_set_note (BjbNoteView *self,
   bjb_editor_toolbar_set_can_format (BJB_EDITOR_TOOLBAR (self->editor_toolbar), can_format);
 
   if (note)
-    gtk_widget_set_visible (self->editor_toolbar, !biji_note_obj_is_trashed (note));
+    gtk_widget_set_visible (self->editor_toolbar, !bjb_item_is_trashed (BJB_ITEM (note)));
   bjb_note_view_disconnect (self);
 
   self->note = note;

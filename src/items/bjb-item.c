@@ -35,6 +35,8 @@ typedef struct
   char     *uid;
   char     *title;
 
+  GdkRGBA  *rgba;
+
   /* The last modified time of the item */
   gint64    mtime;
   /* The modified time of metadata of the item */
@@ -51,6 +53,7 @@ G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (BjbItem, bjb_item, G_TYPE_OBJECT)
 enum {
   PROP_0,
   PROP_TITLE,
+  PROP_COLOR,
   PROP_CREATE_TIME,
   PROP_MTIME,
   PROP_META_MTIME,
@@ -73,6 +76,10 @@ bjb_item_get_property (GObject    *object,
     {
     case PROP_TITLE:
       g_value_set_string (value, priv->title);
+      break;
+
+    case PROP_COLOR:
+      g_value_set_boxed (value, priv->rgba);
       break;
 
     case PROP_CREATE_TIME:
@@ -107,6 +114,10 @@ bjb_item_set_property (GObject      *object,
       bjb_item_set_title (self, g_value_get_string (value));
       break;
 
+    case PROP_COLOR:
+      bjb_item_set_rgba (self, g_value_get_boxed (value));
+      break;
+
     case PROP_CREATE_TIME:
       priv->creation_time = g_value_get_int64 (value);
       break;
@@ -136,6 +147,7 @@ bjb_item_finalize (GObject *object)
 
   g_clear_pointer (&priv->uid, g_free);
   g_clear_pointer (&priv->title, g_free);
+  g_clear_pointer (&priv->rgba, gdk_rgba_free);
 
   G_OBJECT_CLASS (bjb_item_parent_class)->finalize (object);
 }
@@ -227,6 +239,20 @@ bjb_item_class_init (BjbItemClass *klass)
                          "The name of the Item",
                          NULL,
                          G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+
+  /**
+   * BjbItem:color:
+   *
+   * The #GdkRGBA color of the item. Set to %NULL if the item doesn't
+   * support color.
+   *
+   */
+  properties[PROP_COLOR] =
+    g_param_spec_boxed ("color",
+                        "RGBA Color",
+                        "The RGBA color of the item",
+                        GDK_TYPE_RGBA,
+                        G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
 
   /**
    * BjbItem:mtime:
@@ -386,6 +412,59 @@ bjb_item_set_title (BjbItem   *self,
 
   bjb_item_set_modified (self);
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_TITLE]);
+}
+
+/**
+ * bjb_item_get_rgba:
+ * @self: a #BjbItem
+ * @rgba (out) (nullable): a location for #GdkRGBA
+ *
+ * Get the #GdkRGBA of the item
+ *
+ * Returns: %TRUE if the item has a color. %FALSE otherwise
+ */
+gboolean
+bjb_item_get_rgba (BjbItem *self,
+                   GdkRGBA *rgba)
+{
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
+  g_return_val_if_fail (BJB_IS_ITEM (self), FALSE);
+
+  if (priv->rgba == NULL)
+    return FALSE;
+
+  if (rgba)
+    *rgba = *priv->rgba;
+
+  return TRUE;
+}
+
+/**
+ * bjb_item_set_rgba:
+ * @self: a #BjbItem
+ * @rgba: a #GdkRGBA
+ *
+ * Set the #GdkRGBA of the item
+ */
+void
+bjb_item_set_rgba (BjbItem       *self,
+                   const GdkRGBA *rgba)
+{
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
+  g_return_if_fail (BJB_IS_ITEM (self));
+  g_return_if_fail (rgba != NULL);
+
+  if (priv->rgba != NULL &&
+      gdk_rgba_equal (priv->rgba, rgba))
+    return;
+
+  gdk_rgba_free (priv->rgba);
+  priv->rgba = gdk_rgba_copy (rgba);
+
+  bjb_item_set_modified (self);
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COLOR]);
 }
 
 /**

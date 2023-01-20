@@ -50,6 +50,10 @@ void           bjb_item_set_uid              (BjbItem        *self,
 const char    *bjb_item_get_title            (BjbItem        *self);
 void           bjb_item_set_title            (BjbItem        *self,
                                               const char     *title);
+gboolean       bjb_item_get_rgba             (BjbItem        *self,
+                                              GdkRGBA       *color);
+void           bjb_item_set_rgba             (BjbItem        *self,
+                                              const GdkRGBA *color);
 gint64         bjb_item_get_create_time      (BjbItem        *self);
 void           bjb_item_set_create_time      (BjbItem        *self,
                                               gint64          time);

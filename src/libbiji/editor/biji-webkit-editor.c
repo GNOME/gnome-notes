@@ -488,7 +488,7 @@ biji_webkit_editor_constructed (GObject *obj)
 
   self->sel = e_editor_selection_new (view);
 
-  webkit_web_view_set_editable (view, !biji_note_obj_is_trashed (BIJI_NOTE_OBJ (self->note)));
+  webkit_web_view_set_editable (view, !bjb_item_is_trashed (BJB_ITEM (self->note)));
 
   /* Do not segfault at finalize
    * if the note died */

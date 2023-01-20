@@ -152,21 +152,6 @@ bjb_item_finalize (GObject *object)
   G_OBJECT_CLASS (bjb_item_parent_class)->finalize (object);
 }
 
-static void
-bjb_item_set_modified (BjbItem *self)
-{
-  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
-
-  g_assert (BJB_IS_ITEM (self));
-
-  /*
-   * Irrespective of the previous state, we always need to notify
-   * ::modified.
-   */
-  priv->modified = TRUE;
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MODIFIED]);
-}
-
 static gboolean
 bjb_item_real_is_modified (BjbItem *self)
 {
@@ -601,9 +586,26 @@ bjb_item_set_is_trashed (BjbItem  *self,
 gboolean
 bjb_item_is_modified (BjbItem *self)
 {
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
   g_return_val_if_fail (BJB_IS_ITEM (self), FALSE);
 
-  return BJB_ITEM_GET_CLASS (self)->is_modified (self);
+  return priv->modified;
+}
+
+void
+bjb_item_set_modified (BjbItem *self)
+{
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
+  g_assert (BJB_IS_ITEM (self));
+
+  /*
+   * Irrespective of the previous state, we always need to notify
+   * ::modified.
+   */
+  priv->modified = TRUE;
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MODIFIED]);
 }
 
 /**
@@ -615,9 +617,12 @@ bjb_item_is_modified (BjbItem *self)
 void
 bjb_item_unset_modified (BjbItem *self)
 {
+  BjbItemPrivate *priv = bjb_item_get_instance_private (self);
+
   g_return_if_fail (BJB_IS_ITEM (self));
 
-  BJB_ITEM_GET_CLASS (self)->unset_modified (self);
+  priv->modified = FALSE;
+  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MODIFIED]);
 }
 
 /**

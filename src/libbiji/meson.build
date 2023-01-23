@@ -6,6 +6,7 @@ sources = files(
   '../items/bjb-item.c',
   '../items/bjb-tag.c',
   '../items/bjb-note.c',
+  '../items/bjb-tag-store.c',
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',

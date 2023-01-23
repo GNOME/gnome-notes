@@ -8,6 +8,7 @@ sources = files(
   '../items/bjb-note.c',
   '../items/bjb-tag-store.c',
   '../items/bjb-plain-note.c',
+  '../items/bjb-xml-note.c',
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',

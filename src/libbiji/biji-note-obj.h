@@ -21,6 +21,7 @@
 #include <gtk/gtk.h>
 
 #include "../items/bjb-item.h"
+#include "../items/bjb-note.h"
 #include "biji-info-set.h"
 
 G_BEGIN_DECLS
@@ -43,11 +44,11 @@ typedef enum
 
 #define BIJI_TYPE_NOTE_OBJ (biji_note_obj_get_type ())
 
-G_DECLARE_DERIVABLE_TYPE (BijiNoteObj, biji_note_obj, BIJI, NOTE_OBJ, BjbItem)
+G_DECLARE_DERIVABLE_TYPE (BijiNoteObj, biji_note_obj, BIJI, NOTE_OBJ, BjbNote)
 
 struct _BijiNoteObjClass
 {
-  BjbItemClass  parent_class;
+  BjbNoteClass  parent_class;
 
   char         *(*get_basename)      (BijiNoteObj *note);
 

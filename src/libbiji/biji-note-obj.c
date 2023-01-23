@@ -28,8 +28,6 @@ typedef struct
 {
   /* Metadata */
   char                  *path;
-  char                  *content;
-  GdkRGBA               *color; // Not yet in Tracker
 
   BijiManager           *manager;
 
@@ -50,7 +48,6 @@ typedef struct
 enum {
   PROP_0,
   PROP_PATH,
-  PROP_CONTENT,
   PROP_MANAGER,
   BIJI_OBJ_PROPERTIES
 };
@@ -68,7 +65,7 @@ enum {
 
 static guint biji_obj_signals [BIJI_OBJ_SIGNALS] = { 0 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (BijiNoteObj, biji_note_obj, BJB_TYPE_ITEM)
+G_DEFINE_TYPE_WITH_PRIVATE (BijiNoteObj, biji_note_obj, BJB_TYPE_NOTE)
 
 static void
 on_save_timeout (BijiNoteObj *self)
@@ -127,11 +124,8 @@ biji_note_obj_finalize (GObject *object)
     on_save_timeout (self);
 
   g_free (priv->path);
-  g_free (priv->content);
 
   g_hash_table_destroy (priv->labels);
-
-  gdk_rgba_free (priv->color);
 
   G_OBJECT_CLASS (biji_note_obj_parent_class)->finalize (object);
 }
@@ -149,10 +143,7 @@ biji_note_obj_set_property (GObject      *object,
     {
     case PROP_PATH:
       biji_note_obj_set_path (self, g_value_get_string (value));
-      break;
-    case PROP_CONTENT:
-      biji_note_obj_set_raw_text (self, g_value_get_string (value));
-      g_object_notify_by_pspec (object, properties[PROP_CONTENT]);
+      bjb_item_set_uid (BJB_ITEM (self), g_value_get_string (value));
       break;
     case PROP_MANAGER:
       priv->manager = g_value_get_object (value);
@@ -175,10 +166,8 @@ biji_note_obj_get_property (GObject    *object,
   switch (property_id)
     {
     case PROP_PATH:
+      g_value_set_string (value, bjb_item_get_uid (BJB_ITEM (self)));
       g_value_set_object (value, priv->path);
-      break;
-    case PROP_CONTENT:
-      g_value_set_string (value, priv->content);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -314,71 +303,41 @@ biji_note_obj_remove_notebook (BijiNoteObj *self,
   return FALSE;
 }
 
-static void
-biji_note_obj_set_rgba_internal (BijiNoteObj   *self,
-                                 const GdkRGBA *rgba)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  priv->color = gdk_rgba_copy(rgba);
-  g_signal_emit (G_OBJECT (self), biji_obj_signals[NOTE_COLOR_CHANGED], 0);
-}
-
 void
 biji_note_obj_set_rgba (BijiNoteObj   *self,
                         const GdkRGBA *rgba)
 {
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (!priv->color)
-    biji_note_obj_set_rgba_internal (self, rgba);
-
-  else if (!gdk_rgba_equal (priv->color,rgba))
-    {
-      gdk_rgba_free (priv->color);
-      biji_note_obj_set_rgba_internal (self, rgba);
-      bjb_item_set_meta_mtime (BJB_ITEM (self), g_get_real_time () / G_USEC_PER_SEC);
-      biji_note_obj_save_note (self);
-    }
+  bjb_item_set_rgba (BJB_ITEM (self), rgba);
+  g_signal_emit (G_OBJECT (self), biji_obj_signals[NOTE_COLOR_CHANGED], 0);
 }
 
 gboolean
 biji_note_obj_get_rgba(BijiNoteObj *self,
                        GdkRGBA     *rgba)
 {
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
   g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
 
-  if (priv->color && rgba)
-    {
-      *rgba = *(priv->color);
-      return TRUE;
-    }
-
-  return FALSE;
+  return bjb_item_get_rgba (BJB_ITEM (self), rgba);
 }
 
 const char *
 biji_note_obj_get_raw_text (BijiNoteObj *self)
 {
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
+  const char *content;
 
-  return priv->content;
+  content = bjb_note_get_raw_content (BJB_NOTE (self));
+
+  if (content && *content)
+    return content;
+
+  return bjb_note_get_text_content (BJB_NOTE (self));
 }
 
 void
 biji_note_obj_set_raw_text (BijiNoteObj *self,
                             const char  *plain_text)
 {
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (g_strcmp0 (plain_text, priv->content) == 0)
-    return;
-
-  g_free (priv->content);
-  priv->content = g_strdup (plain_text);
-
+  bjb_note_set_raw_content (BJB_NOTE (self), plain_text);
   bjb_item_set_modified (BJB_ITEM (self));
   g_signal_emit (self, biji_obj_signals[NOTE_CHANGED],0);
 }
@@ -528,13 +487,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
     g_param_spec_string("path",
                         "The note file",
                         "The location where the note is stored and saved",
-                        NULL,
-                        G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
-
-  properties[PROP_CONTENT] =
-    g_param_spec_string("content",
-                        "The note content",
-                        "Plain text note content",
                         NULL,
                         G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
 

@@ -52,7 +52,7 @@ struct _BjbApplication
 G_DEFINE_TYPE (BjbApplication, bjb_application, GTK_TYPE_APPLICATION)
 
 static void     bijiben_new_window_internal (BjbApplication *self,
-                                             BijiNoteObj   *note);
+                                             BjbNote        *note);
 static gboolean bijiben_open_path           (BjbApplication *self,
                                              gchar          *path,
                                              BjbWindow      *window);
@@ -94,7 +94,7 @@ cmd_verbose_cb (const char  *option_name,
 
 static void
 bijiben_new_window_internal (BjbApplication *self,
-                             BijiNoteObj    *note)
+                             BjbNote        *note)
 {
   GtkWindow *active_window;
   BjbWindow *window;
@@ -143,7 +143,7 @@ bijiben_open_path (BjbApplication *self,
 
 void
 bijiben_new_window_for_note (GApplication *app,
-                             BijiNoteObj *note)
+                             BjbNote      *note)
 {
   bijiben_new_window_internal (BJB_APPLICATION (app), note);
 }

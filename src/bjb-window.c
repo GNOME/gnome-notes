@@ -33,6 +33,7 @@
 
 #include <libbiji/libbiji.h>
 
+#include "providers/bjb-provider.h"
 #include "bjb-application.h"
 #include "bjb-note-list.h"
 #include "bjb-list-view-row.h"
@@ -51,14 +52,11 @@ struct _BjbWindow
   BjbSettings          *settings;
   BjbController        *controller;
 
-  gulong                note_deleted;
-  gulong                note_trashed;
-
   BjbWindowView         current_view;
   BjbNoteList          *note_list;
 
   /* when a note is opened */
-  BijiNoteObj          *note;
+  BjbNote              *note;
 
   /* window geometry */
   GdkRectangle          window_geometry;
@@ -80,6 +78,7 @@ struct _BjbWindow
   GtkWidget            *last_update_item;
 
   gboolean              is_main;
+  gulong                remove_item_id;
 };
 
 G_DEFINE_TYPE (BjbWindow, bjb_window, HDY_TYPE_APPLICATION_WINDOW)
@@ -87,8 +86,12 @@ G_DEFINE_TYPE (BjbWindow, bjb_window, HDY_TYPE_APPLICATION_WINDOW)
 static void
 destroy_note_if_needed (BjbWindow *self)
 {
-  g_clear_signal_handler (&self->note_deleted, self->note);
-  g_clear_signal_handler (&self->note_trashed, self->note);
+  BjbProvider *provider = NULL;
+
+  if (self->note)
+    provider = g_object_get_data (G_OBJECT (self->note), "provider");
+
+  g_clear_signal_handler (&self->remove_item_id, provider);
 
   g_clear_object (&self->note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), NULL);
@@ -97,13 +100,14 @@ destroy_note_if_needed (BjbWindow *self)
 }
 
 static void
-on_note_renamed (BijiNoteObj *note,
-                 BjbWindow   *self)
+on_note_renamed (BjbWindow *self)
 {
   const char *str;
 
-  str = bjb_item_get_title (BJB_ITEM (note));
-  if (str == NULL || strlen(str) == 0)
+  g_assert (BJB_IS_WINDOW (self));
+
+  str = bjb_item_get_title (BJB_ITEM (self->note));
+  if (!str || !*str)
     str = _("Untitled");
   gtk_entry_set_text (GTK_ENTRY (self->title_entry), str);
   hdy_header_bar_set_custom_title (HDY_HEADER_BAR (self->note_headerbar),
@@ -133,7 +137,7 @@ on_new_note_clicked (BjbWindow *self)
 
   /* Go to that note */
   hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
-  bjb_window_set_note (self, result);
+  bjb_window_set_note (self, BJB_NOTE (result));
 }
 
 static void
@@ -156,18 +160,18 @@ window_selected_note_changed_cb (BjbWindow *self)
   windows = gtk_application_get_windows (gtk_window_get_application (GTK_WINDOW (self)));
   to_open = bjb_note_list_get_selected_note (self->note_list);
 
-  for (GList *node = windows; BIJI_IS_NOTE_OBJ (to_open) && node; node = node->next)
+  for (GList *node = windows; BJB_IS_NOTE (to_open) && node; node = node->next)
     {
       if (BJB_IS_WINDOW (node->data) &&
           self != node->data &&
-          bjb_window_get_note (node->data) == BIJI_NOTE_OBJ (to_open))
+          bjb_window_get_note (node->data) == BJB_NOTE (to_open))
         {
           gtk_window_present (node->data);
           return;
         }
     }
 
-  if (to_open && BIJI_IS_NOTE_OBJ (to_open))
+  if (to_open && BJB_IS_NOTE (to_open))
     {
       hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
       bjb_window_set_note (self, to_open);
@@ -179,18 +183,6 @@ bjb_window_finalize (GObject *object)
 {
   BjbWindow *self = BJB_WINDOW (object);
   BjbNoteView *note_view;
-
-  if (self->note != NULL)
-    {
-      bjb_settings_set_last_opened_item (self->settings, biji_note_obj_get_path (self->note));
-
-      g_clear_signal_handler (&self->note_deleted, self->note);
-      g_clear_signal_handler (&self->note_trashed, self->note);
-    }
-  else
-    {
-      bjb_settings_set_last_opened_item (self->settings, "");
-    }
 
   note_view = g_object_get_data (object, "note-view");
   if (note_view)
@@ -294,11 +286,12 @@ on_view_notebooks_cb (GSimpleAction *action,
   BjbWindow *self = BJB_WINDOW (user_data);
   GtkWidget *notebooks_dialog;
 
-  if (!self->note)
+  if (BIJI_IS_NOTE_OBJ (self->note))
     return;
 
   notebooks_dialog = bjb_notebooks_dialog_new (GTK_WINDOW (self));
-  bjb_notebooks_dialog_set_item (BJB_NOTEBOOKS_DIALOG (notebooks_dialog), self->note);
+  bjb_notebooks_dialog_set_item (BJB_NOTEBOOKS_DIALOG (notebooks_dialog),
+                                 BIJI_NOTE_OBJ (self->note));
 
   gtk_dialog_run (GTK_DIALOG (notebooks_dialog));
   gtk_widget_destroy (notebooks_dialog);
@@ -374,16 +367,25 @@ on_trash_cb (GSimpleAction *action,
              gpointer       user_data)
 {
   BjbWindow *self = BJB_WINDOW (user_data);
-  BijiNoteObj *note = self->note;
+  BjbNote *note = self->note;
 
-  if (!note)
-    return;
+  if (BJB_IS_NOTE (note))
+    {
+      BjbProvider *provider;
 
-  /* Delete the note from notebook
-   * The deleted note will emit a signal. */
-  biji_note_obj_trash (note);
+      provider = g_object_get_data (G_OBJECT (note), "provider");
+      g_assert (BJB_IS_PROVIDER (provider));
 
-  destroy_note_if_needed (self);
+      bjb_provider_delete_item_async (provider, BJB_ITEM (note), NULL, NULL, NULL);
+    }
+  else if (BIJI_IS_NOTE_OBJ (note))
+    {
+      /* Delete the note from notebook
+       * The deleted note will emit a signal. */
+      biji_note_obj_trash (BIJI_NOTE_OBJ (note));
+
+      destroy_note_if_needed (self);
+    }
 
   if (!bjb_window_get_is_main (self))
     gtk_window_close (GTK_WINDOW (self));
@@ -664,11 +666,12 @@ bjb_window_set_is_main (BjbWindow *self,
 }
 
 static void
-on_last_updated_cb (BijiNoteObj *note,
-                    BjbWindow   *self)
+on_last_updated_cb (BjbWindow *self)
 {
   g_autofree char *label = NULL;
   g_autofree char *time_str = NULL;
+
+  g_assert (BJB_IS_WINDOW (self));
 
   time_str = bjb_utils_get_human_time (bjb_item_get_mtime (BJB_ITEM (self->note)));
   /* Translators: %s is the note last recency description.
@@ -683,11 +686,18 @@ on_last_updated_cb (BijiNoteObj *note,
 static void
 populate_headerbar_for_note_view (BjbWindow *self)
 {
-  on_note_renamed (self->note, self);
-  g_signal_connect (self->note, "renamed", G_CALLBACK (on_note_renamed), self);
+  g_signal_connect_object (self->note, "notify::renamed",
+                           G_CALLBACK (on_note_renamed),
+                           self,
+                           G_CONNECT_SWAPPED);
+  g_signal_connect_object (self->note, "notify::mtime",
+                           G_CALLBACK (on_last_updated_cb),
+                           self,
+                           G_CONNECT_SWAPPED);
 
-  on_last_updated_cb (self->note, self);
-  g_signal_connect (self->note, "changed", G_CALLBACK (on_last_updated_cb), self);
+
+  on_note_renamed (self);
+  on_last_updated_cb (self);
 }
 
 static gboolean
@@ -701,7 +711,7 @@ on_note_trashed (BijiNoteObj *note,
   return TRUE;
 }
 
-BijiNoteObj *
+BjbNote *
 bjb_window_get_note (BjbWindow *self)
 {
   g_return_val_if_fail (BJB_IS_WINDOW (self), NULL);
@@ -709,19 +719,30 @@ bjb_window_get_note (BjbWindow *self)
   return self->note;
 }
 
-void
-bjb_window_set_note (BjbWindow   *self,
-                     BijiNoteObj *note)
+static void
+window_provider_item_removed_cb (BjbWindow   *self,
+                                 BjbItem     *item,
+                                 BjbProvider *provider)
 {
-  g_return_if_fail (BJB_IS_WINDOW (self));
-  g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
+  g_assert (BJB_IS_WINDOW (self));
+  g_assert (BJB_IS_PROVIDER (provider));
+  g_assert (BJB_IS_ITEM (item));
 
-  /* Disconnect these two callbacks for previously opened note item. */
-  if (self->note)
-    {
-      g_clear_signal_handler (&self->note_deleted, self->note);
-      g_clear_signal_handler (&self->note_trashed, self->note);
-    }
+  if (self->note == (gpointer)item)
+    destroy_note_if_needed (self);
+}
+
+void
+bjb_window_set_note (BjbWindow *self,
+                     BjbNote   *note)
+{
+  BjbProvider *provider;
+
+  g_return_if_fail (BJB_IS_WINDOW (self));
+  g_return_if_fail (!note || BJB_IS_NOTE (note));
+
+  if (self->note == note)
+    return;
 
   destroy_note_if_needed (self);
 
@@ -731,11 +752,13 @@ bjb_window_set_note (BjbWindow   *self,
   self->note = g_object_ref (note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), self->note);
 
-  self->note_deleted = g_signal_connect (self->note, "deleted",
-                                         G_CALLBACK (on_note_trashed), self);
-  self->note_trashed = g_signal_connect (self->note, "trashed",
-                                         G_CALLBACK (on_note_trashed), self);
+  provider = g_object_get_data (G_OBJECT (note), "provider");
+  g_assert (BJB_IS_PROVIDER (provider));
 
+  self->remove_item_id = g_signal_connect_object (provider, "item-removed",
+                                                  G_CALLBACK (window_provider_item_removed_cb),
+                                                  self,
+                                                  G_CONNECT_SWAPPED);
   populate_headerbar_for_note_view (self);
 }
 

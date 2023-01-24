@@ -19,4 +19,4 @@
 
 #include <libbiji/libbiji.h>
 
-gboolean on_email_note_callback (BijiNoteObj *note);
+gboolean on_email_note_callback (BjbNote *note);

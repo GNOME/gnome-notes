@@ -28,7 +28,7 @@ mail_str (const gchar * string )
 }
 
 gboolean
-on_email_note_callback (BijiNoteObj *note)
+on_email_note_callback (BjbNote *note)
 {
   GError *error = NULL;
   g_autofree gchar *title_mail = NULL;
@@ -36,9 +36,16 @@ on_email_note_callback (BijiNoteObj *note)
   g_autoptr(GDBusProxy) proxy = NULL;
   GVariantBuilder *arraybuilder;
   GVariant *dict;
+  const char *content;
 
   title_mail = mail_str (bjb_item_get_title (BJB_ITEM (note)));
-  text_mail = mail_str (biji_note_obj_get_raw_text (note));
+
+  content = bjb_note_get_raw_content (note);
+
+  if (!content)
+    content = bjb_note_get_text_content (note);
+
+  text_mail = mail_str (content);
 
   proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
                                          G_DBUS_PROXY_FLAGS_NONE,

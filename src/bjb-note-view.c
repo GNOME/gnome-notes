@@ -23,6 +23,7 @@
 
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
+#include "items/bjb-xml-note.h"
 #include "providers/bjb-provider.h"
 #include "bjb-note-view.h"
 
@@ -38,8 +39,9 @@ struct _BjbNoteView
 
   /* Data */
   GtkWidget         *view;
-  BijiNoteObj       *note ;
+  BjbNote           *note;
 
+  gboolean           is_self_change;
   gulong             modified_id;
   guint              save_id;
 };
@@ -51,8 +53,6 @@ typedef struct _NoteData
 } NoteData;
 
 G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
-
-static void on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self);
 
 static void
 note_data_free (gpointer user_data)
@@ -82,7 +82,7 @@ note_view_save_item (gpointer user_data)
   self = data->self;
   note = data->note;
   g_assert (!self || BJB_IS_NOTE_VIEW (self));
-  g_assert (BIJI_IS_NOTE_OBJ (note));
+  g_assert (BJB_IS_ITEM (note));
 
   provider = g_object_get_data (G_OBJECT (note), "provider");
   g_assert (BJB_IS_PROVIDER (provider));
@@ -129,10 +129,10 @@ note_view_copy_clicked_cb (BjbNoteView *self)
   new_note = biji_manager_note_new (manager, content,
                                     bjb_settings_get_default_location (settings));
 
-  if (biji_note_obj_get_rgba (self->note, &color))
-    biji_note_obj_set_rgba (new_note, &color);
+  if (self->note && bjb_item_get_rgba (BJB_ITEM (self->note), &color))
+    bjb_item_set_rgba (BJB_ITEM (new_note), &color);
 
-  bijiben_new_window_for_note (app, new_note);
+  bijiben_new_window_for_note (app, BJB_NOTE (new_note));
 }
 
 void
@@ -152,22 +152,13 @@ bjb_note_view_set_detached (BjbNoteView *self,
 }
 
 static void
-bjb_note_view_disconnect (BjbNoteView *self)
-{
-  if (self->note)
-    g_signal_handlers_disconnect_by_func (self->note, on_note_color_changed_cb, self);
-}
-
-
-static void
-on_note_color_changed_cb (BijiNoteObj *note, BjbNoteView *self)
+on_note_color_changed_cb (BjbNoteView *self)
 {
   GdkRGBA color;
 
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+  g_assert (BJB_IS_NOTE_VIEW (self));
 
-  biji_note_obj_get_rgba (note, &color);
-
+  bjb_item_get_rgba (BJB_ITEM (self->note), &color);
   webkit_web_view_set_background_color (WEBKIT_WEB_VIEW (self->view), &color);
 }
 
@@ -209,7 +200,6 @@ bjb_note_view_finalize (GObject *object)
     }
 
   g_clear_handle_id (&self->save_id, g_source_remove);
-  bjb_note_view_disconnect (self);
 
   g_clear_object (&self->note);
   g_clear_object (&self->view);
@@ -259,7 +249,8 @@ note_view_note_modified_cb (BjbNoteView *self)
 
   g_assert (BJB_IS_NOTE_VIEW (self));
 
-  if (!self->note || !bjb_item_is_modified (BJB_ITEM (self->note)) ||
+  if (!self->note || self->is_self_change ||
+      !bjb_item_is_modified (BJB_ITEM (self->note)) ||
       self->save_id)
     return;
 
@@ -272,12 +263,10 @@ note_view_note_modified_cb (BjbNoteView *self)
 
 void
 bjb_note_view_set_note (BjbNoteView *self,
-                        BijiNoteObj *note)
+                        BjbNote     *note)
 {
-  gboolean can_format = FALSE;
-
   g_return_if_fail (BJB_IS_NOTE_VIEW (self));
-  g_return_if_fail (!note || BIJI_IS_NOTE_OBJ (note));
+  g_return_if_fail (!note || BJB_IS_ITEM (note));
 
   if (self->note == note)
     return;
@@ -296,13 +285,11 @@ bjb_note_view_set_note (BjbNoteView *self,
   g_clear_signal_handler (&self->modified_id, self->note);
   g_clear_handle_id (&self->save_id, g_source_remove);
 
-  if (note)
-    can_format = biji_note_obj_can_format (note);
-  bjb_editor_toolbar_set_can_format (BJB_EDITOR_TOOLBAR (self->editor_toolbar), can_format);
+  bjb_editor_toolbar_set_can_format (BJB_EDITOR_TOOLBAR (self->editor_toolbar),
+                                     BJB_IS_XML_NOTE (note));
 
   if (note)
     gtk_widget_set_visible (self->editor_toolbar, !bjb_item_is_trashed (BJB_ITEM (note)));
-  bjb_note_view_disconnect (self);
 
   self->note = g_object_ref (note);
   if (self->view)
@@ -321,18 +308,23 @@ bjb_note_view_set_note (BjbNoteView *self,
       self->modified_id = g_signal_connect_object (self->note, "notify::modified",
                                                    G_CALLBACK (note_view_note_modified_cb),
                                                    self, G_CONNECT_SWAPPED);
-      if (!biji_note_obj_get_rgba (self->note, &color))
+      if (!bjb_item_get_rgba (BJB_ITEM (note), &color))
         {
           BjbSettings *settings;
 
           settings = bjb_app_get_settings (g_application_get_default ());
 
+          self->is_self_change = TRUE;
           if (gdk_rgba_parse (&color, bjb_settings_get_default_color (settings)))
-            biji_note_obj_set_rgba (self->note, &color);
+            bjb_item_set_rgba (BJB_ITEM (note), &color);
+          bjb_item_unset_modified (BJB_ITEM (note));
+          self->is_self_change = FALSE;
         }
 
-      g_signal_connect (self->note, "color-changed",
-                        G_CALLBACK (on_note_color_changed_cb), self);
+      g_signal_connect_object (self->note, "notify::color",
+                               G_CALLBACK (on_note_color_changed_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
 
       gtk_widget_show (self->view);
 

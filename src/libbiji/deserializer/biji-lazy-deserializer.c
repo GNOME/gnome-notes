@@ -510,7 +510,6 @@ processNode (BijiLazyDeserializer *self)
     {
       norm = g_string_new (tag);
       g_string_erase (norm,0,16);
-      biji_note_obj_add_notebook (n, NULL, norm->str);
       g_string_free (norm, TRUE);
     }
 

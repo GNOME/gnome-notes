@@ -21,7 +21,6 @@
 #include <string.h>
 
 #include "biji-lazy-serializer.h"
-#include "../biji-note-obj.h"
 #include "../biji-string.h"
 
 enum
@@ -37,7 +36,7 @@ struct _BijiLazySerializer
 {
   GObject parent_instance;
 
-  BijiNoteObj *note;
+  BjbNote *note;
 
   xmlBufferPtr     buf;
   xmlTextWriterPtr writer;
@@ -112,8 +111,8 @@ biji_lazy_serializer_class_init (BijiLazySerializerClass *klass)
 
   properties[PROP_NOTE] = g_param_spec_object ("note",
                                                "Note",
-                                               "Biji Note Obj",
-                                               BIJI_TYPE_NOTE_OBJ,
+                                               "Bjb Note",
+                                               BJB_TYPE_NOTE,
                                                G_PARAM_READWRITE  |
                                                G_PARAM_CONSTRUCT |
                                                G_PARAM_STATIC_STRINGS);
@@ -146,7 +145,7 @@ serialize_tags (gchar *tag, xmlTextWriterPtr writer)
 static void
 serialize_html (BijiLazySerializer *self)
 {
-  gchar *html = biji_note_obj_get_html (self->note);
+  char *html = bjb_note_get_html (BJB_NOTE (self->note));
 
   if (!html)
     return;
@@ -231,7 +230,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   serialize_node (self->writer, "x", "0");
   serialize_node (self->writer, "y", "0");
 
-  if (biji_note_obj_get_rgba (self->note, &color))
+  if (bjb_item_get_rgba (BJB_ITEM (self->note), &color))
   {
     color_str = gdk_rgba_to_string (&color);
     serialize_node (self->writer, "color", color_str);
@@ -241,10 +240,11 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   //<tags>
   xmlTextWriterWriteRaw (self->writer, BAD_CAST "\n ");
   xmlTextWriterStartElement (self->writer, BAD_CAST "tags");
-  tags = biji_note_obj_get_notebooks (self->note);
-  g_list_foreach (tags, (GFunc) serialize_tags, self->writer);
+  /* todo */
+  /* tags = biji_note_obj_get_notebooks (self->note); */
+  /* g_list_foreach (tags, (GFunc) serialize_tags, self->writer); */
   xmlTextWriterEndElement (self->writer);
-  g_list_free (tags);
+  /* g_list_free (tags); */
 
   // <open-on-startup>
   serialize_node (self->writer, "open-on-startup", "False");
@@ -262,7 +262,7 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
 }
 
 gboolean
-biji_lazy_serialize (BijiNoteObj *note)
+biji_lazy_serialize (BjbNote *note)
 {
   BijiLazySerializer *self;
   gboolean result ;

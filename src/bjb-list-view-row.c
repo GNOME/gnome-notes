@@ -32,7 +32,7 @@ struct _BjbListViewRow
   GtkLabel       *content;
   GtkLabel       *updated_time;
 
-  BijiNoteObj    *note;
+  BjbNote        *note;
 };
 
 G_DEFINE_TYPE (BjbListViewRow, bjb_list_view_row, GTK_TYPE_LIST_BOX_ROW);
@@ -57,7 +57,7 @@ note_color_changed_cb (BjbListViewRow *self)
 
   g_assert (BJB_IS_LIST_VIEW_ROW (self));
 
-  if (!biji_note_obj_get_rgba (self->note, &rgba))
+  if (!bjb_item_get_rgba (BJB_ITEM (self->note), &rgba))
     return;
 
   color = gdk_rgba_to_string (&rgba);
@@ -76,13 +76,19 @@ note_content_changed_cb (BjbListViewRow *self)
   g_autofree char *one_line = NULL;
   g_autofree char *preview = NULL;
   g_auto(GStrv) lines = NULL;
+  const char *content;
 
   g_assert (BJB_IS_LIST_VIEW_ROW (self));
 
-  if (!biji_note_obj_get_raw_text (self->note))
+  content = bjb_note_get_raw_content (BJB_NOTE (self->note));
+
+  if (!content)
+    content = bjb_note_get_text_content (BJB_NOTE (self->note));
+
+  if (!content)
     return;
 
-  lines = g_strsplit (biji_note_obj_get_raw_text (self->note), "\n", -1);
+  lines = g_strsplit (content, "\n", -1);
   one_line = g_strjoinv (" ", lines);
   preview = biji_str_clean (one_line);
   gtk_label_set_text (self->content, preview);
@@ -129,11 +135,11 @@ bjb_list_view_row_new (void)
 }
 
 GtkWidget *
-bjb_list_view_row_new_with_note (BijiNoteObj *note)
+bjb_list_view_row_new_with_note (BjbNote *note)
 {
   BjbListViewRow *self;
 
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (note), NULL);
+  g_return_val_if_fail (BJB_IS_NOTE (note), NULL);
 
   self = g_object_new (BJB_TYPE_LIST_VIEW_ROW, NULL);
   self->note = g_object_ref (note);
@@ -144,15 +150,16 @@ bjb_list_view_row_new_with_note (BijiNoteObj *note)
   g_signal_connect_object (note, "notify::mtime",
                            G_CALLBACK (note_mtime_changed_cb),
                            self, G_CONNECT_SWAPPED);
-  g_signal_connect_object (note, "color-changed",
+
+  g_signal_connect_object (note, "notify::color",
                            G_CALLBACK (note_color_changed_cb),
                            self, G_CONNECT_SWAPPED);
-  g_signal_connect_object (note, "changed",
+  g_signal_connect_object (note, "notify::title",
                            G_CALLBACK (note_content_changed_cb),
                            self, G_CONNECT_SWAPPED);
 
-  note_mtime_changed_cb (self);
   note_color_changed_cb (self);
+  note_mtime_changed_cb (self);
   note_content_changed_cb (self);
 
   return GTK_WIDGET (self);

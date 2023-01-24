@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (BjbListViewRow, bjb_list_view_row, BJB, LIST_VIEW_ROW, GtkListBoxRow)
 
 BjbListViewRow *bjb_list_view_row_new                (void);
-GtkWidget      *bjb_list_view_row_new_with_note      (BijiNoteObj *note);
+GtkWidget      *bjb_list_view_row_new_with_note      (BjbNote *note);
 BjbItem        *bjb_list_view_row_get_note           (BjbListViewRow *self);
 
 G_END_DECLS

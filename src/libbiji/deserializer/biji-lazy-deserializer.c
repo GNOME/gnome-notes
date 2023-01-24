@@ -24,7 +24,6 @@
 
 #include "biji-lazy-deserializer.h"
 #include "../biji-date-time.h"
-#include "../biji-note-obj.h"
 #include "../biji-string.h"
 
 enum
@@ -56,7 +55,7 @@ struct _BijiLazyDeserializer
   GObject parent_instance;
 
   /* Note, type, first reader for metadata */
-  BijiNoteObj *note;
+  BjbNote    *note;
   BijiXmlType type;
   xmlTextReaderPtr r;
 
@@ -142,8 +141,8 @@ biji_lazy_deserializer_class_init (BijiLazyDeserializerClass *klass)
 
   properties[PROP_NOTE] = g_param_spec_object ("note",
                                                "Note",
-                                               "Biji Note Obj",
-                                               BIJI_TYPE_NOTE_OBJ,
+                                               "Bjb Note",
+                                               BJB_TYPE_NOTE,
                                                G_PARAM_READWRITE  |
                                                G_PARAM_CONSTRUCT |
                                                G_PARAM_STATIC_STRINGS);
@@ -153,7 +152,7 @@ biji_lazy_deserializer_class_init (BijiLazyDeserializerClass *klass)
 
 /* Utils */
 
-typedef void BijiReaderFunc (BijiNoteObj *note, gchar *string);
+typedef void BijiReaderFunc (BjbNote *note, char *string);
 
 
 static void
@@ -162,7 +161,7 @@ biji_process_string (xmlTextReaderPtr reader,
                      gpointer user_data)
 {
   xmlChar *result = xmlTextReaderReadString (reader);
-  process_xml (BIJI_NOTE_OBJ (user_data), (gchar*) result);
+  process_xml (user_data, (gchar*) result);
   free (result);
 }
 
@@ -298,10 +297,10 @@ process_tomboy_xml_content (BijiLazyDeserializer *self)
 
   /* Now the inner content is known, we can
    * assign note values and let deserialization work on last elements*/
-  biji_note_obj_set_raw_text (self->note, self->raw_text->str);
+  bjb_note_set_raw_content (BJB_NOTE (self->note), self->raw_text->str);
 
   revamped_html = biji_str_replace (self->html->str, "\n", "<br/>");
-  biji_note_obj_set_html (self->note, revamped_html);
+  bjb_note_set_html (BJB_NOTE (self->note), revamped_html);
   g_free (revamped_html);
 }
 
@@ -426,8 +425,8 @@ process_bijiben_html_content (BijiLazyDeserializer *self,
     ret = xmlTextReaderRead (self->inner);
   }
 
-  biji_note_obj_set_raw_text (self->note, self->raw_text->str);
-  biji_note_obj_set_html (self->note, sane_html);
+  bjb_note_set_raw_content (BJB_NOTE (self->note), self->raw_text->str);
+  bjb_note_set_html (BJB_NOTE (self->note), sane_html);
 
   xmlFree (BAD_CAST sane_html);
 }
@@ -437,7 +436,7 @@ static void
 processNode (BijiLazyDeserializer *self)
 {
   xmlTextReaderPtr r = self->r;
-  BijiNoteObj * n = self->note;
+  BjbNote   *n = self->note;
   xmlChar   *name;
   GdkRGBA    color;
   gchar     *tag, *color_str;
@@ -490,7 +489,7 @@ processNode (BijiLazyDeserializer *self)
     color_str = (gchar*) xmlTextReaderReadString (r);
 
     if (gdk_rgba_parse (&color, color_str))
-      biji_note_obj_set_rgba (n, &color);
+      bjb_item_set_rgba (BJB_ITEM (n), &color);
 
     else
       g_warning ("color invalid:%s", color_str);
@@ -504,7 +503,7 @@ processNode (BijiLazyDeserializer *self)
 
     if (g_str_has_prefix (tag,"system:template"))
     {
-      biji_note_obj_set_is_template (n, TRUE);
+      g_object_set_data (G_OBJECT (n), "template", GINT_TO_POINTER (TRUE));
     }
 
     else if (g_str_has_prefix (tag,"system:notebook:"))
@@ -536,7 +535,7 @@ biji_parse_file (BijiLazyDeserializer *self)
 static gboolean
 biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 {
-  BijiNoteObj* n = self->note;
+  BjbNote *n = self->note;
   const gchar *path;
   xmlDocPtr doc;
   xmlNodePtr cur;
@@ -609,7 +608,7 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 }
 
 static BijiLazyDeserializer *
-biji_lazy_deserializer_new (BijiNoteObj *note)
+biji_lazy_deserializer_new (BjbNote *note)
 {
   return g_object_new (BIJI_TYPE_LAZY_DESERIALIZER,
                        "note", note,
@@ -617,7 +616,7 @@ biji_lazy_deserializer_new (BijiNoteObj *note)
 }
 
 gboolean
-biji_lazy_deserialize (BijiNoteObj *note)
+biji_lazy_deserialize (BjbNote *note)
 {
   BijiLazyDeserializer *bld;
   gboolean result;

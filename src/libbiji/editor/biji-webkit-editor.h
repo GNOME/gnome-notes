@@ -30,7 +30,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (BijiWebkitEditor, biji_webkit_editor, BIJI, WEBKIT_EDITOR, WebKitWebView)
 
 
-BijiWebkitEditor * biji_webkit_editor_new (BijiNoteObj *note);
+BijiWebkitEditor * biji_webkit_editor_new (BjbNote *note);
 
 void biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format);
 

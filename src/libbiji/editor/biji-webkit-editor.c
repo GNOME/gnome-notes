@@ -59,9 +59,8 @@ static GParamSpec *properties[NUM_PROP] = { NULL, };
 struct _BijiWebkitEditor
 {
   WebKitWebView     parent_instance;
-  BijiNoteObj      *note;
+  BjbNote          *note;
   gulong            content_changed;
-  gulong            color_changed;
   gboolean          has_text;
   char             *selected_text;
   BlockFormat       block_format;
@@ -289,7 +288,6 @@ biji_webkit_editor_finalize (GObject *object)
 
   if (self->note != NULL) {
     g_object_remove_weak_pointer (G_OBJECT (self->note), (gpointer*) &self->note);
-    g_signal_handler_disconnect (self->note, self->color_changed);
   }
 
   G_OBJECT_CLASS (biji_webkit_editor_parent_class)->finalize (object);
@@ -300,24 +298,25 @@ biji_webkit_editor_content_changed (BijiWebkitEditor *self,
                                     const char *html,
                                     const char *text)
 {
-  BijiNoteObj *note = self->note;
+  BjbNote *note = self->note;
 
-  biji_note_obj_set_html (note, (char *)html);
-  biji_note_obj_set_raw_text (note, (char *)text);
+  bjb_note_set_html (note, (char *)html);
+  bjb_note_set_raw_content (note, (char *)text);
 
   g_signal_emit (self, biji_editor_signals[CONTENT_CHANGED], 0, NULL);
 
   bjb_item_set_mtime (BJB_ITEM (note), g_get_real_time () / G_USEC_PER_SEC);
-  biji_note_obj_save_note (note);
 }
 
 
 static void
-on_note_color_changed (BijiNoteObj *note, BijiWebkitEditor *self)
+on_note_color_changed (BijiWebkitEditor *self)
 {
   GdkRGBA color;
 
-  if (biji_note_obj_get_rgba(note,&color))
+  g_assert (BIJI_IS_WEBKIT_EDITOR (self));
+
+  if (bjb_item_get_rgba (BJB_ITEM (self->note), &color))
     set_editor_color (WEBKIT_WEB_VIEW (self), &color);
 }
 
@@ -371,16 +370,14 @@ on_load_change (WebKitWebView  *web_view,
     return;
 
   /* Apply color */
-  if (biji_note_obj_get_rgba (self->note, &color))
+  if (bjb_item_get_rgba (BJB_ITEM (self->note), &color))
     set_editor_color (web_view, &color);
 
-  if (!self->color_changed)
-  {
-    self->color_changed = g_signal_connect (self->note,
-                                            "color-changed",
-                                            G_CALLBACK (on_note_color_changed),
-                                            web_view);
-  }
+  g_signal_connect_object (self->note,
+                           "notify::color",
+                           G_CALLBACK (on_note_color_changed),
+                           web_view,
+                           G_CONNECT_SWAPPED);
 }
 
 static gboolean
@@ -494,7 +491,7 @@ biji_webkit_editor_constructed (GObject *obj)
    * if the note died */
   g_object_add_weak_pointer (G_OBJECT (self->note), (gpointer*) &self->note);
 
-  body = biji_note_obj_get_html (self->note);
+  body = bjb_note_get_html (self->note);
 
   if (!body)
     body = html_from_plain_text ("");
@@ -560,8 +557,8 @@ biji_webkit_editor_class_init (BijiWebkitEditorClass *klass)
 
   properties[PROP_NOTE] = g_param_spec_object ("note",
                                                "Note",
-                                               "Biji Note Obj",
-                                                BIJI_TYPE_NOTE_OBJ,
+                                               "Bjb Note",
+                                                BJB_TYPE_NOTE,
                                                 G_PARAM_READWRITE  |
                                                 G_PARAM_CONSTRUCT |
                                                 G_PARAM_STATIC_STRINGS);
@@ -589,7 +586,7 @@ biji_webkit_editor_class_init (BijiWebkitEditorClass *klass)
 }
 
 BijiWebkitEditor *
-biji_webkit_editor_new (BijiNoteObj *note)
+biji_webkit_editor_new (BjbNote *note)
 {
   WebKitUserContentManager *manager = webkit_user_content_manager_new ();
 

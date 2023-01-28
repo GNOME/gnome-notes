@@ -1,4 +1,5 @@
 # List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
 data/appdata/org.gnome.Notes.appdata.xml.in
 data/org.gnome.Notes.desktop.in
 data/org.gnome.Notes.gschema.xml
@@ -7,7 +8,6 @@ data/resources/bjb-notebooks-dialog.ui
 data/resources/bjb-note-view.ui
 data/resources/bjb-window.ui
 data/resources/editor-toolbar.ui
-data/resources/empty-results-box.ui
 data/resources/help-overlay.ui
 data/resources/import-dialog.ui
 data/resources/selection-toolbar.ui
@@ -17,12 +17,11 @@ src/bjb-application.c
 src/bjb-color-button.c
 src/bjb-controller.c
 src/bjb-editor-toolbar.c
-src/bjb-empty-results-box.c
+src/bjb-note-list.c
 src/bjb-note-view.c
 src/bjb-settings.c
 src/bjb-settings-dialog.c
 src/bjb-utils.c
 src/bjb-window.c
 src/libbiji/biji-date-time.c
-src/libbiji/biji-notebook.c
 src/libbiji/provider/biji-local-provider.c

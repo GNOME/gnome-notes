@@ -1,0 +1,8 @@
+# List of source files that should *not* be translated.
+# Please keep this file sorted alphabetically.
+src/contrib/gtkfilter.c
+src/contrib/gtkfilterlistmodel.c
+src/contrib/gtkflattenlistmodel.c
+src/contrib/gtkslicelistmodel.c
+src/contrib/gtksorter.c
+src/contrib/gtksortlistmodel.c

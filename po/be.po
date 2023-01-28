@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-11-05 19:26+0000\n"
-"PO-Revision-Date: 2022-11-28 05:59+0300\n"
-"Last-Translator: Launchpad translators\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-01-28 21:12+0300\n"
+"Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be_BY\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Нататкі"
 
@@ -151,8 +151,8 @@ msgstr ""
 "Даступна тры памеры тэксту: small (малы), medium (сярэдні, прадвызначаны) і "
 "large (вялікі)."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:313
-#: data/resources/bjb-window.ui:401 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Нататнікі"
 
@@ -164,12 +164,12 @@ msgstr "Новы нататнік…"
 msgid "Add"
 msgstr "Дадаць"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:199
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
 msgid "No note selected"
 msgstr "Нататка не выбрана"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:292
-#: src/bjb-window.c:437
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Усе нататкі"
 
@@ -177,67 +177,67 @@ msgstr "Усе нататкі"
 msgid "Open menu"
 msgstr "Адкрыць меню"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Больш параметраў"
 
-#: data/resources/bjb-window.ui:188 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Імпарт нататак"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Памер тэксту"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Вялікі"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Сярэдні"
 
-#: data/resources/bjb-window.ui:232
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Малы"
 
-#: data/resources/bjb-window.ui:249 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
-msgstr "Параметры"
+msgstr "Налады"
 
-#: data/resources/bjb-window.ui:257
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Спалучэнні клавіш"
 
-#: data/resources/bjb-window.ui:265
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Даведка"
 
-#: data/resources/bjb-window.ui:273
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Пра Нататкі"
 
-#: data/resources/bjb-window.ui:339 src/bjb-window.c:447
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Сметніца"
 
-#: data/resources/bjb-window.ui:361
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Адкрыць у новым акне"
 
-#: data/resources/bjb-window.ui:377
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Адрабіць"
 
-#: data/resources/bjb-window.ui:385
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Паўтарыць дзеянне"
 
-#: data/resources/bjb-window.ui:409
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Даслаць гэтую нататку па эл. пошце"
 
-#: data/resources/bjb-window.ui:417 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Перамясціць у сметніцу"
 
@@ -272,10 +272,6 @@ msgstr "Выступ"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Скапіраваць вылучанае ў новую нататку"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Няма нататак"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -449,39 +445,39 @@ msgstr "Выберыце прадвызначанае месца захоўва�
 msgid "Primary Book"
 msgstr "Асноўны нататнік"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:122
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Без назвы"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Нататкі GNOME"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Паказаць падрабязны журнал"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Паказаць версію праграмы"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Стварыць новую нататку"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Узяць нататкі і экспартаваць іх куды-небудзь."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Просты нататнік для GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Uladzimir Manulenka <vlma@tut.by>\n"
@@ -491,23 +487,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "Колер нататкі"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Нататнік"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Дадаць нататкі"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Націсніце кнопку «Новая», каб старыць нататку."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Націсніце кнопку +, каб дадаць нататку"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Вой"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Нічога не знойдзена"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Усталюйце «Tracker» і перазапусціце праграму."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Паспрабуйце змяніць пошукавы запыт"
 
-#: src/bjb-note-view.c:55
+#: src/bjb-note-view.c:95
 msgid "This note is being viewed in another window"
 msgstr "Гэтая нататка адкрыта ў іншым акне"
 
@@ -528,14 +524,26 @@ msgstr "У гэтым месяцы"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:928
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Апошняе абнаўленне: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Лакальнае сховішча"
+
+#~ msgid "No notes"
+#~ msgstr "Няма нататак"
+
+#~ msgid "Notebook"
+#~ msgstr "Нататнік"
+
+#~ msgid "Oops"
+#~ msgstr "Вой"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Усталюйце «Tracker» і перазапусціце праграму."
 
 #~ msgid "_New"
 #~ msgstr "_Новая"

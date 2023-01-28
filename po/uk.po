@@ -5,13 +5,13 @@
 # Mykola Tkach <Stuartlittle1970@gmail.com>, 2013.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2013-2019.
 # Danylo Korostil <ted.korostiled@gmail.com>, 2020.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-10-14 10:05+0000\n"
-"PO-Revision-Date: 2022-10-14 17:49+0300\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-01-28 21:08+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Примітки"
 
@@ -160,8 +160,8 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Доступні три розміри тексту: малий, середній (типово) та великий."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:313
-#: data/resources/bjb-window.ui:401 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Записники"
 
@@ -173,8 +173,12 @@ msgstr "Створити записник…"
 msgid "Add"
 msgstr "Додати"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:292
-#: src/bjb-window.c:437
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Не позначено жодної примітки"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Усі примітки"
 
@@ -182,67 +186,67 @@ msgstr "Усі примітки"
 msgid "Open menu"
 msgstr "Відкрити меню"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Більше параметрів"
 
-#: data/resources/bjb-window.ui:188 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Імпортувати примітки"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Розмір тексту"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Великий"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Середній"
 
-#: data/resources/bjb-window.ui:232
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Малий"
 
-#: data/resources/bjb-window.ui:249 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Параметри"
 
-#: data/resources/bjb-window.ui:257
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Клавіатурні скорочення"
 
-#: data/resources/bjb-window.ui:265
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "_Довідка"
 
-#: data/resources/bjb-window.ui:273
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Про Примітки"
 
-#: data/resources/bjb-window.ui:339 src/bjb-window.c:447
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Смітник"
 
-#: data/resources/bjb-window.ui:361
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Відкрити у новому вікні"
 
-#: data/resources/bjb-window.ui:377
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Повернути"
 
-#: data/resources/bjb-window.ui:385
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Повторити"
 
-#: data/resources/bjb-window.ui:409
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Надіслати цю примітку"
 
-#: data/resources/bjb-window.ui:417 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Пересунути у смітник"
 
@@ -277,10 +281,6 @@ msgstr "Зменшити відступ"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Скопіювати вибране в нову примітку"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Немає приміток"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -454,39 +454,39 @@ msgstr "Виберіть типову адресу сховища:"
 msgid "Primary Book"
 msgstr "Первинна книга"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:122
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Неназвано"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Нотатки GNOME"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Показати докладний журнал"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Показати версію програми"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Створити нову примітку"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Взяти примітки і експортувати їх скрізь."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Проста записна книжка середовища GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Микола Ткач <Stuartlittle1970@gmail.com>, 2013.\n"
@@ -496,32 +496,27 @@ msgstr ""
 msgid "Note Color"
 msgstr "Колір примітки"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Записник"
+#: src/bjb-note-list.c:108
+#| msgid "All Notes"
+msgid "Add Notes"
+msgstr "Додати нотатки"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Натисніть кнопку «Створити», щоб створити примітку."
+#: src/bjb-note-list.c:109
+#| msgid "Press the New button to create a note."
+msgid "Use the + button to add a note"
+msgstr "Скористайтеся кнопкою + для додавання нотатки"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Отакої"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Нічого не знайдено"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Установіть «Tracker» і перезапустіть програму."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Спробувати інші критерії пошуку"
 
-#: src/bjb-note-view.c:55
-#| msgid "This note is being viewed in another window."
+#: src/bjb-note-view.c:95
 msgid "This note is being viewed in another window"
 msgstr "Перегляд цієї примітки здійснюється в іншому вікні"
-
-#: src/bjb-note-view.c:199
-#| msgid "%d selected"
-#| msgid_plural "%d selected"
-msgid "No note selected"
-msgstr "Не позначено жодної примітки"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -540,14 +535,26 @@ msgstr "У цьому місяці"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:928
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Востаннє оновлено: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Локальне сховище"
+
+#~ msgid "No notes"
+#~ msgstr "Немає приміток"
+
+#~ msgid "Notebook"
+#~ msgstr "Записник"
+
+#~ msgid "Oops"
+#~ msgstr "Отакої"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Установіть «Tracker» і перезапустіть програму."
 
 #~ msgid "Local"
 #~ msgstr "Локальне"

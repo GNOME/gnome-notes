@@ -1,21 +1,22 @@
 # Turkish translation for gnome-notes.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Copyright (C) 2014-2022 gnome-notes's COPYRIGHT HOLDER
+# Copyright (C) 2014-2023 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same licence as the gnome-notes package.
 #
 # adamc <ceviriadam@gmail.com>, 2013.
 # Osman Karagöz <osmank3@gmail.com>, 2013, 2014.
 # Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2013, 2014.
 # Muhammet Kara <muhammetk@gnome.org>, 2013, 2014, 2015, 2018.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2016-2022.
+# Sabri Ünal <libreajans@gmail.com>, 2023.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2016-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-11-05 19:26+0000\n"
-"PO-Revision-Date: 2022-12-21 10:35+0300\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-01-28 17:34+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -27,7 +28,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Notlar"
 
@@ -155,8 +156,8 @@ msgid ""
 msgstr ""
 "Kullanılabilir üç metin boyutu vardır: küçük, orta (öntanımlı) ve büyük."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:313
-#: data/resources/bjb-window.ui:401 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Not Defterleri"
 
@@ -168,12 +169,12 @@ msgstr "Yeni Not Defteri…"
 msgid "Add"
 msgstr "Ekle"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:199
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
 msgid "No note selected"
 msgstr "Not seçilmedi"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:292
-#: src/bjb-window.c:437
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Tüm Notlar"
 
@@ -181,67 +182,67 @@ msgstr "Tüm Notlar"
 msgid "Open menu"
 msgstr "Menüyü aç"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Daha çok seçenek"
 
-#: data/resources/bjb-window.ui:188 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Notları İçe Aktar"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Metin Boyutları"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Büyük"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Orta"
 
-#: data/resources/bjb-window.ui:232
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Küçük"
 
-#: data/resources/bjb-window.ui:249 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: data/resources/bjb-window.ui:257
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: data/resources/bjb-window.ui:265
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Yardım"
 
-#: data/resources/bjb-window.ui:273
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Notlar Hakkında"
 
-#: data/resources/bjb-window.ui:339 src/bjb-window.c:447
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Çöp"
 
-#: data/resources/bjb-window.ui:361
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Yeni Pencerede Aç"
 
-#: data/resources/bjb-window.ui:377
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Geri Al"
 
-#: data/resources/bjb-window.ui:385
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Yinele"
 
-#: data/resources/bjb-window.ui:409
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Bu Notu E-postala"
 
-#: data/resources/bjb-window.ui:417 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Çöpe Taşı"
 
@@ -276,10 +277,6 @@ msgstr "Ters Girinti"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Seçimi yeni nota kopyala"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Not yok"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -453,39 +450,39 @@ msgstr "Öntanımlı depolama konumunu seç:"
 msgid "Primary Book"
 msgstr "Birincil Defter"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:122
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Başlıksız"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "GNOME Notlar"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Ayrıntılı günlükleri göster"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Uygulamanın sürümünü göster"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Yeni not oluştur"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[DOSYA…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Not al ve notları her yerde dışa aktar."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "GNOME için basit not defteri"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Emin Tufan Çetin <etcetin@gmail.com>\n"
@@ -496,23 +493,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "Not Rengi"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Not Defteri"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Not Ekle"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Not oluşturmak için Yeni düğmesine bas."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Not eklemek için + düğmesini kullan"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Aman"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Sonuç Yok"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Lütfen “Tracker”i kurup uygulamayı yeniden başlatın."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Başka arama dene"
 
-#: src/bjb-note-view.c:55
+#: src/bjb-note-view.c:95
 msgid "This note is being viewed in another window"
 msgstr "Bu not başka pencerede açık"
 
@@ -533,11 +530,11 @@ msgstr "Bu ay"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:928
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Son güncelleme: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Yerel depolama"

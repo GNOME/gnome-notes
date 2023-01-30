@@ -2,14 +2,14 @@
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Andika Triwidada <andika@gmail.com>, 2013, 2014.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-01-05 04:05+0000\n"
-"PO-Revision-Date: 2022-01-12 11:47+0700\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-01-30 11:25+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Catatan"
 
@@ -154,8 +154,8 @@ msgid ""
 msgstr ""
 "Terdapat tiga ukuran teks yang tersedia: kecil, sedang (bawaan) dan besar."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Buku Catatan"
 
@@ -167,8 +167,12 @@ msgstr "Buku Catatan Baru…"
 msgid "Add"
 msgstr "Tambah"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:433
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Tidak ada catatan yang dipilih"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Semua Catatan"
 
@@ -176,67 +180,67 @@ msgstr "Semua Catatan"
 msgid "Open menu"
 msgstr "Buka menu"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Lebih banyak opsi"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Impro Catatan"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Ukuran Teks"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Besar"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Sedang"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Kecil"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Pintasan Papan Tik"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Bantuan"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Tentang Catatan"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Tong Sampah"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Batal"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Jadi Lagi"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Surelkan Catatan ini"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Pindahkan ke Tong Sampah"
 
@@ -271,10 +275,6 @@ msgstr "Outdent"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Salin pilihan ke catatan baru"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Tiada catatan"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -448,68 +448,67 @@ msgstr "Pilih lokasi penyimpanan bawaan:"
 msgid "Primary Book"
 msgstr "Buku Primer"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Tanpa Judul"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "GNOME Catatan"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Tampilkan log verbose"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Tampilkan versi aplikasi"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Buat catatan baru"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[BERKAS...]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Merekam catatan dan mengekspor mereka kemana-mana."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Buku catatan sederhana bagi GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2013, 2014.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2023."
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Warna Catatan"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Buku Catatan"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Tambah Catatan"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Tekan tombol Baru untuk membuat sebuah catatan."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Gunakan tombol + untuk menambahkan catatan"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Ups"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Tidak Ada Hasil"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Mohon pasang \"Pelacak\" lalu mulai lagi aplikasi."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Coba pencarian lain"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
-msgid "This note is being viewed in another window."
-msgstr "Catatan ini sedang dilihat di jendela lain."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Catatan ini sedang dilihat di jendela lain"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -528,18 +527,29 @@ msgstr "Bulan ini"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:912
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Terakhir diperbarui: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Lokal"
-
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Penyimpanan lokal"
+
+#~ msgid "No notes"
+#~ msgstr "Tiada catatan"
+
+#~ msgid "Notebook"
+#~ msgstr "Buku Catatan"
+
+#~ msgid "Oops"
+#~ msgstr "Ups"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Mohon pasang \"Pelacak\" lalu mulai lagi aplikasi."
+
+#~ msgid "Local"
+#~ msgstr "Lokal"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Masukkan suatu nama untuk membuat sebuah buku catatan"
@@ -570,11 +580,6 @@ msgstr "Penyimpanan lokal"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Klik pada butir untuk memilihnya"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d dipilih"
-#~ msgstr[1] "%d dipilih"
 
 #~ msgid "Results for %s"
 #~ msgstr "Hasil bagi %s"

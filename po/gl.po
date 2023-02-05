@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-01-05 04:05+0000\n"
-"PO-Revision-Date: 2022-01-26 00:40+0100\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-05 22:08+0100\n"
 "Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 40.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Project-Style: gnome\n"
 "X-DL-Team: gl\n"
 "X-DL-Module: gnome-notes\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Notas"
 
@@ -155,13 +155,12 @@ msgid ""
 msgstr ""
 "Hay tres tamaños de texto dispoñíbeis: pequeno, medio (por omisión) e grande."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Cadernos"
 
 #: data/resources/bjb-notebooks-dialog.ui:33
-#| msgid "New notebook"
 msgid "New Notebook…"
 msgstr "Novo caderno…"
 
@@ -169,8 +168,12 @@ msgstr "Novo caderno…"
 msgid "Add"
 msgstr "Engadir"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:433
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Non se seleccionou unha nota"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Todas as notas"
 
@@ -178,67 +181,67 @@ msgstr "Todas as notas"
 msgid "Open menu"
 msgstr "Abrir menú"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Máis opcións"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importar notas"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Tamaños de texto"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Grande"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Medio"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Pequeno"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Atallos de teclado"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Axuda"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Sobre Notas"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Lixo"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Abrir nunha nova xanela"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Desfacer"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Refacer"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Enviar por correo esta nota"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Mover ao lixo"
 
@@ -273,10 +276,6 @@ msgstr "Sangría inversa"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Copiar selección a unha nova nota"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Non hai notas"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -450,66 +449,65 @@ msgstr "Seleccionar a localización de almacenamento por omisión:"
 msgid "Primary Book"
 msgstr "Caderno primario"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Sen título"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Notas de GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Mostrar rexistros verbosos"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Mostrar a versión do aplicación"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Crear unha nova nota"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[FICHEIRO…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Tome notas e expórteas en calquera lugar."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Caderno de notas sinxelo para GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:596
 msgid "translator-credits"
-msgstr "Fran Diéguez <frandieguez@gnome.org>, 2013-2021"
+msgstr "Fran Diéguez <frandieguez@gnome.org>, 2013-2023"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Cor da nota"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Caderno"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Engadir notas"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Prema o botón Nova para crear unha nota."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Use o botón + para engadir unha nota"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Ups"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Non hai resultados"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Instale «Tracker» e logo reinicie a aplicación."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Tente con unha busca distinta"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
-msgid "This note is being viewed in another window."
-msgstr "Esta nota está mostrándose noutra xanela."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Esta nota está mostrándose noutra xanela"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -528,18 +526,29 @@ msgstr "Este mes"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:912
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última actualización: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Local"
-
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Almacenamento local"
+
+#~ msgid "No notes"
+#~ msgstr "Non hai notas"
+
+#~ msgid "Notebook"
+#~ msgstr "Caderno"
+
+#~ msgid "Oops"
+#~ msgstr "Ups"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Instale «Tracker» e logo reinicie a aplicación."
+
+#~ msgid "Local"
+#~ msgstr "Local"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Escriba un nome para crear un caderno"
@@ -570,11 +579,6 @@ msgstr "Almacenamento local"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Prema nos elementos para seleccionalos"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d seleccionada"
-#~ msgstr[1] "%d seleccionadas"
 
 #~ msgid "Results for %s"
 #~ msgstr "Resultados para %s"

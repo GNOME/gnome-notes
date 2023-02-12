@@ -4,13 +4,13 @@
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015.
 # Edurne Labaka <elabaka@uzei.com>, 2015.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2019, 2020, 2021, 2022.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2019, 2020, 2021, 2022, 2023.
 #
 msgid ""
 msgstr "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-05-20 21:32+0000\n"
-"PO-Revision-Date: 2022-07-05 10:00+0100\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-12 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -21,7 +21,7 @@ msgstr "Project-Id-Version: bijiben master\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Oharrak"
 
@@ -142,8 +142,8 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Hiru testu-tamaina daude erabilgarri: txikia, tartekoa (lehenetsia) eta handia."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Koadernoak"
 
@@ -155,8 +155,12 @@ msgstr "Koaderno berria…"
 msgid "Add"
 msgstr "Gehitu"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Ez da oharrik hautatu"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Ohar guztiak"
 
@@ -164,67 +168,67 @@ msgstr "Ohar guztiak"
 msgid "Open menu"
 msgstr "Ireki menua"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Aukera gehiago"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Inportatu oharrak"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Testu-tamainak"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Handia"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "Ta_rtekoa"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Txikia"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Laster-teklak"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Laguntza"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Oharrak aplikazioari buruz"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Zakarrontzia"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Ireki leiho berrian"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Desegin"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Berregin"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Bidali ohar hau posta elektronikoz"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Bota zakarrontzira"
 
@@ -259,10 +263,6 @@ msgstr "Kendu kosta"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Kopiatu hautapena ohar berri batean"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Oharrik ez"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -436,39 +436,39 @@ msgstr "Hautatu biltegiratze-kokaleku lehenetsia"
 msgid "Primary Book"
 msgstr "Liburu nagusia"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Izengabea"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "GNOME Oharrak"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Erakutsi egunkari xehea"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Erakutsi aplikazioaren bertsioa"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Sortu ohar berri bat"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[FITXATEGIA…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Hartu oharrak eta esportatu edonora."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "GNOMEren koaderno xumea"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr "translator-credits"
 
@@ -476,26 +476,25 @@ msgstr "translator-credits"
 msgid "Note Color"
 msgstr "Oharraren kolorea"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Koadernoa"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Gehitu oharrak"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Sakatu 'Berria' botoia oharra sortzeko."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Erabili + botoia oharra gehitzeko"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Eeeepaaa"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Ez dago emaitzarik"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Instalatu Tracker eta berrabiarazi aplikazioa."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Saiatu bestelako bilaketa"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Ohar hau beste leiho batean ari da bistaratzen."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Ohar hau beste leiho batean ari da bistaratzen"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -514,14 +513,26 @@ msgstr "Hil honetan"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:939
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Azken eguneraketa: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Biltegi lokala"
+
+#~ msgid "No notes"
+#~ msgstr "Oharrik ez"
+
+#~ msgid "Notebook"
+#~ msgstr "Koadernoa"
+
+#~ msgid "Oops"
+#~ msgstr "Eeeepaaa"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Instalatu Tracker eta berrabiarazi aplikazioa."
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Sartu izena koadernoa sortzeko"
@@ -555,11 +566,6 @@ msgstr "Biltegi lokala"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Egin klik elementuen gainean hautatzeko"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d hautatuta"
-#~ msgstr[1] "%d hautatuta"
 
 #~ msgid "Results for %s"
 #~ msgstr "'%s'(r)en emaitzak"

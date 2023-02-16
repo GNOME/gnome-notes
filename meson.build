@@ -97,17 +97,6 @@ add_project_arguments(common_flags, language: 'c')
 
 tracker_sparql_dep = dependency('tracker-sparql-3.0', required: false)
 has_tracker3 = tracker_sparql_dep.found()
-config_h.set10('HAVE_TRACKER3', has_tracker3)
-
-if not tracker_sparql_dep.found()
-  tracker_sparql_dep = dependency('tracker-sparql-2.0', required: false)
-  if not tracker_sparql_dep.found()
-    tracker_sparql_dep = dependency('tracker-sparql-1.0', required: false)
-    if not tracker_sparql_dep.found()
-      tracker_sparql_dep = dependency('tracker-sparql-0.18', required: true)
-    endif
-  endif
-endif
 
 # Tracker
 private_store = get_option('private_store') or has_tracker3

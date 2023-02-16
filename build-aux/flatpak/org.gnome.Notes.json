@@ -151,17 +151,16 @@
             "config-opts" : [
                 "--default-library=shared",
                 "-Ddocs=false",
-                "-Dfts=false",
-                "-Dfunctional_tests=false",
-                "-Djournal=false",
+                "-Dman=false",
+                "-Dtests=false",
                 "-Dbash_completion=false",
-                "-Dsystemd_user_services=no"
+                "-Dsystemd_user_services=false"
             ],
             "sources" : [
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/tracker.git",
-                    "branch" : "tracker-2.3"
+                    "branch" : "tracker-3.4"
                 }
             ]
         },

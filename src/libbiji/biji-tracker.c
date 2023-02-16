@@ -177,15 +177,9 @@ add_or_update_note (BijiTracker *self,
 
   if (urn_uuid)
     tracker_sparql_connection_update_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                            0,     // priority
-#endif
                                             NULL, NULL, NULL);
   else
     tracker_sparql_connection_update_blank_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                                  G_PRIORITY_DEFAULT,
-#endif
                                                   NULL, NULL, NULL);
 }
 
@@ -375,30 +369,18 @@ biji_tracker_init (BijiTracker *self)
 #ifdef TRACKER_PRIVATE_STORE
   filename = g_build_filename (g_get_user_cache_dir (),
                                g_get_application_name (),
-#if HAVE_TRACKER3
                                "tracker3",
-#else
-                               "tracker",
-#endif /* HAVE_TRACKER3 */
                                NULL);
 
   location = g_file_new_for_path (filename);
 
   /* If tracker fails for some reason,
    * do not attempt anything */
-#if HAVE_TRACKER3
   self->connection = tracker_sparql_connection_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
                                                     location,
                                                     tracker_sparql_get_ontology_nepomuk (),
                                                     self->cancellable,
                                                     &error);
-#else
-  self->connection = tracker_sparql_connection_local_new (TRACKER_SPARQL_CONNECTION_FLAGS_NONE,
-                                                          location,
-                                                          NULL, NULL,
-                                                          self->cancellable,
-                                                          &error);
-#endif /* HAVE_TRACKER3 */
 
 #else
   self->connection = tracker_sparql_connection_get (self->cancellable, &error);
@@ -466,9 +448,6 @@ biji_tracker_add_notebook_async (BijiTracker         *self,
   g_task_set_task_data (task, g_strdup (notebook), g_free);
 
   tracker_sparql_connection_update_blank_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                                G_PRIORITY_DEFAULT,
-#endif
                                                 NULL,
                                                 on_add_notebook_cb, task);
 }
@@ -494,9 +473,6 @@ biji_tracker_remove_notebook (BijiTracker *self,
 
   query = g_strdup_printf ("DELETE {'%s' a nfo:DataContainer}", notebook_urn);
   tracker_sparql_connection_update_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                          0,     // priority
-#endif
                                           NULL, NULL, NULL);
 }
 
@@ -609,9 +585,6 @@ biji_tracker_remove_note_notebook_async (BijiTracker         *self,
   task = g_task_new (self, NULL, callback, user_data);
 
   tracker_sparql_connection_update_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                          0,     // priority
-#endif
                                           NULL,
                                           on_tracker_update_cb, task);
 }
@@ -651,9 +624,6 @@ biji_tracker_add_note_to_notebook_async (BijiTracker         *self,
   task = g_task_new (self, NULL, callback, user_data);
 
   tracker_sparql_connection_update_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                          0,     // priority
-#endif
                                           NULL,
                                           on_tracker_update_cb, task);
 }
@@ -712,9 +682,6 @@ biji_tracker_delete_note (BijiTracker *self,
                            bjb_item_get_uid (BJB_ITEM (note)));
 
   tracker_sparql_connection_update_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                          0,     // priority
-#endif
                                           NULL, NULL, NULL);
 }
 
@@ -730,9 +697,6 @@ biji_tracker_trash_resource (BijiTracker *self,
   query = g_strdup_printf ("DELETE { <%s> a rdfs:Resource }", tracker_urn);
 
   tracker_sparql_connection_update_async (self->connection, query,
-#if !HAVE_TRACKER3
-                                          0,     // priority
-#endif
                                           NULL, NULL, NULL);
 }
 

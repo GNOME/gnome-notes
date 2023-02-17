@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-11-05 19:26+0000\n"
-"PO-Revision-Date: 2023-01-18 09:54+0000\n"
-"Last-Translator: Fabio T. <f.t.public@gmail.com>\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-17 08:10+0000\n"
+"Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <f.t.public@gmail.com>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Notis"
 
@@ -157,8 +157,8 @@ msgid ""
 msgstr ""
 "A son trê dimensions di test disponibilis: piçul, medi (predefinît) e grant."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:313
-#: data/resources/bjb-window.ui:401 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Tacuins"
 
@@ -170,12 +170,12 @@ msgstr "Gnûf tacuin…"
 msgid "Add"
 msgstr "Zonte"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:199
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
 msgid "No note selected"
 msgstr "Nissune note selezionade"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:292
-#: src/bjb-window.c:437
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Dutis lis notis"
 
@@ -183,67 +183,67 @@ msgstr "Dutis lis notis"
 msgid "Open menu"
 msgstr "Vierç menù"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Plui opzions"
 
-#: data/resources/bjb-window.ui:188 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Impuarte notis"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Dimensions test"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Grant"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Medi"
 
-#: data/resources/bjb-window.ui:232
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Piçul"
 
-#: data/resources/bjb-window.ui:249 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferencis"
 
-#: data/resources/bjb-window.ui:257
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Scurtis di tastiere"
 
-#: data/resources/bjb-window.ui:265
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Jutori"
 
-#: data/resources/bjb-window.ui:273
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Informazions su Notis"
 
-#: data/resources/bjb-window.ui:339 src/bjb-window.c:447
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Scovacere"
 
-#: data/resources/bjb-window.ui:361
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Vierç intun gnûf barcon"
 
-#: data/resources/bjb-window.ui:377
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Anule"
 
-#: data/resources/bjb-window.ui:385
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Torne fâ"
 
-#: data/resources/bjb-window.ui:409
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Invie cheste note vie e-mail"
 
-#: data/resources/bjb-window.ui:417 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Sposte te scovacere"
 
@@ -278,10 +278,6 @@ msgstr "Mancul margjin tornade"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Copie la selezion intune gnove note"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Nissune note"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -455,39 +451,39 @@ msgstr "Selezione la posizion di archiviazion predefinide:"
 msgid "Primary Book"
 msgstr "Libri principâl"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:122
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Cence titul"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Notis GNOME"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Mostre regjistris detaiâts"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Mostre la version de aplicazion"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Cree une gnove note"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Cjape notis e espuartilis dapardut."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Sempliç tacuin par GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>, 2021"
 
@@ -495,23 +491,23 @@ msgstr "Fabio Tomat <f.t.public@gmail.com>, 2021"
 msgid "Note Color"
 msgstr "Colôr de note"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Tacuin"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Zonte notis"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Frache il boton Gnove par creâ une note."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Dopre il boton + par zontâ une note"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Orpo"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Nissun risultât"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Par plasê instale “Tracker” e dopo torne invie la aplicazion."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Prove cuntune ricercje diferente"
 
-#: src/bjb-note-view.c:55
+#: src/bjb-note-view.c:95
 msgid "This note is being viewed in another window"
 msgstr "Cheste note e je visualizade intun altri barcon"
 
@@ -531,14 +527,26 @@ msgstr "Chest mês"
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
-#: src/bjb-window.c:928
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ultin inzornament: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Archivi locâl"
+
+#~ msgid "No notes"
+#~ msgstr "Nissune note"
+
+#~ msgid "Notebook"
+#~ msgstr "Tacuin"
+
+#~ msgid "Oops"
+#~ msgstr "Orpo"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Par plasê instale “Tracker” e dopo torne invie la aplicazion."
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Scrîf un non par creâ un tacuin"

@@ -4,14 +4,14 @@
 # Joe Hansen <joedalton2@yahoo.dk>, 2013.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2013, 2015.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2014.
-# Alan Mortensen <alanmortensen.am@gmail.com>, 2017-22.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2017-23.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-02-27 12:35+0100\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-25 12:35+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Noter"
 
@@ -153,8 +153,8 @@ msgid ""
 msgstr ""
 "Der er tre tilgængelige skriftstørrelser: lille, mellem (standard) og stor."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Notesbøger"
 
@@ -166,8 +166,12 @@ msgstr "Ny notesbog …"
 msgid "Add"
 msgstr "Tilføj"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Ingen note valgt"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Alle noter"
 
@@ -175,67 +179,67 @@ msgstr "Alle noter"
 msgid "Open menu"
 msgstr "Åbn menuen"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Flere indstillinger"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importér noter"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Tekststørrelser"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Stor"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Mellem"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Lille"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturgenveje"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Hjælp"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Om Noter"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Papirkurv"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Åbn i nyt vindue"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Fortryd"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Omgør"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Send denne note per e-mail"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Flyt til papirkurv"
 
@@ -270,10 +274,6 @@ msgstr "Udryk"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Kopiér markeringen til en ny note"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Ingen noter"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -447,39 +447,39 @@ msgstr "Vælg standardplacering til lagring:"
 msgid "Primary Book"
 msgstr "Primær bog"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Unavngivet"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "GNOME Noter"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Vis udvidede logge"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Vis programmets version"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Opret en ny note"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[FIL …]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Opret noter og eksportér dem hvor som helst."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Simpelt noteprogram for GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Joe Hansen, 2013\n"
@@ -494,26 +494,25 @@ msgstr ""
 msgid "Note Color"
 msgstr "Notefarve"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Notesbog"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Tilføj noter"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Tryk på “Ny”-tasten for at oprette en ny note."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Tryk på +-knappen for at tilføje en note"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Ups"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Ingen resultater"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Installér venligst “Tracker” og genstart så programmet."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Prøv en anden søgning"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Denne note vises i et andet vindue."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Denne note vises i et andet vindue"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -532,14 +531,26 @@ msgstr "Denne måned"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Senest opdateret: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Lokalt lager"
+
+#~ msgid "No notes"
+#~ msgstr "Ingen noter"
+
+#~ msgid "Notebook"
+#~ msgstr "Notesbog"
+
+#~ msgid "Oops"
+#~ msgstr "Ups"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Installér venligst “Tracker” og genstart så programmet."
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Indtast et navn for at oprette en notesbog"
@@ -574,11 +585,6 @@ msgstr "Lokalt lager"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Klik på punkter for at vælge dem"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d valgt"
-#~ msgstr[1] "%d valgte"
 
 #~ msgid "Results for %s"
 #~ msgstr "Resultater for %s"

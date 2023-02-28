@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-02-21 11:56+0100\n"
+"POT-Creation-Date: 2023-02-21 10:59+0000\n"
+"PO-Revision-Date: 2023-02-28 12:04+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -507,8 +507,6 @@ msgid "Try a different search"
 msgstr "Pruebe a hacer una búsqueda diferente"
 
 #: src/bjb-note-view.c:95
-#, fuzzy
-#| msgid "This note is being viewed in another window."
 msgid "This note is being viewed in another window"
 msgstr "Esta nota se está viendo en otra ventana"
 

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-02-23 20:37+0200\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-02-28 21:51+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Muistilaput"
 
@@ -153,8 +153,8 @@ msgid ""
 msgstr ""
 "Tarjolla on kolme eri tekstikokoa: pieni, tavallinen (oletus) ja suuri."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Muistikirjat"
 
@@ -166,8 +166,12 @@ msgstr "Uusi muistikirja…"
 msgid "Add"
 msgstr "Lisää"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Muistilappua ei ole valittu"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Kaikki muistilaput"
 
@@ -175,67 +179,67 @@ msgstr "Kaikki muistilaput"
 msgid "Open menu"
 msgstr "Avaa valikko"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Lisää valintoja"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Tuo muistilappuja"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Tekstikoot"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Suuri"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Tavallinen"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Pieni"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Pikanäppäimet"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Ohje"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Tietoja - Muistilaput"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Roskakori"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Avaa uudessa ikkunassa"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Kumoa"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Tee uudelleen"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Lähetä tämä muistilappu sähköpostilla"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
@@ -270,10 +274,6 @@ msgstr "Vähennä sisennystä"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Kopioi valinta uuteen muistilappuun"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Ei muistilappuja"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -447,68 +447,67 @@ msgstr "Valitse tallennustilan oletussijainti:"
 msgid "Primary Book"
 msgstr "Ensisijainen kirja"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Nimetön"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Gnomen muistilaput"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Näytä runsaat lokit"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Näytä sovelluksen versio"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Luo uusi muistilappu"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[TIEDOSTO…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Tee muistilappuja ja vie niitä muihin sovelluksiin."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Yksinkertainen muistio Gnomelle"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
-"Jiri Grönroos, 2013-2022\n"
+"Jiri Grönroos, 2013-2023\n"
 "Juhani Numminen, 2014"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Muistilapun väri"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Muistikirja"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Lisää muistilappuja"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Napsauta Uusi-painiketta luodaksesi muistilapun."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Napsauta +-painiketta luodaksesi muistilapun."
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Hups"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Ei tuloksia"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Asenna “Tracker” ja käynnistä sovellus sitten uudelleen."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Yritä eri hakuehdoilla"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Tämä muistilappu on avoinna toisessa ikkunassa."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Tämä muistilappu on avoinna toisessa ikkunassa"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -527,14 +526,26 @@ msgstr "Viime kuussa"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Viimeksi päivitetty: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Paikallinen tallennustila"
+
+#~ msgid "No notes"
+#~ msgstr "Ei muistilappuja"
+
+#~ msgid "Notebook"
+#~ msgstr "Muistikirja"
+
+#~ msgid "Oops"
+#~ msgstr "Hups"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Asenna “Tracker” ja käynnistä sovellus sitten uudelleen."
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Kirjoita nimi luodaksesi muistikirjan"
@@ -568,11 +579,6 @@ msgstr "Paikallinen tallennustila"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Napsauta kohteita valitaksesi ne"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d valittu"
-#~ msgstr[1] "%d valittu"
 
 #~ msgid "Results for %s"
 #~ msgstr "Tulokset haulle %s"

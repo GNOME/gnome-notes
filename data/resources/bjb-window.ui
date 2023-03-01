@@ -17,10 +17,11 @@
                 <property name="custom-title">filter_menu_button</property>
                 <property name="show-close-button">True</property>
                 <child>
-                  <object class="GtkButton" id="new_button">
+                  <object class="GtkMenuButton" id="new_button">
                     <property name="visible">True</property>
-                    <property name="use-underline">True</property>
-                    <signal name="clicked" handler="on_new_note_clicked" swapped="yes"/>
+                    <property name="popover">providers_popover</property>
+                    <!-- <property name="use-underline">True</property>
+                         <signal name="clicked" handler="on_new_note_clicked" swapped="yes"/> -->
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
@@ -439,4 +440,44 @@
     <property name="max-width-chars">60</property>
     <signal name="changed" handler="on_title_changed" swapped="yes"/>
   </object>
+
+  <object class="GtkPopover" id="providers_popover">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <property name="margin-top">12</property>
+            <property name="margin-bottom">12</property>
+            <property name="label" translatable="yes">Select Note Location</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBox" id="providers_list_box">
+            <property name="visible">True</property>
+            <property name="width-request">240</property>
+            <property name="selection-mode">none</property>
+            <signal name="row-activated" handler="providers_list_row_activated_cb" swapped="yes"/>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </object>  <!-- ./GtkPopover provider_popovers -->
+
 </interface>

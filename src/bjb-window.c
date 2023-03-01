@@ -33,6 +33,7 @@
 
 #include <libbiji/libbiji.h>
 
+#include "items/bjb-plain-note.h"
 #include "providers/bjb-provider.h"
 #include "bjb-application.h"
 #include "bjb-note-list.h"
@@ -76,6 +77,8 @@ struct _BjbWindow
   GtkWidget            *title_entry;
   GtkWidget            *new_window_item;
   GtkWidget            *last_update_item;
+  GtkWidget            *providers_popover;
+  GtkWidget            *providers_list_box;
 
   gboolean              is_main;
   gulong                remove_item_id;
@@ -122,25 +125,6 @@ on_back_button_clicked (BjbWindow *self)
 }
 
 static void
-on_new_note_clicked (BjbWindow *self)
-{
-  BijiNoteObj *result;
-  BijiManager *manager;
-
-  g_assert (BJB_IS_WINDOW (self));
-
-  /* append note to notebook */
-  manager = bjb_window_get_manager (GTK_WIDGET (self));
-  result = biji_manager_note_new (manager,
-                                  NULL,
-                                  bjb_settings_get_default_location (self->settings));
-
-  /* Go to that note */
-  hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
-  bjb_window_set_note (self, BJB_NOTE (result));
-}
-
-static void
 on_title_changed (BjbWindow *self,
                   GtkEntry      *title)
 {
@@ -176,6 +160,30 @@ window_selected_note_changed_cb (BjbWindow *self)
       hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
       bjb_window_set_note (self, to_open);
     }
+}
+
+static void
+providers_list_row_activated_cb (BjbWindow     *self,
+                                 GtkListBoxRow *row)
+{
+  BjbProvider *provider;
+  GtkWidget *child;
+  BjbItem *note;
+
+  g_assert (BJB_IS_WINDOW (self));
+  g_assert (GTK_IS_LIST_BOX_ROW (row));
+
+  child = gtk_bin_get_child (GTK_BIN (row));
+  provider = g_object_get_data (G_OBJECT (child), "provider");
+  g_assert (BJB_IS_PROVIDER (provider));
+
+  note = bjb_plain_note_new_from_data (NULL, NULL, NULL);
+  g_object_set_data (G_OBJECT (note), "provider", provider);
+
+  hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
+  bjb_window_set_note (self, BJB_NOTE (note));
+
+  gtk_popover_popdown (GTK_POPOVER (self->providers_popover));
 }
 
 static void
@@ -522,12 +530,53 @@ static GActionEntry win_entries[] = {
   { "close", on_close },
 };
 
+static GtkWidget *
+provider_row_new (gpointer item,
+                  gpointer user_data)
+{
+  GtkWidget *grid, *child;
+  GtkStyleContext *context;
+  GIcon *icon;
+
+  grid = gtk_grid_new ();
+  g_object_set_data (G_OBJECT (grid), "provider", item);
+  gtk_widget_set_margin_start (grid, 6);
+  gtk_widget_set_margin_end (grid, 6);
+  gtk_widget_set_margin_top (grid, 6);
+  gtk_widget_set_margin_bottom (grid, 6);
+  gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
+  gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+
+  icon = bjb_provider_get_icon (item, NULL);
+  if (icon)
+    {
+      child = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_DND);
+      gtk_grid_attach (GTK_GRID (grid), child, 0, 0, 1, 2);
+    }
+
+  child = gtk_label_new (bjb_provider_get_name (item));
+  gtk_widget_set_halign (child, GTK_ALIGN_START);
+  gtk_grid_attach (GTK_GRID (grid), child, 1, 0, 1, 1);
+  gtk_widget_show_all (grid);
+
+  child = gtk_label_new (bjb_provider_get_location_name (item));
+  gtk_widget_set_halign (child, GTK_ALIGN_START);
+  context = gtk_widget_get_style_context (child);
+  gtk_style_context_add_class (context, "dim-label");
+
+  gtk_grid_attach (GTK_GRID (grid), child, 1, 1, 1, 1);
+  gtk_widget_show_all (grid);
+
+  return grid;
+}
+
 static void
 bjb_window_constructed (GObject *obj)
 {
   BijiManager *manager;
   BjbWindow *self = BJB_WINDOW (obj);
   GListModel *notebooks;
+  GListModel *providers;
   GdkRectangle geometry;
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
@@ -539,6 +588,9 @@ bjb_window_constructed (GObject *obj)
 
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
+  providers = bjb_manager_get_providers (bjb_manager_get_default ());
+  gtk_list_box_bind_model (GTK_LIST_BOX (self->providers_list_box), providers,
+                           provider_row_new, NULL, NULL);
   gtk_window_set_position (GTK_WINDOW (self), GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
@@ -618,11 +670,13 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, new_window_item);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, last_update_item);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, providers_popover);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, providers_list_box);
 
   gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, on_new_note_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, providers_list_row_activated_cb);
 }
 
 GtkWidget *

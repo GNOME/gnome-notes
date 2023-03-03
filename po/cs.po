@@ -1,14 +1,14 @@
 # Czech translation for bijiben.
 # Copyright (C) 2013 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
-# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2017, 2018, 2019, 2020, 2021, 2022.
+# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-01-05 04:05+0000\n"
-"PO-Revision-Date: 2022-01-12 22:18+0100\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-03-03 09:36+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Poznámky"
 
@@ -153,8 +153,8 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "K dispozici jsou tři velikosti textu: malý, střední (výchozí) a velký."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Sešity"
 
@@ -166,8 +166,12 @@ msgstr "nový sešit…"
 msgid "Add"
 msgstr "Přidat"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:433
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Žádná poznámka nevybrána"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Všechny poznámky"
 
@@ -175,67 +179,67 @@ msgstr "Všechny poznámky"
 msgid "Open menu"
 msgstr "Otevřít nabídku"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Další volby"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Import poznámek"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Velikosti textu"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "Ve_lký"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Střední"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Malý"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Předvolby"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Klávesové zkratky"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Nápověda"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "O aplikaci Poznámky"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:442
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Koš"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Otevřít v novém okně"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Zpět"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Znovu"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Poslat tuto poznámku e-mailem"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
@@ -270,10 +274,6 @@ msgstr "Zrušit odsazení"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Kopírovat výběr do nové poznámky"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Žádné poznámky"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -447,39 +447,39 @@ msgstr "Vyberte výchozí místo pro ukládání:"
 msgid "Primary Book"
 msgstr "Hlavní sešit"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:123
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Bez názvu"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Poznámky GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Zobrazovat podrobné zprávy"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Zobrazit verzi aplikace"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Vytvořit novou poznámku"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[SOUBOR…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Pořídit poznámku a exportovat ji na všechna místa."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Jednoduchý poznámkový sešit pro GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr "Marek Černocký, <marek@manet.cz>"
 
@@ -487,26 +487,25 @@ msgstr "Marek Černocký, <marek@manet.cz>"
 msgid "Note Color"
 msgstr "Barva poznámky"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Sešit"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Přidávání poznámek"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Zmáčknutím tlačítka Nová vytvoříte novou poznámku."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Použijte tlačítko + k přidání poznámku"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Problém"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Žádné výsledky"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "nainstalujte prosím „Tracker“ a po té aplikaci restartujte."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Zkuste hledat něco jiného"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
-msgid "This note is being viewed in another window."
-msgstr "Tato poznámka je právě zobrazená v jiném okně."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Tato poznámka je právě zobrazená v jiném okně"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -525,15 +524,11 @@ msgstr "tento měsíc"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:912
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Naposledy aktualizováno: %s"
 
-#: src/libbiji/biji-notebook.c:265
-msgid "Local"
-msgstr "Místní"
-
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Místní úložiště"

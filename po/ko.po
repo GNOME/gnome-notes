@@ -5,7 +5,7 @@
 #
 # Changwoo Ryu <cwryu@debian.org>, 2013-2015.
 # Hongmin Yang <hongminy@naver.com>, 2018.
-# Seong-ho Cho <shcho@gnome.org>, 2018-2022.
+# Seong-ho Cho <shcho@gnome.org>, 2018-2023.
 #
 # - 이 프로그램의 이름인 Bijiben는 "비지벤"이라고 음역.
 #
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-03-01 15:37+0900\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-03-03 01:43+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "메모"
 
@@ -153,8 +153,8 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "텍스트 크기에는 작게, 중간(기본), 크게 세가지가 있습니다."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "메모책"
 
@@ -166,8 +166,12 @@ msgstr "새 메모책…"
 msgid "Add"
 msgstr "추가"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "선택한 메모 없음"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "모든 메모"
 
@@ -175,67 +179,67 @@ msgstr "모든 메모"
 msgid "Open menu"
 msgstr "메뉴 열기"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "추가 옵션"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "메모 가져오기"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "텍스트 크기"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "크게(_L)"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "중간(_M)"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "작게(_S)"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "키보드 바로 가기"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "도움말"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "메모 정보"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "휴지통"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "새 창에서 열기"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "실행 취소"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "다시 실행"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "이 메모 메일로 보내기"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "휴지통으로 옮기기"
 
@@ -270,10 +274,6 @@ msgstr "내어쓰기"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "선택 항목을 새 메모로 복사합니다"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "메모 없음"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -449,69 +449,68 @@ msgstr "기본 저장 경로 선택:"
 msgid "Primary Book"
 msgstr "메모 저장"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "제목 없음"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "그놈 메모"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "자세한 로그 표시"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "프로그램의 버전을 표시합니다"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "새 메모 만들기"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[파일...]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "메모를 작성하고 내보냅니다."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "그놈 데스크톱의 간단한 메모지"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "류창우 <cwryu@debian.org>\n"
-"양호민 <hongminy@naver.com>\n"
+"양홍민 <hongminy@naver.com>\n"
 "조성호 <shcho@gnome.org>"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "메모 색"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "메모책"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "메모 추가"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "메모를 만드려면 새로 만들기 단추를 누르십시오."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "메모를 추가하려면 + 단추를 누르십시오"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "앗"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "결과 없음"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "“트래커”를 설치하고 프로그램을 다시 시작하십시오."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "다른 단어로 검색해보십시오"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "이 메모는 다른 창에서도 보고 있습니다."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "이 메모는 다른 창에서 보고 있습니다"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -530,12 +529,20 @@ msgstr "이번달"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "최근 업데이트: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "로컬 저장소"
 
+#~ msgid "Notebook"
+#~ msgstr "메모책"
+
+#~ msgid "Oops"
+#~ msgstr "앗"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "“트래커”를 설치하고 프로그램을 다시 시작하십시오."

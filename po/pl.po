@@ -1,16 +1,16 @@
 # Polish translation for gnome-notes.
-# Copyright © 2012-2022 the gnome-notes authors.
+# Copyright © 2012-2023 the gnome-notes authors.
 # This file is distributed under the same license as the gnome-notes package.
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2022.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2023.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015.
-# Aviary.pl <community-poland@mozilla.org>, 2012-2022.
+# Aviary.pl <community-poland@mozilla.org>, 2012-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-02-26 14:52+0100\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-03-05 17:32+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Notatki"
 
@@ -151,8 +151,8 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Dostępne są trzy rozmiary tekstu: mały, średni (domyślny) i duży."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Notatniki"
 
@@ -164,8 +164,12 @@ msgstr "Nowy notatnik…"
 msgid "Add"
 msgstr "Dodaj"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Nie zaznaczono notatki"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Wszystkie notatki"
 
@@ -173,67 +177,67 @@ msgstr "Wszystkie notatki"
 msgid "Open menu"
 msgstr "Otwiera menu"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Więcej opcji"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Import notatek"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Rozmiary tekstu"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Duży"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "Śr_edni"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Mały"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Pomoc"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "O programie"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Kosz"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Otwórz w nowym oknie"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Cofnij"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Ponów"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Wyślij tę notatkę"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Przenieś do kosza"
 
@@ -268,10 +272,6 @@ msgstr "Usuwa wcięcie"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Kopiuje zaznaczenie do nowej notatki"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Brak notatek"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -445,71 +445,68 @@ msgstr "Wybór domyślnego położenia notatek:"
 msgid "Primary Book"
 msgstr "Główna książka"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Bez tytułu"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Notatki GNOME"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Więcej komunikatów dziennika"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Wyświetla wersję programu"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Tworzy nową notatkę"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[PLIK…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Umożliwia robienie i eksportowanie notatek."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Prosty notatnik dla środowiska GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2022\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2023\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014-2015\n"
-"Aviary.pl <community-poland@mozilla.org>, 2012-2022"
+"Aviary.pl <community-poland@mozilla.org>, 2012-2023"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Kolor notatki"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Notatnik"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Dodanie notatek"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Kliknięcie przycisku „Nowa” utworzy notatkę."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Kliknięcie przycisku „+” doda notatkę"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Ups"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Brak wyników"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr ""
-"Proszę zainstalować pakiet „Tracker”, a następnie ponownie uruchomić ten "
-"program."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Proszę spróbować innych słów"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Ta notatka jest wyświetlana w innym oknie."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Ta notatka jest wyświetlana w innym oknie"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -528,11 +525,11 @@ msgstr "Ten miesiąc"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ostatnia aktualizacja: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Lokalne notatki"

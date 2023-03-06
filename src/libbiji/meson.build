@@ -16,7 +16,7 @@ sources = files(
   'serializer/biji-lazy-serializer.c',
   'biji-date-time.c',
   'biji-info-set.c',
-  'biji-manager.c',
+  # 'biji-manager.c',
   'biji-string.c',
   'biji-timeout.c',
   '../bjb-utils.c',

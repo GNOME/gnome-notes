@@ -33,7 +33,6 @@ struct _BjbSettingsDialog
 
   GtkWidget        *parent_window;
   BjbSettings      *settings;
-  BijiManager      *manager;
 
   GtkStack         *stack;
 
@@ -83,7 +82,6 @@ bjb_settings_dialog_constructed (GObject *object)
 
   self = BJB_SETTINGS_DIALOG (object);
   app = g_application_get_default ();
-  self->manager = bijiben_get_manager (BJB_APPLICATION (app));
   self->settings = bjb_app_get_settings (app);
 
   g_object_bind_property (self->settings,

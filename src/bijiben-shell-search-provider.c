@@ -256,6 +256,7 @@ handle_get_result_metas (BijibenShellSearchProvider2  *skeleton,
   g_application_release (user_data);
 }
 
+
 static void
 handle_activate_result (BijibenShellSearchProvider2  *skeleton,
                         GDBusMethodInvocation        *invocation,
@@ -299,23 +300,23 @@ handle_activate_result (BijibenShellSearchProvider2  *skeleton,
   g_application_release (user_data);
 }
 
-static void
-shell_search_load_providers_cb (GObject      *object,
-                                GAsyncResult *result,
-                                gpointer      user_data)
-{
-  GTask *task = user_data;
-  g_autoptr(GError) error = NULL;
+/* static void */
+/* shell_search_load_providers_cb (GObject      *object, */
+/*                                 GAsyncResult *result, */
+/*                                 gpointer      user_data) */
+/* { */
+/*   GTask *task = user_data; */
+/*   g_autoptr(GError) error = NULL; */
 
-  g_assert (G_IS_TASK (task));
+/*   g_assert (G_IS_TASK (task)); */
 
-  biji_manager_load_providers_finish (BIJI_MANAGER (object), result, &error);
+/*   biji_manager_load_providers_finish (BIJI_MANAGER (object), result, &error); */
 
-  if (error)
-    g_warning ("Error loading providers: %s", error->message);
+/*   if (error) */
+/*     g_warning ("Error loading providers: %s", error->message); */
 
-  g_task_return_boolean (task, TRUE);
-}
+/*   g_task_return_boolean (task, TRUE); */
+/* } */
 
 static void
 search_provider_app_dbus_unregister (GApplication    *application,
@@ -390,7 +391,7 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
   GError *error = NULL;
   char *storage_path;
   GFile *storage;
-  GdkRGBA color = { 0, 0, 0, 0 };
+  /* GdkRGBA color = { 0, 0, 0, 0 }; */
   g_autoptr(GTask) task = NULL;
 #ifdef TRACKER_PRIVATE_STORE
   g_autofree char *filename = NULL;
@@ -422,11 +423,11 @@ bijiben_shell_search_provider_app_init (BijibenShellSearchProviderApp *self)
   storage = g_file_new_for_path (storage_path);
   g_free (storage_path);
 
-  self->manager = biji_manager_new (storage, &color);
+  /* self->manager = biji_manager_new (storage, &color); */
   g_object_unref (storage);
 
   task = g_task_new (self, NULL, NULL, NULL);
-  biji_manager_load_providers_async (self->manager, shell_search_load_providers_cb, task);
+  /* biji_manager_load_providers_async (self->manager, shell_search_load_providers_cb, task); */
 
   /* Wait until the task is completed */
   while (!g_task_get_completed (task))

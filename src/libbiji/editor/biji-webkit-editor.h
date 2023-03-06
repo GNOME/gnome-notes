@@ -20,10 +20,26 @@
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
 
-#include "../biji-note-obj.h"
+#include "../items/bjb-note.h"
 #include "../bjb-settings.h"
 
 G_BEGIN_DECLS
+
+/* Available formatting for biji_note_obj_editor_apply_format
+ * If note is opened, and if text is opened
+ * This toggle the format
+ * eg bold text will become normal and normal text becomes bold */
+typedef enum
+{
+  BIJI_NO_FORMAT,
+  BIJI_BOLD,
+  BIJI_ITALIC,
+  BIJI_STRIKE,
+  BIJI_BULLET_LIST,
+  BIJI_ORDER_LIST,
+  BIJI_INDENT,
+  BIJI_OUTDENT
+} BijiEditorFormat;
 
 #define BIJI_TYPE_WEBKIT_EDITOR (biji_webkit_editor_get_type ())
 

@@ -352,8 +352,6 @@ bijiben_startup (GApplication *application)
                                G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
                                transform_to, transform_from, NULL, NULL);
 
-  g_application_hold (application);
-
   /* Load last opened note item. */
   path = bjb_settings_get_last_opened_item (self->settings);
   if (g_strcmp0 (path, "") != 0)

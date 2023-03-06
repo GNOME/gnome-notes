@@ -612,12 +612,8 @@ bjb_window_set_is_main (BjbWindow *self,
       BjbManager *manager;
       GListModel *notes;
 
-      /* if (!self->controller) */
-      /*   self->controller = bjb_controller_new (bijiben_get_manager (BJB_APPLICATION (g_application_get_default()))); */
-
       manager = bjb_manager_get_default ();
       notes = bjb_manager_get_notes (manager);
-      /* notes = bjb_controller_get_notes (self->controller); */
       bjb_note_list_set_model (self->note_list, notes);
     }
 

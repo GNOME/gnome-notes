@@ -112,13 +112,6 @@ bijiben_new_window_internal (BjbApplication *self,
     }
 }
 
-void
-bijiben_new_window_for_note (GApplication *app,
-                             BjbNote      *note)
-{
-  bijiben_new_window_internal (BJB_APPLICATION (app), note);
-}
-
 static void
 bjb_application_window_removed (GtkApplication *app,
                                 GtkWindow      *window)

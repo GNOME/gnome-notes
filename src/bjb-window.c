@@ -359,13 +359,13 @@ on_show_notebook_cb (GSimpleAction *action,
     show_trash (self);
   else
   {
-    manager = bjb_window_get_manager (GTK_WIDGET (self));
-    notebook = biji_manager_find_notebook (manager, note_uuid);
-    bjb_note_list_set_notebook (self->note_list, notebook);
+    /* manager = bjb_window_get_manager (GTK_WIDGET (self)); */
+    /* notebook = biji_manager_find_notebook (manager, note_uuid); */
+    /* bjb_note_list_set_notebook (self->note_list, notebook); */
 
-    /* Update headerbar title. */
-    title = bjb_item_get_title (notebook);
-    gtk_label_set_text (GTK_LABEL (self->filter_label), title);
+    /* /\* Update headerbar title. *\/ */
+    /* title = bjb_item_get_title (notebook); */
+    /* gtk_label_set_text (GTK_LABEL (self->filter_label), title); */
   }
 
   g_simple_action_set_state (action, variant);

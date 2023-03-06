@@ -23,7 +23,6 @@
 #include "biji-date-time.h"
 #include "biji-marshalers.h"
 #include "biji-manager.h"
-#include "biji-note-obj.h"
 #include "biji-string.h"
 
 #include "deserializer/biji-lazy-deserializer.h"

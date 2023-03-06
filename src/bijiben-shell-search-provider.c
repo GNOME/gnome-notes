@@ -30,6 +30,7 @@
 
 #include <config.h>
 
+#include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 #include <gtk/gtk.h>

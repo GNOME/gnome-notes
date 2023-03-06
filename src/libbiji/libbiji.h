@@ -28,7 +28,6 @@
 
 #include "deserializer/biji-lazy-deserializer.h"
 #include "editor/biji-webkit-editor.h"
-#include "provider/biji-provider.h"
 
 
 #undef _LIBBIJI_INSIDE_H

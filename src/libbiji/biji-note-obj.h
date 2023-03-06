@@ -88,45 +88,12 @@ struct _BijiNoteObjClass
 
 gpointer         biji_note_obj_get_manager                   (BijiNoteObj *self);
 gboolean         biji_note_obj_trash                         (BijiNoteObj *self);
-gboolean         biji_note_obj_delete                        (BijiNoteObj *self);
 gboolean         biji_note_obj_has_notebook                  (BijiNoteObj *self,
                                                               const char  *label);
-gboolean         biji_note_obj_add_notebook                  (BijiNoteObj  *self,
-                                                              gpointer      notebook,
-                                                              const char   *title);
-gboolean         biji_note_obj_remove_notebook               (BijiNoteObj  *self,
-                                                              gpointer      notebook);
-
-gboolean         biji_note_obj_get_rgba                      (BijiNoteObj *self,
-                                                              GdkRGBA     *rgba);
-
-void             biji_note_obj_set_rgba                      (BijiNoteObj   *self,
-                                                              const GdkRGBA *rgba);
-
 GList           *biji_note_obj_get_notebooks                 (BijiNoteObj *self);
 
 void             biji_note_obj_save_note                     (BijiNoteObj *self);
 
-const char      *biji_note_obj_get_raw_text                  (BijiNoteObj *self);
-
-void             biji_note_obj_set_raw_text                  (BijiNoteObj *self,
-                                                              const char  *plain_text);
-
-const char      *biji_note_obj_get_path                      (BijiNoteObj *self);
-
-void             biji_note_obj_set_path                      (BijiNoteObj *self,
-                                                              const char  *path);
-
-void             biji_note_obj_set_is_template               (BijiNoteObj *self,
-                                                              gboolean     is_template);
-
-gboolean         biji_note_obj_can_format                    (BijiNoteObj *self);
-
 char            *html_from_plain_text                        (const char *content);
-
-void             biji_note_obj_set_html                      (BijiNoteObj *self,
-                                                              const char  *html);
-
-char            *biji_note_obj_get_html                      (BijiNoteObj *self);
 
 G_END_DECLS

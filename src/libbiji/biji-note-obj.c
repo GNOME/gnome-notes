@@ -47,7 +47,6 @@ typedef struct
 /* Properties */
 enum {
   PROP_0,
-  PROP_PATH,
   PROP_MANAGER,
   BIJI_OBJ_PROPERTIES
 };
@@ -141,10 +140,6 @@ biji_note_obj_set_property (GObject      *object,
 
   switch (property_id)
     {
-    case PROP_PATH:
-      biji_note_obj_set_path (self, g_value_get_string (value));
-      bjb_item_set_uid (BJB_ITEM (self), g_value_get_string (value));
-      break;
     case PROP_MANAGER:
       priv->manager = g_value_get_object (value);
       break;
@@ -165,37 +160,10 @@ biji_note_obj_get_property (GObject    *object,
 
   switch (property_id)
     {
-    case PROP_PATH:
-      g_value_set_string (value, bjb_item_get_uid (BJB_ITEM (self)));
-      g_value_set_object (value, priv->path);
-      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
     }
-}
-
-const char *
-biji_note_obj_get_path (BijiNoteObj *self)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  return priv->path;
-}
-
-void
-biji_note_obj_set_path (BijiNoteObj *self,
-                        const char  *path)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  if (g_strcmp0 (path, priv->path) == 0)
-    return;
-
-  g_free (priv->path);
-  priv->path = g_strdup (path);
-  bjb_item_set_uid (BJB_ITEM (self), path);
-  g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_PATH]);
 }
 
 gpointer
@@ -224,20 +192,6 @@ biji_note_obj_trash (BijiNoteObj *self)
 }
 
 gboolean
-biji_note_obj_delete (BijiNoteObj *self)
-{
-  gboolean retval;
-
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
-
-  retval = BIJI_NOTE_OBJ_GET_CLASS (self)->delete (self);
-  if (retval)
-    g_signal_emit_by_name (self, "deleted", NULL);
-
-  return retval;
-}
-
-gboolean
 biji_note_obj_has_notebook (BijiNoteObj *self,
                             const char  *label)
 {
@@ -247,99 +201,6 @@ biji_note_obj_has_notebook (BijiNoteObj *self,
     return TRUE;
 
   return FALSE;
-}
-
-gboolean
-biji_note_obj_add_notebook (BijiNoteObj *self,
-                            gpointer     notebook,
-                            const char  *title)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-  const char *label = title;
-
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
-
-  if (BJB_IS_NOTEBOOK (notebook))
-    label = bjb_item_get_title (notebook);
-
-  if (biji_note_obj_has_notebook (self, label))
-    return FALSE;
-
-  g_hash_table_add (priv->labels, g_strdup (label));
-
-  if (BJB_IS_NOTEBOOK (notebook))
-    {
-      biji_tracker_add_note_to_notebook_async (biji_manager_get_tracker (priv->manager),
-                                               self, label, on_note_obj_add_notebook_cb,
-                                               g_object_ref (notebook));
-
-      bjb_item_set_meta_mtime (BJB_ITEM (self), g_get_real_time () / G_USEC_PER_SEC);
-      biji_note_obj_save_note (self);
-    }
-
-  return TRUE;
-}
-
-gboolean
-biji_note_obj_remove_notebook (BijiNoteObj *self,
-                               gpointer     notebook)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
-  g_return_val_if_fail (BJB_IS_NOTEBOOK (notebook), FALSE);
-
-  if (g_hash_table_remove (priv->labels, bjb_item_get_title (notebook)))
-    {
-      biji_tracker_remove_note_notebook_async (biji_manager_get_tracker (priv->manager),
-                                               self, notebook, on_note_obj_add_notebook_cb,
-                                               g_object_ref (notebook));
-
-      bjb_item_set_meta_mtime (BJB_ITEM (self), g_get_real_time () / G_USEC_PER_SEC);
-      biji_note_obj_save_note (self);
-      return TRUE;
-    }
-
-  return FALSE;
-}
-
-void
-biji_note_obj_set_rgba (BijiNoteObj   *self,
-                        const GdkRGBA *rgba)
-{
-  bjb_item_set_rgba (BJB_ITEM (self), rgba);
-  g_signal_emit (G_OBJECT (self), biji_obj_signals[NOTE_COLOR_CHANGED], 0);
-}
-
-gboolean
-biji_note_obj_get_rgba(BijiNoteObj *self,
-                       GdkRGBA     *rgba)
-{
-  g_return_val_if_fail (BIJI_IS_NOTE_OBJ (self), FALSE);
-
-  return bjb_item_get_rgba (BJB_ITEM (self), rgba);
-}
-
-const char *
-biji_note_obj_get_raw_text (BijiNoteObj *self)
-{
-  const char *content;
-
-  content = bjb_note_get_raw_content (BJB_NOTE (self));
-
-  if (content && *content)
-    return content;
-
-  return bjb_note_get_text_content (BJB_NOTE (self));
-}
-
-void
-biji_note_obj_set_raw_text (BijiNoteObj *self,
-                            const char  *plain_text)
-{
-  bjb_note_set_raw_content (BJB_NOTE (self), plain_text);
-  bjb_item_set_modified (BJB_ITEM (self));
-  g_signal_emit (self, biji_obj_signals[NOTE_CHANGED],0);
 }
 
 GList *
@@ -352,15 +213,6 @@ biji_note_obj_get_notebooks (BijiNoteObj *self)
   priv = biji_note_obj_get_instance_private (self);
 
   return g_hash_table_get_values (priv->labels);
-}
-
-void
-biji_note_obj_set_is_template (BijiNoteObj *self,
-                               gboolean     is_template)
-{
-  BijiNoteObjPrivate *priv = biji_note_obj_get_instance_private (self);
-
-  priv->is_template = is_template;
 }
 
 void
@@ -400,80 +252,6 @@ html_from_plain_text (const char *content)
                       NULL);
 }
 
-static gboolean
-is_webkit1 (const char *content)
-{
-  return g_strstr_len (content, -1, "<script type=\"text/javascript\">    window.onload = function () {      document.getElementById('editable').focus();    };</script>") != NULL;
-}
-
-static char *
-convert_webkit1_to_webkit2 (const char *content)
-{
-  g_autofree char *stripped = NULL;
-
-  stripped = biji_str_mass_replace (content,
-                                    "<html xmlns=\"http://www.w3.org/1999/xhtml\"><body contenteditable=\"true\" id=\"editable\">", "",
-                                    "<script type=\"text/javascript\">    window.onload = function () {      document.getElementById('editable').focus();    };</script>", "\n",
-                                    "<div><br/></div>", "\n",
-                                    "<div>", "",
-                                    "</div>", "\n",
-                                    "<br/>", "\n",
-                                    "</body></html>", "",
-                                    NULL);
-
-	return html_from_plain_text (stripped);
-}
-
-static gboolean
-is_contenteditable_hardcoded (const char *content)
-{
-  return g_strstr_len (content, -1, "contenteditable=\"true\"") != NULL;
-}
-
-static char *
-remove_hardcoded_contenteditable (const char *content)
-{
-  return biji_str_mass_replace (content,
-                                "contenteditable=\"true\"", "",
-                                NULL);
-}
-
-char *
-biji_note_obj_get_html (BijiNoteObj *self)
-{
-  char *content = BIJI_NOTE_OBJ_GET_CLASS (self)->get_html (self);
-
-  if (content && is_webkit1 (content))
-    {
-      content = convert_webkit1_to_webkit2 (content);
-      biji_note_obj_set_html (self, content);
-      g_free (content);
-      content = BIJI_NOTE_OBJ_GET_CLASS (self)->get_html (self);
-    }
-  else if (content && is_contenteditable_hardcoded (content))
-    {
-      content = remove_hardcoded_contenteditable (content);
-      biji_note_obj_set_html (self, content);
-      g_free (content);
-      content = BIJI_NOTE_OBJ_GET_CLASS (self)->get_html (self);
-    }
-
-  return content;
-}
-
-void
-biji_note_obj_set_html (BijiNoteObj *self,
-                        const char  *html)
-{
-  BIJI_NOTE_OBJ_GET_CLASS (self)->set_html (self, html);
-}
-
-gboolean
-biji_note_obj_can_format (BijiNoteObj *self)
-{
-  return BIJI_NOTE_OBJ_GET_CLASS (self)->can_format (self);
-}
-
 static void
 biji_note_obj_class_init (BijiNoteObjClass *klass)
 {
@@ -482,13 +260,6 @@ biji_note_obj_class_init (BijiNoteObjClass *klass)
   object_class->finalize     = biji_note_obj_finalize;
   object_class->get_property = biji_note_obj_get_property;
   object_class->set_property = biji_note_obj_set_property;
-
-  properties[PROP_PATH] =
-    g_param_spec_string("path",
-                        "The note file",
-                        "The location where the note is stored and saved",
-                        NULL,
-                        G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
 
   properties[PROP_MANAGER] =
     g_param_spec_object("manager",

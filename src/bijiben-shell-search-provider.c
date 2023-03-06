@@ -51,7 +51,6 @@
 typedef struct {
   GApplication parent;
 
-  BijiManager *manager;
   BijibenShellSearchProvider2 *skeleton;
   TrackerSparqlConnection *connection;
 
@@ -371,7 +370,6 @@ search_provider_app_dispose (GObject *obj)
   BijibenShellSearchProviderApp *self = BIJIBEN_SHELL_SEARCH_PROVIDER_APP (obj);
 
   g_clear_object (&self->connection);
-  g_clear_object (&self->manager);
 
   G_OBJECT_CLASS (bijiben_shell_search_provider_app_parent_class)->dispose (obj);
 }

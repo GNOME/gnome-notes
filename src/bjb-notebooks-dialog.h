@@ -32,7 +32,7 @@ G_DECLARE_FINAL_TYPE (BjbNotebooksDialog, bjb_notebooks_dialog, BJB, NOTEBOOKS_D
 
 GtkWidget *bjb_notebooks_dialog_new      (GtkWindow          *parent_window);
 void       bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
-                                          BijiNoteObj        *note);
+                                          BjbNote            *note);
 
 G_END_DECLS
 

@@ -33,7 +33,7 @@ struct _BjbNotebooksDialog
 {
   GtkDialog     parent_instance;
 
-  BijiNoteObj  *item;
+  BjbNote      *item;
 
   GtkWidget    *notebook_entry;
   GtkWidget    *add_notebook_button;
@@ -127,7 +127,7 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_assert (GTK_IS_LIST_BOX (box));
   g_assert (BJB_IS_NOTEBOOK_ROW (row));
-  g_assert (BIJI_IS_NOTE_OBJ (self->item));
+  g_assert (BJB_IS_NOTE (self->item));
 
   bjb_notebook_row_set_active (row, !bjb_notebook_row_get_active (row));
   notebook = bjb_notebook_row_get_item (row);
@@ -216,13 +216,13 @@ bjb_notebooks_dialog_new (GtkWindow *parent_window)
 
 void
 bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
-                               BijiNoteObj        *note)
+                               BjbNote            *note)
 {
   g_autoptr(GList) notebooks = NULL;
   g_autoptr(GList) rows = NULL;
 
   g_return_if_fail (BJB_IS_NOTEBOOKS_DIALOG (self));
-  g_return_if_fail (BIJI_IS_NOTE_OBJ (note));
+  g_return_if_fail (BJB_IS_NOTE (note));
 
   if (!g_set_object (&self->item, note))
     return;

@@ -25,7 +25,6 @@
 #include "biji-manager.h"
 #include "biji-note-obj.h"
 #include "biji-string.h"
-#include "biji-tracker.h"
 
 #include "deserializer/biji-lazy-deserializer.h"
 #include "editor/biji-webkit-editor.h"

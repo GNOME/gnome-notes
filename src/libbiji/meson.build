@@ -28,7 +28,6 @@ sources = files(
   'biji-note-obj.c',
   'biji-string.c',
   'biji-timeout.c',
-  'biji-tracker.c',
   '../bjb-utils.c',
 )
 

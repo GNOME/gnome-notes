@@ -4,7 +4,6 @@
 #include <tracker-sparql.h>
 
 #include "biji-info-set.h"
-#include "biji-note-obj.h"
 #include "../items/bjb-tag.h"
 
 
@@ -41,76 +40,9 @@ typedef enum
 
 G_DECLARE_FINAL_TYPE (BijiManager, biji_manager, BIJI, MANAGER, GObject)
 
-BijiManager     *biji_manager_new                   (GFile         *location,
-                                                     GdkRGBA       *color);
-void            biji_manager_load_providers_async   (BijiManager   *self,
-                                                     GAsyncReadyCallback callback,
-                                                     gpointer       user_data);
-gboolean        biji_manager_load_providers_finish  (BijiManager   *self,
-                                                     GAsyncResult  *result,
-                                                     GError       **error);
-
-void             biji_manager_import_uri            (BijiManager *manager,
-                                                     const gchar *target_provider_id,
-                                                     const gchar *uri);
-
-void             biji_manager_set_provider          (BijiManager *manager,
-                                                     const gchar *provider_id);
-
-GListModel      *biji_manager_get_providers         (BijiManager *manager);
-TrackerSparqlConnection
-                *biji_manager_get_tracker_connection (BijiManager *manager);
-gpointer         biji_manager_get_tracker            (BijiManager *self);
-
-
-
-void             biji_manager_get_default_color     (BijiManager *manager,
-                                                     GdkRGBA *color);
-
-
-gchar           *biji_manager_get_unique_title      (BijiManager *manager,
-                                                     const gchar *title);
-
-
-gboolean         biji_manager_add_item                (BijiManager *manager,
-                                                       gpointer     item,
-                                                       BijiItemsGroup group,
-                                                       gboolean notify);
-
-
-void             biji_manager_notify_changed        (BijiManager           *manager,
-                                                     BijiItemsGroup         group,
-                                                     BijiManagerChangeFlag  flag,
-                                                     gpointer               item);
-
-
-gpointer         biji_manager_get_item_at_path      (BijiManager *manager,
-                                                     const gchar *path);
-
-/* Get all notes.
- * Free the GList, not its content */
-
-
 GListModel      *biji_manager_get_notes             (BijiManager         *manager,
                                                      BijiItemsGroup       group);
 GListModel      *biji_manager_get_notebooks         (BijiManager         *self);
 BjbItem         *biji_manager_find_notebook         (BijiManager         *self,
                                                      const char          *uuid);
-BijiNoteObj     *biji_manager_find_note             (BijiManager         *self,
-                                                     const char          *uuid,
-                                                     BijiItemsGroup       group);
-
-BijiNoteObj     *biji_manager_note_new              (BijiManager *manager,
-                                                     const gchar *str,
-                                                     const gchar *provider_id);
-
-
-BijiNoteObj     *biji_manager_note_new_full         (BijiManager   *manager,
-                                                     const gchar   *provider_id,
-                                                     const gchar   *suggested_path,
-                                                     BijiInfoSet   *info,
-                                                     const gchar   *html,
-                                                     const GdkRGBA *color);
-
-
 G_END_DECLS

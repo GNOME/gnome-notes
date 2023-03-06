@@ -49,4 +49,3 @@ void             bjb_window_set_is_main    (BjbWindow     *self,
 BjbNote         *bjb_window_get_note       (BjbWindow     *self);
 void             bjb_window_set_note       (BjbWindow     *self,
                                             BjbNote       *note);
-BijiManager     *bjb_window_get_manager    (GtkWidget     *win);

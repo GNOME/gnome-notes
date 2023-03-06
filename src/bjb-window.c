@@ -348,7 +348,6 @@ on_show_notebook_cb (GSimpleAction *action,
   const char *title;
   BjbWindow *self = BJB_WINDOW (user_data);
   BjbItem *notebook;
-  BijiManager *manager;
 
   destroy_note_if_needed (self);
 
@@ -714,10 +713,4 @@ bjb_window_set_note (BjbWindow *self,
                                                   self,
                                                   G_CONNECT_SWAPPED);
   populate_headerbar_for_note_view (self);
-}
-
-BijiManager *
-bjb_window_get_manager (GtkWidget *win)
-{
-  return bijiben_get_manager (BJB_APPLICATION (g_application_get_default()));
 }

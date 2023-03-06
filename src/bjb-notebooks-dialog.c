@@ -240,7 +240,6 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
       gboolean selected;
 
       notebook = bjb_notebook_row_get_item (row->data);
-      selected = biji_note_obj_has_notebook (self->item, bjb_item_get_title (notebook));
-      bjb_notebook_row_set_active (row->data, selected);
+      bjb_notebook_row_set_active (row->data, FALSE);
     }
 }

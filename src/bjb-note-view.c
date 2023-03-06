@@ -108,31 +108,32 @@ note_view_format_applied_cb (BjbNoteView      *self,
 static void
 note_view_copy_clicked_cb (BjbNoteView *self)
 {
-  GApplication *app;
-  BjbSettings *settings;
-  BijiManager *manager;
-  BijiNoteObj *new_note;
-  const char *content;
-  GdkRGBA color;
+  /* GApplication *app; */
+  /* BjbSettings *settings; */
+  /* BijiManager *manager; */
+  /* BijiNoteObj *new_note; */
+  /* const char *content; */
+  /* GdkRGBA color; */
 
-  g_assert (BJB_IS_NOTE_VIEW (self));
+  /* g_assert (BJB_IS_NOTE_VIEW (self)); */
 
-  content = biji_webkit_editor_get_selection (BIJI_WEBKIT_EDITOR (self->view));
+  /* content = biji_webkit_editor_get_selection (BIJI_WEBKIT_EDITOR (self->view)); */
 
-  if (!content || !*content)
-    return;
+  /* if (!content || !*content) */
+  /*   return; */
 
-  app = g_application_get_default ();
-  manager = bijiben_get_manager (BJB_APPLICATION (app));
+  /* app = g_application_get_default (); */
+  /* manager = bijiben_get_manager (BJB_APPLICATION (app)); */
 
-  settings = bjb_app_get_settings (app);
-  new_note = biji_manager_note_new (manager, content,
-                                    bjb_settings_get_default_location (settings));
+  /* todo */
+  /* settings = bjb_app_get_settings (app); */
+  /* new_note = biji_manager_note_new (manager, content, */
+  /*                                   bjb_settings_get_default_location (settings)); */
 
-  if (self->note && bjb_item_get_rgba (BJB_ITEM (self->note), &color))
-    bjb_item_set_rgba (BJB_ITEM (new_note), &color);
+  /* if (self->note && bjb_item_get_rgba (BJB_ITEM (self->note), &color)) */
+  /*   bjb_item_set_rgba (BJB_ITEM (new_note), &color); */
 
-  bijiben_new_window_for_note (app, BJB_NOTE (new_note));
+  /* bijiben_new_window_for_note (app, BJB_NOTE (new_note)); */
 }
 
 void

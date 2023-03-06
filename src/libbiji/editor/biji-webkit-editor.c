@@ -463,6 +463,32 @@ on_script_message (WebKitUserContentManager *user_content,
     biji_webkit_editor_handle_selection_change (self, js_value);
 }
 
+static char *
+html_from_plain_content (const char *content)
+{
+  g_autofree char *escaped = NULL;
+
+  if (content == NULL)
+    escaped = g_strdup ("");
+  else
+    escaped = biji_str_mass_replace (content,
+                                     "&", "&amp;",
+                                     "<", "&lt;",
+                                     ">", "&gt;",
+                                     "\n", "<br/>",
+                                     NULL);
+
+  return g_strconcat ("<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+                      "<head>",
+                      "<link rel=\"stylesheet\" href=\"Default.css\" type=\"text/css\"/>",
+                      "<script language=\"javascript\" src=\"bijiben.js\"></script>"
+                      "</head>",
+                      "<body id=\"editable\">",
+                      escaped,
+                      "</body></html>",
+                      NULL);
+}
+
 static void
 biji_webkit_editor_constructed (GObject *obj)
 {
@@ -494,7 +520,7 @@ biji_webkit_editor_constructed (GObject *obj)
   body = bjb_note_get_html (self->note);
 
   if (!body)
-    body = html_from_plain_text ("");
+    body = html_from_plain_content ("");
 
   html_data = g_bytes_new_take (body, strlen (body));
   webkit_web_view_load_bytes (view, html_data, "application/xhtml+xml", NULL,

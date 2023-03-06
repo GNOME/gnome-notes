@@ -60,21 +60,21 @@ on_notebook_entry_changed_cb (BjbNotebooksDialog *self)
       return;
     }
 
-  notebooks = biji_manager_get_notebooks (biji_note_obj_get_manager (self->item));
-  n_items = g_list_model_get_n_items (notebooks);
+  /* notebooks = biji_manager_get_notebooks (biji_note_obj_get_manager (self->item)); */
+  /* n_items = g_list_model_get_n_items (notebooks); */
 
-  for (guint i = 0; i < n_items; i++)
-    {
-      g_autoptr(BjbItem) item = NULL;
+  /* for (guint i = 0; i < n_items; i++) */
+  /*   { */
+  /*     g_autoptr(BjbItem) item = NULL; */
 
-      item = g_list_model_get_item (notebooks, i);
+  /*     item = g_list_model_get_item (notebooks, i); */
 
-      if (g_strcmp0 (bjb_item_get_title (item), notebook) == 0)
-        {
-          gtk_widget_set_sensitive (self->add_notebook_button, FALSE);
-          return;
-        }
-    }
+  /*     if (g_strcmp0 (bjb_item_get_title (item), notebook) == 0) */
+  /*       { */
+  /*         gtk_widget_set_sensitive (self->add_notebook_button, FALSE); */
+  /*         return; */
+  /*       } */
+  /*   } */
 
   gtk_widget_set_sensitive (self->add_notebook_button, TRUE);
 }
@@ -88,8 +88,9 @@ on_new_notebook_created_cb (GObject      *object,
   g_autoptr(BjbItem) notebook = NULL;
   g_autoptr(GList) rows = NULL;
 
-  notebook = biji_tracker_add_notebook_finish (BIJI_TRACKER (object), result, NULL);
-  biji_note_obj_add_notebook (self->item, notebook, NULL);
+  /* todo */
+  /* notebook = biji_tracker_add_notebook_finish (BIJI_TRACKER (object), result, NULL); */
+  /* biji_note_obj_add_notebook (self->item, notebook, NULL); */
   gtk_entry_set_text (GTK_ENTRY (self->notebook_entry), "");
 
   rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
@@ -105,14 +106,15 @@ on_new_notebook_created_cb (GObject      *object,
 static void
 on_add_notebook_button_clicked_cb (BjbNotebooksDialog *self)
 {
-  BijiManager *manager;
-  const char *notebook;
+  /* BijiManager *manager; */
+  /* const char *notebook; */
 
-  notebook = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
+  /* notebook = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry)); */
 
-  manager = biji_note_obj_get_manager (self->item);
-  biji_tracker_add_notebook_async (biji_manager_get_tracker (manager),
-                                   notebook, on_new_notebook_created_cb, self);
+  /* todo */
+  /* manager = biji_note_obj_get_manager (self->item); */
+  /* biji_tracker_add_notebook_async (biji_manager_get_tracker (manager), */
+  /*                                  notebook, on_new_notebook_created_cb, self); */
 }
 
 static void
@@ -134,10 +136,10 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
                  bjb_item_get_title (notebook),
                  bjb_notebook_row_get_active (row) ? "selected" : "deselected");
 
-  if (bjb_notebook_row_get_active (row))
-    biji_note_obj_add_notebook (self->item, notebook, NULL);
-  else
-    biji_note_obj_remove_notebook (self->item, notebook);
+  /* if (bjb_notebook_row_get_active (row)) */
+  /*   biji_note_obj_add_notebook (self->item, notebook, NULL); */
+  /* else */
+  /*   biji_note_obj_remove_notebook (self->item, notebook); */
 }
 
 static GtkWidget *
@@ -188,17 +190,17 @@ bjb_notebooks_dialog_class_init (BjbNotebooksDialogClass *klass)
 static void
 bjb_notebooks_dialog_init (BjbNotebooksDialog *self)
 {
-  BijiManager *manager;
+  /* BijiManager *manager; */
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ()));
-  g_return_if_fail (manager);
+  /* manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ())); */
+  /* g_return_if_fail (manager); */
 
-  gtk_list_box_bind_model (GTK_LIST_BOX (self->notebooks_list),
-                           biji_manager_get_notebooks (manager),
-                           (GtkListBoxCreateWidgetFunc)notebooks_row_new,
-                           g_object_ref (self), g_object_unref);
+  /* gtk_list_box_bind_model (GTK_LIST_BOX (self->notebooks_list), */
+  /*                          biji_manager_get_notebooks (manager), */
+  /*                          (GtkListBoxCreateWidgetFunc)notebooks_row_new, */
+  /*                          g_object_ref (self), g_object_unref); */
 }
 
 GtkWidget *
@@ -227,7 +229,8 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
 
   BJB_DEBUG_MSG ("Setting note '%s'", bjb_item_get_title (BJB_ITEM (note)));
 
-  notebooks = biji_note_obj_get_notebooks (self->item);
+  /* todo */
+  /* notebooks = biji_note_obj_get_notebooks (self->item); */
   rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
 
   /* Deselect all rows first */

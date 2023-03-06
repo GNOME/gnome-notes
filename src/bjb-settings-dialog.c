@@ -22,7 +22,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "biji-manager.h"
 #include "bjb-application.h"
 #include "bjb-color-button.h"
 #include "bjb-settings.h"

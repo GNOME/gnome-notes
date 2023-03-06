@@ -16,8 +16,6 @@ sources = files(
   'provider/biji-import-provider.c',
   'provider/biji-local-note.c',
   'provider/biji-local-provider.c',
-  'provider/biji-memo-note.c',
-  'provider/biji-memo-provider.c',
   'provider/biji-nextcloud-note.c',
   'provider/biji-nextcloud-provider.c',
   'provider/biji-provider.c',

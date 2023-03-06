@@ -38,7 +38,6 @@ struct _BjbApplication
 {
   GtkApplication  parent_instance;
 
-  BijiManager    *manager;
   BjbSettings    *settings;
 
   /* Controls. to_open is for startup */
@@ -366,7 +365,6 @@ bijiben_finalize (GObject *object)
 {
   BjbApplication *self = BJB_APPLICATION (object);
 
-  g_clear_object (&self->manager);
   g_clear_object (&self->settings);
   g_queue_foreach (&self->files_to_open, (GFunc) g_free, NULL);
   g_queue_clear (&self->files_to_open);
@@ -397,12 +395,6 @@ bjb_application_new (void)
                        "application-id", BIJIBEN_APPLICATION_ID,
                        "flags", G_APPLICATION_HANDLES_OPEN,
                        NULL);
-}
-
-BijiManager *
-bijiben_get_manager(BjbApplication *self)
-{
-  return self->manager;
 }
 
 BjbSettings * bjb_app_get_settings(gpointer application)

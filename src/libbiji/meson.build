@@ -14,8 +14,6 @@ sources = files(
   '../providers/bjb-local-provider.c',
   '../providers/bjb-nc-provider.c',
   'provider/biji-import-provider.c',
-  'provider/biji-local-note.c',
-  'provider/biji-local-provider.c',
   'provider/biji-provider.c',
   'serializer/biji-lazy-serializer.c',
   'biji-date-time.c',

@@ -293,12 +293,12 @@ on_view_notebooks_cb (GSimpleAction *action,
   BjbWindow *self = BJB_WINDOW (user_data);
   GtkWidget *notebooks_dialog;
 
-  if (BIJI_IS_NOTE_OBJ (self->note))
+  if (BJB_IS_NOTE (self->note))
     return;
 
   notebooks_dialog = bjb_notebooks_dialog_new (GTK_WINDOW (self));
   bjb_notebooks_dialog_set_item (BJB_NOTEBOOKS_DIALOG (notebooks_dialog),
-                                 BIJI_NOTE_OBJ (self->note));
+                                 BJB_NOTE (self->note));
 
   gtk_dialog_run (GTK_DIALOG (notebooks_dialog));
   gtk_widget_destroy (notebooks_dialog);

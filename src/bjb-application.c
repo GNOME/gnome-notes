@@ -57,10 +57,6 @@ static gboolean bijiben_open_path           (BjbApplication *self,
                                              gchar          *path,
                                              BjbWindow      *window);
 
-void            on_import_notes_cb          (GSimpleAction      *action,
-                                             GVariant           *parameter,
-                                             gpointer            user_data);
-
 void            on_preferences_cb           (GSimpleAction      *action,
                                              GVariant           *parameter,
                                              gpointer            user_data);
@@ -248,25 +244,6 @@ bjb_application_init (BjbApplication *self)
   g_application_set_option_context_summary (app, _("Take notes and export them everywhere."));
 }
 
-
-static void
-bijiben_import_notes (BjbApplication *self, gchar *uri)
-{
-  g_debug ("IMPORT to %s", bjb_settings_get_default_location (self->settings));
-
-  biji_manager_import_uri (self->manager,
-                           bjb_settings_get_default_location (self->settings),
-                           uri);
-}
-
-void
-on_import_notes_cb (GSimpleAction *action,
-                    GVariant      *parameter,
-                    gpointer       user_data)
-{
-  bjb_app_import_notes (BJB_APPLICATION (user_data));
-}
-
 void
 on_preferences_cb (GSimpleAction *action,
                    GVariant      *parameter,
@@ -354,7 +331,6 @@ transform_from (GBinding     *binding,
 }
 
 static GActionEntry app_entries[] = {
-  { "import-notes", on_import_notes_cb, NULL, NULL, NULL },
   { "text-size", NULL, "s", "'medium'", NULL },
   { "preferences", on_preferences_cb, NULL, NULL, NULL },
   { "help", on_help_cb, NULL, NULL, NULL },
@@ -483,27 +459,6 @@ bijiben_get_manager(BjbApplication *self)
 BjbSettings * bjb_app_get_settings(gpointer application)
 {
   return BJB_APPLICATION(application)->settings;
-}
-
-void
-bjb_app_import_notes (BjbApplication *self)
-{
-  GtkDialog *dialog = bjb_import_dialog_new (GTK_APPLICATION (self));
-  gint result = gtk_dialog_run (dialog);
-
-  if (result == GTK_RESPONSE_OK)
-    {
-      GList *locations = bjb_import_dialog_get_paths (BJB_IMPORT_DIALOG (dialog));
-      for (GList *l = locations; l != NULL; l = l->next)
-        {
-          g_autofree gchar *uri = g_filename_to_uri (l->data, NULL, NULL);
-          bijiben_import_notes (self, uri);
-        }
-
-      g_list_free_full (locations, g_free);
-    }
-
-  gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
 void

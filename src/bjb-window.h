@@ -27,8 +27,6 @@
 #include <handy.h>
 #include <libbiji/libbiji.h>
 
-#include "bjb-controller.h"
-
 #define BJB_TYPE_WINDOW (bjb_window_get_type ())
 
 G_DECLARE_FINAL_TYPE (BjbWindow, bjb_window, BJB, WINDOW, HdyApplicationWindow)

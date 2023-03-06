@@ -52,7 +52,6 @@ struct _BjbWindow
   HdyApplicationWindow  parent_instance;
 
   BjbSettings          *settings;
-  BjbController        *controller;
 
   BjbWindowView         current_view;
   BjbNoteList          *note_list;
@@ -197,7 +196,6 @@ bjb_window_finalize (GObject *object)
   if (note_view)
     bjb_note_view_set_detached (note_view, FALSE);
 
-  g_clear_object (&self->controller);
   g_clear_object (&self->note);
 
   G_OBJECT_CLASS (bjb_window_parent_class)->finalize (object);

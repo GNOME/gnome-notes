@@ -13,7 +13,6 @@ sources = files(
   '../providers/bjb-memo-provider.c',
   '../providers/bjb-local-provider.c',
   '../providers/bjb-nc-provider.c',
-  'provider/biji-import-provider.c',
   'provider/biji-provider.c',
   'serializer/biji-lazy-serializer.c',
   'biji-date-time.c',

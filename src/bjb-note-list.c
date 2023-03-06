@@ -52,12 +52,13 @@ note_list_filter_notes (gpointer note,
 
   if (self->current_notebook)
     {
-      GList *notebooks;
+      GList *notebooks = NULL;
       const char *notebook;
       gboolean match = FALSE;
 
       notebook = bjb_item_get_title (self->current_notebook);
-      notebooks = biji_note_obj_get_notebooks (note);
+      /* todo */
+      /* notebooks = biji_note_obj_get_notebooks (note); */
 
       for (GList *item = notebooks; item; item = item->next)
         {

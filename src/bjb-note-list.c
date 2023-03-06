@@ -6,9 +6,11 @@
 
 #define _GNU_SOURCE
 #include <string.h>
+#include <glib/gi18n.h>
 #include <handy.h>
 
 #include "contrib/gtk.h"
+#include "../items/bjb-tag.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-list.h"
 

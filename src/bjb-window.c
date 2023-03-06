@@ -374,36 +374,6 @@ on_show_notebook_cb (GSimpleAction *action,
 }
 
 static void
-on_trash_cb (GSimpleAction *action,
-             GVariant      *parameter,
-             gpointer       user_data)
-{
-  BjbWindow *self = BJB_WINDOW (user_data);
-  BjbNote *note = self->note;
-
-  if (BJB_IS_NOTE (note))
-    {
-      BjbProvider *provider;
-
-      provider = g_object_get_data (G_OBJECT (note), "provider");
-      g_assert (BJB_IS_PROVIDER (provider));
-
-      bjb_provider_delete_item_async (provider, BJB_ITEM (note), NULL, NULL, NULL);
-    }
-  else if (BIJI_IS_NOTE_OBJ (note))
-    {
-      /* Delete the note from notebook
-       * The deleted note will emit a signal. */
-      biji_note_obj_trash (BIJI_NOTE_OBJ (note));
-
-      destroy_note_if_needed (self);
-    }
-
-  if (!bjb_window_get_is_main (self))
-    gtk_window_close (GTK_WINDOW (self));
-}
-
-static void
 on_close (GSimpleAction *action,
           GVariant      *parameter,
           gpointer       user_data)
@@ -472,7 +442,6 @@ static GActionEntry win_entries[] = {
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
   { "show-notebook", on_action_radio, "s", "'ALL NOTES'", on_show_notebook_cb },
-  { "trash", on_trash_cb, NULL, NULL, NULL },
   { "close", on_close },
 };
 

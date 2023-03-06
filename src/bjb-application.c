@@ -53,10 +53,6 @@ G_DEFINE_TYPE (BjbApplication, bjb_application, GTK_TYPE_APPLICATION)
 
 static void     bijiben_new_window_internal (BjbApplication *self,
                                              BjbNote        *note);
-static gboolean bijiben_open_path           (BjbApplication *self,
-                                             gchar          *path,
-                                             BjbWindow      *window);
-
 void            on_preferences_cb           (GSimpleAction      *action,
                                              GVariant           *parameter,
                                              gpointer            user_data);
@@ -117,26 +113,6 @@ bijiben_new_window_internal (BjbApplication *self,
     }
 }
 
-static gboolean
-bijiben_open_path (BjbApplication *self,
-                   gchar          *path,
-                   BjbWindow      *window)
-{
-  gpointer item;
-
-  if (!self->is_loaded)
-    return FALSE;
-
-  item = biji_manager_get_item_at_path (self->manager, path);
-
-  if (!window)
-    bijiben_new_window_internal (self, item);
-  else
-    bjb_window_set_note (window, item);
-
-  return TRUE;
-}
-
 void
 bijiben_new_window_for_note (GApplication *app,
                              BjbNote      *note)
@@ -194,32 +170,6 @@ bijiben_activate (GApplication *app)
     gtk_window_present (window);
   else
     bijiben_new_window_internal (BJB_APPLICATION (app), NULL);
-}
-
-
-/* If the app is already loaded, just open the file.
- * Else, keep it under the hood */
-
-static void
-bijiben_open (GApplication  *application,
-              GFile        **files,
-              gint           n_files,
-              const gchar   *hint)
-{
-  BjbApplication *self;
-  gint i;
-
-  self = BJB_APPLICATION (application);
-
-  for (i = 0; i < n_files; i++)
-  {
-    g_autofree char *path = NULL;
-
-    path = g_file_get_parse_name (files[i]);
-    if (!bijiben_open_path (self, path, NULL))
-      g_queue_push_head (&self->files_to_open,
-                         g_steal_pointer (&path));
-  }
 }
 
 static void
@@ -435,7 +385,6 @@ bjb_application_class_init (BjbApplicationClass *klass)
 
   aclass->handle_local_options = bijiben_handle_local_options;
   aclass->activate = bijiben_activate;
-  aclass->open = bijiben_open;
   aclass->startup = bijiben_startup;
 
   oclass->finalize = bijiben_finalize;

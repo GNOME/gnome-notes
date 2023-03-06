@@ -41,7 +41,6 @@ BjbSettings * bjb_app_get_settings(gpointer application);
 void bijiben_new_window_for_note (GApplication *app,
                                   BjbNote      *note);
 
-void bjb_app_import_notes (BjbApplication *self);
 void bjb_app_help         (BjbApplication *self);
 void bjb_app_about        (BjbApplication *self);
 

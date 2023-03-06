@@ -113,50 +113,6 @@
                 <property name="title" translatable="yes">Note Appearance</property>
               </packing>
             </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">12</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Select the default storage location:</property>
-                    <property name="xalign">0</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="shadow_type">in</property>
-                    <property name="propagate-natural-height">True</property>
-                    <property name="max_content_width">350</property>
-                    <child>
-                      <object class="GtkViewport">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="shadow_type">none</property>
-                        <child>
-                          <object class="GtkListBox" id="listbox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="selection_mode">none</property>
-                            <signal name="row-activated" handler="on_row_activated_cb" object="BjbSettingsDialog" swapped="no" />
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="name">provider</property>
-                <property name="title" translatable="yes">Primary Book</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="position">1</property>

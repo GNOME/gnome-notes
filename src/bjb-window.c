@@ -86,18 +86,18 @@ struct _BjbWindow
 G_DEFINE_TYPE (BjbWindow, bjb_window, HDY_TYPE_APPLICATION_WINDOW)
 
 static void
-destroy_note_if_needed (BjbWindow *self)
+window_item_removed_cb (BjbWindow   *self,
+                        BjbProvider *provider,
+                        BjbNote     *item)
 {
-  BjbProvider *provider = NULL;
+  g_assert (BJB_IS_WINDOW (self));
+  g_assert (BJB_IS_ITEM (item));
 
-  if (self->note)
-    provider = g_object_get_data (G_OBJECT (self->note), "provider");
-
-  g_clear_signal_handler (&self->remove_item_id, provider);
+  if (item != self->note)
+    return;
 
   g_clear_object (&self->note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), NULL);
-
   gtk_widget_hide (self->title_entry);
 }
 
@@ -346,7 +346,7 @@ on_email_cb (GSimpleAction *action,
 static void
 show_all_notes (BjbWindow *self)
 {
-  destroy_note_if_needed (self);
+  window_item_removed_cb (self, NULL, self->note);
 
   /* Going back from a notebook. */
   bjb_note_list_set_notebook (self->note_list, NULL);
@@ -359,9 +359,8 @@ show_all_notes (BjbWindow *self)
 static void
 show_trash (BjbWindow *self)
 {
-  destroy_note_if_needed (self);
+  window_item_removed_cb (self, NULL, self->note);
 
-  g_warning ("Trash");
   bjb_note_list_show_trash (self->note_list, TRUE);
   /* bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS); */
   gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
@@ -375,7 +374,7 @@ on_show_notebook_cb (GSimpleAction *action,
   const char *note_uuid;
   BjbWindow *self = BJB_WINDOW (user_data);
 
-  destroy_note_if_needed (self);
+  window_item_removed_cb (self, NULL, self->note);
 
   note_uuid = g_variant_get_string (variant, NULL);
   if (g_strcmp0 (note_uuid, "ALL NOTES") == 0)
@@ -573,6 +572,9 @@ bjb_window_init (BjbWindow *self)
 
   manager = bjb_manager_get_default ();
   bjb_manager_load (manager);
+  g_signal_connect_object (manager, "item-removed",
+                           G_CALLBACK (window_item_removed_cb),
+                           self, G_CONNECT_SWAPPED);
 }
 
 static void
@@ -695,45 +697,23 @@ bjb_window_get_note (BjbWindow *self)
   return self->note;
 }
 
-static void
-window_provider_item_removed_cb (BjbWindow   *self,
-                                 BjbItem     *item,
-                                 BjbProvider *provider)
-{
-  g_assert (BJB_IS_WINDOW (self));
-  g_assert (BJB_IS_PROVIDER (provider));
-  g_assert (BJB_IS_ITEM (item));
-
-  if (self->note == (gpointer)item)
-    destroy_note_if_needed (self);
-}
-
 void
 bjb_window_set_note (BjbWindow *self,
                      BjbNote   *note)
 {
-  BjbProvider *provider;
-
   g_return_if_fail (BJB_IS_WINDOW (self));
   g_return_if_fail (!note || BJB_IS_NOTE (note));
 
   if (self->note == note)
     return;
 
-  destroy_note_if_needed (self);
-
   if (!note)
-    return;
+    {
+      window_item_removed_cb (self, NULL, NULL);
+      return;
+    }
 
-  self->note = g_object_ref (note);
+  g_set_object (&self->note, note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), self->note);
-
-  provider = g_object_get_data (G_OBJECT (note), "provider");
-  g_assert (BJB_IS_PROVIDER (provider));
-
-  self->remove_item_id = g_signal_connect_object (provider, "item-removed",
-                                                  G_CALLBACK (window_provider_item_removed_cb),
-                                                  self,
-                                                  G_CONNECT_SWAPPED);
   populate_headerbar_for_note_view (self);
 }

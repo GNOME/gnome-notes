@@ -440,7 +440,6 @@ processNode (BijiLazyDeserializer *self)
   xmlChar   *name;
   GdkRGBA    color;
   gchar     *tag, *color_str;
-  GString   *norm;
 
   name = xmlTextReaderName (r);
 
@@ -508,9 +507,7 @@ processNode (BijiLazyDeserializer *self)
 
     else if (g_str_has_prefix (tag,"system:notebook:"))
     {
-      norm = g_string_new (tag);
-      g_string_erase (norm,0,16);
-      g_string_free (norm, TRUE);
+      bjb_note_add_tag (BJB_NOTE (n), tag + strlen ("system:notebook:"));
     }
 
     free (tag);

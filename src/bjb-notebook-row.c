@@ -86,7 +86,7 @@ bjb_notebook_row_new (BjbItem *notebook)
 {
   BjbNotebookRow *self;
 
-  g_return_val_if_fail (BJB_IS_NOTEBOOK (notebook), NULL);
+  g_return_val_if_fail (BJB_IS_NOTEBOOK (notebook) || BJB_IS_TAG (notebook), NULL);
 
   self = g_object_new (BJB_TYPE_NOTEBOOK_ROW, NULL);
   self->item = g_object_ref (notebook);

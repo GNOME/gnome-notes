@@ -53,7 +53,6 @@ struct _BjbWindow
 
   BjbSettings          *settings;
 
-  BjbWindowView         current_view;
   BjbNoteList          *note_list;
 
   /* when a note is opened */
@@ -374,9 +373,7 @@ on_show_notebook_cb (GSimpleAction *action,
                      gpointer       user_data)
 {
   const char *note_uuid;
-  const char *title;
   BjbWindow *self = BJB_WINDOW (user_data);
-  BjbItem *notebook;
 
   destroy_note_if_needed (self);
 

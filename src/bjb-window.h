@@ -31,17 +31,6 @@
 
 G_DECLARE_FINAL_TYPE (BjbWindow, bjb_window, BJB, WINDOW, HdyApplicationWindow)
 
-typedef enum {
-  BJB_WINDOW_MAIN_VIEW,
-  BJB_WINDOW_ARCHIVE_VIEW,
-  BJB_WINDOW_SPINNER_VIEW,
-  BJB_WINDOW_NOTE_VIEW,
-  BJB_WINDOW_NO_NOTE,
-  BJB_WINDOW_NO_RESULT,
-  BJB_WINDOW_ERROR_TRACKER,
-  BJB_WINDOW_NO_VIEW
-} BjbWindowView;
-
 GtkWidget       *bjb_window_new            (void);
 gboolean         bjb_window_get_is_main    (BjbWindow     *self);
 void             bjb_window_set_is_main    (BjbWindow     *self,

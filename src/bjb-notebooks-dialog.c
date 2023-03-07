@@ -25,6 +25,7 @@
 #endif
 
 #include "bjb-application.h"
+#include "providers/bjb-provider.h"
 #include "bjb-notebook-row.h"
 #include "bjb-notebooks-dialog.h"
 #include "bjb-log.h"
@@ -45,76 +46,53 @@ G_DEFINE_TYPE (BjbNotebooksDialog, bjb_notebooks_dialog, GTK_TYPE_DIALOG)
 static void
 on_notebook_entry_changed_cb (BjbNotebooksDialog *self)
 {
-  GListModel *notebooks;
-  const char *notebook;
+  BjbProvider *provider;
+  BjbTagStore *tag_store;
+  GListModel *tags;
+  const char *tag;
   guint n_items;
 
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_assert (self->item);
 
-  notebook = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
+  tag = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
 
-  if (!notebook || !*notebook)
+  if (!tag || !*tag)
     {
       gtk_widget_set_sensitive (self->add_notebook_button, FALSE);
       return;
     }
 
-  /* notebooks = biji_manager_get_notebooks (biji_note_obj_get_manager (self->item)); */
-  /* n_items = g_list_model_get_n_items (notebooks); */
+  provider = g_object_get_data (G_OBJECT (self->item), "provider");
+  g_assert (BJB_IS_PROVIDER (provider));
 
-  /* for (guint i = 0; i < n_items; i++) */
-  /*   { */
-  /*     g_autoptr(BjbItem) item = NULL; */
+  tag_store = bjb_provider_get_tag_store (provider);
+  tags = bjb_tag_store_get_tags (tag_store);
+  n_items = g_list_model_get_n_items (tags);
 
-  /*     item = g_list_model_get_item (notebooks, i); */
+  for (guint i = 0; i < n_items; i++)
+    {
+      g_autoptr(BjbItem) item = NULL;
 
-  /*     if (g_strcmp0 (bjb_item_get_title (item), notebook) == 0) */
-  /*       { */
-  /*         gtk_widget_set_sensitive (self->add_notebook_button, FALSE); */
-  /*         return; */
-  /*       } */
-  /*   } */
+      item = g_list_model_get_item (tags, i);
+
+      if (g_strcmp0 (bjb_item_get_title (item), tag) == 0)
+        {
+          gtk_widget_set_sensitive (self->add_notebook_button, FALSE);
+          return;
+        }
+    }
 
   gtk_widget_set_sensitive (self->add_notebook_button, TRUE);
 }
 
 static void
-on_new_notebook_created_cb (GObject      *object,
-                            GAsyncResult *result,
-                            gpointer      user_data)
-{
-  BjbNotebooksDialog *self = user_data;
-  g_autoptr(BjbItem) notebook = NULL;
-  g_autoptr(GList) rows = NULL;
-
-  /* todo */
-  /* notebook = biji_tracker_add_notebook_finish (BIJI_TRACKER (object), result, NULL); */
-  /* biji_note_obj_add_notebook (self->item, notebook, NULL); */
-  gtk_entry_set_text (GTK_ENTRY (self->notebook_entry), "");
-
-  rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
-
-  for (GList *row = rows; row; row = row->next)
-    if ((gpointer)notebook == bjb_notebook_row_get_item (row->data))
-      {
-        bjb_notebook_row_set_active (row->data, TRUE);
-        break;
-      }
-}
-
-static void
 on_add_notebook_button_clicked_cb (BjbNotebooksDialog *self)
 {
-  /* BijiManager *manager; */
-  /* const char *notebook; */
+  const char *tag;
 
-  /* notebook = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry)); */
-
-  /* todo */
-  /* manager = biji_note_obj_get_manager (self->item); */
-  /* biji_tracker_add_notebook_async (biji_manager_get_tracker (manager), */
-  /*                                  notebook, on_new_notebook_created_cb, self); */
+  tag = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
+  bjb_note_add_tag (self->item, tag);
 }
 
 static void
@@ -129,17 +107,17 @@ on_notebooks_row_activated_cb (BjbNotebooksDialog *self,
   g_assert (BJB_IS_NOTEBOOK_ROW (row));
   g_assert (BJB_IS_NOTE (self->item));
 
-  bjb_notebook_row_set_active (row, !bjb_notebook_row_get_active (row));
   notebook = bjb_notebook_row_get_item (row);
 
   BJB_TRACE_MSG ("Notebook '%s' %s",
                  bjb_item_get_title (notebook),
                  bjb_notebook_row_get_active (row) ? "selected" : "deselected");
 
-  /* if (bjb_notebook_row_get_active (row)) */
-  /*   biji_note_obj_add_notebook (self->item, notebook, NULL); */
-  /* else */
-  /*   biji_note_obj_remove_notebook (self->item, notebook); */
+  /* add tag if it's not already, remove otherwise */
+  if (!bjb_notebook_row_get_active (row))
+    bjb_note_add_tag (self->item, bjb_item_get_title (notebook));
+  else
+    bjb_note_remove_tag (self->item, notebook);
 }
 
 static GtkWidget *
@@ -149,9 +127,10 @@ notebooks_row_new (BjbItem            *notebook,
   GtkWidget *row;
 
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
-  g_assert (BJB_IS_NOTEBOOK (notebook));
+  g_assert (BJB_IS_NOTEBOOK (notebook) || BJB_IS_TAG (notebook));
 
   row = bjb_notebook_row_new (notebook);
+  gtk_widget_set_visible (row, TRUE);
 
   return row;
 }
@@ -190,17 +169,7 @@ bjb_notebooks_dialog_class_init (BjbNotebooksDialogClass *klass)
 static void
 bjb_notebooks_dialog_init (BjbNotebooksDialog *self)
 {
-  /* BijiManager *manager; */
-
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  /* manager = bijiben_get_manager (BJB_APPLICATION (g_application_get_default ())); */
-  /* g_return_if_fail (manager); */
-
-  /* gtk_list_box_bind_model (GTK_LIST_BOX (self->notebooks_list), */
-  /*                          biji_manager_get_notebooks (manager), */
-  /*                          (GtkListBoxCreateWidgetFunc)notebooks_row_new, */
-  /*                          g_object_ref (self), g_object_unref); */
 }
 
 GtkWidget *
@@ -214,12 +183,36 @@ bjb_notebooks_dialog_new (GtkWindow *parent_window)
                        NULL);
 }
 
+static void
+notebooks_note_tag_changed_cb (BjbNotebooksDialog *self)
+{
+  g_autoptr(GList) rows = NULL;
+  GListModel *tags;
+
+  g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
+
+  rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
+  tags = bjb_note_get_tags (self->item);
+
+  for (GList *row = rows; row; row = row->next)
+    {
+      BjbItem *notebook;
+
+      notebook = bjb_notebook_row_get_item (row->data);
+      if (g_list_store_find (G_LIST_STORE (tags), notebook, NULL))
+        bjb_notebook_row_set_active (row->data, TRUE);
+      else
+        bjb_notebook_row_set_active (row->data, FALSE);
+    }
+}
+
 void
 bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
                                BjbNote            *note)
 {
-  g_autoptr(GList) notebooks = NULL;
-  g_autoptr(GList) rows = NULL;
+  BjbProvider *provider;
+  BjbTagStore *tag_store;
+  GListModel *tags;
 
   g_return_if_fail (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_return_if_fail (BJB_IS_NOTE (note));
@@ -229,20 +222,18 @@ bjb_notebooks_dialog_set_item (BjbNotebooksDialog *self,
 
   BJB_DEBUG_MSG ("Setting note '%s'", bjb_item_get_title (BJB_ITEM (note)));
 
-  /* todo */
-  /* notebooks = biji_note_obj_get_notebooks (self->item); */
-  rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
+  provider = g_object_get_data (G_OBJECT (note), "provider");
+  g_assert (BJB_IS_PROVIDER (provider));
 
-  /* Deselect all rows first */
-  for (GList *row = rows; row; row = row->next)
-    bjb_notebook_row_set_active (row->data, FALSE);
+  tag_store = bjb_provider_get_tag_store (provider);
+  gtk_list_box_bind_model (GTK_LIST_BOX (self->notebooks_list),
+                           bjb_tag_store_get_tags (tag_store),
+                           (GtkListBoxCreateWidgetFunc)notebooks_row_new,
+                           g_object_ref (self), g_object_unref);
 
-  for (GList *row = rows; row; row = row->next)
-    {
-      BjbItem *notebook;
-      gboolean selected;
-
-      notebook = bjb_notebook_row_get_item (row->data);
-      bjb_notebook_row_set_active (row->data, FALSE);
-    }
+  tags = bjb_note_get_tags (note);
+  g_signal_connect_object (tags, "items-changed",
+                           G_CALLBACK (notebooks_note_tag_changed_cb),
+                           self, G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+  notebooks_note_tag_changed_cb (self);
 }

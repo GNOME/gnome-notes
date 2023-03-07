@@ -1,14 +1,14 @@
 # Bulgarian translation of gnome-notes po-file.
-# Copyright (C) 2022 Alexander Shopov <ash@kambanaria.org>.
+# Copyright (C) 2022, 2023 Alexander Shopov <ash@kambanaria.org>.
 # This file is distributed under the same license as the gnome-notes package.
-# Alexander Shopov <ash@kambanaria.org>, 2022.
+# Alexander Shopov <ash@kambanaria.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-03-02 10:39+0000\n"
-"PO-Revision-Date: 2022-03-05 21:44+0100\n"
+"POT-Creation-Date: 2023-03-06 18:10+0000\n"
+"PO-Revision-Date: 2023-03-07 09:06+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Бележки"
 
@@ -152,8 +152,8 @@ msgstr ""
 "Налични са три размера: „small“ (малък), „medium“ (среден — стандартно) и "
 "„large“ (голям)."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Бележници"
 
@@ -165,8 +165,12 @@ msgstr "Нов бележник…"
 msgid "Add"
 msgstr "Добавяне"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Не са избрани бележки"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Всички бележки"
 
@@ -174,67 +178,67 @@ msgstr "Всички бележки"
 msgid "Open menu"
 msgstr "Отваряне на менюто"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Допълнителни настройки"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Внасяне на бележки"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Размер на текста"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Голям"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Среден"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Малък"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Настройки"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Клавишни комбинации"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Помощ"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Относно „Бележки“"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Кошче"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Отваряне на нов прозорец"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Отмяна"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Повтаряне"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Изпращане на бележката по е-поща"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Преместване в кошчето"
 
@@ -269,10 +273,6 @@ msgstr "Обратен отстъп"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Копиране на избраното в нова бележка"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Няма бележки"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -446,39 +446,39 @@ msgstr "Избор на стандартно място за съхранени�
 msgid "Primary Book"
 msgstr "Основен бележник"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Без име"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "Бележки за GNOME"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Подробен журнал"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Извеждане на версията на програмата"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Създаване на нова бележка"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Създаване на бележки и пращане навсякъде"
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Лесен бележник за GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Александър Шопов &lt;<a href='mailto:ash@kambanaria.org'>ash@kambanaria.org</"
@@ -494,26 +494,25 @@ msgstr ""
 msgid "Note Color"
 msgstr "Цвят на бележка"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Бележник"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Добавяне на бележки"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "За създаване на бележка натиснете бутона „Нова“"
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "За създаване на бележка натиснете клавиша „+“"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Проблем"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Няма резултати"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Инсталирайте програмата „Tracker“, след което рестартирайте тази."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Пробвайте друго търсене"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Тази бележка е отворена в друг прозорец."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Тази бележка е отворена в друг прозорец"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -532,11 +531,11 @@ msgstr "Този месец"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Последна промяна: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Място на съхраняване"

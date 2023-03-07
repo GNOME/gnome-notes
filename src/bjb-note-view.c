@@ -292,7 +292,7 @@ bjb_note_view_set_note (BjbNoteView *self,
   if (note)
     gtk_widget_set_visible (self->editor_toolbar, !bjb_item_is_trashed (BJB_ITEM (note)));
 
-  self->note = g_object_ref (note);
+  g_set_object (&self->note, note);
   if (self->view)
     gtk_widget_destroy (self->view);
   g_clear_object (&self->view);

@@ -253,6 +253,35 @@ on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
 }
 
 static void
+on_detach_window_cb (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       user_data)
+{
+  BjbWindow *detached_window;
+  BjbWindow *self = user_data;
+  int width, height;
+
+  g_assert (BJB_IS_WINDOW (self));
+
+  if (!self->note)
+    return;
+
+  /* Width and height of the detached window. */
+  width = gtk_widget_get_allocated_width (GTK_WIDGET (self->note_view));
+  gtk_window_get_size (GTK_WINDOW (self), NULL, &height);
+
+  bjb_note_view_set_detached (BJB_NOTE_VIEW (self->note_view), TRUE);
+
+  detached_window = BJB_WINDOW (bjb_window_new ());
+  gtk_window_set_default_size (GTK_WINDOW (detached_window), width, height);
+
+  bjb_window_set_is_main (detached_window, FALSE);
+  bjb_window_set_note (detached_window, self->note);
+  g_clear_object (&self->note);
+  gtk_window_present (GTK_WINDOW (detached_window));
+}
+
+static void
 on_paste_cb (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       user_data)
@@ -433,6 +462,7 @@ bjb_window_configure_event (GtkWidget         *widget,
 }
 
 static GActionEntry win_entries[] = {
+  { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
   { "paste", on_paste_cb, NULL, NULL, NULL },
   { "undo", on_undo_cb, NULL, NULL, NULL },
   { "redo", on_redo_cb, NULL, NULL, NULL },

@@ -132,7 +132,7 @@ serialize_node (xmlTextWriterPtr writer,
 }
 
 static void
-serialize_tags (gchar *tag, xmlTextWriterPtr writer)
+serialize_tags (const char *tag, xmlTextWriterPtr writer)
 {
   gchar *string;
 
@@ -157,7 +157,6 @@ serialize_html (BijiLazySerializer *self)
 static gboolean
 biji_lazy_serialize_internal (BijiLazySerializer *self)
 {
-  GList                     *tags;
   GdkRGBA                    color;
   gchar                     *color_str;
   gboolean                   retval;
@@ -240,11 +239,22 @@ biji_lazy_serialize_internal (BijiLazySerializer *self)
   //<tags>
   xmlTextWriterWriteRaw (self->writer, BAD_CAST "\n ");
   xmlTextWriterStartElement (self->writer, BAD_CAST "tags");
-  /* todo */
-  /* tags = biji_note_obj_get_notebooks (self->note); */
-  /* g_list_foreach (tags, (GFunc) serialize_tags, self->writer); */
+  {
+    GListModel *tags;
+    guint n_items;
+
+    tags = bjb_note_get_tags (BJB_NOTE (self->note));
+    n_items = g_list_model_get_n_items (tags);
+
+    for (guint i = 0; i < n_items; i++)
+      {
+        g_autoptr(BjbItem) tag = NULL;
+
+        tag = g_list_model_get_item (tags, i);
+        serialize_tags (bjb_item_get_title (tag), self->writer);
+      }
+  }
   xmlTextWriterEndElement (self->writer);
-  /* g_list_free (tags); */
 
   // <open-on-startup>
   serialize_node (self->writer, "open-on-startup", "False");
@@ -274,4 +284,3 @@ biji_lazy_serialize (BjbNote *note)
 
   return result;
 }
-

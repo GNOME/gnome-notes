@@ -26,13 +26,6 @@
 #include "../biji-date-time.h"
 #include "../biji-string.h"
 
-enum
-{
-  PROP_0,
-  PROP_NOTE,
-  NUM_PROPERTIES
-};
-
 /* Notes type : bijiben namespace, tomboy one, then note types */
 #define BIJI_NS "http://projects.gnome.org/bijiben"
 
@@ -47,8 +40,6 @@ typedef enum
   TOMBOY_3,
   NUM_NOTE_TYPES
 } BijiXmlType;
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
 
 struct _BijiLazyDeserializer
 {
@@ -71,42 +62,6 @@ struct _BijiLazyDeserializer
 
 
 G_DEFINE_TYPE (BijiLazyDeserializer, biji_lazy_deserializer, G_TYPE_OBJECT)
-
-static void
-biji_lazy_deserializer_get_property (GObject  *object,
-                                     guint     property_id,
-                                     GValue   *value,
-                                     GParamSpec *pspec)
-{
-  BijiLazyDeserializer *self = BIJI_LAZY_DESERIALIZER (object);
-
-  switch (property_id)
-  {
-    case PROP_NOTE:
-      g_value_set_object (value, self->note);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-}
-
-static void
-biji_lazy_deserializer_set_property (GObject  *object,
-                                     guint     property_id,
-                                     const GValue *value,
-                                     GParamSpec *pspec)
-{
-  BijiLazyDeserializer *self = BIJI_LAZY_DESERIALIZER (object);
-
-  switch (property_id)
-  {
-    case PROP_NOTE:
-      self->note = g_value_get_object (value);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-}
 
 static void
 biji_lazy_deserializer_init (BijiLazyDeserializer *self)
@@ -135,19 +90,7 @@ biji_lazy_deserializer_class_init (BijiLazyDeserializerClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
 
-  object_class->get_property = biji_lazy_deserializer_get_property;
-  object_class->set_property = biji_lazy_deserializer_set_property;
   object_class->finalize = biji_lazy_deserializer_finalize;
-
-  properties[PROP_NOTE] = g_param_spec_object ("note",
-                                               "Note",
-                                               "Bjb Note",
-                                               BJB_TYPE_NOTE,
-                                               G_PARAM_READWRITE  |
-                                               G_PARAM_CONSTRUCT |
-                                               G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_property (object_class,PROP_NOTE,properties[PROP_NOTE]);
 }
 
 /* Utils */
@@ -606,9 +549,14 @@ biji_lazy_deserialize_internal (BijiLazyDeserializer *self)
 static BijiLazyDeserializer *
 biji_lazy_deserializer_new (BjbNote *note)
 {
-  return g_object_new (BIJI_TYPE_LAZY_DESERIALIZER,
-                       "note", note,
-                       NULL);
+  BijiLazyDeserializer *self;
+
+  g_return_val_if_fail (BJB_IS_NOTE (note), NULL);
+
+  self = g_object_new (BIJI_TYPE_LAZY_DESERIALIZER, NULL);
+  g_set_object (&self->note, note);
+
+  return self;
 }
 
 gboolean

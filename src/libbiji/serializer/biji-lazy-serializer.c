@@ -23,15 +23,6 @@
 #include "biji-lazy-serializer.h"
 #include "../biji-string.h"
 
-enum
-{
-  PROP_0,
-  PROP_NOTE,
-  NUM_PROPERTIES
-};
-
-static GParamSpec *properties[NUM_PROPERTIES] = { NULL, };
-
 struct _BijiLazySerializer
 {
   GObject parent_instance;
@@ -46,42 +37,6 @@ struct _BijiLazySerializer
 };
 
 G_DEFINE_TYPE (BijiLazySerializer, biji_lazy_serializer, G_TYPE_OBJECT)
-
-static void
-biji_lazy_serializer_get_property (GObject  *object,
-                                   guint     property_id,
-                                   GValue   *value,
-                                   GParamSpec *pspec)
-{
-  BijiLazySerializer *self = BIJI_LAZY_SERIALIZER (object);
-
-  switch (property_id)
-  {
-    case PROP_NOTE:
-      g_value_set_object (value, self->note);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-}
-
-static void
-biji_lazy_serializer_set_property (GObject  *object,
-                                   guint     property_id,
-                                   const GValue *value,
-                                   GParamSpec *pspec)
-{
-  BijiLazySerializer *self = BIJI_LAZY_SERIALIZER (object);
-
-  switch (property_id)
-  {
-    case PROP_NOTE:
-      self->note = g_value_get_object (value);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-}
 
 static void
 biji_lazy_serializer_init (BijiLazySerializer *self)
@@ -105,19 +60,7 @@ biji_lazy_serializer_class_init (BijiLazySerializerClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
 
-  object_class->get_property = biji_lazy_serializer_get_property;
-  object_class->set_property = biji_lazy_serializer_set_property;
   object_class->finalize = biji_lazy_serializer_finalize;
-
-  properties[PROP_NOTE] = g_param_spec_object ("note",
-                                               "Note",
-                                               "Bjb Note",
-                                               BJB_TYPE_NOTE,
-                                               G_PARAM_READWRITE  |
-                                               G_PARAM_CONSTRUCT |
-                                               G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_property (object_class,PROP_NOTE,properties[PROP_NOTE]);
 }
 
 static void
@@ -277,8 +220,8 @@ biji_lazy_serialize (BjbNote *note)
   BijiLazySerializer *self;
   gboolean result ;
 
-  self = g_object_new (BIJI_TYPE_LAZY_SERIALIZER,
-                       "note", note, NULL);
+  self = g_object_new (BIJI_TYPE_LAZY_SERIALIZER, NULL);
+  g_set_object (&self->note, note);
   result = biji_lazy_serialize_internal (self);
   g_object_unref (self);
 

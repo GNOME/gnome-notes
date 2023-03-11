@@ -226,10 +226,6 @@ biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font)
 {
   PangoFontDescription *font_desc;
   const gchar *family;
-  gint size;
-  GdkScreen *screen;
-  double dpi;
-  guint font_size;
 
   /* parse : but we only parse font properties we'll be able
    * to transfer to webkit editor
@@ -237,19 +233,10 @@ biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font)
    * eg applying format to the whole body */
   font_desc = pango_font_description_from_string (font);
   family = pango_font_description_get_family (font_desc);
-  size = pango_font_description_get_size (font_desc);
-
-  if (!pango_font_description_get_size_is_absolute (font_desc))
-    size /= PANGO_SCALE;
-
-  screen = gtk_widget_get_screen (GTK_WIDGET (self));
-  dpi = screen ? gdk_screen_get_resolution (screen) : 96.0;
-  font_size = size / 72. * dpi;
 
   /* Set */
   g_object_set (biji_webkit_editor_get_web_settings (),
                 "default-font-family", family,
-                "default-font-size", font_size,
                 NULL);
 
   pango_font_description_free (font_desc);

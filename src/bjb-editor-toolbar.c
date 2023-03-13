@@ -30,7 +30,7 @@
 
 struct _BjbEditorToolbar
 {
-  GtkActionBar   parent_instance;
+  GtkBox         parent_instance;
 
   GtkAccelGroup *accel;
 
@@ -55,7 +55,7 @@ enum {
 
 static guint signals[N_SIGNALS];
 
-G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_ACTION_BAR)
+G_DEFINE_TYPE (BjbEditorToolbar, bjb_editor_toolbar, GTK_TYPE_BOX)
 
 static void
 on_format_clicked (BjbEditorToolbar *self,

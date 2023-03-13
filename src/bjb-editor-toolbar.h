@@ -25,7 +25,7 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_EDITOR_TOOLBAR (bjb_editor_toolbar_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkActionBar)
+G_DECLARE_FINAL_TYPE (BjbEditorToolbar, bjb_editor_toolbar, BJB, EDITOR_TOOLBAR, GtkBox)
 
 void     bjb_editor_toolbar_set_can_format (BjbEditorToolbar *self,
                                             gboolean          can_format);

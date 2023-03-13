@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-02-13 10:32+0100\n"
-"Last-Translator: maite guix <maite.guix@me.com>\n"
+"POT-Creation-Date: 2023-01-28 12:47+0000\n"
+"PO-Revision-Date: 2023-03-114 10:32+0100\n"
+"Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:589 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Notes"
 
@@ -58,7 +58,8 @@ msgstr "Selecciona una vista"
 msgid "List view"
 msgstr "Visualització de llista"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "notes;recordatori;llibre de notes;notes enganxoses;"
@@ -82,8 +83,8 @@ msgstr "Tipus de lletra personalitzat"
 #: data/org.gnome.Notes.gschema.xml:11
 msgid "The font name set here will be used as the font when displaying notes."
 msgstr ""
-"El nom del tipus de lletra que es defineixi aquí és el que s'utilitzarà per a "
-"visualitzar les notes."
+"El nom del tipus de lletra que es defineixi aquí és el que s'utilitzarà per "
+"a visualitzar les notes."
 
 #: data/org.gnome.Notes.gschema.xml:15
 msgid "Whether to use the system monospace font"
@@ -111,12 +112,13 @@ msgstr "El bloc de notes principal és el lloc on es creen les notes noves."
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
 msgstr ""
-"Camí de la nota de les notes que s'obren quan es tanca Notes l'última vegada."
+"Camí de la nota de les notes que s'obren quan es tanca Notes l'última "
+"vegada."
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""
-"This stores the note path of the last opened item, so that we can open it on "
-"startup."
+"This stores the note path of the last opened item, so that we can open it on"
+" startup."
 msgstr ""
 "Emmagatzema el camí de la nota de l'últim ítem obert, de manera que el "
 "puguem obrir a l'inici."
@@ -155,8 +157,8 @@ msgid ""
 msgstr ""
 "Hi ha tres mides de text disponibles: petita, mitjana (per defecte) i gran."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
+#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Blocs de notes"
 
@@ -168,8 +170,12 @@ msgstr "Bloc de notes nou..."
 msgid "Add"
 msgstr "Afegeix"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+msgid "No note selected"
+msgstr "Cap nota seleccionada"
+
+#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
+#: src/bjb-window.c:397
 msgid "All Notes"
 msgstr "Totes les notes"
 
@@ -177,67 +183,67 @@ msgstr "Totes les notes"
 msgid "Open menu"
 msgstr "Obre el menú"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:133
 msgid "More options"
 msgstr "Més opcions"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importa les notes"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:190
 msgid "Text Sizes"
 msgstr "Mides de text"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:199
 msgid "_Large"
 msgstr "_Gran"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:208
 msgid "_Medium"
 msgstr "_Mitjana"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:217
 msgid "_Small"
 msgstr "_Petita"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferències"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:242
 msgid "Keyboard Shortcuts"
 msgstr "Dreceres de teclat"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:250
 msgid "Help"
 msgstr "Ajuda"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:258
 msgid "About Notes"
 msgstr "Quant al Notes"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
 msgid "Trash"
 msgstr "Paperera"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:346
 msgid "Open in New Window"
 msgstr "Obre a una finestra nova"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:362
 msgid "Undo"
 msgstr "Desfés"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:370
 msgid "Redo"
 msgstr "Refés"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:394
 msgid "Email this Note"
 msgstr "Envia per correu aquesta nota"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Mou a la paperera"
 
@@ -272,10 +278,6 @@ msgstr "Reducció del sagnat"
 #: data/resources/editor-toolbar.ui:222
 msgid "Copy selection to a new note"
 msgstr "Copia la selecció a una nota nova"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Cap nota"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -449,39 +451,39 @@ msgstr "Seleccioneu la ubicació d'emmagatzematge predeterminada:"
 msgid "Primary Book"
 msgstr "Llibre principal"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
 msgid "Untitled"
 msgstr "Sense títol"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:183
 msgid "GNOME Notes"
 msgstr "GNOME Notes"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:238
 msgid "Show verbose logs"
 msgstr "Mostra els registres detallats"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:240
 msgid "Show the application’s version"
 msgstr "Mostra la versió de l'aplicació"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:242
 msgid "Create a new note"
 msgstr "Crea una nota nova"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:250
 msgid "[FILE…]"
 msgstr "[FITXER…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:251
 msgid "Take notes and export them everywhere."
 msgstr "Preneu notes i exporteu-les allà on vulgueu."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:590
 msgid "Simple notebook for GNOME"
 msgstr "Un bloc de notes senzill pel GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:596
 msgid "translator-credits"
 msgstr ""
 "Softcatalà <tradgnome@softcatala.org>\n"
@@ -493,26 +495,25 @@ msgstr ""
 msgid "Note Color"
 msgstr "Color de la nota"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Bloc de notes"
+#: src/bjb-note-list.c:108
+msgid "Add Notes"
+msgstr "Afegeix notes"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Feu clic al botó «Nova» per a crear una nota nova."
+#: src/bjb-note-list.c:109
+msgid "Use the + button to add a note"
+msgstr "Utilitzeu el botó + per a afegir una nota"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Errada"
+#: src/bjb-note-list.c:114
+msgid "No Results"
+msgstr "Sense resultats"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Instal·leu el «Tracker» i reinicieu el programa."
+#: src/bjb-note-list.c:115
+msgid "Try a different search"
+msgstr "Proveu una cerca diferent"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Aquesta nota s'està visualitzant en una altra finestra."
+#: src/bjb-note-view.c:95
+msgid "This note is being viewed in another window"
+msgstr "Aquesta nota s'està visualitzant en una altra finestra"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -530,12 +531,11 @@ msgstr "Aquest mes"
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
-#.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:750
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última actualització %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
+#: src/libbiji/provider/biji-local-provider.c:363
 msgid "Local storage"
 msgstr "Emmagatzematge local"

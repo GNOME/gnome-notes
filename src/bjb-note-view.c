@@ -29,7 +29,7 @@
 
 struct _BjbNoteView
 {
-  GtkOverlay         parent_instance;
+  GtkBox       parent_instance;
 
   /* UI */
   GtkWidget *main_stack;
@@ -52,7 +52,7 @@ typedef struct _NoteData
   BjbItem     *note;
 } NoteData;
 
-G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_OVERLAY)
+G_DEFINE_TYPE (BjbNoteView, bjb_note_view, GTK_TYPE_BOX)
 
 static void
 note_data_free (gpointer user_data)

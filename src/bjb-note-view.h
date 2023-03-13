@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_NOTE_VIEW (bjb_note_view_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbNoteView, bjb_note_view, BJB, NOTE_VIEW, GtkOverlay)
+G_DECLARE_FINAL_TYPE (BjbNoteView, bjb_note_view, BJB, NOTE_VIEW, GtkBox)
 
 void                bjb_note_view_set_detached       (BjbNoteView *self,
                                                       gboolean     detached);

@@ -40,15 +40,16 @@ static const char *palette_str[BJB_NUM_COLORS] = {
 
 struct _BjbColorButton
 {
-  GtkColorButton parent_instance;
+  GtkBox     parent_instance;
 
   GdkRGBA palette [BJB_NUM_COLORS];
+  GtkWidget *color_button;
   GtkWidget *dialog;
   gchar *title;
   GdkRGBA rgba;
 };
 
-G_DEFINE_TYPE (BjbColorButton, bjb_color_button, GTK_TYPE_COLOR_BUTTON);
+G_DEFINE_TYPE (BjbColorButton, bjb_color_button, GTK_TYPE_BOX);
 
 static gboolean
 dialog_destroy (GtkWidget *widget,
@@ -77,15 +78,14 @@ dialog_response (GtkDialog *dialog,
                                   &self->rgba);
 
       gtk_widget_hide (GTK_WIDGET (dialog));
-      gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self), &self->rgba);
+      gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self->color_button), &self->rgba);
       g_signal_emit_by_name (self, "color-set");
   }
 }
 
 static void
-bjb_color_button_clicked (GtkButton *b)
+bjb_color_button_clicked (BjbColorButton *self)
 {
-  BjbColorButton *self = BJB_COLOR_BUTTON (b);
   GtkWidget *dialog;
   gint i;
 
@@ -127,7 +127,7 @@ bjb_color_button_clicked (GtkButton *b)
                         G_CALLBACK (dialog_destroy), self);
     }
 
-  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (self), &self->rgba);
+  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (self->color_button), &self->rgba);
   gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (self->dialog),
                               &self->rgba);
 
@@ -138,15 +138,18 @@ static void
 bjb_color_button_init (BjbColorButton *self)
 {
   self->title = _("Note Color");
+
+  self->color_button = gtk_color_button_new ();
+  gtk_container_add (GTK_CONTAINER (self), self->color_button);
+
+  g_signal_connect_object (self->color_button, "clicked",
+                           G_CALLBACK (bjb_color_button_clicked),
+                           self, G_CONNECT_SWAPPED);
 }
 
 static void
 bjb_color_button_class_init (BjbColorButtonClass *klass)
 {
-  GtkButtonClass *button_class = GTK_BUTTON_CLASS (klass);
-
-  /* Override std::gtk_color_button */
-  button_class->clicked = bjb_color_button_clicked;
 }
 
 GtkWidget *

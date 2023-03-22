@@ -23,7 +23,7 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_COLOR_BUTTON (bjb_color_button_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbColorButton, bjb_color_button, BJB, COLOR_BUTTON, GtkColorButton)
+G_DECLARE_FINAL_TYPE (BjbColorButton, bjb_color_button, BJB, COLOR_BUTTON, GtkBox)
 
 GtkWidget * bjb_color_button_new (void);
 

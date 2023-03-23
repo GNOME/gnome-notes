@@ -15,7 +15,6 @@ data/resources/settings-dialog.ui
 src/bijiben-shell-search-provider.c
 src/bjb-application.c
 src/bjb-color-button.c
-src/bjb-controller.c
 src/bjb-editor-toolbar.c
 src/bjb-note-list.c
 src/bjb-note-view.c
@@ -23,5 +22,5 @@ src/bjb-settings.c
 src/bjb-settings-dialog.c
 src/bjb-utils.c
 src/bjb-window.c
-src/libbiji/biji-date-time.c
-src/libbiji/provider/biji-local-provider.c
+src/providers/bjb-local-provider.c
+src/providers/bjb-memo-provider.c

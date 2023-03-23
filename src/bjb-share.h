@@ -17,6 +17,6 @@
 
 #pragma once
 
-#include <libbiji/libbiji.h>
+#include "items/bjb-note.h"
 
 gboolean on_email_note_callback (BjbNote *note);

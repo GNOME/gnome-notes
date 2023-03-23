@@ -20,7 +20,6 @@
 #pragma once
 
 #include <gtk/gtk.h>
-#include <libbiji/libbiji.h>
 
 #include "bjb-settings.h"
 

@@ -36,7 +36,6 @@
 #include <gtk/gtk.h>
 
 #include <tracker-sparql.h>
-#include <libbiji/libbiji.h>
 
 /* Strlen for timestamp */
 #include <string.h>

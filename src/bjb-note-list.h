@@ -25,7 +25,8 @@
 #pragma once
 
 #include <gtk/gtk.h>
-#include <libbiji/libbiji.h>
+
+#include "items/bjb-item.h"
 
 G_BEGIN_DECLS
 

@@ -4,9 +4,28 @@ revision_tag = vcs_tag(
 )
 bijiben_deps += declare_dependency(sources: revision_tag)
 
-subdir('libbiji')
-
 sources = files(
+  'deserializer/biji-lazy-deserializer.c',
+  'deserializer/biji-tomboy-reader.c',
+  'editor/biji-editor-selection.c',
+  'editor/biji-webkit-editor.c',
+  'items/bjb-item.c',
+  'items/bjb-tag.c',
+  'items/bjb-note.c',
+  'items/bjb-tag-store.c',
+  'items/bjb-plain-note.c',
+  'items/bjb-xml-note.c',
+  'providers/bjb-provider.c',
+  'providers/bjb-memo-provider.c',
+  'providers/bjb-local-provider.c',
+  'providers/bjb-nc-provider.c',
+  'serializer/biji-lazy-serializer.c',
+  'biji-date-time.c',
+  'biji-info-set.c',
+  'biji-date-time.c',
+  'biji-info-set.c',
+  'biji-string.c',
+  'bjb-utils.c',
   'bjb-log.c',
   'bjb-application.c',
   'bjb-color-button.c',
@@ -48,8 +67,8 @@ sources += gnome.compile_resources(
 executable(
   bijiben_name,
   sources,
-  include_directories: top_inc,
-  dependencies: libbiji_dep,
+  include_directories: [top_inc, src_inc],
+  dependencies: bijiben_deps,
   install: true,
   install_dir: bijiben_bindir
 )
@@ -66,8 +85,8 @@ sources += gnome.gdbus_codegen(
 executable(
   'bijiben-shell-search-provider',
   sources,
-  include_directories: top_inc,
-  dependencies: libbiji_dep,
+  include_directories: [top_inc, src_inc],
+  dependencies: bijiben_deps,
   install: true,
   install_dir: bijiben_libexecdir
 )

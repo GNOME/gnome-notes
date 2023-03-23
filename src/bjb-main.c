@@ -19,7 +19,6 @@
 #include <config.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
 #include "bjb-log.h"

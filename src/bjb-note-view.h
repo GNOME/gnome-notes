@@ -20,7 +20,8 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
-#include <libbiji/libbiji.h>
+#include "items/bjb-note.h"
+#include "editor/biji-webkit-editor.h"
 
 G_BEGIN_DECLS
 

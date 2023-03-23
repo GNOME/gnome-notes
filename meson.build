@@ -127,6 +127,7 @@ its_dir = join_paths(meson.source_root(), 'gettext')
 po_dir = join_paths(meson.source_root(), 'po')
 
 top_inc = include_directories('.')
+src_inc = include_directories('src')
 
 subdir('data')
 subdir('src')

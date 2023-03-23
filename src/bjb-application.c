@@ -24,7 +24,6 @@
 #include "version.h"
 
 #include <glib/gi18n.h>
-#include <libbiji/libbiji.h>
 
 #include "bjb-application.h"
 #include "bjb-settings.h"

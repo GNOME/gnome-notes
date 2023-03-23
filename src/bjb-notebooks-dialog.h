@@ -22,7 +22,7 @@
 
 #include <gtk/gtk.h>
 
-#include "libbiji.h"
+#include "items/bjb-note.h"
 
 G_BEGIN_DECLS
 

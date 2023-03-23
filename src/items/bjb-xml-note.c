@@ -30,7 +30,7 @@
 
 #include <gtk/gtk.h>
 
-#include "libbiji.h"
+#include "deserializer/biji-lazy-deserializer.h"
 #include "bjb-tag.h"
 #include "bjb-xml.h"
 #include "bjb-xml-note.h"

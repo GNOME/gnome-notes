@@ -25,7 +25,6 @@
 
 #include <gtk/gtk.h>
 #include <handy.h>
-#include <libbiji/libbiji.h>
 
 #define BJB_TYPE_WINDOW (bjb_window_get_type ())
 

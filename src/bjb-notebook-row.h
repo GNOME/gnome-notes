@@ -28,7 +28,6 @@
 #include <gtk/gtk.h>
 
 #include "items/bjb-tag.h"
-#include "libbiji.h"
 
 G_BEGIN_DECLS
 

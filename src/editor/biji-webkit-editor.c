@@ -18,8 +18,8 @@
 #include <libxml/xmlwriter.h>
 
 #include "config.h"
-#include "../../bjb-utils.h"
-#include "../biji-string.h"
+#include "bjb-utils.h"
+#include "biji-string.h"
 #include "biji-webkit-editor.h"
 #include "biji-editor-selection.h"
 #include <jsc/jsc.h>

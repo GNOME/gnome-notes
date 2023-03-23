@@ -29,8 +29,8 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <libbiji.h>
 
+#include "biji-string.h"
 #include "bjb-plain-note.h"
 
 struct _BjbPlainNote

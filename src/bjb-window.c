@@ -31,8 +31,6 @@
 #include <glib/gprintf.h>
 #include <stdlib.h>
 
-#include <libbiji/libbiji.h>
-
 #include "items/bjb-plain-note.h"
 #include "providers/bjb-provider.h"
 #include "bjb-application.h"

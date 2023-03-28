@@ -40,9 +40,6 @@
 /* Strlen for timestamp */
 #include <string.h>
 
-/* Time */
-#include <gdk/gdkx.h>
-
 #include "bijiben-shell-search-provider-generated.h"
 
 #define SEARCH_PROVIDER_INACTIVITY_TIMEOUT 12000 /* milliseconds */
@@ -467,7 +464,7 @@ main (int   argc,
   GApplication *app;
   gint res;
 
-  gtk_init (&argc, &argv);
+  gtk_init ();
 
   app = bijiben_shell_search_provider_app_new ();
   res = g_application_run (app, argc, argv);

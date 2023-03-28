@@ -18,7 +18,7 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <handy.h>
+#include <adwaita.h>
 
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
@@ -142,7 +142,7 @@ bjb_note_view_set_detached (BjbNoteView *self,
   if (detached)
   {
     gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->status_page);
-    hdy_status_page_set_title (HDY_STATUS_PAGE (self->status_page),
+    adw_status_page_set_title (ADW_STATUS_PAGE (self->status_page),
                                _("This note is being viewed in another window"));
   }
   else
@@ -291,9 +291,10 @@ bjb_note_view_set_note (BjbNoteView *self,
   if (note)
     gtk_widget_set_visible (self->editor_toolbar, !bjb_item_is_trashed (BJB_ITEM (note)));
 
-  g_set_object (&self->note, note);
   if (self->view)
-    gtk_widget_destroy (self->view);
+    gtk_box_remove (GTK_BOX (self->editor_box), self->view);
+
+  g_set_object (&self->note, note);
   g_clear_object (&self->view);
 
   if (note)
@@ -302,8 +303,8 @@ bjb_note_view_set_note (BjbNoteView *self,
 
       /* Text Editor (WebKitMainView) */
       self->view = (GtkWidget *)biji_webkit_editor_new (note);
-      gtk_widget_show (self->view);
-      gtk_box_pack_start (GTK_BOX (self->editor_box), GTK_WIDGET(self->view), TRUE, TRUE, 0);
+      gtk_widget_set_vexpand (self->view, TRUE);
+      gtk_box_prepend (GTK_BOX (self->editor_box), self->view);
 
       self->modified_id = g_signal_connect_object (self->note, "notify::modified",
                                                    G_CALLBACK (note_view_note_modified_cb),
@@ -333,7 +334,7 @@ bjb_note_view_set_note (BjbNoteView *self,
   else
     {
       gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->status_page);
-      hdy_status_page_set_title (HDY_STATUS_PAGE (self->status_page),
+      adw_status_page_set_title (ADW_STATUS_PAGE (self->status_page),
                                  _("No note selected"));
     }
 }

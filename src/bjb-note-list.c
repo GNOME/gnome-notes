@@ -7,9 +7,8 @@
 #define _GNU_SOURCE
 #include <string.h>
 #include <glib/gi18n.h>
-#include <handy.h>
+#include <adwaita.h>
 
-#include "contrib/gtk.h"
 #include "items/bjb-tag.h"
 #include "bjb-list-view-row.h"
 #include "bjb-note-list.h"
@@ -22,7 +21,7 @@ struct _BjbNoteList
   GtkStack           *main_stack;
   GtkBox             *notes_box;
   GtkListBox         *notes_list_box;
-  HdyStatusPage      *status_page;
+  AdwStatusPage      *status_page;
 
   GListModel         *notes_list;
   GtkFilterListModel *filtered_notes;
@@ -110,15 +109,15 @@ note_list_items_changed_cb (BjbNoteList *self)
 
   if (n_items == 0)
     {
-      hdy_status_page_set_icon_name (self->status_page, "document-new-symbolic");
-      hdy_status_page_set_title (self->status_page, _("Add Notes"));
-      hdy_status_page_set_description (self->status_page, _("Use the + button to add a note"));
+      adw_status_page_set_icon_name (self->status_page, "document-new-symbolic");
+      adw_status_page_set_title (self->status_page, _("Add Notes"));
+      adw_status_page_set_description (self->status_page, _("Use the + button to add a note"));
     }
   else if (self->search_term)
     {
-      hdy_status_page_set_icon_name (self->status_page, "system-search-symbolic");
-      hdy_status_page_set_title (self->status_page, _("No Results"));
-      hdy_status_page_set_description (self->status_page, _("Try a different search"));
+      adw_status_page_set_icon_name (self->status_page, "system-search-symbolic");
+      adw_status_page_set_title (self->status_page, _("No Results"));
+      adw_status_page_set_description (self->status_page, _("Try a different search"));
     }
 }
 
@@ -129,7 +128,7 @@ note_list_search_changed_cb (BjbNoteList *self)
 
   g_assert (BJB_IS_NOTE_LIST (self));
 
-  search_str = gtk_entry_get_text (GTK_ENTRY (self->search_entry));
+  search_str = gtk_editable_get_text (GTK_EDITABLE (self->search_entry));
   g_free (self->search_term);
   self->search_term = g_strdup (search_str);
 
@@ -211,8 +210,9 @@ bjb_note_list_set_model (BjbNoteList *self,
 
   self->notes_list = g_object_ref (model);
 
-  self->filter = gtk_custom_filter_new (note_list_filter_notes, self, NULL);
-  self->filtered_notes = gtk_filter_list_model_new (self->notes_list, self->filter);
+  self->filter = (GtkFilter *)gtk_custom_filter_new (note_list_filter_notes, self, NULL);
+  self->filtered_notes = gtk_filter_list_model_new (g_object_ref (self->notes_list),
+                                                    g_object_ref (self->filter));
   g_signal_connect_object (self->filtered_notes, "items-changed",
                            G_CALLBACK (note_list_items_changed_cb),
                            self, G_CONNECT_SWAPPED);

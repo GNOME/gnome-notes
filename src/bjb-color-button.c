@@ -140,9 +140,9 @@ bjb_color_button_init (BjbColorButton *self)
   self->title = _("Note Color");
 
   self->color_button = gtk_color_button_new ();
-  gtk_container_add (GTK_CONTAINER (self), self->color_button);
+  gtk_box_append (GTK_BOX (self), self->color_button);
 
-  g_signal_connect_object (self->color_button, "clicked",
+  g_signal_connect_object (self->color_button, "color-set",
                            G_CALLBACK (bjb_color_button_clicked),
                            self, G_CONNECT_SWAPPED);
 }

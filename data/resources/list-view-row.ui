@@ -1,46 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="BjbListViewRow" parent="GtkListBoxRow">
-    <child>
+    <property name="child">
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="orientation">horizontal</property>
-        <property name="border-width">12</property>
         <property name="spacing">12</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
 
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="orientation">vertical</property>
             <property name="valign">center</property>
             <property name="spacing">6</property>
 
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="orientation">horizontal</property>
                 <property name="spacing">12</property>
 
                 <child>
                   <object class="GtkLabel" id="title">
-                    <property name="visible">True</property>
-                    <property name="justify">left</property>
                     <property name="halign">start</property>
-                    <property name="hexpand">True</property>
+                    <property name="hexpand">1</property>
                     <property name="valign">center</property>
                     <property name="ellipsize">end</property>
                     <property name="xalign">0.0</property>
                     <property name="max-width-chars">36</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                  </packing>
                 </child>
 
                 <child>
                   <object class="GtkLabel" id="updated_time">
-                    <property name="visible">True</property>
                     <property name="justify">right</property>
                     <property name="halign">end</property>
                     <property name="valign">start</property>
@@ -51,24 +42,13 @@
                       <class name="small-font"/>
                     </style>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                  </packing>
                 </child>
 
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-              </packing>
             </child>
-
             <child>
               <object class="GtkLabel" id="content">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="wrap">True</property>
+                <property name="wrap">1</property>
                 <property name="wrap_mode">word-char</property>
                 <property name="ellipsize">end</property>
                 <property name="lines">3</property>
@@ -79,14 +59,11 @@
                   <class name="small-font"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-              </packing>
             </child>
+
           </object>
         </child>
-      </object>
-    </child>
+      </object> <!-- ./GtkBox -->
+    </property>
   </template>
 </interface>

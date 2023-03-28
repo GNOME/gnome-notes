@@ -35,7 +35,7 @@
 
 struct _BjbApplication
 {
-  GtkApplication  parent_instance;
+  AdwApplication  parent_instance;
 
   BjbSettings    *settings;
 
@@ -47,7 +47,7 @@ struct _BjbApplication
   GQueue          files_to_open; // paths
 };
 
-G_DEFINE_TYPE (BjbApplication, bjb_application, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE (BjbApplication, bjb_application, ADW_TYPE_APPLICATION)
 
 static void     bijiben_new_window_internal (BjbApplication *self,
                                              BjbNote        *note);
@@ -229,20 +229,6 @@ text_size_mapping_set (const GValue       *value,
   return g_value_dup_variant (value);
 }
 
-static void
-bjb_apply_style (BjbApplication *self)
-{
-  g_autoptr(GtkCssProvider) css_provider = NULL;
-
-  css_provider = gtk_css_provider_new ();
-  gtk_css_provider_load_from_resource (css_provider,
-                                       "/org/gnome/Notes/style.css");
-
-  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
-                                             GTK_STYLE_PROVIDER (css_provider),
-                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-}
-
 static gboolean
 transform_to (GBinding     *binding,
               const GValue *from_value,
@@ -302,13 +288,6 @@ bijiben_startup (GApplication *application)
   self->settings = bjb_settings_new ();
 
   gtk_window_set_default_icon_name ("org.gnome.Notes");
-
-  /* Initialize libhandy. */
-  hdy_init ();
-  hdy_style_manager_set_color_scheme (hdy_style_manager_get_default (),
-                                      HDY_COLOR_SCHEME_PREFER_LIGHT);
-
-  bjb_apply_style (self);
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.detach-window", vaccels_detach);
@@ -396,15 +375,10 @@ void
 bjb_app_help (BjbApplication *self)
 {
   GtkApplication *app = GTK_APPLICATION (self);
-  g_autoptr(GError) error = NULL;
 
-  gtk_show_uri_on_window (gtk_application_get_active_window (app),
-                          "help:bijiben",
-                          GDK_CURRENT_TIME,
-                          &error);
-
-  if (error)
-    g_warning ("%s", error->message);
+  gtk_show_uri (gtk_application_get_active_window (app),
+                "help:bijiben",
+                GDK_CURRENT_TIME);
 }
 
 

@@ -47,7 +47,7 @@
 
 struct _BjbWindow
 {
-  HdyApplicationWindow  parent_instance;
+  AdwApplicationWindow  parent_instance;
 
   BjbSettings          *settings;
 
@@ -60,8 +60,7 @@ struct _BjbWindow
   GdkRectangle          window_geometry;
   gboolean              is_maximized;
 
-  HdyLeaflet           *main_leaflet;
-  HdyHeaderGroup       *header_group;
+  AdwLeaflet           *main_leaflet;
   GtkWidget            *back_button;
   GtkWidget            *filter_label;
   GtkWidget            *filter_menu_button;
@@ -81,7 +80,7 @@ struct _BjbWindow
   gulong                remove_item_id;
 };
 
-G_DEFINE_TYPE (BjbWindow, bjb_window, HDY_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE (BjbWindow, bjb_window, ADW_TYPE_APPLICATION_WINDOW)
 
 static void
 window_item_removed_cb (BjbWindow   *self,
@@ -89,7 +88,7 @@ window_item_removed_cb (BjbWindow   *self,
                         BjbNote     *item)
 {
   g_assert (BJB_IS_WINDOW (self));
-  g_assert (BJB_IS_ITEM (item));
+  g_assert (!item || BJB_IS_ITEM (item));
 
   if (item != self->note)
     return;
@@ -109,8 +108,8 @@ on_note_renamed (BjbWindow *self)
   str = bjb_item_get_title (BJB_ITEM (self->note));
   if (!str || !*str)
     str = _("Untitled");
-  gtk_entry_set_text (GTK_ENTRY (self->title_entry), str);
-  hdy_header_bar_set_custom_title (HDY_HEADER_BAR (self->note_headerbar),
+  gtk_editable_set_text (GTK_EDITABLE (self->title_entry), str);
+  adw_header_bar_set_title_widget (ADW_HEADER_BAR (self->note_headerbar),
                                    self->title_entry);
   gtk_widget_show (self->title_entry);
 }
@@ -118,14 +117,14 @@ on_note_renamed (BjbWindow *self)
 static void
 on_back_button_clicked (BjbWindow *self)
 {
-  hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_BACK);
+  adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_BACK);
 }
 
 static void
-on_title_changed (BjbWindow *self,
-                  GtkEntry      *title)
+on_title_changed (BjbWindow   *self,
+                  GtkEditable *editable)
 {
-  const char *str = gtk_entry_get_text (title);
+  const char *str = gtk_editable_get_text (editable);
 
   bjb_item_set_title (BJB_ITEM (self->note), str);
 }
@@ -154,7 +153,7 @@ window_selected_note_changed_cb (BjbWindow *self)
 
   if (to_open && BJB_IS_NOTE (to_open))
     {
-      hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
+      adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_FORWARD);
       bjb_window_set_note (self, to_open);
     }
 }
@@ -170,14 +169,14 @@ providers_list_row_activated_cb (BjbWindow     *self,
   g_assert (BJB_IS_WINDOW (self));
   g_assert (GTK_IS_LIST_BOX_ROW (row));
 
-  child = gtk_bin_get_child (GTK_BIN (row));
+  child = gtk_list_box_row_get_child (row);
   provider = g_object_get_data (G_OBJECT (child), "provider");
   g_assert (BJB_IS_PROVIDER (provider));
 
   note = bjb_plain_note_new_from_data (NULL, NULL, NULL);
   g_object_set_data (G_OBJECT (note), "provider", provider);
 
-  hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
+  adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_FORWARD);
   bjb_window_set_note (self, BJB_NOTE (note));
 
   gtk_popover_popdown (GTK_POPOVER (self->providers_popover));
@@ -198,57 +197,6 @@ bjb_window_finalize (GObject *object)
   G_OBJECT_CLASS (bjb_window_parent_class)->finalize (object);
 }
 
-static gboolean
-on_key_pressed_cb (BjbWindow *self, GdkEvent *event)
-{
-  GApplication *app = g_application_get_default ();
-  GdkModifierType modifiers = gtk_accelerator_get_default_mod_mask ();
-
-  switch (event->key.keyval)
-  {
-    case GDK_KEY_F1:
-      if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
-        {
-          bjb_app_help (BJB_APPLICATION (app));
-          return TRUE;
-        }
-      break;
-
-    case GDK_KEY_F10:
-      if ((event->key.state & modifiers) != GDK_CONTROL_MASK)
-        {
-          /* FIXME: Port this to BjbWindow. */
-          /* bjb_main_toolbar_open_menu (self->main_toolbar); */
-          return TRUE;
-        }
-      break;
-
-    case GDK_KEY_F2:
-    case GDK_KEY_F3:
-    case GDK_KEY_F4:
-    case GDK_KEY_F5:
-    case GDK_KEY_F6:
-    case GDK_KEY_F7:
-    case GDK_KEY_F8:
-    case GDK_KEY_F9:
-    case GDK_KEY_F11:
-      return TRUE;
-
-    case GDK_KEY_q:
-      if ((event->key.state & modifiers) == GDK_CONTROL_MASK)
-        {
-          g_application_quit (app);
-          return TRUE;
-        }
-      break;
-
-    default:
-      ;
-    }
-
-  return FALSE;
-}
-
 static void
 on_detach_window_cb (GSimpleAction *action,
                      GVariant      *parameter,
@@ -265,7 +213,7 @@ on_detach_window_cb (GSimpleAction *action,
 
   /* Width and height of the detached window. */
   width = gtk_widget_get_allocated_width (GTK_WIDGET (self->note_view));
-  gtk_window_get_size (GTK_WINDOW (self), NULL, &height);
+  height = gtk_widget_get_allocated_height (GTK_WIDGET (self));
 
   bjb_note_view_set_detached (BJB_NOTE_VIEW (self->note_view), TRUE);
 
@@ -326,8 +274,9 @@ on_view_notebooks_cb (GSimpleAction *action,
   bjb_notebooks_dialog_set_item (BJB_NOTEBOOKS_DIALOG (notebooks_dialog),
                                  BJB_NOTE (self->note));
 
-  gtk_dialog_run (GTK_DIALOG (notebooks_dialog));
-  gtk_widget_destroy (notebooks_dialog);
+  g_signal_connect_swapped (notebooks_dialog, "response",
+                            G_CALLBACK (gtk_window_destroy), notebooks_dialog);
+  gtk_window_present (GTK_WINDOW (notebooks_dialog));
 }
 
 static void
@@ -435,26 +384,6 @@ bjb_window_destroy (gpointer a, BjbWindow * self)
   bjb_window_save_geometry (self);
 }
 
-static gboolean
-bjb_window_configure_event (GtkWidget         *widget,
-                            GdkEventConfigure *event)
-{
-  BjbWindow *self;
-
-  self = BJB_WINDOW (widget);
-
-  self->is_maximized = gtk_window_is_maximized (GTK_WINDOW (self));
-  if (!self->is_maximized)
-    {
-      GdkRectangle *geometry = &self->window_geometry;
-      gtk_window_get_size (GTK_WINDOW (self), &geometry->width, &geometry->height);
-      gtk_window_get_position (GTK_WINDOW (self), &geometry->x, &geometry->y);
-    }
-
-  return GTK_WIDGET_CLASS (bjb_window_parent_class)->configure_event (widget,
-                                                                           event);
-}
-
 static GActionEntry win_entries[] = {
   { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
   { "paste", on_paste_cb, NULL, NULL, NULL },
@@ -486,14 +415,13 @@ provider_row_new (gpointer item,
   icon = bjb_provider_get_icon (item, NULL);
   if (icon)
     {
-      child = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_DND);
+      child = gtk_image_new_from_gicon (icon);
       gtk_grid_attach (GTK_GRID (grid), child, 0, 0, 1, 2);
     }
 
   child = gtk_label_new (bjb_provider_get_name (item));
   gtk_widget_set_halign (child, GTK_ALIGN_START);
   gtk_grid_attach (GTK_GRID (grid), child, 1, 0, 1, 1);
-  gtk_widget_show_all (grid);
 
   child = gtk_label_new (bjb_provider_get_location_name (item));
   gtk_widget_set_halign (child, GTK_ALIGN_START);
@@ -501,7 +429,6 @@ provider_row_new (gpointer item,
   gtk_style_context_add_class (context, "dim-label");
 
   gtk_grid_attach (GTK_GRID (grid), child, 1, 1, 1, 1);
-  gtk_widget_show_all (grid);
 
   return grid;
 }
@@ -525,7 +452,6 @@ bjb_window_constructed (GObject *obj)
   providers = bjb_manager_get_providers (bjb_manager_get_default ());
   gtk_list_box_bind_model (GTK_LIST_BOX (self->providers_list_box), providers,
                            provider_row_new, NULL, NULL);
-  gtk_window_set_position (GTK_WINDOW (self), GTK_WIN_POS_CENTER);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
   bjb_window_load_geometry (self);
@@ -534,8 +460,6 @@ bjb_window_constructed (GObject *obj)
 
   if (self->is_maximized)
     gtk_window_maximize (GTK_WINDOW (self));
-  else if (geometry.x >= 0)
-    gtk_window_move (GTK_WINDOW (self), geometry.x, geometry.y);
 
   gtk_widget_set_sensitive (self->notebooks_box, FALSE);
 
@@ -543,13 +467,6 @@ bjb_window_constructed (GObject *obj)
   g_signal_connect (GTK_WIDGET (self),
                     "destroy",
                     G_CALLBACK (bjb_window_destroy),
-                    self);
-
-  /* Keys */
-
-  g_signal_connect (GTK_WIDGET (self),
-                    "key-press-event",
-                    G_CALLBACK(on_key_pressed_cb),
                     self);
 
   /* If a note is requested at creation, show it
@@ -584,12 +501,9 @@ bjb_window_class_init (BjbWindowClass *klass)
   object_class->constructed = bjb_window_constructed;
   object_class->finalize = bjb_window_finalize;
 
-  widget_class->configure_event = bjb_window_configure_event;
-
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_leaflet);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, header_group);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, back_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, filter_label);
@@ -645,7 +559,7 @@ bjb_window_set_is_main (BjbWindow *self,
     }
 
   if (!is_main)
-    hdy_leaflet_navigate (self->main_leaflet, HDY_NAVIGATION_DIRECTION_FORWARD);
+    adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_FORWARD);
   gtk_widget_set_visible (self->sidebar_box, is_main);
   gtk_widget_set_visible (self->new_window_item, is_main);
   gtk_widget_set_visible (self->back_button, is_main);

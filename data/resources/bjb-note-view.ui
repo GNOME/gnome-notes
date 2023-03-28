@@ -4,15 +4,13 @@
 
     <child>
       <object class="GtkOverlay">
-        <property name="visible">True</property>
+        <property name="hexpand">1</property>
 
-        <child>
+        <property name="child">
           <object class="GtkStack" id="main_stack">
-            <property name="visible">True</property>
 
             <child>
-              <object class="HdyStatusPage" id="status_page">
-                <property name="visible">True</property>
+              <object class="AdwStatusPage" id="status_page">
                 <property name="icon-name">org.gnome.Notes-symbolic</property>
                 <property name="title" translatable="yes">No note selected</property>
               </object>
@@ -20,23 +18,19 @@
 
             <child>
               <object class="GtkBox" id="editor_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="BjbEditorToolbar" id="editor_toolbar">
-                    <property name="visible">False</property>
+                    <property name="visible">0</property>
                     <signal name="format-applied" handler="note_view_format_applied_cb" swapped="yes"/>
                     <signal name="copy-clicked" handler="note_view_copy_clicked_cb" swapped="yes"/>
                   </object>
-                  <packing>
-                    <property name="pack-type">end</property>
-                  </packing>
                 </child>
-              </object> <!-- ./GtkBox editor_box -->
+              </object>
             </child>
 
           </object> <!-- ./GtkStack main_stack -->
-        </child>
+        </property>
 
       </object>  <!-- ./GtkOlverlay -->
     </child>

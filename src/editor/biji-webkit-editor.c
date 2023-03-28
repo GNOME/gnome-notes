@@ -18,6 +18,7 @@
 #include <libxml/xmlwriter.h>
 
 #include "config.h"
+
 #include "bjb-utils.h"
 #include "biji-string.h"
 #include "biji-webkit-editor.h"
@@ -315,7 +316,6 @@ on_navigation_request (WebKitWebView           *web_view,
   WebKitNavigationAction *action;
   const char *requested_uri;
   GtkWidget *toplevel;
-  GError *error = NULL;
 
   if (decision_type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
     return FALSE;
@@ -329,16 +329,9 @@ on_navigation_request (WebKitWebView           *web_view,
   toplevel = gtk_widget_get_ancestor (GTK_WIDGET (web_view), GTK_TYPE_WINDOW);
   g_return_val_if_fail (GTK_IS_WINDOW (toplevel), FALSE);
 
-  gtk_show_uri_on_window (GTK_WINDOW (toplevel),
-                          requested_uri,
-                          GDK_CURRENT_TIME,
-                          &error);
-
-  if (error)
-  {
-    g_warning ("%s", error->message);
-    g_error_free (error);
-  }
+  gtk_show_uri (GTK_WINDOW (toplevel),
+                requested_uri,
+                GDK_CURRENT_TIME);
 
   webkit_policy_decision_ignore (decision);
   return TRUE;

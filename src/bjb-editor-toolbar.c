@@ -31,8 +31,6 @@ struct _BjbEditorToolbar
 {
   GtkBox         parent_instance;
 
-  GtkAccelGroup *accel;
-
   GtkWidget     *bold_button;
   GtkWidget     *italic_button;
   GtkWidget     *strike_button;
@@ -93,67 +91,11 @@ on_link_clicked (GtkButton        *button,
 }
 
 static void
-bjb_editor_toolbar_map (GtkWidget *widget)
-{
-  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (widget);
-
-  GTK_WIDGET_CLASS (bjb_editor_toolbar_parent_class)->map (widget);
-
-  if (self->window)
-    return;
-
-  self->window = gtk_widget_get_toplevel (GTK_WIDGET (self));
-  g_object_ref (self->window);
-
-  gtk_window_add_accel_group (GTK_WINDOW (self->window), self->accel);
-}
-
-static void
-bjb_editor_toolbar_constructed (GObject *object)
-{
-  BjbEditorToolbar *self;
-
-  G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->constructed (object);
-
-  self = BJB_EDITOR_TOOLBAR (object);
-
-  gtk_widget_add_accelerator (self->bold_button, "clicked", self->accel,
-                              GDK_KEY_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  gtk_widget_add_accelerator (self->italic_button, "clicked", self->accel,
-                              GDK_KEY_i, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  gtk_widget_add_accelerator (self->strike_button, "clicked", self->accel,
-                              GDK_KEY_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-}
-
-static void
-bjb_editor_toolbar_finalize (GObject *object)
-{
-  BjbEditorToolbar *self = BJB_EDITOR_TOOLBAR (object);
-
-  if (self->window)
-    gtk_window_remove_accel_group (GTK_WINDOW (self->window), self->accel);
-
-  g_object_unref (self->accel);
-  g_clear_object (&self->window);
-
-  G_OBJECT_CLASS (bjb_editor_toolbar_parent_class)->finalize (object);
-}
-
-static void
 bjb_editor_toolbar_class_init (BjbEditorToolbarClass *klass)
 {
-  GObjectClass *object_class;
   GtkWidgetClass *widget_class;
 
-  object_class = G_OBJECT_CLASS (klass);
   widget_class = GTK_WIDGET_CLASS (klass);
-
-  object_class->constructed = bjb_editor_toolbar_constructed;
-  object_class->finalize = bjb_editor_toolbar_finalize;
-
-  widget_class->map = bjb_editor_toolbar_map;
 
   signals[FORMAT_APPLIED] =
     g_signal_new ("format-applied",
@@ -187,8 +129,6 @@ static void
 bjb_editor_toolbar_init (BjbEditorToolbar *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  self->accel = gtk_accel_group_new ();
 }
 
 void

@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 #include "bjb-settings.h"
 
@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 #define BJB_TYPE_APPLICATION (bjb_application_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbApplication, bjb_application, BJB, APPLICATION, GtkApplication)
+G_DECLARE_FINAL_TYPE (BjbApplication, bjb_application, BJB, APPLICATION, AdwApplication)
 
 BjbApplication *bjb_application_new (void);
 

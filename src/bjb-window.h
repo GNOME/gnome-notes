@@ -24,11 +24,11 @@
 #pragma once
 
 #include <gtk/gtk.h>
-#include <handy.h>
+#include <adwaita.h>
 
 #define BJB_TYPE_WINDOW (bjb_window_get_type ())
 
-G_DECLARE_FINAL_TYPE (BjbWindow, bjb_window, BJB, WINDOW, HdyApplicationWindow)
+G_DECLARE_FINAL_TYPE (BjbWindow, bjb_window, BJB, WINDOW, AdwApplicationWindow)
 
 GtkWidget       *bjb_window_new            (void);
 gboolean         bjb_window_get_is_main    (BjbWindow     *self);

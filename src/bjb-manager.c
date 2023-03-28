@@ -34,7 +34,6 @@
 #include <libedataserver/libedataserver.h>
 #include <libecal/libecal.h>
 
-#include "contrib/gtk.h"
 #include "items/bjb-plain-note.h"
 #include "providers/bjb-provider.h"
 #include "providers/bjb-local-provider.h"
@@ -301,7 +300,7 @@ bjb_manager_init (BjbManager *self)
                            self, G_CONNECT_SWAPPED);
 
   self->list_of_notes = g_list_store_new (G_TYPE_LIST_MODEL);
-  self->notes = gtk_flatten_list_model_new (BJB_TYPE_ITEM, G_LIST_MODEL (self->list_of_notes));
+  self->notes = gtk_flatten_list_model_new (g_object_ref (G_LIST_MODEL (self->list_of_notes)));
 }
 
 BjbManager *

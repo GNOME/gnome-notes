@@ -99,7 +99,7 @@ on_row_activated_cb    (GtkListBox    *list_box,
   const gchar *widget_name;
   BjbImportDialog *self = user_data;
 
-  widget_name = gtk_widget_get_name (gtk_bin_get_child (GTK_BIN (row)));
+  widget_name = gtk_widget_get_name (gtk_list_box_row_get_child (row));
 
   if (g_strcmp0 (widget_name, "custom") == 0)
     toggle_selection (self, self->custom_stack, IMPORT_DIALOG_ITEM_CUSTOM);
@@ -113,8 +113,13 @@ static void
 on_file_set_cb (GtkWidget       *chooser,
                 BjbImportDialog *self)
 {
+  g_autoptr(GFile) file = NULL;
+
+  g_assert (GTK_IS_FILE_CHOOSER (chooser));
+
+  file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
   g_clear_pointer (&self->custom_location, g_free);
-  self->custom_location = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+  self->custom_location = g_file_get_path (file);
 
   toggle_selection (self, self->custom_stack, IMPORT_DIALOG_ITEM_CUSTOM);
 

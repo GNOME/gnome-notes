@@ -55,7 +55,7 @@ on_notebook_entry_changed_cb (BjbNotebooksDialog *self)
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
   g_assert (self->item);
 
-  tag = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
+  tag = gtk_editable_get_text (GTK_EDITABLE (self->notebook_entry));
 
   if (!tag || !*tag)
     {
@@ -91,7 +91,7 @@ on_add_notebook_button_clicked_cb (BjbNotebooksDialog *self)
 {
   const char *tag;
 
-  tag = gtk_entry_get_text (GTK_ENTRY (self->notebook_entry));
+  tag = gtk_editable_get_text (GTK_EDITABLE (self->notebook_entry));
   bjb_note_add_tag (self->item, tag);
 }
 
@@ -186,24 +186,31 @@ bjb_notebooks_dialog_new (GtkWindow *parent_window)
 static void
 notebooks_note_tag_changed_cb (BjbNotebooksDialog *self)
 {
-  g_autoptr(GList) rows = NULL;
+  BjbNotebookRow *row;
   GListModel *tags;
+  int index;
 
   g_assert (BJB_IS_NOTEBOOKS_DIALOG (self));
 
-  rows = gtk_container_get_children (GTK_CONTAINER (self->notebooks_list));
   tags = bjb_note_get_tags (self->item);
 
-  for (GList *row = rows; row; row = row->next)
+  index = 0;
+  do
     {
-      BjbItem *notebook;
+      row = (BjbNotebookRow *)gtk_list_box_get_row_at_index (GTK_LIST_BOX (self->notebooks_list), index);
 
-      notebook = bjb_notebook_row_get_item (row->data);
-      if (g_list_store_find (G_LIST_STORE (tags), notebook, NULL))
-        bjb_notebook_row_set_active (row->data, TRUE);
-      else
-        bjb_notebook_row_set_active (row->data, FALSE);
-    }
+      if (row)
+        {
+          BjbItem *notebook;
+
+          notebook = bjb_notebook_row_get_item (row);
+          if (g_list_store_find (G_LIST_STORE (tags), notebook, NULL))
+            bjb_notebook_row_set_active (row, TRUE);
+          else
+            bjb_notebook_row_set_active (row, FALSE);
+        }
+      index++;
+    } while (row);
 }
 
 void

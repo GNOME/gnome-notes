@@ -270,6 +270,7 @@ biji_webkit_editor_finalize (GObject *object)
 {
   BijiWebkitEditor *self = BIJI_WEBKIT_EDITOR (object);
 
+  g_clear_object (&self->note);
   g_free (self->selected_text);
 
   if (self->note != NULL) {
@@ -550,7 +551,7 @@ biji_webkit_editor_set_property (GObject  *object,
   switch (property_id)
   {
     case PROP_NOTE:
-      self->note = g_value_get_object (value);
+      self->note = g_value_dup_object (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

@@ -85,7 +85,6 @@ biji_webkit_editor_get_web_context (void)
     web_context = webkit_web_context_get_default ();
     webkit_web_context_set_cache_model (web_context, WEBKIT_CACHE_MODEL_DOCUMENT_VIEWER);
     webkit_web_context_set_spell_checking_enabled (web_context, TRUE);
-    webkit_web_context_set_sandbox_enabled (web_context, TRUE);
   }
 
   return web_context;
@@ -100,7 +99,6 @@ biji_webkit_editor_get_web_settings (void)
   {
     settings = webkit_settings_new_with_settings (
       "enable-page-cache", FALSE,
-      "enable-plugins", FALSE,
       "enable-tabs-to-links", FALSE,
       "allow-file-access-from-file-urls", TRUE,
       NULL);
@@ -218,7 +216,7 @@ set_editor_color (WebKitWebView *w, GdkRGBA *col)
   webkit_web_view_set_background_color (w, col);
   script = g_strdup_printf ("document.getElementById('editable').style.color = '%s';",
                             BJB_UTILS_COLOR_INTENSITY (col) < 0.5 ? "white" : "black");
-  webkit_web_view_run_javascript (w, script, NULL, NULL, NULL);
+  webkit_web_view_evaluate_javascript (w, script, -1, NULL, NULL, NULL, NULL, NULL);
 }
 
 void
@@ -427,14 +425,12 @@ biji_webkit_editor_handle_selection_change (BijiWebkitEditor *self,
 
 static void
 on_script_message (WebKitUserContentManager *user_content,
-                   WebKitJavascriptResult *message,
+                   JSCValue *js_value,
                    BijiWebkitEditor *self)
 {
-  JSCValue             *js_value        = NULL;
   g_autoptr (JSCValue)  js_message_name = NULL;
   g_autofree char *message_name = NULL;
 
-  js_value = webkit_javascript_result_get_js_value (message);
   g_assert (jsc_value_is_object (js_value));
 
   js_message_name = jsc_value_object_get_property (js_value, "messageName");
@@ -492,7 +488,7 @@ biji_webkit_editor_constructed (GObject *obj)
   G_OBJECT_CLASS (biji_webkit_editor_parent_class)->constructed (obj);
 
   user_content = webkit_web_view_get_user_content_manager (view);
-  webkit_user_content_manager_register_script_message_handler (user_content, "bijiben");
+  webkit_user_content_manager_register_script_message_handler (user_content, "bijiben", NULL);
   g_signal_connect (user_content, "script-message-received::bijiben",
                     G_CALLBACK (on_script_message), self);
 

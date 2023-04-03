@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-01-28 17:37+0300\n"
+"POT-Creation-Date: 2023-03-23 14:14+0000\n"
+"PO-Revision-Date: 2023-04-01 14:59+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <kde-i18n-doc@kde.org>\n"
 "Language: ru\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:428 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Заметки"
 
@@ -156,8 +156,8 @@ msgid ""
 msgstr ""
 "Доступны три формата текста: маленький, средний (по умолчанию) и большой."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:299
+#: data/resources/bjb-window.ui:387 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Записные книжки"
 
@@ -169,112 +169,118 @@ msgstr "Создать записную книжку…"
 msgid "Add"
 msgstr "Добавить"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:17 src/bjb-note-view.c:337
 msgid "No note selected"
 msgstr "Заметка не выбрана"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:48 data/resources/bjb-window.ui:278
+#: src/bjb-window.c:354
 msgid "All Notes"
 msgstr "Все заметки"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:64
 msgid "Open menu"
 msgstr "Открыть меню"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:134
 msgid "More options"
 msgstr "Дополнительные параметры"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:174 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Импортировать заметки"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:191
 msgid "Text Sizes"
 msgstr "Размер текста"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:200
 msgid "_Large"
 msgstr "_Большой"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:209
 msgid "_Medium"
 msgstr "_Средний"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:218
 msgid "_Small"
 msgstr "_Маленький"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:235 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Параметры"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:243
 msgid "Keyboard Shortcuts"
 msgstr "Комбинации клавиш"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:251
 msgid "Help"
 msgstr "Справка"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:259
 msgid "About Notes"
 msgstr "О приложении"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:325 src/bjb-window.c:364
 msgid "Trash"
 msgstr "Корзина"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:347
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:363
 msgid "Undo"
 msgstr "Отменить"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:371
 msgid "Redo"
 msgstr "Повторить"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:395
 msgid "Email this Note"
 msgstr "Отправить заметку по эл. почте"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:403 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Удалить в корзину"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:461
+msgid "Select Note Location"
+msgstr "Выбрать расположение заметки"
+
+#: data/resources/editor-toolbar.ui:65
 msgid "Bold"
 msgstr "Полужирный"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:81
 msgid "Italic"
 msgstr "Курсив"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:97
 msgid "Strike"
 msgstr "Перечёркнутый"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:125
 msgid "Bullets"
 msgstr "Маркированный список"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:141
 msgid "List"
 msgstr "Нумерованный список"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:169
 msgid "Indent"
 msgstr "Отступ"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:185
 msgid "Outdent"
 msgstr "Внешн. отступ"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:224
 msgid "Copy selection to a new note"
 msgstr "Копировать выделение в новую заметку"
 
@@ -380,7 +386,7 @@ msgstr "Переместить заметку в корзину"
 
 #: data/resources/import-dialog.ui:12
 msgid "_Cancel"
-msgstr "_Отмена"
+msgstr "_Отменить"
 
 #: data/resources/import-dialog.ui:22
 msgid "_Import"
@@ -442,47 +448,39 @@ msgstr "Цвет по умолчанию"
 msgid "Note Appearance"
 msgstr "Внешний вид заметок"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Выберите место хранения по умолчанию:"
-
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Первичная книга"
-
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: src/bijiben-shell-search-provider.c:228 src/bjb-window.c:111
 msgid "Untitled"
 msgstr "Безымянная"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "Заметки GNOME"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Показывать подробный журнал"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Показать версию приложения"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Создать новую заметку"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Взять заметки и экспортировать их куда-либо."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:429
 msgid "Simple notebook for GNOME"
 msgstr "Простая записная книжка для GNOME"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:435
 msgid "translator-credits"
 msgstr ""
 "Yuri Myasoedov <ymyasoedov@yandex.ru>, 2013-2015\n"
@@ -493,23 +491,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "Цвет заметки"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:114
 msgid "Add Notes"
 msgstr "Добавить заметки"
 
-#: src/bjb-note-list.c:109
+#: src/bjb-note-list.c:115
 msgid "Use the + button to add a note"
 msgstr "Используйте кнопку +, чтобы добавить заметку"
 
-#: src/bjb-note-list.c:114
+#: src/bjb-note-list.c:120
 msgid "No Results"
 msgstr "Нет результатов"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:121
 msgid "Try a different search"
 msgstr "Попробуйте другой поисковый запрос"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "Эта заметка открыта в другом окне"
 
@@ -530,14 +528,31 @@ msgstr "В этом месяце"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:750
+#: src/bjb-window.c:669
 #, c-format
 msgid "Last updated: %s"
 msgstr "Обновлено: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "Локальное хранилище"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Локальный"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "На этом компьютере"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Памятная заметка"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Выберите место хранения по умолчанию:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Первичная книга"
+
+#~ msgid "Local storage"
+#~ msgstr "Локальное хранилище"
 
 #~ msgid "No notes"
 #~ msgstr "Нет заметок"
@@ -550,6 +565,3 @@ msgstr "Локальное хранилище"
 
 #~ msgid "Please install “Tracker” then restart the application."
 #~ msgstr "Установите «Tracker» и перезапустите приложение."
-
-#~ msgid "Local"
-#~ msgstr "Локальный"

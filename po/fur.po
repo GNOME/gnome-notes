@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-02-17 08:10+0000\n"
+"POT-Creation-Date: 2023-03-23 14:14+0000\n"
+"PO-Revision-Date: 2023-04-28 10:19+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <f.t.public@gmail.com>\n"
 "Language: fur\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Editor: HaiPO 1.4 beta\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:428 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Notis"
 
@@ -57,8 +57,7 @@ msgstr "Viodude de selezion"
 msgid "List view"
 msgstr "Viodude de liste"
 
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr "notis;promemorie;tacuin;notis adesivis;"
@@ -107,8 +106,7 @@ msgstr "Archivi principâl di doprâ par lis gnovis notis."
 #: data/org.gnome.Notes.gschema.xml:25
 msgid "The primary notebook is the place where new notes are created."
 msgstr ""
-"Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin "
-"creadis."
+"Il tacuin principâl al è il puest dulà che lis gnovis notis a vegnin creadis."
 
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
@@ -117,8 +115,8 @@ msgstr ""
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""
-"This stores the note path of the last opened item, so that we can open it on"
-" startup."
+"This stores the note path of the last opened item, so that we can open it on "
+"startup."
 msgstr ""
 "Chest al archivie il percors de note dal ultin element viert, in mût di "
 "podêle vierzi al inviament."
@@ -157,8 +155,8 @@ msgid ""
 msgstr ""
 "A son trê dimensions di test disponibilis: piçul, medi (predefinît) e grant."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:299
+#: data/resources/bjb-window.ui:387 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Tacuins"
 
@@ -170,112 +168,118 @@ msgstr "Gnûf tacuin…"
 msgid "Add"
 msgstr "Zonte"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:17 src/bjb-note-view.c:337
 msgid "No note selected"
 msgstr "Nissune note selezionade"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:48 data/resources/bjb-window.ui:278
+#: src/bjb-window.c:354
 msgid "All Notes"
 msgstr "Dutis lis notis"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:64
 msgid "Open menu"
 msgstr "Vierç menù"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:134
 msgid "More options"
 msgstr "Plui opzions"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:174 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Impuarte notis"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:191
 msgid "Text Sizes"
 msgstr "Dimensions test"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:200
 msgid "_Large"
 msgstr "_Grant"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:209
 msgid "_Medium"
 msgstr "_Medi"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:218
 msgid "_Small"
 msgstr "_Piçul"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:235 data/resources/settings-dialog.ui:10
 msgid "Preferences"
 msgstr "Preferencis"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:243
 msgid "Keyboard Shortcuts"
 msgstr "Scurtis di tastiere"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:251
 msgid "Help"
 msgstr "Jutori"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:259
 msgid "About Notes"
 msgstr "Informazions su Notis"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:325 src/bjb-window.c:364
 msgid "Trash"
 msgstr "Scovacere"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:347
 msgid "Open in New Window"
 msgstr "Vierç intun gnûf barcon"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:363
 msgid "Undo"
 msgstr "Anule"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:371
 msgid "Redo"
 msgstr "Torne fâ"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:395
 msgid "Email this Note"
 msgstr "Invie cheste note vie e-mail"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:403 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Sposte te scovacere"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:461
+msgid "Select Note Location"
+msgstr "Selezione posizion de note"
+
+#: data/resources/editor-toolbar.ui:65
 msgid "Bold"
 msgstr "Neret"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:81
 msgid "Italic"
 msgstr "Corsîf"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:97
 msgid "Strike"
 msgstr "Stricât"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:125
 msgid "Bullets"
 msgstr "Liste pontade"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:141
 msgid "List"
 msgstr "Liste"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:169
 msgid "Indent"
 msgstr "Plui margjin tornade"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:185
 msgid "Outdent"
 msgstr "Mancul margjin tornade"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:224
 msgid "Copy selection to a new note"
 msgstr "Copie la selezion intune gnove note"
 
@@ -443,71 +447,63 @@ msgstr "Colôr predefinît"
 msgid "Note Appearance"
 msgstr "Aspiet de note"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Selezione la posizion di archiviazion predefinide:"
-
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Libri principâl"
-
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: src/bijiben-shell-search-provider.c:228 src/bjb-window.c:111
 msgid "Untitled"
 msgstr "Cence titul"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "Notis GNOME"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Mostre regjistris detaiâts"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Mostre la version de aplicazion"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Cree une gnove note"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Cjape notis e espuartilis dapardut."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:429
 msgid "Simple notebook for GNOME"
 msgstr "Sempliç tacuin par GNOME"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:435
 msgid "translator-credits"
-msgstr "Fabio Tomat <f.t.public@gmail.com>, 2021"
+msgstr "Fabio Tomat <f.t.public@gmail.com>, 2023"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Colôr de note"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:114
 msgid "Add Notes"
 msgstr "Zonte notis"
 
-#: src/bjb-note-list.c:109
+#: src/bjb-note-list.c:115
 msgid "Use the + button to add a note"
 msgstr "Dopre il boton + par zontâ une note"
 
-#: src/bjb-note-list.c:114
+#: src/bjb-note-list.c:120
 msgid "No Results"
 msgstr "Nissun risultât"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:121
 msgid "Try a different search"
 msgstr "Prove cuntune ricercje diferente"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "Cheste note e je visualizade intun altri barcon"
 
@@ -527,14 +523,32 @@ msgstr "Chest mês"
 #. * Last updated is placed as in left to right language
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
-#: src/bjb-window.c:750
+#.
+#: src/bjb-window.c:669
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ultin inzornament: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "Archivi locâl"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Locâl"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Su chest computer"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Note di pro memoria"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Selezione la posizion di archiviazion predefinide:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Libri principâl"
+
+#~ msgid "Local storage"
+#~ msgstr "Archivi locâl"
 
 #~ msgid "No notes"
 #~ msgstr "Nissune note"
@@ -550,9 +564,6 @@ msgstr "Archivi locâl"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Scrîf un non par creâ un tacuin"
-
-#~ msgid "Local"
-#~ msgstr "Locâl"
 
 #~ msgid "_New"
 #~ msgstr "_Gnove"
@@ -601,8 +612,8 @@ msgstr "Archivi locâl"
 
 #~ msgid "Whether to show note items in icon view or list view."
 #~ msgstr ""
-#~ "Indiche se mostrâ i elements des notis inte viodude a iconis o te viodude a "
-#~ "liste."
+#~ "Indiche se mostrâ i elements des notis inte viodude a iconis o te viodude "
+#~ "a liste."
 
 #~ msgid "View notes and notebooks in a grid"
 #~ msgstr "Mostre notis e tacuins intune gridele"

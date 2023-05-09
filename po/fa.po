@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Arash Mousavi <mousavi.arash@gmail.com>, 2016.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2017-2022.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2017-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-03-06 15:42+0330\n"
+"POT-Creation-Date: 2023-04-28 08:20+0000\n"
+"PO-Revision-Date: 2023-05-09 13:57+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:402 src/bjb-window.c:46
 msgid "Notes"
 msgstr "یادداشت‌ها"
 
@@ -148,125 +148,131 @@ msgstr "اندازهٔ متن استفاده شده به دست ویرایشگر
 msgid "There are three text sizes available: small, medium (default) and large."
 msgstr "سه اندازه متن موجود است: ریز، متوسّط(پیش‌گزیده) و درشت."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:243
+#: data/resources/bjb-window.ui:334 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "دفترچه‌ها"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "دفترچهٔ جدید…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "افزودن"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:338
 msgid "No note selected"
 msgstr "یادداشتی انتخاب نشده"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:224
+#: src/bjb-window.c:303
 msgid "All Notes"
 msgstr "یادداشت‌ها"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:43
 msgid "Open menu"
 msgstr "گشودن فهرست"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:89
 msgid "More options"
 msgstr "گزینه‌های بیش‌تر"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:121 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "درون‌ریزی یادداشت‌ها"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:136
 msgid "Text Sizes"
 msgstr "اندازه‌های متن"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:145
 msgid "_Large"
 msgstr "_درشت"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:154
 msgid "_Medium"
 msgstr "_متوسط"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:163
 msgid "_Small"
 msgstr "_ریز"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:179 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "ترجیحات"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:187
 msgid "Keyboard Shortcuts"
 msgstr "میان‌برهای صفحه‌کلید"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:195
 msgid "Help"
 msgstr "راهنما"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:203
 msgid "About Notes"
 msgstr "دربارهٔ یادداشت‌ها"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:268 src/bjb-window.c:313
 msgid "Trash"
 msgstr "زباله‌دان"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:295
 msgid "Open in New Window"
 msgstr "گشودن در پنجرهٔ _جدید"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:311
 msgid "Undo"
 msgstr "برگردان"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:319
 msgid "Redo"
 msgstr "انجام دوباره"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:342
 msgid "Email this Note"
 msgstr "رایانامهٔ این یادداشت"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:350 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "انداختن در زباله‌دان"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:394
+msgid "Select Note Location"
+msgstr "گزینش مکان یادداشت"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "کلفت"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "کج"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "خط‌خورده"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "موارد"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "فهرست"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "تو رفتگی"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "بیرون‌زدگی"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "رونوشت مجموعه به یادداشتی جدید"
 
@@ -418,63 +424,55 @@ msgstr "بازآوری"
 msgid "Permanently Delete"
 msgstr "حذف همیشگی"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "استفاده از قلم سامانه"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "قلم یادداشت"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "رنگ پیش‌گزیده"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "ظاهر یادداشت"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "گزینش مکان ذخیرهٔ پیش‌گزیده:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "استفاده از قلم سامانه"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "کتاب اصلی"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "قلم یادداشت"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "رنگ پیش‌گزیده"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:110
 msgid "Untitled"
 msgstr "بی‌عنوان"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "یادداشت‌های گنوم"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "نمایش سیاهه‌ها"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "نمایش نگارش برنامه‌ها"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "ایجاد یادداشت جدید"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "یادداشت کرده و هرجا می‌خواهید برون‌ریزی کنید."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:403
 msgid "Simple notebook for GNOME"
 msgstr "دفترچه یادداشت ساده برای گنوم"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:409
 msgid "translator-credits"
 msgstr ""
 "آرش موسوی <mousavi.arash@gmail.com>\n"
@@ -485,23 +483,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "رنگ یادداشت"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:113
 msgid "Add Notes"
 msgstr "افزودن یادداشت"
 
-#: src/bjb-note-list.c:109
-msgid "Use the + button to add a note"
-msgstr "برای ایجاد یک یادداشت، دکمهٔ + را بزنید."
-
 #: src/bjb-note-list.c:114
+msgid "Use the + button to add a note"
+msgstr "دکمهٔ + را برای افزودن یادداشت بزنید."
+
+#: src/bjb-note-list.c:119
 msgid "No Results"
 msgstr "نتیجه‌ای نداشت"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:120
 msgid "Try a different search"
 msgstr "یک جست‌وجوی دیگر را بیازمایید"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "این یادداشت در پنجرهٔ دیگری در حال نمایش است"
 
@@ -522,14 +520,31 @@ msgstr "این ماه"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:750
+#: src/bjb-window.c:583
 #, c-format
 msgid "Last updated: %s"
 msgstr "آخرین به‌روزرسانی: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "ذخیره‌سازی محلّی"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "محلّی"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "روی این رایانه"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "یادداشت‌ها یادآور"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "گزینش مکان ذخیرهٔ پیش‌گزیده:"
+
+#~ msgid "Primary Book"
+#~ msgstr "کتاب اصلی"
+
+#~ msgid "Local storage"
+#~ msgstr "ذخیره‌سازی محلّی"
 
 #~ msgid "No notes"
 #~ msgstr "هیچ یادداشتی نیست"
@@ -554,9 +569,6 @@ msgstr "ذخیره‌سازی محلّی"
 
 #~ msgid "This year"
 #~ msgstr "امسال"
-
-#~ msgid "Local"
-#~ msgstr "محلّی"
 
 #~ msgid "How to show note items"
 #~ msgstr "چگونگی نمایش موردهای یادداشت"

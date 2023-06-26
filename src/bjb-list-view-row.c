@@ -75,8 +75,8 @@ note_content_changed_cb (BjbListViewRow *self)
 {
   g_autofree char *one_line = NULL;
   g_autofree char *preview = NULL;
+  g_autofree char *content = NULL;
   g_auto(GStrv) lines = NULL;
-  const char *content;
 
   g_assert (BJB_IS_LIST_VIEW_ROW (self));
 

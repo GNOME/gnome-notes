@@ -226,6 +226,8 @@ bjb_note_view_class_init (BjbNoteViewClass *klass)
 
   gtk_widget_class_bind_template_callback (widget_class, note_view_format_applied_cb);
   gtk_widget_class_bind_template_callback (widget_class, note_view_copy_clicked_cb);
+
+  g_type_ensure (BJB_TYPE_EDITOR_TOOLBAR);
 }
 
 static void

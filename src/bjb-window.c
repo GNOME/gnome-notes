@@ -524,6 +524,9 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
   gtk_widget_class_bind_template_callback (widget_class, providers_list_row_activated_cb);
+
+  g_type_ensure (BJB_TYPE_NOTE_LIST);
+  g_type_ensure (BJB_TYPE_NOTE_VIEW);
 }
 
 GtkWidget *

@@ -401,7 +401,7 @@ provider_row_new (gpointer item,
 {
   GtkWidget *grid, *child;
   GtkStyleContext *context;
-  GIcon *icon;
+  g_autoptr(GIcon) icon = NULL;
 
   grid = gtk_grid_new ();
   g_object_set_data (G_OBJECT (grid), "provider", item);

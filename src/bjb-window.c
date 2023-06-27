@@ -77,6 +77,7 @@ struct _BjbWindow
   GtkWidget            *providers_list_box;
 
   gboolean              is_main;
+  gboolean              is_self_change;
   gulong                remove_item_id;
 };
 
@@ -108,7 +109,11 @@ on_note_renamed (BjbWindow *self)
   str = bjb_item_get_title (BJB_ITEM (self->note));
   if (!str || !*str)
     str = _("Untitled");
+
+  self->is_self_change = TRUE;
   gtk_editable_set_text (GTK_EDITABLE (self->title_entry), str);
+  self->is_self_change = FALSE;
+
   adw_header_bar_set_title_widget (ADW_HEADER_BAR (self->note_headerbar),
                                    self->title_entry);
   gtk_widget_show (self->title_entry);
@@ -124,8 +129,12 @@ static void
 on_title_changed (BjbWindow   *self,
                   GtkEditable *editable)
 {
-  const char *str = gtk_editable_get_text (editable);
+  const char *str;
 
+  if (self->is_self_change)
+    return;
+
+  str = gtk_editable_get_text (editable);
   bjb_item_set_title (BJB_ITEM (self->note), str);
 }
 

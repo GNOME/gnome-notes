@@ -268,7 +268,7 @@ static void
 bijiben_startup (GApplication *application)
 {
   BjbApplication *self;
-  char *path;
+  g_autofree char *path = NULL;
   g_autofree gchar *storage_path = NULL;
   g_autofree gchar *default_color = NULL;
   g_autoptr(GFile) storage = NULL;

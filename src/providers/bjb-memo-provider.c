@@ -132,8 +132,8 @@ bjb_memo_provider_objects_added_cb (ECalClientView *client_view,
   for (GSList *node = (GSList *)objects; node != NULL; node = node->next)
     {
       g_autoptr (ECalComponent) component = NULL;
+      g_autoptr(ECalComponentText) summary = NULL;
       g_autofree char *content = NULL;
-      ECalComponentText *summary;
       ICalComponent *icomponent;
       ICalTime *tt;
       GSList *descriptions;

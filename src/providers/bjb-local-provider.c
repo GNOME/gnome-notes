@@ -102,6 +102,7 @@ local_provider_add_item (gpointer user_data)
   g_assert (G_IS_LIST_STORE (store));
 
   g_list_store_append (store, user_data);
+  g_object_unref (user_data);
 
   return G_SOURCE_REMOVE;
 }
@@ -150,7 +151,7 @@ bjb_local_provider_load_path (BjbLocalProvider  *self,
         continue;
 
       file = g_file_get_child (location, name);
-      note = bjb_xml_note_new_from_data (g_file_get_path (file),
+      note = bjb_xml_note_new_from_data (g_file_peek_path (file),
                                          bjb_provider_get_tag_store (BJB_PROVIDER (self)));
       bjb_item_unset_modified (note);
 

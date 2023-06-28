@@ -94,19 +94,6 @@
             ]
         },
         {
-            "name" : "gcr",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "-Dgtk_doc=false"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/gcr.git"
-                }
-            ]
-        },
-        {
             "name" : "evolution-data-server",
             "cleanup" : [
                 "/lib/cmake",

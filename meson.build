@@ -3,7 +3,7 @@ project(
   version: '41.alpha',
   license: 'GPL3',
   default_options: 'buildtype=debugoptimized',
-  meson_version: '>= 0.50.0'
+  meson_version: '>= 0.56.0'
 )
 
 bijiben_name = meson.project_name()
@@ -122,9 +122,9 @@ bijiben_deps = [
 gnome = import('gnome')
 i18n = import('i18n')
 
-data_dir = join_paths(meson.source_root(), 'data')
-its_dir = join_paths(meson.source_root(), 'gettext')
-po_dir = join_paths(meson.source_root(), 'po')
+data_dir = join_paths(meson.project_source_root(), 'data')
+its_dir = join_paths(meson.project_source_root(), 'gettext')
+po_dir = join_paths(meson.project_source_root(), 'po')
 
 top_inc = include_directories('.')
 src_inc = include_directories('src')

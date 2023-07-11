@@ -55,11 +55,15 @@
           </object>
         </child>
         <child>
-          <object class="GtkSeparator" id="main_leaflet_separator">
-            <property name="orientation">vertical</property>
-            <style>
-              <class name="sidebar"/>
-            </style>
+          <object class="AdwLeafletPage">
+            <property name="navigatable">False</property>
+            <property name="child">
+              <object class="GtkSeparator">
+                <style>
+                  <class name="sidebar"/>
+                </style>
+              </object>
+            </property>
           </object>
         </child>
         <child>

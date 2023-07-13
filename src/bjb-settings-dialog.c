@@ -123,6 +123,8 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
 
   gtk_widget_class_bind_template_callback (gtk_widget_class, on_color_set);
   gtk_widget_class_bind_template_callback (gtk_widget_class, on_font_selected);
+
+  g_type_ensure (BJB_TYPE_COLOR_BUTTON);
 }
 
 

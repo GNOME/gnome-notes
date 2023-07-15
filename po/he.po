@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Notes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-02-05 11:15+0200\n"
+"POT-Creation-Date: 2023-04-28 08:20+0000\n"
+"PO-Revision-Date: 2023-07-15 21:40+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <>\n"
+"Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:402 src/bjb-window.c:46
 msgid "Notes"
 msgstr "פתקיות"
 
@@ -153,126 +153,132 @@ msgstr ""
 "שלושה גדלי טקסט זמינים: small,‏ medium (בררת מחדל) ו־large שהם קטן, בינוני "
 "וגדול בהתאמה."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:243
+#: data/resources/bjb-window.ui:334 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "מחברות"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "מחברת חדשה…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "הוספה"
 
 # msgid_plural "%d selected"
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:338
 msgid "No note selected"
 msgstr "לא נבחרה אף פתקית"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:224
+#: src/bjb-window.c:303
 msgid "All Notes"
 msgstr "כל הפתקיות"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:43
 msgid "Open menu"
 msgstr "פתיחת תפריט"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:89
 msgid "More options"
 msgstr "אפשרויות נוספות"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:121 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "יבוא פתקיות"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:136
 msgid "Text Sizes"
 msgstr "גדלי טקסט"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:145
 msgid "_Large"
 msgstr "_גדול"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:154
 msgid "_Medium"
 msgstr "_בינוני"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:163
 msgid "_Small"
 msgstr "_קטן"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:179 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "העדפות"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:187
 msgid "Keyboard Shortcuts"
 msgstr "צירופי מקשים"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:195
 msgid "Help"
 msgstr "עזרה"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:203
 msgid "About Notes"
 msgstr "על פתקיות"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:268 src/bjb-window.c:313
 msgid "Trash"
 msgstr "אשפה"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:295
 msgid "Open in New Window"
 msgstr "פתיחה בחלון חדש"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:311
 msgid "Undo"
 msgstr "ביטול"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:319
 msgid "Redo"
 msgstr "ביצוע מחדש"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:342
 msgid "Email this Note"
 msgstr "שליחת הפתקית בדוא״ל"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:350 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:394
+msgid "Select Note Location"
+msgstr "בחירת מיקום הפתקית"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "מודגש"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "נטוי"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "קו חוצה"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "תבליטים"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "רשימה"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "הגדלת כניסה"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "הקטנת כניסה"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "העתקת הבחירה לפתקית חדשה"
 
@@ -424,63 +430,55 @@ msgstr "שחזור"
 msgid "Permanently Delete"
 msgstr "למחוק לצמיתות"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "שימוש בגופן מערכת"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "גופן הפתקית"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "צבע בררת מחדל"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "מראה פתקית"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "בחירת מיקום אחסון בררת מחדל:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "שימוש בגופן מערכת"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "ספר ראשי"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "גופן הפתקית"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "צבע בררת מחדל"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:110
 msgid "Untitled"
 msgstr "ללא כותרת"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "פתקיות מבית GNOME"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "הצגת יומנים מפורטים"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Show the application’s version"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Create a new note"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FILE…]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Take notes and export them everywhere."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:403
 msgid "Simple notebook for GNOME"
 msgstr "מחברת פשוטה לסביבת GNOME"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:409
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
@@ -491,23 +489,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "צבע הפתקית"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:113
 msgid "Add Notes"
 msgstr "הוספת פתקיות"
 
-#: src/bjb-note-list.c:109
+#: src/bjb-note-list.c:114
 msgid "Use the + button to add a note"
 msgstr "יש ללחוץ על הכפתור + להוספת פתקית"
 
-#: src/bjb-note-list.c:114
+#: src/bjb-note-list.c:119
 msgid "No Results"
 msgstr "לא נמצאו תוצאות"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:120
 msgid "Try a different search"
 msgstr "יש לנסות חיפוש שונה"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "פתקית זו פתוחה בחלון אחר"
 
@@ -528,14 +526,31 @@ msgstr "החודש"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:750
+#: src/bjb-window.c:583
 #, c-format
 msgid "Last updated: %s"
 msgstr "עדכון אחרון: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "אחסון מקומי"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "מקומי"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "במחשב זה"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "פתקית תזכורת"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "בחירת מיקום אחסון בררת מחדל:"
+
+#~ msgid "Primary Book"
+#~ msgstr "ספר ראשי"
+
+#~ msgid "Local storage"
+#~ msgstr "אחסון מקומי"
 
 #~ msgid "No notes"
 #~ msgstr "אין פתקיות"
@@ -548,9 +563,6 @@ msgstr "אחסון מקומי"
 
 #~ msgid "Please install “Tracker” then restart the application."
 #~ msgstr "נא להתקין את „Tracker” ואז להפעיל מחדש את היישום."
-
-#~ msgid "Local"
-#~ msgstr "מקומי"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "נא למלא שם כדי ליצור מחברת"
@@ -700,9 +712,6 @@ msgstr "אחסון מקומי"
 
 #~ msgid "Add to Collection"
 #~ msgstr "הוספה לאוסף"
-
-#~ msgid "Rename Note"
-#~ msgstr "שינוי שם הפתקית"
 
 #~ msgid "Rename"
 #~ msgstr "שינוי שם"

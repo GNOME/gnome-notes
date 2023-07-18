@@ -232,6 +232,20 @@ bjb_local_provider_save_item (GTask        *task,
   g_assert (BJB_IS_ITEM (item));
   g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
+  /* Make sure the note has a uid. */
+  if (bjb_item_get_uid (item) == NULL)
+    {
+      g_autofree char *name = NULL;
+      g_autofree char *path = NULL;
+      g_autofree char *uuid = NULL;
+
+      uuid = g_uuid_string_random ();
+      name = g_strdup_printf ("%s.note", uuid);
+      path = g_build_filename (g_get_user_data_dir (), "bijiben", name, NULL);
+
+      bjb_item_set_uid (item, path);
+    }
+
   if (BJB_IS_NOTE (item))
     biji_lazy_serialize (BJB_NOTE (item));
 

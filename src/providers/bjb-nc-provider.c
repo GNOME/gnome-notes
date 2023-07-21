@@ -177,27 +177,26 @@ parse_json_array_cb (JsonArray *array,
   mtime = json_object_get_int_member (json, "modified");
   content = json_object_get_string_member (json, "content");
 
-  if (json_object_has_member (json, "category"))
-    {
-     const char *notebook_title;
-
-      notebook_title = json_object_get_string_member (json, "category");
-      if (notebook_title && *notebook_title)
-        {
-          BjbTagStore *tag_store;
-          BjbItem *notebook;
-
-          tag_store = bjb_provider_get_tag_store (BJB_PROVIDER (self));
-          notebook = bjb_tag_store_add_notebook (tag_store, notebook_title);
-          bjb_note_set_notebook (BJB_NOTE (note), notebook);
-        }
-    }
-
   id_text = g_strdup_printf ("%ld", id);
   note = bjb_plain_note_new_from_data (id_text, title, content);
   bjb_item_set_mtime (note, mtime);
   bjb_item_unset_modified (note);
   g_object_set_data (G_OBJECT (note), "provider", self);
+
+  if (json_object_has_member(json, "category")) {
+    const char *notebook_title;
+
+    notebook_title = json_object_get_string_member(json, "category");
+    if (notebook_title && *notebook_title) {
+      BjbTagStore *tag_store;
+      BjbItem *notebook;
+
+      tag_store = bjb_provider_get_tag_store(BJB_PROVIDER(self));
+      notebook = bjb_tag_store_add_notebook(tag_store, notebook_title);
+      bjb_note_set_notebook(BJB_NOTE(note), notebook);
+    }
+  }
+
   g_list_store_append (self->notes, note);
 }
 

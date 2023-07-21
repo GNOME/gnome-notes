@@ -19,7 +19,7 @@ struct _BjbNoteList
 
   GtkSearchEntry     *search_entry;
   GtkStack           *main_stack;
-  GtkBox             *notes_box;
+  GtkScrolledWindow  *notes_scrolled;
   GtkListBox         *notes_list_box;
   AdwStatusPage      *status_page;
 
@@ -102,7 +102,7 @@ note_list_items_changed_cb (BjbNoteList *self)
   if (n_items == 0)
     gtk_stack_set_visible_child (self->main_stack, GTK_WIDGET (self->status_page));
   else
-    gtk_stack_set_visible_child (self->main_stack, GTK_WIDGET (self->notes_box));
+    gtk_stack_set_visible_child (self->main_stack, GTK_WIDGET (self->notes_scrolled));
 
   n_items = g_list_model_get_n_items (self->notes_list);
   gtk_widget_set_sensitive (GTK_WIDGET (self->search_entry), n_items != 0);
@@ -184,7 +184,7 @@ bjb_note_list_class_init (BjbNoteListClass *klass)
 
   gtk_widget_class_bind_template_child (widget_class, BjbNoteList, search_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbNoteList, main_stack);
-  gtk_widget_class_bind_template_child (widget_class, BjbNoteList, notes_box);
+  gtk_widget_class_bind_template_child (widget_class, BjbNoteList, notes_scrolled);
   gtk_widget_class_bind_template_child (widget_class, BjbNoteList, notes_list_box);
   gtk_widget_class_bind_template_child (widget_class, BjbNoteList, status_page);
 

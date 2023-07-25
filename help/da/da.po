@@ -1,43 +1,41 @@
 # Danish translation for gnome-notes.
-# Copyright (C) 2020-2021 gnome-notes's COPYRIGHT HOLDER
+# Copyright (C) 2023 gnome-notes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-notes package.
-#
-# scootergrisen, 2020-2021.
-# Gennemgået Ask Hjorth Larsen <asklarsen@gmail.com>, 2022.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-notes master\n"
-"POT-Creation-Date: 2021-04-23 13:27+0000\n"
-"PO-Revision-Date: 2022-01-26 20:31+0100\n"
-"Last-Translator: scootergrisen\n"
+"Project-Id-Version: gnome-notes gnome-40-0\n"
+"POT-Creation-Date: 2022-11-06 14:14+0000\n"
+"PO-Revision-Date: 2023-07-25 11:02+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"scootergrisen <>, 2020-2021\n"
+"Alan Mortensen\n"
 "\n"
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Websted http://dansk-gruppen.dk\n"
-"E-mail <dansk@dansk-gruppen.dk>"
+"Mere info: http://www.dansk-gruppen.dk"
 
 #. (itstool) path: credit/name
 #: C/colors.page:13 C/create.page:11 C/delete.page:11 C/format-list.page:11
-#: C/format-text.page:11 C/index.page:14 C/introduction.page:16
+#: C/format-text.page:11 C/index.page:15 C/introduction.page:16
 #: C/notebooks.page:11 C/search.page:11 C/share.page:11
 msgid "Pierre-Yves Luyten"
 msgstr "Pierre-Yves Luyten"
 
 #. (itstool) path: credit/years
 #: C/colors.page:14 C/create.page:12 C/delete.page:12 C/format-list.page:12
-#: C/format-text.page:12 C/index.page:16 C/introduction.page:18
+#: C/format-text.page:12 C/index.page:17 C/introduction.page:18
 #: C/notebooks.page:12 C/search.page:12 C/share.page:12
 msgid "2012"
 msgstr "2012"
@@ -58,7 +56,7 @@ msgstr "2013, 2014"
 #. (itstool) path: credit/name
 #: C/colors.page:22 C/create.page:25 C/cut-copy-paste.page:11 C/delete.page:20
 #: C/delete-permanent.page:11 C/delete-restore.page:11 C/format-list.page:20
-#: C/format-text.page:20 C/index.page:19 C/introduction.page:11
+#: C/format-text.page:20 C/index.page:20 C/introduction.page:11
 #: C/introduction.page:26 C/notebooks.page:20 C/rename.page:11 C/search.page:20
 #: C/share.page:20
 msgid "Shobha Tyagi"
@@ -66,7 +64,7 @@ msgstr "Shobha Tyagi"
 
 #. (itstool) path: credit/years
 #: C/colors.page:24 C/delete.page:17 C/format-list.page:17
-#: C/format-list.page:22 C/format-text.page:17 C/index.page:21
+#: C/format-list.page:22 C/format-text.page:17 C/index.page:22
 #: C/introduction.page:13 C/rename.page:13
 msgid "2013"
 msgstr "2013"
@@ -92,7 +90,7 @@ msgstr "2014"
 #. (itstool) path: info/desc
 #: C/colors.page:34
 msgid "Edit the note background color."
-msgstr "Rediger notens baggrundsfarve."
+msgstr "Redigér notens baggrundsfarve."
 
 #. (itstool) path: page/title
 #: C/colors.page:37
@@ -105,13 +103,13 @@ msgid ""
 "You can change the background colour of a note to emphasize it or to "
 "differentiate it from other notes."
 msgstr ""
-"Du kan ændre baggrundsfarven af en note for at fremhæve den eller gøre den "
-"forskellig fra de andre noter."
+"Du kan skifte en notes baggrundsfarve for at fremhæve den eller adskille den "
+"fra andre noter."
 
 #. (itstool) path: steps/title
 #: C/colors.page:43
 msgid "To change the color of an individual note:"
-msgstr "Skift farven på en note:"
+msgstr "Sådan ændrer man den enkelte notes farve:"
 
 #. (itstool) path: item/p
 #: C/colors.page:45 C/delete.page:40 C/notebooks.page:43 C/rename.page:31
@@ -122,37 +120,39 @@ msgstr "Klik på noten for at åbne den."
 #. (itstool) path: item/p
 #: C/colors.page:48 C/colors.page:69
 msgid "Click the <gui style=\"button\">Note color</gui> button."
-msgstr "Klik på <gui style=\"button\">Notefarve</gui>-knappen."
+msgstr "Klik på knappen <gui style=\"button\">Notefarve</gui>."
 
 #. (itstool) path: item/p
 #: C/colors.page:51 C/colors.page:72
 msgid ""
 "Select a new color and click the <gui style=\"button\">Select</gui> button."
-msgstr "Vælg en ny farve og klik på <gui style=\"button\">Vælg</gui>-knappen."
+msgstr "Vælg en ny farve og klik på knappen <gui style=\"button\">Vælg</gui>."
 
 #. (itstool) path: page/p
 #: C/colors.page:56
 msgid ""
 "You can also change the background colour in a group of notes at the same "
 "time."
-msgstr "Du kan også ændre baggrundsfarven i en gruppe af noter på samme tid."
+msgstr "Du kan også skifte baggrundsfarven på flere noter på en gang."
 
 #. (itstool) path: steps/title
 #: C/colors.page:60
 msgid "To change the color of multiple notes:"
-msgstr "Skift farven på flere noter:"
+msgstr "Sådan ændrer man flere noters farve:"
 
 #. (itstool) path: item/p
 #: C/colors.page:62 C/delete.page:56 C/notebooks.page:61
 msgid ""
-"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
-"\">Selection mode</gui> button."
-msgstr "Klik på <gui style=\"button\">Markeringstilstand</gui>-knappen i <gui>Nye og seneste</gui>-visningen."
+"In the <gui>New and Recent</gui> view, click the <gui "
+"style=\"button\">Selection mode</gui> button."
+msgstr ""
+"I visningen <gui>Nye og seneste</gui> klikkes på knappen <gui "
+"style=\"button\">Markeringstilstand</gui>."
 
 #. (itstool) path: item/p
 #: C/colors.page:66
 msgid "Select the notes you want to change."
-msgstr "Vælg de noter, du vil ændre."
+msgstr "Markér de noter, du vil ændre."
 
 #. (itstool) path: info/desc
 #: C/create.page:32
@@ -160,8 +160,8 @@ msgid ""
 "Create a new note from scratch, using some text from another application or "
 "from another note."
 msgstr ""
-"Opret en ny note fra bunden med tekst fra et andet program eller fra en "
-"anden note."
+"Anvend tekst fra et andet program eller en anden note til at oprette en helt "
+"ny note."
 
 #. (itstool) path: page/title
 #: C/create.page:36
@@ -171,14 +171,14 @@ msgstr "Opret en note"
 #. (itstool) path: page/p
 #: C/create.page:38
 msgid "You can create a new note in three different ways:"
-msgstr "Du kan oprette en ny note på tre måder:"
+msgstr "Der er tre måder at oprette en ny note på:"
 
 #. (itstool) path: item/p
 #: C/create.page:41
 msgid ""
 "Click the <gui style=\"button\">New</gui> button to create a blank note."
 msgstr ""
-"Klik på <gui style=\"button\">Ny</gui>-knappen for at oprette en tom note."
+"Klik på knappen <gui style=\"button\">Ny</gui> for at oprette en tom note."
 
 #. (itstool) path: item/p
 #: C/create.page:45
@@ -186,8 +186,8 @@ msgid ""
 "Drag and drop text to the <gui>New and Recent</gui> view to create a note "
 "containing this text."
 msgstr ""
-"Træk og slip teksten i <gui>Nye og seneste</gui>-visningen for at oprette en "
-"note med teksten."
+"Træk og slip tekst til visningen <gui>Nye og seneste</gui> for at oprette en "
+"note med denne tekst."
 
 #. (itstool) path: item/p
 #: C/create.page:49
@@ -195,8 +195,9 @@ msgid ""
 "Open a note, select some text and click the <gui style=\"button\">Copy "
 "selection to a new note</gui> button to create a note containing this text."
 msgstr ""
-"Åbn en note, vælg noget tekst og klik på <gui style=\"button\">Kopiér "
-"markeringen til en ny note</gui>-knappen for at oprette en note med teksten."
+"Åbn en note, vælg noget tekst og klik på knappen <gui "
+"style=\"button\">Kopiér markeringen til en ny note</gui> for at oprette en "
+"note med denne tekst."
 
 #. (itstool) path: note/p
 #: C/create.page:55
@@ -204,13 +205,13 @@ msgid ""
 "To open a new note using the keyboard shortcut, press <keyseq><key>Ctrl</"
 "key><key>N</key></keyseq>."
 msgstr ""
-"For at oprette en ny note med tastaturgenvejen trykkes på <keyseq><key>Ctrl</"
+"Åbn en ny note med tastaturgenvejen ved at trykke <keyseq><key>Ctrl</"
 "key><key>N</key></keyseq>."
 
 #. (itstool) path: info/desc
 #: C/cut-copy-paste.page:28
 msgid "Move text inside a note or to a different note."
-msgstr "Flyt teksten i en note eller til en anden note."
+msgstr "Flyt tekst inden for en note eller til en anden note."
 
 #. (itstool) path: page/title
 #: C/cut-copy-paste.page:31
@@ -223,34 +224,34 @@ msgid ""
 "You can move text inside a note or to another note by cutting or copying it "
 "and pasting it somewhere else."
 msgstr ""
-"Du kan flytte teksten i en note eller til en anden note ved at klippe eller "
-"kopiere den og indsætte den et andet sted."
+"Du kan flytte tekst inden for en note eller til en anden note ved at klippe "
+"eller kopiere den og indsætte den en andet sted."
 
 #. (itstool) path: steps/title
 #: C/cut-copy-paste.page:37
 msgid "To cut, copy or paste in a note:"
-msgstr "Klip, kopiér eller indsæt i en note:"
+msgstr "Sådan klipper, kopierer eller indsætter man i en note:"
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:39
 msgid "Select the text."
-msgstr "Vælg teksten."
+msgstr "Markér teksten."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:42
 msgid ""
 "Press <gui style=\"button\">Cut</gui> or <gui style=\"button\">Copy</gui>."
 msgstr ""
-"Tryk på <gui style=\"button\">Klip</gui> eller <gui style=\"button\">Kopiér</"
+"Tryk <gui style=\"button\">Klip</gui> eller <gui style=\"button\">Kopiér</"
 "gui>."
 
 #. (itstool) path: item/p
 #: C/cut-copy-paste.page:46
 msgid ""
-"Select where you want to paste the text and press <gui style=\"button"
-"\">Paste</gui>."
+"Select where you want to paste the text and press <gui "
+"style=\"button\">Paste</gui>."
 msgstr ""
-"Vælg hvor teksten skal indsættes og tryk på <gui style=\"button\">Indsæt</"
+"Vælg, hvor du vil indsætte teksten, og tryk <gui style=\"button\">Indsæt</"
 "gui>."
 
 #. (itstool) path: info/desc
@@ -266,43 +267,49 @@ msgstr "Slet en note"
 #. (itstool) path: steps/title
 #: C/delete.page:38
 msgid "To delete a note:"
-msgstr "Slet en note:"
+msgstr "Sådan sletter man en note:"
 
+# Der er intet …
 #. (itstool) path: item/p
 #: C/delete.page:43
 msgid ""
-"Select <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
-"\">Move to Trash</gui></guiseq>."
+"Select <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Move to Trash</gui></guiseq>."
 msgstr ""
-"Vælg <guiseq><gui style=\"button\">Flere indstillinger …</gui><gui style="
-"\"menuitem\">Flyt til papirkurv</gui></guiseq>."
+"Vælg <guiseq><gui style=\"button\">Flere indstillinger</gui><gui "
+"style=\"menuitem\">Flyt til papirkurv</gui></guiseq>."
 
 #. (itstool) path: note/p
 #: C/delete.page:49
 msgid ""
 "Press the keyboard shortcut <keyseq><key>Ctrl</key><key>Delete</key></"
 "keyseq> to delete an open note."
-msgstr "Tryk på tastaturgenvejen <keyseq><key>Ctrl</key><key>Delete</key></keyseq> for at slette en note, som er åben."
+msgstr ""
+"Tryk tastaturgenvejen <keyseq><key>Ctrl</key><key>Delete</key></keyseq> for "
+"at slette en åben note."
 
 #. (itstool) path: steps/title
 #: C/delete.page:54
 msgid "To delete multiple notes and notebooks:"
-msgstr "Slet flere noter og notesbøger:"
+msgstr "Sådan sletter man flere noter og notesbøger:"
 
+# Man er nødt til at være i denne visning, ellers er knappen der ikke.
 #. (itstool) path: item/p
 #: C/delete.page:60
 msgid "Select the notes and the notebooks you want to delete."
-msgstr "Vælg de noter og notesbøger, du vil slette."
+msgstr ""
+"Åbn visningen <gui>Nye og seneste</gui>. Markér de noter og notesbøger, du "
+"vil slette."
 
 #. (itstool) path: item/p
 #: C/delete.page:63
 msgid "Click the <gui style=\"button\">Move to Trash</gui> button."
-msgstr "Klik på <gui style=\"button\">Flyt til papirkurv</gui>-knappen."
+msgstr "Klik på knappen <gui style=\"button\">Flyt til papirkurv</gui>."
 
 #. (itstool) path: info/desc
 #: C/delete-permanent.page:18
 msgid "Permanently delete notes from the <gui>Trash</gui> view."
-msgstr "Slet noter permanent fra <gui>Papirkurv</gui>-visningen."
+msgstr "Slet noter permanent fra visningen <gui>Papirkurv</gui>."
 
 #. (itstool) path: page/title
 #: C/delete-permanent.page:21
@@ -317,43 +324,48 @@ msgstr "Du kan slette noter permanent fra <gui>Papirkurven</gui>."
 #. (itstool) path: steps/title
 #: C/delete-permanent.page:28
 msgid "To permanently delete all the notes in Trash:"
-msgstr "Slet alle noter permanent i papirkurven:"
+msgstr "Sådan sletter man alle noter i papirkurven permanent:"
 
 #. (itstool) path: item/p
 #: C/delete-permanent.page:30
-#| msgid "Change the text in the first line of the note."
-msgid "Press the menu button in the top-right corner of the window."
-msgstr "Tryk på menuknappen i øverste højre hjørne af vinduet."
+msgid ""
+"Click on the <gui>Notes</gui> icon near <gui href=\"help:gnome-help/shell-"
+"terminology\">Activities</gui>."
+msgstr ""
+"Klik <gui>Noter</gui>-ikonet nær <gui href=\"help:gnome-help/shell-"
+"terminology\">Aktiviteter</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:33
+#: C/delete-permanent.page:34
 msgid "Select <gui>View Trash</gui>."
 msgstr "Vælg <gui>Vis papirkurven</gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:36
+#: C/delete-permanent.page:37
 msgid "Click on <gui style=\"button\">Empty</gui> button in the toolbar."
-msgstr "Klik på <gui style=\"button\">Tøm</gui>-knappen på værktøjslinjen."
+msgstr "Klik på kanppen <gui style=\"button\">Tøm</gui> i værktøjslinjen."
 
 #. (itstool) path: steps/title
-#: C/delete-permanent.page:41
+#: C/delete-permanent.page:42
 msgid "To delete selected notes from Trash:"
-msgstr "Slet de valgte noter fra papirkurven:"
+msgstr "Sådan sletter man udvalgte noter i papirkurven:"
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:43
+#: C/delete-permanent.page:44
 msgid "In the <gui>Trash</gui> view click <gui>Selection mode</gui> button."
-msgstr "Klik på <gui>Markeringstilstand</gui>-knappen i <gui>Papirkurv</gui>-visningen."
+msgstr ""
+"I visningen <gui>Papirkurv</gui> klikkes på knappen <gui>Markeringstilstand</"
+"gui>."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:47
+#: C/delete-permanent.page:48
 msgid "Select all the notes that you want to delete permanently."
-msgstr "Vælg alle de noter, du vil slette permanent."
+msgstr "Markér alle de noter, du vil slette permanent."
 
 #. (itstool) path: item/p
-#: C/delete-permanent.page:50
+#: C/delete-permanent.page:51
 msgid "Click on <gui style=\"button\">Permanently Delete</gui> button."
-msgstr "Klik på <gui style=\"button\">Slet permanent</gui>-knappen."
+msgstr "Klik på knappen <gui style=\"button\">Slet permanent</gui>."
 
 #. (itstool) path: info/desc
 #: C/delete-restore.page:23
@@ -371,28 +383,30 @@ msgid ""
 "If you think that you have accidentally deleted a note, you can view and "
 "restore it from <gui>Trash</gui>."
 msgstr ""
-"Hvis du ved en fejl har slettet en note, så kan du vise og gendanne den fra "
-"<gui>Papirkurv</gui>."
+"Hvis du ved et uheld har slettet en note, kan du se og gendanne den fra "
+"<gui>Papirkurven</gui>."
 
 #. (itstool) path: steps/title
 #: C/delete-restore.page:32
 msgid "To restore trashed notes:"
-msgstr "Gendan noter fra papirkurven:"
+msgstr "Sådan gendanner man noter i papirkurven:"
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:34
 msgid "In the <gui>Trash</gui> view, click <gui>Selection mode</gui> button."
-msgstr "Klik på <gui>Markeringstilstand</gui>-knappen i <gui>Papirkurv</gui>-visningen."
+msgstr ""
+"I visningen <gui>Papirkurv</gui> klikkes på knappen <gui>Markeringstilstand</"
+"gui>."
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:38
 msgid "Select all the notes that you want to restore."
-msgstr "Vælg alle de noter, du vil gendanne."
+msgstr "Markér alle de noter, du vil gendanne."
 
 #. (itstool) path: item/p
 #: C/delete-restore.page:41
 msgid "Click on <gui style=\"button\">Restore</gui> button."
-msgstr "Klik på <gui style=\"button\">Gendan</gui>-knappen."
+msgstr "Klik på knappen <gui style=\"button\">Gendan</gui>."
 
 #. (itstool) path: credit/name
 #: C/format-list.page:30
@@ -407,7 +421,7 @@ msgstr "2020"
 #. (itstool) path: info/desc
 #: C/format-list.page:37
 msgid "Format a note with ordered and unordered lists."
-msgstr "Formatér en note med lister med og uden tal."
+msgstr "Formatér en note med sorterede og usorterede lister."
 
 #. (itstool) path: page/title
 #: C/format-list.page:40
@@ -419,12 +433,15 @@ msgstr "Opret en liste"
 msgid "While the note is open:"
 msgstr "Mens noten er åben:"
 
+# Der er ikke tale om en egentlig menu
 #. (itstool) path: item/p
 #: C/format-list.page:45
 msgid ""
-"To create an unordered list, select the <guiseq><gui style=\"button"
-"\">Bullets</gui> </guiseq> button from the footer menu."
-msgstr "Opret en liste uden tal ved at vælge <guiseq><gui style=\"button\">Punkttegn</gui> </guiseq>-knappen i fodmenuen."
+"To create an unordered list, select the <guiseq><gui "
+"style=\"button\">Bullets</gui> </guiseq> button from the footer menu."
+msgstr ""
+"For at oprette en usorteret liste klikkes på knappen <guiseq><gui "
+"style=\"button\">Punkttegn</gui> </guiseq> nederst i vinduet."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -436,14 +453,16 @@ msgctxt "_"
 msgid ""
 "external ref='figures/format-page-unordered-list.png' "
 "md5='b01422f25a34e6d5efde84732454310c'"
-msgstr "[udfyldt midlertidigt for at undgå at se den som uoversat]"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/format-list.page:51
 msgid ""
 "To create an ordered list, select the <guiseq><gui style=\"button\">List</"
 "gui> </guiseq> button from the footer menu."
-msgstr "Opret en liste med tal ved at vælge <guiseq><gui style=\"button\">Liste</gui> </guiseq>-knappen i fodmenuen."
+msgstr ""
+"For at oprette en sorteret liste klikkes på knappen <guiseq><gui "
+"style=\"button\">Liste</gui> </guiseq> nederst i vinduet."
 
 #. (itstool) path: item/media
 #. This is a reference to an external file such as an image or video. When
@@ -455,27 +474,27 @@ msgctxt "_"
 msgid ""
 "external ref='figures/format-page-numbered-list.png' "
 "md5='6b078c1c8d0cbf4aff818bdfc08e5933'"
-msgstr "[udfyldt midlertidigt for at undgå at se den som uoversat]"
+msgstr ""
 
 #. (itstool) path: info/desc
 #: C/format-text.page:32
 msgid "Apply different formatting options to the text."
-msgstr "Anvend forskellige formateringsindstillinger på teksten."
+msgstr "Formatering af teksten."
 
 #. (itstool) path: page/title
 #: C/format-text.page:35
 msgid "Change the text style"
-msgstr "Ændr tekstens stil"
+msgstr "Ændr tekststilen"
 
 #. (itstool) path: steps/title
 #: C/format-text.page:38
 msgid "To change the formatting options of text in your note:"
-msgstr "Ændr tekstens formateringsindstillinger i din note:"
+msgstr "Sådan ændrer man tekstens formatering:"
 
 #. (itstool) path: item/p
 #: C/format-text.page:40
 msgid "Select the text that you want to format."
-msgstr "Vælg den tekst, du vil formatere."
+msgstr "Markér teksten, som skal formateres."
 
 #. (itstool) path: item/p
 #: C/format-text.page:43
@@ -483,58 +502,50 @@ msgid ""
 "Click <gui style=\"button\">Bold</gui>, <gui style=\"button\">Italic</gui> "
 "or <gui style=\"button\">Strike</gui>."
 msgstr ""
-"Klik på <gui style=\"button\">Fed</gui>, <gui style=\"button\">Kursiv</gui> "
+"Klik <gui style=\"button\">Fed</gui>, <gui style=\"button\">Kursiv</gui> "
 "eller <gui style=\"button\">Gennemstreg</gui>."
 
 #. (itstool) path: info/title
-#: C/index.page:6
-#| msgctxt "link"
-#| msgid "Notes"
-msgctxt "link:trail"
-msgid "Notes"
-msgstr "Noter"
-
-#. (itstool) path: info/title
-#: C/index.page:7
+#: C/index.page:8
 msgctxt "link"
 msgid "Notes"
 msgstr "Noter"
 
 #. (itstool) path: info/title
-#: C/index.page:8
+#: C/index.page:9
 msgctxt "text"
 msgid "Notes"
 msgstr "Noter"
 
 #. (itstool) path: info/desc
-#: C/index.page:26
+#: C/index.page:27
 msgid "Learn how to use and manage your notes."
-msgstr "Lær at bruge og håndtere dine noter."
+msgstr "Brug og håndtér dine noter."
 
 #. (itstool) path: page/title
-#: C/index.page:29
+#: C/index.page:30
 msgid "<_:media-1/> Notes"
 msgstr "<_:media-1/> Noter"
 
 #. (itstool) path: section/title
-#: C/index.page:36
+#: C/index.page:37
 msgid "Create notes"
 msgstr "Opret noter"
 
 #. (itstool) path: section/title
-#: C/index.page:39
+#: C/index.page:40
 msgid "Edit and share notes"
-msgstr "Rediger og del noter"
+msgstr "Redigér og del noter"
 
 #. (itstool) path: section/title
-#: C/index.page:42
+#: C/index.page:43
 msgid "Delete notes"
 msgstr "Slet noter"
 
 #. (itstool) path: info/desc
 #: C/introduction.page:33
 msgid "A simple application for creating, editing and viewing notes."
-msgstr "Et simpelt program til at oprette, redigere og vise noter."
+msgstr "Et enkelt program til oprettelse, redigering og visning af noter."
 
 #. (itstool) path: page/title
 #: C/introduction.page:36
@@ -549,10 +560,10 @@ msgid ""
 "shell-terminology\">Activities</gui> overview. <app>Notes</app> integrates "
 "easily with <app>Online Accounts</app>."
 msgstr ""
-"<app>Noter</app> er et simpelt program til at oprette, redigere og vise "
-"noter. Du kan også søge efter en note fra <gui href=\"help:gnome-help/shell-"
-"terminology\">Aktiviteter</gui>-overblikket. <app>Noter</app> integrerer let "
-"med <app>Onlinekonti</app>."
+"<app>Noter</app> er et enkelt program til oprettelse, redigering og visning "
+"af noter. Du kan også søge efter en note i <gui href=\"help:gnome-help/shell-"
+"terminology\">Aktivitetsoversigten</gui>. <app>Noter</app> integrerer "
+"ubesværet med <app>Onlinekonti</app>."
 
 #. (itstool) path: page/media
 #. This is a reference to an external file such as an image or video. When
@@ -563,7 +574,7 @@ msgstr ""
 msgctxt "_"
 msgid ""
 "external ref='figures/notes-3-36.png' md5='834032bed3915c474541bf14c23a3c9c'"
-msgstr "[billedet er indsendt]"
+msgstr ""
 
 #. (itstool) path: credit/name
 #: C/new-window.page:11
@@ -583,7 +594,7 @@ msgstr "Åbn en note i et andet vindue"
 #. (itstool) path: page/p
 #: C/new-window.page:23
 msgid "To open a note in a new window:"
-msgstr "Åbn en note i et nyt vindue:"
+msgstr "Sådan åbner man en note i et nyt vindue:"
 
 #. (itstool) path: item/p
 #: C/new-window.page:27
@@ -591,22 +602,26 @@ msgid ""
 "Open a note then click <guiseq><gui style=\"button\">More options…</gui><gui "
 "style=\"menuitem\">Open in New Window</gui></guiseq>."
 msgstr ""
-"Åbn en note og klik på <guiseq><gui style=\"button\">Flere indstillinger …</"
+"Åbn en note og klik på <guiseq><gui style=\"button\">Flere indstillinger</"
 "gui><gui style=\"menuitem\">Åbn i nyt vindue</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/new-window.page:32
 msgid ""
-"In the <gui>New and Recent</gui> view, click the <gui style=\"button"
-"\">Selection mode</gui> button, select all the notes which you want to open "
-"in new window, then click the <gui style=\"button\">Open in another window</"
-"gui> button."
-msgstr "Klik på <gui style=\"button\">Markeringstilstand</gui>-knappen i <gui>Nye og seneste</gui>-visningen og vælg alle de noter, du vil åbne i et nyt vindue.  Klik herefter på <gui style=\"button\">Åbn i et andet vindue</gui>-knappen."
+"In the <gui>New and Recent</gui> view, click the <gui "
+"style=\"button\">Selection mode</gui> button, select all the notes which you "
+"want to open in new window, then click the <gui style=\"button\">Open in "
+"another window</gui> button."
+msgstr ""
+"I visningen <gui>Nye og seneste</gui> klikkes på knappen <gui "
+"style=\"button\">Markeringstilstand</gui>. De noter, som ønskes åbnet i et "
+"nyt vindue, markeres, og derefter klikkes på knappen <gui "
+"style=\"button\">Åbn i et andet vindue</gui>."
 
 #. (itstool) path: info/desc
 #: C/notebooks.page:32
 msgid "Add a note to a notebook to make sorting and searching notes easier."
-msgstr "Tilføj en note til en notesbog for at gøre det lettere at sortere og søge efter noter."
+msgstr "Tilføj en note til en notesbog for nemmere at sortere og søge i noter."
 
 #. (itstool) path: page/title
 #: C/notebooks.page:35
@@ -619,51 +634,51 @@ msgid ""
 "You can use notebooks to group your notes together to make it easier to "
 "search and sort through your notes."
 msgstr ""
-"Du kan bruge notesbøger til at gruppere noter for at gøre det lettere at "
-"søge efter og sortere i dine noter."
+"Du kan bruge notesbøger til at gruppere dine noter for nemmere at kunne "
+"sortere og søge i dem."
 
 #. (itstool) path: steps/title
 #: C/notebooks.page:41
 msgid "To create a notebook with a single note:"
-msgstr "Opret en notesbog med en enkelt note:"
+msgstr "Sådan opretter man en notesbog med en enkelt note:"
 
 #. (itstool) path: item/p
 #: C/notebooks.page:46
 msgid ""
-"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
-"\">Notebooks</gui></guiseq>."
+"Click <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Notebooks</gui></guiseq>."
 msgstr ""
-"Klik på <guiseq><gui style=\"button\">Flere indstillinger …</gui><gui style="
-"\"menuitem\">Notesbøger</gui></guiseq>."
+"Klik <guiseq><gui style=\"button\">Flere indstillinger</gui><gui "
+"style=\"menuitem\">Notesbøger</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:50
 msgid ""
-"Type a suitable name for the notebook and click the <gui style=\"button"
-"\">New notebook</gui> button."
+"Type a suitable name for the notebook and click the <gui "
+"style=\"button\">New notebook</gui> button."
 msgstr ""
-"Skriv et egnet navn til notesbogen og klik på <gui style=\"button\">Ny "
-"notesbog</gui>-knappen."
+"Navngiv notesbogen og klik på knappen <gui style=\"button\">Ny notesbog</"
+"gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:54 C/notebooks.page:75
 msgid "Click the <gui style=\"button\">Close</gui> button."
-msgstr "Klik på <gui style=\"button\">Luk</gui>-knappen."
+msgstr "Klik på knappen <gui style=\"button\">Luk</gui>."
 
 #. (itstool) path: steps/title
 #: C/notebooks.page:59
 msgid "To create a notebook with multiple notes:"
-msgstr "Opret en notesbog med flere noter:"
+msgstr "Sådan opretter man en notesbog med flere noter:"
 
 #. (itstool) path: item/p
 #: C/notebooks.page:65
 msgid "Select all the notes which you want to add to the notebook."
-msgstr "Vælg alle de noter, du vil føje til notesbogen."
+msgstr "Markér alle noter, som skal tilføjes notesbogen."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:68
 msgid "Click the <gui style=\"button\">Notebooks</gui> button."
-msgstr "Klik på <gui style=\"button\">Notesbøger</gui>-knappen."
+msgstr "Klik på knappen <gui style=\"button\">Notesbøger</gui>."
 
 #. (itstool) path: item/p
 #: C/notebooks.page:71
@@ -671,13 +686,13 @@ msgid ""
 "Type a suitable name for the notebook and click <gui style=\"button\">New "
 "notebook</gui> button."
 msgstr ""
-"Skriv et egnet navn til notesbogen og klik på <gui style=\"button\">Ny "
-"notesbog</gui>-knappen."
+"Navngiv notesbogen og klik på knappen <gui style=\"button\">Ny notesbog</"
+"gui>."
 
 #. (itstool) path: info/desc
 #: C/rename.page:23
 msgid "Change the name of an existing note."
-msgstr "Ændr navnet på en eksisterende note."
+msgstr "Ændr en eksisterende notes navn."
 
 #. (itstool) path: page/title
 #: C/rename.page:26
@@ -687,17 +702,17 @@ msgstr "Omdøb en note"
 #. (itstool) path: steps/title
 #: C/rename.page:29
 msgid "To rename a note:"
-msgstr "Omdøb en note:"
+msgstr "Sådan omdøber man en note:"
 
 #. (itstool) path: item/p
 #: C/rename.page:34
 msgid "Change the text in the first line of the note."
-msgstr "Ændr teksten på notes første linje."
+msgstr "Ændr teksten i notens første linje."
 
 #. (itstool) path: info/desc
 #: C/search.page:32
 msgid "Search for an existing note, note content and notebooks."
-msgstr "Søg efter en eksisterende note, noteindhold og notesbøger."
+msgstr "Søg efter en eksisterende note, notesindhold og notesbøger."
 
 #. (itstool) path: page/title
 #: C/search.page:35
@@ -711,24 +726,24 @@ msgid ""
 "<app>Notes</app> or find notes from your <gui href=\"help:gnome-help/shell-"
 "terminology\">Activities</gui> overview."
 msgstr ""
-"Du kan søge i dine noter i <gui>Nye og seneste</gui>-visningen i <app>Noter</"
-"app> eller finde noter fra dit <gui href=\"help:gnome-help/shell-terminology"
-"\">Aktiviteter</gui>-overblik."
+"Du kan søge i dine noter i visningen <gui>Nye og seneste</gui> i <app>Noter</"
+"app> eller finde noter i din <gui href=\"help:gnome-help/shell-"
+"terminology\">Aktivitetsoversigt</gui>."
 
 #. (itstool) path: steps/title
 #: C/search.page:42
 msgid "To find notes while in <gui>New and Recent</gui>:"
-msgstr "Find noter, mens du er i <gui>Nye og seneste</gui>:"
+msgstr "Sådan finder man noter i <gui>Nye og seneste</gui>:"
 
 #. (itstool) path: item/p
 #: C/search.page:44
 msgid "Click the <gui>Search</gui> button."
-msgstr "Klik på <gui>Søg</gui>-knappen."
+msgstr "Klik på knappen <gui>Søg</gui>."
 
 #. (itstool) path: item/p
 #: C/search.page:47
 msgid "Type your search term. Search results will appear instantly."
-msgstr "Skriv din søgefrase. Søgeresultaterne vises straks."
+msgstr "Indtast din søgeterm. Søgeresultater vil fremkomme med det samme."
 
 #. (itstool) path: note/p
 #: C/search.page:52
@@ -736,13 +751,13 @@ msgid ""
 "You can directly start typing the search string in the <gui>New and Recent</"
 "gui> view to search notes."
 msgstr ""
-"Du kan begynde at skrive søgestrengen direkte i <gui>Nye og seneste</gui>-"
-"visningen for at søge efter noter."
+"Du kan søge direkte ved at taste en søgestreng uden at klikke på knappen "
+"<gui>Søg</gui>, når du er i visningen <gui>Nye og seneste</gui>."
 
 #. (itstool) path: info/desc
 #: C/share.page:32
 msgid "Email a note to your contacts."
-msgstr "E-mail en note til dine kontakter."
+msgstr "Send en note som e-mail til dine kontakter."
 
 #. (itstool) path: page/title
 #: C/share.page:35
@@ -753,27 +768,26 @@ msgstr "Del en note"
 #: C/share.page:37
 msgid ""
 "You can share a note with your friends or colleagues by emailing it to them."
-msgstr ""
-"Du kan dele en note med dine venner og kollegaer ved at e-maile den til dem."
+msgstr "Den kan dele en note med venner og kolleger ved at maile den til dem."
 
 #. (itstool) path: steps/title
 #: C/share.page:41
 msgid "To share a note:"
-msgstr "Del en note:"
+msgstr "Sådan deler man en note:"
 
 #. (itstool) path: item/p
 #: C/share.page:46
 msgid ""
-"Click <guiseq><gui style=\"button\">More options…</gui><gui style=\"menuitem"
-"\">Email this Note</gui></guiseq>."
+"Click <guiseq><gui style=\"button\">More options…</gui><gui "
+"style=\"menuitem\">Email this Note</gui></guiseq>."
 msgstr ""
-"Klik på <guiseq><gui style=\"button\">Flere indstillinger …</gui><gui style="
-"\"menuitem\">Send denne note per e-mail</gui></guiseq>."
+"Klik <guiseq><gui style=\"button\">Flere indstillinger</gui><gui "
+"style=\"menuitem\">Send denne note per e-mail</gui></guiseq>."
 
 #. (itstool) path: item/p
 #: C/share.page:50
 msgid "Send the note by email."
-msgstr "Send noten via e-mail."
+msgstr "Send noten som e-mail."
 
 #. (itstool) path: p/link
 #: C/legal.xml:5
@@ -785,4 +799,3 @@ msgstr ""
 #: C/legal.xml:4
 msgid "This work is licensed under a <_:link-1/>."
 msgstr "Værket er licenseret under en <_:link-1/>."
-

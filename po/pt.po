@@ -4,7 +4,7 @@
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2014.
 # António Lima <amrlima@gmail.com>, 2013, 2015.
 # Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
-# Sérgio Cardeira <cardeira dot sergio at gmail dot com>, 2016.
+# Sérgio Cardeira <cardeira.sergio@gmail.com>, 2016.
 # João Nuno Matos <joaonmatos@gmail.com>, 2019.
 # Juliano de Souza Camargo <julianosc@protonmail.com>, 2020.
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2021, 2022, 2023.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-01-28 14:41+0000\n"
+"POT-Creation-Date: 2023-04-28 08:20+0000\n"
+"PO-Revision-Date: 2023-08-20 11:55+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <hugokarvalho@hotmail.com>\n"
 "Language: pt\n"
@@ -22,12 +22,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-DamnedLies-Scope: partial\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:402 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Notas"
 
@@ -157,125 +157,131 @@ msgstr ""
 "Há três tamanhos de texto disponíveis: pequeno, médio (predefinição) e "
 "grande."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:243
+#: data/resources/bjb-window.ui:334 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Livro de notas"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "Novo livro de notas…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "Adicionar"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:338
 msgid "No note selected"
 msgstr "Nenhuma nota selecionada"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:224
+#: src/bjb-window.c:303
 msgid "All Notes"
 msgstr "Todas as notas"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:43
 msgid "Open menu"
 msgstr "Abrir o menu"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:89
 msgid "More options"
 msgstr "Mais opções"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:121 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importar notas"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:136
 msgid "Text Sizes"
 msgstr "Tamanho do texto"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:145
 msgid "_Large"
 msgstr "_Grande"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:154
 msgid "_Medium"
 msgstr "_Médio"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:163
 msgid "_Small"
 msgstr "_Pequeno"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:179 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "Preferências"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:187
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de Teclado"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:195
 msgid "Help"
 msgstr "Ajuda"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:203
 msgid "About Notes"
 msgstr "Acerca do Notas"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:268 src/bjb-window.c:313
 msgid "Trash"
 msgstr "Lixo"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:295
 msgid "Open in New Window"
 msgstr "Abrir numa nova janela"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:311
 msgid "Undo"
 msgstr "Desfazer"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:319
 msgid "Redo"
 msgstr "Refazer"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:342
 msgid "Email this Note"
 msgstr "Enviar esta nota por email"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:350 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Mover para o lixo"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:394
+msgid "Select Note Location"
+msgstr "Selecionar localização da nota"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "Negrito"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "Itálico"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "Rasurado"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "Marcas"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "Lista numérica"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "Avanço"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "Recuo"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "Copiar seleção para uma nova nota"
 
@@ -427,63 +433,55 @@ msgstr "Restaurar"
 msgid "Permanently Delete"
 msgstr "Eliminar permanentemente"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Utilizar letra do sistema"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Letra da nota"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Cor predefinida"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "Aparência da Nota"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Selecione a localização padrão para guardar as notas:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "Utilizar letra do sistema"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Livro principal"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "Letra da nota"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "Cor predefinida"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:110
 msgid "Untitled"
 msgstr "Sem título"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "Notas do GNOME"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Mostrar registos"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Mostrar a versão da aplicação"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Criar uma nova nota"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FICHEIRO...]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Tome notas e exporte-as para todo o lado."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:403
 msgid "Simple notebook for GNOME"
 msgstr "Bloco de notas simples para o GNOME"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:409
 msgid "translator-credits"
 msgstr ""
 "António Lima <amrlima@gmail.com>\n"
@@ -495,23 +493,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "Cor da nota"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:113
 msgid "Add Notes"
 msgstr "Adicionar notas"
 
-#: src/bjb-note-list.c:109
+#: src/bjb-note-list.c:114
 msgid "Use the + button to add a note"
 msgstr "Use o botão + para adicionar uma nota"
 
-#: src/bjb-note-list.c:114
+#: src/bjb-note-list.c:119
 msgid "No Results"
 msgstr "Sem resultados"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:120
 msgid "Try a different search"
 msgstr "Tentar outro critério de pesquisa"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "Esta nota está a ser vista noutra janela"
 
@@ -532,14 +530,31 @@ msgstr "Este mês"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:750
+#: src/bjb-window.c:583
 #, c-format
 msgid "Last updated: %s"
 msgstr "Última atualização: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "Armazenamento local"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Local"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Neste Computador"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Nota de memorando"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Selecione a localização padrão para guardar as notas:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Livro principal"
+
+#~ msgid "Local storage"
+#~ msgstr "Armazenamento local"
 
 #~ msgid "No notes"
 #~ msgstr "Sem notas"
@@ -552,9 +567,6 @@ msgstr "Armazenamento local"
 
 #~ msgid "Please install “Tracker” then restart the application."
 #~ msgstr "Instale o \"Tracker\" e reinicie a aplicação."
-
-#~ msgid "Local"
-#~ msgstr "Local"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Insira um nome para criar um livro de notas"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
-"PO-Revision-Date: 2022-03-12 17:01+0500\n"
+"POT-Creation-Date: 2023-04-28 08:20+0000\n"
+"PO-Revision-Date: 2023-09-04 21:50+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: src/bjb-application.c:402 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Естеліктер"
 
@@ -151,127 +151,133 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Мәтінің үш өлшемі қолжетерлік: кішкентай, орташа (негізгі) және үлкен."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:243
+#: data/resources/bjb-window.ui:334 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Блокноттар"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "Жаңа блокнот…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "Қосу"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:338
+msgid "No note selected"
+msgstr "Бірде-бір естелік таңдалмады"
+
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:224
+#: src/bjb-window.c:303
 msgid "All Notes"
 msgstr "Барлық естеліктер"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:43
 msgid "Open menu"
 msgstr "Мәзірді ашу"
 
-#: data/resources/bjb-window.ui:148
+#: data/resources/bjb-window.ui:89
 msgid "More options"
 msgstr "Көбірек опциялар"
 
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:121 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Естеліктерді импорттау"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-window.ui:136
 msgid "Text Sizes"
 msgstr "Мәтін өлшемдері"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-window.ui:145
 msgid "_Large"
 msgstr "Ү_лкен"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-window.ui:154
 msgid "_Medium"
 msgstr "О_рташа"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-window.ui:163
 msgid "_Small"
 msgstr "_Кішкентай"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:179 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "Баптаулар"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-window.ui:187
 msgid "Keyboard Shortcuts"
 msgstr "Пернетақта жарлықтары"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-window.ui:195
 msgid "Help"
 msgstr "Көмек"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-window.ui:203
 msgid "About Notes"
 msgstr "Естеліктер қолданбасы туралы"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:268 src/bjb-window.c:313
 msgid "Trash"
 msgstr "Қоқыс шелегі"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:295
 msgid "Open in New Window"
 msgstr "Жаңа терезеде ашу"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:311
 msgid "Undo"
 msgstr "Болдырмау"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:319
 msgid "Redo"
 msgstr "Қайталау"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:342
 msgid "Email this Note"
 msgstr "Бұл естелікті эл. поштамен жіберу"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:350 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Қоқыс шелегіне тастау"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:394
+msgid "Select Note Location"
+msgstr "Естелік орнын таңдау"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "Жуан"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "Көлбеу"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "Сызылған"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "Тізім маркерлері"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "Тізім"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "Шегіністі үлкейту"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "Шегіністі азайту"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "Таңдалғанды жаңа естелікке көшіріп алу"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Естеліктер жоқ"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -421,63 +427,55 @@ msgstr "Қалпына келтіру"
 msgid "Permanently Delete"
 msgstr "Толығымен өшіру"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Жүйелік қаріпті қолдану"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Естелік қарібі"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Негізгі түс"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "Естеліктер сыртқы түрі"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Үнсіз келісім бойынша сақтау орнын таңдаңыз:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "Жүйелік қаріпті қолдану"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Басты кітап"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "Естелік қарібі"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "Негізгі түс"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:110
 msgid "Untitled"
 msgstr "Атаусыз"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "GNOME естеліктері"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Толықтай ақпараты бар журналдарды көрсету"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Қолданба нұсқасын көрсету"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Жаңа жазбаны жасау"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[ФАЙЛ…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Естеліктерді жасап, оларды экспорттаңыз."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:403
 msgid "Simple notebook for GNOME"
 msgstr "GNOME үшін қарапайым блокнот"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:409
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
@@ -485,26 +483,25 @@ msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 msgid "Note Color"
 msgstr "Естелік түсі"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Блокнот"
+#: src/bjb-note-list.c:113
+msgid "Add Notes"
+msgstr "Естеліктерді қосу"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Естелікті жасау үшін Жаңа батырмасын басыңыз."
+#: src/bjb-note-list.c:114
+msgid "Use the + button to add a note"
+msgstr "Естелікті жасау + батырмасын басыңыз."
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Қап"
+#: src/bjb-note-list.c:119
+msgid "No Results"
+msgstr "Нәтижелер жоқ"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "\"Tracker\" қолданбасын орнатып, бұл қолданбаны қайта іске қосыңыз."
+#: src/bjb-note-list.c:120
+msgid "Try a different search"
+msgstr "Басқа сөздерді іздеп көріңіз"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Бұл естелік басқа терезеде қаралуда."
+#: src/bjb-note-view.c:146
+msgid "This note is being viewed in another window"
+msgstr "Бұл естелік басқа терезеде қаралуда"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -523,20 +520,46 @@ msgstr "Бұл айда"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:583
 #, c-format
 msgid "Last updated: %s"
 msgstr "Соңғы жаңартылған: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
-msgid "Local storage"
-msgstr "Жергілікті сақтау қоймасы"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Жергілікті"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Бұл компьютерде"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Естелік"
+
+#~ msgid "No notes"
+#~ msgstr "Естеліктер жоқ"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Үнсіз келісім бойынша сақтау орнын таңдаңыз:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Басты кітап"
+
+#~ msgid "Notebook"
+#~ msgstr "Блокнот"
+
+#~ msgid "Oops"
+#~ msgstr "Қап"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "\"Tracker\" қолданбасын орнатып, бұл қолданбаны қайта іске қосыңыз."
+
+#~ msgid "Local storage"
+#~ msgstr "Жергілікті сақтау қоймасы"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Блокнотты жасау үшін атын енгізіңіз"
-
-#~ msgid "Local"
-#~ msgstr "Жергілікті"
 
 #~ msgid "How to show note items"
 #~ msgstr "Естелік элементтерін қалайша көрсету"
@@ -583,10 +606,6 @@ msgstr "Жергілікті сақтау қоймасы"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Бірнәрсені таңдау үшін оның үстіне шертіңіз"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d таңдалды"
 
 #~ msgid "Results for %s"
 #~ msgstr "%s үшін нәтижелер"

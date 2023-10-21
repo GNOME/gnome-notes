@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-notes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-04-03 07:28+0000\n"
-"PO-Revision-Date: 2023-04-26 00:45+0300\n"
+"POT-Creation-Date: 2023-05-01 10:25+0000\n"
+"PO-Revision-Date: 2023-10-17 17:56+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
@@ -386,7 +386,7 @@ msgstr "Notu çöpe taşı"
 
 #: data/resources/import-dialog.ui:12
 msgid "_Cancel"
-msgstr "_İptal"
+msgstr "İ_ptal"
 
 #: data/resources/import-dialog.ui:22
 msgid "_Import"

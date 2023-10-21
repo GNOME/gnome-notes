@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2021-06-16 15:18+0000\n"
-"PO-Revision-Date: 2021-07-05 22:03+0300\n"
-"Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
+"POT-Creation-Date: 2023-04-28 08:20+0000\n"
+"PO-Revision-Date: 2023-10-21 14:51+0300\n"
+"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
+"gmail [dot] com>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -17,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.4\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:627 src/bjb-window.c:46
+#: src/bjb-application.c:402 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Notițe"
 
@@ -153,119 +154,133 @@ msgid ""
 msgstr ""
 "Există trei dimensiuni de text disponibile: mic, mediu (implicit) și mare."
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
-msgid "All Notes"
-msgstr "Toate notițele"
-
-#: data/resources/bjb-window.ui:63
-msgid "Open menu"
-msgstr "Deschide meniul"
-
-#: data/resources/bjb-window.ui:148
-msgid "More options"
-msgstr "Mai multe opțiuni"
-
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
-msgid "Import Notes"
-msgstr "Importă notițe"
-
-#: data/resources/bjb-window.ui:196
-msgid "Text Sizes"
-msgstr "Dimensiuni de text"
-
-#: data/resources/bjb-window.ui:205
-msgid "_Large"
-msgstr "M_are"
-
-#: data/resources/bjb-window.ui:214
-msgid "_Medium"
-msgstr "_Mediu"
-
-#: data/resources/bjb-window.ui:223
-msgid "_Small"
-msgstr "Mi_c"
-
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
-msgid "Preferences"
-msgstr "Preferințe"
-
-#: data/resources/bjb-window.ui:248
-msgid "Keyboard Shortcuts"
-msgstr "Scurtături de tastatură"
-
-#: data/resources/bjb-window.ui:256
-msgid "Help"
-msgstr "Ajutor"
-
-#: data/resources/bjb-window.ui:264
-msgid "About Notes"
-msgstr "Despre Notițe"
-
-#: data/resources/bjb-window.ui:304 data/resources/bjb-window.ui:392
-#: data/resources/organize-dialog.ui:4 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:243
+#: data/resources/bjb-window.ui:334 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Carnețele"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:458
+#: data/resources/bjb-notebooks-dialog.ui:30
+msgid "New Notebook…"
+msgstr "Carnețel nou…"
+
+#: data/resources/bjb-notebooks-dialog.ui:37
+msgid "Add"
+msgstr "Adaugă"
+
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:338
+msgid "No note selected"
+msgstr "Nicio notiță selectată"
+
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:224
+#: src/bjb-window.c:303
+msgid "All Notes"
+msgstr "Toate notițele"
+
+#: data/resources/bjb-window.ui:43
+msgid "Open menu"
+msgstr "Deschide meniul"
+
+#: data/resources/bjb-window.ui:89
+msgid "More options"
+msgstr "Mai multe opțiuni"
+
+#: data/resources/bjb-window.ui:121 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "Importă notițe"
+
+#: data/resources/bjb-window.ui:136
+msgid "Text Sizes"
+msgstr "Dimensiuni de text"
+
+#: data/resources/bjb-window.ui:145
+msgid "_Large"
+msgstr "M_are"
+
+#: data/resources/bjb-window.ui:154
+msgid "_Medium"
+msgstr "_Mediu"
+
+#: data/resources/bjb-window.ui:163
+msgid "_Small"
+msgstr "Mi_c"
+
+#: data/resources/bjb-window.ui:179 data/resources/settings-dialog.ui:7
+msgid "Preferences"
+msgstr "Preferințe"
+
+#: data/resources/bjb-window.ui:187
+msgid "Keyboard Shortcuts"
+msgstr "Scurtături de tastatură"
+
+#: data/resources/bjb-window.ui:195
+msgid "Help"
+msgstr "Ajutor"
+
+#: data/resources/bjb-window.ui:203
+msgid "About Notes"
+msgstr "Despre Notițe"
+
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:268 src/bjb-window.c:313
 msgid "Trash"
 msgstr "Gunoi"
 
-#: data/resources/bjb-window.ui:352
+#: data/resources/bjb-window.ui:295
 msgid "Open in New Window"
 msgstr "Deschide într-o fereastră nouă"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:311
 msgid "Undo"
 msgstr "Anulează"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:319
 msgid "Redo"
 msgstr "Refă"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:342
 msgid "Email this Note"
 msgstr "Trimite această notiță prin email"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:350 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Mută la coșul de gunoi"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:394
+msgid "Select Note Location"
+msgstr "Selectați locația notiței"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "Aldin"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "Cursiv"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "Tăiat"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "Buline"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "Listă"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "Indentare"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "Indentare negativă"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "Copiază selecția într-o notiță nouă"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Nu există notițe"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -395,14 +410,6 @@ msgstr "Locație personalizată"
 msgid "Select a Folder"
 msgstr "Selectați un dosar"
 
-#: data/resources/organize-dialog.ui:16
-msgid "Enter a name to create a notebook"
-msgstr "Introduceți un nume pentru a creea un carnețel"
-
-#: data/resources/organize-dialog.ui:37
-msgid "New notebook"
-msgstr "Carnețel nou"
-
 #: data/resources/selection-toolbar.ui:43
 msgid "Note color"
 msgstr "Culoare notiță"
@@ -423,93 +430,84 @@ msgstr "Restabilește"
 msgid "Permanently Delete"
 msgstr "Șterge permanent"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Utilizează fontul sistemului"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Font notiță"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Culoare implicită"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "Aspect notiță"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Selectați locația de stocare implicită:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "Utilizează fontul sistemului"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Carte primară"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "Font notiță"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:126
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "Culoare implicită"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:110
 msgid "Untitled"
 msgstr "Fără titlu"
 
-#: src/bjb-application.c:223
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "Notițe GNOME"
 
-#: src/bjb-application.c:278
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Arată istoricul detaliat"
 
-#: src/bjb-application.c:280
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Arată versiunea aplicației"
 
-#: src/bjb-application.c:282
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Creează o notiță nouă"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FIȘIER…]"
 
-#: src/bjb-application.c:291
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Luați notițe și exportați-le oriunde."
 
-#: src/bjb-application.c:628
+#: src/bjb-application.c:403
 msgid "Simple notebook for GNOME"
 msgstr "Carnețel simplu pentru GNOME"
 
-#: src/bjb-application.c:634
+#: src/bjb-application.c:409
 msgid "translator-credits"
 msgstr ""
 "Vasile,\n"
 "Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2018, 2020\n"
-"Florentina Mușat <emryslokadottir [at] gmail [dot] com>, 2019-2021"
+"Florentina Mușat <emryslokadottir [at] gmail [dot] com>, 2019-2021, 2023"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Culoare notiță"
 
-#: src/bjb-controller.c:236
-msgid "Notebook"
-msgstr "Carnețel"
+#: src/bjb-note-list.c:113
+msgid "Add Notes"
+msgstr "Adaugă notițe"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Apăsați butonul Nou pentru a creea o notiță."
+#: src/bjb-note-list.c:114
+msgid "Use the + button to add a note"
+msgstr "Utilizați butonul + pentru a adăuga o notiță"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Ups"
+#: src/bjb-note-list.c:119
+msgid "No Results"
+msgstr "Nu sunt rezultate"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Instalați „Tracker”, apoi reporniți aplicația."
+#: src/bjb-note-list.c:120
+msgid "Try a different search"
+msgstr "Încercați o altă căutare"
 
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:195
-msgid "This note is being viewed in another window."
-msgstr "Această notiță este vizualizată într-o altă fereastră."
+#: src/bjb-note-view.c:146
+msgid "This note is being viewed in another window"
+msgstr "Această notiță este vizualizată într-o altă fereastră"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -528,18 +526,46 @@ msgstr "Luna aceasta"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:922
+#: src/bjb-window.c:583
 #, c-format
 msgid "Last updated: %s"
 msgstr "Ultima actualizare: %s"
 
-#: src/libbiji/biji-notebook.c:265
+#: src/providers/bjb-local-provider.c:78
 msgid "Local"
 msgstr "Local"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "Stocarea locală"
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Pe acest calculator"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Notiță memo"
+
+#~ msgid "No notes"
+#~ msgstr "Nu există notițe"
+
+#~ msgid "Enter a name to create a notebook"
+#~ msgstr "Introduceți un nume pentru a creea un carnețel"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Selectați locația de stocare implicită:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Carte primară"
+
+#~ msgid "Notebook"
+#~ msgstr "Carnețel"
+
+#~ msgid "Oops"
+#~ msgstr "Ups"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Instalați „Tracker”, apoi reporniți aplicația."
+
+#~ msgid "Local storage"
+#~ msgstr "Stocarea locală"
 
 #~ msgid "How to show note items"
 #~ msgstr "Cum să se arate notițele"
@@ -585,12 +611,6 @@ msgstr "Stocarea locală"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Clic pe obiecte pentru a le selecta"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d selectat"
-#~ msgstr[1] "%d selectate"
-#~ msgstr[2] "%d selectate"
 
 #~ msgid "Results for %s"
 #~ msgstr "Rezultate pentru %s"

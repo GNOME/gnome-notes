@@ -236,17 +236,6 @@ on_detach_window_cb (GSimpleAction *action,
 }
 
 static void
-on_paste_cb (GSimpleAction *action,
-             GVariant      *parameter,
-             gpointer       user_data)
-{
-  BjbWindow *self = user_data;
-
-  if (self->note)
-    biji_webkit_editor_paste (bjb_note_view_get_editor (BJB_NOTE_VIEW (self->note_view)));
-}
-
-static void
 on_undo_cb (GSimpleAction *action,
             GVariant      *parameter,
             gpointer       user_data)
@@ -395,7 +384,6 @@ bjb_window_destroy (gpointer a, BjbWindow * self)
 
 static GActionEntry win_entries[] = {
   { "detach-window", on_detach_window_cb, NULL, NULL, NULL },
-  { "paste", on_paste_cb, NULL, NULL, NULL },
   { "undo", on_undo_cb, NULL, NULL, NULL },
   { "redo", on_redo_cb, NULL, NULL, NULL },
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },

@@ -192,12 +192,6 @@ biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
 }
 
 void
-biji_webkit_editor_paste (BijiWebkitEditor *self)
-{
-  webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), "PasteAsPlainText");
-}
-
-void
 biji_webkit_editor_undo (BijiWebkitEditor *self)
 {
   webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), WEBKIT_EDITING_COMMAND_UNDO);

@@ -66,6 +66,7 @@ struct _BijiWebkitEditor
   BlockFormat       block_format;
   gboolean          first_load;
   EEditorSelection *sel;
+  GtkEventController *shortcut_controller;
 };
 
 G_DEFINE_TYPE (BijiWebkitEditor, biji_webkit_editor, WEBKIT_TYPE_WEB_VIEW)
@@ -191,16 +192,20 @@ biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format)
   }
 }
 
-void
-biji_webkit_editor_undo (BijiWebkitEditor *self)
+static gboolean
+biji_webkit_editor_undo_cb (BijiWebkitEditor *self)
 {
   webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), WEBKIT_EDITING_COMMAND_UNDO);
+
+  return GDK_EVENT_STOP;
 }
 
-void
-biji_webkit_editor_redo (BijiWebkitEditor *self)
+static gboolean
+biji_webkit_editor_redo_cb (BijiWebkitEditor *self)
 {
   webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (self), WEBKIT_EDITING_COMMAND_REDO);
+
+  return GDK_EVENT_STOP;
 }
 
 static void
@@ -265,6 +270,8 @@ biji_webkit_editor_finalize (GObject *object)
 
   g_clear_object (&self->note);
   g_free (self->selected_text);
+
+  self->shortcut_controller = NULL;
 
   if (self->note != NULL) {
     g_object_remove_weak_pointer (G_OBJECT (self->note), (gpointer*) &self->note);
@@ -463,6 +470,8 @@ static void
 biji_webkit_editor_constructed (GObject *obj)
 {
   BijiWebkitEditor *self;
+  GtkShortcut *redo_shortcut;
+  GtkShortcut *undo_shortcut;
   WebKitWebView *view;
   WebKitUserContentManager *user_content;
   g_autoptr(GBytes) html_data = NULL;
@@ -495,6 +504,20 @@ biji_webkit_editor_constructed (GObject *obj)
   html_data = g_bytes_new_take (body, strlen (body));
   webkit_web_view_load_bytes (view, html_data, "application/xhtml+xml", NULL,
                               "file://" DATADIR G_DIR_SEPARATOR_S "bijiben" G_DIR_SEPARATOR_S);
+
+  redo_shortcut = gtk_shortcut_new (gtk_keyval_trigger_new (GDK_KEY_Z, GDK_CONTROL_MASK | GDK_SHIFT_MASK),
+                                    gtk_callback_action_new ((GtkShortcutFunc) biji_webkit_editor_redo_cb, self, NULL));
+  undo_shortcut = gtk_shortcut_new (gtk_keyval_trigger_new (GDK_KEY_Z, GDK_CONTROL_MASK),
+                                    gtk_callback_action_new ((GtkShortcutFunc) biji_webkit_editor_undo_cb, self, NULL));
+
+  self->shortcut_controller = gtk_shortcut_controller_new ();
+  gtk_shortcut_controller_set_scope (GTK_SHORTCUT_CONTROLLER (self->shortcut_controller), GTK_SHORTCUT_SCOPE_LOCAL);
+  gtk_shortcut_controller_add_shortcut (GTK_SHORTCUT_CONTROLLER (self->shortcut_controller),
+                                        redo_shortcut);
+  gtk_shortcut_controller_add_shortcut (GTK_SHORTCUT_CONTROLLER (self->shortcut_controller),
+                                        undo_shortcut);
+
+  gtk_widget_add_controller (GTK_WIDGET (self), self->shortcut_controller);
 
   /* Do not be a browser */
   g_signal_connect (view, "decide-policy",

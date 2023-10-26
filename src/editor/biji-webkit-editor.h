@@ -52,9 +52,6 @@ void biji_webkit_editor_apply_format (BijiWebkitEditor *self, gint format);
 
 const gchar * biji_webkit_editor_get_selection (BijiWebkitEditor *self);
 
-void biji_webkit_editor_undo (BijiWebkitEditor *self);
-void biji_webkit_editor_redo (BijiWebkitEditor *self);
-
 void biji_webkit_editor_set_font (BijiWebkitEditor *self, gchar *font);
 
 void biji_webkit_editor_set_text_size (BijiWebkitEditor *self,

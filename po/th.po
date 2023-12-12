@@ -1,0 +1,596 @@
+# Thai translation for gnome-notes.
+# Copyright (C) 2019 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-notes package.
+# knight2000 <knight2000@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-notes master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2020-07-24 15:45+0000\n"
+"PO-Revision-Date: 2020-07-25 10:59+0700\n"
+"Last-Translator: knight2000 <knight2000@gmail.com>\n"
+"Language-Team: Thai <thai-l10n@googlegroups.com>\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:608 src/bjb-window-base.c:17
+msgid "Notes"
+msgstr "บันทึกข้อความ"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "บันทึกข้อความสำหรับ GNOME"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"วิธีที่รวดเร็วและง่ายๆ ในการสร้างบันทึกข้อความอย่างอิสระหรือจดรายการอย่างง่ายๆ "
+"เก็บบันทึกข้อความมากเท่าที่ต้องการและแบ่งปันทางอีเมล"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"คุณสามารถเก็บบันทึกข้อความของคุณในเครื่องคอมพิวเตอร์ของคุณ หรือปรับข้อมูลด้วยบริการออนไลน์เช่น "
+"ownCloud"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "แก้ไขมุมมอง"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "เลือกมุมมอง"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "มุมมองรายการ"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "บันทึกข้อความ;เตือนความจำ;สมุดบันทึก;ตรึงบันทึกข้อความ;"
+
+#: data/org.gnome.Notes.desktop.in:6
+msgid "Post notes, tag files!"
+msgstr "โพสต์บันทึกข้อความ แท็กแฟ้ม!"
+
+#: data/org.gnome.Notes.desktop.in:7
+msgid "Note-taker"
+msgstr "หมายเหตุ"
+
+#: data/org.gnome.Notes.desktop.in:19
+#| msgid "Create a new note"
+msgid "Create New Note"
+msgstr "สร้างบันทึกข้อความใหม่"
+
+#: data/org.gnome.Notes.gschema.xml:10
+msgid "Custom Font"
+msgstr "แบบอักษรกำหนดเอง"
+
+#: data/org.gnome.Notes.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr "ชื่อแบบอักษรกำหนดที่นี่จะใช้เป็นแบบอักษรเมื่อแสดงบันทึกข้อความ"
+
+#: data/org.gnome.Notes.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr "กำหนดว่าจะใช้แบบอักษร monospace ของระบบ"
+
+#: data/org.gnome.Notes.gschema.xml:19
+msgid "New notes color."
+msgstr "สีของบันทึกข้อความใหม่"
+
+#: data/org.gnome.Notes.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr "ชื่อสีกำหนดที่นี่ จะใช้เป็นสีขณะสร้างบันทึกข้อความใหม่"
+
+#: data/org.gnome.Notes.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr "ผู้ให้บริการบันทึกข้อความหลัก ใช้สำหรับบันทึกข้อความใหม่"
+
+#: data/org.gnome.Notes.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr "สมุดบันทึกหลักเป็นที่ซึ่งสร้างบันทึกข้อความใหม่"
+
+#: data/org.gnome.Notes.gschema.xml:29
+msgid "Window maximized"
+msgstr "หน้าต่างขยายแผ่อยู่"
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid "Window maximized state."
+msgstr "สถานะขยายแผ่ของหน้าต่าง"
+
+#: data/org.gnome.Notes.gschema.xml:34
+msgid "Window size"
+msgstr "ขนาดหน้าต่าง"
+
+#: data/org.gnome.Notes.gschema.xml:35
+msgid "Window size (width and height)."
+msgstr "ขนาดหน้าต่าง (ความกว้างและความสูง)"
+
+#: data/org.gnome.Notes.gschema.xml:39
+msgid "Window position"
+msgstr "ตำแหน่งหน้าต่าง"
+
+#: data/org.gnome.Notes.gschema.xml:40
+msgid "Window position (x and y)."
+msgstr "ตำแหน่งหน้าต่าง (x และ y)"
+
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "Text size used by note editor."
+msgstr "ขนาดข้อความที่ใช้โดยเครื่องมือแก้ไขบันทึกข้อความ"
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "มีข้อความ 3 ขนาด: เล็ก, กลาง (ค่าปริยาย) และใหญ่"
+
+#: data/resources/editor-toolbar.ui:51
+msgid "Bold"
+msgstr "หนา"
+
+#: data/resources/editor-toolbar.ui:67
+msgid "Italic"
+msgstr "เอียง"
+
+#: data/resources/editor-toolbar.ui:83
+msgid "Strike"
+msgstr "ขีดฆ่า"
+
+#: data/resources/editor-toolbar.ui:111
+msgid "Bullets"
+msgstr "จุดนำ"
+
+#: data/resources/editor-toolbar.ui:127
+msgid "List"
+msgstr "รายการ"
+
+#: data/resources/editor-toolbar.ui:166
+msgid "Copy selection to a new note"
+msgstr "คัดลอกการเลือกเป็นบันทึกข้อความใหม่"
+
+#: data/resources/empty-results-box.ui:33
+msgid "No notes"
+msgstr "ไม่มีบนทึกข้อความ"
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "ทั่วไป"
+
+#: data/resources/help-overlay.ui:14
+#| msgid "Share note"
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "ค้นหาบันทึกข้อความ"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "บันทึกข้อความใหม่"
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "ปิดหน้าต่าง"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "ออก"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "ย้อนกลับ"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "แสดงวิธีใช้"
+
+#: data/resources/help-overlay.ui:56
+#| msgid "Open menu"
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "เปิดเมนู"
+
+#: data/resources/help-overlay.ui:63
+#| msgid "Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "ปุ่มลัด"
+
+#: data/resources/help-overlay.ui:71
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "โหมดการเลือก"
+
+#: data/resources/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "ยกเลิกโหมดการเลือก"
+
+#: data/resources/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "เลือกทั้งหมด"
+
+#: data/resources/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "โหมดแก้ไขบันทึกข้อความ"
+
+#: data/resources/help-overlay.ui:96
+#| msgid "Open in another window"
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "เปิดในหน้าต่างใหม่"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "หนา"
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "เอียง"
+
+#: data/resources/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "ขีดทับ"
+
+#: data/resources/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "เรียกคืน"
+
+#: data/resources/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "ทำซ้ำ"
+
+#: data/resources/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "ย้ายบันทึกข้อความไปลงถังขยะ"
+
+#: data/resources/import-dialog.ui:5 data/resources/main-toolbar.ui:180
+msgid "Import Notes"
+msgstr "นำเข้าบันทึกข้อความ"
+
+#: data/resources/import-dialog.ui:12 data/resources/main-toolbar.ui:72
+msgid "_Cancel"
+msgstr "_ยกเลิก"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "_นำเข้า"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "เลือกตำแหน่งนำเข้า"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "โปรแกรม Gnote"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "โปรแกรม Tomboy"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "ตำแหน่งกำหนดเอง"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "เลือกโฟลเดอร์"
+
+#: data/resources/main-toolbar.ui:14
+msgid "_New"
+msgstr "ใ_หม่"
+
+#: data/resources/main-toolbar.ui:43 data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "สีบันทึกข้อความ"
+
+#. Translators: “Empty” is a verb.
+#: data/resources/main-toolbar.ui:55
+msgid "_Empty"
+msgstr "เ_ทขยะ"
+
+#: data/resources/main-toolbar.ui:74
+msgid "Exit selection mode"
+msgstr "ออกจากโหมดการเลือก"
+
+#: data/resources/main-toolbar.ui:94
+msgid "Search note titles, content and notebooks"
+msgstr "ค้นหาชื่อบันทึกข้อความ เนื้อหาและสมุดบันทึก"
+
+#: data/resources/main-toolbar.ui:116
+msgid "Selection mode"
+msgstr "โหมดการเลือก"
+
+#: data/resources/main-toolbar.ui:130
+msgid "Open menu"
+msgstr "เปิดเมนู"
+
+#: data/resources/main-toolbar.ui:150
+msgid "More options"
+msgstr "ตัวเลือกเพิ่มเติม"
+
+#: data/resources/main-toolbar.ui:189
+msgid "View Trash"
+msgstr "มุมมองถังขยะ"
+
+#: data/resources/main-toolbar.ui:206
+msgid "Text Sizes"
+msgstr "ขนาดข้อความ"
+
+#: data/resources/main-toolbar.ui:216
+msgid "_Large"
+msgstr "ใ_หญ่"
+
+#: data/resources/main-toolbar.ui:226
+msgid "_Medium"
+msgstr "_กลาง"
+
+#: data/resources/main-toolbar.ui:236
+msgid "_Small"
+msgstr "เ_ล็ก"
+
+#: data/resources/main-toolbar.ui:254 data/resources/settings-dialog.ui:10
+msgid "Preferences"
+msgstr "ปรับแต่ง"
+
+#: data/resources/main-toolbar.ui:263
+msgid "Keyboard Shortcuts"
+msgstr "ปุ่มลัด"
+
+#: data/resources/main-toolbar.ui:272
+msgid "Help"
+msgstr "วิธีใช้"
+
+#: data/resources/main-toolbar.ui:281
+msgid "About Notes"
+msgstr "เกี่ยวกับบันทึกข้อความ"
+
+#: data/resources/main-toolbar.ui:303
+msgid "Open in New Window"
+msgstr "เปิดในหน้าต่างใหม่"
+
+#: data/resources/main-toolbar.ui:320
+msgid "Undo"
+msgstr "เรียกคืน"
+
+#: data/resources/main-toolbar.ui:329
+msgid "Redo"
+msgstr "ทำซ้ำ"
+
+#: data/resources/main-toolbar.ui:346 data/resources/organize-dialog.ui:4
+#: data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "สมุดบันทึก"
+
+#: data/resources/main-toolbar.ui:355
+msgid "Email this Note"
+msgstr "อีเมลบันทึกข้อความนี้"
+
+#: data/resources/main-toolbar.ui:364 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "ทิ้งลงถังขยะ"
+
+#: data/resources/organize-dialog.ui:16
+msgid "Enter a name to create a notebook"
+msgstr "ป้อนชื่อเพื่อการสร้างสมุดบันทึก"
+
+#: data/resources/organize-dialog.ui:37
+msgid "New notebook"
+msgstr "สมุดบันทึกใหม่"
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr "แบ่งปันบันทึกข้อความ"
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "เปิดในหน้าต่างอื่น"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr "กู้คืน"
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr "ลบอย่างถาวร"
+
+#: data/resources/settings-dialog.ui:37
+msgid "Use System Font"
+msgstr "ใช้แบบอักษรระบบ"
+
+#: data/resources/settings-dialog.ui:50
+msgid "Note Font"
+msgstr "แบบอักษรบันทึกข้อความ"
+
+#: data/resources/settings-dialog.ui:62
+msgid "Default Color"
+msgstr "สีปริยาย"
+
+#: data/resources/settings-dialog.ui:113
+msgid "Note Appearance"
+msgstr "รูปโฉมของบันทึกข้อความ"
+
+#: data/resources/settings-dialog.ui:126
+msgid "Select the default storage location:"
+msgstr "เลือกตำแหน่งแหล่งข้อมูลปริยาย"
+
+#: data/resources/settings-dialog.ui:157
+msgid "Primary Book"
+msgstr "สมุดหลัก"
+
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:348
+msgid "Untitled"
+msgstr "ไม่มีชื่อ"
+
+#: src/bjb-application.c:432
+msgid "Show the application’s version"
+msgstr "แสดงรุ่นของโปรแกรม"
+
+#: src/bjb-application.c:434
+msgid "Create a new note"
+msgstr "สร้างบันทึกข้อความใหม่"
+
+#: src/bjb-application.c:436
+msgid "[FILE…]"
+msgstr "[FILE…]"
+
+#: src/bjb-application.c:444
+msgid "Take notes and export them everywhere."
+msgstr "เลือกบันทึกข้อความและส่งออกไปทุกแห่ง"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:455
+msgid "Could not parse arguments"
+msgstr "ไม่สามารถแจงอาร์กิวเมนต์"
+
+#: src/bjb-application.c:463
+msgid "GNOME Notes"
+msgstr "บันทึกข้อความของ GNOME"
+
+#. Translators: this is a fatal error quit message
+#. * printed on the command line
+#: src/bjb-application.c:475
+msgid "Could not register the application"
+msgstr "ไม่สามารถลงทะเบียนโปรแกรม"
+
+#: src/bjb-application.c:609
+msgid "Simple notebook for GNOME"
+msgstr "สมุดบันทึกอย่างง่ายสำหรับ GNOME"
+
+#: src/bjb-application.c:615
+msgid "translator-credits"
+msgstr "Akom Chotiphantawanon <knight2000@gmail.com>"
+
+#: src/bjb-color-button.c:140
+msgid "Note Color"
+msgstr "สีบันทึกข้อความ"
+
+#: src/bjb-controller.c:239
+#| msgid "Notebooks"
+msgid "Notebook"
+msgstr "สมุดบันทึก"
+
+#: src/bjb-empty-results-box.c:63
+msgid "Press the New button to create a note."
+msgstr "กดปุ่มใหม่เพื่อสร้างบันทึกข้อความ"
+
+#: src/bjb-empty-results-box.c:85
+msgid "Oops"
+msgstr "โอ๊ะ"
+
+#: src/bjb-empty-results-box.c:91
+msgid "Please install “Tracker” then restart the application."
+msgstr "กรุณาติดตั้ง “Tracker” แล้วเริ่มต้นโปรแกรมนี้ใหม่"
+
+#: src/bjb-main-toolbar.c:134
+msgid "Click on items to select them"
+msgstr "คลิกในรายการเพื่อเลือก"
+
+#: src/bjb-main-toolbar.c:136
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d ที่เลือก"
+
+#: src/bjb-main-toolbar.c:228
+#, c-format
+msgid "Results for %s"
+msgstr "ผลลัพธ์สำหรับ %s"
+
+#: src/bjb-main-toolbar.c:231
+msgid "New and Recent"
+msgstr "ใหม่และล่าสุด"
+
+#: src/bjb-main-toolbar.c:324
+msgid "Trash"
+msgstr "ถังขยะ"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-main-toolbar.c:392
+#, c-format
+msgid "Last updated: %s"
+msgstr "ปรับข้อมูลล่าสุด: %s"
+
+#: src/bjb-utils.c:51 src/libbiji/biji-date-time.c:30
+#: src/libbiji/biji-date-time.c:51
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+#: src/bjb-utils.c:68 src/libbiji/biji-date-time.c:42
+msgid "Yesterday"
+msgstr "เมื่อวาน"
+
+#: src/bjb-utils.c:74 src/libbiji/biji-date-time.c:56
+msgid "This month"
+msgstr "เดือนนี้"
+
+#: src/libbiji/biji-date-time.c:38
+msgid "Today"
+msgstr "วันนี้"
+
+#: src/libbiji/biji-date-time.c:47
+msgid "This week"
+msgstr "สัปดาห์นี้"
+
+#: src/libbiji/biji-date-time.c:60
+msgid "This year"
+msgstr "ปีนี้"
+
+#: src/libbiji/biji-notebook.c:265
+msgid "Local"
+msgstr "ในเครื่อง"
+
+#: src/libbiji/provider/biji-local-provider.c:366
+msgid "Local storage"
+msgstr "แหล่งข้อมูลในเครื่อง"
+
+#~ msgid "How to show note items"
+#~ msgstr "การแสดงรายการบันทึกข้อความ"
+
+#~ msgid "Whether to show note items in icon view or list view."
+#~ msgstr "กำหนดว่าจะแสดงรายการบันทึกข้อความในมุมมองไอคอนหรือมุมมองรายการ"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Shortcuts"
+#~ msgstr "ปุ่มลัด"
+
+#~ msgid "View notes and notebooks in a grid"
+#~ msgstr "มุมมองบันทึกข้อความและสมุดบันทึกแบบตาราง"
+
+#~ msgid "View notes and notebooks in a list"
+#~ msgstr "มุมมองบันทึกข้อความและสมุดบันทึกแบบรายการ"
+
+#~ msgid "Load More"
+#~ msgstr "โหลดเพิ่มเติม"
+
+#~ msgid "Loading…"
+#~ msgstr "กำลังโหลด…"

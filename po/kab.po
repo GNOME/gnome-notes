@@ -1,0 +1,534 @@
+# Kabyle translation for gnome-notes.
+# Copyright (C) 2024 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-notes package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-notes master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2024-01-24 05:14+0000\n"
+"PO-Revision-Date: 2024-03-10 21:35+0100\n"
+"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
+"Language-Team: Kabyle <>\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Team: kab\n"
+"X-DL-Module: gnome-notes\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
+"X-Generator: Gtranslator 41.0\n"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:396 src/bjb-window.c:46
+msgid "Notes"
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr ""
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr ""
+
+#: data/org.gnome.Notes.desktop.in:6
+msgid "Post notes, tag files!"
+msgstr ""
+
+#: data/org.gnome.Notes.desktop.in:7
+msgid "Note-taker"
+msgstr ""
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:10
+msgid "Custom Font"
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:19
+msgid "New notes color."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:29
+msgid "Note path of the notes opened when Notes quits last time."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid ""
+"This stores the note path of the last opened item, so that we can open it on "
+"startup."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:34
+msgid "Window maximized"
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:35
+msgid "Window maximized state."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:39
+msgid "Window size"
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:40
+msgid "Window size (width and height)."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid "Window position"
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:45
+msgid "Window position (x and y)."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr ""
+
+#: data/org.gnome.Notes.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:247
+#: data/resources/bjb-window.ui:338 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr ""
+
+#: data/resources/bjb-notebooks-dialog.ui:30
+msgid "New Notebook…"
+msgstr ""
+
+#: data/resources/bjb-notebooks-dialog.ui:37
+msgid "Add"
+msgstr "Rnu"
+
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:340
+msgid "No note selected"
+msgstr ""
+
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:228
+#: src/bjb-window.c:279
+msgid "All Notes"
+msgstr ""
+
+#: data/resources/bjb-window.ui:43
+msgid "Open menu"
+msgstr "Ldi umuɣ"
+
+#: data/resources/bjb-window.ui:93
+msgid "More options"
+msgstr ""
+
+#: data/resources/bjb-window.ui:125 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr ""
+
+#: data/resources/bjb-window.ui:140
+msgid "Text Sizes"
+msgstr ""
+
+#: data/resources/bjb-window.ui:149
+msgid "_Large"
+msgstr ""
+
+#: data/resources/bjb-window.ui:158
+msgid "_Medium"
+msgstr ""
+
+#: data/resources/bjb-window.ui:167
+msgid "_Small"
+msgstr ""
+
+#: data/resources/bjb-window.ui:183 data/resources/settings-dialog.ui:7
+msgid "Preferences"
+msgstr "Ismenyafen"
+
+#: data/resources/bjb-window.ui:191
+msgid "Keyboard Shortcuts"
+msgstr "Inegzumen n unasiw"
+
+#: data/resources/bjb-window.ui:199
+msgid "Help"
+msgstr "Tallalt"
+
+#: data/resources/bjb-window.ui:207
+msgid "About Notes"
+msgstr ""
+
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:272 src/bjb-window.c:289
+msgid "Trash"
+msgstr "Taqecwalt"
+
+#: data/resources/bjb-window.ui:299
+msgid "Open in New Window"
+msgstr "Ldi deg usfaylu amaynut"
+
+#: data/resources/bjb-window.ui:315
+msgid "Undo"
+msgstr "Err-d"
+
+#: data/resources/bjb-window.ui:323
+msgid "Redo"
+msgstr "Err-d"
+
+#: data/resources/bjb-window.ui:346
+msgid "Email this Note"
+msgstr ""
+
+#: data/resources/bjb-window.ui:354 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "Awi-t ɣer tqecwalt"
+
+#: data/resources/bjb-window.ui:398
+msgid "Select Note Location"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:20
+msgid "Bold"
+msgstr "Azuran"
+
+#: data/resources/editor-toolbar.ui:28
+msgid "Italic"
+msgstr "Yekna"
+
+#: data/resources/editor-toolbar.ui:36
+msgid "Strike"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:52
+msgid "Bullets"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:60
+msgid "List"
+msgstr "Tabdart"
+
+#: data/resources/editor-toolbar.ui:76
+msgid "Indent"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:84
+msgid "Outdent"
+msgstr ""
+
+#: data/resources/editor-toolbar.ui:106
+msgid "Copy selection to a new note"
+msgstr ""
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Amatu"
+
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr ""
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "New note"
+msgstr ""
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Mdel asfaylu"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Ffeɣ"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Tuɣalin"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "Sken-d tallelt"
+
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "Ldi umuɣ"
+
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Inegzumen n unasiw"
+
+#: data/resources/help-overlay.ui:71
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr ""
+
+#: data/resources/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr ""
+
+#: data/resources/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "Fren-iten akk"
+
+#: data/resources/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr ""
+
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "Ldi deg usfaylu amaynut"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "Azuran"
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "Yekna"
+
+#: data/resources/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr ""
+
+#: data/resources/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Err-d"
+
+#: data/resources/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr ""
+
+#: data/resources/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr ""
+
+#: data/resources/import-dialog.ui:12
+msgid "_Cancel"
+msgstr "Sefsex (_C)"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "Kter (_I)"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr ""
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr ""
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr ""
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr ""
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "Fren akaram"
+
+#: data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr ""
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr ""
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "Ldi deg usfaylu amaynut"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr ""
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:23
+msgid "Note Appearance"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr ""
+
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr ""
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:111
+msgid "Untitled"
+msgstr "War azwel"
+
+#: src/bjb-application.c:146
+msgid "GNOME Notes"
+msgstr ""
+
+#: src/bjb-application.c:172
+msgid "Show verbose logs"
+msgstr ""
+
+#: src/bjb-application.c:174
+msgid "Show the application’s version"
+msgstr ""
+
+#: src/bjb-application.c:176
+msgid "Create a new note"
+msgstr ""
+
+#: src/bjb-application.c:184
+msgid "[FILE…]"
+msgstr ""
+
+#: src/bjb-application.c:185
+msgid "Take notes and export them everywhere."
+msgstr ""
+
+#: src/bjb-application.c:397
+msgid "Simple notebook for GNOME"
+msgstr ""
+
+#: src/bjb-application.c:403
+msgid "translator-credits"
+msgstr ""
+
+#: src/bjb-color-button.c:140
+msgid "Note Color"
+msgstr ""
+
+#: src/bjb-note-list.c:113
+msgid "Add Notes"
+msgstr ""
+
+#: src/bjb-note-list.c:114
+msgid "Use the + button to add a note"
+msgstr ""
+
+#: src/bjb-note-list.c:119
+msgid "No Results"
+msgstr "Ulac igmaḍ"
+
+#: src/bjb-note-list.c:120
+msgid "Try a different search"
+msgstr ""
+
+#: src/bjb-note-view.c:146
+msgid "This note is being viewed in another window"
+msgstr ""
+
+#: src/bjb-utils.c:51
+msgid "Unknown"
+msgstr "Arussin"
+
+#: src/bjb-utils.c:68
+msgid "Yesterday"
+msgstr "Iḍeli"
+
+#: src/bjb-utils.c:74
+msgid "This month"
+msgstr "Ayyur-a"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-window.c:559
+#, c-format
+msgid "Last updated: %s"
+msgstr ""
+
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr ""
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Deg uselkim-ayi"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr ""

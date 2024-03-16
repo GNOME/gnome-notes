@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-02-18 22:03+0200\n"
+"POT-Creation-Date: 2024-03-15 10:28+0000\n"
+"PO-Revision-Date: 2024-03-16 22:55+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 42.0\n"
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:396 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Rašteliai"
 
@@ -149,125 +149,131 @@ msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr "Yra trys teksto dydžiai: mažas, vidutinis (numatytasis) ir didelis."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:247
+#: data/resources/bjb-window.ui:338 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Užrašinės"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "Nauja užrašinė…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "Pridėti"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:340
 msgid "No note selected"
 msgstr "Nėra pažymėto raštelio"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:228
+#: src/bjb-window.c:279
 msgid "All Notes"
 msgstr "Visi rašteliai"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:43
 msgid "Open menu"
 msgstr "Atverti meniu"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:93
 msgid "More options"
 msgstr "Daugiau parinkčių"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:125 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importuoti raštelius"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:140
 msgid "Text Sizes"
 msgstr "Tekstų dydžiai"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:149
 msgid "_Large"
 msgstr "_Didelis"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:158
 msgid "_Medium"
 msgstr "_Vidutinis"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:167
 msgid "_Small"
 msgstr "_Mažas"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:183 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "Nuostatos"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:191
 msgid "Keyboard Shortcuts"
 msgstr "Klaviatūros trumpiniai"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:199
 msgid "Help"
 msgstr "Žinynas"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:207
 msgid "About Notes"
 msgstr "Apie raštelius"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:272 src/bjb-window.c:289
 msgid "Trash"
 msgstr "Šiukšlinė"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:299
 msgid "Open in New Window"
 msgstr "Atverti naujame lange"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:315
 msgid "Undo"
 msgstr "Atšaukti"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:323
 msgid "Redo"
 msgstr "Pakartoti"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:346
 msgid "Email this Note"
 msgstr "Siųsti šį raštelį el. paštu"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:354 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Perkelti į šiukšlinę"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:398
+msgid "Select Note Location"
+msgstr "Pasirinkite raštelio vietą"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "Pusjuodis"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "Kursyvas"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "Perbrauktas"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "Punktai"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "Sąrašas"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "Įtrauka"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "Atitraukimas"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "Kopijuoti žymėjimą į naują raštelį"
 
@@ -419,63 +425,55 @@ msgstr "Atstatyti"
 msgid "Permanently Delete"
 msgstr "Visiškai ištrinti"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Naudoti sistemos šriftą"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Raštelio šriftas"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Numatytoji spalva"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "Raštelio išvaizda"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Pasirinkite numatytąją laikymo vietą:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "Naudoti sistemos šriftą"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Pirminė knyga"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "Raštelio šriftas"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "Numatytoji spalva"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:111
 msgid "Untitled"
 msgstr "Nepavadinta"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "GNOME rašteliai"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Rodyti išsamų žurnalą"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Rodyti programos versiją"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Sukurti naują raštelį"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FAILAS…]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Imkite raštelius ir eksportuokite juos visur."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:397
 msgid "Simple notebook for GNOME"
 msgstr "Paprasta užrašinė GNOME aplinkai"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:403
 msgid "translator-credits"
 msgstr ""
 "išvertė:\n"
@@ -485,23 +483,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "Raštelio spalva"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:113
 msgid "Add Notes"
 msgstr "Pridėti raštelius"
 
-#: src/bjb-note-list.c:109
+#: src/bjb-note-list.c:114
 msgid "Use the + button to add a note"
 msgstr "Spauskite mygtuką „+“ naujam rašteliui pridėti"
 
-#: src/bjb-note-list.c:114
+#: src/bjb-note-list.c:119
 msgid "No Results"
 msgstr "Nėra rezultatų"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:120
 msgid "Try a different search"
 msgstr "Bandykite kitą paiešką"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "Šis raštelis atvertas kitame lange"
 
@@ -522,14 +520,31 @@ msgstr "Šį mėnesį"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:750
+#: src/bjb-window.c:559
 #, c-format
 msgid "Last updated: %s"
 msgstr "Paskutinis atnaujinimas: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "Vietinė saugykla"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Vietinė"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Šiame kompiuteryje"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Memo raštelis"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Pasirinkite numatytąją laikymo vietą:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Pirminė knyga"
+
+#~ msgid "Local storage"
+#~ msgstr "Vietinė saugykla"
 
 #~ msgid "No notes"
 #~ msgstr "Nėra raštelių"
@@ -545,9 +560,6 @@ msgstr "Vietinė saugykla"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Įveskite kuriamos užrašinės pavadinimą"
-
-#~ msgid "Local"
-#~ msgstr "Vietinė"
 
 #~ msgid "How to show note items"
 #~ msgstr "Kaip rodyti raštelius"

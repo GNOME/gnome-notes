@@ -444,7 +444,7 @@ nc_provider_add_note_cb (GObject      *object,
     }
 
   bjb_item_unset_modified (item);
-  BJB_TRACE ("Soup status: %d", soup_message_get_status (message));
+  BJB_TRACE_MSG ("Soup status: %d", soup_message_get_status (message));
 }
 
 static void

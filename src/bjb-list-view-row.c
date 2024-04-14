@@ -61,7 +61,7 @@ note_color_changed_cb (BjbListViewRow *self)
     return;
 
   color = gdk_rgba_to_string (&rgba);
-  css_style = g_strdup_printf ("row {color: %s; background-color: %s} row:hover {background-color: darker(%s)}",
+  css_style = g_strdup_printf ("row {color: %s; background-color: %s;} row:hover {background-color: darker(%s);}",
                                BJB_UTILS_COLOR_INTENSITY ((&rgba)) < 0.5 ? "white" : "black",
                                color, color);
   gtk_css_provider_load_from_data (self->css_provider, css_style, -1);

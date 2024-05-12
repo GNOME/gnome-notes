@@ -1,0 +1,536 @@
+# Hindi translation for gnome-notes.
+# Copyright (C) 2024 gnome-notes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-notes package.
+# Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-notes master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
+"POT-Creation-Date: 2024-04-14 11:09+0000\n"
+"PO-Revision-Date: 2024-04-25 13:54+0530\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:6
+#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:396 src/bjb-window.c:46
+msgid "Notes"
+msgstr "नोट्स"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+msgid "Notes for GNOME"
+msgstr "GNOME के लिए नोट्स"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+msgid ""
+"A quick and easy way to make freeform notes or jot down simple lists. Store "
+"as many notes as you like and share them by email."
+msgstr ""
+"मुक्तरूप नोट्स बनाने या सरल सूचियां लिखने का एक त्वरित और आसान तरीका। जितने चाहें उतने "
+"नोट संग्रहित करें और उन्हें ईमेल द्वारा साझा करें।"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+msgid ""
+"You can store your notes locally on your computer or sync with online "
+"services like ownCloud."
+msgstr ""
+"आप अपने नोट्स को अपने कंप्यूटर पर स्थानीय रूप से संग्रहीत कर सकते हैं या ownCloud जैसी "
+"ऑनलाइन सेवाओं के साथ समन्वयित कर सकते हैं।"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+msgid "Edit view"
+msgstr "संपादन दृश्य"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+msgid "Select view"
+msgstr "चयन दृश्य"
+
+#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+msgid "List view"
+msgstr "सूची दृश्य"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Notes.desktop.in:5
+msgid "notes;reminder;notebook;sticky notes;"
+msgstr "नोट्स;अनुस्मारक;नोटबुक;स्टिकी नोट;"
+
+#: data/org.gnome.Notes.desktop.in:6
+msgid "Post notes, tag files!"
+msgstr "नोट पोस्ट करें, फाइलें टैग करें!"
+
+#: data/org.gnome.Notes.desktop.in:7
+msgid "Note-taker"
+msgstr "नोट-लेनेवाला"
+
+#: data/org.gnome.Notes.desktop.in:19
+msgid "Create New Note"
+msgstr "नया नोट बनाएं"
+
+#: data/org.gnome.Notes.gschema.xml:10
+msgid "Custom Font"
+msgstr "तदनुकूल फॉन्ट"
+
+#: data/org.gnome.Notes.gschema.xml:11
+msgid "The font name set here will be used as the font when displaying notes."
+msgstr ""
+"यहां निर्धारित किया गया फॉन्ट नाम नोट्स प्रदर्शित करते समय फॉन्ट के रूप में उपयोग किया "
+"जाएगा।"
+
+#: data/org.gnome.Notes.gschema.xml:15
+msgid "Whether to use the system monospace font"
+msgstr "क्या सिस्टम मोनोस्पेस फॉन्ट का उपयोग करना है"
+
+#: data/org.gnome.Notes.gschema.xml:19
+msgid "New notes color."
+msgstr "नये नोट का रंग।"
+
+#: data/org.gnome.Notes.gschema.xml:20
+msgid ""
+"The color name set here will be used as the color when creating new notes."
+msgstr ""
+"नए नोट बनाते समय यहां निर्धारित किए गए रंग नाम का उपयोग रंग के रूप में किया जाएगा।"
+
+#: data/org.gnome.Notes.gschema.xml:24
+msgid "Primary notes provider to use for new notes."
+msgstr "नए नोटों के लिए उपयोग हेतु प्राथमिक नोट्स प्रदाता।"
+
+#: data/org.gnome.Notes.gschema.xml:25
+msgid "The primary notebook is the place where new notes are created."
+msgstr "प्राथमिक नोटबुक वह स्थान है जहां नए नोट बनाए जाते हैं।"
+
+#: data/org.gnome.Notes.gschema.xml:29
+msgid "Note path of the notes opened when Notes quits last time."
+msgstr "पिछली बार नोट्स बंद होने पर नोट्स का नोट पथ खुल गया।"
+
+#: data/org.gnome.Notes.gschema.xml:30
+msgid ""
+"This stores the note path of the last opened item, so that we can open it on "
+"startup."
+msgstr ""
+"यह अंतिम खोले गए वस्तु का नोट पथ संग्रहीत करता है, ताकि हम इसे स्टार्टअप पर खोल सकें।"
+
+#: data/org.gnome.Notes.gschema.xml:34
+msgid "Window maximized"
+msgstr "विंडो अधिकतमीकृत"
+
+#: data/org.gnome.Notes.gschema.xml:35
+msgid "Window maximized state."
+msgstr "विंडो अधिकतमीकृत स्थिति।"
+
+#: data/org.gnome.Notes.gschema.xml:39
+msgid "Window size"
+msgstr "विंडो का आकार"
+
+#: data/org.gnome.Notes.gschema.xml:40
+msgid "Window size (width and height)."
+msgstr "विंडो का आकार (चौड़ाई और ऊंचाई)।"
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid "Window position"
+msgstr "विंडो का स्थान"
+
+#: data/org.gnome.Notes.gschema.xml:45
+msgid "Window position (x and y)."
+msgstr "विंडो का स्थान (x और y)।"
+
+#: data/org.gnome.Notes.gschema.xml:48
+msgid "Text size used by note editor."
+msgstr "नोट संपादक द्वारा प्रयुक्त पाठ का आकार।"
+
+#: data/org.gnome.Notes.gschema.xml:49
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr "पाठ के तीन आकार उपलब्ध हैं: छोटा, मध्यम (तयशुदा) और बड़ा।"
+
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:247
+#: data/resources/bjb-window.ui:338 data/resources/selection-toolbar.ui:34
+msgid "Notebooks"
+msgstr "नोटबुक"
+
+#: data/resources/bjb-notebooks-dialog.ui:30
+msgid "New Notebook…"
+msgstr "नई नोटबुक…"
+
+#: data/resources/bjb-notebooks-dialog.ui:37
+msgid "Add"
+msgstr "जोड़ें"
+
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:340
+msgid "No note selected"
+msgstr "कोई नोट चयनित नहीं"
+
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:228
+#: src/bjb-window.c:279
+msgid "All Notes"
+msgstr "सभी नोट्स"
+
+#: data/resources/bjb-window.ui:43
+msgid "Open menu"
+msgstr "मेनू खोलें"
+
+#: data/resources/bjb-window.ui:93
+msgid "More options"
+msgstr "अधिक विकल्प"
+
+#: data/resources/bjb-window.ui:125 data/resources/import-dialog.ui:5
+msgid "Import Notes"
+msgstr "नोट्स आयात करें"
+
+#: data/resources/bjb-window.ui:140
+msgid "Text Sizes"
+msgstr "पाठ का आकार"
+
+#: data/resources/bjb-window.ui:149
+msgid "_Large"
+msgstr "बड़ा (_L)"
+
+#: data/resources/bjb-window.ui:158
+msgid "_Medium"
+msgstr "मध्यम (_M)"
+
+#: data/resources/bjb-window.ui:167
+msgid "_Small"
+msgstr "छोटा (_S)"
+
+#: data/resources/bjb-window.ui:183 data/resources/settings-dialog.ui:7
+msgid "Preferences"
+msgstr "प्राथमिकताएं"
+
+#: data/resources/bjb-window.ui:191
+msgid "Keyboard Shortcuts"
+msgstr "कीबोर्ड शॉर्टकट"
+
+#: data/resources/bjb-window.ui:199
+msgid "Help"
+msgstr "सहायता"
+
+#: data/resources/bjb-window.ui:207
+msgid "About Notes"
+msgstr "नोट्स के बारे में"
+
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:272 src/bjb-window.c:289
+msgid "Trash"
+msgstr "रद्दी"
+
+#: data/resources/bjb-window.ui:299
+msgid "Open in New Window"
+msgstr "नई विंडो में खोलें"
+
+#: data/resources/bjb-window.ui:315
+msgid "Undo"
+msgstr "पूर्ववत करें"
+
+#: data/resources/bjb-window.ui:323
+msgid "Redo"
+msgstr "पुनः करें"
+
+#: data/resources/bjb-window.ui:346
+msgid "Email this Note"
+msgstr "यह नोट ईमेल करें"
+
+#: data/resources/bjb-window.ui:354 data/resources/selection-toolbar.ui:96
+msgid "Move to Trash"
+msgstr "रद्दी में ले जाएं"
+
+#: data/resources/bjb-window.ui:398
+msgid "Select Note Location"
+msgstr "नोट का स्थान चुनें"
+
+#: data/resources/editor-toolbar.ui:20
+msgid "Bold"
+msgstr "बोल्ड"
+
+#: data/resources/editor-toolbar.ui:28
+msgid "Italic"
+msgstr "इटैलिक"
+
+#: data/resources/editor-toolbar.ui:36
+msgid "Strike"
+msgstr "स्ट्राइक"
+
+#: data/resources/editor-toolbar.ui:52
+msgid "Bullets"
+msgstr "बुलेट"
+
+#: data/resources/editor-toolbar.ui:60
+msgid "List"
+msgstr "सूची"
+
+#: data/resources/editor-toolbar.ui:76
+msgid "Indent"
+msgstr "इंडेंट"
+
+#: data/resources/editor-toolbar.ui:84
+msgid "Outdent"
+msgstr "आउटडेंट"
+
+#: data/resources/editor-toolbar.ui:106
+msgid "Copy selection to a new note"
+msgstr "चयन को नए नोट में कॉपी करें"
+
+#: data/resources/help-overlay.ui:9
+msgctxt "shortcut window"
+msgid "General"
+msgstr "सामान्य"
+
+#: data/resources/help-overlay.ui:14
+msgctxt "shortcut window"
+msgid "Search notes"
+msgstr "नोट्स खोजें"
+
+#: data/resources/help-overlay.ui:21
+msgctxt "shortcut window"
+msgid "New note"
+msgstr "नया नोट"
+
+#: data/resources/help-overlay.ui:28
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "विंडो बंद करें"
+
+#: data/resources/help-overlay.ui:35
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "बंद करें"
+
+#: data/resources/help-overlay.ui:42
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "पीछे जाएं"
+
+#: data/resources/help-overlay.ui:49
+msgctxt "shortcut window"
+msgid "Show help"
+msgstr "सहायता दिखाएं"
+
+#: data/resources/help-overlay.ui:56
+msgctxt "shortcut window"
+msgid "Open menu"
+msgstr "मेनू खोलें"
+
+#: data/resources/help-overlay.ui:63
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "कीबोर्ड शॉर्टकट"
+
+#: data/resources/help-overlay.ui:71
+msgctxt "shortcut window"
+msgid "Selection mode"
+msgstr "चयन मोड"
+
+#: data/resources/help-overlay.ui:76
+msgctxt "shortcut window"
+msgid "Cancel selection mode"
+msgstr "चयन मोड रद्द करें"
+
+#: data/resources/help-overlay.ui:83
+msgctxt "shortcut window"
+msgid "Select all"
+msgstr "सभी चुनें"
+
+#: data/resources/help-overlay.ui:91
+msgctxt "shortcut window"
+msgid "Note edit mode"
+msgstr "नोट संपादन मोड"
+
+#: data/resources/help-overlay.ui:96
+msgctxt "shortcut window"
+msgid "Open in a new window"
+msgstr "नई विंडो में खोलें"
+
+#: data/resources/help-overlay.ui:103
+msgctxt "shortcut window"
+msgid "Bold"
+msgstr "बोल्ड"
+
+#: data/resources/help-overlay.ui:110
+msgctxt "shortcut window"
+msgid "Italic"
+msgstr "इटैलिक"
+
+#: data/resources/help-overlay.ui:117
+msgctxt "shortcut window"
+msgid "Strike through"
+msgstr "स्ट्राइक थ्रू"
+
+#: data/resources/help-overlay.ui:124
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "पूर्ववत करें"
+
+#: data/resources/help-overlay.ui:131
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "पुनः करें"
+
+#: data/resources/help-overlay.ui:138
+msgctxt "shortcut window"
+msgid "Move note to trash"
+msgstr "नोट को रद्दी में ले जाएं"
+
+#: data/resources/import-dialog.ui:12
+msgid "_Cancel"
+msgstr "रद्द (_C)"
+
+#: data/resources/import-dialog.ui:22
+msgid "_Import"
+msgstr "आयात (_I)"
+
+#: data/resources/import-dialog.ui:41
+msgid "Select import location"
+msgstr "आयात स्थान चुनें"
+
+#: data/resources/import-dialog.ui:78
+msgid "Gnote application"
+msgstr "Gnote अनुप्रयोग"
+
+#: data/resources/import-dialog.ui:136
+msgid "Tomboy application"
+msgstr "टॉमबॉय अनुप्रयोग"
+
+#: data/resources/import-dialog.ui:192
+msgid "Custom Location"
+msgstr "तदनुकूल स्थान"
+
+#: data/resources/import-dialog.ui:224
+msgid "Select a Folder"
+msgstr "फोल्डर चुनें"
+
+#: data/resources/selection-toolbar.ui:43
+msgid "Note color"
+msgstr "नोट का रंग"
+
+#: data/resources/selection-toolbar.ui:60
+msgid "Share note"
+msgstr "नोट साझा करें"
+
+#: data/resources/selection-toolbar.ui:78
+msgid "Open in another window"
+msgstr "किसी अन्य विंडो में खोलें"
+
+#: data/resources/selection-toolbar.ui:119
+msgid "Restore"
+msgstr "पुनर्स्थापना"
+
+#: data/resources/selection-toolbar.ui:127
+msgid "Permanently Delete"
+msgstr "स्थाई रूप से मिटायें"
+
+#: data/resources/settings-dialog.ui:23
+msgid "Note Appearance"
+msgstr "नोट की दिखावट"
+
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "सिस्टम फॉन्ट का प्रयोग करें"
+
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "नोट के फॉन्ट"
+
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "तयशुदा रंग"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:111
+msgid "Untitled"
+msgstr "शीर्षकहीन"
+
+#: src/bjb-application.c:146
+msgid "GNOME Notes"
+msgstr "GNOME नोट्स"
+
+#: src/bjb-application.c:172
+msgid "Show verbose logs"
+msgstr "वाचाल लॉग दिखाएं"
+
+#: src/bjb-application.c:174
+msgid "Show the application’s version"
+msgstr "अनुप्रयोग का संस्करण दिखाएं"
+
+#: src/bjb-application.c:176
+msgid "Create a new note"
+msgstr "एक नया नोट बनाएं"
+
+#: src/bjb-application.c:184
+msgid "[FILE…]"
+msgstr "[फाइल…]"
+
+#: src/bjb-application.c:185
+msgid "Take notes and export them everywhere."
+msgstr "नोट लें और उन्हें हर जगह निर्यात करें।"
+
+#: src/bjb-application.c:397
+msgid "Simple notebook for GNOME"
+msgstr "GNOME के लिए सरल नोटबुक"
+
+#: src/bjb-application.c:403
+msgid "translator-credits"
+msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
+
+#: src/bjb-color-button.c:140
+msgid "Note Color"
+msgstr "नोट का रंग"
+
+#: src/bjb-note-list.c:113
+msgid "Add Notes"
+msgstr "नोट्स जोड़ें"
+
+#: src/bjb-note-list.c:114
+msgid "Use the + button to add a note"
+msgstr "नोट जोड़ने के लिए + बटन का उपयोग करें"
+
+#: src/bjb-note-list.c:119
+msgid "No Results"
+msgstr "कोई परिणाम नहीं"
+
+#: src/bjb-note-list.c:120
+msgid "Try a different search"
+msgstr "भिन्न खोज का प्रयास करें"
+
+#: src/bjb-note-view.c:146
+msgid "This note is being viewed in another window"
+msgstr "यह नोट दूसरी विंडो में देखा जा रहा है"
+
+#: src/bjb-utils.c:51
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#: src/bjb-utils.c:68
+msgid "Yesterday"
+msgstr "बिता कल"
+
+#: src/bjb-utils.c:74
+msgid "This month"
+msgstr "इस महीने"
+
+#. Translators: %s is the note last recency description.
+#. * Last updated is placed as in left to right language
+#. * right to left languages might move %s
+#. *         '%s Last Updated'
+#.
+#: src/bjb-window.c:559
+#, c-format
+msgid "Last updated: %s"
+msgstr "अंतिम अद्यतित: %s"
+
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "स्थानीय"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "इस कंप्यूटर पर"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "ज्ञापन नोट"

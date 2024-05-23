@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2023-01-28 12:47+0000\n"
-"PO-Revision-Date: 2023-02-13 20:30+0100\n"
+"POT-Creation-Date: 2024-03-15 10:28+0000\n"
+"PO-Revision-Date: 2024-05-23 19:21+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:6
 #: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:589 src/bjb-window.c:45
+#: src/bjb-application.c:396 src/bjb-window.c:46
 msgid "Notes"
 msgstr "Nòtas"
 
@@ -150,125 +150,131 @@ msgid ""
 msgstr ""
 "I a tres talhas de tèxt disponiblas : pichona, mejana (per defaut) e granda."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:298
-#: data/resources/bjb-window.ui:386 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-window.ui:247
+#: data/resources/bjb-window.ui:338 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Quasernets"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "Quasernet de nòtas novèl…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "Apondre"
 
-#: data/resources/bjb-note-view.ui:12 src/bjb-note-view.c:247
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:340
 msgid "No note selected"
 msgstr "Cap de nòta pas seleccionada"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:277
-#: src/bjb-window.c:397
+#. bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS);
+#: data/resources/bjb-window.ui:29 data/resources/bjb-window.ui:228
+#: src/bjb-window.c:279
 msgid "All Notes"
 msgstr "Totas las nòtas"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-window.ui:43
 msgid "Open menu"
 msgstr "Dobrir lo menú"
 
-#: data/resources/bjb-window.ui:133
+#: data/resources/bjb-window.ui:93
 msgid "More options"
 msgstr "Mai d'opcions"
 
-#: data/resources/bjb-window.ui:173 data/resources/import-dialog.ui:5
+#: data/resources/bjb-window.ui:125 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Importar de nòtas"
 
-#: data/resources/bjb-window.ui:190
+#: data/resources/bjb-window.ui:140
 msgid "Text Sizes"
 msgstr "Talhas de tèxt"
 
-#: data/resources/bjb-window.ui:199
+#: data/resources/bjb-window.ui:149
 msgid "_Large"
 msgstr "_Granda"
 
-#: data/resources/bjb-window.ui:208
+#: data/resources/bjb-window.ui:158
 msgid "_Medium"
 msgstr "_Mejana"
 
-#: data/resources/bjb-window.ui:217
+#: data/resources/bjb-window.ui:167
 msgid "_Small"
 msgstr "_Pichona"
 
-#: data/resources/bjb-window.ui:234 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-window.ui:183 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "Preferéncias"
 
-#: data/resources/bjb-window.ui:242
+#: data/resources/bjb-window.ui:191
 msgid "Keyboard Shortcuts"
 msgstr "Acorchis clavièr"
 
-#: data/resources/bjb-window.ui:250
+#: data/resources/bjb-window.ui:199
 msgid "Help"
 msgstr "Ajuda"
 
-#: data/resources/bjb-window.ui:258
+#: data/resources/bjb-window.ui:207
 msgid "About Notes"
 msgstr "A prepaus de nòtas"
 
-#: data/resources/bjb-window.ui:324 src/bjb-window.c:406
+#. bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS);
+#: data/resources/bjb-window.ui:272 src/bjb-window.c:289
 msgid "Trash"
 msgstr "Escobilhièr"
 
-#: data/resources/bjb-window.ui:346
+#: data/resources/bjb-window.ui:299
 msgid "Open in New Window"
 msgstr "Dobrir dins una fenèstra novèla"
 
-#: data/resources/bjb-window.ui:362
+#: data/resources/bjb-window.ui:315
 msgid "Undo"
 msgstr "Anullar"
 
-#: data/resources/bjb-window.ui:370
+#: data/resources/bjb-window.ui:323
 msgid "Redo"
 msgstr "Restablir"
 
-#: data/resources/bjb-window.ui:394
+#: data/resources/bjb-window.ui:346
 msgid "Email this Note"
 msgstr "Mandar aquesta nòta per corrièl"
 
-#: data/resources/bjb-window.ui:402 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:354 data/resources/selection-toolbar.ui:96
 msgid "Move to Trash"
 msgstr "Desplaçar dins l'escobilhièr"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/bjb-window.ui:398
+msgid "Select Note Location"
+msgstr "Seleccionar l'emplaçament de la nòta"
+
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "Gras"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "Italica"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "Raiat"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "Piuses"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "Lista"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "Indentacion"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "Outdent"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "Copiar la seleccion cap a una nòta novèla"
 
@@ -420,63 +426,55 @@ msgstr "Restablir"
 msgid "Permanently Delete"
 msgstr "Suprimir definitivament"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Utilizar la polissa del sistèma"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Polissa de las nòtas"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Color per defaut"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "Aparéncia de la nòta"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Seleccionar l'emplaçament per defaut :"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "Utilizar la polissa del sistèma"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Quasernet principal"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "Polissa de las nòtas"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:107
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "Color per defaut"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:111
 msgid "Untitled"
 msgstr "Sens títol"
 
-#: src/bjb-application.c:183
+#: src/bjb-application.c:146
 msgid "GNOME Notes"
 msgstr "Nòtas GNOME"
 
-#: src/bjb-application.c:238
+#: src/bjb-application.c:172
 msgid "Show verbose logs"
 msgstr "Afichar los jornals verboses"
 
-#: src/bjb-application.c:240
+#: src/bjb-application.c:174
 msgid "Show the application’s version"
 msgstr "Afichar la version de l'aplicacion"
 
-#: src/bjb-application.c:242
+#: src/bjb-application.c:176
 msgid "Create a new note"
 msgstr "Crear una novèla nòta"
 
-#: src/bjb-application.c:250
+#: src/bjb-application.c:184
 msgid "[FILE…]"
 msgstr "[FICHIÈR...]"
 
-#: src/bjb-application.c:251
+#: src/bjb-application.c:185
 msgid "Take notes and export them everywhere."
 msgstr "Prenètz de nòtas e exportatz-las pertot."
 
-#: src/bjb-application.c:590
+#: src/bjb-application.c:397
 msgid "Simple notebook for GNOME"
 msgstr "Quasernet de nòtas per GNOME"
 
-#: src/bjb-application.c:596
+#: src/bjb-application.c:403
 msgid "translator-credits"
 msgstr ""
 "Cédric Valmary (totenoc.eu)\n"
@@ -486,23 +484,23 @@ msgstr ""
 msgid "Note Color"
 msgstr "Color de la nòta"
 
-#: src/bjb-note-list.c:108
+#: src/bjb-note-list.c:113
 msgid "Add Notes"
 msgstr "Apondre una nòta"
 
-#: src/bjb-note-list.c:109
+#: src/bjb-note-list.c:114
 msgid "Use the + button to add a note"
 msgstr "Quichar sul boton + per apondre una nòta"
 
-#: src/bjb-note-list.c:114
+#: src/bjb-note-list.c:119
 msgid "No Results"
 msgstr "Cap de resultat"
 
-#: src/bjb-note-list.c:115
+#: src/bjb-note-list.c:120
 msgid "Try a different search"
 msgstr "Ensajatz una autra recèrca"
 
-#: src/bjb-note-view.c:95
+#: src/bjb-note-view.c:146
 msgid "This note is being viewed in another window"
 msgstr "Dins una autra fenèstra aquesta nòta es en cors de visualizacion"
 
@@ -523,14 +521,31 @@ msgstr "Aqueste mes"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:750
+#: src/bjb-window.c:559
 #, c-format
 msgid "Last updated: %s"
 msgstr "Darrièra mesa a jorn : %s"
 
-#: src/libbiji/provider/biji-local-provider.c:363
-msgid "Local storage"
-msgstr "Emmagazinatge local"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Local"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Sus aqueste ordenador"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Nòta brèva"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Seleccionar l'emplaçament per defaut :"
+
+#~ msgid "Primary Book"
+#~ msgstr "Quasernet principal"
+
+#~ msgid "Local storage"
+#~ msgstr "Emmagazinatge local"
 
 #~ msgid "No notes"
 #~ msgstr "Cap de nòta"
@@ -543,9 +558,6 @@ msgstr "Emmagazinatge local"
 
 #~ msgid "Please install “Tracker” then restart the application."
 #~ msgstr "Installatz « Tracker » puèi reaviar l'aplicacion."
-
-#~ msgid "Local"
-#~ msgstr "Local"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Picar un nom per crear un quasernet"
@@ -683,9 +695,6 @@ msgstr "Emmagazinatge local"
 
 #~ msgid "Add to Collection"
 #~ msgstr "Apondre a la colleccion"
-
-#~ msgid "Rename Note"
-#~ msgstr "Renomenar la nòta"
 
 #~ msgid "Rename"
 #~ msgstr "Renomenar"

@@ -152,7 +152,7 @@ add_string (gchar *single_result, GVariantBuilder *meta_result)
   g_variant_builder_add (meta_result, "s", single_result);
 }
 
-static void
+static gboolean
 handle_get_initial_result_set (BijibenShellSearchProvider2  *skeleton,
                                GDBusMethodInvocation        *invocation,
                                gchar                       **terms,
@@ -172,10 +172,11 @@ handle_get_initial_result_set (BijibenShellSearchProvider2  *skeleton,
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("(as)", &builder));
 
   g_application_release (user_data);
+  return TRUE;
 }
 
 /* TODO : start from previous result , simply with GList */
-static void
+static gboolean
 handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
                                  GDBusMethodInvocation        *invocation,
                                  gchar                       **previous_results,
@@ -196,6 +197,7 @@ handle_get_subsearch_result_set (BijibenShellSearchProvider2  *skeleton,
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("(as)", &builder));
 
   g_application_release (user_data);
+  return TRUE;
 }
 
 static GVariant *
@@ -282,7 +284,7 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
   g_object_unref (cursor);
 }
 
-static void
+static gboolean
 handle_get_result_metas (BijibenShellSearchProvider2  *skeleton,
                          GDBusMethodInvocation        *invocation,
                          gchar                       **results,
@@ -302,9 +304,10 @@ handle_get_result_metas (BijibenShellSearchProvider2  *skeleton,
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("(aa{sv})", &retval));
 
   g_application_release (user_data);
+  return TRUE;
 }
 
-static void
+static gboolean
 handle_activate_result (BijibenShellSearchProvider2  *skeleton,
                         GDBusMethodInvocation        *invocation,
                         gchar                        *result,
@@ -345,6 +348,7 @@ handle_activate_result (BijibenShellSearchProvider2  *skeleton,
   g_object_unref (app);
 
   g_application_release (user_data);
+  return TRUE;
 }
 
 static void

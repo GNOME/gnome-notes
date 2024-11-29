@@ -434,6 +434,7 @@ bijiben_application_local_command_line (GApplication *application,
   g_autoptr(GError) error = NULL;
   gint argc = 0;
   gchar **argv = NULL;
+  GPtrArray *files;
 
   const GOptionEntry options[] = {
     { "version", 0, 0, G_OPTION_ARG_NONE, &version,
@@ -489,14 +490,17 @@ bijiben_application_local_command_line (GApplication *application,
 
   self = BJB_APPLICATION (application);
 
+  files = g_ptr_array_new_with_free_func (g_object_unref);
+
   if (!self->new_note && remaining != NULL)
   {
     gchar **args;
 
     for (args = remaining; *args; args++)
-      if (!bijiben_open_path (self, *args, NULL))
-        g_queue_push_head (&self->files_to_open, g_strdup (*args));
+      g_ptr_array_add (files, g_file_new_for_commandline_arg (*args));
+    g_application_open (application, (GFile **)files->pdata, files->len, "");
   }
+  g_ptr_array_free (files, TRUE);
 
  out:
   g_strfreev (remaining);

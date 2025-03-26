@@ -127,13 +127,26 @@ bijiben_new_window_internal (BjbApplication *self,
                              BijiNoteObj    *note)
 {
   BjbWindowBase *window;
+  BjbController *controller;
   GList         *windows;
   gboolean       not_first_window;
 
   windows = gtk_application_get_windows (GTK_APPLICATION (self));
   not_first_window = (gboolean) g_list_length (windows);
 
+  for (GList *l = windows; l != NULL; l = l->next)
+  {
+      BjbWindowBase *window = BJB_WINDOW_BASE (l->data);
+      if (bjb_window_base_get_note (window) == note)
+      {
+          gtk_window_present (GTK_WINDOW (window));
+          return;
+      }
+  }
+
   window = BJB_WINDOW_BASE (bjb_window_base_new (note));
+  controller = bjb_window_base_get_controller (window);
+  bjb_controller_apply_needle (controller);
   g_signal_connect (window, "activated",
                     G_CALLBACK (on_window_activated_cb), self);
 
@@ -181,10 +194,14 @@ bijiben_new_window_for_note (GApplication *app,
 static void
 bijiben_activate (GApplication *app)
 {
-  GList *windows = gtk_application_get_windows (GTK_APPLICATION (app));
+  BjbApplication *self;
 
-  // ensure the last used window is raised
-  gtk_window_present (g_list_nth_data (windows, 0));
+  self = BJB_APPLICATION (app);
+
+  if (!self->is_loaded)
+    return;
+
+  bijiben_new_window_internal (self, NULL);
 }
 
 
@@ -499,6 +516,10 @@ bijiben_application_local_command_line (GApplication *application,
     for (args = remaining; *args; args++)
       g_ptr_array_add (files, g_file_new_for_commandline_arg (*args));
     g_application_open (application, (GFile **)files->pdata, files->len, "");
+  }
+  else
+  {
+    g_application_activate (application);
   }
   g_ptr_array_free (files, TRUE);
 

@@ -260,10 +260,14 @@ add_single_note_meta (BijibenShellSearchProviderApp *self,
 
   if (tracker_sparql_cursor_next (cursor, NULL, NULL))
   {
-    g_variant_builder_open (results, G_VARIANT_TYPE ("a{sv}"));
-
     /* NIE:URL (id) */
     url = tracker_sparql_cursor_get_string (cursor, 0, 0);
+    if (url == NULL)
+    {
+      g_object_unref (cursor);
+      return;
+    }
+    g_variant_builder_open (results, G_VARIANT_TYPE ("a{sv}"));
     g_variant_builder_add (results, "{sv}", "id", g_variant_new_string (url));
 
     /* NIE:TITLE (name) is the title pushed by libbiji */

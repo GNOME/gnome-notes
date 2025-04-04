@@ -236,6 +236,7 @@ bjb_application_init (BjbApplication *self)
   self->settings = bjb_settings_new ();
   g_queue_init (&self->files_to_open);
 
+  g_set_prgname ("org.gnome.Notes");
   gtk_window_set_default_icon_name ("org.gnome.Notes");
 }
 

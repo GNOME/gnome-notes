@@ -252,6 +252,27 @@ bijiben_import_notes (BjbApplication *self, gchar *uri)
 }
 
 void
+on_new_note_cb (GSimpleAction *action,
+                GVariant      *parameter,
+                gpointer       user_data)
+{
+  BjbApplication *self;
+  BijiItem *item;
+
+  self = BJB_APPLICATION (user_data);
+
+  if (!self->is_loaded)
+      return;
+
+  self->new_note = FALSE;
+  item = BIJI_ITEM (biji_manager_note_new (
+                      self->manager,
+                      NULL,
+                      bjb_settings_get_default_location (self->settings)));
+  bijiben_new_window_internal (self, BIJI_NOTE_OBJ (item));
+}
+
+void
 on_import_notes_cb (GSimpleAction *action,
                     GVariant      *parameter,
                     gpointer       user_data)
@@ -367,6 +388,7 @@ manager_ready_cb (GObject *source,
 }
 
 static GActionEntry app_entries[] = {
+  { "new-note", on_new_note_cb, NULL, NULL, NULL },
   { "import-notes", on_import_notes_cb, NULL, NULL, NULL },
   { "view-trash", on_view_trash_cb, NULL, NULL, NULL },
   { "text-size", NULL, "s", "'medium'", NULL },
@@ -510,7 +532,11 @@ bijiben_application_local_command_line (GApplication *application,
 
   files = g_ptr_array_new_with_free_func (g_object_unref);
 
-  if (!self->new_note && remaining != NULL)
+  if (self->new_note && g_application_get_is_remote (application))
+  {
+    g_action_group_activate_action (G_ACTION_GROUP(application), "new-note", NULL);
+  }
+  else if (remaining != NULL)
   {
     gchar **args;
 

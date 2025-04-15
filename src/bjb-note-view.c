@@ -147,8 +147,12 @@ just_switch_to_main_view(BjbNoteView *self)
   bjb_note_view_disconnect (self);
 
   window = GTK_WINDOW(self->window);
-  bjb_window_base_switch_to (BJB_WINDOW_BASE (window),
-                             BJB_WINDOW_BASE_MAIN_VIEW);
+
+  if (!bjb_window_base_is_detached (BJB_WINDOW_BASE (window)))
+    bjb_window_base_switch_to (BJB_WINDOW_BASE (window),
+                               BJB_WINDOW_BASE_MAIN_VIEW);
+  else
+    gtk_window_close (window);
 }
 
 static gboolean

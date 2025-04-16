@@ -58,23 +58,6 @@
             ]
         },
         {
-            "name" : "libhandy",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "-Dexamples=false",
-                "-Dglade_catalog=disabled",
-                "-Dintrospection=disabled",
-                "-Dtests=false",
-                "-Dvapi=false"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libhandy.git"
-                }
-            ]
-        },
-        {
             "name" : "gnome-online-accounts",
             "buildsystem" : "meson",
             "config-opts" : [
@@ -105,8 +88,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/libical/libical/releases/download/v3.0.7/libical-3.0.7.tar.gz",
-                    "sha256" : "0abe66df1ea826e57db7f281c704ede834c84139012e6c686ea7adafd4e763fc"
+                    "url" : "https://github.com/libical/libical/releases/download/v3.0.20/libical-3.0.20.tar.gz",
+                    "sha256" : "e73de92f5a6ce84c1b00306446b290a2b08cdf0a80988eca0a2c9d5c3510b4c2"
                 }
             ]
         },
@@ -149,33 +132,6 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/evolution-data-server.git"
-                }
-            ]
-        },
-        {
-            "name" : "tracker",
-            "buildsystem" : "meson",
-            "cleanup" : [
-                "/bin",
-                "/etc",
-                "/lib/systemd",
-                "/libexec",
-                "/share/dbus-1/services"
-            ],
-            "config-opts" : [
-                "--default-library=shared",
-                "-Ddocs=false",
-                "-Dfts=false",
-                "-Dfunctional_tests=false",
-                "-Djournal=false",
-                "-Dbash-completion=no",
-                "-Dsystemd_user_services=no"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git",
-                    "branch" : "tracker-2.3"
                 }
             ]
         },

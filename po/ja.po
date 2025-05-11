@@ -4,12 +4,13 @@
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013, 2016, 2018.
 # sicklylife <translation@sicklylife.jp>, 2019-2020, 2022.
+# Yuki Okushi <yokushi@gnome.org>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-02-01 13:15+0000\n"
+"POT-Creation-Date: 2022-03-27 12:13+0000\n"
 "PO-Revision-Date: 2022-03-12 18:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -35,24 +36,28 @@ msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
+"自由形式のメモを残したり、シンプルなリストを書き留めたりといったことを素早く簡単に行えます。"
+"好きなだけメモを保存したり、メールでそれらを共有したりすることも可能です。"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
 msgstr ""
+"メモはお使いのマシン上に保存できる他、ownCloud といったオンラインサービスと同期"
+"することもできます。"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
-msgstr ""
+msgstr "ビューを編集"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
-msgstr ""
+msgstr "ビューを選択"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
-msgstr ""
+msgstr "ビューをリスト"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
@@ -103,12 +108,14 @@ msgstr "このプライマリーブックに指定した場所に新規メモが
 #: data/org.gnome.Notes.gschema.xml:29
 msgid "Note path of the notes opened when Notes quits last time."
 msgstr ""
+"前回 Notes を終了したときに開いていた Note のパス。"
 
 #: data/org.gnome.Notes.gschema.xml:30
 msgid ""
 "This stores the note path of the last opened item, so that we can open it on "
 "startup."
 msgstr ""
+"スタートアップ時に開けるよう、最後に開いた Note のパスを保存します。"
 
 #: data/org.gnome.Notes.gschema.xml:34
 msgid "Window maximized"
@@ -136,12 +143,13 @@ msgstr "ウィンドウの位置 (X 軸と Y 軸) です。"
 
 #: data/org.gnome.Notes.gschema.xml:48
 msgid "Text size used by note editor."
-msgstr ""
+msgstr "ノートエディタで使用するテキストサイズ。"
 
 #: data/org.gnome.Notes.gschema.xml:49
 msgid ""
 "There are three text sizes available: small, medium (default) and large."
 msgstr ""
+"次の3つのテキストサイズが利用可能です: 大、中(デフォルト)、小。"
 
 #: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
 #: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
@@ -474,7 +482,8 @@ msgid "translator-credits"
 msgstr ""
 "Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
-"sicklylife <translation@sicklylife.jp>"
+"sicklylife <translation@sicklylife.jp>\n"
+"Yuki Okushi <yokushi@gnome.org>"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
@@ -519,7 +528,7 @@ msgstr "今月"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:940
+#: src/bjb-window.c:939
 #, c-format
 msgid "Last updated: %s"
 msgstr "最終更新日: %s"

@@ -1,15 +1,16 @@
 # Japanese translation for bijiben.
-# Copyright (C) 2013, 2016, 2018-2020 bijiben's COPYRIGHT HOLDER
+# Copyright (C) 2013, 2016, 2018-2021 bijiben's COPYRIGHT HOLDER
 # This file is distributed under the same license as the bijiben package.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013, 2016, 2018.
 # sicklylife <translation@sicklylife.jp>, 2019-2020.
+# Yuki Okushi <huyuumi.dev@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2020-08-14 12:16+0000\n"
+"POT-Creation-Date: 2021-03-18 18:18+0000\n"
 "PO-Revision-Date: 2020-08-17 06:10+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -35,24 +36,29 @@ msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
 msgstr ""
+"素早く簡単に、自由な形でメモをとったり、シンプルなリストを書き留めたりできます。"
+"好きなだけメモを保存して、それらをメールで共有することもできます。"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
 msgstr ""
+"メモはあなたのコンピューター上に保存したり、"
+"あるいは ownCloud のようなオンラインサービスと同期させ"
+"たりできます。"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:28
 msgid "Edit view"
-msgstr ""
+msgstr "編集表示"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:32
 msgid "Select view"
-msgstr ""
+msgstr "選択表示"
 
 #: data/appdata/org.gnome.Notes.appdata.xml.in:36
 msgid "List view"
-msgstr ""
+msgstr "リスト表示"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Notes.desktop.in:5
@@ -123,6 +129,16 @@ msgstr "ウィンドウの位置"
 #: data/org.gnome.Notes.gschema.xml:40
 msgid "Window position (x and y)."
 msgstr "ウィンドウの位置 (x および y)"
+
+#: data/org.gnome.Notes.gschema.xml:43
+msgid "Text size used by note editor."
+msgstr "ノートエディタにより使用されるテキストサイズ"
+
+#: data/org.gnome.Notes.gschema.xml:44
+msgid ""
+"There are three text sizes available: small, medium (default) and large."
+msgstr ""
+"次の3つのテキストサイズを選択できます: 小、中 (デフォルト)、大"
 
 #: data/resources/editor-toolbar.ui:51
 msgid "Bold"
@@ -426,7 +442,7 @@ msgstr "デフォルトの保存場所を選択してください:"
 msgid "Primary Book"
 msgstr "プライマリーブック"
 
-#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:349
+#: src/bijiben-shell-search-provider.c:270 src/bjb-main-toolbar.c:323
 msgid "Untitled"
 msgstr "無題"
 
@@ -471,13 +487,14 @@ msgid "translator-credits"
 msgstr ""
 "Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
-"sicklylife <translation@sicklylife.jp>"
+"sicklylife <translation@sicklylife.jp>\n"
+"Yuki Okushi <huyuumi.dev@gmail.com>"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "メモの色"
 
-#: src/bjb-controller.c:239
+#: src/bjb-controller.c:236
 msgid "Notebook"
 msgstr "ノート"
 
@@ -513,7 +530,7 @@ msgstr "%s の検索結果"
 msgid "New and Recent"
 msgstr "新規または最近使用したメモ"
 
-#: src/bjb-main-toolbar.c:325
+#: src/bjb-main-toolbar.c:299
 msgid "Trash"
 msgstr "ゴミ箱"
 
@@ -522,7 +539,7 @@ msgstr "ゴミ箱"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-main-toolbar.c:393
+#: src/bjb-main-toolbar.c:367
 #, c-format
 msgid "Last updated: %s"
 msgstr "最終更新日: %s"

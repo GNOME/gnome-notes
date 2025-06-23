@@ -106,7 +106,7 @@ bijiben_deps = [
   dependency('gio-unix-2.0'),
   dependency('glib-2.0', version: '>= 2.64'),
   dependency('goa-1.0'),
-  dependency('gtk4', version: '>= 4.8.0'),
+  dependency('gtk4', version: '>= 4.14.0'),
   dependency('json-glib-1.0'),
   dependency('libecal-2.0', version: '>= 3.45.1'),
   dependency('libedataserver-1.2', version: '>= 3.45.1'),

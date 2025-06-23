@@ -103,12 +103,7 @@ bijiben_new_window_internal (BjbApplication *self,
   gtk_widget_show (GTK_WIDGET (window));
 
   if (g_strcmp0 (PROFILE, "") != 0)
-    {
-      GtkStyleContext *style_context;
-
-      style_context = gtk_widget_get_style_context (GTK_WIDGET (window));
-      gtk_style_context_add_class (style_context, "devel");
-    }
+    gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
 }
 
 static void

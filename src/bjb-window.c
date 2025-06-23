@@ -373,7 +373,6 @@ provider_row_new (gpointer item,
                   gpointer user_data)
 {
   GtkWidget *grid, *child;
-  GtkStyleContext *context;
   g_autoptr(GIcon) icon = NULL;
 
   grid = gtk_grid_new ();
@@ -398,8 +397,7 @@ provider_row_new (gpointer item,
 
   child = gtk_label_new (bjb_provider_get_location_name (item));
   gtk_widget_set_halign (child, GTK_ALIGN_START);
-  context = gtk_widget_get_style_context (child);
-  gtk_style_context_add_class (context, "dim-label");
+  gtk_widget_add_css_class (child, "dim-label");
 
   gtk_grid_attach (GTK_GRID (grid), child, 1, 1, 1, 1);
 

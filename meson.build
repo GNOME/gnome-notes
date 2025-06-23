@@ -62,7 +62,6 @@ if get_option('buildtype').contains('debug')
   test_cflags = [
     '-fno-strict-aliasing',
     '-Wcast-align',
-    '-Wdeclaration-after-statement',
     '-Wformat=2',
     '-Winit-self',
     '-Winline',

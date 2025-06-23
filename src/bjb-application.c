@@ -49,8 +49,6 @@ struct _BjbApplication
 
 G_DEFINE_TYPE (BjbApplication, bjb_application, ADW_TYPE_APPLICATION)
 
-static void     bijiben_new_window_internal (BjbApplication *self,
-                                             BjbNote        *note);
 void            on_preferences_cb           (GSimpleAction      *action,
                                              GVariant           *parameter,
                                              gpointer            user_data);
@@ -82,56 +80,6 @@ cmd_verbose_cb (const char  *option_name,
   return TRUE;
 }
 
-static void
-bijiben_new_window_internal (BjbApplication *self,
-                             BjbNote        *note)
-{
-  GtkWindow *active_window;
-  BjbWindow *window;
-
-  active_window = gtk_application_get_active_window (GTK_APPLICATION (self));
-
-  window = BJB_WINDOW (bjb_window_new ());
-
-  if (active_window)
-    bjb_window_set_is_main (window, FALSE);
-  else
-    bjb_window_set_is_main (window, TRUE);
-
-  bjb_window_set_note (window, note);
-
-  gtk_widget_show (GTK_WIDGET (window));
-
-  if (g_strcmp0 (PROFILE, "") != 0)
-    gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
-}
-
-static void
-bjb_application_window_removed (GtkApplication *app,
-                                GtkWindow      *window)
-{
-  if (BJB_IS_WINDOW (window) &&
-      bjb_window_get_is_main (BJB_WINDOW (window)))
-    {
-      GList *windows;
-
-      windows = gtk_application_get_windows (app);
-
-      for (GList *node = windows; node; node = node->next)
-        {
-          if (BJB_IS_WINDOW (node->data) &&
-              window != node->data)
-            {
-              bjb_window_set_is_main (node->data, TRUE);
-              gtk_window_present (node->data);
-              break;
-            }
-        }
-    }
-
-  GTK_APPLICATION_CLASS (bjb_application_parent_class)->window_removed (app, window);
-}
-
 static int
 bijiben_handle_local_options (GApplication *application,
                               GVariantDict *options)
@@ -152,10 +100,15 @@ bijiben_activate (GApplication *app)
 
   window = gtk_application_get_active_window (GTK_APPLICATION (app));
 
-  if (window)
-    gtk_window_present (window);
-  else
-    bijiben_new_window_internal (BJB_APPLICATION (app), NULL);
+  if (!window)
+    {
+      window = GTK_WINDOW (bjb_window_new ());
+
+      if (g_strcmp0 (PROFILE, "") != 0)
+        gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
+    }
+
+  gtk_window_present (window);
 }
 
 static void
@@ -271,7 +224,6 @@ bijiben_startup (GApplication *application)
   GdkRGBA         color = {0,0,0,0};
 
   const gchar *vaccels_close[] = {"<Primary>w", NULL};
-  const gchar *vaccels_detach[] = {"<Primary>d", NULL};
   const gchar *vaccels_trash[] = {"<Primary>Delete", NULL};
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
@@ -282,7 +234,6 @@ bijiben_startup (GApplication *application)
   gtk_window_set_default_icon_name ("org.gnome.Notes");
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);
-  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.detach-window", vaccels_detach);
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.trash", vaccels_trash);
 
   g_action_map_add_action_entries (G_ACTION_MAP (application),
@@ -333,11 +284,8 @@ bijiben_finalize (GObject *object)
 static void
 bjb_application_class_init (BjbApplicationClass *klass)
 {
-  GtkApplicationClass *app_class = GTK_APPLICATION_CLASS (klass);
   GApplicationClass *aclass = G_APPLICATION_CLASS (klass);
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
-
-  app_class->window_removed = bjb_application_window_removed;
 
   aclass->handle_local_options = bijiben_handle_local_options;
   aclass->activate = bijiben_activate;

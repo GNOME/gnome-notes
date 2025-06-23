@@ -135,22 +135,6 @@ note_view_copy_clicked_cb (BjbNoteView *self)
   /* bijiben_new_window_for_note (app, BJB_NOTE (new_note)); */
 }
 
-void
-bjb_note_view_set_detached (BjbNoteView *self,
-                            gboolean     detached)
-{
-  if (detached)
-  {
-    gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->status_page);
-    adw_status_page_set_title (ADW_STATUS_PAGE (self->status_page),
-                               _("This note is being viewed in another window"));
-  }
-  else
-  {
-    gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->editor_box);
-  }
-}
-
 static void
 on_note_color_changed_cb (BjbNoteView *self)
 {

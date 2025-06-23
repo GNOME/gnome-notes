@@ -31,9 +31,5 @@
 G_DECLARE_FINAL_TYPE (BjbWindow, bjb_window, BJB, WINDOW, AdwApplicationWindow)
 
 GtkWidget       *bjb_window_new            (void);
-gboolean         bjb_window_get_is_main    (BjbWindow     *self);
-void             bjb_window_set_is_main    (BjbWindow     *self,
-                                            gboolean       is_main);
-BjbNote         *bjb_window_get_note       (BjbWindow     *self);
 void             bjb_window_set_note       (BjbWindow     *self,
                                             BjbNote       *note);

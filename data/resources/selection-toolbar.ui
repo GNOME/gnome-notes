@@ -64,24 +64,6 @@
                 </child>
 
                 <child>
-                  <object class="GtkButton" id="detach_button">
-                    <property name="visible">1</property>
-                    <signal name="clicked" handler="action_pop_up_note_callback" object="BjbSelectionToolbar" swapped="yes"/>
-                    <style>
-                     <class name="image-button"/>
-                    </style>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">1</property>
-                        <property name="icon-name">focus-windows-symbolic</property>
-                        <property name="icon-size">1</property>
-                        <property name="tooltip-text" translatable="yes">Open in another window</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-                <child>
                   <object class="GtkButton">
                     <property name="visible">1</property>
                     <signal name="clicked" handler="action_trash_selected_items" object="BjbSelectionToolbar" swapped="yes"/>

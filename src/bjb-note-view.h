@@ -29,8 +29,6 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BjbNoteView, bjb_note_view, BJB, NOTE_VIEW, GtkBox)
 
-void                bjb_note_view_set_detached       (BjbNoteView *self,
-                                                      gboolean     detached);
 void                bjb_note_view_set_note           (BjbNoteView *self,
                                                       BjbNote     *note);
 BijiWebkitEditor   *bjb_note_view_get_editor         (BjbNoteView *self);

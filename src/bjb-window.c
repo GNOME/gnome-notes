@@ -31,13 +31,12 @@
 #include <glib/gprintf.h>
 #include <stdlib.h>
 
-#include "items/bjb-plain-note.h"
 #include "providers/bjb-provider.h"
 #include "bjb-application.h"
 #include "bjb-manager.h"
 #include "bjb-note-list.h"
-#include "bjb-list-view-row.h"
 #include "bjb-note-view.h"
+#include "bjb-side-view.h"
 #include "bjb-notebooks-dialog.h"
 #include "bjb-share.h"
 #include "bjb-utils.h"
@@ -51,8 +50,6 @@ struct _BjbWindow
 
   BjbSettings          *settings;
 
-  BjbNoteList          *note_list;
-
   /* when a note is opened */
   BjbNote              *note;
 
@@ -61,19 +58,13 @@ struct _BjbWindow
   gboolean              is_maximized;
 
   AdwLeaflet           *main_leaflet;
+  GtkWidget            *side_view;
   GtkWidget            *back_button;
-  GtkWidget            *filter_label;
-  GtkWidget            *filter_menu_button;
-  GtkWidget            *headerbar;
   GtkWidget            *note_box;
   GtkWidget            *note_headerbar;
   GtkWidget            *note_view;
-  GtkWidget            *notebooks_box;
-  GtkWidget            *sidebar_box;
   GtkWidget            *title_entry;
   GtkWidget            *last_update_item;
-  GtkWidget            *providers_popover;
-  GtkWidget            *providers_list_box;
 
   gboolean              is_self_change;
   gulong                remove_item_id;
@@ -143,36 +134,12 @@ window_selected_note_changed_cb (BjbWindow *self)
 
   g_assert (BJB_IS_WINDOW (self));
 
-  to_open = bjb_note_list_get_selected_note (self->note_list);
+  to_open = bjb_side_view_get_selected_note(BJB_SIDE_VIEW (self->side_view));
 
   if (to_open != self->note && BJB_IS_NOTE (to_open))
     bjb_window_set_note (self, to_open);
 
   adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_FORWARD);
-}
-
-static void
-providers_list_row_activated_cb (BjbWindow     *self,
-                                 GtkListBoxRow *row)
-{
-  BjbProvider *provider;
-  GtkWidget *child;
-  BjbItem *note;
-
-  g_assert (BJB_IS_WINDOW (self));
-  g_assert (GTK_IS_LIST_BOX_ROW (row));
-
-  child = gtk_list_box_row_get_child (row);
-  provider = g_object_get_data (G_OBJECT (child), "provider");
-  g_assert (BJB_IS_PROVIDER (provider));
-
-  note = bjb_plain_note_new_from_data (NULL, NULL, NULL);
-  g_object_set_data (G_OBJECT (note), "provider", provider);
-
-  adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_FORWARD);
-  bjb_window_set_note (self, BJB_NOTE (note));
-
-  gtk_popover_popdown (GTK_POPOVER (self->providers_popover));
 }
 
 static void
@@ -214,58 +181,6 @@ on_email_cb (GSimpleAction *action,
 
   if (self->note)
     on_email_note_callback (self->note);
-}
-
-static void
-show_all_notes (BjbWindow *self)
-{
-  window_item_removed_cb (self, NULL, self->note);
-
-  /* Going back from a notebook. */
-  bjb_note_list_set_notebook (self->note_list, NULL);
-
-  bjb_note_list_show_trash (self->note_list, FALSE);
-  /* bjb_controller_set_group (self->controller, BIJI_LIVING_ITEMS); */
-  gtk_label_set_text (GTK_LABEL (self->filter_label), _("All Notes"));
-}
-
-static void
-show_trash (BjbWindow *self)
-{
-  window_item_removed_cb (self, NULL, self->note);
-
-  bjb_note_list_show_trash (self->note_list, TRUE);
-  /* bjb_controller_set_group (self->controller, BIJI_ARCHIVED_ITEMS); */
-  gtk_label_set_text (GTK_LABEL (self->filter_label), _("Trash"));
-}
-
-static void
-on_show_notebook_cb (GSimpleAction *action,
-                     GVariant      *variant,
-                     gpointer       user_data)
-{
-  const char *note_uuid;
-  BjbWindow *self = BJB_WINDOW (user_data);
-
-  window_item_removed_cb (self, NULL, self->note);
-
-  note_uuid = g_variant_get_string (variant, NULL);
-  if (g_strcmp0 (note_uuid, "ALL NOTES") == 0)
-    show_all_notes (self);
-  else if (g_strcmp0 (note_uuid, "TRASH") == 0)
-    show_trash (self);
-  else
-  {
-    /* manager = bjb_window_get_manager (GTK_WIDGET (self)); */
-    /* notebook = biji_manager_find_notebook (manager, note_uuid); */
-    /* bjb_note_list_set_notebook (self->note_list, notebook); */
-
-    /* /\* Update headerbar title. *\/ */
-    /* title = bjb_item_get_title (notebook); */
-    /* gtk_label_set_text (GTK_LABEL (self->filter_label), title); */
-  }
-
-  g_simple_action_set_state (action, variant);
 }
 
 static void
@@ -313,51 +228,13 @@ bjb_window_destroy (gpointer a, BjbWindow * self)
 static GActionEntry win_entries[] = {
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
-  { "show-notebook", on_action_radio, "s", "'ALL NOTES'", on_show_notebook_cb },
   { "close", on_close },
 };
-
-static GtkWidget *
-provider_row_new (gpointer item,
-                  gpointer user_data)
-{
-  GtkWidget *grid, *child;
-  g_autoptr(GIcon) icon = NULL;
-
-  grid = gtk_grid_new ();
-  g_object_set_data (G_OBJECT (grid), "provider", item);
-  gtk_widget_set_margin_start (grid, 6);
-  gtk_widget_set_margin_end (grid, 6);
-  gtk_widget_set_margin_top (grid, 6);
-  gtk_widget_set_margin_bottom (grid, 6);
-  gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
-  gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
-
-  icon = bjb_provider_get_icon (item, NULL);
-  if (icon)
-    {
-      child = gtk_image_new_from_gicon (icon);
-      gtk_grid_attach (GTK_GRID (grid), child, 0, 0, 1, 2);
-    }
-
-  child = gtk_label_new (bjb_provider_get_name (item));
-  gtk_widget_set_halign (child, GTK_ALIGN_START);
-  gtk_grid_attach (GTK_GRID (grid), child, 1, 0, 1, 1);
-
-  child = gtk_label_new (bjb_provider_get_location_name (item));
-  gtk_widget_set_halign (child, GTK_ALIGN_START);
-  gtk_widget_add_css_class (child, "dim-label");
-
-  gtk_grid_attach (GTK_GRID (grid), child, 1, 1, 1, 1);
-
-  return grid;
-}
 
 static void
 bjb_window_constructed (GObject *obj)
 {
   BjbWindow *self = BJB_WINDOW (obj);
-  GListModel *providers;
   GdkRectangle geometry;
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
@@ -369,9 +246,6 @@ bjb_window_constructed (GObject *obj)
 
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
-  providers = bjb_manager_get_providers (bjb_manager_get_default ());
-  gtk_list_box_bind_model (GTK_LIST_BOX (self->providers_list_box), providers,
-                           provider_row_new, NULL, NULL);
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 
   bjb_window_load_geometry (self);
@@ -380,8 +254,6 @@ bjb_window_constructed (GObject *obj)
 
   if (self->is_maximized)
     gtk_window_maximize (GTK_WINDOW (self));
-
-  gtk_widget_set_sensitive (self->notebooks_box, FALSE);
 
   /* Connection to window signals */
   g_signal_connect (GTK_WIDGET (self),
@@ -402,15 +274,11 @@ static void
 bjb_window_init (BjbWindow *self)
 {
   BjbManager *manager;
-  GListModel *notes;
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
   manager = bjb_manager_get_default ();
   bjb_manager_load (manager);
-
-  notes = bjb_manager_get_notes (manager);
-  bjb_note_list_set_model (self->note_list, notes);
 
   g_signal_connect_object (manager, "item-removed",
                            G_CALLBACK (window_item_removed_cb),
@@ -429,26 +297,20 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window.ui");
 
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_leaflet);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, side_view);
+
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, back_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, headerbar);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, filter_label);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, filter_menu_button);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_box);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_list);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_view);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, notebooks_box);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, sidebar_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, last_update_item);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, providers_popover);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, providers_list_box);
 
   gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
-  gtk_widget_class_bind_template_callback (widget_class, providers_list_row_activated_cb);
 
+  g_type_ensure (BJB_TYPE_SIDE_VIEW);
   g_type_ensure (BJB_TYPE_NOTE_LIST);
   g_type_ensure (BJB_TYPE_NOTE_VIEW);
 }

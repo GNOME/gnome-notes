@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BjbSideView" parent="GtkBox">
+    <property name="orientation">vertical</property>
+
+    <child>
+      <object class="AdwHeaderBar" id="headerbar">
+
+        <child>
+          <object class="GtkMenuButton" id="new_button">
+            <property name="popover">providers_popover</property>
+            <property name="icon-name">list-add-symbolic</property>
+          </object>
+        </child>
+
+        <child type="title">
+          <object class="GtkMenuButton" id="filter_menu_button">
+            <property name="popover">filter_menu</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="filter_label">
+                    <property name="label" translatable="yes">All Notes</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">pan-down-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child type="end">
+          <object class="GtkMenuButton" id="main_menu_button">
+            <property name="tooltip-text" translatable="yes">Open menu</property>
+            <property name="icon_name">open-menu-symbolic</property>
+            <property name="popover">main_menu</property>
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+    <child>
+      <object class="BjbNoteList" id="note_list">
+        <signal name="selection-changed" handler="bjb_side_view_note_changed_cb" swapped="yes"/>
+      </object>
+    </child>
+
+  </template>
+
+  <object class="GtkPopover" id="main_menu">
+    <style>
+      <class name="menu" />
+    </style>
+    <property name="child">
+      <object class="GtkBox">
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">Import Notes</property>
+            <property name="action-name">app.import-notes</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="sensitive">0</property>
+            <property name="label" translatable="yes">Text Sizes</property>
+            <property name="margin-start">6</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+        <child>
+
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">_Large</property>
+            <property name="action-name">app.text-size</property>
+            <property name="action-target">&apos;large&apos;</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">_Medium</property>
+            <property name="action-name">app.text-size</property>
+            <property name="action-target">&apos;medium&apos;</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">_Small</property>
+            <property name="action-name">app.text-size</property>
+            <property name="action-target">&apos;small&apos;</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">Preferences</property>
+            <property name="action-name">app.preferences</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">win.show-help-overlay</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">Help</property>
+            <property name="action_name">app.help</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="text" translatable="yes">About Notes</property>
+            <property name="action-name">app.about</property>
+          </object>
+        </child>
+
+      </object>
+    </property>
+  </object>
+
+  <object class="GtkPopover" id="providers_popover">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+            <property name="margin-top">12</property>
+            <property name="margin-bottom">12</property>
+            <property name="label" translatable="yes">Select Note Location</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkListBox" id="providers_list_box">
+            <property name="width-request">240</property>
+            <property name="selection-mode">none</property>
+            <signal name="row-activated" handler="bjb_side_view_provider_row_activated_cb" swapped="yes"/>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+        </child>
+
+      </object>
+    </property>
+  </object>  <!-- ./GtkPopover provider_popovers -->
+
+  <object class="GtkPopover" id="filter_menu">
+    <property name="child">
+      <object class="GtkBox">
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
+        <property name="margin-top">12</property>
+        <property name="margin-bottom">12</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">All Notes</property>
+            <property name="action-name">win.show-notebook</property>
+            <property name="action-target">&apos;ALL NOTES&apos;</property>
+            <style>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="sensitive">0</property>
+            <property name="label" translatable="yes">Notebooks</property>
+            <property name="margin-start">6</property>
+            <property name="margin-bottom">6</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="notebooks_box">
+            <property name="sensitive">0</property>
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+            <property name="orientation">vertical</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSeparator">
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Trash</property>
+            <property name="action-name">win.show-notebook</property>
+            <property name="action-target">&apos;TRASH&apos;</property>
+            <style>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </property>
+  </object>
+
+</interface>

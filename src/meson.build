@@ -36,6 +36,7 @@ sources = files(
   'bjb-manager.c',
   'bjb-note-list.c',
   'bjb-note-view.c',
+  'bjb-side-view.c',
   'bjb-notebook-row.c',
   'bjb-notebooks-dialog.c',
   'bjb-settings.c',

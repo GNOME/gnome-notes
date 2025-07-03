@@ -16,12 +16,6 @@
 
   <maintainer>
     <foaf:Person>
-      <foaf:name>Pierre-Yves Luyen</foaf:name>
-      <gnome:userid>pyluyten</gnome:userid>
-    </foaf:Person>
-  </maintainer>
-  <maintainer>
-    <foaf:Person>
       <foaf:name>Isaque Galdino</foaf:name>
       <foaf:mbox rdf:resource="mailto:igaldino@gmail.com" />
       <gnome:userid>igaldino</gnome:userid>

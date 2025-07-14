@@ -1,6 +1,6 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/appdata/org.gnome.Notes.appdata.xml.in
+data/appdata/org.gnome.Notes.metainfo.xml.in
 data/org.gnome.Notes.desktop.in
 data/org.gnome.Notes.gschema.xml
 data/org.gnome.Notes.xml.in

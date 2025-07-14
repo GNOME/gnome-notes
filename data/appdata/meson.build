@@ -1,4 +1,4 @@
-info = 'org.gnome.Notes.appdata.xml'
+info = 'org.gnome.Notes.metainfo.xml'
 
 i18n.merge_file(
   input: info + '.in',

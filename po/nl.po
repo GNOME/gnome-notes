@@ -4,34 +4,35 @@
 # Erwin Poeze <donnut@outlook.com>, 2013.
 # Reinout van Schouwen <reinouts@gnome.org>, 2014.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016, 2018.
-# Nathan Follens <nfollens@gnome.org>, 2016, 2018-2021.
+# Nathan Follens <nfollens@gnome.org>, 2016, 2018-2021, 2025.
 # Justin van Steijn <jvs@fsfe.org>, 2018.
+# Dick Groskamp <dikgro@yahoo.co.uk>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: bijiben master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-notes/issues\n"
-"POT-Creation-Date: 2022-05-20 21:32+0000\n"
-"PO-Revision-Date: 2022-06-28 18:26+0200\n"
+"POT-Creation-Date: 2025-08-17 05:57+0000\n"
+"PO-Revision-Date: 2025-08-19 22:15+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
-"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
+"Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:6
-#: data/org.gnome.Notes.desktop.in:3 data/org.gnome.Notes.xml.in:4
-#: src/bjb-application.c:626 src/bjb-window.c:46
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:6
+#: data/org.gnome.Notes.desktop.in:2 data/org.gnome.Notes.xml.in:4
+#: src/bjb-application.c:339 src/bjb-window.c:45
 msgid "Notes"
 msgstr "Notities"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:7
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:7
 msgid "Notes for GNOME"
-msgstr "Notities voor Gnome"
+msgstr "Notities voor GNOME"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:9
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:9
 msgid ""
 "A quick and easy way to make freeform notes or jot down simple lists. Store "
 "as many notes as you like and share them by email."
@@ -39,7 +40,7 @@ msgstr ""
 "Een snelle en gemakkelijke manier om eenvoudige notities of lijstjes te "
 "maken. Sla zoveel notities op als u wilt en deel ze per e-mail."
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:12
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:12
 msgid ""
 "You can store your notes locally on your computer or sync with online "
 "services like ownCloud."
@@ -47,34 +48,34 @@ msgstr ""
 "U kunt uw notities lokaal op uw computer opslaan of synchroniseren met "
 "onlinediensten zoals ownCloud."
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:28
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:28
 msgid "Edit view"
 msgstr "Weergave bewerken"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:32
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:32
 msgid "Select view"
 msgstr "Weergave selecteren"
 
-#: data/appdata/org.gnome.Notes.appdata.xml.in:36
+#: data/appdata/org.gnome.Notes.metainfo.xml.in:36
 msgid "List view"
 msgstr "Lijstweergave"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Notes.desktop.in:5
+#: data/org.gnome.Notes.desktop.in:4
 msgid "notes;reminder;notebook;sticky notes;"
 msgstr ""
-"notes;reminder;notebook;sticky notes;notities;herinnering;notitieboek;"
-"plakbriefjes;"
+"notes;reminder;notebook;sticky "
+"notes;notities;herinnering;notitieboek;plakbriefjes;"
 
-#: data/org.gnome.Notes.desktop.in:6
+#: data/org.gnome.Notes.desktop.in:5
 msgid "Post notes, tag files!"
 msgstr "Plaats notities, voorzie bestanden van een label!"
 
-#: data/org.gnome.Notes.desktop.in:7
+#: data/org.gnome.Notes.desktop.in:6
 msgid "Note-taker"
 msgstr "Notitieopnemer"
 
-#: data/org.gnome.Notes.desktop.in:19
+#: data/org.gnome.Notes.desktop.in:18
 msgid "Create New Note"
 msgstr "Nieuwe notitie maken"
 
@@ -160,127 +161,126 @@ msgid ""
 msgstr ""
 "Er zijn drie tekstgroottes beschikbaar: klein, medium (standaard) en groot."
 
-#: data/resources/bjb-notebooks-dialog.ui:6 data/resources/bjb-window.ui:304
-#: data/resources/bjb-window.ui:392 data/resources/selection-toolbar.ui:34
+#: data/resources/bjb-notebooks-dialog.ui:5 data/resources/bjb-side-view.ui:221
+#: data/resources/bjb-window.ui:104 data/resources/selection-toolbar.ui:34
 msgid "Notebooks"
 msgstr "Notitieboeken"
 
-#: data/resources/bjb-notebooks-dialog.ui:33
+#: data/resources/bjb-notebooks-dialog.ui:30
 msgid "New Notebook…"
 msgstr "Nieuw notitieboek…"
 
-#: data/resources/bjb-notebooks-dialog.ui:43
+#: data/resources/bjb-notebooks-dialog.ui:37
 msgid "Add"
 msgstr "Toevoegen"
 
-#: data/resources/bjb-window.ui:47 data/resources/bjb-window.ui:283
-#: src/bjb-window.c:449
+#: data/resources/bjb-note-view.ui:15 src/bjb-note-view.c:324
+msgid "No note selected"
+msgstr "Geen notitie geselecteerd"
+
+#: data/resources/bjb-side-view.ui:25 data/resources/bjb-side-view.ui:202
 msgid "All Notes"
 msgstr "Alle notities"
 
-#: data/resources/bjb-window.ui:63
+#: data/resources/bjb-side-view.ui:40
 msgid "Open menu"
 msgstr "Menu openen"
 
-#: data/resources/bjb-window.ui:148
-msgid "More options"
-msgstr "Meer opties"
-
-#: data/resources/bjb-window.ui:179 data/resources/import-dialog.ui:5
+#: data/resources/bjb-side-view.ui:71 data/resources/import-dialog.ui:5
 msgid "Import Notes"
 msgstr "Notities importeren"
 
-#: data/resources/bjb-window.ui:196
+#: data/resources/bjb-side-view.ui:86
 msgid "Text Sizes"
 msgstr "Tekstgroottes"
 
-#: data/resources/bjb-window.ui:205
+#: data/resources/bjb-side-view.ui:94
 msgid "_Large"
 msgstr "_Groot"
 
-#: data/resources/bjb-window.ui:214
+#: data/resources/bjb-side-view.ui:102
 msgid "_Medium"
 msgstr "_Medium"
 
-#: data/resources/bjb-window.ui:223
+#: data/resources/bjb-side-view.ui:110
 msgid "_Small"
 msgstr "_Klein"
 
-#: data/resources/bjb-window.ui:240 data/resources/settings-dialog.ui:10
+#: data/resources/bjb-side-view.ui:125 data/resources/settings-dialog.ui:7
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/resources/bjb-window.ui:248
+#: data/resources/bjb-side-view.ui:132
 msgid "Keyboard Shortcuts"
 msgstr "Sneltoetsen"
 
-#: data/resources/bjb-window.ui:256
+#: data/resources/bjb-side-view.ui:139
 msgid "Help"
 msgstr "Hulp"
 
-#: data/resources/bjb-window.ui:264
+#: data/resources/bjb-side-view.ui:146
 msgid "About Notes"
 msgstr "Over Notities"
 
-#: data/resources/bjb-window.ui:330 src/bjb-window.c:459
+#: data/resources/bjb-side-view.ui:169
+msgid "Select Note Location"
+msgstr "Selecteer de notitielocatie"
+
+#: data/resources/bjb-side-view.ui:247
 msgid "Trash"
 msgstr "Prullenbak"
 
-#: data/resources/bjb-window.ui:352
-msgid "Open in New Window"
-msgstr "Openen in een nieuw venster"
+#: data/resources/bjb-window.ui:48
+msgid "More options"
+msgstr "Meer opties"
 
-#: data/resources/bjb-window.ui:368
+#: data/resources/bjb-window.ui:81
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: data/resources/bjb-window.ui:376
+#: data/resources/bjb-window.ui:89
 msgid "Redo"
 msgstr "Opnieuw"
 
-#: data/resources/bjb-window.ui:400
+#: data/resources/bjb-window.ui:112
 msgid "Email this Note"
 msgstr "Deze notitie e-mailen"
 
-#: data/resources/bjb-window.ui:408 data/resources/selection-toolbar.ui:96
+#: data/resources/bjb-window.ui:120 data/resources/selection-toolbar.ui:78
 msgid "Move to Trash"
 msgstr "Verplaatsen naar prullenbak"
 
-#: data/resources/editor-toolbar.ui:63
+#: data/resources/editor-toolbar.ui:20
 msgid "Bold"
 msgstr "Vet"
 
-#: data/resources/editor-toolbar.ui:79
+#: data/resources/editor-toolbar.ui:28
 msgid "Italic"
 msgstr "Cursief"
 
-#: data/resources/editor-toolbar.ui:95
+#: data/resources/editor-toolbar.ui:36
 msgid "Strike"
 msgstr "Doorhalen"
 
-#: data/resources/editor-toolbar.ui:123
+#: data/resources/editor-toolbar.ui:52
 msgid "Bullets"
 msgstr "Aandachtspunten"
 
-#: data/resources/editor-toolbar.ui:139
+#: data/resources/editor-toolbar.ui:60
 msgid "List"
 msgstr "Lijst"
 
-#: data/resources/editor-toolbar.ui:167
+#: data/resources/editor-toolbar.ui:76
 msgid "Indent"
 msgstr "Inspringen"
 
-#: data/resources/editor-toolbar.ui:183
+#: data/resources/editor-toolbar.ui:84
 msgid "Outdent"
 msgstr "Uitspringen"
 
-#: data/resources/editor-toolbar.ui:222
+#: data/resources/editor-toolbar.ui:106
 msgid "Copy selection to a new note"
 msgstr "Selectie kopiëren naar een nieuwe notitie"
-
-#: data/resources/empty-results-box.ui:33
-msgid "No notes"
-msgstr "Geen notities"
 
 #: data/resources/help-overlay.ui:9
 msgctxt "shortcut window"
@@ -418,108 +418,91 @@ msgstr "Achtergrondkleur notitie"
 msgid "Share note"
 msgstr "Notitie delen"
 
-#: data/resources/selection-toolbar.ui:78
-msgid "Open in another window"
-msgstr "Openen in een nieuw venster"
-
-#: data/resources/selection-toolbar.ui:119
+#: data/resources/selection-toolbar.ui:101
 msgid "Restore"
 msgstr "Herstellen"
 
-#: data/resources/selection-toolbar.ui:127
+#: data/resources/selection-toolbar.ui:109
 msgid "Permanently Delete"
 msgstr "Voorgoed verwijderen"
 
-#: data/resources/settings-dialog.ui:37
-msgid "Use System Font"
-msgstr "Systeemlettertype gebruiken"
-
-#: data/resources/settings-dialog.ui:50
-msgid "Note Font"
-msgstr "Notitielettertype"
-
-#: data/resources/settings-dialog.ui:62
-msgid "Default Color"
-msgstr "Standaardkleur"
-
-#: data/resources/settings-dialog.ui:113
+#: data/resources/settings-dialog.ui:23
 msgid "Note Appearance"
 msgstr "Uiterlijk van notitie"
 
-#: data/resources/settings-dialog.ui:126
-msgid "Select the default storage location:"
-msgstr "Selecteer de standaardopslaglocatie:"
+#: data/resources/settings-dialog.ui:32
+msgid "Use System Font"
+msgstr "Systeemlettertype gebruiken"
 
-#: data/resources/settings-dialog.ui:157
-msgid "Primary Book"
-msgstr "Primaire notitieboek"
+#: data/resources/settings-dialog.ui:43
+msgid "Note Font"
+msgstr "Notitielettertype"
 
-#: src/bijiben-shell-search-provider.c:229 src/bjb-window.c:134
+#: data/resources/settings-dialog.ui:53
+msgid "Default Color"
+msgstr "Standaardkleur"
+
+#: src/bijiben-shell-search-provider.c:225 src/bjb-window.c:100
 msgid "Untitled"
 msgstr "Naamloos"
 
-#: src/bjb-application.c:222
+#: src/bjb-application.c:89
 msgid "GNOME Notes"
-msgstr "Gnome Notities"
+msgstr "GNOME Notities"
 
-#: src/bjb-application.c:277
+#: src/bjb-application.c:120
 msgid "Show verbose logs"
 msgstr "Gedetailleerde logboeken weergeven"
 
-#: src/bjb-application.c:279
+#: src/bjb-application.c:122
 msgid "Show the application’s version"
 msgstr "Versie van toepassing tonen"
 
-#: src/bjb-application.c:281
+#: src/bjb-application.c:124
 msgid "Create a new note"
 msgstr "Nieuwe notitie maken"
 
-#: src/bjb-application.c:289
+#: src/bjb-application.c:132
 msgid "[FILE…]"
 msgstr "[BESTAND…]"
 
-#: src/bjb-application.c:290
+#: src/bjb-application.c:133
 msgid "Take notes and export them everywhere."
 msgstr "Maak notities en exporteer ze overal."
 
-#: src/bjb-application.c:627
+#: src/bjb-application.c:340
 msgid "Simple notebook for GNOME"
-msgstr "Eenvoudig notitieboekje voor Gnome"
+msgstr "Eenvoudig notitieboekje voor GNOME"
 
-#: src/bjb-application.c:633
+#: src/bjb-application.c:346
 msgid "translator-credits"
 msgstr ""
 "Erwin Poeze <donnut@outlook.com>\n"
 "Nathan Follens <nfollens@gnome.org>\n"
 "Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Justin van Steijn <jvs@fsfe.org>\n"
-"\n"
-"Meer info over Gnome-NL http://nl.gnome.org"
+"Dick Groskamp <dikgro@yahoo.co.uk>\n"
+"Meer info over GNOME-NL https://nl.gnome.org"
 
 #: src/bjb-color-button.c:140
 msgid "Note Color"
 msgstr "Achtergrondkleur notities"
 
-#: src/bjb-controller.c:237
-msgid "Notebook"
-msgstr "Notitieboek"
+#: src/bjb-note-list.c:113
+msgid "Add Notes"
+msgstr "Notities toevoegen"
 
-#: src/bjb-empty-results-box.c:63
-msgid "Press the New button to create a note."
-msgstr "Druk op de knop Nieuw om een notitie te maken."
+#: src/bjb-note-list.c:114
+msgid "Use the + button to add a note"
+msgstr "Druk op de +-knop om een notitie te maken"
 
-#: src/bjb-empty-results-box.c:85
-msgid "Oops"
-msgstr "Oeps"
+#: src/bjb-note-list.c:119
+msgid "No Results"
+msgstr "Geen resultaten"
 
-#: src/bjb-empty-results-box.c:91
-msgid "Please install “Tracker” then restart the application."
-msgstr "Installeer ‘Tracker’ en herstart de toepassing."
-
-#. Label used to indicate that note is opened in another window.
-#: src/bjb-note-view.c:187
-msgid "This note is being viewed in another window."
-msgstr "Deze notitie is al geopend in een ander venster."
+#: src/bjb-note-list.c:120
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
 
 #: src/bjb-utils.c:51
 msgid "Unknown"
@@ -538,20 +521,55 @@ msgstr "Deze maand"
 #. * right to left languages might move %s
 #. *         '%s Last Updated'
 #.
-#: src/bjb-window.c:939
+#: src/bjb-window.c:340
 #, c-format
 msgid "Last updated: %s"
 msgstr "Laatst bijgewerkt: %s"
 
-#: src/libbiji/provider/biji-local-provider.c:366
-msgid "Local storage"
-msgstr "Lokale opslag"
+#: src/providers/bjb-local-provider.c:78
+msgid "Local"
+msgstr "Lokaal"
+
+#: src/providers/bjb-local-provider.c:91
+msgid "On This Computer"
+msgstr "Op deze computer"
+
+#: src/providers/bjb-memo-provider.c:90
+msgid "Memo Note"
+msgstr "Memonotitie"
+
+#~ msgid "Open in New Window"
+#~ msgstr "Openen in een nieuw venster"
+
+#~ msgid "No notes"
+#~ msgstr "Geen notities"
+
+#~ msgid "Open in another window"
+#~ msgstr "Openen in een nieuw venster"
+
+#~ msgid "Select the default storage location:"
+#~ msgstr "Selecteer de standaardopslaglocatie:"
+
+#~ msgid "Primary Book"
+#~ msgstr "Primaire notitieboek"
+
+#~ msgid "Notebook"
+#~ msgstr "Notitieboek"
+
+#~ msgid "Oops"
+#~ msgstr "Oeps"
+
+#~ msgid "Please install “Tracker” then restart the application."
+#~ msgstr "Installeer ‘Tracker’ en herstart de toepassing."
+
+#~ msgid "This note is being viewed in another window."
+#~ msgstr "Deze notitie is al geopend in een ander venster."
+
+#~ msgid "Local storage"
+#~ msgstr "Lokale opslag"
 
 #~ msgid "Enter a name to create a notebook"
 #~ msgstr "Voer een naam in om een notitieboek aan te maken"
-
-#~ msgid "Local"
-#~ msgstr "Lokaal"
 
 #~ msgid "_New"
 #~ msgstr "_Nieuw"
@@ -579,11 +597,6 @@ msgstr "Lokale opslag"
 
 #~ msgid "Click on items to select them"
 #~ msgstr "Klik op notities om ze te selecteren"
-
-#~ msgid "%d selected"
-#~ msgid_plural "%d selected"
-#~ msgstr[0] "%d geselecteerd"
-#~ msgstr[1] "%d geselecteerd"
 
 #~ msgid "Results for %s"
 #~ msgstr "Resultaten voor %s"
@@ -730,9 +743,6 @@ msgstr "Lokale opslag"
 
 #~ msgid "Add to Collection"
 #~ msgstr "Aan verzameling toevoegen"
-
-#~ msgid "Rename Note"
-#~ msgstr "Notitie hernoemen"
 
 #~ msgid "Rename"
 #~ msgstr "Hernoemen"

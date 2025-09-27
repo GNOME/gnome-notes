@@ -84,13 +84,17 @@
                       </object>
                     </child>
                     <child>
-                      <object class="BjbColorButton" id="color_button">
+                      <object class="GtkColorDialogButton" id="color_button">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="halign">start</property>
-                        <!-- todo -->
-                        <!-- <signal name="color-set" handler="on_color_set" object="BjbSettingsDialog" swapped="no"/> -->
+                        <property name="dialog">
+                          <object class="GtkColorDialog">
+                            <property name="title" translatable="yes">Note Color</property>
+                          </object>
+                        </property>
+                        <signal name="notify::rgba" handler="bjb_settings_dialog_color_set_cb" swapped="yes"/>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">2</property>

@@ -23,7 +23,6 @@
 #include <gtk/gtk.h>
 
 #include "bjb-application.h"
-#include "bjb-color-button.h"
 #include "bjb-settings.h"
 #include "bjb-settings-dialog.h"
 
@@ -59,14 +58,18 @@ on_font_selected (GtkFontButton     *widget,
 }
 
 static void
-on_color_set (GtkColorButton    *button,
-              BjbSettingsDialog *self)
+bjb_settings_dialog_color_set_cb (BjbSettingsDialog    *self,
+                                  GParamSpec           *pspec,
+                                  GtkColorDialogButton *button)
 {
-  GdkRGBA color;
-  g_autofree gchar *color_str = NULL;
+  g_autofree char *color_str = NULL;
+  const GdkRGBA *color;
 
-  gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &color);
-  color_str = gdk_rgba_to_string (&color);
+  g_assert (BJB_IS_SETTINGS_DIALOG (self));
+  g_assert (GTK_IS_COLOR_DIALOG_BUTTON (button));
+
+  color = gtk_color_dialog_button_get_rgba (button);
+  color_str = gdk_rgba_to_string (color);
 
   g_object_set (self->settings, "color", color_str, NULL);
 }
@@ -94,7 +97,7 @@ bjb_settings_dialog_constructed (GObject *object)
                              bjb_settings_get_custom_font (self->settings));
 
   gdk_rgba_parse (&color, bjb_settings_get_default_color (self->settings));
-  gtk_color_chooser_set_rgba (self->color_button, &color);
+  gtk_color_dialog_button_set_rgba (GTK_COLOR_DIALOG_BUTTON (self->color_button), &color);
 }
 
 static void
@@ -121,10 +124,8 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
   gtk_widget_class_bind_template_child (gtk_widget_class, BjbSettingsDialog, stack);
   gtk_widget_class_bind_template_child (gtk_widget_class, BjbSettingsDialog, system_font_switch);
 
-  gtk_widget_class_bind_template_callback (gtk_widget_class, on_color_set);
+  gtk_widget_class_bind_template_callback (gtk_widget_class, bjb_settings_dialog_color_set_cb);
   gtk_widget_class_bind_template_callback (gtk_widget_class, on_font_selected);
-
-  g_type_ensure (BJB_TYPE_COLOR_BUTTON);
 }
 
 

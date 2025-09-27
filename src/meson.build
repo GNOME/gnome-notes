@@ -28,7 +28,6 @@ sources = files(
   'bjb-utils.c',
   'bjb-log.c',
   'bjb-application.c',
-  'bjb-color-button.c',
   'bjb-editor-toolbar.c',
   'bjb-import-dialog.c',
   'bjb-list-view-row.c',

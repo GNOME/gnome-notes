@@ -15,7 +15,6 @@ data/resources/selection-toolbar.ui
 data/resources/settings-dialog.ui
 src/bijiben-shell-search-provider.c
 src/bjb-application.c
-src/bjb-color-button.c
 src/bjb-editor-toolbar.c
 src/bjb-note-list.c
 src/bjb-note-view.c

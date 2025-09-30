@@ -69,14 +69,17 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkFontButton" id="font_button">
+                      <object class="GtkFontDialogButton" id="font_button">
                         <property name="focusable">1</property>
                         <property name="sensitive" bind-source="system_font_switch" bind-property="active" bind-flags="default|invert-boolean"/>
                         <property name="receives_default">1</property>
                         <property name="halign">start</property>
-                        <property name="font">Sans 12</property>
-                        <property name="preview_text"></property>
-                        <signal name="font-set" handler="on_font_selected" object="BjbSettingsDialog" swapped="no"/>
+                        <property name="dialog">
+                          <object class="GtkFontDialog">
+                            <property name="title" translatable="yes">Note Font</property>
+                          </object>
+                        </property>
+                        <signal name="notify::font-desc" handler="bjb_settings_dialog_font_set_cb" swapped="yes"/>
                         <layout>
                           <property name="column">1</property>
                           <property name="row">1</property>

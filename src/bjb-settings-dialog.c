@@ -46,12 +46,18 @@ G_DEFINE_TYPE (BjbSettingsDialog, bjb_settings_dialog, GTK_TYPE_DIALOG)
 /* Callbacks */
 
 static void
-on_font_selected (GtkFontButton     *widget,
-                  BjbSettingsDialog *self)
+bjb_settings_dialog_font_set_cb (BjbSettingsDialog   *self,
+                                 GParamSpec          *pspec,
+                                 GtkFontDialogButton *button)
 {
-  g_autofree gchar *font_name = NULL;
+  g_autofree char *font_name = NULL;
+  PangoFontDescription *font;
 
-  font_name = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (widget));
+  g_assert (BJB_IS_SETTINGS_DIALOG (self));
+  g_assert (GTK_IS_FONT_DIALOG_BUTTON (button));
+
+  font = gtk_font_dialog_button_get_font_desc (button);
+  font_name = pango_font_description_to_string (font);
 
   g_object_set (self->settings, "font", font_name, NULL);
 
@@ -80,6 +86,7 @@ bjb_settings_dialog_constructed (GObject *object)
   BjbSettingsDialog *self;
   GApplication      *app;
   GdkRGBA            color;
+  g_autoptr(PangoFontDescription) font = NULL;
 
   G_OBJECT_CLASS (bjb_settings_dialog_parent_class)->constructed (object);
 
@@ -93,8 +100,8 @@ bjb_settings_dialog_constructed (GObject *object)
                           "active",
                           G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-  gtk_font_chooser_set_font (GTK_FONT_CHOOSER (self->font_button),
-                             bjb_settings_get_custom_font (self->settings));
+  font = pango_font_description_from_string (bjb_settings_get_custom_font (self->settings));
+  gtk_font_dialog_button_set_font_desc (GTK_FONT_DIALOG_BUTTON (self->font_button), font);
 
   gdk_rgba_parse (&color, bjb_settings_get_default_color (self->settings));
   gtk_color_dialog_button_set_rgba (GTK_COLOR_DIALOG_BUTTON (self->color_button), &color);
@@ -125,7 +132,7 @@ bjb_settings_dialog_class_init (BjbSettingsDialogClass *klass)
   gtk_widget_class_bind_template_child (gtk_widget_class, BjbSettingsDialog, system_font_switch);
 
   gtk_widget_class_bind_template_callback (gtk_widget_class, bjb_settings_dialog_color_set_cb);
-  gtk_widget_class_bind_template_callback (gtk_widget_class, on_font_selected);
+  gtk_widget_class_bind_template_callback (gtk_widget_class, bjb_settings_dialog_font_set_cb);
 }
 
 

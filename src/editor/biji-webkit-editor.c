@@ -314,6 +314,7 @@ on_navigation_request (WebKitWebView           *web_view,
                        gpointer                 user_data)
 {
   WebKitNavigationPolicyDecision *navigation_decision;
+  g_autoptr(GtkUriLauncher) launcher = NULL;
   WebKitNavigationAction *action;
   const char *requested_uri;
   GtkWidget *toplevel;
@@ -330,9 +331,8 @@ on_navigation_request (WebKitWebView           *web_view,
   toplevel = gtk_widget_get_ancestor (GTK_WIDGET (web_view), GTK_TYPE_WINDOW);
   g_return_val_if_fail (GTK_IS_WINDOW (toplevel), FALSE);
 
-  gtk_show_uri (GTK_WINDOW (toplevel),
-                requested_uri,
-                GDK_CURRENT_TIME);
+  launcher = gtk_uri_launcher_new (requested_uri);
+  gtk_uri_launcher_launch (launcher, GTK_WINDOW (toplevel), NULL, NULL, NULL);
 
   webkit_policy_decision_ignore (decision);
   return TRUE;

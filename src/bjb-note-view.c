@@ -313,7 +313,7 @@ bjb_note_view_set_note (BjbNoteView *self,
                                self,
                                G_CONNECT_SWAPPED);
 
-      gtk_widget_show (self->view);
+      gtk_widget_set_visible (self->view, TRUE);
 
       gtk_stack_set_visible_child (GTK_STACK (self->main_stack), self->editor_box);
     }

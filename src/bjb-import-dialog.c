@@ -145,13 +145,13 @@ bjb_import_dialog_constructed (GObject *obj)
   path = g_build_filename (g_get_user_data_dir (), "tomboy", NULL);
 
   if (g_file_test (path, G_FILE_TEST_EXISTS))
-    gtk_widget_show (self->tomboy_import);
+    gtk_widget_set_visible (self->tomboy_import, TRUE);
 
   g_free (path);
   path = g_build_filename (g_get_user_data_dir (), "gnote", NULL);
 
   if (g_file_test (path, G_FILE_TEST_EXISTS))
-    gtk_widget_show (self->gnote_import);
+    gtk_widget_set_visible (self->gnote_import, TRUE);
 }
 
 static void

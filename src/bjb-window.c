@@ -85,7 +85,7 @@ window_item_removed_cb (BjbWindow   *self,
 
   g_clear_object (&self->note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), NULL);
-  gtk_widget_hide (self->title_entry);
+  gtk_widget_set_visible (self->title_entry, FALSE);
 }
 
 static void
@@ -105,7 +105,7 @@ on_note_renamed (BjbWindow *self)
 
   adw_header_bar_set_title_widget (ADW_HEADER_BAR (self->note_headerbar),
                                    self->title_entry);
-  gtk_widget_show (self->title_entry);
+  gtk_widget_set_visible (self->title_entry, TRUE);
 }
 
 static void

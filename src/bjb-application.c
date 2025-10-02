@@ -312,10 +312,13 @@ void
 bjb_app_help (BjbApplication *self)
 {
   GtkApplication *app = GTK_APPLICATION (self);
+  g_autoptr(GtkUriLauncher) launcher = NULL;
 
-  gtk_show_uri (gtk_application_get_active_window (app),
-                "help:bijiben",
-                GDK_CURRENT_TIME);
+  launcher = gtk_uri_launcher_new ("help:bijiben");
+
+  gtk_uri_launcher_launch (launcher,
+                           gtk_application_get_active_window (app),
+                           NULL, NULL, NULL);
 }
 
 

@@ -196,14 +196,6 @@ on_close (GSimpleAction *action,
 }
 
 static void
-on_action_radio (GSimpleAction *action,
-                 GVariant      *variant,
-                 gpointer       user_data)
-{
-  g_action_change_state (G_ACTION (action), variant);
-}
-
-static void
 bjb_window_save_geometry (BjbWindow *self)
 {
   bjb_settings_set_window_maximized (self->settings, self->is_maximized);

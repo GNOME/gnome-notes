@@ -52,7 +52,9 @@ static void
 note_color_changed_cb (BjbListViewRow *self)
 {
   g_autofree char *css_style = NULL;
+  g_autofree char *css_name = NULL;
   g_autofree char *color = NULL;
+  GQuark color_id;
   GdkRGBA rgba;
 
   g_assert (BJB_IS_LIST_VIEW_ROW (self));
@@ -61,13 +63,17 @@ note_color_changed_cb (BjbListViewRow *self)
     return;
 
   color = gdk_rgba_to_string (&rgba);
-  css_style = g_strdup_printf ("row {color: %s; background-color: %s;} row:hover {background-color: darker(%s);}",
+  color_id = g_quark_from_string (color);
+  css_name = g_strdup_printf ("color-%u", color_id);
+  css_style = g_strdup_printf (".%s {color: %s; background-color: %s;} .%s:hover {background-color: darker(%s);}",
+                               css_name,
                                BJB_UTILS_COLOR_INTENSITY ((&rgba)) < 0.5 ? "white" : "black",
-                               color, color);
-  gtk_css_provider_load_from_data (self->css_provider, css_style, -1);
-  gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (self)),
-                                  GTK_STYLE_PROVIDER (self->css_provider),
-                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+                               color, css_name, color);
+  gtk_css_provider_load_from_string (self->css_provider, css_style);
+  gtk_style_context_add_provider_for_display (gdk_display_get_default (),
+                                              GTK_STYLE_PROVIDER (self->css_provider),
+                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  gtk_widget_add_css_class (GTK_WIDGET (self), css_name);
 }
 
 static void

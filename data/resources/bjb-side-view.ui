@@ -1,56 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="BjbSideView" parent="GtkBox">
-    <property name="orientation">vertical</property>
+  <template class="BjbSideView" parent="AdwNavigationPage">
+    <!-- Set empty title to avoid a Gtk-Warning -->
+    <property name="title"> </property>
 
-    <child>
-      <object class="AdwHeaderBar" id="headerbar">
+    <property name="child">
+      <object class="AdwToolbarView">
 
-        <child>
-          <object class="GtkMenuButton" id="new_button">
-            <property name="popover">providers_popover</property>
-            <property name="icon-name">list-add-symbolic</property>
-          </object>
-        </child>
+        <child type="top">
+          <object class="AdwHeaderBar" id="headerbar">
 
-        <child type="title">
-          <object class="GtkMenuButton" id="filter_menu_button">
-            <property name="popover">filter_menu</property>
-            <property name="valign">center</property>
             <child>
-              <object class="GtkBox">
-                <property name="spacing">6</property>
+              <object class="GtkMenuButton" id="new_button">
+                <property name="popover">providers_popover</property>
+                <property name="icon-name">list-add-symbolic</property>
+              </object>
+            </child>
+
+            <child type="title">
+              <object class="GtkMenuButton" id="filter_menu_button">
+                <property name="popover">filter_menu</property>
+                <property name="valign">center</property>
                 <child>
-                  <object class="GtkLabel" id="filter_label">
-                    <property name="label" translatable="yes">All Notes</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon-name">pan-down-symbolic</property>
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkLabel" id="filter_label">
+                        <property name="label" translatable="yes">All Notes</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="icon-name">pan-down-symbolic</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
             </child>
-          </object>
+
+            <child type="end">
+              <object class="GtkMenuButton" id="main_menu_button">
+                <property name="tooltip-text" translatable="yes">Open menu</property>
+                <property name="icon_name">open-menu-symbolic</property>
+                <property name="popover">main_menu</property>
+              </object>
+            </child>
+
+          </object> <!-- ./AdwHeaderBar headerbar -->
         </child>
 
-        <child type="end">
-          <object class="GtkMenuButton" id="main_menu_button">
-            <property name="tooltip-text" translatable="yes">Open menu</property>
-            <property name="icon_name">open-menu-symbolic</property>
-            <property name="popover">main_menu</property>
+        <property name="content">
+          <object class="BjbNoteList" id="note_list">
+            <signal name="selection-changed" handler="bjb_side_view_note_changed_cb" swapped="yes"/>
           </object>
-        </child>
+        </property>
 
-      </object>
-    </child>
-
-    <child>
-      <object class="BjbNoteList" id="note_list">
-        <signal name="selection-changed" handler="bjb_side_view_note_changed_cb" swapped="yes"/>
-      </object>
-    </child>
+      </object> <!-- ./AdwToolbarView -->
+    </property>
 
   </template>
 

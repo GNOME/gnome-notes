@@ -37,7 +37,7 @@
 
 struct _BjbSideView
 {
-  GtkBox      parent_instance;
+  AdwNavigationPage    parent_instance;
 
   GtkWidget  *note_list;
   GtkWidget  *providers_popover;
@@ -54,7 +54,7 @@ enum {
 
 static guint signals[N_SIGNALS];
 
-G_DEFINE_TYPE (BjbSideView, bjb_side_view, GTK_TYPE_BOX)
+G_DEFINE_TYPE (BjbSideView, bjb_side_view, ADW_TYPE_NAVIGATION_PAGE)
 
 static GtkWidget *
 provider_row_new (gpointer item,

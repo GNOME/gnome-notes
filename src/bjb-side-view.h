@@ -25,14 +25,14 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
+#include <adwaita.h>
 
 #include "items/bjb-item.h"
 
 G_BEGIN_DECLS
 
 #define BJB_TYPE_SIDE_VIEW (bjb_side_view_get_type ())
-G_DECLARE_FINAL_TYPE (BjbSideView, bjb_side_view, BJB, SIDE_VIEW, GtkBox)
+G_DECLARE_FINAL_TYPE (BjbSideView, bjb_side_view, BJB, SIDE_VIEW, AdwNavigationPage)
 
 GtkWidget        *bjb_side_view_new                     (void);
 BjbItem          *bjb_side_view_get_selected_note       (BjbSideView *self);

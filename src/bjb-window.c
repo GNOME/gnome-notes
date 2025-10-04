@@ -57,10 +57,8 @@ struct _BjbWindow
   GdkRectangle          window_geometry;
   gboolean              is_maximized;
 
-  AdwLeaflet           *main_leaflet;
+  GtkWidget            *main_view;
   GtkWidget            *side_view;
-  GtkWidget            *back_button;
-  GtkWidget            *note_box;
   GtkWidget            *note_headerbar;
   GtkWidget            *note_view;
   GtkWidget            *title_entry;
@@ -109,12 +107,6 @@ on_note_renamed (BjbWindow *self)
 }
 
 static void
-on_back_button_clicked (BjbWindow *self)
-{
-  adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_BACK);
-}
-
-static void
 on_title_changed (BjbWindow   *self,
                   GtkEditable *editable)
 {
@@ -139,7 +131,8 @@ window_selected_note_changed_cb (BjbWindow *self)
   if (to_open != self->note && BJB_IS_NOTE (to_open))
     bjb_window_set_note (self, to_open);
 
-  adw_leaflet_navigate (self->main_leaflet, ADW_NAVIGATION_DIRECTION_FORWARD);
+
+  adw_navigation_split_view_set_show_content (ADW_NAVIGATION_SPLIT_VIEW (self->main_view), TRUE);
 }
 
 static void
@@ -288,17 +281,14 @@ bjb_window_class_init (BjbWindowClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window.ui");
 
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_leaflet);
+  gtk_widget_class_bind_template_child (widget_class, BjbWindow, main_view);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, side_view);
 
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, back_button);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_box);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_view);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, last_update_item);
 
-  gtk_widget_class_bind_template_callback (widget_class, on_back_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
 

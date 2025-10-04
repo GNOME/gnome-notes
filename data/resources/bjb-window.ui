@@ -1,64 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="BjbWindow" parent="AdwApplicationWindow">
+
     <child>
-      <object class="AdwLeaflet" id="main_leaflet">
-        <property name="can-navigate-back">1</property>
-        <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 400sp</condition>
+        <setter object="main_view" property="collapsed">1</setter>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwNavigationSplitView" id="main_view">
+
+        <property name="sidebar">
           <object class="BjbSideView" id="side_view">
             <signal name="selected-note-changed" handler="window_selected_note_changed_cb" swapped="yes"/>
           </object>
-        </child>
-        <child>
-          <object class="AdwLeafletPage">
-            <property name="navigatable">False</property>
+        </property>
+
+        <property name="content">
+          <object class="AdwNavigationPage" id="content_page">
+            <!-- Set empty title to avoid a Gtk-Warning -->
+            <property name="title"> </property>
             <property name="child">
-              <object class="GtkSeparator">
-                <style>
-                  <class name="sidebar"/>
-                </style>
-              </object>
+              <object class="AdwToolbarView">
+
+                <child type="top">
+                  <object class="AdwHeaderBar" id="note_headerbar">
+                    <child type="end">
+                      <object class="GtkMenuButton" id="menu_button">
+                        <property name="tooltip-text" translatable="yes">More options</property>
+                        <property name="icon-name">view-more-symbolic</property>
+                        <property name="popover">note-menu</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <property name="content">
+                  <object class="BjbNoteView" id="note_view">
+                    <property name="vexpand">1</property>
+                  </object>
+                </property>
+
+              </object> <!-- ./AdwToolbarView -->
             </property>
           </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="note_box">
-            <property name="hexpand">1</property>
-            <property name="vexpand">1</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="AdwHeaderBar" id="note_headerbar">
-                <property name="hexpand">1</property>
-                <property name="show-end-title-buttons">1</property>
-                <child>
-                  <object class="GtkRevealer" id="back_revealer">
-                    <property name="reveal-child" bind-source="main_leaflet" bind-property="folded" bind-flags="sync-create"/>
-                    <property name="transition-type">crossfade</property>
-                    <property name="transition-duration" bind-source="main_leaflet" bind-property="mode-transition-duration" bind-flags="bidirectional|sync-create"/>
-                    <property name="child">
-                      <object class="GtkButton" id="back_button">
-                        <property name="icon-name">go-previous-symbolic</property>
-                        <signal name="clicked" handler="on_back_button_clicked" swapped="yes"/>
-                      </object>
-                    </property>
-                  </object>
-                </child>
-                <child type="end">
-                  <object class="GtkMenuButton" id="menu_button">
-                    <property name="tooltip-text" translatable="yes">More options</property>
-                    <property name="icon-name">view-more-symbolic</property>
-                    <property name="popover">note-menu</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="BjbNoteView" id="note_view">
-                <property name="vexpand">1</property>
-              </object>
-            </child>
-          </object>
-        </child>
+        </property>
+
       </object>
     </child>
   </template>

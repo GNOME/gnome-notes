@@ -80,19 +80,6 @@ cmd_verbose_cb (const char  *option_name,
   return TRUE;
 }
 
-static int
-bijiben_handle_local_options (GApplication *application,
-                              GVariantDict *options)
-{
-  if (g_variant_dict_contains (options, "version"))
-    {
-      g_print ("%s %s\n", _("GNOME Notes"), PACKAGE_VCS_VERSION);
-      return 0;
-    }
-
-  return -1;
-}
-
 static void
 bijiben_activate (GApplication *app)
 {
@@ -118,8 +105,6 @@ bjb_application_init (BjbApplication *self)
   const GOptionEntry cmd_options[] = {
     { "verbose", 'v', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, cmd_verbose_cb,
       N_("Show verbose logs"), NULL},
-    { "version", 0, 0, G_OPTION_ARG_NONE, NULL,
-      N_("Show the application’s version"), NULL},
     { "new-note", 0, 0, G_OPTION_ARG_NONE, &self->new_note,
       N_("Create a new note"), NULL},
     { NULL }
@@ -131,6 +116,8 @@ bjb_application_init (BjbApplication *self)
   g_application_add_main_option_entries (app, cmd_options);
   g_application_set_option_context_parameter_string (app, _("[FILE…]"));
   g_application_set_option_context_summary (app, _("Take notes and export them everywhere."));
+
+  g_application_set_version (app, PACKAGE_VCS_VERSION);
 }
 
 void
@@ -287,7 +274,6 @@ bjb_application_class_init (BjbApplicationClass *klass)
   GApplicationClass *aclass = G_APPLICATION_CLASS (klass);
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
-  aclass->handle_local_options = bijiben_handle_local_options;
   aclass->activate = bijiben_activate;
   aclass->startup = bijiben_startup;
 

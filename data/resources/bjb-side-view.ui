@@ -29,7 +29,7 @@
               <object class="GtkMenuButton" id="main_menu_button">
                 <property name="tooltip-text" translatable="yes">Open menu</property>
                 <property name="icon_name">open-menu-symbolic</property>
-                <property name="popover">main_menu</property>
+                <property name="menu-model">main_menu</property>
               </object>
             </child>
 
@@ -47,103 +47,59 @@
 
   </template>
 
-  <object class="GtkPopover" id="main_menu">
-    <style>
-      <class name="menu" />
-    </style>
-    <property name="child">
-      <object class="GtkBox">
-        <property name="margin-start">12</property>
-        <property name="margin-end">12</property>
-        <property name="margin-top">12</property>
-        <property name="margin-bottom">12</property>
-        <property name="orientation">vertical</property>
 
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">Import Notes</property>
-            <property name="action-name">app.import-notes</property>
-          </object>
-        </child>
+  <menu id="main_menu">
 
-        <child>
-          <object class="GtkSeparator">
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-          </object>
-        </child>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Import Notes</attribute>
+        <attribute name="action">app.import-notes</attribute>
+      </item>
+    </section>
 
-        <child>
-          <object class="GtkLabel">
-            <property name="sensitive">0</property>
-            <property name="label" translatable="yes">Text Sizes</property>
-            <property name="margin-start">6</property>
-            <property name="xalign">0</property>
-          </object>
-        </child>
-        <child>
+    <section>
+      <attribute name="label" translatable="yes">Text Sizes</attribute>
+      <item>
+        <attribute name="label" translatable="yes">_Large</attribute>
+        <attribute name="role">radio</attribute>
+        <attribute name="action">app.text-size</attribute>
+        <attribute name="target">large</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Medium</attribute>
+        <attribute name="role">radio</attribute>
+        <attribute name="action">app.text-size</attribute>
+        <attribute name="target">medium</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Small</attribute>
+        <attribute name="role">radio</attribute>
+        <attribute name="action">app.text-size</attribute>
+        <attribute name="target">small</attribute>
+      </item>
+    </section>
 
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">_Large</property>
-            <property name="action-name">app.text-size</property>
-            <property name="action-target">&apos;large&apos;</property>
-          </object>
-        </child>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Help</attribute>
+        <attribute name="action">app.help</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">About Notes</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
 
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">_Medium</property>
-            <property name="action-name">app.text-size</property>
-            <property name="action-target">&apos;medium&apos;</property>
-          </object>
-        </child>
+  </menu>
 
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">_Small</property>
-            <property name="action-name">app.text-size</property>
-            <property name="action-target">&apos;small&apos;</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkSeparator">
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">Preferences</property>
-            <property name="action-name">app.preferences</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
-            <property name="action_name">win.show-help-overlay</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">Help</property>
-            <property name="action_name">app.help</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton">
-            <property name="text" translatable="yes">About Notes</property>
-            <property name="action-name">app.about</property>
-          </object>
-        </child>
-
-      </object>
-    </property>
-  </object>
 
   <object class="GtkPopover" id="providers_popover">
     <property name="child">

@@ -61,14 +61,6 @@ void            on_about_cb                 (GSimpleAction      *action,
                                              GVariant           *parameter,
                                              gpointer            user_data);
 
-gboolean        text_size_mapping_get       (GValue             *value,
-                                             GVariant           *variant,
-                                             gpointer            user_data);
-
-GVariant       *text_size_mapping_set       (const GValue       *value,
-                                             const GVariantType *expected_type,
-                                             gpointer            user_data);
-
 static gboolean
 cmd_verbose_cb (const char  *option_name,
                 const char  *value,
@@ -145,23 +137,6 @@ on_about_cb (GSimpleAction *action,
              gpointer       user_data)
 {
   bjb_app_about (BJB_APPLICATION (user_data));
-}
-
-gboolean
-text_size_mapping_get (GValue   *value,
-                       GVariant *variant,
-                       gpointer  user_data)
-{
-  g_value_set_variant (value, variant);
-  return TRUE;
-}
-
-GVariant *
-text_size_mapping_set (const GValue       *value,
-                       const GVariantType *expected_type,
-                       gpointer            user_data)
-{
-  return g_value_dup_variant (value);
 }
 
 static gboolean

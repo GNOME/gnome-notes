@@ -27,6 +27,14 @@
 
                 <child type="top">
                   <object class="AdwHeaderBar" id="note_headerbar">
+                    <property name="title-widget">
+                      <object class="GtkEntry" id="title_entry">
+                        <property name="visible">0</property>
+                        <property name="focusable">1</property>
+                        <property name="max-width-chars">60</property>
+                        <property name="placeholder-text" translatable="yes">Untitled</property>
+                      </object>
+                    </property>
                     <child type="end">
                       <object class="GtkMenuButton" id="menu_button">
                         <property name="tooltip-text" translatable="yes">More options</property>
@@ -123,12 +131,6 @@
 
       </object>
     </property>
-  </object>
-
-  <object class="GtkEntry" id="title_entry">
-    <property name="focusable">1</property>
-    <property name="max-width-chars">60</property>
-    <signal name="changed" handler="on_title_changed" swapped="yes"/>
   </object>
 
 </interface>

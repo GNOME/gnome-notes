@@ -64,6 +64,8 @@ struct _BjbWindow
   GtkWidget            *title_entry;
   GtkWidget            *last_update_item;
 
+  GBinding             *title_binding;
+
   gboolean              is_self_change;
   gulong                remove_item_id;
 };
@@ -84,39 +86,6 @@ window_item_removed_cb (BjbWindow   *self,
   g_clear_object (&self->note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), NULL);
   gtk_widget_set_visible (self->title_entry, FALSE);
-}
-
-static void
-on_note_renamed (BjbWindow *self)
-{
-  const char *str;
-
-  g_assert (BJB_IS_WINDOW (self));
-
-  str = bjb_item_get_title (BJB_ITEM (self->note));
-  if (!str || !*str)
-    str = _("Untitled");
-
-  self->is_self_change = TRUE;
-  gtk_editable_set_text (GTK_EDITABLE (self->title_entry), str);
-  self->is_self_change = FALSE;
-
-  adw_header_bar_set_title_widget (ADW_HEADER_BAR (self->note_headerbar),
-                                   self->title_entry);
-  gtk_widget_set_visible (self->title_entry, TRUE);
-}
-
-static void
-on_title_changed (BjbWindow   *self,
-                  GtkEditable *editable)
-{
-  const char *str;
-
-  if (self->is_self_change)
-    return;
-
-  str = gtk_editable_get_text (editable);
-  bjb_item_set_title (BJB_ITEM (self->note), str);
 }
 
 static void
@@ -289,7 +258,6 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, last_update_item);
 
-  gtk_widget_class_bind_template_callback (widget_class, on_title_changed);
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
 
   g_type_ensure (BJB_TYPE_SIDE_VIEW);
@@ -326,17 +294,18 @@ on_last_updated_cb (BjbWindow *self)
 static void
 populate_headerbar_for_note_view (BjbWindow *self)
 {
-  g_signal_connect_object (self->note, "notify::renamed",
-                           G_CALLBACK (on_note_renamed),
-                           self,
-                           G_CONNECT_SWAPPED);
+  GBinding *binding;
+
+  binding = g_object_bind_property (self->note, "title",
+                                    self->title_entry, "text",
+                                    G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+  self->title_binding = binding;
+
   g_signal_connect_object (self->note, "notify::mtime",
                            G_CALLBACK (on_last_updated_cb),
                            self,
                            G_CONNECT_SWAPPED);
 
-
-  on_note_renamed (self);
   on_last_updated_cb (self);
 }
 
@@ -349,6 +318,9 @@ bjb_window_set_note (BjbWindow *self,
 
   if (self->note == note)
     return;
+
+  gtk_widget_set_visible (self->title_entry, !!note);
+  g_clear_pointer (&self->title_binding, g_binding_unbind);
 
   if (!note)
     {

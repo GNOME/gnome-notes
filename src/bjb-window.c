@@ -62,7 +62,6 @@ struct _BjbWindow
   GtkWidget            *note_headerbar;
   GtkWidget            *note_view;
   GtkWidget            *title_entry;
-  GtkWidget            *last_update_item;
 
   GBinding             *title_binding;
 
@@ -256,7 +255,6 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_headerbar);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, note_view);
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
-  gtk_widget_class_bind_template_child (widget_class, BjbWindow, last_update_item);
 
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
 
@@ -274,24 +272,6 @@ bjb_window_new (void)
 }
 
 static void
-on_last_updated_cb (BjbWindow *self)
-{
-  g_autofree char *label = NULL;
-  g_autofree char *time_str = NULL;
-
-  g_assert (BJB_IS_WINDOW (self));
-
-  time_str = bjb_utils_get_human_time (bjb_item_get_mtime (BJB_ITEM (self->note)));
-  /* Translators: %s is the note last recency description.
-   * Last updated is placed as in left to right language
-   * right to left languages might move %s
-   *         '%s Last Updated'
-   */
-  label = g_strdup_printf (_("Last updated: %s"), time_str);
-  gtk_label_set_text (GTK_LABEL (self->last_update_item), label);
-}
-
-static void
 populate_headerbar_for_note_view (BjbWindow *self)
 {
   GBinding *binding;
@@ -300,13 +280,6 @@ populate_headerbar_for_note_view (BjbWindow *self)
                                     self->title_entry, "text",
                                     G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
   self->title_binding = binding;
-
-  g_signal_connect_object (self->note, "notify::mtime",
-                           G_CALLBACK (on_last_updated_cb),
-                           self,
-                           G_CONNECT_SWAPPED);
-
-  on_last_updated_cb (self);
 }
 
 void

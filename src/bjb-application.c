@@ -40,7 +40,6 @@ struct _BjbApplication
   BjbSettings    *settings;
 
   /* Controls. to_open is for startup */
-  GAction        *text_size;
   gboolean        first_run;
   gboolean        is_loaded;
   gboolean        new_note;
@@ -139,36 +138,7 @@ on_about_cb (GSimpleAction *action,
   bjb_app_about (BJB_APPLICATION (user_data));
 }
 
-static gboolean
-transform_to (GBinding     *binding,
-              const GValue *from_value,
-              GValue       *to_value,
-              gpointer      user_data)
-{
-  const char *value;
-
-  value = g_value_get_string (from_value);
-  g_value_set_variant (to_value, g_variant_new_string (value));
-
-  return TRUE;
-}
-
-static gboolean
-transform_from (GBinding     *binding,
-                const GValue *from_value,
-                GValue       *to_value,
-                gpointer      user_data)
-{
-  GVariant *value;
-
-  value = g_value_get_variant (from_value);
-  g_value_set_string (to_value, g_variant_get_string (value, NULL));
-
-  return TRUE;
-}
-
 static GActionEntry app_entries[] = {
-  { "text-size", NULL, "s", "'medium'", NULL },
   { "preferences", on_preferences_cb, NULL, NULL, NULL },
   { "help", on_help_cb, NULL, NULL, NULL },
   { "about", on_about_cb, NULL, NULL, NULL },
@@ -181,6 +151,7 @@ bijiben_startup (GApplication *application)
   g_autofree char *path = NULL;
   g_autofree gchar *storage_path = NULL;
   g_autofree gchar *default_color = NULL;
+  g_autoptr(GAction) text_size = NULL;
   g_autoptr(GFile) storage = NULL;
   g_autoptr(GError) error = NULL;
   GdkRGBA         color = {0,0,0,0};
@@ -219,11 +190,8 @@ bijiben_startup (GApplication *application)
   g_object_get (self->settings, "color", &default_color, NULL);
   gdk_rgba_parse (&color, default_color);
 
-  self->text_size = g_action_map_lookup_action (G_ACTION_MAP (application), "text-size");
-  g_object_bind_property_full (BJB_SETTINGS (self->settings), "text-size",
-                               self->text_size, "state",
-                               G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL,
-                               transform_to, transform_from, NULL, NULL);
+  text_size = bjb_settings_get_text_size_gaction (BJB_SETTINGS (self->settings));
+  g_action_map_add_action (G_ACTION_MAP (application), text_size);
 
   /* Load last opened note item. */
   path = bjb_settings_get_last_opened_item (self->settings);

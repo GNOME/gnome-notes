@@ -21,21 +21,7 @@
               <object class="GtkMenuButton" id="filter_menu_button">
                 <property name="popover">filter_menu</property>
                 <property name="valign">center</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="filter_label">
-                        <property name="label" translatable="yes">All Notes</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="icon-name">pan-down-symbolic</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
+                <property name="label" translatable="yes">All Notes</property>
               </object>
             </child>
 

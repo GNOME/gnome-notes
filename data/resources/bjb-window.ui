@@ -39,7 +39,7 @@
                       <object class="GtkMenuButton" id="menu_button">
                         <property name="tooltip-text" translatable="yes">More options</property>
                         <property name="icon-name">view-more-symbolic</property>
-                        <property name="popover">note-menu</property>
+                        <property name="menu-model">note-menu</property>
                       </object>
                     </child>
                   </object>
@@ -60,77 +60,35 @@
     </child>
   </template>
 
-  <object class="GtkPopover" id="note-menu">
-    <style>
-      <class name="menu" />
-    </style>
-    <property name="child">
-      <object class="GtkBox">
-        <property name="margin-start">12</property>
-        <property name="margin-end">12</property>
-        <property name="margin-top">12</property>
-        <property name="margin-bottom">12</property>
-        <property name="orientation">vertical</property>
 
-        <child>
-          <object class="GtkModelButton" id="undo_item">
-            <property name="text" translatable="yes">Undo</property>
-            <property name="action-name">win.undo</property>
-          </object>
-        </child>
+  <menu id="note-menu">
 
-        <child>
-          <object class="GtkModelButton" id="redo_item">
-            <property name="text" translatable="yes">Redo</property>
-            <property name="action-name">win.redo</property>
-          </object>
-        </child>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Undo</attribute>
+        <attribute name="action">win.undo</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Redo</attribute>
+        <attribute name="action">win.redo</attribute>
+      </item>
+    </section>
 
-        <child>
-          <object class="GtkSeparator">
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-          </object>
-        </child>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Notebooks</attribute>
+        <attribute name="action">win.view-notebooks</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Email this Note</attribute>
+        <attribute name="action">win.email</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Move to Trash</attribute>
+        <attribute name="action">win.trash</attribute>
+      </item>
+    </section>
 
-        <child>
-          <object class="GtkModelButton" id="notebook_item">
-            <property name="text" translatable="yes">Notebooks</property>
-            <property name="action-name">win.view-notebooks</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton" id="email_item">
-            <property name="text" translatable="yes">Email this Note</property>
-            <property name="action-name">win.email</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkModelButton" id="trash_item">
-            <property name="text" translatable="yes">Move to Trash</property>
-            <property name="action-name">win.trash</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkSeparator">
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel" id="last_update_item">
-            <property name="sensitive">0</property>
-            <property name="margin-start">6</property>
-            <property name="xalign">0</property>
-          </object>
-        </child>
-
-      </object>
-    </property>
-  </object>
+  </menu>
 
 </interface>

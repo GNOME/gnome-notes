@@ -219,6 +219,10 @@ bjb_settings_init (BjbSettings *self)
   self->font = g_settings_get_string (self->app_settings, "font");
   self->color = g_settings_get_string (self->app_settings, "color");
   self->primary = g_settings_get_string (self->app_settings, "default-location");
+
+  g_settings_bind (self->app_settings, "text-size",
+                   self, "text-size",
+                   G_SETTINGS_BIND_DEFAULT);
 }
 
 BjbSettings *

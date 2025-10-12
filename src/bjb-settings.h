@@ -43,6 +43,7 @@ const char      *bjb_settings_get_custom_font        (BjbSettings  *self);
 const char      *bjb_settings_get_default_color      (BjbSettings  *self);
 const char      *bjb_settings_get_default_location   (BjbSettings  *self);
 BjbTextSizeType  bjb_settings_get_text_size          (BjbSettings  *self);
+GAction         *bjb_settings_get_text_size_gaction  (BjbSettings  *self);
 void             bjb_settings_set_last_opened_item   (BjbSettings  *self,
                                                       const char   *note_path);
 char            *bjb_settings_get_last_opened_item   (BjbSettings  *self);

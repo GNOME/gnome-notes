@@ -296,6 +296,15 @@ bjb_settings_get_text_size (BjbSettings *self)
   return g_settings_get_enum (self->app_settings, "text-size");
 }
 
+GAction *
+bjb_settings_get_text_size_gaction (BjbSettings *self)
+{
+  g_return_val_if_fail (BJB_IS_SETTINGS (self), NULL);
+
+  return g_settings_create_action (self->app_settings, "text-size");
+
+}
+
 void
 bjb_settings_set_last_opened_item (BjbSettings *self,
                                    const char  *note_path)

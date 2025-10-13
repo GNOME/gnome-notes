@@ -156,16 +156,12 @@ bijiben_startup (GApplication *application)
   g_autoptr(GError) error = NULL;
   GdkRGBA         color = {0,0,0,0};
 
-  const gchar *vaccels_close[] = {"<Primary>w", NULL};
-
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
 
   self->settings = bjb_settings_new ();
 
   gtk_window_set_default_icon_name ("org.gnome.Notes");
-
-  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);
 
   g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries,

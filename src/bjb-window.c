@@ -140,22 +140,9 @@ on_email_cb (GSimpleAction *action,
     on_email_note_callback (self->note);
 }
 
-static void
-on_close (GSimpleAction *action,
-          GVariant      *parameter,
-          gpointer       user_data)
-{
-  GtkApplicationWindow *window;
-
-  window = GTK_APPLICATION_WINDOW (user_data);
-
-  gtk_window_close (GTK_WINDOW (window));
-}
-
 static GActionEntry win_entries[] = {
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
-  { "close", on_close },
 };
 
 static void
@@ -217,6 +204,8 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, BjbWindow, title_entry);
 
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
+
+  gtk_widget_class_add_binding (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, (GtkShortcutFunc) gtk_window_close, NULL);
 
   g_type_ensure (BJB_TYPE_SIDE_VIEW);
   g_type_ensure (BJB_TYPE_NOTE_LIST);

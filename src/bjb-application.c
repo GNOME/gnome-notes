@@ -157,7 +157,6 @@ bijiben_startup (GApplication *application)
   GdkRGBA         color = {0,0,0,0};
 
   const gchar *vaccels_close[] = {"<Primary>w", NULL};
-  const gchar *vaccels_trash[] = {"<Primary>Delete", NULL};
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
@@ -167,7 +166,6 @@ bijiben_startup (GApplication *application)
   gtk_window_set_default_icon_name ("org.gnome.Notes");
 
   gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.close", vaccels_close);
-  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "win.trash", vaccels_trash);
 
   g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries,

@@ -53,10 +53,6 @@ struct _BjbWindow
   /* when a note is opened */
   BjbNote              *note;
 
-  /* window geometry */
-  GdkRectangle          window_geometry;
-  gboolean              is_maximized;
-
   GtkWidget            *main_view;
   GtkWidget            *side_view;
   GtkWidget            *note_headerbar;
@@ -156,28 +152,6 @@ on_close (GSimpleAction *action,
   gtk_window_close (GTK_WINDOW (window));
 }
 
-static void
-bjb_window_save_geometry (BjbWindow *self)
-{
-  bjb_settings_set_window_maximized (self->settings, self->is_maximized);
-  bjb_settings_set_window_geometry (self->settings, &self->window_geometry);
-}
-
-static void
-bjb_window_load_geometry (BjbWindow *self)
-{
-  self->is_maximized = bjb_settings_get_window_maximized (self->settings);
-  bjb_settings_get_window_geometry (self->settings, &self->window_geometry);
-}
-
-/* Just disconnect to avoid crash, the finalize does the real
- * job */
-static void
-bjb_window_destroy (gpointer a, BjbWindow * self)
-{
-  bjb_window_save_geometry (self);
-}
-
 static GActionEntry win_entries[] = {
   { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
   { "email", on_email_cb, NULL, NULL, NULL },
@@ -188,7 +162,6 @@ static void
 bjb_window_constructed (GObject *obj)
 {
   BjbWindow *self = BJB_WINDOW (obj);
-  GdkRectangle geometry;
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
 
@@ -200,19 +173,6 @@ bjb_window_constructed (GObject *obj)
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
-
-  bjb_window_load_geometry (self);
-  geometry = self->window_geometry;
-  gtk_window_set_default_size (GTK_WINDOW (self), geometry.width, geometry.height);
-
-  if (self->is_maximized)
-    gtk_window_maximize (GTK_WINDOW (self));
-
-  /* Connection to window signals */
-  g_signal_connect (GTK_WIDGET (self),
-                    "destroy",
-                    G_CALLBACK (bjb_window_destroy),
-                    self);
 
   /* If a note is requested at creation, show it
    * This is a specific type of window not associated with any view */

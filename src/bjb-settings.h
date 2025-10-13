@@ -47,13 +47,6 @@ GAction         *bjb_settings_get_text_size_gaction  (BjbSettings  *self);
 void             bjb_settings_set_last_opened_item   (BjbSettings  *self,
                                                       const char   *note_path);
 char            *bjb_settings_get_last_opened_item   (BjbSettings  *self);
-gboolean         bjb_settings_get_window_maximized   (BjbSettings  *self);
-void             bjb_settings_set_window_maximized   (BjbSettings  *self,
-                                                      gboolean      maximized);
-void             bjb_settings_get_window_geometry    (BjbSettings  *self,
-                                                      GdkRectangle *geometry);
-void             bjb_settings_set_window_geometry    (BjbSettings  *self,
-                                                      GdkRectangle *geometry);
 void             show_bijiben_settings_window        (GtkWidget    *parent_window);
 
 G_END_DECLS

@@ -68,6 +68,45 @@ struct _BjbWindow
 G_DEFINE_TYPE (BjbWindow, bjb_window, ADW_TYPE_APPLICATION_WINDOW)
 
 static void
+bjb_window_show_help (BjbWindow *self)
+{
+  g_autoptr(GtkUriLauncher) launcher = NULL;
+
+  g_assert (BJB_IS_WINDOW (self));
+
+  launcher = gtk_uri_launcher_new ("help:bijiben");
+
+  gtk_uri_launcher_launch (launcher, GTK_WINDOW (self), NULL, NULL, NULL);
+}
+
+static void
+bjb_window_show_about (BjbWindow *self)
+{
+  const char *developers[] = {
+    "Pierre-Yves Luyten <py@luyten.fr>",
+    NULL
+  };
+
+  const char *artists[] = {
+    "William Jon McCann <jmccann@redhat.com>",
+    NULL
+  };
+
+  gtk_show_about_dialog (GTK_WINDOW (self),
+                         "program-name", _("Notes"),
+                         "comments", _("Simple notebook for GNOME"),
+                         "license-type", GTK_LICENSE_GPL_3_0,
+                         "version", VERSION,
+                         "copyright", "Copyright © 2013 Pierre-Yves Luyten",
+                         "authors", developers,
+                         "artists", artists,
+                         "translator-credits", _("translator-credits"),
+                         "website", "https://wiki.gnome.org/Apps/Notes",
+                         "logo-icon-name", BIJIBEN_APPLICATION_ID,
+                         NULL);
+}
+
+static void
 window_item_removed_cb (BjbWindow   *self,
                         BjbProvider *provider,
                         BjbNote     *item)
@@ -194,6 +233,12 @@ bjb_window_class_init (BjbWindowClass *klass)
                                    (GtkWidgetActionActivateFunc) bjb_window_email_note);
   gtk_widget_class_install_action (widget_class, "win.view-notebooks", NULL,
                                    (GtkWidgetActionActivateFunc) bjb_window_show_notebooks);
+  gtk_widget_class_install_action (widget_class, "win.preferences", NULL,
+                                   (GtkWidgetActionActivateFunc) show_bijiben_settings_window);
+  gtk_widget_class_install_action (widget_class, "win.help", NULL,
+                                   (GtkWidgetActionActivateFunc) bjb_window_show_help);
+  gtk_widget_class_install_action (widget_class, "win.about", NULL,
+                                   (GtkWidgetActionActivateFunc) bjb_window_show_about);
 
   g_type_ensure (BJB_TYPE_SIDE_VIEW);
   g_type_ensure (BJB_TYPE_NOTE_LIST);

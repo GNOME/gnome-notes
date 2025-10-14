@@ -35,7 +35,4 @@ BjbApplication *bjb_application_new (void);
 
 BjbSettings * bjb_app_get_settings(gpointer application);
 
-void bjb_app_help         (BjbApplication *self);
-void bjb_app_about        (BjbApplication *self);
-
 G_END_DECLS

@@ -48,18 +48,6 @@ struct _BjbApplication
 
 G_DEFINE_TYPE (BjbApplication, bjb_application, ADW_TYPE_APPLICATION)
 
-void            on_preferences_cb           (GSimpleAction      *action,
-                                             GVariant           *parameter,
-                                             gpointer            user_data);
-
-void            on_help_cb                  (GSimpleAction      *action,
-                                             GVariant           *parameter,
-                                             gpointer            user_data);
-
-void            on_about_cb                 (GSimpleAction      *action,
-                                             GVariant           *parameter,
-                                             gpointer            user_data);
-
 static gboolean
 cmd_verbose_cb (const char  *option_name,
                 const char  *value,
@@ -111,39 +99,6 @@ bjb_application_init (BjbApplication *self)
   g_application_set_version (app, PACKAGE_VCS_VERSION);
 }
 
-void
-on_preferences_cb (GSimpleAction *action,
-                   GVariant      *parameter,
-                   gpointer       user_data)
-{
-  GtkApplication *app = GTK_APPLICATION (user_data);
-  GList *windows = gtk_application_get_windows (app);
-
-  show_bijiben_settings_window (g_list_nth_data (windows, 0));
-}
-
-void
-on_help_cb (GSimpleAction *action,
-            GVariant      *parameter,
-            gpointer       user_data)
-{
-  bjb_app_help (BJB_APPLICATION (user_data));
-}
-
-void
-on_about_cb (GSimpleAction *action,
-             GVariant      *parameter,
-             gpointer       user_data)
-{
-  bjb_app_about (BJB_APPLICATION (user_data));
-}
-
-static GActionEntry app_entries[] = {
-  { "preferences", on_preferences_cb, NULL, NULL, NULL },
-  { "help", on_help_cb, NULL, NULL, NULL },
-  { "about", on_about_cb, NULL, NULL, NULL },
-};
-
 static void
 bijiben_startup (GApplication *application)
 {
@@ -162,11 +117,6 @@ bijiben_startup (GApplication *application)
   self->settings = bjb_settings_new ();
 
   gtk_window_set_default_icon_name ("org.gnome.Notes");
-
-  g_action_map_add_action_entries (G_ACTION_MAP (application),
-                                   app_entries,
-                                   G_N_ELEMENTS (app_entries),
-                                   application);
 
   storage_path = g_build_filename (g_get_user_data_dir (), "bijiben", NULL);
   storage = g_file_new_for_path (storage_path);
@@ -230,48 +180,3 @@ BjbSettings * bjb_app_get_settings(gpointer application)
 {
   return BJB_APPLICATION(application)->settings;
 }
-
-void
-bjb_app_help (BjbApplication *self)
-{
-  GtkApplication *app = GTK_APPLICATION (self);
-  g_autoptr(GtkUriLauncher) launcher = NULL;
-
-  launcher = gtk_uri_launcher_new ("help:bijiben");
-
-  gtk_uri_launcher_launch (launcher,
-                           gtk_application_get_active_window (app),
-                           NULL, NULL, NULL);
-}
-
-
-void
-bjb_app_about (BjbApplication *self)
-{
-  GtkApplication *app = GTK_APPLICATION (self);
-  GList *windows = gtk_application_get_windows (app);
-
-  const gchar *authors[] = {
-    "Pierre-Yves Luyten <py@luyten.fr>",
-    NULL
-  };
-
-  const gchar *artists[] = {
-    "William Jon McCann <jmccann@redhat.com>",
-    NULL
-  };
-
-  gtk_show_about_dialog (g_list_nth_data (windows, 0),
-                         "program-name", _("Notes"),
-                         "comments", _("Simple notebook for GNOME"),
-                         "license-type", GTK_LICENSE_GPL_3_0,
-                         "version", VERSION,
-                         "copyright", "Copyright © 2013 Pierre-Yves Luyten",
-                         "authors", authors,
-                         "artists", artists,
-                         "translator-credits", _("translator-credits"),
-                         "website", "https://wiki.gnome.org/Apps/Notes",
-                         "logo-icon-name", BIJIBEN_APPLICATION_ID,
-                         NULL);
-}
-

@@ -29,7 +29,6 @@
 #include "bjb-settings.h"
 #include "bjb-note-view.h"
 #include "bjb-window.h"
-#include "bjb-import-dialog.h"
 #include "bjb-log.h"
 
 
@@ -38,12 +37,7 @@ struct _BjbApplication
   AdwApplication  parent_instance;
 
   BjbSettings    *settings;
-
-  /* Controls. to_open is for startup */
-  gboolean        first_run;
-  gboolean        is_loaded;
   gboolean        new_note;
-  GQueue          files_to_open; // paths
 };
 
 G_DEFINE_TYPE (BjbApplication, bjb_application, ADW_TYPE_APPLICATION)
@@ -89,8 +83,6 @@ bjb_application_init (BjbApplication *self)
     { NULL }
   };
 
-  g_queue_init (&self->files_to_open);
-
   gtk_window_set_default_icon_name ("org.gnome.Notes");
   g_application_add_main_option_entries (app, cmd_options);
   g_application_set_option_context_parameter_string (app, _("[FILE…]"));
@@ -103,13 +95,10 @@ static void
 bijiben_startup (GApplication *application)
 {
   BjbApplication *self;
-  g_autofree char *path = NULL;
   g_autofree gchar *storage_path = NULL;
-  g_autofree gchar *default_color = NULL;
   g_autoptr(GAction) text_size = NULL;
   g_autoptr(GFile) storage = NULL;
   g_autoptr(GError) error = NULL;
-  GdkRGBA         color = {0,0,0,0};
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
   self = BJB_APPLICATION (application);
@@ -122,25 +111,13 @@ bijiben_startup (GApplication *application)
   storage = g_file_new_for_path (storage_path);
 
   // Create the bijiben dir to ensure.
-  self->first_run = TRUE;
   g_file_make_directory (storage, NULL, &error);
 
-  // If fails it's not the first run
-  if (error && error->code == G_IO_ERROR_EXISTS)
-    self->first_run = FALSE;
-  else if (error)
+  if (error && !g_error_matches (error, G_IO_ERROR, G_IO_ERROR_EXISTS))
     g_warning ("%s", error->message);
-
-  g_object_get (self->settings, "color", &default_color, NULL);
-  gdk_rgba_parse (&color, default_color);
 
   text_size = bjb_settings_get_text_size_gaction (BJB_SETTINGS (self->settings));
   g_action_map_add_action (G_ACTION_MAP (application), text_size);
-
-  /* Load last opened note item. */
-  path = bjb_settings_get_last_opened_item (self->settings);
-  if (g_strcmp0 (path, "") != 0)
-    g_queue_push_head (&self->files_to_open, path);
 }
 
 static void
@@ -149,8 +126,6 @@ bijiben_finalize (GObject *object)
   BjbApplication *self = BJB_APPLICATION (object);
 
   g_clear_object (&self->settings);
-  g_queue_foreach (&self->files_to_open, (GFunc) g_free, NULL);
-  g_queue_clear (&self->files_to_open);
 
   G_OBJECT_CLASS (bjb_application_parent_class)->finalize (object);
 }

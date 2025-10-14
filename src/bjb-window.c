@@ -110,11 +110,8 @@ bjb_window_finalize (GObject *object)
 }
 
 static void
-on_view_notebooks_cb (GSimpleAction *action,
-                      GVariant      *parameter,
-                      gpointer       user_data)
+bjb_window_show_notebooks (BjbWindow *self)
 {
-  BjbWindow *self = BJB_WINDOW (user_data);
   GtkWidget *notebooks_dialog;
 
   if (!BJB_IS_NOTE (self->note))
@@ -130,20 +127,11 @@ on_view_notebooks_cb (GSimpleAction *action,
 }
 
 static void
-on_email_cb (GSimpleAction *action,
-             GVariant      *parameter,
-             gpointer       user_data)
+bjb_window_email_note (BjbWindow *self)
 {
-  BjbWindow *self = user_data;
-
   if (self->note)
     on_email_note_callback (self->note);
 }
-
-static GActionEntry win_entries[] = {
-  { "view-notebooks", on_view_notebooks_cb, NULL, NULL, NULL },
-  { "email", on_email_cb, NULL, NULL, NULL },
-};
 
 static void
 bjb_window_constructed (GObject *obj)
@@ -151,11 +139,6 @@ bjb_window_constructed (GObject *obj)
   BjbWindow *self = BJB_WINDOW (obj);
 
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
-
-  g_action_map_add_action_entries (G_ACTION_MAP (self),
-                                   win_entries,
-                                   G_N_ELEMENTS (win_entries),
-                                   self);
 
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
@@ -206,6 +189,11 @@ bjb_window_class_init (BjbWindowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, window_selected_note_changed_cb);
 
   gtk_widget_class_add_binding (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, (GtkShortcutFunc) gtk_window_close, NULL);
+
+  gtk_widget_class_install_action (widget_class, "win.email", NULL,
+                                   (GtkWidgetActionActivateFunc) bjb_window_email_note);
+  gtk_widget_class_install_action (widget_class, "win.view-notebooks", NULL,
+                                   (GtkWidgetActionActivateFunc) bjb_window_show_notebooks);
 
   g_type_ensure (BJB_TYPE_SIDE_VIEW);
   g_type_ensure (BJB_TYPE_NOTE_LIST);

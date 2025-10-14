@@ -92,18 +92,18 @@ bjb_window_show_about (BjbWindow *self)
     NULL
   };
 
-  gtk_show_about_dialog (GTK_WINDOW (self),
-                         "program-name", _("Notes"),
-                         "comments", _("Simple notebook for GNOME"),
-                         "license-type", GTK_LICENSE_GPL_3_0,
-                         "version", VERSION,
-                         "copyright", "Copyright © 2013 Pierre-Yves Luyten",
-                         "authors", developers,
-                         "artists", artists,
-                         "translator-credits", _("translator-credits"),
-                         "website", "https://wiki.gnome.org/Apps/Notes",
-                         "logo-icon-name", BIJIBEN_APPLICATION_ID,
-                         NULL);
+  adw_show_about_dialog (GTK_WIDGET (self),
+                        "application-name", _("Notes"),
+                        "application-icon", BIJIBEN_APPLICATION_ID,
+                        "comments", _("Simple notebook for GNOME"),
+                        "license-type", GTK_LICENSE_GPL_3_0,
+                        "version", VERSION,
+                        "copyright", "Copyright © 2013 Pierre-Yves Luyten",
+                        "developers", developers,
+                        "artists", artists,
+                        "translator-credits", _("translator-credits"),
+                        "website", "https://wiki.gnome.org/Apps/Notes",
+                        NULL);
 }
 
 static void

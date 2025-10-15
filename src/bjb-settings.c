@@ -231,6 +231,17 @@ bjb_settings_new (void)
   return g_object_new (BJB_TYPE_SETTINGS, NULL);
 }
 
+BjbSettings *
+bjb_settings_get_default (void)
+{
+  static BjbSettings *self;
+
+  if (!self)
+    g_set_weak_pointer (&self, g_object_new (BJB_TYPE_SETTINGS, NULL));
+
+  return self;
+}
+
 /**
  * bjb_settings_get_font:
  * @self: A #BjbSettings

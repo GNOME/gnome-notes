@@ -38,6 +38,7 @@ typedef enum {
 } BjbTextSizeType;
 
 BjbSettings     *bjb_settings_new                    (void);
+BjbSettings     *bjb_settings_get_default            (void);
 char            *bjb_settings_get_font               (BjbSettings  *self);
 const char      *bjb_settings_get_custom_font        (BjbSettings  *self);
 const char      *bjb_settings_get_default_color      (BjbSettings  *self);

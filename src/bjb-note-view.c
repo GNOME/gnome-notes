@@ -22,6 +22,7 @@
 
 #include "bjb-application.h"
 #include "bjb-editor-toolbar.h"
+#include "bjb-settings.h"
 #include "items/bjb-xml-note.h"
 #include "providers/bjb-provider.h"
 #include "bjb-note-view.h"
@@ -221,7 +222,7 @@ bjb_note_view_init (BjbNoteView *self)
 
   gtk_widget_init_template (GTK_WIDGET (self));
 
-  settings = bjb_app_get_settings (g_application_get_default ());
+  settings = bjb_settings_get_default ();
   g_signal_connect_object (settings, "notify::font",
                            G_CALLBACK (view_font_changed_cb),
                            self, G_CONNECT_SWAPPED);
@@ -299,7 +300,7 @@ bjb_note_view_set_note (BjbNoteView *self,
         {
           BjbSettings *settings;
 
-          settings = bjb_app_get_settings (g_application_get_default ());
+          settings = bjb_settings_get_default();
 
           self->is_self_change = TRUE;
           if (gdk_rgba_parse (&color, bjb_settings_get_default_color (settings)))

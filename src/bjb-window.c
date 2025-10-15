@@ -182,13 +182,6 @@ bjb_window_constructed (GObject *obj)
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
 
   gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
-
-  /* If a note is requested at creation, show it
-   * This is a specific type of window not associated with any view */
-  if (self->note != NULL)
-    {
-      bjb_window_set_note (self, self->note);
-    }
 }
 
 

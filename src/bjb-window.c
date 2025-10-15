@@ -32,7 +32,6 @@
 #include <stdlib.h>
 
 #include "providers/bjb-provider.h"
-#include "bjb-application.h"
 #include "bjb-manager.h"
 #include "bjb-note-list.h"
 #include "bjb-note-view.h"
@@ -47,8 +46,6 @@
 struct _BjbWindow
 {
   AdwApplicationWindow  parent_instance;
-
-  BjbSettings          *settings;
 
   /* when a note is opened */
   BjbNote              *note;
@@ -173,17 +170,6 @@ bjb_window_email_note (BjbWindow *self)
 }
 
 static void
-bjb_window_constructed (GObject *obj)
-{
-  BjbWindow *self = BJB_WINDOW (obj);
-
-  G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
-
-  self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
-}
-
-
-static void
 bjb_window_init (BjbWindow *self)
 {
   BjbManager *manager;
@@ -204,7 +190,6 @@ bjb_window_class_init (BjbWindowClass *klass)
   GObjectClass   *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  object_class->constructed = bjb_window_constructed;
   object_class->finalize = bjb_window_finalize;
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/Notes/ui/bjb-window.ui");

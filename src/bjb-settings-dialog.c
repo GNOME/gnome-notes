@@ -22,7 +22,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "bjb-application.h"
 #include "bjb-settings.h"
 #include "bjb-settings-dialog.h"
 
@@ -84,15 +83,13 @@ static void
 bjb_settings_dialog_constructed (GObject *object)
 {
   BjbSettingsDialog *self;
-  GApplication      *app;
   GdkRGBA            color;
   g_autoptr(PangoFontDescription) font = NULL;
 
   G_OBJECT_CLASS (bjb_settings_dialog_parent_class)->constructed (object);
 
   self = BJB_SETTINGS_DIALOG (object);
-  app = g_application_get_default ();
-  self->settings = bjb_app_get_settings (app);
+  self->settings = bjb_settings_get_default();
 
   g_object_bind_property (self->settings,
                           "use-system-font",

@@ -114,9 +114,7 @@ window_item_removed_cb (BjbWindow   *self,
   if (item != self->note)
     return;
 
-  g_clear_object (&self->note);
-  bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), NULL);
-  gtk_widget_set_visible (self->title_entry, FALSE);
+  bjb_window_set_note (self, NULL);
 }
 
 static void
@@ -247,19 +245,12 @@ bjb_window_set_note (BjbWindow *self,
   g_return_if_fail (BJB_IS_WINDOW (self));
   g_return_if_fail (!note || BJB_IS_NOTE (note));
 
-  if (self->note == note)
+  if (!g_set_object (&self->note, note))
     return;
 
   gtk_widget_set_visible (self->title_entry, !!note);
   g_clear_pointer (&self->title_binding, g_binding_unbind);
 
-  if (!note)
-    {
-      window_item_removed_cb (self, NULL, NULL);
-      return;
-    }
-
-  g_set_object (&self->note, note);
   bjb_note_view_set_note (BJB_NOTE_VIEW (self->note_view), self->note);
   populate_headerbar_for_note_view (self);
 }

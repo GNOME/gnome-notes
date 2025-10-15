@@ -121,25 +121,23 @@ bijiben_startup (GApplication *application)
 }
 
 static void
-bijiben_finalize (GObject *object)
+bjb_application_shutdown (GApplication *application)
 {
-  BjbApplication *self = BJB_APPLICATION (object);
+  BjbApplication *self = BJB_APPLICATION (application);
 
   g_clear_object (&self->settings);
 
-  G_OBJECT_CLASS (bjb_application_parent_class)->finalize (object);
+  G_APPLICATION_CLASS (bjb_application_parent_class)->shutdown (application);
 }
 
 static void
 bjb_application_class_init (BjbApplicationClass *klass)
 {
   GApplicationClass *aclass = G_APPLICATION_CLASS (klass);
-  GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
   aclass->activate = bijiben_activate;
   aclass->startup = bijiben_startup;
-
-  oclass->finalize = bijiben_finalize;
+  aclass->shutdown = bjb_application_shutdown;
 }
 
 BjbApplication *

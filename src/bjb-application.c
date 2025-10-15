@@ -94,16 +94,13 @@ bjb_application_init (BjbApplication *self)
 static void
 bijiben_startup (GApplication *application)
 {
-  BjbApplication *self;
   g_autofree gchar *storage_path = NULL;
   g_autoptr(GAction) text_size = NULL;
   g_autoptr(GFile) storage = NULL;
   g_autoptr(GError) error = NULL;
+  BjbSettings *settings;
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
-  self = BJB_APPLICATION (application);
-
-  self->settings = bjb_settings_new ();
 
   gtk_window_set_default_icon_name ("org.gnome.Notes");
 
@@ -116,16 +113,17 @@ bijiben_startup (GApplication *application)
   if (error && !g_error_matches (error, G_IO_ERROR, G_IO_ERROR_EXISTS))
     g_warning ("%s", error->message);
 
-  text_size = bjb_settings_get_text_size_gaction (BJB_SETTINGS (self->settings));
+  settings = bjb_settings_get_default ();
+  text_size = bjb_settings_get_text_size_gaction (settings);
   g_action_map_add_action (G_ACTION_MAP (application), text_size);
 }
 
 static void
 bjb_application_shutdown (GApplication *application)
 {
-  BjbApplication *self = BJB_APPLICATION (application);
+  g_autoptr(BjbSettings) settings = NULL;
 
-  g_clear_object (&self->settings);
+  settings = bjb_settings_get_default ();
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->shutdown (application);
 }

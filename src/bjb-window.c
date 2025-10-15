@@ -180,8 +180,6 @@ bjb_window_constructed (GObject *obj)
   G_OBJECT_CLASS (bjb_window_parent_class)->constructed (obj);
 
   self->settings = bjb_app_get_settings ((gpointer) g_application_get_default ());
-
-  gtk_window_set_title (GTK_WINDOW (self), _(BIJIBEN_MAIN_WIN_TITLE));
 }
 
 

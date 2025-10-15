@@ -31,8 +31,6 @@
 #include <glib/gprintf.h>
 #include <stdlib.h>
 
-#include "providers/bjb-provider.h"
-#include "bjb-manager.h"
 #include "bjb-note-list.h"
 #include "bjb-note-view.h"
 #include "bjb-side-view.h"
@@ -104,20 +102,6 @@ bjb_window_show_about (BjbWindow *self)
 }
 
 static void
-window_item_removed_cb (BjbWindow   *self,
-                        BjbProvider *provider,
-                        BjbNote     *item)
-{
-  g_assert (BJB_IS_WINDOW (self));
-  g_assert (!item || BJB_IS_ITEM (item));
-
-  if (item != self->note)
-    return;
-
-  bjb_window_set_note (self, NULL);
-}
-
-static void
 window_selected_note_changed_cb (BjbWindow *self)
 {
   gpointer to_open;
@@ -170,16 +154,7 @@ bjb_window_email_note (BjbWindow *self)
 static void
 bjb_window_init (BjbWindow *self)
 {
-  BjbManager *manager;
-
   gtk_widget_init_template (GTK_WIDGET (self));
-
-  manager = bjb_manager_get_default ();
-  bjb_manager_load (manager);
-
-  g_signal_connect_object (manager, "item-removed",
-                           G_CALLBACK (window_item_removed_cb),
-                           self, G_CONNECT_SWAPPED);
 }
 
 static void

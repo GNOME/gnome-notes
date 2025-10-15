@@ -26,7 +26,9 @@
 #include <glib/gi18n.h>
 
 #include "bjb-application.h"
+#include "bjb-manager.h"
 #include "bjb-settings.h"
+#include "providers/bjb-provider.h"
 #include "bjb-note-view.h"
 #include "bjb-window.h"
 #include "bjb-log.h"
@@ -50,6 +52,22 @@ cmd_verbose_cb (const char  *option_name,
   bjb_log_increase_verbosity ();
 
   return TRUE;
+}
+
+static void
+application_item_removed_cb (BjbApplication *self,
+                             BjbProvider *provider,
+                             BjbItem     *item)
+{
+  GtkWindow *window;
+
+  g_assert (BJB_IS_APPLICATION (self));
+  g_assert (BJB_IS_PROVIDER (provider));
+  g_assert (BJB_IS_ITEM (item));
+
+  window = gtk_application_get_active_window (GTK_APPLICATION (self));
+  if (BJB_IS_WINDOW (window))
+    bjb_window_set_note (BJB_WINDOW (window), NULL);
 }
 
 static void
@@ -98,6 +116,7 @@ bijiben_startup (GApplication *application)
   g_autoptr(GFile) storage = NULL;
   g_autoptr(GError) error = NULL;
   BjbSettings *settings;
+  BjbManager *manager;
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->startup (application);
 
@@ -115,6 +134,13 @@ bijiben_startup (GApplication *application)
   settings = bjb_settings_get_default ();
   text_size = bjb_settings_get_text_size_gaction (settings);
   g_action_map_add_action (G_ACTION_MAP (application), text_size);
+
+  manager = bjb_manager_get_default ();
+  bjb_manager_load (manager);
+
+  g_signal_connect_object (manager, "item-removed",
+                           G_CALLBACK (application_item_removed_cb),
+                           application, G_CONNECT_SWAPPED);
 }
 
 static void

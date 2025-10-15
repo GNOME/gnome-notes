@@ -145,9 +145,9 @@ note_list_row_activated_cb (BjbNoteList    *self,
   g_assert (BJB_IS_LIST_VIEW_ROW (row));
 
   selected_note = bjb_list_view_row_get_note (row);
-  g_set_object (&self->selected_note, selected_note);
 
-  g_signal_emit (self, signals[SELECTION_CHANGED], 0);
+  if (g_set_object (&self->selected_note, selected_note))
+    g_signal_emit (self, signals[SELECTION_CHANGED], 0);
 }
 
 static void

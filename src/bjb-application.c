@@ -36,7 +36,6 @@ struct _BjbApplication
 {
   AdwApplication  parent_instance;
 
-  BjbSettings    *settings;
   gboolean        new_note;
 };
 
@@ -145,9 +144,4 @@ bjb_application_new (void)
                        "application-id", BIJIBEN_APPLICATION_ID,
                        "flags", G_APPLICATION_HANDLES_OPEN,
                        NULL);
-}
-
-BjbSettings * bjb_app_get_settings(gpointer application)
-{
-  return BJB_APPLICATION(application)->settings;
 }

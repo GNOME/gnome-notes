@@ -21,8 +21,6 @@
 
 #include <adwaita.h>
 
-#include "bjb-settings.h"
-
 G_BEGIN_DECLS
 
 #define BJB_TYPE_APPLICATION (bjb_application_get_type ())
@@ -30,9 +28,5 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (BjbApplication, bjb_application, BJB, APPLICATION, AdwApplication)
 
 BjbApplication *bjb_application_new (void);
-
-// Accessors
-
-BjbSettings * bjb_app_get_settings(gpointer application);
 
 G_END_DECLS

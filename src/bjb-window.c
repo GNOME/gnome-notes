@@ -219,13 +219,18 @@ void
 bjb_window_set_note (BjbWindow *self,
                      BjbNote   *note)
 {
+  bool has_notebook = FALSE;
+
   g_return_if_fail (BJB_IS_WINDOW (self));
   g_return_if_fail (!note || BJB_IS_NOTE (note));
 
   if (!g_set_object (&self->note, note))
     return;
 
-  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.view-notebooks", !!note);
+  if (note && BJB_NOTE_GET_CLASS (note)->get_tag_store)
+    has_notebook = TRUE;
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.view-notebooks", has_notebook);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.email", !!note);
 
   gtk_widget_set_visible (self->title_entry, !!note);

@@ -329,7 +329,7 @@ bjb_memo_provider_connected_cb (GObject      *object,
     }
 
   cancellable = g_task_get_cancellable (task);
-  self->client = client;
+  self->client = g_steal_pointer (&client);
   e_cal_client_get_view (self->client,
                          "#t",
                          cancellable,

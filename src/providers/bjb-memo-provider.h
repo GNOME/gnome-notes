@@ -36,6 +36,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (ECalClient, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ECalComponent, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ECalComponentId, e_cal_component_id_free)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (ECalComponentText, e_cal_component_text_free)
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (ECalComponentDateTime, e_cal_component_datetime_free)
 
 #define BJB_TYPE_MEMO_PROVIDER (bjb_memo_provider_get_type ())
 G_DECLARE_FINAL_TYPE (BjbMemoProvider, bjb_memo_provider, BJB, MEMO_PROVIDER, BjbProvider)

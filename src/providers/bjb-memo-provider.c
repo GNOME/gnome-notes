@@ -133,11 +133,11 @@ bjb_memo_provider_objects_added_cb (ECalClientView *client_view,
     {
       g_autoptr (ECalComponent) component = NULL;
       g_autoptr(ECalComponentText) summary = NULL;
+      g_autoptr(BjbItem) note = NULL;
       g_autofree char *content = NULL;
       ICalComponent *icomponent;
       ICalTime *tt;
       GSList *descriptions;
-      BjbItem *note;
       const char *uid, *title;
       time_t time;
 
@@ -422,9 +422,10 @@ bjb_memo_provider_save_item_async (BjbProvider         *provider,
 {
   BjbMemoProvider *self = (BjbMemoProvider *)provider;
   g_autoptr(GTask) task = NULL;
+  g_autofree char *content = NULL;
   g_autoptr(ECalComponentText) description = NULL;
   g_autoptr(ECalComponentText) summary = NULL;
-  ECalComponentDateTime *date_time;
+  g_autoptr(ECalComponentDateTime) date_time = NULL;
   ECalComponent *component;
   ICalTimezone *zone;
   ICalTime *time;
@@ -451,8 +452,7 @@ bjb_memo_provider_save_item_async (BjbProvider         *provider,
       e_cal_component_set_new_vtype (component, E_CAL_COMPONENT_JOURNAL);
 
       g_object_set_data_full (G_OBJECT (item), "component",
-                              g_object_ref (component),
-                              g_object_unref);
+                              component, g_object_unref);
 
       e_cal_component_set_dtstart (component, date_time);
       e_cal_component_set_dtend (component, date_time);
@@ -464,7 +464,8 @@ bjb_memo_provider_save_item_async (BjbProvider         *provider,
   summary = e_cal_component_text_new (bjb_item_get_title (item), NULL);
   e_cal_component_set_summary (component, summary);
 
-  description = e_cal_component_text_new (bjb_note_get_raw_content (BJB_NOTE (item)), NULL);
+  content = bjb_note_get_raw_content (BJB_NOTE (item));
+  description = e_cal_component_text_new (content, NULL);
   descriptions.data = description;
   descriptions.next = NULL;
   e_cal_component_set_descriptions (component, &descriptions);
@@ -547,6 +548,7 @@ bjb_memo_provider_finalize (GObject *object)
   g_clear_object (&self->client_view);
   g_clear_object (&self->client);
   g_clear_object (&self->source);
+  g_clear_object (&self->notes);
 
   g_clear_pointer (&self->uid, g_free);
   g_clear_pointer (&self->name, g_free);

@@ -75,7 +75,7 @@ bjb_item_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_TITLE:
-      g_value_set_string (value, priv->title);
+      g_value_set_string (value, bjb_item_get_title (self));
       break;
 
     case PROP_COLOR:

@@ -103,11 +103,11 @@ bjb_note_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_CONTENT:
-      g_value_set_string (value, bjb_note_get_text_content (self));
+      g_value_take_string (value, bjb_note_get_text_content (self));
       break;
 
     case PROP_RAW_CONTENT:
-      g_value_set_string (value, bjb_note_get_raw_content (self));
+      g_value_take_string (value, bjb_note_get_raw_content (self));
       break;
 
     default:
@@ -141,6 +141,7 @@ bjb_note_finalize (GObject *object)
   BjbNote *self = BJB_NOTE (object);
   BjbNotePrivate *priv = bjb_note_get_instance_private (self);
 
+  g_clear_pointer (&priv->html, g_free);
   g_clear_object (&priv->notebook);
   g_clear_object (&priv->tags);
 

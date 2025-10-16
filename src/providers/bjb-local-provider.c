@@ -65,6 +65,7 @@ bjb_local_provider_finalize (GObject *object)
   g_clear_pointer (&self->domain, g_free);
   g_clear_pointer (&self->user_name, g_free);
   g_clear_pointer (&self->location, g_free);
+  g_clear_pointer (&self->trash_location, g_free);
 
   g_clear_object (&self->notes);
   g_clear_object (&self->trash_notes);

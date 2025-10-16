@@ -132,9 +132,6 @@ bjb_window_show_notebooks (BjbWindow *self)
 {
   GtkWidget *notebooks_dialog;
 
-  if (!BJB_IS_NOTE (self->note))
-    return;
-
   notebooks_dialog = bjb_notebooks_dialog_new (GTK_WINDOW (self));
   bjb_notebooks_dialog_set_item (BJB_NOTEBOOKS_DIALOG (notebooks_dialog),
                                  BJB_NOTE (self->note));
@@ -155,6 +152,8 @@ static void
 bjb_window_init (BjbWindow *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.view-notebooks", FALSE);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.email", FALSE);
 }
 
 static void
@@ -222,6 +221,9 @@ bjb_window_set_note (BjbWindow *self,
 
   if (!g_set_object (&self->note, note))
     return;
+
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.view-notebooks", !!note);
+  gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.email", !!note);
 
   gtk_widget_set_visible (self->title_entry, !!note);
   g_clear_pointer (&self->title_binding, g_binding_unbind);

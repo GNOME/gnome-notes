@@ -142,8 +142,10 @@ static void
 bjb_application_shutdown (GApplication *application)
 {
   g_autoptr(BjbSettings) settings = NULL;
+  g_autoptr(BjbManager) manager = NULL;
 
   settings = bjb_settings_get_default ();
+  manager = bjb_manager_get_default ();
 
   G_APPLICATION_CLASS (bjb_application_parent_class)->shutdown (application);
 }

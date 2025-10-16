@@ -33,10 +33,10 @@ on_email_note_callback (BjbNote *note)
   GError *error = NULL;
   g_autofree gchar *title_mail = NULL;
   g_autofree gchar *text_mail = NULL;
+  g_autofree char *content = NULL;
   g_autoptr(GDBusProxy) proxy = NULL;
   GVariantBuilder *arraybuilder;
   GVariant *dict;
-  const char *content;
 
   title_mail = mail_str (bjb_item_get_title (BJB_ITEM (note)));
 

@@ -154,6 +154,9 @@ bjb_window_init (BjbWindow *self)
   gtk_widget_init_template (GTK_WIDGET (self));
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.view-notebooks", FALSE);
   gtk_widget_action_set_enabled (GTK_WIDGET (self), "win.email", FALSE);
+
+  if (g_strcmp0 (PROFILE, "") != 0)
+    gtk_widget_add_css_class (GTK_WIDGET (self), "devel");
 }
 
 static void

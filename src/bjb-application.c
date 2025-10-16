@@ -78,12 +78,7 @@ bijiben_activate (GApplication *app)
   window = gtk_application_get_active_window (GTK_APPLICATION (app));
 
   if (!window)
-    {
-      window = GTK_WINDOW (bjb_window_new ());
-
-      if (g_strcmp0 (PROFILE, "") != 0)
-        gtk_widget_add_css_class (GTK_WIDGET (window), "devel");
-    }
+    window = GTK_WINDOW (bjb_window_new ());
 
   gtk_window_present (window);
 }

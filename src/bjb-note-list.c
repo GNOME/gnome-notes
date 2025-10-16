@@ -45,8 +45,9 @@ static gboolean
 note_list_filter_notes (gpointer note,
                         gpointer user_data)
 {
+  g_autofree char *content = NULL;
   BjbNoteList *self = user_data;
-  const char *title, *content;
+  const char *title;
 
   if (bjb_item_is_trashed (note) != self->is_trash)
     return FALSE;

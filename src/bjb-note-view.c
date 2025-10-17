@@ -72,7 +72,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC (NoteData, note_data_free)
 static gboolean
 note_view_save_item (gpointer user_data)
 {
-  g_autoptr(NoteData) data = user_data;
+  NoteData *data = user_data;
   BjbNoteView *self;
   BjbProvider *provider;
   BjbItem *note;
@@ -245,7 +245,9 @@ note_view_note_modified_cb (BjbNoteView *self)
   g_set_weak_pointer (&data->self, self);
   g_set_object (&data->note, (BjbItem *)self->note);
 
-  self->save_id = g_timeout_add_seconds (10, note_view_save_item, data);
+  self->save_id = g_timeout_add_seconds_full (G_PRIORITY_DEFAULT, 10,
+                                              note_view_save_item,
+                                              data, note_data_free);
 }
 
 void
@@ -261,7 +263,7 @@ bjb_note_view_set_note (BjbNoteView *self,
   if (self->save_id && self->note &&
       bjb_item_is_modified (BJB_ITEM (self->note)))
     {
-      NoteData *data;
+      g_autoptr(NoteData) data = NULL;
 
       data = g_new0 (NoteData, 1);
       g_set_weak_pointer (&data->self, self);

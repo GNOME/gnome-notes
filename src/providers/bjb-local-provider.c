@@ -52,12 +52,6 @@ struct _BjbLocalProvider
 G_DEFINE_TYPE (BjbLocalProvider, bjb_local_provider, BJB_TYPE_PROVIDER)
 
 static void
-bjb_local_provider_dispose (GObject *object)
-{
-  G_OBJECT_CLASS (bjb_local_provider_parent_class)->dispose (object);
-}
-
-static void
 bjb_local_provider_finalize (GObject *object)
 {
   BjbLocalProvider *self = (BjbLocalProvider *)object;
@@ -299,7 +293,6 @@ bjb_local_provider_class_init (BjbLocalProviderClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   BjbProviderClass *provider_class = BJB_PROVIDER_CLASS (klass);
 
-  object_class->dispose = bjb_local_provider_dispose;
   object_class->finalize = bjb_local_provider_finalize;
 
   provider_class->get_name = bjb_local_provider_get_name;

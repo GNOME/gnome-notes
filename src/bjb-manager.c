@@ -51,7 +51,6 @@ struct _BjbManager
   GListStore          *providers;
 
   GListStore          *list_of_notes;
-  GListStore          *list_of_trash_notes;
   GtkFlattenListModel *notes;
 
   gboolean             is_loading;
@@ -262,7 +261,6 @@ bjb_manager_finalize (GObject *object)
   BjbManager *self = (BjbManager *)object;
 
   g_clear_object (&self->list_of_notes);
-  g_clear_object (&self->list_of_trash_notes);
   g_clear_object (&self->notes);
 
   g_clear_object (&self->eds_registry);

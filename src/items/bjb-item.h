@@ -39,8 +39,6 @@ struct _BjbItemClass
 
   gboolean      (*is_modified)     (BjbItem     *self);
   void          (*unset_modified)  (BjbItem     *self);
-  gboolean      (*match)           (BjbItem     *self,
-                                    const char  *needle);
   BjbFeature    (*get_features)    (BjbItem     *self);
 };
 
@@ -70,11 +68,5 @@ gboolean       bjb_item_is_modified          (BjbItem        *self);
 void           bjb_item_set_modified         (BjbItem        *self);
 void           bjb_item_unset_modified       (BjbItem        *self);
 gboolean       bjb_item_is_new               (BjbItem        *self);
-int            bjb_item_compare              (gconstpointer   a,
-                                              gconstpointer   b,
-                                              gpointer        user_data);;
-gboolean       bjb_item_match                (BjbItem        *self,
-                                              const char     *needle);
-BjbFeature     bjb_item_get_features         (BjbItem        *self);
 
 G_END_DECLS

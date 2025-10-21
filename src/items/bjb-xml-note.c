@@ -113,12 +113,6 @@ bjb_xml_note_get_tag_store (BjbNote *note)
   return self->tag_store;
 }
 
-static const char *
-bjb_xml_note_get_extension (BjbNote *note)
-{
-  return ".note";
-}
-
 static void
 bjb_xml_note_finalize (GObject *object)
 {
@@ -142,7 +136,6 @@ bjb_xml_note_class_init (BjbXmlNoteClass *klass)
   note_class->set_raw_content = bjb_xml_note_set_raw_content;
   note_class->set_text_content = bjb_xml_note_set_text_content;
   note_class->get_tag_store = bjb_xml_note_get_tag_store;
-  note_class->get_extension = bjb_xml_note_get_extension;
 }
 
 static void

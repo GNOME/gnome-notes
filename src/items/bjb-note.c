@@ -41,15 +41,6 @@ typedef struct
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (BjbNote, bjb_note, BJB_TYPE_ITEM)
 
-enum {
-  PROP_0,
-  PROP_CONTENT,
-  PROP_RAW_CONTENT,
-  N_PROPS
-};
-
-static GParamSpec *properties[N_PROPS];
-
 static char *
 bjb_note_real_get_text_content (BjbNote *self)
 {
@@ -86,55 +77,6 @@ bjb_note_real_get_notebook (BjbNote *self)
   return NULL;
 }
 
-static const char *
-bjb_note_real_get_extension (BjbNote *self)
-{
-  return ".txt";
-}
-
-static void
-bjb_note_get_property (GObject    *object,
-                       guint       prop_id,
-                       GValue     *value,
-                       GParamSpec *pspec)
-{
-  BjbNote *self = (BjbNote *)object;
-
-  switch (prop_id)
-    {
-    case PROP_CONTENT:
-      g_value_take_string (value, bjb_note_get_text_content (self));
-      break;
-
-    case PROP_RAW_CONTENT:
-      g_value_take_string (value, bjb_note_get_raw_content (self));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    }
-}
-
-static void
-bjb_note_set_property (GObject      *object,
-                       guint         prop_id,
-                       const GValue *value,
-                       GParamSpec   *pspec)
-{
-  BjbNote *self = BJB_NOTE (object);
-
-  switch (prop_id)
-    {
-    case PROP_CONTENT:
-      bjb_note_set_text_content (self, g_value_get_string (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-    }
-}
-
 static void
 bjb_note_finalize (GObject *object)
 {
@@ -153,8 +95,6 @@ bjb_note_class_init (BjbNoteClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->get_property = bjb_note_get_property;
-  object_class->set_property = bjb_note_set_property;
   object_class->finalize = bjb_note_finalize;
 
   klass->get_text_content = bjb_note_real_get_text_content;
@@ -163,38 +103,6 @@ bjb_note_class_init (BjbNoteClass *klass)
   klass->set_raw_content = bjb_note_real_set_raw_content;
 
   klass->get_notebook = bjb_note_real_get_notebook;
-  klass->get_extension = bjb_note_real_get_extension;
-
-  /**
-   * BjbNote:content:
-   *
-   * The plain text content of the note. Shall be used to feed
-   * into tracker, or to search within the note.
-   */
-  properties[PROP_CONTENT] =
-    g_param_spec_string ("content",
-                         "Content",
-                         "The text content of the note",
-                         NULL,
-                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-
-  /**
-   * BjbNote:raw-content:
-   *
-   * The raw-content of the note may include XML/markdown content,
-   * or whatever is used to keep the note formatted, if any.
-   *
-   * This is the text that is feed as the content to save. May
-   * include title, color, and other details.
-   */
-  properties[PROP_RAW_CONTENT] =
-    g_param_spec_string ("raw-content",
-                         "Raw Content",
-                         "The raw content of the note",
-                         NULL,
-                         G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
-
-  g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -387,23 +295,4 @@ bjb_note_get_tags (BjbNote *self)
   g_return_val_if_fail (BJB_IS_NOTE (self), NULL);
 
   return G_LIST_MODEL (priv->tags);
-}
-
-/**
- * bjb_note_get_file_extension:
- * @self: a #BjbNote
- *
- * Get the commonly used file extension for the given
- * note @self.  Say for example, if @self is a #BjbPlainNote
- * ".txt" is returned.
- *
- * Returns: (transfer none): The file extension for the
- * given note
- */
-const char *
-bjb_note_get_file_extension (BjbNote *self)
-{
-  g_return_val_if_fail (BJB_IS_NOTE (self), ".txt");
-
-  return BJB_NOTE_GET_CLASS (self)->get_extension (self);
 }

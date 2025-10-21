@@ -47,7 +47,6 @@ struct _BjbNoteClass
 
   BjbTagStore *(*get_tag_store)           (BjbNote        *self);
   BjbItem     *(*get_notebook)            (BjbNote        *self);
-  const char  *(*get_extension)           (BjbNote        *self);
 };
 
 char         *bjb_note_get_text_content        (BjbNote         *self);
@@ -67,6 +66,5 @@ void          bjb_note_set_notebook            (BjbNote         *self,
                                                 BjbItem         *notebook);
 BjbItem      *bjb_note_get_notebook            (BjbNote         *self);
 GListModel   *bjb_note_get_tags                (BjbNote         *self);
-const char   *bjb_note_get_file_extension      (BjbNote         *self);
 
 G_END_DECLS

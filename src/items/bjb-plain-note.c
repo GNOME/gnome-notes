@@ -143,10 +143,10 @@ bjb_plain_note_new_from_data (const char *uid,
 
   self = g_object_new (BJB_TYPE_PLAIN_NOTE,
                        "title", title,
-                       "content", content,
                        NULL);
 
   bjb_item_set_uid (BJB_ITEM (self), uid);
+  bjb_note_set_text_content (BJB_NOTE (self), content);
 
   return BJB_ITEM (self);
 }

@@ -176,21 +176,6 @@ bjb_item_real_unset_modified (BjbItem *self)
   g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MODIFIED]);
 }
 
-static gboolean
-bjb_item_real_match (BjbItem      *self,
-                    const char *needle)
-{
-  g_autofree char *title = NULL;
-
-  g_assert (BJB_IS_ITEM (self));
-
-  title = g_utf8_casefold (bjb_item_get_title (self), -1);
-  if (strstr (title, needle) != NULL)
-    return TRUE;
-
-  return FALSE;
-}
-
 static BjbFeature
 bjb_item_real_get_features (BjbItem *self)
 {
@@ -210,7 +195,6 @@ bjb_item_class_init (BjbItemClass *klass)
 
   klass->is_modified = bjb_item_real_is_modified;
   klass->unset_modified = bjb_item_real_unset_modified;
-  klass->match = bjb_item_real_match;
   klass->get_features = bjb_item_real_get_features;
 
   /**
@@ -345,14 +329,10 @@ bjb_item_set_uid (BjbItem   *self,
 
   g_return_if_fail (BJB_IS_ITEM (self));
 
-  /* if (g_strcmp0 (priv->uid, uid) == 0) */
-  /*   return; */
-
   g_free (priv->uid);
   priv->uid = g_strdup (uid);
 
   bjb_item_set_modified (self);
-  /* g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_UID]); */
 }
 
 /**
@@ -642,63 +622,4 @@ bjb_item_is_new (BjbItem *self)
 
   /* If uid is NULL, that means the item isn't saved */
   return priv->uid == NULL;
-}
-
-/**
- * bjb_item_compare:
- * @a: A #BjbItem
- * @b: A #BjbItem
- *
- * Compare two #BjbItem
- *
- * Returns: an integer less than, equal to, or greater
- * than 0, if title of @a is <, == or > than title of @b.
- */
-int
-bjb_item_compare (gconstpointer a,
-                  gconstpointer b,
-                  gpointer      user_data)
-{
-  BjbItemPrivate *item_a = bjb_item_get_instance_private ((BjbItem *)a);
-  BjbItemPrivate *item_b = bjb_item_get_instance_private ((BjbItem *)b);
-  g_autofree char *title_a = NULL;
-  g_autofree char *title_b = NULL;
-
-  if (item_a == item_b)
-    return 0;
-
-  title_a = g_utf8_casefold (item_a->title, -1);
-  title_b = g_utf8_casefold (item_b->title, -1);
-
-  return g_strcmp0 (title_a, title_b);
-}
-
-gboolean
-bjb_item_match (BjbItem   *self,
-               const char *needle)
-{
-  g_autofree char *casefold_needle = NULL;
-
-  g_return_val_if_fail (BJB_IS_ITEM (self), FALSE);
-  g_return_val_if_fail (needle != NULL, FALSE);
-
-  casefold_needle = g_utf8_casefold (needle, -1);
-
-  return BJB_ITEM_GET_CLASS (self)->match (self, casefold_needle);
-}
-
-/**
- * bjb_item_get_features:
- * @self: a #BjbItem
- *
- * Get the features supported by @self.
- *
- * Returns: A #BjbFeature
- */
-BjbFeature
-bjb_item_get_features (BjbItem *self)
-{
-  g_return_val_if_fail (BJB_IS_ITEM (self), 0);
-
-  return BJB_ITEM_GET_CLASS (self)->get_features (self);
 }

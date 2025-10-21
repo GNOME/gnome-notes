@@ -64,12 +64,6 @@ struct _BjbMemoProvider
 G_DEFINE_TYPE (BjbMemoProvider, bjb_memo_provider, BJB_TYPE_PROVIDER)
 
 static const char *
-bjb_memo_provider_get_uid (BjbProvider *provider)
-{
-  return BJB_MEMO_PROVIDER (provider)->uid;
-}
-
-static const char *
 bjb_memo_provider_get_name (BjbProvider *provider)
 {
   BjbMemoProvider *self = BJB_MEMO_PROVIDER (provider);
@@ -88,25 +82,6 @@ static const char *
 bjb_memo_provider_get_location_name (BjbProvider *provider)
 {
   return _("Memo Note");
-}
-
-static gboolean
-bjb_memo_provider_get_rgba (BjbProvider *provider,
-                            GdkRGBA     *rgba)
-{
-  BjbMemoProvider *self = BJB_MEMO_PROVIDER (provider);
-
-  *rgba = self->rgba;
-
-  return TRUE;
-}
-
-static BjbStatus
-bjb_memo_provider_get_status (BjbProvider *provider)
-{
-  BjbMemoProvider *self = BJB_MEMO_PROVIDER (provider);
-
-  return self->status;
 }
 
 static GListModel *
@@ -245,8 +220,6 @@ bjb_memo_provider_loaded_cb (ECalClientView *client_view,
   self = g_task_get_source_object (task);
   g_assert (BJB_IS_MEMO_PROVIDER (self));
 
-  bjb_provider_set_loaded (BJB_PROVIDER (self), !error);
-
   if (error)
     g_task_return_error (task, g_error_copy (error));
   else
@@ -319,8 +292,6 @@ bjb_memo_provider_connected_cb (GObject      *object,
   else
     self->status = BJB_STATUS_DISCONNECTED;
 
-  g_object_notify (G_OBJECT (self), "status");
-
   if (error)
     {
       g_task_return_error (task, g_steal_pointer (&error));
@@ -353,7 +324,6 @@ bjb_memo_provider_connect_async (BjbProvider         *provider,
   g_task_set_source_tag (task, bjb_memo_provider_connect_async);
 
   self->status = BJB_STATUS_CONNECTING;
-  g_object_notify (G_OBJECT (self), "status");
 
   e_cal_client_connect (self->source, E_CAL_CLIENT_SOURCE_TYPE_MEMOS,
                         10, /* seconds to wait */
@@ -494,53 +464,6 @@ bjb_memo_provider_save_item_async (BjbProvider         *provider,
 }
 
 static void
-memo_provider_delete_item_cb (GObject      *object,
-                              GAsyncResult *result,
-                              gpointer      user_data)
-{
-  g_autoptr(GTask) task = user_data;
-  GError *error = NULL;
-  gboolean success;
-
-  g_assert (G_IS_TASK (task));
-
-  success = e_cal_client_remove_object_finish (E_CAL_CLIENT (object), result, &error);
-
-  if (error)
-    g_warning ("Could not delete memo: %s", error->message);
-
-  if (success)
-    g_task_return_boolean (task, success);
-  else
-    g_task_return_error (task, error);
-}
-
-
-static void
-bjb_memo_provider_delete_item_async (BjbProvider         *provider,
-                                     BjbItem             *item,
-                                     GCancellable        *cancellable,
-                                     GAsyncReadyCallback  callback,
-                                     gpointer             user_data)
-{
-  BjbMemoProvider *self = BJB_MEMO_PROVIDER (provider);
-  GTask *task;
-
-  g_assert (BJB_IS_ITEM (item));
-
-  task = g_task_new (self, cancellable, callback, user_data);
-  e_cal_client_remove_object (self->client,
-                              bjb_item_get_uid (item),
-                              NULL,
-                              E_CAL_OBJ_MOD_ALL,
-                              E_CAL_OPERATION_FLAG_NONE,
-                              cancellable,
-                              memo_provider_delete_item_cb,
-                              task);
-}
-
-
-static void
 bjb_memo_provider_finalize (GObject *object)
 {
   BjbMemoProvider *self = (BjbMemoProvider *)object;
@@ -564,18 +487,14 @@ bjb_memo_provider_class_init (BjbMemoProviderClass *klass)
 
   object_class->finalize = bjb_memo_provider_finalize;
 
-  provider_class->get_uid = bjb_memo_provider_get_uid;
   provider_class->get_name = bjb_memo_provider_get_name;
   provider_class->get_icon = bjb_memo_provider_get_icon;
   provider_class->get_location_name = bjb_memo_provider_get_location_name;
-  provider_class->get_rgba = bjb_memo_provider_get_rgba;
-  provider_class->get_status = bjb_memo_provider_get_status;
 
   provider_class->get_notes = bjb_memo_provider_get_notes;
 
   provider_class->connect_async = bjb_memo_provider_connect_async;
   provider_class->save_item_async = bjb_memo_provider_save_item_async;
-  provider_class->delete_item_async = bjb_memo_provider_delete_item_async;
 }
 
 static void

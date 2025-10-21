@@ -39,16 +39,10 @@ struct _BjbProviderClass
 {
   GObjectClass parent_class;
 
-  const char  *(*get_uid)              (BjbProvider          *self);
   const char  *(*get_name)             (BjbProvider          *self);
   GIcon       *(*get_icon)             (BjbProvider          *self,
                                         GError              **error);
-  gboolean     (*get_rgba)             (BjbProvider          *self,
-                                        GdkRGBA              *rgba);
-  const char  *(*get_domain)           (BjbProvider          *self);
-  const char  *(*get_user_name)        (BjbProvider          *self);
   const char  *(*get_location_name)    (BjbProvider          *self);
-  BjbStatus    (*get_status)           (BjbProvider          *self);
 
   GListModel  *(*get_notes)            (BjbProvider          *self);
   GListModel  *(*get_trash_notes)      (BjbProvider          *self);
@@ -68,38 +62,12 @@ struct _BjbProviderClass
   gboolean     (*save_item_finish)     (BjbProvider          *self,
                                         GAsyncResult         *result,
                                         GError              **error);
-  void         (*restore_item_async)   (BjbProvider          *self,
-                                        BjbItem              *item,
-                                        GCancellable         *cancellable,
-                                        GAsyncReadyCallback   callback,
-                                        gpointer              user_data);
-  gboolean     (*restore_item_finish)  (BjbProvider          *self,
-                                        GAsyncResult         *result,
-                                        GError              **error);
-  void         (*delete_item_async)    (BjbProvider          *self,
-                                        BjbItem              *item,
-                                        GCancellable         *cancellable,
-                                        GAsyncReadyCallback   callback,
-                                        gpointer              user_data);
-  gboolean     (*delete_item_finish)   (BjbProvider          *self,
-                                        GAsyncResult         *result,
-                                        GError              **error);
 };
 
-const char  *bjb_provider_get_uid              (BjbProvider          *self);
 const char  *bjb_provider_get_name             (BjbProvider          *self);
 GIcon       *bjb_provider_get_icon             (BjbProvider          *self,
                                                 GError              **error);
-gboolean     bjb_provider_get_rgba             (BjbProvider          *self,
-                                                GdkRGBA              *rgba);
-const char  *bjb_provider_get_domain           (BjbProvider          *self);
-const char  *bjb_provider_get_user_name        (BjbProvider          *self);
 const char  *bjb_provider_get_location_name    (BjbProvider          *self);
-
-BjbStatus    bjb_provider_get_status           (BjbProvider          *self);
-gboolean     bjb_provider_get_loaded           (BjbProvider          *self);
-void         bjb_provider_set_loaded           (BjbProvider          *self,
-                                                gboolean              loaded);
 
 GListModel  *bjb_provider_get_notes            (BjbProvider          *self);
 GListModel  *bjb_provider_get_trash_notes      (BjbProvider          *self);
@@ -118,22 +86,6 @@ void         bjb_provider_save_item_async      (BjbProvider          *self,
                                                 GAsyncReadyCallback   callback,
                                                 gpointer              user_data);
 gboolean     bjb_provider_save_item_finish     (BjbProvider          *self,
-                                                GAsyncResult         *result,
-                                                GError              **error);
-void         bjb_provider_restore_item_async   (BjbProvider          *self,
-                                                BjbItem              *item,
-                                                GCancellable         *cancellable,
-                                                GAsyncReadyCallback   callback,
-                                                gpointer              user_data);
-gboolean     bjb_provider_restore_item_finish  (BjbProvider          *self,
-                                                GAsyncResult         *result,
-                                                GError              **error);
-void         bjb_provider_delete_item_async    (BjbProvider          *self,
-                                                BjbItem              *item,
-                                                GCancellable         *cancellable,
-                                                GAsyncReadyCallback   callback,
-                                                gpointer              user_data);
-gboolean     bjb_provider_delete_item_finish   (BjbProvider          *self,
                                                 GAsyncResult         *result,
                                                 GError              **error);
 G_END_DECLS
